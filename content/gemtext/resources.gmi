@@ -2,7 +2,7 @@
 
 # Resources
 
-This is a list of resources I found useful. I am not an expert in all (but some) of these topics but all the resources listed here made an impact on me. I've read some of the books quite a long time ago, so there might be newer editions out there already and I might need to refresh some of the knowledge.
+This is a list of resources I found useful. I am not an expert in all of these topics but all the resources listed here made an impact on me. I've read some of the books quite a long time ago, so there might be newer editions out there already and I might need to refresh some of the knowledge.
 
 The list may not be exhaustive but I will be adding more in the future. I strongly believe that educating yourself further is one of the most important things you should do in order to advance. The lists are in random order and reshuffled every time (via *sort -R*) when updates are made.
 
@@ -59,22 +59,23 @@ I didn't read them from the beginning to the end, but I am using them to look up
 ## Self-development and soft-skills books
 
 * Atomic Habits; James Clear; Random House Business
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* The Off Switch; Mark Cropley; Virgin Books
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* So Good They Can't Ignore You; Cal Newport; Business Plus
-* The Joy of Missing Out; Christina Crook; New Society Publishers
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
 * The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* The Power of Now; Eckhard Tolle; Yellow Kite
-* Soft Skills; John Sommez; Manning Publications
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
 * Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
 * Digital Minimalism; Cal Newport; Portofolio Penguin
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
 * Ultralearning; Scott Young; Thorsons
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* Soft Skills; John Sommez; Manning Publications
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* The Off Switch; Mark Cropley; Virgin Books
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
 * Deep Work; Cal Newport; Piatkus
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* The Power of Now; Eckhard Tolle; Yellow Kite
 
 ## Technical video lectures and courses
 

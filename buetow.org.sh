@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 declare -r ARG=$1; shift
-
 source buetow.org.conf
 
 ## Test module
@@ -23,10 +22,51 @@ ERROR
     echo "Assert OK: $expected"
 }
 
+## Gemfeed module
+
+# Adds the links from gemfeed/index.gmi to the main index site.
+gemfeed::updatemainindex () {
+    local -r index_gmi="$CONTENT_DIR/gemtext/index.gmi"
+
+    # Remove old gemfeeds from main index
+    sed '/^=> .\/gemfeed\/[0-9]/d;' "$index_gmi" > "$index_gmi.tmp"
+    # Add current gemfeeds to main index
+    sed -n '/^=> / { s| ./| ./gemfeed/|; p; }' "$gemfeed_dir/index.gmi" >> "$index_gmi.tmp"
+
+    mv "$index_gmi.tmp" "$index_gmi"
+    git add "$index_gmi"
+}
+
+# This generates a index.gmi in the ./gemfeed subdir.
+gemfeed::generate () {
+    local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
+
+cat <<GEMFEED > "$gemfeed_dir/index.gmi.tmp"
+# $DOMAIN's Gemfeed
+
+## $SUBTITLE
+
+GEMFEED
+
+    ls "$gemfeed_dir" | grep '\.gmi$' | grep -v '^index.gmi$' | sort -r |
+    while read gmi_file; do
+        # Extract first heading as post title.
+        local title=$(sed -n '/^# / { s/# //; p; q; }' "$gemfeed_dir/$gmi_file" | tr '"' "'")
+        # Extract the date from the file name.
+        local filename_date=$(basename "$gemfeed_dir/$gmi_file" | cut -d- -f1,2,3)
+
+        echo "=> ./$gmi_file $filename_date $title" >> "$gemfeed_dir/index.gmi.tmp"
+    done
+
+    mv "$gemfeed_dir/index.gmi.tmp" "$gemfeed_dir/index.gmi"
+    git add "$gemfeed_dir/index.gmi"
+
+    gemfeed::updatemainindex
+}
+
 ## Atom module
 
-atom::meta () {
-    local -r now="$1"; shift
+atomfeed::meta () {
     local -r gmi_file_path="$1"; shift
     local -r meta_file=$(sed 's|gemtext|meta|; s|.gmi$|.meta|;' <<< "$gmi_file_path")
 
@@ -38,9 +78,12 @@ atom::meta () {
         local title=$(sed -n '/^# / { s/# //; p; q; }' "$gmi_file_path" | tr '"' "'")
         # Extract first paragraph from Gemtext
         local summary=$(sed -n '/^[A-Z]/ { p; q; }' "$gmi_file_path" | tr '"' "'")
+        # Extract the date from the file name.
+        local filename_date=$(basename $gmi_file_path | cut -d- -f1,2,3)
+        local date=$(date --iso-8601=seconds --date "$filename_date $(date +%H:%M:%S)")
 
         cat <<META | tee "$meta_file"
-local meta_date="$now"
+local meta_date="$date"
 local meta_author="$AUTHOR"
 local meta_email="$EMAIL"
 local meta_title="$title"
@@ -53,7 +96,17 @@ META
     cat "$meta_file"
 }
 
-atom::generate () {
+atomfeed::content () {
+    local -r gmi_file_path="$1"; shift
+    # sed: Remove all before the first header
+    # sed: Make HTML links absolute, Atom relative URLs feature seems a mess
+    # across different Atom clients.
+    html::gemini2html < <(sed '0,/^# / { /^# /!d; }' "$gmi_file_path") |
+        sed "s|href=\"\./|href=\"https://$DOMAIN/gemfeed/|g" |
+        sed "s|src=\"\./|src=\"https://$DOMAIN/gemfeed/|g"
+}
+
+atomfeed::generate () {
     local -r gemfeed_dir="$CONTENT_DIR/gemtext/gemfeed"
     local -r atom_file="$gemfeed_dir/atom.xml"
     local -r now=$(date --iso-8601=seconds)
@@ -71,7 +124,9 @@ ATOMHEADER
 
     while read -r gmi_file; do
         # Load cached meta information about the post.
-        source <(atom::meta "$now" "$gemfeed_dir/$gmi_file")
+        source <(atomfeed::meta "$gemfeed_dir/$gmi_file")
+        # Get HTML content for the feed
+        local content="$(atomfeed::content "$gemfeed_dir/$gmi_file")"
 
         cat <<ATOMENTRY >> "$atom_file.tmp"
     <entry>
@@ -79,21 +134,26 @@ ATOMHEADER
         <link href="gemini://$DOMAIN/gemfeed/$gmi_file" />
         <id>gemini://$DOMAIN/gemfeed/$gmi_file</id>
         <updated>$meta_date</updated>
-        <summary>$meta_summary</summary>
         <author>
             <name>$meta_author</name>
             <email>$meta_email</email>
         </author>
+        <summary>$meta_summary</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                $content
+            </div>
+        </content>
     </entry>
 ATOMENTRY
-    done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | head -n $ATOM_MAX_ENTRIES)
+    done < <(ls "$gemfeed_dir" | sort -r | grep '.gmi$' | grep -v '^index.gmi$' | head -n $ATOM_MAX_ENTRIES)
 
     cat <<ATOMFOOTER >> "$atom_file.tmp"
 </feed>
 ATOMFOOTER
 
     # Delete the 3rd line of the atom feeds (global feed update timestamp)
-    if ! diff -u <(sed 3d "$atom_file.tmp") <(sed 3d "$atom_file"); then
+    if ! diff -u <(sed 3d "$atom_file") <(sed 3d "$atom_file.tmp"); then
         echo "Feed got something new!"
         mv "$atom_file.tmp" "$atom_file"
         git add "$atom_file"
@@ -105,21 +165,29 @@ ATOMFOOTER
 
 ## HTML module
 
+html::special () {
+    sed '
+        s|\&|\&amp;|g;
+        s|<|\&lt;|g;
+        s|>|\&gt;|g;
+    ' <<< "$@"
+}
+
 html::paragraph () {
-    local -r text="$1"
-    test -n "$text" && echo "<p>$text</p>"
+    local -r text="$1"; shift
+    test -n "$text" && echo "<p>$(html::special "$text")</p>"
 }
 
 html::heading () {
-    local -r text=$(sed -E 's/^#+ //' <<< "$1")
-    local -r level="$2"
+    local -r text=$(sed -E 's/^#+ //' <<< "$1"); shift
+    local -r level="$1"; shift
 
-    echo "<h${level}>$text</h${level}>"
+    echo "<h${level}>$(html::special "$text")</h${level}>"
 }
 
 html::quote () {
     local -r quote="${1/> }"
-    echo "<pre>$quote</pre>"
+    echo "<pre>$(html::special "$quote")</pre>"
 }
 
 html::img () {
@@ -149,6 +217,7 @@ html::link () {
             descr="$descr $token"
         fi
     done < <(echo "$line" | tr ' ' '\n')
+    descr=$(html::special "$descr")
 
     if grep -E -q "$IMAGE_PATTERN" <<< "$link"; then
         html::img "$link" "$descr"
@@ -183,7 +252,7 @@ html::gemini2html () {
                 echo "</pre>"
                 is_plain=0
             else
-                echo "$line" | sed 's|<|\&lt;|g; s|>|\&gt;|g'
+                html::special "$line"
             fi
             continue
         fi
@@ -217,7 +286,7 @@ html::gemini2html () {
                 html::paragraph "$line"
                 ;;
         esac
-    done < "$gmi_file"
+    done
 }
 
 html::generate () {
@@ -227,8 +296,9 @@ html::generate () {
         dest=${dest/.gmi/.html}
         local dest_dir=$(dirname "$dest")
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
+
         cat header.html.part > "$dest.tmp"
-        html::gemini2html "$src" >> "$dest.tmp"
+        html::gemini2html < "$src" >> "$dest.tmp"
         cat footer.html.part >> "$dest.tmp"
         mv "$dest.tmp" "$dest"
         git add "$dest"
@@ -239,6 +309,7 @@ html::generate () {
     while read -r src; do
         local dest=${src/gemtext/html}
         local dest_dir=$(dirname "$dest")
+
         test ! -d "$dest_dir" && mkdir -p "$dest_dir"
         cp -v "$src" "$dest"
         git add "$dest"
@@ -264,6 +335,9 @@ html::test () {
 
     line=""
     assert::equals "$(html::paragraph "$line")" ""
+
+    line="Foo &<>& Bar!"
+    assert::equals "$(html::paragraph "$line")" "<p>Foo &amp;&lt;&gt;&amp; Bar!</p>"
 
     line="# Header 1"
     assert::equals "$(html::heading "$line" 1)" "<h1>Header 1</h1>"
@@ -315,13 +389,13 @@ case $ARG in
         html::test
         ;;
     --atom)
-        atom::generate
+        atomfeed::generate
         ;;
     --publish)
         html::test
-        atom::generate
+        gemfeed::generate
+        atomfeed::generate
         html::generate
-        # git commit -a
         ;;
     --help|*)
         main::help
