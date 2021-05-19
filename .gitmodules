@@ -1,6 +1,0 @@
-[submodule "content/gemtext"]
-	path = content/gemtext
-	url = git@github.com:snonux/buetow.org
-[submodule "content/html"]
-	path = content/html
-	url = git@github.com:snonux/buetow.org
