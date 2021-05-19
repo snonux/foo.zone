@@ -70,5 +70,53 @@ h2, h3 {
 <p>Furthermore, I added scrubbing (*zpool scrub...*) to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability I also run a *zfs set copies=2 zroot*. That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space but it makes it better fault tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
 <a class="textlink" href="../">Go back to the main site</a><br />
-</body>
-</html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Offsite backup with ZFS (Part 2)</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style type="text/css">
+body {
+    margin: auto;
+    max-width: 900px;
+    background-color: #FFFFEF;
+    border: 1px dashed #880000;
+    border-radius: 8px;
+    padding: 5px;
+}
+img {
+    display:block;
+    max-width: 80%;
+}
+a.textlink:before {
+    content: " ⇒ ";
+    padding-left: 2px;
+}
+a.textlink {
+    text-decoration: none;
+    color: #FF0000;
+}
+a.textlink:hover {
+    text-decoration: underline;
+}
+i {
+    color: #48AAAD;
+}
+pre {
+    background-color: #F1F8E9;
+    border: 1px dashed #BB0000;
+    border-radius: 8px;
+    padding: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+h1 {
+    text-align: center;
+    color: #880000;
+}
+h2, h3 {
+    color: #BB0000;
+}
+</style>
+</head>
+<body>
