@@ -15,5 +15,6 @@
 [2014-03-24 - The fibonacci.pl.c Polyglot](./2014-03-24-the-fibonacci.pl.c-polyglot.md)  
 [2011-05-07 - Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
 [2010-05-09 - The Fype Programming Language](./2010-05-09-the-fype-programming-language.md)  
+[2010-05-07 - Lazy Evaluation with Standard ML](./2010-05-07-lazy-evaluation-with-standarn-ml.md)  
 [2010-04-09 - Standard ML and Haskell](./2010-04-09-standard-ml-and-haskell.md)  
 [2008-06-26 - Perl Poetry](./2008-06-26-perl-poetry.md)  
