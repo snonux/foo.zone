@@ -41,7 +41,7 @@ as the shebang line, but that does not work on all Unix and Unix-like operating 
 
 I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. 
 
-I don't care if I use 2 or 4 space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.
+I don't care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.
 
 Google also recommends limiting the line length to 80 characters. For some people, that seems to be an old habit from the '80s, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practice, at least for shell scripts. For example, I am often writing code on a Microsoft Go Tablet PC (running Linux, of course), and it comes in convenient if the lines are not too long due to the relatively small display on the device.
 
@@ -118,7 +118,7 @@ addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 ```
 
-I can't entirely agree partially here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).
+I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).
 
 I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash builtins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).
 
