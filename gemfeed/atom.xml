@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-23T20:50:29+01:00</updated>
+    <updated>2021-05-23T21:44:07+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -45,7 +45,7 @@
 <pre>
 #!/usr/bin/env bash
 </pre>
-<h3>2 space soft-tabs indentation</h3>
+<h3>Two space soft-tabs indentation</h3>
 <p>I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. </p>
 <p>I don't care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.</p>
 <p>Google also recommends limiting the line length to 80 characters. For some people, that seems to be an old habit from the '80s, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practice, at least for shell scripts. For example, I am often writing code on a Microsoft Go Tablet PC (running Linux, of course), and it comes in convenient if the lines are not too long due to the relatively small display on the device.</p>
@@ -94,8 +94,8 @@ declare FOO=bar
 echo "foo${FOO}baz"
 </pre>
 <p>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That's because it will be more likely that you might not remember that some of the functions don't work on values with spaces in them, for example. It's just that I won't quote everything in every small script I write. </p>
-<h3>Prefer builtin commands over external commands</h3>
-<p>Google recommends using the builtin commands over available external commands where possible:</p>
+<h3>Prefer built-in commands over external commands</h3>
+<p>Google recommends using the built-in commands over available external commands where possible:</p>
 <pre>
 # Prefer this:
 addition=$(( X + Y ))
@@ -106,8 +106,8 @@ addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 </pre>
 <p>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</p>
-<p>I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash builtins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
-<p>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash builtins (worth noticing that ZSH supports built-in floating-points).</p>
+<p>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
+<p>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).</p>
 <p>I even didn't get started with what you can do with Awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honoring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</p>
 <h2>My additions</h2>
 <h3>Use of 'yes' and 'no'</h3>
