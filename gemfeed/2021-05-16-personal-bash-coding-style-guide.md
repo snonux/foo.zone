@@ -37,7 +37,7 @@ as the shebang line, but that does not work on all Unix and Unix-like operating 
 #!/usr/bin/env bash
 ```
 
-### 2 space soft-tabs indentation
+### Two space soft-tabs indentation
 
 I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. 
 
@@ -104,9 +104,9 @@ echo "foo${FOO}baz"
 
 A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That's because it will be more likely that you might not remember that some of the functions don't work on values with spaces in them, for example. It's just that I won't quote everything in every small script I write. 
 
-### Prefer builtin commands over external commands
+### Prefer built-in commands over external commands
 
-Google recommends using the builtin commands over available external commands where possible:
+Google recommends using the built-in commands over available external commands where possible:
 
 ```
 # Prefer this:
@@ -120,9 +120,9 @@ substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 
 I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).
 
-I prefer to do light text processing with the Bash builtins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash builtins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).
+I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).
 
-Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash builtins (worth noticing that ZSH supports built-in floating-points).
+Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).
 
 I even didn't get started with what you can do with Awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honoring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
 
