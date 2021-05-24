@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-05-24T09:22:25+01:00</updated>
+    <updated>2021-05-24T09:32:36+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -37,11 +37,11 @@
 <h2>My modifications</h2>
 <p>These are my modifications to the Google Guide.</p>
 <h3>Shebang</h3>
-<p>Google recommends using always</p>
+<p>Google recommends using always...</p>
 <pre>
 #!/bin/bash 
 </pre>
-<p>as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:</p>
+<p>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:</p>
 <pre>
 #!/usr/bin/env bash
 </pre>
@@ -71,7 +71,7 @@ command1 |
     command4
 </pre>
 <h3>Quoting your variables</h3>
-<p>Google recommends always quote your variables. Generally, you should do that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:</p>
+<p>Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:</p>
 <pre>
 greet () {
     local -r greeting="${1}"
@@ -105,10 +105,10 @@ substitution="${string/#foo/bar}"
 addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 </pre>
-<p>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</p>
-<p>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
+<p>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</p>
+<p>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
 <p>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).</p>
-<p>I even didn't get started with what you can do with Awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honoring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</p>
+<p>I even didn't get started with what you can do with awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</p>
 <h2>My additions</h2>
 <h3>Use of 'yes' and 'no'</h3>
 <p>Bash does not support a boolean type. I tend just to use the strings 'yes' and 'no' here. I used 0 for false and 1 for true for some time, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is crucial to you, you wouldn't want to use a Bash script anyway, correct?</p>
@@ -139,7 +139,7 @@ eval $(set_my_variables)
 variable="$(eval some_function)"
 
 </pre>
-<p>However, if I want to read variables from another file, I don't have to use eval here. I just source the file:</p>
+<p>However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:</p>
 <pre>
 % cat vars.source.sh
 declare foo=bar
@@ -202,7 +202,7 @@ main
 <p>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</p>
 <h3>Assign-then-shift</h3>
 <p>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It's pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</p>
-<p>The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:</p>
+<p>The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something that I picked up from a colleague (a pure Bash wizard) some time ago:</p>
 <pre>
 some_function () {
     local -r param_foo="$1"; shift
@@ -358,11 +358,11 @@ fi
 <p>All I wanted was to read an interesting article, but after a big advertising pop-up banner appeared and made everything worse, I gave up and closed the browser tab.</p>
 <h2>Discovering the Gemini internet protocol</h2>
 <p>Around the same time, I discovered a relatively new, more lightweight protocol named Gemini, which does not support all these CPU-intensive features like HTML, JavaScript, and CSS. Also, tracking and ads are unsupported by the Gemini protocol.</p>
-<p>The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client with nice font renderings and colors to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.</p>
+<p>The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.</p>
 <i>Screenshot Amfora Gemini terminal client surfing this site:</i><a href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png"><img alt="Screenshot Amfora Gemini terminal client surfing this site" title="Screenshot Amfora Gemini terminal client surfing this site" src="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png" /></a><br />
 <p>Why is there a need for a new protocol? As the modern web is a superset of Gemini, can't we use simple HTML 1.0 instead? That's a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can ensure that things stay efficient and straightforward as long as you are using the Gemini protocol. On the other hand, you can't force every website on the modern web to only create plain and straightforward-looking HTML pages.</p>
 <h2>My own Gemini capsule</h2>
-<p>As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favorite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. </p>
+<p>As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. </p>
 <h2>Advantages summarised</h2>
 <ul>
 <li>Supports an alternative to the modern bloated web</li>
