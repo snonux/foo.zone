@@ -31,13 +31,13 @@ If you reach this site via the modern web, please read this:
 
 ## Introduction
 
-My name is Paul Buetow and this is my personal internet site. You can call me a Linux/*BSD enthusiast and hobbyist. Although I also have many other interests, you will encounter mostly (if not only) technical content on this site.
+My name is Paul Buetow, and this is my internet site. You can call me a Linux/*BSD enthusiast and hobbyist. Although I also have many other interests, you will encounter mostly (if not only) technical content on this site.
 
-I have published some Open-Source software, you will find some reference to it on this site or on my GitHub page(s). I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my GitHub pages and to my social media accounts on my contact information page:
+I have published some Open-Source software; you will find references to it on this site or my GitHub page(s). I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my GitHub pages and my social media accounts on my contact information page:
 
 => ./contact-information.gmi Contact information
 
-I have also compiled a list of resources which made an impact on me:
+I have also compiled a list of resources that made an impact on me:
 
 => ./resources.gmi List of resources
 
@@ -52,7 +52,7 @@ English is not my mother tongue. So please ignore any errors you might encounter
 
 ### Posts
 
-I have switched blog software multiple times. I might be back filling some of the older articles here. So please don't wonder when suddenly very old posts appear here.
+I have switched blog software multiple times. I might be backfilling some of the older articles here. So please don't wonder when suddenly old posts appear here.
 
 => ./gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 - Personal Bash coding style guide
 => ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 - Welcome to the Geminispace
