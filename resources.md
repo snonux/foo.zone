@@ -4,7 +4,7 @@ This site contains a list of resources I found helpful. I am not an expert in al
 
 The list may not be exhaustive, but I will be adding more in the future. I firmly believe that educating yourself further is one of the most important things to advance. The lists are in random order and reshuffled every time (via *sort -R*) when updates are made.
 
-You won't find any links on this site because, over time, the links will break. Please use your favorite search engine when you are interested in one of the resources...
+You won't find any links on this site because, over time, the links will break. Please use your favourite search engine when you are interested in one of the resources...
 
 ```
        .--.           .---.        .-.
@@ -79,11 +79,11 @@ I didn't read them from the beginning to the end, but I am using them to look up
 
 Some of these were in-person with exams; others were online learning lectures only.
 
-* Linux Security and Isolation APIs Training; Michael Kerrisk; 3 day on-site training
-* MySQL Deep Dive Workshop; 2 day on-site training
+* Linux Security and Isolation APIs Training; Michael Kerrisk; 3-day on-site training
+* MySQL Deep Dive Workshop; 2-day on-site training
 * Protocol buffers; O'Reilly Online
 * Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
-* Red Hat Certified System Administrator; Course + certification (Although I had the option I decided not to take the next course as it is more effective to self learn what I need)
+* Red Hat Certified System Administrator; Course + certification (Although I had the option, I decided not to take the next course as it is more effective to self learn what I need)
 * Scripting Vim; Damian Conway; O'Reilly Online
 * The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
 * Ultimate Go Programming; Bill Kennedy; O'Reilly Online
@@ -100,7 +100,7 @@ Many fiction and non-fiction books I read are not listed here. This site primari
 
 I have met many self-taught IT professionals I highly respect. In my own opinion, a formal degree does not automatically qualify a person for a particular job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
 
-However, I still believe a degree in Computer Science helps to understand all the theories involved that you would have never learned about otherwise. Isn't it cool to understand how compilers work under the hood (automata theory) even if you are not required to hack the compiler in your current position? You could apply the same theory for other things too. This was just *one* example.
+However, I still believe a degree in Computer Science helps to understand all the theories involved that you would have never learned otherwise. Isn't it cool to understand how compilers work under the hood (automata theory) even if you are not required to hack the compiler in your current position? You could apply the same theory for other things too. This was just *one* example.
 
 * One year Student exchange program in OH, USA
 * German School Majors (Abitur), focus areas: German and Mathematics

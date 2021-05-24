@@ -44,7 +44,7 @@ All I wanted was to read an interesting article, but after a big advertising pop
 
 Around the same time, I discovered a relatively new, more lightweight protocol named Gemini, which does not support all these CPU-intensive features like HTML, JavaScript, and CSS. Also, tracking and ads are unsupported by the Gemini protocol.
 
-The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client with nice font renderings and colors to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.
+The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.
 
 [![Screenshot Amfora Gemini terminal client surfing this site](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png "Screenshot Amfora Gemini terminal client surfing this site")](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png)  
 
@@ -52,7 +52,7 @@ Why is there a need for a new protocol? As the modern web is a superset of Gemin
 
 ## My own Gemini capsule
 
-As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favorite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. 
+As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. 
 
 ## Advantages summarised
 

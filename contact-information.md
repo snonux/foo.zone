@@ -5,9 +5,9 @@
 * Secure E-Mail: paul.buetow at protonmail dot com
 * E-Mail: paul at buetow dot org (forwards to the ProtonMail address)
 
-Why did I just mention 2 E-Mail addresses here? The buetow.org address will always stay. It is my lifetime E-Mail address as I own the domain name. The address will remain even when I decided to change my e-mail provider.
+Why did I mention 2 E-Mail addresses here? The buetow.org address will always stay. It is my lifetime E-Mail address as I own the domain name. The address will remain even when I decided to change my e-mail provider.
 
-Use the ProtonMail address if you care about security for now. The address stays valid as long as I am ProtonMail user. Especially if you are ProtonMail user too we could have real E-Mail end-2-end encryption for our conversation.
+Use the ProtonMail address if you care about security for now. The address stays valid as long as I am ProtonMail user. Especially if you are ProtonMail user too, we could have real E-Mail end-2-end encryption for our conversation.
 
 ## Quick Links
 
