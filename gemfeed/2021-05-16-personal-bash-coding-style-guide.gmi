@@ -25,13 +25,13 @@ These are my modifications to the Google Guide.
 
 ### Shebang
 
-Google recommends using always
+Google recommends using always...
 
 ```
 #!/bin/bash 
 ```
 
-as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:
+... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:
 
 ```
 #!/usr/bin/env bash
@@ -74,7 +74,7 @@ command1 |
 
 ### Quoting your variables
 
-Google recommends always quote your variables. Generally, you should do that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:
+Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:
 
 ```
 greet () {
@@ -118,13 +118,13 @@ addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
 ```
 
-I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the Bash built-in versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).
+I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).
 
-I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also the case of medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).
+I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).
 
 Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).
 
-I even didn't get started with what you can do with Awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honoring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
+I even didn't get started with what you can do with awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)
 
 ## My additions
 
@@ -163,7 +163,7 @@ variable="$(eval some_function)"
 
 ```
 
-However, if I want to read variables from another file, I don't have to use eval here. I just source the file:
+However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:
 
 ```
 % cat vars.source.sh
@@ -237,7 +237,7 @@ The stdout is always passed as a pipe to the next following stage. The stderr is
 
 I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It's pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.
 
-The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something what I picked up from a colleague (a pure Bash wizard) some time ago:
+The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something that I picked up from a colleague (a pure Bash wizard) some time ago:
 
 ```
 some_function () {
