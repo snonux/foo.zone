@@ -11,13 +11,13 @@
 
 > Written by Paul Buetow 2015-12-05, last updated 2021-05-16
 
-You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).
+You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).
 
 [![./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png](./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png)](./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png)  
 
 ## Foreword
 
-A couple of years have passed since I last worked on Debroid. At the moment I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation, but sufficient for my current requirements. The content of this site may be still relevant and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made though. 
+A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. 
 
 ## Step by step guide
 
@@ -27,7 +27,7 @@ All scripts mentioned here can be found on GitHub at:
 
 ### First debootstrap stage
 
-This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my personal Laptop). The following steps prepare an initial Debian base image, which then later can be transferred to the phone.
+This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.
 
 ```code
 sudo dnf install debootstrap
@@ -164,7 +164,7 @@ exit # Exit adb shell
 
 ### Include to Android startup:
 
-I you want to start Debroid automatically every time when your phone starts, then do the following:
+If you want to start Debroid automatically whenever your phone starts, then do the following:
 
 ```
 adb push data/local/userinit.sh /data/local/userinit.sh

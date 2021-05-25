@@ -9,7 +9,7 @@
 
 > Written by Paul Buetow 2011-05-07, last updated 2021-05-07
 
-PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something useful, a module (written in Perl) must be provided.
+PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.
 
 ## Features
 
@@ -17,12 +17,12 @@ PerlDaemon supports:
 
 * Automatic daemonizing
 * Logging
-* logrotation (via SIGHUP)
+* log rotation (via SIGHUP)
 * Clean shutdown support (SIGTERM)
 * Pid file support (incl. check on startup)
 * Easy to configure
 * Easy to extend
-* Multi instance support (just use a different directory for each instance).
+* Multi-instance support (just use a different directory for each instance).
 
 ## Quick Guide
 
@@ -37,11 +37,11 @@ PerlDaemon supports:
 ./bin/perldaemon start daemon.daemonize=no (or shortcut ./control foreground)
 ```
 
-To stop a daemon running in foreground mode "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.
+To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.
 
 ## How to configure
 
-The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on command line (that then will take precedence over the config file). All available config properties can be viewed via "./control keys":
+The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":
 
 ```
 pb@titania:~/svn/utils/perldaemon/trunk$ ./control keys
@@ -60,10 +60,10 @@ daemon.daemonize=yes
 # Path to the pidfile
 daemon.pidfile=./run/perldaemon.pid
 
-# Each module should run every runinterval seconds
+# Each module should run every run interval seconds
 daemon.modules.runinterval=3
 
-# Path to the alive file (is touched every loopinterval seconds, usable to monitor)
+# Path to the alive file (is touched every loop interval seconds, usable for monitoring)
 daemon.alivefile=./run/perldaemon.alive
 
 # Specifies the working directory
@@ -88,7 +88,7 @@ $ ./control stop
 Stopping daemon now...
 ```
 
-If you want to change that property forever either edit perldaemon.conf or do this:
+If you want to change that property forever, either edit perldaemon.conf or do this:
 
 ```
 $ ./control keys daemon.loopinterval=10 > new.conf; mv new.conf conf/perldaemon.conf
@@ -96,13 +96,13 @@ $ ./control keys daemon.loopinterval=10 > new.conf; mv new.conf conf/perldaemon.
 
 ## HiRes event loop
 
-PerlDaemon uses `Time::HiRes` to make sure that all the events run in correct intervals. Each loop run a time carry value is recorded and added to the next loop run in order to catch up lost time.
+PerlDaemon uses `Time::HiRes` to make sure that all the events run incorrect intervals. For each loop run, a time carry value is recorded and added to the next loop run to catch up on lost time.
 
 ## Writing your own modules
 
 ### Example module
 
-This is one of the example modules you will find in the source code. It should be quite self-explanatory if you know Perl :-).
+This is one of the example modules you will find in the source code. It should be pretty self-explanatory if you know Perl :-).
 
 ```
 package PerlDaemonModules::ExampleModule;
@@ -150,7 +150,7 @@ Want to give it some better use? It's just as easy as:
 
 Now watch `./log/perldaemon.log` closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).
 
-BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future they can also run in parallel using several threads or processes).
+BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future, they can also run in parallel using several threads or processes).
 
 ## May the source be with you
 
