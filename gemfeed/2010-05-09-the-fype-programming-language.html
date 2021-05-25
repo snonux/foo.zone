@@ -58,12 +58,12 @@ h2, h3 {
            |___/|_|            |___/                        |___/ 
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2010-05-09, last updated 2021-05-05</i></p>
-<p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.</p>
-<p>The Fype syntax is very simple and is using a maximum look ahead of 1 and a very easy top down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means, that syntax errors are only detected during program runtime. </p>
-<p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say "It's not a hype - it's Fype!".</p>
-<h2>Object oriented C style</h2>
-<p>The Fype interpreter is written in an object oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </p>
-<p>To give you an idea how it works here as an example is a snippet from the main Fype "class header":</p>
+<p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</p>
+<p>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </p>
+<p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</p>
+<h2>Object-oriented C style</h2>
+<p>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </p>
+<p>To give you an idea of how it works here as an example is a snippet from the main Fype "class header":</p>
 <pre>
 typedef struct {
    Tupel *p_tupel_argv; // Contains command line options
@@ -72,7 +72,7 @@ typedef struct {
    char *c_basename;
 } Fype;
 </pre>
-<p>And here is a snippet from the main Fype "class implementation":</p>
+<p>And here is a snippet from the primary Fype "class implementation":</p>
 <pre>
 Fype*
 fype_new() {
@@ -123,22 +123,22 @@ fype_run(int i_argc, char **pc_argv) {
 }
 </pre>
 <h2>Data types</h2>
-<p>Fype uses auto type conversion. However, if you want to know what's going on you may take a look at the following basic data types:</p>
+<p>Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:</p>
 <ul>
 <li>integer - Specifies a number</li>
-<li>double - Specifies a double precision number</li>
+<li>double - Specifies a double-precision number</li>
 <li>string - Specifies a string</li>
 <li>number - May be an integer or a double number</li>
 <li>any- May be any type above</li>
 <li>void - No type</li>
-<li>identifier - It's a variable name or a procedure name or a function name</li>
+<li>identifier - It's a variable name or a procedure name, or a function name</li>
 </ul>
 <p>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</p>
 <h2>Syntax</h2>
 <h3>Comments</h3>
-<p>Text from a # character until the end of the current line is considered being a comment. Multi line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</p>
+<p>Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</p>
 <h3>Variables</h3>
-<p>Variables can be defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, then it's using the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</p>
+<p>Variables are defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</p>
 <pre>
 my foo = 1 + 2;
 say foo; 
@@ -164,7 +164,7 @@ if defined foo {
 }
 </pre>
 <h3>Synonyms</h3>
-<p>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use is:</p>
+<p>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</p>
 <pre>
 my foo = "foo";
 my bar = \foo;
@@ -173,7 +173,7 @@ foo = "bar";
 # The synonym variable should now also set to "bar"
 assert "bar" == bar;
 </pre>
-<p>Synonyms can be used for all kind of identifiers. It's not limited to normal variables but can be also used for function and procedure names etc (more about functions and procedures later).</p>
+<p>Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</p>
 <pre>
 # Create a new procedure baz
 proc baz { say "I am baz"; }
@@ -206,7 +206,7 @@ say foo;
 exit foo - bar;
 </pre>
 <h3>Parenthesis</h3>
-<p>All parenthesis for function arguments are optional. They help to make the code better readable. They also help to force precedence of expressions.</p>
+<p>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</p>
 <h3>Basic expressions</h3>
 <p>Any "any" value holding a string will be automatically converted to an integer value.</p>
 <pre>
@@ -238,7 +238,7 @@ exit foo - bar;
 <pre>
 (integer) no &lt;integer&gt;
 </pre>
-<p>... returns 1 if the argument is 0, otherwise it will return 0! If no argument is given, then 0 is returned!</p>
+<p>... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!</p>
 <pre>
 (integer) yes &lt;integer&gt;
 </pre>
@@ -266,7 +266,7 @@ until &lt;expression&gt; { &lt;statements&gt; }
 </pre>
 <p>... runs the statements as long as the expression evaluates to a false value.</p>
 <h2>Scopes</h2>
-<p>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope"  function prints out all available symbols at the current scope. Here is a small example:</p>
+<p>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</p>
 <pre>
 my foo = 1;
 
@@ -333,7 +333,7 @@ SYM_FUNCTION: bar
 <pre>
 (integer) fork
 </pre>
-<p>... forks a subprocess. It returns 0 for the child process and the pid of the child process otherwise! Example:</p>
+<p>... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:</p>
 <pre>
 my pid = fork;
 
@@ -347,9 +347,9 @@ if pid {
 </pre>
 <p>To execute the garbage collector do:</p>
 <pre>
-(integer) gc
+(integer) GC
 </pre>
-<p>It returns the number of items freed! You may wonder why most of the time it will return a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions in order to gain faster execution speed!</p>
+<p>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</p>
 <h3>I/O </h3>
 <pre>
 (any) put &lt;any&gt;
@@ -362,7 +362,7 @@ if pid {
 <pre>
 (void) ln
 </pre>
-<p>... just prints a newline.</p>
+<p>... just prints a new line.</p>
 <h2>Procedures and functions</h2>
 <h3>Procedures</h3>
 <p>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It's using already defined variables (e.g. global variables). A procedure does not have its own namespace. It's using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</p>
@@ -378,7 +378,7 @@ foo; # Run the procedure. Print out "11\n"
 say c; # Print out "6\n";
 </pre>
 <h3>Nested procedures</h3>
-<p>It's possible to define procedures inside of procedures. Since procedures don't have its own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword in order to check if a procedure has been defined or not.</p>
+<p>It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</p>
 <pre>
 proc foo {
 	say "I am foo";
@@ -408,10 +408,10 @@ func foo {
 my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
-say c; # Will produce an error, because c is out of scoped!
+say c; # Will produce an error because c is out of scope!
 </pre>
 <h3>Nested functions</h3>
-<p>Nested functions work the same way the nested procedures work, with the exception that nested functions will not be available anymore after the function has been left!</p>
+<p>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</p>
 <pre>
 func foo {
 	func bar {
@@ -422,10 +422,10 @@ func foo {
 }
 
 foo;
-bar; # Will produce an error, because bar is out of scope!
+bar; # Will produce an error because bar is out of scope!
 </pre>
 <h2>Arrays</h2>
-<p>Some progress on arrays has been made too. The following example creates a multi dimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string ”3” converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its last element:</p>
+<p>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</p>
 <pre>
 func bar { say ”bar” }
 my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
