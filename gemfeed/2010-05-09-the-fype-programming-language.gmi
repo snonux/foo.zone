@@ -11,17 +11,17 @@
 
 > Written by Paul Buetow 2010-05-09, last updated 2021-05-05
 
-Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.
+Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.
 
-The Fype syntax is very simple and is using a maximum look ahead of 1 and a very easy top down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means, that syntax errors are only detected during program runtime. 
+The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. 
 
-Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say "It's not a hype - it's Fype!".
+Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".
 
-## Object oriented C style
+## Object-oriented C style
 
-The Fype interpreter is written in an object oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. 
+The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. 
 
-To give you an idea how it works here as an example is a snippet from the main Fype "class header":
+To give you an idea of how it works here as an example is a snippet from the main Fype "class header":
 
 ```
 typedef struct {
@@ -32,7 +32,7 @@ typedef struct {
 } Fype;
 ```
 
-And here is a snippet from the main Fype "class implementation":
+And here is a snippet from the primary Fype "class implementation":
 
 ```
 Fype*
@@ -86,14 +86,14 @@ fype_run(int i_argc, char **pc_argv) {
 
 ## Data types
 
-Fype uses auto type conversion. However, if you want to know what's going on you may take a look at the following basic data types:
+Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:
 * integer - Specifies a number
-* double - Specifies a double precision number
+* double - Specifies a double-precision number
 * string - Specifies a string
 * number - May be an integer or a double number
 * any- May be any type above
 * void - No type
-* identifier - It's a variable name or a procedure name or a function name
+* identifier - It's a variable name or a procedure name, or a function name
 
 There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.
 
@@ -101,11 +101,11 @@ There is no boolean type, but we can use the integer values 0 for false and 1 fo
 
 ### Comments
 
-Text from a # character until the end of the current line is considered being a comment. Multi line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.
+Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.
 
 ### Variables
 
-Variables can be defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, then it's using the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:
+Variables are defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:
 
 ```
 my foo = 1 + 2;
@@ -136,7 +136,7 @@ if defined foo {
 
 ### Synonyms
 
-Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use is:
+Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:
 
 ```
 my foo = "foo";
@@ -147,7 +147,7 @@ foo = "bar";
 assert "bar" == bar;
 ```
 
-Synonyms can be used for all kind of identifiers. It's not limited to normal variables but can be also used for function and procedure names etc (more about functions and procedures later).
+Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).
 
 ```
 # Create a new procedure baz
@@ -188,7 +188,7 @@ exit foo - bar;
 
 ### Parenthesis
 
-All parenthesis for function arguments are optional. They help to make the code better readable. They also help to force precedence of expressions.
+All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.
 
 ### Basic expressions
 
@@ -230,7 +230,7 @@ Any "any" value holding a string will be automatically converted to an integer v
 (integer) no <integer>
 ```
 
-... returns 1 if the argument is 0, otherwise it will return 0! If no argument is given, then 0 is returned!
+... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!
 
 ```
 (integer) yes <integer>
@@ -273,7 +273,7 @@ until <expression> { <statements> }
 
 ## Scopes
 
-A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope"  function prints out all available symbols at the current scope. Here is a small example:
+A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:
 
 ```
 my foo = 1;
@@ -356,7 +356,7 @@ These are some system and interpreter specific built-in functions supported:
 (integer) fork
 ```
 
-... forks a subprocess. It returns 0 for the child process and the pid of the child process otherwise! Example:
+... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:
 
 ```
 my pid = fork;
@@ -373,10 +373,10 @@ if pid {
 To execute the garbage collector do:
 
 ```
-(integer) gc
+(integer) GC
 ```
 
-It returns the number of items freed! You may wonder why most of the time it will return a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions in order to gain faster execution speed!
+It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!
 
 ### I/O 
 
@@ -396,7 +396,7 @@ is the same as put, but also includes an ending newline.
 (void) ln
 ```
 
-... just prints a newline.
+... just prints a new line.
 
 ## Procedures and functions
 
@@ -418,7 +418,7 @@ say c; # Print out "6\n";
 
 ### Nested procedures
 
-It's possible to define procedures inside of procedures. Since procedures don't have its own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword in order to check if a procedure has been defined or not.
+It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.
 
 ```
 proc foo {
@@ -452,12 +452,12 @@ func foo {
 my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
-say c; # Will produce an error, because c is out of scoped!
+say c; # Will produce an error because c is out of scope!
 ```
 
 ### Nested functions
 
-Nested functions work the same way the nested procedures work, with the exception that nested functions will not be available anymore after the function has been left!
+Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!
 
 ```
 func foo {
@@ -469,12 +469,12 @@ func foo {
 }
 
 foo;
-bar; # Will produce an error, because bar is out of scope!
+bar; # Will produce an error because bar is out of scope!
 ```
 
 ## Arrays
 
-Some progress on arrays has been made too. The following example creates a multi dimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string ”3” converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its last element:
+Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:
 
 ```
 func bar { say ”bar” }

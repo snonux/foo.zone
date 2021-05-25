@@ -2,13 +2,13 @@
 
 > Written by Paul Buetow 2014-03-24
 
-In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it
+In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.
 
 => https://en.wikipedia.org/wiki/Polyglot_(computing)
 
 ## The Fibonacci numbers
 
-For fun, I programmed my own Polyglot, which is both, valid Perl and C code. The interesting part about C is, that $ is a valid character to start variable names with:
+For fun, I programmed my own Polyglot, which is both valid Perl and C code. The exciting part about C is that $ is a valid character to start variable names with:
 
 ```
 #include <stdio.h>
@@ -22,7 +22,7 @@ my $arg;
 
 sub hello() {
 	printf("Hello, welcome to Perl-C!\n");
-	printf("This program is both, valid C and Perl code!\n");
+	printf("This program is both valid C and Perl code!\n");
 	printf("It calculates all fibonacci numbers from 0 to 9!\n\n");
 	return 0;
 }
@@ -55,7 +55,7 @@ BEGIN {
 }
 ```
 
-You can find the whole source code at GitHub:
+You can find the full source code at GitHub:
 
 => https://github.com/snonux/perl-c-fibonacci
 
@@ -64,7 +64,7 @@ You can find the whole source code at GitHub:
 ```
 ❯ perl fibonacci.pl.c
 Hello, welcome to Perl-C!
-This program is both, valid C and Perl code!
+This program is both valid C and Perl code!
 It calculates all fibonacci numbers from 0 to 9!
 
 fib(0) = 0
@@ -87,7 +87,7 @@ fib(10) = 55
 ❯ gcc fibonacci.pl.c -o fibonacci
 ❯ ./fibonacci
 Hello, welcome to Perl-C!
-This program is both, valid C and Perl code!
+This program is both valid C and Perl code!
 It calculates all fibonacci numbers from 0 to 9!
 
 fib(0) = 0
@@ -103,7 +103,7 @@ fib(9) = 34
 fib(10) = 55
 ```
 
-It's really fun to play with :-).
+It's entertaining to play with :-).
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 
