@@ -19,6 +19,10 @@ I am sharing articles that I found interesting regularly on all the social media
 [My Twitter profile](https://twitter.com/snonux)  
 [My Telegram channel](https://t.me/snonux)  
 
+### Internet Relay Chat
+
+I am on irc.german-elite.net in #coding and #linux (and maybe in others) as rantanplan.
+
 ### My Open Source code repositories
 
 [My personal GitHub page](https://github.com/snonux)  
