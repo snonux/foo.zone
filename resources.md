@@ -27,6 +27,10 @@ You won't find any links on this site because, over time, the links will break. 
 * Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
 * Java ist auch eine Insel; Christian Ullenboom; 
 * Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Advanced Bash-Scripting Guide; Not an actual book, but could be
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
 * The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
 * Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
 * Funktionale Programmierung; Peter Pepper; Springer
