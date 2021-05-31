@@ -15,13 +15,13 @@
 
 > Written by Paul Buetow 2010-05-07
 
-In contrast to Haskell, Standard SML does not use lazy evaluation by default, but eager evaluation. 
+In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. 
 
 [https://en.wikipedia.org/wiki/Eager_evaluation](https://en.wikipedia.org/wiki/Eager_evaluation)  
 [https://en.wikipedia.org/wiki/Lazy_evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)  
 
 
-You can solve certain problems with lazy evaluation easier than with eager evaluation. For example, you might want to list the number Pi or another infinite list of something. With the help of lazy evaluation each element of the list is calculated when it is accessed first, but not earlier.
+You can solve specific problems with lazy evaluation easier than with eager evaluation. For example, you might want to list the number Pi or another infinite list of something. With the help of lazy evaluation, each element of the list is calculated when it is accessed first, but not earlier.
 
 ## Emulating lazy evaluation in SML
 
@@ -71,7 +71,7 @@ val test = first 10 (nat_pairs_not_null ());
 
 ## Real laziness with Haskell 
 
-As Haskell already uses lazy evaluation by default, there is no need to construct a new data type. Lists in Haskell are lazy by default. You will notice that the code is also much shorter and easier to understand than the SML version because of that. 
+As Haskell already uses lazy evaluation by default, there is no need to construct a new data type. Lists in Haskell are lazy by default. You will notice that the code is also much shorter and easier to understand than the SML version. 
 
 ```
 {- Just to make it look like the ML example -}
