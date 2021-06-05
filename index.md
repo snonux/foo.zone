@@ -52,8 +52,12 @@ I have also compiled a list of resources that made an impact on me:
 
 I have switched blog software multiple times. I might be backfilling some of the older articles here. So please don't wonder when suddenly old posts appear here.
 
+<<<<<<< HEAD
+=======
+>>>>>>> 5a55ee3 (Publish blog post about Gemtexter)
+[2021-06-05 (1198 words) - Gemtexter - One Bash script to rule it all](./gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
 [2021-05-16 (1717 words) - Personal Bash coding style guide](./gemfeed/2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-04-24 (0772 words) - Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+[2021-04-24 (0797 words) - Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 [2021-04-22 (2117 words) - DTail - The distributed log tail program](./gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.md)  
 [2018-06-01 (2171 words) - Realistic load testing with I/O Riot for Linux](./gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 [2016-11-20 (0314 words) - Methods in C](./gemfeed/2016-11-20-methods-in-c.md)  

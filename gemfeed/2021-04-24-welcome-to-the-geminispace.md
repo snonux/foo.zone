@@ -55,7 +55,11 @@ Why is there a need for a new protocol? As the modern web is a superset of Gemin
 
 As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. 
 
-## Advantages summarised
+This site was generated with Gemtexter. You can read more about it here:
+
+[Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+
+## Gemini advantages summarised
 
 * Supports an alternative to the modern bloated web
 * Easy to operate and easy to write content
