@@ -21,7 +21,7 @@ I am sharing articles that I found interesting regularly on all the social media
 
 ### Internet Relay Chat
 
-I am on irc.german-elite.net in #coding and #linux (and maybe in others) as rantanplan.
+I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as rantanplan.
 
 ### My Open Source code repositories
 
