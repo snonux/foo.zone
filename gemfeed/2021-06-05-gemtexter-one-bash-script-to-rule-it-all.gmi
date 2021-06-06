@@ -55,7 +55,7 @@ Another benefit of using Gemini is that the Gemtext markup language is easy to p
 
 => ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg Motivational comic strip
 
-I have exactly done that - I wrote a Bash script, named gemtexter, for that. Have a look at GitHub:
+I have exactly done that - I wrote a Bash script, named Gemtexter, for that:
 
 => https://github.com/snonux/gemtexter 
 
@@ -73,13 +73,13 @@ Gemtexter takes the Gemntext Markup files as the input and generates the followi
 
 I could have done all of that with a more robust language than Bash (such as Perl, Ruby, Go...), but I didn't. The purpose of this exercise was to challenge what I can do with a "simple" Bash script and learn new things.
 
-## Taking it as far as I should, but no further
+## Taking it as far as I should, but no farther
 
 The Bash is suitable very well for small scripts and ad-hoc automation on the command line. But it is for sure not a robust programming language. Writing this blog post, Gemtexter is nearing 1000 lines of code, which is actually a pretty large Bash script.
 
 ### Modularization 
 
-I modularized the code so that each core functionality has its own file in ./lib. All the modules are included (sourced) from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. 
+I modularized the code so that each core functionality has its own file in ./lib. All the modules are included from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. 
 
 ```
 paul in uranus in gemtexter on 🌱 main
@@ -96,7 +96,7 @@ paul in uranus in gemtexter on 🌱 main
      834 total
 ```
 
-This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but after a few seconds of runtime. That's not a problem yet, though. 
+This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. 
 
 ### Bash best practises and ShellCheck
 
@@ -106,9 +106,9 @@ While working on Gemtexter, I also had a look at the Google Shell Style Guide an
 
 I followed all these best practices, and in my opinion, the result is a pretty maintainable Bash script (given that you are fluent with all the sed and grep commands I used).
 
-ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter together with its unit tests, ensuring that all code is still acceptable. I am pretty impressed with what ShellCheck found. 
+ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. 
 
-It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done < <(some_command)".  ShellCheck also pointed out to add a "-r" to the read; otherwise, there could be an issue with backspaces in the loop data.
+It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done < <(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.
 
 Furthermore, ShellCheck recommended many more improvements. Declaration of unused variables and missing variable and string quotations were the most common ones. ShellSheck immensely helped to improve the robustness of the script.
 
@@ -116,17 +116,17 @@ Furthermore, ShellCheck recommended many more improvements. Declaration of unuse
 
 ### Unit testing
 
-There is a basic unit test module in ./lib/assert.source.sh, which is used for unit testing various functions of Gemtexter. I found this to be very beneficial for cross-platform development. For example, I noticed that some unit tests failed on macOS while everything still worked fine on my Fedora Linux laptop. 
+There is a basic unit test module in ./lib/assert.source.sh, which is used for unit testing. I found this to be very beneficial for cross-platform development. For example, I noticed that some unit tests failed on macOS while everything still worked fine on my Fedora Linux laptop. 
 
-After digging a bit, I noticed that I had to install the GNU versions of the sed and grep commands on macOS and a newer version of the Bash to make all unit tests pass and it all work.
+After digging a bit, I noticed that I had to install the GNU versions of the sed and grep commands on macOS and a newer version of the Bash to make all unit tests pass and Gemtexter work.
 
 It has been proven quite helpful to have unit tests in place for the HTML part already when working on the Markdown generator part. To test the Markdown part, I copied the HTML unit tests and changed the expected outcome in the assertions. This way, I could implement the Markdown generator in a test-driven way (writing the test first and afterwards the implementation).
 
 ### HTML unit test example
 
 ```
-line='=> http://example.org Description of the link'
-assert::equals "$(generate::make_link html "$line")" \
+gemtext='=> http://example.org Description of the link'
+assert::equals "$(generate::make_link html "$gemtext")" \
     '<a class="textlink" href="http://example.org">Description of the link</a><br />'
 
 ```
@@ -134,8 +134,8 @@ assert::equals "$(generate::make_link html "$line")" \
 ### Markdown unit test example
 
 ```
-line='=> http://example.org Description of the link'
-assert::equals "$(generate::make_link md "$line")" \
+gemtext='=> http://example.org Description of the link'
+assert::equals "$(generate::make_link md "$gemtext")" \
     '[Description of the link](http://example.org)  '
 ```
 
@@ -153,11 +153,12 @@ In case someone else than me wants to use Gemtexter for his own site, it is pret
 
 ## Future features
 
-I could think of the following features added to a future version of gemtexter:
+I could think of the following features added to a future version of Gemtexter:
 
 * Templating of Gemtext files so that the .gmi files are generated from .gmi.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. 
 * Add support for more output formats, such as Groff, PDF, plain text, Gopher, etc.
 * External CSS file for HTML.
+* Improve speed by introducing parallelism and/or concurrency and/or better caching.
 
 ## Conclusion
 
