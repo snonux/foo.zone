@@ -1,7 +1,7 @@
 The buetow.org internet site
 ============================
 
-This repository contains the static files of my internet site.  [gemini://snonux.de](gemini://snonux.de)/[gemini://buetow.org](gemini://buetow.org) and [https://snonux.de](https://snonux.de)/[https://buetow.org](https://buetow.org). 
+This repository contains the static files of my internet site.  [gemini://snonux.de](gemini://snonux.de) or [gemini://buetow.org](gemini://buetow.org) and [https://snonux.de](https://snonux.de) or [https://buetow.org](https://buetow.org). 
 
 Each format is in it's own branch in this repository. E.g.:
 
