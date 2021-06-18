@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-06-06T09:12:58+01:00</updated>
-    <title>buetow.org feed</title>
+    <updated>2021-06-18T09:58:45+01:00</updated>
+    <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
-    <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
-    <link href="gemini://buetow.org/" />
-    <id>gemini://buetow.org/</id>
+    <link href="gemini://snonux.de/gemfeed/atom.xml" rel="self" />
+    <link href="gemini://snonux.de/" />
+    <id>gemini://snonux.de/</id>
     <entry>
         <title>Gemtexter - One Bash script to rule it all</title>
-        <link href="gemini://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi" />
-        <id>gemini://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi" />
+        <id>gemini://snonux.de/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
         <updated>2021-06-05T19:03:32+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -61,11 +61,11 @@
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2021-06-05</i></p>
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
-<a class="textlink" href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
+<a class="textlink" href="https://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
 <p>This comes with the benefit that I can write content in my favourite text editor (Vim). </p>
 <h2>Motivation</h2>
 <p>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</p>
-<i>Motivational comic strip:</i><a href="https://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
+<i>Motivational comic strip:</i><a href="https://snonux.de/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://snonux.de/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
 <p>I have exactly done that - I wrote a Bash script, named Gemtexter, for that:</p>
 <a class="textlink" href="https://github.com/snonux/gemtexter">https://github.com/snonux/gemtexter</a><br />
 <p>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</p>
@@ -100,7 +100,7 @@ paul in uranus in gemtexter on 🌱 main
 <p>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </p>
 <h3>Bash best practises and ShellCheck</h3>
 <p>While working on Gemtexter, I also had a look at the Google Shell Style Guide and wrote a blog post on that:</p>
-<a class="textlink" href="https://buetow.org/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Personal bash coding style guide</a><br />
+<a class="textlink" href="https://snonux.de/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Personal bash coding style guide</a><br />
 <p>I followed all these best practices, and in my opinion, the result is a pretty maintainable Bash script (given that you are fluent with all the sed and grep commands I used).</p>
 <p>ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. </p>
 <p>It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done &lt; &lt;(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.</p>
@@ -147,8 +147,8 @@ assert::equals "$(generate::make_link md "$gemtext")" \
     </entry>
     <entry>
         <title>Personal Bash coding style guide</title>
-        <link href="gemini://buetow.org/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi" />
-        <id>gemini://buetow.org/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi" />
+        <id>gemini://snonux.de/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
         <updated>2021-05-16T14:51:57+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -455,8 +455,8 @@ fi
     </entry>
     <entry>
         <title>Welcome to the Geminispace</title>
-        <link href="gemini://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
-        <id>gemini://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
+        <id>gemini://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
         <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -466,9 +466,9 @@ fi
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Welcome to the Geminispace</h1>
-<p class="quote"><i>Written by Paul Buetow 2021-04-24, last updated 2021-06-05, ASCII Art by Andy Hood</i></p>
+<p class="quote"><i>Written by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
-<a class="textlink" href="gemini://buetow.org">gemini://buetow.org</a><br />
+<a class="textlink" href="gemini://snonux.de">gemini://snonux.de</a><br />
 <p>However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).</p>
 <pre>
 
@@ -498,13 +498,13 @@ fi
 <h2>Discovering the Gemini internet protocol</h2>
 <p>Around the same time, I discovered a relatively new, more lightweight protocol named Gemini, which does not support all these CPU-intensive features like HTML, JavaScript, and CSS. Also, tracking and ads are unsupported by the Gemini protocol.</p>
 <p>The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client, such as Lagrange, with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.</p>
-<i>Screenshot Amfora Gemini terminal client surfing this site:</i><a href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png"><img alt="Screenshot Amfora Gemini terminal client surfing this site" title="Screenshot Amfora Gemini terminal client surfing this site" src="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png" /></a><br />
-<i>Screenshot graphical Lagrange Gemini client surfing this site:</i><a href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png"><img alt="Screenshot graphical Lagrange Gemini client surfing this site" title="Screenshot graphical Lagrange Gemini client surfing this site" src="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png" /></a><br />
+<i>Screenshot Amfora Gemini terminal client surfing this site:</i><a href="https://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png"><img alt="Screenshot Amfora Gemini terminal client surfing this site" title="Screenshot Amfora Gemini terminal client surfing this site" src="https://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png" /></a><br />
+<i>Screenshot graphical Lagrange Gemini client surfing this site:</i><a href="https://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png"><img alt="Screenshot graphical Lagrange Gemini client surfing this site" title="Screenshot graphical Lagrange Gemini client surfing this site" src="https://snonux.de/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png" /></a><br />
 <p>Why is there a need for a new protocol? As the modern web is a superset of Gemini, can't we use simple HTML 1.0 instead? That's a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can ensure that things stay efficient and straightforward as long as you are using the Gemini protocol. On the other hand, you can't force every website on the modern web to only create plain and straightforward-looking HTML pages.</p>
 <h2>My own Gemini capsule</h2>
 <p>As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. </p>
 <p>This site was generated with Gemtexter. You can read more about it here:</p>
-<a class="textlink" href="https://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">Gemtexter - One Bash script to rule it all</a><br />
+<a class="textlink" href="https://snonux.de/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">Gemtexter - One Bash script to rule it all</a><br />
 <h2>Gemini advantages summarised</h2>
 <ul>
 <li>Supports an alternative to the modern bloated web</li>
@@ -525,8 +525,8 @@ fi
     </entry>
     <entry>
         <title>DTail - The distributed log tail program</title>
-        <link href="gemini://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
-        <id>gemini://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
+        <id>gemini://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -537,7 +537,7 @@ fi
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Written by Paul Buetow 2021-04-22, last updated 2021-04-26</i></p>
-<i>DTail logo image:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
+<i>DTail logo image:</i><a href="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
 <p>Running a large cloud-based service requires monitoring the state of huge numbers of machines, a task for which many standard UNIX tools were not really designed. In this post, I will describe a simple program, DTail, that Mimecast has built and released as Open-Source, which enables us to monitor log files of many servers at once without the costly overhead of a full-blown log management system.</p>
@@ -551,7 +551,7 @@ fi
 <h2>Differentiating from log management systems</h2>
 <p>Why not just use a full-blown log management system? There are various Open-Source and commercial log management solutions available on the market you could choose from (e.g. the ELK stack). Most of them store the logs in a centralized location and are fairly complex to set up and operate. Possibly they are also pretty expensive to operate if you have to buy dedicated hardware (or pay fees to your cloud provider) and have to hire support staff for it.</p>
 <p>DTail does not aim to replace any of the log management tools already available but is rather an additional tool crafted especially for ad-hoc debugging and troubleshooting purposes. DTail is cheap to operate as it does not require any dedicated hardware for log storage as it operates directly on the source of the logs. It means that there is a DTail server installed on all server boxes producing logs. This decentralized comes with the direct advantages that there is no introduced delay because the logs are not shipped to a central log storage device. The reduced complexity also makes it more robust against outages. You won’t be able to troubleshoot your distributed application very well if the log management infrastructure isn’t working either.</p>
-<i>DTail sample session animated gif:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif"><img alt="DTail sample session animated gif" title="DTail sample session animated gif" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif" /></a><br />
+<i>DTail sample session animated gif:</i><a href="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif"><img alt="DTail sample session animated gif" title="DTail sample session animated gif" src="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif" /></a><br />
 <p>As a downside, you won’t be able to access any logs with DTail when the server is down. Furthermore, a server can store logs only up to a certain capacity as disks will fill up. For the purpose of ad-hoc debugging, these are not typically issues. Usually, it’s the application you want to debug and not the server. And disk space is rarely an issue for bare metal and VM-based systems these days, with sufficient space for several weeks’ worth of log storage being available. DTail also supports reading compressed logs. The currently supported compression algorithms are gzip and zstd.</p>
 <h2>Combining simplicity, security and efficiency</h2>
 <p>DTail also has a client component that connects to multiple servers concurrently for log files (or any other text files).</p>
@@ -567,7 +567,7 @@ fi
 <li>dgrep: The distributed grep client for searching text files for a regular expression pattern.</li>
 <li>dmap: The distributed map-reduce client for aggregating stats from log files.</li>
 </ul>
-<i>DGrep sample session animated gif:</i><a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif"><img alt="DGrep sample session animated gif" title="DGrep sample session animated gif" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif" /></a><br />
+<i>DGrep sample session animated gif:</i><a href="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif"><img alt="DGrep sample session animated gif" title="DGrep sample session animated gif" src="https://snonux.de/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif" /></a><br />
 <h2>Usage example</h2>
 <p>The use of these commands is almost self-explanatory for a person already used to the standard command line in Unix systems. One of the main goals is to make DTail easy to use. A tool that is too complicated to use under high-pressure scenarios (e.g., during an incident) can be quite detrimental.</p>
 <p>The basic idea is to start one of the clients from the command line and provide a list of servers to connect to with –servers. You also must provide a path of remote (log) files via –files. If you want to process multiple files per server, you could either provide a comma-separated list of file paths or make use of file system globbing (or a combination of both).</p>
@@ -606,8 +606,8 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
     </entry>
     <entry>
         <title>Realistic load testing with I/O Riot for Linux</title>
-        <link href="gemini://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
-        <id>gemini://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
+        <id>gemini://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
         <updated>2018-06-01T14:50:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -668,7 +668,7 @@ jgs\__/'---'\__/
 <pre>
 % sudo ioriot -c io.capture
 </pre>
-<i>Screenshot I/O recording:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png"><img alt="Screenshot I/O recording" title="Screenshot I/O recording" src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png" /></a><br />
+<i>Screenshot I/O recording:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png"><img alt="Screenshot I/O recording" title="Screenshot I/O recording" src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png" /></a><br />
 <p>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</p>
 <h3>Test preparation</h3>
 <p>Then copy io.capture to a test system. The log also contains all accesses to the pseudo file systems devfs, sysfs and procfs. This makes little sense, which is why you must first generate a cleaned and playable version io.replay from io.capture as follows:</p>
@@ -682,12 +682,12 @@ jgs\__/'---'\__/
 % sudo ioriot -i io.replay
 </pre>
 <p>To avoid any damage to the running system, ioreplay only works in special directories. The tool creates a separate subdirectory for each file system mount point (e.g. /, /usr/local, /store/00,...) (here: /.ioriot/TESTNAME, /usr/local/.ioriot/TESTNAME, /store/00/.ioriot/TESTNAME,...). By default, the working directory of ioriot is /usr/local/ioriot/TESTNAME.</p>
-<i>Screenshot test preparation:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png"><img alt="Screenshot test preparation" title="Screenshot test preparation" src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png" /></a><br />
+<i>Screenshot test preparation:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png"><img alt="Screenshot test preparation" title="Screenshot test preparation" src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png" /></a><br />
 <p>You must re-initialize the environment before each run. Data from previous tests will be moved to a trash directory automatically, which can be finally deleted with "sudo ioriot -P".</p>
 <h3>Replay</h3>
 <p>After initialization, you can replay the log with -r. You can use -R to initiate both test initialization and replay in a single command and -S can be used to specify a file in which statistics are written after the test run.</p>
 <p>You can also influence the playback speed: "-s 0" is interpreted as "Playback as fast as possible" and is the default setting. With "-s 1" all operations are performed at original speed. "-s 2" would double the playback speed and "-s 0.5" would halve it.</p>
-<i>Screenshot replaying I/O:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png"><img alt="Screenshot replaying I/O" title="Screenshot replaying I/O" src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png" /></a><br />
+<i>Screenshot replaying I/O:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png"><img alt="Screenshot replaying I/O" title="Screenshot replaying I/O" src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png" /></a><br />
 <p>As an initial test, for example, you could compare the two Linux I/O schedulers CFQ and Deadline and check which scheduler the test runs the fastest. They run the test separately for each scheduler. The following shell loop iterates through all attached block devices of the system and changes their I/O scheduler to the one specified in variable $new_scheduler (in this case either cfq or deadline). Subsequently, all I/O events from the io.replay protocol are played back. At the end, an output file with statistics is generated:</p>
 <pre>
 % new_scheduler=cfq
@@ -723,10 +723,10 @@ Time ahead: 2392s
 Total time: 1213.00s
 </pre>
 <p>In any case, you should also set up a time series database, such as Graphite, where the I/O throughput can be plotted. Figures 4 and 5 show the read and write access times of both tests. The break-in makes it clear when the CFQ test ended and the deadline test was started. The reading latency of both tests is similar. Write latency is dramatically improved using the Deadline Scheduler.</p>
-<i>Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png"><img alt="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png" /></a><br />
-<i>Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png"><img alt="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png" /></a><br />
+<i>Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png"><img alt="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png" /></a><br />
+<i>Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png"><img alt="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png" /></a><br />
 <p>You should also take a look at the iostat tool. The iostat screenshot shows the output of iostat -x 10 during a test run. As you can see, a block device is fully loaded with 99% utilization, while all other block devices still have sufficient buffer. This could be an indication of poor data distribution in the storage system and is worth pursuing. It is not uncommon for I/O Riot to reveal software problems.</p>
-<i>Output of iostat. The block device sdy seems to be almost fully utilized by 99%.:</i><a href="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png"><img alt="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." title="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." src="https://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png" /></a><br />
+<i>Output of iostat. The block device sdy seems to be almost fully utilized by 99%.:</i><a href="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png"><img alt="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." title="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." src="https://snonux.de/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png" /></a><br />
 <h2>I/O Riot is Open Source</h2>
 <p>The tool has already proven to be very useful and will continue to be actively developed as time and priority permits. Mimecast intends to be an ongoing contributor to Open Source. You can find I/O Riot at:</p>
 <a class="textlink" href="https://github.com/mimecast/ioriot">https://github.com/mimecast/ioriot</a><br />
@@ -745,8 +745,8 @@ Total time: 1213.00s
     </entry>
     <entry>
         <title>Methods in C</title>
-        <link href="gemini://buetow.org/gemfeed/2016-11-20-methods-in-c.gmi" />
-        <id>gemini://buetow.org/gemfeed/2016-11-20-methods-in-c.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2016-11-20-methods-in-c.gmi" />
+        <id>gemini://snonux.de/gemfeed/2016-11-20-methods-in-c.gmi</id>
         <updated>2016-11-20T18:36:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -825,8 +825,8 @@ mult.calculate(mult,a,b));
     </entry>
     <entry>
         <title>Spinning up my own authoritative DNS servers</title>
-        <link href="gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
-        <id>gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
+        <id>gemini://snonux.de/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
         <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1050,8 +1050,8 @@ apply Service "dig6" {
     </entry>
     <entry>
         <title>Offsite backup with ZFS (Part 2)</title>
-        <link href="gemini://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi" />
-        <id>gemini://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi" />
+        <id>gemini://snonux.de/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
         <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1076,7 +1076,7 @@ apply Service "dig6" {
                  \____||__|_____|__|
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2016-04-16</i></p>
-<a class="textlink" href="https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
+<a class="textlink" href="https://snonux.de/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
 <p>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</p>
 <p>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
@@ -1086,8 +1086,8 @@ apply Service "dig6" {
     </entry>
     <entry>
         <title>Jails and ZFS with Puppet on FreeBSD</title>
-        <link href="gemini://buetow.org/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi" />
-        <id>gemini://buetow.org/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi" />
+        <id>gemini://snonux.de/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
         <updated>2016-04-09T18:29:47+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1466,8 +1466,8 @@ Notice: Finished catalog run in 206.09 seconds
     </entry>
     <entry>
         <title>Offsite backup with ZFS</title>
-        <link href="gemini://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi" />
-        <id>gemini://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi" />
+        <id>gemini://snonux.de/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
         <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1507,8 +1507,8 @@ Notice: Finished catalog run in 206.09 seconds
     </entry>
     <entry>
         <title>Run Debian on your phone with Debroid</title>
-        <link href="gemini://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
-        <id>gemini://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
+        <id>gemini://snonux.de/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
         <updated>2015-12-05T16:12:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1528,7 +1528,7 @@ Notice: Finished catalog run in 206.09 seconds
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2015-12-05, last updated 2021-05-16</i></p>
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
-<a href="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
+<a href="https://snonux.de/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://snonux.de/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
 <p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
 <h2>Step by step guide</h2>
@@ -1671,8 +1671,8 @@ exit
     </entry>
     <entry>
         <title>The fibonacci.pl.c Polyglot</title>
-        <link href="gemini://buetow.org/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
-        <id>gemini://buetow.org/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
+        <id>gemini://snonux.de/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
         <updated>2014-03-24T21:32:53+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1779,8 +1779,8 @@ fib(10) = 55
     </entry>
     <entry>
         <title>Perl Daemon (Service Framework)</title>
-        <link href="gemini://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
-        <id>gemini://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
+        <id>gemini://snonux.de/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
         <updated>2011-05-07T22:26:02+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1925,8 +1925,8 @@ sub do ($) {
     </entry>
     <entry>
         <title>The Fype Programming Language</title>
-        <link href="gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
-        <id>gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
+        <id>gemini://snonux.de/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
         <updated>2010-05-09T12:48:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2340,8 +2340,8 @@ BB
     </entry>
     <entry>
         <title>Lazy Evaluation with Standard ML</title>
-        <link href="gemini://buetow.org/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi" />
-        <id>gemini://buetow.org/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi" />
+        <id>gemini://snonux.de/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
         <updated>2010-05-07T08:17:59+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2440,8 +2440,8 @@ first 10 nat_pairs_not_null
     </entry>
     <entry>
         <title>Standard ML and Haskell</title>
-        <link href="gemini://buetow.org/gemfeed/2010-04-09-standard-ml-and-haskell.gmi" />
-        <id>gemini://buetow.org/gemfeed/2010-04-09-standard-ml-and-haskell.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2010-04-09-standard-ml-and-haskell.gmi" />
+        <id>gemini://snonux.de/gemfeed/2010-04-09-standard-ml-and-haskell.gmi</id>
         <updated>2010-04-09T22:57:36+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2594,8 +2594,8 @@ my_filter f l = foldr (make_filter_fn f) [] l
     </entry>
     <entry>
         <title>Perl Poetry</title>
-        <link href="gemini://buetow.org/gemfeed/2008-06-26-perl-poetry.gmi" />
-        <id>gemini://buetow.org/gemfeed/2008-06-26-perl-poetry.gmi</id>
+        <link href="gemini://snonux.de/gemfeed/2008-06-26-perl-poetry.gmi" />
+        <id>gemini://snonux.de/gemfeed/2008-06-26-perl-poetry.gmi</id>
         <updated>2008-06-26T21:43:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
