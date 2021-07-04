@@ -19,33 +19,34 @@ You won't find any links on this site because, over time, the links will break. 
 
 ## Technical books
 
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
-* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * Advanced Bash-Scripting Guide; Not an actual book, but could be
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* Java ist auch eine Insel; Christian Ullenboom; 
 * Data Science at the Command Line; Jeroen Janssens; O'Reilly
-* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
-* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Funktionale Programmierung; Peter Pepper; Springer
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* Effective awk programming; Arnold Robbins; O'Reilly
 * Systemprogrammierung in Go; Frank Müller; dpunkt
 * Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* Pro Git; Scott Chacon, Ben Straub; Apress
-* DNS and BIND; Cricket Liu; O'Reilly
-* Effective awk programming; Arnold Robbins; O'Reilly
-* The Docker Book; James Turnbull; Kindle
-* C++ Programming Language; Bjarne Stroustrup;
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Java ist auch eine Insel; Christian Ullenboom; 
+* Developing Games in Java; David Brackeen and others...; New Riders
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
 * Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
 * Modern Perl; Chromatic ; Onyx Neon Press
-* Developing Games in Java; David Brackeen and others...; New Riders
-* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
+* C++ Programming Language; Bjarne Stroustrup;
+* The Docker Book; James Turnbull; Kindle
+* The Pragmatic Programmer; David Thomas; Addison-Wesley
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* DNS and BIND; Cricket Liu; O'Reilly
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
 * Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* Pro Git; Scott Chacon, Ben Straub; Apress
+* Funktionale Programmierung; Peter Pepper; Springer
+* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
 
 ## Technical bibles
 
@@ -82,16 +83,17 @@ I didn't read them from the beginning to the end, but I am using them to look up
 Some of these were in-person with exams; others were online learning lectures only.
 
 * Linux Security and Isolation APIs Training; Michael Kerrisk; 3-day on-site training
-* MySQL Deep Dive Workshop; 2-day on-site training
-* Protocol buffers; O'Reilly Online
-* Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
-* Red Hat Certified System Administrator; Course + certification (Although I had the option, I decided not to take the next course as it is more effective to self learn what I need)
-* Scripting Vim; Damian Conway; O'Reilly Online
-* The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
-* Ultimate Go Programming; Bill Kennedy; O'Reilly Online
-* Structure and Interpretation of Computer Programs; Harold Abelson and more...; 
 * F5 Loadbalancers Training; 2-day on-site training; F5, Inc. 
+* Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
+* Ultimate Go Programming; Bill Kennedy; O'Reilly Online
+* Red Hat Certified System Administrator; Course + certification (Although I had the option, I decided not to take the next course as it is more effective to self learn what I need)
 * Apache Tomcat Best Practises; 3-day on-site training
+* The Well-Grounded Rubyist Video Edition; David. A. Black; O'Reilly Online
+* Protocol buffers; O'Reilly Online
+* MySQL Deep Dive Workshop; 2-day on-site training
+* Scripting Vim; Damian Conway; O'Reilly Online
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; 
+* The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
 * Functional programming lecture; Remote University of Hagen
 
 ## Fiction and more books
