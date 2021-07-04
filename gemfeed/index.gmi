@@ -1,4 +1,4 @@
-# snonux.de's Gemfeed
+# buetow.org's Gemfeed
 
 ## Having fun with computers!
 
