@@ -61,11 +61,11 @@ In Ruby, like in Java/C++, classes are classes, objects are instances of classes
 
 In Ruby, you can also have singleton objects. A singleton object can be an instance of a class but be modified after its creation (e.g. a method added to only this particular instance after its instantiation). Or, another variant of a singleton object is a class (yes, classes are also objects in Ruby). All of that is way better described in the Ruby book, so have a read by yourself if you are confused now; just remember: Rubys object system is very dynamic and flexible. At runtime, you can add and modify classes, objects of classes, singleton objects and modules. You don't need to restart the Ruby interpreter; you can change the code during runtime dynamically through Ruby code.
 
-## Domain specific languages
+### Domain specific languages
 
 Due to Ruby's flexibility through object individualization (e.g. adding methods at runtime, or changing the core behaviour of classes, catching unknown method calls and dynamically dispatch and/or generate the missing methods via the "method_missing" method), Ruby is a very good language to write your own small domain specific language (DSL) on top of Ruby syntax. I only noticed that after reading this book. Maybe, this is one of the reasons why even the configuration management system Puppet once tried to use a Ruby DSL instead of the Puppet DSL for its manifests. I am not sure why the project got abandoned though, probably it has to do with performance. Do be honest, Ruby is not the fastest language, but it is fast enough for most use cases. And, especially from Ruby 3, performance is one of the main things being worked on currently. If I want performance, I can always use another programming language.
 
-## Ruby is "self-ish"
+### Ruby is "self-ish"
 
 Ruby will fall back to the default "self" object if you don't specify an object method receiver. To give you an example, some more explanation is needed: There is the "Kernel" module mixed into almost every Ruby object. For example, "puts" is just a method of "Kernel". When you write "puts :foo", Ruby sends the message "puts" to the current object "self". The class of object "self" is "Object". Class Object has module "Kernel" mixed in, and "Kernel" defines the method "puts". 
 
