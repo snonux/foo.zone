@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-07-04T18:16:26+01:00</updated>
+    <updated>2021-07-04T18:21:58+01:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
     <link href="gemini://buetow.org/" />
-    <id>Having fun with computers!/</id>
+    <id>gemini://buetow.org/</id>
     <entry>
         <title>The Well-Grounded Rubyist</title>
         <link href="gemini://buetow.org/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi" />
-        <id>2021-07-04-the-well-grounded-rubyist.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi</id>
         <updated>2021-07-04T10:51:23+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -90,7 +90,7 @@ Hello World
     <entry>
         <title>Gemtexter - One Bash script to rule it all</title>
         <link href="gemini://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi" />
-        <id>2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
         <updated>2021-06-05T19:03:32+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -229,7 +229,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
     <entry>
         <title>Personal Bash coding style guide</title>
         <link href="gemini://buetow.org/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi" />
-        <id>2021-05-16-personal-bash-coding-style-guide.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
         <updated>2021-05-16T14:51:57+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -537,7 +537,7 @@ fi
     <entry>
         <title>Welcome to the Geminispace</title>
         <link href="gemini://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
-        <id>2021-04-24-welcome-to-the-geminispace.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
         <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -607,7 +607,7 @@ fi
     <entry>
         <title>DTail - The distributed log tail program</title>
         <link href="gemini://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
-        <id>2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -688,7 +688,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
     <entry>
         <title>Realistic load testing with I/O Riot for Linux</title>
         <link href="gemini://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
-        <id>2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
         <updated>2018-06-01T14:50:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -827,7 +827,7 @@ Total time: 1213.00s
     <entry>
         <title>Methods in C</title>
         <link href="gemini://buetow.org/gemfeed/2016-11-20-methods-in-c.gmi" />
-        <id>2016-11-20-methods-in-c.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2016-11-20-methods-in-c.gmi</id>
         <updated>2016-11-20T18:36:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -907,7 +907,7 @@ mult.calculate(mult,a,b));
     <entry>
         <title>Spinning up my own authoritative DNS servers</title>
         <link href="gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
-        <id>2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
         <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1132,7 +1132,7 @@ apply Service "dig6" {
     <entry>
         <title>Offsite backup with ZFS (Part 2)</title>
         <link href="gemini://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi" />
-        <id>2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
         <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1168,7 +1168,7 @@ apply Service "dig6" {
     <entry>
         <title>Jails and ZFS with Puppet on FreeBSD</title>
         <link href="gemini://buetow.org/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi" />
-        <id>2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
         <updated>2016-04-09T18:29:47+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1548,7 +1548,7 @@ Notice: Finished catalog run in 206.09 seconds
     <entry>
         <title>Offsite backup with ZFS</title>
         <link href="gemini://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi" />
-        <id>2016-04-03-offsite-backup-with-zfs.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
         <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1589,7 +1589,7 @@ Notice: Finished catalog run in 206.09 seconds
     <entry>
         <title>Run Debian on your phone with Debroid</title>
         <link href="gemini://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
-        <id>2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
         <updated>2015-12-05T16:12:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1753,7 +1753,7 @@ exit
     <entry>
         <title>The fibonacci.pl.c Polyglot</title>
         <link href="gemini://buetow.org/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
-        <id>2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
         <updated>2014-03-24T21:32:53+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1861,7 +1861,7 @@ fib(10) = 55
     <entry>
         <title>Perl Daemon (Service Framework)</title>
         <link href="gemini://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
-        <id>2011-05-07-perl-daemon-service-framework.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
         <updated>2011-05-07T22:26:02+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2007,7 +2007,7 @@ sub do ($) {
     <entry>
         <title>The Fype Programming Language</title>
         <link href="gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
-        <id>2010-05-09-the-fype-programming-language.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
         <updated>2010-05-09T12:48:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2422,7 +2422,7 @@ BB
     <entry>
         <title>Lazy Evaluation with Standard ML</title>
         <link href="gemini://buetow.org/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi" />
-        <id>2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
         <updated>2010-05-07T08:17:59+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2522,7 +2522,7 @@ first 10 nat_pairs_not_null
     <entry>
         <title>Standard ML and Haskell</title>
         <link href="gemini://buetow.org/gemfeed/2010-04-09-standard-ml-and-haskell.gmi" />
-        <id>2010-04-09-standard-ml-and-haskell.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2010-04-09-standard-ml-and-haskell.gmi</id>
         <updated>2010-04-09T22:57:36+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2676,7 +2676,7 @@ my_filter f l = foldr (make_filter_fn f) [] l
     <entry>
         <title>Perl Poetry</title>
         <link href="gemini://buetow.org/gemfeed/2008-06-26-perl-poetry.gmi" />
-        <id>2008-06-26-perl-poetry.gmi</id>
+        <id>gemini://buetow.org/gemfeed/2008-06-26-perl-poetry.gmi</id>
         <updated>2008-06-26T21:43:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
