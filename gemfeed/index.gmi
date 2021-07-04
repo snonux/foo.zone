@@ -2,6 +2,7 @@
 
 ## Having fun with computers!
 
+=> ./2021-07-04-the-well-grounded-rubyist.gmi 2021-07-04 (2048 words) - The Well-Grounded Rubyist
 => ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 (1191 words) - Gemtexter - One Bash script to rule it all
 => ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 (1717 words) - Personal Bash coding style guide
 => ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 (0797 words) - Welcome to the Geminispace
