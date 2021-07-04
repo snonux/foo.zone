@@ -12,7 +12,7 @@ Superficially, Perl seems to have many similarities to Ruby (but, of course, it 
 
 => ./2021-07-04-the-well-grounded-rubyist/book-backside.jpg
 
-Yukihiro Matsumoto, inventor of Ruby said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don't believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what's already used at my workplace.
+Yukihiro Matsumoto, the inventor of Ruby, said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don't believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what's already used at my workplace.
 
 ## My Ruby problem domain
 
@@ -33,7 +33,7 @@ For all other in-between tasks I mainly use the Ruby programming language (unles
 
 ## Being stuck in Ruby-mediocrity
 
-As a Site Reliability Engineer there were many tasks and problems to be solved as efficiently and quickly as possible and, of course, without bugs. So I learned Ruby relatively fast by doing and the occasional web search for "how to do thing X". I always was eager to get the problem at hand done and as long as the code solved the problem I usually was happy.
+As a Site Reliability Engineer there were many tasks and problems to be solved as efficiently and quickly as possible and, of course, without bugs. So I learned Ruby relatively fast by doing and the occasional web search for "how to do thing X". I always was eager to get the problem at hand solved and as long as the code solved the problem I usually was happy.
 
 Until now, I never read a whole book or took a course on Ruby. As a result, I found myself writing Ruby in a Perl-ish procedural style (with Perl, you can do object-oriented programming too, but Perl wasn't designed from the ground up to be an object-oriented language). I didn't take advantage of all the specialities Ruby has to offer as I invested most of my time in the problems at hand and not in the Ruby idiomatic way of doing things.
 
@@ -49,7 +49,7 @@ Will I rewrite and refactor all of my existing Ruby programs? Probably not, as t
 
 ## Key takeaways
 
-These are the key takeaways. These only point out some specific things I have learned, and represent, by far, not everything I've learned from the book.
+These are my key takeaways. These only point out some specific things I have learned, and represent, by far, not everything I've learned from the book.
 
 ### "Everything" is an object
 
@@ -59,7 +59,7 @@ In Ruby, like in Java/C++, classes are classes, objects are instances of classes
 
 ### "Normal" objects and singleton objects
 
-In Ruby, you can also have singleton objects. A singleton object can be an instance of a class but be modified after its creation (e.g. a method added to only this particular instance after its instantiation). Or, another variant of a singleton object is a class (yes, classes are also objects in Ruby). All of that is way better described in the Ruby book, so have a read by yourself if you are confused now; just remember: Rubys object system is very dynamic and flexible. At runtime, you can add and modify classes, objects of classes, singleton objects and modules. You don't need to restart the Ruby interpreter; you can change the code during runtime dynamically through Ruby code.
+In Ruby, you can also have singleton objects. A singleton object can be an instance of a class but be modified after its creation (e.g. a method added to only this particular instance after its instantiation). Or, another variant of a singleton object is a class (yes, classes are also objects in Ruby). All of that is way better described in the book, so have a read by yourself if you are confused now; just remember: Rubys object system is very dynamic and flexible. At runtime, you can add and modify classes, objects of classes, singleton objects and modules. You don't need to restart the Ruby interpreter; you can change the code during runtime dynamically through Ruby code.
 
 ### Domain specific languages
 
@@ -67,7 +67,7 @@ Due to Ruby's flexibility through object individualization (e.g. adding methods 
 
 ### Ruby is "self-ish"
 
-Ruby will fall back to the default "self" object if you don't specify an object method receiver. To give you an example, some more explanation is needed: There is the "Kernel" module mixed into almost every Ruby object. For example, "puts" is just a method of "Kernel". When you write "puts :foo", Ruby sends the message "puts" to the current object "self". The class of object "self" is "Object". Class Object has module "Kernel" mixed in, and "Kernel" defines the method "puts". 
+Ruby will fall back to the default "self" object if you don't specify an object method receiver. To give you an example, some more explanation is needed: There is the "Kernel" module mixed into almost every Ruby object. For example, "puts" is just a method of module "Kernel". When you write "puts :foo", Ruby sends the message "puts" to the current object "self". The class of object "self" is "Object". Class Object has module "Kernel" mixed in, and "Kernel" defines the method "puts". 
 
 ```
 >> self
@@ -92,9 +92,9 @@ Ruby offers a lot of syntactic sugar and seemingly magic, but it all comes back 
 
 ### Functional programming
 
-Ruby embraces an object-oriented programming style. But there is good news for fans of the functional programming paradigm: From immutable data (frozen objects), pure functions, lambdas and higher-order functions, lazy evaluation, tail-recursion optimization, method chaining, currying and partial function application, all of that is there. I am delighted about that, as I am a big fan of functional programming (having played with Haskell and Standard ML already).
+Ruby embraces an object-oriented programming style. But there is good news for fans of the functional programming paradigm: From immutable data (frozen objects), pure functions, lambdas and higher-order functions, lazy evaluation, tail-recursion optimization, method chaining, currying and partial function application, all of that is there. I am delighted about that, as I am a big fan of functional programming (having played with Haskell and Standard ML before).
 
-Remember, however, that Ruby is not a pure functional programming language. You, as a programmer, need to explicitly decide when to apply a functional style, as, by heart, Ruby is designed to be an object-oriented language. The language will not enforce side effect avoidance, and you will have to enable tail-recursion optimization (as of Ruby 2.5) explicitly, and variables/objects aren't immutable by default either. But that all does not hinder you from using these features. 
+Remember, however, that Ruby is not a pure functional programming language. You, the Rubyist, need to explicitly decide when to apply a functional style, as, by heart, Ruby is designed to be an object-oriented language. The language will not enforce side effect avoidance, and you will have to enable tail-recursion optimization (as of Ruby 2.5) explicitly, and variables/objects aren't immutable by default either. But that all does not hinder you from using these features. 
 
 I liked this book so much so that I even bought myself a (used) paper copy of it. To my delight, there was also a free eBook version in ePub format included, which I now have on my Kobo Forma eBook reader. :-)
 
