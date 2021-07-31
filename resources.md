@@ -58,25 +58,26 @@ I didn't read them from the beginning to the end, but I am using them to look up
 
 ## Self-development and soft-skills books
 
-* The Off Switch; Mark Cropley; Virgin Books
-* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
-* Soft Skills; John Sommez; Manning Publications
-* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* Ultralearning; Scott Young; Thorsons
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* Deep Work; Cal Newport; Piatkus
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
 * So Good They Can't Ignore You; Cal Newport; Business Plus
+* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
 * The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Soft Skills; John Sommez; Manning Publications
 * The Power of Now; Eckhard Tolle; Yellow Kite
-* The Joy of Missing Out; Christina Crook; New Society Publishers
+* Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
 * Atomic Habits; James Clear; Random House Business
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
-* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
 * Digital Minimalism; Cal Newport; Portofolio Penguin
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
+* The Off Switch; Mark Cropley; Virgin Books
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* Deep Work; Cal Newport; Piatkus
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
+* Ultralearning; Scott Young; Thorsons
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
 
 ## Technical video lectures and courses
 
