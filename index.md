@@ -52,6 +52,7 @@ I have also compiled a list of resources that made an impact on me:
 
 I have switched blog software multiple times. I might be backfilling some of the older articles here. So please don't wonder when suddenly old posts appear here.
 
+[2021-09-12 - Keep it simple and stupid](./gemfeed/2021-09-12-keep-it-simple-and-stupid.md)  
 [2021-08-01 - On being Pedantic about Open-Source](./gemfeed/2021-08-01-on-being-pedantic-about-open-source.md)  
 [2021-07-04 - The Well-Grounded Rubyist](./gemfeed/2021-07-04-the-well-grounded-rubyist.md)  
 [2021-06-05 - Gemtexter - One Bash script to rule it all](./gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
