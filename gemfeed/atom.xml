@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-10-02T21:52:32+03:00</updated>
+    <updated>2021-10-02T21:54:42+03:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -47,13 +47,10 @@
 <p>Maybe the younger generation knows all of this already after graduation, but then they are missing other critical parts of the system for sure. I have seen engineers who knew about containers and how to configure resource restrictions for a Docker container managed via k8s but have never heard the terms Linux control groups and Linux namespaces. So obviously, there is some knowledge gap of the underlying architecture. This can be a big problem when you have to troubleshoot such a system during a production incident and k8s adds a lot of abstraction to the mix which doesn't make it easier. </p>
 <p>Coming back to COBOL, k8s is on its way to becoming something similar. One day, k8s might not be the hottest tech stuff everyone wants to use. But there will be still many legacy k8s clusters around but not enough experts available to manage those:</p>
 <a class="textlink" href="https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/">https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/</a><br />
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</p>
-<p>And here is something to smile about:</p>
-<a class="textlink" href="https://christine.website/blog/theres-a-node-2021-10-02">https://christine.website/blog/theres-a-node-2021-10-02</a><br />
-<p>=======</p>
 <p>Another article which stroke me is:</p>
 <a class="textlink" href="https://it.slashdot.org/story/21/09/23/163212/todays-students-dont-understand-the-basics-of-computer-operations">Today's Students Don't Understand the Basics of Computer Operations </a><br />
-<p>&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1aa43e960a9fe7bc0d87042316d740266512bfe2</p>
+<p>And here is something to smile about:</p>
+<a class="textlink" href="https://christine.website/blog/theres-a-node-2021-10-02">https://christine.website/blog/theres-a-node-2021-10-02</a><br />
 <h1>The bloated web</h1>
 <p>Another example is the modern web. Have you ever wondered why the internet becomes slower and slower nowadays? The modern web is so much like lasagna that I decided to use Gemini to be the primary protocol of my website. The HTML version of this website is just a fallback as many visitors don't know what Gemini is and don't have any compatible software installed for surfing the Geminispace:</p>
 <a class="textlink" href="2021-04-24-welcome-to-the-geminispace.html">2021-04-24-welcome-to-the-geminispace.html</a><br />
