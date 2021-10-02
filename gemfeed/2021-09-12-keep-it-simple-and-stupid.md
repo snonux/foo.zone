@@ -43,15 +43,13 @@ Coming back to COBOL, k8s is on its way to becoming something similar. One day, 
 
 [https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/](https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/)  
 
-<<<<<<< HEAD
-And here is something to smile about:
-
-[https://christine.website/blog/theres-a-node-2021-10-02](https://christine.website/blog/theres-a-node-2021-10-02)  
-=======
 Another article which stroke me is:
 
 [Today's Students Don't Understand the Basics of Computer Operations ](https://it.slashdot.org/story/21/09/23/163212/todays-students-dont-understand-the-basics-of-computer-operations)  
->>>>>>> 1aa43e960a9fe7bc0d87042316d740266512bfe2
+
+And here is something to smile about:
+
+[https://christine.website/blog/theres-a-node-2021-10-02](https://christine.website/blog/theres-a-node-2021-10-02)  
 
 # The bloated web
 
