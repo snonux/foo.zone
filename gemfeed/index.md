@@ -2,7 +2,7 @@
 
 ## Having fun with computers!
 
-[2021-09-12 (1351 words) - Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
+[2021-09-12 (1365 words) - Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
 [2021-08-01 (2919 words) - On being Pedantic about Open-Source](./2021-08-01-on-being-pedantic-about-open-source.md)  
 [2021-07-04 (2048 words) - The Well-Grounded Rubyist](./2021-07-04-the-well-grounded-rubyist.md)  
 [2021-06-05 (1191 words) - Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
