@@ -15,7 +15,7 @@
 --------------------                    --------------------
 ```
 
-> Written by Paul Buetow 2021-09-12
+> Written by Paul Buetow 2021-09-12, last updated 2021-10-02
 
 A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 
@@ -42,6 +42,10 @@ Maybe the younger generation knows all of this already after graduation, but the
 Coming back to COBOL, k8s is on its way to becoming something similar. One day, k8s might not be the hottest tech stuff everyone wants to use. But there will be still many legacy k8s clusters around but not enough experts available to manage those:
 
 => https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/
+
+And here is something to smile about:
+
+=> https://christine.website/blog/theres-a-node-2021-10-02
 
 # The bloated web
 
