@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-10-05T08:50:37+03:00</updated>
+    <updated>2021-10-17T17:08:00+03:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -828,23 +828,6 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>world</title>
-        <link href="gemini://buetow.org/gemfeed/2021-01-01-test.gmi" />
-        <id>gemini://buetow.org/gemfeed/2021-01-01-test.gmi</id>
-        <updated>2021-01-01T08:50:19+02:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>comments@mx.buetow.org</email>
-        </author>
-        <summary>Hello. .....to read on please visit my site.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <p>Hello</p>
-<p>world</p>
             </div>
         </content>
     </entry>
