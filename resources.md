@@ -101,9 +101,11 @@ Some of these were in-person with exams; others were online learning lectures on
 
 ## Fiction and more books
 
-Many fiction and non-fiction books I read are not listed here. This site primarily includes resources that impacted me regarding my work and not on my personal life. Do you recommend a good Science Fiction Novel? E-Mail me; I can also provide my recommendations! :-)
+Many fiction and non-fiction books I read are not listed here. But my favourites are listed on a separate page here:
 
-## Formal education
+[Novels I have read](./novels.md)  
+
+# Formal education
 
 I have met many self-taught IT professionals I highly respect. In my own opinion, a formal degree does not automatically qualify a person for a particular job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
 
