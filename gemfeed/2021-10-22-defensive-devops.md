@@ -81,7 +81,7 @@ First, automate it only on one single server and monitor the result closely. At 
 
 Now, you can add a handful more canary servers to the automation. You should keep close attention to what the automation is doing. You could use a tool like DTail for distributed log file following. At this point, you could also think of deploying a monitoring check (e.g. Icinga) to see whether your script is not terminating abnormally or logging warnings or errors.
 
-[DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program)  
+[DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 From there, you could automate the solution on more and more servers. Best, ramp up the automation to a handful of systems, and later to a whole line of servers (e.g. all secondary servers of a given cluster). And afterwards, automate it on all servers.
 
