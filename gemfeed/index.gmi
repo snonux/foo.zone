@@ -3,7 +3,7 @@
 ## Having fun with computers!
 
 => ./2021-10-22-defensive-devops.gmi 2021-10-22 (2276 words) - Defensive DevOps
-=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 (1360 words) - Keep it simple and stupid
+=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 (1365 words) - Keep it simple and stupid
 => ./2021-08-01-on-being-pedantic-about-open-source.gmi 2021-08-01 (2919 words) - On being Pedantic about Open-Source
 => ./2021-07-04-the-well-grounded-rubyist.gmi 2021-07-04 (2048 words) - The Well-Grounded Rubyist
 => ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 (1191 words) - Gemtexter - One Bash script to rule it all
