@@ -2,6 +2,7 @@
 
 ## Having fun with computers!
 
+[2021-10-22 (2276 words) - Defensive DevOps](./2021-10-22-defensive-devops.md)  
 [2021-09-12 (1360 words) - Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
 [2021-08-01 (2919 words) - On being Pedantic about Open-Source](./2021-08-01-on-being-pedantic-about-open-source.md)  
 [2021-07-04 (2048 words) - The Well-Grounded Rubyist](./2021-07-04-the-well-grounded-rubyist.md)  

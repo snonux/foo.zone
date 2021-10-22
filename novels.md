@@ -5,25 +5,32 @@ This site lists my favourite the novels I have read. I prefer to read them in Ge
 Some were read as paperback, others as eBooks. A very few were listened to (Audio book).
 
 ```
-                     `. ___
-                    __,' __`.                _..----....____
-        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'
-  _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'
-,'________________                          \`-._`-','
- `._              ```````````------...___   '-.._'-:
-    ```--.._      ,.                     ````--...__\-.
-            `.--. `-`                       ____    |  |`
-              `. `.                       ,'`````.  ;  ;`
-                `._`.        __________   `.      \'__/`
-                   `-:._____/______/___/____`.     \  `
-                               |       `._    `.    \
-                               `._________`-.   `.   `.___
-                                             SSt  `------'`
+     .  . '    .
+      '   .            . '            .                +
+              `                          '    . '
+        .                         ,'`.                         .
+   .                  .."    _.-;'    `.              .
+              _.-"`.##%"_.--" ,'        `.           "#"     ___,,od000
+           ,'"-_ _.-.--"\   ,'            `-_       '%#%',,/////00000HH
+         ,'     |_.'     )`/-     __..--""`-_`-._    J L/////00000HHHHM
+ . +   ,'   _.-"        / /   _-""           `-._`-_/___\///0000HHHHMMM
+     .'_.-""      '    :_/_.-'                 _,`-/__V__\0000HHHHHMMMM
+ . _-""                         .        '   _,////\  |  /000HHHHHMMMMM
+_-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
+       `                                   ,//////000\|/00HHHHHHHMMMMMM
+.             '       .  ' .   .       '  ,//////00000|00HHHHHHHHMMMMMM
+     .             .    .    '           ,//////000000|00HHHHHHHMMMMMMM
+                  .  '      .       .   ,///////000000|0HHHHHHHHMMMMMMM
+  '             '        .    '         ///////000000000HHHHHHHHMMMMMMM
+                    +  .  . '    .     ,///////000000000HHHHHHHMMMMMMMM
+     '      .              '   .       ///////000000000HHHHHHHHMMMMMMMM
+   '                  . '              ///////000000000HHHHHHHHMMMMMMMM
+                           .   '      ,///////000000000HHHHHHHHMMMMMMMM
 ```
 
 ## Alastair Reynolds
 
-* 2001 - Relevation Space (en) / Unendlichkeit (de) - Revelation Space Universe
+* 2001 - Revelation Space (en) / Unendlichkeit (de) - Revelation Space Universe
 * 2003 - Chasm City - Revelation Space Universe
 * 2004 - Redemption Ark (en) / Die Arche (de) - Revelation Space Universe - Currently Reading
 
@@ -56,6 +63,7 @@ Some were read as paperback, others as eBooks. A very few were listened to (Audi
 
 ## Other Authors
 
+* 1949 - 1984, George Orwell, Audio book - Currently listening to
 * 1979 - The Hitchhikers Guide to the Galaxy (en) / Per Anhalter durch die Galaxis (de), Adam Douglas - All books of the series
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (en) / Jagt auf Ikarus (de), Timothy Zahn
