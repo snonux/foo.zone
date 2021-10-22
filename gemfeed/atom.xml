@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-10-22T10:02:46+03:00</updated>
+    <updated>2021-10-22T10:09:20+03:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -72,7 +72,7 @@
 <p>At one point, you will be tired of manually running your script and also confident enough to automate it. You could deploy it with a configuration management system such as puppet Puppet and schedule a periodic execution via cron, a systemd timer or even a separate background daemon process. You have to be extremely careful here. The more you automate, the more damage you can cause. You don't want to automate it on all servers involved at once, but you want to slowly ramp up the automation. </p>
 <p>First, automate it only on one single server and monitor the result closely. At first, only automate running the script in dry mode. Also, don't forget that you still should log everything that the script is doing. Once everything looks fine, you can automate the script on the canary server for real. It shouldn't be a disaster if something goes wrong as usually systems are designed in a HA fashion, where the same data is still at least on another server available. In the worst-case scenario, you could recover data from there or from the local backup files your script created.</p>
 <p>Now, you can add a handful more canary servers to the automation. You should keep close attention to what the automation is doing. You could use a tool like DTail for distributed log file following. At this point, you could also think of deploying a monitoring check (e.g. Icinga) to see whether your script is not terminating abnormally or logging warnings or errors.</p>
-<a class="textlink" href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program">DTail - The distributed log tail program</a><br />
+<a class="textlink" href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
 <p>From there, you could automate the solution on more and more servers. Best, ramp up the automation to a handful of systems, and later to a whole line of servers (e.g. all secondary servers of a given cluster). And afterwards, automate it on all servers.</p>
 <p>Remember, whenever something goes wrong, you will have plenty of logs and backup files available. The disaster recovery would involve extending your script to take care of that too or writing a new script for rolling back the backups. </p>
 <h2>Out of office hours</h2>
