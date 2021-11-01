@@ -15,7 +15,7 @@
 --------------------                    --------------------
 ```
 
-> Written by Paul Buetow 2021-09-12, last updated 2021-10-02
+> Written by Paul Buetow 2021-09-12, last updated 2021-10-22
 
 A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 
@@ -71,7 +71,7 @@ I don't say that the ELK stack doesn't work, but it requires experts and additio
 
 ## The Adslowbe PDF Reader
 
-Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems). I believe the reason Adobe's reader is like this is featuritis, and 90% of the users don't use 90% of all available features. Less is more; keep it simple and stupid. 
+Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems, look at Zathura for example). I believe the reason Adobe's reader is like this is featuritis, and 90% of the users don't use 90% of all available features. Less is more; keep it simple and stupid. 
 
 ## The power of plain text files
 
