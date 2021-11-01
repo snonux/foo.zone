@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-10-22T10:31:08+03:00</updated>
+    <updated>2021-11-01T08:33:56+02:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -373,7 +373,7 @@ Hello World
 <p>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</p>
 <a href="https://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://buetow.org/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
 <p>I have exactly done that - I wrote a Bash script, named Gemtexter, for that:</p>
-<a class="textlink" href="https://github.com/snonux/gemtexter">https://github.com/snonux/gemtexter</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</p>
 <h2>Output formats</h2>
 <p>Gemtexter takes the Gemntext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):</p>
