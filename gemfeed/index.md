@@ -14,7 +14,7 @@
 [2016-11-20 (0314 words) - Methods in C](./2016-11-20-methods-in-c.md)  
 [2016-05-22 (0508 words) - Spinning up my own authoritative DNS servers](./2016-05-22-spinning-up-my-own-authoritative-dns-servers.md)  
 [2016-04-16 (0244 words) - Offsite backup with ZFS (Part 2)](./2016-04-16-offsite-backup-with-zfs-part2.md)  
-[2016-04-09 (0423 words) - Jails and ZFS with Puppet on FreeBSD](./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.md)  
+[2016-04-09 (0421 words) - Jails and ZFS with Puppet on FreeBSD](./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.md)  
 [2016-04-03 (0594 words) - Offsite backup with ZFS](./2016-04-03-offsite-backup-with-zfs.md)  
 [2015-12-05 (0339 words) - Run Debian on your phone with Debroid](./2015-12-05-run-debian-on-your-phone-with-debroid.md)  
 [2014-03-24 (0132 words) - The fibonacci.pl.c Polyglot](./2014-03-24-the-fibonacci.pl.c-polyglot.md)  
