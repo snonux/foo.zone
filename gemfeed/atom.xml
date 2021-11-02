@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-11-01T08:33:56+02:00</updated>
+    <updated>2021-11-02T20:36:44+02:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -1424,7 +1424,6 @@ apply Service "dig6" {
 </pre>
 <p class="quote"><i>Written by Paul Buetow 2016-04-09</i></p>
 <p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
-<a class="textlink" href="https://github.com/snonux/puppet-modules">https://github.com/snonux/puppet-modules</a><br />
 <h2>ZFS</h2>
 <p>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</p>
 <p>Puppet snippet:</p>
@@ -1839,7 +1838,7 @@ Notice: Finished catalog run in 206.09 seconds
 <p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
 <h2>Step by step guide</h2>
 <p>All scripts mentioned here can be found on GitHub at:</p>
-<a class="textlink" href="https://github.com/snonux/debroid">https://github.com/snonux/debroid</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/debroid">https://codeberg.org/snonux/debroid</a><br />
 <h3>First debootstrap stage</h3>
 <p>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</p>
 <pre>
@@ -2038,7 +2037,7 @@ BEGIN {
 }
 </pre>
 <p>You can find the full source code at GitHub:</p>
-<a class="textlink" href="https://github.com/snonux/perl-c-fibonacci">https://github.com/snonux/perl-c-fibonacci</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perl-c-fibonacci">https://codeberg.org/snonux/perl-c-fibonacci</a><br />
 <h3>Let's run it with Perl:</h3>
 <pre>
 ❯ perl fibonacci.pl.c
@@ -2224,7 +2223,7 @@ sub do ($) {
 <p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future, they can also run in parallel using several threads or processes).</p>
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
-<a class="textlink" href="https://github.com/snonux/perldaemon">https://github.com/snonux/perldaemon</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>
@@ -2639,7 +2638,7 @@ BB
 <p>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </p>
 <h2>May the source be with you</h2>
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
-<a class="textlink" href="https://github.com/snonux/fype">https://github.com/snonux/fype</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/fype">https://codeberg.org/snonux/fype</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>
@@ -3057,7 +3056,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 </pre>
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Github to see my other poems too:</p>
-<a class="textlink" href="https://github.com/snonux/perl-poetry">https://github.com/snonux/perl-poetry</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>
