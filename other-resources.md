@@ -1,4 +1,6 @@
-# Novels
+# Other resources
+
+## Novels
 
 This site lists my favourite the novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both, english (en) and german (de), titles.
 
@@ -28,20 +30,20 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
                            .   '      ,///////000000000HHHHHHHHMMMMMMMM
 ```
 
-## Alastair Reynolds
+### Alastair Reynolds
 
 * 2001 - Revelation Space (en) / Unendlichkeit (de) - Revelation Space Universe
 * 2003 - Chasm City - Revelation Space Universe
 * 2004 - Redemption Ark (en) / Die Arche (de) - Revelation Space Universe - Currently Reading
 
-## Arthur C. Clarke
+### Arthur C. Clarke
 
 * 1973 - Rendezvous with Rama (en), Audio book
 * 1989 - Rama II (en), Audio book
 * 1991 - The Garden of Rama (en), Audio book
 * 1993 - Rama Revealed (en), Audio book
 
-## Andreas Brandhorst (de)
+### Andreas Brandhorst (de)
 
 * 2004 - Diamant (de) - Diamant-Trilogie
 * 2003 - Der Metamorph (de) - Diamant-Trilogie
@@ -61,14 +63,14 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2020 - Die Eskalation (de) - Maschinenintelligenz-Trilogie
 * 2021 - Mars Discovery (de) - Maschinenintelligenz-Trilogie
 
-## Other Authors
+### Other Authors
 
-* 1949 - 1984, George Orwell, Audio book - Currently listening to
+* 1949 - 1984, George Orwell, Audio book
 * 1979 - The Hitchhikers Guide to the Galaxy (en) / Per Anhalter durch die Galaxis (de), Adam Douglas - All books of the series
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (en) / Jagt auf Ikarus (de), Timothy Zahn
 
-## Unread books already in my shelf
+### Unread books already in my shelf
 
 * 1987 - Consider Pheblas (en) / Bedenke Pheblas (de), Ian Banks
 * 2004 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe, Alastair Reynolds

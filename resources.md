@@ -103,7 +103,7 @@ Some of these were in-person with exams; others were online learning lectures on
 
 Many fiction and non-fiction books I read are not listed here. But my favourites are listed on a separate page here:
 
-[Novels I have read](./novels.md)  
+[Other resources (including novels) I've read.](./other-resources.md)  
 
 # Formal education
 
