@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-11-02T20:36:44+02:00</updated>
+    <updated>2021-11-05T22:24:31+02:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -3055,7 +3055,7 @@ __END__
 This is perl, v5.8.8 built for i386-freebsd-64int
 </pre>
 <h2>More...</h2>
-<p>Did you like what you saw? Have a look at Github to see my other poems too:</p>
+<p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
