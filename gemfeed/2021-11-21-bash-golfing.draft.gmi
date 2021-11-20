@@ -1,0 +1,429 @@
+# Bash golfing
+
+> Written by Paul Buetow 2021-11-21
+
+This blog post is about some (mostly uncommon) bash tricks I came across in the past.
+
+## TCP/IP networking
+
+You probably know the Netcat utility, which is like a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?
+
+To demonstrate establishing a network connection without Netcat or any other external tool from the Bash, have a look here:
+
+```
+❯ cat < /dev/tcp/time.nist.gov/13
+
+59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
+```
+
+The Bash treats /dev/tcp/HOST/PORT in a special way so that it actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the timeserver given to cat and cat is printing it on standard output (stdout).
+
+A more sophisticated example would be firing up a HTTP request. Here, we create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back.
+
+```
+❯ exec 5<>/dev/tcp/google.de/80
+❯ echo -e "GET / HTTP/1.1\nhost: google.de\n\n" >&5
+❯ cat <&5 | head
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.de/
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 18 Nov 2021 08:27:18 GMT
+Expires: Sat, 18 Dec 2021 08:27:18 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 218
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+```
+
+You would assume that this also works with the ZSH, but it doesn't out of the box. Although there might be plugins you could use for ZSH to do something similar.
+
+## Process substitution
+
+I personally use process substitution quite frequently. The idea is, that you can read the output (stdout) of an command from a file descriptor. To demonstrate this:
+
+```
+❯ uptime
+ 10:58:03 up 4 days, 22:08,  1 user,  load average: 0.16, 0.34, 0.41
+❯ cat <(uptime)
+ 10:58:16 up 4 days, 22:08,  1 user,  load average: 0.14, 0.33, 0.41
+❯ stat <(uptime)
+  File: /dev/fd/63 -> pipe:[468130]
+  Size: 64              Blocks: 0          IO Block: 1024   symbolic link
+Device: 16h/22d Inode: 468137      Links: 1
+Access: (0500/lr-x------)  Uid: ( 1001/    luap)   Gid: ( 1001/    luap)
+Context: unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+Access: 2021-11-20 10:59:31.482411961 +0000
+Modify: 2021-11-20 10:59:31.482411961 +0000
+Change: 2021-11-20 10:59:31.482411961 +0000
+ Birth: -
+```
+
+This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to a anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.
+
+A useful use case would be displaying the diff of two sorted files:
+
+```
+❯ echo a > /tmp/file-a.txt
+❯ echo b >> /tmp/file-a.txt
+❯ echo c >> /tmp/file-a.txt
+❯ echo b > /tmp/file-b.txt
+❯ echo a >> /tmp/file-b.txt
+❯ echo c >> /tmp/file-b.txt
+❯ echo X >> /tmp/file-b.txt
+❯ diff -u <(sort /tmp/file-a.txt) <(sort /tmp/file-b.txt)
+--- /dev/fd/63  2021-11-20 11:05:03.667713554 +0000
++++ /dev/fd/62  2021-11-20 11:05:03.667713554 +0000
+@@ -1,3 +1,4 @@
+ a
+ b
+ c
++X
+❯ echo X >> /tmp/file-a.txt
+❯ diff -u <(sort /tmp/file-a.txt) <(sort /tmp/file-b.txt)
+❯
+```
+
+Another example would be displaying the difference of two directories like this:
+
+```
+❯ diff -u <(ls ./dir1/ | sort) <(ls ./dir2/ | sort)
+```
+
+More (Bash golfing) examples:
+
+```
+❯ wc -l <(ls /tmp/) /etc/passwd <(env)
+     24 /dev/fd/63
+     49 /etc/passwd
+     24 /dev/fd/62
+     97 total
+❯
+❯ while read foo; do
+  echo $foo
+done < <(echo foo bar baz)
+foo bar baz
+❯
+```
+
+So far we only used process substitution for stdout redirection. But it also works for stdin. The following two commands have the same result, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:
+
+```
+tar cjf file.tar.bz2 foo
+tar cjf >(bzip2 -c > file.tar.bz2) foo
+```
+
+## Grouping
+
+Command grouping can be quite useful for combining the output of multiple commands like this:
+
+```
+❯ { ls /tmp; cat /etc/passwd; env; } | wc -l
+97
+❯ ( ls /tmp; cat /etc/passwd; env; ) | wc -l
+97
+```
+
+But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:
+
+```
+❯ echo $$
+62676
+❯ { echo $$; }
+62676
+❯ ( echo $$; )
+62676
+```
+
+If you know the (subtle) difference, please write me an E-Mail and let me know. 
+
+## Expansions
+
+```
+[luap@earth ~]$ echo {0..5}
+0 1 2 3 4 5
+[luap@earth ~]$ for i in {0..5}; do echo $i; done
+0
+1
+2
+3
+4
+5
+```
+
+```
+[luap@earth ~]$ echo {00..05}
+00 01 02 03 04 05
+```
+
+```
+[luap@earth ~]$ echo {a..e}
+a b c d e
+```
+
+```
+[luap@earth ~]$ echo \"{These,words,are,quoted}\"
+"These" "words" "are" "quoted"
+```
+
+```
+[luap@earth ~]$ echo {one,two}\:{A,B,C}
+one:A one:B one:C two:A two:B two:C
+[luap@earth ~]$ echo \"{one,two}\:{A,B,C}\"
+"one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
+[luap@earth ~]$ echo HAMBURGER-{one,two}\:{A,B,C}-HAMBURGER
+HAMBURGER-one:A-HAMBURGER HAMBURGER-one:B-HAMBURGER HAMBURGER-one:C-HAMBURGER HAMBURGER-two:A-HAMBURGER HAMBURGER-two:B-HAMBURGER HAMBURGER-two:C-HAMBURGER
+```
+
+## - (stdin/stdout)
+
+Some commands and bash builtins support it.
+
+```
+[luap@earth ~]$ echo Hello world
+Hello world
+[luap@earth ~]$ echo Hello World | cat -
+Hello World
+[luap@earth ~]$ cat - <<< 'Hello world'
+Hello world
+```
+
+```
+tar -cf - /some/dir | ssh someuser@example.org tar -xvf - 
+```
+
+```
+[luap@earth ~]$ head -n 1 test.sh
+#!/bin/env bash
+[luap@earth ~]$ file - < <(head -n 1 test.sh)
+/dev/stdin: a /bin/env bash script, ASCII text executable
+```
+
+```
+[luap@earth ~]$ cat -
+hello
+hello
+^C
+[luap@earth ~]$ file -
+#!/usr/bin/perl
+/dev/stdin: Perl script text executable
+```
+
+## Restricted shell
+
+Start the bash with the --restricted (or short -r) flag.
+
+From the bash manual page:
+
+> A restricted shell is used to set up an environment more controlled than the standard shell. It behaves identically to bash with the exception that the following are disallowed or not performed: ...
+
+Have a look at the manual page for more information.
+
+## Alternative parameter passing
+
+```
+cat foo.sh
+#/bin/env bash
+declare -r USER=${USER:?Missing the username}
+declare -r PASS=${PASS:?Missing the secret password for $USER}
+echo $USER:$PASS
+```
+
+```
+$ chmod +x foo.sh
+$ ./foo.sh
+./foo.sh: line 3: USER: Missing the username
+$ USER=paul ./foo.sh
+./foo.sh: line 4: PASS: Missing the secret password for paul
+$ echo $?
+1
+$ USER=paul PASS=secret ./foo.sh
+paul:secret
+```
+
+## :
+
+```
+:
+```
+
+```
+while : ; do date; sleep 1; done
+```
+
+```
+[luap@earth ~]$ foo () {  }
+-bash: syntax error near unexpected token `}'
+[luap@earth ~]$ foo () { :; }
+[luap@earth ~]$
+```
+
+```
+if foo; then :; else echo bar; fi
+```
+
+```
+: I am a comment
+```
+
+Deprecated:
+
+```
+declare -i i
+: $[ i = i + 1 ]
+: $[ i = i + 1 ]
+: $[ i = i + 1 ]
+echo $i
+3
+```
+
+## Redirection
+
+Bash Redirection (2011-05-08 08:14)
+Dieses Mal wollte ich etwas über ”Bash Redirection” schreiben. Jeder Linux-Benutzer sollte bereits wissen,
+dass es diese drei Standarddateideskriptoren gibt:
+1. 0 aka stdin (Standardeingabe)
+2. 1 aka stdout (Standardausgabe)
+3. 2 aka stderr (Standarderrorausgabe)
+Die meisten Programme arbeiten unter Linux mit stdin und stdout. stderr wird meist bei Fehlern verwendet.
+Die Shell hat einen entsprechenden Terminal Device wozu es einen Eintrag in /dev/pts/ gibt:
+pb@titania: $ ls -l /dev/pts/
+insgesamt 0
+crw–w—- 1 pb tty 136, 0 2011-05-08 10:33 0
+crw–w—- 1 pb tty 136, 1 2011-05-08 10:26 1
+crw–w—- 1 pb tty 136, 2 2011-05-08 10:27 2
+crw–w—- 1 pb tty 136, 3 2011-05-08 10:27 3
+c——— 1 root root 5, 2 2011-05-08 09:57 ptmx
+Mit dem > Operator kann man stdout auf das jeweilige Device umleiten:
+
+pb@titania: $ echo Foo > /dev/pts/0
+Foo
+Mit > & besteht eine weitere Möglichkeit die Ausgaben umzuleiten:
+• Leite stderr nach stdin um: echo foo 2> &1
+• Leite stdin nach stderr um: echo foo > &2
+Mehrere Umleitungen scheinen jedoch nicht aufeinmal zu funktionieren. Z.B. sollte das folgende Kommando
+Foo nach stderr umleiten und anschliessend sollte stderr nach /dev/null umgeleitet werden. Statt dem letzten
+Schritt wirds lediglich auf stderr ausgegeben:
+pb@titania: $ echo Foo 1> &2 2>/dev/null
+Foo
+Das kann man mit einer Subshell beheben:
+
+pb@titania: $ (echo Foo 1> &2) 2>/dev/null
+pb@titania: $
+Damit sind dann auch Konstrukte möglich wie:
+pb@titania: $ ( ( (echo Foo 1> &2) 2> &1 ) 1> &2) 2>/dev/null
+pb@titania: $ ( ( (echo Foo 1> &2) 2> &1 ) 1> &2) 2>/dev/pts/0
+Foo
+Mit lsof lässt sich herausfinden welcher Prozess bestimmte Dateideskriptoren geöffnet hat:
+pb@titania: $ lsof -a -p $ $ -d0,1,2
+COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
+bash 1895 pb 0u CHR 136,0 0t0 3 /dev/pts/0
+bash 1895 pb 1u CHR 136,0 0t0 3 /dev/pts/0
+bash 1895 pb 2u CHR 136,0 0t0 3 /dev/pts/0
+Dabei hat $ $ (pid der aktuell geöffneten Bash) die 0u (stdin) 1u (stdout) und 2u (stderr) geöffnet. Der
+aktuelle Bash-Prozess hat /dev/pts/0 als Terminal-Device.
+Neben stdin, stdout und stderr kann man auch eigene Deskriptoren erstellen dafür wird das Bash-Builtin
+Kommando exec benötigt.
+
+pb@titania:/tmp $ touch foo
+pb@titania:/tmp $ exec 3> foo
+pb@titania:/tmp $ echo bar > &3
+pb@titania:/tmp $ cat foo
+bar
+pb@titania:/tmp $ exec 3> &-
+pb@titania:/tmp $ echo bar > &3
+bash: 3: Ungültiger Dateideskriptor
+Hier wird eine leere Datei foo angelegt. Anschliessend wird mit exec der Dateideskriptor 3 an die Datei foo
+gebunden und mit echo der String bar in diese Datei mittels Deskriptor 3 geschrieben. Der befehl exec 3> &-
+schliesst den Dateideskriptor wieder.
+Es besteht die Möglichkeit die Standarddeskriptoren zu überschreiben wie das folgende Skript zeigt:
+
+pb@titania:/tmp $ cat test.sh
+#!/bin/bash
+# Write a file data-file containing two lines
+echo Learn You a Haskell > data-file
+echo for Great Good data-file
+# Link fd with fd 6 (saves default stdin)
+exec 6< &0
+# Overwrite stdin with data-file
+exec < data-file
+# Read the first two lines from it
+read a1
+read a2
+# Print it
+echo First line: $a1
+echo Second line: $a2
+# Restore default stdin and delete fd 6
+exec 0< &6 6< &-
+pb@titania:/tmp $ ./test.sh
+First line: Learn You a Haskell
+Second line: for Great Good
+In der Bash kann man mittels Redirection noch weitaus Komplizierteres anstellen.[1]
+
+## Here
+
+Wie in vielen anderen Skriptsprachen unterstützt auch die Bash sog. Here-Dokumente. Hier ein kleines
+Beispiel:
+pb@titania: $ cat END
+> Hallo Welt
+> it’s $(date)
+> END
+Hallo Welt
+it’s Fr 13. Mai 11:07:36 CEST 2011
+pb@titania: $
+Neben kennt die Bash auch den Operator <. Während
+sog. Here-Strings verwendet.
+für Here-Dokumente reserviert ist, wird < für
+So könnte man ohne einen Here-String prüfen, ob eine Variable einen bestimmte Substring enthält:
+VAR=foo; if echo ” $VAR” | grep -q foo; then echo \ $VAR contains foo; fi
+Und so mit Here-String:
+if grep -q foo < ” $VAR”; then echo \ $VAR contains foo; fi
+Wie unschwer zu erkennen ist spart man sich hier einiges an Tipparbeit (ein echo und eine Pipe weniger).
+(PS: Das könnte man auch ohne grep, nämlich mit Bash Regexp überprüfen, aber dazu evtl. später mehr).
+
+Here-Strings können auch in Kombination mit read angewandt werden:
+
+pb@titania:
+pb@titania:
+pb@titania:
+Learn
+pb@titania:
+you
+pb@titania:
+a
+$ dumdidumstring=”Learn you a Haskell for Great Good”
+$ read -a words < ” $dumdidumstring”
+$ echo $ {words[0] }
+$ echo $ {words[1] }
+$ echo $ {words[2] }
+Das -a bei read bezweckt, dass words aus dem Here-String als Array befüllt werden soll.
+Mittels Here-String kann man auch eine Zeile einer Textdatei prependen:
+pb@titania:/tmp $ echo for Great Good > file.txt
+pb@titania:/tmp $ cat - file.txt <”Learn you a Haskell”
+Learn you a Haskell
+for Great Good
+Das hat allerdings den Nachteil, dass man das Ergebnis zuerst in eine temporäre Datei oder Variable schreiben
+muss, bevor man die Originaldatei file.txt überschreibt. Ansonsten kommt es zu einem Fehler:
+pb@titania:/tmp $ cat - file.txt <”Learn you a Haskell” > file.txt
+cat: file.txt: Eingabedatei ist Ausgabedatei
+Natürlich wäre hierbei sed sowieso das bessere Tool der Wahl:
+
+pb@titania:/tmp $ echo for great Good > file.txt
+pb@titania:/tmp $ sed -i -e ’1i\
+Learn you a Haskell’ file.txt
+pb@titania:/tmp $ cat file.txt
+Learn you a Haskell
+for great Good
+pb@titania:/tmp $
+
+## xargs
+
+## RANDOM
+
+## More
+
+Reference to my bash coding style guide.
+
+E-Mail me your thoughts at comments@mx.buetow.org!
+
+=> ../ Go back to the main site
