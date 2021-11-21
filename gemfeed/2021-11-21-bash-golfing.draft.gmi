@@ -51,7 +51,7 @@ I personally use process substitution quite frequently. The idea is, that you ca
   File: /dev/fd/63 -> pipe:[468130]
   Size: 64              Blocks: 0          IO Block: 1024   symbolic link
 Device: 16h/22d Inode: 468137      Links: 1
-Access: (0500/lr-x------)  Uid: ( 1001/    luap)   Gid: ( 1001/    luap)
+Access: (0500/lr-x------)  Uid: ( 1001/    paul)   Gid: ( 1001/    paul)
 Context: unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
 Access: 2021-11-20 10:59:31.482411961 +0000
 Modify: 2021-11-20 10:59:31.482411961 +0000
@@ -139,10 +139,12 @@ If you know the (subtle) difference, please write me an E-Mail and let me know.
 
 ## Expansions
 
+The Bash expansions are yet more useful (and interesting) features. Let's start it simple:
+
 ```
-[luap@earth ~]$ echo {0..5}
+❯ echo {0..5}
 0 1 2 3 4 5
-[luap@earth ~]$ for i in {0..5}; do echo $i; done
+❯ for i in {0..5}; do echo $i; done
 0
 1
 2
@@ -151,130 +153,222 @@ If you know the (subtle) difference, please write me an E-Mail and let me know.
 5
 ```
 
-```
-[luap@earth ~]$ echo {00..05}
-00 01 02 03 04 05
-```
+You can also add leading 0 or expand to any number range:
 
 ```
-[luap@earth ~]$ echo {a..e}
+❯ echo {00..05}
+00 01 02 03 04 05
+❯ echo {000..005}
+000 001 002 003 004 005
+❯ echo {201..205}
+201 202 203 204 205
+```
+It also works with non-numerics:
+
+```
+❯ echo {a..e}
 a b c d e
 ```
 
+Now it get's interesting. The following takes a list of words and expands so that all words are quoted:
+
 ```
-[luap@earth ~]$ echo \"{These,words,are,quoted}\"
+❯ echo \"{These,words,are,quoted}\"
 "These" "words" "are" "quoted"
 ```
 
+Let's also expand to the cross product of two lists given:
+
 ```
-[luap@earth ~]$ echo {one,two}\:{A,B,C}
+❯ echo {one,two}\:{A,B,C}
 one:A one:B one:C two:A two:B two:C
-[luap@earth ~]$ echo \"{one,two}\:{A,B,C}\"
+❯ echo \"{one,two}\:{A,B,C}\"
 "one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
-[luap@earth ~]$ echo HAMBURGER-{one,two}\:{A,B,C}-HAMBURGER
-HAMBURGER-one:A-HAMBURGER HAMBURGER-one:B-HAMBURGER HAMBURGER-one:C-HAMBURGER HAMBURGER-two:A-HAMBURGER HAMBURGER-two:B-HAMBURGER HAMBURGER-two:C-HAMBURGER
 ```
 
-## - (stdin/stdout)
-
-Some commands and bash builtins support it.
+Just because I can:
 
 ```
-[luap@earth ~]$ echo Hello world
+❯ echo Linux-{one,two,three}\:{A,B,C}-FreeBSD
+Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
+```
+
+## - aka stdin and stdout placeholder
+
+Some commands and Bash builtins use - as a placeholder for stdin and stdout. Let's have a look first at the following snippet:
+
+```
+❯ echo Hello world
 Hello world
-[luap@earth ~]$ echo Hello World | cat -
-Hello World
-[luap@earth ~]$ cat - <<< 'Hello world'
+❯ echo Hello world | cat -
+Hello world
+❯ cat - <<ONECHEESEBURGERPLEASE
+Hello world
+ONECHEESEBURGERPLEASE
+Hello world
+❯ cat - <<< 'Hello world'
 Hello world
 ```
 
-```
-tar -cf - /some/dir | ssh someuser@example.org tar -xvf - 
-```
+All examples result into the same outcome:
+
+* The first example is obvious (the Bash builtin "echo" prints its arguments to "stdout").
+* The second pipes "Hello world" via "stdout" to "stdin" of the "cat" command. As cat's argument is "-" it reads its data from "stdin" and not from a regular file named "-". So "-" has a special meaning for cat.
+* The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called here-document and a here-string. But the end result is the same.
+
+The "tar" command understands "-" too. This example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via a SSH session to a remote tar process (on example.org) and reads the data from stdin and extracts all the files on the remote machine again:
 
 ```
-[luap@earth ~]$ head -n 1 test.sh
+❯ tar -czf - /some/dir | ssh someuser@example.org tar -xzvf - 
+```
+
+And this is yet another example of using "-", but this time using the "file" command:
+
+```
+$ head -n 1 test.sh
 #!/bin/env bash
-[luap@earth ~]$ file - < <(head -n 1 test.sh)
+$ file - < <(head -n 1 test.sh)
 /dev/stdin: a /bin/env bash script, ASCII text executable
 ```
 
+Some more random golfing:
+
 ```
-[luap@earth ~]$ cat -
+$ cat -
 hello
 hello
 ^C
-[luap@earth ~]$ file -
+$ file -
 #!/usr/bin/perl
 /dev/stdin: Perl script text executable
 ```
 
-## Restricted shell
+## Alternative argument passing
 
-Start the bash with the --restricted (or short -r) flag.
-
-From the bash manual page:
-
-> A restricted shell is used to set up an environment more controlled than the standard shell. It behaves identically to bash with the exception that the following are disallowed or not performed: ...
-
-Have a look at the manual page for more information.
-
-## Alternative parameter passing
+This is a quite unusual way of passing arguments to a Bash script:
 
 ```
-cat foo.sh
+❯ cat foo.sh
 #/bin/env bash
 declare -r USER=${USER:?Missing the username}
 declare -r PASS=${PASS:?Missing the secret password for $USER}
 echo $USER:$PASS
 ```
 
+So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an argument missing.
+
 ```
-$ chmod +x foo.sh
-$ ./foo.sh
+❯ chmod +x foo.sh
+❯ ./foo.sh
 ./foo.sh: line 3: USER: Missing the username
-$ USER=paul ./foo.sh
+❯ USER=paul ./foo.sh
 ./foo.sh: line 4: PASS: Missing the secret password for paul
-$ echo $?
+❯ echo $?
 1
-$ USER=paul PASS=secret ./foo.sh
+❯ USER=paul PASS=secret ./foo.sh
 paul:secret
 ```
 
-## :
+You have probably noticed this *strange* syntax:
 
 ```
-:
+❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
 ```
 
-```
-while : ; do date; sleep 1; done
-```
+That's just another way to pass environment variables to a script. You could write it as well as like this:
 
 ```
-[luap@earth ~]$ foo () {  }
+❯ export VARIABLE1=value1
+❯ export VARIABLE2=value2
+❯ ./script.sh
+```
+
+But the downside of it would be that the variables would also be defined in your current shell and not only in the script's sub-process.
+
+## : aka the null command
+
+First of all, let's use the "help" Bash-builtin so we see what the docs are saying about the null command:
+
+```
+❯ help :
+:: :
+    Null command.
+
+    No effect; the command does nothing.
+
+    Exit Status:
+    Always succeeds.
+```
+
+PS: IMHO people should use the Bash help more often. It is a very useful reference to all the Bash stuff. Sadly, there's no help-builtin for the ZSH shell though.
+
+OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (succeeded executing):
+
+```
+❯ :
+❯ echo $?
+0
+```
+
+Why would that useful? You can use it in an endless while-loop:
+
+```
+❯ while : ; do date; sleep 1; done
+Sun 21 Nov 12:08:31 GMT 2021
+Sun 21 Nov 12:08:32 GMT 2021
+Sun 21 Nov 12:08:33 GMT 2021
+^C
+❯
+```
+
+You could also use it as a placeholder for a function body not yet fully implemented, as an empty function would be a Bash syntax error:
+
+```
+❯ foo () {  }
 -bash: syntax error near unexpected token `}'
-[luap@earth ~]$ foo () { :; }
-[luap@earth ~]$
+❯ foo () { :; }
+❯ foo
+❯
 ```
 
-```
-if foo; then :; else echo bar; fi
-```
+Or use it as a placeholder for not yet implemented conditional branches:
 
 ```
-: I am a comment
+❯ if foo; then :; else echo bar; fi
 ```
 
-Deprecated:
+Or (not recommended) as a fancy way to comment your Bash code:
+```
+❯ : I am a comment and have no other effect
+❯ : I am a comment and result in a syntax error ()
+-bash: syntax error near unexpected token `('
+❯ : "I am a comment and don't result in a syntax error ()"
+❯
+```
+
+As you can see in the previous example the Bash still tries to interpret some of the syntax of all text following after ":". This can be exploited (also not recommended) like this:
 
 ```
-declare -i i
-: $[ i = i + 1 ]
-: $[ i = i + 1 ]
-: $[ i = i + 1 ]
-echo $i
-3
+❯ declare i=0
+❯ $[ i = i + 1 ]
+bash: 1: command not found...
+❯ : $[ i = i + 1 ]
+❯ : $[ i = i + 1 ]
+❯ : $[ i = i + 1 ]
+❯ echo $i
+4
+```
+
+For these kind of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old way $[ ...expression... ] as this example demonstrates:
+
+```
+❯ declare j=0
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ echo $j
+4
 ```
 
 ## Redirection
@@ -419,6 +513,7 @@ pb@titania:/tmp $
 ## xargs
 
 ## RANDOM
+
 
 ## More
 
