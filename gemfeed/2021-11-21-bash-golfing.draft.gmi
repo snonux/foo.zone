@@ -135,7 +135,15 @@ But wait, what is the difference between curly braces and normal braces? I assum
 62676
 ```
 
-If you know the (subtle) difference, please write me an E-Mail and let me know. 
+If you know the (subtle) difference, please write me an E-Mail and let me know. One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:
+
+```
+❯ ( env; ls ) | wc -l
+27
+❯ { env; ls } | wc -l
+>
+> ^C
+```
 
 ## Expansions
 
@@ -226,9 +234,9 @@ And this is yet another example of using "-", but this time using the "file" com
 
 ```
 $ head -n 1 test.sh
-#!/bin/env bash
+#!/usr/bin/env bash
 $ file - < <(head -n 1 test.sh)
-/dev/stdin: a /bin/env bash script, ASCII text executable
+/dev/stdin: a /usr/bin/env bash script, ASCII text executable
 ```
 
 Some more random golfing:
@@ -249,7 +257,7 @@ This is a quite unusual way of passing arguments to a Bash script:
 
 ```
 ❯ cat foo.sh
-#/bin/env bash
+#/usr/bin/env bash
 declare -r USER=${USER:?Missing the username}
 declare -r PASS=${PASS:?Missing the secret password for $USER}
 echo $USER:$PASS
@@ -373,86 +381,117 @@ For these kind of expressions it's always better to use "let" though. And you sh
 
 ## Redirection
 
-Bash Redirection (2011-05-08 08:14)
-Dieses Mal wollte ich etwas über ”Bash Redirection” schreiben. Jeder Linux-Benutzer sollte bereits wissen,
-dass es diese drei Standarddateideskriptoren gibt:
-1. 0 aka stdin (Standardeingabe)
-2. 1 aka stdout (Standardausgabe)
-3. 2 aka stderr (Standarderrorausgabe)
-Die meisten Programme arbeiten unter Linux mit stdin und stdout. stderr wird meist bei Fehlern verwendet.
-Die Shell hat einen entsprechenden Terminal Device wozu es einen Eintrag in /dev/pts/ gibt:
-pb@titania: $ ls -l /dev/pts/
-insgesamt 0
-crw–w—- 1 pb tty 136, 0 2011-05-08 10:33 0
-crw–w—- 1 pb tty 136, 1 2011-05-08 10:26 1
-crw–w—- 1 pb tty 136, 2 2011-05-08 10:27 2
-crw–w—- 1 pb tty 136, 3 2011-05-08 10:27 3
-c——— 1 root root 5, 2 2011-05-08 09:57 ptmx
-Mit dem > Operator kann man stdout auf das jeweilige Device umleiten:
+Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descripors:
 
-pb@titania: $ echo Foo > /dev/pts/0
+* 0 aka stdin (standard input)
+* 1 aka stdout (standard output)
+* 2 aka stderr (standard error output )
+
+These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the bash):
+
+```
+❯ ls -l /proc/self/fd/
+total 0
+lrwx------. 1 paul paul 64 Nov 23 09:46 0 -> /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 1 -> /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 2 -> /dev/pts/9
+lr-x------. 1 paul paul 64 Nov 23 09:46 3 -> /proc/162912/fd
+```
+
+And here are two different ways to accomplish the same thing. The only differene is that the first command is directly printing out to stdout and the second command is explicitly redirecting stdout to its own stdout file descriptor:
+
+```
+❯ echo Foo
 Foo
-Mit > & besteht eine weitere Möglichkeit die Ausgaben umzuleiten:
-• Leite stderr nach stdin um: echo foo 2> &1
-• Leite stdin nach stderr um: echo foo > &2
-Mehrere Umleitungen scheinen jedoch nicht aufeinmal zu funktionieren. Z.B. sollte das folgende Kommando
-Foo nach stderr umleiten und anschliessend sollte stderr nach /dev/null umgeleitet werden. Statt dem letzten
-Schritt wirds lediglich auf stderr ausgegeben:
-pb@titania: $ echo Foo 1> &2 2>/dev/null
+❯ echo Foo > /proc/self/fd/0
 Foo
-Das kann man mit einer Subshell beheben:
+```
 
-pb@titania: $ (echo Foo 1> &2) 2>/dev/null
-pb@titania: $
-Damit sind dann auch Konstrukte möglich wie:
-pb@titania: $ ( ( (echo Foo 1> &2) 2> &1 ) 1> &2) 2>/dev/null
-pb@titania: $ ( ( (echo Foo 1> &2) 2> &1 ) 1> &2) 2>/dev/pts/0
+Other useful redirections are:
+
+* Redirect stderr to stdin: "echo foo 2>&1"
+* Redirect stdin to stderr: "echo foo >&2"
+
+It is however not possible to redirect multiple times within the same command. E.g. the following won't work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:
+
+```
+❯ echo Foo 1>&2 2>/dev/null
 Foo
-Mit lsof lässt sich herausfinden welcher Prozess bestimmte Dateideskriptoren geöffnet hat:
-pb@titania: $ lsof -a -p $ $ -d0,1,2
-COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
-bash 1895 pb 0u CHR 136,0 0t0 3 /dev/pts/0
-bash 1895 pb 1u CHR 136,0 0t0 3 /dev/pts/0
-bash 1895 pb 2u CHR 136,0 0t0 3 /dev/pts/0
-Dabei hat $ $ (pid der aktuell geöffneten Bash) die 0u (stdin) 1u (stdout) und 2u (stderr) geöffnet. Der
-aktuelle Bash-Prozess hat /dev/pts/0 als Terminal-Device.
-Neben stdin, stdout und stderr kann man auch eigene Deskriptoren erstellen dafür wird das Bash-Builtin
-Kommando exec benötigt.
+```
 
-pb@titania:/tmp $ touch foo
-pb@titania:/tmp $ exec 3> foo
-pb@titania:/tmp $ echo bar > &3
-pb@titania:/tmp $ cat foo
-bar
-pb@titania:/tmp $ exec 3> &-
-pb@titania:/tmp $ echo bar > &3
-bash: 3: Ungültiger Dateideskriptor
-Hier wird eine leere Datei foo angelegt. Anschliessend wird mit exec der Dateideskriptor 3 an die Datei foo
-gebunden und mit echo der String bar in diese Datei mittels Deskriptor 3 geschrieben. Der befehl exec 3> &-
-schliesst den Dateideskriptor wieder.
-Es besteht die Möglichkeit die Standarddeskriptoren zu überschreiben wie das folgende Skript zeigt:
+This is, as you have seen earlier in this post, where you can use grouping (neither of these commands will print out anything to stdout):
 
-pb@titania:/tmp $ cat test.sh
-#!/bin/bash
+```
+❯ { echo Foo 1>&2; } 2>/dev/null
+❯ ( echo Foo 1>&2; ) 2>/dev/null
+❯ { { { echo Foo 1>&2; } 2>&1; } 1>&2; } 2>/dev/null
+❯ ( ( (  echo Foo 1>&2; ) 2>&1; ) 1>&2; ) 2>/dev/null
+❯
+```
+
+A handy way to list all open file descriptors is to use the "lsof" command (that's not a Bash builtin), whereas $$ is the pid of the current shell process:
+
+```
+❯ lsof -a -p $$ -d0,1,2
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+bash    62676 paul    0u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    1u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    2u   CHR  136,9      0t0   12 /dev/pts/9
+```
+
+Let's create our own descriptor "3" for redirection to a file named "foo":
+
+```
+❯ touch foo
+❯ exec 3>foo # This opens fd 3.
+❯ ls -l /proc/self/fd/3
+l-wx------. 1 paul paul 64 Nov 23 10:10 \
+    /proc/self/fd/3 -> /home/paul/foo
+❯ cat foo
+❯ echo Bratwurst >&3
+❯ cat foo
+Bratwurst
+❯ exec 3>&- # This closes fd 3.
+❯ echo Kombucha >&3
+-bash: 3: Bad file descriptor
+```
+
+You can also override the default file descriptors, like demonstrated in this script:
+
+```
+❯ cat test.sh
+#!/usr/bin/env bash
+
 # Write a file data-file containing two lines
 echo Learn You a Haskell > data-file
-echo for Great Good data-file
+echo for Great Good >> data-file
+
 # Link fd with fd 6 (saves default stdin)
-exec 6< &0
+exec 6<&0
+
 # Overwrite stdin with data-file
 exec < data-file
+
 # Read the first two lines from it
-read a1
-read a2
-# Print it
-echo First line: $a1
-echo Second line: $a2
+declare LINE1 LINE2
+read LINE1
+read LINE2
+
+# Print them
+echo First line: $LINE1
+echo Second line: $LINE2
+
 # Restore default stdin and delete fd 6
-exec 0< &6 6< &-
-pb@titania:/tmp $ ./test.sh
+exec 0<&6 6<&-
+```
+
+Let's execute it:
+
+```
+❯ ./test.sh
 First line: Learn You a Haskell
 Second line: for Great Good
-In der Bash kann man mittels Redirection noch weitaus Komplizierteres anstellen.[1]
+```
 
 ## Here
 
@@ -514,6 +553,7 @@ pb@titania:/tmp $
 
 ## RANDOM
 
+## -x and set -x
 
 ## More
 
