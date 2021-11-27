@@ -638,7 +638,7 @@ Random is a special builtin variable containing a pseudo random number each time
 
 That's very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently just to spread the server load (which might be caused by the script run) better.
 
-Let's say you want to introduce a random delay of 1 minute you can do:
+Let's say you want to introduce a random delay of 1 minute. You can accomplish it with:
 
 ```
 ❯ cat ./calc_answer_to_ultimate_question_in_life.sh
@@ -702,7 +702,7 @@ Square of 12 is 144
 ❯
 ```
 
-You can also set the when calling an external script without modifying the script:
+You can also set the when calling an external script without modifying the script itself:
 
 ```
 ❯ bash -x ./half_broken_script_to_be_debugged.sh
@@ -730,7 +730,13 @@ Second line: for Great Good
 
 ### -e
 
-This is a very important option you want to set when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully:
+This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).
+
+Before we dig dipper, this blog article of mine might interest you too, it describes more techniques to make your scripts running safely:
+
+=> ./2021-10-22-defensive-devops.gmi Defensive DevOps
+
+Ok, let's dig deeper:
 
 ```
 ❯ help set | grep -- -e
@@ -746,7 +752,7 @@ hello
 1
 ```
 
-Whereas the outcome changes when grep runs successfully:
+Whereas the outcome changes when the regex matches:
 
 ```
 ❯ bash -c 'set -e; echo hello; grep -q bar <<< barman; echo bar'
@@ -756,7 +762,23 @@ bar
 0
 ```
 
-The script won't terminate when you "set -e" and embed grep in an if-conditional (or any other conditional) expression. This makes your script continue normally:
+So does it mean that grep will always make the shell terminate whenever its exit code isn't 0? This would render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script. Usually, what you want is to branch your code based on the outcome (exit code) of a command:
+
+```
+❯ bash -c 'set -e
+>    grep -q bar <<< foo
+>    if [ $? -eq 0 ]; then
+>        echo "matching"
+>    else
+>        echo "not matching"
+>    fi'
+❯ echo $?
+1
+```
+
+...but the example above won't reach any the branches and won't print out anything as the script terminates right after grep.
+
+The proper solution would be using grep as an expression in a conditional (e.g. in an if-else statement):
 
 ```
 bar
@@ -765,10 +787,8 @@ bar
 >        echo "matching"
 >    else
 >        echo "not matching"
->    fi
->    echo bar'
+>    fi'
 not matching
-bar
 ❯ echo $?
 0
 ❯ bash -c 'set -e
@@ -776,17 +796,61 @@ bar
 >        echo "matching"
 >    else
 >        echo "not matching"
->    fi
->    echo bar'
+>    fi'
 matching
-bar
 ❯ echo $?
 0
 ```
 
-This blog article of mine might interest you too, it describes more techniques to make your scripts safe:
+If there is no other way you could also temporally undo "set -e":
 
-=> ./2021-10-22-defensive-devops.gmi Defensive DevOps
+```
+❯ cat ./e.sh
+#!/usr/bin/env bash
+
+set -e
+
+foo () {
+    local arg="$1"; shift
+
+    if [ -z "$arg" ]; then
+        arg='You!'
+    fi
+    echo "Hello $arg"
+}
+
+bar () {
+    # Temporally disable e
+    set +e
+    local arg="$1"; shift
+    # Enable e again.
+    set -e
+
+    if [ -z "$arg" ]; then
+        arg='You!'
+    fi
+    echo "Hello $arg"
+}
+
+# Will succeed
+bar World
+foo Universe
+bar
+
+# Will terminate the script
+foo
+
+❯ ./e.sh
+Hello World
+Hello Universe
+Hello You!
+```
+
+Why does calling "foo" with no arguments make the script terminate? Because no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore fail with a non-zero status.
+
+Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style giode for an explanation :-):
+
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi
 
 ### pipefail
 
