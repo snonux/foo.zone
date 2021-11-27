@@ -28,7 +28,7 @@ Have a look here how that works:
 59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
 ```
 
-The Bash treats /dev/tcp/HOST/PORT in a special way so that it actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the timeserver to cat and cat is printing it on standard output (stdout).
+the Bash treats /dev/tcp/HOST/PORT in a special way so that it actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the timeserver to cat and cat is printing it on standard output (stdout).
 
 A more sophisticated example is firing up a HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:
 
@@ -57,8 +57,10 @@ The idea here is, that you can read the output (stdout) of a command from a file
 ```
 ❯ uptime # Without process substitution
  10:58:03 up 4 days, 22:08,  1 user,  load average: 0.16, 0.34, 0.41
+
 ❯ cat <(uptime) # With process substitution
  10:58:16 up 4 days, 22:08,  1 user,  load average: 0.14, 0.33, 0.41
+
 ❯ stat <(uptime)
   File: /dev/fd/63 -> pipe:[468130]
   Size: 64              Blocks: 0          IO Block: 1024   symbolic link
@@ -73,7 +75,7 @@ Change: 2021-11-20 10:59:31.482411961 +0000
 
 This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to a anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.
 
-A useful use case is displaying the diff of two sorted files:
+A useful use case is displaying the differences of two sorted files:
 
 ```
 ❯ echo a > /tmp/file-a.txt
@@ -96,7 +98,7 @@ A useful use case is displaying the diff of two sorted files:
 ❯
 ```
 
-Another example is displaying the difference of two directories:
+Another example is displaying the differences of two directories:
 
 ```
 ❯ diff -u <(ls ./dir1/ | sort) <(ls ./dir2/ | sort)
@@ -111,9 +113,10 @@ More (Bash golfing) examples:
      24 /dev/fd/62
      97 total
 ❯
+
 ❯ while read foo; do
-  echo $foo
-done < <(echo foo bar baz)
+>    echo $foo
+> done < <(echo foo bar baz)
 foo bar baz
 ❯
 ```
@@ -159,11 +162,11 @@ One difference is, that the curly braces require you to end the last statement w
 > ^C
 ```
 
-If you know more (subtle) difference, please write me an E-Mail and let me know.
+In case you know more (subtle) difference, please write me an E-Mail and let me know.
 
 ## Expansions
 
-The Bash expansions are yet more useful (and interesting) features. Let's start with a simple example:
+the Bash expansions are yet more useful (and interesting) features. Let's start with a simple example:
 
 ```
 ❯ echo {0..5}
@@ -202,7 +205,7 @@ Now it get's interesting. The following takes a list of words and expands so tha
 "These" "words" "are" "quoted"
 ```
 
-Let's also expand to the cross product of two lists given:
+Let's also expand to the cross product of two given lists:
 
 ```
 ❯ echo {one,two}\:{A,B,C}
@@ -239,9 +242,9 @@ Let's walk through all three examples from the above snippet:
 
 * The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).
 * The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.
-* The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end result is the same.
+* The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.
 
-The "tar" command understands "-" too. This example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via a SSH session to a remote tar process (running on example.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar "-f -") on the remote machine:
+The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via a SSH session to a remote tar process (running on example.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:
 
 ```
 ❯ tar -czf - /some/dir | ssh someuser@example.org tar -xzvf - 
@@ -300,7 +303,7 @@ You have probably noticed this *strange* syntax:
 ❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
 ```
 
-That's just another way to pass environment variables to a script. You could write it as well as like this:
+That's just another way to pass environment variables to a script. You can write it as well as like this:
 
 ```
 ❯ export VARIABLE1=value1
@@ -325,7 +328,7 @@ First of all, let's use the "help" Bash-builtin so we see what the docs are sayi
     Always succeeds.
 ```
 
-PS: IMHO people should use the Bash help more often. It is a very useful reference to all the Bash stuff. Too many fallback to a Google search and then land on Stack Overflow. Sadly, there's no help-builtin for the ZSH shell though. 
+PS: IMHO people should use the Bash help more often. It is a very useful Bash reference. Too many fallback to a Google search and then land on Stack Overflow. Sadly, there's no help-builtin for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the builtins are compatible). 
 
 OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):
 
@@ -428,7 +431,7 @@ Let's have a closer look at Bash redirection. As you might already know that the
 
 * 0 aka stdin (standard input)
 * 1 aka stdout (standard output)
-* 2 aka stderr (standard error output )
+* 2 aka stderr (standard error output)
 
 These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current bash shell itself):
 
@@ -455,7 +458,7 @@ Other useful redirections are:
 * Redirect stderr to stdin: "echo foo 2>&1"
 * Redirect stdin to stderr: "echo foo >&2"
 
-It is however not possible to redirect multiple times within the same command. E.g. the following won't work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:
+It is, however, not possible to redirect multiple times within the same command. E.g. the following won't work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:
 
 ```
 ❯ echo Foo 1>&2 2>/dev/null
@@ -468,7 +471,7 @@ This is where you can use grouping (neither of these commands will print out any
 ❯ { echo Foo 1>&2; } 2>/dev/null
 ❯ ( echo Foo 1>&2; ) 2>/dev/null
 ❯ { { { echo Foo 1>&2; } 2>&1; } 1>&2; } 2>/dev/null
-❯ ( ( (  echo Foo 1>&2; ) 2>&1; ) 1>&2; ) 2>/dev/null
+❯ ( ( ( echo Foo 1>&2; ) 2>&1; ) 1>&2; ) 2>/dev/null
 ❯
 ```
 
@@ -550,7 +553,7 @@ Hello World
 It's Fri 26 Nov 08:46:52 GMT 2021
 ```
 
-You can also write it this way, but that's less readable (it's good for an obfuscation contest):
+You can also write it the following way, but that's less readable (it's good for an obfuscation contest):
 
 ```
 ❯ <<END cat
@@ -580,14 +583,14 @@ $VAR ontains foo
 $VAR contains foo
 ```
 
-Or even shorter you can do:
+Or even shorter, you can do:
 
 ```
 ❯ grep -q foo <<< "$VAR" && echo '$VAR contains foo'
 $VAR contains foo
 ```
 
-You can also use a Bash regex to accomplish the same thing, but the point of the examples so far is to demonstrate HERE-{documents,strings} and not Bash regular expressions:
+You can also use a Bash regex to accomplish the same thing, but the points of the examples so far were to demonstrate HERE-{documents,strings} and not Bash regular expressions:
 
 ```
 ❯ if [[ "$VAR" =~ foo ]]; then echo yay; fi
@@ -685,7 +688,7 @@ In my opinion, -x and -e and pipefile are the most useful Bash options. Let's ha
 Square of 11 is 121
 ```
 
-However, you need to set -x also for the sub-shell in oder to print out what is happening:
+However, you need to set -x for any sub-shell as well in oder to make it work there too:
 
 ```
 ❯ num=12; echo "Square of $num is $(set -x;square $num)"
@@ -699,13 +702,13 @@ Square of 12 is 144
 ❯
 ```
 
-You can also use the option like this, if helped me personally a lot:
+You can also set the when calling an external script without modifying the script:
 
 ```
 ❯ bash -x ./half_broken_script_to_be_debugged.sh
 ```
 
-Let's do that on one of the example scripts we used earlier:
+Let's do that on one of the example scripts we covered earlier:
 
 ```
 ❯ bash -x ./grandmaster.sh
@@ -734,7 +737,7 @@ This is a very important option you want to set when you are paranoid. This mean
       -e  Exit immediately if a command exits with a non-zero status.
 ```
 
-As you can see in the following example, the bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:
+As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:
 
 ```
 ❯ bash -c 'set -e; echo hello; grep -q bar <<< foo; echo bar'
@@ -743,7 +746,7 @@ hello
 1
 ```
 
-Whereas in this example everything works as expected:
+Whereas the outcome changes when grep runs successfully:
 
 ```
 ❯ bash -c 'set -e; echo hello; grep -q bar <<< barman; echo bar'
@@ -753,7 +756,7 @@ bar
 0
 ```
 
-If you still want to use grep in your script but "set -e" would always make it terminate you can add it as a conditional expression instead:
+The script won't terminate when you "set -e" and embed grep in an if-conditional (or any other conditional) expression. This makes your script continue normally:
 
 ```
 bar
@@ -781,11 +784,49 @@ bar
 0
 ```
 
-Read this blog post of mine about being paranoid in real life:
+This blog article of mine might interest you too, it describes more techniques to make your scripts safe:
 
 => ./2021-10-22-defensive-devops.gmi Defensive DevOps
 
 ### pipefail
+
+The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:
+
+```
+❯ help set | grep pipefail -A 2
+    pipefail     the return value of a pipeline is the status of
+                 the last command to exit with a non-zero status,
+                 or zero if no command exited with a non-zero status
+```
+
+The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:
+
+```
+0
+❯ grep paul /etc/passwd | tr '[a-z]' '[A-Z]'
+PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
+❯ echo $?
+0
+```
+
+Let's look at another example, where "TheRock" doesn't exist in the passwd file. However, the pipes exit status is still 0 (success). This is so because the last command ("tr" in this case) still succeeded. It is just that it didn't get any input on stdin to process:
+
+```
+❯ grep TheRock /etc/passwd
+❯ echo $?
+1
+❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
+❯ echo $?
+0
+```
+
+To change this behaviour pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:
+
+❯ set -o pipefail
+❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
+❯ echo $?
+1
+```
 
 ## More
 
