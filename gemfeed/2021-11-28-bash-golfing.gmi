@@ -12,13 +12,13 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
-> Published by Paul Buetow 2021-11-27
+> Published by Paul Buetow 2021-11-28
 
-This blog post is about random Bash tips, tricks and wierdnesses I came across. It's a collection of smaller articles I wrote in an older (in german language) blog which I translated and refreshed with some new insights.
+This blog post is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
 ## TCP/IP networking
 
-You probably know the Netcat utility, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?
+You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?
 
 Have a look here how that works:
 
@@ -28,9 +28,9 @@ Have a look here how that works:
 59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
 ```
 
-the Bash treats /dev/tcp/HOST/PORT in a special way so that it actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the timeserver to cat and cat is printing it on standard output (stdout).
+The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).
 
-A more sophisticated example is firing up a HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:
+A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:
 
 ```
 ❯ exec 5<>/dev/tcp/google.de/80
@@ -48,7 +48,7 @@ X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
 ```
 
-You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar though.
+You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.
 
 ## Process substitution
 
@@ -73,7 +73,7 @@ Change: 2021-11-20 10:59:31.482411961 +0000
  Birth: -
 ```
 
-This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to a anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.
+This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.
 
 A useful use case is displaying the differences of two sorted files:
 
@@ -121,7 +121,7 @@ foo bar baz
 ❯
 ```
 
-So far we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:
+So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:
 
 ```
 ❯ tar cjf file.tar.bz2 foo
@@ -162,11 +162,11 @@ One difference is, that the curly braces require you to end the last statement w
 > ^C
 ```
 
-In case you know more (subtle) difference, please write me an E-Mail and let me know.
+In case you know more (subtle) differences, please write me an E-Mail and let me know.
 
 ## Expansions
 
-the Bash expansions are yet more useful (and interesting) features. Let's start with a simple example:
+Let's start with simple examples:
 
 ```
 ❯ echo {0..5}
@@ -198,7 +198,7 @@ It also works with letters:
 a b c d e
 ```
 
-Now it get's interesting. The following takes a list of words and expands so that all words are quoted:
+Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:
 
 ```
 ❯ echo \"{These,words,are,quoted}\"
@@ -244,10 +244,10 @@ Let's walk through all three examples from the above snippet:
 * The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.
 * The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.
 
-The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via a SSH session to a remote tar process (running on example.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:
+The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on snonux.de) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:
 
 ```
-❯ tar -czf - /some/dir | ssh someuser@example.org tar -xzvf - 
+❯ tar -czf - /some/dir | ssh hercules@snonux.de tar -xzvf - 
 ```
 
 This is yet another example of using "-", but this time using the "file" command:
@@ -311,11 +311,11 @@ That's just another way to pass environment variables to a script. You can write
 ❯ ./script.sh
 ```
 
-But the downside of it would be that the variables would also be defined in your current shell and not only in the scripts sub-process.
+But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.
 
 ## : aka the null command
 
-First of all, let's use the "help" Bash-builtin so we see what the docs are saying about the null command:
+First, let's use the "help" Bash built-in to see what it says about the null command:
 
 ```
 ❯ help :
@@ -328,7 +328,7 @@ First of all, let's use the "help" Bash-builtin so we see what the docs are sayi
     Always succeeds.
 ```
 
-PS: IMHO people should use the Bash help more often. It is a very useful Bash reference. Too many fallback to a Google search and then land on Stack Overflow. Sadly, there's no help-builtin for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the builtins are compatible). 
+PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). 
 
 OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):
 
@@ -338,7 +338,7 @@ OK, back to the null command. What happens when you try to run it? As you can se
 0
 ```
 
-Why would that useful? You can use it as a placeholder in an endless while-loop:
+Why would that be useful? You can use it as a placeholder in an endless while-loop:
 
 ```
 ❯ while : ; do date; sleep 1; done
@@ -349,7 +349,7 @@ Sun 21 Nov 12:08:33 GMT 2021
 ❯
 ```
 
-You can also use it as a placeholder for a function body not yet fully implemented, as an empty function would be a syntax error:
+You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:
 
 ```
 ❯ foo () {  }
@@ -375,7 +375,7 @@ Or (not recommended) as a fancy way to comment your Bash code:
 ❯
 ```
 
-As you can see in the previous example the Bash still tries to interpret some of the syntax of all text following after ":". This can be exploited (also not recommended) like this:
+As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:
 
 ```
 ❯ declare i=0
@@ -388,7 +388,7 @@ bash: 1: command not found...
 4
 ```
 
-For these kind of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:
+For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:
 
 ```
 ❯ declare j=0
@@ -416,9 +416,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 ❯
 ```
 
-It would be nice to have native floating point support for the Bash too, but you don't want to to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that I guess. 
+It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. 
 
-In the Bash you would have to fallback to an external command like "bc" (the arbitrary precision calculator language):
+In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):
 
 ```
 ❯ bc <<< 'scale=2; 1/10'
@@ -427,7 +427,7 @@ In the Bash you would have to fallback to an external command like "bc" (the arb
 
 ## Redirection
 
-Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descripors:
+Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:
 
 * 0 aka stdin (standard input)
 * 1 aka stdout (standard output)
@@ -475,7 +475,7 @@ This is where you can use grouping (neither of these commands will print out any
 ❯
 ```
 
-A handy way to list all open file descriptors is to use the "lsof" command (that's not a Bash builtin), whereas $$ is the process id (pid) of the current shell process:
+A handy way to list all open file descriptors is to use the "lsof" command (that's not a Bash built-in), whereas $$ is the process id (pid) of the current shell process:
 
 ```
 ❯ lsof -a -p $$ -d0,1,2
@@ -502,7 +502,7 @@ Bratwurst
 -bash: 3: Bad file descriptor
 ```
 
-You can also override the default file descriptors as the following example script demonstrates:
+You can also override the default file descriptors, as the following example script demonstrates:
 
 ```
 ❯ cat grandmaster.sh
@@ -542,7 +542,7 @@ Second line: for Great Good
 
 ## HERE
 
-I have mentioned HERE-documents and HERE-strings already in this post. Let's do some more examples. The following "cat" receives a multi line string from stdin. In this case the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a sub-shell).
+I have mentioned HERE-documents and HERE-strings already in this post. Let's do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).
 
 ```
 ❯ cat <<END
@@ -564,7 +564,7 @@ Hello Universe
 It's Fri 26 Nov 08:47:32 GMT 2021
 ```
 
-Besides of an HERE-document there is also a so-called HERE-string. Besides of...
+Besides of an HERE-document, there is also a so-called HERE-string. Besides of...
 
 ```
 ❯ declare VAR=foo
@@ -597,7 +597,7 @@ You can also use a Bash regex to accomplish the same thing, but the points of th
 yay
 ```
 
-You can also use it with "read", e.g. read a sentence into an array of words:
+You can also use it with "read":
 
 ```
 ❯ read a <<< ja
@@ -625,7 +625,7 @@ I like Perl too
 
 ## RANDOM
 
-Random is a special builtin variable containing a pseudo random number each time it's used.
+Random is a special built-in variable containing a different pseudo random number each time it's used.
 
 ```
 ❯ echo $RANDOM
@@ -636,7 +636,7 @@ Random is a special builtin variable containing a pseudo random number each time
 9104
 ```
 
-That's very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently just to spread the server load (which might be caused by the script run) better.
+That's very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently, just to spread the server load (which might be caused by the script run) better.
 
 Let's say you want to introduce a random delay of 1 minute. You can accomplish it with:
 
@@ -674,7 +674,7 @@ In my opinion, -x and -e and pipefile are the most useful Bash options. Let's ha
 
 ### -x
 
--x prints commands and their arguments as they are executed. This helps developing and debugging your Bash code:
+-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:
 
 ```
 ❯ set -x
@@ -688,7 +688,7 @@ In my opinion, -x and -e and pipefile are the most useful Bash options. Let's ha
 Square of 11 is 121
 ```
 
-However, you need to set -x for any sub-shell as well in oder to make it work there too:
+However, you need to set -x for any subshell as well in order to make it work there too:
 
 ```
 ❯ num=12; echo "Square of $num is $(set -x;square $num)"
@@ -702,7 +702,7 @@ Square of 12 is 144
 ❯
 ```
 
-You can also set the when calling an external script without modifying the script itself:
+You can also set it when calling an external script without modifying the script itself:
 
 ```
 ❯ bash -x ./half_broken_script_to_be_debugged.sh
@@ -762,7 +762,7 @@ bar
 0
 ```
 
-So does it mean that grep will always make the shell terminate whenever its exit code isn't 0? This would render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script. Usually, what you want is to branch your code based on the outcome (exit code) of a command:
+So does it mean that grep will always make the shell terminate whenever its exit code isn't 0? This will render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script abruptly. Usually, what you want is to branch your code based on the outcome (exit code) of a command:
 
 ```
 ❯ bash -c 'set -e
@@ -776,12 +776,11 @@ So does it mean that grep will always make the shell terminate whenever its exit
 1
 ```
 
-...but the example above won't reach any the branches and won't print out anything as the script terminates right after grep.
+...but the example above won't reach any of the branches and won't print out anything, as the script terminates right after grep.
 
-The proper solution would be using grep as an expression in a conditional (e.g. in an if-else statement):
+The proper solution is to use grep as an expression in a conditional (e.g. in an if-else statement):
 
 ```
-bar
 ❯ bash -c 'set -e
 >    if grep -q bar <<< foo; then
 >        echo "matching"
@@ -802,7 +801,7 @@ matching
 0
 ```
 
-If there is no other way you could also temporally undo "set -e":
+You can also temporally undo "set -e" if there is no other way:
 
 ```
 ❯ cat ./e.sh
@@ -846,9 +845,9 @@ Hello Universe
 Hello You!
 ```
 
-Why does calling "foo" with no arguments make the script terminate? Because no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore fail with a non-zero status.
+Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.
 
-Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style giode for an explanation :-):
+Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):
 
 => ./2021-05-16-personal-bash-coding-style-guide.gmi
 
@@ -884,19 +883,14 @@ Let's look at another example, where "TheRock" doesn't exist in the passwd file.
 0
 ```
 
-To change this behaviour pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:
+To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:
 
+```
 ❯ set -o pipefail
 ❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
 ❯ echo $?
 1
 ```
-
-## More
-
-Have also a look at my personal Bash coding style guide:
-
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi Personal Bash coding style guide
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 
