@@ -1,6 +1,6 @@
 # Standard ML and Haskell
 
-> Written by Paul Buetow 2010-04-09
+> Published by Paul Buetow 2010-04-09
 
 I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.
 

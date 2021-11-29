@@ -11,7 +11,7 @@
 jgs\__/'---'\__/
 ```
 
-> Written by Paul Buetow 2018-06-01, last updated 2021-05-08
+> Published by Paul Buetow 2018-06-01, last updated 2021-05-08
 
 ## Foreword
 

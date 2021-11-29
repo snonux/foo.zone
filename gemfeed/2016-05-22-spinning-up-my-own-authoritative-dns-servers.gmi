@@ -1,6 +1,6 @@
 # Spinning up my own authoritative DNS servers
 
-> Written by Paul Buetow 2016-05-22
+> Published by Paul Buetow 2016-05-22
 
 ## Background
 

@@ -12,7 +12,7 @@
 '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' LGB - Art by lgbearrd
 ```                     
 
-> Written by Paul Buetow 2021-08-01
+> Published by Paul Buetow 2021-08-01
 
 I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. 
 
