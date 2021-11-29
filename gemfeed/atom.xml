@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-11-29T11:02:16+02:00</updated>
+    <updated>2021-11-29T14:06:14+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -8,9 +8,9 @@
     <id>https://buetow.org/</id>
     <entry>
         <title>Bash Golf Part 1</title>
-        <link href="https://buetow.org/gemfeed/2021-11-28-bash-golf-part-1.html" />
-        <id>https://buetow.org/gemfeed/2021-11-28-bash-golf-part-1.html</id>
-        <updated>2021-11-28T10:59:51+02:00</updated>
+        <link href="https://buetow.org/gemfeed/2021-11-29-bash-golf-part-1.html" />
+        <id>https://buetow.org/gemfeed/2021-11-29-bash-golf-part-1.html</id>
+        <updated>2021-11-29T14:06:14+00:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
