@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bash Golf Part 2</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style type="text/css">
+body {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 900px;
+  font-family: sans-serif;
+  font-size: 18px;
+  background-color: #222;
+  color: #ffffef;
+}
+
+h1,h2,h3 {
+  color: #ffa500
+}
+
+a {
+  color: #0ca;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c0f;
+  text-decoration: none;
+}
+
+li {
+  color: #00bcd4;
+}
+
+img {
+  max-width: 600px;
+  max-height: 400px;
+  display: block;
+  margin: auto;
+}
+
+pre {
+  display: block;
+  background-color: #111;
+  color: #66cdaa;
+  padding: 5px;
+  overflow-x: auto;
+}
+
+a.textlink:before {
+  content: " ⇒ ";
+  padding-left: 2px;
+}
+
+p.quote {
+  color: #82eefd;
+}
+
+p.quote:before {
+  content: " « ";
+  padding-left: 2px;
+}
+
+p.quote:after {
+  content: " » ";
+  padding-right: 2px;
+}
+</style>
+</head>
+<body>
+<h1>Bash Golf Part 2</h1>
+<pre>
+
+     '\                   .  .                        |&gt;18&gt;&gt;
+       \              .         ' .                   |
+      O&gt;&gt;         .                 'o                |
+       \       .                                      |
+       /\    .                                        |
+      / /  .'                                         |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            Art by Joan Stark
+</pre>
+<p class="quote"><i>Published by Paul Buetow 2021-11-29</i></p>
+<p>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
+<h2>Redirection</h2>
+<p>Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</p>
+<ul>
+<li>0 aka stdin (standard input)</li>
+<li>1 aka stdout (standard output)</li>
+<li>2 aka stderr (standard error output)</li>
+</ul>
+<p>These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current bash shell itself):</p>
+<pre>
+❯ ls -l /proc/self/fd/
+total 0
+lrwx------. 1 paul paul 64 Nov 23 09:46 0 -&gt; /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 1 -&gt; /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 2 -&gt; /dev/pts/9
+lr-x------. 1 paul paul 64 Nov 23 09:46 3 -&gt; /proc/162912/fd
+</pre>
+<p>The following examples demonstrate two different ways to accomplish the same thing. The difference is that the first command is directly printing out "Foo" to stdout and the second command is explicitly redirecting stdout to its own stdout file descriptor:</p>
+<pre>
+❯ echo Foo
+Foo
+❯ echo Foo &gt; /proc/self/fd/0
+Foo
+</pre>
+<p>Other useful redirections are:</p>
+<ul>
+<li>Redirect stderr to stdin: "echo foo 2>&1"</li>
+<li>Redirect stdin to stderr: "echo foo &gt;&amp;2"</li>
+</ul>
+<p>It is, however, not possible to redirect multiple times within the same command. E.g. the following won't work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:</p>
+<pre>
+❯ echo Foo 1&gt;&amp;2 2&gt;/dev/null
+Foo
+</pre>
+<p>This is where you can use grouping (neither of these commands will print out anything to stdout):</p>
+<pre>
+❯ { echo Foo 1&gt;&amp;2; } 2&gt;/dev/null
+❯ ( echo Foo 1&gt;&amp;2; ) 2&gt;/dev/null
+❯ { { { echo Foo 1&gt;&amp;2; } 2&gt;&amp;1; } 1&gt;&amp;2; } 2&gt;/dev/null
+❯ ( ( ( echo Foo 1&gt;&amp;2; ) 2&gt;&amp;1; ) 1&gt;&amp;2; ) 2&gt;/dev/null
+❯
+</pre>
+<p>A handy way to list all open file descriptors is to use the "lsof" command (that's not a Bash built-in), whereas $$ is the process id (pid) of the current shell process:</p>
+<pre>
+❯ lsof -a -p $$ -d0,1,2
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+bash    62676 paul    0u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    1u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    2u   CHR  136,9      0t0   12 /dev/pts/9
+</pre>
+<p>Let's create our own descriptor "3" for redirection to a file named "foo":</p>
+<pre>
+❯ touch foo
+❯ exec 3&gt;foo # This opens fd 3 and binds it to file foo.
+❯ ls -l /proc/self/fd/3
+l-wx------. 1 paul paul 64 Nov 23 10:10 \
+    /proc/self/fd/3 -&gt; /home/paul/foo
+❯ cat foo
+❯ echo Bratwurst &gt;&amp;3
+❯ cat foo
+Bratwurst
+❯ exec 3&gt;&amp;- # This closes fd 3.
+❯ echo Steak &gt;&amp;3
+-bash: 3: Bad file descriptor
+</pre>
+<p>You can also override the default file descriptors, as the following example script demonstrates:</p>
+<pre>
+❯ cat grandmaster.sh
+#!/usr/bin/env bash
+
+# Write a file data-file containing two lines
+echo Learn You a Haskell &gt; data-file
+echo for Great Good &gt;&gt; data-file
+
+# Link fd with fd 6 (saves default stdin)
+exec 6&lt;&amp;0
+
+# Overwrite stdin with data-file
+exec &lt; data-file
+
+# Read the first two lines from it
+declare LINE1 LINE2
+read LINE1
+read LINE2
+
+# Print them
+echo First line: $LINE1
+echo Second line: $LINE2
+
+# Restore default stdin and delete fd 6
+exec 0&lt;&amp;6 6&lt;&amp;-
+</pre>
+<p>Let's execute it:</p>
+<pre>
+❯ chmod 750 ./grandmaster.sh
+❯ ./grandmaster.sh
+First line: Learn You a Haskell
+Second line: for Great Good
+</pre>
+<h2>HERE</h2>
+<p>I have mentioned HERE-documents and HERE-strings already in this post. Let's do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</p>
+<pre>
+❯ cat &lt;&lt;END
+&gt; Hello World
+&gt; It’s $(date)
+&gt; END
+Hello World
+It's Fri 26 Nov 08:46:52 GMT 2021
+</pre>
+<p>You can also write it the following way, but that's less readable (it's good for an obfuscation contest):</p>
+<pre>
+❯ &lt;&lt;END cat
+&gt; Hello Universe
+&gt; It’s $(date)
+&gt; END
+Hello Universe
+It's Fri 26 Nov 08:47:32 GMT 2021
+</pre>
+<p>Besides of an HERE-document, there is also a so-called HERE-string. Besides of...</p>
+<pre>
+❯ declare VAR=foo
+❯ if echo "$VAR" | grep -q foo; then
+&gt; echo '$VAR ontains foo'
+&gt; fi
+$VAR ontains foo
+</pre>
+<p>...you can use a HERE-string like that:</p>
+<pre>
+❯ if grep -q foo &lt;&lt;&lt; "$VAR"; then
+&gt; echo '$VAR contains foo'
+&gt; fi
+$VAR contains foo
+</pre>
+<p>Or even shorter, you can do:</p>
+<pre>
+❯ grep -q foo &lt;&lt;&lt; "$VAR" &amp;&amp; echo '$VAR contains foo'
+$VAR contains foo
+</pre>
+<p>You can also use a Bash regex to accomplish the same thing, but the points of the examples so far were to demonstrate HERE-{documents,strings} and not Bash regular expressions:</p>
+<pre>
+❯ if [[ "$VAR" =~ foo ]]; then echo yay; fi
+yay
+</pre>
+<p>You can also use it with "read":</p>
+<pre>
+❯ read a &lt;&lt;&lt; ja
+❯ echo $a
+ja
+❯ read b &lt;&lt;&lt; 'NEIN!!!'
+❯ echo $b
+NEIN!!!
+❯ dumdidumstring='Learn you a Golang for Great Good'
+❯ read -a words &lt;&lt;&lt; "$dumdidumstring"
+❯ echo ${words[0]}
+Learn
+❯ echo ${words[3]}
+Golang
+</pre>
+<p>The following is good for an obfuscation contest too:</p>
+<pre>
+❯ echo 'I like Perl too' &gt; perllove.txt
+❯ cat - perllove.txt &lt;&lt;&lt; "$dumdidumstring"
+Learn you a Golang for Great Good
+I like Perl too
+</pre>
+<h2>RANDOM</h2>
+<p>Random is a special built-in variable containing a different pseudo random number each time it's used.</p>
+<pre>
+❯ echo $RANDOM
+11811
+❯ echo $RANDOM
+14997
+❯ echo $RANDOM
+9104
+</pre>
+<p>That's very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently, just to spread the server load (which might be caused by the script run) better.</p>
+<p>Let's say you want to introduce a random delay of 1 minute. You can accomplish it with:</p>
+<pre>
+❯ cat ./calc_answer_to_ultimate_question_in_life.sh
+#!/usr/bin/env bash
+
+declare -i MAX_DELAY=60
+
+random_delay () {
+    local -i sleep_for=$((RANDOM % MAX_DELAY))
+    echo "Delaying script execution for $sleep_for seconds..."
+    sleep $sleep_for
+    echo 'Continuing script execution...'
+}
+
+main () {
+    random_delay
+    # From here, do the real work. Calculating the answer to
+    # the ultimate question can take billions of years....
+    : ....
+}
+
+main
+
+❯
+❯ ./calc_answer_to_ultimate_question_in_life.sh
+Delaying script execution for 42 seconds...
+Continuing script execution...
+</pre>
+<h2>set -x and set -e and pipefile</h2>
+<p>In my opinion, -x and -e and pipefile are the most useful Bash options. Let's have a look at them one after another.</p>
+<h3>-x</h3>
+<p>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</p>
+<pre>
+❯ set -x
+❯ square () { local -i num=$1; echo $((num*num)); }
+❯ num=11; echo "Square of $num is $(square $num)"
++ num=11
+++ square 11
+++ local -i num=11
+++ echo 121
++ echo 'Square of 11 is 121'
+Square of 11 is 121
+</pre>
+<p>However, you need to set -x for any subshell as well in order to make it work there too:</p>
+<pre>
+❯ num=12; echo "Square of $num is $(set -x;square $num)"
++ num=12
+++ set -x
+++ square 12
+++ local -i num=12
+++ echo 144
++ echo 'Square of 12 is 144'
+Square of 12 is 144
+❯
+</pre>
+<p>You can also set it when calling an external script without modifying the script itself:</p>
+<pre>
+❯ bash -x ./half_broken_script_to_be_debugged.sh
+</pre>
+<p>Let's do that on one of the example scripts we covered earlier:</p>
+<pre>
+❯ bash -x ./grandmaster.sh
++ bash -x ./grandmaster.sh
++ echo Learn You a Haskell
++ echo for Great Good
++ exec
++ exec
++ declare LINE1 LINE2
++ read LINE1
++ read LINE2
++ echo First line: Learn You a Haskell
+First line: Learn You a Haskell
++ echo Second line: for Great Good
+Second line: for Great Good
++ exec
+❯
+</pre>
+<h3>-e</h3>
+<p>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</p>
+<p>Before we dig dipper, this blog article of mine might interest you too, it describes more techniques to make your scripts running safely:</p>
+<a class="textlink" href="./2021-10-22-defensive-devops.html">Defensive DevOps</a><br />
+<p>Ok, let's dig deeper:</p>
+<pre>
+❯ help set | grep -- -e
+      -e  Exit immediately if a command exits with a non-zero status.
+</pre>
+<p>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:</p>
+<pre>
+❯ bash -c 'set -e; echo hello; grep -q bar &lt;&lt;&lt; foo; echo bar'
+hello
+❯ echo $?
+1
+</pre>
+<p>Whereas the outcome changes when the regex matches:</p>
+<pre>
+❯ bash -c 'set -e; echo hello; grep -q bar &lt;&lt;&lt; barman; echo bar'
+hello
+bar
+❯ echo $?
+0
+</pre>
+<p>So does it mean that grep will always make the shell terminate whenever its exit code isn't 0? This will render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script abruptly. Usually, what you want is to branch your code based on the outcome (exit code) of a command:</p>
+<pre>
+❯ bash -c 'set -e
+&gt;    grep -q bar &lt;&lt;&lt; foo
+&gt;    if [ $? -eq 0 ]; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi'
+❯ echo $?
+1
+</pre>
+<p>...but the example above won't reach any of the branches and won't print out anything, as the script terminates right after grep.</p>
+<p>The proper solution is to use grep as an expression in a conditional (e.g. in an if-else statement):</p>
+<pre>
+❯ bash -c 'set -e
+&gt;    if grep -q bar &lt;&lt;&lt; foo; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi'
+not matching
+❯ echo $?
+0
+❯ bash -c 'set -e
+&gt;    if grep -q bar &lt;&lt;&lt; barman; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi'
+matching
+❯ echo $?
+0
+</pre>
+<p>You can also temporally undo "set -e" if there is no other way:</p>
+<pre>
+❯ cat ./e.sh
+#!/usr/bin/env bash
+
+set -e
+
+foo () {
+    local arg="$1"; shift
+
+    if [ -z "$arg" ]; then
+        arg='You!'
+    fi
+    echo "Hello $arg"
+}
+
+bar () {
+    # Temporally disable e
+    set +e
+    local arg="$1"; shift
+    # Enable e again.
+    set -e
+
+    if [ -z "$arg" ]; then
+        arg='You!'
+    fi
+    echo "Hello $arg"
+}
+
+# Will succeed
+bar World
+foo Universe
+bar
+
+# Will terminate the script
+foo
+
+❯ ./e.sh
+Hello World
+Hello Universe
+Hello You!
+</pre>
+<p>Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.</p>
+<p>Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):</p>
+<a class="textlink" href="./2021-05-16-personal-bash-coding-style-guide.html">./2021-05-16-personal-bash-coding-style-guide.html</a><br />
+<h3>pipefail</h3>
+<p>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</p>
+<pre>
+❯ help set | grep pipefail -A 2
+    pipefail     the return value of a pipeline is the status of
+                 the last command to exit with a non-zero status,
+                 or zero if no command exited with a non-zero status
+</pre>
+<p>The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:</p>
+<pre>
+0
+❯ grep paul /etc/passwd | tr '[a-z]' '[A-Z]'
+PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
+❯ echo $?
+0
+</pre>
+<p>Let's look at another example, where "TheRock" doesn't exist in the passwd file. However, the pipes exit status is still 0 (success). This is so because the last command ("tr" in this case) still succeeded. It is just that it didn't get any input on stdin to process:</p>
+<pre>
+❯ grep TheRock /etc/passwd
+❯ echo $?
+1
+❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
+❯ echo $?
+0
+</pre>
+<p>To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:</p>
+<pre>
+❯ set -o pipefail
+❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
+❯ echo $?
+1
+</pre>
+<p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+<a class="textlink" href="../">Go back to the main site</a><br />
+</body>
+</html>

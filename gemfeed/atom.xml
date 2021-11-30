@@ -1,11 +1,365 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-11-05T22:24:31+02:00</updated>
+    <updated>2021-11-30T21:57:09+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
     <link href="https://buetow.org/" />
     <id>https://buetow.org/</id>
+    <entry>
+        <title>Bash Golf Part 1</title>
+        <link href="https://buetow.org/gemfeed/2021-11-29-bash-golf-part-1.html" />
+        <id>https://buetow.org/gemfeed/2021-11-29-bash-golf-part-1.html</id>
+        <updated>2021-11-29T14:06:14+00:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>This is the first blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Bash Golf Part 1</h1>
+<pre>
+
+     '\                   .  .                        |&gt;18&gt;&gt;
+       \              .         ' .                   |
+      O&gt;&gt;         .                 'o                |
+       \       .                                      |
+       /\    .                                        |
+      / /  .'                                         |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                                            Art by Joan Stark
+</pre>
+<p class="quote"><i>Published by Paul Buetow 2021-11-29</i></p>
+<p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
+<h2>TCP/IP networking</h2>
+<p>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</p>
+<p>Have a look here how that works:</p>
+<pre>
+❯ cat &lt; /dev/tcp/time.nist.gov/13
+
+59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
+</pre>
+<p>The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).</p>
+<p>A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</p>
+<pre>
+❯ exec 5&lt;&gt;/dev/tcp/google.de/80
+❯ echo -e "GET / HTTP/1.1\nhost: google.de\n\n" &gt;&amp;5
+❯ cat &lt;&amp;5 | head
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.de/
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 18 Nov 2021 08:27:18 GMT
+Expires: Sat, 18 Dec 2021 08:27:18 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 218
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+</pre>
+<p>You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</p>
+<h2>Process substitution</h2>
+<p>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</p>
+<pre>
+❯ uptime # Without process substitution
+ 10:58:03 up 4 days, 22:08,  1 user,  load average: 0.16, 0.34, 0.41
+
+❯ cat &lt;(uptime) # With process substitution
+ 10:58:16 up 4 days, 22:08,  1 user,  load average: 0.14, 0.33, 0.41
+
+❯ stat &lt;(uptime)
+  File: /dev/fd/63 -&gt; pipe:[468130]
+  Size: 64              Blocks: 0          IO Block: 1024   symbolic link
+Device: 16h/22d Inode: 468137      Links: 1
+Access: (0500/lr-x------)  Uid: ( 1001/    paul)   Gid: ( 1001/    paul)
+Context: unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
+Access: 2021-11-20 10:59:31.482411961 +0000
+Modify: 2021-11-20 10:59:31.482411961 +0000
+Change: 2021-11-20 10:59:31.482411961 +0000
+ Birth: -
+</pre>
+<p>This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</p>
+<p>A useful use case is displaying the differences of two sorted files:</p>
+<pre>
+❯ echo a &gt; /tmp/file-a.txt
+❯ echo b &gt;&gt; /tmp/file-a.txt
+❯ echo c &gt;&gt; /tmp/file-a.txt
+❯ echo b &gt; /tmp/file-b.txt
+❯ echo a &gt;&gt; /tmp/file-b.txt
+❯ echo c &gt;&gt; /tmp/file-b.txt
+❯ echo X &gt;&gt; /tmp/file-b.txt
+❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
+--- /dev/fd/63  2021-11-20 11:05:03.667713554 +0000
++++ /dev/fd/62  2021-11-20 11:05:03.667713554 +0000
+@@ -1,3 +1,4 @@
+ a
+ b
+ c
++X
+❯ echo X &gt;&gt; /tmp/file-a.txt # Now, both files have the same content again.
+❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
+❯
+</pre>
+<p>Another example is displaying the differences of two directories:</p>
+<pre>
+❯ diff -u &lt;(ls ./dir1/ | sort) &lt;(ls ./dir2/ | sort)
+</pre>
+<p>More (Bash golfing) examples:</p>
+<pre>
+❯ wc -l &lt;(ls /tmp/) /etc/passwd &lt;(env)
+     24 /dev/fd/63
+     49 /etc/passwd
+     24 /dev/fd/62
+     97 total
+❯
+
+❯ while read foo; do
+&gt;    echo $foo
+&gt; done &lt; &lt;(echo foo bar baz)
+foo bar baz
+❯
+</pre>
+<p>So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:</p>
+<pre>
+❯ tar cjf file.tar.bz2 foo
+❯ tar cjf &gt;(bzip2 -c &gt; file.tar.bz2) foo
+</pre>
+<p>Just think a while and see whether you understand fully what is happening here.</p>
+<h2>Grouping</h2>
+<p>Command grouping can be quite useful for combining the output of multiple commands:</p>
+<pre>
+❯ { ls /tmp; cat /etc/passwd; env; } | wc -l
+97
+❯ ( ls /tmp; cat /etc/passwd; env; ) | wc -l
+97
+</pre>
+<p>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:</p>
+<pre>
+❯ echo $$
+62676
+❯ { echo $$; }
+62676
+❯ ( echo $$; )
+62676
+</pre>
+<p>One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:</p>
+<pre>
+❯ ( env; ls ) | wc -l
+27
+❯ { env; ls } | wc -l
+&gt;
+&gt; ^C
+</pre>
+<p>In case you know more (subtle) differences, please write me an E-Mail and let me know.</p>
+<h2>Expansions</h2>
+<p>Let's start with simple examples:</p>
+<pre>
+❯ echo {0..5}
+0 1 2 3 4 5
+❯ for i in {0..5}; do echo $i; done
+0
+1
+2
+3
+4
+5
+</pre>
+<p>You can also add leading 0 or expand to any number range:</p>
+<pre>
+❯ echo {00..05}
+00 01 02 03 04 05
+❯ echo {000..005}
+000 001 002 003 004 005
+❯ echo {201..205}
+201 202 203 204 205
+</pre>
+<p>It also works with letters:</p>
+<pre>
+❯ echo {a..e}
+a b c d e
+</pre>
+<p>Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:</p>
+<pre>
+❯ echo \"{These,words,are,quoted}\"
+"These" "words" "are" "quoted"
+</pre>
+<p>Let's also expand to the cross product of two given lists:</p>
+<pre>
+❯ echo {one,two}\:{A,B,C}
+one:A one:B one:C two:A two:B two:C
+❯ echo \"{one,two}\:{A,B,C}\"
+"one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
+</pre>
+<p>Just because we can:</p>
+<pre>
+❯ echo Linux-{one,two,three}\:{A,B,C}-FreeBSD
+Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
+</pre>
+<h2>- aka stdin and stdout placeholder</h2>
+<p>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</p>
+<pre>
+❯ echo Hello world
+Hello world
+❯ echo Hello world | cat -
+Hello world
+❯ cat - &lt;&lt;ONECHEESEBURGERPLEASE
+Hello world
+ONECHEESEBURGERPLEASE
+Hello world
+❯ cat - &lt;&lt;&lt; 'Hello world'
+Hello world
+</pre>
+<p>Let's walk through all three examples from the above snippet:</p>
+<ul>
+<li>The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).</li>
+<li>The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.</li>
+<li>The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.</li>
+</ul>
+<p>The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on snonux.de) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:</p>
+<pre>
+❯ tar -czf - /some/dir | ssh hercules@snonux.de tar -xzvf - 
+</pre>
+<p>This is yet another example of using "-", but this time using the "file" command:</p>
+<pre>
+$ head -n 1 grandmaster.sh
+#!/usr/bin/env bash
+$ file - &lt; &lt;(head -n 1 grandmaster.sh)
+/dev/stdin: a /usr/bin/env bash script, ASCII text executable
+</pre>
+<p>Some more golfing:</p>
+<pre>
+$ cat -
+hello
+hello
+^C
+$ file -
+#!/usr/bin/perl
+/dev/stdin: Perl script text executable
+</pre>
+<h2>Alternative argument passing</h2>
+<p>This is a quite unusual way of passing arguments to a Bash script:</p>
+<pre>
+❯ cat foo.sh
+#/usr/bin/env bash
+declare -r USER=${USER:?Missing the username}
+declare -r PASS=${PASS:?Missing the secret password for $USER}
+echo $USER:$PASS
+</pre>
+<p>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an undefined argument.</p>
+<pre>
+❯ chmod +x foo.sh
+❯ ./foo.sh
+./foo.sh: line 3: USER: Missing the username
+❯ USER=paul ./foo.sh
+./foo.sh: line 4: PASS: Missing the secret password for paul
+❯ echo $?
+1
+❯ USER=paul PASS=secret ./foo.sh
+paul:secret
+</pre>
+<p>You have probably noticed this *strange* syntax:</p>
+<pre>
+❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
+</pre>
+<p>That's just another way to pass environment variables to a script. You can write it as well as like this:</p>
+<pre>
+❯ export VARIABLE1=value1
+❯ export VARIABLE2=value2
+❯ ./script.sh
+</pre>
+<p>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</p>
+<h2>: aka the null command</h2>
+<p>First, let's use the "help" Bash built-in to see what it says about the null command:</p>
+<pre>
+❯ help :
+:: :
+    Null command.
+
+    No effect; the command does nothing.
+
+    Exit Status:
+    Always succeeds.
+</pre>
+<p>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </p>
+<p>OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):</p>
+<pre>
+❯ :
+❯ echo $?
+0
+</pre>
+<p>Why would that be useful? You can use it as a placeholder in an endless while-loop:</p>
+<pre>
+❯ while : ; do date; sleep 1; done
+Sun 21 Nov 12:08:31 GMT 2021
+Sun 21 Nov 12:08:32 GMT 2021
+Sun 21 Nov 12:08:33 GMT 2021
+^C
+❯
+</pre>
+<p>You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:</p>
+<pre>
+❯ foo () {  }
+-bash: syntax error near unexpected token `}'
+❯ foo () { :; }
+❯ foo
+❯
+</pre>
+<p>Or use it as a placeholder for not yet implemented conditional branches:</p>
+<pre>
+❯ if foo; then :; else echo bar; fi
+</pre>
+<p>Or (not recommended) as a fancy way to comment your Bash code:</p>
+<pre>
+❯ : I am a comment and have no other effect
+❯ : I am a comment and result in a syntax error ()
+-bash: syntax error near unexpected token `('
+❯ : "I am a comment and don't result in a syntax error ()"
+❯
+</pre>
+<p>As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:</p>
+<pre>
+❯ declare i=0
+❯ $[ i = i + 1 ]
+bash: 1: command not found...
+❯ : $[ i = i + 1 ]
+❯ : $[ i = i + 1 ]
+❯ : $[ i = i + 1 ]
+❯ echo $i
+4
+</pre>
+<p>For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</p>
+<pre>
+❯ declare j=0
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ let i=$((j + 1))
+❯ echo $j
+4
+</pre>
+<h2>(No) floating point support</h2>
+<p>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn't:</p>
+<pre>
+❯ bash -c 'echo $(( 1/10 ))'
+0
+❯ zsh -c 'echo $(( 1/10 ))'
+0
+❯ bash -c 'echo $(( 1/10.0 ))'
+bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is ".0 ")
+❯ zsh -c 'echo $(( 1/10.0 ))'
+0.10000000000000001
+❯
+</pre>
+<p>It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. </p>
+<p>In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):</p>
+<pre>
+❯ bc &lt;&lt;&lt; 'scale=2; 1/10'
+.10
+</pre>
+<p>See you later for the next post of this series. E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Defensive DevOps</title>
         <link href="https://buetow.org/gemfeed/2021-10-22-defensive-devops.html" />
@@ -28,7 +382,7 @@
    (__((__((___()()()------------------------------------'  |_____|
                            ASCII Art by Clyde Watson
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2021-10-22</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-10-22</i></p>
 <p>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</p>
 <p>Unfortunately, no system is 100% reliable, and you can never be prepared for a subset of the possible problem-space. IT infrastructures can be complex. Not even mentioning Kubernetes yet, a Microservice-based infrastructure can complicate things even further. You can take care of 99% of all potential problems by following all DevOps best practices. Those best practices are not the subject of this blog post; this post is about the sub 1% of the issues arising from nowhere you can't be prepared for. </p>
 <p>Is there a software bug in a production, even though the software passed QA (after all, it is challenging to reproduce production behaviour in an artificial testing environment) and the software didn't show any issues running in production until a special case came up just now after it got deployed to production a week ago? Are there multiple hardware failure happening which causes loss of service redundancy or data inaccessibility? Is the automation of external customers connected to our infrastructure putting unexpectedly extra pressure on your grid, driving higher latencies and putting the SLAs at risk? You bet the solution is: Sysadmins, SREs and DevOps Engineers to the rescue. </p>
@@ -112,7 +466,7 @@
  /  ************  \                      /  ************  \
 --------------------                    --------------------
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2021-09-12, last updated 2021-10-22</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-09-12, last updated 2021-10-22</i></p>
 <p>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</p>
 <h1>Need faster hardware</h1>
 <p>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</p>
@@ -176,7 +530,7 @@
 |                                      |   `---'
 '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' LGB - Art by lgbearrd
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2021-08-01</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-08-01</i></p>
 <p>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </p>
 <h2>The costs of open-source</h2>
 <p>One benefit of using open-source software is that it doesn't cost anything, right? That's correct in many cases. However, in some cases you still need to spend a significant amount of time configuring the software to work for you. It will be more expensive to use open-source software than proprietary commercial one if you aren't careful. </p>
@@ -244,7 +598,7 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>The Well-Grounded Rubyist</h1>
-<p class="quote"><i>Written by Paul Buetow 2021-07-04</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-07-04</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
 <p>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</p>
 <a href="https://buetow.org/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg"><img src="https://buetow.org/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg" /></a><br />
@@ -365,7 +719,7 @@ Hello World
  \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
                                                            `+a:f:......jrei'''
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2021-06-05</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-06-05</i></p>
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
 <a class="textlink" href="https://buetow.org/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
 <p>This comes with the benefit that I can write content in my favourite text editor (Vim). </p>
@@ -476,7 +830,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 //  \\               //  \\ |===||  hjw
 "\__/"---------------"\__/"-+---+'
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2021-05-16</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-05-16</i></p>
 <p>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </p>
 <a class="textlink" href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a><br />
 <h2>My modifications</h2>
@@ -772,7 +1126,7 @@ fi
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Welcome to the Geminispace</h1>
-<p class="quote"><i>Written by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="https://buetow.org">https://buetow.org</a><br />
 <p>However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).</p>
@@ -842,7 +1196,7 @@ fi
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>DTail - The distributed log tail program</h1>
-<p class="quote"><i>Written by Paul Buetow 2021-04-22, last updated 2021-04-26</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-04-22, last updated 2021-04-26</i></p>
 <a href="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://buetow.org/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
@@ -933,7 +1287,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
    /`\_`&gt;  &lt;_/ \
 jgs\__/'---'\__/
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2018-06-01, last updated 2021-05-08</i></p>
+<p class="quote"><i>Published by Paul Buetow 2018-06-01, last updated 2021-05-08</i></p>
 <h2>Foreword</h2>
 <p>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </p>
 <a class="textlink" href="https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot">https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
@@ -1062,7 +1416,7 @@ Total time: 1213.00s
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Methods in C</h1>
-<p class="quote"><i>Written by Paul Buetow 2016-11-20</i></p>
+<p class="quote"><i>Published by Paul Buetow 2016-11-20</i></p>
 <p>You can do some sort of object-oriented programming in the C Programming Language. However, that is very limited. But also very easy and straightforward to use.</p>
 <h2>Example</h2>
 <p>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
@@ -1142,7 +1496,7 @@ mult.calculate(mult,a,b));
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Spinning up my own authoritative DNS servers</h1>
-<p class="quote"><i>Written by Paul Buetow 2016-05-22</i></p>
+<p class="quote"><i>Published by Paul Buetow 2016-05-22</i></p>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</p>
 <a class="textlink" href="http://www.schlundtech.de">Schlund Technologies</a><br />
@@ -1381,7 +1735,7 @@ apply Service "dig6" {
                  |    ||  |     |  |
                  \____||__|_____|__|
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2016-04-16</i></p>
+<p class="quote"><i>Published by Paul Buetow 2016-04-16</i></p>
 <a class="textlink" href="https://buetow.org/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
 <p>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</p>
 <p>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</p>
@@ -1422,7 +1776,7 @@ apply Service "dig6" {
               \     `.     hjw
                \      `.
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2016-04-09</i></p>
+<p class="quote"><i>Published by Paul Buetow 2016-04-09</i></p>
 <p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
 <h2>ZFS</h2>
 <p>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</p>
@@ -1794,7 +2148,7 @@ Notice: Finished catalog run in 206.09 seconds
 |    ||  |     |  |
 \____||__|_____|__|
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2016-04-03</i></p>
+<p class="quote"><i>Published by Paul Buetow 2016-04-03</i></p>
 <h2>Please don't lose all my pictures again!</h2>
 <p>When it comes to data storage and potential data loss, I am a paranoid person. It is due to my job and a personal experience I encountered over ten years ago: A single drive failure and loss of all my data (pictures, music, etc.).</p>
 <p>A little about my personal infrastructure: I am running my own (mostly FreeBSD based) root servers (across several countries: Two in Germany, one in Canada, one in Bulgaria) which store all my online data (E-Mail and my Git repositories). I am syncing incremental (and encrypted) ZFS snapshots between these servers forth and back so either data can be recovered from the other server.</p>
@@ -1831,7 +2185,7 @@ Notice: Finished catalog run in 206.09 seconds
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2015-12-05, last updated 2021-05-16</i></p>
+<p class="quote"><i>Published by Paul Buetow 2015-12-05, last updated 2021-05-16</i></p>
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://buetow.org/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
@@ -1987,7 +2341,7 @@ exit
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>The fibonacci.pl.c Polyglot</h1>
-<p class="quote"><i>Written by Paul Buetow 2014-03-24</i></p>
+<p class="quote"><i>Published by Paul Buetow 2014-03-24</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
 <h2>The Fibonacci numbers</h2>
@@ -2101,7 +2455,7 @@ fib(10) = 55
       \, /-( /'-,\, /-( /'-,    \, /-( /
       //\ //\\   //\ //\\       //\ //\\jrei
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2011-05-07, last updated 2021-05-07</i></p>
+<p class="quote"><i>Published by Paul Buetow 2011-05-07, last updated 2021-05-07</i></p>
 <p>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</p>
 <h2>Features</h2>
 <p>PerlDaemon supports:</p>
@@ -2249,7 +2603,7 @@ sub do ($) {
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2010-05-09, last updated 2021-05-05</i></p>
+<p class="quote"><i>Published by Paul Buetow 2010-05-09, last updated 2021-05-05</i></p>
 <p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</p>
 <p>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </p>
 <p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</p>
@@ -2668,7 +3022,7 @@ BB
  `---------------'--\\\\      .`--'          -Glyde-
                               `||||
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2010-05-07</i></p>
+<p class="quote"><i>Published by Paul Buetow 2010-05-07</i></p>
 <p>In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. </p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Eager_evaluation">https://en.wikipedia.org/wiki/Eager_evaluation</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Lazy_evaluation">https://en.wikipedia.org/wiki/Lazy_evaluation</a><br />
@@ -2756,7 +3110,7 @@ first 10 nat_pairs_not_null
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Standard ML and Haskell</h1>
-<p class="quote"><i>Written by Paul Buetow 2010-04-09</i></p>
+<p class="quote"><i>Published by Paul Buetow 2010-04-09</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</p>
 <p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to write down the function types explicitly. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far, I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
 <p>Haskell is also a "pure functional" programming language, whereas SML also makes explicit use of imperative concepts. I am by far not a specialist in either of these languages, but here are a few functions implemented in both SML and Haskell:</p>
@@ -2932,7 +3286,7 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
              ~ ~ ~~~ _|| (_/ (___)_| |Nov291999
                     (__)         (____)
 </pre>
-<p class="quote"><i>Written by Paul Buetow 2008-06-26, last updated 2021-05-04</i></p>
+<p class="quote"><i>Published by Paul Buetow 2008-06-26, last updated 2021-05-04</i></p>
 <p>Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.</p>
 <p>Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Perl">https://en.wikipedia.org/wiki/Perl</a><br />
