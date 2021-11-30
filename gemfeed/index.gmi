@@ -2,7 +2,7 @@
 
 ## Having fun with computers!
 
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 (1181 words) - Bash Golf Part 1
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 (1182 words) - Bash Golf Part 1
 => ./2021-10-22-defensive-devops.gmi 2021-10-22 (2276 words) - Defensive DevOps
 => ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 (1365 words) - Keep it simple and stupid
 => ./2021-08-01-on-being-pedantic-about-open-source.gmi 2021-08-01 (2919 words) - On being Pedantic about Open-Source
