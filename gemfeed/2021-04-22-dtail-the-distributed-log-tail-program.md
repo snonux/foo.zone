@@ -1,6 +1,6 @@
 # DTail - The distributed log tail program
 
-> Written by Paul Buetow 2021-04-22, last updated 2021-04-26
+> Published by Paul Buetow 2021-04-22, last updated 2021-04-26
 
 [![DTail logo image](./2021-04-22-dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./2021-04-22-dtail-the-distributed-log-tail-program/title.png)  
 

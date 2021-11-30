@@ -1,6 +1,6 @@
 # The Well-Grounded Rubyist
 
-> Written by Paul Buetow 2021-07-04
+> Published by Paul Buetow 2021-07-04
 
 When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.
 

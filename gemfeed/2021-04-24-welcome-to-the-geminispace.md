@@ -1,6 +1,6 @@
 # Welcome to the Geminispace
 
-> Written by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood
+> Published by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood
 
 Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
 

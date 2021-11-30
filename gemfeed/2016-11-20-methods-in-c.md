@@ -1,6 +1,6 @@
 # Methods in C
 
-> Written by Paul Buetow 2016-11-20
+> Published by Paul Buetow 2016-11-20
 
 You can do some sort of object-oriented programming in the C Programming Language. However, that is very limited. But also very easy and straightforward to use.
 

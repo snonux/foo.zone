@@ -13,7 +13,7 @@
                               `||||
 ```
 
-> Written by Paul Buetow 2010-05-07
+> Published by Paul Buetow 2010-05-07
 
 In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. 
 

@@ -23,7 +23,7 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
                     (__)         (____)
 ```
 
-> Written by Paul Buetow 2008-06-26, last updated 2021-05-04
+> Published by Paul Buetow 2008-06-26, last updated 2021-05-04
 
 Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.
 
