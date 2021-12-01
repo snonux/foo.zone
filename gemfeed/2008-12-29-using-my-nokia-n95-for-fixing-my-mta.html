@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Using my Nokia N95 for fixing my MTA</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<style type="text/css">
+body {
+  margin: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 900px;
+  font-family: sans-serif;
+  font-size: 18px;
+  background-color: #222;
+  color: #ffffef;
+}
+
+h1,h2,h3 {
+  color: #ffa500
+}
+
+a {
+  color: #0ca;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #c0f;
+  text-decoration: none;
+}
+
+li {
+  color: #00bcd4;
+}
+
+img {
+  max-width: 600px;
+  max-height: 400px;
+  display: block;
+  margin: auto;
+}
+
+pre {
+  display: block;
+  background-color: #111;
+  color: #66cdaa;
+  padding: 5px;
+  overflow-x: auto;
+}
+
+a.textlink:before {
+  content: " ⇒ ";
+  padding-left: 2px;
+}
+
+p.quote {
+  color: #82eefd;
+}
+
+p.quote:before {
+  content: " « ";
+  padding-left: 2px;
+}
+
+p.quote:after {
+  content: " » ";
+  padding-right: 2px;
+}
+</style>
+</head>
+<body>
+<h1>Using my Nokia N95 for fixing my MTA</h1>
+<pre>
+
+           _
+          |E]
+        .-|=====-.
+        | | mail |
+     ___|________|
+            ||
+            ||
+            ||   www
+     ,;,    ||   )_(,;;;,
+     &lt;_&gt;  \ ||   \|/ \_/
+     \|/  \\||  \\|   |//
+_jgs_\|//_\\|///_\V/_\|//__
+                      Art by Joan Stark
+</pre>
+<p class="quote"><i>Published by Paul Buetow 2008-12-29, last updated 2021-12-01</i></p>
+<p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at</p>
+<p>host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee</p>
+<p>high availability on my web services (I've to do a full time job somewhere else too). </p>
+<p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
+<a href="./2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="./2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
+<p>With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:</p>
+<ul>
+<li>First, getting a shell prompt</li>
+<li>Second, use the "tail" command to analyse the Postfix logs</li>
+<li>Third, use the "sed" command to fix a syntax error in the Postfix config</li>
+<li>Fourth, restart Postfix</li>
+</ul>
+<p>It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)</p>
+<p>At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)</p>
+<p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+<a class="textlink" href="../">Go back to the main site</a><br />
+</body>
+</html>
