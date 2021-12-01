@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-11-30T21:57:09+00:00</updated>
+    <updated>2021-12-01T09:10:34+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -3247,6 +3247,54 @@ my_map f l = foldr (make_map_fn f) [] l
 fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 </pre>
+<p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Using my Nokia N95 for fixing my MTA</title>
+        <link href="gemini://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi" />
+        <id>gemini://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi</id>
+        <updated>2008-12-29T09:10:41+00:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Using my Nokia N95 for fixing my MTA</h1>
+<pre>
+
+           _
+          |E]
+        .-|=====-.
+        | | mail |
+     ___|________|
+            ||
+            ||
+            ||   www
+     ,;,    ||   )_(,;;;,
+     &lt;_&gt;  \ ||   \|/ \_/
+     \|/  \\||  \\|   |//
+_jgs_\|//_\\|///_\V/_\|//__
+                      Art by Joan Stark
+</pre>
+<p class="quote"><i>Published by Paul Buetow 2008-12-29, last updated 2021-12-01</i></p>
+<p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at</p>
+<p>host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee</p>
+<p>high availability on my web services (I've to do a full time job somewhere else too). </p>
+<p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
+<a href="https://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="https://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
+<p>With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:</p>
+<ul>
+<li>First, getting a shell prompt</li>
+<li>Second, use the "tail" command to analyse the Postfix logs</li>
+<li>Third, use the "sed" command to fix a syntax error in the Postfix config</li>
+<li>Fourth, restart Postfix</li>
+</ul>
+<p>It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)</p>
+<p>At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)</p>
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>
