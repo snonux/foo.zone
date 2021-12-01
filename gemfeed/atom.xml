@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-01T09:10:34+00:00</updated>
+    <updated>2021-12-01T09:12:31+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -3281,9 +3281,7 @@ _jgs_\|//_\\|///_\V/_\|//__
                       Art by Joan Stark
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2008-12-29, last updated 2021-12-01</i></p>
-<p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at</p>
-<p>host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee</p>
-<p>high availability on my web services (I've to do a full time job somewhere else too). </p>
+<p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). </p>
 <p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
 <a href="https://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="https://buetow.org/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
 <p>With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:</p>
