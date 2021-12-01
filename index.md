@@ -73,4 +73,5 @@ I have switched blog software multiple times. I might be backfilling some of the
 [2010-05-09 - The Fype Programming Language](./gemfeed/2010-05-09-the-fype-programming-language.md)  
 [2010-05-07 - Lazy Evaluation with Standard ML](./gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.md)  
 [2010-04-09 - Standard ML and Haskell](./gemfeed/2010-04-09-standard-ml-and-haskell.md)  
+[2008-12-29 - Using my Nokia N95 for fixing my MTA](./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.md)  
 [2008-06-26 - Perl Poetry](./gemfeed/2008-06-26-perl-poetry.md)  

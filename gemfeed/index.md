@@ -23,4 +23,5 @@
 [2010-05-09 (1272 words) - The Fype Programming Language](./2010-05-09-the-fype-programming-language.md)  
 [2010-05-07 (0192 words) - Lazy Evaluation with Standard ML](./2010-05-07-lazy-evaluation-with-standarn-ml.md)  
 [2010-04-09 (0266 words) - Standard ML and Haskell](./2010-04-09-standard-ml-and-haskell.md)  
+[2008-12-29 (0294 words) - Using my Nokia N95 for fixing my MTA](./2008-12-29-using-my-nokia-n95-for-fixing-my-mta.md)  
 [2008-06-26 (0147 words) - Perl Poetry](./2008-06-26-perl-poetry.md)  
