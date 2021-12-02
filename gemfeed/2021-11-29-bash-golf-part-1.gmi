@@ -392,10 +392,10 @@ For these kinds of expressions it's always better to use "let" though. And you s
 
 ```
 ❯ declare j=0
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
 ❯ echo $j
 4
 ```
