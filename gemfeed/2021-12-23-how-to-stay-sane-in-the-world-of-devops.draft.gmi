@@ -1,0 +1,43 @@
+How to stay sane in the world of DevOps
+=======================================
+
+```
+                                     )
+                            )      ((     (
+                           (        ))     )
+                    )       )      //     (
+               _   (        __    (     ~->>
+        ,-----' |__,_~~___<'__`)-~__--__-~->> <
+        | //  : | -__   ~__ o)____)),__ - '> >-  >
+        | //  : |- \_ \ -\_\ -\ \ \ ~\_  \ ->> - ,  >>
+        | //  : |_~_\ -\__\ \~'\ \ \, \__ . -<-  >>
+        `-----._| `  -__`-- - ~~ -- ` --~> >
+         _/___\_    //)_`//  | ||]
+   _____[_______]_[~~-_ (.L_/  ||
+  [____________________]' `\_,/'/
+    ||| /          |||  ,___,'./
+    ||| \          |||,'______|
+    ||| /          /|| I==||
+    ||| \       __/_||  __||__
+-----||-/------`-._/||-o--o---o---
+  ~~~~~'
+```
+
+Log4shell (CVE-2021-44228) made it clear once again, that working in information technology is not an easy job (especially when you are a DevOps/SRE or security engineer or one of the team managers). I thought it would be interesting to summarize a few techniques to help you to relax.
+
+TODO: Mention CPU bugs here.
+
+=> https://en.wikipedia.org/wiki/Log4Shell
+
+# Set clear expectations
+
+It's important to set clear expectations. It can be quite overwhelming trying to interpret and guess what others might expect or might not expect from you. I am even receiving positive feedback when setting boundaries at work.
+
+# Go slower even though you could go faster.
+
+# Shutdown routine
+
+# Book recommendations 
+
+* The Off-switch
+* The daily stoic
