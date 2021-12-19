@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-01T09:12:31+00:00</updated>
+    <updated>2021-12-18T12:42:24+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -330,10 +330,10 @@ bash: 1: command not found...
 <p>For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</p>
 <pre>
 ❯ declare j=0
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
-❯ let i=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
+❯ let j=$((j + 1))
 ❯ echo $j
 4
 </pre>
