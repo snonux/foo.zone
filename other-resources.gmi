@@ -34,7 +34,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 2001 - Revelation Space (en) / Unendlichkeit (de) - Revelation Space Universe
 * 2003 - Chasm City - Revelation Space Universe
-* 2004 - Redemption Ark (en) / Die Arche (de) - Revelation Space Universe - Currently Reading
+* 2004 - Redemption Ark (en) / Die Arche (de) - Revelation Space Universe
 
 ### Arthur C. Clarke
 
@@ -67,12 +67,12 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 1949 - 1984, George Orwell, Audio book
 * 1979 - The Hitchhikers Guide to the Galaxy (en) / Per Anhalter durch die Galaxis (de), Adam Douglas - All books of the series
+* 1987 - Consider Pheblas (en) / Bedenke Pheblas (de), Ian Banks - Currently reading
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (en) / Jagt auf Ikarus (de), Timothy Zahn
 
 ### Unread books already in my shelf
 
-* 1987 - Consider Pheblas (en) / Bedenke Pheblas (de), Ian Banks
 * 2004 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe, Alastair Reynolds
 * 2019 - Eklipse (de), Andreas Brandhorst
 
