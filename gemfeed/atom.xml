@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-26T12:12:56+00:00</updated>
+    <updated>2021-12-26T16:08:49+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -67,7 +67,7 @@
 <p>Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. So even if you think that you can do everything faster by your own, can you really?</p>
 <p>(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE and DevOps are just new words for Sysadmins, in most cases).</p>
 <h3>Don't rush to prevent errors</h3>
-<p>Slowing down also helps to avoid errors. Don't rush it, even if the task you are working on is urgent. Try to be quick, but don't rush it. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Java vs Ruby), but they would understand the logic (Or let another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching.</p>
+<p>Slowing down also helps to avoid errors. Don't rush it, even if the task you are working on is urgent. Try to be quick, but don't rush it. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Java vs Ruby), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching.</p>
 <a class="textlink" href="https://buetow.org/gemfeed/2021-10-22-defensive-devops.html">Read also "Defensive DevOps" about deploying mitigation scripts.</a><br />
 <p>So relax, don't always expect immediate results right away. Set clear and reasonable expectations to the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have a good reason. Don't rush to complete just to meet a deadline. </p>
 <h2>You are not a superhero</h2>
