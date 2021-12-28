@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-26T16:08:49+00:00</updated>
+    <updated>2021-12-28T17:55:46+00:00</updated>
     <title>buetow.org feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://buetow.org/gemfeed/atom.xml" rel="self" />
@@ -1212,7 +1212,7 @@ fi
                 <h1>Welcome to the Geminispace</h1>
 <p class="quote"><i>Published by Paul Buetow 2021-04-24, last updated 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
-<a class="textlink" href="https://buetow.org">https://buetow.org</a><br />
+<a class="textlink" href="https://snonux.de">https://snonux.de</a><br />
 <p>However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).</p>
 <pre>
 
