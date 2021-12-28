@@ -4,10 +4,10 @@
               ,---------------------------,
               |  /---------------------\  |
               | |                       | |
-              | |    Paul's             | |
-              | |      personal         | |
-              | |         internet      | |
-              | |             site!     | |
+              | |  Paul's               | |
+              | |   personal            | |
+              | |     blog and          | |
+              | |      internet site!   | |
               |  \_____________________/  |
               |___________________________|
             ,---\_____     []     _______/------,
@@ -31,7 +31,7 @@ If you reach this site via the modern web, please read this:
 
 ## Introduction
 
-My name is Paul Buetow, and this is my internet site. You can call me a Linux/*BSD enthusiast and hobbyist. Although I also have many other interests, you will encounter mostly (if not only) technical content on this site.
+Welcome to my internet site. You can call me a Linux/*BSD enthusiast and hobbyist. Although I also have many other interests, you will encounter mostly (if not only) technical content on this site.
 
 I have published some Open-Source software; you will find references to it on this site. I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my Codeberg page and my social media accounts on my contact information page:
 
