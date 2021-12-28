@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-28T21:04:04+00:00</updated>
+    <updated>2021-12-28T21:46:31+00:00</updated>
     <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://snonux.de/gemfeed/atom.xml" rel="self" />
@@ -3424,7 +3424,7 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
 <pre>
 #!/usr/bin/perl
 
-# (C) 2006 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2006 by Paul C. Buetow
 
 goto library for study $math;
 BEGIN { s/earching/ books/ 
@@ -3466,7 +3466,7 @@ __END__
 <pre>
 #!/usr/bin/perl
 
-# (C) 2006 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2006 by Paul C. Buetow
 
 Christmas:{time;#!!!
 
@@ -3510,7 +3510,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <pre>
 #!/usr/bin/perl
 
-# (C) 2007 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2007 by Paul C. Buetow
 
 BEGIN{} goto mall for $shopping; 
 
