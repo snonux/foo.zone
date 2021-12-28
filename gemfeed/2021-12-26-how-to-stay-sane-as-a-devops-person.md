@@ -70,7 +70,7 @@ Security is a team sport. So slow down and make sure that everyone is on track w
 ### Don't rush to prevent errors
 
 
-Slowing down also helps to avoid errors. Don't rush it, even if the task you are working on is urgent. Try to be quick, but don't rush it. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Java vs Ruby), but they would understand the logic (Or let another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching.
+Slowing down also helps to avoid errors. Don't rush it, even if the task you are working on is urgent. Try to be quick, but don't rush it. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Java vs Ruby), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching.
 
 [Read also "Defensive DevOps" about deploying mitigation scripts.](./2021-10-22-defensive-devops.md)  
 

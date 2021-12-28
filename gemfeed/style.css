@@ -3,27 +3,37 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   max-width: 900px;
-  font-family: "courier new";
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #37585E; 
+  color: #ddddce;
+  font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+  font-style: normal;
+  font-variant: normal;
 }
 
-h1,h2,h3 {
-  color: #55bc90;
+h1 {
+  color: #ffffff;
+}
+
+h2 {
+  color: #ffffef;
+}
+
+h3 {
+  color: #eeeede;
 }
 
 a {
-  color: #174f14;
+  color: #99ccff;
   text-decoration: none;
 }
 
 a:hover {
-  color: #c0f;
-  text-decoration: none;
+  color: #55bc90;
+  text-decoration: underline;
 }
 
 li {
-  color: #174f14;
+  color: #99ccff;
 }
 
 img {
@@ -36,7 +46,7 @@ img {
 pre {
   display: block;
   background-color: #111;
-  color: #66cdaa;
+  color: #bbbfaf;
   padding: 5px;
   overflow-x: auto;
 }
@@ -47,7 +57,7 @@ a.textlink:before {
 }
 
 p.quote {
-  color: #174f14;
+  color: #ffffff;
 }
 
 p.quote:before {
