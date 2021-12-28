@@ -36,7 +36,7 @@ Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as
 ```
 #!/usr/bin/perl
 
-# (C) 2006 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2006 by Paul C. Buetow
 
 goto library for study $math;
 BEGIN { s/earching/ books/ 
@@ -80,7 +80,7 @@ __END__
 ```
 #!/usr/bin/perl
 
-# (C) 2006 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2006 by Paul C. Buetow
 
 Christmas:{time;#!!!
 
@@ -126,7 +126,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 ```
 #!/usr/bin/perl
 
-# (C) 2007 by Paul C. Buetow (http://paul.buetow.org) 
+# (C) 2007 by Paul C. Buetow
 
 BEGIN{} goto mall for $shopping; 
 

@@ -11,6 +11,11 @@ Use the ProtonMail address if you care about security for now. The address stays
 
 ## Quick Links
 
+### My websites
+
+[snonux.de: My personal blog and internet site](https://snonux.de)  
+[buetow.org: An alias for above (for now)](https://buetow.org)  
+
 ### Social Media
 
 I am sharing articles that I found interesting regularly on all the social media channels. To get you navigated quickly, here are the links:
@@ -29,15 +34,5 @@ I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as 
 [My personal GitHub page (slowly moving all my stuff over to Codeberg)](https://github.com/snonux)  
 [DTail at Mimecast](https://github.com/mimecast/dtail)  
 [I/O Riot at Mimecast](https://github.com/mimecast/ioriot)  
-
-### My old personal website
-
-It's still there for fun + profit.
-
-[http://paul.buetow.org](http://paul.buetow.org)  
-
-Xerl, my own CMS, powers it:
-
-[http://xerl.buetow.org](http://xerl.buetow.org)  
 
 [Go back to the main site](./)  
