@@ -35,4 +35,6 @@ I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as 
 [DTail at Mimecast](https://github.com/mimecast/dtail)  
 [I/O Riot at Mimecast](https://github.com/mimecast/ioriot)  
 
+That's all for now...
+
 [Go back to the main site](./)  
