@@ -22,7 +22,7 @@
   ~~~~~'
 ```
 
-> Published by Paul Buetow 2021-12-26, last updated 2021-12-28
+> Published by Paul Buetow 2021-12-26, last updated 2021-12-31
 
 Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
 
@@ -106,6 +106,12 @@ It's important to shut down your brain from work during your breaks (be strict w
 It does not matter how many tasks are in your backlog or how many issues are to be tackled. *Always* find time for personal advance. The most issues aren't critical anyway and can wait a bit. At the end of the day, you will have a nice feeling that you have accomplished something meaningful. This can be an interesting project or learning a new technology you are interested in. Of course, there must be consensus with your manager (unless you do that kind of thing in your personal time of course). 
 
 If you are too busy at work and just can't block time, then maybe it's time to think about alternatives. But before you do that, probably there is something else you can do. Perhaps you just think you can't block time, but you would be positively surprised to hear from your manager that he will fully support you. Of course, he won't agree to you working full-time on your pet projects. But a certain portion of your time should be allocated for personal advance. After all, your employer also want's you to stay happy so that you don't look for alternatives. It's of everyone's interest that you like your job and stay motivated. The more you are motivated, the more productive you are. The more productive you are, the more valuable you are for the company.
+
+# More
+
+Another blog post worth reading:
+
+[https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html](https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html)  
 
 E-Mail me your thoughts at comments@mx.buetow.org!
 

@@ -2,7 +2,7 @@
 
 ## Having fun with computers!
 
-[2021-12-26 (2092 words) - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
+[2021-12-26 (2101 words) - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
 [2021-11-29 (1182 words) - Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
 [2021-10-22 (2276 words) - Defensive DevOps](./2021-10-22-defensive-devops.md)  
 [2021-09-12 (1365 words) - Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
