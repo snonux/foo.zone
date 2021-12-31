@@ -52,6 +52,7 @@ I have also compiled a list of resources that made an impact on me:
 
 I have switched blog software multiple times. I might be backfilling some of the older articles here. So please don't wonder when suddenly old posts appear here.
 
+[2022-01-01 - Bash Golf Part 2](./gemfeed/2022-01-01-bash-golf-part-2.md)  
 [2021-12-26 - How to stay sane as a DevOps person ](./gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
 [2021-11-29 - Bash Golf Part 1](./gemfeed/2021-11-29-bash-golf-part-1.md)  
 [2021-10-22 - Defensive DevOps](./gemfeed/2021-10-22-defensive-devops.md)  
