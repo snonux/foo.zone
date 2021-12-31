@@ -30,7 +30,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>1 aka stdout (standard output)</li>
 <li>2 aka stderr (standard error output)</li>
 </ul>
-<p>These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current bash shell itself):</p>
+<p>These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current Bash shell itself):</p>
 <pre>
 ❯ ls -l /proc/self/fd/
 total 0
@@ -241,18 +241,6 @@ Continuing script execution...
 + echo 'Square of 11 is 121'
 Square of 11 is 121
 </pre>
-<p>However, you need to set -x for any subshell as well in order to make it work there too:</p>
-<pre>
-❯ num=12; echo "Square of $num is $(set -x;square $num)"
-+ num=12
-++ set -x
-++ square 12
-++ local -i num=12
-++ echo 144
-+ echo 'Square of 12 is 144'
-Square of 12 is 144
-❯
-</pre>
 <p>You can also set it when calling an external script without modifying the script itself:</p>
 <pre>
 ❯ bash -x ./half_broken_script_to_be_debugged.sh
@@ -277,8 +265,6 @@ Second line: for Great Good
 </pre>
 <h3>-e</h3>
 <p>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</p>
-<p>Before we dig dipper, this blog article of mine might interest you too, it describes more techniques to make your scripts running safely:</p>
-<a class="textlink" href="./2021-10-22-defensive-devops.html">Defensive DevOps</a><br />
 <p>Ok, let's dig deeper:</p>
 <pre>
 ❯ help set | grep -- -e
@@ -388,7 +374,6 @@ Hello You!
 </pre>
 <p>The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:</p>
 <pre>
-0
 ❯ grep paul /etc/passwd | tr '[a-z]' '[A-Z]'
 PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
