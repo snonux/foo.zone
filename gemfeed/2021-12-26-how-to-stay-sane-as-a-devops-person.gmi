@@ -97,9 +97,9 @@ There is an exception, though: If the issue is a very critical one, then you mig
 
 ## Force breaks; and shutdown now
 
-Be strict about your time off. Nowadays, tech workers check their messages also out of office hours and are reachable 24/7. This really should only the case when you are on-call, to be honest (or if you work for a startup). All other out-of-office time is owned by you and not your employer. You have signed an 40 hour/week and not 7 days/week contract. Of course, there will be always some sort of flexibility and exceptions to the rule. You might need to work over the weekend to get a migration done or a problem solved. But to balance it out, you should have other days off as substitutes.
+Be strict about your time off. Nowadays, tech workers check their messages also out of office hours and are reachable 24/7. This really should only be the case when you are on-call, to be honest (or if you work for a startup). All other out-of-office time is owned by you and not your employer. You have signed an 40 hour/week and not 7 days/week contract. Of course, there will be always some sort of flexibility and exceptions to the rule. You might need to work over the weekend to get a migration done or a problem solved. But to balance it out, you should have other days off as substitutes.
 
-It's important to shut down your brain from work during your breaks (be strict with your breaks, leave your desk for lunch or for a walk early afternoon and if you aren't on-call also don't take your work-phone with you). You will be happier and also much more energized and productive in the afternoon. Also, when you are reachable 24/7, your colleagues will start to think that you don't have anything more important to do than work.
+It's important to shut down your brain from work during your breaks (be strict with your breaks, leave your desk for lunch or for a walk early afternoon and if you aren't on-call also don't take your work-phone with you). You will be happier and also much more energized and productive in the afternoon. Also, when you are reachable 24/7, your colleagues will start thinking that you don't have anything more important to do than work.
 
 ## Block time every day for personal advance
 
