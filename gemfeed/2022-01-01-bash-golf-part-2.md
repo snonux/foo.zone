@@ -28,7 +28,7 @@ Let's have a closer look at Bash redirection. As you might already know that the
 * 1 aka stdout (standard output)
 * 2 aka stderr (standard error output)
 
-These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current bash shell itself):
+These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current Bash shell itself):
 
 ```
 ❯ ls -l /proc/self/fd/
@@ -283,20 +283,6 @@ In my opinion, -x and -e and pipefile are the most useful Bash options. Let's ha
 Square of 11 is 121
 ```
 
-However, you need to set -x for any subshell as well in order to make it work there too:
-
-```
-❯ num=12; echo "Square of $num is $(set -x;square $num)"
-+ num=12
-++ set -x
-++ square 12
-++ local -i num=12
-++ echo 144
-+ echo 'Square of 12 is 144'
-Square of 12 is 144
-❯
-```
-
 You can also set it when calling an external script without modifying the script itself:
 
 ```
@@ -326,10 +312,6 @@ Second line: for Great Good
 ### -e
 
 This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).
-
-Before we dig dipper, this blog article of mine might interest you too, it describes more techniques to make your scripts running safely:
-
-[Defensive DevOps](./2021-10-22-defensive-devops.md)  
 
 Ok, let's dig deeper:
 
@@ -460,7 +442,6 @@ The pipefail option makes it so that not only the exit code of the last command 
 The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:
 
 ```
-0
 ❯ grep paul /etc/passwd | tr '[a-z]' '[A-Z]'
 PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
