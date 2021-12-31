@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-28T22:20:29+00:00</updated>
+    <updated>2021-12-31T18:25:35+00:00</updated>
     <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://snonux.de/gemfeed/atom.xml" rel="self" />
@@ -40,7 +40,7 @@
 -----||-/------`-._/||-o--o---o---
   ~~~~~'
 </pre>
-<p class="quote"><i>Published by Paul Buetow 2021-12-26, last updated 2021-12-28</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-12-26, last updated 2021-12-31</i></p>
 <p>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</p>
 <p>(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Log4Shell">https://en.wikipedia.org/wiki/Log4Shell</a><br />
@@ -86,6 +86,9 @@
 <h2>Block time every day for personal advance</h2>
 <p>It does not matter how many tasks are in your backlog or how many issues are to be tackled. *Always* find time for personal advance. The most issues aren't critical anyway and can wait a bit. At the end of the day, you will have a nice feeling that you have accomplished something meaningful. This can be an interesting project or learning a new technology you are interested in. Of course, there must be consensus with your manager (unless you do that kind of thing in your personal time of course). </p>
 <p>If you are too busy at work and just can't block time, then maybe it's time to think about alternatives. But before you do that, probably there is something else you can do. Perhaps you just think you can't block time, but you would be positively surprised to hear from your manager that he will fully support you. Of course, he won't agree to you working full-time on your pet projects. But a certain portion of your time should be allocated for personal advance. After all, your employer also want's you to stay happy so that you don't look for alternatives. It's of everyone's interest that you like your job and stay motivated. The more you are motivated, the more productive you are. The more productive you are, the more valuable you are for the company.</p>
+<h1>More</h1>
+<p>Another blog post worth reading:</p>
+<a class="textlink" href="https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html">https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
 <p>E-Mail me your thoughts at comments@mx.buetow.org!</p>
             </div>
         </content>
