@@ -22,7 +22,7 @@
   ~~~~~'
 ```
 
-> Published by Paul Buetow 2021-12-26, last updated 2021-12-28
+> Published by Paul Buetow 2021-12-26, last updated 2021-12-31
 
 Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
 
