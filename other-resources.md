@@ -76,6 +76,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2004 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe, Alastair Reynolds
 * 2019 - Eklipse (de), Andreas Brandhorst
 
-Do you recommend a good Science Fiction Novel? E-Mail at comments@mx.buetow.org! :-)
+Do you recommend a good Science Fiction Novel? E-Mail at snonux@snonux.de! :-)
 
 [Go back to the main site](./)  

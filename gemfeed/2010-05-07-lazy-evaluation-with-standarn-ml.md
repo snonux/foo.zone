@@ -97,6 +97,6 @@ first 10 nat_pairs_not_null
 
 [http://www.haskell.org/](http://www.haskell.org/)  
 
-E-Mail me your thoughts at comments@mx.buetow.org!
+E-Mail me your thoughts at snonux@snonux.de!
 
 [Go back to the main site](../)  

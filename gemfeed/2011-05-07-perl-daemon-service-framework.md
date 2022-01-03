@@ -158,6 +158,6 @@ You can find PerlDaemon (including the examples) at:
 
 [https://codeberg.org/snonux/perldaemon](https://codeberg.org/snonux/perldaemon)  
 
-E-Mail me your thoughts at comments@mx.buetow.org!
+E-Mail me your thoughts at snonux@snonux.de!
 
 [Go back to the main site](../)  
