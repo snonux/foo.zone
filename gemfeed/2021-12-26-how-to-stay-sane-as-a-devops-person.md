@@ -113,6 +113,6 @@ Another blog post worth reading:
 
 [https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html](https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html)  
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your thoughts at sno@xo!
 
 [Go back to the main site](../)  

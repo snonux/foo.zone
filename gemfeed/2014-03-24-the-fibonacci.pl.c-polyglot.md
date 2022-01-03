@@ -105,6 +105,6 @@ fib(10) = 55
 
 It's entertaining to play with :-).
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your thoughts at sno@xo!
 
 [Go back to the main site](../)  

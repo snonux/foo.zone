@@ -468,6 +468,6 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your thoughts at sno@xo!
 
 [Go back to the main site](../)  
