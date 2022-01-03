@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2021-12-31T23:52:27+00:00</updated>
+    <updated>2022-01-03T10:07:32+00:00</updated>
     <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://snonux.de/gemfeed/atom.xml" rel="self" />
@@ -59,7 +59,7 @@ Foo
 </pre>
 <p>Other useful redirections are:</p>
 <ul>
-<li>Redirect stderr to stdin: "echo foo 2>&1"</li>
+<li>Redirect stderr to stdin: "echo foo 2&gt;&amp;1"</li>
 <li>Redirect stdin to stderr: "echo foo &gt;&amp;2"</li>
 </ul>
 <p>It is, however, not possible to redirect multiple times within the same command. E.g. the following won't work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:</p>
