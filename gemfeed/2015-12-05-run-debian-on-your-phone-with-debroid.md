@@ -175,6 +175,6 @@ exit
 
 Reboot & test!  Enjoy!
 
-E-Mail me your thoughts at sno@xo!
+E-Mail me your thoughts at snonux@snonux.de!
 
 [Go back to the main site](../)  

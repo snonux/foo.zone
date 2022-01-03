@@ -81,6 +81,6 @@ How to overcome this? You need to take it further.
 
 If you want to take it further, type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.
 
-E-Mail me your thoughts at sno@xo!
+E-Mail me your thoughts at snonux@snonux.de!
 
 [Go back to the main site](../)  
