@@ -87,6 +87,6 @@ Not to mention, keeping things simple and stupid also reduces the potential mali
 
 There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.
 
-Enough ranted for now :-). E-Mail me your thoughts at comments@mx.buetow.org!
+Enough ranted for now :-). E-Mail me your thoughts at snonux@snonux.de!
 
 => ../ Go back to the main site
