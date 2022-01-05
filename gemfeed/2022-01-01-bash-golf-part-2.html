@@ -19,7 +19,7 @@
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 </pre>
-<p class="quote"><i>Published by Paul Buetow 2022-01-01</i></p>
+<p class="quote"><i>Published by Paul Buetow 2022-01-01, last updated 2022-01-05</i></p>
 <p>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="./2021-11-29-bash-golf-part-1.html">Bash Golf Part 1</a><br />
 <a class="textlink" href="./2022-01-01-bash-golf-part-2.html">Bash Golf Part 2 (you are reading this atm.)</a><br />
@@ -56,7 +56,15 @@ Foo
 ❯ echo Foo 1&gt;&amp;2 2&gt;/dev/null
 Foo
 </pre>
-<p>This is where you can use grouping (neither of these commands will print out anything to stdout):</p>
+<p class="quote"><i>Update: A reader sent me an email and pointed out that the order of the redirections is important. </i></p>
+<p>As you can see, the following will not print out anything:</p>
+<pre>
+❯ echo Foo 2&gt;/dev/null 1&gt;&amp;2
+❯
+</pre>
+<p>A good description (also pointe out by the reader) can be found here:</p>
+<a class="textlink" href="https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file">Order of redirection</a><br />
+<p>Ok, back to the original blog post. You can also use grouping here (neither of these commands will print out anything to stdout):</p>
 <pre>
 ❯ { echo Foo 1&gt;&amp;2; } 2&gt;/dev/null
 ❯ ( echo Foo 1&gt;&amp;2; ) 2&gt;/dev/null
