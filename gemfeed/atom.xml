@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-03T10:59:45+00:00</updated>
+    <updated>2022-01-05T21:44:28+00:00</updated>
     <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://snonux.de/gemfeed/atom.xml" rel="self" />
@@ -521,7 +521,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 </pre>
-<p class="quote"><i>Published by Paul Buetow 2021-11-29</i></p>
+<p class="quote"><i>Published by Paul Buetow 2021-11-29, last updated 2022-01-05</i></p>
 <p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="https://snonux.de/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1 (you are reding this atm.)</a><br />
 <a class="textlink" href="https://snonux.de/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2</a><br />
@@ -644,6 +644,33 @@ foo bar baz
 &gt; ^C
 </pre>
 <p>In case you know more (subtle) differences, please write me an E-Mail and let me know.</p>
+<p class="quote"><i>Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):</i></p>
+<pre>
+(list) list is executed in a subshell environment (see COMMAND EXECUTION ENVIRONMENT
+       below).   Variable  assignments  and builtin commands that affect the shell's
+       environment do not remain in effect after the command completes.  The  return
+       status is the exit status of list.
+
+{ list; }
+       list  is simply executed in the current shell environment.  list must be ter‐
+       minated with a newline or semicolon.  This is known as a group command.   The
+       return  status  is the exit status of list.  Note that unlike the metacharac‐
+       ters ( and ), { and } are reserved words and must occur where a reserved word
+       is  permitted  to  be recognized.  Since they do not cause a word break, they
+       must be separated from list by whitespace or another shell metacharacter.
+</pre>
+<p>So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:</p>
+<pre>
+$      Expands to the process ID of the shell.  In a () subshell, it expands to  the
+       process ID of the current shell, not the subshell.
+</pre>
+<p>If we want print the subprocess PID, we can use the BASHPID variable:</p>
+<pre>
+❯ echo $BASHPID; { echo $BASHPID; }; ( echo $BASHPID; )
+1028465
+1028465
+1028739
+</pre>
 <h2>Expansions</h2>
 <p>Let's start with simple examples:</p>
 <pre>
