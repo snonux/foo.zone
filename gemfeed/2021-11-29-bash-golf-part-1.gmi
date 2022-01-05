@@ -12,7 +12,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
-> Published by Paul Buetow 2021-11-29
+> Published by Paul Buetow 2021-11-29, last updated 2022-01-05
 
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
@@ -166,6 +166,39 @@ One difference is, that the curly braces require you to end the last statement w
 ```
 
 In case you know more (subtle) differences, please write me an E-Mail and let me know.
+
+> Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):
+
+```
+(list) list is executed in a subshell environment (see COMMAND EXECUTION ENVIRONMENT
+       below).   Variable  assignments  and builtin commands that affect the shell's
+       environment do not remain in effect after the command completes.  The  return
+       status is the exit status of list.
+
+{ list; }
+       list  is simply executed in the current shell environment.  list must be ter‐
+       minated with a newline or semicolon.  This is known as a group command.   The
+       return  status  is the exit status of list.  Note that unlike the metacharac‐
+       ters ( and ), { and } are reserved words and must occur where a reserved word
+       is  permitted  to  be recognized.  Since they do not cause a word break, they
+       must be separated from list by whitespace or another shell metacharacter.
+```
+
+So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:
+
+```
+$      Expands to the process ID of the shell.  In a () subshell, it expands to  the
+       process ID of the current shell, not the subshell.
+```
+
+If we want print the subprocess PID, we can use the BASHPID variable:
+
+```
+❯ echo $BASHPID; { echo $BASHPID; }; ( echo $BASHPID; )
+1028465
+1028465
+1028739
+```
 
 ## Expansions
 
