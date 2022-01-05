@@ -2,7 +2,7 @@
 
 ## Having fun with computers!
 
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 (1077 words) - Bash Golf Part 2
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 (1134 words) - Bash Golf Part 2
 => ./2021-12-26-how-to-stay-sane-as-a-devops-person.gmi 2021-12-26 (2101 words) - How to stay sane as a DevOps person 
 => ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 (1281 words) - Bash Golf Part 1
 => ./2021-10-22-defensive-devops.gmi 2021-10-22 (2276 words) - Defensive DevOps
