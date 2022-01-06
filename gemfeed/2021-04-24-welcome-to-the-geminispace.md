@@ -76,6 +76,6 @@ Check out one of the following links for more information about Gemini. For exam
 [gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)  
 [https://gemini.circumlunar.space](https://gemini.circumlunar.space)  
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your comments to snonux@snonux.de!
 
 [Go back to the main site](../)  

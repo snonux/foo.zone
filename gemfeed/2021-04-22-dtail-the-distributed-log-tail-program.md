@@ -103,6 +103,6 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 [https://dtail.dev](https://dtail.dev)  
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your comments to snonux@snonux.de!
 
 [Go back to the main site](../)  

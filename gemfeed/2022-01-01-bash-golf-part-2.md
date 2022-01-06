@@ -69,7 +69,7 @@ As you can see, the following will not print out anything:
 ❯
 ```
 
-A good description (also pointe out by the reader) can be found here:
+A good description (also pointed out by the reader) can be found here:
 
 [Order of redirection](https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file)  
 
@@ -481,6 +481,6 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
-E-Mail me your thoughts at snonux@snonux.de!
+E-Mail me your comments to snonux@snonux.de!
 
 [Go back to the main site](../)  
