@@ -69,7 +69,7 @@ As you can see, the following will not print out anything:
 ❯
 ```
 
-A good description (also pointe out by the reader) can be found here:
+A good description (also pointed out by the reader) can be found here:
 
 => https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file Order of redirection
 
