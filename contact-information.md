@@ -11,12 +11,13 @@ Use the ProtonMail address if you care about security for now. The address stays
 
 ## Quick Links
 
-### My websites
+### My sites
 
-[snonux.de: My personal blog and internet site](https://snonux.de)  
-[buetow.org: Redirects to snonux.de](https://buetow.org)  
+[gemini://snonux.de: My personal Gemini capsule](gemini://snonux.de)  
+[gemini://buetow.org: Same as above](gemini://buetow.org)  
+[https://snonux.de: My personal blog and internet site (same content as the Gemini capsule)](https://snonux.de)  
+[https://buetow.org: Same as above](https://buetow.org)  
 
-The domain snonux.de is primarily for my personal website/blog (you can say it's the "face" of my internet presence) and the domain buetow.org is primarily used for my personal server infrastructure (e.g. server hostnames, MTA addresses, etc)..
 
 ### Social Media
 
