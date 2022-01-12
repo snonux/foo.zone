@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-12T05:25:14+00:00</updated>
+    <updated>2022-01-12T05:34:41+00:00</updated>
     <title>snonux.de feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="https://snonux.de/gemfeed/atom.xml" rel="self" />
@@ -466,20 +466,20 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <p>If the request is urgent, and you have the capacity to help, probably you should help. If it's not urgent, maybe ask to pospone the request (e.g. ask to create a ticket, so that someone from your team can work on it later).</p>
 <p>If the request is urgent, but you don't have the knowledge or the capacity to help, try to defer to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent why you might not have the time right now, as this can help the person to review his own priorities or to escalate.  </p>
 <h3>Escalation is only a tool</h3>
-<p>Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations should to be an exception though, as staff knows how to deal with the things by themselves without bothering management too much. </p>
+<p>Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations tend to be an exception, though. Staff knows how to deal with the things by themselves without bothering management too much. </p>
 <h2>Think positively</h2>
 <p>If times are very stressful, think that it could always be worse:</p>
 <ul>
 <li>Nobody is dying, we are only doing some IT stuff.</li>
 <li>Your time after work is your own time, look forward to time with your family or a nice dinner or your favourite sports class.</li>
 <li>You probably will never run out of work in the IT sector. So you will always be able to make a living.</li>
-<li>Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably in the world's top 1% regarding life standard.</li>
+<li>Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably part of the world's top 1% regarding life standard.</li>
 </ul>
 <h2>Go slower even if you could go faster</h2>
 <p>When working in a team, you may feel that you could get done things faster when you just did everything by yourself. This can be a bit frustrating at times, as you might need to work late hours and also might need to explain things over and over again to others. Also, you could be the one who needs to get things explained over and over again as you are not so familiar with the topic (yet). You will appreciate it if the other person is slowing down for you a bit.</p>
 <h3>You work in a team</h3>
 <p>Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. </p>
-<p>So even if you think that you can do everything faster by your own, can you really? You probably don't know what you don't know about IT security. The more you know about it, the more you know you don't know.</p>
+<p>So even if you think that you can do everything faster by your own, can you really? You probably don't know what you don't know about IT security. The more you know about it, the more you know about what you don't know.</p>
 <h3>Don't rush</h3>
 <p>Slowing down also helps to prevent errors. Don't rush your tasks, even if they are urgent. Try to be quick, but don't rush them. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.</p>
 <p>So relax, don't always expect immediate results. Set clear and reasonable timelines for the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have good reasons. Don't rush to complete just to meet a deadline. </p>
