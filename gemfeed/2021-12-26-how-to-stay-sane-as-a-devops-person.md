@@ -22,7 +22,7 @@
   ~~~~~'
 ```
 
-> Published by Paul Buetow 2021-12-26, last updated 2021-12-31
+> Published by Paul Buetow 2021-12-26, last updated 2022-01-12
 
 Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
 
@@ -34,30 +34,32 @@ Log4shell (CVE-2021-44228) made it clear, once again, that working in informatio
 
 It's important to set clear expectations. It can be difficult to guess what others expect or don't expect from you. If you know exactly what you are supposed to do, you can work towards a specific goal and don't worry about all the other noise so much.
 
-However, if you are in a more senior position, it is expected from you to plan your tasks by yourself to a large degree and also be flexible, so you can react quickly to new situations (e.g. resolving incidents). Also, to a large degree, you have to prioritise your work by yourself. This can overthrow all of your plans. In this case, it sometimes helps to share your plans with your team in order to be sure that everyone is on the same page. Afterwards, be the execution machine. People are happy when they see that stuff gets done. Communicate clearly all critical work you do. This will capture all the technical debt there might be. It does not help you in the long run if you are fixing everything in the background and nobody noticing it.
+However, if you are in a more senior position, it is expected from you to plan your tasks by yourself to a large degree and also be flexible, so you can react quickly to new situations (e.g. resolving incidents). Also, to a large degree, you have to prioritise your work by yourself. This can overthrow all of your plans. In extreme cases, it can help to share your plans with your team so that everyone is on the same page. Afterwards, be the execution machine. People are happy when they see that stuff gets done. Communicate clearly all critical work you do. This will capture all the technical debt there might be. It does not help in the long run if things are fixed in the background without any visibility. 
 
-Due to politeness, many people are afraid to set clear expectations. I personally may sound sometimes "too German" when setting expectations, but so far nobody complained, and I have only received positive feedback so far.
+Due to politeness, many people are not setting clear expectations. I personally may sound sometimes "too German" when setting expectations, but so far nobody complained, and I have even received positive feedback about it.
 
 ## Always respond to requests but set expectations and boundaries
 
-There are many temptations to get side-tracked by other projects and/or issues. It is important to set boundaries here. But always answer to all requests as nothing is more frustrating than asking a person and never getting any answer back. This is especially frustrating when everyone is working form home and people are using tools such as Slack and E-Mail for most of their communications.
+There are many temptations to get side-tracked by other projects and/or issues. It is important to set boundaries here. But always answer to all requests as nothing is more frustrating than asking a person and never getting any answer back. This is especially the case when everyone is working form home where people are using tools such as Slack and E-Mail for most of their communications.
 
-### What about saying "no"...
+### Dealing with requests
 
-If the request is urgent, and you have the capacity, probably you should work on the request. If it's not urgent, maybe ask to pospone the request (e.g. ask the other person to create a ticket). If it is urgent, but you don't have the knowledge or the capacity to help, try to defer the request to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent to the requester why you might not have the time right now, as this can help the person to review his own priorities or to escalate.  
+If the request is urgent, and you have the capacity to help, probably you should help. If it's not urgent, maybe ask to pospone the request (e.g. ask to create a ticket, so that someone from your team can work on it later).
+
+If the request is urgent, but you don't have the knowledge or the capacity to help, try to defer to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent why you might not have the time right now, as this can help the person to review his own priorities or to escalate.  
 
 ### Escalation is only a tool
 
-Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations should to be an exception though, as workers know how to deal with the things by themselves without bothering management too much. 
+Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations should to be an exception though, as staff knows how to deal with the things by themselves without bothering management too much. 
 
 ## Think positively
 
-If times are very stressful, think that it could be worse:
+If times are very stressful, think that it could always be worse:
 
 * Nobody is dying, we are only doing some IT stuff.
 * Your time after work is your own time, look forward to time with your family or a nice dinner or your favourite sports class.
 * You probably will never run out of work in the IT sector. So you will always be able to make a living.
-* Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably part of the world's top 1% regarding life standard.
+* Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably in the world's top 1% regarding life standard.
 
 ## Go slower even if you could go faster
 
@@ -65,21 +67,23 @@ When working in a team, you may feel that you could get done things faster when 
 
 ### You work in a team
 
-Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. So even if you think that you can do everything faster by your own, can you really?
+Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. 
+
+So even if you think that you can do everything faster by your own, can you really? You probably don't know what you don't know about IT security. The more you know about it, the more you know you don't know.
 
 ### Don't rush
 
-Slowing down also helps to prevent errors. Don't rush it, even if the task you are working on is urgent. Try to be quick, but don't rush it. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.
+Slowing down also helps to prevent errors. Don't rush your tasks, even if they are urgent. Try to be quick, but don't rush them. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.
 
-So relax, don't always expect immediate results. Set clear and reasonable timelines for the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have a good reason. Don't rush to complete just to meet a deadline. 
+So relax, don't always expect immediate results. Set clear and reasonable timelines for the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have good reasons. Don't rush to complete just to meet a deadline. 
 
 [Read also "Defensive DevOps" about deploying mitigation scripts.](./2021-10-22-defensive-devops.md)  
 
 ## You are not a superhero
 
-Always keep that in mind. You can't solve all problems by your own. Maybe you could, but that would be a lot of additional pressure and stress (and this will reflect to your personal life). Also, Superman and Wonder Woman receive much higher salaries than you will ever do ;-).
+Always keep that in mind. You can't solve all problems by your own. Maybe you could, but that would be a lot of additional stress (and this will reflect to your personal life). Also, Superman and Wonder Woman receive much higher salaries than you will ever do ;-).
 
-I have been a superhero multiple times mitigating critical incidents, and I was proud about it. But actually, I should not have been proud of it, as for everything there should be other people around who should be able to resolve an incident. No company should rely on a single person, there must always be a substitute. You are not a superhero and as harsh as it sounds, everyone is replaceable. Every superhero can be replaced with another superhero. The only thing it takes to become a superhero is time to get to know the infrastructure and tools very well, paired with work dedication.
+I have been a superhero multiple times mitigating critical incidents, and I was proud about it in those moments. But actually, I am not proud looking at those retrospectively as for everything there should be other people around who should be able to resolve an incident. No company should rely on a single person, there must always be a substitute. You are not a superhero and as harsh as it sounds, everyone is replaceable. Every superhero can be replaced with another superhero. The only thing it takes to become a superhero is time to get to know the infrastructure and tools very well, paired with work dedication.
 
 This doesn't mean, that you shouldn't try your best. But you don't need to try to be the superhero. Maybe someone else will be the superhero, but that's OK as long as it's not always the same person every time. Everyone can have a good day after all. If I could choose between being a superhero or having a good night sleep, I would probably prefer the sleep. 
 
@@ -87,17 +91,23 @@ This doesn't mean, that you shouldn't try your best. But you don't need to try t
 
 If you are a superhero, try to give away some of your superpowers, so that you can relax in the evening knowing that others (e.g. the current on-call engineers) know how to tackle things. Every member of the team needs to do DevOps (even the team managers, in my humble opinion). Some may be less experienced than others or have other expertises, but to counteract this you could document the recurring tasks so that they are easy to follow (which then later could be either automated away or, even better, fully fixed).
 
+On the other side, if you are a DevOps person, try to sneak into other people's shoes too. For example, you might not be an expert in Java programming, but a lot of the infrastructure is programmed in Java. This is where usually the Software Developers and Engineers shine. But if you know how to read, debug and even extend Java code too (by learning from the Software Developer superheroes), then your will only benefit from it. 
+
 So you are not a superhero. Or, if you are a superhero, then all colleagues should be superheroes too.
 
 ## Don't jump on all problems immediately
 
-In order to distribute the troubleshooting skills across the team, you should not jump on every problem immediately. Leave some space for others to resolve the issue. This is where the best learning happens. Nobody will learn from you when you solve all problems. People might learn something after you explained what you did, but the takeaways will be minimal compared to when people try to resolve issues by themselves. Always be available for questions which will help your colleagues to steer into the right direction and if you think it helps, give them some tips resolving the issue, even if they didn't ask for it. Sometimes, engineers are too proud to ask.
+In a perfect world, every member of a team comes along with the same strengths and skills. But in reality, everyone is different. 
 
-There is an exception, though: If the issue is a very critical one, then you might better off trying to resolve it as fast as possible with your full powers in order to avoid any major damage to the company. Best, in a team-effort, though. Unfortunately, solving it with the team is not always the fastest way. So in this particular circumstance, the company may be better off being saved by a single superhero. Make sure that the problem will not occur again or, at least, that others can fix it the next time without Superman flying by.
+In order to distribute the troubleshooting skills across the team, you should not jump on every problem immediately. Leave some space for others to resolve the issue. This is where the best learning happens. Nobody will learn from you when you solve all problems. People might learn something after you explained what you did, but the takeaways will be minimal compared to when people try to resolve issues by themselves. Always be available for questions which will help your colleagues to steer into the right direction and if you think it helps, give them some tips resolving the issue, even if they didn't ask for it. Sometimes, engineers are too proud to ask. 
+
+The whole paragraph changes when there is an issue you don't know how to resolve. Jump on it, so you can learn from it. But also ask for advice if you are unsure about it.
+
+If the issue is a very critical one, then you might better off trying to resolve it as fast as possible with your full powers in order to avoid any major damage to the company. This, of course, only works if you know how to resolve it quickly. So, don't leave others with not much experience yet looking at it. If possible, work with the team to resolve the issue. Unfortunately, solving it with the team is not always the fastest way. So in this particular circumstance, the company may be better off being saved by a single superhero. Make sure that the problem will not occur again or, at least, that others can fix it the next time without Superman flying by.
 
 ## Force breaks; and shutdown now
 
-Be strict about your time off. Nowadays, tech workers check their messages also out of office hours and are reachable 24/7. This really should only be the case when you are on-call, to be honest (or if you work for a startup). All other out-of-office time is owned by you and not your employer. You have signed an 40 hour/week and not 7 days/week contract. Of course, there will be always some sort of flexibility and exceptions to the rule. You might need to work over the weekend to get a migration done or a problem solved. But to balance it out, you should have other days off as substitutes.
+Be strict about your time off. Nowadays, tech workers check their messages also out of office hours and are reachable 24/7. This really should only be the case when you are on-call, to be honest (or if you work for a startup). All other out-of-office time is owned by you and not your employer. You have signed an 40 hour/week and not 7 days/week contract. Of course, there will be always some sort of flexibility and exceptions. You might need to work over the weekend to get a migration done or a problem solved. But to balance it out, you should have other days off as substitutes.
 
 It's important to shut down your brain from work during your breaks (be strict with your breaks, leave your desk for lunch or for a walk early afternoon and if you aren't on-call also don't take your work-phone with you). You will be happier and also much more energized and productive in the afternoon. Also, when you are reachable 24/7, your colleagues will start thinking that you don't have anything more important to do than work.
 
