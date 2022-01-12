@@ -50,7 +50,7 @@ If the request is urgent, but you don't have the knowledge or the capacity to he
 
 ### Escalation is only a tool
 
-Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations should to be an exception though, as staff knows how to deal with the things by themselves without bothering management too much. 
+Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations tend to be an exception, though. Staff knows how to deal with the things by themselves without bothering management too much. 
 
 ## Think positively
 
@@ -59,7 +59,7 @@ If times are very stressful, think that it could always be worse:
 * Nobody is dying, we are only doing some IT stuff.
 * Your time after work is your own time, look forward to time with your family or a nice dinner or your favourite sports class.
 * You probably will never run out of work in the IT sector. So you will always be able to make a living.
-* Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably in the world's top 1% regarding life standard.
+* Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably part of the world's top 1% regarding life standard.
 
 ## Go slower even if you could go faster
 
@@ -69,7 +69,7 @@ When working in a team, you may feel that you could get done things faster when 
 
 Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. 
 
-So even if you think that you can do everything faster by your own, can you really? You probably don't know what you don't know about IT security. The more you know about it, the more you know you don't know.
+So even if you think that you can do everything faster by your own, can you really? You probably don't know what you don't know about IT security. The more you know about it, the more you know about what you don't know.
 
 ### Don't rush
 

@@ -3,7 +3,7 @@
 ## Having fun with computers!
 
 [2022-01-01 (1134 words) - Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2021-12-26 (2273 words) - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
+[2021-12-26 (2275 words) - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
 [2021-11-29 (1281 words) - Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
 [2021-10-22 (2276 words) - Defensive DevOps](./2021-10-22-defensive-devops.md)  
 [2021-09-12 (1365 words) - Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
