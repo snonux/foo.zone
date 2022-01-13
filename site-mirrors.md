@@ -1,0 +1,48 @@
+# Site mirrors
+
+This page attempts to summarize all the mirrors of this site. Agreeably, that's all a bit overkill (given the importance of this internet presence), but I did it for fun.
+
+I could not decide which host to use for my site (buetow.org or snonux.de), so I decided just to use both. Both hosts are pointing to the same content.
+
+## My Gemini capsule
+
+## Germany 
+
+[gemini://snonux.de - My internet site and blog](gemini://snonux.de)  
+[gemini://buetow.org - Alias for above](gemini://buetow.org)  
+
+Wondering what's the Gemini protocol about? Read:
+
+[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+
+### Japan
+
+The addresses above are hosted in Germany. Alternatively, you can add a "www" for using a mirror in Japan:
+
+[gemini://www.snonux.de](gemini://www.snonux.de)  
+[gemini://www.buetow.org](gemini://www.buetow.org)  
+
+## My website
+
+### Germany
+
+The content is the same as the Gemini capsule, but reachable via HTTP+HTML:
+
+[https://snonux.de - My internet website and blog](https://snonux.de)  
+[https://buetow.org - Alias for above](https://buetow.org)  
+
+Just because I can, here are additional mirrors hosted on Codeberg as Codeberg pages:
+
+[https://www2.snonux.de](https://www2.snonux.de)  
+[https://www2.buetow.org](https://www2.buetow.org)  
+
+### Japan
+
+The addresses above are hosted in Germany. Alternatively, you can add a "www" for a mirror in Japan:
+
+[https://www.snonux.de](https://www.snonux.de)  
+[https://www.buetow.org](https://www.buetow.org)  
+
+That's all for now...
+
+[Go back to the main site](./)  
