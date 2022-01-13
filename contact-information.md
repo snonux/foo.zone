@@ -56,6 +56,10 @@ The addresses above are hosted in Germany. Alternatively, you can add a "www" fo
 [https://www.snonux.de](https://www.snonux.de)  
 [https://www.buetow.org](https://www.buetow.org)  
 
+Just because I can, here are additional mirrors hosted on Codeberg as Codeberg pages:
+
+[https://www2.snonux.de](https://www2.snonux.de)  
+[https://www2.buetow.org](https://www2.buetow.org)  
 
 That's all for now...
 
