@@ -7,7 +7,7 @@
 * Home town: London, UK
 * E-Mail: paul at buetow dot org
 
-Currently, the E-Mail address forwards to paul dot buetow at protonmail dot com.
+Currently, my E-Mail address forwards to paul dot buetow at protonmail dot com.
 
 ## Quick Links
 
@@ -30,36 +30,9 @@ I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as 
 => https://github.com/mimecast/dtail DTail at Mimecast
 => https://github.com/mimecast/ioriot I/O Riot at Mimecast (currently, not maintained)
 
-### My Gemini capsule
+### Site mirrors
 
-=> gemini://snonux.de gemini://snonux.de - My internet site and blog
-=> gemini://buetow.org gemini://buetow.org - Alias for above
-
-Wondering what's the Gemini protocol about? Read:
-
-=> ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
-
-The addresses above are hosted in Germany. Alternatively, you can add a "www" for using a mirror in Japan:
-
-=> gemini://www.snonux.de
-=> gemini://www.buetow.org
-
-### My website
-
-The content is the same as the Gemini capsule, but reachable via HTTP+HTML:
-
-=> https://snonux.de https://snonux.de - My internet website and blog
-=> https://buetow.org https://buetow.org - Alias for above
-
-The addresses above are hosted in Germany. Alternatively, you can add a "www" for a mirror in Japan:
-
-=> https://www.snonux.de
-=> https://www.buetow.org
-
-Just because I can, here are additional mirrors hosted on Codeberg as Codeberg pages:
-
-=> https://www2.snonux.de
-=> https://www2.buetow.org
+=> ./site-mirrors.gmi Check out all mirrors of this site (Gemini as well as HTTP+HTML)
 
 That's all for now...
 
