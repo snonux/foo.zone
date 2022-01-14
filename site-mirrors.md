@@ -8,7 +8,7 @@ All sites listed below are reachable via IPv4 and also via IPv6.
 
 ## My Gemini capsule
 
-## Germany 
+### Germany 
 
 [gemini://snonux.de - My internet site and blog](gemini://snonux.de)  
 [gemini://buetow.org - Alias for above](gemini://buetow.org)  
