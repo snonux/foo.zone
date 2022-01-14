@@ -4,6 +4,8 @@ This page attempts to summarize all the mirrors of this site. Agreeably, that's 
 
 I could not decide which host to use for my site (buetow.org or snonux.de), so I decided just to use both. Both hosts are pointing to the same content.
 
+All sites listed below are reachable via IPv4 and also via IPv6.
+
 ## My Gemini capsule
 
 ## Germany 
