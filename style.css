@@ -23,6 +23,8 @@ a {
   color: #ffffff;
   text-decoration: none;
   background-color: #000000;
+  padding: 5px;
+  margin: 5px;
 }
 
 a:hover {
@@ -53,7 +55,9 @@ pre {
   overflow-x: auto;
   color: #ffffff;
   background-color: #000000;
-  border: 15px solid grey;
+  margin: 7px;
+  padding: 23px;
+  border: 23px double white;
 }
 
 a.textlink:before {
