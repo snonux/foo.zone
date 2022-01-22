@@ -3,7 +3,7 @@ body {
   padding-left: 11px;
   padding-right: 11px;
   max-width: 900px;
-  background-color: #ffffff; 
+  background-color: #8fbc8f; 
   color: #ddddce;
   font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
   font-style: normal;
@@ -78,7 +78,7 @@ pre {
   background-color: #000000;
   margin: 5px;
   padding: 23px;
-  border: 29px double white;
+  border: 29px double #8fbc8f;
 }
 
 a.textlink:before {
