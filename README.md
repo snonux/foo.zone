@@ -1,7 +1,7 @@
-The foo.surf internet site
+The foo.zone internet site
 ===========================
 
-This repository contains the static files of my internet site.  [gemini://foo.surf](gemini://foo.surf) and [https://foo.surf](https://foo.surf).
+This repository contains the static files of my internet site.  [gemini://foo.zone](gemini://foo.zone) and [https://foo.zone](https://foo.zone).
 
 Each format is in it's own branch in this repository. E.g.:
 
