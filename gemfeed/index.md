@@ -1,4 +1,4 @@
-# foo.surf's Gemfeed
+# foo.zone's Gemfeed
 
 ## Having fun with computers!
 
