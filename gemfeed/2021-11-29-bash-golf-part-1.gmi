@@ -280,10 +280,10 @@ Let's walk through all three examples from the above snippet:
 * The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.
 * The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.
 
-The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on snonux.de) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:
+The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:
 
 ```
-❯ tar -czf - /some/dir | ssh hercules@snonux.de tar -xzvf - 
+❯ tar -czf - /some/dir | ssh hercules@buetow.org tar -xzvf - 
 ```
 
 This is yet another example of using "-", but this time using the "file" command:
