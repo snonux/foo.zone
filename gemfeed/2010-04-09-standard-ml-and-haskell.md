@@ -169,6 +169,6 @@ fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 ```
 
-E-Mail me your comments to snonux@snonux.de!
+E-Mail me your comments to paul at buetow dot org!
 
 [Go back to the main site](../)  

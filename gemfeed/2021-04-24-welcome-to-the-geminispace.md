@@ -4,7 +4,7 @@
 
 Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
 
-[gemini://snonux.de](gemini://snonux.de)  
+[gemini://foo.surf](gemini://foo.surf)  
 
 However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
 
@@ -76,6 +76,6 @@ Check out one of the following links for more information about Gemini. For exam
 [gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)  
 [https://gemini.circumlunar.space](https://gemini.circumlunar.space)  
 
-E-Mail me your comments to snonux@snonux.de!
+E-Mail me your comments to paul at buetow dot org!
 
 [Go back to the main site](../)  

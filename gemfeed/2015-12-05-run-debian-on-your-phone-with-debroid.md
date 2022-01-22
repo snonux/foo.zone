@@ -175,6 +175,6 @@ exit
 
 Reboot & test!  Enjoy!
 
-E-Mail me your comments to snonux@snonux.de!
+E-Mail me your comments to paul at buetow dot org!
 
 [Go back to the main site](../)  
