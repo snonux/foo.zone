@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-22T16:28:55+00:00</updated>
-    <title>foo.surf feed</title>
+    <updated>2022-01-22T19:11:32+00:00</updated>
+    <title>foo.zone feed</title>
     <subtitle>Having fun with computers!</subtitle>
-    <link href="gemini://foo.surf/gemfeed/atom.xml" rel="self" />
-    <link href="gemini://foo.surf/" />
-    <id>gemini://foo.surf/</id>
+    <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
+    <link href="gemini://foo.zone/" />
+    <id>gemini://foo.zone/</id>
     <entry>
         <title>Bash Golf Part 2</title>
-        <link href="gemini://foo.surf/gemfeed/2022-01-01-bash-golf-part-2.gmi" />
-        <id>gemini://foo.surf/gemfeed/2022-01-01-bash-golf-part-2.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi</id>
         <updated>2022-01-01T23:36:15+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -32,8 +32,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2022-01-01, last updated 2022-01-05</i></p>
 <p>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1</a><br />
-<a class="textlink" href="https://foo.surf/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2 (you are reading this atm.)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2 (you are reading this atm.)</a><br />
 <h2>Redirection</h2>
 <p>Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</p>
 <ul>
@@ -382,7 +382,7 @@ Hello You!
 </pre>
 <p>Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.</p>
 <p>Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">./2021-05-16-personal-bash-coding-style-guide.html</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">./2021-05-16-personal-bash-coding-style-guide.html</a><br />
 <h3>pipefail</h3>
 <p>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</p>
 <pre>
@@ -420,8 +420,8 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
     </entry>
     <entry>
         <title>How to stay sane as a DevOps person </title>
-        <link href="gemini://foo.surf/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi</id>
         <updated>2021-12-26T12:02:02+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -483,7 +483,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <h3>Don't rush</h3>
 <p>Slowing down also helps to prevent errors. Don't rush your tasks, even if they are urgent. Try to be quick, but don't rush them. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.</p>
 <p>So relax, don't always expect immediate results. Set clear and reasonable timelines for the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have good reasons. Don't rush to complete just to meet a deadline. </p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-10-22-defensive-devops.html">Read also "Defensive DevOps" about deploying mitigation scripts.</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-10-22-defensive-devops.html">Read also "Defensive DevOps" about deploying mitigation scripts.</a><br />
 <h2>You are not a superhero</h2>
 <p>Always keep that in mind. You can't solve all problems by your own. Maybe you could, but that would be a lot of additional stress (and this will reflect to your personal life). Also, Superman and Wonder Woman receive much higher salaries than you will ever do ;-).</p>
 <p>I have been a superhero multiple times mitigating critical incidents, and I was proud about it in those moments. But actually, I am not proud looking at those retrospectively as for everything there should be other people around who should be able to resolve an incident. No company should rely on a single person, there must always be a substitute. You are not a superhero and as harsh as it sounds, everyone is replaceable. Every superhero can be replaced with another superhero. The only thing it takes to become a superhero is time to get to know the infrastructure and tools very well, paired with work dedication.</p>
@@ -512,8 +512,8 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
     </entry>
     <entry>
         <title>Bash Golf Part 1</title>
-        <link href="gemini://foo.surf/gemfeed/2021-11-29-bash-golf-part-1.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-11-29-bash-golf-part-1.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.gmi</id>
         <updated>2021-11-29T14:06:14+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -536,8 +536,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2021-11-29, last updated 2022-01-05</i></p>
 <p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1 (you are reding this atm.)</a><br />
-<a class="textlink" href="https://foo.surf/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1 (you are reding this atm.)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2</a><br />
 <h2>TCP/IP networking</h2>
 <p>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</p>
 <p>Have a look here how that works:</p>
@@ -895,8 +895,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
     </entry>
     <entry>
         <title>Defensive DevOps</title>
-        <link href="gemini://foo.surf/gemfeed/2021-10-22-defensive-devops.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-10-22-defensive-devops.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-10-22-defensive-devops.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-10-22-defensive-devops.gmi</id>
         <updated>2021-10-22T10:02:46+03:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -959,7 +959,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p>At one point, you will be tired of manually running your script and also confident enough to automate it. You could deploy it with a configuration management system such as puppet Puppet and schedule a periodic execution via cron, a systemd timer or even a separate background daemon process. You have to be extremely careful here. The more you automate, the more damage you can cause. You don't want to automate it on all servers involved at once, but you want to slowly ramp up the automation. </p>
 <p>First, automate it only on one single server and monitor the result closely. At first, only automate running the script in dry mode. Also, don't forget that you still should log everything that the script is doing. Once everything looks fine, you can automate the script on the canary server for real. It shouldn't be a disaster if something goes wrong as usually systems are designed in a HA fashion, where the same data is still at least on another server available. In the worst-case scenario, you could recover data from there or from the local backup files your script created.</p>
 <p>Now, you can add a handful more canary servers to the automation. You should keep close attention to what the automation is doing. You could use a tool like DTail for distributed log file following. At this point, you could also think of deploying a monitoring check (e.g. Icinga) to see whether your script is not terminating abnormally or logging warnings or errors.</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
 <p>From there, you could automate the solution on more and more servers. Best, ramp up the automation to a handful of systems, and later to a whole line of servers (e.g. all secondary servers of a given cluster). And afterwards, automate it on all servers.</p>
 <p>Remember, whenever something goes wrong, you will have plenty of logs and backup files available. The disaster recovery would involve extending your script to take care of that too or writing a new script for rolling back the backups. </p>
 <h2>Out of office hours</h2>
@@ -974,8 +974,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
     </entry>
     <entry>
         <title>Keep it simple and stupid</title>
-        <link href="gemini://foo.surf/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi</id>
         <updated>2021-09-12T09:39:20+03:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1041,8 +1041,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
     </entry>
     <entry>
         <title>On being Pedantic about Open-Source</title>
-        <link href="gemini://foo.surf/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi</id>
         <updated>2021-08-01T10:37:58+03:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1120,8 +1120,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
     </entry>
     <entry>
         <title>The Well-Grounded Rubyist</title>
-        <link href="gemini://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi</id>
         <updated>2021-07-04T10:51:23+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1134,9 +1134,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p class="quote"><i>Published by Paul Buetow 2021-07-04</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
 <p>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</p>
-<a href="https://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg"><img src="https://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg"><img src="https://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist/book-cover.jpg" /></a><br />
 <p>Superficially, Perl seems to have many similarities to Ruby (but, of course, it is entirely different to Perl when you look closer), which pushed me towards Ruby instead of Python. I have tried Python a couple of times before, and I managed to write good code, but I never felt satisfied with the language. I didn't love the syntax, especially the indentations used; they always confused me. I don't dislike Python, but I don't prefer to program in it if I have a choice, especially when there are more propelling alternatives available. Personally, it's so much more fun to program in Ruby than in Python.</p>
-<a href="https://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist/book-backside.jpg"><img src="https://foo.surf/gemfeed/2021-07-04-the-well-grounded-rubyist/book-backside.jpg" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist/book-backside.jpg"><img src="https://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist/book-backside.jpg" /></a><br />
 <p>Yukihiro Matsumoto, the inventor of Ruby, said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don't believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what's already used at my workplace.</p>
 <h2>My Ruby problem domain</h2>
 <p>I wrote a lot of Ruby code over the last couple of years. There were many small to medium-sized tools and other projects such as Nagios monitoring checks, even an internal monitoring &amp; reporting site based on Sinatra. All Ruby scripts I wrote do their work well; I didn't encounter any significant problems using Ruby for any of these tasks. Of course, there's nothing that couldn't be written in Perl (or Python), though, after all, these languages are all Turing-complete and all these languages also come with a huge set of 3rd party libraries :-).</p>
@@ -1147,9 +1147,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <li>Occasionally, I write some lines of Java code for minor feature enhancements and fixes to improve the reliability of some the services.</li>
 <li>Sometimes, I still program in good old C. This is for special projects (e.g. I/O Riot) or low-level PoCs or SystemTap guru mode scripts.</li>
 </ul>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Also have a look at my personal Bash coding style.</a><br />
-<a class="textlink" href="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">Read here about DTail - the distributed log tail program.</a><br />
-<a class="textlink" href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html">This is a magazine article about I/O Riot I wrote.</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Also have a look at my personal Bash coding style.</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">Read here about DTail - the distributed log tail program.</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html">This is a magazine article about I/O Riot I wrote.</a><br />
 <p>For all other in-between tasks I mainly use the Ruby programming language (unless I decide to give something new a shot once in a while).</p>
 <h2>Being stuck in Ruby-mediocrity</h2>
 <p>As a Site Reliability Engineer there were many tasks and problems to be solved as efficiently and quickly as possible and, of course, without bugs. So I learned Ruby relatively fast by doing and the occasional web search for "how to do thing X". I always was eager to get the problem at hand solved and as long as the code solved the problem I usually was happy.</p>
@@ -1201,8 +1201,8 @@ Hello World
     </entry>
     <entry>
         <title>Gemtexter - One Bash script to rule it all</title>
-        <link href="gemini://foo.surf/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
         <updated>2021-06-05T19:03:32+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1254,11 +1254,11 @@ Hello World
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2021-06-05</i></p>
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
 <p>This comes with the benefit that I can write content in my favourite text editor (Vim). </p>
 <h2>Motivation</h2>
 <p>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</p>
-<a href="https://foo.surf/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://foo.surf/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
 <p>I have exactly done that - I wrote a Bash script, named Gemtexter, for that:</p>
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</p>
@@ -1293,7 +1293,7 @@ paul in uranus in gemtexter on 🌱 main
 <p>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </p>
 <h3>Bash best practises and ShellCheck</h3>
 <p>While working on Gemtexter, I also had a look at the Google Shell Style Guide and wrote a blog post on that:</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Personal bash coding style guide</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">Personal bash coding style guide</a><br />
 <p>I followed all these best practices, and in my opinion, the result is a pretty maintainable Bash script (given that you are fluent with all the sed and grep commands I used).</p>
 <p>ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. </p>
 <p>It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done &lt; &lt;(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.</p>
@@ -1340,8 +1340,8 @@ assert::equals "$(generate::make_link md "$gemtext")" \
     </entry>
     <entry>
         <title>Personal Bash coding style guide</title>
-        <link href="gemini://foo.surf/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
         <updated>2021-05-16T14:51:57+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1648,8 +1648,8 @@ fi
     </entry>
     <entry>
         <title>Welcome to the Geminispace</title>
-        <link href="gemini://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
         <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1691,13 +1691,13 @@ fi
 <h2>Discovering the Gemini internet protocol</h2>
 <p>Around the same time, I discovered a relatively new, more lightweight protocol named Gemini, which does not support all these CPU-intensive features like HTML, JavaScript, and CSS. Also, tracking and ads are unsupported by the Gemini protocol.</p>
 <p>The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client, such as Lagrange, with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.</p>
-<a href="https://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png"><img alt="Screenshot Amfora Gemini terminal client surfing this site" title="Screenshot Amfora Gemini terminal client surfing this site" src="https://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png" /></a><br />
-<a href="https://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png"><img alt="Screenshot graphical Lagrange Gemini client surfing this site" title="Screenshot graphical Lagrange Gemini client surfing this site" src="https://foo.surf/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png"><img alt="Screenshot Amfora Gemini terminal client surfing this site" title="Screenshot Amfora Gemini terminal client surfing this site" src="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png"><img alt="Screenshot graphical Lagrange Gemini client surfing this site" title="Screenshot graphical Lagrange Gemini client surfing this site" src="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png" /></a><br />
 <p>Why is there a need for a new protocol? As the modern web is a superset of Gemini, can't we use simple HTML 1.0 instead? That's a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can ensure that things stay efficient and straightforward as long as you are using the Gemini protocol. On the other hand, you can't force every website on the modern web to only create plain and straightforward-looking HTML pages.</p>
 <h2>My own Gemini capsule</h2>
 <p>As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don't need to worry about the style and design of the presence, and I also don't have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. </p>
 <p>This site was generated with Gemtexter. You can read more about it here:</p>
-<a class="textlink" href="https://foo.surf/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">Gemtexter - One Bash script to rule it all</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">Gemtexter - One Bash script to rule it all</a><br />
 <h2>Gemini advantages summarised</h2>
 <ul>
 <li>Supports an alternative to the modern bloated web</li>
@@ -1718,8 +1718,8 @@ fi
     </entry>
     <entry>
         <title>DTail - The distributed log tail program</title>
-        <link href="gemini://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
-        <id>gemini://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
+        <id>gemini://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1730,7 +1730,7 @@ fi
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Published by Paul Buetow 2021-04-22, last updated 2021-04-26</i></p>
-<a href="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
 <a class="textlink" href="https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb">Original Mimecast Engineering Blog post at Medium</a><br />
 <p>Running a large cloud-based service requires monitoring the state of huge numbers of machines, a task for which many standard UNIX tools were not really designed. In this post, I will describe a simple program, DTail, that Mimecast has built and released as Open-Source, which enables us to monitor log files of many servers at once without the costly overhead of a full-blown log management system.</p>
@@ -1744,7 +1744,7 @@ fi
 <h2>Differentiating from log management systems</h2>
 <p>Why not just use a full-blown log management system? There are various Open-Source and commercial log management solutions available on the market you could choose from (e.g. the ELK stack). Most of them store the logs in a centralized location and are fairly complex to set up and operate. Possibly they are also pretty expensive to operate if you have to buy dedicated hardware (or pay fees to your cloud provider) and have to hire support staff for it.</p>
 <p>DTail does not aim to replace any of the log management tools already available but is rather an additional tool crafted especially for ad-hoc debugging and troubleshooting purposes. DTail is cheap to operate as it does not require any dedicated hardware for log storage as it operates directly on the source of the logs. It means that there is a DTail server installed on all server boxes producing logs. This decentralized comes with the direct advantages that there is no introduced delay because the logs are not shipped to a central log storage device. The reduced complexity also makes it more robust against outages. You won’t be able to troubleshoot your distributed application very well if the log management infrastructure isn’t working either.</p>
-<a href="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif"><img alt="DTail sample session animated gif" title="DTail sample session animated gif" src="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif"><img alt="DTail sample session animated gif" title="DTail sample session animated gif" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif" /></a><br />
 <p>As a downside, you won’t be able to access any logs with DTail when the server is down. Furthermore, a server can store logs only up to a certain capacity as disks will fill up. For the purpose of ad-hoc debugging, these are not typically issues. Usually, it’s the application you want to debug and not the server. And disk space is rarely an issue for bare metal and VM-based systems these days, with sufficient space for several weeks’ worth of log storage being available. DTail also supports reading compressed logs. The currently supported compression algorithms are gzip and zstd.</p>
 <h2>Combining simplicity, security and efficiency</h2>
 <p>DTail also has a client component that connects to multiple servers concurrently for log files (or any other text files).</p>
@@ -1760,7 +1760,7 @@ fi
 <li>dgrep: The distributed grep client for searching text files for a regular expression pattern.</li>
 <li>dmap: The distributed map-reduce client for aggregating stats from log files.</li>
 </ul>
-<a href="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif"><img alt="DGrep sample session animated gif" title="DGrep sample session animated gif" src="https://foo.surf/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif" /></a><br />
+<a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif"><img alt="DGrep sample session animated gif" title="DGrep sample session animated gif" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif" /></a><br />
 <h2>Usage example</h2>
 <p>The use of these commands is almost self-explanatory for a person already used to the standard command line in Unix systems. One of the main goals is to make DTail easy to use. A tool that is too complicated to use under high-pressure scenarios (e.g., during an incident) can be quite detrimental.</p>
 <p>The basic idea is to start one of the clients from the command line and provide a list of servers to connect to with –servers. You also must provide a path of remote (log) files via –files. If you want to process multiple files per server, you could either provide a comma-separated list of file paths or make use of file system globbing (or a combination of both).</p>
@@ -1799,8 +1799,8 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
     </entry>
     <entry>
         <title>Realistic load testing with I/O Riot for Linux</title>
-        <link href="gemini://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
-        <id>gemini://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
+        <id>gemini://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
         <updated>2018-06-01T14:50:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -1861,7 +1861,7 @@ jgs\__/'---'\__/
 <pre>
 % sudo ioriot -c io.capture
 </pre>
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png"><img alt="Screenshot I/O recording" title="Screenshot I/O recording" src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png"><img alt="Screenshot I/O recording" title="Screenshot I/O recording" src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png" /></a><br />
 <p>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</p>
 <h3>Test preparation</h3>
 <p>Then copy io.capture to a test system. The log also contains all accesses to the pseudo file systems devfs, sysfs and procfs. This makes little sense, which is why you must first generate a cleaned and playable version io.replay from io.capture as follows:</p>
@@ -1875,12 +1875,12 @@ jgs\__/'---'\__/
 % sudo ioriot -i io.replay
 </pre>
 <p>To avoid any damage to the running system, ioreplay only works in special directories. The tool creates a separate subdirectory for each file system mount point (e.g. /, /usr/local, /store/00,...) (here: /.ioriot/TESTNAME, /usr/local/.ioriot/TESTNAME, /store/00/.ioriot/TESTNAME,...). By default, the working directory of ioriot is /usr/local/ioriot/TESTNAME.</p>
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png"><img alt="Screenshot test preparation" title="Screenshot test preparation" src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png"><img alt="Screenshot test preparation" title="Screenshot test preparation" src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png" /></a><br />
 <p>You must re-initialize the environment before each run. Data from previous tests will be moved to a trash directory automatically, which can be finally deleted with "sudo ioriot -P".</p>
 <h3>Replay</h3>
 <p>After initialization, you can replay the log with -r. You can use -R to initiate both test initialization and replay in a single command and -S can be used to specify a file in which statistics are written after the test run.</p>
 <p>You can also influence the playback speed: "-s 0" is interpreted as "Playback as fast as possible" and is the default setting. With "-s 1" all operations are performed at original speed. "-s 2" would double the playback speed and "-s 0.5" would halve it.</p>
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png"><img alt="Screenshot replaying I/O" title="Screenshot replaying I/O" src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png"><img alt="Screenshot replaying I/O" title="Screenshot replaying I/O" src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png" /></a><br />
 <p>As an initial test, for example, you could compare the two Linux I/O schedulers CFQ and Deadline and check which scheduler the test runs the fastest. They run the test separately for each scheduler. The following shell loop iterates through all attached block devices of the system and changes their I/O scheduler to the one specified in variable $new_scheduler (in this case either cfq or deadline). Subsequently, all I/O events from the io.replay protocol are played back. At the end, an output file with statistics is generated:</p>
 <pre>
 % new_scheduler=cfq
@@ -1916,10 +1916,10 @@ Time ahead: 2392s
 Total time: 1213.00s
 </pre>
 <p>In any case, you should also set up a time series database, such as Graphite, where the I/O throughput can be plotted. Figures 4 and 5 show the read and write access times of both tests. The break-in makes it clear when the CFQ test ended and the deadline test was started. The reading latency of both tests is similar. Write latency is dramatically improved using the Deadline Scheduler.</p>
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png"><img alt="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png" /></a><br />
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png"><img alt="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png"><img alt="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler." src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png"><img alt="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." title="Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler." src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png" /></a><br />
 <p>You should also take a look at the iostat tool. The iostat screenshot shows the output of iostat -x 10 during a test run. As you can see, a block device is fully loaded with 99% utilization, while all other block devices still have sufficient buffer. This could be an indication of poor data distribution in the storage system and is worth pursuing. It is not uncommon for I/O Riot to reveal software problems.</p>
-<a href="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png"><img alt="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." title="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." src="https://foo.surf/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png"><img alt="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." title="Output of iostat. The block device sdy seems to be almost fully utilized by 99%." src="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png" /></a><br />
 <h2>I/O Riot is Open Source</h2>
 <p>The tool has already proven to be very useful and will continue to be actively developed as time and priority permits. Mimecast intends to be an ongoing contributor to Open Source. You can find I/O Riot at:</p>
 <a class="textlink" href="https://github.com/mimecast/ioriot">https://github.com/mimecast/ioriot</a><br />
@@ -1938,8 +1938,8 @@ Total time: 1213.00s
     </entry>
     <entry>
         <title>Methods in C</title>
-        <link href="gemini://foo.surf/gemfeed/2016-11-20-methods-in-c.gmi" />
-        <id>gemini://foo.surf/gemfeed/2016-11-20-methods-in-c.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2016-11-20-methods-in-c.gmi" />
+        <id>gemini://foo.zone/gemfeed/2016-11-20-methods-in-c.gmi</id>
         <updated>2016-11-20T18:36:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2018,8 +2018,8 @@ mult.calculate(mult,a,b));
     </entry>
     <entry>
         <title>Spinning up my own authoritative DNS servers</title>
-        <link href="gemini://foo.surf/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
-        <id>gemini://foo.surf/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi" />
+        <id>gemini://foo.zone/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
         <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2243,8 +2243,8 @@ apply Service "dig6" {
     </entry>
     <entry>
         <title>Offsite backup with ZFS (Part 2)</title>
-        <link href="gemini://foo.surf/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi" />
-        <id>gemini://foo.surf/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
         <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2269,7 +2269,7 @@ apply Service "dig6" {
                  \____||__|_____|__|
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2016-04-16</i></p>
-<a class="textlink" href="https://foo.surf/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Read the first part before reading any furter here...</a><br />
 <p>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</p>
 <p>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
@@ -2279,8 +2279,8 @@ apply Service "dig6" {
     </entry>
     <entry>
         <title>Jails and ZFS with Puppet on FreeBSD</title>
-        <link href="gemini://foo.surf/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi" />
-        <id>gemini://foo.surf/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi" />
+        <id>gemini://foo.zone/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
         <updated>2016-04-09T18:29:47+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2658,8 +2658,8 @@ Notice: Finished catalog run in 206.09 seconds
     </entry>
     <entry>
         <title>Offsite backup with ZFS</title>
-        <link href="gemini://foo.surf/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi" />
-        <id>gemini://foo.surf/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi" />
+        <id>gemini://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
         <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2699,8 +2699,8 @@ Notice: Finished catalog run in 206.09 seconds
     </entry>
     <entry>
         <title>Run Debian on your phone with Debroid</title>
-        <link href="gemini://foo.surf/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
-        <id>gemini://foo.surf/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
+        <id>gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
         <updated>2015-12-05T16:12:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2720,7 +2720,7 @@ Notice: Finished catalog run in 206.09 seconds
 </pre>
 <p class="quote"><i>Published by Paul Buetow 2015-12-05, last updated 2021-05-16</i></p>
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
-<a href="https://foo.surf/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://foo.surf/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
+<a href="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
 <p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
 <h2>Step by step guide</h2>
@@ -2863,8 +2863,8 @@ exit
     </entry>
     <entry>
         <title>The fibonacci.pl.c Polyglot</title>
-        <link href="gemini://foo.surf/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
-        <id>gemini://foo.surf/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
+        <id>gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
         <updated>2014-03-24T21:32:53+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -2971,8 +2971,8 @@ fib(10) = 55
     </entry>
     <entry>
         <title>Perl Daemon (Service Framework)</title>
-        <link href="gemini://foo.surf/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
-        <id>gemini://foo.surf/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
+        <id>gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
         <updated>2011-05-07T22:26:02+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -3117,8 +3117,8 @@ sub do ($) {
     </entry>
     <entry>
         <title>The Fype Programming Language</title>
-        <link href="gemini://foo.surf/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
-        <id>gemini://foo.surf/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
+        <id>gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
         <updated>2010-05-09T12:48:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -3532,8 +3532,8 @@ BB
     </entry>
     <entry>
         <title>Lazy Evaluation with Standard ML</title>
-        <link href="gemini://foo.surf/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi" />
-        <id>gemini://foo.surf/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi" />
+        <id>gemini://foo.zone/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi</id>
         <updated>2010-05-07T08:17:59+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -3632,8 +3632,8 @@ first 10 nat_pairs_not_null
     </entry>
     <entry>
         <title>Standard ML and Haskell</title>
-        <link href="gemini://foo.surf/gemfeed/2010-04-09-standard-ml-and-haskell.gmi" />
-        <id>gemini://foo.surf/gemfeed/2010-04-09-standard-ml-and-haskell.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell.gmi" />
+        <id>gemini://foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell.gmi</id>
         <updated>2010-04-09T22:57:36+01:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -3786,8 +3786,8 @@ my_filter f l = foldr (make_filter_fn f) [] l
     </entry>
     <entry>
         <title>Using my Nokia N95 for fixing my MTA</title>
-        <link href="gemini://foo.surf/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi" />
-        <id>gemini://foo.surf/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi" />
+        <id>gemini://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi</id>
         <updated>2008-12-29T09:10:41+00:00</updated>
         <author>
             <name>Paul Buetow</name>
@@ -3816,7 +3816,7 @@ _jgs_\|//_\\|///_\V/_\|//__
 <p class="quote"><i>Published by Paul Buetow 2008-12-29, last updated 2021-12-01</i></p>
 <p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). </p>
 <p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
-<a href="https://foo.surf/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="https://foo.surf/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
+<a href="https://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="https://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
 <p>With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:</p>
 <ul>
 <li>First, getting a shell prompt</li>
@@ -3832,8 +3832,8 @@ _jgs_\|//_\\|///_\V/_\|//__
     </entry>
     <entry>
         <title>Perl Poetry</title>
-        <link href="gemini://foo.surf/gemfeed/2008-06-26-perl-poetry.gmi" />
-        <id>gemini://foo.surf/gemfeed/2008-06-26-perl-poetry.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2008-06-26-perl-poetry.gmi" />
+        <id>gemini://foo.zone/gemfeed/2008-06-26-perl-poetry.gmi</id>
         <updated>2008-06-26T21:43:51+01:00</updated>
         <author>
             <name>Paul Buetow</name>
