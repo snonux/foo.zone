@@ -57,7 +57,7 @@ Another benefit of using Gemini is that the Gemtext markup language is easy to p
 
 I have exactly done that - I wrote a Bash script, named Gemtexter, for that:
 
-[https://codeberg.org/snonux/gemtexter](https://codeberg.org/snonux/gemtexter)  
+[https://codeberg.org/foozone/gemtexter](https://codeberg.org/foozone/gemtexter)  
 
 In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.
 

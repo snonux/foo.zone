@@ -8,7 +8,7 @@ All sites listed below are reachable via IPv4 and also via IPv6.
 
 ### Germany 
 
-[gemini://foo.surf - My internet site and blog](gemini://foo.surf)  
+[gemini://foo.zone - My internet site and blog](gemini://foo.zone)  
 
 Wondering what's the Gemini protocol about? Read:
 
@@ -18,7 +18,7 @@ Wondering what's the Gemini protocol about? Read:
 
 The addresses above are hosted in Germany. Alternatively, you can add a "www" for using a mirror in Japan:
 
-[gemini://www.foo.surf](gemini://www.foo.surf)  
+[gemini://www.foo.zone](gemini://www.foo.zone)  
 
 ## My website
 
@@ -26,17 +26,17 @@ The addresses above are hosted in Germany. Alternatively, you can add a "www" fo
 
 The content is the same as the Gemini capsule, but reachable via HTTP+HTML:
 
-[https://foo.surf - My internet website and blog](https://foo.surf)  
+[https://foo.zone - My internet website and blog](https://foo.zone)  
 
 Just because I can, here are additional mirrors hosted on Codeberg as Codeberg pages:
 
-[https://www2.foo.surf](https://www2.foo.surf)  
+[https://www2.foo.zone](https://www2.foo.zone)  
 
 ### Japan
 
 The addresses above are hosted in Germany. Alternatively, you can add a "www" for a mirror in Japan:
 
-[https://www.foo.surf](https://www.foo.surf)  
+[https://www.foo.zone](https://www.foo.zone)  
 
 That's all for now...
 
