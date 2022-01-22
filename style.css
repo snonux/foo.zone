@@ -1,7 +1,7 @@
 body {
   margin: auto;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 11px;
+  padding-right: 11px;
   max-width: 900px;
   background-color: #ffffff; 
   color: #ddddce;
@@ -10,13 +10,34 @@ body {
   font-variant: normal;
 }
 
-h1, h2, h3 {
+h1 {
   padding-top: 23px;
   padding-bottom: 23px;
-  padding-left: 5px;
+  padding-left: 11px;
   color: #ffffff;
   background-color: #000000;
   text-decoration: underline;
+  margin-left: -23px;
+}
+
+h2 {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-left: 11px;
+  color: #ffffff;
+  background-color: #000000;
+  text-decoration: underline;
+  margin-left: -11px;
+}
+
+h3 {
+  padding-top: 23px;
+  padding-bottom: 23px;
+  padding-left: 11px;
+  color: #ffffff;
+  background-color: #000000;
+  text-decoration: underline;
+  margin-left: -5px;
 }
 
 a {
@@ -39,12 +60,12 @@ ul {
   padding-top: 23px;
   padding-bottom: 23px;
   padding-right: 23px;
-  padding-left: 77px;
+  padding-left: 79px;
 }
 
 img {
-  max-width: 600px;
-  max-height: 400px;
+  max-width: 601;
+  max-height: 401;
   display: block;
   margin: auto;
 }
@@ -55,9 +76,9 @@ pre {
   overflow-x: auto;
   color: #ffffff;
   background-color: #000000;
-  margin: 7px;
+  margin: 5px;
   padding: 23px;
-  border: 23px double white;
+  border: 29px double white;
 }
 
 a.textlink:before {
