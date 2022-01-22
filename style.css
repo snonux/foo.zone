@@ -78,7 +78,7 @@ pre {
   background-color: #000000;
   margin: 5px;
   padding: 23px;
-  border: 29px double white;
+  border: 29px double #8fbc8f;
 }
 
 a.textlink:before {
