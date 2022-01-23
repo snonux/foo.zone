@@ -30,7 +30,7 @@ The content is the same as the Gemini capsule, but reachable via HTTP+HTML:
 
 Just because I can, here are additional mirrors hosted on Codeberg as Codeberg pages:
 
-[https://www2.foo.zone](https://www2.foo.zone)  
+[https://www2.buetow.org](https://www2.buetow.org)  
 
 ### Japan
 

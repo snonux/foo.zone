@@ -10,7 +10,7 @@
                            ASCII Art by Clyde Watson
 ```
 
-> Published by Paul Buetow 2021-10-22
+> Published by Paul at 2021-10-22
 
 I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.
 

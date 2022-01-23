@@ -15,7 +15,7 @@
 --------------------                    --------------------
 ```
 
-> Published by Paul Buetow 2021-09-12, last updated 2021-10-22
+> Published by Paul at 2021-09-12, last updated at 2021-10-22
 
 A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 

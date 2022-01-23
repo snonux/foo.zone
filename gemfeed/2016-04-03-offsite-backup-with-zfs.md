@@ -13,7 +13,7 @@
 \____||__|_____|__|
 ```
 
-> Published by Paul Buetow 2016-04-03
+> Published by Paul at 2016-04-03
 
 ## Please don't lose all my pictures again!
 
