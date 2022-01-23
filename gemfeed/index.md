@@ -2,7 +2,11 @@
 
 ## To be in the .zone!
 
+<<<<<<< HEAD
 [2022-01-23 (0565 words) - Welcome to the foo.zone](./2022-01-23-welcome-to-the-foo.zone.md)  
+=======
+[2022-01-23 (0543 words) - Welcome to the foo.zone](./2022-01-23-welcome-to-the-foo.zone.md)  
+>>>>>>> bf389056f4d3e482a592295ce9f8842b7a265731
 [2022-01-01 (1139 words) - Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2021-12-26 (2280 words) - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
 [2021-11-29 (1286 words) - Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  

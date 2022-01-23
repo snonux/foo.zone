@@ -19,7 +19,7 @@ As you can read on Wikipedia, "foo" is, alongside to "bar" and "baz", a metasynt
 
 ## What is the foo zone?
 
-It's my personal internet site and blog. Everything you read of this site are my personal opinions and experiences and projects. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.
+It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.
 
 Since I re-booted this blog last year, I struggled to find a good host name for it. I started off with "buetow.org", and later I switched halfway to "snonux.de". Buetow is my last name, and snonux relates to some of my internet nicknames and personal IT projects. I also have a "SnonuxBSD" ASCII-art banner in the motd of my FreeBSD based home-NAS.
 
