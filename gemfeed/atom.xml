@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-23T16:36:12+00:00</updated>
+    <updated>2022-01-23T16:42:04+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,12 +10,12 @@
         <title>Welcome to the foo.zone</title>
         <link href="gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi" />
         <id>gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi</id>
-        <updated>2022-01-23T15:52:34+00:00</updated>
+        <updated>2022-01-23T16:42:04+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>paul at buetow dot org</email>
+            <email>comments@mx.buetow.org</email>
         </author>
-        <summary>I don't count this as a real blog post but more of an announcement (I aim to write one real post once monthly).. .....to read on please visit my site.</summary>
+        <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Welcome to the foo.zone</h1>
