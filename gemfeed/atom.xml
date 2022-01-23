@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-23T16:15:23+00:00</updated>
+    <updated>2022-01-23T16:27:38+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>Having fun with computers!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,7 @@
         <summary>I don't count this as a real blog post but more of an announcement (I aim to write one real post once monthly).. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <p>﻿# Welcome to the foo zone</p>
+                <h1>Welcome to the foo.zone</h1>
 <pre>
   __                                  
  / _| ___   ___   _______  _ __   ___ 
