@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-23T16:54:41+00:00</updated>
+    <updated>2022-01-23T20:26:34+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -32,7 +32,7 @@
 <p>As you can read on Wikipedia, "foo" is, alongside to "bar" and "baz", a metasyntactic variable (you know what I mean if you are a programmer or IT person):</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Metasyntactic_variable">https://en.wikipedia.org/wiki/Metasyntactic_variable</a><br />
 <h2>What is the foo zone?</h2>
-<p>It's my personal internet site and blog. Everything you read of this site are my personal opinions and experiences and projects. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.</p>
+<p>It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.</p>
 <p>Since I re-booted this blog last year, I struggled to find a good host name for it. I started off with "buetow.org", and later I switched halfway to "snonux.de". Buetow is my last name, and snonux relates to some of my internet nicknames and personal IT projects. I also have a "SnonuxBSD" ASCII-art banner in the motd of my FreeBSD based home-NAS.</p>
 <p>For a while, I was thinking about a better host name for this site, meeting the following criteria:</p>
 <ul>
