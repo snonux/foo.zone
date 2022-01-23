@@ -2,7 +2,11 @@
 
 ## To be in the .zone!
 
+<<<<<<< HEAD
 => ./2022-01-23-welcome-to-the-foo.zone.gmi 2022-01-23 (0565 words) - Welcome to the foo.zone
+=======
+=> ./2022-01-23-welcome-to-the-foo.zone.gmi 2022-01-23 (0543 words) - Welcome to the foo.zone
+>>>>>>> dad79613387a86bd7c45f21e463a15396d775308
 => ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 (1139 words) - Bash Golf Part 2
 => ./2021-12-26-how-to-stay-sane-as-a-devops-person.gmi 2021-12-26 (2280 words) - How to stay sane as a DevOps person 
 => ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 (1286 words) - Bash Golf Part 1
