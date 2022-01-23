@@ -15,7 +15,7 @@
 --------------------                    --------------------
 ```
 
-> Published by Paul at 2021-09-12, last updated at 2021-10-22
+> Published by Paul at 2021-09-12, last updated at 2022-01-23
 
 A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 
@@ -86,6 +86,10 @@ Not to mention, keeping things simple and stupid also reduces the potential mali
 # When KISS is not KISS anymore
 
 There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.
+
+## Other relevant readings
+
+=> https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html Is the madness ever going to end?
 
 Enough ranted for now :-). E-Mail me your comments to paul at buetow dot org!
 
