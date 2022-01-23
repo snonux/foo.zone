@@ -1,6 +1,6 @@
 # The fibonacci.pl.c Polyglot
 
-> Published by Paul Buetow 2014-03-24
+> Published by Paul at 2014-03-24
 
 In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.
 

@@ -9,7 +9,7 @@
            |___/|_|            |___/                        |___/ 
 ```
 
-> Published by Paul Buetow 2010-05-09, last updated 2021-05-05
+> Published by Paul at 2010-05-09, last updated at 2021-05-05
 
 Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.
 

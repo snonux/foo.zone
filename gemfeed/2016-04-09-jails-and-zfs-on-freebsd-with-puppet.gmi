@@ -20,7 +20,7 @@
                \      `.
 ```
 
-> Published by Paul Buetow 2016-04-09
+> Published by Paul at 2016-04-09
 
 Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
 

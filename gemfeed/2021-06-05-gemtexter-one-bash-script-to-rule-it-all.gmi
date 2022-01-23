@@ -41,7 +41,7 @@
                                                            `+a:f:......jrei'''
 ```
 
-> Published by Paul Buetow 2021-06-05
+> Published by Paul at 2021-06-05
 
 You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. 
 

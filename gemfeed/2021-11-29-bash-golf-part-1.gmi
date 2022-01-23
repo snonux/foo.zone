@@ -12,7 +12,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
-> Published by Paul Buetow 2021-11-29, last updated 2022-01-05
+> Published by Paul at 2021-11-29, last updated at 2022-01-05
 
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 

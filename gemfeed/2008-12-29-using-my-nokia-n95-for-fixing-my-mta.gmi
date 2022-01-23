@@ -17,7 +17,7 @@ _jgs_\|//_\\|///_\V/_\|//__
                       Art by Joan Stark
 ```
 
-> Published by Paul Buetow 2008-12-29, last updated 2021-12-01
+> Published by Paul at 2008-12-29, last updated at 2021-12-01
 
 The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). 
 
