@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-23T16:54:41+00:00</updated>
+    <updated>2022-01-23T22:18:35+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -48,7 +48,7 @@
 <p>I was pretty happy finding out that foo.zone was still available for registration. I stumbled across it just yesterday while I was playing around with my new authoritative DNS servers. I was actually quite surprised as usually such short SLDs (second level domains), especially "foo", are all taken already.</p>
 <p>As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water sports so much. Well, on the other hand, I now may have to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.</p>
 <h2>What about my old hosts</h2>
-<p>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I don't know what I am going to do with snonux.de in the long run. .de SLDs (for Germany) are pretty cheap, so I might just keep it for now. </p>
+<p>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won't change any time soon. I don't know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </p>
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
@@ -1046,7 +1046,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
  /  ************  \                      /  ************  \
 --------------------                    --------------------
 </pre>
-<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2021-10-22</i></p>
+<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-01-23</i></p>
 <p>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</p>
 <h1>Need faster hardware</h1>
 <p>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</p>
@@ -1082,6 +1082,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <a class="textlink" href="https://thevaluable.dev/kiss-principle-explained/">https://thevaluable.dev/kiss-principle-explained/</a><br />
 <h1>When KISS is not KISS anymore</h1>
 <p>There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.</p>
+<h2>Other relevant readings</h2>
+<a class="textlink" href="https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html">Is the madness ever going to end?</a><br />
 <p>Enough ranted for now :-). E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
