@@ -1,4 +1,4 @@
-﻿# Welcome to the foo zone
+# Welcome to the foo.zone
 
 ```
   __                                  
