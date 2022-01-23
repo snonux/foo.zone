@@ -1,0 +1,49 @@
+﻿# Welcome to the foo.zone
+
+```
+  __                                  
+ / _| ___   ___   _______  _ __   ___ 
+| |_ / _ \ / _ \ |_  / _ \| '_ \ / _ \
+|  _| (_) | (_) | / / (_) | | | |  __/
+|_|  \___/ \___(_)___\___/|_| |_|\___|
+                                      
+```
+
+> Published by Paul Buetow 2022-01-23
+
+I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, "foo.zone" is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.
+
+As you can read on Wikipedia, "foo" is, alongside to "bar" and "baz", a metasyntactic variable (you know what I mean if you are a programmer or IT person):
+
+=> https://en.wikipedia.org/wiki/Metasyntactic_variable
+
+## What is the foo zone?
+
+It's my personal internet site and blog. Everything you read of this site are my personal opinions and experiences and projects. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.
+
+Since I re-booted this blog last year, I struggled to find a good host name for it. I started off with "buetow.org", and later I switched halfway to "snonux.de". Buetow is my last name, and snonux relates to some of my internet nicknames and personal IT projects. I also have a "SnonuxBSD" ASCII-art banner in the motd of my FreeBSD based home-NAS.
+
+For a while, I was thinking about a better host name for this site, meeting the following criteria:
+
+* Isn't directly linked to my name or my internet nicknames.
+* Reflects the "nature" of this site.
+* Is still pretty generic.
+* Is "cool".
+* Is short and pregnant. 
+* Doesn't cost millions.
+
+So I think that foo.zone is the perfect match. It's a bit geeky, but so is this site. The meta-syntactic variable relates to computer science and programming, so does this site. Other than that, staying in this sphere, it's a pretty generic name.
+
+## To be in the .zone and not in a .surf club
+
+I was pretty happy finding out that foo.zone was still available for registration. I stumbled across it just yesterday while I was playing around my new authoritative DNS servers. I was actually quite surprised, as usually such short SLDs (second level domains), especially "foo", are all taken already.
+
+Furthermore, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water surfing. Well, on the other hand, I now might need to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.
+
+## What about my old hosts
+
+The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I don't know what I am going to do with snonux.de in the long run. .de SLDs (for Germany) are pretty cheap, so I might just keep it for now. 
+
+E-Mail me your comments to paul at buetow dot org!
+
+=> ../ Go back to the main site
