@@ -1,6 +1,6 @@
-# foo.zone's Gemfeed
+# Gemfeed of foo.zone
 
-## Having fun with computers!
+## To be in the .zone!
 
 [2022-01-23 (0545 words) - Welcome to the foo.zone](./2022-01-23-welcome-to-the-foo.zone.md)  
 [2022-01-01 (1139 words) - Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
