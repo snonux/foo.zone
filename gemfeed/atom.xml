@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-<<<<<<< HEAD
-    <updated>2022-01-23T22:18:35+00:00</updated>
-=======
-    <updated>2022-01-23T20:26:34+00:00</updated>
->>>>>>> 347ac2b0e6c3b91776695b9b97f3721d31f21ba2
+    <updated>2022-01-23T22:20:22+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
