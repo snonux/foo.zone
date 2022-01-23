@@ -29,16 +29,16 @@ For a while, I was thinking about a better host name for this site, meeting the 
 * Reflects the "nature" of this site.
 * Is still pretty generic.
 * Is "cool".
-* Is short and pregnant. 
+* Is short and easy to remember. 
 * Doesn't cost millions.
 
 So I think that foo.zone is the perfect match. It's a bit geeky, but so is this site. The meta-syntactic variable relates to computer science and programming, so does this site. Other than that, staying in this sphere, it's a pretty generic name.
 
 ## To be in the .zone and not in a .surf club
 
-I was pretty happy finding out that foo.zone was still available for registration. I stumbled across it just yesterday while I was playing around my new authoritative DNS servers. I was actually quite surprised, as usually such short SLDs (second level domains), especially "foo", are all taken already.
+I was pretty happy finding out that foo.zone was still available for registration. I stumbled across it just yesterday while I was playing around with my new authoritative DNS servers. I was actually quite surprised as usually such short SLDs (second level domains), especially "foo", are all taken already.
 
-Furthermore, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water surfing. Well, on the other hand, I now might need to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.
+As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water sports so much. Well, on the other hand, I now may have to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.
 
 ## What about my old hosts
 
