@@ -148,7 +148,7 @@ When I trevel, I install an army of RaspberryPi 3's in my house. All are equippe
 
 => https://github.com/ccrisan/motioneyeos
 
-### Kobo OS
+### Kobo OS (proprietary)
 
 I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only sideload ePubs on it. Otherwise, it would call home to Rakuten. I would like to replace it one day with an open source e-reader device like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. It boots already, but is far from being usable as a normal e-reader.
 
@@ -161,13 +161,13 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 
 => https://netbsd.org
 
-### Android TV
+### Android TV (proprietary)
 
 A Android TV box is used for watching Netflix. Currently in the process of being replaced by OSMC.
 
 => https://osmc.tv/
 
-### SailfishOS (mobile)
+### SailfishOS (mobile proprietary)
 
 Before switching to LineageOS, I gave SailfishOS a shot. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components. 
 
