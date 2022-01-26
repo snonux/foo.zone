@@ -23,11 +23,11 @@
 
 > Published by Paul at ????-??-??
 
-This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time.
+This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time. Once in a while I try to out new things and switch forth- and back from one to anther.
 
 ## Fedora Linux
 
-Fedora Linux is my main operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop (I already saw hardware firmware updates being installed directly through Fedora from Lenovo). Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time (well, it's baked by Red Hat after all). 
+Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop (I already saw hardware firmware updates being installed directly through Fedora from Lenovo). Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time (well, it's baked by Red Hat after all). 
 
 I also use Fedora on my Microsoft Surface Go 2 convertible tablet. Fedora works quite OK (and much better than Windows) on this device. It's also the perfect travel companion.
 
@@ -35,15 +35,15 @@ I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bu
 
 ## EndeavourOS
 
-After buying a new ThinkPad X1 Carbon Gen. 9 I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to try out another Linux distribution instead.
+I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to try out another Linux distribution instead.
 
-I installed Arch on a Pi before, but I never used Arch as my main Desktop OS. There's a lot talking about Arch and Arch-based distros and I didn't want to miss out on it to see what's the fuzz about. However, I was lazy performing an Arch install from scratch on the X240, so I decided to give EndeavourOS a shot, as it comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch.
+Until 2021, I never used Arch as my main Desktop OS. There was a lot talking about Arch and Arch-based distros and I wanted to know what's the fuzz all about. However, I was lazy performing an Arch install from scratch. As a result I decided to give EndeavourOS a shot, as it comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch.
 
-So far, I like it. When working form home, I always have my X240 next to my work laptop for things like playing music, listening to online radio, personal note taking/emails and personal instant messaging and occasional web searches. Also, when my X1 runs out of battery while working on some personal pet projects in the living room (without a charging cable nearby), I sometimes switch to the X240 for some time.
+So far, It's not bad. While working form home, I always have my X240 next to my work laptop for things like playing music and online radio, for personal note taking and occasional emailing and instant messaging. 
 
-Other than Fedora, Arch Linux and EndeavourOS are purely community backed. It won't give you the firmware updates out of the box, but is still a very good choice, especially for older hardware where firmware updates are less likely to happen. 
+Other than Fedora, Arch Linux and EndeavourOS are purely backed by the community. So there is no big corporation in the backyard lurking around. They won't give you the firmware updates out of the box, though. But they are still a very good choice, especially for hobbyist and also for older hardware where future firmware updates are less likely required.
 
-As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased 2014.
+As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased back in 2014.
 
 => https://endeavouros.com/
 
@@ -59,11 +59,19 @@ FreeBSD always had a place somewhere in my life:
 * On a server offering FreeBSD jails for rent
 * As an experiment running Debian GNU/kFreeBSD inside of jails
 
-(Debian GNU/kFreeBSD is now dead, as is m experiment).
-
-TODO: kFreeBSD uname here
+Debian GNU/kFreeBSD is now dead (same is my experiment).
 
 => https://www.debian.org/ports/kfreebsd-gnu/
+
+But I still have saved and old uname output :-):
+
+```
+[root@saturn /usr/jail/serv14/etc] # jexec 21 bash
+root@rhea:/ # uname -a
+GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 27 13:10:09 CET \
+  2010 root@saturn.buetow.org:/usr/obj/usr/srcs/freebsd.src8/src/sys/SERV10 x86 64 amd64 Intel(R) \
+  Core(TM) i7 CPU 920 @ 2.67GHz GNU/kFreeBSD
+```
 
 Currently, I use FreeBSD only on my home NAS server for storing all of my personal data (which is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives) but I have plans to replace the CentOS 7 box (see below) with FreeBSD soon.
 
@@ -83,6 +91,18 @@ I have been operating FreeBSD Jails for fairly complex LAMP stacks before I star
 => https://www.centos.org
 
 ## OpenBSD
+
+I use two OpenBSD boxes for my "public facing internet frontends", which includes:
+
+* HTTP server (serving this site via https://foo.zone)
+* Gemini server (serving this site via gemini://foo.zone)
+* MTA server (for receiving E-Mails to my hosts)
+* Authorative DNS server (for all of my hosts)
+* Some personal/private git repositories (accessible only via SSH)
+
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Linux and other *BSD based operating system would be secure enough for my personal needs. But nevertheless, I think it's the ideal operating system for what I am using it.
+
+The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron).
 
 => https://www.openbsd.org
 
