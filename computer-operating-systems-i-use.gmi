@@ -1,4 +1,4 @@
-# DRAFT: Computer operating systems I use
+# Computer operating systems I use
 
 ```
               /(        )`
@@ -23,7 +23,9 @@
 
 > Published by Paul at ????-??-??
 
-This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time. Once in a while I try to out new things and switch forth- and back from one to anther.
+This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time. Once in a while I try to out new things and switch forth- and back from one to anther. I prefer free and open source software over proprietary software. I didn't manage to libreboot my devices yet, though. That's mostly due to the lack of time I have.
+
+=> https://libreboot.org/
 
 ## Fedora Linux
 
@@ -106,9 +108,11 @@ The only software which are not part of the base system and I had to install add
 
 => https://www.openbsd.org
 
-## macOS
+## macOS (proprietary)
 
-I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose).
+I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose). Some of the inner workings of macOS were actually forked from the FreeBSD project.
+
+=> https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/BSD/BSD.html developer.apple.com: BSD in macOS/Darwin
 
 ## LineageOS (mobile)
 
@@ -120,45 +124,46 @@ But the whole point of switching to LineageOS was to get away of big tech anyway
 
 => https://lineageos.org/
 
-## Samsung's Stock Android (mobile)
+## Samsung's Stock Android (mobile proprietary)
 
 Unfortunatley, I still have to keep around my proprietary Android phone around. Sometimes, I really need to use some proprietary apps which are only available form the Google play store and also require the Google services installed on the phone. It's mostly for convenience, though. I don't carry this phone around all the time and I only use it intentionally for very specific use cases. I think this is the best compromise you can make.
 
-## iOS (mobile)
+## iOS (mobile proprietary)
 
-My employer gave me an iPhone for work. I hate the OS (you can also call it spyOS), but it's the necessary's evil unfortunately. I don't have it usually with me or shut off when I don't need it.
+I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessary's evil, unfortunately. I don't have it usually with me and shut off or in airplane mode when I don't need it. I also find it quite unintuitive to use.
 
 ## Other OSes
 
-### InfinyTime
+### InfinyTime (smartwatch)
 
-I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. 
+I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. AstroidOS seems also interesting for smartwatches nowadays, but I haven't looked into it yet. I will list it here anyway in case you want to check it out.
 
 => https://www.pine64.org/pinetime/
 => https://infinitime.io/
+=> https://asteroidos.org/
 
 ### motionEyeOS
 
-When I trevel, I install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keeping an eye on everything. I make them accessible from the internet via a reverse SSH tunnel though one of my frontend servers.
+When I trevel, I install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
 ### Kobo OS
 
-I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only sideload ePubs on it. I would like to replace it one day with an open source e-reader device like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. It boots already, but is far from usable as a normal e-reader.
+I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only sideload ePubs on it. Otherwise, it would call home to Rakuten. I would like to replace it one day with an open source e-reader device like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. It boots already, but is far from being usable as a normal e-reader.
 
 => https://www.pine64.org/pinenote/ The PineNote
 => https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
 
 ### NetBSD
 
-I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). But that's both more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 which I currently don't use.
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 which I currently don't use.
 
 => https://netbsd.org
 
 ### Android TV
 
-An Android TV box is used at home for watching Netflix. Currently in the process of being replaced by OSMC.
+A Android TV box is used for watching Netflix. Currently in the process of being replaced by OSMC.
 
 => https://osmc.tv/
 
