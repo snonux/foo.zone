@@ -86,15 +86,15 @@ While CentOS 8 is already out of support, I still use CentOS 7 (which still gets
 => https://nextcloud.com NextCloud
 => https://www.wallabag.it/en Wallabag
 
-At the reason I use Linux for these is Docker. With Docker, it's straightforward to get these up and running. Before CentOS 7 runs out of support, I will have to switch to another OS. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
+The reason I use Linux for these is Docker. With Docker, it's straightforward to get these up and running. Before CentOS 7 runs out of support, I will have to switch to another OS. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
 
-I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to learn something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot :-).
+I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to try out something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot. That's especially convenient for PHP based web-apps. :-)
 
 => https://www.centos.org
 
 ## OpenBSD
 
-I use two OpenBSD boxes for my "public facing internet frontends", which includes:
+I use two OpenBSD boxes for my "public facing internet frontends". The services I run there are:
 
 * HTTP server (serving this site via https://foo.zone)
 * Gemini server (serving this site via gemini://foo.zone)
@@ -102,7 +102,7 @@ I use two OpenBSD boxes for my "public facing internet frontends", which include
 * Authorative DNS server (for all of my hosts)
 * Some personal/private git repositories (accessible only via SSH)
 
-OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Linux and other *BSD based operating system would be secure enough for my personal needs. But nevertheless, I think it's the ideal operating system for what I am using it.
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Unix like operating system would be secure enough for my personal needs and that I would not need to use OpenBSD in particular here. But nevertheless, I think it's the ideal operating system for what I am using it.
 
 The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron).
 
@@ -116,17 +116,17 @@ I have to use a MacBook Pro with macOS for work. What else can I say but that th
 
 ## LineageOS (mobile)
 
-At one point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying at me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, an free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
+At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
 
 So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore.
 
-But the whole point of switching to LineageOS was to get away of big tech anyway, so I should not complain :-). What I should like is that 95% the things I use to do on a mobile phone I also can do with LineageOS.
+But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
 
 => https://lineageos.org/
 
 ## Samsung's Stock Android (mobile proprietary)
 
-Unfortunatley, I still have to keep around my proprietary Android phone around. Sometimes, I really need to use some proprietary apps which are only available form the Google play store and also require the Google services installed on the phone. It's mostly for convenience, though. I don't carry this phone around all the time and I only use it intentionally for very specific use cases. I think this is the best compromise you can make.
+Unfortunatley, I still have to keep my proprietary Android phone around. Sometimes, I really need to use some proprietary apps which are only available form the Google play store and also require the Google services installed on the phone. I don't carry this phone around all the time and I only use it intentionally for very specific use cases. I think this is the best compromise I can make.
 
 ## iOS (mobile proprietary)
 
@@ -144,7 +144,7 @@ I use it on my PineTime smartwatch. Not much to write about it yet, as I just go
 
 ### motionEyeOS
 
-When I trevel, I install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
+Before I travel, I always install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
@@ -157,7 +157,7 @@ I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only si
 
 ### NetBSD
 
-I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 which I currently don't use.
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
 
 => https://netbsd.org
 
@@ -169,7 +169,7 @@ A Android TV box is used for watching Netflix. Currently in the process of being
 
 ### SailfishOS (mobile proprietary)
 
-Before switching to LineageOS, I gave SailfishOS a shot. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components. 
+Before switching to LineageOS, I gave SailfishOS a shot. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components.
 
 => https://sailfishos.org/
 
