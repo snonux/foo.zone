@@ -1,0 +1,121 @@
+# DRAFT: Operating Systems I use
+
+```
+              /(        )`
+              \ \___   / |
+              /- _  `-/  '
+             (/\/ \ \   /\
+             / /   | `    \
+             O O   ) /    |
+             `-^--'`<     '
+            (_.)  _  )   /
+             `.___/`    /
+               `-----' /
+  <----.     __ / __   \
+  <----|====O)))==) \) /====
+  <----'    `--' `.__,' \
+               |        |
+                \       /
+           ______( (_  / \______
+  (FL)   ,'  ,-----'   |        \
+         `--{__________)        \/   "Berkeley Unix Daemon"
+```
+
+> Published by Paul at ????-??-??
+
+This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time.
+
+## Fedora Linux
+
+Fedora Linux is my main operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop (I already saw hardware firmware updates being installed directly through Fedora from Lenovo). Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time (well, it's baked by Red Hat after all). 
+
+I also use Fedora on my Microsoft Surface Go 2 convertible tablet. Fedora works quite OK (and much better than Windows) on this device. It's also the perfect travel companion.
+
+I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bunch of keyboard shortcuts. But the fact that I mostly work in the terminal (with tmux) makes the Desktop environment I use only secondary.
+
+## EndeavourOS
+
+After buying a new ThinkPad X1 Carbon Gen. 9 I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to try out another Linux distribution instead.
+
+I installed Arch on a Pi before, but I never used Arch as my main Desktop OS. There's a lot talking about Arch and Arch-based distros and I didn't want to miss out on it to see what's the fuzz about. However, I was lazy performing an Arch install from scratch on the X240, so I decided to give EndeavourOS a shot, as it comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch.
+
+So far, I like it. When working form home, I always have my X240 next to my work laptop for things like playing music, listening to online radio, personal note taking/emails and personal instant messaging and occasional web searches. Also, when my X1 runs out of battery while working on some personal pet projects in the living room (without a charging cable nearby), I sometimes switch to the X240 for some time.
+
+Other than Fedora, Arch Linux and EndeavourOS are purely community backed. It won't give you the firmware updates out of the box, but is still a very good choice, especially for older hardware where firmware updates are less likely to happen. 
+
+As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased 2014.
+
+=> https://endeavouros.com/
+
+## FreeBSD
+
+I have run FreeBSD in many occasions. One of my former employers even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years).
+
+FreeBSD always had a place somewhere in my life:
+
+* On a Desktop PC (personal and work)
+* On a Laptop
+* On a webserver, FTP server, DNS server, mail server
+* On a server offering FreeBSD jails for rent
+* As an experiment running Debian GNU/kFreeBSD inside of jails
+
+(Debian GNU/kFreeBSD is now dead, as is m experiment).
+
+TODO: kFreeBSD uname here
+
+=> https://www.debian.org/ports/kfreebsd-gnu/
+
+Currently, I use FreeBSD only on my home NAS server for storing all of my personal data (which is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives) but I have plans to replace the CentOS 7 box (see below) with FreeBSD soon.
+
+=> https://www.FreeBSD.org
+
+## CentOS 7
+
+While CentOS 8 is already out of support, I still use CentOS 7 (which still gets security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket. Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
+
+=> https://nextcloud.com NextCloud
+=> https://www.wallabag.it/en Wallabag
+
+At the reason I use Linux for these is Docker. With Docker, it's straightforward to get these up and running. Before CentOS 7 runs out of support, I will have to switch to another OS. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
+
+I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to learn something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an upadte, just roll back to a previous ZFS snapshot :-).
+
+=> https://www.centos.org
+
+## OpenBSD
+
+=> https://www.openbsd.org
+
+## LineageOS (mobile)
+
+=> https://lineageos.org/
+
+## Samsung's Stock Android (mobile)
+
+## macOS
+
+My employer gave me a MacBook Pro to work with. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose). 
+
+## iOS (mobile)
+
+My employer gave me an iPhone for work. I hate the OS (you can also call it spyOS), but it's the necessary's evil unfortunately. I don't have it usually with me or shut off when I don't need it.
+
+## InfinyTime
+
+## Other OSes
+
+### motionEyeOS
+
+### OSMC
+
+### KoboOS
+
+### NetBSD
+
+On another old ThinkPad
+
+### SailfishOS (mobile)
+
+E-Mail me your comments to paul at buetow dot org!
+
+=> ../ Go back to the main site
