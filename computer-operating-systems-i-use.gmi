@@ -1,4 +1,4 @@
-# DRAFT: Operating Systems I use
+# DRAFT: Computer operating systems I use
 
 ```
               /(        )`
@@ -86,7 +86,7 @@ While CentOS 8 is already out of support, I still use CentOS 7 (which still gets
 
 At the reason I use Linux for these is Docker. With Docker, it's straightforward to get these up and running. Before CentOS 7 runs out of support, I will have to switch to another OS. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
 
-I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to learn something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an upadte, just roll back to a previous ZFS snapshot :-).
+I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to learn something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot :-).
 
 => https://www.centos.org
 
@@ -106,35 +106,67 @@ The only software which are not part of the base system and I had to install add
 
 => https://www.openbsd.org
 
+## macOS
+
+I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose).
+
 ## LineageOS (mobile)
+
+At one point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying at me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, an free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
+
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore.
+
+But the whole point of switching to LineageOS was to get away of big tech anyway, so I should not complain :-). What I should like is that 95% the things I use to do on a mobile phone I also can do with LineageOS.
 
 => https://lineageos.org/
 
 ## Samsung's Stock Android (mobile)
 
-## macOS
-
-My employer gave me a MacBook Pro to work with. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose). 
+Unfortunatley, I still have to keep around my proprietary Android phone around. Sometimes, I really need to use some proprietary apps which are only available form the Google play store and also require the Google services installed on the phone. It's mostly for convenience, though. I don't carry this phone around all the time and I only use it intentionally for very specific use cases. I think this is the best compromise you can make.
 
 ## iOS (mobile)
 
 My employer gave me an iPhone for work. I hate the OS (you can also call it spyOS), but it's the necessary's evil unfortunately. I don't have it usually with me or shut off when I don't need it.
 
-## InfinyTime
-
 ## Other OSes
+
+### InfinyTime
+
+I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. 
+
+=> https://www.pine64.org/pinetime/
+=> https://infinitime.io/
 
 ### motionEyeOS
 
-### OSMC
+When I trevel, I install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keeping an eye on everything. I make them accessible from the internet via a reverse SSH tunnel though one of my frontend servers.
 
-### KoboOS
+=> https://github.com/ccrisan/motioneyeos
+
+### Kobo OS
+
+I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only sideload ePubs on it. I would like to replace it one day with an open source e-reader device like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. It boots already, but is far from usable as a normal e-reader.
+
+=> https://www.pine64.org/pinenote/ The PineNote
+=> https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
 
 ### NetBSD
 
-On another old ThinkPad
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). But that's both more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 which I currently don't use.
+
+=> https://netbsd.org
+
+### Android TV
+
+An Android TV box is used at home for watching Netflix. Currently in the process of being replaced by OSMC.
+
+=> https://osmc.tv/
 
 ### SailfishOS (mobile)
+
+Before switching to LineageOS, I gave SailfishOS a shot. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components. 
+
+=> https://sailfishos.org/
 
 E-Mail me your comments to paul at buetow dot org!
 
