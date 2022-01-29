@@ -31,15 +31,12 @@ If you reach this site via the modern web, please read this:
 
 ## Introduction
 
-Welcome to my internet site. You can call me a Linux/*BSD enthusiast and hobbyist. Although I also have many other interests, you will encounter mostly (if not only) technical content on this site.
+Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.
 
-I have published some Open-Source software; you will find references to it on this site. I also read a lot of tech newsletters and blogs. I re-share the most interesting ones on my social media feeds. You can find links to my Codeberg page and my social media accounts on my contact information page:
+You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
 
-=> ./contact-information.gmi Contact information
-
-I have also compiled a list of resources that made an impact on me:
-
-=> ./resources.gmi List of resources
+=> ./contact-information.gmi My contact information
+=> ./resources.gmi My list of resources
 
 ## Personal blog
 
