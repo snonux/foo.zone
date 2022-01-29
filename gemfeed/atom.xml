@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-23T22:20:22+00:00</updated>
+    <updated>2022-01-29T22:10:52+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1986,21 +1986,29 @@ Total time: 1213.00s
         </content>
     </entry>
     <entry>
-        <title>Methods in C</title>
-        <link href="https://foo.zone/gemfeed/2016-11-20-methods-in-c.html" />
-        <id>https://foo.zone/gemfeed/2016-11-20-methods-in-c.html</id>
-        <updated>2016-11-20T18:36:51+01:00</updated>
+        <title>Object oriented programming with ANSI C</title>
+        <link href="https://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html" />
+        <id>https://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html</id>
+        <updated>2016-11-20T22:10:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
         </author>
-        <summary>You can do some sort of object oriented programming in the C Programming Language. However, that is very limited. But also very easy and straight forward to use.. .....to read on please visit my site.</summary>
+        <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Methods in C</h1>
-<p class="quote"><i>Published by Paul at 2016-11-20</i></p>
-<p>You can do some sort of object-oriented programming in the C Programming Language. However, that is very limited. But also very easy and straightforward to use.</p>
-<h2>Example</h2>
+                <h1>Object oriented programming with ANSI C</h1>
+<pre>
+  ___   ___  ____        ____ 
+ / _ \ / _ \|  _ \      / ___|
+| | | | | | | |_) |____| |    
+| |_| | |_| |  __/_____| |___ 
+ \___/ \___/|_|         \____|
+                              
+</pre>
+<p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
+<p>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</p>
+<h2>Function pointers</h2>
 <p>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
 <pre>
 #include &lt;stdio.h&gt;
@@ -2035,7 +2043,7 @@ int main(void) {
     printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
 }
 </pre>
-<p>As you can see, you can call the function (pointed by the function pointer) the same way as in C++ or Java via:</p>
+<p>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</p>
 <pre>
 printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, mult.calculate(a,b));
 printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
@@ -2047,20 +2055,24 @@ printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, (*div.calculate)(a,b));
 </pre>
 <p>Output:</p>
 <pre>
-pbuetow ~/git/blog/source [38268]% gcc methods-in-c.c -o methods-in-c
-pbuetow ~/git/blog/source [38269]% ./methods-in-c
+pbuetow ~/git/blog/source [38268]% gcc oop-c-example.c -o oop-c-example
+pbuetow ~/git/blog/source [38269]% ./oop-c-example
 Multiplication(3.000000, 2.000000) =&gt; 6.000000
 Division(3.000000, 2.000000) =&gt; 1.500000
 </pre>
 <p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
-<h2>The flaw</h2>
+<h2>That's not OOP, though</h2>
 <p>However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</p>
 <pre>
 mult.calculate(mult,a,b));
 </pre>
-<p>How to overcome this? You need to take it further.</p>
-<h2>Taking it further</h2>
-<p>If you want to take it further, type "Object-Oriented Programming with ANSI-C" into your favourite internet search engine, you will find some crazy stuff. Some go as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</p>
+<h2>Real object oriented proramming with C</h2>
+<p>If you want to take it further, hit "Object-Oriented Programming with ANSI-C" into your favourite internet search engine or follow the link below. It goes as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</p>
+<a class="textlink" href="https://www.cs.rit.edu/~ats/books/ooc.pdf">https://www.cs.rit.edu/~ats/books/ooc.pdf</a><br />
+<h2>OOP design patterns in the Linux Kernel</h2>
+<p>Big C software projects, like Linux, also follow some OOP techniques:</p>
+<a class="textlink" href="https://lwn.net/Articles/444910/">https://lwn.net/Articles/444910/</a><br />
+<p>C is a very old programming lanuage with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</p>
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
