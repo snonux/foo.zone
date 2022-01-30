@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-01-30T13:22:32+00:00</updated>
+    <updated>2022-01-30T13:38:50+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1989,7 +1989,7 @@ Total time: 1213.00s
         <title>Object oriented programming with ANSI C</title>
         <link href="gemini://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi" />
         <id>gemini://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi</id>
-        <updated>2016-11-20T13:22:38+00:00</updated>
+        <updated>2016-11-20T22:10:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
