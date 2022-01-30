@@ -37,15 +37,23 @@ I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bu
 
 ## EndeavourOS
 
-I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to try out another Linux distribution instead.
+I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to use another OS instead.
 
-Until 2021, I never used Arch as my main Desktop OS. There was a lot talking about Arch and Arch-based distros and I wanted to know what's the fuzz all about. However, I was lazy performing an Arch install from scratch. As a result I decided to give EndeavourOS a shot, as it comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch.
+First, I installed FreeBSD on the laptop, but for no apparent reason I had some issues with the Wifi connectivity. I know FreeBSD already pretty well and I thought it might be also a great chance to give rather something else a shot than debugging the Wifi issues. There is a lot talking about Arch and Arch-based distros and I also wanted to know what's the fuzz all about, but I was lazy performing an Arch install from scratch. So I decided to give EndeavourOS a shot instead.
 
-So far, It's not bad. While working form home, I always have my X240 next to my work laptop for things like playing music and online radio, for personal note taking and occasional emailing and instant messaging. 
+EndeavourOS comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch. As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased back in 2014.
+
+While working form home, I have my X240 next to my work laptop for things like playing music and online radio, for personal note taking and occasional emailing and instant messaging. As this is a rolling distribution it means that there are a lot of software updates coming through (sometimes even within a minute you applied your last update). Honestly, I find it a bit annoying. Every morning I am performing these monotonous steps:
+
+* Turn on the Laptop, type in my disk encryption passphrase.
+* Use *pacman* to update all packages.
+* Use *yay* to update all AUR packages.
+* Reboot the laptop (not always required, but it's to be safe).
+* Type in my encryption passphrase again
+
+I could automate these steps, but then there might break something at the worst possible time. So I might install OpenBSD or NetBSD next on the X240. Especially OpenBSD is known for it's excellent ThinkPad and Wifi support. Other than the BSDs, Void Linux also seems to be an interesting option. Worst case, I could fallback to good old Debian. Stay tuned!
 
 Other than Fedora, Arch Linux and EndeavourOS are purely backed by the community. So there is no big corporation in the backyard lurking around. They won't give you the firmware updates out of the box, though. But they are still a very good choice, especially for hobbyist and also for older hardware where future firmware updates are less likely required.
-
-As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased back in 2014.
 
 => https://endeavouros.com/
 
