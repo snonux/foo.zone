@@ -23,13 +23,13 @@
 
 > Published by Paul at ????-??-??
 
-This is a list of Operating Systems I currently use. The list is in no particular order. This site might gets updated over time. Once in a while I try to out new things and switch forth- and back from one to anther. I prefer free and open source software over proprietary software. I didn't manage to libreboot my devices yet, though. That's mostly due to the lack of time I have.
+This is a list of Operating Systems I currently use. The list is in no particular order. This site will receive updates over time. Once in a while I try to out new things and switch forth- and back from one to anther. I prefer free and open source software over proprietary software. I didn't manage to libreboot my devices yet, though. That's mostly due to the lack of time I have coupled with that most of my devices don't work with libreboot yet.
 
 => https://libreboot.org/
 
 ## Fedora Linux
 
-Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop (I already saw hardware firmware updates being installed directly through Fedora from Lenovo). Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time (well, it's baked by Red Hat after all). 
+Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop. I already saw hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat after all. 
 
 I also use Fedora on my Microsoft Surface Go 2 convertible tablet. Fedora works quite OK (and much better than Windows) on this device. It's also the perfect travel companion.
 
@@ -37,21 +37,13 @@ I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bu
 
 ## EndeavourOS
 
-I had to make a choice what to do with my old ThinkPad X240. I could have sold it on eBay, but I decided to use another OS instead. There is a lot talking about Arch and Arch-based distros and I also wanted to know what's the fuzz all about, but I was lazy performing an Arch install from scratch. So I decided to give EndeavourOS a shot.
+I installed EndeavourOS on my old ThinkPad X240 to try out an Arch based Linux distribution. I could have installed plain Arch directly, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy to use installer. I am not saying that it's difficult to install plain Arch but it's (unless you are new to Linux and want to learn about the installation procedure) just waste of time imho.
 
-EndeavourOS comes with an easy installer and is still as close as you can get to plain Arch without actually using plain Arch. As the Desktop environment I use Xfce here, which feels very snappy and fast on the X240 which I purchased back in 2014.
+I use the Xfce desktop environment here and it feels very snappy and fast on the X240 (which I purchased back in 2014). I usually have my X240 right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
-While working form home, I have my X240 next to my work laptop for things like playing music and online radio, for personal note taking and occasional emailing and instant messaging. As this is a rolling distribution it means that there are a lot of software updates coming through (sometimes even within a minute you applied your last update). Honestly, I find it a bit annoying. Every morning I am performing these monotonous steps:
+As this is a rolling distribution there are a lot of software updates coming through. Sometimes it can only take a minute until new package updates are available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks, as this is not my primary laptop anyway. Or, one day, I will switch to a non-rolling distribution on my X240.
 
-* Turn on the Laptop, type in my disk encryption passphrase.
-* Use *pacman* to update all packages.
-* Use *yay* to update all AUR packages.
-* Reboot the laptop (not always required, but it's to be safe).
-* Type in my encryption passphrase again
-
-I could automate these steps, but then there might break something at the worst possible time. 
-
-Other than Fedora, Arch Linux and EndeavourOS are purely backed by the community. So there is no big corporation in the backyard lurking around. They won't give you the firmware updates out of the box, though. But they are still a very good choice, especially for hobbyist and also for older hardware where future firmware updates are less likely required.
+In contrast to Fedora, Arch Linux and EndeavourOS are purely backed by the community. So there is no big corporation in the backyard lurking around. They won't give you the firmware updates out of the box, though. But they are still a very good choice, especially for hobbyist and also for older hardware where future firmware updates are less likely to happen.
 
 => https://endeavouros.com/
 
@@ -67,11 +59,11 @@ FreeBSD always had a place somewhere in my life:
 * On a server offering FreeBSD jails for rent
 * As an experiment running Debian GNU/kFreeBSD inside of jails
 
-Debian GNU/kFreeBSD is now dead (same is my experiment).
+Debian GNU/kFreeBSD is now dead (same is my experiment)...
 
 => https://www.debian.org/ports/kfreebsd-gnu/
 
-But I still have saved and old uname output :-):
+...but I still have saved and old uname output :-):
 
 ```
 [root@saturn /usr/jail/serv14/etc] # jexec 21 bash
@@ -81,26 +73,26 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
   Core(TM) i7 CPU 920 @ 2.67GHz GNU/kFreeBSD
 ```
 
-Currently, I use FreeBSD only on my home NAS server for storing all of my personal data (which is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives) but I have plans to replace the CentOS 7 box (see below) with FreeBSD soon.
+Currently, I use FreeBSD on my personal NAS server. The server is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives.
 
 => https://www.FreeBSD.org
 
 ## CentOS 7
 
-While CentOS 8 is already out of support, I still use CentOS 7 (which still gets security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket. Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
+While CentOS 8 is already out of support, I still use CentOS 7 (which still will receives security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket. Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
 
 => https://nextcloud.com NextCloud
 => https://www.wallabag.it/en Wallabag
 
-The reason I use Linux for these is Docker. With Docker, it's straightforward to get these up and running. Before CentOS 7 runs out of support, I will have to switch to another OS. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
+The reason I use Linux for these services is Docker. With Docker, it's straightforward to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
 
-I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back here was that I wanted to try out something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot. That's especially convenient for PHP based web-apps. :-)
+I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back was that I wanted to try out something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot. That's especially convenient for PHP based web-apps (which sometimes come along with a hell of dependencies). :-)
 
 => https://www.centos.org
 
 ## OpenBSD
 
-I use two OpenBSD boxes for my "public facing internet frontends". The services I run there are:
+I use two OpenBSD boxes for my "public facing internet front-ends". The services I run there are:
 
 * HTTP server (serving this site via https://foo.zone)
 * Gemini server (serving this site via gemini://foo.zone)
@@ -108,15 +100,15 @@ I use two OpenBSD boxes for my "public facing internet frontends". The services 
 * Authorative DNS server (for all of my hosts)
 * Some personal/private git repositories (accessible only via SSH)
 
-OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Unix like operating system would be secure enough for my personal needs and that I would not need to use OpenBSD in particular here. But nevertheless, I think it's the ideal operating system for what I am using it.
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially I love the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD in particular here. But nevertheless, I think it's the ideal operating system for what I am using it.
 
-The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron).
+The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron, all from the OpenBSD base installation).
 
 => https://www.openbsd.org
 
 ## macOS (proprietary)
 
-I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. And it's better than Windows (I suppose). Some of the inner workings of macOS were actually forked from the FreeBSD project.
+I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. Some of the inner workings of macOS were actually forked from the FreeBSD project.
 
 => https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/BSD/BSD.html developer.apple.com: BSD in macOS/Darwin
 
@@ -124,11 +116,15 @@ I have to use a MacBook Pro with macOS for work. What else can I say but that th
 
 At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
 
-So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore.
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far.  
 
 But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
 
+There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps on it. One day I might sneak into a real Linux phone (e.g. PinePhone Pro). My personal major holdback is the phone camera quality as of now. For now, I am happy with Termux on LineageOS.
+
 => https://lineageos.org/
+=> https://termux.com/ 
+=> https://www.pine64.org/pinephonepro/
 
 ## Samsung's Stock Android (mobile proprietary)
 
@@ -136,13 +132,17 @@ Unfortunatley, I still have to keep my proprietary Android phone around. Sometim
 
 ## iOS (mobile proprietary)
 
-I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessary's evil, unfortunately. I don't have it usually with me and shut off or in airplane mode when I don't need it. I also find it quite unintuitive to use.
+I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessary's evil, unfortunately. Apple is even worse than Google here. I don't have it with me all the time or switched off when I don't need it. I also find iOS quite unintuitive to use.
+
+When I am on-call at work it means that I have to be reachable 24/7 and so I have to have this phone with me (switched on). 1984 is now.
+
+=> https://en.wikipedia.org/wiki/Nineteen_Eighty-Four
 
 ## Other OSes
 
 ### InfinyTime (smartwatch)
 
-I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. AstroidOS seems also interesting for smartwatches nowadays, but I haven't looked into it yet. I will list it here anyway in case you want to check it out.
+I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. AstroidOS seems also interesting for more advanced smartwatches nowadays, but I haven't looked into it yet. I will list it here anyway in case you want to check it out.
 
 => https://www.pine64.org/pinetime/
 => https://infinitime.io/
@@ -150,7 +150,7 @@ I use it on my PineTime smartwatch. Not much to write about it yet, as I just go
 
 ### motionEyeOS
 
-Before I travel, I always install an army of RaspberryPi 3's in my house. All are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store (also in Google Play Store) which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
+I always install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
@@ -163,7 +163,7 @@ I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only si
 
 ### NetBSD
 
-I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X and ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X/ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
 
 => https://netbsd.org
 

@@ -2,9 +2,9 @@
 
 ## Personal information
 
-* Name: Paul Christopher Buetow
+* Name: Paul Buetow
 * Born in: Germany
-* Home town: London, UK
+* Currently living in: London, UK
 * E-Mail: paul at buetow dot org
 
 Currently, my E-Mail address forwards to paul dot buetow at protonmail dot com.
