@@ -23,13 +23,11 @@
 
 > Published by Paul at ????-??-??
 
-This is a list of Operating Systems I currently use. The list is in no particular order. This site will receive updates over time. Once in a while I try to out new things and switch forth- and back from one to anther. I prefer free and open source software over proprietary software. I didn't manage to libreboot my devices yet, though. That's mostly due to the lack of time I have coupled with that most of my devices don't work with libreboot yet.
-
-=> https://libreboot.org/
+This is a list of Operating Systems I currently use. This list is in no particular order and also will receive updates over time.
 
 ## Fedora Linux
 
-Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo officially supports Fedora Linux on this Laptop. I already saw hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat after all. 
+Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9 which comes along with official Linux support by Lenovo. I already saw hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat after all. 
 
 I also use Fedora on my Microsoft Surface Go 2 convertible tablet. Fedora works quite OK (and much better than Windows) on this device. It's also the perfect travel companion.
 
@@ -37,26 +35,28 @@ I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bu
 
 ## EndeavourOS
 
-I installed EndeavourOS on my old ThinkPad X240 to try out an Arch based Linux distribution. I could have installed plain Arch directly, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy to use installer. I am not saying that it's difficult to install plain Arch but it's (unless you are new to Linux and want to learn about the installation procedure) just waste of time imho.
+I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Linux distribution. I also could have installed plain Arch, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy installer. I am not saying that it's difficult to install plain Arch but it's (unless you are new to Linux and want to learn about the installation procedure) just waste of time in my humble opinion.
 
-I use the Xfce desktop environment here and it feels very snappy and fast on the X240 (which I purchased back in 2014). I usually have my X240 right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
+I use the Xfce desktop environment here which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
-As this is a rolling distribution there are a lot of software updates coming through. Sometimes it can only take a minute until new package updates are available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks, as this is not my primary laptop anyway. Or, one day, I will switch to a non-rolling distribution on my X240.
+As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next cersion of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks, as this is not my primary laptop anyway. 
 
-In contrast to Fedora, Arch Linux and EndeavourOS are purely backed by the community. So there is no big corporation in the backyard lurking around. They won't give you the firmware updates out of the box, though. But they are still a very good choice, especially for hobbyist and also for older hardware where future firmware updates are less likely to happen.
+Arch Linux and EndeavourOS are community distributions. This means, that there is no big corporation in the backyard lurking around. They won't give you the firmware updates for cutting edge hardware out of the box, though, but they are still a very good choice for hobbyist and and also for older hardware where future firmware updates are less likely to happen.
+
+I am very happy with the package availability through the official repository and AUR.
 
 => https://endeavouros.com/
 
 ## FreeBSD
 
-I have run FreeBSD in many occasions. One of my former employers even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years).
+I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regularly basis. I didn't even go to university yet then I started using it :-). Also, One of my former employers even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
 
 FreeBSD always had a place somewhere in my life:
 
 * On a Desktop PC (personal and work)
 * On a Laptop
 * On a webserver, FTP server, DNS server, mail server
-* On a server offering FreeBSD jails for rent
+* On a server offering FreeBSD jails to customers for rent
 * As an experiment running Debian GNU/kFreeBSD inside of jails
 
 Debian GNU/kFreeBSD is now dead (same is my experiment)...
@@ -84,15 +84,15 @@ While CentOS 8 is already out of support, I still use CentOS 7 (which still will
 => https://nextcloud.com NextCloud
 => https://www.wallabag.it/en Wallabag
 
-The reason I use Linux for these services is Docker. With Docker, it's straightforward to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
+The reason I use Linux and not *BSD at the moment for these services is Docker. With Docker, it's so easy-peasy to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support, though. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
 
-I have been operating FreeBSD Jails for fairly complex LAMP stacks before I started to use CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) some years back was that I wanted to try out something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot. That's especially convenient for PHP based web-apps (which sometimes come along with a hell of dependencies). :-)
+I have been using FreeBSD Jails for fairly complex LAMP stacks before I started using CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) in the first place was, that I wanted to try out something new. It doesn't hurt to switch OSes once in a while. FreeBSD is so convenient: When something goes wrong with an update, just roll back to a previous ZFS snapshot. That's especially convenient for PHP based web-apps (which sometimes come along with a hell of dependencies).
 
 => https://www.centos.org
 
 ## OpenBSD
 
-I use two OpenBSD boxes for my "public facing internet front-ends". The services I run there are:
+I use two small OpenBSD "cloud" boxes for my "public facing internet front-ends". The services I run here are:
 
 * HTTP server (serving this site via https://foo.zone)
 * Gemini server (serving this site via gemini://foo.zone)
@@ -100,9 +100,9 @@ I use two OpenBSD boxes for my "public facing internet front-ends". The services
 * Authorative DNS server (for all of my hosts)
 * Some personal/private git repositories (accessible only via SSH)
 
-OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially I love the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD in particular here. But nevertheless, I think it's the ideal operating system for what I am using it.
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (I love the manual pages in particular). OpenBSD is also known for its innovations in security. I must admin, though, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD in here. But nevertheless, I think it's the ideal operating system for what I am using it for.
 
-The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron, all from the OpenBSD base installation).
+The only software which were not part of the base system and I had to install additionally were the Gemini server (vger) and Git, which both were available as pre-compiled OpenBSD binary packages. So, besides of these two packages, it is indeed a pretty complete operating system for my use case.
 
 => https://man.openbsd.org/cron.8
 => https://man.openbsd.org/httpd.8
@@ -123,15 +123,12 @@ I have to use a MacBook Pro with macOS for work. What else can I say but that th
 
 At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
 
-So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far.  
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far. I shouldn't spend so much time on my smartphone anyway! But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
 
-But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
-
-There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps on it. One day I might sneak into a real Linux phone (e.g. PinePhone Pro). My personal major holdback is the phone camera quality as of now. For now, I am happy with Termux on LineageOS.
+There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps with it.
 
 => https://lineageos.org/
 => https://termux.com/ 
-=> https://www.pine64.org/pinephonepro/
 
 ## Samsung's Stock Android (mobile proprietary)
 
@@ -140,8 +137,7 @@ Unfortunatley, I still have to keep my proprietary Android phone around. Sometim
 ## iOS (mobile proprietary)
 
 I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessary's evil, unfortunately. Apple is even worse than Google here. I don't have it with me all the time or switched off when I don't need it. I also find iOS quite unintuitive to use.
-
-When I am on-call at work it means that I have to be reachable 24/7 and so I have to have this phone with me (switched on). 1984 is now.
+Being on-call for work means to to be reachable 24/7. This implies that the phone is carried around with you (in an switched-on state). 1984 is now.
 
 => https://en.wikipedia.org/wiki/Nineteen_Eighty-Four
 
@@ -149,21 +145,20 @@ When I am on-call at work it means that I have to be reachable 24/7 and so I hav
 
 ### InfinyTime (smartwatch)
 
-I use it on my PineTime smartwatch. Not much to write about it yet, as I just got started with it recently and am only using it because of its fancy watch face and also I use it as a pedometer. AstroidOS seems also interesting for more advanced smartwatches nowadays, but I haven't looked into it yet. I will list it here anyway in case you want to check it out.
+I use it on my PineTime smartwatch. Other than checking the time and my step count, I really don't do anything else fancy with it (yet). 
 
 => https://www.pine64.org/pinetime/
 => https://infinitime.io/
-=> https://asteroidos.org/
 
 ### motionEyeOS
 
-I always install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
+I now install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time (each room one camera). All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
 ### Kobo OS (proprietary)
 
-I use a Kobo Forma as my e-reader device. I have disabled the Wifi and I only sideload ePubs on it. Otherwise, it would call home to Rakuten. I would like to replace it one day with an open source e-reader device like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. It boots already, but is far from being usable as a normal e-reader.
+I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi and to only sideload DRM free ePubs on it. Even offline, it's a fully capable reader device. I wouldn't like the Kobo to call home to Rakuten. I would live to replace it one day with an open source e-reader alternative like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. The latter boots already, but is far from being usable as a normal e-reader.
 
 => https://www.pine64.org/pinenote/ The PineNote
 => https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
@@ -182,7 +177,7 @@ A Android TV box is used for watching Netflix. Currently in the process of being
 
 ### SailfishOS (mobile proprietary)
 
-Before switching to LineageOS, I gave SailfishOS a shot. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components.
+I tried out SailfishOS before switching to LineageOS as my daily driver. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components.
 
 => https://sailfishos.org/
 
