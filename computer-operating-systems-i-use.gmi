@@ -39,7 +39,7 @@ I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Lin
 
 I use the Xfce desktop environment here which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
-As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next cersion of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks, as this is not my primary laptop anyway. 
+As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next version of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks, as this is not my primary laptop anyway. 
 
 Arch Linux and EndeavourOS are community distributions. This means, that there is no big corporation in the backyard lurking around. They won't give you the firmware updates for cutting edge hardware out of the box, though, but they are still a very good choice for hobbyist and and also for older hardware where future firmware updates are less likely to happen.
 
@@ -49,7 +49,7 @@ I am very happy with the package availability through the official repository an
 
 ## FreeBSD
 
-I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regularly basis. I didn't even go to university yet then I started using it :-). Also, One of my former employers even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
+I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regularly basis. I didn't even go to university yet then I started using it :-). Also, a former employer of mine even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
 
 FreeBSD always had a place somewhere in my life:
 
@@ -100,22 +100,15 @@ I use two small OpenBSD "cloud" boxes for my "public facing internet front-ends"
 * Authorative DNS server (for all of my hosts)
 * Some personal/private git repositories (accessible only via SSH)
 
-OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (I love the manual pages in particular). OpenBSD is also known for its innovations in security. I must admin, though, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD in here. But nevertheless, I think it's the ideal operating system for what I am using it for.
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (I love the manual pages in particular). OpenBSD is also known for its innovations in security. I must admin, though, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD here. But nevertheless, I think it's the ideal operating system for what I am using it for.
 
-The only software which were not part of the base system and I had to install additionally were the Gemini server (vger) and Git, which both were available as pre-compiled OpenBSD binary packages. So, besides of these two packages, it is indeed a pretty complete operating system for my use case.
-
-=> https://man.openbsd.org/cron.8
-=> https://man.openbsd.org/httpd.8
-=> https://man.openbsd.org/inetd.8
-=> https://man.openbsd.org/nsd.8
-=> https://man.openbsd.org/relayd.8
-=> https://man.openbsd.org/smtpd.8
+The only softwares which were not part of the base system and I had to install additionally were the Gemini server (vger) and Git, which both were available as pre-compiled OpenBSD binary packages. So, besides of these two packages, it is indeed a pretty complete operating system for my use case.
 
 => https://www.openbsd.org
 
 ## macOS (proprietary)
 
-I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. Some of the inner workings of macOS were actually forked from the FreeBSD project.
+I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. Some of the inner workings of macOS were actually forked from the FreeBSD project. I find the macOS UI rather confusing.
 
 => https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/BSD/BSD.html developer.apple.com: BSD in macOS/Darwin
 
@@ -123,7 +116,7 @@ I have to use a MacBook Pro with macOS for work. What else can I say but that th
 
 At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
 
-So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far. I shouldn't spend so much time on my smartphone anyway! But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far. I shouldn't spend so much time on my smartphone anyway! And the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a proprietary mobile phone also can be done with LineageOS.
 
 There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps with it.
 
@@ -137,7 +130,7 @@ Unfortunatley, I still have to keep my proprietary Android phone around. Sometim
 ## iOS (mobile proprietary)
 
 I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessary's evil, unfortunately. Apple is even worse than Google here. I don't have it with me all the time or switched off when I don't need it. I also find iOS quite unintuitive to use.
-Being on-call for work means to to be reachable 24/7. This implies that the phone is carried around with you (in an switched-on state). 1984 is now.
+Being on-call for work means to to be reachable 24/7. This implies that the phone is carried around all the time (in an switched-on state). 1984 is now.
 
 => https://en.wikipedia.org/wiki/Nineteen_Eighty-Four
 
@@ -152,20 +145,20 @@ I use it on my PineTime smartwatch. Other than checking the time and my step cou
 
 ### motionEyeOS
 
-I now install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time (each room one camera). All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
+I usually install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
 ### Kobo OS (proprietary)
 
-I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi and to only sideload DRM free ePubs on it. Even offline, it's a fully capable reader device. I wouldn't like the Kobo to call home to Rakuten. I would live to replace it one day with an open source e-reader alternative like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. The latter boots already, but is far from being usable as a normal e-reader.
+I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi and to only sideload DRM free ePubs on it. Even offline, it's a fully capable reader device. I wouldn't like the Kobo to call home to Rakuten. I would love to replace it one day with an open source e-reader alternative like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. The latter boots already, but is far from being usable as a normal e-reader.
 
 => https://www.pine64.org/pinenote/ The PineNote
 => https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
 
 ### NetBSD
 
-I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X/ratpoison WM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X/evilWM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
 
 => https://netbsd.org
 
