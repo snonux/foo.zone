@@ -123,11 +123,15 @@ I have to use a MacBook Pro with macOS for work. What else can I say but that th
 
 At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
 
-So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s). 
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Somtimes apps crash for no apparent reason(s) but I get around it so far.  
 
 But the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a mobile phone also can be done with LineageOS.
 
+There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps on it. One day I might sneak into a real Linux phone (e.g. PinePhone Pro). My personal major holdback is the phone camera quality as of now. For now, I am happy with Termux on LineageOS.
+
 => https://lineageos.org/
+=> https://termux.com/ 
+=> https://www.pine64.org/pinephonepro/
 
 ## Samsung's Stock Android (mobile proprietary)
 
