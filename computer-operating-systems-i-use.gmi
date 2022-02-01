@@ -1,4 +1,4 @@
-# Computer operating systems I use
+# Computer operating systems I use(d)
 
 ```
               /(        )`
@@ -103,6 +103,13 @@ I use two OpenBSD boxes for my "public facing internet front-ends". The services
 OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (especially I love the manual pages). OpenBSD is also known for its innovations in security. I must admin, thought, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD in particular here. But nevertheless, I think it's the ideal operating system for what I am using it.
 
 The only software which are not part of the base system and I had to install additionally were the Gemini server (vger) and Git (both were available as pre-compiled OpenBSD binary packages). So, besides of these two packages, it is indeed a pretty complete operating system for my use case (mainly httpd, OpenSMTPD, nsd, relayd, inetd, cron, all from the OpenBSD base installation).
+
+=> https://man.openbsd.org/cron.8
+=> https://man.openbsd.org/httpd.8
+=> https://man.openbsd.org/inetd.8
+=> https://man.openbsd.org/nsd.8
+=> https://man.openbsd.org/relayd.8
+=> https://man.openbsd.org/smtpd.8
 
 => https://www.openbsd.org
 
