@@ -188,7 +188,6 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 => https://en.wikipedia.org/wiki/MS-DOS Microsoft DOS - With and without Windows 3.x
 => https://en.wikipedia.org/wiki/Symbian Symbian - The first smartphone OS I used 
 => https://en.wikipedia.org/wiki/Wear_OS - WearOS - On a google smartwatch
-=> https://freedos.org FreeDOS - Open source alternative to DOS
 => https://www.debian.org Debian GNU/Linux - Rock solid, but atm I prefer Fedora/EndeavourOS
 => https://www.linuxfromscratch.org/ - Linux from scratch - The best way to learn Linux
 => https://www.suse.com/products/server/ - SUSE Linux Enterprise - Only for some work stuff
@@ -196,10 +195,13 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 ### Other OSes I only had a glance at...
 
 => https://archiveos.org/opensolaris/ OpenSolaris - Continuation of the open source version of Solaris
+=> https://archlinuxarm.org/ Arch Linux ARM
 => https://ecomstation.com/ eComStation - Continuation of IBM OS/2
 => https://en.wikipedia.org/wiki/Minix Minix
 => https://en.wikipedia.org/wiki/OpenVMS OpenVMS
 => https://en.wikipedia.org/wiki/OS/2 IBM OS/2 Warp
+=> https://freedos.org FreeDOS - Open source alternative to DOS
+=> https://plan9.io/plan9/ Plan9 
 => https://reactos.org/ ReactOS - A Microsoft Windows open source clone
 => https://www.debian.org/ports/hurd/ Debian GNU/Hurd - Debian on the GNU kernel
 => https://www.debian.org/ports/kfreebsd-gnu/ Debian GNU/kFreeBSD - Debian on the FreeBSD kernel
