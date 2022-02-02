@@ -23,7 +23,7 @@
 
 > Published by Paul at ????-??-??
 
-This is a list of Operating Systems I currently use. This list is in no particular order and also will receive updates over time.
+This is a list of Operating Systems I currently use. This list is in no particular order and also will receive updates over time. The very first operating system I used was MS-DOS and the very first Unix like operating system I used was SuSE Linux 5.3.
 
 ## Fedora Linux
 
@@ -35,7 +35,9 @@ I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bu
 
 ## EndeavourOS
 
-I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Linux distribution. I also could have installed plain Arch, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy installer. I am not saying that it's difficult to install plain Arch but it's (unless you are new to Linux and want to learn about the installation procedure) just waste of time in my humble opinion.
+I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Linux distribution. I also could have installed plain Arch, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy installer. I am not saying that it's difficult to install plain Arch but it's (unless you are new to Linux and want to learn about the installation procedure) just waste of time in my humble opinion. Give Linux From Scratch a shot instead if you really want to learn about linux.
+
+=> https://www.linuxfromscratch.org/
 
 I use the Xfce desktop environment here which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
@@ -156,23 +158,61 @@ I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi 
 => https://www.pine64.org/pinenote/ The PineNote
 => https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
 
+### Android TV (proprietary)
+
+A Android TV box is used for watching Netflix and Amazon Prime video (yes, I am human too and rely once in a while on big tech streaming services). The Android TV box is currently in the process of being replaced by OSMC, though.
+
+=> https://osmc.tv/
+
+## Other OSes..
+
+This section is just for the sake of having a complete list of all OSes I used for some significant amount of time. I might not use all of these anymore...
+
 ### NetBSD
 
 I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X/evilWM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
 
 => https://netbsd.org
 
-### Android TV (proprietary)
+### Other OSes used...
 
-A Android TV box is used for watching Netflix. Currently in the process of being replaced by OSMC.
+=> https://sailfish.org SailfishOS - Nice mobile os, but unfortunately includes proprietary components
+=> https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux Red Hat Enterprose Linux - Only for some work stuff
 
-=> https://osmc.tv/
+### Other OSes not used anymore...
 
-### SailfishOS (mobile proprietary)
+=> https://en.opensuse.org/Archive:S.u.S.E._Linux_5.3 SuSE Linux 5.3 - The first Linux OS I used
+=> https://en.wikipedia.org/wiki/IRIX SGI's IRIX - On a SGI Onyx 3200
+=> https://en.wikipedia.org/wiki/MeeGo MeeGo - On a Nokia N9
+=> https://en.wikipedia.org/wiki/Microsoft_Windows Microsoft Windows
+=> https://en.wikipedia.org/wiki/MS-DOS Microsoft DOS - With and without Windows 3.x
+=> https://en.wikipedia.org/wiki/Symbian Symbian - The first smartphone OS I used 
+=> https://en.wikipedia.org/wiki/Wear_OS - WearOS - On a google smartwatch
+=> https://freedos.org FreeDOS - Open source alternative to DOS
+=> https://www.debian.org Debian GNU/Linux - Rock solid, but atm I prefer Fedora/EndeavourOS
+=> https://www.linuxfromscratch.org/ - Linux from scratch - The best way to learn Linux
+=> https://www.suse.com/products/server/ - SUSE Linux Enterprise - Only for some work stuff
 
-I tried out SailfishOS before switching to LineageOS as my daily driver. To some degree it works. It can even run Android apps. But I don't like that SailfishOS also includes closed source components.
+### Other OSes I only had a glance at...
 
-=> https://sailfishos.org/
+=> https://archiveos.org/opensolaris/ OpenSolaris - Continuation of the open source version of Solaris
+=> https://ecomstation.com/ eComStation - Continuation of IBM OS/2
+=> https://en.wikipedia.org/wiki/Minix Minix
+=> https://en.wikipedia.org/wiki/OpenVMS OpenVMS
+=> https://en.wikipedia.org/wiki/OS/2 IBM OS/2 Warp
+=> https://reactos.org/ ReactOS - A Microsoft Windows open source clone
+=> https://www.debian.org/ports/hurd/ Debian GNU/Hurd - Debian on the GNU kernel
+=> https://www.debian.org/ports/kfreebsd-gnu/ Debian GNU/kFreeBSD - Debian on the FreeBSD kernel
+=> https://www.gentoo.org Gentoo Linux
+=> https://www.haiku-os.org/ Haiku - A BeOS open source clone
+=> https://www.oracle.com/solaris/solaris11/ Sun Solaris (now owned by Oracle)
+=> https://www.puredarwin.org/ PureDarwin - Open source operating system parts from macOS
+
+### Other OSes which seem interesting...
+
+=> https://asteroidos.org/ Asteroids OS - Open source smartphone OS
+=> https://www.dragonflybsd.org/ DragonFly BSD - Fork of FreeBSD 4
+=> http://wiki.postmarketos.org/wiki/Phosh Phosh (on postmarketOS) - A true Linux shell for the smartphone
 
 E-Mail me your comments to paul at buetow dot org!
 
