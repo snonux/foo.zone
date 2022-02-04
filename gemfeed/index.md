@@ -2,10 +2,7 @@
 
 ## To be in the .zone!
 
-<<<<<<< HEAD
 [2022-02-04 - Computer operating systems I use(d)](./2022-02-04-computer-operating-systems-i-use.md)  
-=======
->>>>>>> 71c68e8c47b04482acac8b63f8468854ac38bb52
 [2022-01-23 - Welcome to the foo.zone](./2022-01-23-welcome-to-the-foo.zone.md)  
 [2022-01-01 - Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2021-12-26 - How to stay sane as a DevOps person ](./2021-12-26-how-to-stay-sane-as-a-devops-person.md)  
