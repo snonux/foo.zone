@@ -6,8 +6,8 @@ All sites listed below are reachable via IPv4 as well as via IPv6.
 
 ## Gemini protocol
 
-[gemini://foo.zone - Germany, Falkenstein](gemini://foo.zone)  
-[gemini://www.foo.zone - Japan, Tokyo](gemini://www.foo.zone)  
+[gemini://foo.zone - Falkenstein, Germany](gemini://foo.zone)  
+[gemini://www.foo.zone - Tokyo, Japan](gemini://www.foo.zone)  
 
 Wondering what's the Gemini protocol about? Read:
 
@@ -15,9 +15,9 @@ Wondering what's the Gemini protocol about? Read:
 
 ## HTTP protocol
 
-[https://foo.zone - Germany, Falkenstein](https://foo.zone)  
-[https://www.foo.zone - Japan, Tokyo](https://www.foo.zone)  
-[https://www2.buetow.org - Germany, Codeberg page](https://www2.buetow.org)  
+[https://foo.zone - Falkenstein, Germany](https://foo.zone)  
+[https://www.foo.zone - Tokyo, Japan](https://www.foo.zone)  
+[https://www2.buetow.org - Codeberg page, somewhere in Germany](https://www2.buetow.org)  
 
 That's all for now...
 
