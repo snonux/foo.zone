@@ -39,7 +39,7 @@ I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Lin
 
 => https://www.linuxfromscratch.org/
 
-I use the Xfce desktop environment here which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
+On EndeavourOS, I use the Xfce desktop environment which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
 As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next version of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks occasionally, as this is not my primary laptop anyway. 
 
@@ -53,7 +53,7 @@ I am very happy with the package availability through the official repository an
 
 I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regularly basis. I didn't even go to university yet then I started using it :-). Also, a former employer of mine even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
 
-I remember it used to be a pain bootstrapping Java for FreeBSD due to the lack of pre-compiled binary packages. You had first to enable the Linux compatibility layer, then install Linux Java, and then compile FreeBSD Java with the bootstrapped Linux Java (yes, Java is mainly programmed in C++, but for some reason compiling Java also required an installation of Java). Nowadays, there are ready OpenJDK binary packages you could install. So things have improved a lot since.
+I remember it used to be a pain bootstrapping Java for FreeBSD due to the lack of pre-compiled binary packages. You had first to enable the Linux compatibility layer, then install Linux Java, and then compile FreeBSD Java with the bootstrapped Linux Java (yes, Java is mainly programmed in C++, but for some reason compiling Java for FreeBSD also required an installation of Java). Nowadays, there are ready OpenJDK binary packages you could install. So things have improved a lot since.
 
 FreeBSD always had a place somewhere in my life:
 
@@ -72,8 +72,8 @@ Debian GNU/kFreeBSD is now dead (same is my experiment)...
 ```
 [root@saturn /usr/jail/serv14/etc] # jexec 21 bash
 root@rhea:/ # uname -a
-GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 27 13:10:09 CET \
-  2010 root@saturn.buetow.org:/usr/obj/usr/srcs/freebsd.src8/src/sys/SERV10 x86 64 amd64 Intel(R) \
+GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 27 13:10:09 CET
+  2010 root@saturn.buetow.org:/usr/obj/usr/srcs/freebsd.src8/src/sys/SERV10 x86 64 amd64 Intel(R)
   Core(TM) i7 CPU 920 @ 2.67GHz GNU/kFreeBSD
 ```
 
@@ -83,14 +83,14 @@ Currently, I use FreeBSD on my personal NAS server. The server is a regular PC w
 
 ## CentOS 7
 
-While CentOS 8 is already out of support, I still use CentOS 7 (which still will receives security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket. Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
+While CentOS 8 is already out of support, I still use CentOS 7 (which still will receives security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
 
 => https://nextcloud.com NextCloud
 => https://www.wallabag.it/en Wallabag
 
 The reason I use Linux and not *BSD at the moment for these services is Docker. With Docker, it's so easy-peasy to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support, though. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
 
-I have been using FreeBSD Jails for fairly complex LAMP stacks before I started using CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) in the first place was, that I wanted to try out something new.
+I have been using FreeBSD Jails for LAMP stacks before I started using CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) in the first place was, that I wanted to try out something new.
 
 => https://www.centos.org
 
@@ -101,7 +101,7 @@ I use two small OpenBSD "cloud" boxes for my "public facing internet front-ends"
 * HTTP server (serving this site via https://foo.zone)
 * Gemini server (serving this site via gemini://foo.zone)
 * MTA server (for receiving E-Mails to my hosts)
-* Authorative DNS server (for all of my hosts)
+* Authorative DNS server (for all of my "domains")
 * Some personal/private git repositories (accessible only via SSH)
 
 OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (I love the manual pages in particular). OpenBSD is also known for its innovations in security. I must admin, though, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD here. But nevertheless, I think it's the ideal operating system for what I am using it for.
@@ -153,7 +153,7 @@ I use it on my PineTime smartwatch. Other than checking the time and my step cou
 
 ### motionEyeOS
 
-I usually install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels though one of my frontend servers.
+I usually install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels through one of my frontend servers.
 
 => https://github.com/ccrisan/motioneyeos
 
@@ -162,19 +162,19 @@ I usually install an army of RaspberryPi 3's in my house before I travel for a p
 I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi and to only sideload DRM free ePubs on it. Even offline, it's a fully capable reader device. I wouldn't like the Kobo to call home to Rakuten. I would love to replace it one day with an open source e-reader alternative like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. The latter boots already, but is far from being usable as a normal e-reader.
 
 => https://www.pine64.org/pinenote/ The PineNote
-=> https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-link Linux tablet
+=> https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-ink Linux tablet
 
 But as a fall-back, someone could still use the good old dead tree format!
 
 ### Android TV (proprietary)
 
-A Android TV box is used for watching Netflix and Amazon Prime video (yes, I am human too and rely once in a while on big tech streaming services). The Android TV box is currently in the process of being replaced by OSMC, though. Most services seem to work fine with OSMC, but didn't get around tinkering with Netflix there yet.
+An Android TV box is used for watching movies and series on Netflix and Amazon Prime video (yes, I am human too and rely once in a while on big tech streaming services). The Android TV box is currently in the process of being replaced by OSMC, though. Most services seem to work fine with OSMC, but didn't get around tinkering with Netflix and Amazon there yet.
 
 => https://osmc.tv/
 
 ## Other OSes..
 
-This section is just for the sake of having a complete list of all OSes I used for some significant amount of time. I might not use all of these any more...
+This section is just for the sake of having a complete list of all OSes I used for some significant amount of time. I might not use all of them any more...
 
 ### NetBSD
 
