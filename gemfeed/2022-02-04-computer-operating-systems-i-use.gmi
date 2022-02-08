@@ -41,7 +41,7 @@ I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Lin
 
 On EndeavourOS, I use the Xfce desktop environment which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
 
-As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next version of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll OK if it breaks occasionally, as this is not my primary laptop anyway. 
+As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next version of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll be OK if it breaks occasionally, as this is not my primary laptop anyway. 
 
 Arch Linux and EndeavourOS are community distributions. This means, that there is no big corporation in the backyard lurking around. They won't give you the firmware updates for cutting edge hardware out of the box, though, but they are still a very good choice for hobbyist and also for older hardware where future firmware updates are less likely to happen.
 
@@ -51,7 +51,7 @@ I am very happy with the package availability through the official repository an
 
 ## FreeBSD
 
-I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regularly basis. I didn't even go to university yet then I started using it :-). Also, a former employer of mine even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
+I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regular basis. I didn't even go to university yet then I started using it :-). Also, a former employer of mine even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
 
 I remember it used to be a pain bootstrapping Java for FreeBSD due to the lack of pre-compiled binary packages. You had first to enable the Linux compatibility layer, then install Linux Java, and then compile FreeBSD Java with the bootstrapped Linux Java (yes, Java is mainly programmed in C++, but for some reason compiling Java for FreeBSD also required an installation of Java). Nowadays, there are ready OpenJDK binary packages you could install. So things have improved a lot since.
 
