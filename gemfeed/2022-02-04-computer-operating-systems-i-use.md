@@ -83,7 +83,7 @@ Currently, I use FreeBSD on my personal NAS server. The server is a regular PC w
 
 ## CentOS 7
 
-While CentOS 8 is already out of support, I still use CentOS 7 (which still will receives security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
+While CentOS 8 is already out of support, I still use CentOS 7 (which will receive security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
 
 [NextCloud](https://nextcloud.com)  
 [Wallabag](https://www.wallabag.it/en)  
@@ -195,10 +195,10 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 [Microsoft Windows](https://en.wikipedia.org/wiki/Microsoft_Windows)  
 [Microsoft DOS - With and without Windows 3.x](https://en.wikipedia.org/wiki/MS-DOS)  
 [Symbian - The first smartphone OS I used ](https://en.wikipedia.org/wiki/Symbian)  
-[- WearOS - On a Google smartwatch](https://en.wikipedia.org/wiki/Wear_OS)  
+[WearOS - On a Google smartwatch](https://en.wikipedia.org/wiki/Wear_OS)  
 [Debian GNU/Linux - Rock solid, but atm. I prefer Fedora/EndeavourOS](https://www.debian.org)  
-[- Linux from scratch - The best way to learn Linux](https://www.linuxfromscratch.org/)  
-[- SUSE Linux Enterprise - Only for some work stuff](https://www.suse.com/products/server/)  
+[Linux from scratch - The best way to learn Linux](https://www.linuxfromscratch.org/)  
+[SUSE Linux Enterprise - Only for some work stuff](https://www.suse.com/products/server/)  
 
 ### Other OSes I only had a glance at...
 
@@ -216,7 +216,7 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 [Gentoo Linux](https://www.gentoo.org)  
 [Haiku - A BeOS open source clone](https://www.haiku-os.org/)  
 [Sun Solaris (now owned by Oracle)](https://www.oracle.com/solaris/solaris11/)  
-[PureDarwin - Open source operating system based on the open parts of macOS](https://www.puredarwin.org/)  
+[OpenDarwin ("now" PureDarwin) - Open source operating system based on the open parts of macOS](https://www.puredarwin.org/)  
 
 ### Other OSes which seem interesting...
 
