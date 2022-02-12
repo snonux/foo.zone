@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-02-08T23:05:03+00:00</updated>
+    <updated>2022-02-12T16:03:29+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -77,7 +77,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <p>Currently, I use FreeBSD on my personal NAS server. The server is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives.</p>
 <a class="textlink" href="https://www.FreeBSD.org">https://www.FreeBSD.org</a><br />
 <h2>CentOS 7</h2>
-<p>While CentOS 8 is already out of support, I still use CentOS 7 (which still will receives security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.</p>
+<p>While CentOS 8 is already out of support, I still use CentOS 7 (which will receive security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.</p>
 <a class="textlink" href="https://nextcloud.com">NextCloud</a><br />
 <a class="textlink" href="https://www.wallabag.it/en">Wallabag</a><br />
 <p>The reason I use Linux and not *BSD at the moment for these services is Docker. With Docker, it's so easy-peasy to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support, though. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. </p>
@@ -143,10 +143,10 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class="textlink" href="https://en.wikipedia.org/wiki/Microsoft_Windows">Microsoft Windows</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/MS-DOS">Microsoft DOS - With and without Windows 3.x</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Symbian">Symbian - The first smartphone OS I used </a><br />
-<a class="textlink" href="https://en.wikipedia.org/wiki/Wear_OS">- WearOS - On a Google smartwatch</a><br />
+<a class="textlink" href="https://en.wikipedia.org/wiki/Wear_OS">WearOS - On a Google smartwatch</a><br />
 <a class="textlink" href="https://www.debian.org">Debian GNU/Linux - Rock solid, but atm. I prefer Fedora/EndeavourOS</a><br />
-<a class="textlink" href="https://www.linuxfromscratch.org/">- Linux from scratch - The best way to learn Linux</a><br />
-<a class="textlink" href="https://www.suse.com/products/server/">- SUSE Linux Enterprise - Only for some work stuff</a><br />
+<a class="textlink" href="https://www.linuxfromscratch.org/">Linux from scratch - The best way to learn Linux</a><br />
+<a class="textlink" href="https://www.suse.com/products/server/">SUSE Linux Enterprise - Only for some work stuff</a><br />
 <h3>Other OSes I only had a glance at...</h3>
 <a class="textlink" href="https://archiveos.org/opensolaris/">OpenSolaris - Continuation of the open source version of Solaris</a><br />
 <a class="textlink" href="https://archlinuxarm.org/">Arch Linux ARM</a><br />
@@ -162,7 +162,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class="textlink" href="https://www.gentoo.org">Gentoo Linux</a><br />
 <a class="textlink" href="https://www.haiku-os.org/">Haiku - A BeOS open source clone</a><br />
 <a class="textlink" href="https://www.oracle.com/solaris/solaris11/">Sun Solaris (now owned by Oracle)</a><br />
-<a class="textlink" href="https://www.puredarwin.org/">PureDarwin - Open source operating system based on the open parts of macOS</a><br />
+<a class="textlink" href="https://www.puredarwin.org/">OpenDarwin ("now" PureDarwin) - Open source operating system based on the open parts of macOS</a><br />
 <h3>Other OSes which seem interesting...</h3>
 <a class="textlink" href="https://asteroidos.org/">Asteroids OS - Open source smartphone OS</a><br />
 <a class="textlink" href="https://www.dragonflybsd.org/">DragonFly BSD - Fork of FreeBSD 4</a><br />
