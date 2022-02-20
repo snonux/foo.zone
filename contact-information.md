@@ -5,32 +5,30 @@
 * Name: Paul Buetow
 * Born in: Germany
 * Currently living in: London, UK
-* E-Mail: paul at buetow dot org
+* E-Mail: paul at buetow period org
 
-Currently, my E-Mail address forwards to paul dot buetow at protonmail dot com.
+## My sites
 
-## Quick Links
+[sidewalk.ninja - My street photography site](https://sidewalk.ninja)  
+[foo.zone - My personal website and blog](https://foo.zone)  
+[foo.zone - My personal website and blog (Gemini)](gemini://foo.zone)  
+[codeberg.org/foozone - My personal Codeberg page](https://codeberg.org/foozone)  
+[github.com/mimecast/dtail - DTail at Mimecast](https://github.com/mimecast/dtail)  
+[github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)](https://github.com/mimecast/ioriot)  
 
-### Social Media
+## Social Media
 
 I am sharing articles that I found interesting regularly these social media channels:
 
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
-[My Twitter profile](https://twitter.com/foozone)  
-[My Telegram channel](https://t.me/foo.zone)  
+[twitter.com/foozone - My Twitter profile](https://twitter.com/foozone)  
+[t.me/foo.zone - My Telegram channel](https://t.me/foo.zone)  
 
-### Internet Relay Chat
+## Internet Relay Chat
 
 I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as "rantanplan".
 
-### My Open Source code repositories
-
-[My personal Codeberg page](https://codeberg.org/foozone)  
-[My personal GitHub page (slowly moving all my stuff over to Codeberg)](https://github.com/foozone)  
-[DTail at Mimecast](https://github.com/mimecast/dtail)  
-[I/O Riot at Mimecast (currently, not maintained)](https://github.com/mimecast/ioriot)  
-
-### Site mirrors
+## Site mirrors
 
 [Check out all mirrors of this site (Gemini as well as HTTP+HTML)](./site-mirrors.md)  
 

@@ -21,7 +21,7 @@
          `--{__________)        \/   "Berkeley Unix Daemon"
 ```
 
-> Published by Paul at 2022-02-04
+> Published by Paul at 2022-02-04, udated 2022-02-18
 
 This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
 
@@ -197,6 +197,7 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 [Symbian - The first smartphone OS I used ](https://en.wikipedia.org/wiki/Symbian)  
 [WearOS - On a Google smartwatch](https://en.wikipedia.org/wiki/Wear_OS)  
 [Debian GNU/Linux - Rock solid, but atm. I prefer Fedora/EndeavourOS](https://www.debian.org)  
+[Ubuntu Linux (based on Debian)](https://www.ubuntu.com)  
 [Linux from scratch - The best way to learn Linux](https://www.linuxfromscratch.org/)  
 [SUSE Linux Enterprise - Only for some work stuff](https://www.suse.com/products/server/)  
 
