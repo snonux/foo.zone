@@ -9,12 +9,12 @@
 
 ## My sites
 
-[sidewalk.ninja - My street photography site](https://sidewalk.ninja)  
 [foo.zone - My personal website and blog](https://foo.zone)  
 [foo.zone - My personal website and blog (Gemini)](gemini://foo.zone)  
 [codeberg.org/foozone - My personal Codeberg page](https://codeberg.org/foozone)  
 [dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)](https://github.com/mimecast/ioriot)  
+[sidewalk.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://sidewalk.ninja)  
 
 ## Social Media
 
