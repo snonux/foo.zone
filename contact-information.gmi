@@ -13,7 +13,7 @@
 => https://foo.zone foo.zone - My personal website and blog
 => gemini://foo.zone foo.zone - My personal website and blog (Gemini)
 => https://codeberg.org/foozone codeberg.org/foozone - My personal Codeberg page
-=> https://github.com/mimecast/dtail github.com/mimecast/dtail - DTail at Mimecast
+=> https://dtail.dev dtail.dev - DTail at Mimecast
 => https://github.com/mimecast/ioriot github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)
 
 ## Social Media
