@@ -13,7 +13,7 @@
 [foo.zone - My personal website and blog](https://foo.zone)  
 [foo.zone - My personal website and blog (Gemini)](gemini://foo.zone)  
 [codeberg.org/foozone - My personal Codeberg page](https://codeberg.org/foozone)  
-[github.com/mimecast/dtail - DTail at Mimecast](https://github.com/mimecast/dtail)  
+[dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)](https://github.com/mimecast/ioriot)  
 
 ## Social Media
