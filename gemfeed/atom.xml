@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-02-12T16:03:29+00:00</updated>
+    <updated>2022-02-20T19:58:12+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -39,7 +39,7 @@
   (FL)   ,'  ,-----'   |        \
          `--{__________)        \/   "Berkeley Unix Daemon"
 </pre>
-<p class="quote"><i>Published by Paul at 2022-02-04</i></p>
+<p class="quote"><i>Published by Paul at 2022-02-04, udated 2022-02-18</i></p>
 <p>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</p>
 <h2>Fedora Linux</h2>
 <p>Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo which comes along with official Lenovo Linux support. I already noticed hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat.</p>
@@ -145,6 +145,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class="textlink" href="https://en.wikipedia.org/wiki/Symbian">Symbian - The first smartphone OS I used </a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Wear_OS">WearOS - On a Google smartwatch</a><br />
 <a class="textlink" href="https://www.debian.org">Debian GNU/Linux - Rock solid, but atm. I prefer Fedora/EndeavourOS</a><br />
+<a class="textlink" href="https://www.ubuntu.com">Ubuntu Linux (based on Debian)</a><br />
 <a class="textlink" href="https://www.linuxfromscratch.org/">Linux from scratch - The best way to learn Linux</a><br />
 <a class="textlink" href="https://www.suse.com/products/server/">SUSE Linux Enterprise - Only for some work stuff</a><br />
 <h3>Other OSes I only had a glance at...</h3>
