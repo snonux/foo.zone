@@ -1,0 +1,55 @@
+# The release of DTail 4.0.0
+
+=> ./2022-03-05-the-release-of-dtail-4.0.0/logo.png
+
+> Published by Paul at 2022-03-05
+
+I have recently released DTail 4.0.0 and this blog post goes through some of the new goodies. I have written about DTail before. Have a look here:
+
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi DTail - The distributed log tail program
+
+## Summary
+
+DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
+
+=> ./2022-03-05-the-release-of-dtail-4.0.0/dtail.gif
+
+## What's new in 4.0.0?
+
+### Integration testing suite
+
+DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases. 
+
+
+=> ./2022-03-05-the-release-of-dtail-4.0.0/testing.gif
+
+### Improved code
+
+SonarQube/BlackDuck + refactorings to reduce code complexity.
+
+### Rewritten logging
+
+### Configurable terminal color codes
+
+plus new default
+
+### Improved documentation
+
+### Serverless mode
+
+### Spartan mode
+
+### Use of memory pools
+
+byte buffers and string builders
+
+### Bugfixes and updates to newer dependencies
+
+Check out the DTail GitHub page for more information:
+
+=> https://dtail.dev
+=> https://github.com/mimecast/dtail
+
+E-Mail me your comments to paul at buetow dot org!
+
+=> ../ Go back to the main site
