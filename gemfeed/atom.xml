@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-02-20T19:58:51+00:00</updated>
+    <updated>2022-03-04T09:42:21+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>The release of DTail 4.0.0</title>
+        <link href="gemini://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0.gmi</id>
+        <updated>2022-03-05T09:42:21+00:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>I have recently released DTail 4.0.0 and this blog post goes through some of the new goodies. I have written about DTail before. Have a look here:. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>The release of DTail 4.0.0</h1>
+<a href="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/logo.png"><img src="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/logo.png" /></a><br />
+<p class="quote"><i>Published by Paul at 2022-03-05</i></p>
+<p>I have recently released DTail 4.0.0 and this blog post goes through some of the new goodies. I have written about DTail before. Have a look here:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
+<h2>Summary</h2>
+<p>DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.</p>
+<a href="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/dtail.gif"><img src="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/dtail.gif" /></a><br />
+<h2>What's new in 4.0.0?</h2>
+<h3>Integration testing suite</h3>
+<p>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases. </p>
+<a href="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/testing.gif"><img src="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/testing.gif" /></a><br />
+<h3>Improved code</h3>
+<p>SonarQube/BlackDuck + refactorings to reduce code complexity.</p>
+<h3>Rewritten logging</h3>
+<h3>Configurable terminal color codes</h3>
+<p>plus new default</p>
+<h3>Improved documentation</h3>
+<h3>Serverless mode</h3>
+<h3>Spartan mode</h3>
+<h3>Use of memory pools</h3>
+<p>byte buffers and string builders</p>
+<h3>Bugfixes and updates to newer dependencies</h3>
+<p>Check out the DTail GitHub page for more information:</p>
+<a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
+<a class="textlink" href="https://github.com/mimecast/dtail">https://github.com/mimecast/dtail</a><br />
+<p>E-Mail me your comments to paul at buetow dot org!</p>
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>snonux.de moved to foo.zone</title>
+        <link href="gemini://foo.zone/gemfeed/2022-03-04-site-moved-to-foo.zone.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-03-04-site-moved-to-foo.zone.gmi</id>
+        <updated>2022-03-04T09:31:18+00:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>Attention: You read this text because you are reaching this site via an old address. This site has moved to foo.zone. . .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>buetow.org moved to foo.zone</h1>
+<pre>
+                    _________________________________________________
+            /|     |                                                 |
+            ||     |     foo.zone                                    |
+       .----|-----,|                                                 |
+       ||  ||   ==||                                                 |
+  .-----'--'|   ==||                                                 |
+  |)-      ~|     ||_________________________________________________|
+  | ___     |     |____...==..._  &amp;gt;\______________________________|
+ [_/.-.\"--"-------- //.-.  .-.\\/   |/            \\ .-.  .-. //
+   ( o )`==="""""""""`( o )( o )     o              `( o )( o )` 
+    '-'                '-'  '-'                       '-'  '-'
+</pre>
+<p class="quote"><i>Published by Paul at 2022-03-04</i></p>
+<p>Attention: You read this text because you are reaching this site via an old address. This site has moved to foo.zone. </p>
+<p>In case you have subscribed to this site, please unsubscribe and subscribe to foo.zone instead!</p>
+<a class="textlink" href="gemini://foo.zone">foo.zone capsule</a><br />
+<a class="textlink" href="gemini://foo.zone/gemfeed">foo.zone Gemfeed</a><br />
+<a class="textlink" href="gemini://foo.zone/gemfeed/atom.xml">foo.zone Atom feed</a><br />
+<p>Also read:</p>
+<a class="textlink" href="gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi">Welcome to the foo.zone</a><br />
+<p>Thanks!</p>
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Computer operating systems I use(d)</title>
         <link href="gemini://foo.zone/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi" />
