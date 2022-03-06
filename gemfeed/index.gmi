@@ -3,7 +3,6 @@
 ## To be in the .zone!
 
 => ./2022-03-05-the-release-of-dtail-4.0.0.gmi 2022-03-05 - The release of DTail 4.0.0
-=> ./2022-03-04-site-moved-to-foo.zone.gmi 2022-03-04 - buetow.org moved to foo.zone
 => ./2022-02-04-computer-operating-systems-i-use.gmi 2022-02-04 - Computer operating systems I use(d)
 => ./2022-01-23-welcome-to-the-foo.zone.gmi 2022-01-23 - Welcome to the foo.zone
 => ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 - Bash Golf Part 2
