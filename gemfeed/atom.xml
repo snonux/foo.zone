@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-03-06T17:58:46+00:00</updated>
+    <updated>2022-03-06T18:11:39+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -8,14 +8,14 @@
     <id>gemini://foo.zone/</id>
     <entry>
         <title>The release of DTail 4.0.0</title>
-        <link href="gemini://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0.gmi" />
-        <id>gemini://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0.gmi</id>
-        <updated>2022-03-05T09:42:21+00:00</updated>
+        <link href="gemini://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi</id>
+        <updated>2022-03-06T18:11:39+00:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>comments@mx.buetow.org</email>
         </author>
-        <summary>I have recently released DTail 4.0.0 and this blog post goes through some of the new goodies. I have written about DTail before. Have a look here:. .....to read on please visit my site.</summary>
+        <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>The release of DTail 4.0.0</h1>
@@ -32,7 +32,7 @@
                         |                            |
                          |                           |
 </pre>
-<p class="quote"><i>Published by Paul at 2022-03-07</i></p>
+<p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <p>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
 <p>If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</p>
@@ -40,7 +40,7 @@
 <h2>So, what's new in 4.0.0?</h2>
 <h3>Rewritten logging</h3>
 <p>For DTail 4, logging has been completely rewritten. The new package name is "internal/io/dlog". I rewrote the logging because DTail is a special case here: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs only logged by a DTail client, there are logs only logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.</p>
-<p>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suited me and the logging code in DTail 3 was just one big source code file with global variables and it wasn't sustainable to maintain anymore. So why not rewrite it for profit and fun? </p>
+<p>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suits my needs and the logging code in DTail 3 was just one big source code file with global variables and it wasn't sustainable to maintain anymore. So why not rewrite it for profit and fun? </p>
 <p>There's a are new log level structure now (The log level now can be specified with the "-logLevel" command line flag):</p>
 <pre>
 // Available log levels.
@@ -60,7 +60,7 @@ const (
 </pre>
 <p>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</p>
 <h3>Configurable terminal color codes</h3>
-<p>One complaint I received from the users of DTail were the terminal colors used. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</p>
+<p>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</p>
 <p>The example "dtail.json" configuration file represents the default (now, more reasonable default) color codes used, and it is free to the user to customize them:</p>
 <pre>
 {
@@ -164,11 +164,10 @@ const (
 <li>MaprTable: Color configuration for the map-reduce table output.</li>
 <li>Common: Common color configuration used in various places (e.g. when it's not clear what's the current context of a line).</li>
 </ul>
-<p>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer):</p>
+<p>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</p>
 <pre>
 jsonschema -i dtail.json schemas/dtail.schema.json
 </pre>
-<p>The schema file is also a good reference for all possible colors available.</p>
 <h3>Serverless mode</h3>
 <p>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</p>
 <pre>
@@ -178,7 +177,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <pre>
 % dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
 </pre>
-<p>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the difference is not much.</p>
+<p>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</p>
 <h3>Shorthand flags</h3>
 <p>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</p>
 <pre>
@@ -195,15 +194,15 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <h3>Standard input pipe</h3>
 <p>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</p>
 <pre>
-% dgrep --plain --regex 'somethingspecial' |
+% dgrep --plain --regex 'somethingspecial' /var/log/foo.log |
     dmap --query 'from TABLE select .... outfile result.csv'
 </pre>
-<p>Or, use any other "standard" tools:</p>
+<p>Or, use any other "standard" tool:</p>
 <pre>
 % awk '.....' &lt; /some/file | dtail ....
 </pre>
 <h3>New command dtailhealth</h3>
-<p>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (to be used from a monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. This checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</p>
+<p>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</p>
 <pre>
 % cat check_dtail.sh
 #!/bin/sh
@@ -226,8 +225,12 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <pre>
 % export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
 </pre>
-<p>Once done, just run:</p>
+<p>Once done, first compile all commands, and then run the integration tests:</p>
 <pre>
+% make
+.
+.
+.
 % go clean -testcache
 % go test -race -v ./integrationtests
 </pre>
@@ -241,11 +244,11 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <h3>Use of memory pools</h3>
 <p>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</p>
 <h2>What's next</h2>
-<p>DTail 5 won't be released any time soon I guess, but some 4.x.y releases will follow soon fore sure. I can think of:</p>
+<p>DTail 5 won't be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</p>
 <ul>
-<li>Minor dependency updates.</li>
 <li>New (but backwards compatible) features which don't require a new major version bump (some features have been requested at work internally).</li>
-<li>Even more documentation.</li>
+<li>Even more improved documentation.</li>
+<li>Dependency updates.</li>
 </ul>
 <p>I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).</p>
 <p>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</p>
