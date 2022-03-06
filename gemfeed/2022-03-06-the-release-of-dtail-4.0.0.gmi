@@ -14,7 +14,7 @@
                          |                           |
 ```
 
-> Published by Paul at 2022-03-07
+> Published by Paul at 2022-03-06
 
 I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:
 
