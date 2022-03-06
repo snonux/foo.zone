@@ -14,7 +14,7 @@
 [codeberg.org/foozone - My personal Codeberg page](https://codeberg.org/foozone)  
 [dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)](https://github.com/mimecast/ioriot)  
-[sidewalk.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://sidewalk.ninja)  
+[irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
 
 ## Social Media
 

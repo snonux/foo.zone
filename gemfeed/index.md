@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2022-03-06 - The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
 [2022-02-04 - Computer operating systems I use(d)](./2022-02-04-computer-operating-systems-i-use.md)  
 [2022-01-23 - Welcome to the foo.zone](./2022-01-23-welcome-to-the-foo.zone.md)  
 [2022-01-01 - Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
