@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-03-04T09:42:21+00:00</updated>
+    <updated>2022-03-06T10:28:37+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -28,11 +28,44 @@
 <a href="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/dtail.gif"><img src="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/dtail.gif" /></a><br />
 <h2>What's new in 4.0.0?</h2>
 <h3>Integration testing suite</h3>
-<p>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases. </p>
+<p>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</p>
+<p>How are the tests implemented? All integration tests are simply unit tests in the ./integrationtests folder. They must be explicitly activated with:</p>
+<pre>
+% export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
+</pre>
+<p>Once done, just run:</p>
+<pre>
+% go clean -testcache
+% go test -race -v ./integrationtests
+</pre>
 <a href="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/testing.gif"><img src="https://foo.zone/gemfeed/2022-03-05-the-release-of-dtail-4.0.0/testing.gif" /></a><br />
 <h3>Improved code</h3>
-<p>SonarQube/BlackDuck + refactorings to reduce code complexity.</p>
+<p>Not that the code quality of DTail has been bad, but I had new tools (such as SonarQube and BlackDuck) available to:</p>
+<ul>
+<li>Reduce the complexity of a couple of functions (splitting code up into several smaller functions)</li>
+<li>Avoid repeating code (this version of DTail doesn't use Go generics yet, though).</li>
+</ul>
+<p>Other than that, a lot of other code has been refactored as I saw fit.</p>
 <h3>Rewritten logging</h3>
+<p>DTail is a special case when it comes to logging. There are logs processed by DTail, there are logs produced by the DTail server itself and there are logs procudes by one of the DTail clients themselves. Furthermore, there are different log levels too: </p>
+<pre>
+// Available log levels.
+const (
+	None    level = iota
+	Fatal   level = iota
+	Error   level = iota
+	Warn    level = iota
+	Info    level = iota
+	Default level = iota
+	Verbose level = iota
+	Debug   level = iota
+	Devel   level = iota
+	Trace   level = iota
+	All     level = iota
+)
+</pre>
+<p>There is no ready Go off-shelf logging library which suited me and the logging code in DTail 3 was just one big source code file with global variables. For DTail 4, logging has been completely rewritten now (package "internal/io/dlog"). </p>
+<p>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package.</p>
 <h3>Configurable terminal color codes</h3>
 <p>plus new default</p>
 <h3>Improved documentation</h3>
