@@ -1,26 +1,256 @@
 # The release of DTail 4.0.0
 
-=> ./2022-03-05-the-release-of-dtail-4.0.0/logo.png
+```
+                              ,_---~~~~~----._
+                        _,,_,*^____      _____``*g*\"*,
+  ____ _____     _ _   / __/ /'     ^.  /      \ ^@q   f
+ |  _ \_   _|_ _(_) |   @f | @))    |  | @))   l  0 _/
+ | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
+ | |_| || | (_| | | |   |           _l__l_           I
+ |____/ |_|\__,_|_|_|   }          [______]           I
+                        ]            | | |            |
+                        ]             ~ ~             |
+                        |                            |
+                         |                           |
+```
 
-> Published by Paul at 2022-03-05
+> Published by Paul at 2022-03-07
 
-I have recently released DTail 4.0.0 and this blog post goes through some of the new goodies. I have written about DTail before. Have a look here:
+I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:
 
 => ./2021-04-22-dtail-the-distributed-log-tail-program.gmi DTail - The distributed log tail program
 
-## Summary
+If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
 
-DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
+=> https://dtail.dev
 
-=> ./2022-03-05-the-release-of-dtail-4.0.0/dtail.gif
+## So, what's new in 4.0.0?
 
-## What's new in 4.0.0?
+### Rewritten logging
+
+For DTail 4, logging has been completely rewritten now (the new package name is "internal/io/dlog") as DTail is a special case when it comes to logging: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs logged by a DTail client, there are logs logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.
+
+As you can see it becomes fairly complex. There is no ready Go off-shelf logging library which suited me and the logging code in DTail 3 was just one big source code file with global variables and it wasn't easy to maintain it anymore. That's why it got rewritten (for profit and fun).
+
+There's a are new log level structure now. The log level now can be specified with the "-logLevel" command line argument:
+
+```
+// Available log levels.
+const (
+	None    level = iota
+	Fatal   level = iota
+	Error   level = iota
+	Warn    level = iota
+	Info    level = iota
+	Default level = iota
+	Verbose level = iota
+	Debug   level = iota
+	Devel   level = iota
+	Trace   level = iota
+	All     level = iota
+)
+```
+
+DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).
+
+### Configurable terminal color codes
+
+One of the main complaints of previous releases were the terminal colors used. They made the output difficult to read, so that some users used "--noColor" to disable colored output completely. I toke it by heart and also completely rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...) for each output element. 
+
+The example "dtail.json" configuration file represents the default color codes used and it is now free to the user to customize them:
+
+```
+{
+  "Client": {
+    "TermColorsEnable": true,
+    "TermColors": {
+      "Remote": {
+        "DelimiterAttr": "Dim",
+        "DelimiterBg": "Blue",
+        "DelimiterFg": "Cyan",
+        "RemoteAttr": "Dim",
+        "RemoteBg": "Blue",
+        "RemoteFg": "White",
+        "CountAttr": "Dim",
+        "CountBg": "Blue",
+        "CountFg": "White",
+        "HostnameAttr": "Bold",
+        "HostnameBg": "Blue",
+        "HostnameFg": "White",
+        "IDAttr": "Dim",
+        "IDBg": "Blue",
+        "IDFg": "White",
+        "StatsOkAttr": "None",
+        "StatsOkBg": "Green",
+        "StatsOkFg": "Black",
+        "StatsWarnAttr": "None",
+        "StatsWarnBg": "Red",
+        "StatsWarnFg": "White",
+        "TextAttr": "None",
+        "TextBg": "Black",
+        "TextFg": "White"
+      },
+      "Client": {
+        "DelimiterAttr": "Dim",
+        "DelimiterBg": "Yellow",
+        "DelimiterFg": "Black",
+        "ClientAttr": "Dim",
+        "ClientBg": "Yellow",
+        "ClientFg": "Black",
+        "HostnameAttr": "Dim",
+        "HostnameBg": "Yellow",
+        "HostnameFg": "Black",
+        "TextAttr": "None",
+        "TextBg": "Black",
+        "TextFg": "White"
+      },
+      "Server": {
+        "DelimiterAttr": "AttrDim",
+        "DelimiterBg": "BgCyan",
+        "DelimiterFg": "FgBlack",
+        "ServerAttr": "AttrDim",
+        "ServerBg": "BgCyan",
+        "ServerFg": "FgBlack",
+        "HostnameAttr": "AttrBold",
+        "HostnameBg": "BgCyan",
+        "HostnameFg": "FgBlack",
+        "TextAttr": "AttrNone",
+        "TextBg": "BgBlack",
+        "TextFg": "FgWhite"
+      },
+      "Common": {
+        "SeverityErrorAttr": "AttrBold",
+        "SeverityErrorBg": "BgRed",
+        "SeverityErrorFg": "FgWhite",
+        "SeverityFatalAttr": "AttrBold",
+        "SeverityFatalBg": "BgMagenta",
+        "SeverityFatalFg": "FgWhite",
+        "SeverityWarnAttr": "AttrBold",
+        "SeverityWarnBg": "BgBlack",
+        "SeverityWarnFg": "FgWhite"
+      },
+      "MaprTable": {
+        "DataAttr": "AttrNone",
+        "DataBg": "BgBlue",
+        "DataFg": "FgWhite",
+        "DelimiterAttr": "AttrDim",
+        "DelimiterBg": "BgBlue",
+        "DelimiterFg": "FgWhite",
+        "HeaderAttr": "AttrBold",
+        "HeaderBg": "BgBlue",
+        "HeaderFg": "FgWhite",
+        "HeaderDelimiterAttr": "AttrDim",
+        "HeaderDelimiterBg": "BgBlue",
+        "HeaderDelimiterFg": "FgWhite",
+        "HeaderSortKeyAttr": "AttrUnderline",
+        "HeaderGroupKeyAttr": "AttrReverse",
+        "RawQueryAttr": "AttrDim",
+        "RawQueryBg": "BgBlack",
+        "RawQueryFg": "FgCyan"
+      }
+    }
+  },
+  ...
+}
+```
+
+You notice the different sections - these are different contexts:
+
+* Remote: Color configuration for all log lines sent remotely from the server to the client. 
+* Client: Color configuration for all lines produced by a DTail client by itself (e.g. status information).
+* Server: Color configuration for all lines produced by the DTail server by itself and sent to the client (e.g. server warnings or errors)
+* MaprTable: Color configuration for the map-reduce table output.
+* Common: Common color configuration used in various places (e.g. when it's not clear what's the current context of a line).
+
+When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer):
+
+```
+jsonschema -i dtail.json schemas/dtail.schema.json
+```
+
+The schema file is also a good reference for all possible colors available.
+
+### Serverless mode
+
+All DTail commands can now operate on log files (and other text files) directly without any server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway like the following example shows:
+
+```
+% dtail --files /var/log/foo.log
+```
+
+or
+
+```
+% dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
+```
+
+### Shorthand flags
+
+The "--files" from the previous example is now redundant. As a shorthand version It is now possible to do the following instead:
+
+```
+% dtail /var/log/foo.log
+```
+
+Of course, this also works with all other DTail client commands ("dgrep", "dcat", ... etc).
+
+### Spartan (aka plain) mode
+
+There's a plain mode which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:
+
+```
+% dcat --plain /etc/passwd > /etc/test
+% diff /etc/test /etc/passwd  # Same content, no diff
+```
+
+### Standard input pipe
+
+In serverless mode, you might want to process your data in a pipeline. You can do that now:
+
+```
+% dgrep --plain --regex 'somethingspecial' |
+    dmap --query 'from TABLE select .... outfile result.csv'
+```
+
+Or use any other "standard" tools:
+
+```
+% awk '.....' < /some/file | dtail ....
+```
+
+### New command dtailhealth
+
+Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (to be used from a monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. This checks whether DTail is operational on the current machine:
+
+```
+% cat check_dtail.sh
+#!/bin/sh
+
+exec /usr/local/bin/dtailhealth --server localhost:2222
+```
+
+### More documentation
+
+Some features, such as custom log formats and the map-reduce query language,  are now documented. Also, the examples have been updated to reflect the new features added. 
+
+I must admit that not all features are documented yet:
+
+* Server side scheduled map-reduce queries
+* Server side continuous map-reduce queries
+* Some more docs about terminal color customization
+* Some more docs about log levels
+
+That will be added in one of the future releases. 
+
+### Use of memory pools
+
+DTail makes excessive use of string builder and byte buffer objects. For peformance reasons, those are now re-used from memory pools.
 
 ### Integration testing suite
 
 DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.
 
-How are the tests implemented? All integration tests are simply unit tests in the ./integrationtests folder. They must be explicitly activated with:
+How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:
 
 ```
 % export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
@@ -32,8 +262,6 @@ Once done, just run:
 % go clean -testcache
 % go test -race -v ./integrationtests
 ```
-
-=> ./2022-03-05-the-release-of-dtail-4.0.0/testing.gif
 
 ### Improved code
 
@@ -178,22 +406,70 @@ When you do so, make sure that you check your "dtail.json" against the JSON sche
 jsonschema -i dtail.json schemas/dtail.schema.json
 ```
 
-### Improved documentation
-
 ### Serverless mode
 
-### Spartan mode
+All DTail commands now can operate on log files (and other text files) directly. So there isn't a need anymore to install a DTail server when you are on the target server already anyway like the following example shows:
+
+```
+% dtail --files /var/log/foo.log
+```
+
+### Shorthand commands
+
+The "--files" from the previous example is now redundant. As a shorthand version It is now possible to do the following instead:
+
+```
+% dtail /var/log/foo.log
+```
+
+Of course, this also works with all other DTail client commands.
+
+### Spartan (aka plain) mode
+
+There's a plain mode which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:
+
+```
+% dcat --plain /etc/passwd > /etc/test
+% diff /etc/test /etc/passwd  # Does show no diff
+```
+
+### Standard input pipe
+
+In serverless mode, you might want to process your data in a pipeline. You can do that now:
+
+```
+% dgrep --plain --regex 'somethingspecial' |
+    dmap --query 'from TABLE select .... outfile result.csv'
+```
+
+Or use any other "standard" tools:
+
+```
+% awk '.....' < /some/file | dtail ....
+```
+
+### More documentation
+
+Some features, such as 
+
+* Custom log formats
+* The map-reduce query language 
+* Testing (integration tests, semi-manual tests involving spinning up local docker images simulating a bunch of DTail server instances)
+
+are now documented. Also, the examples have been updated to reflect the new features added. Also, all gifs have been updated to reflect the new default color scheme.
+
+I must admit that not all features are documented yet:
+
+* Server side scheduled map-reduce queries
+* Server side continuous map-reduce queries
+* Some more docs about terminal color customization
+* Some more docs about log levels
+
+That will be added in one of the future releases. 
 
 ### Use of memory pools
 
-byte buffers and string builders
-
-### Bugfixes and updates to newer dependencies
-
-Check out the DTail GitHub page for more information:
-
-=> https://dtail.dev
-=> https://github.com/mimecast/dtail
+DTail makes excessive use of string builder and byte buffer objects. For performance, those are now re-used from memory pools.
 
 E-Mail me your comments to paul at buetow dot org!
 
