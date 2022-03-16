@@ -10,7 +10,7 @@ Each format is in it's own branch in this repository. E.g.:
 * Markdown is in `content-md`
 * ... ando so on.
 
-You can find more about my internet site and the static content generator at [snonux/gemtexter](https://codeberg.org/snonux/gemtexter).
+You can find more about my internet site and the static content generator at [foozone/gemtexter](https://codeberg.org/foozone/gemtexter).
 
 ## Software I use to maintain this site
 
