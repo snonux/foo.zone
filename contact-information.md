@@ -11,7 +11,7 @@
 
 [foo.zone - My personal website and blog](https://foo.zone)  
 [foo.zone - My personal website and blog (Gemini)](gemini://foo.zone)  
-[codeberg.org/foozone - My personal Codeberg page](https://codeberg.org/foozone)  
+[codeberg.org/snonux - My personal Codeberg page](https://codeberg.org/snonux)  
 [dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [github.com/mimecast/ioriot - I/O Riot at Mimecast (currently unmaintained)](https://github.com/mimecast/ioriot)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
@@ -26,7 +26,7 @@ I am sharing articles that I found interesting regularly these social media chan
 
 ## Internet Relay Chat
 
-I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as "rantanplan".
+I am on irc.german-elite.net in #talk, #coding, #linux (and maybe in others) as "rantanplan" or sometimes as "snonux".
 
 ## Site mirrors
 
