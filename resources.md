@@ -41,7 +41,6 @@ You won't find any links on this site because, over time, the links will break. 
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
 * Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
 * The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
-* Advanced Bash-Scripting Guide; Not an actual book, but could be
 * Systemprogrammierung in Go; Frank Müller; dpunkt
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
 * Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
@@ -100,6 +99,13 @@ Some of these were in-person with exams; others were online learning lectures on
 * Functional programming lecture; Remote University of Hagen
 
 [Read here about my thoughts on "The Well-Grounded Rubyist"](./gemfeed/2021-07-04-the-well-grounded-rubyist.md)  
+
+## Guides
+
+These are not whole books, but guides (smaller or larger) which I found very useful.
+
+* Raku Guide at https://raku.guide
+* Advanced Bash-Scripting Guide
 
 ## Podcasts
 
