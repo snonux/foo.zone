@@ -1727,7 +1727,7 @@ Hello World
 <p>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</p>
 <a href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg"><img alt="Motivational comic strip" title="Motivational comic strip" src="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg" /></a><br />
 <p>I have exactly done that - I wrote a Bash script, named Gemtexter, for that:</p>
-<a class="textlink" href="https://codeberg.org/foozone/gemtexter">https://codeberg.org/foozone/gemtexter</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</p>
 <h2>Output formats</h2>
 <p>Gemtexter takes the Gemntext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):</p>
@@ -3204,7 +3204,7 @@ Notice: Finished catalog run in 206.09 seconds
 <p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
 <h2>Step by step guide</h2>
 <p>All scripts mentioned here can be found on GitHub at:</p>
-<a class="textlink" href="https://codeberg.org/foozone/debroid">https://codeberg.org/foozone/debroid</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/debroid">https://codeberg.org/snonux/debroid</a><br />
 <h3>First debootstrap stage</h3>
 <p>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</p>
 <pre>
@@ -3403,7 +3403,7 @@ BEGIN {
 }
 </pre>
 <p>You can find the full source code at GitHub:</p>
-<a class="textlink" href="https://codeberg.org/foozone/perl-c-fibonacci">https://codeberg.org/foozone/perl-c-fibonacci</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perl-c-fibonacci">https://codeberg.org/snonux/perl-c-fibonacci</a><br />
 <h3>Let's run it with Perl:</h3>
 <pre>
 ❯ perl fibonacci.pl.c
@@ -3589,7 +3589,7 @@ sub do ($) {
 <p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future, they can also run in parallel using several threads or processes).</p>
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
-<a class="textlink" href="https://codeberg.org/foozone/perldaemon">https://codeberg.org/foozone/perldaemon</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
@@ -4004,7 +4004,7 @@ BB
 <p>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </p>
 <h2>May the source be with you</h2>
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
-<a class="textlink" href="https://codeberg.org/foozone/fype">https://codeberg.org/foozone/fype</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/fype">https://codeberg.org/snonux/fype</a><br />
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
@@ -4468,7 +4468,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 </pre>
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
-<a class="textlink" href="https://codeberg.org/foozone/perl-poetry">https://codeberg.org/foozone/perl-poetry</a><br />
+<a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
