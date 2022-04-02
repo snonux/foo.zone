@@ -22,7 +22,7 @@ I am sharing articles that I found interesting regularly these social media chan
 
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
 [twitter.com/snonux - My Twitter profile](https://twitter.com/snonux)  
-[t.me/foo.zone - My Telegram channel](https://t.me/foo.zone)  
+[t.me/snonux - My Telegram channel](https://t.me/snonux)  
 
 ## Internet Relay Chat
 
