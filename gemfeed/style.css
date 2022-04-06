@@ -1,8 +1,4 @@
 * {
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
   line-height: 1.5em;
   margin: 0;
   padding: 0;
@@ -12,28 +8,11 @@
 
 body {
   font: normal 14px monospace;
-  position: relative;
   width: 100%;
   max-width: 800px;
   margin: 2em auto 0;
   padding: 0 20px;
-  box-sizing: border-box;
   display: block;
-}
-
-/* For devices larger than 400px */
-@media (min-width: 400px) {
-  body {
-    width: 85%;
-    padding: 0;
-  }
-}
-
-/* For devices larger than 550px */
-@media (min-width: 550px) {
-  body {
-    width: 80%;
-  }
 }
 
 h1, h2, h3 {
@@ -44,6 +23,9 @@ h1, h2, h3 {
 
 h1 {
   font-size: 1.5em;
+  color: #9CFF00;
+  background-color: #000000;
+  padding: 0 10px;
 }
 
 h2 {
@@ -52,7 +34,7 @@ h2 {
 }
 
 h3 {
-  font-size: 1.1em;
+  font-size: 1.0em;
 }
 
 a {
@@ -66,9 +48,17 @@ a:hover {
   text-decoration: underline;
 }
 
+a:visited {
+  color: #248;
+}
+
 a.textlink:before {
   content: "⇒ ";
   padding-left: 11px;
+}
+
+p.quote {
+  font-style: italic;
 }
 
 p.quote:before {
@@ -81,8 +71,21 @@ p.quote:after {
   padding-right: 2px;
 }
 
-a:visited {
-  color: #824;
+p {
+  margin: 0.75em 0 0.75em 0;
+  padding: 0 5px;
+}
+
+ol {
+  margin: 0.75em 0 0.75em 0;
+  padding: 0;
+}
+
+ul {
+  list-style: none;
+  padding-right: 23px;
+  padding-left: 10px;
+  margin: 0.75em 0 0.75em 0;
 }
 
 li {
@@ -90,56 +93,16 @@ li {
   margin-bottom: 0.25em;
 }
 
-ol li {
-  margin-left: 2em;
-}
-
-em {
-  font-style: italic;
-}
-
-strong {
-  font-weight: bold;
-}
-
-p, ul, ol {
-  margin: 0.75em 0 0.75em 0;
-  padding: 0;
-}
-
-ul {
-  color: #f8f8f8;
-  background-color: #222;
-  padding-top: 17px;
-  padding-bottom: 17px;
-  padding-right: 23px;
-  padding-left: 50px;
+li:before {
+  content: "★";
+  padding-right: 5px;
 }
 
 img {
-  max-width: 601;
-  max-height: 401;
+  max-width: 100%;
   display: block;
   margin: auto;
-}
-
-
-p code, li code {
-  color: rgb(66, 146, 41);
-}
-
-article * {
-  line-height: 1.8em;
-}
-
-article img {
-  width: 100%;
-  margin: 2em 0;
-}
-
-article img.med {
-  max-width: 400px;
-  text-align: center;
+  border: 1px solid #9CFF00;
 }
 
 pre {
@@ -147,15 +110,6 @@ pre {
   padding: 0;
   overflow-x: scroll;
   scrollbar-width: none;
-
   border-left: 2px solid #9CFF00;
   padding-left: 12px; 
-}
-
-pre * {
-  line-height: 1.0em;
-}
-
-.quote {
-  font-style: italic;
 }
