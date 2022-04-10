@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-04-10T10:39:22+01:00</updated>
+    <updated>2022-04-10T13:08:56+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -45,7 +45,7 @@
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html">Realistic load testing with I/O Riot for linux</a><br />
 <p>Note that my latest silver prize project isn't open source software and because of that there is no public material I can refer to. Maybe the next one again?</p>
-<p>I want to point out that I never won the "gold" prize, though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</p>
+<p>I want to point out that I never won the "gold" prize and it's the first time I won "silver", though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</p>
 <p>I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓</p>
 <p>So why would I sign up myself for such side projects? Isn't it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:</p>
 <ul>
