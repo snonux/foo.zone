@@ -7,6 +7,8 @@
 * Currently living in: London, UK
 * E-Mail: paul at buetow period org
 
+[![Paul Buetow (photographed by Florian Buetow)](./paul.jpg "Paul Buetow (photographed by Florian Buetow)")](./paul.jpg)  
+
 ## My sites
 
 [foo.zone - My personal website and blog](https://foo.zone)  
