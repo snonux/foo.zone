@@ -32,7 +32,7 @@ I have been participating in an annual work-internal project contest (we call it
 
 Note that my latest silver prize project isn't open source software and because of that there is no public material I can refer to. Maybe the next one again?
 
-I want to point out that I never won the "gold" prize, though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.
+I want to point out that I never won the "gold" prize and it's the first time I won "silver", though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.
 
 I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓
 
