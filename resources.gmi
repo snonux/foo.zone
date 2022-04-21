@@ -19,35 +19,35 @@ You won't find any links on this site because, over time, the links will break. 
 
 ## Technical books
 
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* The Pragmatic Programmer; David Thomas; Addison-Wesley
 * Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* Effective Java; Joshua Bloch; Addison-Wesley Professional - Currently reading
-* Modern Perl; Chromatic ; Onyx Neon Press
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
-* DNS and BIND; Cricket Liu; O'Reilly
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* Higher Order Perl; Mark Dominus; Morgan Kaufmann
-* Java ist auch eine Insel; Christian Ullenboom; 
-* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
-* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
-* Developing Games in Java; David Brackeen and others...; New Riders
-* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Data Science at the Command Line; Jeroen Janssens; O'Reilly
-* The Docker Book; James Turnbull; Kindle
-* Effective awk programming; Arnold Robbins; O'Reilly
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
-* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
-* Systemprogrammierung in Go; Frank Müller; dpunkt
-* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
 * Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Pro Git; Scott Chacon, Ben Straub; Apress
+* Java ist auch eine Insel; Christian Ullenboom; 
 * Funktionale Programmierung; Peter Pepper; Springer
-* C++ Programming Language; Bjarne Stroustrup;
+* Pro Git; Scott Chacon, Ben Straub; Apress
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* Effective Java; Joshua Bloch; Addison-Wesley Professional
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Raku Recipes; J.J. Merelo; Apress
+* Effective awk programming; Arnold Robbins; O'Reilly
+* The Pragmatic Programmer; David Thomas; Addison-Wesley
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
+* The Docker Book; James Turnbull; Kindle
+* DNS and BIND; Cricket Liu; O'Reilly
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Modern Perl; Chromatic ; Onyx Neon Press
+* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
+* C++ Programming Language; Bjarne Stroustrup;
+* Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* Developing Games in Java; David Brackeen and others...; New Riders
+* Systemprogrammierung in Go; Frank Müller; dpunkt
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
 
 ## Technical bibles
 
@@ -59,27 +59,29 @@ I didn't read them from the beginning to the end, but I am using them to look up
 
 ## Self-development and soft-skills books
 
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Ultralearning; Anna Laurent; Self-published via Amazon
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* Digital Minimalism; Cal Newport; Portofolio Penguin
+* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
+* Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* Soft Skills; John Sommez; Manning Publications
 * Deep Work; Cal Newport; Piatkus
 * Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
-* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
-* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
-* Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
+* The Off Switch; Mark Cropley; Virgin Books
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
 * Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* Digital Minimalism; Cal Newport; Portofolio Penguin
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
+* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
 * Atomic Habits; James Clear; Random House Business
 * Ultralearning; Scott Young; Thorsons
-* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
-* So Good They Can't Ignore You; Cal Newport; Business Plus
 * The Power of Now; Eckhard Tolle; Yellow Kite
-* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
-* The Joy of Missing Out; Christina Crook; New Society Publishers
-* The Off Switch; Mark Cropley; Virgin Books
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
-* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
-* Soft Skills; John Sommez; Manning Publications
+* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
 
 ## Technical video lectures and courses
 
