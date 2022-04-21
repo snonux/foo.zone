@@ -15,7 +15,7 @@
 --------------------                    --------------------
 ```
 
-> Published by Paul at 2021-09-12, last updated at 2022-01-23
+> Published by Paul at 2021-09-12, last updated at 2022-04-21
 
 A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 
@@ -92,5 +92,7 @@ There is, however, a trap. The more you spend time with things, the more these t
 => https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html Is the madness ever going to end?
 
 Enough ranted for now :-). E-Mail me your comments to paul at buetow dot org!
+
+> Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 
 => ../ Go back to the main site
