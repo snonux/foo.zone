@@ -49,13 +49,14 @@ You won't find any links on this site because, over time, the links will break. 
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
 * Site Reliability Engineering; How Google runs production systems; O'Reilly
 
-## Technical bibles
+## Technical references
 
 I didn't read them from the beginning to the end, but I am using them to look up things.
 
 * The Linux Programming Interface; Michael Kerrisk; No Starch Press
-* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
+* Relayd and Httpd Mastery; Michael W Lucas
 * Algorithms; Robert Sedgewick, Kevin Wayne; Addison Wesley
+* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
 
 ## Self-development and soft-skills books
 
