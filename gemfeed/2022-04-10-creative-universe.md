@@ -21,7 +21,7 @@
                                          - the universe
 ```
 
-> Published by Paul at 2022-04-10
+> Published by Paul at 2022-04-10, last updated at 2022-04-18
 
 ## Prelude
 
@@ -135,6 +135,7 @@ Relevant books I can recommend are:
 * Deep Work; Cal Newport; Piatkus
 * So Good They Can't Ignore You; Cal Newport; Business Plus
 * The Off Switch; Mark Cropley; Virgin Books
+* Ultralearning; Scott Young; Thorsons
 
 E-Mail me your comments to paul at buetow dot org!
 
