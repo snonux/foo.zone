@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-04-10T14:14:10+01:00</updated>
+    <updated>2022-04-23T10:02:42+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -39,7 +39,7 @@
  .      .   . .   .   .   . .  +   .    .            +
                                          - the universe
 </pre>
-<p class="quote"><i>Published by Paul at 2022-04-10</i></p>
+<p class="quote"><i>Published by Paul at 2022-04-10, last updated at 2022-04-18</i></p>
 <h2>Prelude</h2>
 <p>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
@@ -107,6 +107,7 @@ learn () {
 <li>Deep Work; Cal Newport; Piatkus</li>
 <li>So Good They Can't Ignore You; Cal Newport; Business Plus</li>
 <li>The Off Switch; Mark Cropley; Virgin Books</li>
+<li>Ultralearning; Scott Young; Thorsons</li>
 </ul>
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
@@ -1570,7 +1571,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
  /  ************  \                      /  ************  \
 --------------------                    --------------------
 </pre>
-<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-01-23</i></p>
+<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-04-21</i></p>
 <p>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</p>
 <h1>Need faster hardware</h1>
 <p>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</p>
@@ -1609,6 +1610,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Other relevant readings</h2>
 <a class="textlink" href="https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html">Is the madness ever going to end?</a><br />
 <p>Enough ranted for now :-). E-Mail me your comments to paul at buetow dot org!</p>
+<p class="quote"><i>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </i></p>
             </div>
         </content>
     </entry>
@@ -3458,12 +3460,12 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The fibonacci.pl.c Polyglot</h1>
-<p class="quote"><i>Published by Paul at 2014-03-24</i></p>
+                <h1>The fibonacci.pl.raku.c Polyglot</h1>
+<p class="quote"><i>Published by Paul at 2014-03-24, last updated 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
 <h2>The Fibonacci numbers</h2>
-<p>For fun, I programmed my own Polyglot, which is both valid Perl and C code. The exciting part about C is that $ is a valid character to start variable names with:</p>
+<p>For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:</p>
 <pre>
 #include &lt;stdio.h&gt;
 
@@ -3475,46 +3477,64 @@ exit
 my $arg;
 
 sub hello() {
-	printf("Hello, welcome to Perl-C!\n");
-	printf("This program is both valid C and Perl code!\n");
-	printf("It calculates all fibonacci numbers from 0 to 9!\n\n");
-	return 0;
+    printf("Hello, welcome to the Fibonacci Numbers!\n");
+    printf("This program is all, valid C and C++ and Perl and Raku code!\n");
+    printf("It calculates all fibonacci numbers from 0 to 9!\n\n");
+    return 0;
 }
 
 sub fibonacci() {
-	my $n = $arg;
+    my $n = $arg;
 
-	if ($n &lt; 2) {
-		return $n;
-	}
+    if ($n &lt; 2) {
+        return $n;
+    }
 
-	$arg = $n - 1;
-	my $fib1 = fibonacci();
-	$arg = $n - 2;
-	my $fib2 = fibonacci();
+    $arg = $n - 1;
+    my $fib1 = fibonacci();
+    $arg = $n - 2;
+    my $fib2 = fibonacci();
 
-	return $fib1 + $fib2;
+    return $fib1 + $fib2;
 }
 
 BEGIN {
-	hello();
-	my $i = 0;
+    hello();
+    my $i = 0;
 
-	for ($i = 0; $i &lt;= 10; ++$i) {
-		$arg = $i;
-		printf("fib(%d) = %d\n", $i, fibonacci());
-	}
-
-	return 0;
+    while ($i &lt;= 10) {
+        $arg = $i;
+        printf("fib(%d) = %d\n", $i, fibonacci());
+        $i++;
+    }
 }
 </pre>
 <p>You can find the full source code at GitHub:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-c-fibonacci">https://codeberg.org/snonux/perl-c-fibonacci</a><br />
-<h3>Let's run it with Perl:</h3>
+<h3>Let's run it with C and C++</h3>
 <pre>
-❯ perl fibonacci.pl.c
-Hello, welcome to Perl-C!
-This program is both valid C and Perl code!
+% gcc fibonacci.pl.raku.c -o fibonacci
+% ./fibonacci
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from 0 to 9!
+
+fib(0) = 0
+fib(1) = 1
+fib(2) = 1
+fib(3) = 2
+fib(4) = 3
+fib(5) = 5
+fib(6) = 8
+fib(7) = 13
+fib(8) = 21
+fib(9) = 34
+fib(10) = 55
+
+% g++ fibonacci.pl.raku.c -o fibonacci
+% ./fibonacci
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
 It calculates all fibonacci numbers from 0 to 9!
 
 fib(0) = 0
@@ -3529,12 +3549,28 @@ fib(8) = 21
 fib(9) = 34
 fib(10) = 55
 </pre>
-<h3>Let's compile it as C and run the binary:</h3>
+<h3>Let's run it with Perl and Raku</h3>
 <pre>
-❯ gcc fibonacci.pl.c -o fibonacci
-❯ ./fibonacci
-Hello, welcome to Perl-C!
-This program is both valid C and Perl code!
+% perl fibonacci.pl.raku.c
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from 0 to 9!
+
+fib(0) = 0
+fib(1) = 1
+fib(2) = 1
+fib(3) = 2
+fib(4) = 3
+fib(5) = 5
+fib(6) = 8
+fib(7) = 13
+fib(8) = 21
+fib(9) = 34
+fib(10) = 55
+
+% raku fibonacci.pl.raku.c
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
 It calculates all fibonacci numbers from 0 to 9!
 
 fib(0) = 0
