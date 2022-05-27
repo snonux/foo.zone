@@ -2,7 +2,7 @@
 
 [![./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
 
-> Published by Paul at 2022-05-27
+> Published by Paul at 2022-05-27, Comic source: XKCD
 
 Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.
 
