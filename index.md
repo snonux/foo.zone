@@ -21,10 +21,6 @@
   /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
 /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-▒▒ ▒ ░▒▓▒░ ░▓▒█░░ ░▒  ▒░ ░░ ▓░▒ ▒  ▒▒  ▓▒█░░▒░▓ ░▒ ▒▒ ▓▒
-░  ░ ░░▒ ░  ▒▒ ░  ░   ░  ░  ▒ ░ ░   ▒  ▒▒ ░░░ ▒ ░░ ░▒ ▒░
-░  ░  ░░    ▒   ░     ░     ░   ░   ░  ▒    ░ ░  ░ ░░ ░ 
-   ░        ░  ░░ ░   ░  ░    ░        ░  ░   ░ ░░  ░
 ```
 
 ## Why does this site look so old school?
@@ -51,8 +47,7 @@ You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other int
 
 ### Posts
 
-I have switched blog software multiple times. I might be backfilling some of the older articles here. So please don't wonder when suddenly old posts appear here.
-
+[2022-05-27 - Perl is still a great choice](./gemfeed/2022-05-27-perl-is-still-a-great-choice.md)  
 [2022-04-10 - Creative universe](./gemfeed/2022-04-10-creative-universe.md)  
 [2022-03-06 - The release of DTail 4.0.0](./gemfeed/2022-03-06-the-release-of-dtail-4.0.0.md)  
 [2022-02-04 - Computer operating systems I use(d)](./gemfeed/2022-02-04-computer-operating-systems-i-use.md)  
