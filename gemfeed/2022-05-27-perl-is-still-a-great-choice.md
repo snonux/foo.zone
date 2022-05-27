@@ -1,14 +1,14 @@
 # Perl is still a great choice
 
-[![./2022-05-22-perl-is-still-a-valid-choice/regular_expressions.png](./2022-05-22-perl-is-still-a-valid-choice/regular_expressions.png)](./2022-05-22-perl-is-still-a-valid-choice/regular_expressions.png)  
+[![./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
 
-> Published by Paul at 2022-05-28
+> Published by Paul at 2022-05-27
 
 Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.
 
 Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:
 
-[![./2022-05-22-perl-is-still-a-valid-choice/googletrendsperl.jpg](./2022-05-22-perl-is-still-a-valid-choice/googletrendsperl.jpg)](./2022-05-22-perl-is-still-a-valid-choice/googletrendsperl.jpg)  
+[![./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)  
 
 So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad repetition. Often, people state:
 
