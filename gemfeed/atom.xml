@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-05-27T08:33:16+01:00</updated>
+    <updated>2022-05-27T08:43:21+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -20,7 +20,7 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Perl is still a great choice</h1>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
-<p class="quote"><i>Published by Paul at 2022-05-27</i></p>
+<p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg" /></a><br />
