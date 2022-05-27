@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-05-27T09:01:05+01:00</updated>
+    <updated>2022-05-27T09:34:27+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -65,6 +65,7 @@
 <a class="textlink" href="https://news.ycombinator.com/item?id=23360338">Why does OpenBSD still include Perl in its base installation?</a><br />
 <p>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas "use strict; use warnings; use signatures;" and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.</p>
 <a class="textlink" href="https://www.perl.com/article/announcing-perl-7/">Announcing Perl 7</a><br />
+<a class="textlink" href="http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html">What happened to Perl 7? (maybe have to use "use v7;")</a><br />
 <h2>Why use Perl as there are better alternatives?</h2>
 <p>Here, common sense must be applied. I don't believe there is anything like "the perfect" programming language. Everyone has got his preferred (or a set of preferred) programming language to chose from. All programming languages come with their own set of strengths and weaknesses. These are the strengths making Perl shine, and you (technically) don't need to bother to look for "better" alternatives:</p>
 <ul>
