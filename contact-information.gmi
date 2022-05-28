@@ -3,7 +3,6 @@
 ## Personal information
 
 * Name: Paul Buetow
-* Born in: Germany
 * Currently living in: London, UK
 * E-Mail: paul at buetow period org
 
