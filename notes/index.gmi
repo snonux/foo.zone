@@ -2,5 +2,9 @@
 
 ## To be in the .zone!
 
-=> ./the-stoic-challange.gmi Book notes of 'The stoic challenge'
-=> ./soft-skills.gmi Book Notes of 'Software Developmers Career Guide & Soft Skills'
+=> ./the-stoic-challenge.gmi 'The stoic challenge' book notes
+=> ./soft-skills.gmi 'Software Developmers Career Guide & Soft Skills' book notes
+
+That were all notes. Hope they were useful!
+
+=> ../ Go back to main site
