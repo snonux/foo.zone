@@ -4,6 +4,7 @@
 
 => ./the-stoic-challenge.gmi 'The stoic challenge' book notes
 => ./soft-skills.gmi 'Software Developmers Career Guide & Soft Skills' book notes
+=> ./mental-combat.gmi Mental combat
 
 That were all notes. Hope they were useful!
 
