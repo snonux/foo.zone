@@ -19,7 +19,6 @@ This is the second blog post about my Bash Golf series. This series is random Ba
 => ./2021-11-29-bash-golf-part-1.gmi Bash Golf Part 1
 => ./2022-01-01-bash-golf-part-2.gmi Bash Golf Part 2 (you are reading this atm.)
 
-
 ## Redirection
 
 Let's have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:
