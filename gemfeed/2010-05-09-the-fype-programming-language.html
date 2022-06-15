@@ -16,7 +16,7 @@
  _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2010-05-09, last updated at 2021-05-05</i></p>
 <p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</p>
 <p>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </p>
@@ -31,7 +31,7 @@ typedef struct {
    Hash *p_hash_syms; // Symbol table
    char *c_basename;
 } Fype;
-</pre>
+</pre><br />
 <p>And here is a snippet from the primary Fype "class implementation":</p>
 <pre>
 Fype*
@@ -81,7 +81,7 @@ fype_run(int i_argc, char **pc_argv) {
 
    return (0);
 }
-</pre>
+</pre><br />
 <h2>Data types</h2>
 <p>Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:</p>
 <ul>
@@ -109,7 +109,7 @@ say bar;
 
 my baz;
 say baz; # Will print out 0
-</pre>
+</pre><br />
 <p>You may use the "defined" keyword to check if an identifier has been defined or not:</p>
 <pre>
 ifnot defined foo {
@@ -122,7 +122,7 @@ if defined foo {
 	put "foo is defined and has the value ";
 	say foo;
 }
-</pre>
+</pre><br />
 <h3>Synonyms</h3>
 <p>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</p>
 <pre>
@@ -132,7 +132,7 @@ foo = "bar";
 
 # The synonym variable should now also set to "bar"
 assert "bar" == bar;
-</pre>
+</pre><br />
 <p>Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</p>
 <pre>
 # Create a new procedure baz
@@ -145,7 +145,7 @@ undef baz;
 
 # bay still has a reference of the original procedure baz
 bay; # this prints aut "I am baz" 
-</pre>
+</pre><br />
 <p>The "syms" keyword gives you the total number of synonyms pointing to a specific value:</p>
 <pre>
 my foo = 1;
@@ -157,14 +157,14 @@ say syms baz; # Prints 2
 
 undef baz;
 say syms foo; # Prints 1
-</pre>
+</pre><br />
 <h2>Statements and expressions</h2>
 <p>A Fype program is a list of statements. Each keyword, expression or function call is part of a statement. Each statement is ended with a semicolon. Example:</p>
 <pre>
 my bar = 3, foo = 1 + 2; 
 say foo;
 exit foo - bar;
-</pre>
+</pre><br />
 <h3>Parenthesis</h3>
 <p>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</p>
 <h3>Basic expressions</h3>
@@ -181,7 +181,7 @@ exit foo - bar;
 (integer) &lt;any&gt; &lt;&gt; &lt;any&gt;
 (integer) &lt;any&gt; gt &lt;any&gt;
 (integer) not &lt;any&gt;
-</pre>
+</pre><br />
 <h3>Bitwise expressions</h3>
 <pre>
 (integer) &lt;any&gt; :&lt; &lt;any&gt;
@@ -189,41 +189,41 @@ exit foo - bar;
 (integer) &lt;any&gt; and &lt;any&gt;
 (integer) &lt;any&gt; or &lt;any&gt;
 (integer) &lt;any&gt; xor &lt;any&gt;
-</pre>
+</pre><br />
 <h3>Numeric expressions</h3>
 <pre>
 (number) neg &lt;number&gt;
-</pre>
+</pre><br />
 <p>... returns the negative value of "number":</p>
 <pre>
 (integer) no &lt;integer&gt;
-</pre>
+</pre><br />
 <p>... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!</p>
 <pre>
 (integer) yes &lt;integer&gt;
-</pre>
+</pre><br />
 <p>... always returns 1. The parameter is optional. Example:</p>
 <pre>
 # Prints out 1, because foo is not defined
 if yes { say no defined foo; } 
-</pre>
+</pre><br />
 <h2>Control statements</h2>
 <p>Control statements available in Fype:</p>
 <pre>
 if &lt;expression&gt; { &lt;statements&gt; }
-</pre>
+</pre><br />
 <p>... runs the statements if the expression evaluates to a true value.</p>
 <pre>
 ifnot &lt;expression&gt; { &lt;statements&gt; }
-</pre>
+</pre><br />
 <p>... runs the statements if the expression evaluates to a false value.</p>
 <pre>
 while &lt;expression&gt; { &lt;statements&gt; }
-</pre>
+</pre><br />
 <p>... runs the statements as long as the expression evaluates to a true value.</p>
 <pre>
 until &lt;expression&gt; { &lt;statements&gt; }
-</pre>
+</pre><br />
 <p>... runs the statements as long as the expression evaluates to a false value.</p>
 <h2>Scopes</h2>
 <p>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</p>
@@ -252,7 +252,7 @@ my foo = 1;
 
 # Prints out 0
 say defined bar;
-</pre>
+</pre><br />
 <p>Another example including an actual output:</p>
 <pre>
 ./fype -e ’my global; func foo { my var4; func bar { my var2, var3; func baz { my var1; scope; } baz; } bar; } foo;’
@@ -270,29 +270,29 @@ SYM_FUNCTION: baz
 2 level(s) up:
 SYM_VARIABLE: var4 (id=00035, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
 SYM_FUNCTION: bar
-</pre>
+</pre><br />
 <h2>Definedness </h2>
 <pre>
 (integer) defined &lt;identifier&gt;
-</pre>
+</pre><br />
 <p>... returns 1 if "identifier" has been defined. Returns 0 otherwise.</p>
 <pre>
 (integer) undef &lt;identifier&gt;
-</pre>
+</pre><br />
 <p>... tries to undefine/delete the "identifier". Returns 1 if it succeeded, otherwise 0 is returned.</p>
 <h2>System </h2>
 <p>These are some system and interpreter specific built-in functions supported:</p>
 <pre>
 (void) end
-</pre>
+</pre><br />
 <p>... exits the program with the exit status of 0.</p>
 <pre>
 (void) exit &lt;integer&gt;
-</pre>
+</pre><br />
 <p>... exits the program with the specified exit status.</p>
 <pre>
 (integer) fork
-</pre>
+</pre><br />
 <p>... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:</p>
 <pre>
 my pid = fork;
@@ -304,24 +304,24 @@ if pid {
 } ifnot pid {
 	say "I am the child process";
 }
-</pre>
+</pre><br />
 <p>To execute the garbage collector do:</p>
 <pre>
 (integer) GC
-</pre>
+</pre><br />
 <p>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</p>
 <h3>I/O </h3>
 <pre>
 (any) put &lt;any&gt;
-</pre>
+</pre><br />
 <p>... prints out the argument</p>
 <pre>
 (any) say &lt;any&gt;
-</pre>
+</pre><br />
 <p>is the same as put, but also includes an ending newline.</p>
 <pre>
 (void) ln
-</pre>
+</pre><br />
 <p>... just prints a new line.</p>
 <h2>Procedures and functions</h2>
 <h3>Procedures</h3>
@@ -336,7 +336,7 @@ my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
 say c; # Print out "6\n";
-</pre>
+</pre><br />
 <h3>Nested procedures</h3>
 <p>It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</p>
 <pre>
@@ -356,7 +356,7 @@ proc foo {
 foo; # Here the procedure foo will define the procedure bar!
 bar; # Now the procedure bar is defined!
 foo; # Here the procedure foo will redefine bar again!
-</pre>
+</pre><br />
 <h3>Functions</h3>
 <p>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It's using local (lexical scoped) variables. If a certain variable does not exist, when It's using already defined variables (e.g. one scope above). </p>
 <pre>
@@ -369,7 +369,7 @@ my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
 say c; # Will produce an error because c is out of scope!
-</pre>
+</pre><br />
 <h3>Nested functions</h3>
 <p>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</p>
 <pre>
@@ -383,14 +383,14 @@ func foo {
 
 foo;
 bar; # Will produce an error because bar is out of scope!
-</pre>
+</pre><br />
 <h2>Arrays</h2>
 <p>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</p>
 <pre>
 func bar { say ”bar” }
 my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
 say foo;
-</pre>
+</pre><br />
 <p>It produces the following output:</p>
 <pre>
 % ./fype arrays.fy
@@ -401,7 +401,7 @@ bar
 A
 BA
 BB
-</pre>
+</pre><br />
 <h2>Fancy stuff</h2>
 <p>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </p>
 <h2>May the source be with you</h2>

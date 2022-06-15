@@ -20,7 +20,7 @@
 |____    []*          ____  | ==||
 //  \\               //  \\ |===||  hjw
 "\__/"---------------"\__/"-+---+'
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2021-05-16</i></p>
 <p>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </p>
 <a class="textlink" href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a><br />
@@ -30,11 +30,11 @@
 <p>Google recommends using always...</p>
 <pre>
 #!/bin/bash 
-</pre>
+</pre><br />
 <p>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:</p>
 <pre>
 #!/usr/bin/env bash
-</pre>
+</pre><br />
 <h3>Two space soft-tabs indentation</h3>
 <p>I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. </p>
 <p>I don't care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.</p>
@@ -51,7 +51,7 @@ command1 \
   | command2 \
   | command3 \
   | command4
-</pre>
+</pre><br />
 <p>I think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:</p>
 <pre>
 # Long commands
@@ -59,7 +59,7 @@ command1 |
     command2 |
     command3 |
     command4
-</pre>
+</pre><br />
 <h3>Quoting your variables</h3>
 <p>Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:</p>
 <pre>
@@ -68,7 +68,7 @@ greet () {
     local -r name="${2}"
     echo "${greeting} ${name}!"
 }
-</pre>
+</pre><br />
 <p>In this particular example, I agree that you should quote them as you don't know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:</p>
 <pre>
 say_hello_to_paul () {
@@ -76,13 +76,13 @@ say_hello_to_paul () {
     local -r name=Paul
     echo "$greeting $name!"
 }
-</pre>
+</pre><br />
 <p>You see, I also omitted the curly braces { } around the variables. I only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:</p>
 <pre>
 declare FOO=bar
 # Curly braces around FOO are necessary
 echo "foo${FOO}baz"
-</pre>
+</pre><br />
 <p>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That's because it will be more likely that you might not remember that some of the functions don't work on values with spaces in them, for example. It's just that I won't quote everything in every small script I write. </p>
 <h3>Prefer built-in commands over external commands</h3>
 <p>Google recommends using the built-in commands over available external commands where possible:</p>
@@ -94,7 +94,7 @@ substitution="${string/#foo/bar}"
 # Instead of this:
 addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
-</pre>
+</pre><br />
 <p>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</p>
 <p>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
 <p>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).</p>
@@ -117,7 +117,7 @@ buy_soda () {
 }
 
 buy_soda $I_NEED_THE_BUZZ
-</pre>
+</pre><br />
 <h3>Non-evil alternative to variable assignments via eval</h3>
 <p>Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:</p>
 <pre>
@@ -128,7 +128,7 @@ eval $(set_my_variables)
 # What happens if one of the returned values has a space in it?
 variable="$(eval some_function)"
 
-</pre>
+</pre><br />
 <p>However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:</p>
 <pre>
 % cat vars.source.sh
@@ -138,7 +138,7 @@ declare bay=foo
 
 % bash -c 'source vars.source.sh; echo $foo $bar $baz'
 bar baz foo
-</pre>
+</pre><br />
 <p>And suppose I want to assign variables dynamically. In that case, I could just run an external script and source its output (This is how you could do metaprogramming in Bash without the use of eval - write code which produces code for immediate execution):</p>
 <pre>
 % cat vars.sh
@@ -150,7 +150,7 @@ END
 
 % bash -c 'source &lt;(./vars.sh); echo "Hello $user, it is $date"'
 Hello paul, it is Sat 15 May 19:21:12 BST 2021
-</pre>
+</pre><br />
 <p>The downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.</p>
 <h3>Prefer pipes over arrays for list processing</h3>
 <p>When I do list processing in Bash, I prefer to use pipes. You can chain them through Bash functions as well, which is pretty neat. Usually, my list processing scripts are of a structure like this:</p>
@@ -188,7 +188,7 @@ main () {
 }
 
 main
-</pre>
+</pre><br />
 <p>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</p>
 <h3>Assign-then-shift</h3>
 <p>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It's pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</p>
@@ -200,7 +200,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre>
+</pre><br />
 <p>Want to add a param_baz? Just do this:</p>
 <pre>
 some_function () {
@@ -210,7 +210,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre>
+</pre><br />
 <p>Want to remove param_foo? Nothing easier than that:</p>
 <pre>
 some_function () {
@@ -219,7 +219,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre>
+</pre><br />
 <p>As you can see, I didn't need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</p>
 <h3>Paranoid mode</h3>
 <p>I call this the paranoid mode. The Bash will stop executing when a command exits with a status not equal to 0:</p>
@@ -227,7 +227,7 @@ some_function () {
 set -e
 grep -q foo &lt;&lt;&lt; bar
 echo Jo
-</pre>
+</pre><br />
 <p>Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</p>
 <pre>
 #!/usr/bin/env bash
@@ -250,7 +250,7 @@ some_function () {
     fi
     ...
 }
-</pre>
+</pre><br />
 <h2>Learned</h2>
 <p>There are also a couple of things I've learned from Google's guide.</p>
 <h3>Unintended lexicographical comparison.</h3>
@@ -260,19 +260,19 @@ if [[ "${my_var}" &gt; 3 ]]; then
     # True for 4, false for 22.
     do_something
 fi
-</pre>
+</pre><br />
 <p>... but it is probably an unintended lexicographical comparison. A correct way would be:</p>
 <pre>
 if (( my_var &gt; 3 )); then
     do_something
 fi
-</pre>
+</pre><br />
 <p>or</p>
 <pre>
 if [[ "${my_var}" -gt 3 ]]; then
     do_something
 fi
-</pre>
+</pre><br />
 <h3>PIPESTATUS</h3>
 <p>I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to understand how it works until now thoroughly.</p>
 <p>The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it's only necessary to check the success or failure of the whole pipe, then the following is acceptable:</p>
@@ -281,7 +281,7 @@ tar -cf - ./* | ( cd "${dir}" &amp;&amp; tar -xf - )
 if (( PIPESTATUS[0] != 0 || PIPESTATUS[1] != 0 )); then
     echo "Unable to tar files to ${dir}" &gt;&amp;2
 fi
-</pre>
+</pre><br />
 <p>However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you'll need to assign PIPESTATUS to another variable immediately after running the command (don't forget that [ is a command and will wipe out PIPESTATUS).</p>
 <pre>
 tar -cf - ./* | ( cd "${DIR}" &amp;&amp; tar -xf - )
@@ -292,7 +292,7 @@ fi
 if (( return_codes[1] != 0 )); then
     do_something_else
 fi
-</pre>
+</pre><br />
 <h2>Use common sense and BE CONSISTENT.</h2>
 <p>The following two paragraphs are thoroughly quoted from the Google guidelines. But they hit the hammer on the head:</p>
 <p class="quote"><i>If you are editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around their if clauses, you should, too. If their comments have little boxes of stars around them, make your comments have little boxes of stars around them too.</i></p>

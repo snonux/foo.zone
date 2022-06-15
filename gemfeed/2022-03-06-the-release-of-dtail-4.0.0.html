@@ -21,7 +21,7 @@
                         ]             ~ ~             |
                         |                            |
                          |                           |
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <p>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:</p>
 <a class="textlink" href="./2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
@@ -47,7 +47,7 @@ const (
 	Trace   level = iota
 	All     level = iota
 )
-</pre>
+</pre><br />
 <p>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</p>
 <h3>Configurable terminal color codes</h3>
 <p>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</p>
@@ -145,7 +145,7 @@ const (
   },
   ...
 }
-</pre>
+</pre><br />
 <p>You notice the different sections - these are different contexts:</p>
 <ul>
 <li>Remote: Color configuration for all log lines sent remotely from the server to the client. </li>
@@ -157,40 +157,40 @@ const (
 <p>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</p>
 <pre>
 jsonschema -i dtail.json schemas/dtail.schema.json
-</pre>
+</pre><br />
 <h3>Serverless mode</h3>
 <p>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</p>
 <pre>
 % dtail --files /var/log/foo.log
-</pre>
+</pre><br />
 <p>or</p>
 <pre>
 % dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
-</pre>
+</pre><br />
 <p>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</p>
 <h3>Shorthand flags</h3>
 <p>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</p>
 <pre>
 % dtail /var/log/foo.log
-</pre>
+</pre><br />
 <p>Of course, this also works with all other DTail client commands (dgrep, dcat, ... etc).</p>
 <h3>Spartan (aka plain) mode</h3>
 <p>There's a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</p>
 <pre>
 % dcat --plain /etc/passwd &gt; /etc/test
 % diff /etc/test /etc/passwd  # Same content, no diff
-</pre>
+</pre><br />
 <p>This might be useful if you wanted to post-process the output. </p>
 <h3>Standard input pipe</h3>
 <p>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</p>
 <pre>
 % dgrep --plain --regex 'somethingspecial' /var/log/foo.log |
     dmap --query 'from TABLE select .... outfile result.csv'
-</pre>
+</pre><br />
 <p>Or, use any other "standard" tool:</p>
 <pre>
 % awk '.....' &lt; /some/file | dtail ....
-</pre>
+</pre><br />
 <h3>New command dtailhealth</h3>
 <p>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</p>
 <pre>
@@ -198,7 +198,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 #!/bin/sh
 
 exec /usr/local/bin/dtailhealth --server localhost:2222
-</pre>
+</pre><br />
 <h3>Improved documentation</h3>
 <p>Some features, such as custom log formats and the map-reduce query language, are now documented. Also, the examples have been updated to reflect the new features added. This also includes the new animated example Gifs (plus documentation how they were created).</p>
 <p>I must admit that not all features are documented yet:</p>
@@ -214,7 +214,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <p>How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:</p>
 <pre>
 % export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
-</pre>
+</pre><br />
 <p>Once done, first compile all commands, and then run the integration tests:</p>
 <pre>
 % make
@@ -223,7 +223,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 .
 % go clean -testcache
 % go test -race -v ./integrationtests
-</pre>
+</pre><br />
 <h3>Improved code</h3>
 <p>Not that the code quality of DTail has been bad (I have been using Go vet and Go lint for previous releases and will keep using these), but this time I had new tools (such as SonarQube and BlackDuck) in my arsenal to:</p>
 <ul>

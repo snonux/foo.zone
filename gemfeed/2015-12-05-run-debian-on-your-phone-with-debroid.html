@@ -16,7 +16,7 @@
 | |_| |  __/ |_) | | | (_) | | (_| |
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2015-12-05, last updated at 2021-05-16</i></p>
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
@@ -46,7 +46,7 @@ sudo debootstrap --foreign --variant=minbase \
   --arch armel jessie jessie/ \
   http://http.debian.net/debian
 sudo umount jessie
-</pre>
+</pre><br />
 <h3>Copy Debian image to the phone</h3>
 <p>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</p>
 <pre>
@@ -86,7 +86,7 @@ busybox mount --bind /storage/sdcard1 \
 
 # Check mounts
 mount | grep jessie
-</pre>
+</pre><br />
 <h3>Second debootstrap stage</h3>
 <p>This is to be performed on the Android phone itself (inside a Debian chroot):</p>
 <pre>
@@ -95,7 +95,7 @@ export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
 /debootstrap/debootstrap --second-stage
 exit # Leave chroot
 exit # Leave adb shell
-</pre>
+</pre><br />
 <h3>Setup of various scripts</h3>
 <p>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</p>
 <pre>
@@ -129,7 +129,7 @@ apt-get update
 apt-get upgrade
 apt-get dist-upgrade
 exit # Exit chroot
-</pre>
+</pre><br />
 <h3>Entering Debroid and enable a service</h3>
 <p>This enters Debroid on your phone and starts the example service uptimed:</p>
 <pre>
@@ -146,7 +146,7 @@ END
 chmod 0755 /etc/rc.debroid
 exit # Exit chroot
 exit # Exit adb shell
-</pre>
+</pre><br />
 <h3>Include to Android startup:</h3>
 <p>If you want to start Debroid automatically whenever your phone starts, then do the following:</p>
 <pre>
@@ -154,7 +154,7 @@ adb push data/local/userinit.sh /data/local/userinit.sh
 adb shell
 chmod +x /data/local/userinit.sh
 exit
-</pre>
+</pre><br />
 <p>Reboot &amp; test!  Enjoy!</p>
 <p>E-Mail me your comments to paul at buetow dot org!</p>
 <a class="textlink" href="../">Go back to the main site</a><br />

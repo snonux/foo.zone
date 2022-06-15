@@ -20,7 +20,7 @@ datatype ’a multi
 	= EMPTY
 	| ELEM of ’a
 	| UNION of ’a multi * ’a multi
-</pre>
+</pre><br />
 <p>Haskell:</p>
 <pre>
 data (Eq a) =&gt; Multi a
@@ -28,7 +28,7 @@ data (Eq a) =&gt; Multi a
     | Elem a
     | Union (Multi a) (Multi a)
     deriving Show
-</pre>
+</pre><br />
 <h2>Processing a multi</h2>
 <p>Standard ML:</p>
 <pre>
@@ -38,7 +38,7 @@ fun number (EMPTY) _ = 0
 fun test_number w = number (UNION (EMPTY, \
     UNION (ELEM 4, UNION (ELEM 6, \
     UNION (UNION (ELEM 4, ELEM 4), EMPTY))))) w 
-</pre>
+</pre><br />
 <p>Haskell:</p>
 <pre>
 number Empty _ = 0
@@ -46,7 +46,7 @@ number (Elem x) w = if x == w then 1 else 0
 test_number w = number (Union Empty \
     (Union (Elem 4) (Union (Elem 6) \
     (Union (Union (Elem 4) (Elem 4)) Empty)))) w
-</pre>
+</pre><br />
 <h2>Simplify function</h2>
 <p>Standard ML:</p>
 <pre>
@@ -63,7 +63,7 @@ fun simplify (UNION (x,y)) =
        else UNION (x’, y’)
     end
   | simplify x = x
-</pre>
+</pre><br />
 <p>Haskell:</p>
 <pre>
 simplify (Union x y)
@@ -77,7 +77,7 @@ simplify (Union x y)
         x’ = simplify x
         y’ = simplify y
 simplify x = x
-</pre>
+</pre><br />
 <h2>Delete all</h2>
 <p>Standard ML:</p>
 <pre>
@@ -87,7 +87,7 @@ fun delete_all m w =
           | delete_all’ x = x
     in simplify (delete_all’ m)
     end
-</pre>
+</pre><br />
 <p>Haskell:</p>
 <pre>
 delete_all m w = simplify (delete_all’ m)
@@ -95,7 +95,7 @@ delete_all m w = simplify (delete_all’ m)
         delete_all’ (Elem x) = if x == w then Empty else Elem x
         delete_all’ (Union x y) = Union (delete_all’ x) (delete_all’ y)
         delete_all’ x = x
-</pre>
+</pre><br />
 <h2>Delete one</h2>
 <p>Standard ML:</p>
 <pre>
@@ -114,7 +114,7 @@ fun delete_one m w =
             val (m’, _) = delete_one’ m
         in simplify m’
     end
-</pre>
+</pre><br />
 <p>Haskell:</p>
 <pre>
 delete_one m w = do
@@ -130,7 +130,7 @@ delete_one m w = do
         delete_one’ (Elem x) =
             if x == w then (Empty, True) else (Elem x, False)
         delete_one’ x = (x, False)
-</pre>
+</pre><br />
 <h2>Higher-order functions</h2>
 <p>The first line is always the SML code, the second line the Haskell variant:</p>
 <pre>
@@ -145,7 +145,7 @@ my_map f l = foldr (make_map_fn f) [] l
 
 fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
-</pre>
+</pre><br />
 <p>E-Mail me your comments to paul at buetow dot org!</p>
 <a class="textlink" href="../">Go back to the main site</a><br />
 <p class="footer">

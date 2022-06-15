@@ -27,7 +27,7 @@
              \     \
               \     `.     hjw
                \      `.
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2016-04-09</i></p>
 <p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
 <h2>ZFS</h2>
@@ -40,7 +40,7 @@ zfs::create { 'ztank/foo':
 
   require =&gt; File['/srv'],
 }
-</pre>
+</pre><br />
 <p>Puppet run:</p>
 <pre>
 admin alphacentauri:/opt/git/server/puppet/manifests [1212]% puppet.apply
@@ -60,7 +60,7 @@ ztank/foo                     96K  1.13T    96K  /srv/foo
 admin alphacentauri:~ [1214]% df | grep foo
 ztank/foo                  1214493520        96 1214493424     0%    /srv/foo
 admin alphacentauri:~ [1215]% 
-</pre>
+</pre><br />
 <p>The destruction of the file system just requires to set "ensure" to "absent" in Puppet:</p>
 <pre>
 zfs::create { 'ztank/foo':
@@ -69,7 +69,7 @@ zfs::create { 'ztank/foo':
 
   require =&gt; File['/srv'],
 }¬
-</pre>
+</pre><br />
 <p>Puppet run:</p>
 <pre>
 admin alphacentauri:/opt/git/server/puppet/manifests [1220]% puppet.apply
@@ -90,7 +90,7 @@ zsh: exit 1     grep foo
 admin alphacentauri:/opt/git/server/puppet/manifests [1222:1]% df | grep foo
 zsh: done       df | 
 zsh: exit 1     grep foo
-</pre>
+</pre><br />
 <h2>Jails</h2>
 <p>Here is an example in how a FreeBSD Jail can be created. The Jail will have its own public IPv6 address. And it will have its own internal IPv4 address with IPv4 NAT to the internet (this is due to the limitation that the host server only got one public IPv4 address which requires sharing between all the Jails).</p>
 <p>Furthermore, Puppet will ensure that the Jail will have its own ZFS file system (internally it is using the ZFS module). Please notice that the NAT requires the packet filter to be setup correctly (not covered in this blog post).</p>
@@ -130,7 +130,7 @@ class { 'jail':
     },
   }
 }
-</pre>
+</pre><br />
 <p>This is how the result looks like:</p>
 <pre>
 admin sun:/etc [1939]% puppet.apply
@@ -221,7 +221,7 @@ lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; metric 0 mtu 16384
      options=600003&lt;RXCSUM,TXCSUM,RXCSUM_IPV6,TXCSUM_IPV6&gt;
      inet 192.168.0.17 netmask 0xffffffff 
      nd6 options=29&lt;PERFORMNUD,IFDISABLED,AUTO_LINKLOCAL&gt;
-</pre>
+</pre><br />
 <h2>Inside-Jail Puppet</h2>
 <p>To automatically setup the applications running in the Jail I am using Puppet as well. I wrote a few scripts which bootstrap Puppet inside of a newly created Jail. It is doing the following:</p>
 <ul>
@@ -359,7 +359,7 @@ Notice: /Stage[main]/S_user::Root_files/S_user::My_files[root]/File[/root/.task]
 .
 .
 Notice: Finished catalog run in 206.09 seconds
-</pre>
+</pre><br />
 <h2>Managing multiple Jails</h2>
 <p>Of course I am operating multiple Jails on the same host this way with Puppet:</p>
 <ul>

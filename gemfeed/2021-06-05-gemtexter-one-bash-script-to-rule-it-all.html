@@ -48,7 +48,7 @@
 :   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
  \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
                                                            `+a:f:......jrei'''
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2021-06-05</i></p>
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
 <a class="textlink" href="./2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
@@ -86,7 +86,7 @@ paul in uranus in gemtexter on 🌱 main
      30 lib/log.source.sh
      63 lib/md.source.sh
      834 total
-</pre>
+</pre><br />
 <p>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </p>
 <h3>Bash best practises and ShellCheck</h3>
 <p>While working on Gemtexter, I also had a look at the Google Shell Style Guide and wrote a blog post on that:</p>
@@ -106,13 +106,13 @@ gemtext='=&gt; http://example.org Description of the link'
 assert::equals "$(generate::make_link html "$gemtext")" \
     '&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'
 
-</pre>
+</pre><br />
 <h3>Markdown unit test example</h3>
 <pre>
 gemtext='=&gt; http://example.org Description of the link'
 assert::equals "$(generate::make_link md "$gemtext")" \
     '[Description of the link](http://example.org)  '
-</pre>
+</pre><br />
 <h2>Handcrafted HTML styles</h2>
 <p>I had a look at some ready off the shelf CSS styles, but they all seemed too bloated. There is a whole industry selling CSS styles on the interweb. I preferred an effortless and minimalist style for the HTML site. So I handcrafted the Cascading Style Sheets manually with love and included them in the HTML header template. </p>
 <p>For now, I have to re-generate all HTML files whenever the CSS changes. That should not be an issue now, but I might move the CSS into a separate file one day.</p>

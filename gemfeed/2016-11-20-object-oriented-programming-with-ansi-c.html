@@ -16,7 +16,7 @@
 | |_| | |_| |  __/_____| |___ 
  \___/ \___/|_|         \____|
                               
-</pre>
+</pre><br />
 <p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
 <p>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</p>
 <h2>Function pointers</h2>
@@ -53,30 +53,30 @@ int main(void) {
     printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, mult.calculate(a,b));
     printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
 }
-</pre>
+</pre><br />
 <p>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</p>
 <pre>
 printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, mult.calculate(a,b));
 printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
-</pre>
+</pre><br />
 <p>However, that's just syntactic sugar for:</p>
 <pre>
 printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, (*mult.calculate)(a,b));
 printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, (*div.calculate)(a,b));
-</pre>
+</pre><br />
 <p>Output:</p>
 <pre>
 pbuetow ~/git/blog/source [38268]% gcc oop-c-example.c -o oop-c-example
 pbuetow ~/git/blog/source [38269]% ./oop-c-example
 Multiplication(3.000000, 2.000000) =&gt; 6.000000
 Division(3.000000, 2.000000) =&gt; 1.500000
-</pre>
+</pre><br />
 <p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
 <h2>That's not OOP, though</h2>
 <p>However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</p>
 <pre>
 mult.calculate(mult,a,b));
-</pre>
+</pre><br />
 <h2>Real object oriented programming with C</h2>
 <p>If you want to take it further, hit "Object-Oriented Programming with ANSI-C" into your favourite internet search engine or follow the link below. It goes as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</p>
 <a class="textlink" href="https://www.cs.rit.edu/~ats/books/ooc.pdf">https://www.cs.rit.edu/~ats/books/ooc.pdf</a><br />

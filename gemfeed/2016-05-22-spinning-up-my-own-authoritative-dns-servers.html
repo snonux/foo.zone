@@ -46,7 +46,7 @@ class { 'jail':
     .
   }
 }
-</pre>
+</pre><br />
 <h2>PF firewall</h2>
 <p>Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default, all ports are blocked, so I am adding an exception rule for the IPv6 address. These are the PF rules in use:</p>
 <pre>
@@ -60,7 +60,7 @@ pass in on re0 inet6 proto tcp from any to 2a01:4f8:120:30e8::15 port {53} flags
 pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags S/SA keep state
 .
 .
-</pre>
+</pre><br />
 <h2>Puppet managed BIND zone files</h2>
 <p>In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself), I configured the BIND DNS server this way:</p>
 <pre>
@@ -68,7 +68,7 @@ class { 'bind_freebsd':
   config         =&gt; "puppet:///files/bind/named.${::hostname}.conf",
   dynamic_config =&gt; "puppet:///files/bind/dynamic.${::hostname}",
 }
-</pre>
+</pre><br />
 <p>The Puppet module is a pretty simple one. It installs the file "/usr/local/etc/named/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.</p>
 <p>Once (Puppet-) applied inside of the Jail, I get this:</p>
 <pre>
@@ -111,7 +111,7 @@ dns2 86400 IN AAAA 2a03:2500:1:6:20::
 .
 .
 .
-</pre>
+</pre><br />
 <p>That is my master DNS server. My slave DNS server runs in another Jail on another bare-metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and different IP subnets. The only difference is the "named.conf". It's configured to be a slave, and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.</p>
 <pre>
 paul uranus:~/git/blog/source [4279]% ssh admin@dns2.buetow.org tail -n 11 /usr/local/etc/namedb/named.conf
@@ -126,7 +126,7 @@ zone "buetow.zone" {
     masters { 78.46.80.70; };
     file "/usr/local/etc/namedb/dynamic/buetow.zone";
 };
-</pre>
+</pre><br />
 <h2>The result</h2>
 <p>The result looks like this now:</p>
 <pre>
@@ -183,7 +183,7 @@ dns2.buetow.org.	86400	IN	AAAA	2a03:2500:1:6:20::
 ;; SERVER: 78.46.80.70#53(78.46.80.70)
 ;; WHEN: Sun May 22 11:34:41 BST 2016
 ;; MSG SIZE  rcvd: 322
-</pre>
+</pre><br />
 <h2>Monitoring</h2>
 <p>For monitoring, I am using Icinga2 (I am operating two Icinga2 instances in two different DCs). I may have to post another blog article about Icinga2, but to get the idea, these were the snippets added to my Icinga2 configuration:</p>
 <pre>
@@ -207,7 +207,7 @@ apply Service "dig6" {
 
     assign where host.name == "dns.ian.buetow.org" || host.name == "caprica.ian.buetow.org"
 }
-</pre>
+</pre><br />
 <h2>DNS update workflow</h2>
 <p>Whenever I have to change a DNS entry, all I have to do is:</p>
 <ul>
