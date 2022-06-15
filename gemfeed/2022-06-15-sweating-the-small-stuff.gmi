@@ -49,7 +49,7 @@ Photography is one of my casual hobbies. I love to capture interesting perspecti
 
 => ./2022-06-15-sweating-the-small-stuff/ninja.jpg
 
-More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored it to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
+More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
 
 The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.
 
