@@ -47,6 +47,7 @@ You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other int
 
 ### Posts
 
+[2022-06-15 - Sweating the small stuff - Tiny projects of mine](./gemfeed/2022-06-15-sweating-the-small-stuff.md)  
 [2022-05-27 - Perl is still a great choice](./gemfeed/2022-05-27-perl-is-still-a-great-choice.md)  
 [2022-04-10 - Creative universe](./gemfeed/2022-04-10-creative-universe.md)  
 [2022-03-06 - The release of DTail 4.0.0](./gemfeed/2022-03-06-the-release-of-dtail-4.0.0.md)  

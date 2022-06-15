@@ -15,6 +15,9 @@
 
 > Published by Paul at 2016-04-03
 
+[Offsite backup with ZFS Part 1 (you are reading this atm.)](./2016-04-03-offsite-backup-with-zfs.md)  
+[Offsite backup with ZFS Part 2](./2016-04-16-offsite-backup-with-zfs-part2.md)  
+
 ## Please don't lose all my pictures again!
 
 When it comes to data storage and potential data loss, I am a paranoid person. It is due to my job and a personal experience I encountered over ten years ago: A single drive failure and loss of all my data (pictures, music, etc.).

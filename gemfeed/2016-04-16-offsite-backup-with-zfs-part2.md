@@ -17,7 +17,8 @@
 
 > Published by Paul at 2016-04-16
 
-[Read the first part before reading any furter here...](./2016-04-03-offsite-backup-with-zfs.md)  
+[Offsite backup with ZFS Part 1](./2016-04-03-offsite-backup-with-zfs.md)  
+[Offsite backup with ZFS Part 2 (you are reading this atm.)](./2016-04-16-offsite-backup-with-zfs-part2.md)  
 
 I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.
 

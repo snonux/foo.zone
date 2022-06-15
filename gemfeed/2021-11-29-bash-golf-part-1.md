@@ -16,7 +16,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
-[Bash Golf Part 1 (you are reding this atm.)](./2021-11-29-bash-golf-part-1.md)  
+[Bash Golf Part 1 (you are reading this atm.)](./2021-11-29-bash-golf-part-1.md)  
 [Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 
 ## TCP/IP networking
