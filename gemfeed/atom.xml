@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-06-15T08:48:29+01:00</updated>
+    <updated>2022-06-15T09:02:01+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -52,7 +52,7 @@
 <h3>The Irregular Ninja</h3>
 <p>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</p>
 <a href="https://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff/ninja.jpg"><img src="https://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff/ninja.jpg" /></a><br />
-<p>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class="inlinecode">photoalbum.sh</span> which I recently refactored it to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class="inlinecode">irregular.ninja</span> has been registered.</p>
+<p>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class="inlinecode">photoalbum.sh</span> which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class="inlinecode">irregular.ninja</span> has been registered.</p>
 <p>The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.</p>
 <p>As you can see, there is a lot of randomization and irregularity going on. Thus, the name "Irregular Ninja" was born.</p>
 <a class="textlink" href="https://irregular.ninja">https://irregular.ninja</a><br />
