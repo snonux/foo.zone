@@ -243,6 +243,8 @@ I don't have it running on any of my servers at the moment. This means that ther
 ## List open Jira tickets in the terminal
 
 `japi` s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)
+
+=> https://codeberg.org/snonux/jsmstrade
  
 ## Debian running on "your" Android phone
 
