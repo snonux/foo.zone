@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-06-15T08:48:29+01:00</updated>
+    <updated>2022-06-18T06:11:42+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -26,7 +26,7 @@
  jgs    \_\              `.    .'''
                            `..'
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-06-15</i></p>
+<p class="quote"><i>Published by Paul at 2022-06-15, last updated at 2022-06-18</i></p>
 <p>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</p>
 <a class="textlink" href="https://jvns.ca/blog/2022/03/08/tiny-programs/">Tiny programs</a><br />
 <a class="textlink" href="https://thesephist.com/projects/">The Sephist's project list</a><br />
@@ -52,7 +52,7 @@
 <h3>The Irregular Ninja</h3>
 <p>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</p>
 <a href="https://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff/ninja.jpg"><img src="https://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff/ninja.jpg" /></a><br />
-<p>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class="inlinecode">photoalbum.sh</span> which I recently refactored it to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class="inlinecode">irregular.ninja</span> has been registered.</p>
+<p>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class="inlinecode">photoalbum.sh</span> which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class="inlinecode">irregular.ninja</span> has been registered.</p>
 <p>The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.</p>
 <p>As you can see, there is a lot of randomization and irregularity going on. Thus, the name "Irregular Ninja" was born.</p>
 <a class="textlink" href="https://irregular.ninja">https://irregular.ninja</a><br />
@@ -193,6 +193,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <p>I don't have it running on any of my servers at the moment. This means that there is no demo to show now. Sorry!</p>
 <h2>List open Jira tickets in the terminal</h2>
 <p><span class="inlinecode">japi</span> s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)</p>
+<a class="textlink" href="https://codeberg.org/snonux/jsmstrade">https://codeberg.org/snonux/jsmstrade</a><br />
 <p> </p>
 <h2>Debian running on "your" Android phone</h2>
 <p>Debroid is a tutorial and a set of scripts to install and to run a Debian <span class="inlinecode">chroot</span> on an Android phone.</p>
