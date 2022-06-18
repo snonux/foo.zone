@@ -8,7 +8,7 @@
                            `..'
 ```
 
-> Published by Paul at 2022-06-15
+> Published by Paul at 2022-06-15, last updated at 2022-06-18
 
 This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:
 
@@ -49,7 +49,7 @@ Photography is one of my casual hobbies. I love to capture interesting perspecti
 
 [![./2022-06-15-sweating-the-small-stuff/ninja.jpg](./2022-06-15-sweating-the-small-stuff/ninja.jpg)](./2022-06-15-sweating-the-small-stuff/ninja.jpg)  
 
-More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored it to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
+More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
 
 The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.
 
@@ -243,6 +243,8 @@ I don't have it running on any of my servers at the moment. This means that ther
 ## List open Jira tickets in the terminal
 
 `japi` s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)
+
+[https://codeberg.org/snonux/jsmstrade](https://codeberg.org/snonux/jsmstrade)  
  
 ## Debian running on "your" Android phone
 
