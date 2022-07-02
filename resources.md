@@ -113,7 +113,7 @@ These are not whole books, but guides (smaller or larger) which I found very use
 * Raku Guide at https://raku.guide
 * Advanced Bash-Scripting Guide
 
-## Podcasts
+## Podcasts I like
 
 * BSD Now
 * CRE: Technik, Kultur, Gesellschaft (de)
@@ -122,6 +122,7 @@ These are not whole books, but guides (smaller or larger) which I found very use
 * Go Time (Changelog)
 * Java Pub House
 * Ship it (Changelog)
+* The Minimalists
 
 ## Fiction and more books
 
