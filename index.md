@@ -1,42 +1,24 @@
-#  foo.zone
+# foo.zone
 
 ```
-              ,---------------------------,
-              |  /---------------------\  |
-              | |                       | |
-              | |  Paul's               | |
-              | |   personal            | |
-              | |     blog and          | |
-              | |      internet site!   | |
-              |  \_____________________/  |
-              |___________________________|
-            ,---\_____     []     _______/------,
-          /         /______________\           /|
-        /___________________________________ /  | ___
-        |                                   |   |    )
-        |  _ _ _                 [-------]  |   |   (
-        |  o o o OpenBSD inside  [-------]  |  /    _)_
-        |__________________________________ |/     /  /
-    /-------------------------------------/|      ( )/
-  /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ /
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   |\---/|
+   | ,_, |
+    \_`_/-..----.
+ ___/ `   ' ,""+ \  sk
+(__...'   __\    |`.___.';
+  (_,...'(_,.`__)/'.....+
 ```
 
-## Why does this site look so old school?
+## Introduction
+
+Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
+
+[My contact information](./contact-information.md)  
+[My list of resources](./resources.md)  
 
 If you reach this site via the modern web, please read this:
 
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
-
-## Introduction
-
-Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. It's not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.
-
-You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
-
-[My contact information](./contact-information.md)  
-[My list of resources](./resources.md)  
 
 ## Personal blog
 
