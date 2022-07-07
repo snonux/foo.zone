@@ -3,7 +3,6 @@
 ## Personal information
 
 * Name: Paul Buetow
-* Currently living in: London, UK
 * E-Mail: paul at buetow period org
 
 [![Paul Buetow](./paul.jpg "Paul Buetow")](./paul.jpg)  
