@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-07-30T11:35:29+01:00</updated>
+    <updated>2022-07-30T12:07:23+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,11 @@
         <summary>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Let's Encrypt with OpenBSD and Rex</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 21429 Jul 30 10:56 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+---
+> -rw-r--r--. 1 paul paul 21483 Jul 30 12:06 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+<h1>Let's Encrypt with OpenBSD and Rex</h1>
 <pre>
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -57,15 +61,15 @@
 <ul>
 <li>It first checks whether a certificate already exists, if not, it will attempt to generate a new one.</li>
 <li>If the certificate already exists but expires within the next 30 days, it will renew it.</li>
-<li>Otherwise, `acme-client` won't do anything.</li>
+<li>Otherwise, <span class="inlinecode">acme-client</span> won't do anything.</li>
 </ul>
 <p>Oversimplified, the following steps are undertaken by <span class="inlinecode">acme-client</span> for generating a new certificate:</p>
 <ul>
 <li>Reading its config file <span class="inlinecode">/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates for. So it means you can also have certificates for abritary subdomains!</li>
-<li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to `/etc/ssl/...`.</li>
+<li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to <span class="inlinecode">/etc/ssl/...</span>.</li>
 <li>Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files which will be requested by Let's Encrypt in the next step for verification.</li>
-<li>Let's Encrypt then will contact the hostname for the certificate through a special URL (e.g. `http://foo.zone/.well-known/acme-challenge/...`) to verify that the requester is the valid owner of the host.</li>
-<li>Let's Encrypt generates a certificate, which then is downloaded to `/etc/ssl/...`.</li>
+<li>Let's Encrypt then will contact the hostname for the certificate through a special URL (e.g. <span class="inlinecode">http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
+<li>Let's Encrypt generates a certificate, which then is downloaded to <span class="inlinecode">/etc/ssl/...</span>.</li>
 </ul>
 <h2>Configuration</h2>
 <p>There is some (but easy) configuration required to make that all work on OpenBSD.</p>
@@ -159,7 +163,7 @@ server "foo.zone" {
 }
 </pre><br />
 <p>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it is redirecting the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.</p>
-<p>It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates actually being present. This will cause a certificate error when you try to reach the HTTPS endpoint but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process so that HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated you will have to reload or restart <span class="inlinecode">httpd</span> in order to use any new certificate.</p>
+<p>It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates actually being present. This will cause a certificate error when you try to reach the HTTPS endpoint but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process so that HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class="inlinecode">httpd</span> in order to use any new certificate.</p>
 <h3>CRON job</h3>
 <p>You could now run <span class="inlinecode">doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</p>
 <p>I have created a script <span class="inlinecode">/usr/local/bin/acme.sh</span> for that for all of my domains:</p>
@@ -608,7 +612,7 @@ rex commons
 <h2>Conclusion</h2>
 <p>ACME and Let's Encrypt greatly help reducing recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of costs! I love to use OpenBSD and Rex to automate all of this.</p>
 <p>OpenBSD suits perfectly here as all the tools are already part of the base installation. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog and the community is small. But I like underdogs.</p>
-<p>I love the fact that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Why re-inventing the wheel? Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script so that I didn't have to install yet another shell.</p>
+<p>I love the fact that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Why re-inventing the wheel? Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script so that I didn't have to install yet another shell as OpenBSD does not come with the Bash pre-installed.</p>
 <p>E-Mail me your comments to paul at buetow dot org!</p>
             </div>
         </content>
