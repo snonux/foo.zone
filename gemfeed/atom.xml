@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-08-27T18:28:19+01:00</updated>
+    <updated>2022-08-27T18:31:27+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,11 +19,11 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4084 Aug 27 18:24 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
+< -rw-r--r--. 1 paul paul 4091 Aug 27 18:28 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
 ---
-> -rw-r--r--. 1 paul paul 4091 Aug 27 18:28 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
+> -rw-r--r--. 1 paul paul 4084 Aug 27 18:31 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
 <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
-<p class="quote"><i>Published by Paul at 2022-08-26</i></p>
+<p class="quote"><i>Published by Paul at 2022-08-27</i></p>
 <pre>
 -=[ typewriter ]=-  1/98
 
@@ -67,16 +67,16 @@ check_dependencies () {
 <h3>Cache for Atom feed generation</h3>
 <p>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class="inlinecode">.gmi</span> file to decide whether anything of the content has changed or not.</p>
 <h3>Input filter support</h3>
-<p>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression. </p>
+<p>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</p>
 <pre>
 ./gemtexter --generate '.*hello.*'
 </pre><br />
 <h3>Revamped <span class="inlinecode">git</span> support</h3>
-<p>The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the <span class="inlinecode">README</span> file for more information.</p>
+<p>The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the <span class="inlinecode">README</span> for more information.</p>
 <h3>Addition of <span class="inlinecode">htmlextras</span> and web font support</h3>
 <p>The <span class="inlinecode">htmlextras</span> folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.</p>
 <h3>Sub-section support</h3>
-<p>It's now possible to define sub-sections within a Gemtextter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:</p>
+<p>It's now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:</p>
 <a class="textlink" href="https://foo.zone">The foo.zone main site</a><br />
 <a class="textlink" href="https://foo.zone/notes">The notes sub-section (with different fonts)</a><br />
 <h3>More</h3>
