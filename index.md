@@ -29,6 +29,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2022-08-27 - Gemtexter 1.1.0 - Let's Gemtext again](./gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
 [2022-07-30 - Let's Encrypt with OpenBSD and Rex](./gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
 [2022-06-15 - Sweating the small stuff - Tiny projects of mine](./gemfeed/2022-06-15-sweating-the-small-stuff.md)  
 [2022-05-27 - Perl is still a great choice](./gemfeed/2022-05-27-perl-is-still-a-great-choice.md)  
