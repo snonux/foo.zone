@@ -1,5 +1,7 @@
 # Perl Poetry
 
+> Published by Paul at 2008-06-26, last updated at 2021-05-04
+
 ```
  '\|/'                                  *
 -- * -----
@@ -22,8 +24,6 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
              ~ ~ ~~~ _|| (_/ (___)_| |Nov291999
                     (__)         (____)
 ```
-
-> Published by Paul at 2008-06-26, last updated at 2021-05-04
 
 Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.
 
@@ -161,6 +161,6 @@ Did you like what you saw? Have a look at Codeberg to see my other poems too:
 
 => https://codeberg.org/snonux/perl-poetry
 
-E-Mail me your comments to paul at buetow dot org!
+=> gemini://paul.buetow.org E-Mail me your comments :-)
 
 => ../ Go back to the main site

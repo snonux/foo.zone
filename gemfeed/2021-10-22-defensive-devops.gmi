@@ -1,5 +1,7 @@
 # Defensive DevOps
 
+> Published by Paul at 2021-10-22
+
 ```
                                                             c=====e
                                                                H
@@ -9,8 +11,6 @@
    (__((__((___()()()------------------------------------'  |_____|
                            ASCII Art by Clyde Watson
 ```
-
-> Published by Paul at 2021-10-22
 
 I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.
 
@@ -99,6 +99,6 @@ For every major incident, you need to follow up with an incident retrospective. 
 
 This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.
 
-E-Mail me your comments to paul at buetow dot org!
+=> gemini://paul.buetow.org E-Mail me your comments :-)
 
 => ../ Go back to the main site

@@ -1,5 +1,7 @@
 # Using my Nokia N95 for fixing my MTA
 
+> Published by Paul at 2008-12-29, last updated at 2021-12-01
+
 ```
 
            _
@@ -16,8 +18,6 @@
 _jgs_\|//_\\|///_\V/_\|//__
                       Art by Joan Stark
 ```
-
-> Published by Paul at 2008-12-29, last updated at 2021-12-01
 
 The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). 
 
@@ -36,6 +36,6 @@ It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard.
 
 At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)
 
-E-Mail me your comments to paul at buetow dot org!
+=> gemini://paul.buetow.org E-Mail me your comments :-)
 
 => ../ Go back to the main site

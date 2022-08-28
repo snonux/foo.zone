@@ -1,5 +1,7 @@
 # Realistic load testing with I/O Riot for Linux
 
+> Published by Paul at 2018-06-01, last updated at 2021-05-08
+
 ```
        .---.
       /     \
@@ -10,8 +12,6 @@
    /`\_`>  <_/ \
 jgs\__/'---'\__/
 ```
-
-> Published by Paul at 2018-06-01, last updated at 2021-05-08
 
 ## Foreword
 
@@ -186,6 +186,6 @@ For example, the open syscall opens a file and returns the responsible file desc
 => https://graphiteapp.org Graphite
 => https://en.wikipedia.org/wiki/Memory-mapped_I/O Memory mapped I/O
 
-E-Mail me your comments to paul at buetow dot org!
+=> gemini://paul.buetow.org E-Mail me your comments :-)
 
 => ../ Go back to the main site

@@ -1,5 +1,7 @@
 # Object oriented programming with ANSI C
 
+> Published by Paul at 2016-11-20, updated 2022-01-29
+
 ```
   ___   ___  ____        ____ 
  / _ \ / _ \|  _ \      / ___|
@@ -8,8 +10,6 @@
  \___/ \___/|_|         \____|
                               
 ```
-
-> Published by Paul at 2016-11-20, updated 2022-01-29
 
 You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.
 
@@ -98,6 +98,6 @@ Big C software projects, like Linux, also follow some OOP techniques:
 
 C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.
 
-E-Mail me your comments to paul at buetow dot org!
+=> gemini://paul.buetow.org E-Mail me your comments :-)
 
 => ../ Go back to the main site
