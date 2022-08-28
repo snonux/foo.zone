@@ -1,5 +1,7 @@
 # Run Debian on your phone with Debroid
 
+> Published by Paul at 2015-12-05, last updated at 2021-05-16
+
 ```
  ____       _               _     _ 
 |  _ \  ___| |__  _ __ ___ (_) __| |
@@ -8,8 +10,6 @@
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
 ```
-
-> Published by Paul at 2015-12-05, last updated at 2021-05-16
 
 You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).
 
@@ -175,6 +175,6 @@ exit
 
 Reboot & test!  Enjoy!
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

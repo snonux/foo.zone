@@ -1,5 +1,7 @@
 # Welcome to the foo.zone
 
+> Published by Paul at 2022-01-23
+
 ```
   __                                  
  / _| ___   ___   _______  _ __   ___ 
@@ -8,8 +10,6 @@
 |_|  \___/ \___(_)___\___/|_| |_|\___|
                                       
 ```
-
-> Published by Paul at 2022-01-23
 
 I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, "foo.zone" is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.
 
@@ -44,6 +44,6 @@ As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this si
 
 The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won't change any time soon. I don't know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. 
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

@@ -1,5 +1,7 @@
 # Offsite backup with ZFS (Part 2)
 
+> Published by Paul at 2016-04-16
+
 ```
  ________________
 |# :           : #|
@@ -15,8 +17,6 @@
                  \____||__|_____|__|
 ```
 
-> Published by Paul at 2016-04-16
-
 [Offsite backup with ZFS Part 1](./2016-04-03-offsite-backup-with-zfs.md)  
 [Offsite backup with ZFS Part 2 (you are reading this atm.)](./2016-04-16-offsite-backup-with-zfs-part2.md)  
 
@@ -26,6 +26,6 @@ Whenever I update the offsite backup, I am doing it to the drive, which is kept 
 
 Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). 
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

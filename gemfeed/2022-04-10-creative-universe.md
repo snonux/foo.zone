@@ -1,5 +1,7 @@
 # Creative universe
 
+> Published by Paul at 2022-04-10, last updated at 2022-04-18
+
 ```
  .              +   .                .   . .     .  .
                    .                    .       .     *
@@ -20,8 +22,6 @@
  .      .   . .   .   .   . .  +   .    .            +
                                          - the universe
 ```
-
-> Published by Paul at 2022-04-10, last updated at 2022-04-18
 
 ## Prelude
 
@@ -137,6 +137,6 @@ Relevant books I can recommend are:
 * The Off Switch; Mark Cropley; Virgin Books
 * Ultralearning; Scott Young; Thorsons
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

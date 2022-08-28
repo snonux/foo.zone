@@ -1,5 +1,7 @@
 # Personal Bash coding style guide
 
+> Published by Paul at 2021-05-16
+
 ```
    .---------------------------.
   /,--..---..---..---..---..--. `.
@@ -12,8 +14,6 @@
 //  \\               //  \\ |===||  hjw
 "\__/"---------------"\__/"-+---+'
 ```                     
-
-> Published by Paul at 2021-05-16
 
 Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
 
@@ -380,6 +380,6 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)  
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

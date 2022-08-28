@@ -1,5 +1,7 @@
 # Bash Golf Part 1
 
+> Published by Paul at 2021-11-29, last updated at 2022-01-05
+
 ```
 
      '\                   .  .                        |>18>>
@@ -11,8 +13,6 @@
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
-
-> Published by Paul at 2021-11-29, last updated at 2022-01-05
 
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
@@ -461,6 +461,8 @@ In the Bash you will have to fall back to an external command like "bc" (the arb
 .10
 ```
 
-See you later for the next post of this series. E-Mail me your comments to paul at buetow dot org!
+See you later for the next post of this series.
+
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  

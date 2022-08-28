@@ -1,5 +1,7 @@
 # Jails and ZFS with Puppet on FreeBSD
 
+> Published by Paul at 2016-04-09
+
 ```
             __     __
            (( \---/ ))
@@ -19,8 +21,6 @@
               \     `.     hjw
                \      `.
 ```
-
-> Published by Paul at 2016-04-09
 
 Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
 
@@ -385,6 +385,6 @@ Of course I am operating multiple Jails on the same host this way with Puppet:
 
 All done in a pretty automated manor. 
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  
