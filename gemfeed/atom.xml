@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-08-27T18:31:27+01:00</updated>
+    <updated>2022-08-28T09:53:38+01:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,9 +19,9 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4091 Aug 27 18:28 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
+< -rw-r--r--. 1 paul paul 4084 Aug 27 18:31 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
 ---
-> -rw-r--r--. 1 paul paul 4084 Aug 27 18:31 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
+> -rw-r--r--. 1 paul paul 4089 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
 <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
 <p class="quote"><i>Published by Paul at 2022-08-27</i></p>
 <pre>
@@ -82,7 +82,7 @@ check_dependencies () {
 <h3>More</h3>
 <p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
 <p>Overall, it's a pretty solid <span class="inlinecode">1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -98,7 +98,12 @@ check_dependencies () {
         <summary>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Let's Encrypt with OpenBSD and Rex</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 21483 Jul 30 12:06 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+---
+> -rw-r--r--. 1 paul paul 21488 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+<h1>Let's Encrypt with OpenBSD and Rex</h1>
+<p class="quote"><i>Published by Paul at 2022-07-30</i></p>
 <pre>
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -125,7 +130,6 @@ check_dependencies () {
              /________________________________________________\
                                  ASCII Art by John Savard
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-07-30</i></p>
 <p>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</p>
 <h2>What's Let's Encrypt?</h2>
 <p class="quote"><i>Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</i></p>
@@ -689,7 +693,7 @@ rex commons
 <p>ACME and Let's Encrypt greatly help reducing recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of costs! I love to use OpenBSD and Rex to automate all of this.</p>
 <p>OpenBSD suits perfectly here as all the tools are already part of the base installation. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog and the community is small. But I like underdogs.</p>
 <p>I love the fact that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Why re-inventing the wheel? Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script so that I didn't have to install yet another shell as OpenBSD does not come with the Bash pre-installed.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -705,7 +709,12 @@ rex commons
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Sweating the small stuff - Tiny projects of mine</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 20516 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.gmi
+---
+> -rw-r--r--. 1 paul paul 20521 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.gmi
+<h1>Sweating the small stuff - Tiny projects of mine</h1>
+<p class="quote"><i>Published by Paul at 2022-06-15, last updated at 2022-06-18</i></p>
 <pre>
          _
         /_/_      .'''.
@@ -713,7 +722,6 @@ rex commons
  jgs    \_\              `.    .'''
                            `..'
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-06-15, last updated at 2022-06-18</i></p>
 <p>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</p>
 <a class="textlink" href="https://jvns.ca/blog/2022/03/08/tiny-programs/">Tiny programs</a><br />
 <a class="textlink" href="https://thesephist.com/projects/">The Sephist's project list</a><br />
@@ -930,7 +938,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="gemini://konpeito.media">gemini://konpeito.media</a><br />
 <p>If you wonder what Gemini is:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispae</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -946,9 +954,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
-<a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
+                1c1
+< -rw-r--r--. 1 paul paul 16139 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+---
+> -rw-r--r--. 1 paul paul 16144 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+<h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
+<a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg" /></a><br />
@@ -1031,7 +1043,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <p>Btw.: Did you know that the first version of PHP was a set of Perl snippets? Only later, PHP became an independent programming language.</p>
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -1047,7 +1059,12 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Creative universe</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 14563 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.gmi
+---
+> -rw-r--r--. 1 paul paul 14568 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.gmi
+<h1>Creative universe</h1>
+<p class="quote"><i>Published by Paul at 2022-04-10, last updated at 2022-04-18</i></p>
 <pre>
  .              +   .                .   . .     .  .
                    .                    .       .     *
@@ -1068,7 +1085,6 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
  .      .   . .   .   .   . .  +   .    .            +
                                          - the universe
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-04-10, last updated at 2022-04-18</i></p>
 <h2>Prelude</h2>
 <p>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
@@ -1138,7 +1154,7 @@ learn () {
 <li>The Off Switch; Mark Cropley; Virgin Books</li>
 <li>Ultralearning; Scott Young; Thorsons</li>
 </ul>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -1154,13 +1170,18 @@ learn () {
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The release of DTail 4.0.0</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 11934 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi
+---
+> -rw-r--r--. 1 paul paul 11939 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi
+<h1>The release of DTail 4.0.0</h1>
+<p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <pre>
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
   ____ _____     _ _   / __/ /'     ^.  /      \ ^@q   f
  |  _ \_   _|_ _(_) |   @f | @))    |  | @))   l  0 _/
- | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
+ | | | || |/ _<span class="inlinecode"> | | |  \</span>/   \~____ / __ \_____/    \
  | |_| || | (_| | | |   |           _l__l_           I
  |____/ |_|\__,_|_|_|   }          [______]           I
                         ]            | | |            |
@@ -1168,7 +1189,6 @@ learn () {
                         |                            |
                          |                           |
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <p>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">DTail - The distributed log tail program</a><br />
 <p>If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</p>
@@ -1390,7 +1410,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <p>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</p>
 <p>Thanks!</p>
 <p>Paul</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -1406,7 +1426,12 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <summary>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Computer operating systems I use(d)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 15961 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi
+---
+> -rw-r--r--. 1 paul paul 15966 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi
+<h1>Computer operating systems I use(d)</h1>
+<p class="quote"><i>Published by Paul at 2022-02-04, updated 2022-02-18</i></p>
 <pre>
               /(        )`
               \ \___   / |
@@ -1414,20 +1439,19 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
              (/\/ \ \   /\
              / /   | `    \
              O O   ) /    |
-             `-^--'`&lt;     '
+             <span class="inlinecode">-^--'</span>&lt;     '
             (_.)  _  )   /
-             `.___/`    /
+             <span class="inlinecode">.___/</span>    /
                `-----' /
   &lt;----.     __ / __   \
   &lt;----|====O)))==) \) /====
-  &lt;----'    `--' `.__,' \
+  &lt;----'    <span class="inlinecode">--' </span>.__,' \
                |        |
                 \       /
            ______( (_  / \______
   (FL)   ,'  ,-----'   |        \
          `--{__________)        \/   "Berkeley Unix Daemon"
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-02-04, updated 2022-02-18</i></p>
 <p>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</p>
 <h2>Fedora Linux</h2>
 <p>Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo which comes along with official Lenovo Linux support. I already noticed hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat.</p>
@@ -1556,7 +1580,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class="textlink" href="https://asteroidos.org/">Asteroids OS - Open source smartphone OS</a><br />
 <a class="textlink" href="https://www.dragonflybsd.org/">DragonFly BSD - Fork of FreeBSD 4</a><br />
 <a class="textlink" href="http://wiki.postmarketos.org/wiki/Phosh">Phosh (on postmarketOS) - A true Linux shell for the smartphone</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -1572,7 +1596,12 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Welcome to the foo.zone</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3363 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi
+---
+> -rw-r--r--. 1 paul paul 3368 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi
+<h1>Welcome to the foo.zone</h1>
+<p class="quote"><i>Published by Paul at 2022-01-23</i></p>
 <pre>
   __                                  
  / _| ___   ___   _______  _ __   ___ 
@@ -1581,7 +1610,6 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 |_|  \___/ \___(_)___\___/|_| |_|\___|
                                       
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-01-23</i></p>
 <p>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, "foo.zone" is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.</p>
 <p>As you can read on Wikipedia, "foo" is, alongside to "bar" and "baz", a metasyntactic variable (you know what I mean if you are a programmer or IT person):</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Metasyntactic_variable">https://en.wikipedia.org/wiki/Metasyntactic_variable</a><br />
@@ -1603,7 +1631,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <p>As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water sports so much. Well, on the other hand, I now may have to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.</p>
 <h2>What about my old hosts</h2>
 <p>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won't change any time soon. I don't know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -1619,7 +1647,12 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Bash Golf Part 2</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13084 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.gmi
+---
+> -rw-r--r--. 1 paul paul 13089 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.gmi
+<h1>Bash Golf Part 2</h1>
+<p class="quote"><i>Published by Paul at 2022-01-01, last updated at 2022-01-05</i></p>
 <pre>
 
     '\       '\                   .  .                |&gt;18&gt;&gt;
@@ -1631,7 +1664,6 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 </pre><br />
-<p class="quote"><i>Published by Paul at 2022-01-01, last updated at 2022-01-05</i></p>
 <p>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2 (you are reading this atm.)</a><br />
@@ -2015,7 +2047,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
 1
 </pre><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2031,7 +2063,12 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps/SRE or a security engineer). I thought it would be interesting to summarize a few techniques to help you to relax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>How to stay sane as a DevOps person </h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13658 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi
+---
+> -rw-r--r--. 1 paul paul 13663 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi
+<h1>How to stay sane as a DevOps person </h1>
+<p class="quote"><i>Published by Paul at 2021-12-26, last updated at 2022-01-12</i></p>
 <pre>
                                      )
                              )      ((     (
@@ -2042,7 +2079,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         | //  : | -__   ~__ o)____)),__ - '&gt; &gt;-  &gt;
         | //  : |- \_ \ -\_\ -\ \ \ ~\_  \ -&gt;&gt; - ,  &gt;&gt;
         | //  : |_~_\ -\__\ \~'\ \ \, \__ . -&lt;-  &gt;&gt;
-        `-----._| `  -__`-- - ~~ -- ` --~&gt; &gt;
+        <span class="inlinecode">-----._| </span>  -__<span class="inlinecode">-- - ~~ -- </span> --~&gt; &gt;
          _/___\_    //)_`//  | ||]
    _____[_______]_[~~-_ (.L_/  ||
   [____________________]' `\_,/'/
@@ -2053,7 +2090,6 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 -----||-/------`-._/||-o--o---o---
   ~~~~~'
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-12-26, last updated at 2022-01-12</i></p>
 <p>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</p>
 <p>(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Log4Shell">https://en.wikipedia.org/wiki/Log4Shell</a><br />
@@ -2107,7 +2143,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <h2>More</h2>
 <p>Another blog post worth reading:</p>
 <a class="textlink" href="https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html">https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2123,7 +2159,12 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>This is the first blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Bash Golf Part 1</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 14185 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.gmi
+---
+> -rw-r--r--. 1 paul paul 14191 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.gmi
+<h1>Bash Golf Part 1</h1>
+<p class="quote"><i>Published by Paul at 2021-11-29, last updated at 2022-01-05</i></p>
 <pre>
 
      '\                   .  .                        |&gt;18&gt;&gt;
@@ -2135,7 +2176,6 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-11-29, last updated at 2022-01-05</i></p>
 <p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">Bash Golf Part 1 (you are reading this atm.)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">Bash Golf Part 2</a><br />
@@ -2490,7 +2530,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 ❯ bc &lt;&lt;&lt; 'scale=2; 1/10'
 .10
 </pre><br />
-<p>See you later for the next post of this series. E-Mail me your comments to paul at buetow dot org!</p>
+<p>See you later for the next post of this series.</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2506,7 +2547,12 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Defensive DevOps</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13783 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.gmi
+---
+> -rw-r--r--. 1 paul paul 13788 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.gmi
+<h1>Defensive DevOps</h1>
+<p class="quote"><i>Published by Paul at 2021-10-22</i></p>
 <pre>
                                                             c=====e
                                                                H
@@ -2516,7 +2562,6 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
    (__((__((___()()()------------------------------------'  |_____|
                            ASCII Art by Clyde Watson
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-10-22</i></p>
 <p>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</p>
 <p>Unfortunately, no system is 100% reliable, and you can never be prepared for a subset of the possible problem-space. IT infrastructures can be complex. Not even mentioning Kubernetes yet, a Microservice-based infrastructure can complicate things even further. You can take care of 99% of all potential problems by following all DevOps best practices. Those best practices are not the subject of this blog post; this post is about the sub 1% of the issues arising from nowhere you can't be prepared for. </p>
 <p>Is there a software bug in a production, even though the software passed QA (after all, it is challenging to reproduce production behaviour in an artificial testing environment) and the software didn't show any issues running in production until a special case came up just now after it got deployed to production a week ago? Are there multiple hardware failure happening which causes loss of service redundancy or data inaccessibility? Is the automation of external customers connected to our infrastructure putting unexpectedly extra pressure on your grid, driving higher latencies and putting the SLAs at risk? You bet the solution is: Sysadmins, SREs and DevOps Engineers to the rescue. </p>
@@ -2569,7 +2614,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Retrospective</h2>
 <p>For every major incident, you need to follow up with an incident retrospective. A blame-free, detailed description of exactly what went wrong to cause the incident, along with a list of steps to take to prevent a similar incident from occurring again in the future.</p>
 <p>This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2585,7 +2630,12 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Keep it simple and stupid</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 9414 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi
+---
+> -rw-r--r--. 1 paul paul 9416 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi
+<h1>Keep it simple and stupid</h1>
+<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-04-21</i></p>
 <pre>
   _______________                        |*\_/*|_______
   |  ___________  |     .-.     .-.      ||_/-\_|______  |
@@ -2600,7 +2650,6 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
  /  ************  \                      /  ************  \
 --------------------                    --------------------
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-04-21</i></p>
 <p>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</p>
 <h1>Need faster hardware</h1>
 <p>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</p>
@@ -2638,7 +2687,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p>There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.</p>
 <h2>Other relevant readings</h2>
 <a class="textlink" href="https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html">Is the madness ever going to end?</a><br />
-<p>Enough ranted for now :-). E-Mail me your comments to paul at buetow dot org!</p>
+<p>Enough ranted for now!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
 <p class="quote"><i>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </i></p>
             </div>
         </content>
@@ -2655,7 +2705,12 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>On being Pedantic about Open-Source</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 17663 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
+---
+> -rw-r--r--. 1 paul paul 17638 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
+<h1>On being Pedantic about Open-Source</h1>
+<p class="quote"><i>Published by Paul at 2021-08-01</i></p>
 <pre>
                                            __
                                _____....--' .'
@@ -2667,7 +2722,6 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 |                                      |   `---'
 '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' LGB - Art by lgbearrd
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-08-01</i></p>
 <p>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </p>
 <h2>The costs of open-source</h2>
 <p>One benefit of using open-source software is that it doesn't cost anything, right? That's correct in many cases. However, in some cases you still need to spend a significant amount of time configuring the software to work for you. It will be more expensive to use open-source software than proprietary commercial one if you aren't careful. </p>
@@ -2689,7 +2743,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p>One of the main conceptions about open-source software is that it is more secure than closed-source software because everybody can read and fix the code. Is that actually true? You can only be sure when you audit the code by yourself. If you are like me, you won't have time to audit all the open-source software you use. It's impossible to audit more than 100 million lines of Linux kernel code. Static code analysis tools come in handy here, but they still require humans to look at the results.</p>
 <p>Security bugs in open-source projects are exposed to the public and fixed quickly, while we don't know exactly what happens to security bugs in closed-source ones. Still, hackers and security specialists can find them through reverse engineering and penetration testing. Overall, thinking of security, In my opinion it is still better to prefer open-source software because the more significant the project, the higher the probability that security bugs are found and fixed as more parties are looking into it. Furthermore, provided you have the necessary resources, you could still deduct an audit by yourself. The latter especially happens when companies with its own security and penetration testing departments are evaluating the use of open-source. This is something not every company can afford though.</p>
 <h2>Always watch out for open-source alternatives</h2>
-<p>Do you need Microsoft Word? Why don't you just use the Vim text editor or GNU Emacs to write your letters? If that's too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don't know why that is; please E-Mail me, and I will update this blog article. I guess the devil lies in the detail here.</p>
+<p>Do you need Microsoft Word? Why don't you just use the Vim text editor or GNU Emacs to write your letters? If that's too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don't know why that is; please....</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
 <p>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don't work on my devices.</p>
 <h2>What about mobile?</h2>
 <p>I struggle to go 100% open-source on my Smartphone. I use a Samsung phone with the stock Android as provided by Samsung. I love the device as it is large enough to use as a portable reading and note-taking device, and it can also take decent pictures. As a cloud backup solution, I have my own NextCloud server (open-source). Android is mainly open-source software, but many closed parts are still included. I replaced most of the standard apps with free and open-source variants from the F-Droid store though.</p>
@@ -2718,7 +2773,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Conclusion</h2>
 <p>Should you be pedantic about open-source software? It depends. It depends on your fundamental values and how much time you are ready to invest. Open-source software is not just free as in money, but also free as in freedom. You will gain back complete control of your personal data. Unfortunately, installing ready proprietary apps from the Play Store is much more convenient than building up a trustworthy open-source-based infrastructure by yourself. As a guideline, use proprietary software and services with caution. Be mindful about your choices and where you leave your digital fingerprints. In doubt, think less is more. Do you really need this new shiny app? What benefit does it provide to you? Probably you don't really need that shiny new app.</p>
 <p>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don't know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it's better, but also because for fun and as a hobby. But this doesn't mean that I invest *all* of my personal free time in it.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2734,7 +2789,11 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I then decided to give Ruby a go for all medium-sized programming and scripting projects.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The Well-Grounded Rubyist</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 12356 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi
+---
+> -rw-r--r--. 1 paul paul 12361 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi
+<h1>The Well-Grounded Rubyist</h1>
 <p class="quote"><i>Published by Paul at 2021-07-04</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
 <p>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</p>
@@ -2799,7 +2858,7 @@ Hello World
 <p>I liked this book so much so that I even bought myself a (used) paper copy of it. To my delight, there was also a free eBook version in ePub format included, which I now have on my Kobo Forma eBook reader. :-)</p>
 <h2>Perl</h2>
 <p>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2815,7 +2874,12 @@ Hello World
         <summary>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Gemtexter - One Bash script to rule it all</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 10684 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi
+---
+> -rw-r--r--. 1 paul paul 10689 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi
+<h1>Gemtexter - One Bash script to rule it all</h1>
+<p class="quote"><i>Published by Paul at 2021-06-05</i></p>
 <pre>
                                                                o .,&lt;&gt;., o
                                                                |\/\/\/\/|
@@ -2837,26 +2901,25 @@ Hello World
                                                     _-'    |\  .        |
                                   _..--..   .  /"---\      | ` |      . |
           -=====================,' _     \=(*#(7.#####()   |  `/_..   , (
-                      _.-''``';'-''-) ,.  \ '  '+/// |   .'/   \  ``-.) \
-                    ,'  _.-  ((    `-'  `._\    `` \_/_.'  )    /`-._  ) |
+                      _.-''`<span class="inlinecode">';'-''-) ,.  \ '  '+/// |   .'/   \  </span>`-.) \
+                    ,'  _.-  ((    <span class="inlinecode">-'  </span>._\    `<span class="inlinecode"> \_/_.'  )    /</span>-._  ) |
                   ,'\ ,'  _.'.`:-.    \.-'                 /   &lt;_L   )"  |
-                _/   `._,' ,')`;  `-'`'                    |     L  /    /
+                _/   <span class="inlinecode">._,' ,')</span>;  <span class="inlinecode">-'</span>'                    |     L  /    /
                / `.   ,' ,|_/ / \                          (    &lt;_-'     \
-               \ / `./  '  / /,' \                        /|`         `. |
-               )\   /`._   ,'`._.-\                       |)            \'
-              /  `.'    )-'.-,' )__)                      |\            `|
-             : /`. `.._(--.`':`':/ \                      ) \             \
+               \ / <span class="inlinecode">./  '  / /,' \                        /|</span>         `. |
+               )\   /<span class="inlinecode">._   ,'</span>._.-\                       |)            \'
+              /  <span class="inlinecode">.'    )-'.-,' )__)                      |\            </span>|
+             : /<span class="inlinecode">. </span>.._(--.<span class="inlinecode">':</span>':/ \                      ) \             \
              |::::\     ,'/::;-))  /                      ( )`.            |
              ||:::::  . .::':  :`-(                       |/    .          |
              ||::::|  . :|  |==[]=:                       .        -       \
              |||:::|  : ||  :  |  |                      /\           `     |
  ___ ___     '|;:::|  | |'   \=[]=|                     /  \                \
-|   /_  ||``|||:::::  | ;    | |  |                     \_.'\_               `-.
-:   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
- \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
+|   /_  ||`<span class="inlinecode">|||:::::  | ;    | |  |                     \_.'\_               </span>-.
+:   \_`<span class="inlinecode">[]--[]|::::'\_;'     )-'..</span>._                 .-'\`<span class="inlinecode">:: </span> .              \
+ \___.&gt;<span class="inlinecode">''-.||:.__,'     SSt |_______</span>&gt;              &lt;_____:::.         . . \  _/
                                                            `+a:f:......jrei'''
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-06-05</i></p>
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispace</a><br />
 <p>This comes with the benefit that I can write content in my favourite text editor (Vim). </p>
@@ -2938,7 +3001,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <h2>Conclusion</h2>
 <p>It was quite a lot of fun writing Gemtexter. It's a relatively small project, but given that I worked on that in my spare time once in a while, it kept me busy for several weeks. </p>
 <p>I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. </p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -2954,7 +3017,12 @@ assert::equals "$(generate::make_link md "$gemtext")" \
         <summary>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the 'Google Shell Style Guide' I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Personal Bash coding style guide</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13899 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi
+---
+> -rw-r--r--. 1 paul paul 13904 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi
+<h1>Personal Bash coding style guide</h1>
+<p class="quote"><i>Published by Paul at 2021-05-16</i></p>
 <pre>
    .---------------------------.
   /,--..---..---..---..---..--. `.
@@ -2967,7 +3035,6 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 //  \\               //  \\ |===||  hjw
 "\__/"---------------"\__/"-+---+'
 </pre><br />
-<p class="quote"><i>Published by Paul at 2021-05-16</i></p>
 <p>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </p>
 <a class="textlink" href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a><br />
 <h2>My modifications</h2>
@@ -3246,7 +3313,7 @@ fi
 <h2>Advanced Bash learning pro tip</h2>
 <p>I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (not from Google). I use it as the universal Bash reference and learn something new every time I look at it.</p>
 <a class="textlink" href="https://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3262,7 +3329,11 @@ fi
         <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Welcome to the Geminispace</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4987 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi
+---
+> -rw-r--r--. 1 paul paul 4992 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi
+<h1>Welcome to the Geminispace</h1>
 <p class="quote"><i>Published by Paul at 2021-04-24, last updated at 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="gemini://foo.zone">gemini://foo.zone</a><br />
@@ -3280,7 +3351,7 @@ fi
  |Gemini|
  |      |
  |______|
-  '-`'-`   .
+  '-<span class="inlinecode">'-</span>   .
   / . \'\ . .'
  ''( .'\.' ' .;'
 '.;.;' ;'.;' ..;;' AsH
@@ -3316,7 +3387,7 @@ fi
 <p>Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.</p>
 <a class="textlink" href="gemini://gemini.circumlunar.space">gemini://gemini.circumlunar.space</a><br />
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3332,7 +3403,11 @@ fi
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>DTail - The distributed log tail program</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 12946 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi
+---
+> -rw-r--r--. 1 paul paul 12951 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi
+<h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Published by Paul at 2021-04-22, last updated at 2021-04-26</i></p>
 <a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
@@ -3397,7 +3472,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <h2>Open Source</h2>
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3413,18 +3488,22 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Realistic load testing with I/O Riot for Linux</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 15248 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi
+---
+> -rw-r--r--. 1 paul paul 15253 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi
+<h1>Realistic load testing with I/O Riot for Linux</h1>
+<p class="quote"><i>Published by Paul at 2018-06-01, last updated at 2021-05-08</i></p>
 <pre>
        .---.
       /     \
       \.@-@./
-      /`\_/`\
+      /<span class="inlinecode">\_/</span>\
      //  _  \\
     | \     )|_
-   /`\_`&gt;  &lt;_/ \
+   /<span class="inlinecode">\_</span>&gt;  &lt;_/ \
 jgs\__/'---'\__/
 </pre><br />
-<p class="quote"><i>Published by Paul at 2018-06-01, last updated at 2021-05-08</i></p>
 <h2>Foreword</h2>
 <p>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </p>
 <a class="textlink" href="https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot">https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
@@ -3536,7 +3615,7 @@ Total time: 1213.00s
 <a class="textlink" href="https://www.coker.com.au/bonnie++/">Bonnie++</a><br />
 <a class="textlink" href="https://graphiteapp.org">Graphite</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">Memory mapped I/O</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3552,7 +3631,12 @@ Total time: 1213.00s
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Object oriented programming with ANSI C</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3672 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi
+---
+> -rw-r--r--. 1 paul paul 3677 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi
+<h1>Object oriented programming with ANSI C</h1>
+<p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
 <pre>
   ___   ___  ____        ____ 
  / _ \ / _ \|  _ \      / ___|
@@ -3561,7 +3645,6 @@ Total time: 1213.00s
  \___/ \___/|_|         \____|
                               
 </pre><br />
-<p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
 <p>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</p>
 <h2>Function pointers</h2>
 <p>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
@@ -3628,7 +3711,7 @@ mult.calculate(mult,a,b));
 <p>Big C software projects, like Linux, also follow some OOP techniques:</p>
 <a class="textlink" href="https://lwn.net/Articles/444910/">https://lwn.net/Articles/444910/</a><br />
 <p>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3644,7 +3727,11 @@ mult.calculate(mult,a,b));
         <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Spinning up my own authoritative DNS servers</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 8266 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi
+---
+> -rw-r--r--. 1 paul paul 8271 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi
+<h1>Spinning up my own authoritative DNS servers</h1>
 <p class="quote"><i>Published by Paul at 2016-05-22</i></p>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</p>
@@ -3853,7 +3940,7 @@ apply Service "dig6" {
 <li>The BIND server will notify all slave DNS servers (at the moment, only one). And it will transfer the new version of the zone.</li>
 </ul>
 <p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3869,7 +3956,12 @@ apply Service "dig6" {
         <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Offsite backup with ZFS (Part 2)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 1917 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi
+---
+> -rw-r--r--. 1 paul paul 1922 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi
+<h1>Offsite backup with ZFS (Part 2)</h1>
+<p class="quote"><i>Published by Paul at 2016-04-16</i></p>
 <pre>
  ________________
 |# :           : #|
@@ -3884,13 +3976,12 @@ apply Service "dig6" {
                  |    ||  |     |  |
                  \____||__|_____|__|
 </pre><br />
-<p class="quote"><i>Published by Paul at 2016-04-16</i></p>
 <a class="textlink" href="https://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Offsite backup with ZFS Part 1</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html">Offsite backup with ZFS Part 2 (you are reading this atm.)</a><br />
 <p>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</p>
 <p>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -3906,7 +3997,12 @@ apply Service "dig6" {
         <summary>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Jails and ZFS with Puppet on FreeBSD</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16907 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi
+---
+> -rw-r--r--. 1 paul paul 16912 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi
+<h1>Jails and ZFS with Puppet on FreeBSD</h1>
+<p class="quote"><i>Published by Paul at 2016-04-09</i></p>
 <pre>
             __     __
            (( \---/ ))
@@ -3926,7 +4022,6 @@ apply Service "dig6" {
               \     `.     hjw
                \      `.
 </pre><br />
-<p class="quote"><i>Published by Paul at 2016-04-09</i></p>
 <p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
 <h2>ZFS</h2>
 <p>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</p>
@@ -4269,7 +4364,7 @@ Notice: Finished catalog run in 206.09 seconds
 <li>...etc</li>
 </ul>
 <p>All done in a pretty automated manor. </p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -4285,7 +4380,12 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Offsite backup with ZFS</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3774 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi
+---
+> -rw-r--r--. 1 paul paul 3779 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi
+<h1>Offsite backup with ZFS</h1>
+<p class="quote"><i>Published by Paul at 2016-04-03</i></p>
 <pre>
  ________________
 |# :           : #|
@@ -4298,7 +4398,6 @@ Notice: Finished catalog run in 206.09 seconds
 |    ||  |     |  |
 \____||__|_____|__|
 </pre><br />
-<p class="quote"><i>Published by Paul at 2016-04-03</i></p>
 <a class="textlink" href="https://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.html">Offsite backup with ZFS Part 1 (you are reading this atm.)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html">Offsite backup with ZFS Part 2</a><br />
 <h2>Please don't lose all my pictures again!</h2>
@@ -4312,7 +4411,7 @@ Notice: Finished catalog run in 206.09 seconds
 <p>The solution is adding another USB drive (2TB) with an encryption container (GELI) and a ZFS pool. The GELI encryption requires a secret key and a secret passphrase. I am updating the data to that drive once every three months (my calendar is reminding me about it), and afterwards, I keep that drive at a secret location outside of my apartment. All the information needed to decrypt (mounting the GELI container) is stored at another (secure) place. Key and passphrase are kept at different sites, though. Even if someone knew of it, he would not be able to decrypt it as some additional insider knowledge would be required as well.</p>
 <h2>Walking one round less</h2>
 <p>I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -4328,7 +4427,12 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>You can use the following tutorial to install a full blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Run Debian on your phone with Debroid</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 5122 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi
+---
+> -rw-r--r--. 1 paul paul 5127 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi
+<h1>Run Debian on your phone with Debroid</h1>
+<p class="quote"><i>Published by Paul at 2015-12-05, last updated at 2021-05-16</i></p>
 <pre>
  ____       _               _     _ 
 |  _ \  ___| |__  _ __ ___ (_) __| |
@@ -4337,7 +4441,6 @@ Notice: Finished catalog run in 206.09 seconds
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
 </pre><br />
-<p class="quote"><i>Published by Paul at 2015-12-05, last updated at 2021-05-16</i></p>
 <p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
 <h2>Foreword</h2>
@@ -4476,7 +4579,7 @@ chmod +x /data/local/userinit.sh
 exit
 </pre><br />
 <p>Reboot &amp; test!  Enjoy!</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -4492,7 +4595,11 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The fibonacci.pl.raku.c Polyglot</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 2940 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
+---
+> -rw-r--r--. 1 paul paul 2945 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
+<h1>The fibonacci.pl.raku.c Polyglot</h1>
 <p class="quote"><i>Published by Paul at 2014-03-24, last updated 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
@@ -4618,7 +4725,7 @@ fib(9) = 34
 fib(10) = 55
 </pre><br />
 <p>It's entertaining to play with :-).</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -4634,14 +4741,18 @@ fib(10) = 55
         <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl Daemon (Service Framework)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4845 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.gmi
+---
+> -rw-r--r--. 1 paul paul 4850 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.gmi
+<h1>Perl Daemon (Service Framework)</h1>
+<p class="quote"><i>Published by Paul at 2011-05-07, last updated at 2021-05-07</i></p>
 <pre>
    a'!   _,,_ a'!   _,,_     a'!   _,,_
      \\_/    \  \\_/    \      \\_/    \.-,
       \, /-( /'-,\, /-( /'-,    \, /-( /
       //\ //\\   //\ //\\       //\ //\\jrei
 </pre><br />
-<p class="quote"><i>Published by Paul at 2011-05-07, last updated at 2021-05-07</i></p>
 <p>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</p>
 <h2>Features</h2>
 <p>PerlDaemon supports:</p>
@@ -4764,7 +4875,7 @@ sub do ($) {
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -4780,7 +4891,12 @@ sub do ($) {
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The Fype Programming Language</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13062 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.gmi
+---
+> -rw-r--r--. 1 paul paul 13067 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.gmi
+<h1>The Fype Programming Language</h1>
+<p class="quote"><i>Published by Paul at 2010-05-09, last updated at 2021-05-05</i></p>
 <pre>
       ____                                      _        __       
      / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
@@ -4789,7 +4905,6 @@ sub do ($) {
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
 </pre><br />
-<p class="quote"><i>Published by Paul at 2010-05-09, last updated at 2021-05-05</i></p>
 <p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</p>
 <p>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </p>
 <p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</p>
@@ -5179,7 +5294,7 @@ BB
 <h2>May the source be with you</h2>
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
 <a class="textlink" href="https://codeberg.org/snonux/fype">https://codeberg.org/snonux/fype</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -5195,7 +5310,12 @@ BB
         <summary>In contrast to Haskell, Standard SML does not use lazy evaluation by default, but strict evaluation. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Lazy Evaluation with Standard ML</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 2849 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi
+---
+> -rw-r--r--. 1 paul paul 2854 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi
+<h1>Lazy Evaluation with Standard ML</h1>
+<p class="quote"><i>Published by Paul at 2010-05-07</i></p>
 <pre>
 
       _____|~~\_____      _____________
@@ -5205,10 +5325,9 @@ BB
   _-    | )     /    |--|      |  |
  __-_______________ /__/_______|  |_________
 (                |----         |  |
- `---------------'--\\\\      .`--'          -Glyde-
+ <span class="inlinecode">---------------'--\\\\      .</span>--'          -Glyde-
                               `||||
 </pre><br />
-<p class="quote"><i>Published by Paul at 2010-05-07</i></p>
 <p>In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. </p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Eager_evaluation">https://en.wikipedia.org/wiki/Eager_evaluation</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Lazy_evaluation">https://en.wikipedia.org/wiki/Lazy_evaluation</a><br />
@@ -5279,7 +5398,7 @@ first 10 nat_pairs_not_null
 -}
 </pre><br />
 <a class="textlink" href="http://www.haskell.org/">http://www.haskell.org/</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -5295,7 +5414,11 @@ first 10 nat_pairs_not_null
         <summary>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already know a little Haskell, could I do not help myself and I implemented the same exercises in Haskell too.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Standard ML and Haskell</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4882 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.gmi
+---
+> -rw-r--r--. 1 paul paul 4887 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.gmi
+<h1>Standard ML and Haskell</h1>
 <p class="quote"><i>Published by Paul at 2010-04-09</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</p>
 <p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to write down the function types explicitly. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far, I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
@@ -5433,7 +5556,7 @@ my_map f l = foldr (make_map_fn f) [] l
 fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 </pre><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -5449,7 +5572,12 @@ my_filter f l = foldr (make_filter_fn f) [] l
         <summary>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Using my Nokia N95 for fixing my MTA</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 1933 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi
+---
+> -rw-r--r--. 1 paul paul 1938 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi
+<h1>Using my Nokia N95 for fixing my MTA</h1>
+<p class="quote"><i>Published by Paul at 2008-12-29, last updated at 2021-12-01</i></p>
 <pre>
 
            _
@@ -5466,7 +5594,6 @@ my_filter f l = foldr (make_filter_fn f) [] l
 _jgs_\|//_\\|///_\V/_\|//__
                       Art by Joan Stark
 </pre><br />
-<p class="quote"><i>Published by Paul at 2008-12-29, last updated at 2021-12-01</i></p>
 <p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). </p>
 <p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
 <a href="https://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="https://foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
@@ -5479,7 +5606,7 @@ _jgs_\|//_\\|///_\V/_\|//__
 </ul>
 <p>It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)</p>
 <p>At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)</p>
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
@@ -5495,7 +5622,12 @@ _jgs_\|//_\\|///_\V/_\|//__
         <summary>Here are some Perl Poems I wrote. They don't do anything useful when you run them but they don't produce a compiler error either. They only exists for fun and demonstrate what you can do with Perl syntax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl Poetry</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4635 Jun 19 19:38 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.gmi
+---
+> -rw-r--r--. 1 paul paul 4640 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.gmi
+<h1>Perl Poetry</h1>
+<p class="quote"><i>Published by Paul at 2008-06-26, last updated at 2021-05-04</i></p>
 <pre>
  '\|/'                                  *
 -- * -----
@@ -5505,11 +5637,11 @@ _jgs_\|//_\\|///_\V/_\|//__
    :         (   (        .-''`'.
    .          \   \      /       \
    .           \    \   /         \
-                \    `-'           `'.
+                \    <span class="inlinecode">-'           </span>'.
                  \    . '        /    `.
                   \  ( \  )     (     .')
    ,,   t          '. |  /       |     (
-  '|``_/^\___        '|  |`'-..-'|   ( ()
+  '|`<span class="inlinecode">_/^\___        '|  |</span>'-..-'|   ( ()
 _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
  -_  |L[|]L|/         | |\ MJP   )   )
                       ( |(       /  /|
@@ -5518,7 +5650,6 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
              ~ ~ ~~~ _|| (_/ (___)_| |Nov291999
                     (__)         (____)
 </pre><br />
-<p class="quote"><i>Published by Paul at 2008-06-26, last updated at 2021-05-04</i></p>
 <p>Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.</p>
 <p>Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Perl">https://en.wikipedia.org/wiki/Perl</a><br />
@@ -5643,7 +5774,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
-<p>E-Mail me your comments to paul at buetow dot org!</p>
+<a class="textlink" href="gemini://paul.buetow.org">E-Mail me your comments :-)</a><br />
             </div>
         </content>
     </entry>
