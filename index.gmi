@@ -13,7 +13,8 @@
 
 Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
 
-=> ./contact-information.gmi My contact information
+=> https://paul.buetow.org My contact information (via HTTP)
+=> gemini://paul.buetow.org My contact information (via Gemini)
 => ./resources.gmi My list of resources
 
 If you reach this site via the modern web, please read this:
@@ -29,6 +30,8 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+=> ./gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 - Gemtexter 1.1.0 - Let's Gemtext again
+=> ./gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 - Let's Encrypt with OpenBSD and Rex
 => ./gemfeed/2022-06-15-sweating-the-small-stuff.gmi 2022-06-15 - Sweating the small stuff - Tiny projects of mine
 => ./gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 - Perl is still a great choice
 => ./gemfeed/2022-04-10-creative-universe.gmi 2022-04-10 - Creative universe

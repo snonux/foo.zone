@@ -1,5 +1,7 @@
 # How to stay sane as a DevOps person 
 
+> Published by Paul at 2021-12-26, last updated at 2022-01-12
+
 ```
                                      )
                              )      ((     (
@@ -21,8 +23,6 @@
 -----||-/------`-._/||-o--o---o---
   ~~~~~'
 ```
-
-> Published by Paul at 2021-12-26, last updated at 2022-01-12
 
 Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
 
@@ -123,6 +123,6 @@ Another blog post worth reading:
 
 => https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 => ../ Go back to the main site

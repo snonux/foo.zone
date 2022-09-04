@@ -1,5 +1,7 @@
 # Bash Golf Part 2
 
+> Published by Paul at 2022-01-01, last updated at 2022-01-05
+
 ```
 
     '\       '\                   .  .                |>18>>
@@ -11,8 +13,6 @@
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
-
-> Published by Paul at 2022-01-01, last updated at 2022-01-05
 
 This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
@@ -480,6 +480,6 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
-E-Mail me your comments to paul at buetow dot org!
+E-Mail me your comments to paul at buetow dot org! :-)
 
 => ../ Go back to the main site
