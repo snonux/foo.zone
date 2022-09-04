@@ -84,7 +84,7 @@ It's now possible to define sub-sections within a Gemtexter capsule. For the HTM
 
 Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. 
 
-Overall, it's a pretty solid `1.1.0` release without anything groundbreaking (therefore no major version jump). But I am happy about it.
+Overall I think it's a pretty solid `1.1.0` release without anything groundbreaking (therefore no major version jump). But I am happy about it.
 
 E-Mail me your comments to paul at buetow dot org! :-)
 
