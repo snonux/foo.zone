@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-08-28T10:04:23+01:00</updated>
+    <updated>2022-09-04T11:46:08+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>I am proud to announce that I've released Gemtexter version . What is Gemtexter? It's my static site generator written in GNU Bash:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4089 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
----
-> -rw-r--r--. 1 paul paul 4088 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
-<h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
+                <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
 <p class="quote"><i>Published by Paul at 2022-08-27</i></p>
 <pre>
 -=[ typewriter ]=-  1/98
@@ -98,11 +94,7 @@ check_dependencies () {
         <summary>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 21488 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
----
-> -rw-r--r--. 1 paul paul 21487 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
-<h1>Let's Encrypt with OpenBSD and Rex</h1>
+                <h1>Let's Encrypt with OpenBSD and Rex</h1>
 <p class="quote"><i>Published by Paul at 2022-07-30</i></p>
 <pre>
                                                /    _    \
@@ -710,9 +702,9 @@ rex commons
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 20521 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
+< -rw-r--r--. 1 paul paul 20516 Jun 18 08:11 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
 ---
-> -rw-r--r--. 1 paul paul 20520 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
+> -rw-r--r--. 1 paul paul 20520 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
 <h1>Sweating the small stuff - Tiny projects of mine</h1>
 <p class="quote"><i>Published by Paul at 2022-06-15, last updated at 2022-06-18</i></p>
 <pre>
@@ -955,9 +947,9 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 16144 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+< -rw-r--r--. 1 paul paul 16139 Jun  3 10:03 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
 ---
-> -rw-r--r--. 1 paul paul 16143 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+> -rw-r--r--. 1 paul paul 16143 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
 <h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
@@ -1060,9 +1052,9 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 14568 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
+< -rw-r--r--. 1 paul paul 14563 Apr 18 12:35 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
 ---
-> -rw-r--r--. 1 paul paul 14567 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
+> -rw-r--r--. 1 paul paul 14567 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
 <h1>Creative universe</h1>
 <p class="quote"><i>Published by Paul at 2022-04-10, last updated at 2022-04-18</i></p>
 <pre>
@@ -1171,9 +1163,9 @@ learn () {
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 11939 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
+< -rw-r--r--. 1 paul paul 11934 Mar  6 20:11 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
 ---
-> -rw-r--r--. 1 paul paul 11938 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
+> -rw-r--r--. 1 paul paul 11938 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
 <h1>The release of DTail 4.0.0</h1>
 <p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <pre>
@@ -1427,9 +1419,9 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 15966 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
+< -rw-r--r--. 1 paul paul 15961 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
 ---
-> -rw-r--r--. 1 paul paul 15965 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
+> -rw-r--r--. 1 paul paul 15965 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
 <h1>Computer operating systems I use(d)</h1>
 <p class="quote"><i>Published by Paul at 2022-02-04, updated 2022-02-18</i></p>
 <pre>
@@ -1597,9 +1589,9 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 3368 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
+< -rw-r--r--. 1 paul paul 3363 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
 ---
-> -rw-r--r--. 1 paul paul 3367 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
+> -rw-r--r--. 1 paul paul 3367 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
 <h1>Welcome to the foo.zone</h1>
 <p class="quote"><i>Published by Paul at 2022-01-23</i></p>
 <pre>
@@ -1648,9 +1640,9 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13089 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
+< -rw-r--r--. 1 paul paul 13084 Jun 15 10:51 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
 ---
-> -rw-r--r--. 1 paul paul 13088 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
+> -rw-r--r--. 1 paul paul 13088 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
 <h1>Bash Golf Part 2</h1>
 <p class="quote"><i>Published by Paul at 2022-01-01, last updated at 2022-01-05</i></p>
 <pre>
@@ -2064,9 +2056,9 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13663 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
+< -rw-r--r--. 1 paul paul 13658 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
 ---
-> -rw-r--r--. 1 paul paul 13662 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
+> -rw-r--r--. 1 paul paul 13662 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
 <h1>How to stay sane as a DevOps person </h1>
 <p class="quote"><i>Published by Paul at 2021-12-26, last updated at 2022-01-12</i></p>
 <pre>
@@ -2160,9 +2152,9 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 14191 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
+< -rw-r--r--. 1 paul paul 14185 Jun 15 10:51 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
 ---
-> -rw-r--r--. 1 paul paul 14190 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
+> -rw-r--r--. 1 paul paul 14190 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
 <h1>Bash Golf Part 1</h1>
 <p class="quote"><i>Published by Paul at 2021-11-29, last updated at 2022-01-05</i></p>
 <pre>
@@ -2548,9 +2540,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13788 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
+< -rw-r--r--. 1 paul paul 13783 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
 ---
-> -rw-r--r--. 1 paul paul 13787 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
+> -rw-r--r--. 1 paul paul 13787 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
 <h1>Defensive DevOps</h1>
 <p class="quote"><i>Published by Paul at 2021-10-22</i></p>
 <pre>
@@ -2631,9 +2623,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 9416 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
+< -rw-r--r--. 1 paul paul 9414 Apr 21 18:51 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
 ---
-> -rw-r--r--. 1 paul paul 9415 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
+> -rw-r--r--. 1 paul paul 9415 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
 <h1>Keep it simple and stupid</h1>
 <p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-04-21</i></p>
 <pre>
@@ -2706,9 +2698,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 17638 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
+< -rw-r--r--. 1 paul paul 17663 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
 ---
-> -rw-r--r--. 1 paul paul 17636 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
+> -rw-r--r--. 1 paul paul 17636 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
 <h1>On being Pedantic about Open-Source</h1>
 <p class="quote"><i>Published by Paul at 2021-08-01</i></p>
 <pre>
@@ -2790,9 +2782,9 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 12361 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
+< -rw-r--r--. 1 paul paul 12356 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
 ---
-> -rw-r--r--. 1 paul paul 12360 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
+> -rw-r--r--. 1 paul paul 12360 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
 <h1>The Well-Grounded Rubyist</h1>
 <p class="quote"><i>Published by Paul at 2021-07-04</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
@@ -2875,9 +2867,9 @@ Hello World
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 10689 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
+< -rw-r--r--. 1 paul paul 10684 Apr  2 22:31 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
 ---
-> -rw-r--r--. 1 paul paul 10688 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
+> -rw-r--r--. 1 paul paul 10688 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
 <h1>Gemtexter - One Bash script to rule it all</h1>
 <p class="quote"><i>Published by Paul at 2021-06-05</i></p>
 <pre>
@@ -3018,9 +3010,9 @@ assert::equals "$(generate::make_link md "$gemtext")" \
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13904 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
+< -rw-r--r--. 1 paul paul 13899 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
 ---
-> -rw-r--r--. 1 paul paul 13903 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
+> -rw-r--r--. 1 paul paul 13903 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
 <h1>Personal Bash coding style guide</h1>
 <p class="quote"><i>Published by Paul at 2021-05-16</i></p>
 <pre>
@@ -3330,9 +3322,9 @@ fi
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4992 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
+< -rw-r--r--. 1 paul paul 4987 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
 ---
-> -rw-r--r--. 1 paul paul 4991 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
+> -rw-r--r--. 1 paul paul 4991 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
 <h1>Welcome to the Geminispace</h1>
 <p class="quote"><i>Published by Paul at 2021-04-24, last updated at 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
@@ -3404,9 +3396,9 @@ fi
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 12951 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
+< -rw-r--r--. 1 paul paul 12946 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
 ---
-> -rw-r--r--. 1 paul paul 12950 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
+> -rw-r--r--. 1 paul paul 12950 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
 <h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Published by Paul at 2021-04-22, last updated at 2021-04-26</i></p>
 <a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
@@ -3489,9 +3481,9 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 15253 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
+< -rw-r--r--. 1 paul paul 15248 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
 ---
-> -rw-r--r--. 1 paul paul 15252 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
+> -rw-r--r--. 1 paul paul 15252 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
 <h1>Realistic load testing with I/O Riot for Linux</h1>
 <p class="quote"><i>Published by Paul at 2018-06-01, last updated at 2021-05-08</i></p>
 <pre>
@@ -3632,9 +3624,9 @@ Total time: 1213.00s
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 3677 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
+< -rw-r--r--. 1 paul paul 3672 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
 ---
-> -rw-r--r--. 1 paul paul 3676 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
+> -rw-r--r--. 1 paul paul 3676 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
 <h1>Object oriented programming with ANSI C</h1>
 <p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
 <pre>
@@ -3728,9 +3720,9 @@ mult.calculate(mult,a,b));
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 8271 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
+< -rw-r--r--. 1 paul paul 8266 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
 ---
-> -rw-r--r--. 1 paul paul 8270 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
+> -rw-r--r--. 1 paul paul 8270 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
 <h1>Spinning up my own authoritative DNS servers</h1>
 <p class="quote"><i>Published by Paul at 2016-05-22</i></p>
 <h2>Background</h2>
@@ -3957,9 +3949,9 @@ apply Service "dig6" {
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 1922 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
+< -rw-r--r--. 1 paul paul 1917 Jun 15 10:51 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
 ---
-> -rw-r--r--. 1 paul paul 1921 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
+> -rw-r--r--. 1 paul paul 1921 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
 <h1>Offsite backup with ZFS (Part 2)</h1>
 <p class="quote"><i>Published by Paul at 2016-04-16</i></p>
 <pre>
@@ -3998,9 +3990,9 @@ apply Service "dig6" {
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 16912 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
+< -rw-r--r--. 1 paul paul 16907 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
 ---
-> -rw-r--r--. 1 paul paul 16911 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
+> -rw-r--r--. 1 paul paul 16911 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
 <h1>Jails and ZFS with Puppet on FreeBSD</h1>
 <p class="quote"><i>Published by Paul at 2016-04-09</i></p>
 <pre>
@@ -4381,9 +4373,9 @@ Notice: Finished catalog run in 206.09 seconds
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 3779 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
+< -rw-r--r--. 1 paul paul 3774 Jun 15 10:51 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
 ---
-> -rw-r--r--. 1 paul paul 3778 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
+> -rw-r--r--. 1 paul paul 3778 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
 <h1>Offsite backup with ZFS</h1>
 <p class="quote"><i>Published by Paul at 2016-04-03</i></p>
 <pre>
@@ -4428,9 +4420,9 @@ Notice: Finished catalog run in 206.09 seconds
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 5127 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
+< -rw-r--r--. 1 paul paul 5122 Apr  2 22:31 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
 ---
-> -rw-r--r--. 1 paul paul 5126 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
+> -rw-r--r--. 1 paul paul 5126 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
 <h1>Run Debian on your phone with Debroid</h1>
 <p class="quote"><i>Published by Paul at 2015-12-05, last updated at 2021-05-16</i></p>
 <pre>
@@ -4596,9 +4588,9 @@ exit
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 2945 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
+< -rw-r--r--. 1 paul paul 2940 Apr 23 12:02 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
 ---
-> -rw-r--r--. 1 paul paul 2944 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
+> -rw-r--r--. 1 paul paul 2944 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
 <h1>The fibonacci.pl.raku.c Polyglot</h1>
 <p class="quote"><i>Published by Paul at 2014-03-24, last updated 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
@@ -4742,9 +4734,9 @@ fib(10) = 55
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4850 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
+< -rw-r--r--. 1 paul paul 4845 Apr  2 22:31 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
 ---
-> -rw-r--r--. 1 paul paul 4849 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
+> -rw-r--r--. 1 paul paul 4849 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
 <h1>Perl Daemon (Service Framework)</h1>
 <p class="quote"><i>Published by Paul at 2011-05-07, last updated at 2021-05-07</i></p>
 <pre>
@@ -4892,9 +4884,9 @@ sub do ($) {
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13067 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
+< -rw-r--r--. 1 paul paul 13062 Apr  2 22:31 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
 ---
-> -rw-r--r--. 1 paul paul 13066 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
+> -rw-r--r--. 1 paul paul 13066 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
 <h1>The Fype Programming Language</h1>
 <p class="quote"><i>Published by Paul at 2010-05-09, last updated at 2021-05-05</i></p>
 <pre>
@@ -5311,9 +5303,9 @@ BB
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 2854 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
+< -rw-r--r--. 1 paul paul 2849 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
 ---
-> -rw-r--r--. 1 paul paul 2853 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
+> -rw-r--r--. 1 paul paul 2853 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
 <h1>Lazy Evaluation with Standard ML</h1>
 <p class="quote"><i>Published by Paul at 2010-05-07</i></p>
 <pre>
@@ -5415,9 +5407,9 @@ first 10 nat_pairs_not_null
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4887 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
+< -rw-r--r--. 1 paul paul 4882 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
 ---
-> -rw-r--r--. 1 paul paul 4886 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
+> -rw-r--r--. 1 paul paul 4886 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
 <h1>Standard ML and Haskell</h1>
 <p class="quote"><i>Published by Paul at 2010-04-09</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</p>
@@ -5573,9 +5565,9 @@ my_filter f l = foldr (make_filter_fn f) [] l
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 1938 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
+< -rw-r--r--. 1 paul paul 1933 Mar  4 11:42 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
 ---
-> -rw-r--r--. 1 paul paul 1937 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
+> -rw-r--r--. 1 paul paul 1937 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
 <h1>Using my Nokia N95 for fixing my MTA</h1>
 <p class="quote"><i>Published by Paul at 2008-12-29, last updated at 2021-12-01</i></p>
 <pre>
@@ -5623,9 +5615,9 @@ _jgs_\|//_\\|///_\V/_\|//__
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 4640 Aug 28 09:53 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
+< -rw-r--r--. 1 paul paul 4635 Jul  3 09:19 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
 ---
-> -rw-r--r--. 1 paul paul 4639 Aug 28 10:02 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
+> -rw-r--r--. 1 paul paul 4639 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
 <h1>Perl Poetry</h1>
 <p class="quote"><i>Published by Paul at 2008-06-26, last updated at 2021-05-04</i></p>
 <pre>
