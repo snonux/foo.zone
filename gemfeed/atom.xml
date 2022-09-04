@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-09-04T11:49:24+03:00</updated>
+    <updated>2022-09-04T11:52:18+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>I am proud to announce that I've released Gemtexter version . What is Gemtexter? It's my static site generator written in GNU Bash:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4088 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
----
-> -rw-r--r--. 1 paul paul 4095 Sep  4 11:47 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
-<h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
+                <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
 <p class="quote"><i>Published by Paul at 2022-08-27</i></p>
 <pre>
 -=[ typewriter ]=-  1/98
