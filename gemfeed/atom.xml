@@ -1,11 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-09-04T11:52:18+03:00</updated>
+    <updated>2022-09-28T22:06:04+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>After a bad night's sleep</title>
+        <link href="gemini://foo.zone/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi</id>
+        <updated>2022-09-30T22:06:04+03:00</updated>
+        <author>
+            <name>Paul C. Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>After a bad night's sleep</h1>
+<p class="quote"><i>Published by Paul at 2022-09-30</i></p>
+<pre>
+               z
+                z
+                 Z
+       .--.  Z Z
+      / _(c\   .-.     __
+     | / /  '-;   \'-'<span class="inlinecode">  </span>\______
+     \_\/'/ __/ )  /  )   |      \--,
+     | \<span class="inlinecode">""</span>__-/ .'--/   /--------\  \
+      \\`  ///-\/   /   /---;-.    '-'
+jgs                (________\  \
+                             '-'
+</pre><br />
+<p>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.</p>
+<h2>Don't take the day off</h2>
+<p>I don't recommend taking a day off after not having slept enough the previous night. That's, in my opinion, a waste of my holiday allowance. I wouldn't be able to enjoy my free time anyway, so why not just work? For an IT Engineer, there's still a way to be very (sometimes even more) productive even with half or less of the concentration power! (read on). </p>
+<h2>Sweat the small stuff</h2>
+<p>For me, there's never a shortage of small items to work off my list. Most of these items don't require my full concentration power and I will be happy to get them off my list so that the next day, after a good night's sleep, I can go back to focused deep work with full concentration powers at hand.</p>
+<p>These small items can be:</p>
+<ul>
+<li>Tidying up the workspace.</li>
+<li>Installing pending computer software updates.</li>
+<li>Going through the Jira backlog. Create new ticket, close obsolete one, pre-plan upcoming work.</li>
+<li>Close off easier tickets from the current sprint.</li>
+<li>Do any kind of boring paper work (e.g. work tracking or go through mandatory trainings I already know about but regulations tell me that I have to go through them).</li>
+<li>Catching up with the journal and mark off all trivial action items (e.g. respond that one colleague with that specific piece of information he asked a couple of days ago, write a short email with a question I wondered about the previous day but run out of time last week, check out that interesting resource a colleague recommended...)</li>
+</ul>
+<h2>Find the flow</h2>
+<p>I personally find it quite easy to enter the "flow state" after a bad night's sleep. All what I need to do is to put on some ambient music (preferably instrumental chill house) and just start working on a ticket.</p>
+<h2>Reschedule meetings</h2>
+<p>I find it difficult to engage in discussions and meetings after a bad night's sleep. I still attend the meetings I am invited to as a participant, but will reschedule all meetings I am the main driver for. This, unfortunately, also includes interviews. Interviews require full concentration power. So for interviews I would find another person to step in for me or ask to completely reschedule. All my other meetings I would reschedule for a different day. Everything else wouldn't make it justice and would waste everyone's time!</p>
+<h2>Invent new stuff</h2>
+<p>Deprived from sleep, the mind works differently. It's easier to invent new stuff. It's easier to think from different perspectives. As a matter of fact, until 5 minutes ago I didn't know yet what I would be blogging about for this month and then I just started writing this and it took me only fifteen minutes to write all text until this sentence you are reading currently.</p>
+<h2>Fast</h2>
+<p>I don't eat breakfast and I don't eat lunch on these days. I only have dinner. Not eating means that my mind doesn't get foggy and I keep up the work momentum. This is called intermittent fasting which helps to keep the weight under control and boosts the concentration power a bit. Furthermore, intermittent fasting is healthy.</p>
+<h2>Strech </h2>
+<p>I won't have enough energy for serious physical exercise on those days, but a 30 to 60 minute stretching session can make the day. Stretching will even hurt less while suffering sleep deprivation ;-)</p>
+<h2>Walk </h2>
+<p>I will have enough energy for one or two good walks, though (~10k steps for the day in total). Walking is healthy and the time can be used to listen to an interesting work-related podcast (so even something new could be learned). The available concentration power might not be enough for a more difficult audio book, though. Alternatively, I just listen to music during the walks. Also, I try to catch the bright sunlight during the walks. </p>
+<h2>Red Bull</h2>
+<p>I don't think that Red Bull is a healthy drink. But once in a while a can can bring wonders in the early afternoon and the productivity will skyrocket. Other than Red Bull, drink a lot of water!</p>
+<h2>Power nap</h2>
+<p>I don't know how to "enforce" a nap, but sometimes I manage to power nap and it helps wonders. A 30 minute nap sometimes brings me back to normal.</p>
+<h2>Don't take anything personally</h2>
+<p>It's much more difficult to keep the mind "under control" in this state. Every tiny annoyance has the potential to make someone angry and this could reflect to the work colleagues. I attempt to go with a positive attitude into the day, to always smile and to be polite to my family all of the work colleagues. Don't let anything drop out to the people next, they don't deserve it as they didn't do anything wrong! Also, remember, it can't be controlled all. So it's time to let go of the annoyances for the day.</p>
+<h2>Meditate</h2>
+<p>Sometimes it helps me to meditate for 10 minutes, that helps me to keep the good mode. That, however, works only when I manage not to forget to meditate. ;-) Meditation must nothing be fancy. </p>
+<h2>Write things down</h2>
+<p>Sometimes something requiring more concentration power demands the time on those days. This is where it helps to make a note in a journal and come back to it in one of the following days. This doesn't mean slacking off for one day, but it means managing the rare available concentration power for the day. I might repeat myself: Today, sweat all the small stuff. Tomorrow, do the deep focused work on that important project again.</p>
+<p>Everything I encounter and don't want to forget I will write down. I am more likely to forget things without having slept enough. I never forget anything when I use my second brain (journal). :-)</p>
+<p>E-Mail me your comments to paul at buetow dot org! :-)</p>
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Gemtexter 1.1.0 - Let's Gemtext again</title>
         <link href="gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi" />
