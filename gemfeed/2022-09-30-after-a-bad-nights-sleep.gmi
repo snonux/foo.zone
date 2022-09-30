@@ -53,7 +53,7 @@ This, unfortunately, also includes interviews. Interviews require full concentra
 
 ## Invent
 
-The mind works differently under sleep deprivation: It's easier to invent new stuff as it's easier to have a look at things from different perspectives. As a matter of fact, until 5 minutes ago I didn't know yet what I would be blogging about for this month and then I just started writing this and it took me only half an hour to write the first draft of this blog post!
+The mind works differently under sleep deprivation: It's easier to invent new stuff as it's easier to have a look at things from different perspectives. As a matter of fact, until an hour ago I didn't know yet what I would be blogging about for this month and then I just started writing this and it took me only half an hour to write the first draft of this blog post!
 
 ## Fast
 
