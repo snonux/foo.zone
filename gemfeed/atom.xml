@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-09-30T09:58:48+03:00</updated>
+    <updated>2022-09-30T09:59:00+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 6726 Sep 30 09:52 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
----
-> -rw-r--r--. 1 paul paul 6724 Sep 30 09:58 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
-<h1>After a bad night's sleep</h1>
+                <h1>After a bad night's sleep</h1>
 <p class="quote"><i>Published by Paul at 2022-09-30</i></p>
 <pre>
                z
