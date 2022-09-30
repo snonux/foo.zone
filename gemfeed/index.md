@@ -2,7 +2,7 @@
 
 ## To be in the .zone!
 
-[2022-09-30 - ](./2022-09-30-after-a-bad-nights-sleep.md)  
+[2022-09-30 - After a bad night's sleep](./2022-09-30-after-a-bad-nights-sleep.md)  
 [2022-08-27 - Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
 [2022-07-30 - Let's Encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
 [2022-06-15 - Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
