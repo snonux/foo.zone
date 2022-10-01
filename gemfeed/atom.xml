@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-09-30T09:59:00+03:00</updated>
+    <updated>2022-10-01T11:15:33+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,11 @@
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>After a bad night's sleep</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 6724 Sep 30 09:58 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
+---
+> -rw-r--r--. 1 paul paul 6729 Oct  1 11:15 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
+<h1>After a bad night's sleep</h1>
 <p class="quote"><i>Published by Paul at 2022-09-30</i></p>
 <pre>
                z
@@ -64,7 +68,7 @@ jgs                (________\  \
 <h2>Walk </h2>
 <p>I will have enough energy for one or two daily walks, though (~10k steps for the day in total). Walking is healthy and the time can be used to listen to interesting podcasts. The available concentration power might not be enough for a more sophisticated audio literature, though. Sometimes, I listen to music during the walks. I also try to catch the bright sunlight...</p>
 <h2>Red Bull</h2>
-<p>I don't think that Red Bull is a healthy drink. But once in a while a brings wonders in the early afternoon and the productivity will skyrocket. Other than Red Bull, drink a lot of water throughout the day.</p>
+<p>I don't think that Red Bull is a healthy drink. But once in a while a can  in the early afternoon brings wonders and the productivity will skyrocket. Other than Red Bull, drink a lot of water throughout the day.</p>
 <h2>Power nap</h2>
 <p>I don't know how to "enforce" a nap, but sometimes I manage to power nap and it helps wonders. A 30 minute nap sometimes brings me back to normal. If you don't manage to fast as you are too hungry it helps to try to nap approximately 30 minutes after having eaten something.</p>
 <h2>Don't take anything personally</h2>
