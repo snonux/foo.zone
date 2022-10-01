@@ -69,7 +69,7 @@ I will have enough energy for one or two daily walks, though (~10k steps for the
 
 ## Red Bull
 
-I don't think that Red Bull is a healthy drink. But once in a while a brings wonders in the early afternoon and the productivity will skyrocket. Other than Red Bull, drink a lot of water throughout the day.
+I don't think that Red Bull is a healthy drink. But once in a while a can  in the early afternoon brings wonders and the productivity will skyrocket. Other than Red Bull, drink a lot of water throughout the day.
 
 ## Power nap
 

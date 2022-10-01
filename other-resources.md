@@ -63,8 +63,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2019 - Das Netz der Sterne (de), Audio book
 * 2020 - Die Eskalation (de) - Maschinenintelligenz-Trilogie
 * 2021 - Mars Discovery (de) - Maschinenintelligenz-Trilogie
-* 2022 - Netz der Sterne (de) - Audio book
-* 2022 - Eklipse (de), Andreas Brandhorst (Currently reading)
+* 2022 - Eklipse (de) (Currently reading)
 
 ### Ian Banks
 
