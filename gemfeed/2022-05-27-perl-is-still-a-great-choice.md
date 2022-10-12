@@ -118,7 +118,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 [https://www.perl.org](https://www.perl.org)  
 
-E-Mail me your comments to paul at buetow dot org! :-)
+E-Mail your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  
 

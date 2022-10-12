@@ -166,6 +166,6 @@ It was quite a lot of fun writing Gemtexter. It's a relatively small project, bu
 
 I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. 
 
-E-Mail me your comments to paul at buetow dot org! :-)
+E-Mail your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  
