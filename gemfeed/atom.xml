@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-10-14T09:32:00+03:00</updated>
+    <updated>2022-10-14T09:32:21+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -168,11 +168,7 @@ check_dependencies () {
         <summary>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 21484 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
----
-> -rw-r--r--. 1 paul paul 21420 Oct 14 09:31 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
-<h1>Let's Encrypt with OpenBSD and Rex</h1>
+                <h1>Let's Encrypt with OpenBSD and Rex</h1>
 <p class="quote"><i>Published by Paul at 2022-07-30</i></p>
 <pre>
                                                /    _    \
