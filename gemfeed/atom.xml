@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-10-12T10:15:57+03:00</updated>
+    <updated>2022-10-14T09:32:00+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 6729 Oct  1 11:15 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
----
-> -rw-r--r--. 1 paul paul 6738 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
-<h1>After a bad night's sleep</h1>
+                <h1>After a bad night's sleep</h1>
 <p class="quote"><i>Published by Paul at 2022-09-30, last updated 2022-10-12</i></p>
 <pre>
                z
@@ -96,11 +92,7 @@ jgs                (________\  \
         <summary>I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my static site generator written in GNU Bash:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4095 Sep 30 09:31 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
----
-> -rw-r--r--. 1 paul paul 4092 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi
-<h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
+                <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
 <p class="quote"><i>Published by Paul at 2022-08-27</i></p>
 <pre>
 -=[ typewriter ]=-  1/98
@@ -177,9 +169,9 @@ check_dependencies () {
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 21487 Sep 30 09:29 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+< -rw-r--r--. 1 paul paul 21484 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
 ---
-> -rw-r--r--. 1 paul paul 21484 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
+> -rw-r--r--. 1 paul paul 21420 Oct 14 09:31 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi
 <h1>Let's Encrypt with OpenBSD and Rex</h1>
 <p class="quote"><i>Published by Paul at 2022-07-30</i></p>
 <pre>
@@ -208,25 +200,25 @@ check_dependencies () {
              /________________________________________________\
                                  ASCII Art by John Savard
 </pre><br />
-<p>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</p>
+<p>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</p>
 <h2>What's Let's Encrypt?</h2>
 <p class="quote"><i>Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</i></p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Let's_Encrypt">Source: Wikipedia</a><br />
-<p>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renevals.</p>
+<p>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</p>
 <h2>Meet <span class="inlinecode">acme-client</span></h2>
 <p><span class="inlinecode">acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. </p>
 <p>When invoked, the client first checks whether certificates actually require to be generated.</p>
 <ul>
-<li>It first checks whether a certificate already exists, if not, it will attempt to generate a new one.</li>
+<li>It first checks whether a certificate already exists; if not, it will attempt to generate a new one.</li>
 <li>If the certificate already exists but expires within the next 30 days, it will renew it.</li>
 <li>Otherwise, <span class="inlinecode">acme-client</span> won't do anything.</li>
 </ul>
 <p>Oversimplified, the following steps are undertaken by <span class="inlinecode">acme-client</span> for generating a new certificate:</p>
 <ul>
-<li>Reading its config file <span class="inlinecode">/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates for. So it means you can also have certificates for abritary subdomains!</li>
+<li>Reading its config file <span class="inlinecode">/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates. So it means you can also have certificates for arbitrary subdomains!</li>
 <li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to <span class="inlinecode">/etc/ssl/...</span>.</li>
-<li>Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files which will be requested by Let's Encrypt in the next step for verification.</li>
-<li>Let's Encrypt then will contact the hostname for the certificate through a special URL (e.g. <span class="inlinecode">http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
+<li>Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files requested by Let's Encrypt in the next step for verification.</li>
+<li>Let's Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class="inlinecode">http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
 <li>Let's Encrypt generates a certificate, which then is downloaded to <span class="inlinecode">/etc/ssl/...</span>.</li>
 </ul>
 <h2>Configuration</h2>
@@ -295,7 +287,7 @@ domain snonux.land {
 }
 </pre><br />
 <h3>httpd.conf</h3>
-<p>For ACME to work you will also need to configure the HTTP daemon so that the "special" ACME requests made from Let's Encrypt are served correctly. I am using the standard OpenBSD <span class="inlinecode">httpd</span> here. These are the snippets I use for the <span class="inlinecode">foo.zone</span> host in <span class="inlinecode">/etc/httpd.conf</span> (of course, you need similar setup for all other hosts as well):</p>
+<p>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let's Encrypt are served correctly. I am using the standard OpenBSD <span class="inlinecode">httpd</span> here. These are the snippets I use for the <span class="inlinecode">foo.zone</span> host in <span class="inlinecode">/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</p>
 <pre>
 server "foo.zone" {
   listen on * port 80
@@ -320,8 +312,8 @@ server "foo.zone" {
   }
 }
 </pre><br />
-<p>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it is redirecting the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.</p>
-<p>It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates actually being present. This will cause a certificate error when you try to reach the HTTPS endpoint but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process so that HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class="inlinecode">httpd</span> in order to use any new certificate.</p>
+<p>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.</p>
+<p>It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class="inlinecode">httpd</span> to use any new certificate.</p>
 <h3>CRON job</h3>
 <p>You could now run <span class="inlinecode">doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</p>
 <p>I have created a script <span class="inlinecode">/usr/local/bin/acme.sh</span> for that for all of my domains:</p>
@@ -393,7 +385,7 @@ acme-client: /etc/ssl/irregular.ninja.fullchain.pem: certificate valid: 80 days 
 acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 </pre><br />
 <h2>relayd.conf and smtpd.conf</h2>
-<p>Besides of <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> (mainly for Gemini) and <span class="inlinecode">smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class="inlinecode">acme.sh</span>, the services are also reloaded or restarted (<span class="inlinecode">smtpd</span> doesn't support reload) whenever a certificate was generated or updated.</p>
+<p>Besides <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> (mainly for Gemini) and <span class="inlinecode">smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class="inlinecode">acme.sh</span>, the services are reloaded or restarted (<span class="inlinecode">smtpd</span> doesn't support reload) whenever a certificate is generated or updated.</p>
 <h2>Rexification</h2>
 <p>I didn't write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</p>
 <a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
@@ -402,7 +394,7 @@ acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zone irregular.ninja snonux.land/;
 </pre><br />
 <h3>General ACME client configuration</h3>
-<p>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish the secondary OpenBSD box.</p>
+<p>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</p>
 <pre>
 group frontends =&gt; 'blowfish.buetow.org', 'twofish.buetow.org';
 </pre><br />
@@ -463,7 +455,7 @@ our $is_primary = sub {
   $fqdns-&gt;($ipv4) eq 'blowfish.buetow.org';
 };
 </pre><br />
-<p>The following is the <span class="inlinecode">acme-client.conf.tpl</span> Rex template file used for the automation. You see here that the <span class="inlinecode">www.</span> prefix isn't sent for the primary server. E.g. <span class="inlinecode">foo.zone</span> will be served by the primary server (in my case a server located in Germany) and <span class="inlinecode">www.foo.zone</span> by the secondary server (in my case a server located in Japan):</p>
+<p>The following is the <span class="inlinecode">acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class="inlinecode">www.</span> prefix isn't sent for the primary server. E.g. <span class="inlinecode">foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class="inlinecode">www.foo.zone</span> by the secondary server (in my case, a server located in Japan):</p>
 <pre>
 #
 # $OpenBSD: acme-client.conf,v 1.4 2020/09/17 09:13:06 florian Exp $
@@ -617,7 +609,7 @@ task 'smtpd', group =&gt; 'frontends',
   };
 
 </pre><br />
-<p>This is <span class="inlinecode">httpd.conf.tpl</span>:</p>
+<p>This is the <span class="inlinecode">httpd.conf.tpl</span>:</p>
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
@@ -760,17 +752,17 @@ match from local for local action localmail
 match from local for any action outbound
 </pre><br />
 <h2>All pieces together</h2>
-<p>For the full <span class="inlinecode">Rexfile</span> example and all the templates, please look at the Git repository:</p>
+<p>For the complete <span class="inlinecode">Rexfile</span> example and all the templates, please look at the Git repository:</p>
 <a class="textlink" href="https://codeberg.org/snonux/rexfiles">https://codeberg.org/snonux/rexfiles</a><br />
-<p>Besides of ACME, also other things, such as DNS server, are rexified too. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:</p>
+<p>Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:</p>
 <pre>
 rex commons
 </pre><br />
-<p>The <span class="inlinecode">commons</span> is a group of task I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</p>
+<p>The <span class="inlinecode">commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</p>
 <h2>Conclusion</h2>
-<p>ACME and Let's Encrypt greatly help reducing recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of costs! I love to use OpenBSD and Rex to automate all of this.</p>
-<p>OpenBSD suits perfectly here as all the tools are already part of the base installation. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog and the community is small. But I like underdogs.</p>
-<p>I love the fact that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Why re-inventing the wheel? Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script so that I didn't have to install yet another shell as OpenBSD does not come with the Bash pre-installed.</p>
+<p>ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</p>
+<p>OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.</p>
+<p>Why re-inventing the wheel? I love that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</p>
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
             </div>
         </content>
@@ -787,11 +779,7 @@ rex commons
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 20520 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.gmi
----
-> -rw-r--r--. 1 paul paul 20517 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.gmi
-<h1>Sweating the small stuff - Tiny projects of mine</h1>
+                <h1>Sweating the small stuff - Tiny projects of mine</h1>
 <p class="quote"><i>Published by Paul at 2022-06-15, last updated at 2022-06-18</i></p>
 <pre>
          _
@@ -1032,11 +1020,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 16143 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
----
-> -rw-r--r--. 1 paul paul 16140 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
-<h1>Perl is still a great choice</h1>
+                <h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.</p>
@@ -1137,11 +1121,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 14567 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.gmi
----
-> -rw-r--r--. 1 paul paul 14564 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.gmi
-<h1>Creative universe</h1>
+                <h1>Creative universe</h1>
 <p class="quote"><i>Published by Paul at 2022-04-10, last updated at 2022-04-18</i></p>
 <pre>
  .              +   .                .   . .     .  .
@@ -1248,11 +1228,7 @@ learn () {
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 11938 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi
----
-> -rw-r--r--. 1 paul paul 11935 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi
-<h1>The release of DTail 4.0.0</h1>
+                <h1>The release of DTail 4.0.0</h1>
 <p class="quote"><i>Published by Paul at 2022-03-06</i></p>
 <pre>
                               ,_---~~~~~----._
@@ -1504,11 +1480,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <summary>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 15965 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi
----
-> -rw-r--r--. 1 paul paul 15962 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi
-<h1>Computer operating systems I use(d)</h1>
+                <h1>Computer operating systems I use(d)</h1>
 <p class="quote"><i>Published by Paul at 2022-02-04, updated 2022-02-18</i></p>
 <pre>
               /(        )`
@@ -1674,11 +1646,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 3367 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi
----
-> -rw-r--r--. 1 paul paul 3364 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi
-<h1>Welcome to the foo.zone</h1>
+                <h1>Welcome to the foo.zone</h1>
 <p class="quote"><i>Published by Paul at 2022-01-23</i></p>
 <pre>
   __                                  
@@ -1725,11 +1693,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13088 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.gmi
----
-> -rw-r--r--. 1 paul paul 13085 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.gmi
-<h1>Bash Golf Part 2</h1>
+                <h1>Bash Golf Part 2</h1>
 <p class="quote"><i>Published by Paul at 2022-01-01, last updated at 2022-01-05</i></p>
 <pre>
 
@@ -2141,11 +2105,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps/SRE or a security engineer). I thought it would be interesting to summarize a few techniques to help you to relax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13662 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi
----
-> -rw-r--r--. 1 paul paul 13659 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi
-<h1>How to stay sane as a DevOps person </h1>
+                <h1>How to stay sane as a DevOps person </h1>
 <p class="quote"><i>Published by Paul at 2021-12-26, last updated at 2022-01-12</i></p>
 <pre>
                                      )
@@ -2237,11 +2197,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>This is the first blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 14190 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.gmi
----
-> -rw-r--r--. 1 paul paul 14187 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.gmi
-<h1>Bash Golf Part 1</h1>
+                <h1>Bash Golf Part 1</h1>
 <p class="quote"><i>Published by Paul at 2021-11-29, last updated at 2022-01-05</i></p>
 <pre>
 
@@ -2625,11 +2581,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13787 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.gmi
----
-> -rw-r--r--. 1 paul paul 13784 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.gmi
-<h1>Defensive DevOps</h1>
+                <h1>Defensive DevOps</h1>
 <p class="quote"><i>Published by Paul at 2021-10-22</i></p>
 <pre>
                                                             c=====e
@@ -2708,11 +2660,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 9415 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi
----
-> -rw-r--r--. 1 paul paul 9412 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi
-<h1>Keep it simple and stupid</h1>
+                <h1>Keep it simple and stupid</h1>
 <p class="quote"><i>Published by Paul at 2021-09-12, last updated at 2022-04-21</i></p>
 <pre>
   _______________                        |*\_/*|_______
@@ -2783,11 +2731,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 17636 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
----
-> -rw-r--r--. 1 paul paul 17630 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
-<h1>On being Pedantic about Open-Source</h1>
+                <h1>On being Pedantic about Open-Source</h1>
 <p class="quote"><i>Published by Paul at 2021-08-01</i></p>
 <pre>
                                            __
@@ -2867,11 +2811,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I then decided to give Ruby a go for all medium-sized programming and scripting projects.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 12360 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi
----
-> -rw-r--r--. 1 paul paul 12357 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi
-<h1>The Well-Grounded Rubyist</h1>
+                <h1>The Well-Grounded Rubyist</h1>
 <p class="quote"><i>Published by Paul at 2021-07-04</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
 <p>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</p>
@@ -2952,11 +2892,7 @@ Hello World
         <summary>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 10688 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi
----
-> -rw-r--r--. 1 paul paul 10685 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi
-<h1>Gemtexter - One Bash script to rule it all</h1>
+                <h1>Gemtexter - One Bash script to rule it all</h1>
 <p class="quote"><i>Published by Paul at 2021-06-05</i></p>
 <pre>
                                                                o .,&lt;&gt;., o
@@ -3095,11 +3031,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
         <summary>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the 'Google Shell Style Guide' I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13903 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi
----
-> -rw-r--r--. 1 paul paul 13900 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi
-<h1>Personal Bash coding style guide</h1>
+                <h1>Personal Bash coding style guide</h1>
 <p class="quote"><i>Published by Paul at 2021-05-16</i></p>
 <pre>
    .---------------------------.
@@ -3407,11 +3339,7 @@ fi
         <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4991 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi
----
-> -rw-r--r--. 1 paul paul 4988 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi
-<h1>Welcome to the Geminispace</h1>
+                <h1>Welcome to the Geminispace</h1>
 <p class="quote"><i>Published by Paul at 2021-04-24, last updated at 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="gemini://foo.zone">gemini://foo.zone</a><br />
@@ -3481,11 +3409,7 @@ fi
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 12950 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi
----
-> -rw-r--r--. 1 paul paul 12947 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi
-<h1>DTail - The distributed log tail program</h1>
+                <h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Published by Paul at 2021-04-22, last updated at 2021-04-26</i></p>
 <a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
@@ -3566,11 +3490,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 15252 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi
----
-> -rw-r--r--. 1 paul paul 15249 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi
-<h1>Realistic load testing with I/O Riot for Linux</h1>
+                <h1>Realistic load testing with I/O Riot for Linux</h1>
 <p class="quote"><i>Published by Paul at 2018-06-01, last updated at 2021-05-08</i></p>
 <pre>
        .---.
@@ -3709,11 +3629,7 @@ Total time: 1213.00s
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 3676 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi
----
-> -rw-r--r--. 1 paul paul 3673 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi
-<h1>Object oriented programming with ANSI C</h1>
+                <h1>Object oriented programming with ANSI C</h1>
 <p class="quote"><i>Published by Paul at 2016-11-20, updated 2022-01-29</i></p>
 <pre>
   ___   ___  ____        ____ 
@@ -3805,11 +3721,7 @@ mult.calculate(mult,a,b));
         <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 8270 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi
----
-> -rw-r--r--. 1 paul paul 8267 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi
-<h1>Spinning up my own authoritative DNS servers</h1>
+                <h1>Spinning up my own authoritative DNS servers</h1>
 <p class="quote"><i>Published by Paul at 2016-05-22</i></p>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</p>
@@ -4034,11 +3946,7 @@ apply Service "dig6" {
         <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 1921 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi
----
-> -rw-r--r--. 1 paul paul 1918 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi
-<h1>Offsite backup with ZFS (Part 2)</h1>
+                <h1>Offsite backup with ZFS (Part 2)</h1>
 <p class="quote"><i>Published by Paul at 2016-04-16</i></p>
 <pre>
  ________________
@@ -4075,11 +3983,7 @@ apply Service "dig6" {
         <summary>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 16911 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi
----
-> -rw-r--r--. 1 paul paul 16908 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi
-<h1>Jails and ZFS with Puppet on FreeBSD</h1>
+                <h1>Jails and ZFS with Puppet on FreeBSD</h1>
 <p class="quote"><i>Published by Paul at 2016-04-09</i></p>
 <pre>
             __     __
@@ -4458,11 +4362,7 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 3778 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi
----
-> -rw-r--r--. 1 paul paul 3775 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi
-<h1>Offsite backup with ZFS</h1>
+                <h1>Offsite backup with ZFS</h1>
 <p class="quote"><i>Published by Paul at 2016-04-03</i></p>
 <pre>
  ________________
@@ -4505,11 +4405,7 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>You can use the following tutorial to install a full blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 5126 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi
----
-> -rw-r--r--. 1 paul paul 5123 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi
-<h1>Run Debian on your phone with Debroid</h1>
+                <h1>Run Debian on your phone with Debroid</h1>
 <p class="quote"><i>Published by Paul at 2015-12-05, last updated at 2021-05-16</i></p>
 <pre>
  ____       _               _     _ 
@@ -4673,11 +4569,7 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 2944 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
----
-> -rw-r--r--. 1 paul paul 2941 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
-<h1>The fibonacci.pl.raku.c Polyglot</h1>
+                <h1>The fibonacci.pl.raku.c Polyglot</h1>
 <p class="quote"><i>Published by Paul at 2014-03-24, last updated 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
@@ -4819,11 +4711,7 @@ fib(10) = 55
         <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4849 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.gmi
----
-> -rw-r--r--. 1 paul paul 4846 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.gmi
-<h1>Perl Daemon (Service Framework)</h1>
+                <h1>Perl Daemon (Service Framework)</h1>
 <p class="quote"><i>Published by Paul at 2011-05-07, last updated at 2021-05-07</i></p>
 <pre>
    a'!   _,,_ a'!   _,,_     a'!   _,,_
@@ -4969,11 +4857,7 @@ sub do ($) {
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13066 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.gmi
----
-> -rw-r--r--. 1 paul paul 13063 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.gmi
-<h1>The Fype Programming Language</h1>
+                <h1>The Fype Programming Language</h1>
 <p class="quote"><i>Published by Paul at 2010-05-09, last updated at 2021-05-05</i></p>
 <pre>
       ____                                      _        __       
@@ -5388,11 +5272,7 @@ BB
         <summary>In contrast to Haskell, Standard SML does not use lazy evaluation by default, but strict evaluation. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 2853 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi
----
-> -rw-r--r--. 1 paul paul 2850 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi
-<h1>Lazy Evaluation with Standard ML</h1>
+                <h1>Lazy Evaluation with Standard ML</h1>
 <p class="quote"><i>Published by Paul at 2010-05-07</i></p>
 <pre>
 
@@ -5492,11 +5372,7 @@ first 10 nat_pairs_not_null
         <summary>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already know a little Haskell, could I do not help myself and I implemented the same exercises in Haskell too.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4886 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.gmi
----
-> -rw-r--r--. 1 paul paul 4883 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.gmi
-<h1>Standard ML and Haskell</h1>
+                <h1>Standard ML and Haskell</h1>
 <p class="quote"><i>Published by Paul at 2010-04-09</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</p>
 <p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to write down the function types explicitly. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far, I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
@@ -5650,11 +5526,7 @@ my_filter f l = foldr (make_filter_fn f) [] l
         <summary>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 1937 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi
----
-> -rw-r--r--. 1 paul paul 1934 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi
-<h1>Using my Nokia N95 for fixing my MTA</h1>
+                <h1>Using my Nokia N95 for fixing my MTA</h1>
 <p class="quote"><i>Published by Paul at 2008-12-29, last updated at 2021-12-01</i></p>
 <pre>
 
@@ -5700,11 +5572,7 @@ _jgs_\|//_\\|///_\V/_\|//__
         <summary>Here are some Perl Poems I wrote. They don't do anything useful when you run them but they don't produce a compiler error either. They only exists for fun and demonstrate what you can do with Perl syntax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 4639 Sep  4 11:18 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.gmi
----
-> -rw-r--r--. 1 paul paul 4636 Oct 12 10:15 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.gmi
-<h1>Perl Poetry</h1>
+                <h1>Perl Poetry</h1>
 <p class="quote"><i>Published by Paul at 2008-06-26, last updated at 2021-05-04</i></p>
 <pre>
  '\|/'                                  *
