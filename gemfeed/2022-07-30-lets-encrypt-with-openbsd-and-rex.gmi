@@ -29,7 +29,7 @@
                                  ASCII Art by John Savard
 ```
 
-I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
 ## What's Let's Encrypt?
 
@@ -37,7 +37,7 @@ I was amazed how easy it is to automatically generate and update Let's Encrypt c
 
 => https://en.wikipedia.org/wiki/Let's_Encrypt Source: Wikipedia
 
-In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renevals.
+In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.
 
 ## Meet `acme-client`
 
@@ -45,16 +45,16 @@ In short, it gives away TLS certificates for your website - for free! The catch 
 
 When invoked, the client first checks whether certificates actually require to be generated.
 
-* It first checks whether a certificate already exists, if not, it will attempt to generate a new one.
+* It first checks whether a certificate already exists; if not, it will attempt to generate a new one.
 * If the certificate already exists but expires within the next 30 days, it will renew it.
 * Otherwise, `acme-client` won't do anything.
 
 Oversimplified, the following steps are undertaken by `acme-client` for generating a new certificate:
 
-* Reading its config file `/etc/acme-client.conf` for a list of hosts (and their alternative names) to generate certificates for. So it means you can also have certificates for abritary subdomains!
+* Reading its config file `/etc/acme-client.conf` for a list of hosts (and their alternative names) to generate certificates. So it means you can also have certificates for arbitrary subdomains!
 * Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to `/etc/ssl/...`.
-* Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files which will be requested by Let's Encrypt in the next step for verification.
-* Let's Encrypt then will contact the hostname for the certificate through a special URL (e.g. `http://foo.zone/.well-known/acme-challenge/...`) to verify that the requester is the valid owner of the host.
+* Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files requested by Let's Encrypt in the next step for verification.
+* Let's Encrypt then will contact the hostname for the certificate through a particular URL (e.g. `http://foo.zone/.well-known/acme-challenge/...`) to verify that the requester is the valid owner of the host.
 * Let's Encrypt generates a certificate, which then is downloaded to `/etc/ssl/...`.
 
 ## Configuration
@@ -129,7 +129,7 @@ domain snonux.land {
 
 ### httpd.conf
 
-For ACME to work you will also need to configure the HTTP daemon so that the "special" ACME requests made from Let's Encrypt are served correctly. I am using the standard OpenBSD `httpd` here. These are the snippets I use for the `foo.zone` host in `/etc/httpd.conf` (of course, you need similar setup for all other hosts as well):
+For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let's Encrypt are served correctly. I am using the standard OpenBSD `httpd` here. These are the snippets I use for the `foo.zone` host in `/etc/httpd.conf` (of course, you need a similar setup for all other hosts as well):
 
 ```
 server "foo.zone" {
@@ -156,9 +156,9 @@ server "foo.zone" {
 }
 ```
 
-As you see, plain HTTP only serves the ACME challenge path. Otherwise, it is redirecting the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.
+As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.
 
-It is worth noticing that `httpd` will start without the certificates actually being present. This will cause a certificate error when you try to reach the HTTPS endpoint but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process so that HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart `httpd` in order to use any new certificate.
+It is worth noticing that `httpd` will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart `httpd` to use any new certificate.
 
 ### CRON job
 
@@ -240,7 +240,7 @@ acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 
 ## relayd.conf and smtpd.conf
 
-Besides of `httpd`, `relayd` (mainly for Gemini) and `smtpd` (for mail, of course) also use TLS certificates. And as you can see in `acme.sh`, the services are also reloaded or restarted (`smtpd` doesn't support reload) whenever a certificate was generated or updated.
+Besides `httpd`, `relayd` (mainly for Gemini) and `smtpd` (for mail, of course) also use TLS certificates. And as you can see in `acme.sh`, the services are reloaded or restarted (`smtpd` doesn't support reload) whenever a certificate is generated or updated.
 
 ## Rexification
 
@@ -256,7 +256,7 @@ our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zon
 
 ### General ACME client configuration
 
-ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish the secondary OpenBSD box.
+ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.
 
 ```
 group frontends => 'blowfish.buetow.org', 'twofish.buetow.org';
@@ -325,7 +325,7 @@ our $is_primary = sub {
 };
 ```
 
-The following is the `acme-client.conf.tpl` Rex template file used for the automation. You see here that the `www.` prefix isn't sent for the primary server. E.g. `foo.zone` will be served by the primary server (in my case a server located in Germany) and `www.foo.zone` by the secondary server (in my case a server located in Japan):
+The following is the `acme-client.conf.tpl` Rex template file used for the automation. You see that the `www.` prefix isn't sent for the primary server. E.g. `foo.zone` will be served by the primary server (in my case, a server located in Germany) and `www.foo.zone` by the secondary server (in my case, a server located in Japan):
 
 ```
 #
@@ -486,7 +486,7 @@ task 'smtpd', group => 'frontends',
 
 ```
 
-This is `httpd.conf.tpl`:
+This is the `httpd.conf.tpl`:
 
 ```
 <%
@@ -580,7 +580,6 @@ server "<%= $prefix %>tmp.buetow.org" {
 
 and this the `relayd.conf.tpl`:
 
-
 ```
 <%
   our $primary = $is_primary->($vio0_ip);
@@ -637,25 +636,25 @@ match from local for any action outbound
 
 ## All pieces together
 
-For the full `Rexfile` example and all the templates, please look at the Git repository:
+For the complete `Rexfile` example and all the templates, please look at the Git repository:
 
 => https://codeberg.org/snonux/rexfiles
 
-Besides of ACME, also other things, such as DNS server, are rexified too. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:
+Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:
 
 ```
 rex commons
 ```
 
-The `commons` is a group of task I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!
+The `commons` is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!
 
 ## Conclusion
 
-ACME and Let's Encrypt greatly help reducing recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of costs! I love to use OpenBSD and Rex to automate all of this.
+ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.
 
-OpenBSD suits perfectly here as all the tools are already part of the base installation. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog and the community is small. But I like underdogs.
+OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.
 
-I love the fact that a `Rexfile` is just a Perl DSL. Why re-inventing the wheel? Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the `acme.sh` shell script is not a Bash but a standard Bourne shell script so that I didn't have to install yet another shell as OpenBSD does not come with the Bash pre-installed.
+Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the `acme.sh` shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.
 
 E-Mail your comments to paul at buetow dot org! :-)
 
