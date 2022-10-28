@@ -19,36 +19,37 @@ You won't find any links on this site because, over time, the links will break. 
 
 ## Technical books
 
-* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional Pro Git; Scott Chacon, Ben Straub; Apress
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
-* The Docker Book; James Turnbull; Kindle
-* The Pragmatic Programmer; David Thomas; Addison-Wesley
-* Funktionale Programmierung; Peter Pepper; Springer
-* Systemprogrammierung in Go; Frank Müller; dpunkt
+* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
 * Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* C++ Programming Language; Bjarne Stroustrup;
-* Java ist auch eine Insel; Christian Ullenboom; 
 * Effective Java; Joshua Bloch; Addison-Wesley Professional
-* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
-* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
-* Raku Recipes; J.J. Merelo; Apress
-* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
-* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* Systemprogrammierung in Go; Frank Müller; dpunkt
+* The Pragmatic Programmer; David Thomas; Addison-Wesley
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
+* Polished Ruby Programming; Jeremy Evans; Packt Publishing
+* C++ Programming Language; Bjarne Stroustrup;
+* DNS and BIND; Cricket Liu; O'Reilly
+* Modern Perl; Chromatic ; Onyx Neon Press
 * Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
-* Effective awk programming; Arnold Robbins; O'Reilly
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional Pro Git; Scott Chacon, Ben Straub; Apress
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
 * Developing Games in Java; David Brackeen and others...; New Riders
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
 * The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
-* Modern Perl; Chromatic ; Onyx Neon Press
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
 * Higher Order Perl; Mark Dominus; Morgan Kaufmann
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* DNS and BIND; Cricket Liu; O'Reilly
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* The Docker Book; James Turnbull; Kindle
+* Effective awk programming; Arnold Robbins; O'Reilly
+* Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* Funktionale Programmierung; Peter Pepper; Springer
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
+* Raku Recipes; J.J. Merelo; Apress
+* Java ist auch eine Insel; Christian Ullenboom; 
 
 ## Technical references
 
@@ -61,29 +62,30 @@ I didn't read them from the beginning to the end, but I am using them to look up
 
 ## Self-development and soft-skills books
 
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
-* The Joy of Missing Out; Christina Crook; New Society Publishers
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
-* Ultralearning; Anna Laurent; Self-published via Amazon
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University
-* So Good They Can't Ignore You; Cal Newport; Business Plus
-* Digital Minimalism; Cal Newport; Portofolio Penguin
-* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
-* Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
-* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
-* Soft Skills; John Sommez; Manning Publications
 * Deep Work; Cal Newport; Piatkus
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
-* The Off Switch; Mark Cropley; Virgin Books
-* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
-* Atomic Habits; James Clear; Random House Business
-* Ultralearning; Scott Young; Thorsons
 * The Power of Now; Eckhard Tolle; Yellow Kite
+* Digital Minimalism; Cal Newport; Portofolio Penguin
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Soft Skills; John Sommez; Manning Publications
+* Ultralearning; Scott Young; Thorsons
+* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
+* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
+* Ultralearning; Anna Laurent; Self-published via Amazon
+* Buddah and Einstein walk into a Bar; Guy Joseph Ale, Claire Bloom; Blackstone Publishing
+* Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
+* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
+* The Off Switch; Mark Cropley; Virgin Books
 * The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
+* Atomic Habits; James Clear; Random House Business
+* So Good They Can't Ignore You; Cal Newport; Business Plus
 
 [Here are notes of mine for some of the books](./notes/index.md)  
 

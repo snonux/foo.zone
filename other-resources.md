@@ -63,13 +63,12 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2019 - Das Netz der Sterne (de), Audio book
 * 2020 - Die Eskalation (de) - Maschinenintelligenz-Trilogie
 * 2021 - Mars Discovery (de) - Maschinenintelligenz-Trilogie
-* 2022 - Eklipse (de) (Currently reading)
+* 2022 - Eklipse (de)
 
 ### Ian Banks
 
 * 1987 - Consider Pheblas (en) / Bedenke Pheblas (de) - Culture Book 1
 * 1988 - The Player of Games (en) - Culture Book 2, Audio book
-* 1990 - Use of Weapons (en) - Culture Book 3, Audio book
 
 ### Other Authors
 
@@ -78,9 +77,13 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (en) / Jagt auf Ikarus (de), Timothy Zahn
 
+### Currently reading
+
+* 2003 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe
+* 1990 - Use of Weapons (en) - Culture Book 3, Audio book
+
 ### Unread books already in my shelf
 
-* 2003 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe, Alastair Reynolds
 * 2018 - Ewiges Leben (de), Andreas Brandhorst
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
