@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-10-28T11:03:19+03:00</updated>
+    <updated>2022-10-28T11:05:23+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,11 @@
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Installing DTail on OpenBSD</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13433 Oct 28 11:02 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.html
+---
+> -rw-r--r--. 1 paul paul 13437 Oct 28 11:05 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.html
+<h1>Installing DTail on OpenBSD</h1>
 <p class="quote"><i>Published by Paul at 2022-10-28</i></p>
 <pre>
        ,_---~~~~~----._
@@ -296,7 +300,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <p>Check out the following for more information:</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <a class="textlink" href="https://github.com/mimecast/dtail">https://github.com/mimecast/dtail</a><br />
-<a class="textlink" href="https://rexify.org">https://rexify.org</a><br />
+<a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
             </div>
         </content>
