@@ -1,0 +1,298 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Installing DTail on OpenBSD</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1>Installing DTail on OpenBSD</h1>
+<p class="quote"><i>Published by Paul at 2022-10-28</i></p>
+<pre>
+       ,_---~~~~~----._
+ _,,_,*^____      _____``*g*\"*,
+/ __/ /'     ^.  /      \ ^@q   f
+ @f   |       |  |       |  0 _/
+\`/   \~__((@/ __ \__((@/    \
+ |           _l__l_           I    &lt;--- The Go Gopher
+ }          [______]           I
+ ]            | | |            |
+ ]             ~ ~             |
+ |                            |
+  |                           |
+  |                           |       A       ;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~,--,-/ \---,-/|~~,~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                           _|\,'. /|      /|   `/|-.
+                       \<span class="inlinecode">.'    /|      ,            </span>;.
+                      ,'\   A     A         A   A _ /| `.;
+                    ,/  _              A       _  / _   /|  ;
+                   /\  / \   ,  ,           A  /    /     `/|
+                  /_| | _ \         ,     ,             ,/  \
+                 // | |/ `.\  ,-      ,       ,   ,/ ,/      \/
+                 / @| |@  / /'   \  \      ,              &gt;  /|    ,--.
+                |\_/   \_/ /      |  |           ,  ,/        \  ./' __:..
+                |  __ __  |       |  | .--.  ,         &gt;  &gt;   |-'   /     `
+              ,/| /  '  \ |       |  |     \      ,           |    /
+             /  |&lt;--.__,-&gt;|       |  | .    `.        &gt;  &gt;    /   (
+            /_,' \\  ^  /  \     /  /   `.    &gt;--            /^\   |
+                  \\___/    \   /  /      \__'     \   \   \/   \  |
+                   <span class="inlinecode">.   |/          ,  ,                  /</span>\    \  )
+                     \  '  |/    ,       V    \          /        `-\
+ OpenBSD Puffy ---&gt;   `|/  '  V      V           \    \.'            \_
+                       '`-.       V       V        \./'\
+                           <span class="inlinecode">|/-.      \ /   \ /,---</span>\         kat
+                            /   `._____V_____V'
+                                       '     '
+</pre><br />
+<p>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</p>
+<p> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</p>
+<a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
+<p>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</p>
+<a class="textlink" href="./2022-07-30-lets-encrypt-with-openbsd-and-rex.html">Let's Encrypt with OpenBSD and Rex</a><br />
+<p>I will also mention some relevant <span class="inlinecode">Rexfile</span> snippets in this post!</p>
+<h2>Compile it</h2>
+<p>First of all, DTail needs to be downloaded and compiled. For that, <span class="inlinecode">git</span>, <span class="inlinecode">go</span>, and <span class="inlinecode">gmake</span> are required:</p>
+<pre>
+$ doas pkg_add git go gmake
+</pre><br />
+<p>I am happy that the Go Programming Language is readily available in the OpenBSD packaging system. Once the dependencies got installed, clone DTail and compile it:</p>
+<pre>
+$ mkdir git
+$ cd git
+$ git clone https://github.com/mimecast/dtail
+$ cd dtail
+$ gmake 
+</pre><br />
+<p>You can verify the version by running the following command:</p>
+<pre>
+$ ./dtail --version
+ DTail  4.1.0  Protocol 4.1  Have a lot of fun!
+$ file dtail
+ dtail: ELF 64-bit LSB executable, x86-64, version 1
+</pre><br />
+<p>Now, there isn't any need anymore to keep <span class="inlinecode">git</span>, <span class="inlinecode">go</span> and <span class="inlinecode">gmake</span>, so they can be deinstalled now:</p>
+<pre>
+$ doas pkg_delete git go gmake
+</pre><br />
+<p>One day I shall create an official OpenBSD port for DTail.</p>
+<h2>Install it</h2>
+<p>Installing the binaries is now just a matter of copying them to <span class="inlinecode">/usr/local/bin</span> as follows:</p>
+<pre>
+$ for bin in dserver dcat dgrep dmap dtail dtailhealth; do
+  doas cp -p $bin /usr/local/bin/$bin
+  doas chown root:wheel /usr/local/bin/$bin
+done
+</pre><br />
+<p>Also, we will be creating the <span class="inlinecode">_dserver</span> service user:</p>
+<pre>
+$ doas adduser -class nologin -group _dserver -batch _dserver
+$ doas usermod -d /var/run/dserver/ _dserver
+</pre><br />
+<p>The OpenBSD init script is created from scratch (not part of the official DTail project). Run the following to install the bespoke script:</p>
+<pre>
+$ cat &lt;&lt;'END' | doas tee /etc/rc.d/dserver
+#!/bin/ksh
+
+daemon="/usr/local/bin/dserver"
+daemon_flags="-cfg /etc/dserver/dtail.json"
+daemon_user="_dserver"
+
+. /etc/rc.d/rc.subr
+
+rc_reload=NO
+
+rc_pre() {
+    install -d -o _dserver /var/log/dserver
+    install -d -o _dserver /var/run/dserver/cache
+}
+
+rc_cmd $1 &amp;
+END
+$ doas chmod 755 /etc/rc.d/dserver
+</pre><br />
+<h3>Rexification</h3>
+<p>This is the task for setting it up via Rex. Note the <span class="inlinecode">. . . .</span>, that's a placeholder which we will fill up more and more during this blog post:</p>
+<pre>
+desc 'Setup DTail';
+task 'dtail', group =&gt; 'frontends',
+   sub {
+      my $restart = FALSE;
+
+      file '/etc/rc.d/dserver':
+        content =&gt; template('./etc/rc.d/dserver.tpl'),
+        owner =&gt; 'root',
+        group =&gt; 'wheel',
+        mode =&gt; '755',
+        on_change =&gt; sub { $restart = TRUE };
+
+        .
+        .
+        .
+        .
+
+      service 'dserver' =&gt; 'restart' if $restart;
+      service 'dserver', ensure =&gt; 'started';
+   };
+</pre><br />
+<h2>Configure it</h2>
+<p>Now, DTail is fully installed but still needs to be configured. Grab the default config file from GitHub ...</p>
+<pre>
+$ doas mkdir /etc/dserver
+$ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.json.sample |
+    doas tee /etc/dserver/dtail.json
+</pre><br />
+<p>... and then edit it and adjust <span class="inlinecode">LogDir</span> in the <span class="inlinecode">Common</span> section to <span class="inlinecode">/var/log/dserver</span>. The result will look like this:</p>
+<pre>
+  "Common": {
+    "LogDir": "/var/log/dserver",
+    "Logger": "Fout",
+    "LogRotation": "Daily",
+    "CacheDir": "cache",
+    "SSHPort": 2222,
+    "LogLevel": "Info"
+  }
+</pre><br />
+<h3>Rexification</h3>
+<p>That's as simple as adding the following to the Rex task:</p>
+<pre>
+file '/etc/dserver',
+  ensure =&gt; 'directory';
+
+file '/etc/dserver/dtail.json',
+  content =&gt; template('./etc/dserver/dtail.json.tpl'),
+  owner =&gt; 'root',
+  group =&gt; 'wheel',
+  mode =&gt; '755',
+  on_change =&gt; sub { $restart = TRUE };
+</pre><br />
+<h2>Update the key cache for it</h2>
+<p>DTail relies on SSH for secure authentication and communication. However, the system user <span class="inlinecode">_dserver</span> has no permission to read the SSH public keys from the user's home directories, so the DTail server also checks for available public keys in an alternative path <span class="inlinecode">/var/run/dserver/cache</span>. </p>
+<p>The following script, populating the DTail server key cache, can be run periodically via <span class="inlinecode">CRON</span>:</p>
+<pre>
+$ cat &lt;&lt;'END' | doas tee /usr/local/bin/dserver-update-key-cache.sh
+#!/bin/ksh
+
+CACHEDIR=/var/run/dserver/cache
+DSERVER_USER=_dserver
+DSERVER_GROUP=_dserver
+
+echo 'Updating SSH key cache'
+
+ls /home/ | while read remoteuser; do
+    keysfile=/home/$remoteuser/.ssh/authorized_keys
+
+    if [ -f $keysfile ]; then
+        cachefile=$CACHEDIR/$remoteuser.authorized_keys
+        echo "Caching $keysfile -&gt; $cachefile"
+
+        cp $keysfile $cachefile
+        chown $DSERVER_USER:$DSERVER_GROUP $cachefile
+        chmod 600 $cachefile
+    fi
+done
+
+# Cleanup obsolete public SSH keys
+find $CACHEDIR -name \*.authorized_keys -type f |
+while read cachefile; do
+    remoteuser=$(basename $cachefile | cut -d. -f1)
+    keysfile=/home/$remoteuser/.ssh/authorized_keys
+
+    if [ ! -f $keysfile ]; then
+        echo 'Deleting obsolete cache file $cachefile'
+        rm $cachefile
+    fi
+done
+
+echo 'All set...'
+END
+$ doas chmod 500 /usr/local/bin/dserver-update-key-cache.sh
+</pre><br />
+<p>Note that the script above is a slight variation of the official DTail script. The official DTail one is a <span class="inlinecode">bash</span> script, but on OpenBSD, there's <span class="inlinecode">ksh</span>. I run it once daily by adding it to the <span class="inlinecode">daily.local</span>:</p>
+<pre>
+$ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
+/usr/local/bin/dserver-update-key-cache.sh
+</pre><br />
+<h3>Rexification</h3>
+<p>That's done by adding ...</p>
+<pre>
+file '/usr/local/bin/dserver-update-key-cache.sh',
+  content =&gt; template('./scripts/dserver-update-key-cache.sh.tpl'),
+  owner =&gt; 'root',
+  group =&gt; 'wheel',
+  mode =&gt; '500';
+
+append_if_no_such_line '/etc/daily.local', '/usr/local/bin/dserver-update-key-cache.sh';
+</pre><br />
+<p>... to the Rex task!</p>
+<h2>Start it</h2>
+<p>Now, it's time to enable and start the DTail server:</p>
+<pre>
+$ sudo rcctl enable dserver
+$ sudo rcctl start dserver
+$ tail -f /var/log/dserver/*.log
+INFO|1022-090634|Starting scheduled job runner after 2s
+INFO|1022-090634|Starting continuous job runner after 2s
+INFO|1022-090644|24204|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0|lifetimeConnections=0
+INFO|1022-090654|24204|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0|lifetimeConnections=0
+INFO|1022-090719|Starting server|DTail 4.1.0 Protocol 4.1 Have a lot of fun!
+INFO|1022-090719|Generating private server RSA host key
+INFO|1022-090719|Starting server
+INFO|1022-090719|Binding server|0.0.0.0:2222
+INFO|1022-090719|Starting scheduled job runner after 2s
+INFO|1022-090719|Starting continuous job runner after 2s
+INFO|1022-090729|86050|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0|lifetimeConnections=0
+INFO|1022-090739|86050|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0|lifetimeConnect
+.
+.
+.
+Ctr+C
+</pre><br />
+<p>As we don't want to wait until tomorrow, let's populate the key cache manually:</p>
+<pre>
+$ doas /usr/local/bin/dserver-update-key-cache.sh
+Updating SSH key cache
+Caching /home/_dserver/.ssh/authorized_keys -&gt; /var/cache/dserver/_dserver.authorized_keys
+Caching /home/admin/.ssh/authorized_keys -&gt; /var/cache/dserver/admin.authorized_keys
+Caching /home/failunderd/.ssh/authorized_keys -&gt; /var/cache/dserver/failunderd.authorized_keys
+Caching /home/git/.ssh/authorized_keys -&gt; /var/cache/dserver/git.authorized_keys
+Caching /home/paul/.ssh/authorized_keys -&gt; /var/cache/dserver/paul.authorized_keys
+Caching /home/rex/.ssh/authorized_keys -&gt; /var/cache/dserver/rex.authorized_keys
+All set...
+</pre><br />
+<h2>Use it</h2>
+<p>The DTail server is now ready to serve connections. You can use any DTail commands, such as <span class="inlinecode">dtail</span>, <span class="inlinecode">dgrep</span>, <span class="inlinecode">dmap</span>, <span class="inlinecode">dcat</span>, <span class="inlinecode">dtailhealth</span>, to do so. Checkout out all the usage examples on the official DTail page.</p>
+<p>I have installed DTail server this way on my personal OpenBSD frontends <span class="inlinecode">blowfish</span>, and <span class="inlinecode">fishfinger</span>, and the following command connects as user <span class="inlinecode">rex</span> to both machines and greps the file <span class="inlinecode">/etc/fstab</span> for the string <span class="inlinecode">local</span>:</p>
+<pre>
+❯ ./dgrep -user rex -servers blowfish.buetow.org,fishfinger.buetow.org --regex local /etc/fstab
+CLIENT|earth|WARN|Encountered unknown host|{blowfish.buetow.org:2222 0xc0000a00f0 0xc0000a61e0 [blowfish.buetow.org]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9ZnF/LAk14SgqCzk38yENVTNfqibcluMTuKx1u53cKSp2xwHWzy0Ni5smFPpJDIQQljQEJl14ZdXvhhjp1kKHxJ79ubqRtIXBlC0PhlnP8Kd+mVLLHYpH9VO4rnaSfHE1kBjWkI7U6lLc6ks4flgAgGTS5Bb7pLAjwdWg794GWcnRh6kSUEQd3SftANqQLgCunDcP2Vc4KR9R78zBmEzXH/OPzl/ANgNA6wWO2OoKKy2VrjwVAab6FW15h3Lr6rYIw3KztpG+UMmEj5ReexIjXi/jUptdnUFWspvAmzIl6kwzzF8ExVyT9D75JRuHvmxXKKjyJRxqb8UnSh2JD4JN [23.88.35.144]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9ZnF/LAk14SgqCzk38yENVTNfqibcluMTuKx1u53cKSp2xwHWzy0Ni5smFPpJDIQQljQEJl14ZdXvhhjp1kKHxJ79ubqRtIXBlC0PhlnP8Kd+mVLLHYpH9VO4rnaSfHE1kBjWkI7U6lLc6ks4flgAgGTS5Bb7pLAjwdWg794GWcnRh6kSUEQd3SftANqQLgCunDcP2Vc4KR9R78zBmEzXH/OPzl/ANgNA6wWO2OoKKy2VrjwVAab6FW15h3Lr6rYIw3KztpG+UMmEj5ReexIjXi/jUptdnUFWspvAmzIl6kwzzF8ExVyT9D75JRuHvmxXKKjyJRxqb8UnSh2JD4JN 0xc0000a2180}
+CLIENT|earth|WARN|Encountered unknown host|{fishfinger.buetow.org:2222 0xc0000a0150 0xc000460110 [fishfinger.buetow.org]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNiikdL7+tWSN0rCaw1tOd9aQgeUFgb830V9ejkyJ5h93PKLCWZSMMCtiabc1aUeUZR//rZjcPHFLuLq/YC+Y3naYtGd6j8qVrcfG8jy3gCbs4tV9SZ9qd5E24mtYqYdGlee6JN6kEWhJxFkEwPfNlG+YAr3KC8lvEAE2JdWvaZavqsqMvHZtAX3b25WCBf2HGkyLZ+d9cnimRUOt+/+353BQFCEct/2mhMVlkr4I23CY6Tsufx0vtxx25nbFdZias6wmhxaE9p3LiWXygPWGU5iZ4RSQSImQz4zyOc9rnJeP1rwGk0OWDJhdKNXuf0kIPdzMfwxv2otgY32/DJj6L [46.23.94.99]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNiikdL7+tWSN0rCaw1tOd9aQgeUFgb830V9ejkyJ5h93PKLCWZSMMCtiabc1aUeUZR//rZjcPHFLuLq/YC+Y3naYtGd6j8qVrcfG8jy3gCbs4tV9SZ9qd5E24mtYqYdGlee6JN6kEWhJxFkEwPfNlG+YAr3KC8lvEAE2JdWvaZavqsqMvHZtAX3b25WCBf2HGkyLZ+d9cnimRUOt+/+353BQFCEct/2mhMVlkr4I23CY6Tsufx0vtxx25nbFdZias6wmhxaE9p3LiWXygPWGU5iZ4RSQSImQz4zyOc9rnJeP1rwGk0OWDJhdKNXuf0kIPdzMfwxv2otgY32/DJj6L 0xc0000a2240}
+Encountered 2 unknown hosts: 'blowfish.buetow.org:2222,fishfinger.buetow.org:2222'
+Do you want to trust these hosts?? (y=yes,a=all,n=no,d=details): a
+CLIENT|earth|INFO|STATS:STATS|cgocalls=11|cpu=8|connected=2|servers=2|connected%=100|new=2|throttle=0|goroutines=19
+CLIENT|earth|INFO|Added hosts to known hosts file|/home/paul/.ssh/known_hosts
+REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev 1 2
+REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
+</pre><br />
+<p>Running it the second time, and given that you trusted the keys the first time, it won't prompt you for the host keys anymore:</p>
+<pre>
+❯ ./dgrep -user rex -servers blowfish.buetow.org,fishfinger.buetow.org --regex local /etc/fstab
+REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev 1 2
+REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
+</pre><br />
+<h2>Conclusions</h2>
+<p>It's a bit of manual work, but it's ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</p>
+<p>Check out the following for more information:</p>
+<a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
+<a class="textlink" href="https://github.com/mimecast/dtail">https://github.com/mimecast/dtail</a><br />
+<a class="textlink" href="https://rexify.org">https://rexify.org</a><br />
+<p>E-Mail your comments to paul at buetow dot org! :-)</p>
+<a class="textlink" href="../">Go back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
