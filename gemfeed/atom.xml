@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-10-28T10:56:49+03:00</updated>
+    <updated>2022-10-28T11:03:19+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,12 +10,12 @@
         <title>Installing DTail on OpenBSD</title>
         <link href="gemini://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi" />
         <id>gemini://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi</id>
-        <updated>2022-10-30T09:52:44+02:00</updated>
+        <updated>2022-10-30T11:03:19+02:00</updated>
         <author>
             <name>Paul C. Buetow</name>
             <email>comments@mx.buetow.org</email>
         </author>
-        <summary>This will be a quick blog post, as I am pretty busy with my personal life at the moment. I have relocated to a different country and am still busy arranging things. So bear with me :-). .....to read on please visit my site.</summary>
+        <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Installing DTail on OpenBSD</h1>
@@ -181,7 +181,7 @@ file '/etc/dserver/dtail.json',
 <p>DTail relies on SSH for secure authentication and communication. However, the system user <span class="inlinecode">_dserver</span> has no permission to read the SSH public keys from the user's home directories, so the DTail server also checks for available public keys in an alternative path <span class="inlinecode">/var/run/dserver/cache</span>. </p>
 <p>The following script, populating the DTail server key cache, can be run periodically via <span class="inlinecode">CRON</span>:</p>
 <pre>
-blowfish$ cat &lt;&lt;'END' | doas tee /usr/local/bin/dserver-update-key-cache.sh
+$ cat &lt;&lt;'END' | doas tee /usr/local/bin/dserver-update-key-cache.sh
 #!/bin/ksh
 
 CACHEDIR=/var/run/dserver/cache
