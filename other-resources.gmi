@@ -80,7 +80,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 ### Currently reading
 
 * 2003 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe
-* 1990 - Use of Weapons (en) - Culture Book 3, Audio book
 
 ### Unread books already in my shelf
 
