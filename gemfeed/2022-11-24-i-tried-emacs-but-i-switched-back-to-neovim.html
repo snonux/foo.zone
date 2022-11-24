@@ -10,6 +10,18 @@
 <body>
 <h1>I tried Doom Emacs, but I switched back to (Neo)Vim</h1>
 <p class="quote"><i>Published by Paul at 2021-11-24</i></p>
+<pre>
+             _/  \    _(\(o
+             /     \  /  _  ^^^o
+            /   !   \/  ! '!!!v'
+           !  !  \ _' ( \____
+           ! . \ _!\   \===^\)
+Art by      \ \_!  / __!
+ Gunnar Z.   \!   /    \    &lt;--- Emacs is a giant dragon
+       (\_      _/   _\ )
+        \ ^^--^^ __-^ /(__ 
+         ^^----^^    "^--v'
+</pre><br />
 <p>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.</p>
 <a class="textlink" href="https://www.gnu.org/software/emacs/">GNU Emacs</a><br />
 <a class="textlink" href="https://github.com/doomemacs/">Doom Emacs</a><br />
@@ -72,7 +84,7 @@ endif
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
 <a class="textlink" href="../">Go back to the main site</a><br />
 <h1>Appendinx</h1>
-<p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in an external PDF editor:</p>
+<p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:</p>
 <pre>
 function! ReadJournalPageNumber()
     let page = expand("&lt;cword&gt;")
