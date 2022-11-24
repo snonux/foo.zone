@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-10-28T11:05:23+03:00</updated>
+    <updated>2022-11-23T22:35:52+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,12 +18,8 @@
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13433 Oct 28 11:02 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi
----
-> -rw-r--r--. 1 paul paul 13437 Oct 28 11:05 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi
-<h1>Installing DTail on OpenBSD</h1>
-<p class="quote"><i>Published by Paul at 2022-10-28</i></p>
+                <h1>Installing DTail on OpenBSD</h1>
+<p class="quote"><i>Published by Paul at 2022-10-30</i></p>
 <pre>
        ,_---~~~~~----._
  _,,_,*^____      _____``*g*\"*,
@@ -39,7 +35,7 @@
   |                           |       A       ;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~,--,-/ \---,-/|~~,~~~~~~~~~~~~~~~~~~~~~~~~~~~
                            _|\,'. /|      /|   `/|-.
-                       \<span class="inlinecode">.'    /|      ,            </span>;.
+                       \`.'    /|      ,            `;.
                       ,'\   A     A         A   A _ /| `.;
                     ,/  _              A       _  / _   /|  ;
                    /\  / \   ,  ,           A  /    /     `/|
@@ -52,11 +48,11 @@
              /  |&lt;--.__,-&gt;|       |  | .    `.        &gt;  &gt;    /   (
             /_,' \\  ^  /  \     /  /   `.    &gt;--            /^\   |
                   \\___/    \   /  /      \__'     \   \   \/   \  |
-                   <span class="inlinecode">.   |/          ,  ,                  /</span>\    \  )
+                   `.   |/          ,  ,                  /`\    \  )
                      \  '  |/    ,       V    \          /        `-\
  OpenBSD Puffy ---&gt;   `|/  '  V      V           \    \.'            \_
                        '`-.       V       V        \./'\
-                           <span class="inlinecode">|/-.      \ /   \ /,---</span>\         kat
+                           `|/-.      \ /   \ /,---`\         kat
                             /   `._____V_____V'
                                        '     '
 </pre><br />
@@ -325,9 +321,9 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
                  Z
        .--.  Z Z
       / _(c\   .-.     __
-     | / /  '-;   \'-'<span class="inlinecode">  </span>\______
+     | / /  '-;   \'-'`  `\______
      \_\/'/ __/ )  /  )   |      \--,
-     | \<span class="inlinecode">""</span>__-/ .'--/   /--------\  \
+     | \`""`__-/ .'--/   /--------\  \
       \\`  ///-\/   /   /---;-.    '-'
 jgs                (________\  \
                              '-'
@@ -402,7 +398,7 @@ jgs                (________\  \
       |:::::::::|
       |:::::::[]|
       |o=======.|
- jgs  <span class="inlinecode">"""""""""</span>
+ jgs  `"""""""""`
 </pre><br />
 <p>I am proud to announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my static site generator written in GNU Bash:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">Gemtexter - One Bash script to rule it all</a><br />
@@ -1530,7 +1526,7 @@ learn () {
                         _,,_,*^____      _____``*g*\"*,
   ____ _____     _ _   / __/ /'     ^.  /      \ ^@q   f
  |  _ \_   _|_ _(_) |   @f | @))    |  | @))   l  0 _/
- | | | || |/ _<span class="inlinecode"> | | |  \</span>/   \~____ / __ \_____/    \
+ | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
  | |_| || | (_| | | |   |           _l__l_           I
  |____/ |_|\__,_|_|_|   }          [______]           I
                         ]            | | |            |
@@ -1784,13 +1780,13 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
              (/\/ \ \   /\
              / /   | `    \
              O O   ) /    |
-             <span class="inlinecode">-^--'</span>&lt;     '
+             `-^--'`&lt;     '
             (_.)  _  )   /
-             <span class="inlinecode">.___/</span>    /
+             `.___/`    /
                `-----' /
   &lt;----.     __ / __   \
   &lt;----|====O)))==) \) /====
-  &lt;----'    <span class="inlinecode">--' </span>.__,' \
+  &lt;----'    `--' `.__,' \
                |        |
                 \       /
            ______( (_  / \______
@@ -2412,7 +2408,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         | //  : | -__   ~__ o)____)),__ - '&gt; &gt;-  &gt;
         | //  : |- \_ \ -\_\ -\ \ \ ~\_  \ -&gt;&gt; - ,  &gt;&gt;
         | //  : |_~_\ -\__\ \~'\ \ \, \__ . -&lt;-  &gt;&gt;
-        <span class="inlinecode">-----._| </span>  -__<span class="inlinecode">-- - ~~ -- </span> --~&gt; &gt;
+        `-----._| `  -__`-- - ~~ -- ` --~&gt; &gt;
          _/___\_    //)_`//  | ||]
    _____[_______]_[~~-_ (.L_/  ||
   [____________________]' `\_,/'/
@@ -3210,23 +3206,23 @@ Hello World
                                                     _-'    |\  .        |
                                   _..--..   .  /"---\      | ` |      . |
           -=====================,' _     \=(*#(7.#####()   |  `/_..   , (
-                      _.-''`<span class="inlinecode">';'-''-) ,.  \ '  '+/// |   .'/   \  </span>`-.) \
-                    ,'  _.-  ((    <span class="inlinecode">-'  </span>._\    `<span class="inlinecode"> \_/_.'  )    /</span>-._  ) |
+                      _.-''``';'-''-) ,.  \ '  '+/// |   .'/   \  ``-.) \
+                    ,'  _.-  ((    `-'  `._\    `` \_/_.'  )    /`-._  ) |
                   ,'\ ,'  _.'.`:-.    \.-'                 /   &lt;_L   )"  |
-                _/   <span class="inlinecode">._,' ,')</span>;  <span class="inlinecode">-'</span>'                    |     L  /    /
+                _/   `._,' ,')`;  `-'`'                    |     L  /    /
                / `.   ,' ,|_/ / \                          (    &lt;_-'     \
-               \ / <span class="inlinecode">./  '  / /,' \                        /|</span>         `. |
-               )\   /<span class="inlinecode">._   ,'</span>._.-\                       |)            \'
-              /  <span class="inlinecode">.'    )-'.-,' )__)                      |\            </span>|
-             : /<span class="inlinecode">. </span>.._(--.<span class="inlinecode">':</span>':/ \                      ) \             \
+               \ / `./  '  / /,' \                        /|`         `. |
+               )\   /`._   ,'`._.-\                       |)            \'
+              /  `.'    )-'.-,' )__)                      |\            `|
+             : /`. `.._(--.`':`':/ \                      ) \             \
              |::::\     ,'/::;-))  /                      ( )`.            |
              ||:::::  . .::':  :`-(                       |/    .          |
              ||::::|  . :|  |==[]=:                       .        -       \
              |||:::|  : ||  :  |  |                      /\           `     |
  ___ ___     '|;:::|  | |'   \=[]=|                     /  \                \
-|   /_  ||`<span class="inlinecode">|||:::::  | ;    | |  |                     \_.'\_               </span>-.
-:   \_`<span class="inlinecode">[]--[]|::::'\_;'     )-'..</span>._                 .-'\`<span class="inlinecode">:: </span> .              \
- \___.&gt;<span class="inlinecode">''-.||:.__,'     SSt |_______</span>&gt;              &lt;_____:::.         . . \  _/
+|   /_  ||``|||:::::  | ;    | |  |                     \_.'\_               `-.
+:   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
+ \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
                                                            `+a:f:......jrei'''
 </pre><br />
 <p>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. </p>
@@ -3652,7 +3648,7 @@ fi
  |Gemini|
  |      |
  |______|
-  '-<span class="inlinecode">'-</span>   .
+  '-`'-`   .
   / . \'\ . .'
  ''( .'\.' ' .;'
 '.;.;' ;'.;' ..;;' AsH
@@ -3791,10 +3787,10 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
        .---.
       /     \
       \.@-@./
-      /<span class="inlinecode">\_/</span>\
+      /`\_/`\
      //  _  \\
     | \     )|_
-   /<span class="inlinecode">\_</span>&gt;  &lt;_/ \
+   /`\_`&gt;  &lt;_/ \
 jgs\__/'---'\__/
 </pre><br />
 <h2>Foreword</h2>
@@ -5578,7 +5574,7 @@ BB
   _-    | )     /    |--|      |  |
  __-_______________ /__/_______|  |_________
 (                |----         |  |
- <span class="inlinecode">---------------'--\\\\      .</span>--'          -Glyde-
+ `---------------'--\\\\      .`--'          -Glyde-
                               `||||
 </pre><br />
 <p>In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. </p>
@@ -5878,11 +5874,11 @@ _jgs_\|//_\\|///_\V/_\|//__
    :         (   (        .-''`'.
    .          \   \      /       \
    .           \    \   /         \
-                \    <span class="inlinecode">-'           </span>'.
+                \    `-'           `'.
                  \    . '        /    `.
                   \  ( \  )     (     .')
    ,,   t          '. |  /       |     (
-  '|`<span class="inlinecode">_/^\___        '|  |</span>'-..-'|   ( ()
+  '|``_/^\___        '|  |`'-..-'|   ( ()
 _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
  -_  |L[|]L|/         | |\ MJP   )   )
                       ( |(       /  /|
