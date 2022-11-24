@@ -2,6 +2,19 @@
 
 > Published by Paul at 2021-11-24
 
+```
+             _/  \    _(\(o
+             /     \  /  _  ^^^o
+            /   !   \/  ! '!!!v'
+           !  !  \ _' ( \____
+           ! . \ _!\   \===^\)
+Art by      \ \_!  / __!
+ Gunnar Z.   \!   /    \    <--- Emacs is a giant dragon
+       (\_      _/   _\ )
+        \ ^^--^^ __-^ /(__ 
+         ^^----^^    "^--v'
+```
+
 As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.
 
 [GNU Emacs](https://www.gnu.org/software/emacs/)  
@@ -106,7 +119,7 @@ E-Mail your comments to paul at buetow dot org! :-)
 
 # Appendinx
 
-This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in an external PDF editor:
+This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in `zathura`:
 
 ```
 function! ReadJournalPageNumber()
