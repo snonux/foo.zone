@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-11-24T11:36:26+02:00</updated>
+    <updated>2022-11-24T11:43:18+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,11 +19,23 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 13961 Nov 24 11:33 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
+< -rw-r--r--. 1 paul paul 14073 Nov 24 11:35 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
 ---
-> -rw-r--r--. 1 paul paul 14073 Nov 24 11:35 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
+> -rw-r--r--. 1 paul paul 14388 Nov 24 11:43 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
 <h1>I tried Doom Emacs, but I switched back to (Neo)Vim</h1>
 <p class="quote"><i>Published by Paul at 2021-11-24</i></p>
+<pre>
+             _/  \    _(\(o
+             /     \  /  _  ^^^o
+            /   !   \/  ! '!!!v'
+           !  !  \ _' ( \____
+           ! . \ _!\   \===^\)
+Art by      \ \_!  / __!
+ Gunnar Z.   \!   /    \    &lt;--- Emacs is a giant dragon
+       (\_      _/   _\ )
+        \ ^^--^^ __-^ /(__ 
+         ^^----^^    "^--v'
+</pre><br />
 <p>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.</p>
 <a class="textlink" href="https://www.gnu.org/software/emacs/">GNU Emacs</a><br />
 <a class="textlink" href="https://github.com/doomemacs/">Doom Emacs</a><br />
@@ -85,7 +97,7 @@ endif
 <p>Vim/NeoVim also comes with a very high degree of customization options, but to a lesser extreme than Emacs (but still, a much higher degree than most other editors out there). If you want the best text editor in the world, which can also be tweaked to be a decent IDE, you are only looking for: Pick Vim or NeoVim! You would also need to invest a lot of time in learning, tweaking and customizing Vim/NeoVim, but that's a little more straightforward, and the result is much more lightweight once you get used to the "Vi way of doing things" you never would want to change back. I haven't tried the Emacs vanilla keystrokes, but they are terrible (that's probably one of the reasons why Doom Emacs uses Vim keybindings by default).</p>
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
 <h1>Appendinx</h1>
-<p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in an external PDF editor:</p>
+<p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:</p>
 <pre>
 function! ReadJournalPageNumber()
     let page = expand("&lt;cword&gt;")
