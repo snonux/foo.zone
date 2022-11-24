@@ -30,6 +30,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2022-11-24 - I tried Doom Emacs, but I switched back to (Neo)Vim](./gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md)  
 [2022-10-30 - Installing DTail on OpenBSD](./gemfeed/2022-10-30-installing-dtail-on-openbsd.md)  
 [2022-09-30 - After a bad night's sleep](./gemfeed/2022-09-30-after-a-bad-nights-sleep.md)  
 [2022-08-27 - Gemtexter 1.1.0 - Let's Gemtext again](./gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
