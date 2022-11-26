@@ -85,7 +85,7 @@ I use "Dead Tree Mode" to organize my work and notes. Dead tree? Yeah, I use an 
 
 => https://pwmt.org/projects/zathura/ Zathura
 
-On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, `ranger,` which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. `ranger` is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. 
+On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, `ranger`, which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. `ranger` is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. 
 
 => https://github.com/ranger/ranger Ranger - A Vim inspired file manager
 Did I mention that I also use my `zsh` (my default shell) and my `tmux` (terminal multiplexer) in Vi-mode?
