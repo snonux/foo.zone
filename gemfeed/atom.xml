@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-11-26T08:52:09+02:00</updated>
+    <updated>2022-11-26T08:54:53+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,9 +19,9 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 14639 Nov 26 08:40 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
+< -rw-r--r--. 1 paul paul 14659 Nov 26 08:51 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
 ---
-> -rw-r--r--. 1 paul paul 14659 Nov 26 08:51 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
+> -rw-r--r--. 1 paul paul 14658 Nov 26 08:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
 <h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
 <p class="quote"><i>Published by Paul at 2022-11-24, last updated 2022-11-26</i></p>
 <pre>
@@ -91,7 +91,7 @@ nmap ,i !wpbpaste&lt;CR&gt;
 <p class="quote"><i>Update: One reader recommended to have a look at NvChad. NvChad is a NeoVim config written in Lua aiming to provide a base configuration with very beautiful UI and blazing fast startuptime (around <span class="inlinecode">0.02</span> secs ~ <span class="inlinecode">0.07</span> secs). They tweak UI plugins such as telescope, nvim-tree, bufferline etc well to provide an aesthetic UI experience. That sounds interesting!</i></p>
 <a class="textlink" href="https://github.com/NvChad/NvChad">https://github.com/NvChad/NvChad</a><br />
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
-<h1>Appendinx</h1>
+<h1>Appendix</h1>
 <p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:</p>
 <pre>
 function! ReadJournalPageNumber()
