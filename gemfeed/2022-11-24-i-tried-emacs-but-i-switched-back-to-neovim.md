@@ -113,7 +113,7 @@ E-Mail your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  
 
-# Appendinx
+# Appendix
 
 This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in `zathura`:
 
