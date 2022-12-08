@@ -1,6 +1,6 @@
 # Gemtexter - One Bash script to rule it all
 
-> Published by Paul at 2021-06-05
+> Published by Paul at 2021-06-05 21:03:32 GMT
 
 ```
                                                                o .,<>., o

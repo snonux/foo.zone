@@ -1,6 +1,6 @@
 # Installing DTail on OpenBSD
 
-> Published by Paul at 2022-10-30
+> Published by Paul at 2022-10-30 11:03:19 EET
 
 ```
        ,_---~~~~~----._

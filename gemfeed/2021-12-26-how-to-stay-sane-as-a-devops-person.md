@@ -1,6 +1,6 @@
 # How to stay sane as a DevOps person 
 
-> Published by Paul at 2021-12-26, last updated at 2022-01-12
+> Published by Paul at 2021-12-26 14:02:02 GMT, last updated at 2022-01-12
 
 ```
                                      )

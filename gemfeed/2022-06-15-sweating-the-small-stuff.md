@@ -1,6 +1,6 @@
 # Sweating the small stuff - Tiny projects of mine
 
-> Published by Paul at 2022-06-15, last updated at 2022-06-18
+> Published by Paul at 2022-06-15 10:47:44 GMT, last updated at 2022-06-18
 
 ```
          _
