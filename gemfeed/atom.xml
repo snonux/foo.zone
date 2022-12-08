@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-08T10:03:15+02:00</updated>
+    <updated>2022-12-08T10:06:59+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 14658 Nov 26 08:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
----
-> -rw-r--r--. 1 paul paul 14661 Nov 26 09:05 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
-<h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
+                <h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
 <p class="quote"><i>Published by Paul at 2022-11-24, last updated at 2022-11-26</i></p>
 <pre>
              _/  \    _(\(o
@@ -461,11 +457,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 6738 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
----
-> -rw-r--r--. 1 paul paul 6741 Nov 26 09:05 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
-<h1>After a bad night's sleep</h1>
+                <h1>After a bad night's sleep</h1>
 <p class="quote"><i>Published by Paul at 2022-09-30, last updated at 2022-10-12</i></p>
 <pre>
                z
@@ -1463,11 +1455,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 16140 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
----
-> -rw-r--r--. 1 paul paul 16201 Dec  8 10:03 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
-<h1>Perl is still a great choice</h1>
+                <h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
@@ -5016,11 +5004,7 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 2941 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
----
-> -rw-r--r--. 1 paul paul 2944 Nov 26 09:04 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
-<h1>The fibonacci.pl.raku.c Polyglot</h1>
+                <h1>The fibonacci.pl.raku.c Polyglot</h1>
 <p class="quote"><i>Published by Paul at 2014-03-24, last updated at 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
