@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-11-26T08:54:53+02:00</updated>
+    <updated>2022-12-08T10:03:15+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,11 +19,11 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 1c1
-< -rw-r--r--. 1 paul paul 14659 Nov 26 08:51 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
+< -rw-r--r--. 1 paul paul 14658 Nov 26 08:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
 ---
-> -rw-r--r--. 1 paul paul 14658 Nov 26 08:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
+> -rw-r--r--. 1 paul paul 14661 Nov 26 09:05 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi
 <h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
-<p class="quote"><i>Published by Paul at 2022-11-24, last updated 2022-11-26</i></p>
+<p class="quote"><i>Published by Paul at 2022-11-24, last updated at 2022-11-26</i></p>
 <pre>
              _/  \    _(\(o
              /     \  /  _  ^^^o
@@ -77,7 +77,7 @@ nmap ,i !wpbpaste&lt;CR&gt;
 <p>In short, Org-mode is an "interactive markup language" that helps you organize everything mentioned above. I rarely touched the surface during my two-month experiment with Emacs, and I am impressed by it, so I see the benefits of having that. But it's not for me.</p>
 <p>I use "Dead Tree Mode" to organize my work and notes. Dead tree? Yeah, I use an actual pen and a real paper journal (Leuchtturm or a Moleskine and a set of coloured <span class="inlinecode">0.5</span> Muji Pens are excellent choices). That's far more immersive and flexible than a computer program can ever be. Yes, some automation and interaction with the computer (like calendar scheduling etc.) are missing. Still, an actual paper journal forces you to stay simple and focus on the actual work rather than tinkering with your computer program. (But I could not resist, and I wrote a VimScript which parses a table of contents page in Markdown format of my scanned paper journals, and NeoVim allows me to select a topic so that the corresponding PDF scan on the right journal page gets opened in an external PDF viewer (the PDF viewer is <span class="inlinecode">zathura</span>, it uses Vi-keybindings, of course) :-). (See the appendix of this blog post for that script).</p>
 <a class="textlink" href="https://pwmt.org/projects/zathura/">Zathura</a><br />
-<p>On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, <span class="inlinecode">ranger,</span> which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. <span class="inlinecode">ranger</span> is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. </p>
+<p>On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, <span class="inlinecode">ranger</span>, which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. <span class="inlinecode">ranger</span> is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. </p>
 <a class="textlink" href="https://github.com/ranger/ranger">Ranger - A Vim inspired file manager</a><br />
 <p>Did I mention that I also use my <span class="inlinecode">zsh</span> (my default shell) and my <span class="inlinecode">tmux</span> (terminal multiplexer) in Vi-mode?</p>
 <a class="textlink" href="https://zsh.sourceforge.io/">Z shell</a><br />
@@ -461,8 +461,12 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>After a bad night's sleep</h1>
-<p class="quote"><i>Published by Paul at 2022-09-30, last updated 2022-10-12</i></p>
+                1c1
+< -rw-r--r--. 1 paul paul 6738 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
+---
+> -rw-r--r--. 1 paul paul 6741 Nov 26 09:05 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi
+<h1>After a bad night's sleep</h1>
+<p class="quote"><i>Published by Paul at 2022-09-30, last updated at 2022-10-12</i></p>
 <pre>
                z
                 z
@@ -1459,10 +1463,14 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16140 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+---
+> -rw-r--r--. 1 paul paul 16201 Dec  8 10:03 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+<h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
-<p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.</p>
+<p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg" /></a><br />
 <p>So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad repetition. Often, people state:</p>
@@ -1504,13 +1512,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://perldoc.perl.org/feature">Perl feature pragmas</a><br />
 <a class="textlink" href="https://www.OpenBSD.org">The OpenBSD Operating System</a><br />
 <a class="textlink" href="https://news.ycombinator.com/item?id=23360338">Why does OpenBSD still include Perl in its base installation?</a><br />
-<p>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas "use strict; use warnings; use signatures;" and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.</p>
+<p>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas <span class="inlinecode">use strict;</span>,  <span class="inlinecode">use warnings;</span>, <span class="inlinecode">use signatures;</span> and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.</p>
 <a class="textlink" href="https://www.perl.com/article/announcing-perl-7/">Announcing Perl 7</a><br />
 <a class="textlink" href="http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html">What happened to Perl 7? (maybe have to use "use v7;")</a><br />
 <h2>Why use Perl as there are better alternatives?</h2>
 <p>Here, common sense must be applied. I don't believe there is anything like "the perfect" programming language. Everyone has got his preferred (or a set of preferred) programming language to chose from. All programming languages come with their own set of strengths and weaknesses. These are the strengths making Perl shine, and you (technically) don't need to bother to look for "better" alternatives:</p>
 <ul>
-<li>Perl is better than Shell/awk/sed scripts. There's a point where shell scripts become fairly complex. The next step-up is to switch to Perl. There are many different versions of shells and awk and sed interpreters. Do you always know which versions (mawk, nawk, gawk, sed, gsed, ...) are currently installed? These commands aren't fully compatible to each other. However, there is only one Perl 5. Simply: Perl is faster, more powerful, more expressive than any shell script can ever be, and it is also extendible through CPAN. Perl can directly talk to databases, which shell scripts can't.</li>
+<li>Perl is better than Shell/AWK/SED scripts. There's a point where shell scripts become fairly complex. The next step-up is to switch to Perl. There are many different versions of shells and AWK and SED interpreters. Do you always know which versions (<span class="inlinecode">mawk</span>, <span class="inlinecode">nawk</span>, <span class="inlinecode">gawk</span>, <span class="inlinecode">sed</span>, <span class="inlinecode">gsed</span>, <span class="inlinecode">grep</span>, <span class="inlinecode">ggrep</span>...) are currently installed? These commands aren't fully compatible to each other. However, there is only one Perl 5. Simply: Perl is faster, more powerful, more expressive than any shell script can ever be, and it is also extendible through CPAN. Perl can directly talk to databases, which shell scripts can't.</li>
 <li>Perl code tends to be compact so that it's much better suitable for "shell scripting" and quick "one-liners" than other languages. In my own experience: Ruby and Python code tends to blow up quickly. It doesn't mean that Ruby and Python are not suitable for this task, but I think Perl does much better.</li>
 <li>Perl 5 has proven itself for decades and is a very stable/robust language. It is a battle-tested and mature as something can ever become.</li>
 <li>Perl is the reference standard for regular expressions. Even so much that there is a PCRE library (Perl Compatible Regular Expressions) used by many other languages now. Perl fully integrates regular expression syntax into the language, which doesn't feel like an odd add-on like in most other languages.</li>
@@ -1531,8 +1539,8 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <a class="textlink" href="https://gist.github.com/Ovid/68b33259cb81c01f9a51612c7a294ede">Cor - A minimal object system for the Perl core - proposal</a><br />
 <h2>Why all the sigils? It looks like an exploding ASCII factory!!</h2>
-<p>The sigils $ @ % &amp; (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. $scalar is a scalar variable (holding a single value), @array is an array (holding a list of values), %hash holds a list of key-value pairs and &amp;sub is for subroutines. A given variable $ref can also hold reference to something. @$arrayref dereferences a reference to an array, %$hashref to a hash, $$scalarref to a scalar, &amp;$subref dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
-<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (@ @@ an $), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. $.foo for a scalar object variable with public accessors, $!foo for a private scalar object variable, @.foo, @!foo, %.foo, %!foo and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
+<p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), %hash holds a list of key-value pairs and &amp;sub is for subroutines. A given variable $ref can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
+<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (<span class="inlinecode">@ @@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, $!foo for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
 <a class="textlink" href="https://www.perl.com/article/on-sigils/">https://www.perl.com/article/on-sigils/</a><br />
 <h2>Where do I personally still use perl?</h2>
 <ul>
@@ -5008,8 +5016,12 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The fibonacci.pl.raku.c Polyglot</h1>
-<p class="quote"><i>Published by Paul at 2014-03-24, last updated 2022-04-23</i></p>
+                1c1
+< -rw-r--r--. 1 paul paul 2941 Oct 29 11:12 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
+---
+> -rw-r--r--. 1 paul paul 2944 Nov 26 09:04 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi
+<h1>The fibonacci.pl.raku.c Polyglot</h1>
+<p class="quote"><i>Published by Paul at 2014-03-24, last updated at 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
 <h2>The Fibonacci numbers</h2>
