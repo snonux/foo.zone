@@ -1,6 +1,6 @@
 # Lazy Evaluation with Standard ML
 
-> Published by Paul at 2010-05-07
+> Published by Paul at 2010-05-07 10:17:59 CEST
 
 ```
 

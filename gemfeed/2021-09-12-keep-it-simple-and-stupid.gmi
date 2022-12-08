@@ -1,6 +1,6 @@
 # Keep it simple and stupid
 
-> Published by Paul at 2021-09-12, last updated at 2022-04-21
+> Published by Paul at 2021-09-12 09:39:20 GMT, last updated at 2022-04-21
 
 ```  
   _______________                        |*\_/*|_______

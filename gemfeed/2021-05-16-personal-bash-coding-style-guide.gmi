@@ -1,6 +1,6 @@
 # Personal Bash coding style guide
 
-> Published by Paul at 2021-05-16
+> Published by Paul at 2021-05-16 16:51:57 GMT
 
 ```
    .---------------------------.
