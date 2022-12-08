@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-08T10:53:54+02:00</updated>
+    <updated>2022-12-08T11:10:31+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1455,13 +1455,17 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16221 Dec  8 10:49 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+---
+> -rw-r--r--. 1 paul paul 16221 Dec  8 11:10 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+<h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27 09:50:12 GMT, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg" /></a><br />
-<p>So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad repetition. Often, people state:</p>
+<p>So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:</p>
 <ul>
 <li>Perl is a write-only language. Nobody can read Perl code.</li>
 <li>Perl? Isn't it abandoned? It's still at version 5!</li>
@@ -1500,7 +1504,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://perldoc.perl.org/feature">Perl feature pragmas</a><br />
 <a class="textlink" href="https://www.OpenBSD.org">The OpenBSD Operating System</a><br />
 <a class="textlink" href="https://news.ycombinator.com/item?id=23360338">Why does OpenBSD still include Perl in its base installation?</a><br />
-<p>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas <span class="inlinecode">use strict;</span>,  <span class="inlinecode">use warnings;</span>, <span class="inlinecode">use signatures;</span> and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.</p>
+<p>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas <span class="inlinecode">use strict;</span>,  <span class="inlinecode">use warnings;</span>, <span class="inlinecode">use signatures;</span> and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.</p>
 <a class="textlink" href="https://www.perl.com/article/announcing-perl-7/">Announcing Perl 7</a><br />
 <a class="textlink" href="http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html">What happened to Perl 7? (maybe have to use "use v7;")</a><br />
 <h2>Why use Perl as there are better alternatives?</h2>
