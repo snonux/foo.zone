@@ -10,7 +10,7 @@ Unfortunately (it makes me sad), Perl's popularity has been declining over the l
 
 => ./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg
 
-So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad repetition. Often, people state:
+So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:
 
 * Perl is a write-only language. Nobody can read Perl code.
 * Perl? Isn't it abandoned? It's still at version 5!
@@ -66,7 +66,7 @@ So it means that Perl and Raku now exist in parallel. They influence each other,
 => https://www.OpenBSD.org The OpenBSD Operating System
 => https://news.ycombinator.com/item?id=23360338 Why does OpenBSD still include Perl in its base installation?
 
-The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.
+The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
 
 => https://www.perl.com/article/announcing-perl-7/ Announcing Perl 7
 => http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html What happened to Perl 7? (maybe have to use "use v7;")
