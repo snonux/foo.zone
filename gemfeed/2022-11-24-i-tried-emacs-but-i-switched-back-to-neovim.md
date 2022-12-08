@@ -1,6 +1,6 @@
 # I tried (Doom) Emacs, but I switched back to (Neo)Vim
 
-> Published by Paul at 2022-11-24, last updated 2022-11-26
+> Published by Paul at 2022-11-24, last updated at 2022-11-26
 
 ```
              _/  \    _(\(o
@@ -85,7 +85,7 @@ I use "Dead Tree Mode" to organize my work and notes. Dead tree? Yeah, I use an 
 
 [Zathura](https://pwmt.org/projects/zathura/)  
 
-On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, `ranger,` which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. `ranger` is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. 
+On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, `ranger`, which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. `ranger` is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. 
 
 [Ranger - A Vim inspired file manager](https://github.com/ranger/ranger)  
 Did I mention that I also use my `zsh` (my default shell) and my `tmux` (terminal multiplexer) in Vi-mode?
