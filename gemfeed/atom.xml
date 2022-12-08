@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-08T10:06:59+02:00</updated>
+    <updated>2022-12-08T10:12:27+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1455,7 +1455,11 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16201 Dec  8 10:03 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+---
+> -rw-r--r--. 1 paul paul 16208 Dec  8 10:12 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+<h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
@@ -1527,8 +1531,8 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <a class="textlink" href="https://gist.github.com/Ovid/68b33259cb81c01f9a51612c7a294ede">Cor - A minimal object system for the Perl core - proposal</a><br />
 <h2>Why all the sigils? It looks like an exploding ASCII factory!!</h2>
-<p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), %hash holds a list of key-value pairs and &amp;sub is for subroutines. A given variable $ref can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
-<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (<span class="inlinecode">@ @@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, $!foo for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
+<p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), %hash holds a list of key-value pairs and <span class="inlinecode">&amp;sub</span> is for subroutines. A given variable <span class="inlinecode">$ref</span> can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
+<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (<span class="inlinecode">@</span>, <span class="inlinecode">@@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, $!foo for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
 <a class="textlink" href="https://www.perl.com/article/on-sigils/">https://www.perl.com/article/on-sigils/</a><br />
 <h2>Where do I personally still use perl?</h2>
 <ul>
