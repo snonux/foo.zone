@@ -1,6 +1,6 @@
 # Perl is still a great choice
 
-> Published by Paul at 2022-05-27 09:50:12 GMT, Comic source: XKCD
+> Published by Paul at 2022-05-27, last updated at 2022-12-10 Comic source: XKCD
 
 => ./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png
 
@@ -68,8 +68,12 @@ So it means that Perl and Raku now exist in parallel. They influence each other,
 
 The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
 
+> Update 2022-12-10: A reader pointed out, that `use v5.36;` already turns strict, warnings and signatures pragmas automatically on! 
+
 => https://www.perl.com/article/announcing-perl-7/ Announcing Perl 7
-=> http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html What happened to Perl 7? (maybe have to use "use v7;")
+=> http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html What happened to Perl 7? (maybe have to use `use v7;`)
+
+> Update 2022-12-10: A reader pointed out, that Perl 7 needs to provide a big improvement to earn and keep the attention for a major version bump.
 
 ## Why use Perl as there are better alternatives?
 
@@ -96,7 +100,7 @@ Here are some reasons why not to chose Perl and look for "better" alternatives:
 * It's possible to write large programs in Perl (make difficult things possible), but it might not be the best choice here. This also leads back to the clunky object system Perl has. You could write your projects in a procedural or functional style (Perl perfectly fits here), but OOP seems to be the gold standard for large projects nowadays. Functional programming requires a different mindset, and pure procedural programming lacks abstractions.
 * Apply common sense. What is the skill set your team has? What's already widely used and supported at work? Which languages comes with the best modules for the things you want to work on? Maybe Python is the answer (better machine learning modules). Maybe Perl is the better choice (better Bioinformatic modules). Perhaps Ruby is already the de-facto standard at work and everyone knows at least a little Ruby (as it happened to be at my workplace) and Ruby is "good enough" for all the tasks already. But that's not a hindrance to throw in a Perl one-liner once in a while :P.
 
-=> https://gist.github.com/Ovid/68b33259cb81c01f9a51612c7a294ede Cor - A minimal object system for the Perl core - proposal
+=> https://github.com/Ovid/Cor - Bringing modern OOP to the Perl Core
 
 ## Why all the sigils? It looks like an exploding ASCII factory!!
 
@@ -121,5 +125,3 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 E-Mail your comments to paul at buetow dot org! :-)
 
 => ../ Go back to the main site
-
-
