@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 <<<<<<< HEAD
 =======
+>>>>>>> 8a8e28f6268cbc46c37f26e2ea6bf0ea93d7a489
 => ./gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi 2022-11-24 - I tried (Doom) Emacs, but I switched back to (Neo)Vim
 => ./gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 - Installing DTail on OpenBSD
 => ./gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi 2022-09-30 - After a bad night's sleep
@@ -68,4 +69,3 @@ If you reach this site via the modern web, please read this:
 => ./gemfeed/2010-04-09-standard-ml-and-haskell.gmi 2010-04-09 - Standard ML and Haskell
 => ./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi 2008-12-29 - Using my Nokia N95 for fixing my MTA
 => ./gemfeed/2008-06-26-perl-poetry.gmi 2008-06-26 - Perl Poetry
->>>>>>> 8a8e28f6268cbc46c37f26e2ea6bf0ea93d7a489
