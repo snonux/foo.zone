@@ -1,6 +1,6 @@
 # After a bad night's sleep
 
-> Published by Paul at 2022-09-30, last updated 2022-10-12
+> Published by Paul at 2022-09-30 09:53:23 EEST, last updated at 2022-10-12
 
 ```
                z

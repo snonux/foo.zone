@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-11-19T10:46:31+00:00</updated>
-    <title>foo.zone feed</title>
-    <subtitle>To be in the .zone!</subtitle>
-    <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
-    <link href="gemini://foo.zone/" />
-    <id>gemini://foo.zone/</id>
-</feed>
+foo
