@@ -1,16 +1,16 @@
 # Perl is still a great choice
 
-> Published by Paul at 2022-05-27, Comic source: XKCD
+> Published by Paul at 2022-05-27, last updated at 2022-12-10 Comic source: XKCD
 
 [![./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
 
-Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and "perl" the name of the interpreter or the interpreter command.
+Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and `perl` the name of the interpreter or the interpreter command.
 
 Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:
 
 [![./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)  
 
-So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad repetition. Often, people state:
+So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:
 
 * Perl is a write-only language. Nobody can read Perl code.
 * Perl? Isn't it abandoned? It's still at version 5!
@@ -66,16 +66,20 @@ So it means that Perl and Raku now exist in parallel. They influence each other,
 [The OpenBSD Operating System](https://www.OpenBSD.org)  
 [Why does OpenBSD still include Perl in its base installation?](https://news.ycombinator.com/item?id=23360338)  
 
-The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas "use strict; use warnings; use signatures;" and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) repetition.
+The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
+
+> Update 2022-12-10: A reader pointed out, that `use v5.36;` already turns strict, warnings and signatures pragmas automatically on! 
 
 [Announcing Perl 7](https://www.perl.com/article/announcing-perl-7/)  
-[What happened to Perl 7? (maybe have to use "use v7;")](http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html)  
+[What happened to Perl 7? (maybe have to use `use v7;`)](http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html)  
+
+> Update 2022-12-10: A reader pointed out, that Perl 7 needs to provide a big improvement to earn and keep the attention for a major version bump.
 
 ## Why use Perl as there are better alternatives?
 
 Here, common sense must be applied. I don't believe there is anything like "the perfect" programming language. Everyone has got his preferred (or a set of preferred) programming language to chose from. All programming languages come with their own set of strengths and weaknesses. These are the strengths making Perl shine, and you (technically) don't need to bother to look for "better" alternatives:
 
-* Perl is better than Shell/awk/sed scripts. There's a point where shell scripts become fairly complex. The next step-up is to switch to Perl. There are many different versions of shells and awk and sed interpreters. Do you always know which versions (mawk, nawk, gawk, sed, gsed, ...) are currently installed? These commands aren't fully compatible to each other. However, there is only one Perl 5. Simply: Perl is faster, more powerful, more expressive than any shell script can ever be, and it is also extendible through CPAN. Perl can directly talk to databases, which shell scripts can't.
+* Perl is better than Shell/AWK/SED scripts. There's a point where shell scripts become fairly complex. The next step-up is to switch to Perl. There are many different versions of shells and AWK and SED interpreters. Do you always know which versions (`mawk`, `nawk`, `gawk`, `sed`, `gsed`, `grep`, `ggrep`...) are currently installed? These commands aren't fully compatible to each other. However, there is only one Perl 5. Simply: Perl is faster, more powerful, more expressive than any shell script can ever be, and it is also extendible through CPAN. Perl can directly talk to databases, which shell scripts can't.
 * Perl code tends to be compact so that it's much better suitable for "shell scripting" and quick "one-liners" than other languages. In my own experience: Ruby and Python code tends to blow up quickly. It doesn't mean that Ruby and Python are not suitable for this task, but I think Perl does much better.
 * Perl 5 has proven itself for decades and is a very stable/robust language. It is a battle-tested and mature as something can ever become.
 * Perl is the reference standard for regular expressions. Even so much that there is a PCRE library (Perl Compatible Regular Expressions) used by many other languages now. Perl fully integrates regular expression syntax into the language, which doesn't feel like an odd add-on like in most other languages.
@@ -96,13 +100,13 @@ Here are some reasons why not to chose Perl and look for "better" alternatives:
 * It's possible to write large programs in Perl (make difficult things possible), but it might not be the best choice here. This also leads back to the clunky object system Perl has. You could write your projects in a procedural or functional style (Perl perfectly fits here), but OOP seems to be the gold standard for large projects nowadays. Functional programming requires a different mindset, and pure procedural programming lacks abstractions.
 * Apply common sense. What is the skill set your team has? What's already widely used and supported at work? Which languages comes with the best modules for the things you want to work on? Maybe Python is the answer (better machine learning modules). Maybe Perl is the better choice (better Bioinformatic modules). Perhaps Ruby is already the de-facto standard at work and everyone knows at least a little Ruby (as it happened to be at my workplace) and Ruby is "good enough" for all the tasks already. But that's not a hindrance to throw in a Perl one-liner once in a while :P.
 
-[Cor - A minimal object system for the Perl core - proposal](https://gist.github.com/Ovid/68b33259cb81c01f9a51612c7a294ede)  
+[Cor - Bringing modern OOP to the Perl Core](https://github.com/Ovid/Cor)  
 
 ## Why all the sigils? It looks like an exploding ASCII factory!!
 
-The sigils $ @ % & (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. $scalar is a scalar variable (holding a single value), @array is an array (holding a list of values), %hash holds a list of key-value pairs and &sub is for subroutines. A given variable $ref can also hold reference to something. @$arrayref dereferences a reference to an array, %$hashref to a hash, $$scalarref to a scalar, &$subref dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).
+The sigils `$ @ % &` (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. `$scalar` is a scalar variable (holding a single value), `@array` is an array (holding a list of values), %hash holds a list of key-value pairs and `&sub` is for subroutines. A given variable `$ref` can also hold reference to something. `@$arrayref` dereferences a reference to an array, `%$hashref` to a hash, `$$scalarref` to a scalar, `&$subref` dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).
 
-In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (@ @@ an $), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. $.foo for a scalar object variable with public accessors, $!foo for a private scalar object variable, @.foo, @!foo, %.foo, %!foo and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!
+In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (`@`, `@@` and `$`), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. `$.foo` for a scalar object variable with public accessors, $!foo for a private scalar object variable, `@.foo`, `@!foo`, `%.foo`, `%!foo` and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!
 
 [https://www.perl.com/article/on-sigils/](https://www.perl.com/article/on-sigils/)  
 
@@ -121,5 +125,3 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 E-Mail your comments to paul at buetow dot org! :-)
 
 [Go back to the main site](../)  
-
-

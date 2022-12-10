@@ -1,6 +1,6 @@
 # Object oriented programming with ANSI C
 
-> Published by Paul at 2016-11-20, updated 2022-01-29
+> Published by Paul at 2016-11-21 00:10:57 GMT, updated 2022-01-29
 
 ```
   ___   ___  ____        ____ 
