@@ -1,10 +1,6 @@
 # Perl is still a great choice
 
-<<<<<<< HEAD
 > Published by Paul at 2022-05-27, last updated at 2022-12-10 Comic source: XKCD
-=======
-> Published by Paul at 2022-05-27 09:50:12 GMT, Comic source: XKCD
->>>>>>> 226761fe3a87d2f500b5cfa1eccff5cea8107f94
 
 [![./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
 
@@ -71,11 +67,8 @@ So it means that Perl and Raku now exist in parallel. They influence each other,
 [Why does OpenBSD still include Perl in its base installation?](https://news.ycombinator.com/item?id=23360338)  
 
 The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
-<<<<<<< HEAD
 
 > Update 2022-12-10: A reader pointed out, that `use v5.36;` already turns strict, warnings and signatures pragmas automatically on! 
-=======
->>>>>>> 226761fe3a87d2f500b5cfa1eccff5cea8107f94
 
 [Announcing Perl 7](https://www.perl.com/article/announcing-perl-7/)  
 [What happened to Perl 7? (maybe have to use `use v7;`)](http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html)  
