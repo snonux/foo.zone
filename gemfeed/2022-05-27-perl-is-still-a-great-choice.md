@@ -122,7 +122,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 [https://www.perl.org](https://www.perl.org)  
 
-> Update 2022-12-17: The followingf is another related post. I don't agree to the statement made there, that Python code tends to be more compact than Perl code, though!
+> Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be more compact than Perl code, though!
 
 [Why Perl is still relevant in 2022](https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/)  
 
