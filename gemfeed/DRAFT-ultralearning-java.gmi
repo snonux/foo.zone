@@ -1,0 +1,135 @@
+# Ultra(re)learning Java
+
+> Published by Paul at XXXX-XX-XX
+
+As a regular participant of the annual Pet Project competition at work I always try to find a project where I can learn something new. You can read about my motivations in my "Creative universe" post:
+
+=> ./2022-04-10-creative-universe.gmi Creative universe
+
+I have been programming in Java back in the days as an university student and even my Diploma Thesis was implemented in Java (it would require some overhaul so that it is fully compatible with a recent version of Java, though - It still compiles and runs, but with a lot of warnings!):
+
+=> https://codeberg.org/snonux/vs-sim VS-Sim: Distributed systems simulator
+
+However, after that, I became a Linux Sysadmin and mainly continued programming in Perl and bash and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash and Golang and a little bit of C and Perl. One of my work-Golang projects (originating from an anual Pet Project contest, where I won a "bronze" prize) has been made available as Open Source software here:
+
+=> https://dtail.dev
+
+and some thoughts on a Ruby book, which I read last year, you can read here:
+
+=> ./2021-07-04-the-well-grounded-rubyist.gmi The well grounded Rubyist
+
+At my workplace, as an SRE, I usually do Java a lot. However, most of our stack is programmed in Java and our Software Engineers use Java as their primary programming language. I have been reading Java code to understand the software a bit better so that I can apply and suggest work around or fixes to existing issues and bugs.
+
+## Stuck at Java 1.4
+
+Over time, I felt that I have been missing out on many of the new features which were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and to also learn every new aspect of the language as my main goal. Of course, I wanted to win a Pet Project Prize too, but the main objective was to level up my Java skills (again).
+
+## Ultra(re)lerning & upskilling
+
+### Effective Java
+
+This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself into all the new best practices. I fully agree, this is a great book. Every Java developer or software engineer should read it!
+
+=> TODO: Insert Effective Java book cover picture
+
+### Java Pub House
+
+During my lunch breaks I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast.
+
+=> https://www.javapubhouse.com
+
+### Read a lot of Java code
+
+### Observed Java code reviews
+
+Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. 
+
+
+E-Mail your comments to paul at buetow dot org! :-)
+
+=> ../ Go back to the main site
+
+
+static factory methods and public constructors both have their uses, and it pays to understand their relative merits. Often static factories are preferable, so avoid the reflex to provide public constructors without first considering static factories.
+
+
+Other
+
+Streams
+
+Local type inference
+
+Panama for better native code integration
+
+More Java 17 features
+
+Deprecated annotations
+
+Modules 
+
+Clean code stuff (from audible)
+
+Effective java - The book
+Blog series: https://dev.to/kylec32/effective-java-tuesday-let-s-consider-static-factory-methods-170p
+
+Feel like a student (reminded of my student times)
+
+Many things have changed
+
+Book Effective Java
+
+Blog series effective java
+
+Pet project in java
+
+Neovim for Java 
+
+Podcasts 
+
+Oreilly Safara Online Java Concurrency
+
+Reading Blog posts
+
+Quite a log of boilerplate code (e.g. builder pattern)
+
+maven, a new and complex world. Toke a while to get my head around this.
+
+check out books on java concurrency
+
+What I learn
+============
+
+* Refreshing my Java skills
+* Socially ask colleagues for Code Review
+* Learn TypeScript
+* Learn how to create a Grafana dashboard
+
+My Neovim setup for Java
+
+Ref to pet project No prob if total failure the PP as learned Java
+
+Read a lot of internal code und lernte
+
+Kleinere tickets bearbeitet
+
+Funktional programmiert: Javav8/ und neuer reduzieren verbosität
+
+Modern Java in Action
+
+Java joke of long hello world
+
+dev.to as a great resource overall
+
+Shocked about the thread limitations, async to the rescue
+
+Still very long code lines, struggle to keep them short. Looks odd coming from Golang
+
+Also, missing the ability to return multiple values from a method or function.
+
+
+Finished items (from Effective Java):
+
+
+Silver prize
+
+Small code changes
