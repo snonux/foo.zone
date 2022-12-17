@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-10T13:21:22+02:00</updated>
+    <updated>2022-12-17T11:17:08+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,11 @@
         <summary>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 14674 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
+---
+> -rw-r--r--. 1 paul paul 14674 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.html
+<h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
 <p class="quote"><i>Published by Paul at 2022-11-24 11:17:15 EET, last updated at 2022-11-26</i></p>
 <pre>
              _/  \    _(\(o
@@ -162,7 +166,11 @@ nmap ,j :call OpenJournalPage()&lt;CR&gt;
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Installing DTail on OpenBSD</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13450 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.html
+---
+> -rw-r--r--. 1 paul paul 13450 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-10-30-installing-dtail-on-openbsd.html
+<h1>Installing DTail on OpenBSD</h1>
 <p class="quote"><i>Published by Paul at 2022-10-30 11:03:19 EET</i></p>
 <pre>
        ,_---~~~~~----._
@@ -457,7 +465,11 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <summary>Everyone has it once a while: A bad night's sleep. Here I attempt to list useful tips how to deal with it.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>After a bad night's sleep</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 6755 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
+---
+> -rw-r--r--. 1 paul paul 6755 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-09-30-after-a-bad-nights-sleep.html
+<h1>After a bad night's sleep</h1>
 <p class="quote"><i>Published by Paul at 2022-09-30 09:53:23 EEST, last updated at 2022-10-12</i></p>
 <pre>
                z
@@ -531,7 +543,11 @@ jgs                (________\  \
         <summary>I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my static site generator written in GNU Bash:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4106 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
+---
+> -rw-r--r--. 1 paul paul 4106 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html
+<h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
 <p class="quote"><i>Published by Paul at 2022-08-27 20:25:57 EEST</i></p>
 <pre>
 -=[ typewriter ]=-  1/98
@@ -607,7 +623,11 @@ check_dependencies () {
         <summary>I was amazed how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Let's Encrypt with OpenBSD and Rex</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 21434 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
+---
+> -rw-r--r--. 1 paul paul 21434 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html
+<h1>Let's Encrypt with OpenBSD and Rex</h1>
 <p class="quote"><i>Published by Paul at 2022-07-30 14:14:31 EEST</i></p>
 <pre>
                                                /    _    \
@@ -1214,7 +1234,11 @@ rex commons
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Sweating the small stuff - Tiny projects of mine</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 20530 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
+---
+> -rw-r--r--. 1 paul paul 20530 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-06-15-sweating-the-small-stuff.html
+<h1>Sweating the small stuff - Tiny projects of mine</h1>
 <p class="quote"><i>Published by Paul at 2022-06-15 10:47:44 GMT, last updated at 2022-06-18</i></p>
 <pre>
          _
@@ -1455,8 +1479,12 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
-<p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2022-12-10, Comic source: XKCD</i></p>
+                1c1
+< -rw-r--r--. 1 paul paul 16504 Dec 10 13:17 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+---
+> -rw-r--r--. 1 paul paul 16790 Dec 17 11:16 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.html
+<h1>Perl is still a great choice</h1>
+<p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2022-12-17, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
@@ -1529,7 +1557,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <a class="textlink" href="https://github.com/Ovid/Cor">Cor - Bringing modern OOP to the Perl Core</a><br />
 <h2>Why all the sigils? It looks like an exploding ASCII factory!!</h2>
-<p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), %hash holds a list of key-value pairs and <span class="inlinecode">&amp;sub</span> is for subroutines. A given variable <span class="inlinecode">$ref</span> can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
+<p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), <span class="inlinecode">%hash</span> holds a list of key-value pairs and <span class="inlinecode">&amp;sub</span> is for subroutines. A given variable <span class="inlinecode">$ref</span> can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
 <p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (<span class="inlinecode">@</span>, <span class="inlinecode">@@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, $!foo for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
 <a class="textlink" href="https://www.perl.com/article/on-sigils/">https://www.perl.com/article/on-sigils/</a><br />
 <h2>Where do I personally still use perl?</h2>
@@ -1542,6 +1570,8 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <p>Btw.: Did you know that the first version of PHP was a set of Perl snippets? Only later, PHP became an independent programming language.</p>
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
+<p class="quote"><i>Update 2022-12-17: The followingf is another related post. I don't agree to the statement made there, that Python code tends to be more compact than Perl code, though!</i></p>
+<a class="textlink" href="https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/">Why Perl is still relevant in 2022</a><br />
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
             </div>
         </content>
@@ -1558,7 +1588,11 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Creative universe</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 14577 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
+---
+> -rw-r--r--. 1 paul paul 14577 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-04-10-creative-universe.html
+<h1>Creative universe</h1>
 <p class="quote"><i>Published by Paul at 2022-04-10 12:09:11 GMT, last updated at 2022-04-18</i></p>
 <pre>
  .              +   .                .   . .     .  .
@@ -1665,7 +1699,11 @@ learn () {
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The release of DTail 4.0.0</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 11948 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
+---
+> -rw-r--r--. 1 paul paul 11948 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html
+<h1>The release of DTail 4.0.0</h1>
 <p class="quote"><i>Published by Paul at 2022-03-06 20:11:39 GMT</i></p>
 <pre>
                               ,_---~~~~~----._
@@ -1917,7 +1955,11 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <summary>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Computer operating systems I use(d)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 15975 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
+---
+> -rw-r--r--. 1 paul paul 15975 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-02-04-computer-operating-systems-i-use.html
+<h1>Computer operating systems I use(d)</h1>
 <p class="quote"><i>Published by Paul at 2022-02-04 11:58:22 GMT, updated 2022-02-18</i></p>
 <pre>
               /(        )`
@@ -2083,7 +2125,11 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Welcome to the foo.zone</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3377 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
+---
+> -rw-r--r--. 1 paul paul 3377 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-01-23-welcome-to-the-foo.zone.html
+<h1>Welcome to the foo.zone</h1>
 <p class="quote"><i>Published by Paul at 2022-01-23 18:42:04 GMT</i></p>
 <pre>
   __                                  
@@ -2130,7 +2176,11 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Bash Golf Part 2</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13098 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
+---
+> -rw-r--r--. 1 paul paul 13098 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2022-01-01-bash-golf-part-2.html
+<h1>Bash Golf Part 2</h1>
 <p class="quote"><i>Published by Paul at 2022-01-02 01:36:15 GMT, last updated at 2022-01-05</i></p>
 <pre>
 
@@ -2542,7 +2592,11 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps/SRE or a security engineer). I thought it would be interesting to summarize a few techniques to help you to relax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>How to stay sane as a DevOps person </h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13672 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
+---
+> -rw-r--r--. 1 paul paul 13672 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.html
+<h1>How to stay sane as a DevOps person </h1>
 <p class="quote"><i>Published by Paul at 2021-12-26 14:02:02 GMT, last updated at 2022-01-12</i></p>
 <pre>
                                      )
@@ -2634,7 +2688,11 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>This is the first blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Bash Golf Part 1</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 14200 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
+---
+> -rw-r--r--. 1 paul paul 14200 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-11-29-bash-golf-part-1.html
+<h1>Bash Golf Part 1</h1>
 <p class="quote"><i>Published by Paul at 2021-11-29 16:06:14 GMT, last updated at 2022-01-05</i></p>
 <pre>
 
@@ -3018,7 +3076,11 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Defensive DevOps</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13797 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
+---
+> -rw-r--r--. 1 paul paul 13797 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-10-22-defensive-devops.html
+<h1>Defensive DevOps</h1>
 <p class="quote"><i>Published by Paul at 2021-10-22 10:02:46 GMT</i></p>
 <pre>
                                                             c=====e
@@ -3097,7 +3159,11 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Keep it simple and stupid</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 9425 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
+---
+> -rw-r--r--. 1 paul paul 9425 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-09-12-keep-it-simple-and-stupid.html
+<h1>Keep it simple and stupid</h1>
 <p class="quote"><i>Published by Paul at 2021-09-12 09:39:20 GMT, last updated at 2022-04-21</i></p>
 <pre>
   _______________                        |*\_/*|_______
@@ -3168,7 +3234,11 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>On being Pedantic about Open-Source</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 17643 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
+---
+> -rw-r--r--. 1 paul paul 17643 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html
+<h1>On being Pedantic about Open-Source</h1>
 <p class="quote"><i>Published by Paul at 2021-08-01 10:37:58 GMT</i></p>
 <pre>
                                            __
@@ -3248,7 +3318,11 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I then decided to give Ruby a go for all medium-sized programming and scripting projects.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The Well-Grounded Rubyist</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 12370 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
+---
+> -rw-r--r--. 1 paul paul 12370 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-07-04-the-well-grounded-rubyist.html
+<h1>The Well-Grounded Rubyist</h1>
 <p class="quote"><i>Published by Paul at 2021-07-04 12:51:23 GMT</i></p>
 <p>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</p>
 <p>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</p>
@@ -3329,7 +3403,11 @@ Hello World
         <summary>You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Gemtexter - One Bash script to rule it all</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 10698 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
+---
+> -rw-r--r--. 1 paul paul 10698 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html
+<h1>Gemtexter - One Bash script to rule it all</h1>
 <p class="quote"><i>Published by Paul at 2021-06-05 21:03:32 GMT</i></p>
 <pre>
                                                                o .,&lt;&gt;., o
@@ -3468,7 +3546,11 @@ assert::equals "$(generate::make_link md "$gemtext")" \
         <summary>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the 'Google Shell Style Guide' I thought it is time to also write my own thoughts on that. I agree to that guide in most, but not in all points. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Personal Bash coding style guide</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13913 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
+---
+> -rw-r--r--. 1 paul paul 13913 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-05-16-personal-bash-coding-style-guide.html
+<h1>Personal Bash coding style guide</h1>
 <p class="quote"><i>Published by Paul at 2021-05-16 16:51:57 GMT</i></p>
 <pre>
    .---------------------------.
@@ -3776,7 +3858,11 @@ fi
         <summary>Have you reached this article already via Gemini? You need a special client for that, web browsers such as Firefox, Chrome, Safari etc. don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is: ... to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Welcome to the Geminispace</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 5001 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
+---
+> -rw-r--r--. 1 paul paul 5001 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-04-24-welcome-to-the-geminispace.html
+<h1>Welcome to the Geminispace</h1>
 <p class="quote"><i>Published by Paul at 2021-04-24 21:28:41 GMT, last updated at 2021-06-18, ASCII Art by Andy Hood</i></p>
 <p>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</p>
 <a class="textlink" href="https://foo.zone">https://foo.zone</a><br />
@@ -3846,7 +3932,11 @@ fi
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal Gemini capsule too. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>DTail - The distributed log tail program</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 12960 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
+---
+> -rw-r--r--. 1 paul paul 12960 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html
+<h1>DTail - The distributed log tail program</h1>
 <p class="quote"><i>Published by Paul at 2021-04-22 21:28:41 GMT, last updated at 2021-04-26</i></p>
 <a href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png"><img alt="DTail logo image" title="DTail logo image" src="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program/title.png" /></a><br />
 <p>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</p>
@@ -3927,7 +4017,11 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Realistic load testing with I/O Riot for Linux</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 15262 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
+---
+> -rw-r--r--. 1 paul paul 15262 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.html
+<h1>Realistic load testing with I/O Riot for Linux</h1>
 <p class="quote"><i>Published by Paul at 2018-06-01 16:50:29 GMT, last updated at 2021-05-08</i></p>
 <pre>
        .---.
@@ -4066,7 +4160,11 @@ Total time: 1213.00s
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Object oriented programming with ANSI C</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3686 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
+---
+> -rw-r--r--. 1 paul paul 3686 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html
+<h1>Object oriented programming with ANSI C</h1>
 <p class="quote"><i>Published by Paul at 2016-11-21 00:10:57 GMT, updated 2022-01-29</i></p>
 <pre>
   ___   ___  ____        ____ 
@@ -4158,7 +4256,11 @@ mult.calculate(mult,a,b));
         <summary>Finally, I had time to deploy my own authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to manually edit the DNS records (BIND files). And they also give you the opportunity to set your own authoritative DNS servers for your domains. From now I am making use of that option.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Spinning up my own authoritative DNS servers</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 8280 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
+---
+> -rw-r--r--. 1 paul paul 8280 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.html
+<h1>Spinning up my own authoritative DNS servers</h1>
 <p class="quote"><i>Published by Paul at 2016-05-22 20:59:01 GMT</i></p>
 <h2>Background</h2>
 <p>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</p>
@@ -4383,7 +4485,11 @@ apply Service "dig6" {
         <summary>I enhanced the procedure a bit. From now on I am having two external 2TB USB hard drives. Both are setup exactly the same way. To decrease the probability that they will not fail at about the same time both drives are of different brands. One drive is kept at the secret location. The other one is kept at home right next to my HP MicroServer. ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Offsite backup with ZFS (Part 2)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 1931 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
+---
+> -rw-r--r--. 1 paul paul 1931 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html
+<h1>Offsite backup with ZFS (Part 2)</h1>
 <p class="quote"><i>Published by Paul at 2016-04-17 00:43:42 GMT</i></p>
 <pre>
  ________________
@@ -4420,7 +4526,11 @@ apply Service "dig6" {
         <summary>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Jails and ZFS with Puppet on FreeBSD</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16921 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
+---
+> -rw-r--r--. 1 paul paul 16921 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html
+<h1>Jails and ZFS with Puppet on FreeBSD</h1>
 <p class="quote"><i>Published by Paul at 2016-04-09 20:29:47 GMT</i></p>
 <pre>
             __     __
@@ -4799,7 +4909,11 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>When it comes to data storage and potential data loss I am a paranoid person. It is not just due to my job  but also due to a personal experience I encountered over 10 years ago: A single drive failure and loss of all my data (pictures, music, ....). ...to read on visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Offsite backup with ZFS</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 3788 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
+---
+> -rw-r--r--. 1 paul paul 3788 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2016-04-03-offsite-backup-with-zfs.html
+<h1>Offsite backup with ZFS</h1>
 <p class="quote"><i>Published by Paul at 2016-04-04 00:43:42 GMT</i></p>
 <pre>
  ________________
@@ -4842,7 +4956,11 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>You can use the following tutorial to install a full blown Debian GNU/Linux Chroot on a LG G3 D855 CyanogenMod 13 (Android 6). First of all you need to have root permissions on your phone and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23). .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Run Debian on your phone with Debroid</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 5137 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
+---
+> -rw-r--r--. 1 paul paul 5137 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.html
+<h1>Run Debian on your phone with Debroid</h1>
 <p class="quote"><i>Published by Paul at 2015-12-05 18:12:57 CEST, last updated at 2021-05-16</i></p>
 <pre>
  ____       _               _     _ 
@@ -5006,7 +5124,11 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The fibonacci.pl.raku.c Polyglot</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 2958 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
+---
+> -rw-r--r--. 1 paul paul 2958 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.html
+<h1>The fibonacci.pl.raku.c Polyglot</h1>
 <p class="quote"><i>Published by Paul at 2014-03-24 23:32:53 CEST, last updated at 2022-04-23</i></p>
 <p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
@@ -5148,7 +5270,11 @@ fib(10) = 55
         <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. In order to do something a module (written in Perl) bust be provided.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl Daemon (Service Framework)</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4860 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
+---
+> -rw-r--r--. 1 paul paul 4860 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2011-05-07-perl-daemon-service-framework.html
+<h1>Perl Daemon (Service Framework)</h1>
 <p class="quote"><i>Published by Paul at 2011-05-08 00:26:02 CEST, last updated at 2021-05-07</i></p>
 <pre>
    a'!   _,,_ a'!   _,,_     a'!   _,,_
@@ -5294,7 +5420,11 @@ sub do ($) {
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. To be honest, besides learning and fun there is really no other use case of why Fype actually exists as many other programming languages are much faster and more powerful.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The Fype Programming Language</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13077 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
+---
+> -rw-r--r--. 1 paul paul 13077 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2010-05-09-the-fype-programming-language.html
+<h1>The Fype Programming Language</h1>
 <p class="quote"><i>Published by Paul at 2010-05-09 14:48:29 CEST, last updated at 2021-05-05</i></p>
 <pre>
       ____                                      _        __       
@@ -5709,7 +5839,11 @@ BB
         <summary>In contrast to Haskell, Standard SML does not use lazy evaluation by default, but strict evaluation. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Lazy Evaluation with Standard ML</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 2864 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
+---
+> -rw-r--r--. 1 paul paul 2864 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.html
+<h1>Lazy Evaluation with Standard ML</h1>
 <p class="quote"><i>Published by Paul at 2010-05-07 10:17:59 CEST</i></p>
 <pre>
 
@@ -5809,7 +5943,11 @@ first 10 nat_pairs_not_null
         <summary>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already know a little Haskell, could I do not help myself and I implemented the same exercises in Haskell too.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Standard ML and Haskell</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4897 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
+---
+> -rw-r--r--. 1 paul paul 4897 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2010-04-09-standard-ml-and-haskell.html
+<h1>Standard ML and Haskell</h1>
 <p class="quote"><i>Published by Paul at 2010-04-10 00:57:36 CEST</i></p>
 <p>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</p>
 <p>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to write down the function types explicitly. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far, I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </p>
@@ -5963,7 +6101,11 @@ my_filter f l = foldr (make_filter_fn f) [] l
         <summary>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Using my Nokia N95 for fixing my MTA</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 1948 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
+---
+> -rw-r--r--. 1 paul paul 1948 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.html
+<h1>Using my Nokia N95 for fixing my MTA</h1>
 <p class="quote"><i>Published by Paul at 2008-12-29 11:10:41 CEST, last updated at 2021-12-01</i></p>
 <pre>
 
@@ -6009,7 +6151,11 @@ _jgs_\|//_\\|///_\V/_\|//__
         <summary>Here are some Perl Poems I wrote. They don't do anything useful when you run them but they don't produce a compiler error either. They only exists for fun and demonstrate what you can do with Perl syntax.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl Poetry</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 4650 Dec 10 12:54 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
+---
+> -rw-r--r--. 1 paul paul 4650 Dec 10 10:54 ../foo.zone-content/gemtext/gemfeed/2008-06-26-perl-poetry.html
+<h1>Perl Poetry</h1>
 <p class="quote"><i>Published by Paul at 2008-06-26 23:43:51 CEST, last updated at 2021-05-04</i></p>
 <pre>
  '\|/'                                  *
