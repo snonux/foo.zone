@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-17T11:20:17+00:00</updated>
+    <updated>2022-12-17T12:27:04+00:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1455,7 +1455,11 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16789 Dec 17 11:19 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+---
+> -rw-r--r--. 1 paul paul 16784 Dec 17 11:25 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+<h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2022-12-17, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
@@ -1542,7 +1546,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul>
 <p>Btw.: Did you know that the first version of PHP was a set of Perl snippets? Only later, PHP became an independent programming language.</p>
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
-<p class="quote"><i>Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be more compact than Perl code, though!</i></p>
+<p class="quote"><i>Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be shorter than Perl code, though!</i></p>
 <a class="textlink" href="https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/">Why Perl is still relevant in 2022</a><br />
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
             </div>
