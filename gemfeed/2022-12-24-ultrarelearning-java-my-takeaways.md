@@ -4,7 +4,7 @@
 
 [![./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)  
 
-As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java (Spoiler: I am still not the biggest Java fan, but Java has its uses). You can read about my motivations in my "Creative universe" post:
+As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:
 
 [Creative universe](./2022-04-10-creative-universe.md)  
 
@@ -92,7 +92,7 @@ There are also many ugly corners in Java. Many are doomed to stay there forever 
 
 While (re)learning Java, I felt like a student again and was quite enthusiastic about it initially. I invested around half a year, immersing myself intensively in Java (again). The last time I did that was many years ago as a university student. I even won a Silver Prize at work, implementing a project this year (2022 as of writing this). I feel confident now with understanding, debugging and patching Java code at work, which boosted my debugging and troubleshooting skills. 
 
-I don't hate Java, but I don't love programming in it, either. I will, I guess, always see Java as the necessary "evil" to get stuff done (reading code to understand how the service works, adding a tiny feature to make my life easier, adding a quick bug fix to overcome an obstacle...). But still, I lost the Java groove on the way.
+I don't hate Java, but I don't love programming in it, either. I will, I guess, always see Java as the necessary to get stuff done (reading code to understand how the service works, adding a tiny feature to make my life easier, adding a quick bug fix to overcome an obstacle...).
 
 Although Java has significantly improved since 1.4, its code still tends to be more boilerplate. Not mainly because due to lines of code (Golang code tends to be quite repetitive, primarily when no generics are used), but due to the levels of abstractions it uses. Class hierarchies can be ten classes or deeper, and it is challenging to understand what the code is doing. Good test coverage and much documentation can mitigate the problem partially. Big enterprises use Java, and so also look at the languages. There are too many libraries and too many abstractions that are bundled with too many legacy abstractions and interfaces and too many exceptions in the library APIs. There's even an external library named Lombok, which aims to reduce Java boilerplate code. Why is there a need for an external library? It should be all part of Java itself.
 
@@ -100,7 +100,7 @@ Although Java has significantly improved since 1.4, its code still tends to be m
 
 Java needs a clean cut. The clean cut shall be incompatible with previous versions of Java and only promote modern best practices without all the legacy burden carried around. The same can be said for other languages, e.g. Perl, but in Perl, they already attack the problem with the use of flags which change the behaviour of the language to more modern standards. Or do it like Python, where they had a hard (incompatible) cut from version 2 to version 3. It will be painful, for sure. But that would be the only way I would enjoy using that language as one of my primary languages to code new stuff regularly. Currently, my Java will stay limited to very few projects and the more minor things already mentioned in this post. 
 
-Am I a Java expert now? No, by far not. But I will look at features I don't know once in a while when encountering them accidentally.
+Am I a Java expert now? No, by far not. But I am better now than before :-).
 
 E-Mail your comments to paul at buetow dot org! :-)
 
