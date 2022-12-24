@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-24T23:18:40+02:00</updated>
+    <updated>2022-12-24T23:51:00+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,10 +18,14 @@
         <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java (Spoiler: I am still not the biggest Java fan, but Java has its uses). You can read about my motivations in my 'Creative universe' post:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Ultra(re)learning Java - My takeaways</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 16410 Dec 24 23:17 ../foo.zone-content/gemtext/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.html
+---
+> -rw-r--r--. 1 paul paul 16230 Dec 24 23:50 ../foo.zone-content/gemtext/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.html
+<h1>Ultra(re)learning Java - My takeaways</h1>
 <p class="quote"><i>Published by Paul at 2022-12-24</i></p>
 <a href="https://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg"><img src="https://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg" /></a><br />
-<p>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java (Spoiler: I am still not the biggest Java fan, but Java has its uses). You can read about my motivations in my "Creative universe" post:</p>
+<p>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-04-10-creative-universe.html">Creative universe</a><br />
 <p>I have been programming in Java back in the days as a university student, and even my Diploma Thesis I implemented in Java (it would require some overhaul so that it is fully compatible with a recent version of Java, though - It still compiles and runs, but with a lot of warnings, though!):</p>
 <a class="textlink" href="https://codeberg.org/snonux/vs-sim">VS-Sim: Distributed systems simulator</a><br />
@@ -79,11 +83,11 @@
 </ul>
 <h2>Conclusion</h2>
 <p>While (re)learning Java, I felt like a student again and was quite enthusiastic about it initially. I invested around half a year, immersing myself intensively in Java (again). The last time I did that was many years ago as a university student. I even won a Silver Prize at work, implementing a project this year (2022 as of writing this). I feel confident now with understanding, debugging and patching Java code at work, which boosted my debugging and troubleshooting skills. </p>
-<p>I don't hate Java, but I don't love programming in it, either. I will, I guess, always see Java as the necessary "evil" to get stuff done (reading code to understand how the service works, adding a tiny feature to make my life easier, adding a quick bug fix to overcome an obstacle...). But still, I lost the Java groove on the way.</p>
+<p>I don't hate Java, but I don't love programming in it, either. I will, I guess, always see Java as the necessary to get stuff done (reading code to understand how the service works, adding a tiny feature to make my life easier, adding a quick bug fix to overcome an obstacle...).</p>
 <p>Although Java has significantly improved since 1.4, its code still tends to be more boilerplate. Not mainly because due to lines of code (Golang code tends to be quite repetitive, primarily when no generics are used), but due to the levels of abstractions it uses. Class hierarchies can be ten classes or deeper, and it is challenging to understand what the code is doing. Good test coverage and much documentation can mitigate the problem partially. Big enterprises use Java, and so also look at the languages. There are too many libraries and too many abstractions that are bundled with too many legacy abstractions and interfaces and too many exceptions in the library APIs. There's even an external library named Lombok, which aims to reduce Java boilerplate code. Why is there a need for an external library? It should be all part of Java itself.</p>
 <a class="textlink" href="https://projectlombok.org/">https://projectlombok.org/</a><br />
 <p>Java needs a clean cut. The clean cut shall be incompatible with previous versions of Java and only promote modern best practices without all the legacy burden carried around. The same can be said for other languages, e.g. Perl, but in Perl, they already attack the problem with the use of flags which change the behaviour of the language to more modern standards. Or do it like Python, where they had a hard (incompatible) cut from version 2 to version 3. It will be painful, for sure. But that would be the only way I would enjoy using that language as one of my primary languages to code new stuff regularly. Currently, my Java will stay limited to very few projects and the more minor things already mentioned in this post. </p>
-<p>Am I a Java expert now? No, by far not. But I will look at features I don't know once in a while when encountering them accidentally.</p>
+<p>Am I a Java expert now? No, by far not. But I am better now than before :-).</p>
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
             </div>
         </content>
