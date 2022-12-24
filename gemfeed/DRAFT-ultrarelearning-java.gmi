@@ -10,7 +10,7 @@ I have been programming in Java back in the days as an university student and ev
 
 => https://codeberg.org/snonux/vs-sim VS-Sim: Distributed systems simulator
 
-However, after that, I became a Linux Sysadmin and mainly continued programming in Perl and bash and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash, Puppet and Golang and a little bit of C. 
+However, after that, I became a Linux Sysadmin and mainly continued programming in Perl, Puppet and bash and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash, Puppet and Golang and a little bit of C. 
 
 At my workplace, as an SRE, I usually don't do Java a lot. However, most of our stack is programmed in Java and our Software Engineers use Java as their primary programming language. I have been reading Java code to understand the software a bit better so that I can apply and suggest work around or fixes to existing issues and bugs.
 
@@ -26,6 +26,10 @@ This book was recommended by my brother and also by at least another colleague a
 
 => TODO: Insert Effective Java book cover picture
 
+I also highly recommend to read the 90 part long Effecitve Java Series on `dev.to`. It's a perfect companion to the book as it explains all the chapters again but from a slightly different perspective and helps you to really understand the content.
+
+=> https://dev.to/kylec32/series/2292 Kyle Carter's 90 part Effective Java Series 
+
 ### Java Pub House
 
 During my lunch breaks I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast. Especially GraalVM, a high-performance JDK distribution written for Java and other JVM languages, captured my attention. GraalVM can compile Java code into native binaries which can improve performance and also eases the distribution of Java programs. Because of the latter, I should release a VS-Sim GraalVM edition one day through an Linux AppImage ;-).
@@ -33,103 +37,62 @@ During my lunch breaks I usually have a walk around the block or in a nearby par
 => https://www.javapubhouse.com
 => https://www.graalvm.org
 
+### Java Concurrency course
+
+I also watched a course on O'Reilly Safara Books online about Java Concurrency. That gave a great refresher of how the Java thread pools work and what were the concurrency primitives available in the standard library.
+
 ### Read a lot of Java code
+
+I started to read more and more Java code at work. I did that every time when I didn't understand how something worked. First of all, the source code is often the best documentation (if programmed nicely), and secondly, it helps to get the hang of the language and common practices. 
 
 ### Observed Java code reviews
 
-Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. 
+Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. They are the expert of the matter and are a great source to copy knowledge from. It's OK to stay passive and only follow the reviews. In some cases it's OK to step up and take ownership of the review. The developers will also be always happy to answer to any of the naive questions you might have.
 
+### Took ownership of a roadmap-Java project
+
+Other than my Pet Project, I also took ownerships of a regular roadmap Java project at work making an internal Java service Kubernetes aware. This was a bunch of smaller changes and adding a bunch of smaller classes and unit tests. Not part of my job description, but it was fun and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.
+
+## Java language and feature takeways
+
+From the new language features and syntaxes there are many personal takeways and I can't possible list them all, but here are some of my personal highlights:
+
+* Static factory methods and public constructors both have their uses, and it pays to understand their relative merits. Often static factories are preferable, so avoid the reflex to provide public constructors without first considering static factories.
+* Java streams were completely new to me. I really love how they can help to produce more compact code. But it's challenging to set the line of when enough is enough. Overuse of streams can have the opposite effect: Code becomes more complex and more difficult to understand. And it is so easy to parallelize the computation of streams by "just" marking the stream as `.parallel()` (more on that later in this post).
+* I think the functional interfaces, which Java provides now, are awesome. Their full powers shine in combination with the use of streams. Over all, there seems to be a tendency for object oriented languages to include more and more functional paradigms. A full book can be written about the Java functional interfaces, so I leave it to you to do any further lookup..
+* Local type inference help to reduce even more boilerplate code. E.g. instead of `Hash<String,Hash<String,String>> foo = new Hash<String,Hash<String,String>>();` it's possible to just write `var foo = new Hash<String,Hash<String,String>>();`
+* Class inheritance isn't the preferred way anymore to structure reusable code. Now, it's composition over inheritance. E.g. use dependency injection (inject one object to another object through it's constructor) or prefer interfaces (which now also support default implementations of methods) over class inheritance.
+* I learned the `try-with-resources` pattern. Very useful ensuring closing resources again correctly. No need anymore for complicated and nested `finally`-blocks which used to be almost impossible to get right previously in case of an error condition (e.g. I/O error somewhere deeply nested in an input or output stream).
+* It's considered to be cleaner to prefer immutable variables. I knew that already, but for Java it always seemed to be a lot of waste of resources (creation of completely new objects whenever states change), but apparently, it's not a big problem. Optimize only when really required. Java also performs a lot of internal tricks for performance optimization here, e.g. interning strings.
+* I learned about the concept of static member classes and the difference to non-static member classes (also sometimes known as inner classes). Non-static member classes have full access of all members of it's outer class (think of closure), whereas static member classes act like completely separate classes without such access but provide the benefit of a nested name which can help to group functionality in the code.
+* I learned about the existence of thread-local variables. These are only available to the current thread and aren't shared to any other threads.
+* I learned to love the new `Optional` type. I knew the concept from Haskell already, where `Maybe` would be the corresponding type. `Optional` helps to avoid `null`-pointers, but come with some (minimal) performance penalty. So at the end, you end up with both, `Optional` types and `null`-pointers in your code (depending on the requirements). But I like to prefer `Optional` over `null`-pointer when "no result" is a valid result from a method.
+* The `enum` type is way more powerful than I thought. Initially I thought an `enum` can only be used to define a list of constants and then to compare an instane of it to another instance of the same. An `enum` is still there to define a list of of constants, but it's also almost like a `class` (you can implement constructors, methods, inherit from other enums). There are quite a lot of use cases...
+* A small but almost the most useful thing I learned is to always use the `@Override` annotation when overriding a method from a parent class. If done, Java helps to detect any typos or type errors when overriding methods. That's really useful and safed me a lot of time debugging.
+* Lambdas are a much cleaner, shorter and easier to read than anonymous classes. There are tons of Java libraries requiring passing instances of (anonymous) classes (e.g. in Swing) to other objects. What makes Lambdas so nice is that they are mostly compatible to the passing of anonymous classes so they are a 1:1 replacement in many instances. Lambdas also play very nicely together with the Java functional interfaces, as each Lambda got a type and the type can be an already existing functional interface (or, if you got a special case, you could define your custom functional interface for your own set of Lambdas, of course).
+
+There are also many ugly corners in Java. Many are doomed to stay there forever due to historic decisions and ensuring backwards compatibility with older versions of the Java language and the Java standard library. 
+
+* Finalizers and cleaners seem obsolete, fragile and still, you can use them.
+* In many cases, extreme caution needs to be taken to minimize the accessibility of class members. You might think that Java provides the best "out-of-the-box" solution for proper encapsulation, but there are so many loop-holes in the language.
+* In the early days, Java did't support generics yet. So what you would use is simply `Object`. Now, Java fully supports generic (for a while already), but you can still cast everything `Object` and back to whatever type you want. That can lead to nasty runtime cast errors. Also, there's the special case to convert between an Array of Object to an Array of String, or from an Array of String to a List of String. Java can't convert between these types automatically and extreme caution needs to be taken when enforcing so (e.g. through explicit type casts or custom methods). In many of these cases, Java would print out warnings which then would need to be manually suppressed via annotations. Programming that way, converting data between old and new best practices, feels clunky.
+* If you don't know what you do, Java streams can be all wrong. Side effects in functions used in streams can be really nasty to debug. Also, don't just blindly add a `.parallel()` to your stream. You need to understand what the stream does and how it exactly works, otherwise parallelizing a stream can impact the performance drastically (in a negative way). There's no language construct preventing you doing the wrong things. That's so much easier to do it right in a pure functional programming language like Haskell.
+* Java is a pretty old language (already), so there are many obstacles to consider. In most cases, when you write an API, every method you program needs to be documented, so that the user won't encounter any surprises using your code. There are just too many exceptions and different outcomes of how Java code can behave. Writing and reading a lot of documentation seems to be quite the overhead, in my humble opinion.
+* Java serialization seems to be broken. It works, and it is still supported by the language, but you better don't use Java's native way of object serialization and deserialization. Unbelievable how much can get wrong here.
+* Being a bit spoiled by Golang's Goroutines, I was a bit shocked about the limitations of the Java threads. They are quite resource hungry and you can't just spin up millions of them, like you would do with Goroutines. I knew this limitation of threads already, but still, I was pretty shocked when I got reminded of them again. Of course, there's a workaround: Just use asynchronous sockets, so that you don't waste a whole thread on a single I/O operation (in my case, waiting for a network response). Golang's runtime does that automatically for you: An OS thread will be re-used for other tasks until the network socket unblocks.
+
+## Conclusion
+
+While (re)learning Java I felt like a student again and I was quite ethusiastic about it in the beginning. I invested around half a year immersing myself intensively with Java (again). The last time I did that was many years ago as an university student. I even won a Silver Prize at work implementing a project in it this year. I feel much more confident now with understand, debugging and patching Java code at work and it gave me a boost in my debugging and troubleshooting skills. 
+
+But still, I think I lost the Java groove on the way. I don't hate Java, but I don't really love programming in it. I will, I guess, always see Java as the necessary "evil" to get stuff done (reading code in order to understand how the service works, adding a tiny feature to make my life easier, add a quick bugfix to overcome an obstacle...).
+
+Although, Java has improved a lot, I still think the code is still too boilerplate. Not mainly because due to lines of code (Golang code tends to be quite repetitive, especially when no generics are used), but due to the levels of abstractions it uses. Class heirachies can be 10 classes or more deep and it's really difficult to understand what the code is really doing. A good test coverage can mitigate the problem partially. Java is used by big enterprises, and so also looks the languages. There are too many libraries, too many abstractions, that bundled with too many legacy abstractions and interfaces and too many exceptions.
+
+I believe Java needs a clean cut. The clean cut shall be incompatible to previous versions of Java and only promote modern best practices without all the legacy burden carried around. Same can be said for other languages, e.g. Perl but in Perl they already attack the problem with use flags which change the behaviour of the language to more modern standards. Or do it like Python, where they had a hard (incompatible) cut from version 2 to version 3. It will be painful for sure. But that would be the only way I would actually enjoy using that language as one of my primary languages to code new stuff in. As of now, my Java will stay limited to very few projects and/or the smaller things already mentioned in this post. 
+
+Am I a Java expert now? No, by far not. But I will have a look at features I don't know once in a while when encountering them by accident.
 
 E-Mail your comments to paul at buetow dot org! :-)
 
 => ../ Go back to the main site
-
-
-static factory methods and public constructors both have their uses, and it pays to understand their relative merits. Often static factories are preferable, so avoid the reflex to provide public constructors without first considering static factories.
-
-
-Other
-
-Streams
-
-Local type inference
-
-Panama for better native code integration
-
-More Java 17 features
-
-Deprecated annotations
-
-Modules 
-
-Clean code stuff (from audible)
-
-Effective java - The book
-Blog series: https://dev.to/kylec32/effective-java-tuesday-let-s-consider-static-factory-methods-170p
-
-Feel like a student (reminded of my student times)
-
-Many things have changed
-
-Book Effective Java
-
-Blog series effective java
-
-Pet project in java
-
-Neovim for Java 
-
-Podcasts 
-
-Oreilly Safara Online Java Concurrency
-
-Reading Blog posts
-
-Quite a log of boilerplate code (e.g. builder pattern)
-
-maven, a new and complex world. Toke a while to get my head around this.
-
-check out books on java concurrency
-
-What I learn
-============
-
-* Refreshing my Java skills
-* Socially ask colleagues for Code Review
-* Learn TypeScript
-* Learn how to create a Grafana dashboard
-
-My Neovim setup for Java
-
-Ref to pet project No prob if total failure the PP as learned Java
-
-Read a lot of internal code und lernte
-
-Kleinere tickets bearbeitet
-
-Funktional programmiert: Javav8/ und neuer reduzieren verbosität
-
-Modern Java in Action
-
-Java joke of long hello world
-
-dev.to as a great resource overall
-
-Shocked about the thread limitations, async to the rescue
-
-Still very long code lines, struggle to keep them short. Looks odd coming from Golang
-
-Also, missing the ability to return multiple values from a method or function.
-
-
-Finished items (from Effective Java):
-
-  k8s java changes
-
-  am i an expert now? no, by far not.
-
-  do i like to program more in java? only if i have to. once in a while check for new stuff, but generally, i don't like to program in java.
-
-Silver prize
-
-Small code changes
