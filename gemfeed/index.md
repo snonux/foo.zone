@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2022-12-24 - Ultra(re)learning Java - My takeaways](./2022-12-24-ultrarelearning-java-my-takeaways.md)  
 [2022-11-24 - I tried (Doom) Emacs, but I switched back to (Neo)Vim](./2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md)  
 [2022-10-30 - Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2022-09-30 - After a bad night's sleep](./2022-09-30-after-a-bad-nights-sleep.md)  
