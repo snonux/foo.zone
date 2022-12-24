@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-25T00:08:40+02:00</updated>
+    <updated>2022-12-25T00:08:49+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java (Spoiler: I am still not the biggest Java fan, but Java has its uses). You can read about my motivations in my 'Creative universe' post:. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 16230 Dec 24 23:50 ../foo.zone-content/gemtext/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi
----
-> -rw-r--r--. 1 paul paul 16235 Dec 25 00:07 ../foo.zone-content/gemtext/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi
-<h1>Ultra(re)learning Java - My takeaways</h1>
+                <h1>Ultra(re)learning Java - My takeaways</h1>
 <p class="quote"><i>Published by Paul at 2022-12-24</i></p>
 <a href="https://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg"><img src="https://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg" /></a><br />
 <p>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:</p>
