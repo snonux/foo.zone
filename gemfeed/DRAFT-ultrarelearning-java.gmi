@@ -10,19 +10,13 @@ I have been programming in Java back in the days as an university student and ev
 
 => https://codeberg.org/snonux/vs-sim VS-Sim: Distributed systems simulator
 
-However, after that, I became a Linux Sysadmin and mainly continued programming in Perl and bash and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash and Golang and a little bit of C and Perl. One of my work-Golang projects (originating from an anual Pet Project contest, where I won a "bronze" prize) has been made available as Open Source software here:
+However, after that, I became a Linux Sysadmin and mainly continued programming in Perl and bash and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash, Puppet and Golang and a little bit of C. 
 
-=> https://dtail.dev
-
-and some thoughts on a Ruby book, which I read last year, you can read here:
-
-=> ./2021-07-04-the-well-grounded-rubyist.gmi The well grounded Rubyist
-
-At my workplace, as an SRE, I usually do Java a lot. However, most of our stack is programmed in Java and our Software Engineers use Java as their primary programming language. I have been reading Java code to understand the software a bit better so that I can apply and suggest work around or fixes to existing issues and bugs.
+At my workplace, as an SRE, I usually don't do Java a lot. However, most of our stack is programmed in Java and our Software Engineers use Java as their primary programming language. I have been reading Java code to understand the software a bit better so that I can apply and suggest work around or fixes to existing issues and bugs.
 
 ## Stuck at Java 1.4
 
-Over time, I felt that I have been missing out on many of the new features which were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and to also learn every new aspect of the language as my main goal. Of course, I wanted to win a Pet Project Prize too, but the main objective was to level up my Java skills (again).
+Over time, I felt that I have been missing out on many of the new features which were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and to also learn every new aspect of the language as my main goal. Of course, I wanted to win a Pet Project Prize too, but the main objective was to level up my Java skills (or to re-learn Java).
 
 ## Ultra(re)lerning & upskilling
 
@@ -34,9 +28,10 @@ This book was recommended by my brother and also by at least another colleague a
 
 ### Java Pub House
 
-During my lunch breaks I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast.
+During my lunch breaks I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast. Especially GraalVM, a high-performance JDK distribution written for Java and other JVM languages, captured my attention. GraalVM can compile Java code into native binaries which can improve performance and also eases the distribution of Java programs. Because of the latter, I should release a VS-Sim GraalVM edition one day through an Linux AppImage ;-).
 
 => https://www.javapubhouse.com
+=> https://www.graalvm.org
 
 ### Read a lot of Java code
 
