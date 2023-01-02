@@ -1,6 +1,6 @@
 # Perl is still a great choice
 
-> Published by Paul at 2022-05-27, last updated at 2022-12-17, Comic source: XKCD
+> Published by Paul at 2022-05-27, last updated at 2023-01-02, Comic source: XKCD
 
 => ./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png
 
@@ -49,7 +49,11 @@ As I pointed out in the previous section, Perl 5 is around for quite some time w
 
 => https://en.wikipedia.org/wiki/Perl_5_version_history Perl 5 version history
 
-As you can see, Perl 5 is under active development. Actually, Perl is a family of two high-level, general-purpose, interpreted, dynamic programming languages. "Perl" refers to Perl 5, but from 2000 to 2019 it also referred to its redesigned "sister language", Perl 6, before the latter's name was officially changed to Raku in October 2019 as the differences between Perl 5 and Perl 6 were too groundbreaking. Raku would be a different topic (mostly out of scope of this blog article) but I at least wanted it to mention here. In my opinion, Raku is the "most powerful" programming language out there (I recently started learning it and intend to use it for some of my future personal programming projects):
+As you can see, Perl 5 is under active development. I can also recommend to have a look at the following book, it summarizes all new Perl features which showed up after Perl v5.10:
+
+=> https://perlschool.com/books/perl-new-features/ Perl New Features by Joshua McAdams and brian d foy
+
+Actually, Perl is a family of two high-level, general-purpose, interpreted, dynamic programming languages. "Perl" refers to Perl 5, but from 2000 to 2019 it also referred to its redesigned "sister language", Perl 6, before the latter's name was officially changed to Raku in October 2019 as the differences between Perl 5 and Perl 6 were too groundbreaking. Raku would be a different topic (mostly out of scope of this blog article) but I at least wanted it to mention here. In my opinion, Raku is the "most powerful" programming language out there (I recently started learning it and intend to use it for some of my future personal programming projects):
 
 => https://raku.org The Raku Programming Language
 
@@ -106,7 +110,7 @@ Here are some reasons why not to chose Perl and look for "better" alternatives:
 
 The sigils `$ @ % &` (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. `$scalar` is a scalar variable (holding a single value), `@array` is an array (holding a list of values), `%hash` holds a list of key-value pairs and `&sub` is for subroutines. A given variable `$ref` can also hold reference to something. `@$arrayref` dereferences a reference to an array, `%$hashref` to a hash, `$$scalarref` to a scalar, `&$subref` dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).
 
-In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (`@`, `@@` and `$`), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. `$.foo` for a scalar object variable with public accessors, $!foo for a private scalar object variable, `@.foo`, `@!foo`, `%.foo`, `%!foo` and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!
+In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of cats is `cat_list`). Even Ruby makes some use of sigils (`@`, `@@` and `$`), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. `$.foo` for a scalar object variable with public accessors, `$!foo` for a private scalar object variable, `@.foo`, `@!foo`, `%.foo`, `%!foo` and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!
 
 => https://www.perl.com/article/on-sigils/
 
