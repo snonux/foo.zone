@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-01-21T16:39:47+02:00</updated>
+    <updated>2023-01-21T16:39:56+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,11 +18,7 @@
         <summary>Art by Joan Stark. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 13573 Jan 21 15:38 ../foo.zone-content/gemtext/gemfeed/2023-01-23-why-grapheneos-rox.gmi
----
-> -rw-r--r--. 1 paul paul 13572 Jan 21 16:39 ../foo.zone-content/gemtext/gemfeed/2023-01-23-why-grapheneos-rox.gmi
-<h1>Why GrapheneOS Rox</h1>
+                <h1>Why GrapheneOS Rox</h1>
 <p class="quote"><i>Published by Paul at 2023-01-21</i></p>
 <pre>
 Art by Joan Stark
