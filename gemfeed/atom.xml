@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-01-21T15:31:52+02:00</updated>
+    <updated>2023-01-21T15:39:37+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -68,6 +68,8 @@ Art by Joan Stark
 <p>The same applies to banking. Many banking apps require Google Play to be available (It might be even more secure to only use banking apps from the Google Play store due to official support and security updates). I rarely need to access my mobile banking app, but once in a while, I need to. As you have guessed by now, I can switch to my banking profile (with Google Play enabled), do what I need to do, and then terminate the session and go back to my default profile, and then my life can go on :-). </p>
 <p>It is great to have the flexibility to use any proprietary Android app when needed. That only applies to around 1% of my phone usage time, but you often don't always know when you need "that one app now". So it's perfect that it's covered with the phone you always have with you. </p>
 <h2>The camera and the cloud </h2>
+<p>I really want my phone to shoot good looking pictures, so that I can later upload them to the Irregular Ninja:</p>
+<a class="textlink" href="https://irregular.ninja">https://irregular.ninja</a><br />
 <p>The stock camera app of the OASP could be better. Photos usually look washed out, and the app lacks features. With GrapheneOS, there are two options:</p>
 <ul>
 <li>Use the official Google camera app with sandboxed Google Play Services running. You will get the full Google experience here.</li>
@@ -1634,11 +1636,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 16784 Dec 24 19:43 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
----
-> -rw-r--r--. 1 paul paul 17018 Jan  2 23:31 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
-<h1>Perl is still a great choice</h1>
+                <h1>Perl is still a great choice</h1>
 <p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2023-01-02, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
@@ -3355,11 +3353,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                1c1
-< -rw-r--r--. 1 paul paul 17643 Dec  8 10:49 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
----
-> -rw-r--r--. 1 paul paul 17814 Jan 21 15:31 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
-<h1>On being Pedantic about Open-Source</h1>
+                <h1>On being Pedantic about Open-Source</h1>
 <p class="quote"><i>Published by Paul at 2021-08-01, last updated at 2023-01-23</i></p>
 <pre>
                                            __
