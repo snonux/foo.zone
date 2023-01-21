@@ -76,6 +76,10 @@ It is great to have the flexibility to use any proprietary Android app when need
 
 ## The camera and the cloud 
 
+I really want my phone to shoot good looking pictures, so that I can later upload them to the Irregular Ninja:
+
+=> https://irregular.ninja
+
 The stock camera app of the OASP could be better. Photos usually look washed out, and the app lacks features. With GrapheneOS, there are two options:
 
 * Use the official Google camera app with sandboxed Google Play Services running. You will get the full Google experience here.

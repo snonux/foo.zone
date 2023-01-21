@@ -1,11 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2022-12-25T00:08:49+02:00</updated>
+    <updated>2023-01-21T15:31:52+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Why GrapheneOS Rox</title>
+        <link href="gemini://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.gmi</id>
+        <updated>2023-01-23T15:31:52+02:00</updated>
+        <author>
+            <name>Paul C. Buetow</name>
+            <email>comments@mx.buetow.org</email>
+        </author>
+        <summary>Art by Joan Stark. .....to read on please visit my site.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Why GrapheneOS Rox</h1>
+<p class="quote"><i>Published by Paul at 2023-01-21</i></p>
+<pre>
+Art by Joan Stark
+               _.===========================._
+            .'`  .-  - __- - - -- --__--- -.  `'.
+        __ / ,'`     _|--|_________|--|_     `'. \
+      /'--| ;    _.'\ |  '         '  | /'._    ; |
+     //   | |_.-' .-'.'      ___      '.'-. '-._| |
+    (\)   \"` _.-` /     .-'`_ `'-.     \ `-._ `"/
+    (\)    `-'    |    .' .-'" "'-. '.    |    `-`
+   (\)            |   / .'(3)(2)(1)'. \   |
+   (\)            |  / / (4) .-.     \ \  |
+   (\)            |  | |(5) (   )'==,J |  |
+  (\)             |  \ \ (6) '-' (0) / /  |
+ (\)              |   \ '.(7)(8)(9).' /   |
+ (\)           ___|    '. '-.._..-' .'    |
+ (\)          /.--|      '-._____.-'      |
+  (\)        (\)  |\_  _  __   _   __  __/|
+ (\)        (\)   |                       |
+(\)_._._.__(\)    |                       |
+ (\\\\jgs\\\)      '.___________________.'
+  '-'-'-'--'
+</pre><br />
+<p>In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </p>
+<a class="textlink" href="https://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.html">On Being Pedantic about Open-Source</a><br />
+<p>What is GrapheneOS?</p>
+<p class="quote"><i>GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It's focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.</i></p>
+<p>GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.</p>
+<a class="textlink" href="https://GrapheneOS.org">https://GrapheneOS.org</a><br />
+<a class="textlink" href="https://LineageOS.org">https://LineageOS.org</a><br />
+<h2>User Profiles</h2>
+<p>GrapheneOS allows configuring up to 32 user profiles (including a guest profile) on a single phone. A profile is a completely different environment within the phone, and it is possible to switch between them instantly. Sessions of a profile can continue running in the background or be fully terminated. Each profile can have completely different settings and different applications installed.</p>
+<p>I use my default profile with primarily open-source applications installed, which I trust. I use another profile for banking (PayPal, various proprietary bank apps, Amazon store app, etc.) and another profile for various Google services (which I try to avoid, but I have to use once in a while). Furthermore, I have configured a profile for Social Media use (that one isn't in my default profile, as otherwise I am tempted to scroll social media all the time, which I try to avoid and only want to do intentionally when switching to the corresponding profile!).</p>
+<p>The neat thing about the profiles is that some can run a sandboxed version of Google Play (see later in this post), while others don't. So some profiles can entirely operate without any Google Play, and only some profiles (to which I rarely switch) have Google Play enabled. </p>
+<p>You notice how much longer (multiple days) your phone can be on a single charge when Google Play Services isn't running in the background. This tells a lot about the background activities and indicates that using Google Play shouldn't be the norm.</p>
+<h2>Proxying some of the Google offerings </h2>
+<p>There's also the case that I am using an app from the Google Play store (as the app isn't available from F-Droid), which doesn't require Google Play Services to run in the background. Here's where I use the Aurora Android store. The Aurora store can be installed through F-Droid. Aurora acts as an anonymous proxy from your phone to the Google Play Store and lets you install apps from there. No Google credentials are required for that!</p>
+<a class="textlink" href="https://f-droid.org">https://f-droid.org</a><br />
+<p>There's a similar solution for watching videos on YouTube. You can use the NewPipe app (also from F-Droid), which acts as an anonymous proxy for watching videos from YouTube. So there isn't any need to install the official YouTube app, and there isn't any need to login to your Google account. What's so bad about the official app? You don't know which data it is sending about you to Google, so it is a privacy concern. </p>
+<h2>Google Play Sandboxing </h2>
+<p>Before switching to GrapheneOS, I had been using LineageOS on one of my phones for a couple of years. Still, I always had to have a secondary personal phone with all of these proprietary apps which (partially) only work with Google Play on the phone (e.g. Banking, Navigation, various travel apps from various Airlines, etc.) somewhere around as I didn't install Google Play on my LineageOS phone due to privacy concerns and only installed apps from the F-Droid store on it. When travelling, I always had to carry around a second phone with Google Play on it, as without it; life would become inconvenient pretty soon. </p>
+<p>With GrapheneOS, it is different. Here, I do not just have a separate user profile, "Google", for various Google apps where Google Play runs, but Google Play also runs in a sandbox!!!</p>
+<p class="quote"><i>GrapheneOS has a compatibility layer providing the option to install and use the official releases of Google Play in the standard app sandbox. Google Play receives no special access or privileges on GrapheneOS instead of bypassing the app sandbox and receiving a massive amount of highly privileged access. Instead, the compatibility layer teaches it how to work within the full app sandbox. It also isn't used as a backend for the OS services as it would be elsewhere since GrapheneOS doesn't use Google Play even when it's installed.</i></p>
+<p>When I need to access Google Play, I can switch to the "Google" profile. Even there, Google is sandboxed to the absolute minimum permissions required to be operational, which gives additional privacy protection.</p>
+<p>The sad truth is that Google Maps is still the best navigation app. When driving unknown routes, I can switch to my Google profile to use Google Maps. I don't need to do that when going streets I know about, but it is crucial (for me) to have Google Maps around when driving to a new destination.</p>
+<p>Also, Google Translate and Google Lens are still the best translation apps I know. I just recently relocated to another country, where I am still learning the language, so Google Lens has been proven very helpful on various occasions by ad-hoc translating text into English or German for me.</p>
+<p>The same applies to banking. Many banking apps require Google Play to be available (It might be even more secure to only use banking apps from the Google Play store due to official support and security updates). I rarely need to access my mobile banking app, but once in a while, I need to. As you have guessed by now, I can switch to my banking profile (with Google Play enabled), do what I need to do, and then terminate the session and go back to my default profile, and then my life can go on :-). </p>
+<p>It is great to have the flexibility to use any proprietary Android app when needed. That only applies to around 1% of my phone usage time, but you often don't always know when you need "that one app now". So it's perfect that it's covered with the phone you always have with you. </p>
+<h2>The camera and the cloud </h2>
+<p>The stock camera app of the OASP could be better. Photos usually look washed out, and the app lacks features. With GrapheneOS, there are two options:</p>
+<ul>
+<li>Use the official Google camera app with sandboxed Google Play Services running. You will get the full Google experience here.</li>
+<li>Or, just use the default GrapheneOS camera app.</li>
+</ul>
+<p>The GrapheneOS camera app is much better than the stock OASP camera app. I have been comparing the photo quality of my Pixel phone under LineageOS and GrapheneOS, and the differences are pronounced. I didn't compare the quality with the official Google camera app, but I have seen some comparison videos and the differences seem like they aren't groundbreaking. </p>
+<p>For automatic backups of my photos, I am relying on a self-hosted instance of NextCloud (with a client app available via F-Droid). So there isn't any need to rely on any Google apps and services (Google Play Photos or Google Camera app) anymore, and that's great!</p>
+<a class="textlink" href="https://nextcloud.com">https://nextcloud.com</a><br />
+<p>I also use NextCloud to synchronize my notes (NextCloud Notes), my RSS news feeds (NextCloud News) and contacts (DAVx5). All apps required are available in the F-Droid store.</p>
+<h2>Fine granular permissions</h2>
+<p>Another great thing about GrapheneOS is that, besides putting your apps into different profiles, you can also restrict network access and configure storage scopes per app individually.</p>
+<p>For example, let's say you are installing that one proprietary app from the Google Play Store through the Aurora store, and then you want to ensure that the app doesn't send data "home" through the internet. Nothing is easier to do than that. Just remove network access permissions from that only app.</p>
+<p>The app also wants to store and read some data from your phone (e.g. it could be a proprietary app for enhancing photos, and therefore storage access to a photo folder would be required). In GrapheneOS, you can configure a storage scope for that particular app, e.g. only read and write from one folder but still forbid access to all other folders on your phone.</p>
+<h2>Termux</h2>
+<p>Termux can be installed on any Android phone through F-Droid, so it doesn't need to be a GrapheneOS phone. But I have to mention Termux here as it significantly adds value to my phone experience. </p>
+<p class="quote"><i>Termux is an Android terminal emulator and Linux environment app that works directly with no rooting or setup required. A minimal base system is installed automatically - additional packages are available using the APT package manager.</i></p>
+<a class="textlink" href="https://termux.dev">https://termux.dev</a><br />
+<p>In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new block post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple <span class="inlinecode">git push</span> once online (e.g. after the plane landed) again.</p>
+<p>There are Pixel phones with a screen size of 6", and that's decent enough for occasional use like that, and everything (the phone, the BT keyboard, maybe an external battery pack) all fit nicely in a small travel pocket.</p>
+<h2>So, why not use a pure Linux phone?</h2>
+<p>Strictly speaking, an Android phone is a Linux phone, but it's heavily modified and customized. For me, a "pure" Linux phone is a more streamlined Linux kernel running in a distribution like Ubuntu Touch or Mobian. </p>
+<p>A pure Linux phone, e.g. with Ubuntu Touch installed, e.g. on a PinePhone, Fairphone, the Librem 5 or the Volla phone, is very appealing to me. And they would also provide an even better Linux experience than Termux does. Some support running LineageOS within an Anbox, enabling you to run various proprietary Android apps occasionally within Linux.</p>
+<a class="textlink" href="https://ubuntu-touch.io/">Ubuntu Touch</a><br />
+<a class="textlink" href="https://en.wikipedia.org/wiki/Linux_for_mobile_devices">More Linux distributions for mobile devices </a><br />
+<p>But here, Google Play would not be sandboxed; you could not configure individual network permissions and storage scopes like in GrapheneOS. Pure Linux-compatible phones usually come with a crappy camera, and the battery life is generally pretty bad (only a few hours). Also, no big tech company pushes the development of Linux phones. Everything relies on hobbyists, whereas multiple big tech companies put a lot of effort into the Android project, and a lot of code also goes into the Android Open-Source project.  </p>
+<p>Currently, pure Linux phones are only a nice toy to tinker with but are still not ready (will they ever?) to be the daily driver. SailfishOS may be an exception; I played around with it in the past. It is pretty usable, but it's not an option for me as it is partly a proprietary operating system.</p>
+<a class="textlink" href="https://sailfishos.org">SailfishOS</a><br />
+<h2>Small GrapheneOS downsides </h2>
+<p>Sometimes, switching a profile to use a different app is annoying, and you can't copy and paste from the system clipboard from one profile to another. But that's a small price I am willing to pay!</p>
+<p>Another thing is that GrapheneOS can only run on Google Pixel phones, whereas LineageOS can be installed on a much larger variety of hardware. But on the other hand, GrapheneOS works very well on Pixel phones. The GrapheneOS team can concentrate their development efforts on a smaller set of hardware which then improves the software's quality (best example: The camera app).</p>
+<p>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </p>
+<p>E-Mail your comments to paul at buetow dot org! :-)</p>
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Ultra(re)learning Java - My takeaways</title>
         <link href="gemini://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi" />
@@ -1537,8 +1634,12 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and 'perl' the name of the interpreter or the interpreter command.. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Perl is still a great choice</h1>
-<p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2022-12-17, Comic source: XKCD</i></p>
+                1c1
+< -rw-r--r--. 1 paul paul 16784 Dec 24 19:43 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+---
+> -rw-r--r--. 1 paul paul 17018 Jan  2 23:31 ../foo.zone-content/gemtext/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi
+<h1>Perl is still a great choice</h1>
+<p class="quote"><i>Published by Paul at 2022-05-27, last updated at 2023-01-02, Comic source: XKCD</i></p>
 <a href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png"><img src="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice/regular_expressions.png" /></a><br />
 <p>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class="inlinecode">perl</span> the name of the interpreter or the interpreter command.</p>
 <p>Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:</p>
@@ -1568,7 +1669,9 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <h2>Is Perl abandoned?</h2>
 <p>As I pointed out in the previous section, Perl 5 is around for quite some time without any new major version released. This can lead to the impression that development is not progressing and that the project is abandoned. Nothing can be further from the truth. Perl 5.000 was released in 1994 and the latest version (as of this writing) Perl 5.34.1 was released two months ago in 2022. You can check the version history on Wikipedia. You will notice releases being made regularly:</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Perl_5_version_history">Perl 5 version history</a><br />
-<p>As you can see, Perl 5 is under active development. Actually, Perl is a family of two high-level, general-purpose, interpreted, dynamic programming languages. "Perl" refers to Perl 5, but from 2000 to 2019 it also referred to its redesigned "sister language", Perl 6, before the latter's name was officially changed to Raku in October 2019 as the differences between Perl 5 and Perl 6 were too groundbreaking. Raku would be a different topic (mostly out of scope of this blog article) but I at least wanted it to mention here. In my opinion, Raku is the "most powerful" programming language out there (I recently started learning it and intend to use it for some of my future personal programming projects):</p>
+<p>As you can see, Perl 5 is under active development. I can also recommend to have a look at the following book, it summarizes all new Perl features which showed up after Perl v5.10:</p>
+<a class="textlink" href="https://perlschool.com/books/perl-new-features/">Perl New Features by Joshua McAdams and brian d foy</a><br />
+<p>Actually, Perl is a family of two high-level, general-purpose, interpreted, dynamic programming languages. "Perl" refers to Perl 5, but from 2000 to 2019 it also referred to its redesigned "sister language", Perl 6, before the latter's name was officially changed to Raku in October 2019 as the differences between Perl 5 and Perl 6 were too groundbreaking. Raku would be a different topic (mostly out of scope of this blog article) but I at least wanted it to mention here. In my opinion, Raku is the "most powerful" programming language out there (I recently started learning it and intend to use it for some of my future personal programming projects):</p>
 <a class="textlink" href="https://raku.org">The Raku Programming Language</a><br />
 <p>So it means that Perl and Raku now exist in parallel. They influence each other, but are different programming languages now. So why not just all use Raku instead of Perl? There are still a couple of reasons of why to choose Perl over Raku:</p>
 <ul>
@@ -1612,7 +1715,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://github.com/Ovid/Cor">Cor - Bringing modern OOP to the Perl Core</a><br />
 <h2>Why all the sigils? It looks like an exploding ASCII factory!!</h2>
 <p>The sigils <span class="inlinecode">$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class="inlinecode">$scalar</span> is a scalar variable (holding a single value), <span class="inlinecode">@array</span> is an array (holding a list of values), <span class="inlinecode">%hash</span> holds a list of key-value pairs and <span class="inlinecode">&amp;sub</span> is for subroutines. A given variable <span class="inlinecode">$ref</span> can also hold reference to something. <span class="inlinecode">@$arrayref</span> dereferences a reference to an array, <span class="inlinecode">%$hashref</span> to a hash, <span class="inlinecode">$$scalarref</span> to a scalar, <span class="inlinecode">&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</p>
-<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of socks is "sock_list"). Even Ruby makes some use of sigils (<span class="inlinecode">@</span>, <span class="inlinecode">@@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, $!foo for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
+<p>In most other programming languages, you won't know instantly what's the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of cats is <span class="inlinecode">cat_list</span>). Even Ruby makes some use of sigils (<span class="inlinecode">@</span>, <span class="inlinecode">@@</span> and <span class="inlinecode">$</span>), but that's for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class="inlinecode">$.foo</span> for a scalar object variable with public accessors, <span class="inlinecode">$!foo</span> for a private scalar object variable, <span class="inlinecode">@.foo</span>, <span class="inlinecode">@!foo</span>, <span class="inlinecode">%.foo</span>, <span class="inlinecode">%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don't let them scare you off - they are there to help you!</p>
 <a class="textlink" href="https://www.perl.com/article/on-sigils/">https://www.perl.com/article/on-sigils/</a><br />
 <h2>Where do I personally still use perl?</h2>
 <ul>
@@ -3252,8 +3355,12 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. . .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>On being Pedantic about Open-Source</h1>
-<p class="quote"><i>Published by Paul at 2021-08-01 10:37:58 GMT</i></p>
+                1c1
+< -rw-r--r--. 1 paul paul 17643 Dec  8 10:49 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
+---
+> -rw-r--r--. 1 paul paul 17814 Jan 21 15:31 ../foo.zone-content/gemtext/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi
+<h1>On being Pedantic about Open-Source</h1>
+<p class="quote"><i>Published by Paul at 2021-08-01, last updated at 2023-01-23</i></p>
 <pre>
                                            __
                                _____....--' .'
@@ -3290,6 +3397,8 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p>E-Mail your comments to paul at buetow dot org! :-)</p>
 <p>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don't work on my devices.</p>
 <h2>What about mobile?</h2>
+<p class="quote"><i>Update 2023-01-21: Check out my newer post about GrapheneOS, which solves some of my dilemmas</i></p>
+<a class="textlink" href="https://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html">Why GrapheneOS Rox</a><br />
 <p>I struggle to go 100% open-source on my Smartphone. I use a Samsung phone with the stock Android as provided by Samsung. I love the device as it is large enough to use as a portable reading and note-taking device, and it can also take decent pictures. As a cloud backup solution, I have my own NextCloud server (open-source). Android is mainly open-source software, but many closed parts are still included. I replaced most of the standard apps with free and open-source variants from the F-Droid store though.</p>
 <p>I could get a LineageOS based phone to get rid of the proprietary Android parts (I tried that out a couple of times in the past). But then a couple of convenient apps, such as Google Maps or Banking or Skype or the E-Ticket apps of various Airlines, various review apps when searching for restaurants, Audible (I think Audible offers an excellent service), etc., won't work anymore. The proprietary Google Maps is still the best maps app, even though there are open alternatives available. It's not that I couldn't live without these apps, but they make life a lot more convenient.</p>
 <h2>Know the alternatives</h2>
