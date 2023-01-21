@@ -3,9 +3,15 @@ body {
   width: 99%;
   max-width: 1024px;
   padding: 0 20px;
+  border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+  border-width: 1px;
   border-style: solid;
-  border-width: 2px;
-  border-color: #eeeeee;
+}
+
+h1, h2, h3 {
+   background: -webkit-linear-gradient(#f6b73c, #4d9f0c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 a {
@@ -60,9 +66,22 @@ img {
   border: 1px solid #333333;
 }
 
+pre {
+  font-family: monospace;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  margin-left: 23px; 
+  margin-right: 23px; 
+  padding: 23px; 
+  border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
+  border-width: 3px;
+  border-style: solid;
+}
+
 span.inlinecode {
-  border: 2px solid #aaaaaa;
+  border: 1px solid #f6b73c;
   color: #ffffff;
-  padding: 1px; 
+  padding: 1px;
   background-color: #000000;
 }
