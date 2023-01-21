@@ -30,6 +30,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2023-01-23 - Why GrapheneOS Rox](./gemfeed/2023-01-23-why-grapheneos-rox.md)  
 [2022-12-24 - Ultra(re)learning Java - My takeaways](./gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.md)  
 [2022-11-24 - I tried (Doom) Emacs, but I switched back to (Neo)Vim](./gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md)  
 [2022-10-30 - Installing DTail on OpenBSD](./gemfeed/2022-10-30-installing-dtail-on-openbsd.md)  
