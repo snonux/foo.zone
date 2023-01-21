@@ -109,7 +109,7 @@ Termux can be installed on any Android phone through F-Droid, so it doesn't need
 
 => https://termux.dev
 
-In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new block post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple `git push` once online (e.g. after the plane landed) again.
+In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new blog post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple `git push` once online (e.g. after the plane landed) again.
 
 There are Pixel phones with a screen size of 6", and that's decent enough for occasional use like that, and everything (the phone, the BT keyboard, maybe an external battery pack) all fit nicely in a small travel pocket.
 
