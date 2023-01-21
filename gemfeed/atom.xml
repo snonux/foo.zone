@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-01-21T15:39:37+02:00</updated>
+    <updated>2023-01-21T16:39:47+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,11 @@
         <summary>Art by Joan Stark. .....to read on please visit my site.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Why GrapheneOS Rox</h1>
+                1c1
+< -rw-r--r--. 1 paul paul 13573 Jan 21 15:38 ../foo.zone-content/gemtext/gemfeed/2023-01-23-why-grapheneos-rox.html
+---
+> -rw-r--r--. 1 paul paul 13572 Jan 21 16:39 ../foo.zone-content/gemtext/gemfeed/2023-01-23-why-grapheneos-rox.html
+<h1>Why GrapheneOS Rox</h1>
 <p class="quote"><i>Published by Paul at 2023-01-21</i></p>
 <pre>
 Art by Joan Stark
@@ -87,7 +91,7 @@ Art by Joan Stark
 <p>Termux can be installed on any Android phone through F-Droid, so it doesn't need to be a GrapheneOS phone. But I have to mention Termux here as it significantly adds value to my phone experience. </p>
 <p class="quote"><i>Termux is an Android terminal emulator and Linux environment app that works directly with no rooting or setup required. A minimal base system is installed automatically - additional packages are available using the APT package manager.</i></p>
 <a class="textlink" href="https://termux.dev">https://termux.dev</a><br />
-<p>In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new block post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple <span class="inlinecode">git push</span> once online (e.g. after the plane landed) again.</p>
+<p>In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new blog post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple <span class="inlinecode">git push</span> once online (e.g. after the plane landed) again.</p>
 <p>There are Pixel phones with a screen size of 6", and that's decent enough for occasional use like that, and everything (the phone, the BT keyboard, maybe an external battery pack) all fit nicely in a small travel pocket.</p>
 <h2>So, why not use a pure Linux phone?</h2>
 <p>Strictly speaking, an Android phone is a Linux phone, but it's heavily modified and customized. For me, a "pure" Linux phone is a more streamlined Linux kernel running in a distribution like Ubuntu Touch or Mobian. </p>
