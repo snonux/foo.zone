@@ -77,11 +77,11 @@ pre {
   border-image: linear-gradient(#f6b73c, #4d9f0c) 30;
   border-width: 3px;
   border-style: solid;
+  color: grey;
 }
 
 span.inlinecode {
-  border: 1px solid #f6b73c;
-  color: #ffffff;
+  border: 1px solid #000000;
   padding: 1px;
-  background-color: #000000;
+  color: grey;
 }
