@@ -17,8 +17,6 @@
                                   -@-        [kom...@uwec.edu]
 ```
 
-# How to shut down after work
-
 Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won't just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers' interest that you fully relax and shut down after work. 
 
 ## Have a shutdown routine
