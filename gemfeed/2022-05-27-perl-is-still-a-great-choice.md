@@ -1,6 +1,6 @@
 # Perl is still a great choice
 
-> Published by Paul at 2022-05-27, last updated at 2023-01-02, Comic source: XKCD
+> Published by Paul at 2022-05-27, last updated at 2023-01-28, Comic source: XKCD
 
 [![./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
 
@@ -78,6 +78,10 @@ The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As f
 [What happened to Perl 7? (maybe have to use `use v7;`)](http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html)  
 
 > Update 2022-12-10: A reader pointed out, that Perl 7 needs to provide a big improvement to earn and keep the attention for a major version bump.
+
+> Update 2023-01-28: Meanwhile, I was also reading brian d foy's Perl New Feature book. It nicely presents all new features added to Perl since `v5.10`.
+
+[Perl New Features](https://www.leanpub.com/perl_new_features)  
 
 ## Why use Perl as there are better alternatives?
 

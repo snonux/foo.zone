@@ -56,10 +56,11 @@ You won't find any links on this site because, over time, the links will break. 
 
 I didn't read them from the beginning to the end, but I am using them to look up things.
 
+* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
 * The Linux Programming Interface; Michael Kerrisk; No Starch Press
 * Relayd and Httpd Mastery; Michael W Lucas
+* Implementing Service Level Objectives; Alex Hidalgo; O'Reilly
 * Algorithms; Robert Sedgewick, Kevin Wayne; Addison Wesley
-* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
 
 ## Self-development and soft-skills books
 
@@ -119,14 +120,14 @@ These are not whole books, but guides (smaller or larger) which I found very use
 
 ## Podcasts I like
 
-* BSD Now
-* CRE: Technik, Kultur, Gesellschaft (de)
-* Deep Questions with Cal Newport
-* FLOSS Weekly
-* Go Time (Changelog)
-* Java Pub House
-* Ship it (Changelog)
 * The Minimalists
+* Ship it (Changelog)
+* Positiv wirkt (de)
+* Java Pub House
+* Go Time (Changelog)
+* FLOSS Weekly
+* Deep Questions with Cal Newport
+* CRE: Technik, Kultur, Gesellschaft (de)
 
 ## Fiction and more books
 
