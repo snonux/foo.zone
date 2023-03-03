@@ -134,6 +134,6 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 [Why Perl is still relevant in 2022](https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/)  
 
-E-Mail your comments to paul at buetow dot org! :-)
+E-Mail your comments to hi@paul.cyou :-)
 
 [Go back to the main site](../)  

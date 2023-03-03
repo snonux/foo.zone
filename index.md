@@ -13,8 +13,8 @@
 
 Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
 
-[My contact information (via HTTP)](https://paul.buetow.org)  
-[My contact information (via Gemini)](gemini://paul.buetow.org)  
+[My contact information (via HTTP)](https://paul.cyou)  
+[My contact information (via Gemini)](gemini://paul.cyou)  
 [My list of resources](./resources.md)  
 
 If you reach this site via the modern web, please read this:

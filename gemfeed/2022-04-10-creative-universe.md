@@ -137,6 +137,6 @@ Relevant books I can recommend are:
 * The Off Switch; Mark Cropley; Virgin Books
 * Ultralearning; Scott Young; Thorsons
 
-E-Mail your comments to paul at buetow dot org! :-)
+E-Mail your comments to hi@paul.cyou :-)
 
 [Go back to the main site](../)  

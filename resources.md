@@ -9,10 +9,10 @@ You won't find any links on this site because, over time, the links will break. 
 ```
        .--.           .---.        .-.
    .---|--|   .-.     | A |  .---. |~|    .--.
-.--|===|Ch|---|_|--.__| S |--|:::| |~|-==-|==|---.
-|%%|NT2|oc|===| |~~|%%| C |--|   |_|~|CATS|  |___|-.
-|  |   |ah|===| |==|  | I |  |:::|=| |    |GB|---|=|
-|  |   |ol|   |_|__|  | I |__|   | | |    |  |___| |
+.--|===|Go|---|_|--.__| S |--|:::| |~|-==-|==|---.
+|%%|Lin|la|===| |~~|%%| C |--|   |_|~|Perl|  |___|-.
+|  |ux |ng|===| |==|  | I |  |k8s|=| | 7  |Ra|---|=|
+|  |   |  |   |_|__|  | I |__|   | | |    |ku|___| |
 |~~|===|--|===|~|~~|%%|~~~|--|:::|=|~|----|==|---|=|
 ^--^---'--^---^-^--^--^---'--^---^-^-^-==-^--^---^-'hjw
 ```
@@ -68,6 +68,7 @@ I didn't read them from the beginning to the end, but I am using them to look up
 * The Power of Now; Eckhard Tolle; Yellow Kite
 * Digital Minimalism; Cal Newport; Portofolio Penguin
 * Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* Influence without Authority; A. Cohen, D. Bradford; Wiley
 * The Bullet Journal Method; Ryder Carroll; Fourth Estate
 * Soft Skills; John Sommez; Manning Publications
 * Ultralearning; Scott Young; Thorsons

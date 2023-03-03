@@ -98,6 +98,6 @@ Big C software projects, like Linux, also follow some OOP techniques:
 
 C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.
 
-E-Mail your comments to paul at buetow dot org! :-)
+E-Mail your comments to hi@paul.cyou :-)
 
 [Go back to the main site](../)  

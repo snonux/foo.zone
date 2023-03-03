@@ -103,6 +103,6 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 [https://dtail.dev](https://dtail.dev)  
 
-E-Mail your comments to paul at buetow dot org! :-)
+E-Mail your comments to hi@paul.cyou :-)
 
 [Go back to the main site](../)  
