@@ -93,7 +93,7 @@ There is, however, a trap. The more you spend time with things, the more these t
 
 Enough ranted for now!
 
-E-Mail your comments to paul at buetow dot org! :-)
+E-Mail your comments to hi@paul.cyou :-)
 
 > Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 
