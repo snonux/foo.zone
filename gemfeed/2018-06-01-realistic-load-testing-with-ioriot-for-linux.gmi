@@ -1,6 +1,6 @@
 # Realistic load testing with I/O Riot for Linux
 
-> Author: Paul; Published: 2018-06-01T14:50:29+01:00; Updated: 2021-05-08
+> Published at 2018-06-01T14:50:29+01:00; Updated at 2021-05-08
 
 ```
        .---.
