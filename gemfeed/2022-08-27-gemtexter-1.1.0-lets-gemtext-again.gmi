@@ -1,1 +1,91 @@
-Published at 2022-08-27T18:25:57+01:00
+# Gemtexter 1.1.0 - Let's Gemtext again
+
+> Author: Paul; Published: 2022-08-27T18:25:57+01:00
+
+```
+-=[ typewriter ]=-  1/98
+
+       .-------.
+      _|~~ ~~  |_
+    =(_|_______|_)=
+      |:::::::::|
+      |:::::::[]|
+      |o=======.|
+ jgs  `"""""""""`
+```
+
+I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my static site generator written in GNU Bash:
+
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi Gemtexter - One Bash script to rule it all
+=> https://codeberg.org/snonux/gemtexter
+
+It has been around a year since I released the first version `1.0.0`. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.
+
+## What's new?
+
+### Automatic check for GNU version requirements
+
+Gemtexter relies on the GNU versions of the tools `grep`, `sed` and `date` and it also requires the Bash shell in version 5 at least. That's now done in the `check_dependencies()` function:
+
+```
+check_dependencies () {
+    # At least, Bash 5 is required
+    local -i required_version=5
+    IFS=. read -ra version <<< "$BASH_VERSION"
+    if [ "${version[0]}" -lt $required_version ]; then
+        log ERROR "ERROR, \"bash\" must be at least at major version $required_version!"
+        exit 2
+    fi
+
+    # These must be the GNU versions of the commands
+    for tool in $DATE $SED $GREP; do
+        if ! $tool --version | grep -q GNU; then
+            log ERROR "ERROR, \"$tool\" command is not the GNU version, please install!"
+            exit 2
+        fi
+    done
+}
+```
+
+Especially macOS users didn't read the `README` carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.
+
+### Backticks now produce `inline code blocks` in the HTML output
+
+The Gemtext format doesn't support inline code blocks, but Gemtexter now produces `inline code blocks` (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.
+
+### Cache for Atom feed generation
+
+The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext `.gmi` file to decide whether anything of the content has changed or not.
+
+### Input filter support
+
+Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:
+
+```
+./gemtexter --generate '.*hello.*'
+```
+
+### Revamped `git` support
+
+The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the `README` for more information.
+
+### Addition of `htmlextras` and web font support
+
+The `htmlextras` folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.
+
+### Sub-section support
+
+It's now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:
+
+=> https://foo.zone The foo.zone main site
+=> https://foo.zone/notes The notes sub-section (with different fonts)
+
+### More
+
+Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. 
+
+Overall I think it's a pretty solid `1.1.0` release without anything groundbreaking (therefore no major version jump). But I am happy about it.
+
+E-Mail your comments to hi@paul.cyou :-)
+
+=> ../ Go back to the main site
