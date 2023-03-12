@@ -1,6 +1,6 @@
 # Jails and ZFS with Puppet on FreeBSD
 
-> Published by Paul at 2016-04-09 20:29:47 GMT
+> Author: Paul; Published: 2016-04-09T18:29:47+01:00
 
 ```
             __     __
