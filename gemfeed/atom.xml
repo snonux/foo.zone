@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-15T01:21:44+02:00</updated>
+    <updated>2023-03-15T01:31:08+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -78,7 +78,7 @@
 <p>How to motivate others to contribute something (e.g. ideas to a startup):</p>
 <p class="quote"><i>A kindly, old stranger was walking through the land when he came upon a village. As he entered, the villagers moved towards their homes, locking doors and windows. The stranger smiled and asked, why are you all so frightened. I am a simple traveler, looking for a soft place to stay for the night and a warm place for a meal. "There's not a bite to eat in the whole province," he was told. "We are weak and our children are starving. Better keep moving on." "Oh, I have everything I need," he said. "In fact, I was thinking of making some stone soup to share with all of you." He pulled an iron cauldron from his cloak, filled it with water, and began to build a fire under it. Then, with great ceremony, he drew an ordinary-looking stone from a silken bag and dropped it into the water. By now, hearing the rumor of food, most of the villagers had come out of their homes or watched from their windows. As the stranger sniffed the "broth" and licked his lips in anticipation, hunger began to overcome their fear. "Ahh," the stranger said to himself rather loudly, "I do like a tasty stone soup. Of course, stone soup with cabbage -- that's hard to beat." Soon a villager approached hesitantly, holding a small cabbage he'd retrieved from its hiding place, and added it to the pot. "Wonderful!!" cried the stranger. "You know, I once had stone soup with cabbage and a bit of salt beef as well, and it was fit for a king." The village butcher managed to find some salt beef . . .  And so it went, through potatoes, onions, carrots, mushrooms, and so on, until there was indeed a delicious meal for everyone in the village to share. The village elder offered the stranger a great deal of money for the magic stone, but he refused to sell it and traveled on the next day. As he left, the stranger came upon a group of village children standing near the road. He gave the silken bag containing the stone to the youngest child, whispering to a group, "It was not the stone, but the villagers that had performed the magic." </i></p>
 <p>By working together, everyone contributes what they can, achieving a greater good together.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -144,7 +144,7 @@
 <p>Every day you gave your best was good; the day's outcome doesn't matter. What matters is that you know you gave your best and are closer to your goals than the previous day. This gives you a sense of progress and accomplishment.</p>
 <p>There are some days at work you feel drained afterwards and think you didn't progress towards your goals at all. It's more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.</p>
 <p> </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -244,7 +244,7 @@ Art by Joan Stark
 <p>Sometimes, switching a profile to use a different app is annoying, and you can't copy and paste from the system clipboard from one profile to another. But that's a small price I am willing to pay!</p>
 <p>Another thing is that GrapheneOS can only run on Google Pixel phones, whereas LineageOS can be installed on a much larger variety of hardware. But on the other hand, GrapheneOS works very well on Pixel phones. The GrapheneOS team can concentrate their development efforts on a smaller set of hardware which then improves the software's quality (best example: The camera app).</p>
 <p>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -327,7 +327,7 @@ Art by Joan Stark
 <a class="textlink" href="https://projectlombok.org/">https://projectlombok.org/</a><br />
 <p>Java needs a clean cut. The clean cut shall be incompatible with previous versions of Java and only promote modern best practices without all the legacy burden carried around. The same can be said for other languages, e.g. Perl, but in Perl, they already attack the problem with the use of flags which change the behaviour of the language to more modern standards. Or do it like Python, where they had a hard (incompatible) cut from version 2 to version 3. It will be painful, for sure. But that would be the only way I would enjoy using that language as one of my primary languages to code new stuff regularly. Currently, my Java will stay limited to very few projects and the more minor things already mentioned in this post. </p>
 <p>Am I a Java expert now? No, by far not. But I am better now than before :-).</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -412,7 +412,7 @@ nmap ,i !wpbpaste&lt;CR&gt;
 <p>Vim/NeoVim also comes with a very high degree of customization options, but to a lesser extreme than Emacs (but still, a much higher degree than most other editors out there). If you want the best text editor in the world, which can also be tweaked to be a decent IDE, you are only looking for: Pick Vim or NeoVim! You would also need to invest a lot of time in learning, tweaking and customizing Vim/NeoVim, but that's a little more straightforward, and the result is much more lightweight once you get used to the "Vi way of doing things" you never would want to change back. I haven't tried the Emacs vanilla keystrokes, but they are terrible (that's probably one of the reasons why Doom Emacs uses Vim keybindings by default).</p>
 <p class="quote"><i>Update: One reader recommended to have a look at NvChad. NvChad is a NeoVim config written in Lua aiming to provide a base configuration with very beautiful UI and blazing fast startuptime (around <span class="inlinecode">0.02</span> secs ~ <span class="inlinecode">0.07</span> secs). They tweak UI plugins such as telescope, nvim-tree, bufferline etc well to provide an aesthetic UI experience. That sounds interesting!</i></p>
 <a class="textlink" href="https://github.com/NvChad/NvChad">https://github.com/NvChad/NvChad</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
 <h1>Appendix</h1>
 <p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:</p>
@@ -769,7 +769,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <a class="textlink" href="https://github.com/mimecast/dtail">https://github.com/mimecast/dtail</a><br />
 <a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -844,7 +844,7 @@ jgs                (________\  \
 <p>It's easier to forget things on those days, so everything should be written down so that it can be worked off later. Things written down will not be overlooked!</p>
 <h2>Social media</h2>
 <p>I wouldn't say I like checking social media, as it can consume a lot of time and can become addictive. But once in a while, I want to catch up with my "networks". After a bad night's sleep, it's the perfect time to check your social media. Once done, you don't have to do it anymore for the next couple of days!</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -921,7 +921,7 @@ check_dependencies () {
 <h3>More</h3>
 <p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
 <p>Overall I think it's a pretty solid <span class="inlinecode">1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -1529,7 +1529,7 @@ rex commons
 <p>ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</p>
 <p>OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.</p>
 <p>Why re-inventing the wheel? I love that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -1771,7 +1771,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://konpeito.media">https://konpeito.media</a><br />
 <p>If you wonder what Gemini is:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispae</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -1881,7 +1881,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
 <p class="quote"><i>Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be shorter than Perl code, though!</i></p>
 <a class="textlink" href="https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/">Why Perl is still relevant in 2022</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -1989,7 +1989,7 @@ learn () {
 <li>The Off Switch; Mark Cropley; Virgin Books</li>
 <li>Ultralearning; Scott Young; Thorsons</li>
 </ul>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -2242,7 +2242,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <p>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</p>
 <p>Thanks!</p>
 <p>Paul</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -2409,7 +2409,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class="textlink" href="https://asteroidos.org/">Asteroids OS - Open source smartphone OS</a><br />
 <a class="textlink" href="https://www.dragonflybsd.org/">DragonFly BSD - Fork of FreeBSD 4</a><br />
 <a class="textlink" href="http://wiki.postmarketos.org/wiki/Phosh">Phosh (on postmarketOS) - A true Linux shell for the smartphone</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -2457,7 +2457,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <p>As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water sports so much. Well, on the other hand, I now may have to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don't expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.</p>
 <h2>What about my old hosts</h2>
 <p>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won't change any time soon. I don't know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -2870,7 +2870,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
 1
 </pre><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -2963,7 +2963,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <h2>More</h2>
 <p>Another blog post worth reading:</p>
 <a class="textlink" href="https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html">https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -3348,7 +3348,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 .10
 </pre><br />
 <p>See you later for the next post of this series.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -3428,7 +3428,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Retrospective</h2>
 <p>For every major incident, you need to follow up with an incident retrospective. A blame-free, detailed description of exactly what went wrong to cause the incident, along with a list of steps to take to prevent a similar incident from occurring again in the future.</p>
 <p>This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -3499,7 +3499,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Other relevant readings</h2>
 <a class="textlink" href="https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html">Is the madness ever going to end?</a><br />
 <p>Enough ranted for now!</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <p class="quote"><i>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </i></p>
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
@@ -3552,7 +3552,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <p>Security bugs in open-source projects are exposed to the public and fixed quickly, while we don't know exactly what happens to security bugs in closed-source ones. Still, hackers and security specialists can find them through reverse engineering and penetration testing. Overall, thinking of security, In my opinion it is still better to prefer open-source software because the more significant the project, the higher the probability that security bugs are found and fixed as more parties are looking into it. Furthermore, provided you have the necessary resources, you could still deduct an audit by yourself. The latter especially happens when companies with its own security and penetration testing departments are evaluating the use of open-source. This is something not every company can afford though.</p>
 <h2>Always watch out for open-source alternatives</h2>
 <p>Do you need Microsoft Word? Why don't you just use the Vim text editor or GNU Emacs to write your letters? If that's too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don't know why that is; please....</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <p>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don't work on my devices.</p>
 <h2>What about mobile?</h2>
 <p class="quote"><i>Update 2023-01-21: Check out my newer post about GrapheneOS, which solves some of my dilemmas</i></p>
@@ -3583,7 +3583,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <h2>Conclusion</h2>
 <p>Should you be pedantic about open-source software? It depends. It depends on your fundamental values and how much time you are ready to invest. Open-source software is not just free as in money, but also free as in freedom. You will gain back complete control of your personal data. Unfortunately, installing ready proprietary apps from the Play Store is much more convenient than building up a trustworthy open-source-based infrastructure by yourself. As a guideline, use proprietary software and services with caution. Be mindful about your choices and where you leave your digital fingerprints. In doubt, think less is more. Do you really need this new shiny app? What benefit does it provide to you? Probably you don't really need that shiny new app.</p>
 <p>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don't know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it's better, but also because for fun and as a hobby. But this doesn't mean that I invest *all* of my personal free time in it.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -3665,7 +3665,7 @@ Hello World
 <p>I liked this book so much so that I even bought myself a (used) paper copy of it. To my delight, there was also a free eBook version in ePub format included, which I now have on my Kobo Forma eBook reader. :-)</p>
 <h2>Perl</h2>
 <p>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -3805,7 +3805,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <h2>Conclusion</h2>
 <p>It was quite a lot of fun writing Gemtexter. It's a relatively small project, but given that I worked on that in my spare time once in a while, it kept me busy for several weeks. </p>
 <p>I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4114,7 +4114,7 @@ fi
 <h2>Advanced Bash learning pro tip</h2>
 <p>I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (not from Google). I use it as the universal Bash reference and learn something new every time I look at it.</p>
 <a class="textlink" href="https://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4186,7 +4186,7 @@ fi
 <p>Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.</p>
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4268,7 +4268,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <h2>Open Source</h2>
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4408,7 +4408,7 @@ Total time: 1213.00s
 <a class="textlink" href="https://www.coker.com.au/bonnie++/">Bonnie++</a><br />
 <a class="textlink" href="https://graphiteapp.org">Graphite</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Memory-mapped_I/O">Memory mapped I/O</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4501,7 +4501,7 @@ mult.calculate(mult,a,b));
 <p>Big C software projects, like Linux, also follow some OOP techniques:</p>
 <a class="textlink" href="https://lwn.net/Articles/444910/">https://lwn.net/Articles/444910/</a><br />
 <p>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4727,7 +4727,7 @@ apply Service "dig6" {
 <li>The BIND server will notify all slave DNS servers (at the moment, only one). And it will transfer the new version of the zone.</li>
 </ul>
 <p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -4765,7 +4765,7 @@ apply Service "dig6" {
 <p>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</p>
 <p>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</p>
 <p>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -5145,7 +5145,7 @@ Notice: Finished catalog run in 206.09 seconds
 <li>...etc</li>
 </ul>
 <p>All done in a pretty automated manor. </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -5189,7 +5189,7 @@ Notice: Finished catalog run in 206.09 seconds
 <p>The solution is adding another USB drive (2TB) with an encryption container (GELI) and a ZFS pool. The GELI encryption requires a secret key and a secret passphrase. I am updating the data to that drive once every three months (my calendar is reminding me about it), and afterwards, I keep that drive at a secret location outside of my apartment. All the information needed to decrypt (mounting the GELI container) is stored at another (secure) place. Key and passphrase are kept at different sites, though. Even if someone knew of it, he would not be able to decrypt it as some additional insider knowledge would be required as well.</p>
 <h2>Walking one round less</h2>
 <p>I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -5354,7 +5354,7 @@ chmod +x /data/local/userinit.sh
 exit
 </pre><br />
 <p>Reboot &amp; test!  Enjoy!</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -5497,7 +5497,7 @@ fib(9) = 34
 fib(10) = 55
 </pre><br />
 <p>It's entertaining to play with :-).</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -5644,7 +5644,7 @@ sub do ($) {
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -6060,7 +6060,7 @@ BB
 <h2>May the source be with you</h2>
 <p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
 <a class="textlink" href="https://codeberg.org/snonux/fype">https://codeberg.org/snonux/fype</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -6161,7 +6161,7 @@ first 10 nat_pairs_not_null
 -}
 </pre><br />
 <a class="textlink" href="http://www.haskell.org/">http://www.haskell.org/</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -6316,7 +6316,7 @@ my_map f l = foldr (make_map_fn f) [] l
 fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 </pre><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -6363,7 +6363,7 @@ _jgs_\|//_\\|///_\V/_\|//__
 </ul>
 <p>It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)</p>
 <p>At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
@@ -6528,7 +6528,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../contact.html">E-Mail your comments to hi@paul.cyou :-)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/index.html">More entries</a><br />
             </div>
         </content>
