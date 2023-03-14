@@ -380,6 +380,6 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 => https://tldp.org/LDP/abs/html/  Advanced Bash-Scripting Guide
 
-E-Mail your comments to hi@paul.cyou :-)
+=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries

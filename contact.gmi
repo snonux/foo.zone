@@ -1,0 +1,4 @@
+# Contact
+
+=> https://paul.cyou My contact information (via HTTP)
+=> gemini://paul.cyou My contact information (via Gemini)
