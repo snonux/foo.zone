@@ -169,6 +169,6 @@ fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 ```
 
-E-Mail your comments to hi@paul.cyou :-)
+[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  

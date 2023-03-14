@@ -161,6 +161,6 @@ Did you like what you saw? Have a look at Codeberg to see my other poems too:
 
 [https://codeberg.org/snonux/perl-poetry](https://codeberg.org/snonux/perl-poetry)  
 
-E-Mail your comments to hi@paul.cyou :-)
+[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  

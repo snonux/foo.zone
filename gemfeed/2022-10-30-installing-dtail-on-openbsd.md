@@ -339,6 +339,6 @@ Check out the following for more information:
 [https://github.com/mimecast/dtail](https://github.com/mimecast/dtail)  
 [https://www.rexify.org](https://www.rexify.org)  
 
-E-Mail your comments to hi@paul.cyou :-)
+[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
