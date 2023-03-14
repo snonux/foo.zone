@@ -1,6 +1,6 @@
 # Using my Nokia N95 for fixing my MTA
 
-> Published by Paul at 2008-12-29 11:10:41 CEST, last updated at 2021-12-01
+> Published at 2008-12-29T09:10:41+00:00; Updated at 2021-12-01
 
 ```
 

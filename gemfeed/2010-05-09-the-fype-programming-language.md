@@ -1,6 +1,6 @@
 # The Fype Programming Language
 
-> Published by Paul at 2010-05-09 14:48:29 CEST, last updated at 2021-05-05
+> Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05
 
 ```
       ____                                      _        __       

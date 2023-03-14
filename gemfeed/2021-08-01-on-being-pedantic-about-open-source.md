@@ -1,6 +1,6 @@
 # On being Pedantic about Open-Source
 
-> Published by Paul at 2021-08-01, last updated at 2023-01-23
+> Published at 2021-08-01T10:37:58+03:00; Updated at 2023-01-23
 
 ```
                                            __

@@ -1,6 +1,6 @@
 # Bash Golf Part 1
 
-> Published by Paul at 2021-11-29 16:06:14 GMT, last updated at 2022-01-05
+> Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05
 
 ```
 

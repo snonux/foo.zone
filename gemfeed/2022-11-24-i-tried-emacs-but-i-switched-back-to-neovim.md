@@ -1,6 +1,6 @@
 # I tried (Doom) Emacs, but I switched back to (Neo)Vim
 
-> Published by Paul at 2022-11-24 11:17:15 EET, last updated at 2022-11-26
+> Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26
 
 ```
              _/  \    _(\(o

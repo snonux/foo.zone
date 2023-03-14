@@ -1,6 +1,6 @@
 # Run Debian on your phone with Debroid
 
-> Published by Paul at 2015-12-05 18:12:57 CEST, last updated at 2021-05-16
+> Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16
 
 ```
  ____       _               _     _ 

@@ -1,6 +1,6 @@
 # Perl Daemon (Service Framework)
 
-> Published by Paul at 2011-05-08 00:26:02 CEST, last updated at 2021-05-07
+> Published at 2011-05-07T22:26:02+01:00; Updated at 2021-05-07
 
 ```
    a'!   _,,_ a'!   _,,_     a'!   _,,_

@@ -1,6 +1,6 @@
 # Welcome to the foo.zone
 
-> Published by Paul at 2022-01-23 18:42:04 GMT
+> Published at 2022-01-23T16:42:04+00:00
 
 ```
   __                                  

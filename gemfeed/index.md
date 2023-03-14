@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2023-03-16 - 'The pragmatic programmer' book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./2023-01-23-why-grapheneos-rox.md)  
 [2022-12-24 - Ultra(re)learning Java - My takeaways](./2022-12-24-ultrarelearning-java-my-takeaways.md)  

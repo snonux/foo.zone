@@ -1,5 +1,7 @@
 # foo.zone
 
+> This site was generated at 2023-03-15T00:57:00+02:00 by `Gemtexter`
+
 ```
    |\---/|
    | ,_, |
@@ -30,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2023-03-16 - 'The pragmatic programmer' book notes](./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./gemfeed/2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./gemfeed/2023-01-23-why-grapheneos-rox.md)  
 [2022-12-24 - Ultra(re)learning Java - My takeaways](./gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.md)  

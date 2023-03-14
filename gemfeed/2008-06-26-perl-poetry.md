@@ -1,6 +1,6 @@
 # Perl Poetry
 
-> Published by Paul at 2008-06-26 23:43:51 CEST, last updated at 2021-05-04
+> Published at 2008-06-26T21:43:51+01:00; Updated at 2021-05-04
 
 ```
  '\|/'                                  *

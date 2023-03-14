@@ -1,6 +1,6 @@
 # Let's Encrypt with OpenBSD and Rex
 
-> Published by Paul at 2022-07-30 14:14:31 EEST
+> Published at 2022-07-30T12:14:31+01:00
 
 ```
                                                /    _    \

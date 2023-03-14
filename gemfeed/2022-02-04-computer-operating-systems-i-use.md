@@ -1,6 +1,6 @@
 # Computer operating systems I use(d)
 
-> Published by Paul at 2022-02-04 11:58:22 GMT, updated 2022-02-18
+> Published at 2022-02-04T09:58:22+00:00; Updated at 2022-02-18
 
 ```
               /(        )`
