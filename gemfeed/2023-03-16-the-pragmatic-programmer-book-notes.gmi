@@ -2,7 +2,7 @@
 
 > Published at 2023-03-15T00:55:20+02:00
 
-These are my personal takeaways after reading "The Pragmatic Programmer" by David Thomas and Andrew Hunt. Note that the book contains much more knowledge and pearls of wisdom and that the following notes only contain points I personally found worth writing down. This is mainly for my use, but you might find it helpful too.
+These are my personal takeaways after reading "The Pragmatic Programmer" by David Thomas and Andrew Hunt. Note that the book contains much more knowledge and pearls of wisdom and that the following notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.
 
 ```
          ,..........   ..........,
@@ -78,4 +78,4 @@ By working together, everyone contributes what they can, achieving a greater goo
 
 E-Mail your comments to hi@paul.cyou :-)
 
-=> ../ Go back to the main site
+=> ./index.gmi More entries
