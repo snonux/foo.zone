@@ -77,5 +77,6 @@ How to motivate others to contribute something (e.g. ideas to a startup):
 By working together, everyone contributes what they can, achieving a greater good together.
 
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+[More books and other resources I found useful.](../resources.md)  
 
 [More entries](./index.md)  
