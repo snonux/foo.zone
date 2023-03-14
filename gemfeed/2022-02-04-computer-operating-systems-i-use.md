@@ -227,4 +227,4 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

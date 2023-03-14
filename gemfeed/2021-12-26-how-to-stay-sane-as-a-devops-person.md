@@ -125,4 +125,4 @@ Another blog post worth reading:
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

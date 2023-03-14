@@ -104,4 +104,4 @@ Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

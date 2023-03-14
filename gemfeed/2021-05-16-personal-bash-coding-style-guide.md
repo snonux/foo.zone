@@ -382,4 +382,4 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

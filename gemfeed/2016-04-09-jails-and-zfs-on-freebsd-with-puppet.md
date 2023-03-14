@@ -387,4 +387,4 @@ All done in a pretty automated manor.
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

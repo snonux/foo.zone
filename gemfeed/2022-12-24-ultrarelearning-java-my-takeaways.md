@@ -104,4 +104,4 @@ Am I a Java expert now? No, by far not. But I am better now than before :-).
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

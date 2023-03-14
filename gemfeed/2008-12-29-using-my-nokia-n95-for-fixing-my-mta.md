@@ -38,4 +38,4 @@ At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WL
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

@@ -136,4 +136,4 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

@@ -75,4 +75,4 @@ There are some days at work you feel drained afterwards and think you didn't pro
  
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

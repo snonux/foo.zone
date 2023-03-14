@@ -101,4 +101,4 @@ This usually means creating one or more tickets, which will be dealt with soon. 
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

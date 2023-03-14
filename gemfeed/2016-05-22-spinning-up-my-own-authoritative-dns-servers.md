@@ -236,4 +236,4 @@ That's much more comfortable now than manually clicking at some web UIs at Schlu
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  

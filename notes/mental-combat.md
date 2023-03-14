@@ -29,4 +29,6 @@ If you are not motivated, reevaluate your goals. Is this the right sport for you
 
 One way not to lose is not to see a loss as a loss. Think of each defeat as a test. And go back to the drawing board. Don't take a loss emotionally. It's a super power. This is the key. To self improvement. There are no failures but tests.
 
-[More notes](./index.md)  
+E-Mail your comments to hi@paul.cyou :-)
+
+[More entries](./index.md)  

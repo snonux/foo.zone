@@ -658,4 +658,4 @@ Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, Op
 
 E-Mail your comments to hi@paul.cyou :-)
 
-[Go back to the main site](../)  
+[More entries](./index.md)  
