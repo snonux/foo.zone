@@ -383,3 +383,4 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

@@ -105,3 +105,4 @@ Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

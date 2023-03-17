@@ -33,3 +33,4 @@ What would the stoic god's do next? This is just a test strategy by them. Don't 
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

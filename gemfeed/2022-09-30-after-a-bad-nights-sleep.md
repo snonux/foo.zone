@@ -96,3 +96,4 @@ I wouldn't say I like checking social media, as it can consume a lot of time and
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

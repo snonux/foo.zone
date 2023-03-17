@@ -169,3 +169,4 @@ I finally revamped my personal internet site and started to blog again. I wanted
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

@@ -112,6 +112,7 @@ Vim/NeoVim also comes with a very high degree of customization options, but to a
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  
 
 # Appendix
 
@@ -177,3 +178,4 @@ nmap ,j :call OpenJournalPage()<CR>
 ```
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

@@ -32,3 +32,4 @@ One way not to lose is not to see a loss as a loss. Think of each defeat as a te
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

@@ -101,3 +101,4 @@ C is a very old programming language with it's quirks. This might be one of the 
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

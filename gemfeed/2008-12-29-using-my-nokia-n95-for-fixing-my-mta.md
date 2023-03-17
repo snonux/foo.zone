@@ -39,3 +39,4 @@ At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WL
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

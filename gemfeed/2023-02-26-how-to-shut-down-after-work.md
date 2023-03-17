@@ -76,3 +76,4 @@ There are some days at work you feel drained afterwards and think you didn't pro
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

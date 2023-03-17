@@ -29,3 +29,4 @@ Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

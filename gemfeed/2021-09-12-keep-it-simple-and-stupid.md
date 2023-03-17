@@ -98,3 +98,4 @@ Enough ranted for now!
 > Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

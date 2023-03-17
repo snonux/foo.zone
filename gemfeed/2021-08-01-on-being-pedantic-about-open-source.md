@@ -117,3 +117,4 @@ You have better chances when you know how to manage your own server and install 
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

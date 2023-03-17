@@ -237,3 +237,4 @@ That's much more comfortable now than manually clicking at some web UIs at Schlu
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

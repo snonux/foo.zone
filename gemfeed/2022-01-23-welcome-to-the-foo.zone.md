@@ -47,3 +47,4 @@ The host buetow.org will stay. However, not as the primary address for this site
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

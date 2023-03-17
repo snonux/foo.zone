@@ -80,3 +80,4 @@ By working together, everyone contributes what they can, achieving a greater goo
 [More books and other resources I found useful.](../resources.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

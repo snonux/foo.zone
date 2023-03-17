@@ -102,3 +102,4 @@ This usually means creating one or more tickets, which will be dealt with soon. 
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  

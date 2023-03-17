@@ -81,3 +81,4 @@ Check out one of the following links for more information about Gemini. For exam
 [E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
 
 [More entries](./index.md)  
+[Back to the main site](../index.md)  
