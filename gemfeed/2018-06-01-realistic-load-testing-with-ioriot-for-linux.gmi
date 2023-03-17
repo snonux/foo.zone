@@ -189,3 +189,4 @@ For example, the open syscall opens a file and returns the responsible file desc
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

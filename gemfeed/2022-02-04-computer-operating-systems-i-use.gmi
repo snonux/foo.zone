@@ -228,3 +228,4 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

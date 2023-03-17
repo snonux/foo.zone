@@ -89,3 +89,4 @@ Overall I think it's a pretty solid `1.1.0` release without anything groundbreak
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

@@ -383,3 +383,4 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

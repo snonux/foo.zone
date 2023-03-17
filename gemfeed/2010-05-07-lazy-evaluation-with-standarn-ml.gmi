@@ -100,3 +100,4 @@ first 10 nat_pairs_not_null
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

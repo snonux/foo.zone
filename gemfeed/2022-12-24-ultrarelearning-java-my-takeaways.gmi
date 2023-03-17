@@ -105,3 +105,4 @@ Am I a Java expert now? No, by far not. But I am better now than before :-).
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

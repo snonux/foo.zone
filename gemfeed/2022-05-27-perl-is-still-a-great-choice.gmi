@@ -137,3 +137,4 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

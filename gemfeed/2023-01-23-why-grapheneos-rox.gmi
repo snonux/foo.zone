@@ -139,3 +139,4 @@ And, of course, GrapheneOS is an open-source project. This is a good thing; howe
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

@@ -112,6 +112,7 @@ Vim/NeoVim also comes with a very high degree of customization options, but to a
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site
 
 # Appendix
 
@@ -177,3 +178,4 @@ nmap ,j :call OpenJournalPage()<CR>
 ```
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site

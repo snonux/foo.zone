@@ -508,3 +508,4 @@ You can find all of this on the GitHub page. There is also an "examples" folders
 => ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
 
 => ./index.gmi More entries
+=> ../index.gmi Back to the main site
