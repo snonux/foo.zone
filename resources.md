@@ -123,12 +123,12 @@ These are not whole books, but guides (smaller or larger) which I found very use
 
 * The Minimalists
 * Ship it (Changelog)
-* Positiv wirkt (de)
+* Positiv wirkt (german)
 * Java Pub House
 * Go Time (Changelog)
 * FLOSS Weekly
 * Deep Questions with Cal Newport
-* CRE: Technik, Kultur, Gesellschaft (de)
+* CRE: Technik, Kultur, Gesellschaft (german)
 
 ## Fiction and more books
 

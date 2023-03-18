@@ -2,7 +2,7 @@
 
 ## Novels
 
-This site lists my favourite novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both, english (en) and german (de), titles.
+This site lists my favourite novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both, english (english) and german (german), titles.
 
 Some were read as paperback, others as eBooks. A very few were listened to (Audio book).
 
@@ -32,58 +32,59 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Alastair Reynolds
 
-* 2000 - Revelation Space (en) / Unendlichkeit (de) - Revelation Space Universe
+* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe
 * 2001 - Chasm City - Revelation Space Universe
-* 2002 - Redemption Ark (en) / Die Arche (de) - Revelation Space Universe
+* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe
 
 ### Arthur C. Clarke
 
-* 1973 - Rendezvous with Rama (en), Audio book
-* 1989 - Rama II (en), Audio book
-* 1991 - The Garden of Rama (en), Audio book
-* 1993 - Rama Revealed (en), Audio book
+* 1973 - Rendezvous with Rama (english), Audio book
+* 1989 - Rama II (english), Audio book
+* 1991 - The Garden of Rama (english), Audio book
+* 1993 - Rama Revealed (english), Audio book
 
-### Andreas Brandhorst (de)
+### Andreas Brandhorst (german)
 
-* 2004 - Diamant (de) - Diamant-Trilogie
-* 2004 - Der Metamorph (de) - Diamant-Trilogie
-* 2005 - Der Zeitkrieg (de) - Diamant-Trilogie
-* 2006 - Feuervögel (de) - Graken-Trilogie
-* 2007 - Feuerstürme (de) - Graken-Trilogie
-* 2008 - Feuerträume (de) - Graken-Trilogie
-* 2010 - Kinder der Ewigkeit (de)
-* 2012 - Das Artefakt (de)
-* 2013 - Der letzte Regent (de)
-* 2014 - Das Kosmotop (de)
-* 2015 - Ikarus (de)
-* 2015 - Das Schiff (de)
-* 2016 - Omni (de) - Omniversum
-* 2017 - Das Arkonadia-Rätsel (de) - Omniversum
-* 2017 - Das Erwachen (de) - Maschinenintelligenz-Trilogie
-* 2019 - Das Netz der Sterne (de), Audio book
-* 2020 - Die Eskalation (de) - Maschinenintelligenz-Trilogie
-* 2021 - Mars Discovery (de) - Maschinenintelligenz-Trilogie
-* 2022 - Eklipse (de)
+* 2004 - Diamant (german) - Diamant-Trilogie
+* 2004 - Der Metamorph (german) - Diamant-Trilogie
+* 2005 - Der Zeitkrieg (german) - Diamant-Trilogie
+* 2006 - Feuervögel (german) - Graken-Trilogie
+* 2007 - Feuerstürme (german) - Graken-Trilogie
+* 2008 - Feuerträume (german) - Graken-Trilogie
+* 2010 - Kinder der Ewigkeit (german)
+* 2012 - Das Artefakt (german)
+* 2013 - Der letzte Regent (german)
+* 2014 - Das Kosmotop (german)
+* 2015 - Ikarus (german)
+* 2015 - Das Schiff (german)
+* 2016 - Omni (german) - Omniversum
+* 2017 - Das Arkonadia-Rätsel (german) - Omniversum
+* 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie
+* 2019 - Das Netz der Sterne (german), Audio book
+* 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie
+* 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie
+* 2022 - Eklipse (german)
 
 ### Ian Banks
 
-* 1987 - Consider Pheblas (en) / Bedenke Pheblas (de) - Culture Book 1
-* 1988 - The Player of Games (en) - Culture Book 2, Audio book
+* 1987 - Consider Pheblas (english) / Bedenke Pheblas (german) - Culture Book 1
+* 1988 - The Player of Games (english) - Culture Book 2, Audio book
 
 ### Other Authors
 
 * 1949 - 1984, George Orwell, Audio book
-* 1979 - The Hitchhikers Guide to the Galaxy (en) / Per Anhalter durch die Galaxis (de), Adam Douglas - All books of the series
+* 1979 - The Hitchhikers Guide to the Galaxy (english) / Per Anhalter durch die Galaxis (german), Adam Douglas - All books of the series
+* 1989 - Hyperion, Dan Simmons
 * 2009 - Quest, Andreas Eschbach
-* 2010 - The Icarus Hunt (en) / Jagt auf Ikarus (de), Timothy Zahn
+* 2010 - The Icarus Hunt (english) / Jagt auf Ikarus (german), Timothy Zahn
 
 ### Currently reading
 
-* 2003 - Absolution Gap (en) / Offenbarung (de) - Revelation Space Universe
+* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe
 
 ### Unread books already in my shelf
 
-* 2018 - Ewiges Leben (de), Andreas Brandhorst
+* 2018 - Ewiges Leben (german), Andreas Brandhorst
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
