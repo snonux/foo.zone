@@ -136,7 +136,6 @@ Another thing is that GrapheneOS can only run on Google Pixel phones, whereas Li
 
 And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. 
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site

@@ -259,7 +259,6 @@ Unit testing Vs regression testing: Unit tests test the smallest possible unit a
 * The war of Art (to combat procrastination)
 * Willpower Instinct
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site

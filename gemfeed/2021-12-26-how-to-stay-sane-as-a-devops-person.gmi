@@ -123,7 +123,6 @@ Another blog post worth reading:
 
 => https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site

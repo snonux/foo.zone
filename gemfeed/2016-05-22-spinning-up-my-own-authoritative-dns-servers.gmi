@@ -234,7 +234,6 @@ Whenever I have to change a DNS entry, all I have to do is:
 
 That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site

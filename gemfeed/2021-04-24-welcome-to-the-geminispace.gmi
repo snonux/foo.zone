@@ -78,7 +78,6 @@ Check out one of the following links for more information about Gemini. For exam
 => gemini://gemini.circumlunar.space
 => https://gemini.circumlunar.space
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site

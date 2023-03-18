@@ -169,7 +169,6 @@ fun my_filter f l = foldr (make_filter_fn f) [] l
 my_filter f l = foldr (make_filter_fn f) [] l
 ```
 
-=> ../contact.gmi E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@paul.cyou :-)
 
-=> ./index.gmi More entries
-=> ../index.gmi Back to the main site
+=> ../ Back to the main site
