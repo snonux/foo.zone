@@ -138,7 +138,6 @@ fib(10) = 55
 
 It's entertaining to play with :-).
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

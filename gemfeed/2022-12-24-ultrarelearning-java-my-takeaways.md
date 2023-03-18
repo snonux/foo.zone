@@ -102,7 +102,6 @@ Java needs a clean cut. The clean cut shall be incompatible with previous versio
 
 Am I a Java expert now? No, by far not. But I am better now than before :-).
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

@@ -97,7 +97,6 @@ first 10 nat_pairs_not_null
 
 [http://www.haskell.org/](http://www.haskell.org/)  
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

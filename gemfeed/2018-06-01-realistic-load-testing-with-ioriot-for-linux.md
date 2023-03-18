@@ -186,7 +186,6 @@ For example, the open syscall opens a file and returns the responsible file desc
 [Graphite](https://graphiteapp.org)  
 [Memory mapped I/O](https://en.wikipedia.org/wiki/Memory-mapped_I/O)  
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

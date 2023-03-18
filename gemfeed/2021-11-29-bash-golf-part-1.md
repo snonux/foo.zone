@@ -463,7 +463,6 @@ In the Bash you will have to fall back to an external command like "bc" (the arb
 
 See you later for the next post of this series.
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

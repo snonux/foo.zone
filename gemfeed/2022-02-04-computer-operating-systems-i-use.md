@@ -225,7 +225,6 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 [DragonFly BSD - Fork of FreeBSD 4](https://www.dragonflybsd.org/)  
 [Phosh (on postmarketOS) - A true Linux shell for the smartphone](http://wiki.postmarketos.org/wiki/Phosh)  
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

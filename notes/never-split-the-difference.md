@@ -104,7 +104,6 @@ Establish a range, at top places like corp. I get... (e.g. remote London on proj
 
 Slow.... it.... down....
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

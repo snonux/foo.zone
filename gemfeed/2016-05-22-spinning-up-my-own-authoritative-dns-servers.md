@@ -234,7 +234,6 @@ Whenever I have to change a DNS entry, all I have to do is:
 
 That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  

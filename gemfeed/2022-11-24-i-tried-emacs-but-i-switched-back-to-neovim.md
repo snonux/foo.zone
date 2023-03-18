@@ -109,10 +109,9 @@ Vim/NeoVim also comes with a very high degree of customization options, but to a
 
 [https://github.com/NvChad/NvChad](https://github.com/NvChad/NvChad)  
 
-[E-Mail your comments to hi@paul.cyou :-)](../contact.md)  
+E-Mail your comments to hi@paul.cyou :-)
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  
 
 # Appendix
 
@@ -177,5 +176,4 @@ endfunction
 nmap ,j :call OpenJournalPage()<CR>
 ```
 
-[More entries](./index.md)  
-[Back to the main site](../index.md)  
+[Back to the main site](../)  
