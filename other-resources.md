@@ -74,7 +74,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 1949 - 1984, George Orwell, Audio book
 * 1979 - The Hitchhikers Guide to the Galaxy (english) / Per Anhalter durch die Galaxis (german), Adam Douglas - All books of the series
-* 1989 - Hyperion, Dan Simmons
+* 1989 - Hyperion, Dan Simmons, Audio Book
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (english) / Jagt auf Ikarus (german), Timothy Zahn
 
