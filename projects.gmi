@@ -15,3 +15,4 @@ This is a "hidden" site listing my personal project list priorities!
 * Finish `failunderd 1.0` (Perl)
 * Play around with Go's C I/O API, for `ioriot 2` (Golang)
 * Play around with Zig, once available for OpenBSD (Ziglang)
+* Rewrite site stats script (Perl or Raku)
