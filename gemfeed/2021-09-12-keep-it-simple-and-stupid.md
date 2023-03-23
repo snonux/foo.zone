@@ -1,6 +1,6 @@
 # Keep it simple and stupid
 
-> Published at 2021-09-12T09:39:20+03:00; Updated at 2022-04-21
+> Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23
 
 ```  
   _______________                        |*\_/*|_______
@@ -90,6 +90,7 @@ There is, however, a trap. The more you spend time with things, the more these t
 ## Other relevant readings
 
 [Is the madness ever going to end?](https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html)  
+[Write plain text files](https://sive.rs/plaintext)  
 
 Enough ranted for now!
 
