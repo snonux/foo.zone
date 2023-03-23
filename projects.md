@@ -1,5 +1,7 @@
 # Projects
 
+> This site was last updated at 2023-03-23T11:01:35+02:00
+
 This is a "hidden" site listing my personal project list priorities!
 
 * Finish and release `guprecords 2.0.0` (Raku)
