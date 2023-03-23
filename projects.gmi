@@ -11,3 +11,5 @@ This is a "hidden" site listing my personal project list priorities!
 * Try out `kickstart.nvim` (NeoVim)
 * Try out `Ruby LSP` in NeoVim, which is not Solar (NeoVim)
 * Finish `failunderd 1.0` (Perl)
+* Play around with Go's C I/O API, for `ioriot 2` (Golang)
+* Play around with Zig, once available for OpenBSD (Ziglang)
