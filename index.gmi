@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-03-20T22:00:31+02:00 by `Gemtexter`
+> This site was generated at 2023-03-23T10:59:21+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,4 +32,43 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+=> ./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 - 'The Pragmatic Programmer' book notes
+=> ./gemfeed/2023-02-26-how-to-shut-down-after-work.gmi 2023-02-26 - How to shut down after work
+=> ./gemfeed/2023-01-23-why-grapheneos-rox.gmi 2023-01-23 - Why GrapheneOS rox
+=> ./gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi 2022-12-24 - Ultra(re)learning Java - My takeaways
+=> ./gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi 2022-11-24 - I tried (Doom) Emacs, but I switched back to (Neo)Vim
+=> ./gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 - Installing DTail on OpenBSD
+=> ./gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi 2022-09-30 - After a bad night's sleep
+=> ./gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 - Gemtexter 1.1.0 - Let's Gemtext again
+=> ./gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 - Let's Encrypt with OpenBSD and Rex
+=> ./gemfeed/2022-06-15-sweating-the-small-stuff.gmi 2022-06-15 - Sweating the small stuff - Tiny projects of mine
+=> ./gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 - Perl is still a great choice
+=> ./gemfeed/2022-04-10-creative-universe.gmi 2022-04-10 - Creative universe
+=> ./gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 - The release of DTail 4.0.0
+=> ./gemfeed/2022-02-04-computer-operating-systems-i-use.gmi 2022-02-04 - Computer operating systems I use(d)
+=> ./gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi 2022-01-23 - Welcome to the foo.zone
+=> ./gemfeed/2022-01-01-bash-golf-part-2.gmi 2022-01-01 - Bash Golf Part 2
+=> ./gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi 2021-12-26 - How to stay sane as a DevOps person 
+=> ./gemfeed/2021-11-29-bash-golf-part-1.gmi 2021-11-29 - Bash Golf Part 1
+=> ./gemfeed/2021-10-22-defensive-devops.gmi 2021-10-22 - Defensive DevOps
+=> ./gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 - Keep it simple and stupid
+=> ./gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi 2021-08-01 - On being Pedantic about Open-Source
+=> ./gemfeed/2021-07-04-the-well-grounded-rubyist.gmi 2021-07-04 - The Well-Grounded Rubyist
+=> ./gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 - Gemtexter - One Bash script to rule it all
+=> ./gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 - Personal Bash coding style guide
+=> ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 - Welcome to the Geminispace
+=> ./gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 - DTail - The distributed log tail program
+=> ./gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi 2018-06-01 - Realistic load testing with I/O Riot for Linux
+=> ./gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi 2016-11-20 - Object oriented programming with ANSI C
+=> ./gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi 2016-05-22 - Spinning up my own authoritative DNS servers
+=> ./gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi 2016-04-16 - Offsite backup with ZFS (Part 2)
+=> ./gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 - Jails and ZFS with Puppet on FreeBSD
+=> ./gemfeed/2016-04-03-offsite-backup-with-zfs.gmi 2016-04-03 - Offsite backup with ZFS
+=> ./gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi 2015-12-05 - Run Debian on your phone with Debroid
+=> ./gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi 2014-03-24 - The fibonacci.pl.raku.c Polyglot
+=> ./gemfeed/2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 - Perl Daemon (Service Framework)
+=> ./gemfeed/2010-05-09-the-fype-programming-language.gmi 2010-05-09 - The Fype Programming Language
+=> ./gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi 2010-05-07 - Lazy Evaluation with Standard ML
+=> ./gemfeed/2010-04-09-standard-ml-and-haskell.gmi 2010-04-09 - Standard ML and Haskell
+=> ./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi 2008-12-29 - Using my Nokia N95 for fixing my MTA
 => ./gemfeed/2008-06-26-perl-poetry.gmi 2008-06-26 - Perl Poetry
