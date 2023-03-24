@@ -158,7 +158,7 @@ You can find PerlDaemon (including the examples) at:
 
 => https://codeberg.org/snonux/perldaemon
 
-More related posts are:
+Other related posts are:
 
 => ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice
 => ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)
