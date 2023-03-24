@@ -164,7 +164,7 @@ It was quite a lot of fun writing Gemtexter. It's a relatively small project, bu
 
 I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. 
 
-More related posts are:
+Other related posts are:
 
 [2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  

@@ -380,7 +380,7 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)  
 
-More related posts are:
+Other related posts are:
 
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  

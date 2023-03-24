@@ -480,7 +480,7 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
-More related posts are:
+Other related posts are:
 
 [2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  

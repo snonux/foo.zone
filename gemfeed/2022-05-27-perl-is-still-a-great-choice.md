@@ -134,7 +134,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 [Why Perl is still relevant in 2022](https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/)  
 
-More related posts are:
+Other related posts are:
 
 [2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  
 [2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
