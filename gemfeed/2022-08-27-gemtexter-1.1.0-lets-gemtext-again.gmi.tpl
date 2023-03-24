@@ -85,9 +85,7 @@ Overall I think it's a pretty solid `1.1.0` release without anything groundbreak
 
 More related posts are:
 
-=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
+<< template::inline::index gemtext gemini
 
 E-Mail your comments to hi@paul.cyou :-)
 

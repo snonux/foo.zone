@@ -16,8 +16,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2 (You are currently reading this)
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+<< template::inline::index bash-golf
 
 ## Redirection
 
@@ -482,10 +481,7 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 
 More related posts are:
 
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2 (You are currently reading this)
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
+<< template::inline::index bash
 
 E-Mail your comments to hi@paul.cyou :-)
 

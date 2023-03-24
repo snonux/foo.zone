@@ -105,9 +105,7 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 More related posts are:
 
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
-=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+<< template::inline::index dtail
 
 E-Mail your comments to hi@paul.cyou :-)
 

@@ -166,12 +166,7 @@ I finally revamped my personal internet site and started to blog again. I wanted
 
 More related posts are:
 
-=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
-=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
+<< template::inline::index gemtext gemini bash
 
 E-Mail your comments to hi@paul.cyou :-)
 

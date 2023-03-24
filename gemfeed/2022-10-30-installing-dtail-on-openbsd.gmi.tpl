@@ -341,9 +341,7 @@ Check out the following for more information:
 
 More related posts are:
 
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD (You are currently reading this)
-=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
-=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
+<< template::inline::index dtail
 
 E-Mail your comments to hi@paul.cyou :-)
 
