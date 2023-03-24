@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-24T12:10:42+02:00</updated>
+    <updated>2023-03-24T12:21:05+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1888,6 +1888,10 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
 <p class="quote"><i>Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be shorter than Perl code, though!</i></p>
 <a class="textlink" href="https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/">Why Perl is still relevant in 2022</a><br />
+<p>More related posts are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry</a><br />
 <p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
             </div>
@@ -5683,6 +5687,10 @@ sub do ($) {
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
+<p>More related posts are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry</a><br />
 <p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
             </div>
@@ -6567,6 +6575,10 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
+<p>More related posts are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry (You are currently reading this)</a><br />
 <p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
             </div>
