@@ -103,7 +103,7 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 => https://dtail.dev
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index dtail
 

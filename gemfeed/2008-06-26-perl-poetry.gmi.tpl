@@ -161,7 +161,7 @@ Did you like what you saw? Have a look at Codeberg to see my other poems too:
 
 => https://codeberg.org/snonux/perl-poetry
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index perl
 

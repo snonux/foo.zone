@@ -78,7 +78,7 @@ Check out one of the following links for more information about Gemini. For exam
 => gemini://gemini.circumlunar.space
 => https://gemini.circumlunar.space
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index gemtext gemini
 

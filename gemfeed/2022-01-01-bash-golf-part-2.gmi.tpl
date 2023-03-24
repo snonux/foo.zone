@@ -479,7 +479,7 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index bash
 

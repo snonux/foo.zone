@@ -286,7 +286,7 @@ I use usually DTail at work, but I have recently installed it on my personal Ope
 
 I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index dtail
 

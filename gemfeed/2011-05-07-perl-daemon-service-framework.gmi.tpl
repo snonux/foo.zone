@@ -158,7 +158,7 @@ You can find PerlDaemon (including the examples) at:
 
 => https://codeberg.org/snonux/perldaemon
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index perl
 

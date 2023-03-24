@@ -134,7 +134,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 => https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/ Why Perl is still relevant in 2022
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index perl
 

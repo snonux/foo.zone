@@ -339,7 +339,7 @@ Check out the following for more information:
 => https://github.com/mimecast/dtail
 => https://www.rexify.org
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index dtail
 

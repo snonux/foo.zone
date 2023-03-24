@@ -380,7 +380,7 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 => https://tldp.org/LDP/abs/html/  Advanced Bash-Scripting Guide
 
-More related posts are:
+Other related posts are:
 
 << template::inline::index bash
 
