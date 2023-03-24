@@ -161,6 +161,12 @@ Did you like what you saw? Have a look at Codeberg to see my other poems too:
 
 [https://codeberg.org/snonux/perl-poetry](https://codeberg.org/snonux/perl-poetry)  
 
+More related posts are:
+
+[2022-05-27 Perl is still a great choice](./2022-05-27-perl-is-still-a-great-choice.md)  
+[2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
+[2008-06-26 Perl Poetry (You are currently reading this)](./2008-06-26-perl-poetry.md)  
+
 E-Mail your comments to hi@paul.cyou :-)
 
 [Back to the main site](../)  
