@@ -163,9 +163,7 @@ Did you like what you saw? Have a look at Codeberg to see my other poems too:
 
 More related posts are:
 
-=> ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice
-=> ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework)
-=> ./2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry (You are currently reading this)
+<< template::inline::index perl
 
 E-Mail your comments to hi@paul.cyou :-)
 
