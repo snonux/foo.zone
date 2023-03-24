@@ -339,6 +339,12 @@ Check out the following for more information:
 [https://github.com/mimecast/dtail](https://github.com/mimecast/dtail)  
 [https://www.rexify.org](https://www.rexify.org)  
 
+More related posts are:
+
+[2022-10-30 Installing DTail on OpenBSD (You are currently reading this)](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
+
 E-Mail your comments to hi@paul.cyou :-)
 
 [Back to the main site](../)  

@@ -43,9 +43,7 @@
                                                            `+a:f:......jrei'''
 ```
 
-You might have read my previous blog post about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language. 
-
-[Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
+You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.
 
 This comes with the benefit that I can write content in my favourite text editor (Vim). 
 
@@ -165,6 +163,15 @@ I could think of the following features added to a future version of Gemtexter:
 It was quite a lot of fun writing Gemtexter. It's a relatively small project, but given that I worked on that in my spare time once in a while, it kept me busy for several weeks. 
 
 I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. 
+
+More related posts are:
+
+[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
+[2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
 
 E-Mail your comments to hi@paul.cyou :-)
 

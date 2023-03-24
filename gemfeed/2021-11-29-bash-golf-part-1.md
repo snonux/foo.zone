@@ -16,8 +16,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
-[Bash Golf Part 1 (you are reading this atm.)](./2021-11-29-bash-golf-part-1.md)  
-[Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
 
 ## TCP/IP networking
 
@@ -462,6 +462,13 @@ In the Bash you will have to fall back to an external command like "bc" (the arb
 ```
 
 See you later for the next post of this series.
+
+More related posts are:
+
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 E-Mail your comments to hi@paul.cyou :-)
 

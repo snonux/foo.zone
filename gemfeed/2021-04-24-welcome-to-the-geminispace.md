@@ -78,6 +78,12 @@ Check out one of the following links for more information about Gemini. For exam
 [gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)  
 [https://gemini.circumlunar.space](https://gemini.circumlunar.space)  
 
+More related posts are:
+
+[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-04-24 Welcome to the Geminispace (You are currently reading this)](./2021-04-24-welcome-to-the-geminispace.md)  
+
 E-Mail your comments to hi@paul.cyou :-)
 
 [Back to the main site](../)  

@@ -16,11 +16,7 @@
                          |                           |
 ```
 
-I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. You can also read my previous post about DTail in case you wonder what DTail is:
-
-[DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
-
-If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
 
 [https://dtail.dev](https://dtail.dev)  
 
@@ -289,6 +285,12 @@ DTail 5 won't be released any time soon I guess, but some 4.x.y releases will fo
 I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).
 
 I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).
+
+More related posts are:
+
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0 (You are currently reading this)](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 Thanks!
 
