@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-24T12:21:05+02:00</updated>
+    <updated>2023-03-24T17:43:19+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -770,7 +770,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <a class="textlink" href="https://github.com/mimecast/dtail">https://github.com/mimecast/dtail</a><br />
 <a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.html">2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html">2022-03-06 The release of DTail 4.0.0</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">2021-04-22 DTail - The distributed log tail program</a><br />
@@ -924,7 +924,7 @@ check_dependencies () {
 <h3>More</h3>
 <p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
 <p>Overall I think it's a pretty solid <span class="inlinecode">1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.</p>
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">2021-04-24 Welcome to the Geminispace</a><br />
@@ -1888,7 +1888,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class="textlink" href="https://www.perl.org">https://www.perl.org</a><br />
 <p class="quote"><i>Update 2022-12-17: The following is another related post. I don't agree to the statement made there, that Python code tends to be shorter than Perl code, though!</i></p>
 <a class="textlink" href="https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/">Why Perl is still relevant in 2022</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry</a><br />
@@ -2249,7 +2249,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 </ul>
 <p>I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).</p>
 <p>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</p>
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.html">2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html">2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">2021-04-22 DTail - The distributed log tail program</a><br />
@@ -2883,7 +2883,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
 1
 </pre><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
@@ -3366,7 +3366,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 .10
 </pre><br />
 <p>See you later for the next post of this series.</p>
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
@@ -3828,7 +3828,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <h2>Conclusion</h2>
 <p>It was quite a lot of fun writing Gemtexter. It's a relatively small project, but given that I worked on that in my spare time once in a while, it kept me busy for several weeks. </p>
 <p>I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. </p>
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1</a><br />
@@ -4144,7 +4144,7 @@ fi
 <h2>Advanced Bash learning pro tip</h2>
 <p>I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (not from Google). I use it as the universal Bash reference and learn something new every time I look at it.</p>
 <a class="textlink" href="https://tldp.org/LDP/abs/html/">Advanced Bash-Scripting Guide</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
@@ -4221,7 +4221,7 @@ fi
 <p>Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.</p>
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
 <a class="textlink" href="https://gemini.circumlunar.space">https://gemini.circumlunar.space</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
@@ -4307,7 +4307,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <h2>Open Source</h2>
 <p>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.html">2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.html">2022-03-06 The release of DTail 4.0.0</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.html">2021-04-22 DTail - The distributed log tail program (You are currently reading this)</a><br />
@@ -5687,7 +5687,7 @@ sub do ($) {
 <h2>May the source be with you</h2>
 <p>You can find PerlDaemon (including the examples) at:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perldaemon">https://codeberg.org/snonux/perldaemon</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry</a><br />
@@ -6575,7 +6575,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
-<p>More related posts are:</p>
+<p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html">2022-05-27 Perl is still a great choice</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.html">2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2008-06-26-perl-poetry.html">2008-06-26 Perl Poetry (You are currently reading this)</a><br />
