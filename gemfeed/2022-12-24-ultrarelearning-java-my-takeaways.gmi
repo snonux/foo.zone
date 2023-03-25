@@ -1,4 +1,4 @@
-# Ultra(re)learning Java - My takeaways
+# (Re)learning Java - My takeaways
 
 > Published at 2022-12-24T23:18:40+02:00
 
@@ -20,7 +20,7 @@ At my workplace, as an SRE, I don't do Java a lot. I have been reading Java code
 
 Over time, I had been missing out on many new features that were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and learn every further aspect of the language as my main goal. Of course, I still liked the idea of winning a Pet Project Prize, but my main objective was to level up my Java skills.
 
-## Ultra(re)lerning & upskilling to Java 18
+## (Re)lerning & upskilling to Java 18
 
 ### Effective Java
 
