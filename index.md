@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-03-25T10:45:59+02:00 by `Gemtexter`
+> This site was generated at 2023-03-25T15:42:46+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2](./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./gemfeed/2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./gemfeed/2023-01-23-why-grapheneos-rox.md)  
