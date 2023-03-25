@@ -9,7 +9,7 @@ This is a "hidden" site listing my personal project list priorities!
 * Update dependencies and release `DTail 4.1.1` (Golang)
 * Read "The Go Notebook" (Golang)
 * Redo "The Ultimate Go" Video lecture, this time 2nd edition (Golang)
-* Other Go content by Bill Kenedy (Books, Videos, Courses?) (Golang)
+* Other Go content by William Kennedy (Books, Videos, Courses?) (Golang)
 * Work through "Bash it out" challenges (Bash)
 * Read "Programming Ruby (3.2)" (Ruby)
 * Try out `kickstart.nvim` (NeoVim)
