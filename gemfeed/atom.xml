@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-25T15:43:55+02:00</updated>
+    <updated>2023-03-25T15:56:05+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -15,7 +15,7 @@
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
         </author>
-        <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</summary>
+        <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Gemtexter 2.0.0 - Let's Gemtext again^2</h1>
@@ -31,7 +31,7 @@
  jgs  `"""""""""`      |o=======.|
   mod. by Paul Buetow  `"""""""""`
 </pre><br />
-<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</p>
+<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</p>
 <p>Let's list what's new!</p>
@@ -988,7 +988,7 @@ jgs                (________\  \
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
         </author>
-        <summary>I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</summary>
+        <summary>I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
@@ -1004,7 +1004,7 @@ jgs                (________\  \
       |o=======.|
  jgs  `"""""""""`
 </pre><br />
-<p>I am proud to announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</p>
+<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>It has been around a year since I released the first version <span class="inlinecode">1.0.0</span>. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</p>
 <h2>What's new?</h2>
