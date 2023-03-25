@@ -6,7 +6,7 @@
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./2023-01-23-why-grapheneos-rox.md)  
-[2022-12-24 - Ultra(re)learning Java - My takeaways](./2022-12-24-ultrarelearning-java-my-takeaways.md)  
+[2022-12-24 - (Re)learning Java - My takeaways](./2022-12-24-ultrarelearning-java-my-takeaways.md)  
 [2022-11-24 - I tried (Doom) Emacs, but I switched back to (Neo)Vim](./2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md)  
 [2022-10-30 - Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2022-09-30 - After a bad night's sleep](./2022-09-30-after-a-bad-nights-sleep.md)  
