@@ -166,6 +166,7 @@ I finally revamped my personal internet site and started to blog again. I wanted
 
 Other related posts are:
 
+[2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
