@@ -1,11 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-24T17:43:19+02:00</updated>
+    <updated>2023-03-25T15:42:46+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Gemtexter 2.0.0 - Let's Gemtext again^2</title>
+        <link href="https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html" />
+        <id>https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html</id>
+        <updated>2023-02-26T21:43:51+01:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>hi@paul.cyou</email>
+        </author>
+        <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>Gemtexter 2.0.0 - Let's Gemtext again^2</h1>
+<pre>
+-=[ typewriters ]=-  1/98
+
+       .-------.
+      _|~~ ~~  |_       .-------.
+    =(_|_______|_)=    _|~~ ~~  |_
+      |:::::::::|    =(_|_______|_)
+      |:::::::[]|      |:::::::::|
+      |o=======.|      |:::::::[]|
+ jgs  `"""""""""`      |o=======.|
+  mod. by Paul Buetow  `"""""""""`
+</pre><br />
+<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</p>
+<a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
+<p>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</p>
+<p>Let's list what's new!</p>
+<h2>Minimal template engine</h2>
+<p>Gemtexter now supports templating, enabling dynamically generated content to <span class="inlinecode">.html</span> files before converting anything to any output format like HTML and Markdown.</p>
+<p>A template file name must have the suffix <span class="inlinecode".html.tpl</span>. A template must be put into the same directory as the Gemtext <span class="inlinecode">.html</span> file to be generated. Gemtexter will generate a Gemtext file <span class="inlinecode">index.html</span> from a given template <span class="inlinecode">index.html.tpl</span>. A <span class="inlinecode">&lt;&lt;&lt;</span> and <span class="inlinecode">&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class="inlinecode">&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</p>
+<p>For example, the template <span class="inlinecode">index.html.tpl</span>:</p>
+<pre>
+# Hello world
+
+&lt;&lt; echo "&gt; This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
+
+Welcome to this capsule!
+
+&lt;&lt;&lt;
+  for i in {1..10}; do
+    echo Multiline template line $i
+  done
+&gt;&gt;&gt;
+</pre><br />
+<p>... results into the following <span class="inlinecode">index.html</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):</p>
+<pre>
+# Hello world
+
+&gt; This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
+
+Welcome to this capsule!
+
+Multiline template line 1
+Multiline template line 2
+Multiline template line 3
+Multiline template line 4
+Multiline template line 5
+Multiline template line 6
+Multiline template line 7
+Multiline template line 8
+Multiline template line 9
+Multiline template line 10
+</pre><br />
+<p>Another thing you can do is insert an index with links to similar blog posts. E.g.:</p>
+<pre>
+See more entries about DTail and Golang:
+
+&lt;&lt; template::inline::index dtail golang
+
+Blablabla...
+</pre><br />
+<p>... scans all other post entries with <span class="inlinecode">dtail</span> and <span class="inlinecode">golang</span> in the file name and generates a link list like this:</p>
+<pre>
+See more entries about DTail and Golang:
+
+=&gt; ./2022-10-30-installing-dtail-on-openbsd.html 2022-10-30 Installing DTail on OpenBSD
+=&gt; ./2022-04-22-programming-golang.html 2022-04-22 The Golang Programming language
+=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.html 2022-03-06 The release of DTail 4.0.0
+=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.html 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+
+Blablabla...
+</pre><br />
+<h2>Added hooks</h2>
+<p>You can configure <span class="inlinecode">PRE_GENERATE_HOOK</span> and <span class="inlinecode">POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class="inlinecode">--generate</span>, or after running <span class="inlinecode">--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class="inlinecode">--publish</span>.</p>
+<p>The sample config file <span class="inlinecode">gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</p>
+<pre>
+declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
+declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
+</pre><br />
+<h2>Use of safer Bash options</h2>
+<p>Gemtexter now does <span class="inlinecode">set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class="inlinecode">set -e</span>.</p>
+<h2>Meta cache made obsolete</h2>
+<p>Here is the breaking change to older versions of Gemtexter. The <span class="inlinecode">$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class="inlinecode">meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class="inlinecode">.html</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</p>
+<p>An example blog post without any publishing date looks like this:</p>
+<pre>
+% cat gemfeed/2023-02-26-title-here.html
+# Title here
+
+The remaining content of the Gemtext file...
+</pre><br />
+<p>Gemtexter will add a line starting with  <span class="inlinecode">&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</p>
+<pre>
+% cat gemfeed/2023-02-26-title-here.html
+# Title here
+
+&gt; Published at 2023-02-26T21:43:51+01:00
+
+The remaining content of the Gemtext file...
+</pre><br />
+<h2>XMLLint support</h2>
+<p>Optionally, when the <span class="inlinecode">xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</p>
+<h2>More</h2>
+<p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
+<p>Other related posts are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.html">2021-04-24 Welcome to the Geminispace</a><br />
+<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../">Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'The Pragmatic Programmer' book notes</title>
         <link href="https://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.html" />
@@ -863,7 +987,7 @@ jgs                (________\  \
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
         </author>
-        <summary>I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my static site generator written in GNU Bash.</summary>
+        <summary>I am proud to announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
@@ -879,7 +1003,8 @@ jgs                (________\  \
       |o=======.|
  jgs  `"""""""""`
 </pre><br />
-<p>I am proud to announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my static site generator written in GNU Bash.</p>
+<p>I am proud to announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator written in GNU Bash.</p>
+<a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>It has been around a year since I released the first version <span class="inlinecode">1.0.0</span>. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</p>
 <h2>What's new?</h2>
 <h3>Automatic check for GNU version requirements</h3>
