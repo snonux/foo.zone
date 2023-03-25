@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-25T15:56:05+02:00</updated>
+    <updated>2023-03-25T17:50:59+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,7 +10,7 @@
         <title>Gemtexter 2.0.0 - Let's Gemtext again^2</title>
         <link href="https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html" />
         <id>https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html</id>
-        <updated>2023-02-26T21:43:51+01:00</updated>
+        <updated>2023-03-25T17:50:32+02:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
@@ -19,6 +19,7 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>Gemtexter 2.0.0 - Let's Gemtext again^2</h1>
+<p class="quote"><i>Published at 2023-03-25T17:50:32+02:00</i></p>
 <pre>
 -=[ typewriters ]=-  1/98
 
