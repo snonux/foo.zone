@@ -32,15 +32,15 @@ For example, the template `index.gmi.tpl`:
 ```
 # Hello world
 
-<< echo "> This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
+[[ echo "> This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
 
 Welcome to this capsule!
 
-<<<
+[[[
   for i in {1..10}; do
     echo Multiline template line $i
   done
->>>
+]]]
 ```
 
 ... results into the following `index.gmi` after running `./gemtexter --generate` (or `./gemtexter --template`, which instructs to do only template processing and nothing else):
@@ -69,7 +69,7 @@ Another thing you can do is insert an index with links to similar blog posts. E.
 ```
 See more entries about DTail and Golang:
 
-<< template::inline::index dtail golang
+[[ template::inline::index dtail golang
 
 Blablabla...
 ```
@@ -104,9 +104,9 @@ Gemtexter now does `set -euf -o pipefile`, which helps to eliminate bugs and to 
 
 ## Meta cache made obsolete
 
-Here is the breaking change to older versions of Gemtexter. The `$BASE_CONTENT_DIR/meta` directory was made obsolete. `meta` was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the `.gmi` file. And if it is missing, Gemtexter will set it to the current date and time.
+Here is the breaking change to older versions of Gemtexter. The `$BASE_CONTENT_DIR/meta` directory was made obsolete. `meta` was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the `.gmi` file. And if it is missing, Gemtexter will set it to the current date and time at first run.
 
-An example blog post without any publishing date looks now like this:
+An example blog post without any publishing date looks like this:
 
 ```
 % cat gemfeed/2023-02-26-title-here.gmi
@@ -136,9 +136,7 @@ Additionally, there were a couple of bug fixes, refactorings and overall improve
 
 Other related posts are:
 
-=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
+<< template::inline::index gemtext gemini
 
 E-Mail your comments to hi@paul.cyou :-)
 
