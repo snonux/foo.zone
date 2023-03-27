@@ -84,10 +84,10 @@ Blablabla...
 <pre>
 See more entries about DTail and Golang:
 
-=&gt; ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=&gt; ./2022-04-22-programming-golang.gmi 2022-04-22 The Golang Programming language
-=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
-=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+=&gt; ./2022-10-30-installing-dtail-on-openbsd.html 2022-10-30 Installing DTail on OpenBSD
+=&gt; ./2022-04-22-programming-golang.html 2022-04-22 The Golang Programming language
+=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.html 2022-03-06 The release of DTail 4.0.0
+=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.html 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
 
 Blablabla...
 </pre><br />
@@ -3948,7 +3948,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <h2>Future features</h2>
 <p>I could think of the following features added to a future version of Gemtexter:</p>
 <ul>
-<li>Templating of Gemtext files so that the .gmi files are generated from .gmi.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. </li>
+<li>Templating of Gemtext files so that the .html files are generated from .gmi.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. </li>
 <li>Add support for more output formats, such as Groff, PDF, plain text, Gopher, etc.</li>
 <li>External CSS file for HTML.</li>
 <li>Improve speed by introducing parallelism and/or concurrency and/or better caching.</li>
