@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-26T15:48:54+03:00</updated>
+    <updated>2023-03-27T23:05:17+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -37,9 +37,9 @@
 <p>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</p>
 <p>Let's list what's new!</p>
 <h2>Minimal template engine</h2>
-<p>Gemtexter now supports templating, enabling dynamically generated content to <span class="inlinecode">.html</span> files before converting anything to any output format like HTML and Markdown.</p>
-<p>A template file name must have the suffix <span class="inlinecode".html.tpl</span>. A template must be put into the same directory as the Gemtext <span class="inlinecode">.html</span> file to be generated. Gemtexter will generate a Gemtext file <span class="inlinecode">index.html</span> from a given template <span class="inlinecode">index.html.tpl</span>. A <span class="inlinecode">&lt;&lt;&lt;</span> and <span class="inlinecode">&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class="inlinecode">&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</p>
-<p>For example, the template <span class="inlinecode">index.html.tpl</span>:</p>
+<p>Gemtexter now supports templating, enabling dynamically generated content to <span class="inlinecode">.gmi</span> files before converting anything to any output format like HTML and Markdown.</p>
+<p>A template file name must have the suffix <span class="inlinecode">gmi.tpl</span>. A template must be put into the same directory as the Gemtext <span class="inlinecode">.gmi</span> file to be generated. Gemtexter will generate a Gemtext file <span class="inlinecode">index.gmi</span> from a given template <span class="inlinecode">index.gmi.tpl</span>. A <span class="inlinecode">&lt;&lt;&lt;</span> and <span class="inlinecode">&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class="inlinecode">&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</p>
+<p>For example, the template <span class="inlinecode">index.gmi.tpl</span>:</p>
 <pre>
 # Hello world
 
@@ -53,7 +53,7 @@ Welcome to this capsule!
   done
 &gt;&gt;&gt;
 </pre><br />
-<p>... results into the following <span class="inlinecode">index.html</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):</p>
+<p>... results into the following <span class="inlinecode">index.gmi</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):</p>
 <pre>
 # Hello world
 
@@ -84,10 +84,10 @@ Blablabla...
 <pre>
 See more entries about DTail and Golang:
 
-=&gt; ./2022-10-30-installing-dtail-on-openbsd.html 2022-10-30 Installing DTail on OpenBSD
-=&gt; ./2022-04-22-programming-golang.html 2022-04-22 The Golang Programming language
-=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.html 2022-03-06 The release of DTail 4.0.0
-=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.html 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+=&gt; ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=&gt; ./2022-04-22-programming-golang.gmi 2022-04-22 The Golang Programming language
+=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
+=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
 
 Blablabla...
 </pre><br />
@@ -101,17 +101,17 @@ declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 <h2>Use of safer Bash options</h2>
 <p>Gemtexter now does <span class="inlinecode">set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class="inlinecode">set -e</span>.</p>
 <h2>Meta cache made obsolete</h2>
-<p>Here is the breaking change to older versions of Gemtexter. The <span class="inlinecode">$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class="inlinecode">meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class="inlinecode">.html</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</p>
+<p>Here is the breaking change to older versions of Gemtexter. The <span class="inlinecode">$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class="inlinecode">meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class="inlinecode">.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</p>
 <p>An example blog post without any publishing date looks like this:</p>
 <pre>
-% cat gemfeed/2023-02-26-title-here.html
+% cat gemfeed/2023-02-26-title-here.gmi
 # Title here
 
 The remaining content of the Gemtext file...
 </pre><br />
 <p>Gemtexter will add a line starting with  <span class="inlinecode">&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</p>
 <pre>
-% cat gemfeed/2023-02-26-title-here.html
+% cat gemfeed/2023-02-26-title-here.gmi
 # Title here
 
 &gt; Published at 2023-02-26T21:43:51+01:00
@@ -1034,7 +1034,7 @@ check_dependencies () {
 <h3>Backticks now produce <span class="inlinecode">inline code blocks</span> in the HTML output</h3>
 <p>The Gemtext format doesn't support inline code blocks, but Gemtexter now produces <span class="inlinecode">inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.</p>
 <h3>Cache for Atom feed generation</h3>
-<p>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class="inlinecode">.html</span> file to decide whether anything of the content has changed or not.</p>
+<p>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class="inlinecode">.gmi</span> file to decide whether anything of the content has changed or not.</p>
 <h3>Input filter support</h3>
 <p>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</p>
 <pre>
@@ -3948,7 +3948,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <h2>Future features</h2>
 <p>I could think of the following features added to a future version of Gemtexter:</p>
 <ul>
-<li>Templating of Gemtext files so that the .html files are generated from .html.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. </li>
+<li>Templating of Gemtext files so that the .gmi files are generated from .gmi.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. </li>
 <li>Add support for more output formats, such as Groff, PDF, plain text, Gopher, etc.</li>
 <li>External CSS file for HTML.</li>
 <li>Improve speed by introducing parallelism and/or concurrency and/or better caching.</li>
