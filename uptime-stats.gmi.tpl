@@ -10,8 +10,8 @@ The following stats were collected via `uptimed` on all of my personal computers
 => https://codeberg.org/snonux/guprecords
 
 <<<
-  if [ -f ~/git/uprecords/uprecords.md ]; then
-      cat ~/git/uprecords/uprecords.md
+  if [ -f ~/git/uprecords/uprecords.gmi ]; then
+      cat ~/git/uprecords/uprecords.gmi
   else
       $SED -n '/Top/,$p' uptime-stats.gmi
   fi
