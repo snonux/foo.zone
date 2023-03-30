@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Bash Golf Part 1</h1>
-<p class="quote"><i>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</i></p>
+<span class="quote"><i>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</i></span><br />
+<br />
 <pre>
 
      '\                   .  .                        |&gt;18&gt;&gt;
@@ -20,20 +21,28 @@
       / /  .'                                         |
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
-</pre><br />
-<p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
+</pre>
+<br />
+This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.<br />
+<br />
 <a class="textlink" href="./2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="./2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
+<br />
 <h2>TCP/IP networking</h2>
-<p>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</p>
-<p>Have a look here how that works:</p>
+You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?<br />
+<br />
+Have a look here how that works:<br />
+<br />
 <pre>
 ❯ cat &lt; /dev/tcp/time.nist.gov/13
 
 59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
-</pre><br />
-<p>The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).</p>
-<p>A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</p>
+</pre>
+<br />
+The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).<br />
+<br />
+A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:<br />
+<br />
 <pre>
 ❯ exec 5&lt;&gt;/dev/tcp/google.de/80
 ❯ echo -e "GET / HTTP/1.1\nhost: google.de\n\n" &gt;&amp;5
@@ -48,10 +57,13 @@ Server: gws
 Content-Length: 218
 X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
-</pre><br />
-<p>You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</p>
+</pre>
+<br />
+You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.<br />
+<br />
 <h2>Process substitution</h2>
-<p>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</p>
+The idea here is, that you can read the output (stdout) of a command from a file descriptor:<br />
+<br />
 <pre>
 ❯ uptime # Without process substitution
  10:58:03 up 4 days, 22:08,  1 user,  load average: 0.16, 0.34, 0.41
@@ -69,9 +81,12 @@ Access: 2021-11-20 10:59:31.482411961 +0000
 Modify: 2021-11-20 10:59:31.482411961 +0000
 Change: 2021-11-20 10:59:31.482411961 +0000
  Birth: -
-</pre><br />
-<p>This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</p>
-<p>A useful use case is displaying the differences of two sorted files:</p>
+</pre>
+<br />
+This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.<br />
+<br />
+A useful use case is displaying the differences of two sorted files:<br />
+<br />
 <pre>
 ❯ echo a &gt; /tmp/file-a.txt
 ❯ echo b &gt;&gt; /tmp/file-a.txt
@@ -91,12 +106,16 @@ Change: 2021-11-20 10:59:31.482411961 +0000
 ❯ echo X &gt;&gt; /tmp/file-a.txt # Now, both files have the same content again.
 ❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
 ❯
-</pre><br />
-<p>Another example is displaying the differences of two directories:</p>
+</pre>
+<br />
+Another example is displaying the differences of two directories:<br />
+<br />
 <pre>
 ❯ diff -u &lt;(ls ./dir1/ | sort) &lt;(ls ./dir2/ | sort)
-</pre><br />
-<p>More (Bash golfing) examples:</p>
+</pre>
+<br />
+More (Bash golfing) examples:<br />
+<br />
 <pre>
 ❯ wc -l &lt;(ls /tmp/) /etc/passwd &lt;(env)
      24 /dev/fd/63
@@ -110,22 +129,29 @@ Change: 2021-11-20 10:59:31.482411961 +0000
 &gt; done &lt; &lt;(echo foo bar baz)
 foo bar baz
 ❯
-</pre><br />
-<p>So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:</p>
+</pre>
+<br />
+So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:<br />
+<br />
 <pre>
 ❯ tar cjf file.tar.bz2 foo
 ❯ tar cjf &gt;(bzip2 -c &gt; file.tar.bz2) foo
-</pre><br />
-<p>Just think a while and see whether you understand fully what is happening here.</p>
+</pre>
+<br />
+Just think a while and see whether you understand fully what is happening here.<br />
+<br />
 <h2>Grouping</h2>
-<p>Command grouping can be quite useful for combining the output of multiple commands:</p>
+Command grouping can be quite useful for combining the output of multiple commands:<br />
+<br />
 <pre>
 ❯ { ls /tmp; cat /etc/passwd; env; } | wc -l
 97
 ❯ ( ls /tmp; cat /etc/passwd; env; ) | wc -l
 97
-</pre><br />
-<p>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:</p>
+</pre>
+<br />
+But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:<br />
+<br />
 <pre>
 ❯ echo $$
 62676
@@ -133,17 +159,22 @@ foo bar baz
 62676
 ❯ ( echo $$; )
 62676
-</pre><br />
-<p>One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:</p>
+</pre>
+<br />
+One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:<br />
+<br />
 <pre>
 ❯ ( env; ls ) | wc -l
 27
 ❯ { env; ls } | wc -l
 &gt;
 &gt; ^C
-</pre><br />
-<p>In case you know more (subtle) differences, please write me an E-Mail and let me know.</p>
-<p class="quote"><i>Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):</i></p>
+</pre>
+<br />
+In case you know more (subtle) differences, please write me an E-Mail and let me know.<br />
+<br />
+<span class="quote"><i>Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):</i></span><br />
+<br />
 <pre>
 (list) list is executed in a subshell environment (see COMMAND EXECUTION ENVIRONMENT
        below).   Variable  assignments  and builtin commands that affect the shell's
@@ -157,21 +188,27 @@ foo bar baz
        ters ( and ), { and } are reserved words and must occur where a reserved word
        is  permitted  to  be recognized.  Since they do not cause a word break, they
        must be separated from list by whitespace or another shell metacharacter.
-</pre><br />
-<p>So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:</p>
+</pre>
+<br />
+So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:<br />
+<br />
 <pre>
 $      Expands to the process ID of the shell.  In a () subshell, it expands to  the
        process ID of the current shell, not the subshell.
-</pre><br />
-<p>If we want print the subprocess PID, we can use the BASHPID variable:</p>
+</pre>
+<br />
+If we want print the subprocess PID, we can use the BASHPID variable:<br />
+<br />
 <pre>
 ❯ echo $BASHPID; { echo $BASHPID; }; ( echo $BASHPID; )
 1028465
 1028465
 1028739
-</pre><br />
+</pre>
+<br />
 <h2>Expansions</h2>
-<p>Let's start with simple examples:</p>
+Let's start with simple examples:<br />
+<br />
 <pre>
 ❯ echo {0..5}
 0 1 2 3 4 5
@@ -182,8 +219,10 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 3
 4
 5
-</pre><br />
-<p>You can also add leading 0 or expand to any number range:</p>
+</pre>
+<br />
+You can also add leading 0 or expand to any number range:<br />
+<br />
 <pre>
 ❯ echo {00..05}
 00 01 02 03 04 05
@@ -191,31 +230,41 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 000 001 002 003 004 005
 ❯ echo {201..205}
 201 202 203 204 205
-</pre><br />
-<p>It also works with letters:</p>
+</pre>
+<br />
+It also works with letters:<br />
+<br />
 <pre>
 ❯ echo {a..e}
 a b c d e
-</pre><br />
-<p>Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:</p>
+</pre>
+<br />
+Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:<br />
+<br />
 <pre>
 ❯ echo \"{These,words,are,quoted}\"
 "These" "words" "are" "quoted"
-</pre><br />
-<p>Let's also expand to the cross product of two given lists:</p>
+</pre>
+<br />
+Let's also expand to the cross product of two given lists:<br />
+<br />
 <pre>
 ❯ echo {one,two}\:{A,B,C}
 one:A one:B one:C two:A two:B two:C
 ❯ echo \"{one,two}\:{A,B,C}\"
 "one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
-</pre><br />
-<p>Just because we can:</p>
+</pre>
+<br />
+Just because we can:<br />
+<br />
 <pre>
 ❯ echo Linux-{one,two,three}\:{A,B,C}-FreeBSD
 Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
-</pre><br />
+</pre>
+<br />
 <h2>- aka stdin and stdout placeholder</h2>
-<p>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</p>
+Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:<br />
+<br />
 <pre>
 ❯ echo Hello world
 Hello world
@@ -227,25 +276,33 @@ ONECHEESEBURGERPLEASE
 Hello world
 ❯ cat - &lt;&lt;&lt; 'Hello world'
 Hello world
-</pre><br />
-<p>Let's walk through all three examples from the above snippet:</p>
+</pre>
+<br />
+Let's walk through all three examples from the above snippet:<br />
+<br />
 <ul>
 <li>The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).</li>
 <li>The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.</li>
 <li>The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.</li>
 </ul>
-<p>The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:</p>
+<br />
+The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:<br />
+<br />
 <pre>
 ❯ tar -czf - /some/dir | ssh hercules@buetow.org tar -xzvf - 
-</pre><br />
-<p>This is yet another example of using "-", but this time using the "file" command:</p>
+</pre>
+<br />
+This is yet another example of using "-", but this time using the "file" command:<br />
+<br />
 <pre>
 $ head -n 1 grandmaster.sh
 #!/usr/bin/env bash
 $ file - &lt; &lt;(head -n 1 grandmaster.sh)
 /dev/stdin: a /usr/bin/env bash script, ASCII text executable
-</pre><br />
-<p>Some more golfing:</p>
+</pre>
+<br />
+Some more golfing:<br />
+<br />
 <pre>
 $ cat -
 hello
@@ -254,17 +311,21 @@ hello
 $ file -
 #!/usr/bin/perl
 /dev/stdin: Perl script text executable
-</pre><br />
+</pre>
+<br />
 <h2>Alternative argument passing</h2>
-<p>This is a quite unusual way of passing arguments to a Bash script:</p>
+This is a quite unusual way of passing arguments to a Bash script:<br />
+<br />
 <pre>
 ❯ cat foo.sh
 #/usr/bin/env bash
 declare -r USER=${USER:?Missing the username}
 declare -r PASS=${PASS:?Missing the secret password for $USER}
 echo $USER:$PASS
-</pre><br />
-<p>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an undefined argument.</p>
+</pre>
+<br />
+So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an undefined argument.<br />
+<br />
 <pre>
 ❯ chmod +x foo.sh
 ❯ ./foo.sh
@@ -275,20 +336,27 @@ echo $USER:$PASS
 1
 ❯ USER=paul PASS=secret ./foo.sh
 paul:secret
-</pre><br />
-<p>You have probably noticed this *strange* syntax:</p>
+</pre>
+<br />
+You have probably noticed this *strange* syntax:<br />
+<br />
 <pre>
 ❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
-</pre><br />
-<p>That's just another way to pass environment variables to a script. You can write it as well as like this:</p>
+</pre>
+<br />
+That's just another way to pass environment variables to a script. You can write it as well as like this:<br />
+<br />
 <pre>
 ❯ export VARIABLE1=value1
 ❯ export VARIABLE2=value2
 ❯ ./script.sh
-</pre><br />
-<p>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</p>
+</pre>
+<br />
+But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.<br />
+<br />
 <h2>: aka the null command</h2>
-<p>First, let's use the "help" Bash built-in to see what it says about the null command:</p>
+First, let's use the "help" Bash built-in to see what it says about the null command:<br />
+<br />
 <pre>
 ❯ help :
 :: :
@@ -298,15 +366,20 @@ paul:secret
 
     Exit Status:
     Always succeeds.
-</pre><br />
-<p>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </p>
-<p>OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):</p>
+</pre>
+<br />
+PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). <br />
+<br />
+OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):<br />
+<br />
 <pre>
 ❯ :
 ❯ echo $?
 0
-</pre><br />
-<p>Why would that be useful? You can use it as a placeholder in an endless while-loop:</p>
+</pre>
+<br />
+Why would that be useful? You can use it as a placeholder in an endless while-loop:<br />
+<br />
 <pre>
 ❯ while : ; do date; sleep 1; done
 Sun 21 Nov 12:08:31 GMT 2021
@@ -314,28 +387,36 @@ Sun 21 Nov 12:08:32 GMT 2021
 Sun 21 Nov 12:08:33 GMT 2021
 ^C
 ❯
-</pre><br />
-<p>You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:</p>
+</pre>
+<br />
+You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:<br />
+<br />
 <pre>
 ❯ foo () {  }
 -bash: syntax error near unexpected token `}'
 ❯ foo () { :; }
 ❯ foo
 ❯
-</pre><br />
-<p>Or use it as a placeholder for not yet implemented conditional branches:</p>
+</pre>
+<br />
+Or use it as a placeholder for not yet implemented conditional branches:<br />
+<br />
 <pre>
 ❯ if foo; then :; else echo bar; fi
-</pre><br />
-<p>Or (not recommended) as a fancy way to comment your Bash code:</p>
+</pre>
+<br />
+Or (not recommended) as a fancy way to comment your Bash code:<br />
+<br />
 <pre>
 ❯ : I am a comment and have no other effect
 ❯ : I am a comment and result in a syntax error ()
 -bash: syntax error near unexpected token `('
 ❯ : "I am a comment and don't result in a syntax error ()"
 ❯
-</pre><br />
-<p>As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:</p>
+</pre>
+<br />
+As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:<br />
+<br />
 <pre>
 ❯ declare i=0
 ❯ $[ i = i + 1 ]
@@ -345,8 +426,10 @@ bash: 1: command not found...
 ❯ : $[ i = i + 1 ]
 ❯ echo $i
 4
-</pre><br />
-<p>For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</p>
+</pre>
+<br />
+For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:<br />
+<br />
 <pre>
 ❯ declare j=0
 ❯ let j=$((j + 1))
@@ -355,9 +438,11 @@ bash: 1: command not found...
 ❯ let j=$((j + 1))
 ❯ echo $j
 4
-</pre><br />
+</pre>
+<br />
 <h2>(No) floating point support</h2>
-<p>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn't:</p>
+I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn't:<br />
+<br />
 <pre>
 ❯ bash -c 'echo $(( 1/10 ))'
 0
@@ -368,20 +453,28 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 ❯ zsh -c 'echo $(( 1/10.0 ))'
 0.10000000000000001
 ❯
-</pre><br />
-<p>It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. </p>
-<p>In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):</p>
+</pre>
+<br />
+It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. <br />
+<br />
+In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):<br />
+<br />
 <pre>
 ❯ bc &lt;&lt;&lt; 'scale=2; 1/10'
 .10
-</pre><br />
-<p>See you later for the next post of this series.</p>
-<p>Other related posts are:</p>
+</pre>
+<br />
+See you later for the next post of this series.<br />
+<br />
+Other related posts are:<br />
+<br />
 <a class="textlink" href="./2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="./2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
 <a class="textlink" href="./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class="textlink" href="./2021-05-16-personal-bash-coding-style-guide.html">2021-05-16 Personal Bash coding style guide</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

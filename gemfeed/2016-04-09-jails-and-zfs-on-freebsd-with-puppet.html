@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Jails and ZFS with Puppet on FreeBSD</h1>
-<p class="quote"><i>Published at 2016-04-09T18:29:47+01:00</i></p>
+<span class="quote"><i>Published at 2016-04-09T18:29:47+01:00</i></span><br />
+<br />
 <pre>
             __     __
            (( \---/ ))
@@ -28,11 +29,15 @@
              \     \
               \     `.     hjw
                \      `.
-</pre><br />
-<p>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</p>
+</pre>
+<br />
+Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.<br />
+<br />
 <h2>ZFS</h2>
-<p>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</p>
-<p>Puppet snippet:</p>
+The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):<br />
+<br />
+Puppet snippet:<br />
+<br />
 <pre>
 zfs::create { 'ztank/foo':
   ensure     =&gt; present,
@@ -40,8 +45,10 @@ zfs::create { 'ztank/foo':
 
   require =&gt; File['/srv'],
 }
-</pre><br />
-<p>Puppet run:</p>
+</pre>
+<br />
+Puppet run:<br />
+<br />
 <pre>
 admin alphacentauri:/opt/git/server/puppet/manifests [1212]% puppet.apply
 Password:
@@ -60,8 +67,10 @@ ztank/foo                     96K  1.13T    96K  /srv/foo
 admin alphacentauri:~ [1214]% df | grep foo
 ztank/foo                  1214493520        96 1214493424     0%    /srv/foo
 admin alphacentauri:~ [1215]% 
-</pre><br />
-<p>The destruction of the file system just requires to set "ensure" to "absent" in Puppet:</p>
+</pre>
+<br />
+The destruction of the file system just requires to set "ensure" to "absent" in Puppet:<br />
+<br />
 <pre>
 zfs::create { 'ztank/foo':
   ensure     =&gt; absent,
@@ -69,8 +78,10 @@ zfs::create { 'ztank/foo':
 
   require =&gt; File['/srv'],
 }¬
-</pre><br />
-<p>Puppet run:</p>
+</pre>
+<br />
+Puppet run:<br />
+<br />
 <pre>
 admin alphacentauri:/opt/git/server/puppet/manifests [1220]% puppet.apply
 Password:
@@ -90,10 +101,13 @@ zsh: exit 1     grep foo
 admin alphacentauri:/opt/git/server/puppet/manifests [1222:1]% df | grep foo
 zsh: done       df | 
 zsh: exit 1     grep foo
-</pre><br />
+</pre>
+<br />
 <h2>Jails</h2>
-<p>Here is an example in how a FreeBSD Jail can be created. The Jail will have its own public IPv6 address. And it will have its own internal IPv4 address with IPv4 NAT to the internet (this is due to the limitation that the host server only got one public IPv4 address which requires sharing between all the Jails).</p>
-<p>Furthermore, Puppet will ensure that the Jail will have its own ZFS file system (internally it is using the ZFS module). Please notice that the NAT requires the packet filter to be setup correctly (not covered in this blog post).</p>
+Here is an example in how a FreeBSD Jail can be created. The Jail will have its own public IPv6 address. And it will have its own internal IPv4 address with IPv4 NAT to the internet (this is due to the limitation that the host server only got one public IPv4 address which requires sharing between all the Jails).<br />
+<br />
+Furthermore, Puppet will ensure that the Jail will have its own ZFS file system (internally it is using the ZFS module). Please notice that the NAT requires the packet filter to be setup correctly (not covered in this blog post).<br />
+<br />
 <pre>
 include jail::freebsd
 
@@ -130,8 +144,10 @@ class { 'jail':
     },
   }
 }
-</pre><br />
-<p>This is how the result looks like:</p>
+</pre>
+<br />
+This is how the result looks like:<br />
+<br />
 <pre>
 admin sun:/etc [1939]% puppet.apply
 Info: Loading facts
@@ -221,9 +237,11 @@ lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; metric 0 mtu 16384
      options=600003&lt;RXCSUM,TXCSUM,RXCSUM_IPV6,TXCSUM_IPV6&gt;
      inet 192.168.0.17 netmask 0xffffffff 
      nd6 options=29&lt;PERFORMNUD,IFDISABLED,AUTO_LINKLOCAL&gt;
-</pre><br />
+</pre>
+<br />
 <h2>Inside-Jail Puppet</h2>
-<p>To automatically setup the applications running in the Jail I am using Puppet as well. I wrote a few scripts which bootstrap Puppet inside of a newly created Jail. It is doing the following:</p>
+To automatically setup the applications running in the Jail I am using Puppet as well. I wrote a few scripts which bootstrap Puppet inside of a newly created Jail. It is doing the following:<br />
+<br />
 <ul>
 <li>Mounts an encrypted container (containing a secret Puppet manifests [git repository])</li>
 <li>Activates "pkg-ng", the FreeBSD binary package manager, in the Jail</li>
@@ -232,6 +250,7 @@ lo0: flags=8049&lt;UP,LOOPBACK,RUNNING,MULTICAST&gt; metric 0 mtu 16384
 <li>Restarts the Jail and invokes Puppet.</li>
 <li>Puppet then also schedules a periodic cron job for the next Puppet runs.</li>
 </ul>
+<br />
 <pre>
 admin sun:~ [1951]% sudo /opt/snonux/local/etc/init.d/enc activate sync
 Starting jails: dns.
@@ -359,9 +378,11 @@ Notice: /Stage[main]/S_user::Root_files/S_user::My_files[root]/File[/root/.task]
 .
 .
 Notice: Finished catalog run in 206.09 seconds
-</pre><br />
+</pre>
+<br />
 <h2>Managing multiple Jails</h2>
-<p>Of course I am operating multiple Jails on the same host this way with Puppet:</p>
+Of course I am operating multiple Jails on the same host this way with Puppet:<br />
+<br />
 <ul>
 <li>A Jail for the MTA</li>
 <li>A Jail for the Webserver</li>
@@ -370,8 +391,11 @@ Notice: Finished catalog run in 206.09 seconds
 <li>A Jail for other personal (experimental) use</li>
 <li>...etc</li>
 </ul>
-<p>All done in a pretty automated manor. </p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+All done in a pretty automated manor. <br />
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

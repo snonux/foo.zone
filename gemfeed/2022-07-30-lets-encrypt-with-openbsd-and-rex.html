@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Let's Encrypt with OpenBSD and Rex</h1>
-<p class="quote"><i>Published at 2022-07-30T12:14:31+01:00</i></p>
+<span class="quote"><i>Published at 2022-07-30T12:14:31+01:00</i></span><br />
+<br />
 <pre>
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -35,21 +36,30 @@
               /                                              \
              /________________________________________________\
                                  ASCII Art by John Savard
-</pre><br />
-<p>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</p>
+</pre>
+<br />
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.<br />
+<br />
 <h2>What's Let's Encrypt?</h2>
-<p class="quote"><i>Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</i></p>
+<span class="quote"><i>Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</i></span><br />
+<br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Let's_Encrypt">Source: Wikipedia</a><br />
-<p>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</p>
+<br />
+In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.<br />
+<br />
 <h2>Meet <span class="inlinecode">acme-client</span></h2>
-<p><span class="inlinecode">acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. </p>
-<p>When invoked, the client first checks whether certificates actually require to be generated.</p>
+<span class="inlinecode">acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. <br />
+<br />
+When invoked, the client first checks whether certificates actually require to be generated.<br />
+<br />
 <ul>
 <li>It first checks whether a certificate already exists; if not, it will attempt to generate a new one.</li>
 <li>If the certificate already exists but expires within the next 30 days, it will renew it.</li>
 <li>Otherwise, <span class="inlinecode">acme-client</span> won't do anything.</li>
 </ul>
-<p>Oversimplified, the following steps are undertaken by <span class="inlinecode">acme-client</span> for generating a new certificate:</p>
+<br />
+Oversimplified, the following steps are undertaken by <span class="inlinecode">acme-client</span> for generating a new certificate:<br />
+<br />
 <ul>
 <li>Reading its config file <span class="inlinecode">/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates. So it means you can also have certificates for arbitrary subdomains!</li>
 <li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to <span class="inlinecode">/etc/ssl/...</span>.</li>
@@ -57,10 +67,13 @@
 <li>Let's Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class="inlinecode">http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
 <li>Let's Encrypt generates a certificate, which then is downloaded to <span class="inlinecode">/etc/ssl/...</span>.</li>
 </ul>
+<br />
 <h2>Configuration</h2>
-<p>There is some (but easy) configuration required to make that all work on OpenBSD.</p>
+There is some (but easy) configuration required to make that all work on OpenBSD.<br />
+<br />
 <h3>acme-client.conf</h3>
-<p>This is how my <span class="inlinecode">/etc/acme-client.conf</span> looks like (I copied a template from <span class="inlinecode">/etc/examples/acme-client.conf</span> to <span class="inlinecode">/etc/acme-client.conf</span> and added my domains to the bottom:</p>
+This is how my <span class="inlinecode">/etc/acme-client.conf</span> looks like (I copied a template from <span class="inlinecode">/etc/examples/acme-client.conf</span> to <span class="inlinecode">/etc/acme-client.conf</span> and added my domains to the bottom:<br />
+<br />
 <pre>
 #
 # $OpenBSD: acme-client.conf,v 1.4 2020/09/17 09:13:06 florian Exp $
@@ -121,9 +134,11 @@ domain snonux.land {
     domain full chain certificate "/etc/ssl/snonux.land.fullchain.pem"
     sign with letsencrypt
 }
-</pre><br />
+</pre>
+<br />
 <h3>httpd.conf</h3>
-<p>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let's Encrypt are served correctly. I am using the standard OpenBSD <span class="inlinecode">httpd</span> here. These are the snippets I use for the <span class="inlinecode">foo.zone</span> host in <span class="inlinecode">/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</p>
+For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let's Encrypt are served correctly. I am using the standard OpenBSD <span class="inlinecode">httpd</span> here. These are the snippets I use for the <span class="inlinecode">foo.zone</span> host in <span class="inlinecode">/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):<br />
+<br />
 <pre>
 server "foo.zone" {
   listen on * port 80
@@ -147,12 +162,17 @@ server "foo.zone" {
     directory auto index
   }
 }
-</pre><br />
-<p>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.</p>
-<p>It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class="inlinecode">httpd</span> to use any new certificate.</p>
+</pre>
+<br />
+As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.<br />
+<br />
+It is worth noticing that <span class="inlinecode">httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class="inlinecode">httpd</span> to use any new certificate.<br />
+<br />
 <h3>CRON job</h3>
-<p>You could now run <span class="inlinecode">doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</p>
-<p>I have created a script <span class="inlinecode">/usr/local/bin/acme.sh</span> for that for all of my domains:</p>
+You could now run <span class="inlinecode">doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.<br />
+<br />
+I have created a script <span class="inlinecode">/usr/local/bin/acme.sh</span> for that for all of my domains:<br />
+<br />
 <pre>
 #!/bin/sh
 
@@ -204,12 +224,16 @@ if [ $has_update = yes ]; then
     /usr/sbin/rcctl reload relayd
     /usr/sbin/rcctl restart smtpd
 fi
-</pre><br />
-<p>And added the following line to <span class="inlinecode">/etc/daily.local</span> to run the script once daily so that certificates will be renewed fully automatically:</p>
+</pre>
+<br />
+And added the following line to <span class="inlinecode">/etc/daily.local</span> to run the script once daily so that certificates will be renewed fully automatically:<br />
+<br />
 <pre>
 /usr/local/bin/acme.sh
-</pre><br />
-<p>I am receiving a daily output via E-Mail like this now:</p>
+</pre>
+<br />
+I am receiving a daily output via E-Mail like this now:<br />
+<br />
 <pre>
 Running daily.local:
 acme-client: /etc/ssl/buetow.org.fullchain.pem: certificate valid: 80 days left
@@ -219,22 +243,31 @@ acme-client: /etc/ssl/dtail.dev.fullchain.pem: certificate valid: 80 days left
 acme-client: /etc/ssl/foo.zone.fullchain.pem: certificate valid: 80 days left
 acme-client: /etc/ssl/irregular.ninja.fullchain.pem: certificate valid: 80 days left
 acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
-</pre><br />
+</pre>
+<br />
 <h2>relayd.conf and smtpd.conf</h2>
-<p>Besides <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> (mainly for Gemini) and <span class="inlinecode">smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class="inlinecode">acme.sh</span>, the services are reloaded or restarted (<span class="inlinecode">smtpd</span> doesn't support reload) whenever a certificate is generated or updated.</p>
+Besides <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> (mainly for Gemini) and <span class="inlinecode">smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class="inlinecode">acme.sh</span>, the services are reloaded or restarted (<span class="inlinecode">smtpd</span> doesn't support reload) whenever a certificate is generated or updated.<br />
+<br />
 <h2>Rexification</h2>
-<p>I didn't write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</p>
+I didn't write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.<br />
+<br />
 <a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
-<p>At the top of the <span class="inlinecode">Rexfile</span> I define all my hosts:</p>
+<br />
+At the top of the <span class="inlinecode">Rexfile</span> I define all my hosts:<br />
+<br />
 <pre>
 our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zone irregular.ninja snonux.land/;
-</pre><br />
+</pre>
+<br />
 <h3>General ACME client configuration</h3>
-<p>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</p>
+ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.<br />
+<br />
 <pre>
 group frontends =&gt; 'blowfish.buetow.org', 'twofish.buetow.org';
-</pre><br />
-<p>This is my Rex task for the general ACME configuration:</p>
+</pre>
+<br />
+This is my Rex task for the general ACME configuration:<br />
+<br />
 <pre>
 desc 'Configure ACME client';
 task 'acme', group =&gt; 'frontends',
@@ -263,8 +296,10 @@ task 'acme', group =&gt; 'frontends',
 
     append_if_no_such_line '/etc/daily.local', '/usr/local/bin/acme.sh';
   };
-</pre><br />
-<p>And there is also a Rex task just to run the ACME script remotely:</p>
+</pre>
+<br />
+And there is also a Rex task just to run the ACME script remotely:<br />
+<br />
 <pre>
 desc 'Invoke ACME client';
 task 'acme_invoke', group =&gt; 'frontends',
@@ -272,8 +307,10 @@ task 'acme_invoke', group =&gt; 'frontends',
     say run '/usr/local/bin/acme.sh';
   };
 
-</pre><br />
-<p>Furthermore, this snippet (also at the top of the Rexfile) helps to determine whether the current server is the primary server (all hosts will be without the <span class="inlinecode">www.</span> prefix) or the secondary server (all hosts will be with the <span class="inlinecode">www.</span> prefix):</p>
+</pre>
+<br />
+Furthermore, this snippet (also at the top of the Rexfile) helps to determine whether the current server is the primary server (all hosts will be without the <span class="inlinecode">www.</span> prefix) or the secondary server (all hosts will be with the <span class="inlinecode">www.</span> prefix):<br />
+<br />
 <pre>
 # Bootstrapping the FQDN based on the server IP as the hostname and domain
 # facts aren't set yet due to the myname file in the first place.
@@ -290,8 +327,10 @@ our $is_primary = sub {
   my $ipv4 = shift;
   $fqdns-&gt;($ipv4) eq 'blowfish.buetow.org';
 };
-</pre><br />
-<p>The following is the <span class="inlinecode">acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class="inlinecode">www.</span> prefix isn't sent for the primary server. E.g. <span class="inlinecode">foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class="inlinecode">www.foo.zone</span> by the secondary server (in my case, a server located in Japan):</p>
+</pre>
+<br />
+The following is the <span class="inlinecode">acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class="inlinecode">www.</span> prefix isn't sent for the primary server. E.g. <span class="inlinecode">foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class="inlinecode">www.foo.zone</span> by the secondary server (in my case, a server located in Japan):<br />
+<br />
 <pre>
 #
 # $OpenBSD: acme-client.conf,v 1.4 2020/09/17 09:13:06 florian Exp $
@@ -331,8 +370,10 @@ domain &lt;%= $prefix.$host %&gt; {
 }
 &lt;% } %&gt;
 
-</pre><br />
-<p>And this is the <span class="inlinecode">acme.sh.tpl</span>:</p>
+</pre>
+<br />
+And this is the <span class="inlinecode">acme.sh.tpl</span>:<br />
+<br />
 <pre>
 #!/bin/sh
 
@@ -367,9 +408,11 @@ if [ $has_update = yes ]; then
     /usr/sbin/rcctl reload relayd
     /usr/sbin/rcctl restart smtpd
 fi
-</pre><br />
+</pre>
+<br />
 <h3>Service rexification </h3>
-<p>These are the Rex tasks setting up <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> and <span class="inlinecode">smtpd</span> services:</p>
+These are the Rex tasks setting up <span class="inlinecode">httpd</span>, <span class="inlinecode">relayd</span> and <span class="inlinecode">smtpd</span> services:<br />
+<br />
 <pre>
 desc 'Setup httpd';
 task 'httpd', group =&gt; 'frontends',
@@ -444,8 +487,10 @@ task 'smtpd', group =&gt; 'frontends',
     service 'smtpd', ensure =&gt; 'started';
   };
 
-</pre><br />
-<p>This is the <span class="inlinecode">httpd.conf.tpl</span>:</p>
+</pre>
+<br />
+This is the <span class="inlinecode">httpd.conf.tpl</span>:<br />
+<br />
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
@@ -534,8 +579,10 @@ server "&lt;%= $prefix %&gt;tmp.buetow.org" {
   root "/htdocs/buetow.org/tmp"
   directory auto index
 }
-</pre><br />
-<p>and this the <span class="inlinecode">relayd.conf.tpl</span>:</p>
+</pre>
+<br />
+and this the <span class="inlinecode">relayd.conf.tpl</span>:<br />
+<br />
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
@@ -560,8 +607,10 @@ relay "gemini6" {
     protocol "gemini"
     forward to 127.0.0.1 port 11965
 }
-</pre><br />
-<p>And last but not least, this is the <span class="inlinecode">smtpd.conf.tpl</span>:</p>
+</pre>
+<br />
+And last but not least, this is the <span class="inlinecode">smtpd.conf.tpl</span>:<br />
+<br />
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
@@ -586,20 +635,30 @@ action outbound relay
 match from any for domain &lt;virtualdomains&gt; action receive
 match from local for local action localmail
 match from local for any action outbound
-</pre><br />
+</pre>
+<br />
 <h2>All pieces together</h2>
-<p>For the complete <span class="inlinecode">Rexfile</span> example and all the templates, please look at the Git repository:</p>
+For the complete <span class="inlinecode">Rexfile</span> example and all the templates, please look at the Git repository:<br />
+<br />
 <a class="textlink" href="https://codeberg.org/snonux/rexfiles">https://codeberg.org/snonux/rexfiles</a><br />
-<p>Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:</p>
+<br />
+Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:<br />
+<br />
 <pre>
 rex commons
-</pre><br />
-<p>The <span class="inlinecode">commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</p>
+</pre>
+<br />
+The <span class="inlinecode">commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!<br />
+<br />
 <h2>Conclusion</h2>
-<p>ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</p>
-<p>OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.</p>
-<p>Why re-inventing the wheel? I love that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.<br />
+<br />
+OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.<br />
+<br />
+Why re-inventing the wheel? I love that a <span class="inlinecode">Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class="inlinecode">acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.<br />
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

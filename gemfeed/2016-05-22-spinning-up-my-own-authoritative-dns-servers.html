@@ -9,12 +9,16 @@
 </head>
 <body>
 <h1>Spinning up my own authoritative DNS servers</h1>
-<p class="quote"><i>Published at 2016-05-22T18:59:01+01:00</i></p>
+<span class="quote"><i>Published at 2016-05-22T18:59:01+01:00</i></span><br />
+<br />
 <h2>Background</h2>
-<p>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</p>
+Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.<br />
+<br />
 <a class="textlink" href="http://www.schlundtech.de">Schlund Technologies</a><br />
+<br />
 <h2>All FreeBSD Jails</h2>
-<p>To set up my authoritative DNS servers, I installed a FreeBSD Jail dedicated for DNS with Puppet on my root machine as follows:</p>
+To set up my authoritative DNS servers, I installed a FreeBSD Jail dedicated for DNS with Puppet on my root machine as follows:<br />
+<br />
 <pre>
 include freebsd
 
@@ -46,9 +50,11 @@ class { 'jail':
     .
   }
 }
-</pre><br />
+</pre>
+<br />
 <h2>PF firewall</h2>
-<p>Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default, all ports are blocked, so I am adding an exception rule for the IPv6 address. These are the PF rules in use:</p>
+Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default, all ports are blocked, so I am adding an exception rule for the IPv6 address. These are the PF rules in use:<br />
+<br />
 <pre>
 % cat /etc/pf.conf
 .
@@ -60,17 +66,22 @@ pass in on re0 inet6 proto tcp from any to 2a01:4f8:120:30e8::15 port {53} flags
 pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags S/SA keep state
 .
 .
-</pre><br />
+</pre>
+<br />
 <h2>Puppet managed BIND zone files</h2>
-<p>In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself), I configured the BIND DNS server this way:</p>
+In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself), I configured the BIND DNS server this way:<br />
+<br />
 <pre>
 class { 'bind_freebsd':
   config         =&gt; "puppet:///files/bind/named.${::hostname}.conf",
   dynamic_config =&gt; "puppet:///files/bind/dynamic.${::hostname}",
 }
-</pre><br />
-<p>The Puppet module is a pretty simple one. It installs the file "/usr/local/etc/named/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.</p>
-<p>Once (Puppet-) applied inside of the Jail, I get this:</p>
+</pre>
+<br />
+The Puppet module is a pretty simple one. It installs the file "/usr/local/etc/named/named.conf" and it populates the "/usr/local/etc/named/dynamicdb" directory with all my zone files.<br />
+<br />
+Once (Puppet-) applied inside of the Jail, I get this:<br />
+<br />
 <pre>
 paul uranus:~/git/blog/source [4268]% ssh admin@dns1.buetow.org.buetow.org pgrep -lf named
 60748 /usr/local/sbin/named -u bind -c /usr/local/etc/namedb/named.conf
@@ -111,8 +122,10 @@ dns2 86400 IN AAAA 2a03:2500:1:6:20::
 .
 .
 .
-</pre><br />
-<p>That is my master DNS server. My slave DNS server runs in another Jail on another bare-metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and different IP subnets. The only difference is the "named.conf". It's configured to be a slave, and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.</p>
+</pre>
+<br />
+That is my master DNS server. My slave DNS server runs in another Jail on another bare-metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and different IP subnets. The only difference is the "named.conf". It's configured to be a slave, and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.<br />
+<br />
 <pre>
 paul uranus:~/git/blog/source [4279]% ssh admin@dns2.buetow.org tail -n 11 /usr/local/etc/namedb/named.conf
 zone "buetow.org" {
@@ -126,9 +139,11 @@ zone "buetow.zone" {
     masters { 78.46.80.70; };
     file "/usr/local/etc/namedb/dynamic/buetow.zone";
 };
-</pre><br />
+</pre>
+<br />
 <h2>The result</h2>
-<p>The result looks like this now:</p>
+The result looks like this now:<br />
+<br />
 <pre>
 % dig -t ns buetow.org
 ; &lt;&lt;&gt;&gt; DiG 9.10.3-P4-RedHat-9.10.3-12.P4.fc23 &lt;&lt;&gt;&gt; -t ns buetow.org
@@ -183,9 +198,11 @@ dns2.buetow.org.	86400	IN	AAAA	2a03:2500:1:6:20::
 ;; SERVER: 78.46.80.70#53(78.46.80.70)
 ;; WHEN: Sun May 22 11:34:41 BST 2016
 ;; MSG SIZE  rcvd: 322
-</pre><br />
+</pre>
+<br />
 <h2>Monitoring</h2>
-<p>For monitoring, I am using Icinga2 (I am operating two Icinga2 instances in two different DCs). I may have to post another blog article about Icinga2, but to get the idea, these were the snippets added to my Icinga2 configuration:</p>
+For monitoring, I am using Icinga2 (I am operating two Icinga2 instances in two different DCs). I may have to post another blog article about Icinga2, but to get the idea, these were the snippets added to my Icinga2 configuration:<br />
+<br />
 <pre>
 apply Service "dig" {
     import "generic-service"
@@ -207,17 +224,22 @@ apply Service "dig6" {
 
     assign where host.name == "dns.ian.buetow.org" || host.name == "caprica.ian.buetow.org"
 }
-</pre><br />
+</pre>
+<br />
 <h2>DNS update workflow</h2>
-<p>Whenever I have to change a DNS entry, all I have to do is:</p>
+Whenever I have to change a DNS entry, all I have to do is:<br />
+<br />
 <ul>
 <li>Git clone or update the Puppet repository</li>
 <li>Update/commit and push the zone file (e.g. "buetow.org")</li>
 <li>Wait for Puppet. Puppet will deploy that updated zone file. And it will reload the BIND server.</li>
 <li>The BIND server will notify all slave DNS servers (at the moment, only one). And it will transfer the new version of the zone.</li>
 </ul>
-<p>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.<br />
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Using my Nokia N95 for fixing my MTA</h1>
-<p class="quote"><i>Published at 2008-12-29T09:10:41+00:00; Updated at 2021-12-01</i></p>
+<span class="quote"><i>Published at 2008-12-29T09:10:41+00:00; Updated at 2021-12-01</i></span><br />
+<br />
 <pre>
 
            _
@@ -25,20 +26,29 @@
      \|/  \\||  \\|   |//
 _jgs_\|//_\\|///_\V/_\|//__
                       Art by Joan Stark
-</pre><br />
-<p>The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). </p>
-<p>My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). </p>
+</pre>
+<br />
+The last week I was in Vidin, Bulgaria with no internet access and I had to fix my MTA (Postfix) at host.0.buetow.org which serves E-Mail for all my customers at P. B. Labs. Good, that I do not guarantee high availability on my web services (I've to do a full time job somewhere else too). <br />
+<br />
+My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). <br />
+<br />
 <a href="./2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg"><img alt="Picture of a Nokia N95" title="Picture of a Nokia N95" src="./2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg" /></a><br />
-<p>With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:</p>
+<br />
+With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:<br />
+<br />
 <ul>
 <li>First, getting a shell prompt</li>
 <li>Second, use the "tail" command to analyse the Postfix logs</li>
 <li>Third, use the "sed" command to fix a syntax error in the Postfix config</li>
 <li>Fourth, restart Postfix</li>
 </ul>
-<p>It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)</p>
-<p>At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard. This would have made my life lots easier. :)<br />
+<br />
+At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)<br />
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

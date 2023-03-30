@@ -47,16 +47,16 @@ a.textlink:before {
   padding-left: 11px;
 }
 
-p.quote {
+span.quote {
   font-style: italic;
 }
 
-p.quote:before {
+span.quote:before {
   content: "« ";
   padding-left: 2px;
 }
 
-p.quote:after {
+span.quote:after {
   content: " »";
   padding-right: 2px;
 }

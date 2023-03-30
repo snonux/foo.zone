@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Gemtexter 1.1.0 - Let's Gemtext again</h1>
-<p class="quote"><i>Published at 2022-08-27T18:25:57+01:00</i></p>
+<span class="quote"><i>Published at 2022-08-27T18:25:57+01:00</i></span><br />
+<br />
 <pre>
 -=[ typewriter ]=-  1/98
 
@@ -20,13 +21,18 @@
       |:::::::[]|
       |o=======.|
  jgs  `"""""""""`
-</pre><br />
-<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
+</pre>
+<br />
+I proudly announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.<br />
+<br />
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
-<p>It has been around a year since I released the first version <span class="inlinecode">1.0.0</span>. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</p>
+<br />
+It has been around a year since I released the first version <span class="inlinecode">1.0.0</span>. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.<br />
+<br />
 <h2>What's new?</h2>
 <h3>Automatic check for GNU version requirements</h3>
-<p>Gemtexter relies on the GNU versions of the tools <span class="inlinecode">grep</span>, <span class="inlinecode">sed</span> and <span class="inlinecode">date</span> and it also requires the Bash shell in version 5 at least. That's now done in the <span class="inlinecode">check_dependencies()</span> function:</p>
+Gemtexter relies on the GNU versions of the tools <span class="inlinecode">grep</span>, <span class="inlinecode">sed</span> and <span class="inlinecode">date</span> and it also requires the Bash shell in version 5 at least. That's now done in the <span class="inlinecode">check_dependencies()</span> function:<br />
+<br />
 <pre>
 check_dependencies () {
     # At least, Bash 5 is required
@@ -45,34 +51,49 @@ check_dependencies () {
         fi
     done
 }
-</pre><br />
-<p>Especially macOS users didn't read the <span class="inlinecode">README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</p>
+</pre>
+<br />
+Especially macOS users didn't read the <span class="inlinecode">README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.<br />
+<br />
 <h3>Backticks now produce <span class="inlinecode">inline code blocks</span> in the HTML output</h3>
-<p>The Gemtext format doesn't support inline code blocks, but Gemtexter now produces <span class="inlinecode">inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.</p>
+The Gemtext format doesn't support inline code blocks, but Gemtexter now produces <span class="inlinecode">inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.<br />
+<br />
 <h3>Cache for Atom feed generation</h3>
-<p>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class="inlinecode">.gmi</span> file to decide whether anything of the content has changed or not.</p>
+The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class="inlinecode">.gmi</span> file to decide whether anything of the content has changed or not.<br />
+<br />
 <h3>Input filter support</h3>
-<p>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</p>
+Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:<br />
+<br />
 <pre>
 ./gemtexter --generate '.*hello.*'
-</pre><br />
+</pre>
+<br />
 <h3>Revamped <span class="inlinecode">git</span> support</h3>
-<p>The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the <span class="inlinecode">README</span> for more information.</p>
+The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the <span class="inlinecode">README</span> for more information.<br />
+<br />
 <h3>Addition of <span class="inlinecode">htmlextras</span> and web font support</h3>
-<p>The <span class="inlinecode">htmlextras</span> folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.</p>
+The <span class="inlinecode">htmlextras</span> folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.<br />
+<br />
 <h3>Sub-section support</h3>
-<p>It's now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:</p>
+It's now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:<br />
+<br />
 <a class="textlink" href="https://foo.zone">The foo.zone main site</a><br />
 <a class="textlink" href="https://foo.zone/notes">The notes sub-section (with different fonts)</a><br />
+<br />
 <h3>More</h3>
-<p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
-<p>Overall I think it's a pretty solid <span class="inlinecode">1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.</p>
-<p>Other related posts are:</p>
+Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. <br />
+<br />
+Overall I think it's a pretty solid <span class="inlinecode">1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.<br />
+<br />
+Other related posts are:<br />
+<br />
 <a class="textlink" href="./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html">2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2</a><br />
 <a class="textlink" href="./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)</a><br />
 <a class="textlink" href="./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class="textlink" href="./2021-04-24-welcome-to-the-geminispace.html">2021-04-24 Welcome to the Geminispace</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

@@ -9,7 +9,8 @@
 </head>
 <body>
 <h1>Gemtexter 2.0.0 - Let's Gemtext again^2</h1>
-<p class="quote"><i>Published at 2023-03-25T17:50:32+02:00</i></p>
+<span class="quote"><i>Published at 2023-03-25T17:50:32+02:00</i></span><br />
+<br />
 <pre>
 -=[ typewriters ]=-  1/98
 
@@ -21,15 +22,23 @@
       |o=======.|      |:::::::[]|
  jgs  `"""""""""`      |o=======.|
   mod. by Paul Buetow  `"""""""""`
-</pre><br />
-<p>I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
+</pre>
+<br />
+I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.<br />
+<br />
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
-<p>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</p>
-<p>Let's list what's new!</p>
+<br />
+This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").<br />
+<br />
+Let's list what's new!<br />
+<br />
 <h2>Minimal template engine</h2>
-<p>Gemtexter now supports templating, enabling dynamically generated content to <span class="inlinecode">.gmi</span> files before converting anything to any output format like HTML and Markdown.</p>
-<p>A template file name must have the suffix <span class="inlinecode">gmi.tpl</span>. A template must be put into the same directory as the Gemtext <span class="inlinecode">.gmi</span> file to be generated. Gemtexter will generate a Gemtext file <span class="inlinecode">index.gmi</span> from a given template <span class="inlinecode">index.gmi.tpl</span>. A <span class="inlinecode">&lt;&lt;&lt;</span> and <span class="inlinecode">&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class="inlinecode">&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</p>
-<p>For example, the template <span class="inlinecode">index.gmi.tpl</span>:</p>
+Gemtexter now supports templating, enabling dynamically generated content to <span class="inlinecode">.gmi</span> files before converting anything to any output format like HTML and Markdown.<br />
+<br />
+A template file name must have the suffix <span class="inlinecode">gmi.tpl</span>. A template must be put into the same directory as the Gemtext <span class="inlinecode">.gmi</span> file to be generated. Gemtexter will generate a Gemtext file <span class="inlinecode">index.gmi</span> from a given template <span class="inlinecode">index.gmi.tpl</span>. A <span class="inlinecode">&lt;&lt;&lt;</span> and <span class="inlinecode">&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class="inlinecode">&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.<br />
+<br />
+For example, the template <span class="inlinecode">index.gmi.tpl</span>:<br />
+<br />
 <pre>
 # Hello world
 
@@ -42,8 +51,10 @@ Welcome to this capsule!
     echo Multiline template line $i
   done
 &gt;&gt;&gt;
-</pre><br />
-<p>... results into the following <span class="inlinecode">index.gmi</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):</p>
+</pre>
+<br />
+... results into the following <span class="inlinecode">index.gmi</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):<br />
+<br />
 <pre>
 # Hello world
 
@@ -61,16 +72,20 @@ Multiline template line 7
 Multiline template line 8
 Multiline template line 9
 Multiline template line 10
-</pre><br />
-<p>Another thing you can do is insert an index with links to similar blog posts. E.g.:</p>
+</pre>
+<br />
+Another thing you can do is insert an index with links to similar blog posts. E.g.:<br />
+<br />
 <pre>
 See more entries about DTail and Golang:
 
 &lt;&lt; template::inline::index dtail golang
 
 Blablabla...
-</pre><br />
-<p>... scans all other post entries with <span class="inlinecode">dtail</span> and <span class="inlinecode">golang</span> in the file name and generates a link list like this:</p>
+</pre>
+<br />
+... scans all other post entries with <span class="inlinecode">dtail</span> and <span class="inlinecode">golang</span> in the file name and generates a link list like this:<br />
+<br />
 <pre>
 See more entries about DTail and Golang:
 
@@ -80,26 +95,35 @@ See more entries about DTail and Golang:
 =&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
 
 Blablabla...
-</pre><br />
+</pre>
+<br />
 <h2>Added hooks</h2>
-<p>You can configure <span class="inlinecode">PRE_GENERATE_HOOK</span> and <span class="inlinecode">POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class="inlinecode">--generate</span>, or after running <span class="inlinecode">--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class="inlinecode">--publish</span>.</p>
-<p>The sample config file <span class="inlinecode">gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</p>
+You can configure <span class="inlinecode">PRE_GENERATE_HOOK</span> and <span class="inlinecode">POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class="inlinecode">--generate</span>, or after running <span class="inlinecode">--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class="inlinecode">--publish</span>.<br />
+<br />
+The sample config file <span class="inlinecode">gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:<br />
+<br />
 <pre>
 declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
 declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
-</pre><br />
+</pre>
+<br />
 <h2>Use of safer Bash options</h2>
-<p>Gemtexter now does <span class="inlinecode">set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class="inlinecode">set -e</span>.</p>
+Gemtexter now does <span class="inlinecode">set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class="inlinecode">set -e</span>.<br />
+<br />
 <h2>Meta cache made obsolete</h2>
-<p>Here is the breaking change to older versions of Gemtexter. The <span class="inlinecode">$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class="inlinecode">meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class="inlinecode">.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</p>
-<p>An example blog post without any publishing date looks like this:</p>
+Here is the breaking change to older versions of Gemtexter. The <span class="inlinecode">$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class="inlinecode">meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class="inlinecode">.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.<br />
+<br />
+An example blog post without any publishing date looks like this:<br />
+<br />
 <pre>
 % cat gemfeed/2023-02-26-title-here.gmi
 # Title here
 
 The remaining content of the Gemtext file...
-</pre><br />
-<p>Gemtexter will add a line starting with  <span class="inlinecode">&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</p>
+</pre>
+<br />
+Gemtexter will add a line starting with  <span class="inlinecode">&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.<br />
+<br />
 <pre>
 % cat gemfeed/2023-02-26-title-here.gmi
 # Title here
@@ -107,17 +131,23 @@ The remaining content of the Gemtext file...
 &gt; Published at 2023-02-26T21:43:51+01:00
 
 The remaining content of the Gemtext file...
-</pre><br />
+</pre>
+<br />
 <h2>XMLLint support</h2>
-<p>Optionally, when the <span class="inlinecode">xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</p>
+Optionally, when the <span class="inlinecode">xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.<br />
+<br />
 <h2>More</h2>
-<p>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </p>
-<p>Other related posts are:</p>
+Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. <br />
+<br />
+Other related posts are:<br />
+<br />
 <a class="textlink" href="./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html">2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2 (You are currently reading this)</a><br />
 <a class="textlink" href="./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html">2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class="textlink" href="./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html">2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class="textlink" href="./2021-04-24-welcome-to-the-geminispace.html">2021-04-24 Welcome to the Geminispace</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<br />
+E-Mail your comments to hi@paul.cyou :-)<br />
+<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |
