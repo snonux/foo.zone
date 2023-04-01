@@ -1,11 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-01T15:50:57+03:00</updated>
+    <updated>2023-04-01T20:01:43+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>'Never split the difference' book notes</title>
+        <link href="https://foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes.html" />
+        <id>https://foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes.html</id>
+        <updated>2023-04-01T20:00:17+03:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>hi@paul.cyou</email>
+        </author>
+        <summary>These are my personal takeaways after reading 'Never split the difference' by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1>"Never split the difference" book notes</h1>
+<p class="quote"><i>Published at 2023-04-01T20:00:17+03:00</i></p>
+<p>These are my personal takeaways after reading "Never split the difference" by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</p>
+<h2>Tactical listening, spreading empathy</h2>
+<p>Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.</p>
+<ul>
+<li>A mirror needs space and silence between the words. At least 4 seconds.</li>
+<li>A mirror might be awkward to be used at first, especially with a question coupled to it.</li>
+<li>We fear what's different and are drawn to what is similar.</li>
+</ul>
+<p>Mirror training is like Jedi training. Simple but effective. A mirror needs space. Be silent after "you want this?" </p>
+<h2>Mindset of discovery</h2>
+<p>Try to have multiple realities in your mind and use facts to distinguish between real and false.</p>
+<ul>
+<li>Focus on what the counterpart has to say and what he needs and wants. Understanding him makes him vulnerable.</li>
+<li>Empathy understanding the other person from his perspective, but it does not mean agreeing with him.</li>
+<li>Detect and label the emotions of others for your powers. </li>
+<li>To be understood seems to solve all problems magically.</li>
+</ul>
+<p>Try: to put a label on someone's emotion and then be silent. Wait for the other to reveal himself. "You seem unhappy about this?"</p>
+<h3>More tips </h3>
+<ul>
+<li>Put on a poker face and don't show emotions.</li>
+<li>Slow things down. Don't be a problem solver.</li>
+<li>Smile while you are talking, even on the phone. Be easy and encouraging.</li>
+<li>Being right is not the key to successful negotiation; being mindful is.</li>
+<li>Be in the safe zone of empathy and acknowledge bad news.</li>
+</ul>
+<h2>"No" starts the conversation</h2>
+<p>When the opponent starts with a "no", he feels in control and comfortable. That's why he has to start with "no".</p>
+<ul>
+<li>"Yes" and "maybe" might be worthless, but "no" starts the conversation.</li>
+<li>If someone is saying "no" to you, he will be open to what you have to say next.</li>
+<li>"No" is not stopping the negotiation but will open up opportunities you were not thinking about before.</li>
+<li>Start with "no". Great negotiators seek "no" because that's when the great discussions begin.</li>
+<li>A "no" can be scary if you are not used to it. If your biggest fear is "no", then you can't negotiate.</li>
+</ul>
+<p>Get a "That's right" when negotiating. Don't get a "you're right". You can summarise the opponent to get a "that's right".</p>
+<h2>Win-win</h2>
+<p>Win-win is a naive approach when encountering the win-lose counterpart, but always cooperate. Don't compromise, and don't split the difference. We don't compromise because it's right; we do it because it is easy. You must embrace the hard stuff; that's where the great deals are.</p>
+<h2>On Deadlines</h2>
+<ul>
+<li>All deadlines are imaginary.</li>
+<li>Most of the time, deadlines unsettle us without a good reason.</li>
+<li>They push a deal to a conclusion.</li>
+<li>They rush the counterpart to cause pressure and anxiety.</li>
+</ul>
+<h2>Analyse the opponent</h2>
+<ul>
+<li>Understand the motivation of people behind the table as well.</li>
+<li>Ask how affected they will be.</li>
+<li>Determine your and the opposite negotiation style. Accommodation, analyst, assertive.</li>
+<li>Treat them how they need to be treated.</li>
+</ul>
+<p>The person on the other side is never the issue; the problem is the issue. Keep this in mind to avoid emotional issues with the person and focus on the problem, not the person. The bond is essential; never create an enemy.</p>
+<h2>Use different ways of saying "no."</h2>
+<p class="quote"><i>I had paid my rent always in time. I had positive experiences with the building and would be sad for the landlord to lose a good tenant. I am looking for a win-win agreement between us. Pulling out the research, other neighbours offer much lower prices even if your building is a better location and services. How can I effort 200 more.... </i></p>
+<p>...then put an extreme anker.</p>
+<p>You always have to embrace thoughtful confrontation for good negotiation and life. Don't avoid honest, clear conflict. It will give you the best deals. Compromises are mostly bad deals for both sides. Most people don't negotiate a win-win but a win-lose. Know the best and worst outcomes and what is acceptable for you.</p>
+<h2>Calibrated question</h2>
+<p>Calibrated questions. Give the opponent a sense of power. Ask open-how questions to get the opponent to solve your problem and move him in your direction. Calibrated questions are the best tools. Summarise everything, and then ask, "how I am supposed to do that?". Asking for help this way with a calibrated question is a powerful tool for joint problem solving</p>
+<p>Being calm and respectful is essential. Without control of your emotions, it won't work. The counterpart will have no idea how constrained they are with your question. Avoid questions which get a yes or short answers. Use "why?".</p>
+<p>Counterparts are more involved if these are their solutions. The counterpart must answer with "that's right", not "you are right". He has to own the problem. If not, then add more why questions.</p>
+<ul>
+<li>Tone and body language need to align with what people are saying.</li>
+<li>Deal with it via a labelled question. </li>
+<li>Liers tend to talk with "them" and "their" and not with "I".</li>
+<li>Also, liars tend to talk in complex sentences.</li>
+</ul>
+<p>Prepare 3 to 5 calibrated questions for your counterpart. Be curious what is really motivating the other side. You can get out the "Black Swan".</p>
+<h2>The black swan </h2>
+<p>What we don't know can break our deal. Uncovering it can bring us unexpected success. You get what you ask for in this world, but you must learn to ask correctly. Reveal the black swan by asking questions.</p>
+<h2>More</h2>
+<p>Establish a range at top places like corp. I get... (e.g. remote London on a project basis). Set a high salary range and not a number. Also, check on LinkedIn premium for the salaries.</p>
+<ul>
+<li>Give an unexpected gift, e.g. show them my pet project and publicity for engineering.</li>
+<li>Use an odd number, which makes you seem to have thought a lot about the sum and calculated it.</li>
+<li>Define success and metrics for your next raise.</li>
+<li>What does it take to be successful here? Ask the question, and they will tell you and guide you.</li>
+<li>Set an extreme anker. Make the counterpart the illusion of losing something.</li>
+<li>Hope-based deals. Hope is not a strategy.</li>
+<li>Tactical empathy, listening as a martial art. It is emotional intelligence on steroids.</li>
+<li>Being right isn't the key to a successful negotiation, but having the correct mindset is.</li>
+<li>Don't shop the groceries when you are hungry.</li>
+</ul>
+<p>Slow.... it.... down....</p>
+<p>Other book notes of mine are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes.html">2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.html">2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<p>E-Mail your comments to hi@paul.cyou :-)</p>
+<a class="textlink" href="../">Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Gemtexter 2.0.0 - Let's Gemtext again^2</title>
         <link href="https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html" />
@@ -141,12 +247,12 @@ The remaining content of the Gemtext file...
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
         </author>
-        <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge and pearls of wisdom and that the following notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
+        <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1>"The Pragmatic Programmer" book notes</h1>
 <p class="quote"><i>Published at 2023-03-16T00:55:20+02:00</i></p>
-<p>These are my personal takeaways after reading "The Pragmatic Programmer" by David Thomas and Andrew Hunt. Note that the book contains much more knowledge and pearls of wisdom and that the following notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</p>
+<p>These are my personal takeaways after reading "The Pragmatic Programmer" by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</p>
 <pre>
          ,..........   ..........,
      ,..,'          '.'          ',..,
@@ -157,7 +263,7 @@ The remaining content of the Gemtext file...
 ,'  '............   '.'   ............'  ',
  '''''''''''''''''';''';''''''''''''''''''
                     '''
-</pre><br />
+</pre>
 <p>Think about your work while doing it - every day on every project. Have a feeling of continuous improvement. </p>
 <ul>
 <li>Be a realist.</li>
@@ -204,6 +310,9 @@ The remaining content of the Gemtext file...
 <p>How to motivate others to contribute something (e.g. ideas to a startup):</p>
 <p class="quote"><i>A kindly, old stranger was walking through the land when he came upon a village. As he entered, the villagers moved towards their homes, locking doors and windows. The stranger smiled and asked, why are you all so frightened. I am a simple traveler, looking for a soft place to stay for the night and a warm place for a meal. "There's not a bite to eat in the whole province," he was told. "We are weak and our children are starving. Better keep moving on." "Oh, I have everything I need," he said. "In fact, I was thinking of making some stone soup to share with all of you." He pulled an iron cauldron from his cloak, filled it with water, and began to build a fire under it. Then, with great ceremony, he drew an ordinary-looking stone from a silken bag and dropped it into the water. By now, hearing the rumor of food, most of the villagers had come out of their homes or watched from their windows. As the stranger sniffed the "broth" and licked his lips in anticipation, hunger began to overcome their fear. "Ahh," the stranger said to himself rather loudly, "I do like a tasty stone soup. Of course, stone soup with cabbage -- that's hard to beat." Soon a villager approached hesitantly, holding a small cabbage he'd retrieved from its hiding place, and added it to the pot. "Wonderful!!" cried the stranger. "You know, I once had stone soup with cabbage and a bit of salt beef as well, and it was fit for a king." The village butcher managed to find some salt beef . . .  And so it went, through potatoes, onions, carrots, mushrooms, and so on, until there was indeed a delicious meal for everyone in the village to share. The village elder offered the stranger a great deal of money for the magic stone, but he refused to sell it and traveled on the next day. As he left, the stranger came upon a group of village children standing near the road. He gave the silken bag containing the stone to the youngest child, whispering to a group, "It was not the stone, but the villagers that had performed the magic." </i></p>
 <p>By working together, everyone contributes what they can, achieving a greater good together.</p>
+<p>Other book notes of mine are:</p>
+<a class="textlink" href="https://foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes.html">2023-04-01 "Never split the difference" book notes</a><br />
+<a class="textlink" href="https://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.html">2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
 <p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../resources.html">More books and other resources I found useful.</a><br />
 <a class="textlink" href="../">Back to the main site</a><br />
