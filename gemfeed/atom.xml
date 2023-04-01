@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-03-27T23:05:17+03:00</updated>
+    <updated>2023-04-01T15:50:57+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -31,7 +31,7 @@
       |o=======.|      |:::::::[]|
  jgs  `"""""""""`      |o=======.|
   mod. by Paul Buetow  `"""""""""`
-</pre><br />
+</pre>
 <p>I proudly announce that I've released Gemtexter version <span class="inlinecode">2.0.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</p>
@@ -52,7 +52,7 @@ Welcome to this capsule!
     echo Multiline template line $i
   done
 &gt;&gt;&gt;
-</pre><br />
+</pre>
 <p>... results into the following <span class="inlinecode">index.gmi</span> after running <span class="inlinecode">./gemtexter --generate</span> (or <span class="inlinecode">./gemtexter --template</span>, which instructs to do only template processing and nothing else):</p>
 <pre>
 # Hello world
@@ -71,7 +71,7 @@ Multiline template line 7
 Multiline template line 8
 Multiline template line 9
 Multiline template line 10
-</pre><br />
+</pre>
 <p>Another thing you can do is insert an index with links to similar blog posts. E.g.:</p>
 <pre>
 See more entries about DTail and Golang:
@@ -79,7 +79,7 @@ See more entries about DTail and Golang:
 &lt;&lt; template::inline::index dtail golang
 
 Blablabla...
-</pre><br />
+</pre>
 <p>... scans all other post entries with <span class="inlinecode">dtail</span> and <span class="inlinecode">golang</span> in the file name and generates a link list like this:</p>
 <pre>
 See more entries about DTail and Golang:
@@ -90,14 +90,14 @@ See more entries about DTail and Golang:
 =&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
 
 Blablabla...
-</pre><br />
+</pre>
 <h2>Added hooks</h2>
 <p>You can configure <span class="inlinecode">PRE_GENERATE_HOOK</span> and <span class="inlinecode">POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class="inlinecode">--generate</span>, or after running <span class="inlinecode">--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class="inlinecode">--publish</span>.</p>
 <p>The sample config file <span class="inlinecode">gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</p>
 <pre>
 declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
 declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
-</pre><br />
+</pre>
 <h2>Use of safer Bash options</h2>
 <p>Gemtexter now does <span class="inlinecode">set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class="inlinecode">set -e</span>.</p>
 <h2>Meta cache made obsolete</h2>
@@ -108,7 +108,7 @@ declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 # Title here
 
 The remaining content of the Gemtext file...
-</pre><br />
+</pre>
 <p>Gemtexter will add a line starting with  <span class="inlinecode">&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</p>
 <pre>
 % cat gemfeed/2023-02-26-title-here.gmi
@@ -117,7 +117,7 @@ The remaining content of the Gemtext file...
 &gt; Published at 2023-02-26T21:43:51+01:00
 
 The remaining content of the Gemtext file...
-</pre><br />
+</pre>
 <h2>XMLLint support</h2>
 <p>Optionally, when the <span class="inlinecode">xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</p>
 <h2>More</h2>
@@ -654,7 +654,7 @@ nmap ,j :call OpenJournalPage()&lt;CR&gt;
                            `|/-.      \ /   \ /,---`\         kat
                             /   `._____V_____V'
                                        '     '
-</pre><br />
+</pre>
 <p>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</p>
 <p> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
@@ -665,7 +665,7 @@ nmap ,j :call OpenJournalPage()&lt;CR&gt;
 <p>First of all, DTail needs to be downloaded and compiled. For that, <span class="inlinecode">git</span>, <span class="inlinecode">go</span>, and <span class="inlinecode">gmake</span> are required:</p>
 <pre>
 $ doas pkg_add git go gmake
-</pre><br />
+</pre>
 <p>I am happy that the Go Programming Language is readily available in the OpenBSD packaging system. Once the dependencies got installed, clone DTail and compile it:</p>
 <pre>
 $ mkdir git
@@ -673,18 +673,18 @@ $ cd git
 $ git clone https://github.com/mimecast/dtail
 $ cd dtail
 $ gmake 
-</pre><br />
+</pre>
 <p>You can verify the version by running the following command:</p>
 <pre>
 $ ./dtail --version
  DTail  4.1.0  Protocol 4.1  Have a lot of fun!
 $ file dtail
  dtail: ELF 64-bit LSB executable, x86-64, version 1
-</pre><br />
+</pre>
 <p>Now, there isn't any need anymore to keep <span class="inlinecode">git</span>, <span class="inlinecode">go</span> and <span class="inlinecode">gmake</span>, so they can be deinstalled now:</p>
 <pre>
 $ doas pkg_delete git go gmake
-</pre><br />
+</pre>
 <p>One day I shall create an official OpenBSD port for DTail.</p>
 <h2>Install it</h2>
 <p>Installing the binaries is now just a matter of copying them to <span class="inlinecode">/usr/local/bin</span> as follows:</p>
@@ -693,12 +693,12 @@ $ for bin in dserver dcat dgrep dmap dtail dtailhealth; do
   doas cp -p $bin /usr/local/bin/$bin
   doas chown root:wheel /usr/local/bin/$bin
 done
-</pre><br />
+</pre>
 <p>Also, we will be creating the <span class="inlinecode">_dserver</span> service user:</p>
 <pre>
 $ doas adduser -class nologin -group _dserver -batch _dserver
 $ doas usermod -d /var/run/dserver/ _dserver
-</pre><br />
+</pre>
 <p>The OpenBSD init script is created from scratch (not part of the official DTail project). Run the following to install the bespoke script:</p>
 <pre>
 $ cat &lt;&lt;'END' | doas tee /etc/rc.d/dserver
@@ -720,7 +720,7 @@ rc_pre() {
 rc_cmd $1 &amp;
 END
 $ doas chmod 755 /etc/rc.d/dserver
-</pre><br />
+</pre>
 <h3>Rexification</h3>
 <p>This is the task for setting it up via Rex. Note the <span class="inlinecode">. . . .</span>, that's a placeholder which we will fill up more and more during this blog post:</p>
 <pre>
@@ -744,14 +744,14 @@ task 'dtail', group =&gt; 'frontends',
       service 'dserver' =&gt; 'restart' if $restart;
       service 'dserver', ensure =&gt; 'started';
    };
-</pre><br />
+</pre>
 <h2>Configure it</h2>
 <p>Now, DTail is fully installed but still needs to be configured. Grab the default config file from GitHub ...</p>
 <pre>
 $ doas mkdir /etc/dserver
 $ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.json.sample |
     doas tee /etc/dserver/dtail.json
-</pre><br />
+</pre>
 <p>... and then edit it and adjust <span class="inlinecode">LogDir</span> in the <span class="inlinecode">Common</span> section to <span class="inlinecode">/var/log/dserver</span>. The result will look like this:</p>
 <pre>
   "Common": {
@@ -762,7 +762,7 @@ $ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.jso
     "SSHPort": 2222,
     "LogLevel": "Info"
   }
-</pre><br />
+</pre>
 <h3>Rexification</h3>
 <p>That's as simple as adding the following to the Rex task:</p>
 <pre>
@@ -775,7 +775,7 @@ file '/etc/dserver/dtail.json',
   group =&gt; 'wheel',
   mode =&gt; '755',
   on_change =&gt; sub { $restart = TRUE };
-</pre><br />
+</pre>
 <h2>Update the key cache for it</h2>
 <p>DTail relies on SSH for secure authentication and communication. However, the system user <span class="inlinecode">_dserver</span> has no permission to read the SSH public keys from the user's home directories, so the DTail server also checks for available public keys in an alternative path <span class="inlinecode">/var/run/dserver/cache</span>. </p>
 <p>The following script, populating the DTail server key cache, can be run periodically via <span class="inlinecode">CRON</span>:</p>
@@ -817,12 +817,12 @@ done
 echo 'All set...'
 END
 $ doas chmod 500 /usr/local/bin/dserver-update-key-cache.sh
-</pre><br />
+</pre>
 <p>Note that the script above is a slight variation of the official DTail script. The official DTail one is a <span class="inlinecode">bash</span> script, but on OpenBSD, there's <span class="inlinecode">ksh</span>. I run it once daily by adding it to the <span class="inlinecode">daily.local</span>:</p>
 <pre>
 $ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
 /usr/local/bin/dserver-update-key-cache.sh
-</pre><br />
+</pre>
 <h3>Rexification</h3>
 <p>That's done by adding ...</p>
 <pre>
@@ -833,7 +833,7 @@ file '/usr/local/bin/dserver-update-key-cache.sh',
   mode =&gt; '500';
 
 append_if_no_such_line '/etc/daily.local', '/usr/local/bin/dserver-update-key-cache.sh';
-</pre><br />
+</pre>
 <p>... to the Rex task!</p>
 <h2>Start it</h2>
 <p>Now, it's time to enable and start the DTail server:</p>
@@ -857,7 +857,7 @@ INFO|1022-090739|86050|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0
 .
 .
 Ctr+C
-</pre><br />
+</pre>
 <p>As we don't want to wait until tomorrow, let's populate the key cache manually:</p>
 <pre>
 $ doas /usr/local/bin/dserver-update-key-cache.sh
@@ -869,7 +869,7 @@ Caching /home/git/.ssh/authorized_keys -&gt; /var/cache/dserver/git.authorized_k
 Caching /home/paul/.ssh/authorized_keys -&gt; /var/cache/dserver/paul.authorized_keys
 Caching /home/rex/.ssh/authorized_keys -&gt; /var/cache/dserver/rex.authorized_keys
 All set...
-</pre><br />
+</pre>
 <h2>Use it</h2>
 <p>The DTail server is now ready to serve connections. You can use any DTail commands, such as <span class="inlinecode">dtail</span>, <span class="inlinecode">dgrep</span>, <span class="inlinecode">dmap</span>, <span class="inlinecode">dcat</span>, <span class="inlinecode">dtailhealth</span>, to do so. Checkout out all the usage examples on the official DTail page.</p>
 <p>I have installed DTail server this way on my personal OpenBSD frontends <span class="inlinecode">blowfish</span>, and <span class="inlinecode">fishfinger</span>, and the following command connects as user <span class="inlinecode">rex</span> to both machines and greps the file <span class="inlinecode">/etc/fstab</span> for the string <span class="inlinecode">local</span>:</p>
@@ -883,13 +883,13 @@ CLIENT|earth|INFO|STATS:STATS|cgocalls=11|cpu=8|connected=2|servers=2|connected%
 CLIENT|earth|INFO|Added hosts to known hosts file|/home/paul/.ssh/known_hosts
 REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev 1 2
 REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
-</pre><br />
+</pre>
 <p>Running it the second time, and given that you trusted the keys the first time, it won't prompt you for the host keys anymore:</p>
 <pre>
 ❯ ./dgrep -user rex -servers blowfish.buetow.org,fishfinger.buetow.org --regex local /etc/fstab
 REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev 1 2
 REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
-</pre><br />
+</pre>
 <h2>Conclusions</h2>
 <p>It's a bit of manual work, but it's ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</p>
 <p>Check out the following for more information:</p>
@@ -1004,7 +1004,7 @@ jgs                (________\  \
       |:::::::[]|
       |o=======.|
  jgs  `"""""""""`
-</pre><br />
+</pre>
 <p>I proudly announce that I've released Gemtexter version <span class="inlinecode">1.1.0</span>. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</p>
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>It has been around a year since I released the first version <span class="inlinecode">1.0.0</span>. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</p>
@@ -1029,7 +1029,7 @@ check_dependencies () {
         fi
     done
 }
-</pre><br />
+</pre>
 <p>Especially macOS users didn't read the <span class="inlinecode">README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</p>
 <h3>Backticks now produce <span class="inlinecode">inline code blocks</span> in the HTML output</h3>
 <p>The Gemtext format doesn't support inline code blocks, but Gemtexter now produces <span class="inlinecode">inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.</p>
@@ -1039,7 +1039,7 @@ check_dependencies () {
 <p>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</p>
 <pre>
 ./gemtexter --generate '.*hello.*'
-</pre><br />
+</pre>
 <h3>Revamped <span class="inlinecode">git</span> support</h3>
 <p>The Git support has been completely rewritten. It's now more reliable and faster too. Have a look at the <span class="inlinecode">README</span> for more information.</p>
 <h3>Addition of <span class="inlinecode">htmlextras</span> and web font support</h3>
@@ -2159,7 +2159,7 @@ learn () {
                         ]             ~ ~             |
                         |                            |
                          |                           |
-</pre><br />
+</pre>
 <p>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</p>
 <a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
 <h2>So, what's new in 4.0.0?</h2>
@@ -2182,7 +2182,7 @@ const (
 	Trace   level = iota
 	All     level = iota
 )
-</pre><br />
+</pre>
 <p>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</p>
 <h3>Configurable terminal color codes</h3>
 <p>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</p>
@@ -2280,7 +2280,7 @@ const (
   },
   ...
 }
-</pre><br />
+</pre>
 <p>You notice the different sections - these are different contexts:</p>
 <ul>
 <li>Remote: Color configuration for all log lines sent remotely from the server to the client. </li>
@@ -2292,40 +2292,40 @@ const (
 <p>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</p>
 <pre>
 jsonschema -i dtail.json schemas/dtail.schema.json
-</pre><br />
+</pre>
 <h3>Serverless mode</h3>
 <p>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</p>
 <pre>
 % dtail --files /var/log/foo.log
-</pre><br />
+</pre>
 <p>or</p>
 <pre>
 % dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
-</pre><br />
+</pre>
 <p>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</p>
 <h3>Shorthand flags</h3>
 <p>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</p>
 <pre>
 % dtail /var/log/foo.log
-</pre><br />
+</pre>
 <p>Of course, this also works with all other DTail client commands (dgrep, dcat, ... etc).</p>
 <h3>Spartan (aka plain) mode</h3>
 <p>There's a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</p>
 <pre>
 % dcat --plain /etc/passwd &gt; /etc/test
 % diff /etc/test /etc/passwd  # Same content, no diff
-</pre><br />
+</pre>
 <p>This might be useful if you wanted to post-process the output. </p>
 <h3>Standard input pipe</h3>
 <p>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</p>
 <pre>
 % dgrep --plain --regex 'somethingspecial' /var/log/foo.log |
     dmap --query 'from TABLE select .... outfile result.csv'
-</pre><br />
+</pre>
 <p>Or, use any other "standard" tool:</p>
 <pre>
 % awk '.....' &lt; /some/file | dtail ....
-</pre><br />
+</pre>
 <h3>New command dtailhealth</h3>
 <p>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</p>
 <pre>
@@ -2333,7 +2333,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 #!/bin/sh
 
 exec /usr/local/bin/dtailhealth --server localhost:2222
-</pre><br />
+</pre>
 <h3>Improved documentation</h3>
 <p>Some features, such as custom log formats and the map-reduce query language, are now documented. Also, the examples have been updated to reflect the new features added. This also includes the new animated example Gifs (plus documentation how they were created).</p>
 <p>I must admit that not all features are documented yet:</p>
@@ -2349,7 +2349,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <p>How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:</p>
 <pre>
 % export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
-</pre><br />
+</pre>
 <p>Once done, first compile all commands, and then run the integration tests:</p>
 <pre>
 % make
@@ -2358,7 +2358,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 .
 % go clean -testcache
 % go test -race -v ./integrationtests
-</pre><br />
+</pre>
 <h3>Improved code</h3>
 <p>Not that the code quality of DTail has been bad (I have been using Go vet and Go lint for previous releases and will keep using these), but this time I had new tools (such as SonarQube and BlackDuck) in my arsenal to:</p>
 <ul>
@@ -2627,7 +2627,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
      / /   .  / /  .'    .                            |
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
-</pre><br />
+</pre>
 <p>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1</a><br />
@@ -2646,14 +2646,14 @@ lrwx------. 1 paul paul 64 Nov 23 09:46 0 -&gt; /dev/pts/9
 lrwx------. 1 paul paul 64 Nov 23 09:46 1 -&gt; /dev/pts/9
 lrwx------. 1 paul paul 64 Nov 23 09:46 2 -&gt; /dev/pts/9
 lr-x------. 1 paul paul 64 Nov 23 09:46 3 -&gt; /proc/162912/fd
-</pre><br />
+</pre>
 <p>The following examples demonstrate two different ways to accomplish the same thing. The difference is that the first command is directly printing out "Foo" to stdout and the second command is explicitly redirecting stdout to its own stdout file descriptor:</p>
 <pre>
 ❯ echo Foo
 Foo
 ❯ echo Foo &gt; /proc/self/fd/0
 Foo
-</pre><br />
+</pre>
 <p>Other useful redirections are:</p>
 <ul>
 <li>Redirect stderr to stdin: "echo foo 2&gt;&amp;1"</li>
@@ -2663,13 +2663,13 @@ Foo
 <pre>
 ❯ echo Foo 1&gt;&amp;2 2&gt;/dev/null
 Foo
-</pre><br />
+</pre>
 <p class="quote"><i>Update: A reader sent me an email and pointed out that the order of the redirections is important. </i></p>
 <p>As you can see, the following will not print out anything:</p>
 <pre>
 ❯ echo Foo 2&gt;/dev/null 1&gt;&amp;2
 ❯
-</pre><br />
+</pre>
 <p>A good description (also pointed out by the reader) can be found here:</p>
 <a class="textlink" href="https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file">Order of redirection</a><br />
 <p>Ok, back to the original blog post. You can also use grouping here (neither of these commands will print out anything to stdout):</p>
@@ -2679,7 +2679,7 @@ Foo
 ❯ { { { echo Foo 1&gt;&amp;2; } 2&gt;&amp;1; } 1&gt;&amp;2; } 2&gt;/dev/null
 ❯ ( ( ( echo Foo 1&gt;&amp;2; ) 2&gt;&amp;1; ) 1&gt;&amp;2; ) 2&gt;/dev/null
 ❯
-</pre><br />
+</pre>
 <p>A handy way to list all open file descriptors is to use the "lsof" command (that's not a Bash built-in), whereas $$ is the process id (pid) of the current shell process:</p>
 <pre>
 ❯ lsof -a -p $$ -d0,1,2
@@ -2687,7 +2687,7 @@ COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 bash    62676 paul    0u   CHR  136,9      0t0   12 /dev/pts/9
 bash    62676 paul    1u   CHR  136,9      0t0   12 /dev/pts/9
 bash    62676 paul    2u   CHR  136,9      0t0   12 /dev/pts/9
-</pre><br />
+</pre>
 <p>Let's create our own descriptor "3" for redirection to a file named "foo":</p>
 <pre>
 ❯ touch foo
@@ -2702,7 +2702,7 @@ Bratwurst
 ❯ exec 3&gt;&amp;- # This closes fd 3.
 ❯ echo Steak &gt;&amp;3
 -bash: 3: Bad file descriptor
-</pre><br />
+</pre>
 <p>You can also override the default file descriptors, as the following example script demonstrates:</p>
 <pre>
 ❯ cat grandmaster.sh
@@ -2729,14 +2729,14 @@ echo Second line: $LINE2
 
 # Restore default stdin and delete fd 6
 exec 0&lt;&amp;6 6&lt;&amp;-
-</pre><br />
+</pre>
 <p>Let's execute it:</p>
 <pre>
 ❯ chmod 750 ./grandmaster.sh
 ❯ ./grandmaster.sh
 First line: Learn You a Haskell
 Second line: for Great Good
-</pre><br />
+</pre>
 <h2>HERE</h2>
 <p>I have mentioned HERE-documents and HERE-strings already in this post. Let's do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</p>
 <pre>
@@ -2746,7 +2746,7 @@ Second line: for Great Good
 &gt; END
 Hello World
 It's Fri 26 Nov 08:46:52 GMT 2021
-</pre><br />
+</pre>
 <p>You can also write it the following way, but that's less readable (it's good for an obfuscation contest):</p>
 <pre>
 ❯ &lt;&lt;END cat
@@ -2755,7 +2755,7 @@ It's Fri 26 Nov 08:46:52 GMT 2021
 &gt; END
 Hello Universe
 It's Fri 26 Nov 08:47:32 GMT 2021
-</pre><br />
+</pre>
 <p>Besides of an HERE-document, there is also a so-called HERE-string. Besides of...</p>
 <pre>
 ❯ declare VAR=foo
@@ -2763,24 +2763,24 @@ It's Fri 26 Nov 08:47:32 GMT 2021
 &gt; echo '$VAR ontains foo'
 &gt; fi
 $VAR ontains foo
-</pre><br />
+</pre>
 <p>...you can use a HERE-string like that:</p>
 <pre>
 ❯ if grep -q foo &lt;&lt;&lt; "$VAR"; then
 &gt; echo '$VAR contains foo'
 &gt; fi
 $VAR contains foo
-</pre><br />
+</pre>
 <p>Or even shorter, you can do:</p>
 <pre>
 ❯ grep -q foo &lt;&lt;&lt; "$VAR" &amp;&amp; echo '$VAR contains foo'
 $VAR contains foo
-</pre><br />
+</pre>
 <p>You can also use a Bash regex to accomplish the same thing, but the points of the examples so far were to demonstrate HERE-{documents,strings} and not Bash regular expressions:</p>
 <pre>
 ❯ if [[ "$VAR" =~ foo ]]; then echo yay; fi
 yay
-</pre><br />
+</pre>
 <p>You can also use it with "read":</p>
 <pre>
 ❯ read a &lt;&lt;&lt; ja
@@ -2795,14 +2795,14 @@ NEIN!!!
 Learn
 ❯ echo ${words[3]}
 Golang
-</pre><br />
+</pre>
 <p>The following is good for an obfuscation contest too:</p>
 <pre>
 ❯ echo 'I like Perl too' &gt; perllove.txt
 ❯ cat - perllove.txt &lt;&lt;&lt; "$dumdidumstring"
 Learn you a Golang for Great Good
 I like Perl too
-</pre><br />
+</pre>
 <h2>RANDOM</h2>
 <p>Random is a special built-in variable containing a different pseudo random number each time it's used.</p>
 <pre>
@@ -2812,7 +2812,7 @@ I like Perl too
 14997
 ❯ echo $RANDOM
 9104
-</pre><br />
+</pre>
 <p>That's very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently, just to spread the server load (which might be caused by the script run) better.</p>
 <p>Let's say you want to introduce a random delay of 1 minute. You can accomplish it with:</p>
 <pre>
@@ -2841,7 +2841,7 @@ main
 ❯ ./calc_answer_to_ultimate_question_in_life.sh
 Delaying script execution for 42 seconds...
 Continuing script execution...
-</pre><br />
+</pre>
 <h2>set -x and set -e and pipefile</h2>
 <p>In my opinion, -x and -e and pipefile are the most useful Bash options. Let's have a look at them one after another.</p>
 <h3>-x</h3>
@@ -2856,11 +2856,11 @@ Continuing script execution...
 ++ echo 121
 + echo 'Square of 11 is 121'
 Square of 11 is 121
-</pre><br />
+</pre>
 <p>You can also set it when calling an external script without modifying the script itself:</p>
 <pre>
 ❯ bash -x ./half_broken_script_to_be_debugged.sh
-</pre><br />
+</pre>
 <p>Let's do that on one of the example scripts we covered earlier:</p>
 <pre>
 ❯ bash -x ./grandmaster.sh
@@ -2878,21 +2878,21 @@ First line: Learn You a Haskell
 Second line: for Great Good
 + exec
 ❯
-</pre><br />
+</pre>
 <h3>-e</h3>
 <p>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</p>
 <p>Ok, let's dig deeper:</p>
 <pre>
 ❯ help set | grep -- -e
       -e  Exit immediately if a command exits with a non-zero status.
-</pre><br />
+</pre>
 <p>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:</p>
 <pre>
 ❯ bash -c 'set -e; echo hello; grep -q bar &lt;&lt;&lt; foo; echo bar'
 hello
 ❯ echo $?
 1
-</pre><br />
+</pre>
 <p>Whereas the outcome changes when the regex matches:</p>
 <pre>
 ❯ bash -c 'set -e; echo hello; grep -q bar &lt;&lt;&lt; barman; echo bar'
@@ -2900,7 +2900,7 @@ hello
 bar
 ❯ echo $?
 0
-</pre><br />
+</pre>
 <p>So does it mean that grep will always make the shell terminate whenever its exit code isn't 0? This will render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script abruptly. Usually, what you want is to branch your code based on the outcome (exit code) of a command:</p>
 <pre>
 ❯ bash -c 'set -e
@@ -2912,7 +2912,7 @@ bar
 &gt;    fi'
 ❯ echo $?
 1
-</pre><br />
+</pre>
 <p>...but the example above won't reach any of the branches and won't print out anything, as the script terminates right after grep.</p>
 <p>The proper solution is to use grep as an expression in a conditional (e.g. in an if-else statement):</p>
 <pre>
@@ -2934,7 +2934,7 @@ not matching
 matching
 ❯ echo $?
 0
-</pre><br />
+</pre>
 <p>You can also temporally undo "set -e" if there is no other way:</p>
 <pre>
 ❯ cat ./e.sh
@@ -2976,7 +2976,7 @@ foo
 Hello World
 Hello Universe
 Hello You!
-</pre><br />
+</pre>
 <p>Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won't have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.</p>
 <p>Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.html">./2021-05-16-personal-bash-coding-style-guide.html</a><br />
@@ -2987,14 +2987,14 @@ Hello You!
     pipefail     the return value of a pipeline is the status of
                  the last command to exit with a non-zero status,
                  or zero if no command exited with a non-zero status
-</pre><br />
+</pre>
 <p>The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:</p>
 <pre>
 ❯ grep paul /etc/passwd | tr '[a-z]' '[A-Z]'
 PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ echo $?
 0
-</pre><br />
+</pre>
 <p>Let's look at another example, where "TheRock" doesn't exist in the passwd file. However, the pipes exit status is still 0 (success). This is so because the last command ("tr" in this case) still succeeded. It is just that it didn't get any input on stdin to process:</p>
 <pre>
 ❯ grep TheRock /etc/passwd
@@ -3003,14 +3003,14 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 ❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
 ❯ echo $?
 0
-</pre><br />
+</pre>
 <p>To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:</p>
 <pre>
 ❯ set -o pipefail
 ❯ grep TheRock /etc/passwd | tr '[a-z]' '[A-Z]'
 ❯ echo $?
 1
-</pre><br />
+</pre>
 <p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1</a><br />
@@ -3138,7 +3138,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
       / /  .'                                         |
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
-</pre><br />
+</pre>
 <p>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
 <a class="textlink" href="https://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.html">2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
@@ -3149,7 +3149,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ❯ cat &lt; /dev/tcp/time.nist.gov/13
 
 59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
-</pre><br />
+</pre>
 <p>The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).</p>
 <p>A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</p>
 <pre>
@@ -3166,7 +3166,7 @@ Server: gws
 Content-Length: 218
 X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
-</pre><br />
+</pre>
 <p>You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</p>
 <h2>Process substitution</h2>
 <p>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</p>
@@ -3187,7 +3187,7 @@ Access: 2021-11-20 10:59:31.482411961 +0000
 Modify: 2021-11-20 10:59:31.482411961 +0000
 Change: 2021-11-20 10:59:31.482411961 +0000
  Birth: -
-</pre><br />
+</pre>
 <p>This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</p>
 <p>A useful use case is displaying the differences of two sorted files:</p>
 <pre>
@@ -3209,11 +3209,11 @@ Change: 2021-11-20 10:59:31.482411961 +0000
 ❯ echo X &gt;&gt; /tmp/file-a.txt # Now, both files have the same content again.
 ❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
 ❯
-</pre><br />
+</pre>
 <p>Another example is displaying the differences of two directories:</p>
 <pre>
 ❯ diff -u &lt;(ls ./dir1/ | sort) &lt;(ls ./dir2/ | sort)
-</pre><br />
+</pre>
 <p>More (Bash golfing) examples:</p>
 <pre>
 ❯ wc -l &lt;(ls /tmp/) /etc/passwd &lt;(env)
@@ -3228,12 +3228,12 @@ Change: 2021-11-20 10:59:31.482411961 +0000
 &gt; done &lt; &lt;(echo foo bar baz)
 foo bar baz
 ❯
-</pre><br />
+</pre>
 <p>So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:</p>
 <pre>
 ❯ tar cjf file.tar.bz2 foo
 ❯ tar cjf &gt;(bzip2 -c &gt; file.tar.bz2) foo
-</pre><br />
+</pre>
 <p>Just think a while and see whether you understand fully what is happening here.</p>
 <h2>Grouping</h2>
 <p>Command grouping can be quite useful for combining the output of multiple commands:</p>
@@ -3242,7 +3242,7 @@ foo bar baz
 97
 ❯ ( ls /tmp; cat /etc/passwd; env; ) | wc -l
 97
-</pre><br />
+</pre>
 <p>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:</p>
 <pre>
 ❯ echo $$
@@ -3251,7 +3251,7 @@ foo bar baz
 62676
 ❯ ( echo $$; )
 62676
-</pre><br />
+</pre>
 <p>One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:</p>
 <pre>
 ❯ ( env; ls ) | wc -l
@@ -3259,7 +3259,7 @@ foo bar baz
 ❯ { env; ls } | wc -l
 &gt;
 &gt; ^C
-</pre><br />
+</pre>
 <p>In case you know more (subtle) differences, please write me an E-Mail and let me know.</p>
 <p class="quote"><i>Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):</i></p>
 <pre>
@@ -3275,19 +3275,19 @@ foo bar baz
        ters ( and ), { and } are reserved words and must occur where a reserved word
        is  permitted  to  be recognized.  Since they do not cause a word break, they
        must be separated from list by whitespace or another shell metacharacter.
-</pre><br />
+</pre>
 <p>So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:</p>
 <pre>
 $      Expands to the process ID of the shell.  In a () subshell, it expands to  the
        process ID of the current shell, not the subshell.
-</pre><br />
+</pre>
 <p>If we want print the subprocess PID, we can use the BASHPID variable:</p>
 <pre>
 ❯ echo $BASHPID; { echo $BASHPID; }; ( echo $BASHPID; )
 1028465
 1028465
 1028739
-</pre><br />
+</pre>
 <h2>Expansions</h2>
 <p>Let's start with simple examples:</p>
 <pre>
@@ -3300,7 +3300,7 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 3
 4
 5
-</pre><br />
+</pre>
 <p>You can also add leading 0 or expand to any number range:</p>
 <pre>
 ❯ echo {00..05}
@@ -3309,29 +3309,29 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 000 001 002 003 004 005
 ❯ echo {201..205}
 201 202 203 204 205
-</pre><br />
+</pre>
 <p>It also works with letters:</p>
 <pre>
 ❯ echo {a..e}
 a b c d e
-</pre><br />
+</pre>
 <p>Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:</p>
 <pre>
 ❯ echo \"{These,words,are,quoted}\"
 "These" "words" "are" "quoted"
-</pre><br />
+</pre>
 <p>Let's also expand to the cross product of two given lists:</p>
 <pre>
 ❯ echo {one,two}\:{A,B,C}
 one:A one:B one:C two:A two:B two:C
 ❯ echo \"{one,two}\:{A,B,C}\"
 "one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
-</pre><br />
+</pre>
 <p>Just because we can:</p>
 <pre>
 ❯ echo Linux-{one,two,three}\:{A,B,C}-FreeBSD
 Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
-</pre><br />
+</pre>
 <h2>- aka stdin and stdout placeholder</h2>
 <p>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</p>
 <pre>
@@ -3345,7 +3345,7 @@ ONECHEESEBURGERPLEASE
 Hello world
 ❯ cat - &lt;&lt;&lt; 'Hello world'
 Hello world
-</pre><br />
+</pre>
 <p>Let's walk through all three examples from the above snippet:</p>
 <ul>
 <li>The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).</li>
@@ -3355,14 +3355,14 @@ Hello world
 <p>The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:</p>
 <pre>
 ❯ tar -czf - /some/dir | ssh hercules@buetow.org tar -xzvf - 
-</pre><br />
+</pre>
 <p>This is yet another example of using "-", but this time using the "file" command:</p>
 <pre>
 $ head -n 1 grandmaster.sh
 #!/usr/bin/env bash
 $ file - &lt; &lt;(head -n 1 grandmaster.sh)
 /dev/stdin: a /usr/bin/env bash script, ASCII text executable
-</pre><br />
+</pre>
 <p>Some more golfing:</p>
 <pre>
 $ cat -
@@ -3372,7 +3372,7 @@ hello
 $ file -
 #!/usr/bin/perl
 /dev/stdin: Perl script text executable
-</pre><br />
+</pre>
 <h2>Alternative argument passing</h2>
 <p>This is a quite unusual way of passing arguments to a Bash script:</p>
 <pre>
@@ -3381,7 +3381,7 @@ $ file -
 declare -r USER=${USER:?Missing the username}
 declare -r PASS=${PASS:?Missing the secret password for $USER}
 echo $USER:$PASS
-</pre><br />
+</pre>
 <p>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an undefined argument.</p>
 <pre>
 ❯ chmod +x foo.sh
@@ -3393,17 +3393,17 @@ echo $USER:$PASS
 1
 ❯ USER=paul PASS=secret ./foo.sh
 paul:secret
-</pre><br />
+</pre>
 <p>You have probably noticed this *strange* syntax:</p>
 <pre>
 ❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
-</pre><br />
+</pre>
 <p>That's just another way to pass environment variables to a script. You can write it as well as like this:</p>
 <pre>
 ❯ export VARIABLE1=value1
 ❯ export VARIABLE2=value2
 ❯ ./script.sh
-</pre><br />
+</pre>
 <p>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</p>
 <h2>: aka the null command</h2>
 <p>First, let's use the "help" Bash built-in to see what it says about the null command:</p>
@@ -3416,14 +3416,14 @@ paul:secret
 
     Exit Status:
     Always succeeds.
-</pre><br />
+</pre>
 <p>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </p>
 <p>OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):</p>
 <pre>
 ❯ :
 ❯ echo $?
 0
-</pre><br />
+</pre>
 <p>Why would that be useful? You can use it as a placeholder in an endless while-loop:</p>
 <pre>
 ❯ while : ; do date; sleep 1; done
@@ -3432,7 +3432,7 @@ Sun 21 Nov 12:08:32 GMT 2021
 Sun 21 Nov 12:08:33 GMT 2021
 ^C
 ❯
-</pre><br />
+</pre>
 <p>You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:</p>
 <pre>
 ❯ foo () {  }
@@ -3440,11 +3440,11 @@ Sun 21 Nov 12:08:33 GMT 2021
 ❯ foo () { :; }
 ❯ foo
 ❯
-</pre><br />
+</pre>
 <p>Or use it as a placeholder for not yet implemented conditional branches:</p>
 <pre>
 ❯ if foo; then :; else echo bar; fi
-</pre><br />
+</pre>
 <p>Or (not recommended) as a fancy way to comment your Bash code:</p>
 <pre>
 ❯ : I am a comment and have no other effect
@@ -3452,7 +3452,7 @@ Sun 21 Nov 12:08:33 GMT 2021
 -bash: syntax error near unexpected token `('
 ❯ : "I am a comment and don't result in a syntax error ()"
 ❯
-</pre><br />
+</pre>
 <p>As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:</p>
 <pre>
 ❯ declare i=0
@@ -3463,7 +3463,7 @@ bash: 1: command not found...
 ❯ : $[ i = i + 1 ]
 ❯ echo $i
 4
-</pre><br />
+</pre>
 <p>For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</p>
 <pre>
 ❯ declare j=0
@@ -3473,7 +3473,7 @@ bash: 1: command not found...
 ❯ let j=$((j + 1))
 ❯ echo $j
 4
-</pre><br />
+</pre>
 <h2>(No) floating point support</h2>
 <p>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn't:</p>
 <pre>
@@ -3486,13 +3486,13 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 ❯ zsh -c 'echo $(( 1/10.0 ))'
 0.10000000000000001
 ❯
-</pre><br />
+</pre>
 <p>It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. </p>
 <p>In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):</p>
 <pre>
 ❯ bc &lt;&lt;&lt; 'scale=2; 1/10'
 .10
-</pre><br />
+</pre>
 <p>See you later for the next post of this series.</p>
 <p>Other related posts are:</p>
 <a class="textlink" href="https://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.html">2022-01-01 Bash Golf Part 2</a><br />
@@ -3875,7 +3875,7 @@ Hello World
 :   \_``[]--[]|::::'\_;'     )-'..`._                 .-'\``:: ` .              \
  \___.&gt;`''-.||:.__,'     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
                                                            `+a:f:......jrei'''
-</pre><br />
+</pre>
 <p>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</p>
 <p>This comes with the benefit that I can write content in my favourite text editor (Vim). </p>
 <h2>Motivation</h2>
@@ -3911,7 +3911,7 @@ paul in uranus in gemtexter on 🌱 main
      30 lib/log.source.sh
      63 lib/md.source.sh
      834 total
-</pre><br />
+</pre>
 <p>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </p>
 <h3>Bash best practises and ShellCheck</h3>
 <p>While working on Gemtexter, I also had a look at the Google Shell Style Guide and wrote a blog post on that:</p>
@@ -3931,13 +3931,13 @@ gemtext='=&gt; http://example.org Description of the link'
 assert::equals "$(generate::make_link html "$gemtext")" \
     '&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'
 
-</pre><br />
+</pre>
 <h3>Markdown unit test example</h3>
 <pre>
 gemtext='=&gt; http://example.org Description of the link'
 assert::equals "$(generate::make_link md "$gemtext")" \
     '[Description of the link](http://example.org)  '
-</pre><br />
+</pre>
 <h2>Handcrafted HTML styles</h2>
 <p>I had a look at some ready off the shelf CSS styles, but they all seemed too bloated. There is a whole industry selling CSS styles on the interweb. I preferred an effortless and minimalist style for the HTML site. So I handcrafted the Cascading Style Sheets manually with love and included them in the HTML header template. </p>
 <p>For now, I have to re-generate all HTML files whenever the CSS changes. That should not be an issue now, but I might move the CSS into a separate file one day.</p>
@@ -3994,7 +3994,7 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 |____    []*          ____  | ==||
 //  \\               //  \\ |===||  hjw
 "\__/"---------------"\__/"-+---+'
-</pre><br />
+</pre>
 <p>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </p>
 <a class="textlink" href="https://google.github.io/styleguide/shellguide.html">Google Shell Style Guide</a><br />
 <h2>My modifications</h2>
@@ -4003,11 +4003,11 @@ assert::equals "$(generate::make_link md "$gemtext")" \
 <p>Google recommends using always...</p>
 <pre>
 #!/bin/bash 
-</pre><br />
+</pre>
 <p>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:</p>
 <pre>
 #!/usr/bin/env bash
-</pre><br />
+</pre>
 <h3>Two space soft-tabs indentation</h3>
 <p>I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. </p>
 <p>I don't care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.</p>
@@ -4024,7 +4024,7 @@ command1 \
   | command2 \
   | command3 \
   | command4
-</pre><br />
+</pre>
 <p>I think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:</p>
 <pre>
 # Long commands
@@ -4032,7 +4032,7 @@ command1 |
     command2 |
     command3 |
     command4
-</pre><br />
+</pre>
 <h3>Quoting your variables</h3>
 <p>Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:</p>
 <pre>
@@ -4041,7 +4041,7 @@ greet () {
     local -r name="${2}"
     echo "${greeting} ${name}!"
 }
-</pre><br />
+</pre>
 <p>In this particular example, I agree that you should quote them as you don't know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:</p>
 <pre>
 say_hello_to_paul () {
@@ -4049,13 +4049,13 @@ say_hello_to_paul () {
     local -r name=Paul
     echo "$greeting $name!"
 }
-</pre><br />
+</pre>
 <p>You see, I also omitted the curly braces { } around the variables. I only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:</p>
 <pre>
 declare FOO=bar
 # Curly braces around FOO are necessary
 echo "foo${FOO}baz"
-</pre><br />
+</pre>
 <p>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That's because it will be more likely that you might not remember that some of the functions don't work on values with spaces in them, for example. It's just that I won't quote everything in every small script I write. </p>
 <h3>Prefer built-in commands over external commands</h3>
 <p>Google recommends using the built-in commands over available external commands where possible:</p>
@@ -4067,7 +4067,7 @@ substitution="${string/#foo/bar}"
 # Instead of this:
 addition="$(expr "${X}" + "${Y}")"
 substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
-</pre><br />
+</pre>
 <p>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</p>
 <p>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</p>
 <p>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).</p>
@@ -4090,7 +4090,7 @@ buy_soda () {
 }
 
 buy_soda $I_NEED_THE_BUZZ
-</pre><br />
+</pre>
 <h3>Non-evil alternative to variable assignments via eval</h3>
 <p>Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:</p>
 <pre>
@@ -4101,7 +4101,7 @@ eval $(set_my_variables)
 # What happens if one of the returned values has a space in it?
 variable="$(eval some_function)"
 
-</pre><br />
+</pre>
 <p>However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:</p>
 <pre>
 % cat vars.source.sh
@@ -4111,7 +4111,7 @@ declare bay=foo
 
 % bash -c 'source vars.source.sh; echo $foo $bar $baz'
 bar baz foo
-</pre><br />
+</pre>
 <p>And suppose I want to assign variables dynamically. In that case, I could just run an external script and source its output (This is how you could do metaprogramming in Bash without the use of eval - write code which produces code for immediate execution):</p>
 <pre>
 % cat vars.sh
@@ -4123,7 +4123,7 @@ END
 
 % bash -c 'source &lt;(./vars.sh); echo "Hello $user, it is $date"'
 Hello paul, it is Sat 15 May 19:21:12 BST 2021
-</pre><br />
+</pre>
 <p>The downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.</p>
 <h3>Prefer pipes over arrays for list processing</h3>
 <p>When I do list processing in Bash, I prefer to use pipes. You can chain them through Bash functions as well, which is pretty neat. Usually, my list processing scripts are of a structure like this:</p>
@@ -4161,7 +4161,7 @@ main () {
 }
 
 main
-</pre><br />
+</pre>
 <p>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</p>
 <h3>Assign-then-shift</h3>
 <p>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It's pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</p>
@@ -4173,7 +4173,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre><br />
+</pre>
 <p>Want to add a param_baz? Just do this:</p>
 <pre>
 some_function () {
@@ -4183,7 +4183,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre><br />
+</pre>
 <p>Want to remove param_foo? Nothing easier than that:</p>
 <pre>
 some_function () {
@@ -4192,7 +4192,7 @@ some_function () {
     local -r param_bay="$1"; shift
     ...
 }
-</pre><br />
+</pre>
 <p>As you can see, I didn't need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</p>
 <h3>Paranoid mode</h3>
 <p>I call this the paranoid mode. The Bash will stop executing when a command exits with a status not equal to 0:</p>
@@ -4200,7 +4200,7 @@ some_function () {
 set -e
 grep -q foo &lt;&lt;&lt; bar
 echo Jo
-</pre><br />
+</pre>
 <p>Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</p>
 <pre>
 #!/usr/bin/env bash
@@ -4223,7 +4223,7 @@ some_function () {
     fi
     ...
 }
-</pre><br />
+</pre>
 <h2>Learned</h2>
 <p>There are also a couple of things I've learned from Google's guide.</p>
 <h3>Unintended lexicographical comparison.</h3>
@@ -4233,19 +4233,19 @@ if [[ "${my_var}" &gt; 3 ]]; then
     # True for 4, false for 22.
     do_something
 fi
-</pre><br />
+</pre>
 <p>... but it is probably an unintended lexicographical comparison. A correct way would be:</p>
 <pre>
 if (( my_var &gt; 3 )); then
     do_something
 fi
-</pre><br />
+</pre>
 <p>or</p>
 <pre>
 if [[ "${my_var}" -gt 3 ]]; then
     do_something
 fi
-</pre><br />
+</pre>
 <h3>PIPESTATUS</h3>
 <p>I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to understand how it works until now thoroughly.</p>
 <p>The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it's only necessary to check the success or failure of the whole pipe, then the following is acceptable:</p>
@@ -4254,7 +4254,7 @@ tar -cf - ./* | ( cd "${dir}" &amp;&amp; tar -xf - )
 if (( PIPESTATUS[0] != 0 || PIPESTATUS[1] != 0 )); then
     echo "Unable to tar files to ${dir}" &gt;&amp;2
 fi
-</pre><br />
+</pre>
 <p>However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you'll need to assign PIPESTATUS to another variable immediately after running the command (don't forget that [ is a command and will wipe out PIPESTATUS).</p>
 <pre>
 tar -cf - ./* | ( cd "${DIR}" &amp;&amp; tar -xf - )
@@ -4265,7 +4265,7 @@ fi
 if (( return_codes[1] != 0 )); then
     do_something_else
 fi
-</pre><br />
+</pre>
 <h2>Use common sense and BE CONSISTENT.</h2>
 <p>The following two paragraphs are thoroughly quoted from the Google guidelines. But they hit the hammer on the head:</p>
 <p class="quote"><i>If you are editing code, take a few minutes to look at the code around you and determine its style. If they use spaces around their if clauses, you should, too. If their comments have little boxes of stars around them, make your comments have little boxes of stars around them too.</i></p>
@@ -4319,7 +4319,7 @@ fi
  ''( .'\.' ' .;'
 '.;.;' ;'.;' ..;;' AsH
 
-</pre><br />
+</pre>
 <h2>Motivation</h2>
 <h3>My urge to revamp my personal website</h3>
 <p>For some time, I had to urge to revamp my personal website. Not to update the technology and its design but to update all the content (+ keep it current) and start a small tech blog again. So unconsciously, I began to search for an excellent platform to do all of that in a KISS (keep it simple &amp; stupid) way.</p>
@@ -4411,7 +4411,7 @@ fi
 <p>The following example would connect to all DTail servers listed in the serverlist.txt, follow all files with the ending .log and filter for lines containing the string error. You can specify any Go compatible regular expression. In this example we add the case-insensitive flag to the regex:</p>
 <pre>
 dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:error)’
-</pre><br />
+</pre>
 <p>You usually want to specify a regular expression as a client argument. This will mean that responses are pre-filtered for all matching lines on the server-side and thus sending back only the relevant lines to the client. If your logs are growing very rapidly and the regex is not specific enough there might be the chance that your client is not fast enough to keep up processing all of the responses. This could be due to a network bottleneck or just as simple as a slow terminal emulator displaying the log lines on the client-side.</p>
 <p>A green 100 in the client output before each log line received from the server always indicates that there were no such problems and 100% of all log lines could be displayed on your terminal (have a look at the animated Gifs in this post). If the percentage falls below 100 it means that some of the channels used by the servers to send data to the client are congested and lines were dropped. In this case, the color will change from green to red. The user then could decide to run the same query but with a more specific regex.</p>
 <p>You could also provide a comma-separated list of servers as opposed to a text file. There are many more options you could use. The ones listed here are just the very basic ones. There are more instructions and usage examples on the GitHub page. Also, you can study even more of the available options via the –help switch (some real treasures might be hidden there).</p>
@@ -5694,7 +5694,7 @@ fib(10) = 55
      \\_/    \  \\_/    \      \\_/    \.-,
       \, /-( /'-,\, /-( /'-,    \, /-( /
       //\ //\\   //\ //\\       //\ //\\jrei
-</pre><br />
+</pre>
 <p>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</p>
 <h2>Features</h2>
 <p>PerlDaemon supports:</p>
@@ -5718,7 +5718,7 @@ fib(10) = 55
 
 # Alternatively: Starting in foreground 
 ./bin/perldaemon start daemon.daemonize=no (or shortcut ./control foreground)
-</pre><br />
+</pre>
 <p>To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</p>
 <h2>How to configure</h2>
 <p>The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":</p>
@@ -5747,7 +5747,7 @@ daemon.alivefile=./run/perldaemon.alive
 
 # Specifies the working directory
 daemon.wd=./
-</pre><br />
+</pre>
 <h2>Example </h2>
 <p>So let's start the daemon with a loop interval of 10 seconds:</p>
 <pre>
@@ -5762,11 +5762,11 @@ Mon Jun 13 11:29:27 2011 (PID 2838): Triggering PerlDaemonModules::ExampleModule
 Mon Jun 13 11:29:27 2011 (PID 2838): ExampleModule Test 2
 $ ./control stop
 Stopping daemon now...
-</pre><br />
+</pre>
 <p>If you want to change that property forever, either edit perldaemon.conf or do this:</p>
 <pre>
 $ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaemon.conf
-</pre><br />
+</pre>
 <h2>HiRes event loop</h2>
 <p>PerlDaemon uses <span class="inlinecode">Time::HiRes</span> to make sure that all the events run incorrect intervals. For each loop run, a time carry value is recorded and added to the next loop run to catch up on lost time.</p>
 <h2>Writing your own modules</h2>
@@ -5802,7 +5802,7 @@ sub do ($) {
 }
 
 1;
-</pre><br />
+</pre>
 <h3>Your own module</h3>
 <p>Want to give it some better use? It's just as easy as:</p>
 <pre>
@@ -5811,7 +5811,7 @@ sub do ($) {
  vi YourModule.pm
  cd -
  ./bin/perldaemon restart (or shortcurt ./control restart)
-</pre><br />
+</pre>
 <p>Now watch <span class="inlinecode">./log/perldaemon.log</span> closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).</p>
 <p>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future, they can also run in parallel using several threads or processes).</p>
 <h2>May the source be with you</h2>
@@ -6580,7 +6580,7 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
                       ||  \\  _/ / | |
              ~ ~ ~~~ _|| (_/ (___)_| |Nov291999
                     (__)         (____)
-</pre><br />
+</pre>
 <p>Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.</p>
 <p>Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Perl">https://en.wikipedia.org/wiki/Perl</a><br />
@@ -6625,7 +6625,7 @@ do { exp'onentize' and abs'olutize' };
 home: //ig,'nore', time and sleep $very =~ s/tr/on/g;
 __END__
 
-</pre><br />
+</pre>
 <h2>christmas.pl</h2>
 <pre>
 #!/usr/bin/perl
@@ -6669,7 +6669,7 @@ END {} our $mission and do sleep until next Christmas ;}
 __END__
 
 This is perl, v5.8.8 built for i386-freebsd-64int
-</pre><br />
+</pre>
 <h2>shopping.pl</h2>
 <pre>
 #!/usr/bin/perl
@@ -6701,7 +6701,7 @@ and sleep until unpack$ing, cool products();
 
 __END__
 This is perl, v5.8.8 built for i386-freebsd-64int
-</pre><br />
+</pre>
 <h2>More...</h2>
 <p>Did you like what you saw? Have a look at Codeberg to see my other poems too:</p>
 <a class="textlink" href="https://codeberg.org/snonux/perl-poetry">https://codeberg.org/snonux/perl-poetry</a><br />
