@@ -9,8 +9,7 @@
 </head>
 <body>
 <h1>Lazy Evaluation with Standard ML</h1>
-<span class="quote"><i>Published at 2010-05-07T08:17:59+01:00</i></span><br />
-<br />
+<p class="quote"><i>Published at 2010-05-07T08:17:59+01:00</i></p>
 <pre>
 
       _____|~~\_____      _____________
@@ -23,18 +22,12 @@
  `---------------'--\\\\      .`--'          -Glyde-
                               `||||
 </pre>
-<br />
-In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. <br />
-<br />
+<p>In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. </p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Eager_evaluation">https://en.wikipedia.org/wiki/Eager_evaluation</a><br />
 <a class="textlink" href="https://en.wikipedia.org/wiki/Lazy_evaluation">https://en.wikipedia.org/wiki/Lazy_evaluation</a><br />
-<br />
-<br />
-You can solve specific problems with lazy evaluation easier than with eager evaluation. For example, you might want to list the number Pi or another infinite list of something. With the help of lazy evaluation, each element of the list is calculated when it is accessed first, but not earlier.<br />
-<br />
+<p>You can solve specific problems with lazy evaluation easier than with eager evaluation. For example, you might want to list the number Pi or another infinite list of something. With the help of lazy evaluation, each element of the list is calculated when it is accessed first, but not earlier.</p>
 <h2>Emulating lazy evaluation in SML</h2>
-However, it is possible to emulate lazy evaluation in most eager evaluation languages. This is how it is done with Standard ML (with some play with an infinite list of natural number tuples filtering out 0 elements):<br />
-<br />
+<p>However, it is possible to emulate lazy evaluation in most eager evaluation languages. This is how it is done with Standard ML (with some play with an infinite list of natural number tuples filtering out 0 elements):</p>
 <pre>
 type ’a lazy = unit -&gt; ’a;
 
@@ -74,12 +67,9 @@ fun nat_pairs_not_null () =
 val test = first 10 (nat_pairs_not_null ());
 *)
 </pre>
-<br />
 <a class="textlink" href="http://smlnj.org/">http://smlnj.org/</a><br />
-<br />
 <h2>Real laziness with Haskell </h2>
-As Haskell already uses lazy evaluation by default, there is no need to construct a new data type. Lists in Haskell are lazy by default. You will notice that the code is also much shorter and easier to understand than the SML version. <br />
-<br />
+<p>As Haskell already uses lazy evaluation by default, there is no need to construct a new data type. Lists in Haskell are lazy by default. You will notice that the code is also much shorter and easier to understand than the SML version. </p>
 <pre>
 {- Just to make it look like the ML example -}
 first = take
@@ -101,11 +91,8 @@ nat_pairs_not_null = filters (\[x,y] -&gt; x &gt; 0 &amp;&amp; y &gt; 0) nat_pai
 first 10 nat_pairs_not_null
 -}
 </pre>
-<br />
 <a class="textlink" href="http://www.haskell.org/">http://www.haskell.org/</a><br />
-<br />
-E-Mail your comments to hi@paul.cyou :-)<br />
-<br />
+<p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

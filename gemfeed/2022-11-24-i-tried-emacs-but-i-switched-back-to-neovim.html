@@ -9,8 +9,7 @@
 </head>
 <body>
 <h1>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1>
-<span class="quote"><i>Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26</i></span><br />
-<br />
+<p class="quote"><i>Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26</i></p>
 <pre>
              _/  \    _(\(o
              /     \  /  _  ^^^o
@@ -23,101 +22,64 @@ Art by      \ \_!  / __!
         \ ^^--^^ __-^ /(__ 
          ^^----^^    "^--v'
 </pre>
-<br />
-As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.<br />
-<br />
+<p>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.</p>
 <a class="textlink" href="https://www.gnu.org/software/emacs/">GNU Emacs</a><br />
 <a class="textlink" href="https://github.com/doomemacs/">Doom Emacs</a><br />
-<br />
-I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don't have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).<br />
-<br />
+<p>I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don't have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).</p>
 <a class="textlink" href="https://www.vim.org">Vim</a><br />
 <a class="textlink" href="https://neovim.io">NeoVim</a><br />
-<br />
-So why did I switch back to the Vi-family?<br />
-<br />
+<p>So why did I switch back to the Vi-family?</p>
 <h2>Emacs is a giant dragon</h2>
-Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There's an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class="inlinecode">init 1</span> process (if you don't know what the <span class="inlinecode">init 1</span> process is: Under UNIX and similar operating systems, it's the very first userland processed launched. That's usually <span class="inlinecode">systemd</span> on Linux-based systems, <span class="inlinecode">launchd</span> on macOS, or any other init script or init system used by the OS)!<br />
-<br />
-In many aspects, Emacs is like shooting at everything with a bazooka! However, I prefer it simple. I only wanted Emacs to be a good editor (which it is, too), but there's too much other stuff in Emacs that I don't need to care about! Vim and NeoVim do one thing excellent: Being great text editors and, when loaded with plugins, decent IDEs, too. <br />
-<br />
+<p>Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There's an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class="inlinecode">init 1</span> process (if you don't know what the <span class="inlinecode">init 1</span> process is: Under UNIX and similar operating systems, it's the very first userland processed launched. That's usually <span class="inlinecode">systemd</span> on Linux-based systems, <span class="inlinecode">launchd</span> on macOS, or any other init script or init system used by the OS)!</p>
+<p>In many aspects, Emacs is like shooting at everything with a bazooka! However, I prefer it simple. I only wanted Emacs to be a good editor (which it is, too), but there's too much other stuff in Emacs that I don't need to care about! Vim and NeoVim do one thing excellent: Being great text editors and, when loaded with plugins, decent IDEs, too. </p>
 <h2>Magit love</h2>
-I almost fell in love with Magit, an integrated Git client for Emacs. But I think the best way to interact with Git is to use the <span class="inlinecode">git</span> command line directly. I don't worry about typing out all the commands, as the most commonly used commands are in my shell history. Other useful Git programs I use frequently are <span class="inlinecode">bit</span> and <span class="inlinecode">tig</span>. Also, get a mechanical keyboard that makes hammering whole commands into the terminal even more enjoyable.<br />
-<br />
+<p>I almost fell in love with Magit, an integrated Git client for Emacs. But I think the best way to interact with Git is to use the <span class="inlinecode">git</span> command line directly. I don't worry about typing out all the commands, as the most commonly used commands are in my shell history. Other useful Git programs I use frequently are <span class="inlinecode">bit</span> and <span class="inlinecode">tig</span>. Also, get a mechanical keyboard that makes hammering whole commands into the terminal even more enjoyable.</p>
 <a class="textlink" href="https://magit.vc/">Magit</a><br />
 <a class="textlink" href="https://github.com/jonas/tig">Tig</a><br />
-<br />
-Magit is pretty neat for basic Git operations, but I found myself searching the internet for the correct sub-commands to do the things I wanted to do in Git. Mainly, the way how branches are managed is confusing. Often, I fell back to the command line to fix up the mess I produced with Magit (e.g. accidentally pushing to the wrong remote branch, so I found myself fixing things manually on the terminal with the <span class="inlinecode">git</span> command with forced pushes....). Magit is hotkey driven, and common commands are quickly explorable through built-in hotkey menus. Still, I found it challenging to navigate to more advanced Git sub-commands that way which was much easier accomplished by using the <span class="inlinecode">git</span> command directly.<br />
-<br />
+<p>Magit is pretty neat for basic Git operations, but I found myself searching the internet for the correct sub-commands to do the things I wanted to do in Git. Mainly, the way how branches are managed is confusing. Often, I fell back to the command line to fix up the mess I produced with Magit (e.g. accidentally pushing to the wrong remote branch, so I found myself fixing things manually on the terminal with the <span class="inlinecode">git</span> command with forced pushes....). Magit is hotkey driven, and common commands are quickly explorable through built-in hotkey menus. Still, I found it challenging to navigate to more advanced Git sub-commands that way which was much easier accomplished by using the <span class="inlinecode">git</span> command directly.</p>
 <h2>Graphical UI</h2>
-If there is one thing I envy about Emacs is that it's a graphical program, whereas the Vi-family of editors are purely terminal-based. I see the benefits of being a graphical program as this enables the use of multiple fonts simultaneously to embed pictures and graphs (that would be neat as a Markdown preview, for example). There's also GVim (Vim with GTK UI), but that's more of an afterthought.<br />
-<br />
-There are now graphical front-end clients for NeoVim, but I still need to dig into them. Let me know your experience if you have one. Luckily, I don't rely on something graphical in my text editor, but it would improve how the editor looks and feels. UTF8 can already do a lot in the terminal, and terminal emulators also allow you to use TrueType fonts. Still, you will always be limited to one TTF font for the whole terminal, and it isn't possible to have, for example, a different font for headings, paragraphs, etc... you get the idea. TTF+UTF8 can't beat authentic graphics. <br />
-<br />
+<p>If there is one thing I envy about Emacs is that it's a graphical program, whereas the Vi-family of editors are purely terminal-based. I see the benefits of being a graphical program as this enables the use of multiple fonts simultaneously to embed pictures and graphs (that would be neat as a Markdown preview, for example). There's also GVim (Vim with GTK UI), but that's more of an afterthought.</p>
+<p>There are now graphical front-end clients for NeoVim, but I still need to dig into them. Let me know your experience if you have one. Luckily, I don't rely on something graphical in my text editor, but it would improve how the editor looks and feels. UTF8 can already do a lot in the terminal, and terminal emulators also allow you to use TrueType fonts. Still, you will always be limited to one TTF font for the whole terminal, and it isn't possible to have, for example, a different font for headings, paragraphs, etc... you get the idea. TTF+UTF8 can't beat authentic graphics. </p>
 <h2>Scripting it</h2>
-It is possible to customize every aspect of Emacs through Emacs Lisp. I have done some Elk Scheme programming in the past (a dialect of Lisp), but that was a long time ago, and I am not willing to dive here again to customize my environment. I would instead take the pragmatic approach and script what I need in VimScript (a terrible language, but it gets the job done!). I watched Damian Conway's VimScript course on O'Reilly Safari Books Online, which I greatly recommend. Yes, VimScript feels clunky, funky and weird and is far less elegant than Lisp, but it gets its job done - in most cases! (That reminds me that the Vim team has announced a new major version of VimScript with improvements and language changes made - I haven't gotten to it yet - but I assume that VimScript will always stay VimScript).<br />
-<br />
+<p>It is possible to customize every aspect of Emacs through Emacs Lisp. I have done some Elk Scheme programming in the past (a dialect of Lisp), but that was a long time ago, and I am not willing to dive here again to customize my environment. I would instead take the pragmatic approach and script what I need in VimScript (a terrible language, but it gets the job done!). I watched Damian Conway's VimScript course on O'Reilly Safari Books Online, which I greatly recommend. Yes, VimScript feels clunky, funky and weird and is far less elegant than Lisp, but it gets its job done - in most cases! (That reminds me that the Vim team has announced a new major version of VimScript with improvements and language changes made - I haven't gotten to it yet - but I assume that VimScript will always stay VimScript).</p>
 <a class="textlink" href="https://en.wikipedia.org/wiki/Emacs_Lisp">Emacs Lisp</a><br />
 <a class="textlink" href="http://sam.zoy.org/elk/">Elk Scheme</a><br />
 <a class="textlink" href="http://vimscript.org/">VimScript</a><br />
 <a class="textlink" href="https://www.oreilly.com/library/view/scripting-vim/9781491996287/">Scripting Vim by Damian Conway</a><br />
-<br />
-NeoVim is also programmable with Lua, which seems to be a step up and Vim comes with a Perl plugin API (which was removed from NeoVim, but that is a different story - why would someone remove the most potent mature text manipulation programming language from one of the most powerful text editors?).<br />
-<br />
+<p>NeoVim is also programmable with Lua, which seems to be a step up and Vim comes with a Perl plugin API (which was removed from NeoVim, but that is a different story - why would someone remove the most potent mature text manipulation programming language from one of the most powerful text editors?).</p>
 <a class="textlink" href="https://neovim.io/doc/user/lua.html">NeoVim Lua API</a><br />
-<br />
-One example is my workflow of how I compose my blog articles (e.g. this one you are currently reading): I am writing everything in NeoVim, but I also want to have every paragraph checked against Grammarly (as English is not my first language). So I write a whole paragraph, then I select the entire paragraph via visual selection with <span class="inlinecode">SHIFT+v</span>, and then I press <span class="inlinecode">,y</span> to yank the paragraph to the systems clipboard, then I paste the paragraph to Grammarly's browser window with <span class="inlinecode">CTRL+v</span>, let Grammarly suggest the improvements, and then I copy the result back with <span class="inlinecode">CTRL+c</span> to the system clipboard and in NeoVim I type <span class="inlinecode">,i</span> to insert the result back overriding the old paragraph (which is still selected in visual mode) with the new content. That all sounds a bit complicated, but it's surprisingly natural and efficient.<br />
-<br />
-To come back to the example, for the clipboard integration, I use this small VimScript snippet, and I didn't have to dig into any Lisp or Perl for this:<br />
+<p>One example is my workflow of how I compose my blog articles (e.g. this one you are currently reading): I am writing everything in NeoVim, but I also want to have every paragraph checked against Grammarly (as English is not my first language). So I write a whole paragraph, then I select the entire paragraph via visual selection with <span class="inlinecode">SHIFT+v</span>, and then I press <span class="inlinecode">,y</span> to yank the paragraph to the systems clipboard, then I paste the paragraph to Grammarly's browser window with <span class="inlinecode">CTRL+v</span>, let Grammarly suggest the improvements, and then I copy the result back with <span class="inlinecode">CTRL+c</span> to the system clipboard and in NeoVim I type <span class="inlinecode">,i</span> to insert the result back overriding the old paragraph (which is still selected in visual mode) with the new content. That all sounds a bit complicated, but it's surprisingly natural and efficient.</p>
+<p>To come back to the example, for the clipboard integration, I use this small VimScript snippet, and I didn't have to dig into any Lisp or Perl for this:</p>
 <pre>
 " Clipboard
 vnoremap ,y !pbcopy&lt;CR&gt;ugv
 vnoremap ,i !pbpaste&lt;CR&gt;
 nmap ,i !wpbpaste&lt;CR&gt;
 </pre>
-<br />
-That's only a very few lines and does precisely what I want. It's quick and dirty but get's the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.<br />
-<br />
+<p>That's only a very few lines and does precisely what I want. It's quick and dirty but get's the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</p>
 <h2>The famous Emacs Org mode</h2>
-Org-mode is an Emacs mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain-text system. There's even a dedicated website for it:<br />
-<br />
+<p>Org-mode is an Emacs mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain-text system. There's even a dedicated website for it:</p>
 <a class="textlink" href="https://orgmode.org/">https://orgmode.org/</a><br />
-<br />
-In short, Org-mode is an "interactive markup language" that helps you organize everything mentioned above. I rarely touched the surface during my two-month experiment with Emacs, and I am impressed by it, so I see the benefits of having that. But it's not for me.<br />
-<br />
-I use "Dead Tree Mode" to organize my work and notes. Dead tree? Yeah, I use an actual pen and a real paper journal (Leuchtturm or a Moleskine and a set of coloured <span class="inlinecode">0.5</span> Muji Pens are excellent choices). That's far more immersive and flexible than a computer program can ever be. Yes, some automation and interaction with the computer (like calendar scheduling etc.) are missing. Still, an actual paper journal forces you to stay simple and focus on the actual work rather than tinkering with your computer program. (But I could not resist, and I wrote a VimScript which parses a table of contents page in Markdown format of my scanned paper journals, and NeoVim allows me to select a topic so that the corresponding PDF scan on the right journal page gets opened in an external PDF viewer (the PDF viewer is <span class="inlinecode">zathura</span>, it uses Vi-keybindings, of course) :-). (See the appendix of this blog post for that script).<br />
-<br />
+<p>In short, Org-mode is an "interactive markup language" that helps you organize everything mentioned above. I rarely touched the surface during my two-month experiment with Emacs, and I am impressed by it, so I see the benefits of having that. But it's not for me.</p>
+<p>I use "Dead Tree Mode" to organize my work and notes. Dead tree? Yeah, I use an actual pen and a real paper journal (Leuchtturm or a Moleskine and a set of coloured <span class="inlinecode">0.5</span> Muji Pens are excellent choices). That's far more immersive and flexible than a computer program can ever be. Yes, some automation and interaction with the computer (like calendar scheduling etc.) are missing. Still, an actual paper journal forces you to stay simple and focus on the actual work rather than tinkering with your computer program. (But I could not resist, and I wrote a VimScript which parses a table of contents page in Markdown format of my scanned paper journals, and NeoVim allows me to select a topic so that the corresponding PDF scan on the right journal page gets opened in an external PDF viewer (the PDF viewer is <span class="inlinecode">zathura</span>, it uses Vi-keybindings, of course) :-). (See the appendix of this blog post for that script).</p>
 <a class="textlink" href="https://pwmt.org/projects/zathura/">Zathura</a><br />
-<br />
-On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, <span class="inlinecode">ranger</span>, which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. <span class="inlinecode">ranger</span> is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. <br />
-<br />
+<p>On the road, I also write some of my notes in Markdown format to NextCloud Notes, which is editable from my phone and via NeoVim on my computers. Markdown is much less powerful than Org-mode, but I prefer it the simple way. There's a neat terminal application, <span class="inlinecode">ranger</span>, which I use to browse my NextCloud Notes when they are synced to a local folder on my machine. <span class="inlinecode">ranger</span> is a file manager inspired by Vim and therefore makes use of Vim keybindings and it feels just natural to me. </p>
 <a class="textlink" href="https://github.com/ranger/ranger">Ranger - A Vim inspired file manager</a><br />
-Did I mention that I also use my <span class="inlinecode">zsh</span> (my default shell) and my <span class="inlinecode">tmux</span> (terminal multiplexer) in Vi-mode?<br />
-<br />
+<p>Did I mention that I also use my <span class="inlinecode">zsh</span> (my default shell) and my <span class="inlinecode">tmux</span> (terminal multiplexer) in Vi-mode?</p>
 <a class="textlink" href="https://zsh.sourceforge.io/">Z shell</a><br />
 <a class="textlink" href="https://github.com/tmux/tmux">tmux terminal multiplexer</a><br />
-<br />
 <h2>Seeking simplicity</h2>
-I am not ready to dive deep into the whole world of Emacs. I prefer small and simple tools as opposed to complex tools. Emacs comes with many features out of the box, whereas in Vim/NeoVim, you would need to install many plugins to replicate some of the behaviour. Yes, I need to invest time managing all the Vim/NeoVim plugins I use, but I feel more in control compared to Doom Emacs, where a framework around vanilla Emacs manages all the plugins. I could use vanilla Emacs and manage all my plugins the vanilla way, but for me, it's not worth the effort to learn and dive into that as all that I want to do I can already do with Vim/NeoVim.<br />
-<br />
-I am not saying that Vim/NeoVim are simple programs, but they are much simpler than Emacs with much smaller footprints; furthermore, they appear to be more straightforward as I am used to them. I only need Vim/NeoVim to be an editor, an IDE (through some plugins), and nothing more.<br />
-<br />
+<p>I am not ready to dive deep into the whole world of Emacs. I prefer small and simple tools as opposed to complex tools. Emacs comes with many features out of the box, whereas in Vim/NeoVim, you would need to install many plugins to replicate some of the behaviour. Yes, I need to invest time managing all the Vim/NeoVim plugins I use, but I feel more in control compared to Doom Emacs, where a framework around vanilla Emacs manages all the plugins. I could use vanilla Emacs and manage all my plugins the vanilla way, but for me, it's not worth the effort to learn and dive into that as all that I want to do I can already do with Vim/NeoVim.</p>
+<p>I am not saying that Vim/NeoVim are simple programs, but they are much simpler than Emacs with much smaller footprints; furthermore, they appear to be more straightforward as I am used to them. I only need Vim/NeoVim to be an editor, an IDE (through some plugins), and nothing more.</p>
 <h2>Conclusion</h2>
-I understand the Emacs users now. Emacs is an incredibly powerful platform for almost everything, not just text editing. With Emacs, you can do nearly everything (Writing, editing, programming, calendar scheduling and note taking, Jira integration, playing games, listening to music, reading/writing emails, browsing the web, using as a calculator, generating HTML pages, configuring interactive menus, jumping around between every feature and every file within one single session, chat on IRC, surf the Gopherspace, ... the options are endless....). If you want to have one piece of software which rules it all and you are happy to invest a large part of your time in your platform: Pick Emacs, and over time Emacs will become "your" Emacs, customized to your own needs and change the way it works, which makes the Emacs users stick even more to it.<br />
-<br />
-Vim/NeoVim also comes with a very high degree of customization options, but to a lesser extreme than Emacs (but still, a much higher degree than most other editors out there). If you want the best text editor in the world, which can also be tweaked to be a decent IDE, you are only looking for: Pick Vim or NeoVim! You would also need to invest a lot of time in learning, tweaking and customizing Vim/NeoVim, but that's a little more straightforward, and the result is much more lightweight once you get used to the "Vi way of doing things" you never would want to change back. I haven't tried the Emacs vanilla keystrokes, but they are terrible (that's probably one of the reasons why Doom Emacs uses Vim keybindings by default).<br />
-<br />
-<span class="quote"><i>Update: One reader recommended to have a look at NvChad. NvChad is a NeoVim config written in Lua aiming to provide a base configuration with very beautiful UI and blazing fast startuptime (around <span class="inlinecode">0.02</span> secs ~ <span class="inlinecode">0.07</span> secs). They tweak UI plugins such as telescope, nvim-tree, bufferline etc well to provide an aesthetic UI experience. That sounds interesting!</i></span><br />
-<br />
+<p>I understand the Emacs users now. Emacs is an incredibly powerful platform for almost everything, not just text editing. With Emacs, you can do nearly everything (Writing, editing, programming, calendar scheduling and note taking, Jira integration, playing games, listening to music, reading/writing emails, browsing the web, using as a calculator, generating HTML pages, configuring interactive menus, jumping around between every feature and every file within one single session, chat on IRC, surf the Gopherspace, ... the options are endless....). If you want to have one piece of software which rules it all and you are happy to invest a large part of your time in your platform: Pick Emacs, and over time Emacs will become "your" Emacs, customized to your own needs and change the way it works, which makes the Emacs users stick even more to it.</p>
+<p>Vim/NeoVim also comes with a very high degree of customization options, but to a lesser extreme than Emacs (but still, a much higher degree than most other editors out there). If you want the best text editor in the world, which can also be tweaked to be a decent IDE, you are only looking for: Pick Vim or NeoVim! You would also need to invest a lot of time in learning, tweaking and customizing Vim/NeoVim, but that's a little more straightforward, and the result is much more lightweight once you get used to the "Vi way of doing things" you never would want to change back. I haven't tried the Emacs vanilla keystrokes, but they are terrible (that's probably one of the reasons why Doom Emacs uses Vim keybindings by default).</p>
+<p class="quote"><i>Update: One reader recommended to have a look at NvChad. NvChad is a NeoVim config written in Lua aiming to provide a base configuration with very beautiful UI and blazing fast startuptime (around <span class="inlinecode">0.02</span> secs ~ <span class="inlinecode">0.07</span> secs). They tweak UI plugins such as telescope, nvim-tree, bufferline etc well to provide an aesthetic UI experience. That sounds interesting!</i></p>
 <a class="textlink" href="https://github.com/NvChad/NvChad">https://github.com/NvChad/NvChad</a><br />
-<br />
-E-Mail your comments to hi@paul.cyou :-)<br />
-<br />
+<p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
-<br />
 <h1>Appendix</h1>
-This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:<br />
-<br />
+<p>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class="inlinecode">zathura</span>:</p>
 <pre>
 function! ReadJournalPageNumber()
     let page = expand("&lt;cword&gt;")
@@ -176,7 +138,6 @@ endfunction
 
 nmap ,j :call OpenJournalPage()&lt;CR&gt;
 </pre>
-<br />
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |

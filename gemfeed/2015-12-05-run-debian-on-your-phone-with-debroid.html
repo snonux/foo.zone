@@ -9,8 +9,7 @@
 </head>
 <body>
 <h1>Run Debian on your phone with Debroid</h1>
-<span class="quote"><i>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</i></span><br />
-<br />
+<p class="quote"><i>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</i></p>
 <pre>
  ____       _               _     _ 
 |  _ \  ___| |__  _ __ ___ (_) __| |
@@ -19,22 +18,15 @@
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
 </pre>
-<br />
-You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).<br />
-<br />
+<p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
 <a href="./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
-<br />
 <h2>Foreword</h2>
-A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. <br />
-<br />
+<p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
 <h2>Step by step guide</h2>
-All scripts mentioned here can be found on GitHub at:<br />
-<br />
+<p>All scripts mentioned here can be found on GitHub at:</p>
 <a class="textlink" href="https://codeberg.org/snonux/debroid">https://codeberg.org/snonux/debroid</a><br />
-<br />
 <h3>First debootstrap stage</h3>
-This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.<br />
-<br />
+<p>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</p>
 <pre>
 sudo dnf install debootstrap
 # 5g
@@ -55,10 +47,8 @@ sudo debootstrap --foreign --variant=minbase \
   http://http.debian.net/debian
 sudo umount jessie
 </pre>
-<br />
 <h3>Copy Debian image to the phone</h3>
-Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:<br />
-<br />
+<p>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</p>
 <pre>
 adb root &amp;&amp; adb wait-for-device &amp;&amp; adb shell
 mkdir -p /storage/sdcard1/Linux/jessie
@@ -97,10 +87,8 @@ busybox mount --bind /storage/sdcard1 \
 # Check mounts
 mount | grep jessie
 </pre>
-<br />
 <h3>Second debootstrap stage</h3>
-This is to be performed on the Android phone itself (inside a Debian chroot):<br />
-<br />
+<p>This is to be performed on the Android phone itself (inside a Debian chroot):</p>
 <pre>
 chroot $(pwd)/jessie /bin/bash -l
 export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
@@ -108,10 +96,8 @@ export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
 exit # Leave chroot
 exit # Leave adb shell
 </pre>
-<br />
 <h3>Setup of various scripts</h3>
-jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.<br />
-<br />
+<p>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</p>
 <pre>
 # Install script jessie.sh
 adb push storage/sdcard1/Linux/jessie.sh /storage/sdcard/Linux/jessie.sh
@@ -144,10 +130,8 @@ apt-get upgrade
 apt-get dist-upgrade
 exit # Exit chroot
 </pre>
-<br />
 <h3>Entering Debroid and enable a service</h3>
-This enters Debroid on your phone and starts the example service uptimed:<br />
-<br />
+<p>This enters Debroid on your phone and starts the example service uptimed:</p>
 <pre>
 sh jessie.sh enter
 
@@ -163,21 +147,16 @@ chmod 0755 /etc/rc.debroid
 exit # Exit chroot
 exit # Exit adb shell
 </pre>
-<br />
 <h3>Include to Android startup:</h3>
-If you want to start Debroid automatically whenever your phone starts, then do the following:<br />
-<br />
+<p>If you want to start Debroid automatically whenever your phone starts, then do the following:</p>
 <pre>
 adb push data/local/userinit.sh /data/local/userinit.sh
 adb shell
 chmod +x /data/local/userinit.sh
 exit
 </pre>
-<br />
-Reboot &amp; test!  Enjoy!<br />
-<br />
-E-Mail your comments to hi@paul.cyou :-)<br />
-<br />
+<p>Reboot &amp; test!  Enjoy!</p>
+<p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |
