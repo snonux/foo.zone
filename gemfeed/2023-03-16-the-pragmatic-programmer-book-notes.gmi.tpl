@@ -78,8 +78,7 @@ By working together, everyone contributes what they can, achieving a greater goo
 
 Other book notes of mine are:
 
-=> ./2023-04-01-never-split-the-difference-book-notes.gmi 2023-04-01 "Never split the difference" book notes
-=> ./2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)
+<< template::inline::index book-notes
 
 E-Mail your comments to hi@paul.cyou :-)
 

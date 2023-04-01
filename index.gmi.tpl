@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
+Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
 => https://paul.cyou My contact information (via HTTP)
 => gemini://paul.cyou My contact information (via Gemini)

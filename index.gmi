@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-04-01T15:54:43+03:00 by `Gemtexter`
+> This site was generated at 2023-04-01T20:04:56+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I also have many other interests. However, you will encounter mostly (if not only) technical content on this site.
+Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
 => https://paul.cyou My contact information (via HTTP)
 => gemini://paul.cyou My contact information (via Gemini)
@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+=> ./gemfeed/2023-04-01-never-split-the-difference-book-notes.gmi 2023-04-01 - 'Never split the difference' book notes
 => ./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2
 => ./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 - 'The Pragmatic Programmer' book notes
 => ./gemfeed/2023-02-26-how-to-shut-down-after-work.gmi 2023-02-26 - How to shut down after work
