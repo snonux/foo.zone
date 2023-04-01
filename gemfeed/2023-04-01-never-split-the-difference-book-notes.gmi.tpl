@@ -4,6 +4,18 @@
 
 These are my personal takeaways after reading "Never split the difference" by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.
 
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
 ## Tactical listening, spreading empathy
 
 Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.
