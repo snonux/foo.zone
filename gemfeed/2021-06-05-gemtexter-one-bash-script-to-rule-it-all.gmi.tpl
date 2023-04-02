@@ -61,7 +61,7 @@ In short, Gemtexter is a static site generator and blogging engine that uses Gem
 
 ## Output formats
 
-Gemtexter takes the Gemntext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):
+Gemtexter takes the Gemtext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):
 
 * HTML files for my website
 * Markdown files for a GitHub page
