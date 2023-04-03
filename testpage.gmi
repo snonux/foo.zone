@@ -24,6 +24,16 @@ Dessen mag lehren lassig der leuten. Wu wangen du husten da schlie ku gebaut. Fi
      bar baz
 ```
 
+jo
+
+```bash
+if [ -f "foo" ]; then
+    echo foo
+else
+    echo bar
+fi
+```
+
 Foo0
 Bar0
 
