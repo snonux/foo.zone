@@ -18,6 +18,41 @@
 <p> * Entry 1 jo <span class="inlinecode">yay</span> jo</p>
 <p> * Entry 2 jo <span class="inlinecode">yay</span> jo</p>
 <p> * Entry 3 jo <span class="inlinecode">yay</span> jo</p>
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<i><font color="#9A1900">#</font></i>
+<i><font color="#9A1900"># The Gemtexter blog engine and static site generator</font></i>
+<i><font color="#9A1900"># by Paul Buetow 2021, 2022, 2023</font></i>
+
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">ARG</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+<b><font color="#0000FF">declare</font></b> <font color="#009900">CONTENT_FILTER</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">VERSION</font><font color="#990000">=</font><font color="#993399">2.0</font><font color="#990000">.</font><font color="#993399">1</font>
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">VERSION_DESCR</font><font color="#990000">=</font>bugfix
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">DATE_FORMAT</font><font color="#990000">=</font><font color="#FF0000">'--iso-8601=seconds'</font>
+<b><font color="#0000FF">declare</font></b> <font color="#009900">DATE</font><font color="#990000">=</font>date
+<b><font color="#0000FF">declare</font></b> <font color="#009900">SED</font><font color="#990000">=</font>sed
+<b><font color="#0000FF">declare</font></b> <font color="#009900">GREP</font><font color="#990000">=</font>grep
+<b><font color="#0000FF">declare</font></b> <font color="#009900">XMLLINT</font><font color="#990000">=</font><font color="#FF0000">''</font>
+which gdate <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">&amp;&amp;</font> <font color="#009900">DATE</font><font color="#990000">=</font>gdate
+which gsed <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">&amp;&amp;</font> <font color="#009900">SED</font><font color="#990000">=</font>gsed
+which ggrep <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">&amp;&amp;</font> <font color="#009900">GREP</font><font color="#990000">=</font>ggrep
+<b><font color="#0000FF">readonly</font></b> DATE
+<b><font color="#0000FF">readonly</font></b> SED
+<b><font color="#0000FF">readonly</font></b> GREP
+
+<i><font color="#9A1900"># Set unset variables to make 'set -u' work, they can optionally be passed as</font></i>
+<i><font color="#9A1900"># enviroments to Gemtexter</font></i>
+<b><font color="#0000FF">test</font></b> -z <font color="#FF0000">"$CONFIG_FILE_PATH"</font> <font color="#990000">&amp;&amp;</font> <font color="#009900">CONFIG_FILE_PATH</font><font color="#990000">=</font><font color="#FF0000">''</font>
+<b><font color="#0000FF">test</font></b> -z <font color="#FF0000">"$GIT_COMMIT_MESSAGE"</font> <font color="#990000">&amp;&amp;</font> <font color="#009900">GIT_COMMIT_MESSAGE</font><font color="#990000">=</font><font color="#FF0000">''</font>
+<b><font color="#0000FF">test</font></b> -z <font color="#FF0000">"$LOG_VERBOSE"</font> <font color="#990000">&amp;&amp;</font> <font color="#009900">LOG_VERBOSE</font><font color="#990000">=</font><font color="#FF0000">''</font>
+<b><font color="#0000FF">test</font></b> -z <font color="#FF0000">"$PRE_GENERATE_HOOK"</font> <font color="#990000">&amp;&amp;</font> <font color="#009900">PRE_GENERATE_HOOK</font><font color="#990000">=</font><font color="#FF0000">''</font>
+<b><font color="#0000FF">test</font></b> -z <font color="#FF0000">"$POST_PUBLISH_HOOK"</font> <font color="#990000">&amp;&amp;</font> <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=</font><font color="#FF0000">''</font>
+
+<b><font color="#0000FF">set</font></b> -euf -o pipefail
+</pre>
 <a class="textlink" href="https://foo.zone">https://foo.zone</a><br />
 <a class="textlink" href="https://foo.zone">link</a><br />
 <a class="textlink" href="https://foo.zone">link jo <span class="inlinecode">yay</span> jo</a><br />
