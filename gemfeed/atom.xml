@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-01T20:01:43+03:00</updated>
+    <updated>2023-04-03T23:19:57+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -21,6 +21,17 @@
                 <h1>"Never split the difference" book notes</h1>
 <p class="quote"><i>Published at 2023-04-01T20:00:17+03:00</i></p>
 <p>These are my personal takeaways after reading "Never split the difference" by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</p>
+<pre>
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+</pre>
 <h2>Tactical listening, spreading empathy</h2>
 <p>Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.</p>
 <ul>
@@ -3994,7 +4005,7 @@ Hello World
 <a class="textlink" href="https://codeberg.org/snonux/gemtexter">https://codeberg.org/snonux/gemtexter</a><br />
 <p>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</p>
 <h2>Output formats</h2>
-<p>Gemtexter takes the Gemntext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):</p>
+<p>Gemtexter takes the Gemtext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):</p>
 <ul>
 <li>HTML files for my website</li>
 <li>Markdown files for a GitHub page</li>
