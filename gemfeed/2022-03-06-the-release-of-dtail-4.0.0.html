@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1>The release of DTail 4.0.0</h1>
-<p class="quote"><i>Published at 2022-03-06T18:11:39+00:00</i></p>
+<h1 style='display: inline'>The release of DTail 4.0.0</h1><br />
+<br />
+<span class=quote>Published at 2022-03-06T18:11:39+00:00</span><br />
+<br />
 <pre>
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
@@ -23,13 +25,21 @@
                         |                            |
                          |                           |
 </pre>
-<p>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</p>
-<a class="textlink" href="https://dtail.dev">https://dtail.dev</a><br />
-<h2>So, what's new in 4.0.0?</h2>
-<h3>Rewritten logging</h3>
-<p>For DTail 4, logging has been completely rewritten. The new package name is "internal/io/dlog". I rewrote the logging because DTail is a special case here: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs only logged by a DTail client, there are logs only logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.</p>
-<p>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suits my needs and the logging code in DTail 3 was just one big source code file with global variables and it wasn't sustainable to maintain anymore. So why not rewrite it for profit and fun? </p>
-<p>There's a are new log level structure now (The log level now can be specified with the "-logLevel" command line flag):</p>
+<br />
+<span>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</span><br />
+<br />
+<a class=textlink href='https://dtail.dev'>https://dtail.dev</a><br />
+<br />
+<h2 style='display: inline'>So, what's new in 4.0.0?</h2><br />
+<br />
+<h3 style='display: inline'>Rewritten logging</h3><br />
+<br />
+<span>For DTail 4, logging has been completely rewritten. The new package name is "internal/io/dlog". I rewrote the logging because DTail is a special case here: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs only logged by a DTail client, there are logs only logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.</span><br />
+<br />
+<span>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suits my needs and the logging code in DTail 3 was just one big source code file with global variables and it wasn't sustainable to maintain anymore. So why not rewrite it for profit and fun? </span><br />
+<br />
+<span>There's a are new log level structure now (The log level now can be specified with the "-logLevel" command line flag):</span><br />
+<br />
 <pre>
 // Available log levels.
 const (
@@ -46,10 +56,15 @@ const (
 	All     level = iota
 )
 </pre>
-<p>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</p>
-<h3>Configurable terminal color codes</h3>
-<p>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</p>
-<p>The example "dtail.json" configuration file represents the default (now, more reasonable default) color codes used, and it is free to the user to customize them:</p>
+<br />
+<span>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</span><br />
+<br />
+<h3 style='display: inline'>Configurable terminal color codes</h3><br />
+<br />
+<span>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</span><br />
+<br />
+<span>The example "dtail.json" configuration file represents the default (now, more reasonable default) color codes used, and it is free to the user to customize them:</span><br />
+<br />
 <pre>
 {
   "Client": {
@@ -144,76 +159,111 @@ const (
   ...
 }
 </pre>
-<p>You notice the different sections - these are different contexts:</p>
+<br />
+<span>You notice the different sections - these are different contexts:</span><br />
+<br />
 <ul>
 <li>Remote: Color configuration for all log lines sent remotely from the server to the client. </li>
 <li>Client: Color configuration for all lines produced by a DTail client by itself (e.g. status information).</li>
 <li>Server: Color configuration for all lines produced by the DTail server by itself and sent to the client (e.g. server warnings or errors)</li>
 <li>MaprTable: Color configuration for the map-reduce table output.</li>
 <li>Common: Common color configuration used in various places (e.g. when it's not clear what's the current context of a line).</li>
-</ul>
-<p>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</p>
+</ul><br />
+<span>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</span><br />
+<br />
 <pre>
 jsonschema -i dtail.json schemas/dtail.schema.json
 </pre>
-<h3>Serverless mode</h3>
-<p>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</p>
+<br />
+<h3 style='display: inline'>Serverless mode</h3><br />
+<br />
+<span>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</span><br />
+<br />
 <pre>
 % dtail --files /var/log/foo.log
 </pre>
-<p>or</p>
+<br />
+<span>or</span><br />
+<br />
 <pre>
 % dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
 </pre>
-<p>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</p>
-<h3>Shorthand flags</h3>
-<p>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</p>
+<br />
+<span>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</span><br />
+<br />
+<h3 style='display: inline'>Shorthand flags</h3><br />
+<br />
+<span>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</span><br />
+<br />
 <pre>
 % dtail /var/log/foo.log
 </pre>
-<p>Of course, this also works with all other DTail client commands (dgrep, dcat, ... etc).</p>
-<h3>Spartan (aka plain) mode</h3>
-<p>There's a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</p>
+<br />
+<span>Of course, this also works with all other DTail client commands (dgrep, dcat, ... etc).</span><br />
+<br />
+<h3 style='display: inline'>Spartan (aka plain) mode</h3><br />
+<br />
+<span>There's a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</span><br />
+<br />
 <pre>
 % dcat --plain /etc/passwd &gt; /etc/test
 % diff /etc/test /etc/passwd  # Same content, no diff
 </pre>
-<p>This might be useful if you wanted to post-process the output. </p>
-<h3>Standard input pipe</h3>
-<p>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</p>
+<br />
+<span>This might be useful if you wanted to post-process the output. </span><br />
+<br />
+<h3 style='display: inline'>Standard input pipe</h3><br />
+<br />
+<span>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</span><br />
+<br />
 <pre>
 % dgrep --plain --regex 'somethingspecial' /var/log/foo.log |
     dmap --query 'from TABLE select .... outfile result.csv'
 </pre>
-<p>Or, use any other "standard" tool:</p>
+<br />
+<span>Or, use any other "standard" tool:</span><br />
+<br />
 <pre>
 % awk '.....' &lt; /some/file | dtail ....
 </pre>
-<h3>New command dtailhealth</h3>
-<p>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</p>
+<br />
+<h3 style='display: inline'>New command dtailhealth</h3><br />
+<br />
+<span>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</span><br />
+<br />
 <pre>
 % cat check_dtail.sh
 #!/bin/sh
 
 exec /usr/local/bin/dtailhealth --server localhost:2222
 </pre>
-<h3>Improved documentation</h3>
-<p>Some features, such as custom log formats and the map-reduce query language, are now documented. Also, the examples have been updated to reflect the new features added. This also includes the new animated example Gifs (plus documentation how they were created).</p>
-<p>I must admit that not all features are documented yet:</p>
+<br />
+<h3 style='display: inline'>Improved documentation</h3><br />
+<br />
+<span>Some features, such as custom log formats and the map-reduce query language, are now documented. Also, the examples have been updated to reflect the new features added. This also includes the new animated example Gifs (plus documentation how they were created).</span><br />
+<br />
+<span>I must admit that not all features are documented yet:</span><br />
+<br />
 <ul>
 <li>Server side scheduled map-reduce queries</li>
 <li>Server side continuous map-reduce queries</li>
 <li>Some more docs about terminal color customization</li>
 <li>Some more docs about log levels</li>
-</ul>
-<p>That will be added in one of the future releases. </p>
-<h3>Integration testing suite</h3>
-<p>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</p>
-<p>How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:</p>
+</ul><br />
+<span>That will be added in one of the future releases. </span><br />
+<br />
+<h3 style='display: inline'>Integration testing suite</h3><br />
+<br />
+<span>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</span><br />
+<br />
+<span>How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:</span><br />
+<br />
 <pre>
 % export DTAIL_INTEGRATION_TEST_RUN_MODE=yes
 </pre>
-<p>Once done, first compile all commands, and then run the integration tests:</p>
+<br />
+<span>Once done, first compile all commands, and then run the integration tests:</span><br />
+<br />
 <pre>
 % make
 .
@@ -222,32 +272,47 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 % go clean -testcache
 % go test -race -v ./integrationtests
 </pre>
-<h3>Improved code</h3>
-<p>Not that the code quality of DTail has been bad (I have been using Go vet and Go lint for previous releases and will keep using these), but this time I had new tools (such as SonarQube and BlackDuck) in my arsenal to:</p>
+<br />
+<h3 style='display: inline'>Improved code</h3><br />
+<br />
+<span>Not that the code quality of DTail has been bad (I have been using Go vet and Go lint for previous releases and will keep using these), but this time I had new tools (such as SonarQube and BlackDuck) in my arsenal to:</span><br />
+<br />
 <ul>
 <li>Reduce the complexity of a couple of functions (splitting code up into several smaller functions)</li>
 <li>Avoid repeating code (this version of DTail doesn't use Go generics yet, though).</li>
-</ul>
-<p>Other than that, a lot of other code has been refactored as I saw fit.</p>
-<h3>Use of memory pools</h3>
-<p>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</p>
-<h2>What's next</h2>
-<p>DTail 5 won't be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</p>
+</ul><br />
+<span>Other than that, a lot of other code has been refactored as I saw fit.</span><br />
+<br />
+<h3 style='display: inline'>Use of memory pools</h3><br />
+<br />
+<span>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</span><br />
+<br />
+<h2 style='display: inline'>What's next</h2><br />
+<br />
+<span>DTail 5 won't be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</span><br />
+<br />
 <ul>
 <li>New (but backwards compatible) features which don't require a new major version bump (some features have been requested at work internally).</li>
 <li>Even more improved documentation.</li>
 <li>Dependency updates.</li>
-</ul>
-<p>I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).</p>
-<p>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</p>
-<p>Other related posts are:</p>
-<a class="textlink" href="./2022-10-30-installing-dtail-on-openbsd.html">2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class="textlink" href="./2022-03-06-the-release-of-dtail-4.0.0.html">2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
-<a class="textlink" href="./2021-04-22-dtail-the-distributed-log-tail-program.html">2021-04-22 DTail - The distributed log tail program</a><br />
-<p>Thanks!</p>
-<p>Paul</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+</ul><br />
+<span>I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).</span><br />
+<br />
+<span>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class=textlink href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class=textlink href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
+<a class=textlink href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
+<br />
+<span>Thanks!</span><br />
+<br />
+<span>Paul</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class=textlink href='../'>Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |

@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1>Sweating the small stuff - Tiny projects of mine</h1>
-<p class="quote"><i>Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18</i></p>
+<h1 style='display: inline'>Sweating the small stuff - Tiny projects of mine</h1><br />
+<br />
+<span class=quote>Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18</span><br />
+<br />
 <pre>
          _
         /_/_      .'''.
@@ -17,44 +19,73 @@
  jgs    \_\              `.    .'''
                            `..'
 </pre>
-<p>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</p>
-<a class="textlink" href="https://jvns.ca/blog/2022/03/08/tiny-programs/">Tiny programs</a><br />
-<a class="textlink" href="https://thesephist.com/projects/">The Sephist's project list</a><br />
-<p>Working on tiny projects is a lot of fun as you don't need to worry about any standards or code reviews and you decide how and when you work on it. There aren't restrictions regarding technologies used. You are likely the only person working on these tiny projects and that means that there is no conflict with any other developers. This is complete freedom :-).</p>
-<p>But before going through the tiny projects let's take a paragraph for the <span class="inlinecode">1y</span> anniversary retrospective.</p>
-<h2><span class="inlinecode">1y</span> anniversary</h2>
-<p>It has been one year since I started posting regularly (at least once monthly) on this blog again. It has been a lot of fun (and work) doing so for various reasons:</p>
+<br />
+<span>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</span><br />
+<br />
+<a class=textlink href='https://jvns.ca/blog/2022/03/08/tiny-programs/'>Tiny programs</a><br />
+<a class=textlink href='https://thesephist.com/projects/'>The Sephist's project list</a><br />
+<br />
+<span>Working on tiny projects is a lot of fun as you don't need to worry about any standards or code reviews and you decide how and when you work on it. There aren't restrictions regarding technologies used. You are likely the only person working on these tiny projects and that means that there is no conflict with any other developers. This is complete freedom :-).</span><br />
+<br />
+<span>But before going through the tiny projects let's take a paragraph for the <span class=inlinecode>1y</span> anniversary retrospective.</span><br />
+<br />
+<h2 style='display: inline'><span class=inlinecode>1y</span> anniversary</h2><br />
+<br />
+<span>It has been one year since I started posting regularly (at least once monthly) on this blog again. It has been a lot of fun (and work) doing so for various reasons:</span><br />
+<br />
 <ul>
-<li>I practice English writing (I am not a native speaker). I am far from being a novelist, but this blog helps improves my writing skills. I also tried out tools like Grammarly.com and Languagetool.org and also worked with <span class="inlinecode">:spell</span> in Vim or the LibreOffice checker. This post was checked with the <span class="inlinecode">write-better</span> Node application. </li>
+<li>I practice English writing (I am not a native speaker). I am far from being a novelist, but this blog helps improves my writing skills. I also tried out tools like Grammarly.com and Languagetool.org and also worked with <span class=inlinecode>:spell</span> in Vim or the LibreOffice checker. This post was checked with the <span class=inlinecode>write-better</span> Node application. </li>
 <li>I force myself to "finish" some kind of project worth writing about every month. If its not a project, then its still a topic which requires research and deep thinking. Producing 2k words of text can actually be challenging.</li>
 <li>It's fun to rely on KISS (keep it simple &amp; stupid) tools. E.g. use of Gemtexter and not WordPress, use of Vim instead of an office suite or a rich web editor.</li>
-</ul>
-<p>Retrospectively, these have been the most popular blog posts of mine over the last year:</p>
-<a class="textlink" href="./2021-09-12-keep-it-simple-and-stupid.html">Keep it simple and stupid</a><br />
-<a class="textlink" href="./2022-04-10-creative-universe.html">Creative universe</a><br />
-<a class="textlink" href="./2021-11-29-bash-golf-part-1.html">Bash Golf series</a><br />
-<a class="textlink" href="./2021-12-26-how-to-stay-sane-as-a-devops-person.html">How to stay sane as a DevOps person</a><br />
-<a class="textlink" href="./2022-05-27-perl-is-still-a-great-choice.html">Perl is still a great choice</a><br />
-<p>But now, let's continue with the small projects worth mentioning :-)</p>
-<h2>Static photo album generator</h2>
-<p><span class="inlinecode">photoalbum.sh</span> is a minimal static HTML photo album generator. I use it to drive "The Irregular Ninja" site and for some ad-hoc (personal) albums to share photos with the family and friends.</p>
-<a class="textlink" href="https://codeberg.org/snonux/photoalbum">https://codeberg.org/snonux/photoalbum</a><br />
-<h3>The Irregular Ninja</h3>
-<p>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</p>
-<a href="./2022-06-15-sweating-the-small-stuff/ninja.jpg"><img src="./2022-06-15-sweating-the-small-stuff/ninja.jpg" /></a><br />
-<p>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class="inlinecode">photoalbum.sh</span> which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class="inlinecode">irregular.ninja</span> has been registered.</p>
-<p>The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.</p>
-<p>As you can see, there is a lot of randomization and irregularity going on. Thus, the name "Irregular Ninja" was born.</p>
-<a class="textlink" href="https://irregular.ninja">https://irregular.ninja</a><br />
-<p>I only use a digital compact camera or a smartphone to take the photos. I don't like the idea of carrying around a big camera with me "just in case" so I keep it small and simple. The best camera is the camera you have with you. :-)</p>
-<p>I hope you like this photo site. It's worth checking it out again around once every other month!</p>
-<h2>Random journal page extractor</h2>
-<p>I bullet journal. I write my notes into a Leuchtturm paper notebook. Once full, I am scanning it to a PDF file and archive it. As of writing this, I am at journal #7 (each from 123 up to 251 pages in A5). It means that there is a lot of material already.</p>
-<p>Once in a while I want to revisit older notes and ideas. For that I have written a simple Bash script <span class="inlinecode">randomjournalpage.sh</span> which randomly picks a PDF file from a folder and extracts 42 pages from it at a random page offset and opens them in a PDF viewer (Evince in this case, as I am a GNOME user). </p>
-<a class="textlink" href="https://codeberg.org/snonux/randomjournalpage">https://codeberg.org/snonux/randomjournalpage</a><br />
-<p>There's also a weekly <span class="inlinecode">CRON</span> job on my servers to send me a reminder that I might want to read in my old journals again. My laptop also runs this script each time it boots and saves the output to a NextCloud folder. From there, it's synchronized to the NextCloud server so I can pick it up from there with my smartphone later when I am "on the road".</p>
-<h2>Global uptime records statistic generator</h2>
-<p><span class="inlinecode">guprecords</span> is a Perl script which reads multiple <span class="inlinecode">uprecord</span> files (produced by <span class="inlinecode">uptimed</span> - a widely available daemon for recording server uptimes) and generates uptime statistics of multiple hosts combined. I keep all the record files of all my personal computers in a Git repository (I even keep the records of the boxes I don't own or use anymore) and there's already quite a collection of it. It looks like this:</p>
+</ul><br />
+<span>Retrospectively, these have been the most popular blog posts of mine over the last year:</span><br />
+<br />
+<a class=textlink href='./2021-09-12-keep-it-simple-and-stupid.html'>Keep it simple and stupid</a><br />
+<a class=textlink href='./2022-04-10-creative-universe.html'>Creative universe</a><br />
+<a class=textlink href='./2021-11-29-bash-golf-part-1.html'>Bash Golf series</a><br />
+<a class=textlink href='./2021-12-26-how-to-stay-sane-as-a-devops-person.html'>How to stay sane as a DevOps person</a><br />
+<a class=textlink href='./2022-05-27-perl-is-still-a-great-choice.html'>Perl is still a great choice</a><br />
+<br />
+<span>But now, let's continue with the small projects worth mentioning :-)</span><br />
+<br />
+<h2 style='display: inline'>Static photo album generator</h2><br />
+<br />
+<span><span class=inlinecode>photoalbum.sh</span> is a minimal static HTML photo album generator. I use it to drive "The Irregular Ninja" site and for some ad-hoc (personal) albums to share photos with the family and friends.</span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/photoalbum'>https://codeberg.org/snonux/photoalbum</a><br />
+<br />
+<h3 style='display: inline'>The Irregular Ninja</h3><br />
+<br />
+<span>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</span><br />
+<br />
+<a href='./2022-06-15-sweating-the-small-stuff/ninja.jpg'><img src='./2022-06-15-sweating-the-small-stuff/ninja.jpg' /></a><br />
+<br />
+<span>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class=inlinecode>photoalbum.sh</span> which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class=inlinecode>irregular.ninja</span> has been registered.</span><br />
+<br />
+<span>The thumbnails are presented in a random order and there are also random CSS effects for each preview. There's also a simple background blur for each page generated. And that's all in less than 300 lines of Bash code! The script requires ImageMagick (available for all common Linux and *BSD distributions) to be installed.</span><br />
+<br />
+<span>As you can see, there is a lot of randomization and irregularity going on. Thus, the name "Irregular Ninja" was born.</span><br />
+<br />
+<a class=textlink href='https://irregular.ninja'>https://irregular.ninja</a><br />
+<br />
+<span>I only use a digital compact camera or a smartphone to take the photos. I don't like the idea of carrying around a big camera with me "just in case" so I keep it small and simple. The best camera is the camera you have with you. :-)</span><br />
+<br />
+<span>I hope you like this photo site. It's worth checking it out again around once every other month!</span><br />
+<br />
+<h2 style='display: inline'>Random journal page extractor</h2><br />
+<br />
+<span>I bullet journal. I write my notes into a Leuchtturm paper notebook. Once full, I am scanning it to a PDF file and archive it. As of writing this, I am at journal #7 (each from 123 up to 251 pages in A5). It means that there is a lot of material already.</span><br />
+<br />
+<span>Once in a while I want to revisit older notes and ideas. For that I have written a simple Bash script <span class=inlinecode>randomjournalpage.sh</span> which randomly picks a PDF file from a folder and extracts 42 pages from it at a random page offset and opens them in a PDF viewer (Evince in this case, as I am a GNOME user). </span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/randomjournalpage'>https://codeberg.org/snonux/randomjournalpage</a><br />
+<br />
+<span>There's also a weekly <span class=inlinecode>CRON</span> job on my servers to send me a reminder that I might want to read in my old journals again. My laptop also runs this script each time it boots and saves the output to a NextCloud folder. From there, it's synchronized to the NextCloud server so I can pick it up from there with my smartphone later when I am "on the road".</span><br />
+<br />
+<h2 style='display: inline'>Global uptime records statistic generator</h2><br />
+<br />
+<span><span class=inlinecode>guprecords</span> is a Perl script which reads multiple <span class=inlinecode>uprecord</span> files (produced by <span class=inlinecode>uptimed</span> - a widely available daemon for recording server uptimes) and generates uptime statistics of multiple hosts combined. I keep all the record files of all my personal computers in a Git repository (I even keep the records of the boxes I don't own or use anymore) and there's already quite a collection of it. It looks like this:</span><br />
+<br />
 <pre>
 ❯ perl ~/git/guprecords/src/guprecords --indir=./stats/ --count=20 --all
 Pos |            System |               Kernel |        Uptime |                Boot time
@@ -79,7 +110,9 @@ Pos |            System |               Kernel |        Uptime |                
  19 |         tauceti-f |  Linux 3.2.0-3-amd64 | 132d 22:46:26 | Mon May  6 11:11:35 2013
  20 |       keppler-16b |        Darwin 13.4.0 | 131d 08:17:12 | Thu Jun 11 10:44:25 2015
 </pre>
-<p>It can also sum up all uptimes for each host to generate a total per host uptime top list:</p>
+<br />
+<span>It can also sum up all uptimes for each host to generate a total per host uptime top list:</span><br />
+<br />
 <pre>
 ❯ perl ~/git/guprecords/src/guprecords --indir=./stats/ --count=20 --total
 Pos |            System |               Kernel |        Uptime |
@@ -104,16 +137,26 @@ Pos |            System |               Kernel |        Uptime |
  19 |       sagittarius |        Darwin 15.6.0 | 198d 23:53:59 |
  20 |              mars |  Linux 3.2.0-4-amd64 | 190d 05:44:21 |
 </pre>
-<a class="textlink" href="https://codeberg.org/snonux/guprecords">https://codeberg.org/snonux/guprecords</a><br />
-<p>This all is of no real practical use but fun!</p>
-<h2>Server configuration management</h2>
-<p>The <span class="inlinecode">rexfiles</span> project contains all Rex files for my (personal) server setup automation. A <span class="inlinecode">Rexfile</span> is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly. </p>
-<a class="textlink" href="https://codeberg.org/snonux/rexfiles">https://codeberg.org/snonux/rexfiles</a><br />
-<a class="textlink" href="https://www.rexify.org">https://www.rexify.org</a><br />
-<p>This is an E-Mail I posted to the Rex mailing list:</p>
-<p class="quote"><i>Hi there! I was searching for a simple way to automate my personal OpenBSD setup. I found that configuration management systems like Puppet, Salt, Chef, etc.. were too bloated for my personal needs. So for a while I was configuring everything by hand. At one point I got fed up and started writing Shell scripts. But that was not the holy grail so that I looked at Ansible. I found that Ansible had some dependencies on Python on the target machine when you want to use all the features. Furthermore, I am not really familiar with Python. But then I remembered that there was also Rex. It's written in my beloved Perl. Also, OpenBSD comes with Perl in the base system out of the box which makes it integrate better than all my scripts (automation and also scripts deployed via the automation to the system) are all in the same language. Rex may not have all the features like other configuration management systems, but its easy to work-around or extend when you know Perl. Thanks!</i></p>
-<h2>Fancy SSH execution loop</h2>
-<p><span class="inlinecode">rubyfy</span> is a fancy SSH loop wrapper written in Ruby for running shell commands on multiple remote servers at once. I also forked this project for work (under a different name) where I added even more features such as automatic server discovery. It's used by many colleagues on a frequent basis. Here are some examples:</p>
+<br />
+<a class=textlink href='https://codeberg.org/snonux/guprecords'>https://codeberg.org/snonux/guprecords</a><br />
+<br />
+<span>This all is of no real practical use but fun!</span><br />
+<br />
+<h2 style='display: inline'>Server configuration management</h2><br />
+<br />
+<span>The <span class=inlinecode>rexfiles</span> project contains all Rex files for my (personal) server setup automation. A <span class=inlinecode>Rexfile</span> is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly. </span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/rexfiles'>https://codeberg.org/snonux/rexfiles</a><br />
+<a class=textlink href='https://www.rexify.org'>https://www.rexify.org</a><br />
+<br />
+<span>This is an E-Mail I posted to the Rex mailing list:</span><br />
+<br />
+<span class=quote>Hi there! I was searching for a simple way to automate my personal OpenBSD setup. I found that configuration management systems like Puppet, Salt, Chef, etc.. were too bloated for my personal needs. So for a while I was configuring everything by hand. At one point I got fed up and started writing Shell scripts. But that was not the holy grail so that I looked at Ansible. I found that Ansible had some dependencies on Python on the target machine when you want to use all the features. Furthermore, I am not really familiar with Python. But then I remembered that there was also Rex. It's written in my beloved Perl. Also, OpenBSD comes with Perl in the base system out of the box which makes it integrate better than all my scripts (automation and also scripts deployed via the automation to the system) are all in the same language. Rex may not have all the features like other configuration management systems, but its easy to work-around or extend when you know Perl. Thanks!</span><br />
+<br />
+<h2 style='display: inline'>Fancy SSH execution loop</h2><br />
+<br />
+<span><span class=inlinecode>rubyfy</span> is a fancy SSH loop wrapper written in Ruby for running shell commands on multiple remote servers at once. I also forked this project for work (under a different name) where I added even more features such as automatic server discovery. It's used by many colleagues on a frequent basis. Here are some examples:</span><br />
+<br />
 <pre>
 # Run command 'hostname' on server foo.example.com
 ./rubyfy.rb -c 'hostname' &lt;&lt;&lt; foo.example.com
@@ -132,22 +175,33 @@ echo {foo,bar}.example.com | ./rubyfy.rb -p 10 -c 'pgrep -lf httpd' -n grep.txt
 echo foo.example.com |
 ./rubyfy.rb --root --command reboot --precondition /var/run/maintenance.lock
 </pre>
-<a class="textlink" href="https://codeberg.org/snonux/rubyfy">https://codeberg.org/snonux/rubyfy</a><br />
-<h2>A KISS dynamic DNS solution</h2>
-<p><span class="inlinecode">dyndns</span> is a tiny shell script which implements "your" own DynDNS service. It relies on SSH access to the authoritative DNS server and the <span class="inlinecode">nsupdate</span> command. There is really no need to use any of the "other" free DynDNS services out there.</p>
-<p>Syntax (this must run from the client connecting to the DNS server through SSH): </p>
+<br />
+<a class=textlink href='https://codeberg.org/snonux/rubyfy'>https://codeberg.org/snonux/rubyfy</a><br />
+<br />
+<h2 style='display: inline'>A KISS dynamic DNS solution</h2><br />
+<br />
+<span><span class=inlinecode>dyndns</span> is a tiny shell script which implements "your" own DynDNS service. It relies on SSH access to the authoritative DNS server and the <span class=inlinecode>nsupdate</span> command. There is really no need to use any of the "other" free DynDNS services out there.</span><br />
+<br />
+<span>Syntax (this must run from the client connecting to the DNS server through SSH): </span><br />
+<br />
 <pre>
 ssh dyndns@dyndnsserver /path/to/dyndns-update \
     your.host.name. TYPE new-entry TIMEOUT
 </pre>
-<p>This is a real world example: </p>
+<br />
+<span>This is a real world example: </span><br />
+<br />
 <pre>
 ssh dyndns@dyndnsserver /path/to/dyndns-update \
   local.buetow.org. A 137.226.50.91 30
 </pre>
-<a class="textlink" href="https://codeberg.org/snonux/dyndns">https://codeberg.org/snonux/dyndns</a><br />
-<h2>CPU information gatherer for Linux</h2>
-<p>This is a tiny GNU Awk script for Linux which displays information about the CPU. All what it does is presenting <span class="inlinecode">/proc/cpuinfo</span> in an easier to read way. The output is somewhat more compact than the standard <span class="inlinecode">lscpu</span> command you find commonly on Linux distributions.</p>
+<br />
+<a class=textlink href='https://codeberg.org/snonux/dyndns'>https://codeberg.org/snonux/dyndns</a><br />
+<br />
+<h2 style='display: inline'>CPU information gatherer for Linux</h2><br />
+<br />
+<span>This is a tiny GNU Awk script for Linux which displays information about the CPU. All what it does is presenting <span class=inlinecode>/proc/cpuinfo</span> in an easier to read way. The output is somewhat more compact than the standard <span class=inlinecode>lscpu</span> command you find commonly on Linux distributions.</span><br />
+<br />
 <pre>
 ❯ ./cpuinfo
 cpuinfo (c) 1.0.2 Paul Buetow
@@ -165,40 +219,72 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 0005990 Bogomips each processor (including virtual)
 0023961 Bogomips total
 </pre>
-<a class="textlink" href="https://codeberg.org/snonux/cpuinfo">https://codeberg.org/snonux/cpuinfo</a><br />
-<h2>Show differences of two files over the network</h2>
-<p>This is a shell wrapper to use the standard diff tool over the network to compare a file between two computers. It uses NetCat for the network part and also encrypts all traffic using OpenSSL. This is how its used:</p>
-<p>1. Open two terminal windows and login to two different hosts (you could use ClusterSSH or <span class="inlinecode">tmux</span> here). 2. Run on the first host <span class="inlinecode">netdiff otherhost.example.org /file/to/diff.txt</span> and run on the second host <span class="inlinecode">netdiff firsthost.example.org /file/to/diff.txt</span>. 3. You then will see the file differences.</p>
-<a class="textlink" href="https://codeberg.org/snonux/netdiff">https://codeberg.org/snonux/netdiff</a><br />
-<h2>Delay sending out E-Mails with Mutt</h2>
-<p>This is a shell script for the Mutt email client for delaying sending out E-Mails. For example, you want to write an email on Saturday but don't want to bother the recipient earlier than Monday. It relies on CRON.</p>
-<a class="textlink" href="https://codeberg.org/snonux/muttdelay">https://codeberg.org/snonux/muttdelay</a><br />
-<h2>Graphical UI for sending text messages</h2>
-<p><span class="inlinecode">jsmstrade</span> is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.</p>
-<a href="./2022-06-15-sweating-the-small-stuff/jsmstrade.png"><img src="./2022-06-15-sweating-the-small-stuff/jsmstrade.png" /></a><br />
-<a class="textlink" href="https://codeberg.org/snonux/jsmstrade">https://codeberg.org/snonux/jsmstrade</a><br />
-<a class="textlink" href="https://smstrade.de">https://smstrade.de</a><br />
-<h2>IPv6 and IPv4 connectivity testing site</h2>
-<p><span class="inlinecode">ipv6test</span> is a quick and dirty Perl CGI script for testing whether your browser connects via IPv4 or IPv6. It requires you to setup three sub-domains: One reachable only via IPv4 (e.g. <span class="inlinecode">test4.ipv6.buetow.org</span>), another reachable only via IPv6 (e.g. <span class="inlinecode">test6.ipv6.buetow.org</span>) and the main one reachable through both protocols (e.g. <span class="inlinecode">ipv6.buetow.org</span>).</p>
-<p>I don't have it running on any of my servers at the moment. This means that there is no demo to show now. Sorry!</p>
-<h2>List open Jira tickets in the terminal</h2>
-<p><span class="inlinecode">japi</span> s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)</p>
-<a class="textlink" href="https://codeberg.org/snonux/jsmstrade">https://codeberg.org/snonux/jsmstrade</a><br />
-<p> </p>
-<h2>Debian running on "your" Android phone</h2>
-<p>Debroid is a tutorial and a set of scripts to install and to run a Debian <span class="inlinecode">chroot</span> on an Android phone.</p>
-<a class="textlink" href="./2015-12-05-run-debian-on-your-phone-with-debroid.html">Check out my previous post about it</a><br />
-<p>I am not using Debroid anymore as I have switched to Termux now.</p>
-<a class="textlink" href="https://termux.com">https://termux.com</a><br />
-<h2>Perl service framework</h2>
-<p>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</p>
-<a class="textlink" href="./2011-05-07-perl-daemon-service-framework.html">Checkout my previous post about it</a><br />
-<h2>More</h2>
-<p>There are more projects on my Codeberg page but they aren't as tiny as the ones mentioned in this post or aren't finished yet so I won't bother listing them here. However, there also a few more scripts used frequently by me (not publicly accessible (yet?)) which I would like to mention here:</p>
-<h3>Work time tracker</h3>
-<p><span class="inlinecode">worktime.rb</span>, for example, is a command line Ruby script I use to track my time spent working. This is to make sure that I don't overwork (in particular useful when working from home). It also generates some daily and weekly stats and carries over work time (surpluses or minuses) to the next work day, week or even year.</p>
-<p>It has some special features such as tracking time for self-improvement/development, days off and time spent at the lunch break and time spent on Pet Projects.</p>
-<p>An example weekly report looks like this (I often don't track my lunch time but what I do instead I stop the work timer when I go out for lunch and start the work timer once back at the desk):</p>
+<br />
+<a class=textlink href='https://codeberg.org/snonux/cpuinfo'>https://codeberg.org/snonux/cpuinfo</a><br />
+<br />
+<h2 style='display: inline'>Show differences of two files over the network</h2><br />
+<br />
+<span>This is a shell wrapper to use the standard diff tool over the network to compare a file between two computers. It uses NetCat for the network part and also encrypts all traffic using OpenSSL. This is how its used:</span><br />
+<br />
+<span>1. Open two terminal windows and login to two different hosts (you could use ClusterSSH or <span class=inlinecode>tmux</span> here). 2. Run on the first host <span class=inlinecode>netdiff otherhost.example.org /file/to/diff.txt</span> and run on the second host <span class=inlinecode>netdiff firsthost.example.org /file/to/diff.txt</span>. 3. You then will see the file differences.</span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/netdiff'>https://codeberg.org/snonux/netdiff</a><br />
+<br />
+<h2 style='display: inline'>Delay sending out E-Mails with Mutt</h2><br />
+<br />
+<span>This is a shell script for the Mutt email client for delaying sending out E-Mails. For example, you want to write an email on Saturday but don't want to bother the recipient earlier than Monday. It relies on CRON.</span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/muttdelay'>https://codeberg.org/snonux/muttdelay</a><br />
+<br />
+<h2 style='display: inline'>Graphical UI for sending text messages</h2><br />
+<br />
+<span><span class=inlinecode>jsmstrade</span> is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.</span><br />
+<br />
+<a href='./2022-06-15-sweating-the-small-stuff/jsmstrade.png'><img src='./2022-06-15-sweating-the-small-stuff/jsmstrade.png' /></a><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
+<a class=textlink href='https://smstrade.de'>https://smstrade.de</a><br />
+<br />
+<h2 style='display: inline'>IPv6 and IPv4 connectivity testing site</h2><br />
+<br />
+<span><span class=inlinecode>ipv6test</span> is a quick and dirty Perl CGI script for testing whether your browser connects via IPv4 or IPv6. It requires you to setup three sub-domains: One reachable only via IPv4 (e.g. <span class=inlinecode>test4.ipv6.buetow.org</span>), another reachable only via IPv6 (e.g. <span class=inlinecode>test6.ipv6.buetow.org</span>) and the main one reachable through both protocols (e.g. <span class=inlinecode>ipv6.buetow.org</span>).</span><br />
+<br />
+<span>I don't have it running on any of my servers at the moment. This means that there is no demo to show now. Sorry!</span><br />
+<br />
+<h2 style='display: inline'>List open Jira tickets in the terminal</h2><br />
+<br />
+<span><span class=inlinecode>japi</span> s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)</span><br />
+<br />
+<a class=textlink href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
+<span> </span><br />
+<h2 style='display: inline'>Debian running on "your" Android phone</h2><br />
+<br />
+<span>Debroid is a tutorial and a set of scripts to install and to run a Debian <span class=inlinecode>chroot</span> on an Android phone.</span><br />
+<br />
+<a class=textlink href='./2015-12-05-run-debian-on-your-phone-with-debroid.html'>Check out my previous post about it</a><br />
+<br />
+<span>I am not using Debroid anymore as I have switched to Termux now.</span><br />
+<br />
+<a class=textlink href='https://termux.com'>https://termux.com</a><br />
+<br />
+<h2 style='display: inline'>Perl service framework</h2><br />
+<br />
+<span>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</span><br />
+<br />
+<a class=textlink href='./2011-05-07-perl-daemon-service-framework.html'>Checkout my previous post about it</a><br />
+<br />
+<h2 style='display: inline'>More</h2><br />
+<br />
+<span>There are more projects on my Codeberg page but they aren't as tiny as the ones mentioned in this post or aren't finished yet so I won't bother listing them here. However, there also a few more scripts used frequently by me (not publicly accessible (yet?)) which I would like to mention here:</span><br />
+<br />
+<h3 style='display: inline'>Work time tracker</h3><br />
+<br />
+<span><span class=inlinecode>worktime.rb</span>, for example, is a command line Ruby script I use to track my time spent working. This is to make sure that I don't overwork (in particular useful when working from home). It also generates some daily and weekly stats and carries over work time (surpluses or minuses) to the next work day, week or even year.</span><br />
+<br />
+<span>It has some special features such as tracking time for self-improvement/development, days off and time spent at the lunch break and time spent on Pet Projects.</span><br />
+<br />
+<span>An example weekly report looks like this (I often don't track my lunch time but what I do instead I stop the work timer when I go out for lunch and start the work timer once back at the desk):</span><br />
+<br />
 <pre>
      Mon 20211213 50: work:5.92h
      Tue 20211214 50: work:7.47h lunch:0.50h pet:0.42h
@@ -210,15 +296,25 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 ================================================
  balance:0.06h work:42.15h lunch:0.50h pet:2.42h selfdevelopment:-1.08h buffer:8.38h
 </pre>
-<p>All I do when I start work is to run the <span class="inlinecode">wtlogin</span> command and after finishing work to run the <span class="inlinecode">wtlogout</span> command. My shell will remind me when I work without having logged in. It uses a simple JSON database which is editable with <span class="inlinecode">wtedit</span> (this opens the JSON in Vim). The report shown above can be generated with <span class="inlinecode">wtreport</span>. Any out-of-bounds reporting can be added with the <span class="inlinecode">wtadd</span> command.</p>
-<h3>Password and document store</h3>
-<p><span class="inlinecode">geheim.rb</span> is my personal password and document store ("geheim" is the German word for secret). It's written in Ruby and heavily relies on Git, FZF (for search), Vim and standard encryption algorithms. Other than the standard <span class="inlinecode">pass</span> Unix password manager, <span class="inlinecode">geheim</span> also encrypts the file names and password titles.</p>
-<p>The tool is command line driven but also provides an interactive shell when invoked with <span class="inlinecode">geheim shell</span>. It also works on my Android phone via Termux so I have all my documents and passwords always with me. </p>
-<h3>Backup procedure</h3>
-<p><span class="inlinecode">backup</span> is a Bash script which does run once daily (or every time on boot) on my home FreeBSD NAS server and performs backup related tasks such as creating a local backup of my remote NextCloud instance, creating encrypted (incremental) ZFS snapshots of everything what's stored on the NAS and synchronizes (via <span class="inlinecode">rsync</span>) backups to a remote cloud storage. It also can synchronize backups to a local external USB drive.</p>
-<a class="textlink" href="./2016-04-03-offsite-backup-with-zfs.html">Check out my offsite backup series</a><br />
-<h2>konpeito.media</h2>
-<p>Here's a bonus...</p>
+<br />
+<span>All I do when I start work is to run the <span class=inlinecode>wtlogin</span> command and after finishing work to run the <span class=inlinecode>wtlogout</span> command. My shell will remind me when I work without having logged in. It uses a simple JSON database which is editable with <span class=inlinecode>wtedit</span> (this opens the JSON in Vim). The report shown above can be generated with <span class=inlinecode>wtreport</span>. Any out-of-bounds reporting can be added with the <span class=inlinecode>wtadd</span> command.</span><br />
+<br />
+<h3 style='display: inline'>Password and document store</h3><br />
+<br />
+<span><span class=inlinecode>geheim.rb</span> is my personal password and document store ("geheim" is the German word for secret). It's written in Ruby and heavily relies on Git, FZF (for search), Vim and standard encryption algorithms. Other than the standard <span class=inlinecode>pass</span> Unix password manager, <span class=inlinecode>geheim</span> also encrypts the file names and password titles.</span><br />
+<br />
+<span>The tool is command line driven but also provides an interactive shell when invoked with <span class=inlinecode>geheim shell</span>. It also works on my Android phone via Termux so I have all my documents and passwords always with me. </span><br />
+<br />
+<h3 style='display: inline'>Backup procedure</h3><br />
+<br />
+<span><span class=inlinecode>backup</span> is a Bash script which does run once daily (or every time on boot) on my home FreeBSD NAS server and performs backup related tasks such as creating a local backup of my remote NextCloud instance, creating encrypted (incremental) ZFS snapshots of everything what's stored on the NAS and synchronizes (via <span class=inlinecode>rsync</span>) backups to a remote cloud storage. It also can synchronize backups to a local external USB drive.</span><br />
+<br />
+<a class=textlink href='./2016-04-03-offsite-backup-with-zfs.html'>Check out my offsite backup series</a><br />
+<br />
+<h2 style='display: inline'>konpeito.media</h2><br />
+<br />
+<span>Here's a bonus...</span><br />
+<br />
 <pre>
                                                            ▄ █ ▄  ▄ █ ▄  ▄ █ ▄
                                                            ▄▀█▀▄  ▄▀█▀▄  ▄▀█▀▄
@@ -229,12 +325,18 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
  █ ▄▀▀▀▀▀▀▀▀▀▀▀▄ █  █▀  ▀▄ ▀▄    ▄▀ █   ▀▄█ █       ▀▄    ▄  █    █   ▀▄    ▄▀
  ▀▄█▄█▄▄▄▄▄▄▄█▄█▄▀  ▀     ▀  ▀▀▀▀   ▀     ▀ ▀         ▀▀▀▀   ▀    ▀     ▀▀▀
 </pre>
-<p>*THIS ISN'T MY PROJECT* but I found KONPEITO an interesting Gemini capsule. It's a quarterly released Low-Fi music mix tape distributed only through Gemini (and not the web). </p>
-<a class="textlink" href="gemini://konpeito.media">gemini://konpeito.media</a><br />
-<p>If you wonder what Gemini is:</p>
-<a class="textlink" href="./2021-04-24-welcome-to-the-geminispace.html">Welcome to the Geminispae</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+<br />
+<span>*THIS ISN'T MY PROJECT* but I found KONPEITO an interesting Gemini capsule. It's a quarterly released Low-Fi music mix tape distributed only through Gemini (and not the web). </span><br />
+<br />
+<a class=textlink href='gemini://konpeito.media'>gemini://konpeito.media</a><br />
+<br />
+<span>If you wonder what Gemini is:</span><br />
+<br />
+<a class=textlink href='./2021-04-24-welcome-to-the-geminispace.html'>Welcome to the Geminispae</a><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class=textlink href='../'>Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
