@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-04-09T15:24:16+03:00 by `Gemtexter`
+> This site was generated at 2023-04-09T21:48:36+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+=> ./gemfeed/2023-04-09-algorithms-in-golang-part-1.gmi 2023-04-09 - Algorithms in Go - Part 1
 => ./gemfeed/2023-04-01-never-split-the-difference-book-notes.gmi 2023-04-01 - 'Never split the difference' book notes
 => ./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2
 => ./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 - 'The Pragmatic Programmer' book notes
