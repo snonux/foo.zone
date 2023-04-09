@@ -12,7 +12,7 @@ Haskell is also a "pure functional" programming language, whereas SML also makes
 
 Standard ML:
 
-```
+```sml
 datatype ’a multi
 	= EMPTY
 	| ELEM of ’a
@@ -21,7 +21,7 @@ datatype ’a multi
 
 Haskell:
 
-```
+```haskell
 data (Eq a) => Multi a
     = Empty
     | Elem a
@@ -33,7 +33,7 @@ data (Eq a) => Multi a
 
 Standard ML:
 
-```
+```sml
 fun number (EMPTY) _ = 0
 	| number (ELEM x) w = if x = w then 1 else 0
 	| number (UNION (x,y)) w = (number x w) + (number y w)
@@ -44,7 +44,7 @@ fun test_number w = number (UNION (EMPTY, \
 
 Haskell:
 
-```
+```haskell
 number Empty _ = 0
 number (Elem x) w = if x == w then 1 else 0
 test_number w = number (Union Empty \
@@ -56,7 +56,7 @@ test_number w = number (Union Empty \
 
 Standard ML:
 
-```
+```sml
 fun simplify (UNION (x,y)) =
     let fun is_empty (EMPTY) = true | is_empty _ = false
         val x’ = simplify x
@@ -74,7 +74,7 @@ fun simplify (UNION (x,y)) =
 
 Haskell:
 
-```
+```haskell
 simplify (Union x y)
     | (isEmpty x’) && (isEmpty y’) = Empty
     | isEmpty x’ = y’
@@ -92,7 +92,7 @@ simplify x = x
 
 Standard ML:
 
-```
+```sml
 fun delete_all m w =
     let fun delete_all’ (ELEM x) = if x = w then EMPTY else ELEM x
           | delete_all’ (UNION (x,y)) = UNION (delete_all’ x, delete_all’ y)
@@ -103,7 +103,7 @@ fun delete_all m w =
 
 Haskell:
 
-```
+```haskell
 delete_all m w = simplify (delete_all’ m)
     where
         delete_all’ (Elem x) = if x == w then Empty else Elem x
@@ -115,7 +115,7 @@ delete_all m w = simplify (delete_all’ m)
 
 Standard ML:
 
-```
+```sml
 fun delete_one m w =
     let fun delete_one’ (UNION (x,y)) =
             let val (x’, deleted) = delete_one’ x
@@ -135,7 +135,7 @@ fun delete_one m w =
 
 Haskell:
 
-```
+```haskell
 delete_one m w = do
     let (m’, _) = delete_one’ m
     simplify m’
