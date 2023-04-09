@@ -39,24 +39,27 @@
 <br />
 <span>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</span><br />
 <br />
-<pre>
-sudo dnf install debootstrap
-# 5g
-dd if=/dev/zero of=jessie.img bs=$[ 1024 * 1024 ] \
-  count=$[ 1024 * 5 ]
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo dnf install debootstrap
+<i><font color="#9A1900"># 5g</font></i>
+dd <b><font color="#0000FF">if</font></b><font color="#990000">=</font>/dev/zero <font color="#009900">of</font><font color="#990000">=</font>jessie<font color="#990000">.</font>img <font color="#009900">bs</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">1024</font> <font color="#990000">]</font> <font color="#990000">\</font>
+  <font color="#009900">count</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">5</font> <font color="#990000">]</font>
 
-# Show used loop devices
+<i><font color="#9A1900"># Show used loop devices</font></i>
 sudo losetup -f
-# Store the next free one to $loop
-loop=loopN
-sudo losetup /dev/$loop jessie.img
+<i><font color="#9A1900"># Store the next free one to $loop</font></i>
+<font color="#009900">loop</font><font color="#990000">=</font>loopN
+sudo losetup /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie<font color="#990000">.</font>img
 
 mkdir jessie
-sudo mkfs.ext4 /dev/$loop
-sudo mount /dev/$loop jessie
-sudo debootstrap --foreign --variant=minbase \
-  --arch armel jessie jessie/ \
-  http://http.debian.net/debian
+sudo mkfs<font color="#990000">.</font>ext4 /dev<font color="#990000">/</font><font color="#009900">$loop</font>
+sudo mount /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie
+sudo debootstrap --foreign --variant<font color="#990000">=</font>minbase <font color="#990000">\</font>
+  --arch armel jessie jessie<font color="#990000">/</font> <font color="#990000">\</font>
+  http<font color="#990000">:</font>//http<font color="#990000">.</font>debian<font color="#990000">.</font>net/debian
 sudo umount jessie
 </pre>
 <br />
@@ -64,123 +67,138 @@ sudo umount jessie
 <br />
 <span>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</span><br />
 <br />
-<pre>
-adb root &amp;&amp; adb wait-for-device &amp;&amp; adb shell
-mkdir -p /storage/sdcard1/Linux/jessie
-exit
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>adb root <font color="#990000">&amp;&amp;</font> adb wait-for-device <font color="#990000">&amp;&amp;</font> adb shell
+mkdir -p /storage/sdcard<font color="#993399">1</font>/Linux/jessie
+<b><font color="#0000FF">exit</font></b>
 
-# Sparse image problem, may be too big for copying otherwise
-gzip jessie.img
-# Copy over
-adb push jessie.img.gz /storage/sdcard1/Linux/jessie.img.gz
+<i><font color="#9A1900"># Sparse image problem, may be too big for copying otherwise</font></i>
+gzip jessie<font color="#990000">.</font>img
+<i><font color="#9A1900"># Copy over</font></i>
+adb push jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz /storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
 adb shell
-cd /storage/sdcard1/Linux
-gunzip jessie.img.gz
+cd /storage/sdcard<font color="#993399">1</font>/Linux
+gunzip jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
 
-# Show used loop devices
+<i><font color="#9A1900"># Show used loop devices</font></i>
 losetup -f
-# Store the next free one to $loop
-loop=loopN
+<i><font color="#9A1900"># Store the next free one to $loop</font></i>
+<font color="#009900">loop</font><font color="#990000">=</font>loopN
 
-# Use the next free one (replace the loop number)
-losetup /dev/block/$loop $(pwd)/jessie.img
-mount -t ext4 /dev/block/$loop $(pwd)/jessie
+<i><font color="#9A1900"># Use the next free one (replace the loop number)</font></i>
+losetup /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie<font color="#990000">.</font>img
+mount -t ext4 /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie
 
-# Bind-Mound proc, dev, sys`
-busybox mount --bind /proc $(pwd)/jessie/proc
-busybox mount --bind /dev $(pwd)/jessie/dev
-busybox mount --bind /dev/pts $(pwd)/jessie/dev/pts
-busybox mount --bind /sys $(pwd)/jessie/sys
+<i><font color="#9A1900"># Bind-Mound proc, dev, sys`</font></i>
+busybox mount --bind /proc <font color="#009900">$(pwd)</font>/jessie/proc
+busybox mount --bind /dev <font color="#009900">$(pwd)</font>/jessie/dev
+busybox mount --bind /dev/pts <font color="#009900">$(pwd)</font>/jessie/dev/pts
+busybox mount --bind /sys <font color="#009900">$(pwd)</font>/jessie/sys
 
-# Bind-Mound the rest of Android
-mkdir -p $(pwd)/jessie/storage/sdcard{0,1}
-busybox mount --bind /storage/emulated \
-  $(pwd)/jessie/storage/sdcard0
-busybox mount --bind /storage/sdcard1 \
-  $(pwd)/jessie/storage/sdcard1
+<i><font color="#9A1900"># Bind-Mound the rest of Android</font></i>
+mkdir -p <font color="#009900">$(pwd)</font>/jessie/storage/sdcard{<font color="#993399">0</font><font color="#990000">,</font><font color="#993399">1</font>}
+busybox mount --bind /storage/emulated <font color="#990000">\</font>
+  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">0</font>
+busybox mount --bind /storage/sdcard<font color="#993399">1</font> <font color="#990000">\</font>
+  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">1</font>
 
-# Check mounts
-mount | grep jessie
+<i><font color="#9A1900"># Check mounts</font></i>
+mount <font color="#990000">|</font> grep jessie
 </pre>
 <br />
 <h3 style='display: inline'>Second debootstrap stage</h3><br />
 <br />
 <span>This is to be performed on the Android phone itself (inside a Debian chroot):</span><br />
 <br />
-<pre>
-chroot $(pwd)/jessie /bin/bash -l
-export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>chroot <font color="#009900">$(pwd)</font>/jessie /bin/bash -l
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/bin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/local/sbin
 /debootstrap/debootstrap --second-stage
-exit # Leave chroot
-exit # Leave adb shell
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave chroot</font></i>
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave adb shell</font></i>
 </pre>
 <br />
 <h3 style='display: inline'>Setup of various scripts</h3><br />
 <br />
 <span>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</span><br />
 <br />
-<pre>
-# Install script jessie.sh
-adb push storage/sdcard1/Linux/jessie.sh /storage/sdcard/Linux/jessie.sh
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Install script jessie.sh</font></i>
+adb push storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>sh /storage/sdcard/Linux/jessie<font color="#990000">.</font>sh
 adb shell
-cd /storage/sdcard1/Linux
-sh jessie.sh enter
+cd /storage/sdcard<font color="#993399">1</font>/Linux
+sh jessie<font color="#990000">.</font>sh enter
 
-# Bashrc
-cat &lt;&lt;END &gt;~/.bashrc
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-export EDITOR=vim
-hostname $(cat /etc/hostname)
+<i><font color="#9A1900"># Bashrc</font></i>
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;~/.</font>bashrc
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
+<b><font color="#0000FF">export</font></b> <font color="#009900">EDITOR</font><font color="#990000">=</font>vim
+hostname <font color="#009900">$(</font>cat /etc/hostname<font color="#990000">)</font>
 END
 
-# Fixing an error message while loading the profile
-sed -i s#id#/usr/bin/id# /etc/profile
+<i><font color="#9A1900"># Fixing an error message while loading the profile</font></i>
+sed -i s<i><font color="#9A1900">#id#/usr/bin/id# /etc/profile</font></i>
 
-# Setting the hostname
-echo phobos &gt; /etc/hostname
-echo 127.0.0.1 phobos &gt; /etc/hosts
+<i><font color="#9A1900"># Setting the hostname</font></i>
+echo phobos <font color="#990000">&gt;</font> /etc/hostname
+echo <font color="#993399">127.0</font><font color="#990000">.</font><font color="#993399">0.1</font> phobos <font color="#990000">&gt;</font> /etc/hosts
 hostname phobos
 
-# Apt-sources
-cat &lt;&lt;END &gt; sources.list
-deb http://ftp.uk.debian.org/debian/ jessie main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ jessie main contrib non-free
+<i><font color="#9A1900"># Apt-sources</font></i>
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> sources<font color="#990000">.</font>list
+deb http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
+deb-src http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
 END
 apt-get update
 apt-get upgrade
 apt-get dist-upgrade
-exit # Exit chroot
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
 </pre>
 <br />
 <h3 style='display: inline'>Entering Debroid and enable a service</h3><br />
 <br />
 <span>This enters Debroid on your phone and starts the example service uptimed:</span><br />
 <br />
-<pre>
-sh jessie.sh enter
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sh jessie<font color="#990000">.</font>sh enter
 
-# Setup example serice uptimed
+<i><font color="#9A1900"># Setup example serice uptimed</font></i>
 apt-get install uptimed
-cat &lt;&lt;END &gt; /etc/rc.debroid
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-service uptimed status &amp;&gt;/dev/null || service uptimed start
-exit 0
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> /etc/rc<font color="#990000">.</font>debroid
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
+service uptimed status <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">||</font> service uptimed start
+<b><font color="#0000FF">exit</font></b> <font color="#993399">0</font>
 END
 
-chmod 0755 /etc/rc.debroid
-exit # Exit chroot
-exit # Exit adb shell
+chmod <font color="#993399">0755</font> /etc/rc<font color="#990000">.</font>debroid
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit adb shell</font></i>
 </pre>
 <br />
 <h3 style='display: inline'>Include to Android startup:</h3><br />
 <br />
 <span>If you want to start Debroid automatically whenever your phone starts, then do the following:</span><br />
 <br />
-<pre>
-adb push data/local/userinit.sh /data/local/userinit.sh
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>adb push data/local/userinit<font color="#990000">.</font>sh /data/local/userinit<font color="#990000">.</font>sh
 adb shell
-chmod +x /data/local/userinit.sh
-exit
+chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">.</font>sh
+<b><font color="#0000FF">exit</font></b>
 </pre>
 <br />
 <span>Reboot &amp; test!  Enjoy!</span><br />

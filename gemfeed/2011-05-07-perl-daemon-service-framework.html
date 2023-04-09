@@ -37,15 +37,18 @@
 </ul><br />
 <h2 style='display: inline'>Quick Guide</h2><br />
 <br />
-<pre>
-# Starting
- ./bin/perldaemon start (or shortcut ./control start)
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Starting</font></i>
+ <font color="#990000">.</font>/bin/perldaemon start <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control start<font color="#990000">)</font>
 
-# Stopping
- ./bin/perldaemon stop (or shortcut ./control stop)
+<i><font color="#9A1900"># Stopping</font></i>
+ <font color="#990000">.</font>/bin/perldaemon stop <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control stop<font color="#990000">)</font>
 
-# Alternatively: Starting in foreground 
-./bin/perldaemon start daemon.daemonize=no (or shortcut ./control foreground)
+<i><font color="#9A1900"># Alternatively: Starting in foreground </font></i>
+<font color="#990000">.</font>/bin/perldaemon start daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>no <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control foreground<font color="#990000">)</font>
 </pre>
 <br />
 <span>To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</span><br />
@@ -54,55 +57,64 @@
 <br />
 <span>The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":</span><br />
 <br />
-<pre>
-pb@titania:~/svn/utils/perldaemon/trunk$ ./control keys
-# Path to the logfile
-daemon.logfile=./log/perldaemon.log
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>pb@titania<font color="#990000">:~</font>/svn/utils/perldaemon/trunk$ <font color="#990000">.</font>/control keys
+<i><font color="#9A1900"># Path to the logfile</font></i>
+daemon<font color="#990000">.</font><font color="#009900">logfile</font><font color="#990000">=.</font>/log/perldaemon<font color="#990000">.</font>log
 
-# The amount of seconds until the next event look takes place
-daemon.loopinterval=1
+<i><font color="#9A1900"># The amount of seconds until the next event look takes place</font></i>
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
 
-# Path to the modules dir
-daemon.modules.dir=./lib/PerlDaemonModules
+<i><font color="#9A1900"># Path to the modules dir</font></i>
+daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">dir</font><font color="#990000">=.</font>/lib/PerlDaemonModules
 
-# Specifies either the daemon should run in daemon or foreground mode
-daemon.daemonize=yes
+<i><font color="#9A1900"># Specifies either the daemon should run in daemon or foreground mode</font></i>
+daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>yes
 
-# Path to the pidfile
-daemon.pidfile=./run/perldaemon.pid
+<i><font color="#9A1900"># Path to the pidfile</font></i>
+daemon<font color="#990000">.</font><font color="#009900">pidfile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>pid
 
-# Each module should run every run interval seconds
-daemon.modules.runinterval=3
+<i><font color="#9A1900"># Each module should run every run interval seconds</font></i>
+daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">runinterval</font><font color="#990000">=</font><font color="#993399">3</font>
 
-# Path to the alive file (is touched every loop interval seconds, usable for monitoring)
-daemon.alivefile=./run/perldaemon.alive
+<i><font color="#9A1900"># Path to the alive file (is touched every loop interval seconds, usable for monitoring)</font></i>
+daemon<font color="#990000">.</font><font color="#009900">alivefile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>alive
 
-# Specifies the working directory
-daemon.wd=./
+<i><font color="#9A1900"># Specifies the working directory</font></i>
+daemon<font color="#990000">.</font><font color="#009900">wd</font><font color="#990000">=./</font>
 </pre>
 <br />
 <h2 style='display: inline'>Example </h2><br />
 <br />
 <span>So let's start the daemon with a loop interval of 10 seconds:</span><br />
 <br />
-<pre>
-$ ./control keys | grep daemon.loopinterval
-daemon.loopinterval=1
-$ ./control keys daemon.loopinterval=10 | grep daemon.loopinterval
-daemon.loopinterval=10
-$ ./control start daemon.loopinterval=10; sleep 10; tail -n 2 log/perldaemon.log
-Starting daemon now...
-Mon Jun 13 11:29:27 2011 (PID 2838): Triggering PerlDaemonModules::ExampleModule 
-(last triggered before 10.002106s; carry: 7.002106s; wanted interval: 3s)
-Mon Jun 13 11:29:27 2011 (PID 2838): ExampleModule Test 2
-$ ./control stop
-Stopping daemon now...
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <font color="#990000">.</font>/control keys <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
+$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font>
+$ <font color="#990000">.</font>/control start daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font><font color="#990000">;</font> sleep <font color="#993399">10</font><font color="#990000">;</font> tail -n <font color="#993399">2</font> log/perldaemon<font color="#990000">.</font>log
+Starting daemon now<font color="#990000">...</font>
+Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> Triggering PerlDaemonModules<font color="#990000">::</font>ExampleModule 
+<font color="#990000">(</font>last triggered before <font color="#993399">10</font><font color="#990000">.</font>002106s<font color="#990000">;</font> carry<font color="#990000">:</font> <font color="#993399">7</font><font color="#990000">.</font>002106s<font color="#990000">;</font> wanted interval<font color="#990000">:</font> 3s<font color="#990000">)</font>
+Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> ExampleModule Test <font color="#993399">2</font>
+$ <font color="#990000">.</font>/control stop
+Stopping daemon now<font color="#990000">...</font>
 </pre>
 <br />
 <span>If you want to change that property forever, either edit perldaemon.conf or do this:</span><br />
 <br />
-<pre>
-$ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaemon.conf
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">&gt;</font> new<font color="#990000">.</font>conf<font color="#990000">;</font> mv new<font color="#990000">.</font>conf conf/perldaemon<font color="#990000">.</font>conf
 </pre>
 <br />
 <h2 style='display: inline'>HiRes event loop</h2><br />
@@ -115,48 +127,54 @@ $ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaem
 <br />
 <span>This is one of the example modules you will find in the source code. It should be pretty self-explanatory if you know Perl :-).</span><br />
 <br />
-<pre>
-package PerlDaemonModules::ExampleModule;
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> PerlDaemonModules<font color="#990000">::</font>ExampleModule<font color="#990000">;</font>
 
-use strict;
-use warnings;
+<b><font color="#0000FF">use</font></b> strict<font color="#990000">;</font>
+<b><font color="#0000FF">use</font></b> warnings<font color="#990000">;</font>
 
-sub new ($$$) {
-  my ($class, $conf) = @_;
+<b><font color="#0000FF">sub</font></b> <b><font color="#000000">new</font></b> <font color="#990000">(</font>$$$<font color="#990000">)</font> <font color="#FF0000">{</font>
+  <b><font color="#0000FF">my</font></b> <font color="#990000">(</font><font color="#009900">$class</font><font color="#990000">,</font> <font color="#009900">$conf</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">@_</font><font color="#990000">;</font>
 
-  my $self = bless { conf =&gt; $conf }, $class;
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">bless</font></b> <font color="#FF0000">{</font> conf <font color="#990000">=&gt;</font> <font color="#009900">$conf</font> <font color="#FF0000">}</font><font color="#990000">,</font> <font color="#009900">$class</font><font color="#990000">;</font>
 
-  # Store some private module stuff
-  $self-&gt;{counter} = 0;
+  <i><font color="#9A1900"># Store some private module stuff</font></i>
+  <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
 
-  return $self;
-}
+  <b><font color="#0000FF">return</font></b> <font color="#009900">$self</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-# Runs periodically in a loop (set interval in perldaemon.conf)
-sub do ($) {
-  my $self = shift;
-  my $conf = $self-&gt;{conf};
-  my $logger = $conf-&gt;{logger};
+<i><font color="#9A1900"># Runs periodically in a loop (set interval in perldaemon.conf)</font></i>
+<b><font color="#0000FF">sub</font></b> <b><font color="#0000FF">do</font></b> <font color="#990000">(</font>$<font color="#990000">)</font> <font color="#FF0000">{</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">shift</font></b><font color="#990000">;</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$conf</font> <font color="#990000">=</font> <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>conf<font color="#FF0000">}</font><font color="#990000">;</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$logger</font> <font color="#990000">=</font> <font color="#009900">$conf</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>logger<font color="#FF0000">}</font><font color="#990000">;</font>
 
-  # Calculate some private module stuff
-  my $count = ++$self-&gt;{counter};
+  <i><font color="#9A1900"># Calculate some private module stuff</font></i>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$count</font> <font color="#990000">=</font> <font color="#990000">++</font><font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font><font color="#990000">;</font>
 
-  $logger-&gt;logmsg("ExampleModule Test $count");
-}
+  <font color="#009900">$logger</font><font color="#990000">-&gt;</font><b><font color="#000000">logmsg</font></b><font color="#990000">(</font><font color="#FF0000">"ExampleModule Test $count"</font><font color="#990000">);</font>
+<font color="#FF0000">}</font>
 
-1;
+<font color="#993399">1</font><font color="#990000">;</font>
 </pre>
 <br />
 <h3 style='display: inline'>Your own module</h3><br />
 <br />
 <span>Want to give it some better use? It's just as easy as:</span><br />
 <br />
-<pre>
- cd ./lib/PerlDaemonModules/
- cp ExampleModule.pm YourModule.pm
- vi YourModule.pm
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre> cd <font color="#990000">.</font>/lib/PerlDaemonModules<font color="#990000">/</font>
+ cp ExampleModule<font color="#990000">.</font>pm YourModule<font color="#990000">.</font>pm
+ vi YourModule<font color="#990000">.</font>pm
  cd -
- ./bin/perldaemon restart (or shortcurt ./control restart)
+ <font color="#990000">.</font>/bin/perldaemon restart <font color="#990000">(</font>or shortcurt <font color="#990000">.</font>/control restart<font color="#990000">)</font>
 </pre>
 <br />
 <span>Now watch <span class='inlinecode'>./log/perldaemon.log</span> closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).</span><br />

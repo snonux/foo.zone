@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-08T12:32:07+03:00</updated>
+    <updated>2023-04-09T13:33:53+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -268,9 +268,12 @@ Blablabla...
 <br />
 <span>The sample config file <span class='inlinecode'>gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</span><br />
 <br />
-<pre>
-declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
-declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">PRE_GENERATE_HOOK</font><font color="#990000">=.</font>/pre_generate_hook<font color="#990000">.</font>sh
+<b><font color="#0000FF">declare</font></b> -xr <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=.</font>/post_publish_hook<font color="#990000">.</font>sh
 </pre>
 <br />
 <h2 style='display: inline'>Use of safer Bash options</h2><br />
@@ -283,22 +286,28 @@ declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 <br />
 <span>An example blog post without any publishing date looks like this:</span><br />
 <br />
-<pre>
-% cat gemfeed/2023-02-26-title-here.gmi
-# Title here
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
+<i><font color="#9A1900"># Title here</font></i>
 
-The remaining content of the Gemtext file...
+The remaining content of the Gemtext file<font color="#990000">...</font>
 </pre>
 <br />
 <span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
 <br />
-<pre>
-% cat gemfeed/2023-02-26-title-here.gmi
-# Title here
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
+<i><font color="#9A1900"># Title here</font></i>
 
-&gt; Published at 2023-02-26T21:43:51+01:00
+<font color="#990000">&gt;</font> Published at <font color="#993399">2023</font>-<font color="#993399">02</font>-26T21<font color="#990000">:</font><font color="#993399">43</font><font color="#990000">:</font><font color="#993399">51</font><font color="#990000">+</font><font color="#993399">01</font><font color="#990000">:</font><font color="#993399">00</font>
 
-The remaining content of the Gemtext file...
+The remaining content of the Gemtext file<font color="#990000">...</font>
 </pre>
 <br />
 <h2 style='display: inline'>XMLLint support</h2><br />
@@ -1304,23 +1313,26 @@ jgs                (________\  \
 <br />
 <span>Gemtexter relies on the GNU versions of the tools <span class='inlinecode'>grep</span>, <span class='inlinecode'>sed</span> and <span class='inlinecode'>date</span> and it also requires the Bash shell in version 5 at least. That's now done in the <span class='inlinecode'>check_dependencies()</span> function:</span><br />
 <br />
-<pre>
-check_dependencies () {
-    # At least, Bash 5 is required
-    local -i required_version=5
-    IFS=. read -ra version &lt;&lt;&lt; "$BASH_VERSION"
-    if [ "${version[0]}" -lt $required_version ]; then
-        log ERROR "ERROR, \"bash\" must be at least at major version $required_version!"
-        exit 2
-    fi
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">check_dependencies ()</font></b> {
+    <i><font color="#9A1900"># At least, Bash 5 is required</font></i>
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">required_version</font><font color="#990000">=</font><font color="#993399">5</font>
+    <font color="#009900">IFS</font><font color="#990000">=.</font> <b><font color="#0000FF">read</font></b> -ra version <font color="#990000">&lt;&lt;&lt;</font> <font color="#FF0000">"$BASH_VERSION"</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"${version[0]}"</font> -lt <font color="#009900">$required_version</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">bash</font><font color="#CC33CC">\"</font><font color="#FF0000"> must be at least at major version $required_version!"</font>
+        <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
+    <b><font color="#0000FF">fi</font></b>
 
-    # These must be the GNU versions of the commands
-    for tool in $DATE $SED $GREP; do
-        if ! $tool --version | grep -q GNU; then
-            log ERROR "ERROR, \"$tool\" command is not the GNU version, please install!"
-            exit 2
-        fi
-    done
+    <i><font color="#9A1900"># These must be the GNU versions of the commands</font></i>
+    <b><font color="#0000FF">for</font></b> tool <b><font color="#0000FF">in</font></b> <font color="#009900">$DATE</font> <font color="#009900">$SED</font> <font color="#009900">$GREP</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
+        <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> <font color="#009900">$tool</font> --version <font color="#990000">|</font> grep -q GNU<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+            log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">$tool</font><font color="#CC33CC">\"</font><font color="#FF0000"> command is not the GNU version, please install!"</font>
+            <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
+        <b><font color="#0000FF">fi</font></b>
+    <b><font color="#0000FF">done</font></b>
 }
 </pre>
 <br />
@@ -1338,8 +1350,11 @@ check_dependencies () {
 <br />
 <span>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</span><br />
 <br />
-<pre>
-./gemtexter --generate '.*hello.*'
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">.</font>/gemtexter --generate <font color="#FF0000">'.*hello.*'</font>
 </pre>
 <br />
 <h3 style='display: inline'>Revamped <span class='inlinecode'>git</span> support</h3><br />
@@ -3051,7 +3066,6 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
 <br />
 <pre>
-
     '\       '\                   .  .                |&gt;18&gt;&gt;
       \        \              .         ' .           |
      O&gt;&gt;      O&gt;&gt;         .                 'o        |
@@ -3653,7 +3667,6 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <span class='quote'>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</span><br />
 <br />
 <pre>
-
      '\                   .  .                        |&gt;18&gt;&gt;
        \              .         ' .                   |
       O&gt;&gt;         .                 'o                |
@@ -4219,8 +4232,10 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Keep it simple and stupid</h1>
-<p class="quote"><i>Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23</i></p>
+                <h1 style='display: inline'>Keep it simple and stupid</h1><br />
+<br />
+<span class='quote'>Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23</span><br />
+<br />
 <pre>
   _______________                        |*\_/*|_______
   |  ___________  |     .-.     .-.      ||_/-\_|______  |
@@ -4234,49 +4249,90 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
    / ********** \                          / ********** \
  /  ************  \                      /  ************  \
 --------------------                    --------------------
-</pre><br />
-<p>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</p>
-<h1>Need faster hardware</h1>
-<p>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</p>
-<h1>Too complex to be replaced</h1>
-<h2>On COBOL</h2>
-<p>Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It's just too scary to write everything from scratch. There's too much COBOL code out there that can't be replaced from today to tomorrow. </p>
-<a class="textlink" href="https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html">https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html</a><br />
-<h2>On Kubernetes</h2>
-<p>Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster -  it also applies to the software engineers, who now have to develop 'cloud native' applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.</p>
-<h2>The younger generation of IT professionals</h2>
-<p>Maybe the younger generation knows all of this already after graduation, but then they are missing other critical parts of the system for sure. I have seen engineers who knew about containers and how to configure resource restrictions for a Docker container managed via k8s but have never heard the terms Linux control groups and Linux namespaces. So obviously, there is some knowledge gap of the underlying architecture. This can be a big problem when you have to troubleshoot such a system during a production incident and k8s adds a lot of abstraction to the mix which doesn't make it easier. </p>
-<p>Coming back to COBOL, k8s is on its way to becoming something similar. One day, k8s might not be the hottest tech stuff everyone wants to use. But there will be still many legacy k8s clusters around but not enough experts available to manage those:</p>
-<a class="textlink" href="https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/">https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/</a><br />
-<p>Another article which stroke me is:</p>
-<a class="textlink" href="https://it.slashdot.org/story/21/09/23/163212/todays-students-dont-understand-the-basics-of-computer-operations">Today's Students Don't Understand the Basics of Computer Operations </a><br />
-<p>And here is something to smile about:</p>
-<a class="textlink" href="https://christine.website/blog/theres-a-node-2021-10-02">https://christine.website/blog/theres-a-node-2021-10-02</a><br />
-<h1>The bloated web</h1>
-<p>Another example is the modern web. Have you ever wondered why the internet becomes slower and slower nowadays? The modern web is so much like lasagna that I decided to use Gemini to be the primary protocol of my website. The HTML version of this website is just a fallback as many visitors don't know what Gemini is and don't have any compatible software installed for surfing the Geminispace:</p>
-<a class="textlink" href="2021-04-24-welcome-to-the-geminispace.html">2021-04-24-welcome-to-the-geminispace.html</a><br />
-<p>The Gemtext protocol is KISS. There's no way to do other formattings than headings, links, paragraphs, lists, quotes, and bare text blocks (e.g., ASCII art or code snippets). There's no way to create bloated Gemini sites, and due to its limited capabilities, there's also no way to commercialise it (e.g. there's no good way to track the site visitors as things like cookies don't exist). By design, the Gemini protocol can't be extended, so there is no chance to abuse it even in the future. Gemini sites will stay KISS forever, and there won't be any fancy HTML/JavaScript frameworks like we see on the modern web.</p>
-<h1>Fancy log-management solutions</h1>
-<p>Yet another example I want to bring up is DTail, the distributed log tail program I wrote. There are many great and fancy log-management solutions available to choose from, and they all seem complex to set up and maintain. The ELK stack, for example, requires you to operate an ElasticSearch cluster (or multiple, if you are geo-redundant), Logstash (different configurations and instances, depending on your infrastructure) and a Kibana web-frontend (which also needs to be highly available). I have operated ElasticSearch clusters on multiple occasions, and I must say that it is not an easy task to optimise it for the particular workload you might encounter. I also have seen many ES clusters operated by other people, and I have seen these clusters failing a lot (so it's not just me). The reduced complexity of DTail also makes it more robust against outages. You won't troubleshoot your distributed application very well if the log management infrastructure isn't working either.</p>
-<a class="textlink" href="2021-04-22-dtail-the-distributed-log-tail-program.html">2021-04-22-dtail-the-distributed-log-tail-program.html</a><br />
-<p>I don't say that the ELK stack doesn't work, but it requires experts and additional hardware resources to support it. But instead, if you keep your infrastructure simple (e.g. only use DTail), it will maintain pretty much by itself. </p>
-<h1>More KISS</h1>
-<h2>The Adslowbe PDF Reader</h2>
-<p>Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems, look at Zathura for example). I believe the reason Adobe's reader is like this is featuritis, and 90% of the users don't use 90% of all available features. Less is more; keep it simple and stupid. </p>
-<h2>The power of plain text files</h2>
-<p>Speaking of file formats, never underestimate the power of plain text files.  Plain text files don't require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won't be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn't supported anymore and doesn't run anymore on modern computers.</p>
-<h2>KISS for programmers</h2>
-<p>Not to mention, keeping things simple and stupid also reduces the potential malicious attack surface. It's not just about the software and services you use and operate. It's also about the software you write. Here is a nice article about the KISS principle in software development:</p>
-<a class="textlink" href="https://thevaluable.dev/kiss-principle-explained/">https://thevaluable.dev/kiss-principle-explained/</a><br />
-<h1>When KISS is not KISS anymore</h1>
-<p>There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.</p>
-<h2>Other relevant readings</h2>
-<a class="textlink" href="https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html">Is the madness ever going to end?</a><br />
-<a class="textlink" href="https://sive.rs/plaintext">Write plain text files</a><br />
-<p>Enough ranted for now!</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<p class="quote"><i>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </i></p>
-<a class="textlink" href="../">Back to the main site</a><br />
+</pre>
+<br />
+<span>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</span><br />
+<br />
+<h1 style='display: inline'>Need faster hardware</h1><br />
+<br />
+<span>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</span><br />
+<br />
+<h1 style='display: inline'>Too complex to be replaced</h1><br />
+<br />
+<h2 style='display: inline'>On COBOL</h2><br />
+<br />
+<span>Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It's just too scary to write everything from scratch. There's too much COBOL code out there that can't be replaced from today to tomorrow. </span><br />
+<br />
+<a class='textlink' href='https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html'>https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html</a><br />
+<br />
+<h2 style='display: inline'>On Kubernetes</h2><br />
+<br />
+<span>Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster -  it also applies to the software engineers, who now have to develop 'cloud native' applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.</span><br />
+<br />
+<h2 style='display: inline'>The younger generation of IT professionals</h2><br />
+<br />
+<span>Maybe the younger generation knows all of this already after graduation, but then they are missing other critical parts of the system for sure. I have seen engineers who knew about containers and how to configure resource restrictions for a Docker container managed via k8s but have never heard the terms Linux control groups and Linux namespaces. So obviously, there is some knowledge gap of the underlying architecture. This can be a big problem when you have to troubleshoot such a system during a production incident and k8s adds a lot of abstraction to the mix which doesn't make it easier. </span><br />
+<br />
+<span>Coming back to COBOL, k8s is on its way to becoming something similar. One day, k8s might not be the hottest tech stuff everyone wants to use. But there will be still many legacy k8s clusters around but not enough experts available to manage those:</span><br />
+<br />
+<a class='textlink' href='https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/'>https://www.techrepublic.com/article/why-kubernetes-is-our-modern-day-cobol-says-a-tech-expert/</a><br />
+<br />
+<span>Another article which stroke me is:</span><br />
+<br />
+<a class='textlink' href='https://it.slashdot.org/story/21/09/23/163212/todays-students-dont-understand-the-basics-of-computer-operations'>Today's Students Don't Understand the Basics of Computer Operations </a><br />
+<br />
+<span>And here is something to smile about:</span><br />
+<br />
+<a class='textlink' href='https://christine.website/blog/theres-a-node-2021-10-02'>https://christine.website/blog/theres-a-node-2021-10-02</a><br />
+<br />
+<h1 style='display: inline'>The bloated web</h1><br />
+<br />
+<span>Another example is the modern web. Have you ever wondered why the internet becomes slower and slower nowadays? The modern web is so much like lasagna that I decided to use Gemini to be the primary protocol of my website. The HTML version of this website is just a fallback as many visitors don't know what Gemini is and don't have any compatible software installed for surfing the Geminispace:</span><br />
+<br />
+<a class='textlink' href='2021-04-24-welcome-to-the-geminispace.html'>2021-04-24-welcome-to-the-geminispace.html</a><br />
+<br />
+<span>The Gemtext protocol is KISS. There's no way to do other formattings than headings, links, paragraphs, lists, quotes, and bare text blocks (e.g., ASCII art or code snippets). There's no way to create bloated Gemini sites, and due to its limited capabilities, there's also no way to commercialise it (e.g. there's no good way to track the site visitors as things like cookies don't exist). By design, the Gemini protocol can't be extended, so there is no chance to abuse it even in the future. Gemini sites will stay KISS forever, and there won't be any fancy HTML/JavaScript frameworks like we see on the modern web.</span><br />
+<br />
+<h1 style='display: inline'>Fancy log-management solutions</h1><br />
+<br />
+<span>Yet another example I want to bring up is DTail, the distributed log tail program I wrote. There are many great and fancy log-management solutions available to choose from, and they all seem complex to set up and maintain. The ELK stack, for example, requires you to operate an ElasticSearch cluster (or multiple, if you are geo-redundant), Logstash (different configurations and instances, depending on your infrastructure) and a Kibana web-frontend (which also needs to be highly available). I have operated ElasticSearch clusters on multiple occasions, and I must say that it is not an easy task to optimise it for the particular workload you might encounter. I also have seen many ES clusters operated by other people, and I have seen these clusters failing a lot (so it's not just me). The reduced complexity of DTail also makes it more robust against outages. You won't troubleshoot your distributed application very well if the log management infrastructure isn't working either.</span><br />
+<br />
+<a class='textlink' href='2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22-dtail-the-distributed-log-tail-program.html</a><br />
+<br />
+<span>I don't say that the ELK stack doesn't work, but it requires experts and additional hardware resources to support it. But instead, if you keep your infrastructure simple (e.g. only use DTail), it will maintain pretty much by itself. </span><br />
+<br />
+<h1 style='display: inline'>More KISS</h1><br />
+<br />
+<h2 style='display: inline'>The Adslowbe PDF Reader</h2><br />
+<br />
+<span>Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems, look at Zathura for example). I believe the reason Adobe's reader is like this is featuritis, and 90% of the users don't use 90% of all available features. Less is more; keep it simple and stupid. </span><br />
+<br />
+<h2 style='display: inline'>The power of plain text files</h2><br />
+<br />
+<span>Speaking of file formats, never underestimate the power of plain text files.  Plain text files don't require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won't be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn't supported anymore and doesn't run anymore on modern computers.</span><br />
+<br />
+<h2 style='display: inline'>KISS for programmers</h2><br />
+<br />
+<span>Not to mention, keeping things simple and stupid also reduces the potential malicious attack surface. It's not just about the software and services you use and operate. It's also about the software you write. Here is a nice article about the KISS principle in software development:</span><br />
+<br />
+<a class='textlink' href='https://thevaluable.dev/kiss-principle-explained/'>https://thevaluable.dev/kiss-principle-explained/</a><br />
+<br />
+<h1 style='display: inline'>When KISS is not KISS anymore</h1><br />
+<br />
+<span>There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.</span><br />
+<br />
+<h2 style='display: inline'>Other relevant readings</h2><br />
+<br />
+<a class='textlink' href='https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html'>Is the madness ever going to end?</a><br />
+<a class='textlink' href='https://sive.rs/plaintext'>Write plain text files</a><br />
+<br />
+<span>Enough ranted for now!</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<span class='quote'>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -4539,19 +4595,22 @@ Hello World
 <br />
 <span>I modularized the code so that each core functionality has its own file in ./lib. All the modules are included from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. </span><br />
 <br />
-<pre>
-paul in uranus in gemtexter on 🌱 main
-❯ wc -l gemtexter lib/*
-    117 gemtexter
-     59 lib/assert.source.sh
-    128 lib/atomfeed.source.sh
-     64 lib/gemfeed.source.sh
-    161 lib/generate.source.sh
-     50 lib/git.source.sh
-    162 lib/html.source.sh
-     30 lib/log.source.sh
-     63 lib/md.source.sh
-     834 total
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul <b><font color="#0000FF">in</font></b> uranus <b><font color="#0000FF">in</font></b> gemtexter on 🌱 main
+❯ wc -l gemtexter lib<font color="#990000">/*</font>
+    <font color="#993399">117</font> gemtexter
+     <font color="#993399">59</font> lib/assert<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">128</font> lib/atomfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">64</font> lib/gemfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">161</font> lib/generate<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">50</font> lib/git<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">162</font> lib/html<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">30</font> lib/log<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">63</font> lib/md<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">834</font> total
 </pre>
 <br />
 <span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </span><br />
@@ -4582,19 +4641,24 @@ paul in uranus in gemtexter on 🌱 main
 <br />
 <h3 style='display: inline'>HTML unit test example</h3><br />
 <br />
-<pre>
-gemtext='=&gt; http://example.org Description of the link'
-assert::equals "$(generate::make_link html "$gemtext")" \
-    '&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'
-
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
+assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link html "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
+    <font color="#FF0000">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
 </pre>
 <br />
 <h3 style='display: inline'>Markdown unit test example</h3><br />
 <br />
-<pre>
-gemtext='=&gt; http://example.org Description of the link'
-assert::equals "$(generate::make_link md "$gemtext")" \
-    '[Description of the link](http://example.org)  '
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
+assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link md "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
+    <font color="#FF0000">'[Description of the link](http://example.org)  '</font>
 </pre>
 <br />
 <h2 style='display: inline'>Handcrafted HTML styles</h2><br />
@@ -5073,7 +5137,6 @@ fi
 <span>However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).</span><br />
 <br />
 <pre>
-
     /\
    /  \
   |    |
@@ -6219,8 +6282,10 @@ Notice: Finished catalog run in 206.09 seconds
         <summary>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Run Debian on your phone with Debroid</h1>
-<p class="quote"><i>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</i></p>
+                <h1 style='display: inline'>Run Debian on your phone with Debroid</h1><br />
+<br />
+<span class='quote'>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</span><br />
+<br />
 <pre>
  ____       _               _     _ 
 |  _ \  ___| |__  _ __ ___ (_) __| |
@@ -6228,147 +6293,193 @@ Notice: Finished catalog run in 206.09 seconds
 | |_| |  __/ |_) | | | (_) | | (_| |
 |____/ \___|_.__/|_|  \___/|_|\__,_|
                                     
-</pre><br />
-<p>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</p>
-<a href="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png"><img src="https://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png" /></a><br />
-<h2>Foreword</h2>
-<p>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </p>
-<h2>Step by step guide</h2>
-<p>All scripts mentioned here can be found on GitHub at:</p>
-<a class="textlink" href="https://codeberg.org/snonux/debroid">https://codeberg.org/snonux/debroid</a><br />
-<h3>First debootstrap stage</h3>
-<p>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</p>
-<pre>
-sudo dnf install debootstrap
-# 5g
-dd if=/dev/zero of=jessie.img bs=$[ 1024 * 1024 ] \
-  count=$[ 1024 * 5 ]
+</pre>
+<br />
+<span>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</span><br />
+<br />
+<a href='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png'><img src='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
+<br />
+<h2 style='display: inline'>Foreword</h2><br />
+<br />
+<span>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </span><br />
+<br />
+<h2 style='display: inline'>Step by step guide</h2><br />
+<br />
+<span>All scripts mentioned here can be found on GitHub at:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/debroid'>https://codeberg.org/snonux/debroid</a><br />
+<br />
+<h3 style='display: inline'>First debootstrap stage</h3><br />
+<br />
+<span>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo dnf install debootstrap
+<i><font color="#9A1900"># 5g</font></i>
+dd <b><font color="#0000FF">if</font></b><font color="#990000">=</font>/dev/zero <font color="#009900">of</font><font color="#990000">=</font>jessie<font color="#990000">.</font>img <font color="#009900">bs</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">1024</font> <font color="#990000">]</font> <font color="#990000">\</font>
+  <font color="#009900">count</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">5</font> <font color="#990000">]</font>
 
-# Show used loop devices
+<i><font color="#9A1900"># Show used loop devices</font></i>
 sudo losetup -f
-# Store the next free one to $loop
-loop=loopN
-sudo losetup /dev/$loop jessie.img
+<i><font color="#9A1900"># Store the next free one to $loop</font></i>
+<font color="#009900">loop</font><font color="#990000">=</font>loopN
+sudo losetup /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie<font color="#990000">.</font>img
 
 mkdir jessie
-sudo mkfs.ext4 /dev/$loop
-sudo mount /dev/$loop jessie
-sudo debootstrap --foreign --variant=minbase \
-  --arch armel jessie jessie/ \
-  http://http.debian.net/debian
+sudo mkfs<font color="#990000">.</font>ext4 /dev<font color="#990000">/</font><font color="#009900">$loop</font>
+sudo mount /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie
+sudo debootstrap --foreign --variant<font color="#990000">=</font>minbase <font color="#990000">\</font>
+  --arch armel jessie jessie<font color="#990000">/</font> <font color="#990000">\</font>
+  http<font color="#990000">:</font>//http<font color="#990000">.</font>debian<font color="#990000">.</font>net/debian
 sudo umount jessie
-</pre><br />
-<h3>Copy Debian image to the phone</h3>
-<p>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</p>
-<pre>
-adb root &amp;&amp; adb wait-for-device &amp;&amp; adb shell
-mkdir -p /storage/sdcard1/Linux/jessie
-exit
+</pre>
+<br />
+<h3 style='display: inline'>Copy Debian image to the phone</h3><br />
+<br />
+<span>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>adb root <font color="#990000">&amp;&amp;</font> adb wait-for-device <font color="#990000">&amp;&amp;</font> adb shell
+mkdir -p /storage/sdcard<font color="#993399">1</font>/Linux/jessie
+<b><font color="#0000FF">exit</font></b>
 
-# Sparse image problem, may be too big for copying otherwise
-gzip jessie.img
-# Copy over
-adb push jessie.img.gz /storage/sdcard1/Linux/jessie.img.gz
+<i><font color="#9A1900"># Sparse image problem, may be too big for copying otherwise</font></i>
+gzip jessie<font color="#990000">.</font>img
+<i><font color="#9A1900"># Copy over</font></i>
+adb push jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz /storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
 adb shell
-cd /storage/sdcard1/Linux
-gunzip jessie.img.gz
+cd /storage/sdcard<font color="#993399">1</font>/Linux
+gunzip jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
 
-# Show used loop devices
+<i><font color="#9A1900"># Show used loop devices</font></i>
 losetup -f
-# Store the next free one to $loop
-loop=loopN
+<i><font color="#9A1900"># Store the next free one to $loop</font></i>
+<font color="#009900">loop</font><font color="#990000">=</font>loopN
 
-# Use the next free one (replace the loop number)
-losetup /dev/block/$loop $(pwd)/jessie.img
-mount -t ext4 /dev/block/$loop $(pwd)/jessie
+<i><font color="#9A1900"># Use the next free one (replace the loop number)</font></i>
+losetup /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie<font color="#990000">.</font>img
+mount -t ext4 /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie
 
-# Bind-Mound proc, dev, sys`
-busybox mount --bind /proc $(pwd)/jessie/proc
-busybox mount --bind /dev $(pwd)/jessie/dev
-busybox mount --bind /dev/pts $(pwd)/jessie/dev/pts
-busybox mount --bind /sys $(pwd)/jessie/sys
+<i><font color="#9A1900"># Bind-Mound proc, dev, sys`</font></i>
+busybox mount --bind /proc <font color="#009900">$(pwd)</font>/jessie/proc
+busybox mount --bind /dev <font color="#009900">$(pwd)</font>/jessie/dev
+busybox mount --bind /dev/pts <font color="#009900">$(pwd)</font>/jessie/dev/pts
+busybox mount --bind /sys <font color="#009900">$(pwd)</font>/jessie/sys
 
-# Bind-Mound the rest of Android
-mkdir -p $(pwd)/jessie/storage/sdcard{0,1}
-busybox mount --bind /storage/emulated \
-  $(pwd)/jessie/storage/sdcard0
-busybox mount --bind /storage/sdcard1 \
-  $(pwd)/jessie/storage/sdcard1
+<i><font color="#9A1900"># Bind-Mound the rest of Android</font></i>
+mkdir -p <font color="#009900">$(pwd)</font>/jessie/storage/sdcard{<font color="#993399">0</font><font color="#990000">,</font><font color="#993399">1</font>}
+busybox mount --bind /storage/emulated <font color="#990000">\</font>
+  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">0</font>
+busybox mount --bind /storage/sdcard<font color="#993399">1</font> <font color="#990000">\</font>
+  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">1</font>
 
-# Check mounts
-mount | grep jessie
-</pre><br />
-<h3>Second debootstrap stage</h3>
-<p>This is to be performed on the Android phone itself (inside a Debian chroot):</p>
-<pre>
-chroot $(pwd)/jessie /bin/bash -l
-export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
+<i><font color="#9A1900"># Check mounts</font></i>
+mount <font color="#990000">|</font> grep jessie
+</pre>
+<br />
+<h3 style='display: inline'>Second debootstrap stage</h3><br />
+<br />
+<span>This is to be performed on the Android phone itself (inside a Debian chroot):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>chroot <font color="#009900">$(pwd)</font>/jessie /bin/bash -l
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/bin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/local/sbin
 /debootstrap/debootstrap --second-stage
-exit # Leave chroot
-exit # Leave adb shell
-</pre><br />
-<h3>Setup of various scripts</h3>
-<p>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</p>
-<pre>
-# Install script jessie.sh
-adb push storage/sdcard1/Linux/jessie.sh /storage/sdcard/Linux/jessie.sh
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave chroot</font></i>
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave adb shell</font></i>
+</pre>
+<br />
+<h3 style='display: inline'>Setup of various scripts</h3><br />
+<br />
+<span>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Install script jessie.sh</font></i>
+adb push storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>sh /storage/sdcard/Linux/jessie<font color="#990000">.</font>sh
 adb shell
-cd /storage/sdcard1/Linux
-sh jessie.sh enter
+cd /storage/sdcard<font color="#993399">1</font>/Linux
+sh jessie<font color="#990000">.</font>sh enter
 
-# Bashrc
-cat &lt;&lt;END &gt;~/.bashrc
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-export EDITOR=vim
-hostname $(cat /etc/hostname)
+<i><font color="#9A1900"># Bashrc</font></i>
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;~/.</font>bashrc
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
+<b><font color="#0000FF">export</font></b> <font color="#009900">EDITOR</font><font color="#990000">=</font>vim
+hostname <font color="#009900">$(</font>cat /etc/hostname<font color="#990000">)</font>
 END
 
-# Fixing an error message while loading the profile
-sed -i s#id#/usr/bin/id# /etc/profile
+<i><font color="#9A1900"># Fixing an error message while loading the profile</font></i>
+sed -i s<i><font color="#9A1900">#id#/usr/bin/id# /etc/profile</font></i>
 
-# Setting the hostname
-echo phobos &gt; /etc/hostname
-echo 127.0.0.1 phobos &gt; /etc/hosts
+<i><font color="#9A1900"># Setting the hostname</font></i>
+echo phobos <font color="#990000">&gt;</font> /etc/hostname
+echo <font color="#993399">127.0</font><font color="#990000">.</font><font color="#993399">0.1</font> phobos <font color="#990000">&gt;</font> /etc/hosts
 hostname phobos
 
-# Apt-sources
-cat &lt;&lt;END &gt; sources.list
-deb http://ftp.uk.debian.org/debian/ jessie main contrib non-free
-deb-src http://ftp.uk.debian.org/debian/ jessie main contrib non-free
+<i><font color="#9A1900"># Apt-sources</font></i>
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> sources<font color="#990000">.</font>list
+deb http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
+deb-src http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
 END
 apt-get update
 apt-get upgrade
 apt-get dist-upgrade
-exit # Exit chroot
-</pre><br />
-<h3>Entering Debroid and enable a service</h3>
-<p>This enters Debroid on your phone and starts the example service uptimed:</p>
-<pre>
-sh jessie.sh enter
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
+</pre>
+<br />
+<h3 style='display: inline'>Entering Debroid and enable a service</h3><br />
+<br />
+<span>This enters Debroid on your phone and starts the example service uptimed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sh jessie<font color="#990000">.</font>sh enter
 
-# Setup example serice uptimed
+<i><font color="#9A1900"># Setup example serice uptimed</font></i>
 apt-get install uptimed
-cat &lt;&lt;END &gt; /etc/rc.debroid
-export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$PATH
-service uptimed status &amp;&gt;/dev/null || service uptimed start
-exit 0
+cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> /etc/rc<font color="#990000">.</font>debroid
+<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
+service uptimed status <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">||</font> service uptimed start
+<b><font color="#0000FF">exit</font></b> <font color="#993399">0</font>
 END
 
-chmod 0755 /etc/rc.debroid
-exit # Exit chroot
-exit # Exit adb shell
-</pre><br />
-<h3>Include to Android startup:</h3>
-<p>If you want to start Debroid automatically whenever your phone starts, then do the following:</p>
-<pre>
-adb push data/local/userinit.sh /data/local/userinit.sh
+chmod <font color="#993399">0755</font> /etc/rc<font color="#990000">.</font>debroid
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
+<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit adb shell</font></i>
+</pre>
+<br />
+<h3 style='display: inline'>Include to Android startup:</h3><br />
+<br />
+<span>If you want to start Debroid automatically whenever your phone starts, then do the following:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>adb push data/local/userinit<font color="#990000">.</font>sh /data/local/userinit<font color="#990000">.</font>sh
 adb shell
-chmod +x /data/local/userinit.sh
-exit
-</pre><br />
-<p>Reboot &amp; test!  Enjoy!</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">.</font>sh
+<b><font color="#0000FF">exit</font></b>
+</pre>
+<br />
+<span>Reboot &amp; test!  Enjoy!</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -6384,134 +6495,158 @@ exit
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The fibonacci.pl.raku.c Polyglot</h1>
-<p class="quote"><i>Published at 2014-03-24T21:32:53+00:00; Updated at 2022-04-23</i></p>
-<p>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</p>
-<a class="textlink" href="https://en.wikipedia.org/wiki/Polyglot_(computing)">https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
-<h2>The Fibonacci numbers</h2>
-<p>For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:</p>
-<pre>
-#include &lt;stdio.h&gt;
+                <h1 style='display: inline'>The fibonacci.pl.raku.c Polyglot</h1><br />
+<br />
+<span class='quote'>Published at 2014-03-24T21:32:53+00:00; Updated at 2022-04-23</span><br />
+<br />
+<span>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Polyglot_(computing)'>https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
+<br />
+<h2 style='display: inline'>The Fibonacci numbers</h2><br />
+<br />
+<span>For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#include &lt;stdio.h&gt;</font></i>
 
-#define $arg function_argument
-#define my int
-#define sub int
-#define BEGIN int main(void)
+<i><font color="#9A1900">#define $arg function_argument</font></i>
+<i><font color="#9A1900">#define my int</font></i>
+<i><font color="#9A1900">#define sub int</font></i>
+<i><font color="#9A1900">#define BEGIN int main(void)</font></i>
 
-my $arg;
+<b><font color="#0000FF">my</font></b> <font color="#009900">$arg</font><font color="#990000">;</font>
 
-sub hello() {
-    printf("Hello, welcome to the Fibonacci Numbers!\n");
-    printf("This program is all, valid C and C++ and Perl and Raku code!\n");
-    printf("It calculates all fibonacci numbers from 0 to 9!\n\n");
-    return 0;
-}
+<b><font color="#0000FF">sub</font></b> <b><font color="#000000">hello</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Hello, welcome to the Fibonacci Numbers!\n"</font><font color="#990000">);</font>
+    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"This program is all, valid C and C++ and Perl and Raku code!\n"</font><font color="#990000">);</font>
+    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"It calculates all fibonacci numbers from 0 to 9!\n\n"</font><font color="#990000">);</font>
+    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-sub fibonacci() {
-    my $n = $arg;
+<b><font color="#0000FF">sub</font></b> <b><font color="#000000">fibonacci</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+    <b><font color="#0000FF">my</font></b> <font color="#009900">$n</font> <font color="#990000">=</font> <font color="#009900">$arg</font><font color="#990000">;</font>
 
-    if ($n &lt; 2) {
-        return $n;
-    }
+    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font><font color="#009900">$n</font> <font color="#990000">&lt;</font> <font color="#993399">2</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+        <b><font color="#0000FF">return</font></b> <font color="#009900">$n</font><font color="#990000">;</font>
+    <font color="#FF0000">}</font>
 
-    $arg = $n - 1;
-    my $fib1 = fibonacci();
-    $arg = $n - 2;
-    my $fib2 = fibonacci();
+    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font>
+    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib1</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
+    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">2</font><font color="#990000">;</font>
+    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib2</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
 
-    return $fib1 + $fib2;
-}
+    <b><font color="#0000FF">return</font></b> <font color="#009900">$fib1</font> <font color="#990000">+</font> <font color="#009900">$fib2</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-BEGIN {
-    hello();
-    my $i = 0;
+BEGIN <font color="#FF0000">{</font>
+    <b><font color="#000000">hello</font></b><font color="#990000">();</font>
+    <b><font color="#0000FF">my</font></b> <font color="#009900">$i</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
 
-    while ($i &lt;= 10) {
-        $arg = $i;
-        printf("fib(%d) = %d\n", $i, fibonacci());
-        $i++;
-    }
-}
-</pre><br />
-<p>You can find the full source code at GitHub:</p>
-<a class="textlink" href="https://codeberg.org/snonux/perl-c-fibonacci">https://codeberg.org/snonux/perl-c-fibonacci</a><br />
-<h3>Let's run it with C and C++</h3>
-<pre>
-% gcc fibonacci.pl.raku.c -o fibonacci
-% ./fibonacci
-Hello, welcome to the Fibonacci Numbers!
-This program is all, valid C and C++ and Perl and Raku code!
-It calculates all fibonacci numbers from 0 to 9!
+    <b><font color="#0000FF">while</font></b> <font color="#990000">(</font><font color="#009900">$i</font> <font color="#990000">&lt;=</font> <font color="#993399">10</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+        <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$i</font><font color="#990000">;</font>
+        <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"fib(%d) = %d\n"</font><font color="#990000">,</font> <font color="#009900">$i</font><font color="#990000">,</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">());</font>
+        <font color="#009900">$i</font><font color="#990000">++;</font>
+    <font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>You can find the full source code at GitHub:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/perl-c-fibonacci'>https://codeberg.org/snonux/perl-c-fibonacci</a><br />
+<br />
+<h3 style='display: inline'>Let's run it with C and C++</h3><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> gcc fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
+<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
+Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
+This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
+It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
 
-fib(0) = 0
-fib(1) = 1
-fib(2) = 1
-fib(3) = 2
-fib(4) = 3
-fib(5) = 5
-fib(6) = 8
-fib(7) = 13
-fib(8) = 21
-fib(9) = 34
-fib(10) = 55
+fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
+fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
+fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
+fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
+fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
+fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
+fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
+fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
+fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
 
-% g++ fibonacci.pl.raku.c -o fibonacci
-% ./fibonacci
-Hello, welcome to the Fibonacci Numbers!
-This program is all, valid C and C++ and Perl and Raku code!
-It calculates all fibonacci numbers from 0 to 9!
+<font color="#990000">%</font> g<font color="#990000">++</font> fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
+<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
+Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
+This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
+It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
 
-fib(0) = 0
-fib(1) = 1
-fib(2) = 1
-fib(3) = 2
-fib(4) = 3
-fib(5) = 5
-fib(6) = 8
-fib(7) = 13
-fib(8) = 21
-fib(9) = 34
-fib(10) = 55
-</pre><br />
-<h3>Let's run it with Perl and Raku</h3>
-<pre>
-% perl fibonacci.pl.raku.c
-Hello, welcome to the Fibonacci Numbers!
-This program is all, valid C and C++ and Perl and Raku code!
-It calculates all fibonacci numbers from 0 to 9!
+fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
+fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
+fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
+fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
+fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
+fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
+fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
+fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
+fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
+</pre>
+<br />
+<h3 style='display: inline'>Let's run it with Perl and Raku</h3><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> perl fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
+Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
+This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
+It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
 
-fib(0) = 0
-fib(1) = 1
-fib(2) = 1
-fib(3) = 2
-fib(4) = 3
-fib(5) = 5
-fib(6) = 8
-fib(7) = 13
-fib(8) = 21
-fib(9) = 34
-fib(10) = 55
+fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
+fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
+fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
+fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
+fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
+fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
+fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
+fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
+fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
 
-% raku fibonacci.pl.raku.c
-Hello, welcome to the Fibonacci Numbers!
-This program is all, valid C and C++ and Perl and Raku code!
-It calculates all fibonacci numbers from 0 to 9!
+<font color="#990000">%</font> raku fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
+Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
+This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
+It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
 
-fib(0) = 0
-fib(1) = 1
-fib(2) = 1
-fib(3) = 2
-fib(4) = 3
-fib(5) = 5
-fib(6) = 8
-fib(7) = 13
-fib(8) = 21
-fib(9) = 34
-fib(10) = 55
-</pre><br />
-<p>It's entertaining to play with :-).</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
+fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
+fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
+fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
+fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
+fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
+fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
+fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
+fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
+fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
+</pre>
+<br />
+<span>It's entertaining to play with :-).</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -6556,15 +6691,18 @@ fib(10) = 55
 </ul><br />
 <h2 style='display: inline'>Quick Guide</h2><br />
 <br />
-<pre>
-# Starting
- ./bin/perldaemon start (or shortcut ./control start)
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Starting</font></i>
+ <font color="#990000">.</font>/bin/perldaemon start <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control start<font color="#990000">)</font>
 
-# Stopping
- ./bin/perldaemon stop (or shortcut ./control stop)
+<i><font color="#9A1900"># Stopping</font></i>
+ <font color="#990000">.</font>/bin/perldaemon stop <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control stop<font color="#990000">)</font>
 
-# Alternatively: Starting in foreground 
-./bin/perldaemon start daemon.daemonize=no (or shortcut ./control foreground)
+<i><font color="#9A1900"># Alternatively: Starting in foreground </font></i>
+<font color="#990000">.</font>/bin/perldaemon start daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>no <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control foreground<font color="#990000">)</font>
 </pre>
 <br />
 <span>To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</span><br />
@@ -6573,55 +6711,64 @@ fib(10) = 55
 <br />
 <span>The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":</span><br />
 <br />
-<pre>
-pb@titania:~/svn/utils/perldaemon/trunk$ ./control keys
-# Path to the logfile
-daemon.logfile=./log/perldaemon.log
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>pb@titania<font color="#990000">:~</font>/svn/utils/perldaemon/trunk$ <font color="#990000">.</font>/control keys
+<i><font color="#9A1900"># Path to the logfile</font></i>
+daemon<font color="#990000">.</font><font color="#009900">logfile</font><font color="#990000">=.</font>/log/perldaemon<font color="#990000">.</font>log
 
-# The amount of seconds until the next event look takes place
-daemon.loopinterval=1
+<i><font color="#9A1900"># The amount of seconds until the next event look takes place</font></i>
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
 
-# Path to the modules dir
-daemon.modules.dir=./lib/PerlDaemonModules
+<i><font color="#9A1900"># Path to the modules dir</font></i>
+daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">dir</font><font color="#990000">=.</font>/lib/PerlDaemonModules
 
-# Specifies either the daemon should run in daemon or foreground mode
-daemon.daemonize=yes
+<i><font color="#9A1900"># Specifies either the daemon should run in daemon or foreground mode</font></i>
+daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>yes
 
-# Path to the pidfile
-daemon.pidfile=./run/perldaemon.pid
+<i><font color="#9A1900"># Path to the pidfile</font></i>
+daemon<font color="#990000">.</font><font color="#009900">pidfile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>pid
 
-# Each module should run every run interval seconds
-daemon.modules.runinterval=3
+<i><font color="#9A1900"># Each module should run every run interval seconds</font></i>
+daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">runinterval</font><font color="#990000">=</font><font color="#993399">3</font>
 
-# Path to the alive file (is touched every loop interval seconds, usable for monitoring)
-daemon.alivefile=./run/perldaemon.alive
+<i><font color="#9A1900"># Path to the alive file (is touched every loop interval seconds, usable for monitoring)</font></i>
+daemon<font color="#990000">.</font><font color="#009900">alivefile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>alive
 
-# Specifies the working directory
-daemon.wd=./
+<i><font color="#9A1900"># Specifies the working directory</font></i>
+daemon<font color="#990000">.</font><font color="#009900">wd</font><font color="#990000">=./</font>
 </pre>
 <br />
 <h2 style='display: inline'>Example </h2><br />
 <br />
 <span>So let's start the daemon with a loop interval of 10 seconds:</span><br />
 <br />
-<pre>
-$ ./control keys | grep daemon.loopinterval
-daemon.loopinterval=1
-$ ./control keys daemon.loopinterval=10 | grep daemon.loopinterval
-daemon.loopinterval=10
-$ ./control start daemon.loopinterval=10; sleep 10; tail -n 2 log/perldaemon.log
-Starting daemon now...
-Mon Jun 13 11:29:27 2011 (PID 2838): Triggering PerlDaemonModules::ExampleModule 
-(last triggered before 10.002106s; carry: 7.002106s; wanted interval: 3s)
-Mon Jun 13 11:29:27 2011 (PID 2838): ExampleModule Test 2
-$ ./control stop
-Stopping daemon now...
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <font color="#990000">.</font>/control keys <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
+$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
+daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font>
+$ <font color="#990000">.</font>/control start daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font><font color="#990000">;</font> sleep <font color="#993399">10</font><font color="#990000">;</font> tail -n <font color="#993399">2</font> log/perldaemon<font color="#990000">.</font>log
+Starting daemon now<font color="#990000">...</font>
+Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> Triggering PerlDaemonModules<font color="#990000">::</font>ExampleModule 
+<font color="#990000">(</font>last triggered before <font color="#993399">10</font><font color="#990000">.</font>002106s<font color="#990000">;</font> carry<font color="#990000">:</font> <font color="#993399">7</font><font color="#990000">.</font>002106s<font color="#990000">;</font> wanted interval<font color="#990000">:</font> 3s<font color="#990000">)</font>
+Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> ExampleModule Test <font color="#993399">2</font>
+$ <font color="#990000">.</font>/control stop
+Stopping daemon now<font color="#990000">...</font>
 </pre>
 <br />
 <span>If you want to change that property forever, either edit perldaemon.conf or do this:</span><br />
 <br />
-<pre>
-$ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaemon.conf
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">&gt;</font> new<font color="#990000">.</font>conf<font color="#990000">;</font> mv new<font color="#990000">.</font>conf conf/perldaemon<font color="#990000">.</font>conf
 </pre>
 <br />
 <h2 style='display: inline'>HiRes event loop</h2><br />
@@ -6634,48 +6781,54 @@ $ ./control keys daemon.loopinterval=10 &gt; new.conf; mv new.conf conf/perldaem
 <br />
 <span>This is one of the example modules you will find in the source code. It should be pretty self-explanatory if you know Perl :-).</span><br />
 <br />
-<pre>
-package PerlDaemonModules::ExampleModule;
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> PerlDaemonModules<font color="#990000">::</font>ExampleModule<font color="#990000">;</font>
 
-use strict;
-use warnings;
+<b><font color="#0000FF">use</font></b> strict<font color="#990000">;</font>
+<b><font color="#0000FF">use</font></b> warnings<font color="#990000">;</font>
 
-sub new ($$$) {
-  my ($class, $conf) = @_;
+<b><font color="#0000FF">sub</font></b> <b><font color="#000000">new</font></b> <font color="#990000">(</font>$$$<font color="#990000">)</font> <font color="#FF0000">{</font>
+  <b><font color="#0000FF">my</font></b> <font color="#990000">(</font><font color="#009900">$class</font><font color="#990000">,</font> <font color="#009900">$conf</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">@_</font><font color="#990000">;</font>
 
-  my $self = bless { conf =&gt; $conf }, $class;
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">bless</font></b> <font color="#FF0000">{</font> conf <font color="#990000">=&gt;</font> <font color="#009900">$conf</font> <font color="#FF0000">}</font><font color="#990000">,</font> <font color="#009900">$class</font><font color="#990000">;</font>
 
-  # Store some private module stuff
-  $self-&gt;{counter} = 0;
+  <i><font color="#9A1900"># Store some private module stuff</font></i>
+  <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
 
-  return $self;
-}
+  <b><font color="#0000FF">return</font></b> <font color="#009900">$self</font><font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-# Runs periodically in a loop (set interval in perldaemon.conf)
-sub do ($) {
-  my $self = shift;
-  my $conf = $self-&gt;{conf};
-  my $logger = $conf-&gt;{logger};
+<i><font color="#9A1900"># Runs periodically in a loop (set interval in perldaemon.conf)</font></i>
+<b><font color="#0000FF">sub</font></b> <b><font color="#0000FF">do</font></b> <font color="#990000">(</font>$<font color="#990000">)</font> <font color="#FF0000">{</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">shift</font></b><font color="#990000">;</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$conf</font> <font color="#990000">=</font> <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>conf<font color="#FF0000">}</font><font color="#990000">;</font>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$logger</font> <font color="#990000">=</font> <font color="#009900">$conf</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>logger<font color="#FF0000">}</font><font color="#990000">;</font>
 
-  # Calculate some private module stuff
-  my $count = ++$self-&gt;{counter};
+  <i><font color="#9A1900"># Calculate some private module stuff</font></i>
+  <b><font color="#0000FF">my</font></b> <font color="#009900">$count</font> <font color="#990000">=</font> <font color="#990000">++</font><font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font><font color="#990000">;</font>
 
-  $logger-&gt;logmsg("ExampleModule Test $count");
-}
+  <font color="#009900">$logger</font><font color="#990000">-&gt;</font><b><font color="#000000">logmsg</font></b><font color="#990000">(</font><font color="#FF0000">"ExampleModule Test $count"</font><font color="#990000">);</font>
+<font color="#FF0000">}</font>
 
-1;
+<font color="#993399">1</font><font color="#990000">;</font>
 </pre>
 <br />
 <h3 style='display: inline'>Your own module</h3><br />
 <br />
 <span>Want to give it some better use? It's just as easy as:</span><br />
 <br />
-<pre>
- cd ./lib/PerlDaemonModules/
- cp ExampleModule.pm YourModule.pm
- vi YourModule.pm
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre> cd <font color="#990000">.</font>/lib/PerlDaemonModules<font color="#990000">/</font>
+ cp ExampleModule<font color="#990000">.</font>pm YourModule<font color="#990000">.</font>pm
+ vi YourModule<font color="#990000">.</font>pm
  cd -
- ./bin/perldaemon restart (or shortcurt ./control restart)
+ <font color="#990000">.</font>/bin/perldaemon restart <font color="#990000">(</font>or shortcurt <font color="#990000">.</font>/control restart<font color="#990000">)</font>
 </pre>
 <br />
 <span>Now watch <span class='inlinecode'>./log/perldaemon.log</span> closely. It is a good practice to test your modules in 'foreground mode' (see above how to do that).</span><br />
@@ -6712,8 +6865,10 @@ sub do ($) {
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>The Fype Programming Language</h1>
-<p class="quote"><i>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</i></p>
+                <h1 style='display: inline'>The Fype Programming Language</h1><br />
+<br />
+<span class='quote'>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</span><br />
+<br />
 <pre>
       ____                                      _        __       
      / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
@@ -6721,73 +6876,90 @@ sub do ($) {
  _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
-</pre><br />
-<p>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</p>
-<p>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </p>
-<p>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</p>
-<h2>Object-oriented C style</h2>
-<p>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </p>
-<p>To give you an idea of how it works here as an example is a snippet from the main Fype "class header":</p>
-<pre>
-typedef struct {
-   Tupel *p_tupel_argv; // Contains command line options
-   List *p_list_token; // Initial list of token
-   Hash *p_hash_syms; // Symbol table
-   char *c_basename;
-} Fype;
-</pre><br />
-<p>And here is a snippet from the primary Fype "class implementation":</p>
-<pre>
-Fype*
-fype_new() {
-   Fype *p_fype = malloc(sizeof(Fype));
+</pre>
+<br />
+<span>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</span><br />
+<br />
+<span>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </span><br />
+<br />
+<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</span><br />
+<br />
+<h2 style='display: inline'>Object-oriented C style</h2><br />
+<br />
+<span>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </span><br />
+<br />
+<span>To give you an idea of how it works here as an example is a snippet from the main Fype "class header":</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+   <font color="#008080">Tupel</font> <font color="#990000">*</font>p_tupel_argv<font color="#990000">;</font> <i><font color="#9A1900">// Contains command line options</font></i>
+   <font color="#008080">List</font> <font color="#990000">*</font>p_list_token<font color="#990000">;</font> <i><font color="#9A1900">// Initial list of token</font></i>
+   <font color="#008080">Hash</font> <font color="#990000">*</font>p_hash_syms<font color="#990000">;</font> <i><font color="#9A1900">// Symbol table</font></i>
+   <font color="#009900">char</font> <font color="#990000">*</font>c_basename<font color="#990000">;</font>
+<font color="#FF0000">}</font> Fype<font color="#990000">;</font>
+</pre>
+<br />
+<span>And here is a snippet from the primary Fype "class implementation":</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>Fype<font color="#990000">*</font>
+<b><font color="#000000">fype_new</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">malloc</font></b><font color="#990000">(</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>Fype<font color="#990000">));</font>
 
-   p_fype-&gt;p_hash_syms = hash_new(512);
-   p_fype-&gt;p_list_token = list_new();
-   p_fype-&gt;p_tupel_argv = tupel_new();
-   p_fype-&gt;c_basename = NULL;
+   p_fype<font color="#990000">-&gt;</font>p_hash_syms <font color="#990000">=</font> <b><font color="#000000">hash_new</font></b><font color="#990000">(</font><font color="#993399">512</font><font color="#990000">);</font>
+   p_fype<font color="#990000">-&gt;</font>p_list_token <font color="#990000">=</font> <b><font color="#000000">list_new</font></b><font color="#990000">();</font>
+   p_fype<font color="#990000">-&gt;</font>p_tupel_argv <font color="#990000">=</font> <b><font color="#000000">tupel_new</font></b><font color="#990000">();</font>
+   p_fype<font color="#990000">-&gt;</font>c_basename <font color="#990000">=</font> NULL<font color="#990000">;</font>
 
-   garbage_init();
+   <b><font color="#000000">garbage_init</font></b><font color="#990000">();</font>
 
-   return (p_fype);
-}
+   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font>p_fype<font color="#990000">);</font>
+<font color="#FF0000">}</font>
 
-void
-fype_delete(Fype *p_fype) {
-   argv_tupel_delete(p_fype-&gt;p_tupel_argv);
+<font color="#009900">void</font>
+<b><font color="#000000">fype_delete</font></b><font color="#990000">(</font><font color="#008080">Fype</font> <font color="#990000">*</font>p_fype<font color="#990000">)</font> <font color="#FF0000">{</font>
+   <b><font color="#000000">argv_tupel_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_tupel_argv<font color="#990000">);</font>
 
-   hash_iterate(p_fype-&gt;p_hash_syms, symbol_cleanup_hash_syms_cb);
-   hash_delete(p_fype-&gt;p_hash_syms);
+   <b><font color="#000000">hash_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">,</font> symbol_cleanup_hash_syms_cb<font color="#990000">);</font>
+   <b><font color="#000000">hash_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">);</font>
 
-   list_iterate(p_fype-&gt;p_list_token, token_ref_down_cb);
-   list_delete(p_fype-&gt;p_list_token);
+   <b><font color="#000000">list_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">,</font> token_ref_down_cb<font color="#990000">);</font>
+   <b><font color="#000000">list_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">);</font>
 
-   if (p_fype-&gt;c_basename)
-      free(p_fype-&gt;c_basename);
+   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">)</font>
+      <b><font color="#000000">free</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">);</font>
 
-   garbage_destroy();
-}
+   <b><font color="#000000">garbage_destroy</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
 
-int
-fype_run(int i_argc, char **pc_argv) {
-   Fype *p_fype = fype_new();
+<font color="#009900">int</font>
+<b><font color="#000000">fype_run</font></b><font color="#990000">(</font><font color="#009900">int</font> i_argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>pc_argv<font color="#990000">)</font> <font color="#FF0000">{</font>
+   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">fype_new</font></b><font color="#990000">();</font>
 
-   // argv: Maintains command line options
-   argv_run(p_fype, i_argc, pc_argv);
+   <i><font color="#9A1900">// argv: Maintains command line options</font></i>
+   <b><font color="#000000">argv_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">,</font> i_argc<font color="#990000">,</font> pc_argv<font color="#990000">);</font>
 
-   // scanner: Creates a list of token
-   scanner_run(p_fype);
+   <i><font color="#9A1900">// scanner: Creates a list of token</font></i>
+   <b><font color="#000000">scanner_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   // interpret: Interpret the list of token
-   interpret_run(p_fype);
+   <i><font color="#9A1900">// interpret: Interpret the list of token</font></i>
+   <b><font color="#000000">interpret_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   fype_delete(p_fype);
+   <b><font color="#000000">fype_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   return (0);
-}
-</pre><br />
-<h2>Data types</h2>
-<p>Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:</p>
+   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<h2 style='display: inline'>Data types</h2><br />
+<br />
+<span>Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:</span><br />
 <ul>
 <li>integer - Specifies a number</li>
 <li>double - Specifies a double-precision number</li>
@@ -6796,13 +6968,19 @@ fype_run(int i_argc, char **pc_argv) {
 <li>any- May be any type above</li>
 <li>void - No type</li>
 <li>identifier - It's a variable name or a procedure name, or a function name</li>
-</ul>
-<p>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</p>
-<h2>Syntax</h2>
-<h3>Comments</h3>
-<p>Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</p>
-<h3>Variables</h3>
-<p>Variables are defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</p>
+</ul><br />
+<span>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</span><br />
+<br />
+<h2 style='display: inline'>Syntax</h2><br />
+<br />
+<h3 style='display: inline'>Comments</h3><br />
+<br />
+<span>Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</span><br />
+<br />
+<h3 style='display: inline'>Variables</h3><br />
+<br />
+<span>Variables are defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</span><br />
+<br />
 <pre>
 my foo = 1 + 2;
 say foo; 
@@ -6813,8 +6991,10 @@ say bar;
 
 my baz;
 say baz; # Will print out 0
-</pre><br />
-<p>You may use the "defined" keyword to check if an identifier has been defined or not:</p>
+</pre>
+<br />
+<span>You may use the "defined" keyword to check if an identifier has been defined or not:</span><br />
+<br />
 <pre>
 ifnot defined foo {
 	say "No foo yet defined";
@@ -6826,9 +7006,12 @@ if defined foo {
 	put "foo is defined and has the value ";
 	say foo;
 }
-</pre><br />
-<h3>Synonyms</h3>
-<p>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</p>
+</pre>
+<br />
+<h3 style='display: inline'>Synonyms</h3><br />
+<br />
+<span>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</span><br />
+<br />
 <pre>
 my foo = "foo";
 my bar = \foo;
@@ -6836,8 +7019,10 @@ foo = "bar";
 
 # The synonym variable should now also set to "bar"
 assert "bar" == bar;
-</pre><br />
-<p>Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</p>
+</pre>
+<br />
+<span>Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</span><br />
+<br />
 <pre>
 # Create a new procedure baz
 proc baz { say "I am baz"; }
@@ -6849,8 +7034,10 @@ undef baz;
 
 # bay still has a reference of the original procedure baz
 bay; # this prints aut "I am baz" 
-</pre><br />
-<p>The "syms" keyword gives you the total number of synonyms pointing to a specific value:</p>
+</pre>
+<br />
+<span>The "syms" keyword gives you the total number of synonyms pointing to a specific value:</span><br />
+<br />
 <pre>
 my foo = 1;
 say syms foo; # Prints 1
@@ -6861,18 +7048,26 @@ say syms baz; # Prints 2
 
 undef baz;
 say syms foo; # Prints 1
-</pre><br />
-<h2>Statements and expressions</h2>
-<p>A Fype program is a list of statements. Each keyword, expression or function call is part of a statement. Each statement is ended with a semicolon. Example:</p>
+</pre>
+<br />
+<h2 style='display: inline'>Statements and expressions</h2><br />
+<br />
+<span>A Fype program is a list of statements. Each keyword, expression or function call is part of a statement. Each statement is ended with a semicolon. Example:</span><br />
+<br />
 <pre>
 my bar = 3, foo = 1 + 2; 
 say foo;
 exit foo - bar;
-</pre><br />
-<h3>Parenthesis</h3>
-<p>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</p>
-<h3>Basic expressions</h3>
-<p>Any "any" value holding a string will be automatically converted to an integer value.</p>
+</pre>
+<br />
+<h3 style='display: inline'>Parenthesis</h3><br />
+<br />
+<span>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</span><br />
+<br />
+<h3 style='display: inline'>Basic expressions</h3><br />
+<br />
+<span>Any "any" value holding a string will be automatically converted to an integer value.</span><br />
+<br />
 <pre>
 (any) &lt;any&gt; + &lt;any&gt;
 (any) &lt;any&gt; - &lt;any&gt;
@@ -6885,52 +7080,75 @@ exit foo - bar;
 (integer) &lt;any&gt; &lt;&gt; &lt;any&gt;
 (integer) &lt;any&gt; gt &lt;any&gt;
 (integer) not &lt;any&gt;
-</pre><br />
-<h3>Bitwise expressions</h3>
+</pre>
+<br />
+<h3 style='display: inline'>Bitwise expressions</h3><br />
+<br />
 <pre>
 (integer) &lt;any&gt; :&lt; &lt;any&gt;
 (integer) &lt;any&gt; :&gt; &lt;any&gt;
 (integer) &lt;any&gt; and &lt;any&gt;
 (integer) &lt;any&gt; or &lt;any&gt;
 (integer) &lt;any&gt; xor &lt;any&gt;
-</pre><br />
-<h3>Numeric expressions</h3>
+</pre>
+<br />
+<h3 style='display: inline'>Numeric expressions</h3><br />
+<br />
 <pre>
 (number) neg &lt;number&gt;
-</pre><br />
-<p>... returns the negative value of "number":</p>
+</pre>
+<br />
+<span>... returns the negative value of "number":</span><br />
+<br />
 <pre>
 (integer) no &lt;integer&gt;
-</pre><br />
-<p>... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!</p>
+</pre>
+<br />
+<span>... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!</span><br />
+<br />
 <pre>
 (integer) yes &lt;integer&gt;
-</pre><br />
-<p>... always returns 1. The parameter is optional. Example:</p>
+</pre>
+<br />
+<span>... always returns 1. The parameter is optional. Example:</span><br />
+<br />
 <pre>
 # Prints out 1, because foo is not defined
 if yes { say no defined foo; } 
-</pre><br />
-<h2>Control statements</h2>
-<p>Control statements available in Fype:</p>
+</pre>
+<br />
+<h2 style='display: inline'>Control statements</h2><br />
+<br />
+<span>Control statements available in Fype:</span><br />
+<br />
 <pre>
 if &lt;expression&gt; { &lt;statements&gt; }
-</pre><br />
-<p>... runs the statements if the expression evaluates to a true value.</p>
+</pre>
+<br />
+<span>... runs the statements if the expression evaluates to a true value.</span><br />
+<br />
 <pre>
 ifnot &lt;expression&gt; { &lt;statements&gt; }
-</pre><br />
-<p>... runs the statements if the expression evaluates to a false value.</p>
+</pre>
+<br />
+<span>... runs the statements if the expression evaluates to a false value.</span><br />
+<br />
 <pre>
 while &lt;expression&gt; { &lt;statements&gt; }
-</pre><br />
-<p>... runs the statements as long as the expression evaluates to a true value.</p>
+</pre>
+<br />
+<span>... runs the statements as long as the expression evaluates to a true value.</span><br />
+<br />
 <pre>
 until &lt;expression&gt; { &lt;statements&gt; }
-</pre><br />
-<p>... runs the statements as long as the expression evaluates to a false value.</p>
-<h2>Scopes</h2>
-<p>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</p>
+</pre>
+<br />
+<span>... runs the statements as long as the expression evaluates to a false value.</span><br />
+<br />
+<h2 style='display: inline'>Scopes</h2><br />
+<br />
+<span>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</span><br />
+<br />
 <pre>
 my foo = 1;
 
@@ -6956,8 +7174,10 @@ my foo = 1;
 
 # Prints out 0
 say defined bar;
-</pre><br />
-<p>Another example including an actual output:</p>
+</pre>
+<br />
+<span>Another example including an actual output:</span><br />
+<br />
 <pre>
 ./fype -e ’my global; func foo { my var4; func bar { my var2, var3; func baz { my var1; scope; } baz; } bar; } foo;’
 Scopes:
@@ -6974,30 +7194,44 @@ SYM_FUNCTION: baz
 2 level(s) up:
 SYM_VARIABLE: var4 (id=00035, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
 SYM_FUNCTION: bar
-</pre><br />
-<h2>Definedness </h2>
+</pre>
+<br />
+<h2 style='display: inline'>Definedness </h2><br />
+<br />
 <pre>
 (integer) defined &lt;identifier&gt;
-</pre><br />
-<p>... returns 1 if "identifier" has been defined. Returns 0 otherwise.</p>
+</pre>
+<br />
+<span>... returns 1 if "identifier" has been defined. Returns 0 otherwise.</span><br />
+<br />
 <pre>
 (integer) undef &lt;identifier&gt;
-</pre><br />
-<p>... tries to undefine/delete the "identifier". Returns 1 if it succeeded, otherwise 0 is returned.</p>
-<h2>System </h2>
-<p>These are some system and interpreter specific built-in functions supported:</p>
+</pre>
+<br />
+<span>... tries to undefine/delete the "identifier". Returns 1 if it succeeded, otherwise 0 is returned.</span><br />
+<br />
+<h2 style='display: inline'>System </h2><br />
+<br />
+<span>These are some system and interpreter specific built-in functions supported:</span><br />
+<br />
 <pre>
 (void) end
-</pre><br />
-<p>... exits the program with the exit status of 0.</p>
+</pre>
+<br />
+<span>... exits the program with the exit status of 0.</span><br />
+<br />
 <pre>
 (void) exit &lt;integer&gt;
-</pre><br />
-<p>... exits the program with the specified exit status.</p>
+</pre>
+<br />
+<span>... exits the program with the specified exit status.</span><br />
+<br />
 <pre>
 (integer) fork
-</pre><br />
-<p>... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:</p>
+</pre>
+<br />
+<span>... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:</span><br />
+<br />
 <pre>
 my pid = fork;
 
@@ -7008,28 +7242,42 @@ if pid {
 } ifnot pid {
 	say "I am the child process";
 }
-</pre><br />
-<p>To execute the garbage collector do:</p>
+</pre>
+<br />
+<span>To execute the garbage collector do:</span><br />
+<br />
 <pre>
 (integer) GC
-</pre><br />
-<p>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</p>
-<h3>I/O </h3>
+</pre>
+<br />
+<span>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</span><br />
+<br />
+<h3 style='display: inline'>I/O </h3><br />
+<br />
 <pre>
 (any) put &lt;any&gt;
-</pre><br />
-<p>... prints out the argument</p>
+</pre>
+<br />
+<span>... prints out the argument</span><br />
+<br />
 <pre>
 (any) say &lt;any&gt;
-</pre><br />
-<p>is the same as put, but also includes an ending newline.</p>
+</pre>
+<br />
+<span>is the same as put, but also includes an ending newline.</span><br />
+<br />
 <pre>
 (void) ln
-</pre><br />
-<p>... just prints a new line.</p>
-<h2>Procedures and functions</h2>
-<h3>Procedures</h3>
-<p>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It's using already defined variables (e.g. global variables). A procedure does not have its own namespace. It's using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</p>
+</pre>
+<br />
+<span>... just prints a new line.</span><br />
+<br />
+<h2 style='display: inline'>Procedures and functions</h2><br />
+<br />
+<h3 style='display: inline'>Procedures</h3><br />
+<br />
+<span>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It's using already defined variables (e.g. global variables). A procedure does not have its own namespace. It's using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</span><br />
+<br />
 <pre>
 proc foo {
 	say 1 + a * 3 + b;
@@ -7040,9 +7288,12 @@ my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
 say c; # Print out "6\n";
-</pre><br />
-<h3>Nested procedures</h3>
-<p>It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</p>
+</pre>
+<br />
+<h3 style='display: inline'>Nested procedures</h3><br />
+<br />
+<span>It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</span><br />
+<br />
 <pre>
 proc foo {
 	say "I am foo";
@@ -7060,9 +7311,12 @@ proc foo {
 foo; # Here the procedure foo will define the procedure bar!
 bar; # Now the procedure bar is defined!
 foo; # Here the procedure foo will redefine bar again!
-</pre><br />
-<h3>Functions</h3>
-<p>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It's using local (lexical scoped) variables. If a certain variable does not exist, when It's using already defined variables (e.g. one scope above). </p>
+</pre>
+<br />
+<h3 style='display: inline'>Functions</h3><br />
+<br />
+<span>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It's using local (lexical scoped) variables. If a certain variable does not exist, when It's using already defined variables (e.g. one scope above). </span><br />
+<br />
 <pre>
 func foo {
 	say 1 + a * 3 + b;
@@ -7073,9 +7327,12 @@ my a = 2, b = 4;
 
 foo; # Run the procedure. Print out "11\n"
 say c; # Will produce an error because c is out of scope!
-</pre><br />
-<h3>Nested functions</h3>
-<p>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</p>
+</pre>
+<br />
+<h3 style='display: inline'>Nested functions</h3><br />
+<br />
+<span>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</span><br />
+<br />
 <pre>
 func foo {
 	func bar {
@@ -7087,15 +7344,20 @@ func foo {
 
 foo;
 bar; # Will produce an error because bar is out of scope!
-</pre><br />
-<h2>Arrays</h2>
-<p>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</p>
+</pre>
+<br />
+<h2 style='display: inline'>Arrays</h2><br />
+<br />
+<span>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</span><br />
+<br />
 <pre>
 func bar { say ”bar” }
 my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
 say foo;
-</pre><br />
-<p>It produces the following output:</p>
+</pre>
+<br />
+<span>It produces the following output:</span><br />
+<br />
 <pre>
 % ./fype arrays.fy
 bar
@@ -7105,14 +7367,21 @@ bar
 A
 BA
 BB
-</pre><br />
-<h2>Fancy stuff</h2>
-<p>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </p>
-<h2>May the source be with you</h2>
-<p>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</p>
-<a class="textlink" href="https://codeberg.org/snonux/fype">https://codeberg.org/snonux/fype</a><br />
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+</pre>
+<br />
+<h2 style='display: inline'>Fancy stuff</h2><br />
+<br />
+<span>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </span><br />
+<br />
+<h2 style='display: inline'>May the source be with you</h2><br />
+<br />
+<span>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/fype'>https://codeberg.org/snonux/fype</a><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -7466,126 +7735,135 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
 <br />
 <h2 style='display: inline'>math.pl</h2><br />
 <br />
-<pre>
-#!/usr/bin/perl
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
 
-# (C) 2006 by Paul C. Buetow
+<i><font color="#9A1900"># (C) 2006 by Paul C. Buetow</font></i>
 
-goto library for study $math;
-BEGIN { s/earching/ books/ 
-and read $them, $at, $the } library:
+<b><font color="#0000FF">goto</font></b> library <b><font color="#0000FF">for</font></b> study <font color="#009900">$math</font><font color="#990000">;</font>
+BEGIN <font color="#FF0000">{</font> <b><font color="#0000FF">s</font></b><font color="#FF0000">/earching/ books/</font> 
+<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">read</font></b> <font color="#009900">$them</font><font color="#990000">,</font> <font color="#009900">$at</font><font color="#990000">,</font> <font color="#009900">$the</font> <font color="#FF0000">}</font> library<font color="#990000">:</font>
 
-our $topics, cos and tan, 
-require strict; import { of, tied $patience };
+<b><font color="#0000FF">our</font></b> <font color="#009900">$topics</font><font color="#990000">,</font> <b><font color="#0000FF">cos</font></b> <b><font color="#0000FF">and</font></b> tan<font color="#990000">,</font> 
+<b><font color="#0000FF">require</font></b> strict<font color="#990000">;</font> <b><font color="#000080">import</font></b> <font color="#FF0000">{</font> of<font color="#990000">,</font> <b><font color="#0000FF">tied</font></b> <font color="#009900">$patience</font> <font color="#FF0000">}</font><font color="#990000">;</font>
 
-do { int'egrate'; sub trade; };
-do { exp'onentize' and abs'olutize' };
-study and study and study and study;
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study<font color="#990000">;</font>
 
-foreach $topic ({of, math}) {
-you, m/ay /go, to, limits }
+<b><font color="#0000FF">foreach</font></b> <font color="#009900">$topic</font> <font color="#990000">(</font><font color="#FF0000">{</font>of<font color="#990000">,</font> math<font color="#FF0000">}</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+you<font color="#990000">,</font> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ay /</font>go<font color="#990000">,</font> to<font color="#990000">,</font> limits <font color="#FF0000">}</font>
 
-do { not qw/erk / unless $success 
-and m/ove /o;$n and study };
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> not <b><font color="#0000FF">qw</font></b><font color="#FF0000">/erk /</font> <b><font color="#0000FF">unless</font></b> <font color="#009900">$success</font> 
+<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ove /</font>o<font color="#990000">;</font><font color="#009900">$n</font> <b><font color="#0000FF">and</font></b> study <font color="#FF0000">}</font><font color="#990000">;</font>
 
-do { int'egrate'; sub trade; };
-do { exp'onentize' and abs'olutize' };
-study and study and study and study;
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study<font color="#990000">;</font>
 
-grep /all/, exp'onents' and cos'inuses';
-/seek results/ for @all, log'4rithms';
+<b><font color="#0000FF">grep</font></b> <font color="#FF0000">/all/</font><font color="#990000">,</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onents'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">cos</font></b><font color="#FF0000">'inuses'</font><font color="#990000">;</font>
+<font color="#FF0000">/seek results/</font> <b><font color="#0000FF">for</font></b> <font color="#009900">@all</font><font color="#990000">,</font> <b><font color="#0000FF">log</font></b><font color="#FF0000">'4rithms'</font><font color="#990000">;</font>
 
-'you' =~ m/ay /go, not home 
-unless each %book ne#ars
-$completion;
+<font color="#FF0000">'you'</font> <font color="#990000">=~</font> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ay /</font>go<font color="#990000">,</font> not home 
+<b><font color="#0000FF">unless</font></b> <b><font color="#0000FF">each</font></b> <font color="#009900">%book</font> ne<i><font color="#9A1900">#ars</font></i>
+<font color="#009900">$completion</font><font color="#990000">;</font>
 
-do { int'egrate'; sub trade; };
-do { exp'onentize' and abs'olutize' };
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
 
-#at
-home: //ig,'nore', time and sleep $very =~ s/tr/on/g;
+<i><font color="#9A1900">#at</font></i>
+home<font color="#990000">:</font> <font color="#FF0000">//ig,'nore', time and sleep $very =~ s/tr/on/</font><b><font color="#0000FF">g</font></b><font color="#990000">;</font>
 __END__
 
 </pre>
 <br />
 <h2 style='display: inline'>christmas.pl</h2><br />
 <br />
-<pre>
-#!/usr/bin/perl
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
 
-# (C) 2006 by Paul C. Buetow
+<i><font color="#9A1900"># (C) 2006 by Paul C. Buetow</font></i>
 
-Christmas:{time;#!!!
+Christmas<font color="#990000">:</font><font color="#FF0000">{</font>time<font color="#990000">;</font><i><font color="#9A1900">#!!!</font></i>
 
-Children: do tell $wishes;
+Children<font color="#990000">:</font> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">tell</font></b> <font color="#009900">$wishes</font><font color="#990000">;</font>
 
-Santa: for $each (@children) { 
-BEGIN { read $each, $their, wishes and study them; use Memoize#ing
+Santa<font color="#990000">:</font> <b><font color="#0000FF">for</font></b> <font color="#009900">$each</font> <font color="#990000">(</font><font color="#009900">@children</font><font color="#990000">)</font> <font color="#FF0000">{</font> 
+BEGIN <font color="#FF0000">{</font> <b><font color="#0000FF">read</font></b> <font color="#009900">$each</font><font color="#990000">,</font> <font color="#009900">$their</font><font color="#990000">,</font> wishes <b><font color="#0000FF">and</font></b> study them<font color="#990000">;</font> <b><font color="#0000FF">use</font></b> Memoize<i><font color="#9A1900">#ing</font></i>
 
-} use constant gift, 'wrapping'; 
-package Gifts; pack $each, gift and bless $each and goto deliver
-or do import if not local $available,!!! HO, HO, HO;
+<font color="#FF0000">}</font> <b><font color="#0000FF">use</font></b> constant gift<font color="#990000">,</font> <font color="#FF0000">'wrapping'</font><font color="#990000">;</font> 
+<b><font color="#0000FF">package</font></b> Gifts<font color="#990000">;</font> <b><font color="#0000FF">pack</font></b> <font color="#009900">$each</font><font color="#990000">,</font> gift <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">bless</font></b> <font color="#009900">$each</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">goto</font></b> deliver
+or <b><font color="#0000FF">do</font></b> <b><font color="#000080">import</font></b> <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">local</font></b> <font color="#009900">$available</font><font color="#990000">,!!!</font> HO<font color="#990000">,</font> HO<font color="#990000">,</font> HO<font color="#990000">;</font>
 
-redo Santa, pipe $gifts, to_childs;
-redo Santa and do return if last one, is, delivered; 
+<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
+<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered<font color="#990000">;</font> 
 
-deliver: gift and require diagnostics if our $gifts ,not break;
-do{ use NEXT; time; tied $gifts} if broken and dump the, broken, ones;
-The_children: sleep and wait for (each %gift) and try { to =&gt; untie $gifts };
+deliver<font color="#990000">:</font> gift <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">require</font></b> diagnostics <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">our</font></b> <font color="#009900">$gifts</font> <font color="#990000">,</font>not break<font color="#990000">;</font>
+<b><font color="#0000FF">do</font></b><font color="#FF0000">{</font> <b><font color="#0000FF">use</font></b> NEXT<font color="#990000">;</font> time<font color="#990000">;</font> <b><font color="#0000FF">tied</font></b> <font color="#009900">$gifts</font><font color="#FF0000">}</font> <b><font color="#0000FF">if</font></b> broken <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">dump</font></b> the<font color="#990000">,</font> broken<font color="#990000">,</font> ones<font color="#990000">;</font>
+The_children<font color="#990000">:</font> <b><font color="#0000FF">sleep</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">wait</font></b> <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><b><font color="#0000FF">each</font></b> <font color="#009900">%gift</font><font color="#990000">)</font> <b><font color="#0000FF">and</font></b> try <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <b><font color="#0000FF">untie</font></b> <font color="#009900">$gifts</font> <font color="#FF0000">}</font><font color="#990000">;</font>
 
-redo Santa, pipe $gifts, to_childs;
-redo Santa and do return if last one, is, delivered; 
+<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
+<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered<font color="#990000">;</font> 
 
-The_christmas_tree: formline s/ /childrens/, $gifts;
-alarm and warn if not exists $Christmas{ tree}, @t, $ENV{HOME};  
-write &lt;&lt;EMail
- to the parents to buy a new christmas tree!!!!111
- and send the
+The_christmas_tree<font color="#990000">:</font> formline <b><font color="#0000FF">s</font></b><font color="#FF0000">/ /childrens/</font><font color="#990000">,</font> <font color="#009900">$gifts</font><font color="#990000">;</font>
+<b><font color="#0000FF">alarm</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">warn</font></b> <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">exists</font></b> <font color="#009900">$Christmas</font><font color="#FF0000">{</font> tree<font color="#FF0000">}</font><font color="#990000">,</font> <font color="#009900">@t</font><font color="#990000">,</font> <font color="#009900">$ENV</font><font color="#FF0000">{</font>HOME<font color="#FF0000">}</font><font color="#990000">;</font>  
+<b><font color="#0000FF">write</font></b> <font color="#990000">&lt;&lt;</font>EMail
+ to the parents to buy a new christmas tree<font color="#990000">!!!!</font><font color="#993399">111</font>
+ <b><font color="#0000FF">and</font></b> send the
 EMail
-;wait and redo deliver until defined local $tree;
+<font color="#990000">;</font><b><font color="#0000FF">wait</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">redo</font></b> deliver until <b><font color="#0000FF">defined</font></b> <b><font color="#0000FF">local</font></b> <font color="#009900">$tree</font><font color="#990000">;</font>
 
-redo Santa, pipe $gifts, to_childs;
-redo Santa and do return if last one, is, delivered ;}
+<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
+<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered <font color="#990000">;</font><font color="#FF0000">}</font>
 
-END {} our $mission and do sleep until next Christmas ;}
+END <font color="#FF0000">{}</font> <b><font color="#0000FF">our</font></b> <font color="#009900">$mission</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">sleep</font></b> until <b><font color="#0000FF">next</font></b> Christmas <font color="#990000">;</font><font color="#FF0000">}</font>
 
 __END__
 
-This is perl, v5.8.8 built for i386-freebsd-64int
+This is perl<font color="#990000">,</font> v5<font color="#990000">.</font><font color="#993399">8.8</font> built <b><font color="#0000FF">for</font></b> i386<font color="#990000">-</font>freebsd<font color="#990000">-</font>64int
 </pre>
 <br />
 <h2 style='display: inline'>shopping.pl</h2><br />
 <br />
-<pre>
-#!/usr/bin/perl
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
 
-# (C) 2007 by Paul C. Buetow
+<i><font color="#9A1900"># (C) 2007 by Paul C. Buetow</font></i>
 
-BEGIN{} goto mall for $shopping; 
+BEGIN<font color="#FF0000">{}</font> <b><font color="#0000FF">goto</font></b> mall <b><font color="#0000FF">for</font></b> <font color="#009900">$shopping</font><font color="#990000">;</font> 
 
-m/y/; mall: seek$s, cool products(), { to =&gt; $sell };
-for $their (@business) { to:; earn:; a:; lot:; of:; money: }
+<b><font color="#0000FF">m</font></b><font color="#FF6600">/y/</font><font color="#990000">;</font> mall<font color="#990000">:</font> <b><font color="#0000FF">seek</font></b><font color="#009900">$s</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">(),</font> <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <font color="#009900">$sell</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">for</font></b> <font color="#009900">$their</font> <font color="#990000">(</font><font color="#009900">@business</font><font color="#990000">)</font> <font color="#FF0000">{</font> to<font color="#990000">:;</font> earn<font color="#990000">:;</font> a<font color="#990000">:;</font> lot<font color="#990000">:;</font> of<font color="#990000">:;</font> money<font color="#990000">:</font> <font color="#FF0000">}</font>
 
-do not goto home and exit mall if exists $new{product};
-foreach $of (q(uality rich products)){} package products; 
+<b><font color="#0000FF">do</font></b> not <b><font color="#0000FF">goto</font></b> home <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">exit</font></b> mall <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">exists</font></b> <font color="#009900">$new</font><font color="#FF0000">{</font>product<font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">foreach</font></b> <font color="#009900">$of</font> <font color="#990000">(</font><b><font color="#0000FF">q</font></b><font color="#FF0000">(uality rich products)</font><font color="#990000">)</font><font color="#FF0000">{}</font> <b><font color="#0000FF">package</font></b> products<font color="#990000">;</font> 
 
-our $news; do tell cool products() and do{ sub#tract
-cool{ $products and shift @the, @bad, @ones;
+<b><font color="#0000FF">our</font></b> <font color="#009900">$news</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">tell</font></b> cool <b><font color="#000000">products</font></b><font color="#990000">()</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b><font color="#FF0000">{</font> <b><font color="#0000FF">sub</font></b><i><font color="#9A1900">#tract</font></i>
+cool<font color="#FF0000">{</font> <font color="#009900">$products</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">shift</font></b> <font color="#009900">@the</font><font color="#990000">,</font> <font color="#009900">@bad</font><font color="#990000">,</font> <font color="#009900">@ones</font><font color="#990000">;</font>
 
-do bless [q(uality)], $products 
-and return not undef $stuff if not (local $available) }};
+<b><font color="#0000FF">do</font></b> <b><font color="#0000FF">bless</font></b> <font color="#990000">[</font><b><font color="#0000FF">q</font></b><font color="#FF0000">(uality)</font><font color="#990000">],</font> <font color="#009900">$products</font> 
+<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">return</font></b> not <b><font color="#0000FF">undef</font></b> <font color="#009900">$stuff</font> <b><font color="#0000FF">if</font></b> <b><font color="#000000">not</font></b> <font color="#990000">(</font><b><font color="#0000FF">local</font></b> <font color="#009900">$available</font><font color="#990000">)</font> <font color="#FF0000">}}</font><font color="#990000">;</font>
 
-do { study and study and study for cool products() }
-and do { seek $all, cool products(), { to =&gt; $buy } };
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">for</font></b> cool <b><font color="#000000">products</font></b><font color="#990000">()</font> <font color="#FF0000">}</font>
+<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">seek</font></b> <font color="#009900">$all</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">(),</font> <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <font color="#009900">$buy</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">;</font>
 
-do { write $them, $down } and do { order: foreach (@case) { package s } };
-goto home if not exists $more{money} or die q(uerying) ;for( @money){};
+<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">write</font></b> <font color="#009900">$them</font><font color="#990000">,</font> <font color="#009900">$down</font> <font color="#FF0000">}</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> order<font color="#990000">:</font> <b><font color="#0000FF">foreach</font></b> <font color="#990000">(</font><font color="#009900">@case</font><font color="#990000">)</font> <font color="#FF0000">{</font> <b><font color="#0000FF">package</font></b> <b><font color="#0000FF">s</font></b> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><font color="#0000FF">goto</font></b> home <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">exists</font></b> <font color="#009900">$more</font><font color="#FF0000">{</font>money<font color="#FF0000">}</font> or <b><font color="#0000FF">die</font></b> <b><font color="#0000FF">q</font></b><font color="#FF0000">(uerying)</font> <font color="#990000">;</font><b><font color="#0000FF">for</font></b><font color="#990000">(</font> <font color="#009900">@money</font><font color="#990000">)</font><font color="#FF0000">{}</font><font color="#990000">;</font>
 
-at:;home: do { END{} and:; rest:; a:; bit: exit $shopping } 
-and sleep until unpack$ing, cool products();
+at<font color="#990000">:;</font>home<font color="#990000">:</font> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> END<font color="#FF0000">{}</font> <b><font color="#0000FF">and</font></b><font color="#990000">:;</font> rest<font color="#990000">:;</font> a<font color="#990000">:;</font> bit<font color="#990000">:</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$shopping</font> <font color="#FF0000">}</font> 
+<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">sleep</font></b> until <b><font color="#0000FF">unpack</font></b><font color="#009900">$ing</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">();</font>
 
 __END__
-This is perl, v5.8.8 built for i386-freebsd-64int
+This is perl<font color="#990000">,</font> v5<font color="#990000">.</font><font color="#993399">8.8</font> built <b><font color="#0000FF">for</font></b> i386<font color="#990000">-</font>freebsd<font color="#990000">-</font>64int
 </pre>
 <br />
 <h2 style='display: inline'>More...</h2><br />

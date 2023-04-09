@@ -42,12 +42,35 @@
 <br />
 <span>jo</span><br />
 <br />
-<pre>
-if [ -f "foo" ]; then
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#FF0000">"foo"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
     echo foo
-else
+<b><font color="#0000FF">else</font></b>
     echo bar
-fi
+<b><font color="#0000FF">fi</font></b>
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Jo</font></i>
+❯ <b><font color="#0000FF">exec</font></b> <font color="#993399">5</font><font color="#990000">&lt;&gt;</font>/dev/tcp/google<font color="#990000">.</font>de<font color="#990000">/</font><font color="#993399">80</font>
+❯ echo -e <font color="#FF0000">"GET / HTTP/1.1</font><font color="#CC33CC">\n</font><font color="#FF0000">host: google.de</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font> <font color="#990000">&gt;&amp;</font><font color="#993399">5</font>
+❯ cat <font color="#990000">&lt;&amp;</font><font color="#993399">5</font> <font color="#990000">|</font> head
+HTTP<font color="#990000">/</font><font color="#993399">1.1</font> <font color="#993399">301</font> Moved Permanently
+Location<font color="#990000">:</font> http<font color="#990000">:</font>//www<font color="#990000">.</font>google<font color="#990000">.</font>de<font color="#990000">/</font>
+Content-Type<font color="#990000">:</font> text/html<font color="#990000">;</font> <font color="#009900">charset</font><font color="#990000">=</font>UTF-<font color="#993399">8</font>
+Date<font color="#990000">:</font> Thu<font color="#990000">,</font> <font color="#993399">18</font> Nov <font color="#993399">2021</font> <font color="#993399">08</font><font color="#990000">:</font><font color="#993399">27</font><font color="#990000">:</font><font color="#993399">18</font> GMT
+Expires<font color="#990000">:</font> Sat<font color="#990000">,</font> <font color="#993399">18</font> Dec <font color="#993399">2021</font> <font color="#993399">08</font><font color="#990000">:</font><font color="#993399">27</font><font color="#990000">:</font><font color="#993399">18</font> GMT
+Cache-Control<font color="#990000">:</font> public<font color="#990000">,</font> max-age<font color="#990000">=</font><font color="#993399">2592000</font>
+Server<font color="#990000">:</font> gws
+Content-Length<font color="#990000">:</font> <font color="#993399">218</font>
+X-XSS-Protection<font color="#990000">:</font> <font color="#993399">0</font>
+X-Frame-Options<font color="#990000">:</font> SAMEORIGIN
 </pre>
 <br />
 <span>Foo0</span><br />

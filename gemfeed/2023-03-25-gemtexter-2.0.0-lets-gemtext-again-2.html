@@ -105,9 +105,12 @@ Blablabla...
 <br />
 <span>The sample config file <span class='inlinecode'>gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</span><br />
 <br />
-<pre>
-declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
-declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">PRE_GENERATE_HOOK</font><font color="#990000">=.</font>/pre_generate_hook<font color="#990000">.</font>sh
+<b><font color="#0000FF">declare</font></b> -xr <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=.</font>/post_publish_hook<font color="#990000">.</font>sh
 </pre>
 <br />
 <h2 style='display: inline'>Use of safer Bash options</h2><br />
@@ -120,22 +123,28 @@ declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 <br />
 <span>An example blog post without any publishing date looks like this:</span><br />
 <br />
-<pre>
-% cat gemfeed/2023-02-26-title-here.gmi
-# Title here
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
+<i><font color="#9A1900"># Title here</font></i>
 
-The remaining content of the Gemtext file...
+The remaining content of the Gemtext file<font color="#990000">...</font>
 </pre>
 <br />
 <span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
 <br />
-<pre>
-% cat gemfeed/2023-02-26-title-here.gmi
-# Title here
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
+<i><font color="#9A1900"># Title here</font></i>
 
-&gt; Published at 2023-02-26T21:43:51+01:00
+<font color="#990000">&gt;</font> Published at <font color="#993399">2023</font>-<font color="#993399">02</font>-26T21<font color="#990000">:</font><font color="#993399">43</font><font color="#990000">:</font><font color="#993399">51</font><font color="#990000">+</font><font color="#993399">01</font><font color="#990000">:</font><font color="#993399">00</font>
 
-The remaining content of the Gemtext file...
+The remaining content of the Gemtext file<font color="#990000">...</font>
 </pre>
 <br />
 <h2 style='display: inline'>XMLLint support</h2><br />

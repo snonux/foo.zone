@@ -33,65 +33,71 @@
 <br />
 <span>To give you an idea of how it works here as an example is a snippet from the main Fype "class header":</span><br />
 <br />
-<pre>
-typedef struct {
-   Tupel *p_tupel_argv; // Contains command line options
-   List *p_list_token; // Initial list of token
-   Hash *p_hash_syms; // Symbol table
-   char *c_basename;
-} Fype;
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+   <font color="#008080">Tupel</font> <font color="#990000">*</font>p_tupel_argv<font color="#990000">;</font> <i><font color="#9A1900">// Contains command line options</font></i>
+   <font color="#008080">List</font> <font color="#990000">*</font>p_list_token<font color="#990000">;</font> <i><font color="#9A1900">// Initial list of token</font></i>
+   <font color="#008080">Hash</font> <font color="#990000">*</font>p_hash_syms<font color="#990000">;</font> <i><font color="#9A1900">// Symbol table</font></i>
+   <font color="#009900">char</font> <font color="#990000">*</font>c_basename<font color="#990000">;</font>
+<font color="#FF0000">}</font> Fype<font color="#990000">;</font>
 </pre>
 <br />
 <span>And here is a snippet from the primary Fype "class implementation":</span><br />
 <br />
-<pre>
-Fype*
-fype_new() {
-   Fype *p_fype = malloc(sizeof(Fype));
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>Fype<font color="#990000">*</font>
+<b><font color="#000000">fype_new</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">malloc</font></b><font color="#990000">(</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>Fype<font color="#990000">));</font>
 
-   p_fype-&gt;p_hash_syms = hash_new(512);
-   p_fype-&gt;p_list_token = list_new();
-   p_fype-&gt;p_tupel_argv = tupel_new();
-   p_fype-&gt;c_basename = NULL;
+   p_fype<font color="#990000">-&gt;</font>p_hash_syms <font color="#990000">=</font> <b><font color="#000000">hash_new</font></b><font color="#990000">(</font><font color="#993399">512</font><font color="#990000">);</font>
+   p_fype<font color="#990000">-&gt;</font>p_list_token <font color="#990000">=</font> <b><font color="#000000">list_new</font></b><font color="#990000">();</font>
+   p_fype<font color="#990000">-&gt;</font>p_tupel_argv <font color="#990000">=</font> <b><font color="#000000">tupel_new</font></b><font color="#990000">();</font>
+   p_fype<font color="#990000">-&gt;</font>c_basename <font color="#990000">=</font> NULL<font color="#990000">;</font>
 
-   garbage_init();
+   <b><font color="#000000">garbage_init</font></b><font color="#990000">();</font>
 
-   return (p_fype);
-}
+   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font>p_fype<font color="#990000">);</font>
+<font color="#FF0000">}</font>
 
-void
-fype_delete(Fype *p_fype) {
-   argv_tupel_delete(p_fype-&gt;p_tupel_argv);
+<font color="#009900">void</font>
+<b><font color="#000000">fype_delete</font></b><font color="#990000">(</font><font color="#008080">Fype</font> <font color="#990000">*</font>p_fype<font color="#990000">)</font> <font color="#FF0000">{</font>
+   <b><font color="#000000">argv_tupel_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_tupel_argv<font color="#990000">);</font>
 
-   hash_iterate(p_fype-&gt;p_hash_syms, symbol_cleanup_hash_syms_cb);
-   hash_delete(p_fype-&gt;p_hash_syms);
+   <b><font color="#000000">hash_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">,</font> symbol_cleanup_hash_syms_cb<font color="#990000">);</font>
+   <b><font color="#000000">hash_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">);</font>
 
-   list_iterate(p_fype-&gt;p_list_token, token_ref_down_cb);
-   list_delete(p_fype-&gt;p_list_token);
+   <b><font color="#000000">list_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">,</font> token_ref_down_cb<font color="#990000">);</font>
+   <b><font color="#000000">list_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">);</font>
 
-   if (p_fype-&gt;c_basename)
-      free(p_fype-&gt;c_basename);
+   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">)</font>
+      <b><font color="#000000">free</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">);</font>
 
-   garbage_destroy();
-}
+   <b><font color="#000000">garbage_destroy</font></b><font color="#990000">();</font>
+<font color="#FF0000">}</font>
 
-int
-fype_run(int i_argc, char **pc_argv) {
-   Fype *p_fype = fype_new();
+<font color="#009900">int</font>
+<b><font color="#000000">fype_run</font></b><font color="#990000">(</font><font color="#009900">int</font> i_argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>pc_argv<font color="#990000">)</font> <font color="#FF0000">{</font>
+   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">fype_new</font></b><font color="#990000">();</font>
 
-   // argv: Maintains command line options
-   argv_run(p_fype, i_argc, pc_argv);
+   <i><font color="#9A1900">// argv: Maintains command line options</font></i>
+   <b><font color="#000000">argv_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">,</font> i_argc<font color="#990000">,</font> pc_argv<font color="#990000">);</font>
 
-   // scanner: Creates a list of token
-   scanner_run(p_fype);
+   <i><font color="#9A1900">// scanner: Creates a list of token</font></i>
+   <b><font color="#000000">scanner_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   // interpret: Interpret the list of token
-   interpret_run(p_fype);
+   <i><font color="#9A1900">// interpret: Interpret the list of token</font></i>
+   <b><font color="#000000">interpret_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   fype_delete(p_fype);
+   <b><font color="#000000">fype_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
 
-   return (0);
-}
+   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
+<font color="#FF0000">}</font>
 </pre>
 <br />
 <h2 style='display: inline'>Data types</h2><br />

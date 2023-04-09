@@ -90,19 +90,22 @@
 <br />
 <span>I modularized the code so that each core functionality has its own file in ./lib. All the modules are included from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. </span><br />
 <br />
-<pre>
-paul in uranus in gemtexter on 🌱 main
-❯ wc -l gemtexter lib/*
-    117 gemtexter
-     59 lib/assert.source.sh
-    128 lib/atomfeed.source.sh
-     64 lib/gemfeed.source.sh
-    161 lib/generate.source.sh
-     50 lib/git.source.sh
-    162 lib/html.source.sh
-     30 lib/log.source.sh
-     63 lib/md.source.sh
-     834 total
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul <b><font color="#0000FF">in</font></b> uranus <b><font color="#0000FF">in</font></b> gemtexter on 🌱 main
+❯ wc -l gemtexter lib<font color="#990000">/*</font>
+    <font color="#993399">117</font> gemtexter
+     <font color="#993399">59</font> lib/assert<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">128</font> lib/atomfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">64</font> lib/gemfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">161</font> lib/generate<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">50</font> lib/git<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+    <font color="#993399">162</font> lib/html<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">30</font> lib/log<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">63</font> lib/md<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
+     <font color="#993399">834</font> total
 </pre>
 <br />
 <span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn't produce results instantly but requires few seconds of runtime already. That's not a problem yet, though. </span><br />
@@ -133,19 +136,24 @@ paul in uranus in gemtexter on 🌱 main
 <br />
 <h3 style='display: inline'>HTML unit test example</h3><br />
 <br />
-<pre>
-gemtext='=&gt; http://example.org Description of the link'
-assert::equals "$(generate::make_link html "$gemtext")" \
-    '&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'
-
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
+assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link html "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
+    <font color="#FF0000">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
 </pre>
 <br />
 <h3 style='display: inline'>Markdown unit test example</h3><br />
 <br />
-<pre>
-gemtext='=&gt; http://example.org Description of the link'
-assert::equals "$(generate::make_link md "$gemtext")" \
-    '[Description of the link](http://example.org)  '
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
+assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link md "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
+    <font color="#FF0000">'[Description of the link](http://example.org)  '</font>
 </pre>
 <br />
 <h2 style='display: inline'>Handcrafted HTML styles</h2><br />

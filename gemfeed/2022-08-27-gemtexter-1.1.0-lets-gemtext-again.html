@@ -36,23 +36,26 @@
 <br />
 <span>Gemtexter relies on the GNU versions of the tools <span class='inlinecode'>grep</span>, <span class='inlinecode'>sed</span> and <span class='inlinecode'>date</span> and it also requires the Bash shell in version 5 at least. That's now done in the <span class='inlinecode'>check_dependencies()</span> function:</span><br />
 <br />
-<pre>
-check_dependencies () {
-    # At least, Bash 5 is required
-    local -i required_version=5
-    IFS=. read -ra version &lt;&lt;&lt; "$BASH_VERSION"
-    if [ "${version[0]}" -lt $required_version ]; then
-        log ERROR "ERROR, \"bash\" must be at least at major version $required_version!"
-        exit 2
-    fi
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">check_dependencies ()</font></b> {
+    <i><font color="#9A1900"># At least, Bash 5 is required</font></i>
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">required_version</font><font color="#990000">=</font><font color="#993399">5</font>
+    <font color="#009900">IFS</font><font color="#990000">=.</font> <b><font color="#0000FF">read</font></b> -ra version <font color="#990000">&lt;&lt;&lt;</font> <font color="#FF0000">"$BASH_VERSION"</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"${version[0]}"</font> -lt <font color="#009900">$required_version</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">bash</font><font color="#CC33CC">\"</font><font color="#FF0000"> must be at least at major version $required_version!"</font>
+        <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
+    <b><font color="#0000FF">fi</font></b>
 
-    # These must be the GNU versions of the commands
-    for tool in $DATE $SED $GREP; do
-        if ! $tool --version | grep -q GNU; then
-            log ERROR "ERROR, \"$tool\" command is not the GNU version, please install!"
-            exit 2
-        fi
-    done
+    <i><font color="#9A1900"># These must be the GNU versions of the commands</font></i>
+    <b><font color="#0000FF">for</font></b> tool <b><font color="#0000FF">in</font></b> <font color="#009900">$DATE</font> <font color="#009900">$SED</font> <font color="#009900">$GREP</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
+        <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> <font color="#009900">$tool</font> --version <font color="#990000">|</font> grep -q GNU<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+            log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">$tool</font><font color="#CC33CC">\"</font><font color="#FF0000"> command is not the GNU version, please install!"</font>
+            <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
+        <b><font color="#0000FF">fi</font></b>
+    <b><font color="#0000FF">done</font></b>
 }
 </pre>
 <br />
@@ -70,8 +73,11 @@ check_dependencies () {
 <br />
 <span>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</span><br />
 <br />
-<pre>
-./gemtexter --generate '.*hello.*'
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">.</font>/gemtexter --generate <font color="#FF0000">'.*hello.*'</font>
 </pre>
 <br />
 <h3 style='display: inline'>Revamped <span class='inlinecode'>git</span> support</h3><br />
