@@ -64,7 +64,8 @@ NeoVim is also programmable with Lua, which seems to be a step up and Vim comes 
 One example is my workflow of how I compose my blog articles (e.g. this one you are currently reading): I am writing everything in NeoVim, but I also want to have every paragraph checked against Grammarly (as English is not my first language). So I write a whole paragraph, then I select the entire paragraph via visual selection with `SHIFT+v`, and then I press `,y` to yank the paragraph to the systems clipboard, then I paste the paragraph to Grammarly's browser window with `CTRL+v`, let Grammarly suggest the improvements, and then I copy the result back with `CTRL+c` to the system clipboard and in NeoVim I type `,i` to insert the result back overriding the old paragraph (which is still selected in visual mode) with the new content. That all sounds a bit complicated, but it's surprisingly natural and efficient.
 
 To come back to the example, for the clipboard integration, I use this small VimScript snippet, and I didn't have to dig into any Lisp or Perl for this:
-```
+
+```vim
 " Clipboard
 vnoremap ,y !pbcopy<CR>ugv
 vnoremap ,i !pbpaste<CR>
@@ -117,7 +118,7 @@ E-Mail your comments to hi@paul.cyou :-)
 
 This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in `zathura`:
 
-```
+```vim
 function! ReadJournalPageNumber()
     let page = expand("<cword>")
     if page !~# '^\d\+$'
