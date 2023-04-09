@@ -1,6 +1,6 @@
-# Algorithms in Go - Part 1
+# Algorithms and Data Structures in Go - Part 1
 
-> Published at 2023-04-09T21:48:36+03:00
+> Published at 2023-04-09T22:31:42+03:00
 
 ```
          ,_---~~~~~----._         
@@ -16,9 +16,8 @@
    |                           |   
 ```
 
-This is the first blog post about my Algorithms in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.
+This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.
 
-[2023-04-09 Algorithms in Go - Part 1 (You are currently reading this)](./2023-04-09-algorithms-in-golang-part-1.md)  
 
 This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.
 
