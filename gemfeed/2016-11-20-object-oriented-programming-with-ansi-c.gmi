@@ -17,7 +17,7 @@ You can do a little of object-oriented programming in the C Programming Language
 
 Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:
 
-```
+```c
 #include <stdio.h>
 
 typedef struct {
@@ -53,21 +53,21 @@ int main(void) {
 
 As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:
 
-```
+```c
 printf("%s(%f, %f) => %f\n", mult.name, a, b, mult.calculate(a,b));
 printf("%s(%f, %f) => %f\n", div.name, a, b, div.calculate(a,b));
 ```
 
 However, that's just syntactic sugar for:
 
-```
+```c
 printf("%s(%f, %f) => %f\n", mult.name, a, b, (*mult.calculate)(a,b));
 printf("%s(%f, %f) => %f\n", div.name, a, b, (*div.calculate)(a,b));
 ```
 
 Output:
 
-```
+```sh
 pbuetow ~/git/blog/source [38268]% gcc oop-c-example.c -o oop-c-example
 pbuetow ~/git/blog/source [38269]% ./oop-c-example
 Multiplication(3.000000, 2.000000) => 6.000000
@@ -80,7 +80,7 @@ Not complicated at all, but nice to know and helps to make the code easier to re
 
 However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:
 
-```
+```c
 mult.calculate(mult,a,b));
 ```
 
