@@ -26,7 +26,7 @@ It has been around a year since I released the first version `1.0.0`. Although, 
 
 Gemtexter relies on the GNU versions of the tools `grep`, `sed` and `date` and it also requires the Bash shell in version 5 at least. That's now done in the `check_dependencies()` function:
 
-```
+```bash
 check_dependencies () {
     # At least, Bash 5 is required
     local -i required_version=5
@@ -60,7 +60,7 @@ The Bash is not the most performant language. Gemtexter already takes a couple o
 
 Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:
 
-```
+```sh
 ./gemtexter --generate '.*hello.*'
 ```
 

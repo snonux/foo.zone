@@ -29,7 +29,7 @@ All scripts mentioned here can be found on GitHub at:
 
 This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.
 
-```code
+```sh
 sudo dnf install debootstrap
 # 5g
 dd if=/dev/zero of=jessie.img bs=$[ 1024 * 1024 ] \
@@ -54,7 +54,7 @@ sudo umount jessie
 
 Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:
 
-```
+```sh
 adb root && adb wait-for-device && adb shell
 mkdir -p /storage/sdcard1/Linux/jessie
 exit
@@ -97,7 +97,7 @@ mount | grep jessie
 
 This is to be performed on the Android phone itself (inside a Debian chroot):
 
-```
+```sh
 chroot $(pwd)/jessie /bin/bash -l
 export PATH=/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin
 /debootstrap/debootstrap --second-stage
@@ -109,7 +109,7 @@ exit # Leave adb shell
 
 jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.
 
-```
+```sh
 # Install script jessie.sh
 adb push storage/sdcard1/Linux/jessie.sh /storage/sdcard/Linux/jessie.sh
 adb shell
@@ -146,7 +146,7 @@ exit # Exit chroot
 
 This enters Debroid on your phone and starts the example service uptimed:
 
-```
+```sh
 sh jessie.sh enter
 
 # Setup example serice uptimed
@@ -166,7 +166,7 @@ exit # Exit adb shell
 
 If you want to start Debroid automatically whenever your phone starts, then do the following:
 
-```
+```sh
 adb push data/local/userinit.sh /data/local/userinit.sh
 adb shell
 chmod +x /data/local/userinit.sh

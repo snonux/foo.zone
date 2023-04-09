@@ -26,7 +26,7 @@ PerlDaemon supports:
 
 ## Quick Guide
 
-```
+```sh
 # Starting
  ./bin/perldaemon start (or shortcut ./control start)
 
@@ -43,7 +43,7 @@ To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see m
 
 The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":
 
-```
+```sh
 pb@titania:~/svn/utils/perldaemon/trunk$ ./control keys
 # Path to the logfile
 daemon.logfile=./log/perldaemon.log
@@ -74,7 +74,7 @@ daemon.wd=./
 
 So let's start the daemon with a loop interval of 10 seconds:
 
-```
+```sh
 $ ./control keys | grep daemon.loopinterval
 daemon.loopinterval=1
 $ ./control keys daemon.loopinterval=10 | grep daemon.loopinterval
@@ -90,7 +90,7 @@ Stopping daemon now...
 
 If you want to change that property forever, either edit perldaemon.conf or do this:
 
-```
+```sh
 $ ./control keys daemon.loopinterval=10 > new.conf; mv new.conf conf/perldaemon.conf
 ```
 
@@ -104,7 +104,7 @@ PerlDaemon uses `Time::HiRes` to make sure that all the events run incorrect int
 
 This is one of the example modules you will find in the source code. It should be pretty self-explanatory if you know Perl :-).
 
-```
+```perl
 package PerlDaemonModules::ExampleModule;
 
 use strict;
@@ -140,7 +140,7 @@ sub do ($) {
 
 Want to give it some better use? It's just as easy as:
 
-```
+```sh
  cd ./lib/PerlDaemonModules/
  cp ExampleModule.pm YourModule.pm
  vi YourModule.pm

@@ -95,7 +95,7 @@ You can configure `PRE_GENERATE_HOOK` and `POST_PUBLISH_HOOK` to point to script
 
 The sample config file `gemtexter.conf` includes this as an example now; these scripts will only be executed when they actually exist:
 
-```
+```bash
 declare -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
 declare -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 ```
@@ -110,7 +110,7 @@ Here is the breaking change to older versions of Gemtexter. The `$BASE_CONTENT_D
 
 An example blog post without any publishing date looks like this:
 
-```
+```sh
 % cat gemfeed/2023-02-26-title-here.gmi
 # Title here
 
@@ -119,7 +119,7 @@ The remaining content of the Gemtext file...
 
 Gemtexter will add a line starting with  `> Published at ...` now. Any subsequent Atom feed generation will then use that date.
 
-```
+```sh
 % cat gemfeed/2023-02-26-title-here.gmi
 # Title here
 

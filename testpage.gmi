@@ -40,6 +40,23 @@ else
 fi
 ```
 
+```bash
+# Jo
+❯ exec 5<>/dev/tcp/google.de/80
+❯ echo -e "GET / HTTP/1.1\nhost: google.de\n\n" >&5
+❯ cat <&5 | head
+HTTP/1.1 301 Moved Permanently
+Location: http://www.google.de/
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 18 Nov 2021 08:27:18 GMT
+Expires: Sat, 18 Dec 2021 08:27:18 GMT
+Cache-Control: public, max-age=2592000
+Server: gws
+Content-Length: 218
+X-XSS-Protection: 0
+X-Frame-Options: SAMEORIGIN
+```
+
 Foo0
 Bar0
 

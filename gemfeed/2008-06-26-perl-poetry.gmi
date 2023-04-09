@@ -33,7 +33,7 @@ Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as
 
 ## math.pl
 
-```
+```perl
 #!/usr/bin/perl
 
 # (C) 2006 by Paul C. Buetow
@@ -77,7 +77,7 @@ __END__
 
 ## christmas.pl
 
-```
+```perl
 #!/usr/bin/perl
 
 # (C) 2006 by Paul C. Buetow
@@ -123,7 +123,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 ## shopping.pl
 
-```
+```perl
 #!/usr/bin/perl
 
 # (C) 2007 by Paul C. Buetow

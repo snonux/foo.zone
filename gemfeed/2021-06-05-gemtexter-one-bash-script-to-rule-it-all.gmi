@@ -79,7 +79,7 @@ The Bash is suitable very well for small scripts and ad-hoc automation on the co
 
 I modularized the code so that each core functionality has its own file in ./lib. All the modules are included from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. 
 
-```
+```sh
 paul in uranus in gemtexter on 🌱 main
 ❯ wc -l gemtexter lib/*
     117 gemtexter
@@ -122,16 +122,15 @@ It has been proven quite helpful to have unit tests in place for the HTML part a
 
 ### HTML unit test example
 
-```
+```bash
 gemtext='=> http://example.org Description of the link'
 assert::equals "$(generate::make_link html "$gemtext")" \
     '<a class="textlink" href="http://example.org">Description of the link</a><br />'
-
 ```
 
 ### Markdown unit test example
 
-```
+```bash
 gemtext='=> http://example.org Description of the link'
 assert::equals "$(generate::make_link md "$gemtext")" \
     '[Description of the link](http://example.org)  '
