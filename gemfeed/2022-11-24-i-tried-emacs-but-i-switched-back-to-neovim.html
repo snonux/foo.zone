@@ -74,11 +74,15 @@ Art by      \ \_!  / __!
 <span>One example is my workflow of how I compose my blog articles (e.g. this one you are currently reading): I am writing everything in NeoVim, but I also want to have every paragraph checked against Grammarly (as English is not my first language). So I write a whole paragraph, then I select the entire paragraph via visual selection with <span class='inlinecode'>SHIFT+v</span>, and then I press <span class='inlinecode'>,y</span> to yank the paragraph to the systems clipboard, then I paste the paragraph to Grammarly's browser window with <span class='inlinecode'>CTRL+v</span>, let Grammarly suggest the improvements, and then I copy the result back with <span class='inlinecode'>CTRL+c</span> to the system clipboard and in NeoVim I type <span class='inlinecode'>,i</span> to insert the result back overriding the old paragraph (which is still selected in visual mode) with the new content. That all sounds a bit complicated, but it's surprisingly natural and efficient.</span><br />
 <br />
 <span>To come back to the example, for the clipboard integration, I use this small VimScript snippet, and I didn't have to dig into any Lisp or Perl for this:</span><br />
-<pre>
-" Clipboard
-vnoremap ,y !pbcopy&lt;CR&gt;ugv
-vnoremap ,i !pbpaste&lt;CR&gt;
-nmap ,i !wpbpaste&lt;CR&gt;
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">" Clipboard</font></i>
+vnoremap ,<b><font color="#0000FF">y</font></b> !pbcopy<font color="#FF6600">&lt;CR&gt;</font>ugv
+vnoremap ,<b><font color="#0000FF">i</font></b> !pbpaste<font color="#FF6600">&lt;CR&gt;</font>
+nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;CR&gt;</font>
 </pre>
 <br />
 <span>That's only a very few lines and does precisely what I want. It's quick and dirty but get's the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</span><br />
@@ -127,63 +131,66 @@ nmap ,i !wpbpaste&lt;CR&gt;
 <br />
 <span>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class='inlinecode'>zathura</span>:</span><br />
 <br />
-<pre>
-function! ReadJournalPageNumber()
-    let page = expand("&lt;cword&gt;")
-    if page !~# '^\d\+$'
-        for str in split(getline("."), "[ ,]")
-            if str =~# '^\d\+$'
-                let page = str
-                break
-            end
-        endfor
-    endif
-    return page
-endfunction
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">function</font></b>! ReadJournalPageNumber<font color="#990000">()</font>
+    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
+    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
+        <b><font color="#0000FF">for</font></b><font color="#FF6600"> str in </font><b><font color="#0000FF">split</font></b><font color="#990000">(</font><b><font color="#000080">getline</font></b><font color="#990000">(</font><font color="#FF0000">"."</font><font color="#990000">)</font>, <font color="#FF0000">"[ ,]"</font><font color="#990000">)</font>
+            <b><font color="#0000FF">if</font></b> str <font color="#990000">=~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
+                <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> str
+                <b><font color="#0000FF">break</font></b>
+            <b><font color="#0000FF">end</font></b>
+        <b><font color="#0000FF">endfor</font></b>
+    <b><font color="#0000FF">endif</font></b>
+    <b><font color="#0000FF">return</font></b> page
+<b><font color="#0000FF">endfunction</font></b>
 
-function! ReadJournalMeta()
-    normal! mj
+<b><font color="#0000FF">function</font></b>! ReadJournalMeta<font color="#990000">()</font>
+<font color="#FF6600">   </font> normal! mj
 
-    1/MetaFilePath:/
-    normal! 3w
-    let s:metaFilePath = expand("&lt;cWORD&gt;")
-    echom s:metaFilePath
+<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaFilePath:/
+<font color="#FF6600">   </font> normal! 3w
+    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaFilePath</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cWORD&gt;"</font><font color="#990000">)</font>
+    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaFilePath</font>
 
-    1/MetaOffset:/
-    normal! 3w
-    let s:metaOffset = expand("&lt;cword&gt;")
-    echom s:metaOffset
+<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaOffset:/
+<font color="#FF6600">   </font> normal! 3w
+    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
+    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaOffset</font>
 
-    1/MetaPageAtOffset:/
-    normal! 3w
-    let s:metaPageAtOffset = expand("&lt;cword&gt;")
-    echom s:metaPageAtOffset
+<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPageAtOffset:/
+<font color="#FF6600">   </font> normal! 3w
+    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPageAtOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
+    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPageAtOffset</font>
 
-    1/MetaPagesPerScan:/
-    normal! 3w
-    let s:metaPagesPerScan = expand("&lt;cword&gt;")
-    echom s:metaPagesPerScan
+<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPagesPerScan:/
+<font color="#FF6600">   </font> normal! 3w
+    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPagesPerScan</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
+    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPagesPerScan</font>
 
-    normal! `j
-endfunction
+<font color="#FF6600">   </font> normal! `<b><font color="#0000FF">j</font></b>
+<b><font color="#0000FF">endfunction</font></b>
 
-function! GetPdfPage(page)
-    return s:metaOffset + (a:page - s:metaPageAtOffset) / s:metaPagesPerScan
-endfunction
+<b><font color="#0000FF">function</font></b>! GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
+    <b><font color="#0000FF">return</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">+</font> <font color="#990000">(</font><font color="#000080">a:page</font> <font color="#990000">-</font> <font color="#000080">s:metaPageAtOffset</font><font color="#990000">)</font> / <font color="#000080">s:metaPagesPerScan</font>
+<b><font color="#0000FF">endfunction</font></b>
 
-function! OpenJournalPage()
-    let page = ReadJournalPageNumber()
-    if page !~# '^\d\+$'
-        echoerr "Could not identify Journal page number"
-    end
-    call ReadJournalMeta()
-    let pdfPage = GetPdfPage(page)
-    echon "Location is " . s:metaFilePath . ":" . pdfPage
-    call system("zathura --mode fullscreen -P " . pdfPage . " " . s:metaFilePath)
-    " call system("evince -p " . pdfPage . " " . s:metaFilePath)
-endfunction
+<b><font color="#0000FF">function</font></b>! OpenJournalPage<font color="#990000">()</font>
+    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> ReadJournalPageNumber<font color="#990000">()</font>
+    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
+        <b><font color="#0000FF">echoerr</font></b> <font color="#FF0000">"Could not identify Journal page number"</font>
+    <b><font color="#0000FF">end</font></b>
+    <b><font color="#0000FF">call</font></b> ReadJournalMeta<font color="#990000">()</font>
+    <b><font color="#0000FF">let</font></b> pdfPage <font color="#990000">=</font> GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
+    <b><font color="#0000FF">echon</font></b> <font color="#FF0000">"Location is "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font> <font color="#990000">.</font> <font color="#FF0000">":"</font> <font color="#990000">.</font> pdfPage
+    <b><font color="#0000FF">call</font></b> <b><font color="#000080">system</font></b><font color="#990000">(</font><font color="#FF0000">"zathura --mode fullscreen -P "</font> <font color="#990000">.</font> pdfPage <font color="#990000">.</font> <font color="#FF0000">" "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font><font color="#990000">)</font>
+<i><font color="#9A1900">    " call system("evince -p " . pdfPage . " " . s:metaFilePath)</font></i>
+<b><font color="#0000FF">endfunction</font></b>
 
-nmap ,j :call OpenJournalPage()&lt;CR&gt;
+nmap ,<b><font color="#0000FF">j</font></b> :<b><font color="#0000FF">call</font></b> OpenJournalPage<font color="#990000">()</font><font color="#FF6600">&lt;CR&gt;</font>
 </pre>
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
