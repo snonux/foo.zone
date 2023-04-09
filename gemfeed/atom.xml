@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-09T21:48:36+03:00</updated>
+    <updated>2023-04-09T22:31:42+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>Algorithms in Go - Part 1</title>
-        <link href="https://foo.zone/gemfeed/2023-04-09-algorithms-in-golang-part-1.html" />
-        <id>https://foo.zone/gemfeed/2023-04-09-algorithms-in-golang-part-1.html</id>
-        <updated>2023-04-09T21:48:36+03:00</updated>
+        <title>Algorithms and Data Structures in Go - Part 1</title>
+        <link href="https://foo.zone/gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.html" />
+        <id>https://foo.zone/gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.html</id>
+        <updated>2023-04-09T22:31:42+03:00</updated>
         <author>
             <name>Paul Buetow</name>
             <email>hi@paul.cyou</email>
         </author>
-        <summary>This is the first blog post about my Algorithms in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
+        <summary>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Algorithms in Go - Part 1</h1><br />
+                <h1 style='display: inline'>Algorithms and Data Structures in Go - Part 1</h1><br />
 <br />
 <pre>
          ,_---~~~~~----._         
@@ -34,9 +34,8 @@
    |                           |   
 </pre>
 <br />
-<span>This is the first blog post about my Algorithms in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
+<span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
 <br />
-<a class='textlink' href='./2023-04-09-algorithms-in-golang-part-1.html'>2023-04-09 Algorithms in Go - Part 1 (You are currently reading this)</a><br />
 <br />
 <span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.</span><br />
 <br />
