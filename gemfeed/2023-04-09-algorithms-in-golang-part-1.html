@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Algorithms in Go - Part 1</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline'>Algorithms in Go - Part 1</h1><br />
+<br />
+<span class='quote'>Published at 2023-04-09T21:48:36+03:00</span><br />
+<br />
+<pre>
+         ,_---~~~~~----._         
+  _,,_,*^____      _____``*g*\"*, 
+ / __/ /'     ^.  /      \ ^@q   f 
+[  @f | @))    |  | @))   l  0 _/  
+ \`/   \~____ / __ \_____/    \   
+  |           _l__l_           I   
+  }          [______]           I  
+  ]            | | |            |  
+  ]             ~ ~             |  
+  |                            |   
+   |                           |   
+</pre>
+<br />
+<span>This is the first blog post about my Algorithms in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
+<br />
+<a class='textlink' href='./2023-04-09-algorithms-in-golang-part-1.html'>2023-04-09 Algorithms in Go - Part 1 (You are currently reading this)</a><br />
+<br />
+<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.</span><br />
+<br />
+<h2 style='display: inline'>Type constraints</h2><br />
+<br />
+<span>First, the package <span class='inlinecode'>ds</span> (data structures) defines the <span class='inlinecode'>types.go</span>. All examples will either operate on the <span class='inlinecode'>Integer</span> or <span class='inlinecode'>Number</span> type:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> ds
+
+<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
+	<font color="#FF0000">"golang.org/x/exp/constraints"</font>
+<font color="#990000">)</font>
+
+<b><font color="#0000FF">type</font></b> Integer <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
+	constraints<font color="#990000">.</font>Integer
+<font color="#FF0000">}</font>
+
+<b><font color="#0000FF">type</font></b> Number <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
+	constraints<font color="#990000">.</font>Integer <font color="#990000">|</font> constraints<font color="#990000">.</font>Float
+<font color="#FF0000">}</font>
+
+</pre>
+<br />
+<h2 style='display: inline'>ArrayList</h2><br />
+<br />
+<span>Next comes the <span class='inlinecode'>arraylist.go</span>, which defines the underlying data structure all the algorithms of this series will use. <span class='inlinecode'>ArrayList</span> is just a type alias of a Go array (or slice) with custom methods on it:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> ds
+
+<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
+	<font color="#FF0000">"fmt"</font>
+	<font color="#FF0000">"math/rand"</font>
+	<font color="#FF0000">"strings"</font>
+<font color="#990000">)</font>
+
+<b><font color="#0000FF">type</font></b> ArrayList<font color="#990000">[</font>V Number<font color="#990000">]</font> <font color="#990000">[]</font>V
+
+<b><font color="#0000FF">func</font></b> NewArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">return</font></b> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>As you can see, the code uses Go generics, which I refactored recently. Besides the default constructor (which only returns an empty <span class='inlinecode'>ArrayList</span> with a given capacity), there are also a bunch of special constructors. <span class='inlinecode'>NewRandomArrayList</span> is returning an <span class='inlinecode'>ArrayList</span> with random numbers, <span class='inlinecode'>NewAscendingArrayList</span> and <span class='inlinecode'>NewDescendingArrayList</span> are returning <span class='inlinecode'>ArrayList</span>s in either ascending or descending order. They all will be used later on for testing and benchmarking the algorithms.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">func</font></b> NewRandomArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l<font color="#990000">,</font> max int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
+	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
+	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">if</font></b> max <font color="#990000">&gt;</font> <font color="#993399">0</font> <font color="#FF0000">{</font>
+			a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Intn</font></b><font color="#990000">(</font>max<font color="#990000">))</font>
+			<b><font color="#0000FF">continue</font></b>
+		<font color="#FF0000">}</font>
+		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Int</font></b><font color="#990000">())</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">return</font></b> a
+<font color="#FF0000">}</font>
+
+<b><font color="#0000FF">func</font></b> NewAscendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
+	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
+	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
+		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>i<font color="#990000">)</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">return</font></b> a
+<font color="#FF0000">}</font>
+
+<b><font color="#0000FF">func</font></b> NewDescendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
+	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
+	j <font color="#990000">:=</font> l <font color="#990000">-</font> <font color="#993399">1</font>
+	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
+		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>j<font color="#990000">)</font>
+		j<font color="#990000">--</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">return</font></b> a
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<h2 style='display: inline'>Helper methods</h2><br />
+<br />
+<span>The <span class='inlinecode'>FirstN</span> method only returns the first N elements of the <span class='inlinecode'>ArrayList</span>. This is useful for printing out only parts of the data structure:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">FirstN</font></b><font color="#990000">(</font>n int<font color="#990000">)</font> <font color="#009900">string</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">var</font></b> sb strings<font color="#990000">.</font>Builder
+	j <font color="#990000">:=</font> n
+
+	l <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
+	<b><font color="#0000FF">if</font></b> j <font color="#990000">&gt;</font> l <font color="#FF0000">{</font>
+		j <font color="#990000">=</font> l
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> j<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
+		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"%v "</font><font color="#990000">,</font> a<font color="#990000">[</font>i<font color="#990000">])</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">if</font></b> j <font color="#990000">&lt;</font> l <font color="#FF0000">{</font>
+		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"... "</font><font color="#990000">)</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">return</font></b> sb<font color="#990000">.</font><b><font color="#000000">String</font></b><font color="#990000">()</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>The <span class='inlinecode'>Sorted</span> method checks whether the <span class='inlinecode'>ArrayList</span> is sorted. This will be used by the unit tests later on:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#009900">bool</font> <font color="#FF0000">{</font>
+	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font> i <font color="#990000">&gt;</font> <font color="#993399">0</font><font color="#990000">;</font> i<font color="#990000">--</font> <font color="#FF0000">{</font>
+		<b><font color="#0000FF">if</font></b> a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">&lt;</font> a<font color="#990000">[</font>i<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">return</font></b> false
+		<font color="#FF0000">}</font>
+	<font color="#FF0000">}</font>
+	<b><font color="#0000FF">return</font></b> true
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>And the last utility method used is <span class='inlinecode'>Swap</span>, which allows swapping the values of two indices in the <span class='inlinecode'>ArrayList</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Swap</font></b><font color="#990000">(</font>i<font color="#990000">,</font> j int<font color="#990000">)</font> <font color="#FF0000">{</font>
+	aux <font color="#990000">:=</font> a<font color="#990000">[</font>i<font color="#990000">]</font>
+	a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> a<font color="#990000">[</font>j<font color="#990000">]</font>
+	a<font color="#990000">[</font>j<font color="#990000">]</font> <font color="#990000">=</font> aux
+<font color="#FF0000">}</font>
+
+</pre>
+<br />
+<h2 style='display: inline'>Sleep sort</h2><br />
+<br />
+<span>Let's implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It's more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it's only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
+<br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> sort
+
+<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
+	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
+	<font color="#FF0000">"sync"</font>
+	<font color="#FF0000">"time"</font>
+<font color="#990000">)</font>
+
+<b><font color="#0000FF">func</font></b> Sleep<font color="#990000">[</font>V ds<font color="#990000">.</font>Integer<font color="#990000">](</font>a ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
+	sorted <font color="#990000">:=</font> ds<font color="#990000">.</font>NewArrayList<font color="#990000">[</font>V<font color="#990000">](</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+
+	numCh <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font><b><font color="#0000FF">chan</font></b> V<font color="#990000">)</font>
+	<b><font color="#0000FF">var</font></b> wg sync<font color="#990000">.</font>WaitGroup
+	wg<font color="#990000">.</font><b><font color="#000000">Add</font></b><font color="#990000">(</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+
+	<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+		wg<font color="#990000">.</font><b><font color="#000000">Wait</font></b><font color="#990000">()</font>
+		<b><font color="#000000">close</font></b><font color="#990000">(</font>numCh<font color="#990000">)</font>
+	<font color="#FF0000">}</font><font color="#990000">()</font>
+
+	<b><font color="#0000FF">for</font></b> _<font color="#990000">,</font> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> a <font color="#FF0000">{</font>
+		<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">(</font>num V<font color="#990000">)</font> <font color="#FF0000">{</font>
+			<b><font color="#0000FF">defer</font></b> wg<font color="#990000">.</font><b><font color="#000000">Done</font></b><font color="#990000">()</font>
+			time<font color="#990000">.</font><b><font color="#000000">Sleep</font></b><font color="#990000">(</font>time<font color="#990000">.</font><b><font color="#000000">Duration</font></b><font color="#990000">(</font>num<font color="#990000">)</font> <font color="#990000">*</font> time<font color="#990000">.</font>Second<font color="#990000">)</font>
+			numCh <font color="#990000">&lt;-</font> num
+		<font color="#FF0000">}</font><font color="#990000">(</font>num<font color="#990000">)</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">for</font></b> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> numCh <font color="#FF0000">{</font>
+		sorted <font color="#990000">=</font> <b><font color="#000000">append</font></b><font color="#990000">(</font>sorted<font color="#990000">,</font> num<font color="#990000">)</font>
+	<font color="#FF0000">}</font>
+
+	<b><font color="#0000FF">return</font></b> sorted
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<h3 style='display: inline'>Testing</h3><br />
+<br />
+<span>For testing, we only allow values up to 10, as otherwise, it would take too long to finish:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">package</font></b> sort
+
+<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
+	<font color="#FF0000">"fmt"</font>
+	<font color="#FF0000">"testing"</font>
+
+	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
+<font color="#990000">)</font>
+
+<b><font color="#0000FF">func</font></b> <b><font color="#000000">TestSleepSort</font></b><font color="#990000">(</font>t <font color="#990000">*</font>testing<font color="#990000">.</font>T<font color="#990000">)</font> <font color="#FF0000">{</font>
+	a <font color="#990000">:=</font> ds<font color="#990000">.</font>NewRandomArrayList<font color="#990000">[</font>int<font color="#990000">](</font><font color="#993399">10</font><font color="#990000">,</font> <font color="#993399">10</font><font color="#990000">)</font>
+	a <font color="#990000">=</font> <b><font color="#000000">Sleep</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
+	<b><font color="#0000FF">if</font></b> <font color="#990000">!</font>a<font color="#990000">.</font><b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
+		t<font color="#990000">.</font><b><font color="#000000">Errorf</font></b><font color="#990000">(</font><font color="#FF0000">"Array not sorted: %v"</font><font color="#990000">,</font> a<font color="#990000">)</font>
+	<font color="#FF0000">}</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>As you can see, it takes <span class='inlinecode'>9s</span> here for the algorithm to finish (which is the highest value in the <span class='inlinecode'>ArrayList</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ go <b><font color="#0000FF">test</font></b> <font color="#990000">.</font>/sort -v -run SleepSort
+<font color="#990000">===</font> RUN   TestSleepSort
+--- PASS<font color="#990000">:</font> TestSleepSort <font color="#990000">(</font><font color="#993399">9</font><font color="#990000">.</font>00s<font color="#990000">)</font>
+PASS
+ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <font color="#993399">9</font><font color="#990000">.</font>002s
+</pre>
+<br />
+<span>I won't write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
