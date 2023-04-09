@@ -23,7 +23,7 @@ The Fype interpreter is written in an object-oriented style of C. Each "main com
 
 To give you an idea of how it works here as an example is a snippet from the main Fype "class header":
 
-```
+```c
 typedef struct {
    Tupel *p_tupel_argv; // Contains command line options
    List *p_list_token; // Initial list of token
@@ -34,7 +34,7 @@ typedef struct {
 
 And here is a snippet from the primary Fype "class implementation":
 
-```
+```c
 Fype*
 fype_new() {
    Fype *p_fype = malloc(sizeof(Fype));

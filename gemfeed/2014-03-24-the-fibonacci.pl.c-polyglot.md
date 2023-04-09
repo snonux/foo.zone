@@ -10,7 +10,7 @@ In computing, a polyglot is a computer program or script written in a valid form
 
 For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:
 
-```
+```perl
 #include <stdio.h>
 
 #define $arg function_argument
@@ -60,7 +60,7 @@ You can find the full source code at GitHub:
 
 ### Let's run it with C and C++
 
-```
+```sh
 % gcc fibonacci.pl.raku.c -o fibonacci
 % ./fibonacci
 Hello, welcome to the Fibonacci Numbers!
@@ -100,7 +100,7 @@ fib(10) = 55
 
 ### Let's run it with Perl and Raku
 
-```
+```sh
 % perl fibonacci.pl.raku.c
 Hello, welcome to the Fibonacci Numbers!
 This program is all, valid C and C++ and Perl and Raku code!
