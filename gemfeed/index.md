@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2023-04-09 - Algorithms in Go - Part 1](./2023-04-09-algorithms-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
 [2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
