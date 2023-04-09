@@ -20,7 +20,7 @@ This is the first blog post about my Algorithms and Data Structures in Go series
 
 << template::inline::index algorithms-and-data-structures-in-golang-part
 
-This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.
+This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.
 
 ## Type constraints
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-09T22:33:27+03:00</updated>
+    <updated>2023-04-09T22:38:01+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -40,7 +40,7 @@
 <br />
 <a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)</a><br />
 <br />
-<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.</span><br />
+<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
 <br />
 <h2 style='display: inline'>Type constraints</h2><br />
 <br />
