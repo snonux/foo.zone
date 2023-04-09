@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-09T13:33:53+03:00</updated>
+    <updated>2023-04-09T13:51:48+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -5501,8 +5501,10 @@ Total time: 1213.00s
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1>Object oriented programming with ANSI C</h1>
-<p class="quote"><i>Published at 2016-11-20T22:10:57+00:00; Updated at 2022-01-29</i></p>
+                <h1 style='display: inline'>Object oriented programming with ANSI C</h1><br />
+<br />
+<span class='quote'>Published at 2016-11-20T22:10:57+00:00; Updated at 2022-01-29</span><br />
+<br />
 <pre>
   ___   ___  ____        ____ 
  / _ \ / _ \|  _ \      / ___|
@@ -5510,75 +5512,113 @@ Total time: 1213.00s
 | |_| | |_| |  __/_____| |___ 
  \___/ \___/|_|         \____|
                               
-</pre><br />
-<p>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</p>
-<h2>Function pointers</h2>
-<p>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</p>
-<pre>
-#include &lt;stdio.h&gt;
+</pre>
+<br />
+<span>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</span><br />
+<br />
+<h2 style='display: inline'>Function pointers</h2><br />
+<br />
+<span>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
 
-typedef struct {
-    double (*calculate)(const double, const double);
-    char *name;
-} something_s;
+<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
+    <font color="#009900">double</font> <font color="#990000">(*</font>calculate<font color="#990000">)(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">);</font>
+    <font color="#009900">char</font> <font color="#990000">*</font>name<font color="#990000">;</font>
+<font color="#FF0000">}</font> something_s<font color="#990000">;</font>
 
-double multiplication(const double a, const double b) {
-    return a * b;
-}
+<font color="#009900">double</font> <b><font color="#000000">multiplication</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> b<font color="#990000">)</font> <font color="#FF0000">{</font>
+    <b><font color="#0000FF">return</font></b> a <font color="#990000">*</font> b<font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-double division(const double a, const double b) {
-    return a / b;
-}
+<font color="#009900">double</font> <b><font color="#000000">division</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> b<font color="#990000">)</font> <font color="#FF0000">{</font>
+    <b><font color="#0000FF">return</font></b> a <font color="#990000">/</font> b<font color="#990000">;</font>
+<font color="#FF0000">}</font>
 
-int main(void) {
-    something_s mult = (something_s) {
-        .calculate = multiplication,
-        .name = "Multiplication"
-    };
+<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font> <font color="#FF0000">{</font>
+    <font color="#008080">something_s</font> mult <font color="#990000">=</font> <font color="#990000">(</font>something_s<font color="#990000">)</font> <font color="#FF0000">{</font>
+        <font color="#990000">.</font>calculate <font color="#990000">=</font> multiplication<font color="#990000">,</font>
+        <font color="#990000">.</font>name <font color="#990000">=</font> <font color="#FF0000">"Multiplication"</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
 
-    something_s div = (something_s) {
-        .calculate = division,
-        .name = "Division"
-    };
+    <font color="#008080">something_s</font> div <font color="#990000">=</font> <font color="#990000">(</font>something_s<font color="#990000">)</font> <font color="#FF0000">{</font>
+        <font color="#990000">.</font>calculate <font color="#990000">=</font> division<font color="#990000">,</font>
+        <font color="#990000">.</font>name <font color="#990000">=</font> <font color="#FF0000">"Division"</font>
+    <font color="#FF0000">}</font><font color="#990000">;</font>
 
-    const double a = 3, b = 2;
+    <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a <font color="#990000">=</font> <font color="#993399">3</font><font color="#990000">,</font> b <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
 
-    printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, mult.calculate(a,b));
-    printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
-}
-</pre><br />
-<p>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</p>
-<pre>
-printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, mult.calculate(a,b));
-printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, div.calculate(a,b));
-</pre><br />
-<p>However, that's just syntactic sugar for:</p>
-<pre>
-printf("%s(%f, %f) =&gt; %f\n", mult.name, a, b, (*mult.calculate)(a,b));
-printf("%s(%f, %f) =&gt; %f\n", div.name, a, b, (*div.calculate)(a,b));
-</pre><br />
-<p>Output:</p>
-<pre>
-pbuetow ~/git/blog/source [38268]% gcc oop-c-example.c -o oop-c-example
-pbuetow ~/git/blog/source [38269]% ./oop-c-example
-Multiplication(3.000000, 2.000000) =&gt; 6.000000
-Division(3.000000, 2.000000) =&gt; 1.500000
-</pre><br />
-<p>Not complicated at all, but nice to know and helps to make the code easier to read!</p>
-<h2>That's not OOP, though</h2>
-<p>However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</p>
-<pre>
-mult.calculate(mult,a,b));
-</pre><br />
-<h2>Real object oriented programming with C</h2>
-<p>If you want to take it further, hit "Object-Oriented Programming with ANSI-C" into your favourite internet search engine or follow the link below. It goes as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</p>
-<a class="textlink" href="https://www.cs.rit.edu/~ats/books/ooc.pdf">https://www.cs.rit.edu/~ats/books/ooc.pdf</a><br />
-<h2>OOP design patterns in the Linux Kernel</h2>
-<p>Big C software projects, like Linux, also follow some OOP techniques:</p>
-<a class="textlink" href="https://lwn.net/Articles/444910/">https://lwn.net/Articles/444910/</a><br />
-<p>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</p>
-<p>E-Mail your comments to hi@paul.cyou :-)</p>
-<a class="textlink" href="../">Back to the main site</a><br />
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> div<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+<font color="#FF0000">}</font>
+</pre>
+<br />
+<span>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> div<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+</pre>
+<br />
+<span>However, that's just syntactic sugar for:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#990000">(*</font>mult<font color="#990000">.</font>calculate<font color="#990000">)(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#990000">(*</font>div<font color="#990000">.</font>calculate<font color="#990000">)(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>pbuetow <font color="#990000">~</font>/git/blog/source <font color="#990000">[</font><font color="#993399">38268</font><font color="#990000">]%</font> gcc oop-c-example<font color="#990000">.</font>c -o oop-c-example
+pbuetow <font color="#990000">~</font>/git/blog/source <font color="#990000">[</font><font color="#993399">38269</font><font color="#990000">]%</font> <font color="#990000">.</font>/oop-c-example
+Multiplication<font color="#990000">(</font><font color="#993399">3.000000</font><font color="#990000">,</font> <font color="#993399">2.000000</font><font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#993399">6.000000</font>
+Division<font color="#990000">(</font><font color="#993399">3.000000</font><font color="#990000">,</font> <font color="#993399">2.000000</font><font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#993399">1.500000</font>
+</pre>
+<br />
+<span>Not complicated at all, but nice to know and helps to make the code easier to read!</span><br />
+<br />
+<h2 style='display: inline'>That's not OOP, though</h2><br />
+<br />
+<span>However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>mult<font color="#990000">,</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
+</pre>
+<br />
+<h2 style='display: inline'>Real object oriented programming with C</h2><br />
+<br />
+<span>If you want to take it further, hit "Object-Oriented Programming with ANSI-C" into your favourite internet search engine or follow the link below. It goes as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</span><br />
+<br />
+<a class='textlink' href='https://www.cs.rit.edu/~ats/books/ooc.pdf'>https://www.cs.rit.edu/~ats/books/ooc.pdf</a><br />
+<br />
+<h2 style='display: inline'>OOP design patterns in the Linux Kernel</h2><br />
+<br />
+<span>Big C software projects, like Linux, also follow some OOP techniques:</span><br />
+<br />
+<a class='textlink' href='https://lwn.net/Articles/444910/'>https://lwn.net/Articles/444910/</a><br />
+<br />
+<span>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
