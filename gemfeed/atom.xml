@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-09T22:31:42+03:00</updated>
+    <updated>2023-04-09T22:33:27+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -20,6 +20,8 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>Algorithms and Data Structures in Go - Part 1</h1><br />
 <br />
+<span class='quote'>Published at 2023-04-09T22:31:42+03:00</span><br />
+<br />
 <pre>
          ,_---~~~~~----._         
   _,,_,*^____      _____``*g*\"*, 
@@ -36,6 +38,7 @@
 <br />
 <span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
 <br />
+<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)</a><br />
 <br />
 <span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.</span><br />
 <br />
