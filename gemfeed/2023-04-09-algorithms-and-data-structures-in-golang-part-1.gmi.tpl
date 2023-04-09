@@ -189,6 +189,8 @@ func Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V] {
 }
 ```
 
+This Go code implements the sleep sort algorithm using generics and goroutines. The main function `Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]` takes a generic `ArrayList` as input and returns a sorted `ArrayList`. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element's value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result `ArrayList` is constructed by appending the elements received from the channel in the order they arrive. The `sync.WaitGroup` is used to synchronize goroutines and ensure that all of them have completed before closing the channel.
+
 ### Testing
 
 For testing, we only allow values up to 10, as otherwise, it would take too long to finish:
