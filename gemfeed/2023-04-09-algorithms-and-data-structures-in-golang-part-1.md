@@ -20,7 +20,7 @@ This is the first blog post about my Algorithms and Data Structures in Go series
 
 [2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)](./2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 
-This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.
+This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.
 
 ## Type constraints
 
