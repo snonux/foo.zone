@@ -18,6 +18,7 @@
 
 This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.
 
+[2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)](./2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 
 This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post.
 
