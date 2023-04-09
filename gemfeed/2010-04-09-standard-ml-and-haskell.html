@@ -22,143 +22,173 @@
 <br />
 <span>Standard ML:</span><br />
 <br />
-<pre>
-datatype ’a multi
-	= EMPTY
-	| ELEM of ’a
-	| UNION of ’a multi * ’a multi
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">datatype</font></b> ’a multi
+	<font color="#990000">=</font> EMPTY
+	<font color="#990000">|</font> ELEM <b><font color="#0000FF">of</font></b> ’a
+	<font color="#990000">|</font> UNION <b><font color="#0000FF">of</font></b> ’a multi <font color="#990000">*</font> ’a multi
 </pre>
 <br />
 <span>Haskell:</span><br />
 <br />
-<pre>
-data (Eq a) =&gt; Multi a
-    = Empty
-    | Elem a
-    | Union (Multi a) (Multi a)
-    deriving Show
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">data</font></b> <font color="#990000">(</font><font color="#009900">Eq</font> a<font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#009900">Multi</font> a
+    <font color="#990000">=</font> <font color="#009900">Empty</font>
+    <font color="#990000">|</font> <font color="#009900">Elem</font> a
+    <font color="#990000">|</font> <font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Multi</font> a<font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Multi</font> a<font color="#990000">)</font>
+    <b><font color="#0000FF">deriving</font></b> <font color="#009900">Show</font>
 </pre>
 <br />
 <h2 style='display: inline'>Processing a multi</h2><br />
 <br />
 <span>Standard ML:</span><br />
 <br />
-<pre>
-fun number (EMPTY) _ = 0
-	| number (ELEM x) w = if x = w then 1 else 0
-	| number (UNION (x,y)) w = (number x w) + (number y w)
-fun test_number w = number (UNION (EMPTY, \
-    UNION (ELEM 4, UNION (ELEM 6, \
-    UNION (UNION (ELEM 4, ELEM 4), EMPTY))))) w 
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">fun</font></b> number <font color="#990000">(</font>EMPTY<font color="#990000">)</font> _ <font color="#990000">=</font> <font color="#993399">0</font>
+	<font color="#990000">|</font> number <font color="#990000">(</font>ELEM x<font color="#990000">)</font> w <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> <font color="#993399">1</font> <b><font color="#0000FF">else</font></b> <font color="#993399">0</font>
+	<font color="#990000">|</font> number <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> w <font color="#990000">=</font> <font color="#990000">(</font>number x w<font color="#990000">)</font> <font color="#990000">+</font> <font color="#990000">(</font>number y w<font color="#990000">)</font>
+<b><font color="#0000FF">fun</font></b> test_number w <font color="#990000">=</font> number <font color="#990000">(</font>UNION <font color="#990000">(</font>EMPTY<font color="#990000">,</font> <font color="#990000">\</font>
+    UNION <font color="#990000">(</font>ELEM <font color="#993399">4</font><font color="#990000">,</font> UNION <font color="#990000">(</font>ELEM <font color="#993399">6</font><font color="#990000">,</font> <font color="#990000">\</font>
+    UNION <font color="#990000">(</font>UNION <font color="#990000">(</font>ELEM <font color="#993399">4</font><font color="#990000">,</font> ELEM <font color="#993399">4</font><font color="#990000">),</font> EMPTY<font color="#990000">)))))</font> w 
 </pre>
 <br />
 <span>Haskell:</span><br />
 <br />
-<pre>
-number Empty _ = 0
-number (Elem x) w = if x == w then 1 else 0
-test_number w = number (Union Empty \
-    (Union (Elem 4) (Union (Elem 6) \
-    (Union (Union (Elem 4) (Elem 4)) Empty)))) w
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>number <font color="#009900">Empty</font> <b><font color="#0000FF">_</font></b> <font color="#990000">=</font> <font color="#993399">0</font>
+number <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> w <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#993399">1</font> <b><font color="#0000FF">else</font></b> <font color="#993399">0</font>
+test_number w <font color="#990000">=</font> number <font color="#990000">(</font><font color="#009900">Union</font> <font color="#009900">Empty</font> <font color="#990000">\</font>
+    <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">\</font>
+    <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">))</font> <font color="#009900">Empty</font><font color="#990000">))))</font> w
 </pre>
 <br />
 <h2 style='display: inline'>Simplify function</h2><br />
 <br />
 <span>Standard ML:</span><br />
 <br />
-<pre>
-fun simplify (UNION (x,y)) =
-    let fun is_empty (EMPTY) = true | is_empty _ = false
-        val x’ = simplify x
-        val y’ = simplify y
-    in if (is_empty x’) andalso (is_empty y’)
-            then EMPTY
-       else if (is_empty x’)
-            then y’
-       else if (is_empty y’)
-            then x’
-       else UNION (x’, y’)
-    end
-  | simplify x = x
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">fun</font></b> simplify <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font>
+    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> is_empty <font color="#990000">(</font>EMPTY<font color="#990000">)</font> <font color="#990000">=</font> true <font color="#990000">|</font> is_empty _ <font color="#990000">=</font> false
+        <b><font color="#0000FF">val</font></b> x’ <font color="#990000">=</font> simplify x
+        <b><font color="#0000FF">val</font></b> y’ <font color="#990000">=</font> simplify y
+    <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty x’<font color="#990000">)</font> <b><font color="#0000FF">andalso</font></b> <font color="#990000">(</font>is_empty y’<font color="#990000">)</font>
+            <b><font color="#0000FF">then</font></b> EMPTY
+       <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty x’<font color="#990000">)</font>
+            <b><font color="#0000FF">then</font></b> y’
+       <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty y’<font color="#990000">)</font>
+            <b><font color="#0000FF">then</font></b> x’
+       <b><font color="#0000FF">else</font></b> UNION <font color="#990000">(</font>x’<font color="#990000">,</font> y’<font color="#990000">)</font>
+    <b><font color="#0000FF">end</font></b>
+  <font color="#990000">|</font> simplify x <font color="#990000">=</font> x
 </pre>
 <br />
 <span>Haskell:</span><br />
 <br />
-<pre>
-simplify (Union x y)
-    | (isEmpty x’) &amp;&amp; (isEmpty y’) = Empty
-    | isEmpty x’ = y’
-    | isEmpty y’ = x’
-    | otherwise = Union x’ y’
-    where
-        isEmpty Empty = True
-        isEmpty _ = False
-        x’ = simplify x
-        y’ = simplify y
-simplify x = x
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>simplify <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font>
+    <font color="#990000">|</font> <font color="#990000">(</font>isEmpty x’<font color="#990000">)</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">(</font>isEmpty y’<font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">Empty</font>
+    <font color="#990000">|</font> isEmpty x’ <font color="#990000">=</font> y’
+    <font color="#990000">|</font> isEmpty y’ <font color="#990000">=</font> x’
+    <font color="#990000">|</font> otherwise <font color="#990000">=</font> <font color="#009900">Union</font> x’ y’
+    <b><font color="#0000FF">where</font></b>
+        isEmpty <font color="#009900">Empty</font> <font color="#990000">=</font> <font color="#009900">True</font>
+        isEmpty <b><font color="#0000FF">_</font></b> <font color="#990000">=</font> <font color="#009900">False</font>
+        x’ <font color="#990000">=</font> simplify x
+        y’ <font color="#990000">=</font> simplify y
+simplify x <font color="#990000">=</font> x
 </pre>
 <br />
 <h2 style='display: inline'>Delete all</h2><br />
 <br />
 <span>Standard ML:</span><br />
 <br />
-<pre>
-fun delete_all m w =
-    let fun delete_all’ (ELEM x) = if x = w then EMPTY else ELEM x
-          | delete_all’ (UNION (x,y)) = UNION (delete_all’ x, delete_all’ y)
-          | delete_all’ x = x
-    in simplify (delete_all’ m)
-    end
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">fun</font></b> delete_all m w <font color="#990000">=</font>
+    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> delete_all’ <font color="#990000">(</font>ELEM x<font color="#990000">)</font> <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> EMPTY <b><font color="#0000FF">else</font></b> ELEM x
+          <font color="#990000">|</font> delete_all’ <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font> UNION <font color="#990000">(</font>delete_all’ x<font color="#990000">,</font> delete_all’ y<font color="#990000">)</font>
+          <font color="#990000">|</font> delete_all’ x <font color="#990000">=</font> x
+    <b><font color="#0000FF">in</font></b> simplify <font color="#990000">(</font>delete_all’ m<font color="#990000">)</font>
+    <b><font color="#0000FF">end</font></b>
 </pre>
 <br />
 <span>Haskell:</span><br />
 <br />
-<pre>
-delete_all m w = simplify (delete_all’ m)
-    where
-        delete_all’ (Elem x) = if x == w then Empty else Elem x
-        delete_all’ (Union x y) = Union (delete_all’ x) (delete_all’ y)
-        delete_all’ x = x
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>delete_all m w <font color="#990000">=</font> simplify <font color="#990000">(</font>delete_all’ m<font color="#990000">)</font>
+    <b><font color="#0000FF">where</font></b>
+        delete_all’ <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#009900">Empty</font> <b><font color="#0000FF">else</font></b> <font color="#009900">Elem</font> x
+        delete_all’ <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">Union</font> <font color="#990000">(</font>delete_all’ x<font color="#990000">)</font> <font color="#990000">(</font>delete_all’ y<font color="#990000">)</font>
+        delete_all’ x <font color="#990000">=</font> x
 </pre>
 <br />
 <h2 style='display: inline'>Delete one</h2><br />
 <br />
 <span>Standard ML:</span><br />
 <br />
-<pre>
-fun delete_one m w =
-    let fun delete_one’ (UNION (x,y)) =
-            let val (x’, deleted) = delete_one’ x
-                in if deleted
-                   then (UNION (x’, y), deleted)
-                   else let val (y’, deleted) = delete_one’ y
-                       in (UNION (x, y’), deleted)
-                   end
-                end
-          | delete_one’ (ELEM x) =
-            if x = w then (EMPTY, true) else (ELEM x, false)
-          | delete_one’ x = (x, false)
-            val (m’, _) = delete_one’ m
-        in simplify m’
-    end
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">fun</font></b> delete_one m w <font color="#990000">=</font>
+    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> delete_one’ <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font>
+            <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>x’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ x
+                <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> deleted
+                   <b><font color="#0000FF">then</font></b> <font color="#990000">(</font>UNION <font color="#990000">(</font>x’<font color="#990000">,</font> y<font color="#990000">),</font> deleted<font color="#990000">)</font>
+                   <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>y’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ y
+                       <b><font color="#0000FF">in</font></b> <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font> y’<font color="#990000">),</font> deleted<font color="#990000">)</font>
+                   <b><font color="#0000FF">end</font></b>
+                <b><font color="#0000FF">end</font></b>
+          <font color="#990000">|</font> delete_one’ <font color="#990000">(</font>ELEM x<font color="#990000">)</font> <font color="#990000">=</font>
+            <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> <font color="#990000">(</font>EMPTY<font color="#990000">,</font> true<font color="#990000">)</font> <b><font color="#0000FF">else</font></b> <font color="#990000">(</font>ELEM x<font color="#990000">,</font> false<font color="#990000">)</font>
+          <font color="#990000">|</font> delete_one’ x <font color="#990000">=</font> <font color="#990000">(</font>x<font color="#990000">,</font> false<font color="#990000">)</font>
+            <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>m’<font color="#990000">,</font> _<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ m
+        <b><font color="#0000FF">in</font></b> simplify m’
+    <b><font color="#0000FF">end</font></b>
 </pre>
 <br />
 <span>Haskell:</span><br />
 <br />
-<pre>
-delete_one m w = do
-    let (m’, _) = delete_one’ m
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>delete_one m w <font color="#990000">=</font> <b><font color="#0000FF">do</font></b>
+    <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>m’<font color="#990000">,</font> <b><font color="#0000FF">_</font></b><font color="#990000">)</font> <font color="#990000">=</font> delete_one’ m
     simplify m’
-    where
-        delete_one’ (Union x y) =
-            let (x’, deleted) = delete_one’ x
-            in if deleted
-                then (Union x’ y, deleted)
-                else let (y’, deleted) = delete_one’ y
-                    in (Union x y’, deleted)
-        delete_one’ (Elem x) =
-            if x == w then (Empty, True) else (Elem x, False)
-        delete_one’ x = (x, False)
+    <b><font color="#0000FF">where</font></b>
+        delete_one’ <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font> <font color="#990000">=</font>
+            <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>x’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ x
+            <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> deleted
+                <b><font color="#0000FF">then</font></b> <font color="#990000">(</font><font color="#009900">Union</font> x’ y<font color="#990000">,</font> deleted<font color="#990000">)</font>
+                <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>y’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ y
+                    <b><font color="#0000FF">in</font></b> <font color="#990000">(</font><font color="#009900">Union</font> x y’<font color="#990000">,</font> deleted<font color="#990000">)</font>
+        delete_one’ <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> <font color="#990000">=</font>
+            <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#990000">(</font><font color="#009900">Empty</font><font color="#990000">,</font> <font color="#009900">True</font><font color="#990000">)</font> <b><font color="#0000FF">else</font></b> <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">,</font> <font color="#009900">False</font><font color="#990000">)</font>
+        delete_one’ x <font color="#990000">=</font> <font color="#990000">(</font>x<font color="#990000">,</font> <font color="#009900">False</font><font color="#990000">)</font>
 </pre>
 <br />
 <h2 style='display: inline'>Higher-order functions</h2><br />
