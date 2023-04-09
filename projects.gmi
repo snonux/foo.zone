@@ -16,3 +16,4 @@ This is a "hidden" site listing my personal project list priorities!
 * Finish `failunderd 1.0` (Perl or Golang)
 * Rewrite site stats script (Perl or Raku)
 * Modernise my NextCloud and Wallabag infra (Linux, Docker)
+* Release `Gemtexter 2.1.0` and blog about it (Bash)
