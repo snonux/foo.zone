@@ -19,39 +19,40 @@ You won't find any links on this site because, over time, the links will break. 
 
 ## Technical books
 
-* Perl New Features; Joshua McAdams, brian d foy; Perl School
-* Higher Order Perl; Mark Dominus; Morgan Kaufmann
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
 * Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* Developing Games in Java; David Brackeen and others...; New Riders
-* The Docker Book; James Turnbull; Kindle
-* Effective awk programming; Arnold Robbins; O'Reilly
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
 * The Pragmatic Programmer; David Thomas; Addison-Wesley
-* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
-* Modern Perl; Chromatic ; Onyx Neon Press
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
 * The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional Pro Git; Scott Chacon, Ben Straub; Apress
-* DNS and BIND; Cricket Liu; O'Reilly
-* Effective Java; Joshua Bloch; Addison-Wesley Professional
-* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
+* The Docker Book; James Turnbull; Kindle
+* The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
 * Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* Funktionale Programmierung; Peter Pepper; Springer
-* C++ Programming Language; Bjarne Stroustrup;
-* Java ist auch eine Insel; Christian Ullenboom; 
-* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* Raku Recipes; J.J. Merelo; Apress
-* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
-* Raku Fundamentals; Moritz Lenz; Apress
 * Systemprogrammierung in Go; Frank Müller; dpunkt
-* Data Science at the Command Line; Jeroen Janssens; O'Reilly
-* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
-* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Raku Recipes; J.J. Merelo; Apress
+* Raku Fundamentals; Moritz Lenz; Apress
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
 * Polished Ruby Programming; Jeremy Evans; Packt Publishing
+* Perl New Features; Joshua McAdams, brian d foy; Perl School
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Modern Perl; Chromatic ; Onyx Neon Press
+* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Java ist auch eine Insel; Christian Ullenboom; 
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
+* Funktionale Programmierung; Peter Pepper; Springer
+* Effective Java; Joshua Bloch; Addison-Wesley Professional
+* Effective awk programming; Arnold Robbins; O'Reilly
+* DNS and BIND; Cricket Liu; O'Reilly
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
+* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
+* Developing Games in Java; David Brackeen and others...; New Riders
+* Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* C++ Programming Language; Bjarne Stroustrup;
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
+* Amazon Web Services in Action; Michael Wittig and Andreas Wittig; Manning Publications
+* 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 
 ## Technical references
 
