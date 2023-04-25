@@ -11,7 +11,7 @@
   |   | OK->CRITICAL: Check Pi|   ||   | : Late delivery      |   |
   |   | zza: Late delivery    |   ||   |                      |   |
   |   |                       |   ||   | WARNING: Check Thirst|   |
-  |   |                       |   ||   | : Need Kombucha      |   |
+  |   |                       |   ||   | : OutofKombuchaExcept|   |
   |   \_______________________/   ||   \______________________/   |
   |  /|\ GOGIOS MONITOR 1    _    ||  /|\ GOGIOS MONITOR 2   _    |
    \_____________________________/  \____________________________/
