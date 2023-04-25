@@ -43,7 +43,7 @@ Gogios eliminates unnecessary features and focuses on simplicity, providing a no
 
 ## Features
 
-* Compatible with Nagios Check API: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.
+* Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.
 * Lightweight and Minimalistic: Gogios is designed to be simple and easy to set up, making it an ideal choice for users with limited monitoring requirements.
 * Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.
 * Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn't pingable.
@@ -76,6 +76,8 @@ Have a nice day!
 
 ### Compiling and installing Gogios
 
+This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace `does` with the `sudo` command and replace the `/usr/local/bin` path with `/usr/bin`.
+
 To compile and install Gogios on OpenBSD, follow these steps:
 
 ```shell
@@ -85,8 +87,6 @@ go build -o gogios cmd/gogios/main.go
 doas cp gogios /usr/local/bin/gogios
 doas chmod 755 /usr/local/bin/gogios
 ```
-
-This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace `does` with the `sudo` command and replace the `/usr/local/bin` path with `/usr/bin`.
 
 You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:
 
@@ -141,7 +141,7 @@ Check the recipient's inbox to confirm the delivery of the test email. If the em
 
 ### Configuring Gogios
 
-To configure Gogios, create a JSON configuration file (e.g., `/etc/gogios.json`). Here's a sample configuration:
+To configure Gogios, create a JSON configuration file (e.g., `/etc/gogios.json`). Here's an example configuration:
 
 ```json
 {
@@ -213,12 +213,12 @@ Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON a
 
 ### High-availability
 
-To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate cron intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.
+To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.
 
 * Install Gogios on both servers following the compilation and installation instructions provided earlier.
 * Install the NRPE server (out of scope for this document) and plugin on both servers. This plugin allows you to execute Nagios check scripts on remote hosts.
 * Configure Gogios on both servers to monitor each other using the NRPE plugin. Add a check to the Gogios configuration file (`/etc/gogios.json`) on both servers that uses the NRPE plugin to execute a check script on the other server. For example, if you have Server A and Server B, the configuration on Server A should include a check for Server B, and vice versa.
-* Set up alternate cron intervals on both servers. Configure the cron job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. 
+* Set up alternate CRON intervals on both servers. Configure the CRON job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. 
 * Gogios doesn't support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That's the trade-off for simplicity.
 
 ## Conclusion:
