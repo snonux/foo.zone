@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-09T23:03:53+03:00</updated>
+    <updated>2023-04-26T22:47:49+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -433,7 +433,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         </content>
     </entry>
     <entry>
-        <title>Gemtexter 2.0.0 - Let's Gemtext again^2</title>
+        <title>Gemtexter 2.0.0 - Let's Gemtext again²</title>
         <link href="https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html" />
         <id>https://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html</id>
         <updated>2023-03-25T17:50:32+02:00</updated>
@@ -444,7 +444,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Gemtexter 2.0.0 - Let's Gemtext again^2</h1><br />
+                <h1 style='display: inline'>Gemtexter 2.0.0 - Let's Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
 <br />
@@ -593,7 +593,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again² (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
@@ -1708,7 +1708,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²</a><br />
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
@@ -5019,7 +5019,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²</a><br />
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
@@ -5534,7 +5534,7 @@ fi
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again^2</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²</a><br />
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
