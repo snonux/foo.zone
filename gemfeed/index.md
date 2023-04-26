@@ -4,7 +4,7 @@
 
 [2023-04-09 - Algorithms and Data Structures in Go - Part 1](./2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
-[2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
+[2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./2023-01-23-why-grapheneos-rox.md)  

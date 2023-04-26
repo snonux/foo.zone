@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-04-26T22:36:56+03:00 by `Gemtexter`
+> This site was generated at 2023-04-26T22:49:37+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -34,7 +34,7 @@ If you reach this site via the modern web, please read this:
 
 [2023-04-09 - Algorithms and Data Structures in Go - Part 1](./gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./gemfeed/2023-04-01-never-split-the-difference-book-notes.md)  
-[2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again^2](./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
+[2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again²](./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.md)  
 [2023-02-26 - How to shut down after work](./gemfeed/2023-02-26-how-to-shut-down-after-work.md)  
 [2023-01-23 - Why GrapheneOS rox](./gemfeed/2023-01-23-why-grapheneos-rox.md)  
