@@ -1,0 +1,230 @@
+# KISS server monitoring with Gogios
+
+```
+    _____________________________    ____________________________
+   /                             \  /                            \
+  |    _______________________    ||    ______________________    |
+  |   /                       \   ||   /                      \   |
+  |   | # Alerts with status c|   ||   | # Unhandled alerts:  |   |
+  |   | hanged:               |   ||   |                      |   |
+  |   |                       |   ||   | CRITICAL: Check Pizza|   |
+  |   | OK->CRITICAL: Check Pi|   ||   | : Late delivery      |   |
+  |   | zza: Late delivery    |   ||   |                      |   |
+  |   |                       |   ||   | WARNING: Check Thirst|   |
+  |   |                       |   ||   | : OutofKombuchaExcept|   |
+  |   \_______________________/   ||   \______________________/   |
+  |  /|\ GOGIOS MONITOR 1    _    ||  /|\ GOGIOS MONITOR 2   _    |
+   \_____________________________/  \____________________________/
+     !_________________________!      !________________________!
+
+------------------------------------------------
+ASCII art was modified by Paul Buetow
+The original can be found at
+https://asciiart.website/index.php?art=objects/computers
+```
+
+## Introduction
+
+Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
+
+With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.
+
+[https://codeberg.org/snonux/gogios](https://codeberg.org/snonux/gogios)  
+
+## Motivation
+
+As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need. Contact groups, host groups, re-check intervals, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.
+
+My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.
+
+This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool.
+
+Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution for small-scale self-hosted servers and virtual machines. The result is a tool that is easy to configure, set up, and maintain, ensuring that monitoring your resources is as hassle-free as possible.
+
+## Features
+
+* Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.
+* Lightweight and Minimalistic: Gogios is designed to be simple and easy to set up, making it an ideal choice for users with limited monitoring requirements.
+* Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.
+* Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn't pingable.
+* Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.
+* CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.
+
+## Example alert
+
+This is an example alert report received via E-Mail. Whereas, `[C:2 W:0 U:0 OK:51]` means that we've got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.
+
+```
+Subject: GOGIOS Report [C:2 W:0 U:0 OK:51]
+
+This is the recent Gogios report!
+
+# Alerts with status changed:
+
+OK->CRITICAL: Check ICMP4 vulcan.buetow.org: Check command timed out
+OK->CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
+
+# Unhandled alerts:
+
+CRITICAL: Check ICMP4 vulcan.buetow.org: Check command timed out
+CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
+
+Have a nice day!
+```
+
+## Installation
+
+### Compiling and installing Gogios
+
+This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace `does` with the `sudo` command and replace the `/usr/local/bin` path with `/usr/bin`.
+
+To compile and install Gogios on OpenBSD, follow these steps:
+
+```shell
+git clone https://codeberg.org/snonux/gogios.git
+cd gogios
+go build -o gogios cmd/gogios/main.go
+doas cp gogios /usr/local/bin/gogios
+doas chmod 755 /usr/local/bin/gogios
+```
+
+You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:
+
+```shell
+export GOOS=openbsd
+export GOARCH=amd64
+go build -o gogios cmd/gogios/main.go
+```
+
+On your OpenBSD system, copy the binary to `/usr/local/bin` and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.
+
+[https://www.rexify.org](https://www.rexify.org)  
+
+### Setting up user, group and directories
+
+It is best to create a dedicated system user and group for Gogios to ensure proper isolation and security. Here are the steps to create the `_gogios` user and group under OpenBSD:
+
+```shell
+doas adduser -group _gogios -batch _gogios
+doas usermod -d /var/run/gogios _gogios
+doas mkdir -p /var/run/gogios
+doas chown _gogios:_gogios /var/run/gogios
+doas chmod 750 /var/run/gogios
+```
+
+Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.
+
+### Installing monitoring plugins
+
+Gogios relies on external Nagios or Icinga monitoring plugin scripts. On OpenBSD, you can install the `monitoring-plugins` package with Gogios. The monitoring-plugins package is a collection of monitoring plugins, similar to Nagios plugins, that can be used to monitor various services and resources:
+
+```shell
+doas pkg_add monitoring-plugins
+doas pkg_add nrpe # If you want to execute checks remotely via NRPE.
+```
+
+Once the installation is complete, you can find the monitoring plugins in the `/usr/local/libexec/nagios` directory, which then can be configured to be used in `gogios.json`.
+
+## Configuration
+
+### MTA
+
+Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.
+
+You can use the mail command to send an email via the command line on OpenBSD. Here's an example of how to send a test email to ensure that your email server is working correctly:
+
+```
+echo 'This is a test email from OpenBSD.' | mail -s 'Test Email' your-email@example.com
+```
+
+Check the recipient's inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.
+
+### Configuring Gogios
+
+To configure Gogios, create a JSON configuration file (e.g., `/etc/gogios.json`). Here's an example configuration:
+
+```json
+{
+  "EmailTo": "paul@dev.buetow.org",
+  "EmailFrom": "gogios@buetow.org",
+  "CheckTimeoutS": 10,
+  "CheckConcurrency": 2,
+  "StateDir": "/var/run/gogios",
+  "Checks": {
+    "Check ICMP4 www.foo.zone": {
+      "Plugin": "/usr/local/libexec/nagios/check_ping",
+      "Args": [ "-H", "www.foo.zone", "-4", "-w", "50,10%", "-c", "100,15%" ]
+    },
+    "Check ICMP6 www.foo.zone": {
+      "Plugin": "/usr/local/libexec/nagios/check_ping",
+      "Args": [ "-H", "www.foo.zone", "-6", "-w", "50,10%", "-c", "100,15%" ]
+    },
+    "www.foo.zone HTTP IPv4": {
+      "Plugin": "/usr/local/libexec/nagios/check_http",
+      "Args": ["www.foo.zone", "-4"],
+      "DependsOn": ["Check ICMP4 www.foo.zone"]
+    },
+    "www.foo.zone HTTP IPv6": {
+      "Plugin": "/usr/local/libexec/nagios/check_http",
+      "Args": ["www.foo.zone", "-6"],
+      "DependsOn": ["Check ICMP6 www.foo.zone"]
+    }
+    "Check NRPE Disk Usage foo.zone": {
+      "Plugin": "/usr/local/libexec/nagios/check_nrpe",
+      "Args": ["-H", "foo.zone", "-c", "check_disk", "-p", "5666", "-4"]
+    }
+  }
+}
+```
+
+* `EmailTo`: Specifies the recipient of the email notifications.
+* `EmailFrom`: Indicates the sender's email address for email notifications.
+* `CheckTimeoutS`: Sets the timeout for checks in seconds.
+* `CheckConcurrency`: Determines the number of concurrent checks that can run simultaneously.
+* `StateDir`: Specifies the directory where Gogios stores its persistent state in a `state.json` file. 
+* `Checks`: Defines a list of checks to be performed, each with a unique name, plugin path, and arguments.
+
+Adjust the configuration file according to your needs, specifying the checks you want Gogios to perform.
+
+If you want to execute checks only when another check succeeded (status OK), use `DependsOn`. In the example above, the HTTP checks won't run when the hosts aren't pingable. They will show up as `UNKNOWN` in the report.
+
+For remote checks, use the `check_nrpe` plugin. You also need to have the NRPE server set up correctly on the target host (out of scope for this document).
+
+The `state.json` file mentioned above keeps track of the monitoring state and check results between Gogios runs, enabling Gogios only to send email notifications when there are changes in the check status.
+
+## Running Gogios
+
+Now it is time to give it a first run. On OpenBSD, do:
+
+```shell
+doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios.json
+```
+
+To run Gogios via CRON on OpenBSD as the `gogios` user and check all services once per minute, follow these steps:
+
+Type `doas crontab -e -u _gogios` and press Enter to open the crontab file for the `_gogios` user for editing and add the following lines to the crontab file:
+
+```
+*/5 8-22 * * * /usr/local/bin/gogios -cfg /etc/gogios.json
+0 7 * * * /usr/local/bin/gogios -renotify -cfg /etc/gogios.json
+```
+
+Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON as the `_gogios` user. It will execute the checks and send monitoring status whenever a check status changes via email according to your configuration. Also, Gogios will run once at 7 am every morning and re-notify all unhandled alerts as a reminder.
+
+### High-availability
+
+To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.
+
+* Install Gogios on both servers following the compilation and installation instructions provided earlier.
+* Install the NRPE server (out of scope for this document) and plugin on both servers. This plugin allows you to execute Nagios check scripts on remote hosts.
+* Configure Gogios on both servers to monitor each other using the NRPE plugin. Add a check to the Gogios configuration file (`/etc/gogios.json`) on both servers that uses the NRPE plugin to execute a check script on the other server. For example, if you have Server A and Server B, the configuration on Server A should include a check for Server B, and vice versa.
+* Set up alternate CRON intervals on both servers. Configure the CRON job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. 
+* Gogios doesn't support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That's the trade-off for simplicity.
+
+## Conclusion:
+
+Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. If you're seeking a simple yet effective monitoring tool for your self-hosted servers or virtual machines, give Gogios a try!
+
+E-Mail your comments to hi@paul.cyou :-)
+
+[Back to the main site](../)  
