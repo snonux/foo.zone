@@ -1,4 +1,4 @@
-# Gemtexter 2.0.0 - Let's Gemtext again^2
+# Gemtexter 2.0.0 - Let's Gemtext again²
 
 > Published at 2023-03-25T17:50:32+02:00
 
