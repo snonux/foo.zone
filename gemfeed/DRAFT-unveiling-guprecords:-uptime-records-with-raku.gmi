@@ -27,7 +27,7 @@ Guprecords, or global uptime records, is a Raku script designed to generate a co
 
 A previous version of Guprecords was actually written in Perl, the older and more established language from which Raku was developed. One of the primary motivations for rewriting Guprecords in Raku was to learn the language and explore its features. Raku is a more modern and powerful language compared to Perl, and working on a real-world project like Guprecords provided a practical and engaging way to learn the language.
 
-## Implementation
+## How it works
 
 Guprecords works in three stages:
 
@@ -39,7 +39,7 @@ Guprecords works in three stages:
 raku guprecords.raku --stats=dir=$HOME/git/uprecords/stats --all
 ```
 
-This command will generate a comprehensive uptime report from the collected statistics, making it easy to review and analyze the data.
+This command will generate a comprehensive uptime report from the collected statistics, making it easy to review and enjoy the data.
 
 Guprecords supports the following features:
 
@@ -47,7 +47,6 @@ Guprecords supports the following features:
 * Supports multiple metrics: Boots, Uptime, Score, Downtime, and Lifespan
 * Output formats available: Plaintext, Markdown, and Gemtext
 * Provides top entries based on the specified limit
-* Allows generating reports for all possible combinations of categories and metrics
 
 ## Example
 
