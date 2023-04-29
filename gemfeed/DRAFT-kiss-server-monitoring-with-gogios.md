@@ -1,5 +1,13 @@
 # KISS server monitoring with Gogios
 
+## Introduction
+
+Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
+
+With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.
+
+[https://codeberg.org/snonux/gogios](https://codeberg.org/snonux/gogios)  
+
 ```
     _____________________________    ____________________________
    /                             \  /                            \
@@ -23,17 +31,9 @@ The original can be found at
 https://asciiart.website/index.php?art=objects/computers
 ```
 
-## Introduction
-
-Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
-
-With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.
-
-[https://codeberg.org/snonux/gogios](https://codeberg.org/snonux/gogios)  
-
 ## Motivation
 
-As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need. Contact groups, host groups, re-check intervals, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.
+As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need for personal use. Contact groups, host groups, re-check intervals, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.
 
 My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.
 
