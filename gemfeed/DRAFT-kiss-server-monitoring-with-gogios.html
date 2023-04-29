@@ -10,6 +10,14 @@
 <body>
 <h1 style='display: inline'>KISS server monitoring with Gogios</h1><br />
 <br />
+<h2 style='display: inline'>Introduction</h2><br />
+<br />
+<span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
+<br />
+<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
+<br />
 <pre>
     _____________________________    ____________________________
    /                             \  /                            \
@@ -33,17 +41,9 @@ The original can be found at
 https://asciiart.website/index.php?art=objects/computers
 </pre>
 <br />
-<h2 style='display: inline'>Introduction</h2><br />
-<br />
-<span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
-<br />
-<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
-<br />
 <h2 style='display: inline'>Motivation</h2><br />
 <br />
-<span>As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need. Contact groups, host groups, re-check intervals, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
+<span>As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need for personal use. Contact groups, host groups, re-check intervals, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
 <br />
 <span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.</span><br />
 <br />
