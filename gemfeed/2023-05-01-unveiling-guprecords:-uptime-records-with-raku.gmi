@@ -1,5 +1,7 @@
 # Unveiling `guprecords.raku`: Global Uptime Records with Raku
 
+> Published at 2023-04-30T13:10:26+03:00
+
 ```
 +-----+-----------------+-----------------------------+
 | Pos |            Host |                    Lifespan |
@@ -138,10 +140,10 @@ Raku's expressive syntax, support for multiple programming paradigms, and unique
 
 Working on Guprecords in Raku has been an enjoyable experience, and I've found that Raku's expressiveness has significantly contributed to the overall quality and effectiveness of the script. The language's ability to elegantly express complex logic and data manipulation tasks makes it an excellent choice for developing tools like these, where clarity and efficiency are of the utmost importance.
 
-So far, I have only scratched the surface of what Raku can do. I hope to find more time to become a regular Rakoon (a Raku Programmer). I have many Ideas for other small tools like Guprecords, but the challenge is finding the time. I'd love to explore Raku Grammars and also I would love to explore writing concurrent code in Raku (I also love Go (Golang), btw!). Ideas for future Raku personal projects are:
+So far, I have only scratched the surface of what Raku can do. I hope to find more time to become a regular Rakoon (a Raku Programmer). I have many Ideas for other small tools like Guprecords, but the challenge is finding the time. I'd love to explore Raku Grammars and also I would love to explore writing concurrent code in Raku (I also love Go (Golang), btw!). Ideas for future Raku personal projects include:
 
-* A log file analyzer, for generating `foo.zone` visitor stats for both, the Web and Gemini.
-* A social media sharing scheduler a la `buffer.com`. I am using Buffer at the moment, but it is proprietary and also it's not really reliable.
+* A log file analyzer, for generating anonymized `foo.zone` visitor stats for both, the Web and Gemini.
+* A social media sharing scheduler a la `buffer.com`. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it's not really reliable.
 
 Other related posts are:
 

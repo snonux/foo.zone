@@ -1,5 +1,7 @@
 # Unveiling `guprecords.raku`: Global Uptime Records with Raku
 
+> Published at 2023-04-30T13:10:26+03:00
+
 ```
 +-----+-----------------+-----------------------------+
 | Pos |            Host |                    Lifespan |
