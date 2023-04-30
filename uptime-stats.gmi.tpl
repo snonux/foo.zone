@@ -11,7 +11,7 @@ The following stats were collected via `uptimed` on all of my personal computers
 
 Also check out my blog post:
 
-=> ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords`: Uptime records with Raku
+=> ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Uptime records with Raku
 
 <<<
   if [ -f ~/git/uprecords/uprecords.gmi ]; then
