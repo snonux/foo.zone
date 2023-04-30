@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-30T13:13:11+03:00</updated>
+    <updated>2023-04-30T13:17:39+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -171,6 +171,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <ul>
 <li>A log file analyzer, for generating anonymized <span class='inlinecode'>foo.zone</span> visitor stats for both, the Web and Gemini.</li>
 <li>A social media sharing scheduler a la <span class='inlinecode'>buffer.com</span>. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it's not really reliable.</li>
+<li>Rewrite the static photo album generator of <span class='inlinecode'>irregular.ninja</span> in Raku (from <span class='inlinecode'>bash</span>)</li>
 </ul><br />
 <span>Other related posts are:</span><br />
 <br />
