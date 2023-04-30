@@ -144,6 +144,7 @@ So far, I have only scratched the surface of what Raku can do. I hope to find mo
 
 * A log file analyzer, for generating anonymized `foo.zone` visitor stats for both, the Web and Gemini.
 * A social media sharing scheduler a la `buffer.com`. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it's not really reliable.
+* Rewrite the static photo album generator of `irregular.ninja` in Raku (from `bash`)
 
 Other related posts are:
 
