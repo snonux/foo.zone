@@ -28,6 +28,7 @@ As a result of this, I am introducing `guprecords.raku`, a handy Raku script tha
 Guprecords, or global uptime records, is a Raku script designed to generate a consolidated uptime report from multiple hosts:
 
 => https://codeberg.org/snonux/guprecords
+=> https://raku.org The Raku Programming Language
 
 A previous version of Guprecords was actually written in Perl, the older and more established language from which Raku was developed. One of the primary motivations for rewriting Guprecords in Raku was to learn the language and explore its features. Raku is a more modern and powerful language compared to Perl, and working on a real-world project like Guprecords provided a practical and engaging way to learn the language.
 
