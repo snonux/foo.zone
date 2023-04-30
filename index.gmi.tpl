@@ -18,6 +18,7 @@ Welcome to the foo.zone. It's my personal internet site and blog. Everything you
 => https://paul.cyou My contact information (via HTTP)
 => gemini://paul.cyou My contact information (via Gemini)
 => ./resources.gmi My list of resources
+=> ./uptime-stats.gmi My machine uptime statistics
 
 If you reach this site via the modern web, please read this:
 
