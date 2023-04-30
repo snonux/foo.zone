@@ -9,6 +9,10 @@ The following stats were collected via `uptimed` on all of my personal computers
 => https://github.com/rpodgorny/uptimed
 => https://codeberg.org/snonux/guprecords
 
+Also check out my blog post:
+
+=> ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords`: Uptime records with Raku
+
 <<<
   if [ -f ~/git/uprecords/uprecords.gmi ]; then
       cat ~/git/uprecords/uprecords.gmi
