@@ -33,6 +33,41 @@ Some good books on "good" Perl I can recommend are:
 Due to Perl's expressiveness you will find a lot of obscure code in the interweb in form of obfuscation, fancy email signatures (JAPHs), art, polyglots and even poetry in Perl syntax. But that's not what you will find in production code. That's only people having fun with the language which is different to "getting things done". The expressiveness is a bonus. It makes the Perl programmers love Perl.
 
 [JAPH](https://en.wikipedia.org/wiki/Just_another_Perl_hacker)  
+# Perl is still a great choice
+
+> Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28
+
+[![Comic source: XKCD](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png "Comic source: XKCD")](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
+
+Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and `perl` the name of the interpreter or the interpreter command.
+
+Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:
+
+[![./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)  
+
+So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:
+
+* Perl is a write-only language. Nobody can read Perl code.
+* Perl? Isn't it abandoned? It's still at version 5!
+* Why use Perl as there are better alternatives?
+* Why all the sigils? It looks like an exploding ASCII factory!!
+
+## Write-only language
+
+Is Perl really a write-only language? You have to understand that Perl 5 was released in 1994 (28 years ago as of this writing) and when we refer to Perl we usually mean Perl 5. That's many years, and there are many old scripts not following the modern Perl best practices (as they didn't exist yet). So yes, legacy scripts may be difficult to read. Japanese may be difficult to read too if you don't know Japanese, though.
+
+To come back to the question: Is Perl a write-only language? I don't think so. Like in any other language, you have to apply best practices in order to keep your code maintainable. Some other programming languages enforce best practices, but that makes these languages less expressive. Perl follows the principles "there is more than one way to do it" (aka TIMTOWDI) and "making easy things easy and hard things possible".
+
+Perl gives the programmer more flexibility in how to do things, and this results in a stronger learning curve than for lesser expressive languages like for example Go or Python. But, like in everything in life, common sense has to be applied. You should not take TIMTOWDI to the extreme in a production piece of code. In my personal opinion, it is also more satisfying to program in an expressive language.
+
+Some good books on "good" Perl I can recommend are:
+
+[Modern Perl](http://modernperlbooks.com)  
+[Higher Order Perl](https://hop.perl.plover.com)  
+
+Due to Perl's expressiveness you will find a lot of obscure code in the interweb in form of obfuscation, fancy email signatures (JAPHs), art, polyglots and even poetry in Perl syntax. But that's not what you will find in production code. That's only people having fun with the language which is different to "getting things done". The expressiveness is a bonus. It makes the Perl programmers love Perl.
+
+[JAPH](https://en.wikipedia.org/wiki/Just_another_Perl_hacker)  
 [http://www.cpan.org/misc/japh](http://www.cpan.org/misc/japh)  
 [Perl Poetry](https://www.perlmonks.org/index.pl?next=20;node_id=1590)  
 

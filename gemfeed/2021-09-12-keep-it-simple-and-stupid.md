@@ -29,6 +29,37 @@ This not just makes the system much more complex, difficult to maintain and chal
 
 Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It's just too scary to write everything from scratch. There's too much COBOL code out there that can't be replaced from today to tomorrow. 
 
+# Keep it simple and stupid
+
+> Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23
+
+```
+  _______________                        |*\_/*|_______
+  |  ___________  |     .-.     .-.      ||_/-\_|______  |
+  | |           | |    .****. .****.     | |           | |
+  | |   0   0   | |    .*****.*****.     | |   0   0   | |
+  | |     -     | |     .*********.      | |     -     | |
+  | |   \___/   | |      .*******.       | |   \___/   | |
+  | |___     ___| |       .*****.        | |___________| |
+  |_____|\_/|_____|        .***.         |_______________|
+    _|__|/ \|_|_.............*.............._|________|_
+   / ********** \                          / ********** \
+ /  ************  \                      /  ************  \
+--------------------                    --------------------
+```
+
+A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
+
+# Need faster hardware
+
+This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.
+
+# Too complex to be replaced
+
+## On COBOL
+
+Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It's just too scary to write everything from scratch. There's too much COBOL code out there that can't be replaced from today to tomorrow. 
+
 [https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html](https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html)  
 
 ## On Kubernetes

@@ -43,6 +43,51 @@ This will be a quick blog post, as I am busy with my personal life now. I have r
 
  In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
 
+# Installing DTail on OpenBSD
+
+> Published at 2022-10-30T11:03:19+02:00
+
+```
+       ,_---~~~~~----._
+ _,,_,*^____      _____``*g*\"*,
+/ __/ /'     ^.  /      \ ^@q   f
+ @f   |       |  |       |  0 _/
+\`/   \~__((@/ __ \__((@/    \
+ |           _l__l_           I    <--- The Go Gopher
+ }          [______]           I
+ ]            | | |            |
+ ]             ~ ~             |
+ |                            |
+  |                           |
+  |                           |       A       ;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~,--,-/ \---,-/|~~,~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                           _|\,'. /|      /|   `/|-.
+                       \`.'    /|      ,            `;.
+                      ,'\   A     A         A   A _ /| `.;
+                    ,/  _              A       _  / _   /|  ;
+                   /\  / \   ,  ,           A  /    /     `/|
+                  /_| | _ \         ,     ,             ,/  \
+                 // | |/ `.\  ,-      ,       ,   ,/ ,/      \/
+                 / @| |@  / /'   \  \      ,              >  /|    ,--.
+                |\_/   \_/ /      |  |           ,  ,/        \  ./' __:..
+                |  __ __  |       |  | .--.  ,         >  >   |-'   /     `
+              ,/| /  '  \ |       |  |     \      ,           |    /
+             /  |<--.__,->|       |  | .    `.        >  >    /   (
+            /_,' \\  ^  /  \     /  /   `.    >--            /^\   |
+                  \\___/    \   /  /      \__'     \   \   \/   \  |
+                   `.   |/          ,  ,                  /`\    \  )
+                     \  '  |/    ,       V    \          /        `-\
+ OpenBSD Puffy --->   `|/  '  V      V           \    \.'            \_
+                       '`-.       V       V        \./'\
+                           `|/-.      \ /   \ /,---`\         kat
+                            /   `._____V_____V'
+                                       '     '
+```
+
+This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
+
+ In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
+
 [https://dtail.dev](https://dtail.dev)  
 
 I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:

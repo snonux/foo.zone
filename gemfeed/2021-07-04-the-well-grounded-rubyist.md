@@ -6,6 +6,14 @@ When I was a Linux System Administrator, I have been programming in Perl for yea
 
 You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!
 
+# The Well-Grounded Rubyist
+
+> Published at 2021-07-04T10:51:23+01:00
+
+When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.
+
+You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!
+
 [![./2021-07-04-the-well-grounded-rubyist/book-cover.jpg](./2021-07-04-the-well-grounded-rubyist/book-cover.jpg)](./2021-07-04-the-well-grounded-rubyist/book-cover.jpg)  
 
 Superficially, Perl seems to have many similarities to Ruby (but, of course, it is entirely different to Perl when you look closer), which pushed me towards Ruby instead of Python. I have tried Python a couple of times before, and I managed to write good code, but I never felt satisfied with the language. I didn't love the syntax, especially the indentations used; they always confused me. I don't dislike Python, but I don't prefer to program in it if I have a choice, especially when there are more propelling alternatives available. Personally, it's so much more fun to program in Ruby than in Python.
