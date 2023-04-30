@@ -136,9 +136,9 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 
 Guprecords is a small, yet powerful tool for analyzing uptime statistics. While developing Guprecords, I have come to truly appreciate and love Raku's expressiveness. The language is designed to be both powerful and flexible, allowing developers to express their intentions and logic more clearly and concisely.
 
-Raku's expressive syntax, support for multiple programming paradigms, and unique features, such as grammars and lazy evaluation, make it a joy to work with. The language's strong emphasis on readability and maintainability allows for the creation of elegant code that is easy to understand and modify.
+Raku's expressive syntax, support for multiple programming paradigms, and unique features, such as grammars and lazy evaluation, make it a joy to work with. 
 
-Working on Guprecords in Raku has been an enjoyable experience, and I've found that Raku's expressiveness has significantly contributed to the overall quality and effectiveness of the script. The language's ability to elegantly express complex logic and data manipulation tasks makes it an excellent choice for developing tools like these, where clarity and efficiency are of the utmost importance.
+Working on Guprecords in Raku has been an enjoyable experience, and I've found that Raku's expressiveness has significantly contributed to the overall quality and effectiveness of the script. The language's ability to elegantly express complex logic and data manipulation tasks makes it an excellent choice for developing tools like these, where expressiveness and productiveness are of the utmost importance.
 
 So far, I have only scratched the surface of what Raku can do. I hope to find more time to become a regular Rakoon (a Raku Programmer). I have many Ideas for other small tools like Guprecords, but the challenge is finding the time. I'd love to explore Raku Grammars and also I would love to explore writing concurrent code in Raku (I also love Go (Golang), btw!). Ideas for future Raku personal projects include:
 
