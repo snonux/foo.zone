@@ -136,7 +136,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 Other related posts are:
 
-<< template::inline::index perl
+<< template::inline::index perl raku
 
 E-Mail your comments to hi@paul.cyou :-)
 

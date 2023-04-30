@@ -98,7 +98,7 @@ My up to date stats can be seen here:
 
 => ../uptime-stats.gmi My machine uptime stats
 
-Just recently, I decommissioned `vulcan` (the number one stop from above), which used to be my CentOS 7 (initially CentOS 6) VM hosting my personal NextCloud and Wallabag (which I modernised just recently with a new VM). This was the last `uptimed` output before shutting it down:
+Just recently, I decommissioned `vulcan` (the number one stop from above), which used to be my CentOS 7 (initially CentOS 6) VM hosting my personal NextCloud and Wallabag (which I modernised just recently with a brand new shiny Rocky Linux 9 VM). This was the last `uptimed` output before shutting it down (it always makes me feel sentimental decommissioning one of my machines `:'-(`):
 
 ```
      #               Uptime | System                                     Boot up
@@ -143,9 +143,13 @@ So far, I have only scratched the surface of what Raku can do. I hope to find mo
 * A log file analyzer, for generating `foo.zone` visitor stats for both, the Web and Gemini.
 * A social media sharing scheduler a la `buffer.com`. I am using Buffer at the moment, but it is proprietary and also it's not really reliable.
 
-You might also be interested reading this:
+Other related posts are:
 
-=> ./2022-05-27-perl-is-still-a-great-choice.gmi Perl is still a great choice
+=> ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi 2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku (You are currently reading this)
+=> ./2022-06-15-sweating-the-small-stuff.gmi 2022-06-15 Sweating the small stuff - Tiny projects of mine
+=> ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice
+=> ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework)
+=> ./2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry
 
 E-Mail your comments to hi@paul.cyou :-)
 
