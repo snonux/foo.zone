@@ -30,7 +30,7 @@ Don't always try to use the front door; a backdoor could open. It's nonsense. Do
 
 ## Embrace rationality
 
-It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals while having sex. Show the middle finger if someone persists on the stupid rules occasionally.
+It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals during a fight. Show the middle finger if someone persists on the stupid rules occasionally.
 
 ## Control your response
 
