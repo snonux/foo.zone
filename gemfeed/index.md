@@ -2,12 +2,7 @@
 
 ## To be in the .zone!
 
-[2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
-[2023-04-09 - Algorithms and Data Structures in Go - Part 1](./2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
-# Gemfeed of foo.zone
-
-## To be in the .zone!
-
+[2023-05-06 - 'The Obstacle is the Way' book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 [2023-04-09 - Algorithms and Data Structures in Go - Part 1](./2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
