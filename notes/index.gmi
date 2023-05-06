@@ -4,6 +4,7 @@
 
 => ./the-stoic-challenge.gmi 'The Stoic Challenge' book notes
 => ./the-pragmatic-programmer.gmi 'The Pragmatic Programmer' book notes
+=> ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
 => ./soft-skills.gmi 'Software Developmers Career Guide & Soft Skills' book notes
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
