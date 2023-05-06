@@ -64,13 +64,12 @@ In times of crisis, seize the chance to do things never done before. Great peopl
 
 The art of not panicking; otherwise, you will make mistakes. When overs are shocked, you know which way to take due to your thinking of the problem at Hand. A crisis gives you a chance to do things which never done before. Ordinary people shy from negative situations; great people use these for their benefit and are the most effective. The obstacle is not just turned upside down but used as a catapult.
 
-Be prepared for nothing to work. Problems are an opportunity to do your best, not to do miracles. Always manage your expectations. It will suck, but it will be ok. Build your inner citadel. In good times strengthen it. In bad times rely on it. We should always prepare for things to get tough. Your house burns down: no worries, we eliminated much rubbish. Imagine what can go wrong before things go wrong. We are prepared for adversity; it's other people who aren't. Phil Jackson's hip problem example. To receive unexpected benefits, you must first accept the unexpected obstacles. Meditate on death. It's a universal obstacle. Use it as a reminder to do your best.
-
-Be prepared to begin from the beginning. Be cheerful and eagerly work on the next obstacle. Each time you become better. Life is not a sprint but a marathon. After each obstacle lies another obstacle, there won't be anything without obstacles. Passing one means you are ready for the next.
+Be prepared for nothing to work. Problems are an opportunity to do your best, not to do miracles. Always manage your expectations. It will suck, but it will be ok. Be prepared to begin from the beginning. Be cheerful and eagerly work on the next obstacle. Each time you become better. Life is not a sprint but a marathon. After each obstacle lies another obstacle, there won't be anything without obstacles. Passing one means you are ready for the next.
 
 ## Build your inner citadel
 
-Develop your inner strength during good times so you can rely on it in bad times. Always prepare for adversity and face it with calmness and resilience. Maybe reconsider what you really desire. Be humble enough that things which happen will happen. 
+Develop your inner strength during good times so you can rely on it in bad times. Always prepare for adversity and face it with calmness and resilience. Maybe reconsider what you really desire. Be humble enough that things which happen will happen. Build your inner citadel. In good times strengthen it. In bad times rely on it. We should always prepare for things to get tough. Your house burns down: no worries, we eliminated much rubbish. Imagine what can go wrong before things go wrong. We are prepared for adversity; it's other people who aren't. Phil Jackson's hip problem example. To receive unexpected benefits, you must first accept the unexpected obstacles. Meditate on death. It's a universal obstacle. Use it as a reminder to do your best.
+
 
 ## Love everything that happens
 
