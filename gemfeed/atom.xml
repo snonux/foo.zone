@@ -1,11 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-04-30T16:46:50+03:00</updated>
+    <updated>2023-05-06T17:23:16+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>'The Obstacle is the Way' book notes</title>
+        <link href="https://foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.html" />
+        <id>https://foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.html</id>
+        <updated>2023-05-06T17:23:16+03:00</updated>
+        <author>
+            <name>Paul Buetow</name>
+            <email>hi@paul.cyou</email>
+        </author>
+        <summary>These are my personal takeaways after reading 'The Obstacle Is the Way' by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>"The Obstacle is the Way" book notes</h1><br />
+<br />
+<span>These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</span><br />
+<br />
+<br />
+<pre>
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+</pre>
+<br />
+<span>"The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.</span><br />
+<br />
+<h2 style='display: inline'>Reframe your perspective</h2><br />
+<br />
+<span>The obstacle in your path can become your path to success. Instead of being paralyzed by challenges, see them as opportunities to learn and grow. Remember, the things that hurt us often instruct us. </span><br />
+<br />
+<span>We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn't need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn't need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.</span><br />
+<br />
+<span>Don't always try to use the front door; a backdoor could open. It's nonsense. Don't fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.</span><br />
+<br />
+<br />
+<h2 style='display: inline'>Embrace rationality</h2><br />
+<br />
+<span>It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals while having sex. Show the middle finger if someone persists on the stupid rules occasionally.</span><br />
+<br />
+<h2 style='display: inline'>Control your response</h2><br />
+<br />
+<span>You can choose how you respond to obstacles. Focus on what you can control, and don't let yourself feel harmed by external circumstances. Remember, you decide how things affect you; nobody else does. Choose to feel good in response to any situation. Embrace the challenges and obstacles that come your way, as they are opportunities for growth and learning.</span><br />
+<br />
+<h2 style='display: inline'>Practice emotional and physical resilience</h2><br />
+<br />
+<span>Martial artists know the importance of developing physical and emotional strength. Cultivate the art of not panicking; it will help you avoid making mistakes during high-pressure situations.</span><br />
+<br />
+<span>Focus on what you can control. Don't choose to feel harmed, and then you won't be harmed. I decide things that affect me; nobody else does. E.g., in prison, your mind stays your own. Don't ignore fear but explain it away, have a different view.</span><br />
+<br />
+<h2 style='display: inline'>Persistence and patience</h2><br />
+<br />
+<span>Practice persistence and patience in your pursuits. Focus on the process rather than the prize and take one step at a time. Remember, the journey is about finishing tasks, projects, or workouts to the best of your ability. Never be in a hurry and never be desperate. There is no reason to be rushed; there are all in the long haul. Follow the process and not the price. Take it one step at a time. The process is about finishing (workout, task, project, etc.).</span><br />
+<br />
+<h2 style='display: inline'>Embrace failure</h2><br />
+<br />
+<span>Failure is a natural part of life and can make us stronger. Treat defeat as a stepping stone to success and education. What is defeat? The first step to education. Failure makes you stronger. If we do our best, we can be proud of it, regardless of the result. Do your job, but do it right. Only an asshole thinks he is too good at the things he does. Also, asking for forgiveness is easier than asking for permission. </span><br />
+<br />
+<h2 style='display: inline'>Be adaptable</h2><br />
+<br />
+<span>There are many ways to achieve your goals; sometimes, unconventional methods are necessary. Feel free to break the rules or go off the beaten path if it will lead to better results. Transform weaknesses into strengths. We have a choice of how to respond to things. It's not about being positive but to be creative. Aim high, but stuff will happen; E.g., surprises will always happen.</span><br />
+<br />
+<h2 style='display: inline'>Embrace non-action</h2><br />
+<br />
+<span>We constantly push to the next thing. Sometimes the best course of action is standing still or even going backwards. Obstacles might resolve by themselves. Or going sideways. Sometimes, the best action is to stand still, go sideways, or even go backwards. Obstacles may resolve themselves or present new opportunities if you're patient and observant. People always want your input before you have all the facts. They want you to play after their rules. The question is, do you let them? The English call it the cool head. Being in control of Stress; requires practice. Appear, the absence of fear (Greek). When all others do it one way, it does not mean it is the correct or best practice.</span><br />
+<br />
+<h2 style='display: inline'>Leverage crisis</h2><br />
+<br />
+<span>In times of crisis, seize the chance to do things never done before. Great people use negative situations to their advantage and become the most effective in challenging circumstances.</span><br />
+<br />
+<span>The art of not panicking; otherwise, you will make mistakes. When overs are shocked, you know which way to take due to your thinking of the problem at Hand. A crisis gives you a chance to do things which never done before. Ordinary people shy from negative situations; great people use these for their benefit and are the most effective. The obstacle is not just turned upside down but used as a catapult.</span><br />
+<br />
+<span>Be prepared for nothing to work. Problems are an opportunity to do your best, not to do miracles. Always manage your expectations. It will suck, but it will be ok. Build your inner citadel. In good times strengthen it. In bad times rely on it. We should always prepare for things to get tough. Your house burns down: no worries, we eliminated much rubbish. Imagine what can go wrong before things go wrong. We are prepared for adversity; it's other people who aren't. Phil Jackson's hip problem example. To receive unexpected benefits, you must first accept the unexpected obstacles. Meditate on death. It's a universal obstacle. Use it as a reminder to do your best.</span><br />
+<br />
+<span>Be prepared to begin from the beginning. Be cheerful and eagerly work on the next obstacle. Each time you become better. Life is not a sprint but a marathon. After each obstacle lies another obstacle, there won't be anything without obstacles. Passing one means you are ready for the next.</span><br />
+<br />
+<h2 style='display: inline'>Build your inner citadel</h2><br />
+<br />
+<span>Develop your inner strength during good times so you can rely on it in bad times. Always prepare for adversity and face it with calmness and resilience. Maybe reconsider what you really desire. Be humble enough that things which happen will happen. </span><br />
+<br />
+<h2 style='display: inline'>Love everything that happens</h2><br />
+<br />
+<span>Turn an obstacle the other way around for your benefit. Use it at fuel. It's simple but challenging. Most are paralyzed instead. The obstacle in the path becomes the path. Obstacles are neither good nor bad. The things which hurt, instruct.</span><br />
+<br />
+<span>Should I hate people who hate me? That's their problem and not mine. Be always calm and relaxed during the fight. The story of the battle is the story of the smile. Cheerfulness in all situations, especially the bad ones. Love for everything that happens; if it happens, it was meant to happen. We can choose how we react to things, so why not choose to feel good? I love everything that happens. You must never lower yourself to the person you don't like.</span><br />
+<br />
+<h2 style='display: inline'>Conclusion</h2><br />
+<br />
+<span>Life is a marathon, not a sprint. Each obstacle we overcome prepares us for the next one. Remember, the obstacle is not just a barrier to be turned upside down; it can also be used as a catapult to propel us forward. By embracing challenges and using them as opportunities for growth, we become stronger, more adaptable, and, ultimately, more successful.</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<br />
+<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
+<br />
+<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Unveiling `guprecords.raku`: Global Uptime Records with Raku</title>
         <link href="https://foo.zone/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html" />
@@ -172,11 +279,11 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <ul>
 <li>A log file analyzer, for generating anonymized <span class='inlinecode'>foo.zone</span> visitor stats for both, the Web and Gemini.</li>
 <li>A social media sharing scheduler a la <span class='inlinecode'>buffer.com</span>. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it's not really reliable.</li>
-<li>Rewrite the static photo album generator of <span class='inlinecode'>irregular.ninja</span> in Raku (from <span class='inlinecode'>bash</span>)</li>
+<li>Rewrite the static photo album generator of <span class='inlinecode'>irregular.ninja</span> in Raku (from Bash).</li>
 </ul><br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
@@ -605,6 +712,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
@@ -883,6 +991,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
 <br />
@@ -2906,7 +3015,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
@@ -8034,225 +8143,6 @@ first 10 nat_pairs_not_null
 <a class="textlink" href="http://www.haskell.org/">http://www.haskell.org/</a><br />
 <p>E-Mail your comments to hi@paul.cyou :-)</p>
 <a class="textlink" href="../">Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Standard ML and Haskell</title>
-        <link href="https://foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell.html" />
-        <id>https://foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell.html</id>
-        <updated>2010-04-09T22:57:36+01:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>hi@paul.cyou</email>
-        </author>
-        <summary>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Standard ML and Haskell</h1><br />
-<br />
-<span class='quote'>Published at 2010-04-09T22:57:36+01:00</span><br />
-<br />
-<span>I am currently looking into the functional programming language Standard ML (aka SML). The purpose is to refresh my functional programming skills and to learn something new too. Since I already knew a little Haskell, I could not help myself, and I also implemented the same exercises in Haskell.</span><br />
-<br />
-<span>As you will see, SML and Haskell are very similar (at least when it comes to the basics). However, the syntax of Haskell is a bit more "advanced". Haskell utilizes fewer keywords (e.g. no val, end, fun, fn ...). Haskell also allows to write down the function types explicitly. What I have been missing in SML so far is the so-called pattern guards. Although this is a very superficial comparison for now, so far, I like Haskell more than SML. Nevertheless, I thought it would be fun to demonstrate a few simple functions of both languages to show off the similarities. </span><br />
-<br />
-<span>Haskell is also a "pure functional" programming language, whereas SML also makes explicit use of imperative concepts. I am by far not a specialist in either of these languages, but here are a few functions implemented in both SML and Haskell:</span><br />
-<br />
-<h2 style='display: inline'>Defining a multi-data type</h2><br />
-<br />
-<span>Standard ML:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">datatype</font></b> ’a multi
-	<font color="#990000">=</font> EMPTY
-	<font color="#990000">|</font> ELEM <b><font color="#0000FF">of</font></b> ’a
-	<font color="#990000">|</font> UNION <b><font color="#0000FF">of</font></b> ’a multi <font color="#990000">*</font> ’a multi
-</pre>
-<br />
-<span>Haskell:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">data</font></b> <font color="#990000">(</font><font color="#009900">Eq</font> a<font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#009900">Multi</font> a
-    <font color="#990000">=</font> <font color="#009900">Empty</font>
-    <font color="#990000">|</font> <font color="#009900">Elem</font> a
-    <font color="#990000">|</font> <font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Multi</font> a<font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Multi</font> a<font color="#990000">)</font>
-    <b><font color="#0000FF">deriving</font></b> <font color="#009900">Show</font>
-</pre>
-<br />
-<h2 style='display: inline'>Processing a multi</h2><br />
-<br />
-<span>Standard ML:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">fun</font></b> number <font color="#990000">(</font>EMPTY<font color="#990000">)</font> _ <font color="#990000">=</font> <font color="#993399">0</font>
-	<font color="#990000">|</font> number <font color="#990000">(</font>ELEM x<font color="#990000">)</font> w <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> <font color="#993399">1</font> <b><font color="#0000FF">else</font></b> <font color="#993399">0</font>
-	<font color="#990000">|</font> number <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> w <font color="#990000">=</font> <font color="#990000">(</font>number x w<font color="#990000">)</font> <font color="#990000">+</font> <font color="#990000">(</font>number y w<font color="#990000">)</font>
-<b><font color="#0000FF">fun</font></b> test_number w <font color="#990000">=</font> number <font color="#990000">(</font>UNION <font color="#990000">(</font>EMPTY<font color="#990000">,</font> <font color="#990000">\</font>
-    UNION <font color="#990000">(</font>ELEM <font color="#993399">4</font><font color="#990000">,</font> UNION <font color="#990000">(</font>ELEM <font color="#993399">6</font><font color="#990000">,</font> <font color="#990000">\</font>
-    UNION <font color="#990000">(</font>UNION <font color="#990000">(</font>ELEM <font color="#993399">4</font><font color="#990000">,</font> ELEM <font color="#993399">4</font><font color="#990000">),</font> EMPTY<font color="#990000">)))))</font> w 
-</pre>
-<br />
-<span>Haskell:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>number <font color="#009900">Empty</font> <b><font color="#0000FF">_</font></b> <font color="#990000">=</font> <font color="#993399">0</font>
-number <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> w <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#993399">1</font> <b><font color="#0000FF">else</font></b> <font color="#993399">0</font>
-test_number w <font color="#990000">=</font> number <font color="#990000">(</font><font color="#009900">Union</font> <font color="#009900">Empty</font> <font color="#990000">\</font>
-    <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">\</font>
-    <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Union</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">(</font><font color="#009900">Elem</font> <font color="#993399">4</font><font color="#990000">))</font> <font color="#009900">Empty</font><font color="#990000">))))</font> w
-</pre>
-<br />
-<h2 style='display: inline'>Simplify function</h2><br />
-<br />
-<span>Standard ML:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">fun</font></b> simplify <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font>
-    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> is_empty <font color="#990000">(</font>EMPTY<font color="#990000">)</font> <font color="#990000">=</font> true <font color="#990000">|</font> is_empty _ <font color="#990000">=</font> false
-        <b><font color="#0000FF">val</font></b> x’ <font color="#990000">=</font> simplify x
-        <b><font color="#0000FF">val</font></b> y’ <font color="#990000">=</font> simplify y
-    <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty x’<font color="#990000">)</font> <b><font color="#0000FF">andalso</font></b> <font color="#990000">(</font>is_empty y’<font color="#990000">)</font>
-            <b><font color="#0000FF">then</font></b> EMPTY
-       <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty x’<font color="#990000">)</font>
-            <b><font color="#0000FF">then</font></b> y’
-       <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>is_empty y’<font color="#990000">)</font>
-            <b><font color="#0000FF">then</font></b> x’
-       <b><font color="#0000FF">else</font></b> UNION <font color="#990000">(</font>x’<font color="#990000">,</font> y’<font color="#990000">)</font>
-    <b><font color="#0000FF">end</font></b>
-  <font color="#990000">|</font> simplify x <font color="#990000">=</font> x
-</pre>
-<br />
-<span>Haskell:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>simplify <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font>
-    <font color="#990000">|</font> <font color="#990000">(</font>isEmpty x’<font color="#990000">)</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">(</font>isEmpty y’<font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">Empty</font>
-    <font color="#990000">|</font> isEmpty x’ <font color="#990000">=</font> y’
-    <font color="#990000">|</font> isEmpty y’ <font color="#990000">=</font> x’
-    <font color="#990000">|</font> otherwise <font color="#990000">=</font> <font color="#009900">Union</font> x’ y’
-    <b><font color="#0000FF">where</font></b>
-        isEmpty <font color="#009900">Empty</font> <font color="#990000">=</font> <font color="#009900">True</font>
-        isEmpty <b><font color="#0000FF">_</font></b> <font color="#990000">=</font> <font color="#009900">False</font>
-        x’ <font color="#990000">=</font> simplify x
-        y’ <font color="#990000">=</font> simplify y
-simplify x <font color="#990000">=</font> x
-</pre>
-<br />
-<h2 style='display: inline'>Delete all</h2><br />
-<br />
-<span>Standard ML:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">fun</font></b> delete_all m w <font color="#990000">=</font>
-    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> delete_all’ <font color="#990000">(</font>ELEM x<font color="#990000">)</font> <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> EMPTY <b><font color="#0000FF">else</font></b> ELEM x
-          <font color="#990000">|</font> delete_all’ <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font> UNION <font color="#990000">(</font>delete_all’ x<font color="#990000">,</font> delete_all’ y<font color="#990000">)</font>
-          <font color="#990000">|</font> delete_all’ x <font color="#990000">=</font> x
-    <b><font color="#0000FF">in</font></b> simplify <font color="#990000">(</font>delete_all’ m<font color="#990000">)</font>
-    <b><font color="#0000FF">end</font></b>
-</pre>
-<br />
-<span>Haskell:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>delete_all m w <font color="#990000">=</font> simplify <font color="#990000">(</font>delete_all’ m<font color="#990000">)</font>
-    <b><font color="#0000FF">where</font></b>
-        delete_all’ <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> <font color="#990000">=</font> <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#009900">Empty</font> <b><font color="#0000FF">else</font></b> <font color="#009900">Elem</font> x
-        delete_all’ <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">Union</font> <font color="#990000">(</font>delete_all’ x<font color="#990000">)</font> <font color="#990000">(</font>delete_all’ y<font color="#990000">)</font>
-        delete_all’ x <font color="#990000">=</font> x
-</pre>
-<br />
-<h2 style='display: inline'>Delete one</h2><br />
-<br />
-<span>Standard ML:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">fun</font></b> delete_one m w <font color="#990000">=</font>
-    <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">fun</font></b> delete_one’ <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font>y<font color="#990000">))</font> <font color="#990000">=</font>
-            <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>x’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ x
-                <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> deleted
-                   <b><font color="#0000FF">then</font></b> <font color="#990000">(</font>UNION <font color="#990000">(</font>x’<font color="#990000">,</font> y<font color="#990000">),</font> deleted<font color="#990000">)</font>
-                   <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">let</font></b> <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>y’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ y
-                       <b><font color="#0000FF">in</font></b> <font color="#990000">(</font>UNION <font color="#990000">(</font>x<font color="#990000">,</font> y’<font color="#990000">),</font> deleted<font color="#990000">)</font>
-                   <b><font color="#0000FF">end</font></b>
-                <b><font color="#0000FF">end</font></b>
-          <font color="#990000">|</font> delete_one’ <font color="#990000">(</font>ELEM x<font color="#990000">)</font> <font color="#990000">=</font>
-            <b><font color="#0000FF">if</font></b> x <font color="#990000">=</font> w <b><font color="#0000FF">then</font></b> <font color="#990000">(</font>EMPTY<font color="#990000">,</font> true<font color="#990000">)</font> <b><font color="#0000FF">else</font></b> <font color="#990000">(</font>ELEM x<font color="#990000">,</font> false<font color="#990000">)</font>
-          <font color="#990000">|</font> delete_one’ x <font color="#990000">=</font> <font color="#990000">(</font>x<font color="#990000">,</font> false<font color="#990000">)</font>
-            <b><font color="#0000FF">val</font></b> <font color="#990000">(</font>m’<font color="#990000">,</font> _<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ m
-        <b><font color="#0000FF">in</font></b> simplify m’
-    <b><font color="#0000FF">end</font></b>
-</pre>
-<br />
-<span>Haskell:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>delete_one m w <font color="#990000">=</font> <b><font color="#0000FF">do</font></b>
-    <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>m’<font color="#990000">,</font> <b><font color="#0000FF">_</font></b><font color="#990000">)</font> <font color="#990000">=</font> delete_one’ m
-    simplify m’
-    <b><font color="#0000FF">where</font></b>
-        delete_one’ <font color="#990000">(</font><font color="#009900">Union</font> x y<font color="#990000">)</font> <font color="#990000">=</font>
-            <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>x’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ x
-            <b><font color="#0000FF">in</font></b> <b><font color="#0000FF">if</font></b> deleted
-                <b><font color="#0000FF">then</font></b> <font color="#990000">(</font><font color="#009900">Union</font> x’ y<font color="#990000">,</font> deleted<font color="#990000">)</font>
-                <b><font color="#0000FF">else</font></b> <b><font color="#0000FF">let</font></b> <font color="#990000">(</font>y’<font color="#990000">,</font> deleted<font color="#990000">)</font> <font color="#990000">=</font> delete_one’ y
-                    <b><font color="#0000FF">in</font></b> <font color="#990000">(</font><font color="#009900">Union</font> x y’<font color="#990000">,</font> deleted<font color="#990000">)</font>
-        delete_one’ <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">)</font> <font color="#990000">=</font>
-            <b><font color="#0000FF">if</font></b> x <font color="#990000">==</font> w <b><font color="#0000FF">then</font></b> <font color="#990000">(</font><font color="#009900">Empty</font><font color="#990000">,</font> <font color="#009900">True</font><font color="#990000">)</font> <b><font color="#0000FF">else</font></b> <font color="#990000">(</font><font color="#009900">Elem</font> x<font color="#990000">,</font> <font color="#009900">False</font><font color="#990000">)</font>
-        delete_one’ x <font color="#990000">=</font> <font color="#990000">(</font>x<font color="#990000">,</font> <font color="#009900">False</font><font color="#990000">)</font>
-</pre>
-<br />
-<h2 style='display: inline'>Higher-order functions</h2><br />
-<br />
-<span>The first line is always the SML code, the second line the Haskell variant:</span><br />
-<br />
-<pre>
-fun make_map_fn f1 = fn (x,y) =&gt; f1 x :: y
-make_map_fn f1 = \x y -&gt; f1 x : y
-
-fun make_filter_fn f1 = fn (x,y) =&gt; if f1 x then x :: y else y
-make_filter_fn f1 = \x y -&gt; if f1 then x : y else y
-
-fun my_map f l = foldr (make_map_fn f) [] l
-my_map f l = foldr (make_map_fn f) [] l
-
-fun my_filter f l = foldr (make_filter_fn f) [] l
-my_filter f l = foldr (make_filter_fn f) [] l
-</pre>
-<br />
-<span>E-Mail your comments to hi@paul.cyou :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
