@@ -1,5 +1,7 @@
 # "The Obstacle is the Way" book notes
 
+> Published at 2023-05-06T17:23:16+03:00
+
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
 
 
