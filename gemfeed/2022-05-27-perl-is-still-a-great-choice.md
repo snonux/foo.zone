@@ -136,7 +136,7 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 Other related posts are:
 
-[2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
+[2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 [2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  
 [2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
 [2008-06-26 Perl Poetry](./2008-06-26-perl-poetry.md)  

@@ -149,7 +149,7 @@ So far, I have only scratched the surface of what Raku can do. I hope to find mo
 
 Other related posts are:
 
-[2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku (You are currently reading this)](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
+[2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku (You are currently reading this)](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 [2022-06-15 Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
 [2022-05-27 Perl is still a great choice](./2022-05-27-perl-is-still-a-great-choice.md)  
 [2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
