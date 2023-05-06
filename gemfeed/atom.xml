@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-05-06T17:23:16+03:00</updated>
+    <updated>2023-05-06T17:26:50+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>"The Obstacle is the Way" book notes</h1><br />
+<br />
+<span class='quote'>Published at 2023-05-06T17:23:16+03:00</span><br />
 <br />
 <span>These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</span><br />
 <br />
@@ -48,7 +50,7 @@
 <br />
 <h2 style='display: inline'>Embrace rationality</h2><br />
 <br />
-<span>It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals while having sex. Show the middle finger if someone persists on the stupid rules occasionally.</span><br />
+<span>It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals during a fight. Show the middle finger if someone persists on the stupid rules occasionally.</span><br />
 <br />
 <h2 style='display: inline'>Control your response</h2><br />
 <br />
@@ -283,7 +285,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 </ul><br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
@@ -3015,7 +3017,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling Guprecords: Global Uptime Records with Raku</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
