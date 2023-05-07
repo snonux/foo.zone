@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-05-06T23:58:10+03:00 by `Gemtexter`
+> This site was generated at 2023-05-07T11:54:10+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -17,7 +17,6 @@ Welcome to the foo.zone. It's my personal internet site and blog. Everything you
 
 [My contact information (via HTTP)](https://paul.cyou)  
 [My contact information (via Gemini)](gemini://paul.cyou)  
-[My list of resources](./resources.md)  
 [My machine uptime statistics](./uptime-stats.md)  
 
 If you reach this site via the modern web, please read this:
