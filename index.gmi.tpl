@@ -15,8 +15,8 @@
 
 Welcome to the foo.zone. It's my personal internet site and blog. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
-=> https://paul.cyou My contact information (via HTTP)
-=> gemini://paul.cyou My contact information (via Gemini)
+=> https://paul.cyou My homepage (via HTTP)
+=> gemini://paul.cyou My homepage (via Gemini)
 => ./uptime-stats.gmi My machine uptime statistics
 
 If you reach this site via the modern web, please read this:
