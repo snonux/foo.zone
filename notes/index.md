@@ -8,7 +8,6 @@
 ['Software Developmers Career Guide & Soft Skills' book notes](./soft-skills.md)  
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
-['Healthy has fuck' book notes](./healthy-as-fuck.md)  
 
 That were all notes. Hope they were useful!
 
