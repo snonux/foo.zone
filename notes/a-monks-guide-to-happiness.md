@@ -1,4 +1,4 @@
-# Monk's Guide to Happiness
+# "A Monk's Guide to Happiness" book notes
 
 > Last updated 21.5.2023
 
