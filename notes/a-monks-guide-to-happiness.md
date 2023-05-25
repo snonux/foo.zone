@@ -49,8 +49,8 @@
 *  What am I doing about that? 
 *  Is it working?
 *  What are the real causes of happiness and suffering?
-*  What about meditation? How does that address the situation
-*
+*  What about meditation? How does that address the situation?
+
 ## Miscellaneous Guidelines
 
 *  Posture is important as the mind and body are connected.
@@ -61,14 +61,6 @@
 *  Digging for answers will never end. It will always cause more material to dig.
 
 If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don't always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...
-
-* Why do I do all the things I do? What do I try to achieve?
-* What am I doing about that? 
-* Is it working?
-* What are the real causes of happiness and suffering?
-* What about meditation? How does that address the situation?
-
-Happiness is all in your mind. As if you flip a switch there. 
 
 E-Mail your comments to hi@paul.cyou :-)
 
