@@ -40,6 +40,6 @@ The solution is adding another USB drive (2TB) with an encryption container (GEL
 
 I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

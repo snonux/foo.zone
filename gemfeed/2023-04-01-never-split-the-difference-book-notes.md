@@ -126,6 +126,6 @@ Other book notes of mine are:
 [2023-04-01 "Never split the difference" book notes (You are currently reading this)](./2023-04-01-never-split-the-difference-book-notes.md)  
 [2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

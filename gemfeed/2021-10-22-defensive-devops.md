@@ -99,6 +99,6 @@ For every major incident, you need to follow up with an incident retrospective. 
 
 This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

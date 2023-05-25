@@ -138,6 +138,6 @@ fib(10) = 55
 
 It's entertaining to play with :-).
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

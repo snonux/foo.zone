@@ -470,6 +470,6 @@ Other related posts are:
 [2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
 [2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

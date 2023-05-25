@@ -225,6 +225,6 @@ To create a high-availability Gogios setup, you can install Gogios on two server
 
 Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. If you're seeking a simple yet effective monitoring tool for your self-hosted servers or virtual machines, give Gogios a try!
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  

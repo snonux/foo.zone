@@ -167,6 +167,6 @@ Other related posts are:
 [2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
 [2008-06-26 Perl Poetry (You are currently reading this)](./2008-06-26-perl-poetry.md)  
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 [Back to the main site](../)  
