@@ -656,6 +656,6 @@ OpenBSD suits perfectly here as all the tools are already part of the base insta
 
 Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the `acme.sh` shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 => ../ Back to the main site

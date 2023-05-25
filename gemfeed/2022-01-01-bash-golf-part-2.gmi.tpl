@@ -483,6 +483,6 @@ Other related posts are:
 
 << template::inline::index bash
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 => ../ Back to the main site

@@ -124,6 +124,6 @@ Other book notes of mine are:
 
 << template::inline::index book-notes
 
-E-Mail your comments to hi@paul.cyou :-)
+E-Mail your comments to hi@foo.zone :-)
 
 => ../ Back to the main site

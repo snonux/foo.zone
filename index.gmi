@@ -15,8 +15,8 @@
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
-=> https://paul.cyou My contact information and resources (via HTTP)
-=> gemini://paul.cyou My contact information and resources (via Gemini)
+=> https://paul.buetow.org My contact information and resources (via HTTP)
+=> gemini://paul.buetow.org My contact information and resources (via Gemini)
 => ./uptime-stats.gmi My machine uptime statistics
 
 If you reach this site via the modern web, please read this:
