@@ -15,7 +15,7 @@
 <pre>
        ,_---~~~~~----._
  _,,_,*^____      _____``*g*\"*,
-/ __/ /'     ^.  /      \ ^@q   f
+/ __/ /&#39;     ^.  /      \ ^@q   f
  @f   |       |  |       |  0 _/
 \`/   \~__((@/ __ \__((@/    \
  |           _l__l_           I    &lt;--- The Go Gopher
@@ -26,27 +26,27 @@
   |                           |
   |                           |       A       ;
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~|~~~,--,-/ \---,-/|~~,~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                           _|\,'. /|      /|   `/|-.
-                       \`.'    /|      ,            `;.
-                      ,'\   A     A         A   A _ /| `.;
+                           _|\,&#39;. /|      /|   `/|-.
+                       \`.&#39;    /|      ,            `;.
+                      ,&#39;\   A     A         A   A _ /| `.;
                     ,/  _              A       _  / _   /|  ;
                    /\  / \   ,  ,           A  /    /     `/|
                   /_| | _ \         ,     ,             ,/  \
                  // | |/ `.\  ,-      ,       ,   ,/ ,/      \/
-                 / @| |@  / /'   \  \      ,              &gt;  /|    ,--.
-                |\_/   \_/ /      |  |           ,  ,/        \  ./' __:..
-                |  __ __  |       |  | .--.  ,         &gt;  &gt;   |-'   /     `
-              ,/| /  '  \ |       |  |     \      ,           |    /
+                 / @| |@  / /&#39;   \  \      ,              &gt;  /|    ,--.
+                |\_/   \_/ /      |  |           ,  ,/        \  ./&#39; __:..
+                |  __ __  |       |  | .--.  ,         &gt;  &gt;   |-&#39;   /     `
+              ,/| /  &#39;  \ |       |  |     \      ,           |    /
              /  |&lt;--.__,-&gt;|       |  | .    `.        &gt;  &gt;    /   (
-            /_,' \\  ^  /  \     /  /   `.    &gt;--            /^\   |
-                  \\___/    \   /  /      \__'     \   \   \/   \  |
+            /_,&#39; \\  ^  /  \     /  /   `.    &gt;--            /^\   |
+                  \\___/    \   /  /      \__&#39;     \   \   \/   \  |
                    `.   |/          ,  ,                  /`\    \  )
-                     \  '  |/    ,       V    \          /        `-\
- OpenBSD Puffy ---&gt;   `|/  '  V      V           \    \.'            \_
-                       '`-.       V       V        \./'\
+                     \  &#39;  |/    ,       V    \          /        `-\
+ OpenBSD Puffy ---&gt;   `|/  &#39;  V      V           \    \.&#39;            \_
+                       &#39;`-.       V       V        \./&#39;\
                            `|/-.      \ /   \ /,---`\         kat
-                            /   `._____V_____V'
-                                       '     '
+                            /   `._____V_____V&#39;
+                                       &#39;     &#39;
 </pre>
 <br />
 <span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
@@ -57,7 +57,7 @@
 <br />
 <span>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</span><br />
 <br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let's Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <br />
 <span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
 <br />
@@ -88,7 +88,7 @@ $ file dtail
  dtail: ELF 64-bit LSB executable, x86-64, version 1
 </pre>
 <br />
-<span>Now, there isn't any need anymore to keep <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span> and <span class='inlinecode'>gmake</span>, so they can be deinstalled now:</span><br />
+<span>Now, there isn&#39;t any need anymore to keep <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span> and <span class='inlinecode'>gmake</span>, so they can be deinstalled now:</span><br />
 <br />
 <pre>
 $ doas pkg_delete git go gmake
@@ -117,7 +117,7 @@ $ doas usermod -d /var/run/dserver/ _dserver
 <span>The OpenBSD init script is created from scratch (not part of the official DTail project). Run the following to install the bespoke script:</span><br />
 <br />
 <pre>
-$ cat &lt;&lt;'END' | doas tee /etc/rc.d/dserver
+$ cat &lt;&lt;&#39;END&#39; | doas tee /etc/rc.d/dserver
 #!/bin/ksh
 
 daemon="/usr/local/bin/dserver"
@@ -140,19 +140,19 @@ $ doas chmod 755 /etc/rc.d/dserver
 <br />
 <h3 style='display: inline'>Rexification</h3><br />
 <br />
-<span>This is the task for setting it up via Rex. Note the <span class='inlinecode'>. . . .</span>, that's a placeholder which we will fill up more and more during this blog post:</span><br />
+<span>This is the task for setting it up via Rex. Note the <span class='inlinecode'>. . . .</span>, that&#39;s a placeholder which we will fill up more and more during this blog post:</span><br />
 <br />
 <pre>
-desc 'Setup DTail';
-task 'dtail', group =&gt; 'frontends',
+desc &#39;Setup DTail&#39;;
+task &#39;dtail&#39;, group =&gt; &#39;frontends&#39;,
    sub {
       my $restart = FALSE;
 
-      file '/etc/rc.d/dserver':
-        content =&gt; template('./etc/rc.d/dserver.tpl'),
-        owner =&gt; 'root',
-        group =&gt; 'wheel',
-        mode =&gt; '755',
+      file &#39;/etc/rc.d/dserver&#39;:
+        content =&gt; template(&#39;./etc/rc.d/dserver.tpl&#39;),
+        owner =&gt; &#39;root&#39;,
+        group =&gt; &#39;wheel&#39;,
+        mode =&gt; &#39;755&#39;,
         on_change =&gt; sub { $restart = TRUE };
 
         .
@@ -160,8 +160,8 @@ task 'dtail', group =&gt; 'frontends',
         .
         .
 
-      service 'dserver' =&gt; 'restart' if $restart;
-      service 'dserver', ensure =&gt; 'started';
+      service &#39;dserver&#39; =&gt; &#39;restart&#39; if $restart;
+      service &#39;dserver&#39;, ensure =&gt; &#39;started&#39;;
    };
 </pre>
 <br />
@@ -190,35 +190,35 @@ $ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.jso
 <br />
 <h3 style='display: inline'>Rexification</h3><br />
 <br />
-<span>That's as simple as adding the following to the Rex task:</span><br />
+<span>That&#39;s as simple as adding the following to the Rex task:</span><br />
 <br />
 <pre>
-file '/etc/dserver',
-  ensure =&gt; 'directory';
+file &#39;/etc/dserver&#39;,
+  ensure =&gt; &#39;directory&#39;;
 
-file '/etc/dserver/dtail.json',
-  content =&gt; template('./etc/dserver/dtail.json.tpl'),
-  owner =&gt; 'root',
-  group =&gt; 'wheel',
-  mode =&gt; '755',
+file &#39;/etc/dserver/dtail.json&#39;,
+  content =&gt; template(&#39;./etc/dserver/dtail.json.tpl&#39;),
+  owner =&gt; &#39;root&#39;,
+  group =&gt; &#39;wheel&#39;,
+  mode =&gt; &#39;755&#39;,
   on_change =&gt; sub { $restart = TRUE };
 </pre>
 <br />
 <h2 style='display: inline'>Update the key cache for it</h2><br />
 <br />
-<span>DTail relies on SSH for secure authentication and communication. However, the system user <span class='inlinecode'>_dserver</span> has no permission to read the SSH public keys from the user's home directories, so the DTail server also checks for available public keys in an alternative path <span class='inlinecode'>/var/run/dserver/cache</span>. </span><br />
+<span>DTail relies on SSH for secure authentication and communication. However, the system user <span class='inlinecode'>_dserver</span> has no permission to read the SSH public keys from the user&#39;s home directories, so the DTail server also checks for available public keys in an alternative path <span class='inlinecode'>/var/run/dserver/cache</span>. </span><br />
 <br />
 <span>The following script, populating the DTail server key cache, can be run periodically via <span class='inlinecode'>CRON</span>:</span><br />
 <br />
 <pre>
-$ cat &lt;&lt;'END' | doas tee /usr/local/bin/dserver-update-key-cache.sh
+$ cat &lt;&lt;&#39;END&#39; | doas tee /usr/local/bin/dserver-update-key-cache.sh
 #!/bin/ksh
 
 CACHEDIR=/var/run/dserver/cache
 DSERVER_USER=_dserver
 DSERVER_GROUP=_dserver
 
-echo 'Updating SSH key cache'
+echo &#39;Updating SSH key cache&#39;
 
 ls /home/ | while read remoteuser; do
     keysfile=/home/$remoteuser/.ssh/authorized_keys
@@ -240,17 +240,17 @@ while read cachefile; do
     keysfile=/home/$remoteuser/.ssh/authorized_keys
 
     if [ ! -f $keysfile ]; then
-        echo 'Deleting obsolete cache file $cachefile'
+        echo &#39;Deleting obsolete cache file $cachefile&#39;
         rm $cachefile
     fi
 done
 
-echo 'All set...'
+echo &#39;All set...&#39;
 END
 $ doas chmod 500 /usr/local/bin/dserver-update-key-cache.sh
 </pre>
 <br />
-<span>Note that the script above is a slight variation of the official DTail script. The official DTail one is a <span class='inlinecode'>bash</span> script, but on OpenBSD, there's <span class='inlinecode'>ksh</span>. I run it once daily by adding it to the <span class='inlinecode'>daily.local</span>:</span><br />
+<span>Note that the script above is a slight variation of the official DTail script. The official DTail one is a <span class='inlinecode'>bash</span> script, but on OpenBSD, there&#39;s <span class='inlinecode'>ksh</span>. I run it once daily by adding it to the <span class='inlinecode'>daily.local</span>:</span><br />
 <br />
 <pre>
 $ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
@@ -259,23 +259,23 @@ $ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
 <br />
 <h3 style='display: inline'>Rexification</h3><br />
 <br />
-<span>That's done by adding ...</span><br />
+<span>That&#39;s done by adding ...</span><br />
 <br />
 <pre>
-file '/usr/local/bin/dserver-update-key-cache.sh',
-  content =&gt; template('./scripts/dserver-update-key-cache.sh.tpl'),
-  owner =&gt; 'root',
-  group =&gt; 'wheel',
-  mode =&gt; '500';
+file &#39;/usr/local/bin/dserver-update-key-cache.sh&#39;,
+  content =&gt; template(&#39;./scripts/dserver-update-key-cache.sh.tpl&#39;),
+  owner =&gt; &#39;root&#39;,
+  group =&gt; &#39;wheel&#39;,
+  mode =&gt; &#39;500&#39;;
 
-append_if_no_such_line '/etc/daily.local', '/usr/local/bin/dserver-update-key-cache.sh';
+append_if_no_such_line &#39;/etc/daily.local&#39;, &#39;/usr/local/bin/dserver-update-key-cache.sh&#39;;
 </pre>
 <br />
 <span>... to the Rex task!</span><br />
 <br />
 <h2 style='display: inline'>Start it</h2><br />
 <br />
-<span>Now, it's time to enable and start the DTail server:</span><br />
+<span>Now, it&#39;s time to enable and start the DTail server:</span><br />
 <br />
 <pre>
 $ sudo rcctl enable dserver
@@ -299,7 +299,7 @@ INFO|1022-090739|86050|stats.go:53|2|11|7|||MAPREDUCE:STATS|currentConnections=0
 Ctr+C
 </pre>
 <br />
-<span>As we don't want to wait until tomorrow, let's populate the key cache manually:</span><br />
+<span>As we don&#39;t want to wait until tomorrow, let&#39;s populate the key cache manually:</span><br />
 <br />
 <pre>
 $ doas /usr/local/bin/dserver-update-key-cache.sh
@@ -323,7 +323,7 @@ All set...
 ❯ ./dgrep -user rex -servers blowfish.buetow.org,fishfinger.buetow.org --regex local /etc/fstab
 CLIENT|earth|WARN|Encountered unknown host|{blowfish.buetow.org:2222 0xc0000a00f0 0xc0000a61e0 [blowfish.buetow.org]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9ZnF/LAk14SgqCzk38yENVTNfqibcluMTuKx1u53cKSp2xwHWzy0Ni5smFPpJDIQQljQEJl14ZdXvhhjp1kKHxJ79ubqRtIXBlC0PhlnP8Kd+mVLLHYpH9VO4rnaSfHE1kBjWkI7U6lLc6ks4flgAgGTS5Bb7pLAjwdWg794GWcnRh6kSUEQd3SftANqQLgCunDcP2Vc4KR9R78zBmEzXH/OPzl/ANgNA6wWO2OoKKy2VrjwVAab6FW15h3Lr6rYIw3KztpG+UMmEj5ReexIjXi/jUptdnUFWspvAmzIl6kwzzF8ExVyT9D75JRuHvmxXKKjyJRxqb8UnSh2JD4JN [23.88.35.144]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9ZnF/LAk14SgqCzk38yENVTNfqibcluMTuKx1u53cKSp2xwHWzy0Ni5smFPpJDIQQljQEJl14ZdXvhhjp1kKHxJ79ubqRtIXBlC0PhlnP8Kd+mVLLHYpH9VO4rnaSfHE1kBjWkI7U6lLc6ks4flgAgGTS5Bb7pLAjwdWg794GWcnRh6kSUEQd3SftANqQLgCunDcP2Vc4KR9R78zBmEzXH/OPzl/ANgNA6wWO2OoKKy2VrjwVAab6FW15h3Lr6rYIw3KztpG+UMmEj5ReexIjXi/jUptdnUFWspvAmzIl6kwzzF8ExVyT9D75JRuHvmxXKKjyJRxqb8UnSh2JD4JN 0xc0000a2180}
 CLIENT|earth|WARN|Encountered unknown host|{fishfinger.buetow.org:2222 0xc0000a0150 0xc000460110 [fishfinger.buetow.org]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNiikdL7+tWSN0rCaw1tOd9aQgeUFgb830V9ejkyJ5h93PKLCWZSMMCtiabc1aUeUZR//rZjcPHFLuLq/YC+Y3naYtGd6j8qVrcfG8jy3gCbs4tV9SZ9qd5E24mtYqYdGlee6JN6kEWhJxFkEwPfNlG+YAr3KC8lvEAE2JdWvaZavqsqMvHZtAX3b25WCBf2HGkyLZ+d9cnimRUOt+/+353BQFCEct/2mhMVlkr4I23CY6Tsufx0vtxx25nbFdZias6wmhxaE9p3LiWXygPWGU5iZ4RSQSImQz4zyOc9rnJeP1rwGk0OWDJhdKNXuf0kIPdzMfwxv2otgY32/DJj6L [46.23.94.99]:2222 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNiikdL7+tWSN0rCaw1tOd9aQgeUFgb830V9ejkyJ5h93PKLCWZSMMCtiabc1aUeUZR//rZjcPHFLuLq/YC+Y3naYtGd6j8qVrcfG8jy3gCbs4tV9SZ9qd5E24mtYqYdGlee6JN6kEWhJxFkEwPfNlG+YAr3KC8lvEAE2JdWvaZavqsqMvHZtAX3b25WCBf2HGkyLZ+d9cnimRUOt+/+353BQFCEct/2mhMVlkr4I23CY6Tsufx0vtxx25nbFdZias6wmhxaE9p3LiWXygPWGU5iZ4RSQSImQz4zyOc9rnJeP1rwGk0OWDJhdKNXuf0kIPdzMfwxv2otgY32/DJj6L 0xc0000a2240}
-Encountered 2 unknown hosts: 'blowfish.buetow.org:2222,fishfinger.buetow.org:2222'
+Encountered 2 unknown hosts: &#39;blowfish.buetow.org:2222,fishfinger.buetow.org:2222&#39;
 Do you want to trust these hosts?? (y=yes,a=all,n=no,d=details): a
 CLIENT|earth|INFO|STATS:STATS|cgocalls=11|cpu=8|connected=2|servers=2|connected%=100|new=2|throttle=0|goroutines=19
 CLIENT|earth|INFO|Added hosts to known hosts file|/home/paul/.ssh/known_hosts
@@ -331,7 +331,7 @@ REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev
 REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
 </pre>
 <br />
-<span>Running it the second time, and given that you trusted the keys the first time, it won't prompt you for the host keys anymore:</span><br />
+<span>Running it the second time, and given that you trusted the keys the first time, it won&#39;t prompt you for the host keys anymore:</span><br />
 <br />
 <pre>
 ❯ ./dgrep -user rex -servers blowfish.buetow.org,fishfinger.buetow.org --regex local /etc/fstab
@@ -341,7 +341,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <br />
 <h2 style='display: inline'>Conclusions</h2><br />
 <br />
-<span>It's a bit of manual work, but it's ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</span><br />
+<span>It&#39;s a bit of manual work, but it&#39;s ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</span><br />
 <br />
 <span>Check out the following for more information:</span><br />
 <br />

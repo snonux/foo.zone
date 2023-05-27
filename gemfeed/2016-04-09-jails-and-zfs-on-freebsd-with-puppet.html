@@ -26,7 +26,7 @@
            |         |
            |         |
            |         |
-           `--....---'
+           `--....---&#39;
              \     \
               \     `.     hjw
                \      `.
@@ -36,16 +36,16 @@
 <br />
 <h2 style='display: inline'>ZFS</h2><br />
 <br />
-<span>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let's see how we can create a ZFS file system (on an already given ZFS pool named ztank):</span><br />
+<span>The ZFS module is a pretty basic one. It does not manage ZFS pools yet as I am not creating them often enough which would justify implementing an automation. But let&#39;s see how we can create a ZFS file system (on an already given ZFS pool named ztank):</span><br />
 <br />
 <span>Puppet snippet:</span><br />
 <br />
 <pre>
-zfs::create { 'ztank/foo':
+zfs::create { &#39;ztank/foo&#39;:
   ensure     =&gt; present,
-  filesystem =&gt; '/srv/foo',
+  filesystem =&gt; &#39;/srv/foo&#39;,
 
-  require =&gt; File['/srv'],
+  require =&gt; File[&#39;/srv&#39;],
 }
 </pre>
 <br />
@@ -59,7 +59,7 @@ Info: Loading facts
 Info: Loading facts
 Info: Loading facts
 Notice: Compiled catalog for alphacentauri.home in environment production in 7.14 seconds
-Info: Applying configuration version '1460189837'
+Info: Applying configuration version &#39;1460189837&#39;
 Info: mount[files]: allowing * access
 Info: mount[restricted]: allowing * access
 Notice: /Stage[main]/Main/Node[alphacentauri]/Zfs::Create[ztank/foo]/Exec[ztank/foo_create]/returns: executed successfully
@@ -74,11 +74,11 @@ admin alphacentauri:~ [1215]%
 <span>The destruction of the file system just requires to set "ensure" to "absent" in Puppet:</span><br />
 <br />
 <pre>
-zfs::create { 'ztank/foo':
+zfs::create { &#39;ztank/foo&#39;:
   ensure     =&gt; absent,
-  filesystem =&gt; '/srv/foo',
+  filesystem =&gt; &#39;/srv/foo&#39;,
 
-  require =&gt; File['/srv'],
+  require =&gt; File[&#39;/srv&#39;],
 }¬
 </pre>
 <br />
@@ -92,7 +92,7 @@ Info: Loading facts
 Info: Loading facts
 Info: Loading facts
 Notice: Compiled catalog for alphacentauri.home in environment production in 6.14 seconds
-Info: Applying configuration version '1460190203'
+Info: Applying configuration version &#39;1460190203&#39;
 Info: mount[files]: allowing * access
 Info: mount[restricted]: allowing * access
 Notice: /Stage[main]/Main/Node[alphacentauri]/Zfs::Create[ztank/foo]/Exec[zfs destroy -r ztank/foo]/returns: executed successfully
@@ -115,35 +115,35 @@ zsh: exit 1     grep foo
 include jail::freebsd
 
 # Cloned interface for Jail IPv4 NAT
-freebsd::rc_config { 'cloned_interfaces':
-  value =&gt; 'lo1',
+freebsd::rc_config { &#39;cloned_interfaces&#39;:
+  value =&gt; &#39;lo1&#39;,
 }
-freebsd::rc_config { 'ipv4_addrs_lo1':
-  value =&gt; '192.168.0.1-24/24'
+freebsd::rc_config { &#39;ipv4_addrs_lo1&#39;:
+  value =&gt; &#39;192.168.0.1-24/24&#39;
 }
 
-freebsd::ipalias { '2a01:4f8:120:30e8::17':
+freebsd::ipalias { &#39;2a01:4f8:120:30e8::17&#39;:
   ensure    =&gt; up,
-  proto     =&gt; 'inet6',
-  preflen   =&gt; '64',
-  interface =&gt; 're0',
-  aliasnum  =&gt; '8',
+  proto     =&gt; &#39;inet6&#39;,
+  preflen   =&gt; &#39;64&#39;,
+  interface =&gt; &#39;re0&#39;,
+  aliasnum  =&gt; &#39;8&#39;,
 }
 
-class { 'jail':
+class { &#39;jail&#39;:
   ensure              =&gt; present,
   jails_config        =&gt; {
     sync                     =&gt; {
-      '_ensure'             =&gt; present,
-      '_type'               =&gt; 'freebsd',
-      '_mirror'             =&gt; 'ftp://ftp.de.freebsd.org',
-      '_remote_path'        =&gt; 'FreeBSD/releases/amd64/10.1-RELEASE',
-      '_dists'              =&gt; [ 'base.txz', 'doc.txz', ],
-      '_ensure_directories' =&gt; [ '/opt', '/opt/enc' ],
-      '_ensure_zfs'         =&gt; [ '/sync' ],
-      'host.hostname'       =&gt; "'sync.ian.buetow.org'",
-      'ip4.addr'            =&gt; '192.168.0.17',
-      'ip6.addr'            =&gt; '2a01:4f8:120:30e8::17',
+      &#39;_ensure&#39;             =&gt; present,
+      &#39;_type&#39;               =&gt; &#39;freebsd&#39;,
+      &#39;_mirror&#39;             =&gt; &#39;ftp://ftp.de.freebsd.org&#39;,
+      &#39;_remote_path&#39;        =&gt; &#39;FreeBSD/releases/amd64/10.1-RELEASE&#39;,
+      &#39;_dists&#39;              =&gt; [ &#39;base.txz&#39;, &#39;doc.txz&#39;, ],
+      &#39;_ensure_directories&#39; =&gt; [ &#39;/opt&#39;, &#39;/opt/enc&#39; ],
+      &#39;_ensure_zfs&#39;         =&gt; [ &#39;/sync&#39; ],
+      &#39;host.hostname&#39;       =&gt; "&#39;sync.ian.buetow.org&#39;",
+      &#39;ip4.addr&#39;            =&gt; &#39;192.168.0.17&#39;,
+      &#39;ip6.addr&#39;            =&gt; &#39;2a01:4f8:120:30e8::17&#39;,
     },
   }
 }
@@ -158,7 +158,7 @@ Info: Loading facts
 Info: Loading facts
 Info: Loading facts
 Notice: Compiled catalog for sun.ian.buetow.org in environment production in 1.80 seconds
-Info: Applying configuration version '1460190986'
+Info: Applying configuration version &#39;1460190986&#39;
 Notice: /Stage[main]/Jail/File[/etc/jail.conf]/ensure: created
 Info: mount[files]: allowing * access
 Info: mount[restricted]: allowing * access
@@ -208,14 +208,14 @@ admin sun:/etc [1945]% cat /etc/jail.conf
 # Generated by Puppet
 
 allow.chflags = true;
-exec.start = '/bin/sh /etc/rc';
-exec.stop = '/bin/sh /etc/rc.shutdown';
+exec.start = &#39;/bin/sh /etc/rc&#39;;
+exec.stop = &#39;/bin/sh /etc/rc.shutdown&#39;;
 mount.devfs = true;
 mount.fstab = "/etc/fstab.jail.$name";
 path = "/jail/$name";
 
 sync {
-      host.hostname = 'sync.ian.buetow.org';
+      host.hostname = &#39;sync.ian.buetow.org&#39;;
       ip4.addr = 192.168.0.17;
       ip6.addr = 2a01:4f8:120:30e8::17;
 }
@@ -340,8 +340,8 @@ Checking integrity...
 [sync.ian.buetow.org] [11/12] Extracting rubygem-ruby-augeas-0.5.0_2: 100%
 [sync.ian.buetow.org] [12/12] Installing puppet38-3.8.4_1...
 ===&gt; Creating users and/or groups.
-Creating group 'puppet' with gid '814'.
-Creating user 'puppet' with uid '814'.
+Creating group &#39;puppet&#39; with gid &#39;814&#39;.
+Creating user &#39;puppet&#39; with uid &#39;814&#39;.
 [sync.ian.buetow.org] [12/12] Extracting puppet38-3.8.4_1: 100%
 .
 .
@@ -367,12 +367,12 @@ Info: Loading facts
 Info: Loading facts
 Info: Loading facts
 Info: Loading facts
-Could not retrieve fact='pkgng_version', resolution='&lt;anonymous&gt;': undefined method `pkgng_enabled' for Facter:Module
+Could not retrieve fact=&#39;pkgng_version&#39;, resolution=&#39;&lt;anonymous&gt;&#39;: undefined method `pkgng_enabled&#39; for Facter:Module
 Warning: Config file /usr/local/etc/puppet/hiera.yaml not found, using Hiera defaults
 Notice: Compiled catalog for sync.ian.buetow.org in environment production in 1.31 seconds
 Warning: Found multiple default providers for package: pkgng, gem, pip; using pkgng
-Info: Applying configuration version '1460192563'
-Notice: /Stage[main]/S_base_freebsd/User[root]/shell: shell changed '/bin/csh' to '/bin/tcsh'
+Info: Applying configuration version &#39;1460192563&#39;
+Notice: /Stage[main]/S_base_freebsd/User[root]/shell: shell changed &#39;/bin/csh&#39; to &#39;/bin/tcsh&#39;
 Notice: /Stage[main]/S_user::Root_files/S_user::All_files[root_user]/File[/root/user]/ensure: created
 Notice: /Stage[main]/S_user::Root_files/S_user::My_files[root]/File[/root/userfiles]/ensure: created
 Notice: /Stage[main]/S_user::Root_files/S_user::My_files[root]/File[/root/.task]/ensure: created

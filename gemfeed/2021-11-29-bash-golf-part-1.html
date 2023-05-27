@@ -13,17 +13,17 @@
 <span class='quote'>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</span><br />
 <br />
 <pre>
-     '\                   .  .                        |&gt;18&gt;&gt;
-       \              .         ' .                   |
-      O&gt;&gt;         .                 'o                |
+     &#39;\                   .  .                        |&gt;18&gt;&gt;
+       \              .         &#39; .                   |
+      O&gt;&gt;         .                 &#39;o                |
        \       .                                      |
        /\    .                                        |
-      / /  .'                                         |
+      / /  .&#39;                                         |
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 </pre>
 <br />
-<span>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
+<span>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
@@ -42,7 +42,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <span>The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).</span><br />
 <br />
-<span>A more sophisticated example is firing up an HTTP request. Let's create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</span><br />
+<span>A more sophisticated example is firing up an HTTP request. Let&#39;s create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</span><br />
 <br />
 <pre>
 ❯ exec 5&lt;&gt;/dev/tcp/google.de/80
@@ -60,7 +60,7 @@ X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
 </pre>
 <br />
-<span>You would assume that this also works with the ZSH, but it doesn't. This is one of the few things which don't work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</span><br />
+<span>You would assume that this also works with the ZSH, but it doesn&#39;t. This is one of the few things which don&#39;t work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</span><br />
 <br />
 <h2 style='display: inline'>Process substitution</h2><br />
 <br />
@@ -85,7 +85,7 @@ Change: 2021-11-20 10:59:31.482411961 +0000
  Birth: -
 </pre>
 <br />
-<span>This example doesn't make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</span><br />
+<span>This example doesn&#39;t make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</span><br />
 <br />
 <span>A useful use case is displaying the differences of two sorted files:</span><br />
 <br />
@@ -153,7 +153,7 @@ foo bar baz
 97
 </pre>
 <br />
-<span>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don't, but I was wrong:</span><br />
+<span>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don&#39;t, but I was wrong:</span><br />
 <br />
 <pre>
 ❯ echo $$
@@ -180,7 +180,7 @@ foo bar baz
 <br />
 <pre>
 (list) list is executed in a subshell environment (see COMMAND EXECUTION ENVIRONMENT
-       below).   Variable  assignments  and builtin commands that affect the shell's
+       below).   Variable  assignments  and builtin commands that affect the shell&#39;s
        environment do not remain in effect after the command completes.  The  return
        status is the exit status of list.
 
@@ -211,7 +211,7 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 <br />
 <h2 style='display: inline'>Expansions</h2><br />
 <br />
-<span>Let's start with simple examples:</span><br />
+<span>Let&#39;s start with simple examples:</span><br />
 <br />
 <pre>
 ❯ echo {0..5}
@@ -250,7 +250,7 @@ a b c d e
 "These" "words" "are" "quoted"
 </pre>
 <br />
-<span>Let's also expand to the cross product of two given lists:</span><br />
+<span>Let&#39;s also expand to the cross product of two given lists:</span><br />
 <br />
 <pre>
 ❯ echo {one,two}\:{A,B,C}
@@ -279,16 +279,16 @@ Hello world
 Hello world
 ONECHEESEBURGERPLEASE
 Hello world
-❯ cat - &lt;&lt;&lt; 'Hello world'
+❯ cat - &lt;&lt;&lt; &#39;Hello world&#39;
 Hello world
 </pre>
 <br />
-<span>Let's walk through all three examples from the above snippet:</span><br />
+<span>Let&#39;s walk through all three examples from the above snippet:</span><br />
 <br />
 <ul>
 <li>The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).</li>
-<li>The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat's argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.</li>
-<li>The third and fourth examples are interesting as we don't use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.</li>
+<li>The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat&#39;s argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.</li>
+<li>The third and fourth examples are interesting as we don&#39;t use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.</li>
 </ul><br />
 <span>The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:</span><br />
 <br />
@@ -329,7 +329,7 @@ declare -r PASS=${PASS:?Missing the secret password for $USER}
 echo $USER:$PASS
 </pre>
 <br />
-<span>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there's an undefined argument.</span><br />
+<span>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there&#39;s an undefined argument.</span><br />
 <br />
 <pre>
 ❯ chmod +x foo.sh
@@ -349,7 +349,7 @@ paul:secret
 ❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
 </pre>
 <br />
-<span>That's just another way to pass environment variables to a script. You can write it as well as like this:</span><br />
+<span>That&#39;s just another way to pass environment variables to a script. You can write it as well as like this:</span><br />
 <br />
 <pre>
 ❯ export VARIABLE1=value1
@@ -361,7 +361,7 @@ paul:secret
 <br />
 <h2 style='display: inline'>: aka the null command</h2><br />
 <br />
-<span>First, let's use the "help" Bash built-in to see what it says about the null command:</span><br />
+<span>First, let&#39;s use the "help" Bash built-in to see what it says about the null command:</span><br />
 <br />
 <pre>
 ❯ help :
@@ -374,7 +374,7 @@ paul:secret
     Always succeeds.
 </pre>
 <br />
-<span>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there's no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </span><br />
+<span>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there&#39;s no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </span><br />
 <br />
 <span>OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):</span><br />
 <br />
@@ -399,7 +399,7 @@ Sun 21 Nov 12:08:33 GMT 2021
 <br />
 <pre>
 ❯ foo () {  }
--bash: syntax error near unexpected token `}'
+-bash: syntax error near unexpected token `}&#39;
 ❯ foo () { :; }
 ❯ foo
 ❯
@@ -416,8 +416,8 @@ Sun 21 Nov 12:08:33 GMT 2021
 <pre>
 ❯ : I am a comment and have no other effect
 ❯ : I am a comment and result in a syntax error ()
--bash: syntax error near unexpected token `('
-❯ : "I am a comment and don't result in a syntax error ()"
+-bash: syntax error near unexpected token `(&#39;
+❯ : "I am a comment and don&#39;t result in a syntax error ()"
 ❯
 </pre>
 <br />
@@ -434,7 +434,7 @@ bash: 1: command not found...
 4
 </pre>
 <br />
-<span>For these kinds of expressions it's always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</span><br />
+<span>For these kinds of expressions it&#39;s always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</span><br />
 <br />
 <pre>
 ❯ declare j=0
@@ -448,26 +448,26 @@ bash: 1: command not found...
 <br />
 <h2 style='display: inline'>(No) floating point support</h2><br />
 <br />
-<span>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn't:</span><br />
+<span>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn&#39;t:</span><br />
 <br />
 <pre>
-❯ bash -c 'echo $(( 1/10 ))'
+❯ bash -c &#39;echo $(( 1/10 ))&#39;
 0
-❯ zsh -c 'echo $(( 1/10 ))'
+❯ zsh -c &#39;echo $(( 1/10 ))&#39;
 0
-❯ bash -c 'echo $(( 1/10.0 ))'
+❯ bash -c &#39;echo $(( 1/10.0 ))&#39;
 bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is ".0 ")
-❯ zsh -c 'echo $(( 1/10.0 ))'
+❯ zsh -c &#39;echo $(( 1/10.0 ))&#39;
 0.10000000000000001
 ❯
 </pre>
 <br />
-<span>It would be nice to have native floating point support for the Bash too, but you don't want to use the shell for complicated calculations anyway. So it's fine that Bash doesn't have that, I guess. </span><br />
+<span>It would be nice to have native floating point support for the Bash too, but you don&#39;t want to use the shell for complicated calculations anyway. So it&#39;s fine that Bash doesn&#39;t have that, I guess. </span><br />
 <br />
 <span>In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):</span><br />
 <br />
 <pre>
-❯ bc &lt;&lt;&lt; 'scale=2; 1/10'
+❯ bc &lt;&lt;&lt; &#39;scale=2; 1/10&#39;
 .10
 </pre>
 <br />

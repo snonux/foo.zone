@@ -21,11 +21,11 @@
                               
 </pre>
 <br />
-<span>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</span><br />
+<span>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It&#39;s easier to use a different programming language than C for OOP. But still it&#39;s an interesting exercise to try using C for this.</span><br />
 <br />
 <h2 style='display: inline'>Function pointers</h2><br />
 <br />
-<span>Let's have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</span><br />
+<span>Let&#39;s have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -74,7 +74,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> div<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
 </pre>
 <br />
-<span>However, that's just syntactic sugar for:</span><br />
+<span>However, that&#39;s just syntactic sugar for:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -98,9 +98,9 @@ Division<font color="#990000">(</font><font color="#993399">3.000000</font><font
 <br />
 <span>Not complicated at all, but nice to know and helps to make the code easier to read!</span><br />
 <br />
-<h2 style='display: inline'>That's not OOP, though</h2><br />
+<h2 style='display: inline'>That&#39;s not OOP, though</h2><br />
 <br />
-<span>However, that's not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</span><br />
+<span>However, that&#39;s not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -121,7 +121,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://lwn.net/Articles/444910/'>https://lwn.net/Articles/444910/</a><br />
 <br />
-<span>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
+<span>C is a very old programming language with it&#39;s quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />

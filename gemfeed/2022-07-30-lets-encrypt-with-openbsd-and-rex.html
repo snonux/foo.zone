@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Let's Encrypt with OpenBSD and Rex</h1><br />
+<h1 style='display: inline'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
 <br />
 <span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
 <br />
@@ -39,13 +39,13 @@
                                  ASCII Art by John Savard
 </pre>
 <br />
-<span>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</span><br />
+<span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h2 style='display: inline'>What's Let's Encrypt?</h2><br />
+<h2 style='display: inline'>What&#39;s Let&#39;s Encrypt?</h2><br />
 <br />
-<span class='quote'>Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
+<span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Let's_Encrypt'>Source: Wikipedia</a><br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Let&#39;s_Encrypt'>Source: Wikipedia</a><br />
 <br />
 <span>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</span><br />
 <br />
@@ -58,16 +58,16 @@
 <ul>
 <li>It first checks whether a certificate already exists; if not, it will attempt to generate a new one.</li>
 <li>If the certificate already exists but expires within the next 30 days, it will renew it.</li>
-<li>Otherwise, <span class='inlinecode'>acme-client</span> won't do anything.</li>
+<li>Otherwise, <span class='inlinecode'>acme-client</span> won&#39;t do anything.</li>
 </ul><br />
 <span>Oversimplified, the following steps are undertaken by <span class='inlinecode'>acme-client</span> for generating a new certificate:</span><br />
 <br />
 <ul>
 <li>Reading its config file <span class='inlinecode'>/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates. So it means you can also have certificates for arbitrary subdomains!</li>
 <li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to <span class='inlinecode'>/etc/ssl/...</span>.</li>
-<li>Requesting Let's Encrypt to sign the certificate. This also includes providing a set of temporary files requested by Let's Encrypt in the next step for verification.</li>
-<li>Let's Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class='inlinecode'>http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
-<li>Let's Encrypt generates a certificate, which then is downloaded to <span class='inlinecode'>/etc/ssl/...</span>.</li>
+<li>Requesting Let&#39;s Encrypt to sign the certificate. This also includes providing a set of temporary files requested by Let&#39;s Encrypt in the next step for verification.</li>
+<li>Let&#39;s Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class='inlinecode'>http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
+<li>Let&#39;s Encrypt generates a certificate, which then is downloaded to <span class='inlinecode'>/etc/ssl/...</span>.</li>
 </ul><br />
 <h2 style='display: inline'>Configuration</h2><br />
 <br />
@@ -141,7 +141,7 @@ domain snonux.land {
 <br />
 <h3 style='display: inline'>httpd.conf</h3><br />
 <br />
-<span>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let's Encrypt are served correctly. I am using the standard OpenBSD <span class='inlinecode'>httpd</span> here. These are the snippets I use for the <span class='inlinecode'>foo.zone</span> host in <span class='inlinecode'>/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</span><br />
+<span>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let&#39;s Encrypt are served correctly. I am using the standard OpenBSD <span class='inlinecode'>httpd</span> here. These are the snippets I use for the <span class='inlinecode'>foo.zone</span> host in <span class='inlinecode'>/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</span><br />
 <br />
 <pre>
 server "foo.zone" {
@@ -168,9 +168,9 @@ server "foo.zone" {
 }
 </pre>
 <br />
-<span>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let's Encrypt certificates.</span><br />
+<span>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let&#39;s Encrypt certificates.</span><br />
 <br />
-<span>It is worth noticing that <span class='inlinecode'>httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let's Encrypt. As you saw in the config snippet above, Let's Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn't need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class='inlinecode'>httpd</span> to use any new certificate.</span><br />
+<span>It is worth noticing that <span class='inlinecode'>httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let&#39;s Encrypt. As you saw in the config snippet above, Let&#39;s Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn&#39;t need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class='inlinecode'>httpd</span> to use any new certificate.</span><br />
 <br />
 <h3 style='display: inline'>CRON job</h3><br />
 <br />
@@ -252,11 +252,11 @@ acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 <br />
 <h2 style='display: inline'>relayd.conf and smtpd.conf</h2><br />
 <br />
-<span>Besides <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> (mainly for Gemini) and <span class='inlinecode'>smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class='inlinecode'>acme.sh</span>, the services are reloaded or restarted (<span class='inlinecode'>smtpd</span> doesn't support reload) whenever a certificate is generated or updated.</span><br />
+<span>Besides <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> (mainly for Gemini) and <span class='inlinecode'>smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class='inlinecode'>acme.sh</span>, the services are reloaded or restarted (<span class='inlinecode'>smtpd</span> doesn&#39;t support reload) whenever a certificate is generated or updated.</span><br />
 <br />
 <h2 style='display: inline'>Rexification</h2><br />
 <br />
-<span>I didn't write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</span><br />
+<span>I didn&#39;t write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</span><br />
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />
@@ -271,48 +271,48 @@ our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zon
 <span>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</span><br />
 <br />
 <pre>
-group frontends =&gt; 'blowfish.buetow.org', 'twofish.buetow.org';
+group frontends =&gt; &#39;blowfish.buetow.org&#39;, &#39;twofish.buetow.org&#39;;
 </pre>
 <br />
 <span>This is my Rex task for the general ACME configuration:</span><br />
 <br />
 <pre>
-desc 'Configure ACME client';
-task 'acme', group =&gt; 'frontends',
+desc &#39;Configure ACME client&#39;;
+task &#39;acme&#39;, group =&gt; &#39;frontends&#39;,
   sub {
-    file '/etc/acme-client.conf',
-      content =&gt; template('./etc/acme-client.conf.tpl',
+    file &#39;/etc/acme-client.conf&#39;,
+      content =&gt; template(&#39;./etc/acme-client.conf.tpl&#39;,
         acme_hosts =&gt; \@acme_hosts,
         is_primary =&gt; $is_primary),
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644';
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;;
 
-    file '/usr/local/bin/acme.sh',
-      content =&gt; template('./scripts/acme.sh.tpl',
+    file &#39;/usr/local/bin/acme.sh&#39;,
+      content =&gt; template(&#39;./scripts/acme.sh.tpl&#39;,
         acme_hosts =&gt; \@acme_hosts,
         is_primary =&gt; $is_primary),
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '744';
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;744&#39;;
 
-    file '/etc/daily.local',
-      ensure =&gt; 'present',
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644';
+    file &#39;/etc/daily.local&#39;,
+      ensure =&gt; &#39;present&#39;,
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;;
 
-    append_if_no_such_line '/etc/daily.local', '/usr/local/bin/acme.sh';
+    append_if_no_such_line &#39;/etc/daily.local&#39;, &#39;/usr/local/bin/acme.sh&#39;;
   };
 </pre>
 <br />
 <span>And there is also a Rex task just to run the ACME script remotely:</span><br />
 <br />
 <pre>
-desc 'Invoke ACME client';
-task 'acme_invoke', group =&gt; 'frontends',
+desc &#39;Invoke ACME client&#39;;
+task &#39;acme_invoke&#39;, group =&gt; &#39;frontends&#39;,
   sub {
-    say run '/usr/local/bin/acme.sh';
+    say run &#39;/usr/local/bin/acme.sh&#39;;
   };
 
 </pre>
@@ -321,23 +321,23 @@ task 'acme_invoke', group =&gt; 'frontends',
 <br />
 <pre>
 # Bootstrapping the FQDN based on the server IP as the hostname and domain
-# facts aren't set yet due to the myname file in the first place.
+# facts aren&#39;t set yet due to the myname file in the first place.
 our $fqdns = sub {
   my $ipv4 = shift;
-  return 'blowfish.buetow.org' if $ipv4 eq '23.88.35.144';
-  return 'twofish.buetow.org' if $ipv4 eq '108.160.134.135';
-  Rex::Logger::info("Unable to determine hostname for $ipv4", 'error');
-  return 'HOSTNAME-UNKNOWN.buetow.org';
+  return &#39;blowfish.buetow.org&#39; if $ipv4 eq &#39;23.88.35.144&#39;;
+  return &#39;twofish.buetow.org&#39; if $ipv4 eq &#39;108.160.134.135&#39;;
+  Rex::Logger::info("Unable to determine hostname for $ipv4", &#39;error&#39;);
+  return &#39;HOSTNAME-UNKNOWN.buetow.org&#39;;
 };
 
 # To determine whether the server is the primary or the secondary.
 our $is_primary = sub {
   my $ipv4 = shift;
-  $fqdns-&gt;($ipv4) eq 'blowfish.buetow.org';
+  $fqdns-&gt;($ipv4) eq &#39;blowfish.buetow.org&#39;;
 };
 </pre>
 <br />
-<span>The following is the <span class='inlinecode'>acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class='inlinecode'>www.</span> prefix isn't sent for the primary server. E.g. <span class='inlinecode'>foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class='inlinecode'>www.foo.zone</span> by the secondary server (in my case, a server located in Japan):</span><br />
+<span>The following is the <span class='inlinecode'>acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class='inlinecode'>www.</span> prefix isn&#39;t sent for the primary server. E.g. <span class='inlinecode'>foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class='inlinecode'>www.foo.zone</span> by the secondary server (in my case, a server located in Japan):</span><br />
 <br />
 <pre>
 #
@@ -367,7 +367,7 @@ authority buypass-test {
 
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? '' : 'www.';
+  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
 %&gt;
 
 &lt;% for my $host (@$acme_hosts) { %&gt;
@@ -387,7 +387,7 @@ domain &lt;%= $prefix.$host %&gt; {
 
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? '' : 'www.';
+  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
 -%&gt;
 
 function handle_cert {
@@ -423,77 +423,77 @@ fi
 <span>These are the Rex tasks setting up <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> and <span class='inlinecode'>smtpd</span> services:</span><br />
 <br />
 <pre>
-desc 'Setup httpd';
-task 'httpd', group =&gt; 'frontends',
+desc &#39;Setup httpd&#39;;
+task &#39;httpd&#39;, group =&gt; &#39;frontends&#39;,
   sub {
-    append_if_no_such_line '/etc/rc.conf.local', 'httpd_flags=';
+    append_if_no_such_line &#39;/etc/rc.conf.local&#39;, &#39;httpd_flags=&#39;;
 
-    file '/etc/httpd.conf',
-      content =&gt; template('./etc/httpd.conf.tpl',
+    file &#39;/etc/httpd.conf&#39;,
+      content =&gt; template(&#39;./etc/httpd.conf.tpl&#39;,
         acme_hosts =&gt; \@acme_hosts,
         is_primary =&gt; $is_primary),
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644',
-      on_change =&gt; sub { service 'httpd' =&gt; 'restart' };
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;,
+      on_change =&gt; sub { service &#39;httpd&#39; =&gt; &#39;restart&#39; };
 
-    service 'httpd', ensure =&gt; 'started';
+    service &#39;httpd&#39;, ensure =&gt; &#39;started&#39;;
   };
 
-desc 'Setup relayd';
-task 'relayd', group =&gt; 'frontends',
+desc &#39;Setup relayd&#39;;
+task &#39;relayd&#39;, group =&gt; &#39;frontends&#39;,
   sub {
-    append_if_no_such_line '/etc/rc.conf.local', 'relayd_flags=';
+    append_if_no_such_line &#39;/etc/rc.conf.local&#39;, &#39;relayd_flags=&#39;;
 
-    file '/etc/relayd.conf',
-      content =&gt; template('./etc/relayd.conf.tpl',
+    file &#39;/etc/relayd.conf&#39;,
+      content =&gt; template(&#39;./etc/relayd.conf.tpl&#39;,
         ipv6address =&gt; $ipv6address,
         is_primary =&gt; $is_primary),
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '600',
-      on_change =&gt; sub { service 'relayd' =&gt; 'restart' };
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;600&#39;,
+      on_change =&gt; sub { service &#39;relayd&#39; =&gt; &#39;restart&#39; };
 
-    service 'relayd', ensure =&gt; 'started';
+    service &#39;relayd&#39;, ensure =&gt; &#39;started&#39;;
   };
 
-desc 'Setup OpenSMTPD';
-task 'smtpd', group =&gt; 'frontends',
+desc &#39;Setup OpenSMTPD&#39;;
+task &#39;smtpd&#39;, group =&gt; &#39;frontends&#39;,
   sub {
-    Rex::Logger::info('Dealing with mail aliases');
-    file '/etc/mail/aliases',
-      source =&gt; './etc/mail/aliases',
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644',
-      on_change =&gt; sub { say run 'newaliases' };
+    Rex::Logger::info(&#39;Dealing with mail aliases&#39;);
+    file &#39;/etc/mail/aliases&#39;,
+      source =&gt; &#39;./etc/mail/aliases&#39;,
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;,
+      on_change =&gt; sub { say run &#39;newaliases&#39; };
 
-    Rex::Logger::info('Dealing with mail virtual domains');
-    file '/etc/mail/virtualdomains',
-      source =&gt; './etc/mail/virtualdomains',
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644',
-      on_change =&gt; sub { service 'smtpd' =&gt; 'restart' };
+    Rex::Logger::info(&#39;Dealing with mail virtual domains&#39;);
+    file &#39;/etc/mail/virtualdomains&#39;,
+      source =&gt; &#39;./etc/mail/virtualdomains&#39;,
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;,
+      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
 
-    Rex::Logger::info('Dealing with mail virtual users');
-    file '/etc/mail/virtualusers',
-      source =&gt; './etc/mail/virtualusers',
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644',
-      on_change =&gt; sub { service 'smtpd' =&gt; 'restart' };
+    Rex::Logger::info(&#39;Dealing with mail virtual users&#39;);
+    file &#39;/etc/mail/virtualusers&#39;,
+      source =&gt; &#39;./etc/mail/virtualusers&#39;,
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;,
+      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
 
-    Rex::Logger::info('Dealing with smtpd.conf');
-    file '/etc/mail/smtpd.conf',
-      content =&gt; template('./etc/mail/smtpd.conf.tpl',
+    Rex::Logger::info(&#39;Dealing with smtpd.conf&#39;);
+    file &#39;/etc/mail/smtpd.conf&#39;,
+      content =&gt; template(&#39;./etc/mail/smtpd.conf.tpl&#39;,
         is_primary =&gt; $is_primary),
-      owner =&gt; 'root',
-      group =&gt; 'wheel',
-      mode =&gt; '644',
-      on_change =&gt; sub { service 'smtpd' =&gt; 'restart' };
+      owner =&gt; &#39;root&#39;,
+      group =&gt; &#39;wheel&#39;,
+      mode =&gt; &#39;644&#39;,
+      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
 
-    service 'smtpd', ensure =&gt; 'started';
+    service &#39;smtpd&#39;, ensure =&gt; &#39;started&#39;;
   };
 
 </pre>
@@ -503,7 +503,7 @@ task 'smtpd', group =&gt; 'frontends',
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? '' : 'www.';
+  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
 %&gt;
 
 # Plain HTTP for ACME and HTTPS redirect
@@ -595,7 +595,7 @@ server "&lt;%= $prefix %&gt;tmp.buetow.org" {
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? '' : 'www.';
+  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
 %&gt;
 
 log connection
@@ -623,7 +623,7 @@ relay "gemini6" {
 <pre>
 &lt;%
   our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? '' : 'www.';
+  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
 %&gt;
 
 pki "buetow_org_tls" cert "/etc/ssl/&lt;%= $prefix %&gt;buetow.org.fullchain.pem"
@@ -662,11 +662,11 @@ rex commons
 <br />
 <h2 style='display: inline'>Conclusion</h2><br />
 <br />
-<span>ACME and Let's Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</span><br />
+<span>ACME and Let&#39;s Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</span><br />
 <br />
 <span>OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.</span><br />
 <br />
-<span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
+<span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn&#39;t have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />

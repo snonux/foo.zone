@@ -15,7 +15,7 @@
 <pre>
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
-  ____ _____     _ _   / __/ /'     ^.  /      \ ^@q   f
+  ____ _____     _ _   / __/ /&#39;     ^.  /      \ ^@q   f
  |  _ \_   _|_ _(_) |   @f | @))    |  | @))   l  0 _/
  | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
  | |_| || | (_| | | |   |           _l__l_           I
@@ -30,15 +30,15 @@
 <br />
 <a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
 <br />
-<h2 style='display: inline'>So, what's new in 4.0.0?</h2><br />
+<h2 style='display: inline'>So, what&#39;s new in 4.0.0?</h2><br />
 <br />
 <h3 style='display: inline'>Rewritten logging</h3><br />
 <br />
 <span>For DTail 4, logging has been completely rewritten. The new package name is "internal/io/dlog". I rewrote the logging because DTail is a special case here: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs only logged by a DTail client, there are logs only logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.</span><br />
 <br />
-<span>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suits my needs and the logging code in DTail 3 was just one big source code file with global variables and it wasn't sustainable to maintain anymore. So why not rewrite it for profit and fun? </span><br />
+<span>As you can imagine, it becomes fairly complex. There is no ready Go off-shelf logging library which suits my needs and the logging code in DTail 3 was just one big source code file with global variables and it wasn&#39;t sustainable to maintain anymore. So why not rewrite it for profit and fun? </span><br />
 <br />
-<span>There's a are new log level structure now (The log level now can be specified with the "-logLevel" command line flag):</span><br />
+<span>There&#39;s a are new log level structure now (The log level now can be specified with the "-logLevel" command line flag):</span><br />
 <br />
 <pre>
 // Available log levels.
@@ -61,7 +61,7 @@ const (
 <br />
 <h3 style='display: inline'>Configurable terminal color codes</h3><br />
 <br />
-<span>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It's now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</span><br />
+<span>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It&#39;s now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</span><br />
 <br />
 <span>The example "dtail.json" configuration file represents the default (now, more reasonable default) color codes used, and it is free to the user to customize them:</span><br />
 <br />
@@ -167,9 +167,9 @@ const (
 <li>Client: Color configuration for all lines produced by a DTail client by itself (e.g. status information).</li>
 <li>Server: Color configuration for all lines produced by the DTail server by itself and sent to the client (e.g. server warnings or errors)</li>
 <li>MaprTable: Color configuration for the map-reduce table output.</li>
-<li>Common: Common color configuration used in various places (e.g. when it's not clear what's the current context of a line).</li>
+<li>Common: Common color configuration used in various places (e.g. when it&#39;s not clear what&#39;s the current context of a line).</li>
 </ul><br />
-<span>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don't configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</span><br />
+<span>When you do so, make sure that you check your "dtail.json" against the JSON schema file. This is to ensure that you don&#39;t configure an invalid color accidentally (requires "jsonschema" to be installed on your computer). Furthermore, the schema file is also a good reference for all possible colors available:</span><br />
 <br />
 <pre>
 jsonschema -i dtail.json schemas/dtail.schema.json
@@ -177,7 +177,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <br />
 <h3 style='display: inline'>Serverless mode</h3><br />
 <br />
-<span>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn't a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</span><br />
+<span>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn&#39;t a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</span><br />
 <br />
 <pre>
 % dtail --files /var/log/foo.log
@@ -186,7 +186,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <span>or</span><br />
 <br />
 <pre>
-% dmap --files /var/log/foo.log --query 'from TABLE select .... outfile result.csv'
+% dmap --files /var/log/foo.log --query &#39;from TABLE select .... outfile result.csv&#39;
 </pre>
 <br />
 <span>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</span><br />
@@ -203,7 +203,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <br />
 <h3 style='display: inline'>Spartan (aka plain) mode</h3><br />
 <br />
-<span>There's a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</span><br />
+<span>There&#39;s a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</span><br />
 <br />
 <pre>
 % dcat --plain /etc/passwd &gt; /etc/test
@@ -217,14 +217,14 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <span>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</span><br />
 <br />
 <pre>
-% dgrep --plain --regex 'somethingspecial' /var/log/foo.log |
-    dmap --query 'from TABLE select .... outfile result.csv'
+% dgrep --plain --regex &#39;somethingspecial&#39; /var/log/foo.log |
+    dmap --query &#39;from TABLE select .... outfile result.csv&#39;
 </pre>
 <br />
 <span>Or, use any other "standard" tool:</span><br />
 <br />
 <pre>
-% awk '.....' &lt; /some/file | dtail ....
+% awk &#39;.....&#39; &lt; /some/file | dtail ....
 </pre>
 <br />
 <h3 style='display: inline'>New command dtailhealth</h3><br />
@@ -254,7 +254,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <h3 style='display: inline'>Integration testing suite</h3><br />
 <br />
-<span>DTail comes already with some unit tests, but what's new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</span><br />
+<span>DTail comes already with some unit tests, but what&#39;s new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</span><br />
 <br />
 <span>How are the tests implemented? All integration tests are simply unit tests in the "./integrationtests" folder. They must be explicitly activated with:</span><br />
 <br />
@@ -279,7 +279,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <ul>
 <li>Reduce the complexity of a couple of functions (splitting code up into several smaller functions)</li>
-<li>Avoid repeating code (this version of DTail doesn't use Go generics yet, though).</li>
+<li>Avoid repeating code (this version of DTail doesn&#39;t use Go generics yet, though).</li>
 </ul><br />
 <span>Other than that, a lot of other code has been refactored as I saw fit.</span><br />
 <br />
@@ -287,18 +287,18 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</span><br />
 <br />
-<h2 style='display: inline'>What's next</h2><br />
+<h2 style='display: inline'>What&#39;s next</h2><br />
 <br />
-<span>DTail 5 won't be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</span><br />
+<span>DTail 5 won&#39;t be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</span><br />
 <br />
 <ul>
-<li>New (but backwards compatible) features which don't require a new major version bump (some features have been requested at work internally).</li>
+<li>New (but backwards compatible) features which don&#39;t require a new major version bump (some features have been requested at work internally).</li>
 <li>Even more improved documentation.</li>
 <li>Dependency updates.</li>
 </ul><br />
 <span>I use usually DTail at work, but I have recently installed it on my personal OpenBSD machines too. I might write a small tutorial here (and I might also add the rc scripts as examples to one of the next DTail releases).</span><br />
 <br />
-<span>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).</span><br />
+<span>I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don&#39;t hesitate to contact me (either via E-Mail or a request at GitHub).</span><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />

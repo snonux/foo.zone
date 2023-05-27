@@ -15,7 +15,7 @@
 <pre>
       ____                                      _        __       
      / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
-    / / |_| | | | '_ \ / _ \  | | | |/ _ \/ _` | '_ \  | |_| | | |
+    / / |_| | | | &#39;_ \ / _ \  | | | |/ _ \/ _` | &#39;_ \  | |_| | | |
  _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
 (_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
            |___/|_|            |___/                        |___/ 
@@ -25,7 +25,7 @@
 <br />
 <span>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </span><br />
 <br />
-<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".</span><br />
+<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It&#39;s not a hype - it&#39;s Fype!".</span><br />
 <br />
 <h2 style='display: inline'>Object-oriented C style</h2><br />
 <br />
@@ -102,7 +102,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline'>Data types</h2><br />
 <br />
-<span>Fype uses auto type conversion. However, if you want to know what's going on, you may take a look at the following basic data types:</span><br />
+<span>Fype uses auto type conversion. However, if you want to know what&#39;s going on, you may take a look at the following basic data types:</span><br />
 <ul>
 <li>integer - Specifies a number</li>
 <li>double - Specifies a double-precision number</li>
@@ -110,7 +110,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>number - May be an integer or a double number</li>
 <li>any- May be any type above</li>
 <li>void - No type</li>
-<li>identifier - It's a variable name or a procedure name, or a function name</li>
+<li>identifier - It&#39;s a variable name or a procedure name, or a function name</li>
 </ul><br />
 <span>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</span><br />
 <br />
@@ -122,7 +122,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline'>Variables</h3><br />
 <br />
-<span>Variables are defined with the "my" keyword (inspired by Perl :-). If you don't assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</span><br />
+<span>Variables are defined with the "my" keyword (inspired by Perl :-). If you don&#39;t assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</span><br />
 <br />
 <pre>
 my foo = 1 + 2;
@@ -164,7 +164,7 @@ foo = "bar";
 assert "bar" == bar;
 </pre>
 <br />
-<span>Synonyms can be used for all kind of identifiers. It's not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</span><br />
+<span>Synonyms can be used for all kind of identifiers. It&#39;s not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</span><br />
 <br />
 <pre>
 # Create a new procedure baz
@@ -419,7 +419,7 @@ if pid {
 <br />
 <h3 style='display: inline'>Procedures</h3><br />
 <br />
-<span>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It's using already defined variables (e.g. global variables). A procedure does not have its own namespace. It's using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</span><br />
+<span>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It&#39;s using already defined variables (e.g. global variables). A procedure does not have its own namespace. It&#39;s using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</span><br />
 <br />
 <pre>
 proc foo {
@@ -435,7 +435,7 @@ say c; # Print out "6\n";
 <br />
 <h3 style='display: inline'>Nested procedures</h3><br />
 <br />
-<span>It's possible to define procedures inside of procedures. Since procedures don't have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</span><br />
+<span>It&#39;s possible to define procedures inside of procedures. Since procedures don&#39;t have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</span><br />
 <br />
 <pre>
 proc foo {
@@ -458,7 +458,7 @@ foo; # Here the procedure foo will redefine bar again!
 <br />
 <h3 style='display: inline'>Functions</h3><br />
 <br />
-<span>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It's using local (lexical scoped) variables. If a certain variable does not exist, when It's using already defined variables (e.g. one scope above). </span><br />
+<span>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It&#39;s using local (lexical scoped) variables. If a certain variable does not exist, when It&#39;s using already defined variables (e.g. one scope above). </span><br />
 <br />
 <pre>
 func foo {

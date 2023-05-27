@@ -14,7 +14,7 @@
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
-<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. In this blog post, we'll explore Gogios' features, configuration, and use cases to help you determine if it's the proper monitoring solution for your needs, too.</span><br />
+<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. In this blog post, we&#39;ll explore Gogios&#39; features, configuration, and use cases to help you determine if it&#39;s the proper monitoring solution for your needs, too.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
 <br />
@@ -43,9 +43,9 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <h2 style='display: inline'>Motivation</h2><br />
 <br />
-<span>As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
+<span>As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn&#39;t necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
 <br />
-<span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.</span><br />
+<span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn&#39;t satisfied with the available options.</span><br />
 <br />
 <span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool.</span><br />
 <br />
@@ -57,13 +57,13 @@ https://asciiart.website/index.php?art=objects/computers
 <li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.</li>
 <li>Lightweight and Minimalistic: Gogios is designed to be simple and easy to set up, making it an ideal choice for users with limited monitoring requirements.</li>
 <li>Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.</li>
-<li>Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn't pingable.</li>
+<li>Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn&#39;t pingable.</li>
 <li>Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.</li>
 <li>CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.</li>
 </ul><br />
 <h2 style='display: inline'>Example alert</h2><br />
 <br />
-<span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we've got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
+<span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we&#39;ve got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
 <br />
 <pre>
 Subject: GOGIOS Report [C:2 W:0 U:0 OK:51]
@@ -154,17 +154,17 @@ doas pkg_add nrpe <i><font color="#9A1900"># If you want to execute checks remot
 <br />
 <span>Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.</span><br />
 <br />
-<span>You can use the mail command to send an email via the command line on OpenBSD. Here's an example of how to send a test email to ensure that your email server is working correctly:</span><br />
+<span>You can use the mail command to send an email via the command line on OpenBSD. Here&#39;s an example of how to send a test email to ensure that your email server is working correctly:</span><br />
 <br />
 <pre>
-echo 'This is a test email from OpenBSD.' | mail -s 'Test Email' your-email@example.com
+echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39; your-email@example.com
 </pre>
 <br />
-<span>Check the recipient's inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
+<span>Check the recipient&#39;s inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
 <br />
 <h3 style='display: inline'>Configuring Gogios</h3><br />
 <br />
-<span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here's an example configuration:</span><br />
+<span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here&#39;s an example configuration:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -205,7 +205,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li><span class='inlinecode'>EmailTo</span>: Specifies the recipient of the email notifications.</li>
-<li><span class='inlinecode'>EmailFrom</span>: Indicates the sender's email address for email notifications.</li>
+<li><span class='inlinecode'>EmailFrom</span>: Indicates the sender&#39;s email address for email notifications.</li>
 <li><span class='inlinecode'>CheckTimeoutS</span>: Sets the timeout for checks in seconds.</li>
 <li><span class='inlinecode'>CheckConcurrency</span>: Determines the number of concurrent checks that can run simultaneously.</li>
 <li><span class='inlinecode'>StateDir</span>: Specifies the directory where Gogios stores its persistent state in a <span class='inlinecode'>state.json</span> file. </li>
@@ -213,7 +213,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Adjust the configuration file according to your needs, specifying the checks you want Gogios to perform.</span><br />
 <br />
-<span>If you want to execute checks only when another check succeeded (status OK), use <span class='inlinecode'>DependsOn</span>. In the example above, the HTTP checks won't run when the hosts aren't pingable. They will show up as <span class='inlinecode'>UNKNOWN</span> in the report.</span><br />
+<span>If you want to execute checks only when another check succeeded (status OK), use <span class='inlinecode'>DependsOn</span>. In the example above, the HTTP checks won&#39;t run when the hosts aren&#39;t pingable. They will show up as <span class='inlinecode'>UNKNOWN</span> in the report.</span><br />
 <br />
 <span>For remote checks, use the <span class='inlinecode'>check_nrpe</span> plugin. You also need to have the NRPE server set up correctly on the target host (out of scope for this document).</span><br />
 <br />
@@ -250,11 +250,11 @@ http://www.gnu.org/software/src-highlite -->
 <li>Install the NRPE server (out of scope for this document) and plugin on both servers. This plugin allows you to execute Nagios check scripts on remote hosts.</li>
 <li>Configure Gogios on both servers to monitor each other using the NRPE plugin. Add a check to the Gogios configuration file (<span class='inlinecode'>/etc/gogios.json</span>) on both servers that uses the NRPE plugin to execute a check script on the other server. For example, if you have Server A and Server B, the configuration on Server A should include a check for Server B, and vice versa.</li>
 <li>Set up alternate CRON intervals on both servers. Configure the CRON job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. </li>
-<li>Gogios doesn't support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That's the trade-off for simplicity.</li>
+<li>Gogios doesn&#39;t support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That&#39;s the trade-off for simplicity.</li>
 </ul><br />
 <h2 style='display: inline'>Conclusion:</h2><br />
 <br />
-<span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. If you're seeking a simple yet effective monitoring tool for your self-hosted servers or virtual machines, give Gogios a try!</span><br />
+<span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. If you&#39;re seeking a simple yet effective monitoring tool for your self-hosted servers or virtual machines, give Gogios a try!</span><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />

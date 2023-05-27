@@ -22,7 +22,7 @@
 /======"---""---""---""---"=|  =||
 |____    []*          ____  | ==||
 //  \\               //  \\ |===||  hjw
-"\__/"---------------"\__/"-+---+'
+"\__/"---------------"\__/"-+---+&#39;
 </pre>
 <br />
 <span>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </span><br />
@@ -41,7 +41,7 @@
 #!/bin/bash 
 </pre>
 <br />
-<span>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:</span><br />
+<span>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don&#39;t have Bash installed to /bin/bash). Better is:</span><br />
 <br />
 <pre>
 #!/usr/bin/env bash
@@ -51,9 +51,9 @@
 <br />
 <span>I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. </span><br />
 <br />
-<span>I don't care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that's how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.</span><br />
+<span>I don&#39;t care if I use two or four space indentations. I agree, however, that we should not use tabs. I tend to use four-space soft-tabs as that&#39;s how I currently configured Vim for any programming language. What matters most, though, is consistency within the same script/project.</span><br />
 <br />
-<span>Google also recommends limiting the line length to 80 characters. For some people, that seems to be an old habit from the '80s, where all computer terminals couldn't display longer lines. But I think that the 80 character mark is still a good practice, at least for shell scripts. For example, I am often writing code on a Microsoft Go Tablet PC (running Linux, of course), and it comes in convenient if the lines are not too long due to the relatively small display on the device.</span><br />
+<span>Google also recommends limiting the line length to 80 characters. For some people, that seems to be an old habit from the &#39;80s, where all computer terminals couldn&#39;t display longer lines. But I think that the 80 character mark is still a good practice, at least for shell scripts. For example, I am often writing code on a Microsoft Go Tablet PC (running Linux, of course), and it comes in convenient if the lines are not too long due to the relatively small display on the device.</span><br />
 <br />
 <span>I hit the 80 character line length quicker with the four spaces than with two spaces, but that makes me refactor the Bash code more aggressively, which is a good thing. </span><br />
 <br />
@@ -94,7 +94,7 @@ greet () {
 }
 </pre>
 <br />
-<span>In this particular example, I agree that you should quote them as you don't know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:</span><br />
+<span>In this particular example, I agree that you should quote them as you don&#39;t know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:</span><br />
 <br />
 <pre>
 say_hello_to_paul () {
@@ -112,7 +112,7 @@ declare FOO=bar
 echo "foo${FOO}baz"
 </pre>
 <br />
-<span>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That's because it will be more likely that you might not remember that some of the functions don't work on values with spaces in them, for example. It's just that I won't quote everything in every small script I write. </span><br />
+<span>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That&#39;s because it will be more likely that you might not remember that some of the functions don&#39;t work on values with spaces in them, for example. It&#39;s just that I won&#39;t quote everything in every small script I write. </span><br />
 <br />
 <h3 style='display: inline'>Prefer built-in commands over external commands</h3><br />
 <br />
@@ -125,22 +125,22 @@ substitution="${string/#foo/bar}"
 
 # Instead of this:
 addition="$(expr "${X}" + "${Y}")"
-substitution="$(echo "${string}" | sed -e 's/^foo/bar/')"
+substitution="$(echo "${string}" | sed -e &#39;s/^foo/bar/&#39;)"
 </pre>
 <br />
-<span>I can't entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</span><br />
+<span>I can&#39;t entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</span><br />
 <br />
 <span>I prefer to do light text processing with the Bash built-ins and more complicated text processing with external programs such as sed, grep, awk, cut, and tr. However, there is also medium-light text processing where I would want to use external programs. That is so because I remember using them better than the Bash built-ins. The Bash can get relatively obscure here (even Perl will be more readable then - Side note: I love Perl).</span><br />
 <br />
 <span>Also, you would like to use an external command for floating-point calculation (e.g., bc) instead of using the Bash built-ins (worth noticing that ZSH supports built-in floating-points).</span><br />
 <br />
-<span>I even didn't get started with what you can do with awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn't be a Bash script anymore, wouldn't it? ;-)</span><br />
+<span>I even didn&#39;t get started with what you can do with awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn&#39;t be a Bash script anymore, wouldn&#39;t it? ;-)</span><br />
 <br />
 <h2 style='display: inline'>My additions</h2><br />
 <br />
-<h3 style='display: inline'>Use of 'yes' and 'no'</h3><br />
+<h3 style='display: inline'>Use of &#39;yes&#39; and &#39;no&#39;</h3><br />
 <br />
-<span>Bash does not support a boolean type. I tend just to use the strings 'yes' and 'no' here. I used 0 for false and 1 for true for some time, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is crucial to you, you wouldn't want to use a Bash script anyway, correct?</span><br />
+<span>Bash does not support a boolean type. I tend just to use the strings &#39;yes&#39; and &#39;no&#39; here. I used 0 for false and 1 for true for some time, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is crucial to you, you wouldn&#39;t want to use a Bash script anyway, correct?</span><br />
 <br />
 <pre>
 declare -r SUGAR_FREE=yes
@@ -150,9 +150,9 @@ buy_soda () {
     local -r sugar_free=$1
 
     if [[ $sugar_free == yes ]]; then
-        echo 'Diet Dr. Pepper'
+        echo &#39;Diet Dr. Pepper&#39;
     else
-        echo 'Pepsi Coke'
+        echo &#39;Pepsi Coke&#39;
     fi
 }
 
@@ -173,7 +173,7 @@ variable="$(eval some_function)"
 
 </pre>
 <br />
-<span>However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:</span><br />
+<span>However, if I want to read variables from another file, I don&#39;t have to use eval here. I only have to source the file:</span><br />
 <br />
 <pre>
 % cat vars.source.sh
@@ -181,7 +181,7 @@ declare foo=bar
 declare bar=baz
 declare bay=foo
 
-% bash -c 'source vars.source.sh; echo $foo $bar $baz'
+% bash -c &#39;source vars.source.sh; echo $foo $bar $baz&#39;
 bar baz foo
 </pre>
 <br />
@@ -195,11 +195,11 @@ declare date="$(date)"
 declare user=$USER
 END
 
-% bash -c 'source &lt;(./vars.sh); echo "Hello $user, it is $date"'
+% bash -c &#39;source &lt;(./vars.sh); echo "Hello $user, it is $date"&#39;
 Hello paul, it is Sat 15 May 19:21:12 BST 2021
 </pre>
 <br />
-<span>The downside is that ShellCheck won't be able to follow the dynamic sourcing anymore.</span><br />
+<span>The downside is that ShellCheck won&#39;t be able to follow the dynamic sourcing anymore.</span><br />
 <br />
 <h3 style='display: inline'>Prefer pipes over arrays for list processing</h3><br />
 <br />
@@ -207,12 +207,12 @@ Hello paul, it is Sat 15 May 19:21:12 BST 2021
 <br />
 <pre>
 filter_lines () {
-    echo 'Start filtering lines in a fancy way!' &gt;&amp;2
+    echo &#39;Start filtering lines in a fancy way!&#39; &gt;&amp;2
     grep ... | sed ....
 }
 
 process_lines () {
-    echo 'Start processing line by line!' &gt;&amp;2
+    echo &#39;Start processing line by line!&#39; &gt;&amp;2
     while read -r line; do
         ... do something and produce a result...
         echo "$result"
@@ -221,12 +221,12 @@ process_lines () {
 
 # Do some post-processing of the data
 postprocess_lines () {
-    echo 'Start removing duplicates!' &gt;&amp;2
+    echo &#39;Start removing duplicates!&#39; &gt;&amp;2
     sort -u
 }
 
 genreate_report () {
-    echo 'My boss wants to have a report!' &gt;&amp;2
+    echo &#39;My boss wants to have a report!&#39; &gt;&amp;2
     tee outfile.txt
     wc -l outfile.txt
 }
@@ -245,9 +245,9 @@ main
 <br />
 <h3 style='display: inline'>Assign-then-shift</h3><br />
 <br />
-<span>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It's pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</span><br />
+<span>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It&#39;s pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</span><br />
 <br />
-<span>The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something that I picked up from a colleague (a pure Bash wizard) some time ago:</span><br />
+<span>The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It&#39;s something that I picked up from a colleague (a pure Bash wizard) some time ago:</span><br />
 <br />
 <pre>
 some_function () {
@@ -281,7 +281,7 @@ some_function () {
 }
 </pre>
 <br />
-<span>As you can see, I didn't need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</span><br />
+<span>As you can see, I didn&#39;t need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</span><br />
 <br />
 <h3 style='display: inline'>Paranoid mode</h3><br />
 <br />
@@ -293,7 +293,7 @@ grep -q foo &lt;&lt;&lt; bar
 echo Jo
 </pre>
 <br />
-<span>Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</span><br />
+<span>Here &#39;Jo&#39; will never be printed out as the grep didn&#39;t find any match. It&#39;s unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</span><br />
 <br />
 <pre>
 #!/usr/bin/env bash
@@ -305,7 +305,7 @@ some_function () {
     ...
 
     set +e
-    # Grep might fail, but that's OK now
+    # Grep might fail, but that&#39;s OK now
     grep ....
     local -i ec=$?
     set -e
@@ -320,7 +320,7 @@ some_function () {
 <br />
 <h2 style='display: inline'>Learned</h2><br />
 <br />
-<span>There are also a couple of things I've learned from Google's guide.</span><br />
+<span>There are also a couple of things I&#39;ve learned from Google&#39;s guide.</span><br />
 <br />
 <h3 style='display: inline'>Unintended lexicographical comparison.</h3><br />
 <br />
@@ -351,9 +351,9 @@ fi
 <br />
 <h3 style='display: inline'>PIPESTATUS</h3><br />
 <br />
-<span>I have never used the PIPESTATUS variable before. I knew that it's there, but I never bothered to understand how it works until now thoroughly.</span><br />
+<span>I have never used the PIPESTATUS variable before. I knew that it&#39;s there, but I never bothered to understand how it works until now thoroughly.</span><br />
 <br />
-<span>The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it's only necessary to check the success or failure of the whole pipe, then the following is acceptable:</span><br />
+<span>The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it&#39;s only necessary to check the success or failure of the whole pipe, then the following is acceptable:</span><br />
 <br />
 <pre>
 tar -cf - ./* | ( cd "${dir}" &amp;&amp; tar -xf - )
@@ -362,7 +362,7 @@ if (( PIPESTATUS[0] != 0 || PIPESTATUS[1] != 0 )); then
 fi
 </pre>
 <br />
-<span>However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you'll need to assign PIPESTATUS to another variable immediately after running the command (don't forget that [ is a command and will wipe out PIPESTATUS).</span><br />
+<span>However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you&#39;ll need to assign PIPESTATUS to another variable immediately after running the command (don&#39;t forget that [ is a command and will wipe out PIPESTATUS).</span><br />
 <br />
 <pre>
 tar -cf - ./* | ( cd "${DIR}" &amp;&amp; tar -xf - )

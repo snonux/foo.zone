@@ -15,7 +15,7 @@
 <pre>
          ,_---~~~~~----._         
   _,,_,*^____      _____``*g*\"*, 
- / __/ /'     ^.  /      \ ^@q   f 
+ / __/ /&#39;     ^.  /      \ ^@q   f 
 [  @f | @))    |  | @))   l  0 _/  
  \`/   \~____ / __ \_____/    \   
   |           _l__l_           I   
@@ -177,7 +177,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline'>Sleep sort</h2><br />
 <br />
-<span>Let's implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It's more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it's only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
+<span>Let&#39;s implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It&#39;s more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it&#39;s only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
 <br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
@@ -220,7 +220,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#FF0000">}</font>
 </pre>
 <br />
-<span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element's value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
+<span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
 <br />
 <h3 style='display: inline'>Testing</h3><br />
 <br />
@@ -261,7 +261,7 @@ PASS
 ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <font color="#993399">9</font><font color="#990000">.</font>002s
 </pre>
 <br />
-<span>I won't write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
+<span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />

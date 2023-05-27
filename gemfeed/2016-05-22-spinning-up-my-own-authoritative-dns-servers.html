@@ -25,29 +25,29 @@
 <pre>
 include freebsd
 
-freebsd::ipalias { '2a01:4f8:120:30e8::14':
+freebsd::ipalias { &#39;2a01:4f8:120:30e8::14&#39;:
   ensure    =&gt; up,
-  proto     =&gt; 'inet6',
-  preflen   =&gt; '64',
-  interface =&gt; 're0',
-  aliasnum  =&gt; '5',
+  proto     =&gt; &#39;inet6&#39;,
+  preflen   =&gt; &#39;64&#39;,
+  interface =&gt; &#39;re0&#39;,
+  aliasnum  =&gt; &#39;5&#39;,
 }
 
 include jail::freebsd
 
-class { 'jail':
+class { &#39;jail&#39;:
   ensure              =&gt; present,
   jails_config        =&gt; {
     dns                     =&gt; {
-      '_ensure'             =&gt; present,
-      '_type'               =&gt; 'freebsd',
-      '_mirror'             =&gt; 'ftp://ftp.de.freebsd.org',
-      '_remote_path'        =&gt; 'FreeBSD/releases/amd64/10.1-RELEASE',
-      '_dists'              =&gt; [ 'base.txz', 'doc.txz', ],
-      '_ensure_directories' =&gt; [ '/opt', '/opt/enc' ],
-      'host.hostname'       =&gt; "'dns.ian.buetow.org'",
-      'ip4.addr'            =&gt; '192.168.0.15',
-      'ip6.addr'            =&gt; '2a01:4f8:120:30e8::15',
+      &#39;_ensure&#39;             =&gt; present,
+      &#39;_type&#39;               =&gt; &#39;freebsd&#39;,
+      &#39;_mirror&#39;             =&gt; &#39;ftp://ftp.de.freebsd.org&#39;,
+      &#39;_remote_path&#39;        =&gt; &#39;FreeBSD/releases/amd64/10.1-RELEASE&#39;,
+      &#39;_dists&#39;              =&gt; [ &#39;base.txz&#39;, &#39;doc.txz&#39;, ],
+      &#39;_ensure_directories&#39; =&gt; [ &#39;/opt&#39;, &#39;/opt/enc&#39; ],
+      &#39;host.hostname&#39;       =&gt; "&#39;dns.ian.buetow.org&#39;",
+      &#39;ip4.addr&#39;            =&gt; &#39;192.168.0.15&#39;,
+      &#39;ip6.addr&#39;            =&gt; &#39;2a01:4f8:120:30e8::15&#39;,
     },
     .
     .
@@ -77,7 +77,7 @@ pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags
 <span>In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself), I configured the BIND DNS server this way:</span><br />
 <br />
 <pre>
-class { 'bind_freebsd':
+class { &#39;bind_freebsd&#39;:
   config         =&gt; "puppet:///files/bind/named.${::hostname}.conf",
   dynamic_config =&gt; "puppet:///files/bind/dynamic.${::hostname}",
 }
@@ -129,7 +129,7 @@ dns2 86400 IN AAAA 2a03:2500:1:6:20::
 .
 </pre>
 <br />
-<span>That is my master DNS server. My slave DNS server runs in another Jail on another bare-metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and different IP subnets. The only difference is the "named.conf". It's configured to be a slave, and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.</span><br />
+<span>That is my master DNS server. My slave DNS server runs in another Jail on another bare-metal machine. Everything is set up similar to the master DNS server. However, that server is located in a different DC and different IP subnets. The only difference is the "named.conf". It&#39;s configured to be a slave, and that means that the "dynamicdb" gets populated by BIND itself while doing zone transfers from the master.</span><br />
 <br />
 <pre>
 paul uranus:~/git/blog/source [4279]% ssh admin@dns2.buetow.org tail -n 11 /usr/local/etc/namedb/named.conf
@@ -243,7 +243,7 @@ apply Service "dig6" {
 <li>Wait for Puppet. Puppet will deploy that updated zone file. And it will reload the BIND server.</li>
 <li>The BIND server will notify all slave DNS servers (at the moment, only one). And it will transfer the new version of the zone.</li>
 </ul><br />
-<span>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</span><br />
+<span>That&#39;s much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</span><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />
