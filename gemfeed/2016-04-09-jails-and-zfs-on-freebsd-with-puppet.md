@@ -385,6 +385,6 @@ Of course I am operating multiple Jails on the same host this way with Puppet:
 
 All done in a pretty automated manor. 
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  

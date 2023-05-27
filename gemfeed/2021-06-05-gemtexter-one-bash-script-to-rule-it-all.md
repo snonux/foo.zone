@@ -173,6 +173,6 @@ Other related posts are:
 [2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 [2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  

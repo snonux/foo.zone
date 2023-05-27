@@ -226,6 +226,6 @@ ok      codeberg.org/snonux/algorithms/sort     9.002s
 
 I won't write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  

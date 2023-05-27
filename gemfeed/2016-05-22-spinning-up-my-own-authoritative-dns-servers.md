@@ -234,6 +234,6 @@ Whenever I have to change a DNS entry, all I have to do is:
 
 That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  

@@ -88,7 +88,7 @@ Other book notes of mine are:
 [2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
 [2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  

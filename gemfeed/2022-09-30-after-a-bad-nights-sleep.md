@@ -93,6 +93,6 @@ It's easier to forget things on those days, so everything should be written down
 
 I wouldn't say I like checking social media, as it can consume a lot of time and can become addictive. But once in a while, I want to catch up with my "networks". After a bad night's sleep, it's the perfect time to check your social media. Once done, you don't have to do it anymore for the next couple of days!
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  

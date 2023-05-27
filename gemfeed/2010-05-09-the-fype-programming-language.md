@@ -505,6 +505,6 @@ You can find all of this on the GitHub page. There is also an "examples" folders
 
 [https://codeberg.org/snonux/fype](https://codeberg.org/snonux/fype)  
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 [Back to the main site](../)  
