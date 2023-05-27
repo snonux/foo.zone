@@ -13,7 +13,7 @@
         <updated>2023-05-06T17:23:16+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'The Obstacle Is the Way' by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
@@ -108,7 +108,7 @@
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -122,7 +122,7 @@
         <updated>2023-04-30T13:10:26+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</summary>
         <content type="xhtml">
@@ -291,7 +291,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -304,7 +304,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
         <updated>2023-04-09T22:31:42+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
         <content type="xhtml">
@@ -564,7 +564,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -577,7 +577,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <updated>2023-04-01T20:00:17+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'Never split the difference' by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
@@ -718,7 +718,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -731,7 +731,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <updated>2023-03-25T17:50:32+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
@@ -890,7 +890,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -903,7 +903,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <updated>2023-03-16T00:55:20+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
@@ -997,7 +997,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -1011,7 +1011,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <updated>2023-02-26T23:48:01+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won't just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers' interest that you fully relax and shut down after work. </summary>
         <content type="xhtml">
@@ -1092,7 +1092,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>There are some days at work you feel drained afterwards and think you didn't progress towards your goals at all. It's more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.</span><br />
 <span> </span><br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1105,7 +1105,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <updated>2023-01-23T15:31:52+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Art by Joan Stark</summary>
         <content type="xhtml">
@@ -1249,7 +1249,7 @@ Art by Joan Stark
 <br />
 <span>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1262,7 +1262,7 @@ Art by Joan Stark
         <updated>2022-12-24T23:18:40+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my 'Creative universe' post:</summary>
         <content type="xhtml">
@@ -1373,7 +1373,7 @@ Art by Joan Stark
 <br />
 <span>Am I a Java expert now? No, by far not. But I am better now than before :-).</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1386,7 +1386,7 @@ Art by Joan Stark
         <updated>2022-11-24T11:17:15+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Art by      \ \_!  / __!</summary>
         <content type="xhtml">
@@ -1506,7 +1506,7 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <br />
 <a class='textlink' href='https://github.com/NvChad/NvChad'>https://github.com/NvChad/NvChad</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <br />
@@ -1587,7 +1587,7 @@ nmap ,<b><font color="#0000FF">j</font></b> :<b><font color="#0000FF">call</font
         <updated>2022-10-30T11:03:19+02:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</summary>
         <content type="xhtml">
@@ -1939,7 +1939,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1952,7 +1952,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <updated>2022-09-30T09:53:23+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Everyone has it once in a while: A bad night's sleep. Here I attempt to list valuable tips on how to deal with it.</summary>
         <content type="xhtml">
@@ -2053,7 +2053,7 @@ jgs                (________\  \
 <br />
 <span>I wouldn't say I like checking social media, as it can consume a lot of time and can become addictive. But once in a while, I want to catch up with my "networks". After a bad night's sleep, it's the perfect time to check your social media. Once done, you don't have to do it anymore for the next couple of days!</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2066,7 +2066,7 @@ jgs                (________\  \
         <updated>2022-08-27T18:25:57+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
@@ -2171,7 +2171,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2184,7 +2184,7 @@ http://www.gnu.org/software/src-highlite -->
         <updated>2022-07-30T12:14:31+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</summary>
         <content type="xhtml">
@@ -2849,7 +2849,7 @@ rex commons
 <br />
 <span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2862,7 +2862,7 @@ rex commons
         <updated>2022-06-15T08:47:44+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</summary>
         <content type="xhtml">
@@ -3193,7 +3193,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>Welcome to the Geminispae</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3206,7 +3206,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <updated>2022-05-27T07:50:12+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and `perl` the name of the interpreter or the interpreter command.</summary>
         <content type="xhtml">
@@ -3359,7 +3359,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3372,7 +3372,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <updated>2022-04-10T10:09:11+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</summary>
         <content type="xhtml">
@@ -3518,7 +3518,7 @@ learn () {
 <li>The Off Switch; Mark Cropley; Virgin Books</li>
 <li>Ultralearning; Scott Young; Thorsons</li>
 </ul><br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3531,7 +3531,7 @@ learn () {
         <updated>2022-03-06T18:11:39+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</summary>
         <content type="xhtml">
@@ -3838,7 +3838,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>Paul</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3851,7 +3851,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <updated>2022-02-04T09:58:22+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</summary>
         <content type="xhtml">
@@ -4085,7 +4085,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class='textlink' href='https://www.dragonflybsd.org/'>DragonFly BSD - Fork of FreeBSD 4</a><br />
 <a class='textlink' href='http://wiki.postmarketos.org/wiki/Phosh'>Phosh (on postmarketOS) - A true Linux shell for the smartphone</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4098,7 +4098,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <updated>2022-01-23T16:42:04+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.</summary>
         <content type="xhtml">
@@ -4150,7 +4150,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <br />
 <span>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won't change any time soon. I don't know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4163,7 +4163,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <updated>2022-01-01T23:36:15+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
         <content type="xhtml">
@@ -4658,7 +4658,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4671,7 +4671,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <updated>2021-12-26T12:02:02+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</summary>
         <content type="xhtml">
@@ -4802,7 +4802,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <a class='textlink' href='https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html'>https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4815,7 +4815,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <updated>2021-11-29T14:06:14+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
         <content type="xhtml">
@@ -5292,7 +5292,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5305,7 +5305,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <updated>2021-10-22T10:02:46+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</summary>
         <content type="xhtml">
@@ -5413,7 +5413,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5426,7 +5426,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <updated>2021-09-12T09:39:20+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</summary>
         <content type="xhtml">
@@ -5527,7 +5527,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Enough ranted for now!</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <span class='quote'>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </span><br />
 <br />
@@ -5542,7 +5542,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <updated>2021-08-01T10:37:58+03:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </summary>
         <content type="xhtml">
@@ -5607,7 +5607,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Do you need Microsoft Word? Why don't you just use the Vim text editor or GNU Emacs to write your letters? If that's too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don't know why that is; please....</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <span>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don't work on my devices.</span><br />
 <br />
@@ -5664,7 +5664,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don't know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it's better, but also because for fun and as a hobby. But this doesn't mean that I invest *all* of my personal free time in it.</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5677,7 +5677,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <updated>2021-07-04T10:51:23+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</summary>
         <content type="xhtml">
@@ -5787,7 +5787,7 @@ Hello World
 <br />
 <span>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5800,7 +5800,7 @@ Hello World
         <updated>2021-06-05T19:03:32+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</summary>
         <content type="xhtml">
@@ -5991,7 +5991,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6004,7 +6004,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
         <updated>2021-05-16T14:51:57+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </summary>
         <content type="xhtml">
@@ -6398,7 +6398,7 @@ fi
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6411,7 +6411,7 @@ fi
         <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>ASCII Art by Andy Hood!</summary>
         <content type="xhtml">
@@ -6503,7 +6503,7 @@ fi
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6516,7 +6516,7 @@ fi
         <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</summary>
         <content type="xhtml">
@@ -6635,7 +6635,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6648,7 +6648,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <updated>2018-06-01T14:50:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </summary>
         <content type="xhtml">
@@ -6841,7 +6841,7 @@ Total time: 1213.00s
 <a class='textlink' href='https://graphiteapp.org'>Graphite</a><br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/Memory-mapped_I/O'>Memory mapped I/O</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6854,7 +6854,7 @@ Total time: 1213.00s
         <updated>2016-11-20T22:10:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</summary>
         <content type="xhtml">
@@ -6974,7 +6974,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>C is a very old programming language with it's quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6987,7 +6987,7 @@ http://www.gnu.org/software/src-highlite -->
         <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</summary>
         <content type="xhtml">
@@ -7229,7 +7229,7 @@ apply Service "dig6" {
 </ul><br />
 <span>That's much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7242,7 +7242,7 @@ apply Service "dig6" {
         <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</summary>
         <content type="xhtml">
@@ -7275,7 +7275,7 @@ apply Service "dig6" {
 <br />
 <span>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7288,7 +7288,7 @@ apply Service "dig6" {
         <updated>2016-04-09T18:29:47+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</summary>
         <content type="xhtml">
@@ -7682,7 +7682,7 @@ Notice: Finished catalog run in 206.09 seconds
 </ul><br />
 <span>All done in a pretty automated manor. </span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7695,7 +7695,7 @@ Notice: Finished catalog run in 206.09 seconds
         <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>When it comes to data storage and potential data loss, I am a paranoid person. It is due to my job and a personal experience I encountered over ten years ago: A single drive failure and loss of all my data (pictures, music, etc.).</summary>
         <content type="xhtml">
@@ -7742,7 +7742,7 @@ Notice: Finished catalog run in 206.09 seconds
 <br />
 <span>I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7755,7 +7755,7 @@ Notice: Finished catalog run in 206.09 seconds
         <updated>2015-12-05T16:12:57+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</summary>
         <content type="xhtml">
@@ -7955,7 +7955,7 @@ chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">
 <br />
 <span>Reboot &amp; test!  Enjoy!</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7968,7 +7968,7 @@ chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">
         <updated>2014-03-24T21:32:53+00:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</summary>
         <content type="xhtml">
@@ -8122,7 +8122,7 @@ fib<font color="#990000">(</font><font color="#993399">10</font><font color="#99
 <br />
 <span>It's entertaining to play with :-).</span><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8135,7 +8135,7 @@ fib<font color="#990000">(</font><font color="#993399">10</font><font color="#99
         <updated>2011-05-07T22:26:02+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</summary>
         <content type="xhtml">
@@ -8325,7 +8325,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8338,7 +8338,7 @@ http://www.gnu.org/software/src-highlite -->
         <updated>2010-05-09T12:48:29+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</summary>
         <content type="xhtml">
@@ -8857,7 +8857,7 @@ BB
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/fype'>https://codeberg.org/snonux/fype</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8870,7 +8870,7 @@ BB
         <updated>2010-05-07T08:17:59+01:00</updated>
         <author>
             <name>Paul Buetow</name>
-            <email>hi@foo.zone</email>
+            <email>paul at buetow.org</email>
         </author>
         <summary>In contrast to Haskell, Standard SML does not use lazy evaluation by default but an eager evaluation. </summary>
         <content type="xhtml">
@@ -8973,7 +8973,7 @@ first 10 nat_pairs_not_null
 <br />
 <a class='textlink' href='http://www.haskell.org/'>http://www.haskell.org/</a><br />
 <br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

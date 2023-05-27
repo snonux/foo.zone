@@ -167,6 +167,6 @@ Other related posts are:
 
 << template::inline::index gemtext gemini bash
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 => ../ Back to the main site

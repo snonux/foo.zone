@@ -80,7 +80,7 @@ Other book notes of mine are:
 
 << template::inline::index book-notes
 
-E-Mail your comments to hi@foo.zone :-)
+E-Mail your comments to paul at buetow.org :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site
