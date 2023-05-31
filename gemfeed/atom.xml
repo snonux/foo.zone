@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-05-28T00:07:35+03:00</updated>
+    <updated>2023-06-01T00:00:58+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -4066,7 +4066,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class='textlink' href='https://archiveos.org/opensolaris/'>OpenSolaris - Continuation of the open source version of Solaris</a><br />
 <a class='textlink' href='https://archlinuxarm.org/'>Arch Linux ARM</a><br />
 <a class='textlink' href='https://ecomstation.com/'>eComStation - Continuation of IBM OS/2</a><br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Minix'>Minix</a><br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Minix'>MINIX</a><br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/OpenVMS'>OpenVMS</a><br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/OS/2'>IBM OS/2 Warp</a><br />
 <a class='textlink' href='https://freedos.org'>FreeDOS - Open source alternative to DOS</a><br />
