@@ -206,7 +206,7 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 [OpenSolaris - Continuation of the open source version of Solaris](https://archiveos.org/opensolaris/)  
 [Arch Linux ARM](https://archlinuxarm.org/)  
 [eComStation - Continuation of IBM OS/2](https://ecomstation.com/)  
-[Minix](https://en.wikipedia.org/wiki/Minix)  
+[MINIX](https://en.wikipedia.org/wiki/Minix)  
 [OpenVMS](https://en.wikipedia.org/wiki/OpenVMS)  
 [IBM OS/2 Warp](https://en.wikipedia.org/wiki/OS/2)  
 [FreeDOS - Open source alternative to DOS](https://freedos.org)  
