@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-06-01T21:10:18+03:00</updated>
+    <updated>2023-06-01T22:04:59+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>KISS server monitoring with Gogios</h1><br />
+<br />
+<span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
 <br />
 <a href='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
 <br />
@@ -59,7 +61,7 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn&#39;t satisfied with the available options.</span><br />
 <br />
-<span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.</span><br />
+<span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.</span><br />
 <br />
 <h2 style='display: inline'>Features</h2><br />
 <br />
