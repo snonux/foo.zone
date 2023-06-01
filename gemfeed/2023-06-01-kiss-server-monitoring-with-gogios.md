@@ -41,7 +41,7 @@ With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsG
 
 My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.
 
-This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.
+This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.
 
 ## Features
 
