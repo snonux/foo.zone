@@ -1,5 +1,9 @@
 # KISS server monitoring with Gogios
 
+> Published at 2023-06-01T21:10:17+03:00
+
+[![Gogios logo](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png "Gogios logo")](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png)  
+
 ## Introduction
 
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
@@ -33,20 +37,19 @@ https://asciiart.website/index.php?art=objects/computers
 
 ## Motivation
 
-As a Site Reliability Engineer with experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.
+With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn't necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.
 
 My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn't satisfied with the available options.
 
-This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool.
-
-Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution for small-scale self-hosted servers and virtual machines. The result is a tool that is easy to configure, set up, and maintain, ensuring that monitoring your resources is as hassle-free as possible.
+This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it allowed me to refresh my Go programming skills and provided a robust platform for developing a fast and efficient monitoring tool. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.
 
 ## Features
 
 * Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.
-* Lightweight and Minimalistic: Gogios is designed to be simple and easy to set up, making it an ideal choice for users with limited monitoring requirements.
+* Lightweight and Minimalistic: Gogios is designed to be simple and fairly easy to set up, making it an ideal choice for users with limited monitoring requirements.
 * Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.
 * Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn't pingable.
+* Retries: Check retry and retry intervals are configurable per check.
 * Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.
 * CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.
 
@@ -96,7 +99,7 @@ export GOARCH=amd64
 go build -o gogios cmd/gogios/main.go
 ```
 
-On your OpenBSD system, copy the binary to `/usr/local/bin` and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.
+On your OpenBSD system, copy the binary to `/usr/local/bin/gogios` and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.
 
 [https://www.rexify.org](https://www.rexify.org)  
 
@@ -153,11 +156,15 @@ To configure Gogios, create a JSON configuration file (e.g., `/etc/gogios.json`)
   "Checks": {
     "Check ICMP4 www.foo.zone": {
       "Plugin": "/usr/local/libexec/nagios/check_ping",
-      "Args": [ "-H", "www.foo.zone", "-4", "-w", "50,10%", "-c", "100,15%" ]
+      "Args": [ "-H", "www.foo.zone", "-4", "-w", "50,10%", "-c", "100,15%" ],
+      "Retries": 3,
+      "RetryInterval": 10
     },
     "Check ICMP6 www.foo.zone": {
       "Plugin": "/usr/local/libexec/nagios/check_ping",
-      "Args": [ "-H", "www.foo.zone", "-6", "-w", "50,10%", "-c", "100,15%" ]
+      "Args": [ "-H", "www.foo.zone", "-6", "-w", "50,10%", "-c", "100,15%" ],
+      "Retries": 3,
+      "RetryInterval": 10
     },
     "www.foo.zone HTTP IPv4": {
       "Plugin": "/usr/local/libexec/nagios/check_http",
@@ -187,6 +194,8 @@ To configure Gogios, create a JSON configuration file (e.g., `/etc/gogios.json`)
 Adjust the configuration file according to your needs, specifying the checks you want Gogios to perform.
 
 If you want to execute checks only when another check succeeded (status OK), use `DependsOn`. In the example above, the HTTP checks won't run when the hosts aren't pingable. They will show up as `UNKNOWN` in the report.
+
+`Retries` and `RetryInterval` are optional check configuration parameters. In case of failure, Gogios will retry `Retries` times each `RetryInterval` seconds.
 
 For remote checks, use the `check_nrpe` plugin. You also need to have the NRPE server set up correctly on the target host (out of scope for this document).
 
@@ -221,9 +230,11 @@ To create a high-availability Gogios setup, you can install Gogios on two server
 * Set up alternate CRON intervals on both servers. Configure the CRON job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. 
 * Gogios doesn't support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That's the trade-off for simplicity.
 
+There are plans to make it possible to execute certain checks only on certain nodes (e.g. on elected leader or master nodes). This is still in progress (check out my Gorum Git project).
+
 ## Conclusion:
 
-Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. If you're seeking a simple yet effective monitoring tool for your self-hosted servers or virtual machines, give Gogios a try!
+Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.
 
 E-Mail your comments to paul at buetow.org :-)
 
