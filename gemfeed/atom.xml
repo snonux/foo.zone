@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-06-01T22:09:15+03:00</updated>
+    <updated>2023-07-12T07:37:47+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -28,7 +28,7 @@
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
-<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution for users looking to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. In this blog post, we&#39;ll explore Gogios&#39; features, configuration, and use cases to help you determine if it&#39;s the proper monitoring solution for your needs, too. You can clone it from Codeberg here:</span><br />
+<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
 <br />
@@ -61,13 +61,13 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn&#39;t satisfied with the available options.</span><br />
 <br />
-<span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance. Gogios eliminates unnecessary features and focuses on simplicity, providing a no-frills monitoring solution.</span><br />
+<span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance.</span><br />
 <br />
 <h2 style='display: inline'>Features</h2><br />
 <br />
 <ul>
-<li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing you to use existing Nagios plugins for monitoring various services.</li>
-<li>Lightweight and Minimalistic: Gogios is designed to be simple and fairly easy to set up, making it an ideal choice for users with limited monitoring requirements.</li>
+<li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing to use existing Nagios plugins.</li>
+<li>Lightweight and Minimalistic: Gogios is designed to be simple and fairly easy to set up.</li>
 <li>Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.</li>
 <li>Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn&#39;t pingable.</li>
 <li>Retries: Check retry and retry intervals are configurable per check.</li>
@@ -2032,7 +2032,7 @@ task &#39;dtail&#39;, group =&gt; &#39;frontends&#39;,
 <br />
 <pre>
 $ doas mkdir /etc/dserver
-$ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.json.sample |
+$ curl https://raw.githubusercontent.com/mimecast/dtail/master/examples/dtail.json.examples |
     doas tee /etc/dserver/dtail.json
 </pre>
 <br />
@@ -4322,7 +4322,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <h3 style='display: inline'>Other OSes in use...</h3><br />
 <br />
 <a class='textlink' href='https://sailfish.org'>SailfishOS - Nice mobile OS, but unfortunately includes proprietary components</a><br />
-<a class='textlink' href='https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux'>Red Hat Enterprose Linux - Only for some work stuff</a><br />
+<a class='textlink' href='https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux'>Red Hat Enterprise Linux - Only for some work stuff</a><br />
 <br />
 <h3 style='display: inline'>Other OSes not used any more...</h3><br />
 <br />

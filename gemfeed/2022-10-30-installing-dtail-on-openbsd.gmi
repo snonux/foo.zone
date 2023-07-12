@@ -161,7 +161,7 @@ Now, DTail is fully installed but still needs to be configured. Grab the default
 
 ```
 $ doas mkdir /etc/dserver
-$ curl https://raw.githubusercontent.com/mimecast/dtail/master/samples/dtail.json.sample |
+$ curl https://raw.githubusercontent.com/mimecast/dtail/master/examples/dtail.json.examples |
     doas tee /etc/dserver/dtail.json
 ```
 
