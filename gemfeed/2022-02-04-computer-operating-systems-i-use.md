@@ -185,7 +185,7 @@ I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have
 ### Other OSes in use...
 
 [SailfishOS - Nice mobile OS, but unfortunately includes proprietary components](https://sailfish.org)  
-[Red Hat Enterprose Linux - Only for some work stuff](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)  
+[Red Hat Enterprise Linux - Only for some work stuff](https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux)  
 
 ### Other OSes not used any more...
 

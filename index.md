@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-06-10T16:53:05+03:00 by `Gemtexter`
+> This site was generated at 2023-07-12T07:37:46+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -15,6 +15,7 @@
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
+[All I post here on `foo.zone` is really only just for fun!](https://justforfunnoreally.dev/)  
 [My contact information and resources (via HTTP)](https://paul.buetow.org)  
 [My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
 [My machine uptime statistics](./uptime-stats.md)  
