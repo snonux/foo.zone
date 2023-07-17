@@ -31,9 +31,25 @@
 <br />
 <h2 style='display: inline'>Switch to GPL3 license</h2><br />
 <br />
+<span>Many of the tools and commands (GNU Bash, GMU Sed, GNU Date, GNU Grep, GNU Source Highlight) used by <span class='inlinecode'>Gemtexter</span> are licensed under the GPL anyway. So why not use the same? This was an easy switch, as I was the only code contributor so far!</span><br />
+<br />
 <h2 style='display: inline'>Source code highlighting support</h2><br />
 <br />
+<span>The HTML output now supports source code highlighting, which is pretty neat if your site is about programming. The requirement is to have the <span class='inlinecode'>source-highlight</span> command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:</span><br />
+<br />
+<pre>
+ ```bash
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ...
+</pre>
+<br />
+<span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
+<br />
 <h2 style='display: inline'>HTML exact style</h2><br />
+<br />
+<span>The resulting HTML has changed.</span><br />
 <br />
 <h3 style='display: inline'>Use of Hack webfont by default</h3><br />
 <br />
