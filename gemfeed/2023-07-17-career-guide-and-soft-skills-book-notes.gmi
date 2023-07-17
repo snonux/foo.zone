@@ -1,6 +1,20 @@
 # "Software Developmers Career Guide & Soft Skills" book notes
 
-> Last updated 29.5.2022
+> Published at 2023-07-17T04:56:20+03:00
+
+These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find it helpful too.
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
 
 # Improve
 
@@ -258,6 +272,14 @@ Unit testing Vs regression testing: Unit tests test the smallest possible unit a
 * The war of Art (to combat procrastination)
 * Willpower Instinct
 
+Other book notes of mine are:
+
+=> ./2023-07-17-career-guide-and-soft-skills-book-notes.gmi 2023-07-17 "Software Developmers Career Guide & Soft Skills" book notes (You are currently reading this)
+=> ./2023-05-06-the-obstacle-is-the-way-book-notes.gmi 2023-05-06 "The Obstacle is the Way" book notes
+=> ./2023-04-01-never-split-the-difference-book-notes.gmi 2023-04-01 "Never split the difference" book notes
+=> ./2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 "The Pragmatic Programmer" book notes
+
 E-Mail your comments to paul at buetow.org :-)
 
+=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site
