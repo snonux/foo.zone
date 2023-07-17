@@ -1,6 +1,20 @@
 # "Software Developmers Career Guide & Soft Skills" book notes
 
-> Last updated 29.5.2022
+> Published at 2023-07-17T04:56:20+03:00
+
+These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find it helpful too.
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
 
 # Improve
 
@@ -207,7 +221,6 @@ Get a professional resume writer. Get referrals of writers and get samples from 
 * Best get a job via a personal referral or inbound marketing. The latter is somehow rare.
 * Inbound marketing is for example someone responds to your blog and offers you a job.
 * Interview the interviewer. Be persistent.
-Post.
 * Create creative looking resumes, see simple programmer website. Action-result style for a resume.
 
 Invest in your dress code as appearance masters. It does make sense to invest in your style. You could even hire a professional stylist (not my personal way though).
@@ -259,6 +272,14 @@ Unit testing Vs regression testing: Unit tests test the smallest possible unit a
 * The war of Art (to combat procrastination)
 * Willpower Instinct
 
+Other book notes of mine are:
+
+[2023-07-17 "Software Developmers Career Guide & Soft Skills" book notes (You are currently reading this)](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
+[2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
+[2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
+
 E-Mail your comments to paul at buetow.org :-)
 
+[More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  
