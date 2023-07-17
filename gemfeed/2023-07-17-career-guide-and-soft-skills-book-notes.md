@@ -2,7 +2,7 @@
 
 > Published at 2023-07-17T04:56:20+03:00
 
-These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find it helpful too.
+These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.
 
 ```
          ,..........   ..........,
