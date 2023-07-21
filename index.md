@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-07-17T20:24:46+03:00 by `Gemtexter`
+> This site was generated at 2023-07-21T10:19:31+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -33,6 +33,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2023-07-21 - Gemtexter 2.1.0 - Let's Gemtext again³](./gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
 [2023-07-17 - 'Software Developmers Career Guide & Soft Skills' book notes](./gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-06-01 - KISS server monitoring with Gogios](./gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-05-06 - 'The Obstacle is the Way' book notes](./gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.md)  
