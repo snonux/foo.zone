@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gemtexter 2.1.0 - Let's Gemtext again³</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
+<br />
+<span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
+<br />
+<pre>
+-=[ typewriters ]=-  1/98
+                                        .-------.
+       .-------.                       _|~~ ~~  |_
+      _|~~ ~~  |_       .-------.    =(_|_______|_)
+    =(_|_______|_)=    _|~~ ~~  |_     |:::::::::|
+      |:::::::::|    =(_|_______|_)    |:::::::[]|
+      |:::::::[]|      |:::::::::|     |o=======.|
+      |o=======.|      |:::::::[]|     `"""""""""`
+ jgs  `"""""""""`      |o=======.|
+  mod. by Paul Buetow  `"""""""""`
+</pre>
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<h2 style='display: inline'>Why Bash?</h2><br />
+<br />
+<span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
+<h2 style='display: inline'>Switch to GPL3 license</h2><br />
+<br />
+<span>Many (almost all) of the tools and commands (GNU Bash, GMU Sed, GNU Date, GNU Grep, GNU Source Highlight) used by <span class='inlinecode'>Gemtexter</span> are licensed under the GPL anyway. So why not use the same? This was an easy switch, as I was the only code contributor so far!</span><br />
+<br />
+<h2 style='display: inline'>Source code highlighting support</h2><br />
+<br />
+<span>The HTML output now supports source code highlighting, which is pretty neat if your site is about programming. The requirement is to have the <span class='inlinecode'>source-highlight</span> command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:</span><br />
+<br />
+<pre>
+ ```bash
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ```
+</pre>
+<br />
+<span>The result will look like this (you can see the code highlighting only in the Web version, not in the Geminispace version of this site):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -n <font color="#FF0000">"$foo"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  echo <font color="#FF0000">"$foo"</font>
+<b><font color="#0000FF">fi</font></b>
+</pre>
+<br />
+<span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
+<br />
+<h2 style='display: inline'>HTML exact variant</h2><br />
+<br />
+<span>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
+<br />
+<h2 style='display: inline'>Use of Hack webfont by default</h2><br />
+<br />
+<span>The Hack web font is a typeface designed explicitly for source code. It&#39;s a derivative of the Bitstream Vera and DejaVu Mono lineage, but it features many improvements and refinements that make it better suited to reading and writing code.</span><br />
+<br />
+<span>The font has distinctive glyphs for every character, which helps to reduce confusion between similar-looking characters. For example, the characters "0" (zero), "O" (capital o), and "o" (lowercase o), or "1" (one), "l" (lowercase L), and "I" (capital i) all have distinct looks in Hack, making it easier to read and understand code at a glance.</span><br />
+<br />
+<span>Hack is open-source and freely available for use and modification under the MIT License.</span><br />
+<br />
+<h2 style='display: inline'>HTML Mastadon verification support</h2><br />
+<br />
+<span>The following link explains how URL verification works in Mastadon:</span><br />
+<br />
+<a class='textlink' href='https://joinmastodon.org/verification'>https://joinmastodon.org/verification</a><br />
+<br />
+<span>So we have to hyperlink to the Mastadon profile to be verified and also to include a <span class='inlinecode'>rel=&#39;me&#39;</span> into the tag. In order to do that add this to the <span class='inlinecode'>gemtexter.conf</span> (replace the URI to your Mastadon profile accordingly):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">MASTADON_URI</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font>
+</pre>
+<br />
+<span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
+<br />
+<pre>
+=&gt; https://fosstodon.org/@snonux Me at Mastaton
+</pre>
+<br />
+<span>The resulting line in the HTML output will be something as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at mastadon<b><font color="#0000FF">&lt;/a&gt;</font></b>
+</pre>
+<br />
+<h2 style='display: inline'>More</h2><br />
+<br />
+<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
