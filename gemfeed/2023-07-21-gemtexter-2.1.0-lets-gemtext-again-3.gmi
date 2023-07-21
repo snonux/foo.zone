@@ -63,7 +63,7 @@ The font has distinctive glyphs for every character, which helps to reduce confu
 
 Hack is open-source and freely available for use and modification under the MIT License.
 
-## HTML Mastadon verification support
+## HTML Mastodon verification support
 
 The following link explains how URL verification works in Mastadon:
 

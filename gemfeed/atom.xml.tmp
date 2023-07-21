@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-07-21T11:08:00+03:00</updated>
+    <updated>2023-07-22T02:14:19+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -86,7 +86,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Hack is open-source and freely available for use and modification under the MIT License.</span><br />
 <br />
-<h2 style='display: inline'>HTML Mastadon verification support</h2><br />
+<h2 style='display: inline'>HTML Mastodon verification support</h2><br />
 <br />
 <span>The following link explains how URL verification works in Mastadon:</span><br />
 <br />
