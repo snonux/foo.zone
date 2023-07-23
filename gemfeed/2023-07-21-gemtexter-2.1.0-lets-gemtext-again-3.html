@@ -78,23 +78,23 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline'>HTML Mastodon verification support</h2><br />
 <br />
-<span>The following link explains how URL verification works in Mastadon:</span><br />
+<span>The following link explains how URL verification works in Mastodon:</span><br />
 <br />
 <a class='textlink' href='https://joinmastodon.org/verification'>https://joinmastodon.org/verification</a><br />
 <br />
-<span>So we have to hyperlink to the Mastadon profile to be verified and also to include a <span class='inlinecode'>rel=&#39;me&#39;</span> into the tag. In order to do that add this to the <span class='inlinecode'>gemtexter.conf</span> (replace the URI to your Mastadon profile accordingly):</span><br />
+<span>So we have to hyperlink to the Mastodon profile to be verified and also to include a <span class='inlinecode'>rel=&#39;me&#39;</span> into the tag. In order to do that add this to the <span class='inlinecode'>gemtexter.conf</span> (replace the URI to your Mastodon profile accordingly):</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">MASTADON_URI</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font>
+<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">MASTODON_URI</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font>
 </pre>
 <br />
 <span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
 <br />
 <pre>
-=&gt; https://fosstodon.org/@snonux Me at Mastaton
+=&gt; https://fosstodon.org/@snonux Me at Mastodon
 </pre>
 <br />
 <span>The resulting line in the HTML output will be something as follows:</span><br />
@@ -103,7 +103,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at mastadon<b><font color="#0000FF">&lt;/a&gt;</font></b>
+<pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at Mastodon<b><font color="#0000FF">&lt;/a&gt;</font></b>
 </pre>
 <br />
 <h2 style='display: inline'>More</h2><br />
