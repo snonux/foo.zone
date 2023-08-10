@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-07-23T21:57:09+03:00</updated>
+    <updated>2023-08-05T12:41:54+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2240,74 +2240,6 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <a class='textlink' href='https://github.com/NvChad/NvChad'>https://github.com/NvChad/NvChad</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-<br />
-<h1 style='display: inline'>Appendix</h1><br />
-<br />
-<span>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class='inlinecode'>zathura</span>:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">function</font></b>! ReadJournalPageNumber<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-        <b><font color="#0000FF">for</font></b><font color="#FF6600"> str in </font><b><font color="#0000FF">split</font></b><font color="#990000">(</font><b><font color="#000080">getline</font></b><font color="#990000">(</font><font color="#FF0000">"."</font><font color="#990000">)</font>, <font color="#FF0000">"[ ,]"</font><font color="#990000">)</font>
-            <b><font color="#0000FF">if</font></b> str <font color="#990000">=~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-                <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> str
-                <b><font color="#0000FF">break</font></b>
-            <b><font color="#0000FF">end</font></b>
-        <b><font color="#0000FF">endfor</font></b>
-    <b><font color="#0000FF">endif</font></b>
-    <b><font color="#0000FF">return</font></b> page
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! ReadJournalMeta<font color="#990000">()</font>
-<font color="#FF6600">   </font> normal! mj
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaFilePath:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaFilePath</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cWORD&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaFilePath</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaOffset:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaOffset</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPageAtOffset:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPageAtOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPageAtOffset</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPagesPerScan:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPagesPerScan</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPagesPerScan</font>
-
-<font color="#FF6600">   </font> normal! `<b><font color="#0000FF">j</font></b>
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
-    <b><font color="#0000FF">return</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">+</font> <font color="#990000">(</font><font color="#000080">a:page</font> <font color="#990000">-</font> <font color="#000080">s:metaPageAtOffset</font><font color="#990000">)</font> / <font color="#000080">s:metaPagesPerScan</font>
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! OpenJournalPage<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> ReadJournalPageNumber<font color="#990000">()</font>
-    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-        <b><font color="#0000FF">echoerr</font></b> <font color="#FF0000">"Could not identify Journal page number"</font>
-    <b><font color="#0000FF">end</font></b>
-    <b><font color="#0000FF">call</font></b> ReadJournalMeta<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> pdfPage <font color="#990000">=</font> GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
-    <b><font color="#0000FF">echon</font></b> <font color="#FF0000">"Location is "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font> <font color="#990000">.</font> <font color="#FF0000">":"</font> <font color="#990000">.</font> pdfPage
-    <b><font color="#0000FF">call</font></b> <b><font color="#000080">system</font></b><font color="#990000">(</font><font color="#FF0000">"zathura --mode fullscreen -P "</font> <font color="#990000">.</font> pdfPage <font color="#990000">.</font> <font color="#FF0000">" "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font><font color="#990000">)</font>
-<i><font color="#9A1900">    " call system("evince -p " . pdfPage . " " . s:metaFilePath)</font></i>
-<b><font color="#0000FF">endfunction</font></b>
-
-nmap ,<b><font color="#0000FF">j</font></b> :<b><font color="#0000FF">call</font></b> OpenJournalPage<font color="#990000">()</font><font color="#FF6600">&lt;CR&gt;</font>
-</pre>
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
