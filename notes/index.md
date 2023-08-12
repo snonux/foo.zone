@@ -5,6 +5,7 @@
 ['The Stoic Challenge' book notes](./the-stoic-challenge.md)  
 ['The Pragmatic Programmer' book notes](./the-pragmatic-programmer.md)  
 ['The Obstacle is the Way' book notes](./the-obstacle-is-the-way.md)  
+[Staff Engineer](./staff-engineer.md)  
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
 ['Software Developmers Career Guide & Soft Skills' book notes](./career-guide-and-soft-skills.md)  

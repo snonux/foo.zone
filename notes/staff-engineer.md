@@ -1,0 +1,39 @@
+# Staff Engineer
+
+> Last updated 10.8.2023
+
+## Not a faster Senior Engineer
+
+* A Staff engineer is more than just a faster Senior.
+* A staff engineer is not a senior engineer but a bit better. (But I want to be a senior engineer but a bit better).
+
+It's important to know what work or which role most energizes you. A Staff engineer is not a more senior engineer. A Staff engineer also fits into another archetype.
+
+As a staff engineer, you are always expected to go beyond your comfort zone and learn new things.
+
+Your job sometimes will feel like an SEM and sometimes strangely similar to your senior roles.
+
+A Staff engineer is, like a Manager, a leader. However, being a Manager is a specific job. Leaders can apply to any job, especially to Staff engineers.
+
+## The Balance
+
+The more senior you become, the more responsibility you will have to cope with them in less time. Balance your speed of progress with your personal life, don't work late hours and don't skip these personal care events.
+
+Do fewer things but do them better. Everything done will accelerate the organization. Everything else will drag it down—quality over quantity.
+
+Don't work at ten things and progress slowly; focus on one thing and finish it.
+
+Only spend some of the time firefighting. Have time for deep thinking. Only deep think some of the time. Otherwise, you lose touch with reality.
+
+Sebactical: Take at least six months. Otherwise, it won't be as restored.
+
+## More things
+
+* Provide simple but widely used tools. Complex and powerful tools will have power users but only a very few. All others will not use the tool.
+* In meetings, when someone is inactive, try to pull him in. Pull in max one person at a time. Don't open the discussion to multiple people.
+* Get used to writing things down and repeating yourself. You will scale yourself much more.
+* Title inflation: skills correspond to work, but the titles don't.
+
+E-Mail your comments to paul at buetow.org :-)
+
+[Back to the main site](../)  
