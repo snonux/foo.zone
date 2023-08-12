@@ -1,4 +1,4 @@
-# Staff Engineer
+# "Staff Engineer" book notes
 
 > Last updated 10.8.2023
 
