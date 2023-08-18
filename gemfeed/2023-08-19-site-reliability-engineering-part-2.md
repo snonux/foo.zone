@@ -4,8 +4,8 @@
 
 This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.
 
-[2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)](./2023-08-19-site-reliability-engineering-part-2.md)  
 [2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
+[2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)](./2023-08-19-site-reliability-engineering-part-2.md)  
 
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

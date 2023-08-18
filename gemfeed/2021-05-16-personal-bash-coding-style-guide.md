@@ -382,10 +382,10 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 Other related posts are:
 
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
 [2021-05-16 Personal Bash coding style guide (You are currently reading this)](./2021-05-16-personal-bash-coding-style-guide.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 
 E-Mail your comments to paul at buetow.org :-)
 

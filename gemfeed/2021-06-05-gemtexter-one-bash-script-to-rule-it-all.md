@@ -165,14 +165,14 @@ I finally revamped my personal internet site and started to blog again. I wanted
 
 Other related posts are:
 
-[2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
-[2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
-[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 [2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
+[2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
+[2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
 
 E-Mail your comments to paul at buetow.org :-)
 
