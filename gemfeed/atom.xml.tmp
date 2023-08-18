@@ -1,11 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-08-12T22:48:42+03:00</updated>
+    <updated>2023-08-18T22:46:10+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Site Reliability Engineering - Part 1: SRE and Organizational Culture</title>
+        <link href="gemini://foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1.gmi</id>
+        <updated>2023-08-18T22:43:47+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Site Reliability Engineering - Part 1: SRE and Organizational Culture</h1><br />
+<br />
+<span class='quote'>Published at 2023-08-18T22:43:47+03:00</span><br />
+<br />
+<span>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It&#39;s not just technical; it&#39;s also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
+<br />
+<pre>
+▓▓▓▓░░                                                                                  
+                                                                                          
+DC on fire:
+                                                                                          
+                ▓▓                                    ▓▓                ▓▓                
+      ░░  ░░    ▓▓▓▓                  ██                  ░░            ▓▓▓▓        ▓▓    
+    ▓▓░░░░  ░░  ▓▓▓▓                              ▓▓░░                  ▓▓▓▓              
+    ░░░░      ▓▓▓▓▓▓        ▓▓      ▓▓            ▓▓                  ▓▓▓▓▓▓      ▓▓      
+    ▓▓░░    ▓▓▒▒▒▒▓▓▓▓    ▓▓        ▓▓▓▓        ▓▓▓▓▓▓              ▓▓▒▒▒▒▓▓▓▓    ▓▓▓▓    
+  ██▓▓      ▓▓▒▒░░▒▒▓▓  ▓▓██      ▓▓▓▓▓▓        ▓▓▒▒▓▓              ▓▓▒▒░░▒▒▓▓  ██▓▓▓▓    
+  ▓▓▓▓██  ▓▓▒▒░░░░▒▒▓▓  ▓▓▓▓      ▓▓▒▒▒▒▓▓    ▓▓▒▒░░▒▒▓▓██▓▓      ▓▓▒▒░░░░▒▒▓▓  ▓▓▒▒▒▒▓▓  
+  ▓▓▒▒▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒▒▒▓▓  ▓▓▓▓░░▒▒▓▓    ▓▓▒▒░░▒▒▓▓▒▒▒▒▓▓    ▓▓▒▒░░▒▒▓▓▓▓▓▓▓▓░░▒▒▓▓  
+  ▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓  ▓▓▒▒░░▒▒▓▓    ▓▓░░░░▒▒▒▒░░░░▒▒██████▒▒░░▒▒██▓▓▓▓▒▒░░▒▒▓▓██
+  ░░░░▒▒▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒░░▒▒▓▓██▒▒░░░░▒▒▓▓  ▓▓▒▒░░▒▒▓▓▒▒▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒░░░░▒▒▓▓▓▓
+  ░░░░▒▒▓▓▒▒░░░░▓▓██▒▒░░░░▒▒▓▓██▒▒░░░░▒▒██▓▓▓▓▒▒░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▒▒░░░░██▓▓▓▓▒▒░░░░▒▒████
+  ▒▒░░▒▒▓▓▓▓░░░░▒▒▓▓▒▒▒▒░░░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▒▒░░▒▒▓▓▓▓▓▓░░░░▒▒▓▓▓▓▓▓▒▒░░░░▒▒▓▓
+  ▒▒░░▒▒▓▓▒▒▒▒░░▒▒██▒▒▒▒░░▒▒▒▒██▒▒▒▒░░░░░░▒▒▓▓▒▒░░░░▒▒▒▒░░░░▒▒████▒▒▒▒░░▒▒██▓▓▒▒▒▒░░░░░░▒▒
+  ░░░░░░▒▒░░░░░░░░▒▒▒▒▒▒░░░░▒▒▒▒▒▒░░░░░░░░▒▒▒▒░░░░░░▒▒▒▒░░░░░░▒▒▒▒░░░░░░░░▒▒▒▒▒▒░░░░░░░░▒▒
+  ░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░
+</pre>
+<br />
+<h2 style='display: inline'>SRE and Organizational Culture: Navigating the Nexus</h2><br />
+<br />
+<span>At the heart of SRE lies the proactive mindset of &#39;prevention over cure&#39;. Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. However, these aren&#39;t mere numbers. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. </span><br />
+<br />
+<span>Another defining SRE concept is the &#39;error budget&#39;. This ingenious framework accepts that no system is flawless. Failures are inevitable. However, instead of being punitive, the culture here is to accept, learn, and iterate. By providing teams with a &#39;budget&#39; for errors, organisations foster an environment where innovation is encouraged, and failures are viewed as learning opportunities.</span><br />
+<br />
+<span>But SRE isn&#39;t just about technology and metrics; it&#39;s deeply human. It challenges the "hero culture" that plagues many IT teams. While individual heroics might occasionally save the day, a sustainable model requires collective expertise. An SRE culture recognises that heroes achieve their best within teams, negating the need for a hero-centric environment. This philosophy promotes a balanced on-call experience, emphasising the importance of trust, ownership, effective communication, and collaboration as cornerstones of team success.</span><br />
+<br />
+<span>Additionally, the SRE model requires rigorous documentation. However, it&#39;s essential to ensure that this documentation undergoes the same stringent quality checks as code, reinforcing the symbiotic relationship between technical excellence and effective communication.</span><br />
+<br />
+<span>Organisations might face a significant challenge when adopting SRE is convincing various teams and leadership of its merits. Some might feel SRE principles counter their goals. They might prioritise feature rollouts over reliability or view SRE practices as cumbersome. Hence, fostering an SRE culture often demands patient explanations and showcasing tangible benefits, such as increased release velocity and improved user experience.</span><br />
+<br />
+<span>Monitoring and observability form another SRE pillar, emphasising the need for high-quality tools to query and analyse data. This ties back to the cultural emphasis on continuous learning and adaptability. SREs, by nature, need to be curious, ready to delve into anomalies, and keen on adopting new tools and practices. </span><br />
+<br />
+<span>Ultimately, the success of SRE within any organisation hinges on the broader acceptance of its principles. It demands a move away from siloed operations, where SRE acts as a bandage on flawed systems, to a holistic model where reliability is everyone&#39;s responsibility. It calls for cultural transformation from the on-call engineers to the boardroom.</span><br />
+<br />
+<span>In essence, the integration of SRE principles transcends technical practices. It paves the way for a holistic shift in organisational culture that values proactive prevention, continuous learning, collaboration, and transparent communication. The successful melding of SRE and corporate culture promises not just reliable systems but also a robust, resilient, and progressive work environment.</span><br />
+<br />
+<span>Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.</span><br />
+<br />
+<span>The next entry of this blog series will be published soon :-)</span><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Gemtexter 2.1.0 - Let's Gemtext again³</title>
         <link href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi" />
@@ -8622,173 +8692,6 @@ chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">
 </pre>
 <br />
 <span>Reboot &amp; test!  Enjoy!</span><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>The fibonacci.pl.raku.c Polyglot</title>
-        <link href="gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
-        <id>gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
-        <updated>2014-03-24T21:32:53+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>The fibonacci.pl.raku.c Polyglot</h1><br />
-<br />
-<span class='quote'>Published at 2014-03-24T21:32:53+00:00; Updated at 2022-04-23</span><br />
-<br />
-<span>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Polyglot_(computing)'>https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
-<br />
-<h2 style='display: inline'>The Fibonacci numbers</h2><br />
-<br />
-<span>For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#include &lt;stdio.h&gt;</font></i>
-
-<i><font color="#9A1900">#define $arg function_argument</font></i>
-<i><font color="#9A1900">#define my int</font></i>
-<i><font color="#9A1900">#define sub int</font></i>
-<i><font color="#9A1900">#define BEGIN int main(void)</font></i>
-
-<b><font color="#0000FF">my</font></b> <font color="#009900">$arg</font><font color="#990000">;</font>
-
-<b><font color="#0000FF">sub</font></b> <b><font color="#000000">hello</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Hello, welcome to the Fibonacci Numbers!\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"This program is all, valid C and C++ and Perl and Raku code!\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"It calculates all fibonacci numbers from 0 to 9!\n\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-<b><font color="#0000FF">sub</font></b> <b><font color="#000000">fibonacci</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$n</font> <font color="#990000">=</font> <font color="#009900">$arg</font><font color="#990000">;</font>
-
-    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font><font color="#009900">$n</font> <font color="#990000">&lt;</font> <font color="#993399">2</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-        <b><font color="#0000FF">return</font></b> <font color="#009900">$n</font><font color="#990000">;</font>
-    <font color="#FF0000">}</font>
-
-    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib1</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
-    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">2</font><font color="#990000">;</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib2</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
-
-    <b><font color="#0000FF">return</font></b> <font color="#009900">$fib1</font> <font color="#990000">+</font> <font color="#009900">$fib2</font><font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-BEGIN <font color="#FF0000">{</font>
-    <b><font color="#000000">hello</font></b><font color="#990000">();</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$i</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
-
-    <b><font color="#0000FF">while</font></b> <font color="#990000">(</font><font color="#009900">$i</font> <font color="#990000">&lt;=</font> <font color="#993399">10</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-        <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$i</font><font color="#990000">;</font>
-        <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"fib(%d) = %d\n"</font><font color="#990000">,</font> <font color="#009900">$i</font><font color="#990000">,</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">());</font>
-        <font color="#009900">$i</font><font color="#990000">++;</font>
-    <font color="#FF0000">}</font>
-<font color="#FF0000">}</font>
-</pre>
-<br />
-<span>You can find the full source code at GitHub:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/perl-c-fibonacci'>https://codeberg.org/snonux/perl-c-fibonacci</a><br />
-<br />
-<h3 style='display: inline'>Let&#39;s run it with C and C++</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> gcc fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
-<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-
-<font color="#990000">%</font> g<font color="#990000">++</font> fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
-<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-</pre>
-<br />
-<h3 style='display: inline'>Let&#39;s run it with Perl and Raku</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> perl fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-
-<font color="#990000">%</font> raku fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-</pre>
-<br />
-<span>It&#39;s entertaining to play with :-).</span><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
