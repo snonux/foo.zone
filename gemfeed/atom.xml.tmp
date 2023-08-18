@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-08-19T00:21:09+03:00</updated>
+    <updated>2023-08-19T00:25:45+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -24,8 +24,8 @@
 <br />
 <span>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
 <br />
-<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)</a><br />
 <br />
 <pre>
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -86,8 +86,8 @@
 <br />
 <span>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It&#39;s not just technical; it&#39;s also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
 <br />
-<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
 <a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
 <br />
 <pre>
 ▓▓▓▓░░                                                                                  
@@ -257,11 +257,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -581,10 +581,10 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -968,10 +968,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1150,11 +1150,11 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 </ul><br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />
@@ -1579,10 +1579,10 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1751,11 +1751,11 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1860,10 +1860,10 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -2735,9 +2735,9 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -2966,11 +2966,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -4155,10 +4155,10 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -4631,9 +4631,9 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <br />
 <span>Thanks!</span><br />
 <br />
@@ -4986,8 +4986,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <br />
 <h2 style='display: inline'>Redirection</h2><br />
 <br />
@@ -5454,10 +5454,10 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -5638,8 +5638,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <span>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <h2 style='display: inline'>TCP/IP networking</h2><br />
 <br />
@@ -6088,10 +6088,10 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -6784,14 +6784,14 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -7195,10 +7195,10 @@ fi
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -7300,11 +7300,11 @@ fi
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -7434,9 +7434,9 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
