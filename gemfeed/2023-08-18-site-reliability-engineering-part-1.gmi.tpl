@@ -48,7 +48,9 @@ In essence, the integration of SRE principles transcends technical practices. It
 
 Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.
 
-The next entry of this blog series will be published soon :-)
+Continue with the second part of this series:
+
+<< template::inline::index site-reliability-engineering-part-2
 
 E-Mail your comments to paul at buetow.org :-)
 

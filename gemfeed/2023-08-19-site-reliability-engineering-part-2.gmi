@@ -1,8 +1,11 @@
 # Site Reliability Engineering - Part 2: Operational Balance in SRE
 
+> Published at 2023-08-19T00:18:18+03:00
+
 This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.
 
-<< template::inline::index site-reliability-engineering-part
+=> ./2023-08-19-site-reliability-engineering-part-2.gmi 2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)
+=> ./2023-08-18-site-reliability-engineering-part-1.gmi 2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture
 
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -37,7 +40,7 @@ In conclusion, operational balance in SRE is not a static goalpost but an ongoin
 
 That all sounds very romantic. The truth is, it is brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!
 
-The next entry of this blog series will be published soon :-)
+The third part of this blog series will be published soon :-)
 
 E-Mail your comments to paul at buetow.org :-)
 

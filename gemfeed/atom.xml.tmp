@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-08-18T23:12:15+03:00</updated>
+    <updated>2023-08-19T00:21:09+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Site Reliability Engineering - Part 2: Operational Balance in SRE</title>
+        <link href="gemini://foo.zone/gemfeed/2023-08-19-site-reliability-engineering-part-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-08-19-site-reliability-engineering-part-2.gmi</id>
+        <updated>2023-08-19T00:18:18+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Site Reliability Engineering - Part 2: Operational Balance in SRE</h1><br />
+<br />
+<span class='quote'>Published at 2023-08-19T00:18:18+03:00</span><br />
+<br />
+<span>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<br />
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⠿⠿⠿⠶⠾⠿⠿⣿⣿⣿⣿⣿⣿⠿⠿⠶⠶⠿⠿⠿⣷⠀⠀⠀⠀
+⠀⠀⠀⣸⢿⣆⠀⠀⠀⠀⠀⠀⠀⠙⢿⡿⠉⠀⠀⠀⠀⠀⠀⠀⣸⣿⡆⠀⠀⠀
+⠀⠀⢠⡟⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⣾⣧⠀⠀⠀⠀⠀⠀⠀⣰⡟⠀⢻⡄⠀⠀
+⠀⢀⣾⠃⠀⠀⢿⡄⠀⠀⠀⠀⠀⢠⣿⣿⡀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠘⣷⡀⠀
+⠀⣼⣏⣀⣀⣀⣈⣿⡀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⢀⣿⣃⣀⣀⣀⣸⣧⠀
+⠀⢻⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⡿⠀
+⠀⠀⠉⠛⠛⠛⠋⠁⠀⠀⠀⠀⢸⣿⣿⣿⣿⡆⠀⠀⠀⠀⠈⠙⠛⠛⠛⠉⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
+</pre>
+<br />
+<h2 style='display: inline'>Operational Balance in SRE: Finding the Equilibrium in Reliability and Velocity</h2><br />
+<br />
+<span>Site Reliability Engineering has established itself as more than just a set of best practices or methodologies. Instead, it stands as a beacon of operational excellence, which guides engineering teams through the turbulent waters of modern software development and system management.</span><br />
+<br />
+<span>In the universe of software production, two fundamental forces are often at odds: the drive for rapid feature release (velocity) and the need for system reliability. Traditionally, the faster teams moved, the more risk was introduced into systems. SRE offers a profound approach to reconciling these conflicting drives through concepts like error budgets and SLIs/SLOs. These mechanisms provide a tangible metric, allowing teams to quantify how much they can push changes while ensuring they don&#39;t compromise system health. Thus, the error budget becomes a balancing act, where teams weigh the trade-offs between innovation and reliability.</span><br />
+<br />
+<span>A quintessential component of this balance is the dichotomy between operations and coding. According to SRE principles, an engineer should ideally spend an equal amount of time on operations work and coding—50% on each. This isn&#39;t just a random metric; it&#39;s a reflection of the value SRE places on both maintaining operational excellence and progressing forward with innovations. This balance ensures that while SREs are solving today&#39;s problems, they are also preparing for tomorrow&#39;s challenges. </span><br />
+<br />
+<span>However, not all operational tasks are equal. SRE differentiates between &#39;ops work&#39; and &#39;toil&#39;. While ops work is integral to system maintenance and can provide value, toil represents repetitive, mundane tasks which offer little value in the long run. Recognising and minimising toil is crucial. A culture that allows engineers to drown in toil stifles innovation and growth. Hence, an organisation&#39;s approach to toil indicates its operational health and commitment to balance.</span><br />
+<br />
+<span>A cornerstone of achieving operational balance lies in the tools and processes SREs use. Effective monitoring, observability tools, and ensuring that tools can handle high cardinality data are foundational. These aren&#39;t just technical requisites but reflective of an organisational culture prioritising proactive problem-solving. By having systems that effectively flag potential issues before they escalate, SREs can maintain the delicate balance between system stability and forward momentum.</span><br />
+<br />
+<span>Moreover, operational balance isn&#39;t just a technological or process challenge; it&#39;s a human one. The health of on-call engineers is as crucial as the health of the services they manage. On-call postmortems, continuous feedback loops, and recognising gaps (be it tooling, operational expertise, or resources) ensure that the human elements of operations are noticed. </span><br />
+<br />
+<span>In conclusion, operational balance in SRE is not a static goalpost but an ongoing journey. It requires organisations to constantly evaluate their practices, tools, and, most importantly, their culture. By achieving this balance, organisations can ensure that they are poised for innovation while maintaining the robustness and reliability of their systems, resulting in sustainable long-term success.</span><br />
+<br />
+<span>That all sounds very romantic. The truth is, it is brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!</span><br />
+<br />
+<span>The third part of this blog series will be published soon :-)</span><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Site Reliability Engineering - Part 1: SRE and Organizational Culture</title>
         <link href="gemini://foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1.gmi" />
@@ -24,6 +86,7 @@
 <br />
 <span>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It&#39;s not just technical; it&#39;s also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
 <br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
 <a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
 <br />
 <pre>
@@ -68,7 +131,9 @@ DC on fire:
 <br />
 <span>Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.</span><br />
 <br />
-<span>The next entry of this blog series will be published soon :-)</span><br />
+<span>Continue with the second part of this series:</span><br />
+<br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -8479,219 +8544,6 @@ Notice: Finished catalog run in 206.09 seconds
 <h2 style='display: inline'>Walking one round less</h2><br />
 <br />
 <span>I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).</span><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Run Debian on your phone with Debroid</title>
-        <link href="gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
-        <id>gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
-        <updated>2015-12-05T16:12:57+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Run Debian on your phone with Debroid</h1><br />
-<br />
-<span class='quote'>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</span><br />
-<br />
-<pre>
- ____       _               _     _ 
-|  _ \  ___| |__  _ __ ___ (_) __| |
-| | | |/ _ \ &#39;_ \| &#39;__/ _ \| |/ _` |
-| |_| |  __/ |_) | | | (_) | | (_| |
-|____/ \___|_.__/|_|  \___/|_|\__,_|
-                                    
-</pre>
-<br />
-<span>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</span><br />
-<br />
-<a href='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png'><img src='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
-<br />
-<h2 style='display: inline'>Foreword</h2><br />
-<br />
-<span>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </span><br />
-<br />
-<h2 style='display: inline'>Step by step guide</h2><br />
-<br />
-<span>All scripts mentioned here can be found on GitHub at:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/debroid'>https://codeberg.org/snonux/debroid</a><br />
-<br />
-<h3 style='display: inline'>First debootstrap stage</h3><br />
-<br />
-<span>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>sudo dnf install debootstrap
-<i><font color="#9A1900"># 5g</font></i>
-dd <b><font color="#0000FF">if</font></b><font color="#990000">=</font>/dev/zero <font color="#009900">of</font><font color="#990000">=</font>jessie<font color="#990000">.</font>img <font color="#009900">bs</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">1024</font> <font color="#990000">]</font> <font color="#990000">\</font>
-  <font color="#009900">count</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">5</font> <font color="#990000">]</font>
-
-<i><font color="#9A1900"># Show used loop devices</font></i>
-sudo losetup -f
-<i><font color="#9A1900"># Store the next free one to $loop</font></i>
-<font color="#009900">loop</font><font color="#990000">=</font>loopN
-sudo losetup /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie<font color="#990000">.</font>img
-
-mkdir jessie
-sudo mkfs<font color="#990000">.</font>ext4 /dev<font color="#990000">/</font><font color="#009900">$loop</font>
-sudo mount /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie
-sudo debootstrap --foreign --variant<font color="#990000">=</font>minbase <font color="#990000">\</font>
-  --arch armel jessie jessie<font color="#990000">/</font> <font color="#990000">\</font>
-  http<font color="#990000">:</font>//http<font color="#990000">.</font>debian<font color="#990000">.</font>net/debian
-sudo umount jessie
-</pre>
-<br />
-<h3 style='display: inline'>Copy Debian image to the phone</h3><br />
-<br />
-<span>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>adb root <font color="#990000">&amp;&amp;</font> adb wait-for-device <font color="#990000">&amp;&amp;</font> adb shell
-mkdir -p /storage/sdcard<font color="#993399">1</font>/Linux/jessie
-<b><font color="#0000FF">exit</font></b>
-
-<i><font color="#9A1900"># Sparse image problem, may be too big for copying otherwise</font></i>
-gzip jessie<font color="#990000">.</font>img
-<i><font color="#9A1900"># Copy over</font></i>
-adb push jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz /storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
-adb shell
-cd /storage/sdcard<font color="#993399">1</font>/Linux
-gunzip jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
-
-<i><font color="#9A1900"># Show used loop devices</font></i>
-losetup -f
-<i><font color="#9A1900"># Store the next free one to $loop</font></i>
-<font color="#009900">loop</font><font color="#990000">=</font>loopN
-
-<i><font color="#9A1900"># Use the next free one (replace the loop number)</font></i>
-losetup /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie<font color="#990000">.</font>img
-mount -t ext4 /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie
-
-<i><font color="#9A1900"># Bind-Mound proc, dev, sys`</font></i>
-busybox mount --bind /proc <font color="#009900">$(pwd)</font>/jessie/proc
-busybox mount --bind /dev <font color="#009900">$(pwd)</font>/jessie/dev
-busybox mount --bind /dev/pts <font color="#009900">$(pwd)</font>/jessie/dev/pts
-busybox mount --bind /sys <font color="#009900">$(pwd)</font>/jessie/sys
-
-<i><font color="#9A1900"># Bind-Mound the rest of Android</font></i>
-mkdir -p <font color="#009900">$(pwd)</font>/jessie/storage/sdcard{<font color="#993399">0</font><font color="#990000">,</font><font color="#993399">1</font>}
-busybox mount --bind /storage/emulated <font color="#990000">\</font>
-  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">0</font>
-busybox mount --bind /storage/sdcard<font color="#993399">1</font> <font color="#990000">\</font>
-  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">1</font>
-
-<i><font color="#9A1900"># Check mounts</font></i>
-mount <font color="#990000">|</font> grep jessie
-</pre>
-<br />
-<h3 style='display: inline'>Second debootstrap stage</h3><br />
-<br />
-<span>This is to be performed on the Android phone itself (inside a Debian chroot):</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>chroot <font color="#009900">$(pwd)</font>/jessie /bin/bash -l
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/bin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/local/sbin
-/debootstrap/debootstrap --second-stage
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave chroot</font></i>
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave adb shell</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Setup of various scripts</h3><br />
-<br />
-<span>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Install script jessie.sh</font></i>
-adb push storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>sh /storage/sdcard/Linux/jessie<font color="#990000">.</font>sh
-adb shell
-cd /storage/sdcard<font color="#993399">1</font>/Linux
-sh jessie<font color="#990000">.</font>sh enter
-
-<i><font color="#9A1900"># Bashrc</font></i>
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;~/.</font>bashrc
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
-<b><font color="#0000FF">export</font></b> <font color="#009900">EDITOR</font><font color="#990000">=</font>vim
-hostname <font color="#009900">$(</font>cat /etc/hostname<font color="#990000">)</font>
-END
-
-<i><font color="#9A1900"># Fixing an error message while loading the profile</font></i>
-sed -i s<i><font color="#9A1900">#id#/usr/bin/id# /etc/profile</font></i>
-
-<i><font color="#9A1900"># Setting the hostname</font></i>
-echo phobos <font color="#990000">&gt;</font> /etc/hostname
-echo <font color="#993399">127.0</font><font color="#990000">.</font><font color="#993399">0.1</font> phobos <font color="#990000">&gt;</font> /etc/hosts
-hostname phobos
-
-<i><font color="#9A1900"># Apt-sources</font></i>
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> sources<font color="#990000">.</font>list
-deb http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
-deb-src http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
-END
-apt-get update
-apt-get upgrade
-apt-get dist-upgrade
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Entering Debroid and enable a service</h3><br />
-<br />
-<span>This enters Debroid on your phone and starts the example service uptimed:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>sh jessie<font color="#990000">.</font>sh enter
-
-<i><font color="#9A1900"># Setup example serice uptimed</font></i>
-apt-get install uptimed
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> /etc/rc<font color="#990000">.</font>debroid
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
-service uptimed status <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">||</font> service uptimed start
-<b><font color="#0000FF">exit</font></b> <font color="#993399">0</font>
-END
-
-chmod <font color="#993399">0755</font> /etc/rc<font color="#990000">.</font>debroid
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit adb shell</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Include to Android startup:</h3><br />
-<br />
-<span>If you want to start Debroid automatically whenever your phone starts, then do the following:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>adb push data/local/userinit<font color="#990000">.</font>sh /data/local/userinit<font color="#990000">.</font>sh
-adb shell
-chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">.</font>sh
-<b><font color="#0000FF">exit</font></b>
-</pre>
-<br />
-<span>Reboot &amp; test!  Enjoy!</span><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />

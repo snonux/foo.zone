@@ -4,6 +4,7 @@
 
 The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.
 
+=> ./2023-08-19-site-reliability-engineering-part-2.gmi 2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE
 => ./2023-08-18-site-reliability-engineering-part-1.gmi 2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)
 
 ```
@@ -48,7 +49,9 @@ In essence, the integration of SRE principles transcends technical practices. It
 
 Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.
 
-The next entry of this blog series will be published soon :-)
+Continue with the second part of this series:
+
+=> ./2023-08-19-site-reliability-engineering-part-2.gmi 2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE
 
 E-Mail your comments to paul at buetow.org :-)
 
