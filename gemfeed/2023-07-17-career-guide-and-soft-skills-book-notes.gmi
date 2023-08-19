@@ -1,4 +1,4 @@
-# "Software Developmers Career Guide & Soft Skills" book notes
+# "Software Developmers Career Guide and Soft Skills" book notes
 
 > Published at 2023-07-17T04:56:20+03:00
 

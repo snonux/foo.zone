@@ -8,7 +8,7 @@
 => ./staff-engineer.gmi 'Staff Engineer' book notes
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
-=> ./career-guide-and-soft-skills.gmi 'Software Developmers Career Guide & Soft Skills' book notes
+=> ./career-guide-and-soft-skills.gmi 'Software Developmers Career Guide and Soft Skills' book notes
 => ./a-monks-guide-to-happiness.gmi 'A Monk's Guide to Happiness' book notes
 
 That were all notes. Hope they were useful!

@@ -1,18 +1,605 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-07-12T07:37:47+03:00</updated>
+    <updated>2023-08-19T11:27:51+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
     <entry>
+        <title>Site Reliability Engineering - Part 2: Operational Balance in SRE</title>
+        <link href="gemini://foo.zone/gemfeed/2023-08-19-site-reliability-engineering-part-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-08-19-site-reliability-engineering-part-2.gmi</id>
+        <updated>2023-08-19T00:18:18+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Site Reliability Engineering - Part 2: Operational Balance in SRE</h1><br />
+<br />
+<span class='quote'>Published at 2023-08-19T00:18:18+03:00</span><br />
+<br />
+<span>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)</a><br />
+<br />
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⠿⠿⠿⠶⠾⠿⠿⣿⣿⣿⣿⣿⣿⠿⠿⠶⠶⠿⠿⠿⣷⠀⠀⠀⠀
+⠀⠀⠀⣸⢿⣆⠀⠀⠀⠀⠀⠀⠀⠙⢿⡿⠉⠀⠀⠀⠀⠀⠀⠀⣸⣿⡆⠀⠀⠀
+⠀⠀⢠⡟⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⣾⣧⠀⠀⠀⠀⠀⠀⠀⣰⡟⠀⢻⡄⠀⠀
+⠀⢀⣾⠃⠀⠀⢿⡄⠀⠀⠀⠀⠀⢠⣿⣿⡀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠘⣷⡀⠀
+⠀⣼⣏⣀⣀⣀⣈⣿⡀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⢀⣿⣃⣀⣀⣀⣸⣧⠀
+⠀⢻⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⡿⠀
+⠀⠀⠉⠛⠛⠛⠋⠁⠀⠀⠀⠀⢸⣿⣿⣿⣿⡆⠀⠀⠀⠀⠈⠙⠛⠛⠛⠉⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
+</pre>
+<br />
+<h2 style='display: inline'>Operational Balance in SRE: Finding the Equilibrium in Reliability and Velocity</h2><br />
+<br />
+<span>Site Reliability Engineering has established itself as more than just a set of best practices or methodologies. Instead, it stands as a beacon of operational excellence, which guides engineering teams through the turbulent waters of modern software development and system management.</span><br />
+<br />
+<span>In the universe of software production, two fundamental forces are often at odds: The drive for rapid feature release (velocity) and the need for system reliability. Traditionally, the faster teams moved, the more risk was introduced into systems. SRE offers a approach to mitigate these conflicting drives through concepts like error budgets and SLIs/SLOs. These mechanisms provide a tangible metric, allowing teams to quantify how much they can push changes while ensuring they don&#39;t compromise system health. Thus, the error budget becomes a balancing act, where teams weigh the trade-offs between innovation and reliability.</span><br />
+<br />
+<span>A quintessential component of this balance is the dichotomy between operations and coding. According to SRE principles, an engineer should ideally spend an equal amount of time on operations work and coding - 50% on each. This isn&#39;t just a random metric; it&#39;s a reflection of the value SRE places on both maintaining operational excellence and progressing forward with innovations. This balance ensures that while SREs are solving today&#39;s problems, they are also preparing for tomorrow&#39;s challenges. </span><br />
+<br />
+<span>However, not all operational tasks are equal. SRE differentiates between "ops work" and "toil". While ops work is integral to system maintenance and can provide value, toil represents repetitive, mundane tasks which offer little value in the long run. Recognising and minimising toil is crucial. A culture that allows engineers to drown in toil stifles innovation and growth. Hence, an organisation&#39;s approach to toil indicates its operational health and commitment to balance.</span><br />
+<br />
+<span>A cornerstone of achieving operational balance lies in the tools and processes SREs use. Effective monitoring, observability tools, and ensuring that tools can handle high cardinality data are foundational. These aren&#39;t just technical requisites but reflective of an organisational culture prioritising proactive problem-solving. By having systems that effectively flag potential issues before they escalate, SREs can maintain the delicate balance between system stability and forward momentum.</span><br />
+<br />
+<span>Moreover, operational balance isn&#39;t just a technological or process challenge; it&#39;s a human one. The health of on-call engineers is as crucial as the health of the services they manage. On-call postmortems, continuous feedback loops, and recognising gaps (be it tooling, operational expertise, or resources) ensure that the human elements of operations are noticed. </span><br />
+<br />
+<span>In conclusion, operational balance in SRE is not a static thing but an ongoing journey. It requires organisations to constantly evaluate their practices, tools, and, most importantly, their culture. By achieving this balance, organisations can ensure that they have time for innovation while maintaining the robustness and reliability of their systems, resulting in sustainable long-term success.</span><br />
+<br />
+<span>That all sounds very romantic. The truth is, it is brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!</span><br />
+<br />
+<span>The third part of this blog series will be published soon :-)</span><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Site Reliability Engineering - Part 1: SRE and Organizational Culture</title>
+        <link href="gemini://foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1.gmi</id>
+        <updated>2023-08-18T22:43:47+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Site Reliability Engineering - Part 1: SRE and Organizational Culture</h1><br />
+<br />
+<span class='quote'>Published at 2023-08-18T22:43:47+03:00</span><br />
+<br />
+<span>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it is impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It&#39;s not just technical; it&#39;s also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will attempt to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
+<br />
+<pre>
+▓▓▓▓░░                                                                                  
+                                                                                          
+DC on fire:
+                                                                                          
+                ▓▓                                    ▓▓                ▓▓                
+      ░░  ░░    ▓▓▓▓                  ██                  ░░            ▓▓▓▓        ▓▓    
+    ▓▓░░░░  ░░  ▓▓▓▓                              ▓▓░░                  ▓▓▓▓              
+    ░░░░      ▓▓▓▓▓▓        ▓▓      ▓▓            ▓▓                  ▓▓▓▓▓▓      ▓▓      
+    ▓▓░░    ▓▓▒▒▒▒▓▓▓▓    ▓▓        ▓▓▓▓        ▓▓▓▓▓▓              ▓▓▒▒▒▒▓▓▓▓    ▓▓▓▓    
+  ██▓▓      ▓▓▒▒░░▒▒▓▓  ▓▓██      ▓▓▓▓▓▓        ▓▓▒▒▓▓              ▓▓▒▒░░▒▒▓▓  ██▓▓▓▓    
+  ▓▓▓▓██  ▓▓▒▒░░░░▒▒▓▓  ▓▓▓▓      ▓▓▒▒▒▒▓▓    ▓▓▒▒░░▒▒▓▓██▓▓      ▓▓▒▒░░░░▒▒▓▓  ▓▓▒▒▒▒▓▓  
+  ▓▓▒▒▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒▒▒▓▓  ▓▓▓▓░░▒▒▓▓    ▓▓▒▒░░▒▒▓▓▒▒▒▒▓▓    ▓▓▒▒░░▒▒▓▓▓▓▓▓▓▓░░▒▒▓▓  
+  ▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓  ▓▓▒▒░░▒▒▓▓    ▓▓░░░░▒▒▒▒░░░░▒▒██████▒▒░░▒▒██▓▓▓▓▒▒░░▒▒▓▓██
+  ░░░░▒▒▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒░░▒▒▓▓██▒▒░░░░▒▒▓▓  ▓▓▒▒░░▒▒▓▓▒▒▒▒░░▒▒▓▓▓▓▒▒░░▒▒▓▓▓▓▓▓▒▒░░░░▒▒▓▓▓▓
+  ░░░░▒▒▓▓▒▒░░░░▓▓██▒▒░░░░▒▒▓▓██▒▒░░░░▒▒██▓▓▓▓▒▒░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▒▒░░░░██▓▓▓▓▒▒░░░░▒▒████
+  ▒▒░░▒▒▓▓▓▓░░░░▒▒▓▓▒▒▒▒░░░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▓▓▒▒░░░░▒▒▓▓▒▒░░▒▒▓▓▓▓▓▓░░░░▒▒▓▓▓▓▓▓▒▒░░░░▒▒▓▓
+  ▒▒░░▒▒▓▓▒▒▒▒░░▒▒██▒▒▒▒░░▒▒▒▒██▒▒▒▒░░░░░░▒▒▓▓▒▒░░░░▒▒▒▒░░░░▒▒████▒▒▒▒░░▒▒██▓▓▒▒▒▒░░░░░░▒▒
+  ░░░░░░▒▒░░░░░░░░▒▒▒▒▒▒░░░░▒▒▒▒▒▒░░░░░░░░▒▒▒▒░░░░░░▒▒▒▒░░░░░░▒▒▒▒░░░░░░░░▒▒▒▒▒▒░░░░░░░░▒▒
+  ░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░
+</pre>
+<br />
+<h2 style='display: inline'>SRE and Organizational Culture: Navigating the Nexus</h2><br />
+<br />
+<span>At the heart of SRE lies the proactive mindset of "prevention over cure". Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. However, these aren&#39;t mere numbers. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. </span><br />
+<br />
+<span>Another defining SRE concept is the "error budget". This ingenious framework accepts that no system is flawless. Failures are inevitable. However, instead of being punitive, the culture here is to accept, learn, and iterate. By providing teams with a "budget" for errors, organisations foster an environment where innovation is encouraged, and failures are viewed as learning opportunities.</span><br />
+<br />
+<span>But SRE isn&#39;t just about technology and metrics; it&#39;s deeply human. It challenges the "hero culture" that plagues many IT teams. While individual heroics might occasionally save the day, a sustainable model requires collective expertise. An SRE culture recognises that heroes achieve their best within teams, negating the need for a hero-centric environment. This philosophy promotes a balanced on-call experience, emphasising the importance of trust, ownership, effective communication, and collaboration as cornerstones of team success. I personally have fallen into the hero trap, and I know it is unsustainable to be the only go-to person for every problem.</span><br />
+<br />
+<span>Additionally, the SRE model requires good documentation. However, it&#39;s essential to ensure that this documentation undergoes the same quality checks as code, reinforcing effective onboarding, training and communication.</span><br />
+<br />
+<span>Organisations might face a significant challenge when adopting SRE. It is convincing various teams and leadership of its merits. Some might feel SRE principles counter their goals. They might prioritise feature rollouts over reliability or view SRE practices as cumbersome. Hence, fostering an SRE culture often demands patient explanations and showcasing tangible benefits, such as increased release velocity and improved user experience.</span><br />
+<br />
+<span>Monitoring and observability form another SRE pillar, emphasising the need for high-quality tools to query and analyse data. This ties back to the cultural emphasis on continuous learning and adaptability. SREs, by nature, need to be curious, ready to delve into anomalies, and keen on adopting new tools and practices. </span><br />
+<br />
+<span>Ultimately, the success of SRE within any organisation depends on the broader acceptance of its principles. It demands a move away from siloed operations, where SRE acts as a bandage on flawed systems, to a model where reliability is everyone&#39;s responsibility. It calls for cultural transformation from the on-call engineers to the boardroom.</span><br />
+<br />
+<span>In essence, the integration of SRE principles transcends technical practices. It paves the way for a shift in organisational culture that values proactive prevention, continuous learning, collaboration, and transparent communication. The successful melding of SRE and corporate culture promises not just reliable systems but also a robust, resilient, and progressive work environment.</span><br />
+<br />
+<span>Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.</span><br />
+<br />
+<span>Continue with the second part of this series:</span><br />
+<br />
+<a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Gemtexter 2.1.0 - Let's Gemtext again³</title>
+        <link href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi</id>
+        <updated>2023-07-21T10:19:31+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
+<br />
+<span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
+<br />
+<pre>
+-=[ typewriters ]=-  1/98
+                                        .-------.
+       .-------.                       _|~~ ~~  |_
+      _|~~ ~~  |_       .-------.    =(_|_______|_)
+    =(_|_______|_)=    _|~~ ~~  |_     |:::::::::|
+      |:::::::::|    =(_|_______|_)    |:::::::[]|
+      |:::::::[]|      |:::::::::|     |o=======.|
+      |o=======.|      |:::::::[]|     `"""""""""`
+ jgs  `"""""""""`      |o=======.|
+  mod. by Paul Buetow  `"""""""""`
+</pre>
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<h2 style='display: inline'>Why Bash?</h2><br />
+<br />
+<span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
+<h2 style='display: inline'>Switch to GPL3 license</h2><br />
+<br />
+<span>Many (almost all) of the tools and commands (GNU Bash, GMU Sed, GNU Date, GNU Grep, GNU Source Highlight) used by <span class='inlinecode'>Gemtexter</span> are licensed under the GPL anyway. So why not use the same? This was an easy switch, as I was the only code contributor so far!</span><br />
+<br />
+<h2 style='display: inline'>Source code highlighting support</h2><br />
+<br />
+<span>The HTML output now supports source code highlighting, which is pretty neat if your site is about programming. The requirement is to have the <span class='inlinecode'>source-highlight</span> command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:</span><br />
+<br />
+<pre>
+ ```bash
+ if [ -n "$foo" ]; then
+   echo "$foo"
+ fi
+ ```
+</pre>
+<br />
+<span>The result will look like this (you can see the code highlighting only in the Web version, not in the Geminispace version of this site):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -n <font color="#FF0000">"$foo"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  echo <font color="#FF0000">"$foo"</font>
+<b><font color="#0000FF">fi</font></b>
+</pre>
+<br />
+<span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
+<br />
+<h2 style='display: inline'>HTML exact variant</h2><br />
+<br />
+<span>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
+<br />
+<h2 style='display: inline'>Use of Hack webfont by default</h2><br />
+<br />
+<span>The Hack web font is a typeface designed explicitly for source code. It&#39;s a derivative of the Bitstream Vera and DejaVu Mono lineage, but it features many improvements and refinements that make it better suited to reading and writing code.</span><br />
+<br />
+<span>The font has distinctive glyphs for every character, which helps to reduce confusion between similar-looking characters. For example, the characters "0" (zero), "O" (capital o), and "o" (lowercase o), or "1" (one), "l" (lowercase L), and "I" (capital i) all have distinct looks in Hack, making it easier to read and understand code at a glance.</span><br />
+<br />
+<span>Hack is open-source and freely available for use and modification under the MIT License.</span><br />
+<br />
+<h2 style='display: inline'>HTML Mastodon verification support</h2><br />
+<br />
+<span>The following link explains how URL verification works in Mastodon:</span><br />
+<br />
+<a class='textlink' href='https://joinmastodon.org/verification'>https://joinmastodon.org/verification</a><br />
+<br />
+<span>So we have to hyperlink to the Mastodon profile to be verified and also to include a <span class='inlinecode'>rel=&#39;me&#39;</span> into the tag. In order to do that add this to the <span class='inlinecode'>gemtexter.conf</span> (replace the URI to your Mastodon profile accordingly):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">MASTODON_URI</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font>
+</pre>
+<br />
+<span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
+<br />
+<pre>
+=&gt; https://fosstodon.org/@snonux Me at Mastodon
+</pre>
+<br />
+<span>The resulting line in the HTML output will be something as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at Mastodon<b><font color="#0000FF">&lt;/a&gt;</font></b>
+</pre>
+<br />
+<h2 style='display: inline'>More</h2><br />
+<br />
+<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>'Software Developmers Career Guide and Soft Skills' book notes</title>
+        <link href="gemini://foo.zone/gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.gmi</id>
+        <updated>2023-07-17T04:56:20+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These notes are of two books by 'John Sommez' I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>"Software Developmers Career Guide and Soft Skills" book notes</h1><br />
+<br />
+<span class='quote'>Published at 2023-07-17T04:56:20+03:00</span><br />
+<br />
+<span>These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</span><br />
+<br />
+<pre>
+         ,..........   ..........,
+     ,..,&#39;          &#39;.&#39;          &#39;,..,
+    ,&#39; ,&#39;            :            &#39;, &#39;,
+   ,&#39; ,&#39;             :             &#39;, &#39;,
+  ,&#39; ,&#39;              :              &#39;, &#39;,
+ ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
+,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
+ &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+                    &#39;&#39;&#39;
+</pre>
+<br />
+<h1 style='display: inline'>Improve</h1><br />
+<br />
+<h2 style='display: inline'>Always learn new things</h2><br />
+<br />
+<span>When you learn something new, e.g. a programming language, first gather an overview, learn from multiple sources, play around and learn by doing and not consuming and form your own questions. Don&#39;t read too much upfront. A large amount of time is spent in learning technical skills which were never use. You want to have a practical set of skills you are actually using. You need to know 20 percent to get out 80 percent of the results.</span><br />
+<br />
+<ul>
+<li>Learn a technology with a goal, e.g. implement a tool. Practice practise practice.</li>
+<li>"I know X can do Y, I don&#39;t know exactly how, but I can look it up."</li>
+<li>Read what experts are writing, for example follow blogs. Stay up to date and spent half an hour per day trading blogs and books.</li>
+<li>Pick an open source application, read the code and try to understand it to get a feel of the syntax of the programming language.</li>
+<li>Understand, that the standard library makes you a much better programmer.</li>
+<li>Self learning is the top skill a programmer can have and is also useful in other aspects in your life.</li>
+<li>Keep learning skills every day. Code every day. Don&#39;t be overconfident for job security. Read blogs, read books.</li>
+<li>If you want to learn, then do it by exploring. Also teach what you learned (for example write a blog post or hold a presentation).</li>
+</ul><br />
+<span>Fake it until you make it. But be honest about your abilities or lack of. There is however only time between now and until you make it. Refer to your abilities to learn.</span><br />
+<br />
+<span>Boot camps: The advantage of a boot camp is to pragmatically learn things fast. We almost always overestimate what we can do in a day. Especially during boot camps. Connect to others during the boot camps</span><br />
+<br />
+<h2 style='display: inline'>Set goals</h2><br />
+<br />
+<span>Your own goals are important but the manager also looks at how the team performs and how someone can help the team perform better. Check whether you are on track with your goals every 2 weeks in order to avoid surprises for the annual review. Make concrete goals for next review. Track and document your progress. Invest in your education. Make your goals known. If you want something, then ask for it. Nobody but you knows what you want.</span><br />
+<br />
+<h2 style='display: inline'>Ratings</h2><br />
+<br />
+<span>That&#39;s a trap: If you have to rate yourself, that&#39;s a trap. That never works in an unbiased way. Rate yourself always the best way but rate your weakest part as high as possible minus one point. Rate yourself as good as you can otherwise. Nobody is putting for fun a gun on his own head. </span><br />
+<br />
+<ul>
+<li>Don&#39;t do peer rating, it can fire back on you. What if the colleague becomes your new boss?</li>
+<li>Cooperate rankings are unfortunately HR guidelines and politics and only mirror a little your actual performance.</li>
+</ul><br />
+<h2 style='display: inline'>Promotions</h2><br />
+<br />
+<span>The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.</span><br />
+<br />
+<ul>
+<li>Raise or promotion, what&#39;s better? Promotion is better as money will follow anyway then.</li>
+<li>Take projects no-one wants and make them shine. A promotion will follow.</li>
+<li>A promotion is not going to come to you because you deserve it. You have to hunt and ask for it.</li>
+<li>Track all kudos (e.g. ask for emails from your colleagues).</li>
+<li>Big corporations HRs don&#39;t expect a figjit. That&#39;s why it&#39;s so important to keep track of your accomplishments and kudos&#39;.</li>
+<li>If you want a raise be specific how much and know to back your demands. Don&#39;t make a thread and no ultimatums.</li>
+<li>Best way for a promotion is to switch jobs. You can even switch back with a better salary.</li>
+</ul><br />
+<h2 style='display: inline'>Finish things</h2><br />
+<br />
+<span>Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.</span><br />
+<br />
+<ul>
+<li>Learn to finish things without motivation. Things will pay off when you stick to stuff and eventually motivation can also come back.</li>
+<li>You will fail if you don&#39;t plan realistically. Set also a schedule and follow to it as of life depends on it.</li>
+<li>Advances come only of you give more than asked. Consistency, commitment and knowing what you need to do is more key than hard work.</li>
+<li>Any action is better than no action. If you get stuck you have gained nothing.</li>
+<li>You need to know the unknowns. Identify as many unknown not known things as possible. </li>
+</ul><br />
+<span>Hard vs fun: Both engage the brain (video games vs work). Some work is hard and other is easy. Hard work is boring. The harsh truth is you have to put in hard and boring work in order to accomplish and be successful. Work won&#39;t be always boring though, as joy will follow with mastery.</span><br />
+<br />
+<span>Defeat is finally give up. Failure is the road to success, embrace it. Failure does not define you but how you respond to it. Events don&#39;t make your unhappy, but how you react to events do.</span><br />
+<br />
+<h2 style='display: inline'>Expand the empire</h2><br />
+<br />
+<span>The larger your empire is, the larger your circle of influence is. The larger the circle of influence is, the more opportunities you have.</span><br />
+<br />
+<ul>
+<li>Do the dirty work if you want to expand the empire. That&#39;s there the opportunities are.</li>
+<li>SCRUM often fails due to the lack to commitment. The backlog just becomes a wish to get completed.</li>
+<li>Apply work on your quality standards. Don&#39;t cross the line of compromise. Always improve your skills. Never be happy being good enough.</li>
+</ul><br />
+<span>Become visible, keep track that you accomplishments. E.g. write a weekly summary. Do presentations, be seen. Learn new things and share your learnings. Be the problem solver and not the blamer.</span><br />
+<br />
+<h2 style='display: inline'>Be pragmatic and also manage your time</h2><br />
+<br />
+<span>Make use of time boxing via the Pomodoro technique: Set a target of rounds and track the rounds. That give you exact focused work time. That&#39;s really the trick. For example set a goal of 6 daily pomodores.</span><br />
+<br />
+<ul>
+<li>Every time you do something question why does it make sense be pragmatic and don&#39;t follow because it is best practice.</li>
+<li>You can also apply the time boxing technique (Cal Newport) for focused deep work.</li>
+</ul><br />
+<span>You should feel good of the work done even if you don&#39;t finished the task. You will feel good about pomodoro wise even you don&#39;t finish the task on hand yet. Helps you to enjoy time off more. Working longer may not sell anything.</span><br />
+<br />
+<h3 style='display: inline'>The quota system</h3><br />
+<br />
+<span>Defined quota of things done. E.g. N runs per week or M Blog posts per month or O pomodoros per week. This helps with consistency. Truly commit to these quotas. Failure is not an option. Start with small commitments. Don&#39;t commit to something you can&#39;t fulfill otherwise you set yourself up for failure.</span><br />
+<br />
+<ul>
+<li>Why does the quota System work? Slow and consistent pace is the key. It also overcomes willpower weaknesses as goals are preset.</li>
+<li>Internal motivation is more important over external motivation. Check out Daniels book drive.</li>
+<li>Multitasking: Batching is effective. E.g. emails twice daily at pre-set times..</li>
+</ul><br />
+<h3 style='display: inline'>Don&#39;t waste time</h3><br />
+<br />
+<span>The biggest time waster is TV watching. The TV is programming you. It&#39;s insane that Americans watch so much TV as they work full time. Schedule one show at a time and watch it when you want to watch it. Most movies are crap anyways. The good movies will come to you as people will talk about them.</span><br />
+<br />
+<ul>
+<li>Social media is time waster as well. Schedule your Social Media times. For example be on Facebook only for max one hour on Saturdays.</li>
+<li>Meetings can waste time as well. Simply don&#39;t go to them. Try to cancel meeting if it can be dealt with via email.</li>
+<li>Enjoying things is not a waste of time. E.g. you could still play a game once in a while. It is important not to cut away all you enjoy from your life.</li>
+</ul><br />
+<h3 style='display: inline'>Habits</h3><br />
+<br />
+<span>Try to have as many good habits as possible. Start with easy habits, and make them a little bit more challenging over time. Set ankers and rewards. Over time the routines will become habits naturally.</span><br />
+<br />
+<span>Habit stacking is effective, which is combining multiple habits at the same time. For example you can workout on a circular trainer while while watching a learning video on O&#39;Reilly Safari Online while getting closer to your weekly step goal.</span><br />
+<br />
+<ul>
+<li>We don&#39;t have control over our habits but our own routines.</li>
+<li>Routines help to form the habits, though.</li>
+</ul><br />
+<h1 style='display: inline'>Work-life balance</h1><br />
+<br />
+<span>Avoid overwork hours. That&#39;s not as beneficial as you might think and comes only with very small rewards. Invest rather in yourself and not in your employer.</span><br />
+<br />
+<ul>
+<li>Work-life balance is a myth. Make it so that you enjoy work and your personal life and not just personal life.</li>
+<li>Maintain fewer but good relationships. As a reward, better and integrated your life will be.</li>
+<li>Life in the present Moment. Make the best of every moment of your life.</li>
+<li>Enjoy every aspect of your life. If you want to take away one thing from this book that is it.</li>
+</ul><br />
+<span>Use your most productive hours to work on you. Make that your priority. Take care of yourself a priority (E.g. do workouts or learn a new language). You can always workout 2 or 1 hour per day, but will you pay the price?</span><br />
+<br />
+<h2 style='display: inline'>Mental health</h2><br />
+<br />
+<ul>
+<li>Friendships and positive thinking help to have and maintain better health, longer Life, better productivity and increased happiness.</li>
+<li>Positive thinking can be trained and be a habit. Read the book "The Power of Positive Thinking".</li>
+<li>Stoicism helps. Meditation helps.  Playing for fun helps too.</li>
+</ul><br />
+<span>Become the person you want to become (your self image). Program your brain unconsciously. Don&#39;t become the person other people want you to be. Embrace yourself, you are you.</span><br />
+<br />
+<span>In most cases burnout is just an illusion. If you don&#39;t have motivation push through the wall. People usually don&#39;t pass the wall as they feel they are burned out. After pushing through the wall you will have the most fun, for example you will be able playing the guitar greatly.</span><br />
+<br />
+<h2 style='display: inline'>Physical health</h2><br />
+<br />
+<span>Utilise a standing desk and treadmill (you could walk and type at the same time). Increase the incline in order to burn more calories. Even on the standing desk you burn more calories than sitting. When you use pomodoro then you can use the small breaks for push-ups (maybe won&#39;t do as good when you are in a fasted state).</span><br />
+<br />
+<ul>
+<li>You can only do one thing, lose fat or gain muscles. Not both at the same time.</li>
+<li>Train your strength by heavy lifting, but only with a very few repetitions (e.g. 5 max for each exercise, everything over this is body building).</li>
+<li>If you want to increase the muscle mass use medium weights but lift them more often. If you want to increase your endurance lift light weights but with even more reps.</li>
+<li>Avoid highly processed foods</li>
+</ul><br />
+<span>Intermittent fasting is an effective method to maintain weight and health. But it does not mean that you can only eat junk food in the feeding windows. Also, diet and nutrition is the most important for health and fitness. They make it also easier to stay focused and positive.</span><br />
+<br />
+<h2 style='display: inline'>No drama</h2><br />
+<br />
+<span>Avoid drama at work. Where are humans there is drama. You can decide where to spent your energy in. But don&#39;t avoid conflict. Conflict is healthy in any kind of relationship. Be tactful and state your opinion. The goal is to find the best solution to the problem.</span><br />
+<br />
+<span>Don&#39;t worry about other people what they do and don&#39;t do. You only worry about you. Shut up and get your own things done. But you could help to inspire a not working colleague.</span><br />
+<br />
+<ul>
+<li>During an argument, take the opponent&#39;s position and see how your opinion changes.</li>
+<li>If you they to convince someone else it&#39;s an argument. Of you try to find the best solution it is a good resolution.</li>
+<li>If someone is hurting the team let the manager know but phrase it nicely.</li>
+<li>How to get rid of a never ending talking person? Set up focus hours officially where you don&#39;t want to be interrupted. Present as if it is your defect that you get interrupted easily.</li>
+<li>TOXIC PEOPLE: AVOID THEM. RUN.</li>
+<li>Boss likes if you get shit done without getting asked all the time about things and also without drama.</li>
+</ul><br />
+<span>You have to learn how to work in a team. Be honest but tactful. It&#39;s not too be the loudest but about selling your ideas. Don&#39;t argue otherwise you won&#39;t sell anything. Be persuasive by finding the common ground. Or lead the colleagues to your idea and don&#39;t sell it upfront. Communicate clearly.</span><br />
+<br />
+<h1 style='display: inline'>Personal brand</h1><br />
+<br />
+<ul>
+<li>Invest your value outside the company. Build your personal brand. Show how valuable you are, also to other companies. Become an asset.</li>
+<li>Invest in your education. Make your goals known. If you want something ask for it (see also the sections about goals in this document).</li>
+</ul><br />
+<h2 style='display: inline'>Market yourself</h2><br />
+<br />
+<ul>
+<li>The best way to market yourself is to make you usable.</li>
+<li>Create a brand. Decide your focus. Throw your name out as often as possible.</li>
+</ul><br />
+<span>Have a blog. Schedule your posts. Consistency beats every other factor. E.g. post once a month a new post. Find your voice, you don&#39;t have to sound academic. Keep writing, if you keep it long enough the rewards will be coming. Your own blog can take 5 years to take off. Most people give up too soon.</span><br />
+<br />
+<ul>
+<li>Consistency of your blog is key. Also write quality content. Don&#39;t try to be a man of success but try to be a man of value.</li>
+<li>Have an elevator pitch: "buetow.org - Having fun with computers!"</li>
+<li>Have social media accounts, especially the ones which are more tech related.</li>
+</ul><br />
+<h2 style='display: inline'>Networking</h2><br />
+<br />
+<span>Ask people so they talk about themselves. They are not really interested in you. Use meetup.com to find groups you are interested and build up the network over time. Don&#39;t drink on social networking events even when others do. Talking to other people at events only has upsides. Just saying "hi" and introducing yourself is enough. What worse can happen? If the person rejects you so what, life goes on. Ask open questions and no "yes" and "no" questions. E.g.: "What is your story, why are you here?".</span><br />
+<br />
+<h2 style='display: inline'>Public speaking</h2><br />
+<br />
+<span>Before your talk go on stage 10 minutes in advance. Introduce yourself to the front row people. During the talk they will smile at you and encourage you during your talk.</span><br />
+<br />
+<ul>
+<li>Try at least 5 times before giving up public speaking. You can also start small, e.g. present a topic at work you are learning.</li>
+<li>Practise your talk and timing. You can also record your practicing.</li>
+</ul><br />
+<span>Just do it. Just go to conferences. Even if you are not speaking. Sell your boss what you would learn and "this and that" and you would present the learnings to the team afterwards.</span><br />
+<br />
+<h1 style='display: inline'>New job</h1><br />
+<br />
+<h2 style='display: inline'>For the interview</h2><br />
+<br />
+<ul>
+<li>Build up a network before the interview. E.g., follow and comment blogs. Or go to meet-ups and conferences. Join user groups.</li>
+<li>Ask to touch base before the real interview and ask questions about the company. Do "pre-interviews".</li>
+<li>Have a blog, a CV can only be 2 pages and an interview only can last only 2 hours. A blog helps you also to be a better communicator.</li>
+</ul><br />
+<span>If you are specialized then there is a better chance to get a fitting job. No one will hire a general lawyer if there are specialized lawyers available. Even if you are specialized, you will have a wide range of skills (T-shape knowledge).</span><br />
+<br />
+<h2 style='display: inline'>Find the right type of company</h2><br />
+<br />
+<span>Not all companies are equal. They have individual cultures and guidelines.</span><br />
+<br />
+<ul>
+<li>Startup: dynamic and larger impact. Many hats on.</li>
+<li>Medium size companies: most stable ones. Not cutting edge technologies. No crazy working hours.</li>
+<li>Large company: very established with a lot of structure however constant layoffs and restructurings. Less impact you can have. Complex politics.</li>
+<li>Working for yourself: This is harder than you think, probably much harder.</li>
+</ul><br />
+<span>Work in a tech. company if you want to work on/with cutting edge technologies.</span><br />
+<br />
+<h2 style='display: inline'>Apply for the new job</h2><br />
+<br />
+<span>Get a professional resume writer. Get referrals of writers and get samples from there. Get sufficient with algorithm and data structures interview questions. Cracking the coding interview book and blog </span><br />
+<br />
+<ul>
+<li>Apply for each job with a specialised CV each. Each CV fits the job better.</li>
+<li>Best get a job via a personal referral or inbound marketing. The latter is somehow rare.</li>
+<li>Inbound marketing is for example someone responds to your blog and offers you a job.</li>
+<li>Interview the interviewer. Be persistent.</li>
+<li>Create creative looking resumes, see simple programmer website. Action-result style for a resume.</li>
+</ul><br />
+<span>Invest in your dress code as appearance masters. It does make sense to invest in your style. You could even hire a professional stylist (not my personal way though).</span><br />
+<br />
+<h2 style='display: inline'>Negotiation</h2><br />
+<br />
+<ul>
+<li>Whoever names the number first loses. You don&#39;t know what someone else is expecting unless told. Low ball number may be an issue but you have to know the market.</li>
+<li>Salary is not about what you need but what you are worth. Try to find out what you are worth.</li>
+<li>Big tech companies have a pay scale. You can ask for this.</li>
+<li>Don&#39;t tell your current salary. Only do one counter offer and say "If you do X then I commit today". Be tactful and not rude. Nobody wants to be taken advantage of. Also, don&#39;t be arrogant.</li>
+<li>If the company wants to know your range, respond: "I would rather learn more about the job and compensation. You have a range in mind, correct?" Be brave and just pause here.</li>
+<li>Otherwise, if the company refuses then say "if you tell me what the range is and although I am not yet sure yet what are my exact salary requirements are I can see if the range is of what I am looking for. If they absolute refuse give a high ball range you would expect and make it conditional to the overall compensation package. E.g. 70k to 100k depending on the compensation package. THE LOW END SHOULD BE YOUR REAL LOW END. Play a little bit of hardball here and be brave. Practise it.</li>
+<li>Put 10 percent on top of the salary range into a counter offer.</li>
+<li>Everything is negotiable, not only the salary.</li>
+<li>Job markup rate: Check it regarding the recruitment rate negotiation.</li>
+<li>Don&#39;t make a rushed decision based on deadlines. Make a fairly high counter offer shortly before deadline.</li>
+<li>You should also cope with rejections while selling yourself. There is no such thing as job security.</li>
+</ul><br />
+<ul>
+<li>Never spilt the difference is the best book for learning negotiation techniques..</li>
+</ul><br />
+<h2 style='display: inline'>Leaving the old job</h2><br />
+<br />
+<span>When leaving a job make a clean and non personal as possible. Never complain and never explain. Don&#39;t worry about abandonment of the team. Everybody is replacement and you make a business decision. Don&#39;t threaten to quit as you are replaceable.</span><br />
+<br />
+<h1 style='display: inline'>Other things</h1><br />
+<br />
+<ul>
+<li>As a leader lead by example and don&#39;t lead from the Eiffel tower.</li>
+<li>As a leader you are responsible for the team. If the team fails then it&#39;s your fault only.</li>
+</ul><br />
+<h2 style='display: inline'>Testing</h2><br />
+<br />
+<span>Unit testing Vs regression testing: Unit tests test the smallest possible unit and get rewritten if the unit gets changed. It&#39;s like programming against a specification n. Regression tests test whether the software still works after the change. Now you know more than most software engineers.</span><br />
+<br />
+<h2 style='display: inline'>Books to read</h2><br />
+<br />
+<ul>
+<li>Clean Code</li>
+<li>Code Complete</li>
+<li>Cracking the Interview - Lessons and Solutions.</li>
+<li>Daniels Book "Drive" (about internal and external motivation)</li>
+<li>God&#39;s degree (inventor of Dilbert)</li>
+<li>Head first Design Patterns</li>
+<li>How to win Friends and influence People</li>
+<li>Never Split the Difference [X]</li>
+<li>Structure and programming functional programs</li>
+<li>The obstacle is the way [X]</li>
+<li>The passionate programmer</li>
+<li>The Power of Positive Thinking (Highly religious - I personally don&#39;t like it)</li>
+<li>The Pragmatic Programmer [X]</li>
+<li>The war of Art (to combat procrastination)</li>
+<li>Willpower Instinct</li>
+</ul><br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to paul at buetow.org :-)</span><br />
+<br />
+<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
         <title>KISS server monitoring with Gogios</title>
         <link href="gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi" />
         <id>gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi</id>
         <updated>2023-06-01T21:10:17+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</summary>
@@ -289,7 +876,7 @@ http://www.gnu.org/software/src-highlite -->
         <id>gemini://foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.gmi</id>
         <updated>2023-05-06T17:23:16+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'The Obstacle Is the Way' by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</summary>
@@ -381,9 +968,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -398,7 +986,7 @@ http://www.gnu.org/software/src-highlite -->
         <id>gemini://foo.zone/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi</id>
         <updated>2023-04-30T13:10:26+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</summary>
@@ -562,11 +1150,11 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 </ul><br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to hi@foo.zone :-)</span><br />
 <br />
@@ -580,7 +1168,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
         <id>gemini://foo.zone/gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi</id>
         <updated>2023-04-09T22:31:42+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
@@ -853,7 +1441,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <id>gemini://foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes.gmi</id>
         <updated>2023-04-01T20:00:17+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'Never split the difference' by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
@@ -991,9 +1579,10 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1007,7 +1596,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <id>gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi</id>
         <updated>2023-03-25T17:50:32+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
@@ -1162,10 +1751,11 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1179,7 +1769,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <id>gemini://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi</id>
         <updated>2023-03-16T00:55:20+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
@@ -1270,9 +1860,10 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide &amp; Soft Skills" book notes</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -1287,7 +1878,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <id>gemini://foo.zone/gemfeed/2023-02-26-how-to-shut-down-after-work.gmi</id>
         <updated>2023-02-26T23:48:01+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won't just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers' interest that you fully relax and shut down after work. </summary>
@@ -1381,7 +1972,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <id>gemini://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.gmi</id>
         <updated>2023-01-23T15:31:52+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Art by Joan Stark</summary>
@@ -1538,7 +2129,7 @@ Art by Joan Stark
         <id>gemini://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi</id>
         <updated>2022-12-24T23:18:40+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my 'Creative universe' post:</summary>
@@ -1662,7 +2253,7 @@ Art by Joan Stark
         <id>gemini://foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi</id>
         <updated>2022-11-24T11:17:15+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Art by      \ \_!  / __!</summary>
@@ -1786,74 +2377,6 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
-<br />
-<h1 style='display: inline'>Appendix</h1><br />
-<br />
-<span>This is the VimScript I mentioned earlier, which parses a table of contents index of my scanned paper journals and opens the corresponding PDF at the right page in <span class='inlinecode'>zathura</span>:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">function</font></b>! ReadJournalPageNumber<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-        <b><font color="#0000FF">for</font></b><font color="#FF6600"> str in </font><b><font color="#0000FF">split</font></b><font color="#990000">(</font><b><font color="#000080">getline</font></b><font color="#990000">(</font><font color="#FF0000">"."</font><font color="#990000">)</font>, <font color="#FF0000">"[ ,]"</font><font color="#990000">)</font>
-            <b><font color="#0000FF">if</font></b> str <font color="#990000">=~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-                <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> str
-                <b><font color="#0000FF">break</font></b>
-            <b><font color="#0000FF">end</font></b>
-        <b><font color="#0000FF">endfor</font></b>
-    <b><font color="#0000FF">endif</font></b>
-    <b><font color="#0000FF">return</font></b> page
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! ReadJournalMeta<font color="#990000">()</font>
-<font color="#FF6600">   </font> normal! mj
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaFilePath:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaFilePath</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cWORD&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaFilePath</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaOffset:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaOffset</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPageAtOffset:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPageAtOffset</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPageAtOffset</font>
-
-<font color="#FF6600">   </font> <font color="#993399">1</font>/MetaPagesPerScan:/
-<font color="#FF6600">   </font> normal! 3w
-    <b><font color="#0000FF">let</font></b> <font color="#000080">s:metaPagesPerScan</font> <font color="#990000">=</font> <b><font color="#000080">expand</font></b><font color="#990000">(</font><font color="#FF0000">"&lt;cword&gt;"</font><font color="#990000">)</font>
-    <b><font color="#0000FF">echom</font></b> <font color="#000080">s:metaPagesPerScan</font>
-
-<font color="#FF6600">   </font> normal! `<b><font color="#0000FF">j</font></b>
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
-    <b><font color="#0000FF">return</font></b> <font color="#000080">s:metaOffset</font> <font color="#990000">+</font> <font color="#990000">(</font><font color="#000080">a:page</font> <font color="#990000">-</font> <font color="#000080">s:metaPageAtOffset</font><font color="#990000">)</font> / <font color="#000080">s:metaPagesPerScan</font>
-<b><font color="#0000FF">endfunction</font></b>
-
-<b><font color="#0000FF">function</font></b>! OpenJournalPage<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> page <font color="#990000">=</font> ReadJournalPageNumber<font color="#990000">()</font>
-    <b><font color="#0000FF">if</font></b> page <font color="#990000">!~</font># <font color="#FF0000">'^</font><font color="#CC33CC">\d\+</font><font color="#FF0000">$'</font>
-        <b><font color="#0000FF">echoerr</font></b> <font color="#FF0000">"Could not identify Journal page number"</font>
-    <b><font color="#0000FF">end</font></b>
-    <b><font color="#0000FF">call</font></b> ReadJournalMeta<font color="#990000">()</font>
-    <b><font color="#0000FF">let</font></b> pdfPage <font color="#990000">=</font> GetPdfPage<font color="#990000">(</font>page<font color="#990000">)</font>
-    <b><font color="#0000FF">echon</font></b> <font color="#FF0000">"Location is "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font> <font color="#990000">.</font> <font color="#FF0000">":"</font> <font color="#990000">.</font> pdfPage
-    <b><font color="#0000FF">call</font></b> <b><font color="#000080">system</font></b><font color="#990000">(</font><font color="#FF0000">"zathura --mode fullscreen -P "</font> <font color="#990000">.</font> pdfPage <font color="#990000">.</font> <font color="#FF0000">" "</font> <font color="#990000">.</font> <font color="#000080">s:metaFilePath</font><font color="#990000">)</font>
-<i><font color="#9A1900">    " call system("evince -p " . pdfPage . " " . s:metaFilePath)</font></i>
-<b><font color="#0000FF">endfunction</font></b>
-
-nmap ,<b><font color="#0000FF">j</font></b> :<b><font color="#0000FF">call</font></b> OpenJournalPage<font color="#990000">()</font><font color="#FF6600">&lt;CR&gt;</font>
-</pre>
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -1863,7 +2386,7 @@ nmap ,<b><font color="#0000FF">j</font></b> :<b><font color="#0000FF">call</font
         <id>gemini://foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd.gmi</id>
         <updated>2022-10-30T11:03:19+02:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</summary>
@@ -2212,9 +2735,9 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -2228,7 +2751,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <id>gemini://foo.zone/gemfeed/2022-09-30-after-a-bad-nights-sleep.gmi</id>
         <updated>2022-09-30T09:53:23+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Everyone has it once in a while: A bad night's sleep. Here I attempt to list valuable tips on how to deal with it.</summary>
@@ -2342,7 +2865,7 @@ jgs                (________\  \
         <id>gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi</id>
         <updated>2022-08-27T18:25:57+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
@@ -2443,10 +2966,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -2460,7 +2984,7 @@ http://www.gnu.org/software/src-highlite -->
         <id>gemini://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi</id>
         <updated>2022-07-30T12:14:31+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</summary>
@@ -3138,7 +3662,7 @@ rex commons
         <id>gemini://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff.gmi</id>
         <updated>2022-06-15T08:47:44+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</summary>
@@ -3482,7 +4006,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <id>gemini://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi</id>
         <updated>2022-05-27T07:50:12+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and `perl` the name of the interpreter or the interpreter command.</summary>
@@ -3597,7 +4121,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <span>Here are some reasons why not to chose Perl and look for "better" alternatives:</span><br />
 <br />
 <ul>
-<li>If performance is your main objectives, then Perl might not be the language to use. Perl is a dynamic interpreted language, and it will generally never be as fast as statically typed languages compiled to native binaries (e.g. C/C++/Rust/Haskell) or statically typed languages run in a VM with JIT (e.g. Java) or gradually typed languages run in a VM (e.g. Raku) or languages like Golang (statically typed, compiled to a binary but still with a runtime in the binary). Perl might be still faster than the other language listed here in certain circumstances (e.g. faster startup time than Java or faster regular expressions engine), but usually it&#39;s not. It&#39;s not a problem of Perl, it&#39;s a problem of all dynamic scripting languages including Python, Ruby, ....</li>
+<li>If performance is your main objectives, then Perl might not be the language to use. Perl is a dynamic interpreted language, and it will generally never be as fast as statically typed languages compiled to native binaries (e.g. C/C++/Rust/Haskell) or statically typed languages run in a VM with JIT (e.g. Java) or languages like Golang (statically typed, compiled to a binary but still with a runtime in the binary). Perl might be still faster than the other language listed here in certain circumstances (e.g. faster startup time than Java or faster regular expressions engine), but usually it&#39;s not. It&#39;s not a problem of Perl, it&#39;s a problem of all dynamic scripting languages including Python, Ruby, ....</li>
 <li>Don&#39;t use Perl (just yet) if you want to code object-oriented. Perl supports OOP, but it feels clunky and odd to use (blessed references to any data types are objects) and doesn&#39;t support real encapsulation out of the box. There are many (many) extensions available on CPAN to make OOP better, but that&#39;s totally fragmented. The most popular extension, Moose, comes with a huge dependency tree. But wait for Perl 7. It will maybe come with a new object system (an object system inspired by Raku).</li>
 <li>It&#39;s possible to write large programs in Perl (make difficult things possible), but it might not be the best choice here. This also leads back to the clunky object system Perl has. You could write your projects in a procedural or functional style (Perl perfectly fits here), but OOP seems to be the gold standard for large projects nowadays. Functional programming requires a different mindset, and pure procedural programming lacks abstractions.</li>
 <li>Apply common sense. What is the skill set your team has? What&#39;s already widely used and supported at work? Which languages comes with the best modules for the things you want to work on? Maybe Python is the answer (better machine learning modules). Maybe Perl is the better choice (better Bioinformatic modules). Perhaps Ruby is already the de-facto standard at work and everyone knows at least a little Ruby (as it happened to be at my workplace) and Ruby is "good enough" for all the tasks already. But that&#39;s not a hindrance to throw in a Perl one-liner once in a while :P.</li>
@@ -3631,10 +4155,10 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -3648,7 +4172,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <id>gemini://foo.zone/gemfeed/2022-04-10-creative-universe.gmi</id>
         <updated>2022-04-10T10:09:11+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</summary>
@@ -3807,7 +4331,7 @@ learn () {
         <id>gemini://foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0.gmi</id>
         <updated>2022-03-06T18:11:39+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</summary>
@@ -4107,9 +4631,9 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <br />
 <span>Thanks!</span><br />
 <br />
@@ -4127,7 +4651,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
         <id>gemini://foo.zone/gemfeed/2022-02-04-computer-operating-systems-i-use.gmi</id>
         <updated>2022-02-04T09:58:22+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</summary>
@@ -4374,7 +4898,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <id>gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi</id>
         <updated>2022-01-23T16:42:04+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.</summary>
@@ -4439,7 +4963,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <id>gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi</id>
         <updated>2022-01-01T23:36:15+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
@@ -4462,8 +4986,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <br />
 <h2 style='display: inline'>Redirection</h2><br />
 <br />
@@ -4930,10 +5454,10 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -4947,7 +5471,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <id>gemini://foo.zone/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person.gmi</id>
         <updated>2021-12-26T12:02:02+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</summary>
@@ -5091,7 +5615,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <id>gemini://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.gmi</id>
         <updated>2021-11-29T14:06:14+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
@@ -5114,8 +5638,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <span>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <h2 style='display: inline'>TCP/IP networking</h2><br />
 <br />
@@ -5564,10 +6088,10 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -5581,7 +6105,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <id>gemini://foo.zone/gemfeed/2021-10-22-defensive-devops.gmi</id>
         <updated>2021-10-22T10:02:46+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</summary>
@@ -5702,7 +6226,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <id>gemini://foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid.gmi</id>
         <updated>2021-09-12T09:39:20+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</summary>
@@ -5818,7 +6342,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <id>gemini://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi</id>
         <updated>2021-08-01T10:37:58+03:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </summary>
@@ -5953,7 +6477,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <id>gemini://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi</id>
         <updated>2021-07-04T10:51:23+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</summary>
@@ -6076,7 +6600,7 @@ Hello World
         <id>gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi</id>
         <updated>2021-06-05T19:03:32+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</summary>
@@ -6260,13 +6784,14 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -6280,7 +6805,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
         <id>gemini://foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide.gmi</id>
         <updated>2021-05-16T14:51:57+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. </summary>
@@ -6670,10 +7195,10 @@ fi
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -6687,7 +7212,7 @@ fi
         <id>gemini://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
         <updated>2021-04-24T19:28:41+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>ASCII Art by Andy Hood!</summary>
@@ -6775,10 +7300,11 @@ fi
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -6792,7 +7318,7 @@ fi
         <id>gemini://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
         <updated>2021-04-22T19:28:41+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</summary>
@@ -6908,9 +7434,9 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
@@ -6924,7 +7450,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
         <id>gemini://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
         <updated>2018-06-01T14:50:29+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </summary>
@@ -7130,7 +7656,7 @@ Total time: 1213.00s
         <id>gemini://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi</id>
         <updated>2016-11-20T22:10:57+00:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</summary>
@@ -7263,7 +7789,7 @@ http://www.gnu.org/software/src-highlite -->
         <id>gemini://foo.zone/gemfeed/2016-05-22-spinning-up-my-own-authoritative-dns-servers.gmi</id>
         <updated>2016-05-22T18:59:01+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains 'buetow.org' and 'buetow.zone'. My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</summary>
@@ -7518,7 +8044,7 @@ apply Service "dig6" {
         <id>gemini://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.gmi</id>
         <updated>2016-04-16T22:43:42+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</summary>
@@ -7564,7 +8090,7 @@ apply Service "dig6" {
         <id>gemini://foo.zone/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi</id>
         <updated>2016-04-09T18:29:47+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.</summary>
@@ -7971,7 +8497,7 @@ Notice: Finished catalog run in 206.09 seconds
         <id>gemini://foo.zone/gemfeed/2016-04-03-offsite-backup-with-zfs.gmi</id>
         <updated>2016-04-03T22:43:42+01:00</updated>
         <author>
-            <name>Paul Buetow</name>
+            <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
         <summary>When it comes to data storage and potential data loss, I am a paranoid person. It is due to my job and a personal experience I encountered over ten years ago: A single drive failure and loss of all my data (pictures, music, etc.).</summary>
@@ -8018,1121 +8544,6 @@ Notice: Finished catalog run in 206.09 seconds
 <h2 style='display: inline'>Walking one round less</h2><br />
 <br />
 <span>I am thinking of buying a second 2TB USB drive and setting it up the same way as the first one. So I could alternate the backups. One drive would be at the secret location, and the other drive would be at home. And these drives would swap place after each cycle. This would give some security about the failure of that drive, and I would have to go to the secret location only once (swapping the drives) instead of twice (picking that drive up to update the data + bringing it back to the remote location).</span><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Run Debian on your phone with Debroid</title>
-        <link href="gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi" />
-        <id>gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi</id>
-        <updated>2015-12-05T16:12:57+00:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Run Debian on your phone with Debroid</h1><br />
-<br />
-<span class='quote'>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</span><br />
-<br />
-<pre>
- ____       _               _     _ 
-|  _ \  ___| |__  _ __ ___ (_) __| |
-| | | |/ _ \ &#39;_ \| &#39;__/ _ \| |/ _` |
-| |_| |  __/ |_) | | | (_) | | (_| |
-|____/ \___|_.__/|_|  \___/|_|\__,_|
-                                    
-</pre>
-<br />
-<span>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</span><br />
-<br />
-<a href='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png'><img src='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
-<br />
-<h2 style='display: inline'>Foreword</h2><br />
-<br />
-<span>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </span><br />
-<br />
-<h2 style='display: inline'>Step by step guide</h2><br />
-<br />
-<span>All scripts mentioned here can be found on GitHub at:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/debroid'>https://codeberg.org/snonux/debroid</a><br />
-<br />
-<h3 style='display: inline'>First debootstrap stage</h3><br />
-<br />
-<span>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>sudo dnf install debootstrap
-<i><font color="#9A1900"># 5g</font></i>
-dd <b><font color="#0000FF">if</font></b><font color="#990000">=</font>/dev/zero <font color="#009900">of</font><font color="#990000">=</font>jessie<font color="#990000">.</font>img <font color="#009900">bs</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">1024</font> <font color="#990000">]</font> <font color="#990000">\</font>
-  <font color="#009900">count</font><font color="#990000">=</font><font color="#009900">$[</font> <font color="#993399">1024</font> <font color="#990000">*</font> <font color="#993399">5</font> <font color="#990000">]</font>
-
-<i><font color="#9A1900"># Show used loop devices</font></i>
-sudo losetup -f
-<i><font color="#9A1900"># Store the next free one to $loop</font></i>
-<font color="#009900">loop</font><font color="#990000">=</font>loopN
-sudo losetup /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie<font color="#990000">.</font>img
-
-mkdir jessie
-sudo mkfs<font color="#990000">.</font>ext4 /dev<font color="#990000">/</font><font color="#009900">$loop</font>
-sudo mount /dev<font color="#990000">/</font><font color="#009900">$loop</font> jessie
-sudo debootstrap --foreign --variant<font color="#990000">=</font>minbase <font color="#990000">\</font>
-  --arch armel jessie jessie<font color="#990000">/</font> <font color="#990000">\</font>
-  http<font color="#990000">:</font>//http<font color="#990000">.</font>debian<font color="#990000">.</font>net/debian
-sudo umount jessie
-</pre>
-<br />
-<h3 style='display: inline'>Copy Debian image to the phone</h3><br />
-<br />
-<span>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>adb root <font color="#990000">&amp;&amp;</font> adb wait-for-device <font color="#990000">&amp;&amp;</font> adb shell
-mkdir -p /storage/sdcard<font color="#993399">1</font>/Linux/jessie
-<b><font color="#0000FF">exit</font></b>
-
-<i><font color="#9A1900"># Sparse image problem, may be too big for copying otherwise</font></i>
-gzip jessie<font color="#990000">.</font>img
-<i><font color="#9A1900"># Copy over</font></i>
-adb push jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz /storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
-adb shell
-cd /storage/sdcard<font color="#993399">1</font>/Linux
-gunzip jessie<font color="#990000">.</font>img<font color="#990000">.</font>gz
-
-<i><font color="#9A1900"># Show used loop devices</font></i>
-losetup -f
-<i><font color="#9A1900"># Store the next free one to $loop</font></i>
-<font color="#009900">loop</font><font color="#990000">=</font>loopN
-
-<i><font color="#9A1900"># Use the next free one (replace the loop number)</font></i>
-losetup /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie<font color="#990000">.</font>img
-mount -t ext4 /dev/block<font color="#990000">/</font><font color="#009900">$loop</font> <font color="#009900">$(pwd)</font>/jessie
-
-<i><font color="#9A1900"># Bind-Mound proc, dev, sys`</font></i>
-busybox mount --bind /proc <font color="#009900">$(pwd)</font>/jessie/proc
-busybox mount --bind /dev <font color="#009900">$(pwd)</font>/jessie/dev
-busybox mount --bind /dev/pts <font color="#009900">$(pwd)</font>/jessie/dev/pts
-busybox mount --bind /sys <font color="#009900">$(pwd)</font>/jessie/sys
-
-<i><font color="#9A1900"># Bind-Mound the rest of Android</font></i>
-mkdir -p <font color="#009900">$(pwd)</font>/jessie/storage/sdcard{<font color="#993399">0</font><font color="#990000">,</font><font color="#993399">1</font>}
-busybox mount --bind /storage/emulated <font color="#990000">\</font>
-  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">0</font>
-busybox mount --bind /storage/sdcard<font color="#993399">1</font> <font color="#990000">\</font>
-  <font color="#009900">$(pwd)</font>/jessie/storage/sdcard<font color="#993399">1</font>
-
-<i><font color="#9A1900"># Check mounts</font></i>
-mount <font color="#990000">|</font> grep jessie
-</pre>
-<br />
-<h3 style='display: inline'>Second debootstrap stage</h3><br />
-<br />
-<span>This is to be performed on the Android phone itself (inside a Debian chroot):</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>chroot <font color="#009900">$(pwd)</font>/jessie /bin/bash -l
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/bin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/local/sbin
-/debootstrap/debootstrap --second-stage
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave chroot</font></i>
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave adb shell</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Setup of various scripts</h3><br />
-<br />
-<span>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Install script jessie.sh</font></i>
-adb push storage/sdcard<font color="#993399">1</font>/Linux/jessie<font color="#990000">.</font>sh /storage/sdcard/Linux/jessie<font color="#990000">.</font>sh
-adb shell
-cd /storage/sdcard<font color="#993399">1</font>/Linux
-sh jessie<font color="#990000">.</font>sh enter
-
-<i><font color="#9A1900"># Bashrc</font></i>
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;~/.</font>bashrc
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
-<b><font color="#0000FF">export</font></b> <font color="#009900">EDITOR</font><font color="#990000">=</font>vim
-hostname <font color="#009900">$(</font>cat /etc/hostname<font color="#990000">)</font>
-END
-
-<i><font color="#9A1900"># Fixing an error message while loading the profile</font></i>
-sed -i s<i><font color="#9A1900">#id#/usr/bin/id# /etc/profile</font></i>
-
-<i><font color="#9A1900"># Setting the hostname</font></i>
-echo phobos <font color="#990000">&gt;</font> /etc/hostname
-echo <font color="#993399">127.0</font><font color="#990000">.</font><font color="#993399">0.1</font> phobos <font color="#990000">&gt;</font> /etc/hosts
-hostname phobos
-
-<i><font color="#9A1900"># Apt-sources</font></i>
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> sources<font color="#990000">.</font>list
-deb http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
-deb-src http<font color="#990000">:</font>//ftp<font color="#990000">.</font>uk<font color="#990000">.</font>debian<font color="#990000">.</font>org/debian<font color="#990000">/</font> jessie main contrib non-free
-END
-apt-get update
-apt-get upgrade
-apt-get dist-upgrade
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Entering Debroid and enable a service</h3><br />
-<br />
-<span>This enters Debroid on your phone and starts the example service uptimed:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>sh jessie<font color="#990000">.</font>sh enter
-
-<i><font color="#9A1900"># Setup example serice uptimed</font></i>
-apt-get install uptimed
-cat <font color="#990000">&lt;&lt;</font>END <font color="#990000">&gt;</font> /etc/rc<font color="#990000">.</font>debroid
-<b><font color="#0000FF">export</font></b> <font color="#009900">PATH</font><font color="#990000">=</font>/usr/local/sbin<font color="#990000">:</font>/usr/local/bin<font color="#990000">:</font>/usr/sbin<font color="#990000">:</font>/usr/bin<font color="#990000">:</font>/sbin<font color="#990000">:</font>/bin<font color="#990000">:</font><font color="#009900">$PATH</font>
-service uptimed status <font color="#990000">&amp;&gt;</font>/dev/null <font color="#990000">||</font> service uptimed start
-<b><font color="#0000FF">exit</font></b> <font color="#993399">0</font>
-END
-
-chmod <font color="#993399">0755</font> /etc/rc<font color="#990000">.</font>debroid
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
-<b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit adb shell</font></i>
-</pre>
-<br />
-<h3 style='display: inline'>Include to Android startup:</h3><br />
-<br />
-<span>If you want to start Debroid automatically whenever your phone starts, then do the following:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>adb push data/local/userinit<font color="#990000">.</font>sh /data/local/userinit<font color="#990000">.</font>sh
-adb shell
-chmod <font color="#990000">+</font>x /data/local/userinit<font color="#990000">.</font>sh
-<b><font color="#0000FF">exit</font></b>
-</pre>
-<br />
-<span>Reboot &amp; test!  Enjoy!</span><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>The fibonacci.pl.raku.c Polyglot</title>
-        <link href="gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi" />
-        <id>gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi</id>
-        <updated>2014-03-24T21:32:53+00:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>The fibonacci.pl.raku.c Polyglot</h1><br />
-<br />
-<span class='quote'>Published at 2014-03-24T21:32:53+00:00; Updated at 2022-04-23</span><br />
-<br />
-<span>In computing, a polyglot is a computer program or script written in a valid form of multiple programming languages, which performs the same operations or output independent of the programming language used to compile or interpret it.</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Polyglot_(computing)'>https://en.wikipedia.org/wiki/Polyglot_(computing)</a><br />
-<br />
-<h2 style='display: inline'>The Fibonacci numbers</h2><br />
-<br />
-<span>For fun, I programmed my own Polyglot, which is both valid Perl, Raku, C and C++ code (I have added C++ and Raku support in 2022). The exciting part about C and C++ is that $ is a valid character to start variable names with:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#include &lt;stdio.h&gt;</font></i>
-
-<i><font color="#9A1900">#define $arg function_argument</font></i>
-<i><font color="#9A1900">#define my int</font></i>
-<i><font color="#9A1900">#define sub int</font></i>
-<i><font color="#9A1900">#define BEGIN int main(void)</font></i>
-
-<b><font color="#0000FF">my</font></b> <font color="#009900">$arg</font><font color="#990000">;</font>
-
-<b><font color="#0000FF">sub</font></b> <b><font color="#000000">hello</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"Hello, welcome to the Fibonacci Numbers!\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"This program is all, valid C and C++ and Perl and Raku code!\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"It calculates all fibonacci numbers from 0 to 9!\n\n"</font><font color="#990000">);</font>
-    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font><font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-<b><font color="#0000FF">sub</font></b> <b><font color="#000000">fibonacci</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$n</font> <font color="#990000">=</font> <font color="#009900">$arg</font><font color="#990000">;</font>
-
-    <b><font color="#0000FF">if</font></b> <font color="#990000">(</font><font color="#009900">$n</font> <font color="#990000">&lt;</font> <font color="#993399">2</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-        <b><font color="#0000FF">return</font></b> <font color="#009900">$n</font><font color="#990000">;</font>
-    <font color="#FF0000">}</font>
-
-    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib1</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
-    <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$n</font> <font color="#990000">-</font> <font color="#993399">2</font><font color="#990000">;</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$fib2</font> <font color="#990000">=</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">();</font>
-
-    <b><font color="#0000FF">return</font></b> <font color="#009900">$fib1</font> <font color="#990000">+</font> <font color="#009900">$fib2</font><font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-BEGIN <font color="#FF0000">{</font>
-    <b><font color="#000000">hello</font></b><font color="#990000">();</font>
-    <b><font color="#0000FF">my</font></b> <font color="#009900">$i</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
-
-    <b><font color="#0000FF">while</font></b> <font color="#990000">(</font><font color="#009900">$i</font> <font color="#990000">&lt;=</font> <font color="#993399">10</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-        <font color="#009900">$arg</font> <font color="#990000">=</font> <font color="#009900">$i</font><font color="#990000">;</font>
-        <b><font color="#0000FF">printf</font></b><font color="#990000">(</font><font color="#FF0000">"fib(%d) = %d\n"</font><font color="#990000">,</font> <font color="#009900">$i</font><font color="#990000">,</font> <b><font color="#000000">fibonacci</font></b><font color="#990000">());</font>
-        <font color="#009900">$i</font><font color="#990000">++;</font>
-    <font color="#FF0000">}</font>
-<font color="#FF0000">}</font>
-</pre>
-<br />
-<span>You can find the full source code at GitHub:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/perl-c-fibonacci'>https://codeberg.org/snonux/perl-c-fibonacci</a><br />
-<br />
-<h3 style='display: inline'>Let&#39;s run it with C and C++</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> gcc fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
-<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-
-<font color="#990000">%</font> g<font color="#990000">++</font> fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c -o fibonacci
-<font color="#990000">%</font> <font color="#990000">.</font>/fibonacci
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-</pre>
-<br />
-<h3 style='display: inline'>Let&#39;s run it with Perl and Raku</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> perl fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-
-<font color="#990000">%</font> raku fibonacci<font color="#990000">.</font>pl<font color="#990000">.</font>raku<font color="#990000">.</font>c
-Hello<font color="#990000">,</font> welcome to the Fibonacci Numbers<font color="#990000">!</font>
-This program is all<font color="#990000">,</font> valid C and C<font color="#990000">++</font> and Perl and Raku code<font color="#990000">!</font>
-It calculates all fibonacci numbers from <font color="#993399">0</font> to <font color="#993399">9</font><font color="#990000">!</font>
-
-fib<font color="#990000">(</font><font color="#993399">0</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">0</font>
-fib<font color="#990000">(</font><font color="#993399">1</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">2</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">1</font>
-fib<font color="#990000">(</font><font color="#993399">3</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">2</font>
-fib<font color="#990000">(</font><font color="#993399">4</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">3</font>
-fib<font color="#990000">(</font><font color="#993399">5</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">5</font>
-fib<font color="#990000">(</font><font color="#993399">6</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">8</font>
-fib<font color="#990000">(</font><font color="#993399">7</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">13</font>
-fib<font color="#990000">(</font><font color="#993399">8</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">21</font>
-fib<font color="#990000">(</font><font color="#993399">9</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">34</font>
-fib<font color="#990000">(</font><font color="#993399">10</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#993399">55</font>
-</pre>
-<br />
-<span>It&#39;s entertaining to play with :-).</span><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Perl Daemon (Service Framework)</title>
-        <link href="gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi" />
-        <id>gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi</id>
-        <updated>2011-05-07T22:26:02+01:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Perl Daemon (Service Framework)</h1><br />
-<br />
-<span class='quote'>Published at 2011-05-07T22:26:02+01:00; Updated at 2021-05-07</span><br />
-<br />
-<pre>
-   a&#39;!   _,,_ a&#39;!   _,,_     a&#39;!   _,,_
-     \\_/    \  \\_/    \      \\_/    \.-,
-      \, /-( /&#39;-,\, /-( /&#39;-,    \, /-( /
-      //\ //\\   //\ //\\       //\ //\\jrei
-</pre>
-<br />
-<span>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</span><br />
-<br />
-<h2 style='display: inline'>Features</h2><br />
-<br />
-<span>PerlDaemon supports:</span><br />
-<br />
-<ul>
-<li>Automatic daemonizing</li>
-<li>Logging</li>
-<li>log rotation (via SIGHUP)</li>
-<li>Clean shutdown support (SIGTERM)</li>
-<li>Pid file support (incl. check on startup)</li>
-<li>Easy to configure</li>
-<li>Easy to extend</li>
-<li>Multi-instance support (just use a different directory for each instance).</li>
-</ul><br />
-<h2 style='display: inline'>Quick Guide</h2><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Starting</font></i>
- <font color="#990000">.</font>/bin/perldaemon start <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control start<font color="#990000">)</font>
-
-<i><font color="#9A1900"># Stopping</font></i>
- <font color="#990000">.</font>/bin/perldaemon stop <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control stop<font color="#990000">)</font>
-
-<i><font color="#9A1900"># Alternatively: Starting in foreground </font></i>
-<font color="#990000">.</font>/bin/perldaemon start daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>no <font color="#990000">(</font>or shortcut <font color="#990000">.</font>/control foreground<font color="#990000">)</font>
-</pre>
-<br />
-<span>To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</span><br />
-<br />
-<h2 style='display: inline'>How to configure</h2><br />
-<br />
-<span>The daemon instance can be configured in "./conf/perldaemon.conf". If you want to change a property only once, it is also possible to specify it on the command line (which will take precedence over the config file). All available config properties can be displayed via "./control keys":</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>pb@titania<font color="#990000">:~</font>/svn/utils/perldaemon/trunk$ <font color="#990000">.</font>/control keys
-<i><font color="#9A1900"># Path to the logfile</font></i>
-daemon<font color="#990000">.</font><font color="#009900">logfile</font><font color="#990000">=.</font>/log/perldaemon<font color="#990000">.</font>log
-
-<i><font color="#9A1900"># The amount of seconds until the next event look takes place</font></i>
-daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
-
-<i><font color="#9A1900"># Path to the modules dir</font></i>
-daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">dir</font><font color="#990000">=.</font>/lib/PerlDaemonModules
-
-<i><font color="#9A1900"># Specifies either the daemon should run in daemon or foreground mode</font></i>
-daemon<font color="#990000">.</font><font color="#009900">daemonize</font><font color="#990000">=</font>yes
-
-<i><font color="#9A1900"># Path to the pidfile</font></i>
-daemon<font color="#990000">.</font><font color="#009900">pidfile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>pid
-
-<i><font color="#9A1900"># Each module should run every run interval seconds</font></i>
-daemon<font color="#990000">.</font>modules<font color="#990000">.</font><font color="#009900">runinterval</font><font color="#990000">=</font><font color="#993399">3</font>
-
-<i><font color="#9A1900"># Path to the alive file (is touched every loop interval seconds, usable for monitoring)</font></i>
-daemon<font color="#990000">.</font><font color="#009900">alivefile</font><font color="#990000">=.</font>/run/perldaemon<font color="#990000">.</font>alive
-
-<i><font color="#9A1900"># Specifies the working directory</font></i>
-daemon<font color="#990000">.</font><font color="#009900">wd</font><font color="#990000">=./</font>
-</pre>
-<br />
-<h2 style='display: inline'>Example </h2><br />
-<br />
-<span>So let&#39;s start the daemon with a loop interval of 10 seconds:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ <font color="#990000">.</font>/control keys <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
-daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">1</font>
-$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">|</font> grep daemon<font color="#990000">.</font>loopinterval
-daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font>
-$ <font color="#990000">.</font>/control start daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font><font color="#990000">;</font> sleep <font color="#993399">10</font><font color="#990000">;</font> tail -n <font color="#993399">2</font> log/perldaemon<font color="#990000">.</font>log
-Starting daemon now<font color="#990000">...</font>
-Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> Triggering PerlDaemonModules<font color="#990000">::</font>ExampleModule 
-<font color="#990000">(</font>last triggered before <font color="#993399">10</font><font color="#990000">.</font>002106s<font color="#990000">;</font> carry<font color="#990000">:</font> <font color="#993399">7</font><font color="#990000">.</font>002106s<font color="#990000">;</font> wanted interval<font color="#990000">:</font> 3s<font color="#990000">)</font>
-Mon Jun <font color="#993399">13</font> <font color="#993399">11</font><font color="#990000">:</font><font color="#993399">29</font><font color="#990000">:</font><font color="#993399">27</font> <font color="#993399">2011</font> <font color="#990000">(</font>PID <font color="#993399">2838</font><font color="#990000">):</font> ExampleModule Test <font color="#993399">2</font>
-$ <font color="#990000">.</font>/control stop
-Stopping daemon now<font color="#990000">...</font>
-</pre>
-<br />
-<span>If you want to change that property forever, either edit perldaemon.conf or do this:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ <font color="#990000">.</font>/control keys daemon<font color="#990000">.</font><font color="#009900">loopinterval</font><font color="#990000">=</font><font color="#993399">10</font> <font color="#990000">&gt;</font> new<font color="#990000">.</font>conf<font color="#990000">;</font> mv new<font color="#990000">.</font>conf conf/perldaemon<font color="#990000">.</font>conf
-</pre>
-<br />
-<h2 style='display: inline'>HiRes event loop</h2><br />
-<br />
-<span>PerlDaemon uses <span class='inlinecode'>Time::HiRes</span> to make sure that all the events run incorrect intervals. For each loop run, a time carry value is recorded and added to the next loop run to catch up on lost time.</span><br />
-<br />
-<h2 style='display: inline'>Writing your own modules</h2><br />
-<br />
-<h3 style='display: inline'>Example module</h3><br />
-<br />
-<span>This is one of the example modules you will find in the source code. It should be pretty self-explanatory if you know Perl :-).</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> PerlDaemonModules<font color="#990000">::</font>ExampleModule<font color="#990000">;</font>
-
-<b><font color="#0000FF">use</font></b> strict<font color="#990000">;</font>
-<b><font color="#0000FF">use</font></b> warnings<font color="#990000">;</font>
-
-<b><font color="#0000FF">sub</font></b> <b><font color="#000000">new</font></b> <font color="#990000">(</font>$$$<font color="#990000">)</font> <font color="#FF0000">{</font>
-  <b><font color="#0000FF">my</font></b> <font color="#990000">(</font><font color="#009900">$class</font><font color="#990000">,</font> <font color="#009900">$conf</font><font color="#990000">)</font> <font color="#990000">=</font> <font color="#009900">@_</font><font color="#990000">;</font>
-
-  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">bless</font></b> <font color="#FF0000">{</font> conf <font color="#990000">=&gt;</font> <font color="#009900">$conf</font> <font color="#FF0000">}</font><font color="#990000">,</font> <font color="#009900">$class</font><font color="#990000">;</font>
-
-  <i><font color="#9A1900"># Store some private module stuff</font></i>
-  <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font> <font color="#990000">=</font> <font color="#993399">0</font><font color="#990000">;</font>
-
-  <b><font color="#0000FF">return</font></b> <font color="#009900">$self</font><font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-<i><font color="#9A1900"># Runs periodically in a loop (set interval in perldaemon.conf)</font></i>
-<b><font color="#0000FF">sub</font></b> <b><font color="#0000FF">do</font></b> <font color="#990000">(</font>$<font color="#990000">)</font> <font color="#FF0000">{</font>
-  <b><font color="#0000FF">my</font></b> <font color="#009900">$self</font> <font color="#990000">=</font> <b><font color="#0000FF">shift</font></b><font color="#990000">;</font>
-  <b><font color="#0000FF">my</font></b> <font color="#009900">$conf</font> <font color="#990000">=</font> <font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>conf<font color="#FF0000">}</font><font color="#990000">;</font>
-  <b><font color="#0000FF">my</font></b> <font color="#009900">$logger</font> <font color="#990000">=</font> <font color="#009900">$conf</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>logger<font color="#FF0000">}</font><font color="#990000">;</font>
-
-  <i><font color="#9A1900"># Calculate some private module stuff</font></i>
-  <b><font color="#0000FF">my</font></b> <font color="#009900">$count</font> <font color="#990000">=</font> <font color="#990000">++</font><font color="#009900">$self</font><font color="#990000">-&gt;</font><font color="#FF0000">{</font>counter<font color="#FF0000">}</font><font color="#990000">;</font>
-
-  <font color="#009900">$logger</font><font color="#990000">-&gt;</font><b><font color="#000000">logmsg</font></b><font color="#990000">(</font><font color="#FF0000">"ExampleModule Test $count"</font><font color="#990000">);</font>
-<font color="#FF0000">}</font>
-
-<font color="#993399">1</font><font color="#990000">;</font>
-</pre>
-<br />
-<h3 style='display: inline'>Your own module</h3><br />
-<br />
-<span>Want to give it some better use? It&#39;s just as easy as:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre> cd <font color="#990000">.</font>/lib/PerlDaemonModules<font color="#990000">/</font>
- cp ExampleModule<font color="#990000">.</font>pm YourModule<font color="#990000">.</font>pm
- vi YourModule<font color="#990000">.</font>pm
- cd -
- <font color="#990000">.</font>/bin/perldaemon restart <font color="#990000">(</font>or shortcurt <font color="#990000">.</font>/control restart<font color="#990000">)</font>
-</pre>
-<br />
-<span>Now watch <span class='inlinecode'>./log/perldaemon.log</span> closely. It is a good practice to test your modules in &#39;foreground mode&#39; (see above how to do that).</span><br />
-<br />
-<span>BTW: You can install as many modules within the same instance as desired. But they are run in sequential order (in future, they can also run in parallel using several threads or processes).</span><br />
-<br />
-<h2 style='display: inline'>May the source be with you</h2><br />
-<br />
-<span>You can find PerlDaemon (including the examples) at:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/perldaemon'>https://codeberg.org/snonux/perldaemon</a><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)</a><br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
-<br />
-<span>E-Mail your comments to paul at buetow.org :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>The Fype Programming Language</title>
-        <link href="gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi" />
-        <id>gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi</id>
-        <updated>2010-05-09T12:48:29+01:00</updated>
-        <author>
-            <name>Paul Buetow</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>The Fype Programming Language</h1><br />
-<br />
-<span class='quote'>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</span><br />
-<br />
-<pre>
-      ____                                      _        __       
-     / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
-    / / |_| | | | &#39;_ \ / _ \  | | | |/ _ \/ _` | &#39;_ \  | |_| | | |
- _ / /|  _| |_| | |_) |  __/  | |_| |  __/ (_| | | | |_|  _| |_| |
-(_)_/ |_|  \__, | .__/ \___|   \__, |\___|\__,_|_| |_(_)_|  \__, |
-           |___/|_|            |___/                        |___/ 
-</pre>
-<br />
-<span>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</span><br />
-<br />
-<span>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </span><br />
-<br />
-<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It&#39;s not a hype - it&#39;s Fype!".</span><br />
-<br />
-<h2 style='display: inline'>Object-oriented C style</h2><br />
-<br />
-<span>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </span><br />
-<br />
-<span>To give you an idea of how it works here as an example is a snippet from the main Fype "class header":</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
-   <font color="#008080">Tupel</font> <font color="#990000">*</font>p_tupel_argv<font color="#990000">;</font> <i><font color="#9A1900">// Contains command line options</font></i>
-   <font color="#008080">List</font> <font color="#990000">*</font>p_list_token<font color="#990000">;</font> <i><font color="#9A1900">// Initial list of token</font></i>
-   <font color="#008080">Hash</font> <font color="#990000">*</font>p_hash_syms<font color="#990000">;</font> <i><font color="#9A1900">// Symbol table</font></i>
-   <font color="#009900">char</font> <font color="#990000">*</font>c_basename<font color="#990000">;</font>
-<font color="#FF0000">}</font> Fype<font color="#990000">;</font>
-</pre>
-<br />
-<span>And here is a snippet from the primary Fype "class implementation":</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>Fype<font color="#990000">*</font>
-<b><font color="#000000">fype_new</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">malloc</font></b><font color="#990000">(</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>Fype<font color="#990000">));</font>
-
-   p_fype<font color="#990000">-&gt;</font>p_hash_syms <font color="#990000">=</font> <b><font color="#000000">hash_new</font></b><font color="#990000">(</font><font color="#993399">512</font><font color="#990000">);</font>
-   p_fype<font color="#990000">-&gt;</font>p_list_token <font color="#990000">=</font> <b><font color="#000000">list_new</font></b><font color="#990000">();</font>
-   p_fype<font color="#990000">-&gt;</font>p_tupel_argv <font color="#990000">=</font> <b><font color="#000000">tupel_new</font></b><font color="#990000">();</font>
-   p_fype<font color="#990000">-&gt;</font>c_basename <font color="#990000">=</font> NULL<font color="#990000">;</font>
-
-   <b><font color="#000000">garbage_init</font></b><font color="#990000">();</font>
-
-   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font>p_fype<font color="#990000">);</font>
-<font color="#FF0000">}</font>
-
-<font color="#009900">void</font>
-<b><font color="#000000">fype_delete</font></b><font color="#990000">(</font><font color="#008080">Fype</font> <font color="#990000">*</font>p_fype<font color="#990000">)</font> <font color="#FF0000">{</font>
-   <b><font color="#000000">argv_tupel_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_tupel_argv<font color="#990000">);</font>
-
-   <b><font color="#000000">hash_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">,</font> symbol_cleanup_hash_syms_cb<font color="#990000">);</font>
-   <b><font color="#000000">hash_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">);</font>
-
-   <b><font color="#000000">list_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">,</font> token_ref_down_cb<font color="#990000">);</font>
-   <b><font color="#000000">list_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">);</font>
-
-   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">)</font>
-      <b><font color="#000000">free</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">);</font>
-
-   <b><font color="#000000">garbage_destroy</font></b><font color="#990000">();</font>
-<font color="#FF0000">}</font>
-
-<font color="#009900">int</font>
-<b><font color="#000000">fype_run</font></b><font color="#990000">(</font><font color="#009900">int</font> i_argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>pc_argv<font color="#990000">)</font> <font color="#FF0000">{</font>
-   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">fype_new</font></b><font color="#990000">();</font>
-
-   <i><font color="#9A1900">// argv: Maintains command line options</font></i>
-   <b><font color="#000000">argv_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">,</font> i_argc<font color="#990000">,</font> pc_argv<font color="#990000">);</font>
-
-   <i><font color="#9A1900">// scanner: Creates a list of token</font></i>
-   <b><font color="#000000">scanner_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
-
-   <i><font color="#9A1900">// interpret: Interpret the list of token</font></i>
-   <b><font color="#000000">interpret_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
-
-   <b><font color="#000000">fype_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
-
-   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
-<font color="#FF0000">}</font>
-</pre>
-<br />
-<h2 style='display: inline'>Data types</h2><br />
-<br />
-<span>Fype uses auto type conversion. However, if you want to know what&#39;s going on, you may take a look at the following basic data types:</span><br />
-<ul>
-<li>integer - Specifies a number</li>
-<li>double - Specifies a double-precision number</li>
-<li>string - Specifies a string</li>
-<li>number - May be an integer or a double number</li>
-<li>any- May be any type above</li>
-<li>void - No type</li>
-<li>identifier - It&#39;s a variable name or a procedure name, or a function name</li>
-</ul><br />
-<span>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</span><br />
-<br />
-<h2 style='display: inline'>Syntax</h2><br />
-<br />
-<h3 style='display: inline'>Comments</h3><br />
-<br />
-<span>Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</span><br />
-<br />
-<h3 style='display: inline'>Variables</h3><br />
-<br />
-<span>Variables are defined with the "my" keyword (inspired by Perl :-). If you don&#39;t assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</span><br />
-<br />
-<pre>
-my foo = 1 + 2;
-say foo; 
-
-my bar = 12, baz = foo;
-say 1 + bar;
-say bar;
-
-my baz;
-say baz; # Will print out 0
-</pre>
-<br />
-<span>You may use the "defined" keyword to check if an identifier has been defined or not:</span><br />
-<br />
-<pre>
-ifnot defined foo {
-	say "No foo yet defined";
-}
-
-my foo = 1;
-
-if defined foo {
-	put "foo is defined and has the value ";
-	say foo;
-}
-</pre>
-<br />
-<h3 style='display: inline'>Synonyms</h3><br />
-<br />
-<span>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</span><br />
-<br />
-<pre>
-my foo = "foo";
-my bar = \foo;
-foo = "bar";
-
-# The synonym variable should now also set to "bar"
-assert "bar" == bar;
-</pre>
-<br />
-<span>Synonyms can be used for all kind of identifiers. It&#39;s not limited to standard variables but can also be used for function and procedure names (more about functions and procedures later).</span><br />
-<br />
-<pre>
-# Create a new procedure baz
-proc baz { say "I am baz"; }
-
-# Make a synonym baz, and undefine baz
-my bay = \baz;
-
-undef baz;
-
-# bay still has a reference of the original procedure baz
-bay; # this prints aut "I am baz" 
-</pre>
-<br />
-<span>The "syms" keyword gives you the total number of synonyms pointing to a specific value:</span><br />
-<br />
-<pre>
-my foo = 1;
-say syms foo; # Prints 1
-
-my baz = \foo; 
-say syms foo; # Prints 2
-say syms baz; # Prints 2
-
-undef baz;
-say syms foo; # Prints 1
-</pre>
-<br />
-<h2 style='display: inline'>Statements and expressions</h2><br />
-<br />
-<span>A Fype program is a list of statements. Each keyword, expression or function call is part of a statement. Each statement is ended with a semicolon. Example:</span><br />
-<br />
-<pre>
-my bar = 3, foo = 1 + 2; 
-say foo;
-exit foo - bar;
-</pre>
-<br />
-<h3 style='display: inline'>Parenthesis</h3><br />
-<br />
-<span>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</span><br />
-<br />
-<h3 style='display: inline'>Basic expressions</h3><br />
-<br />
-<span>Any "any" value holding a string will be automatically converted to an integer value.</span><br />
-<br />
-<pre>
-(any) &lt;any&gt; + &lt;any&gt;
-(any) &lt;any&gt; - &lt;any&gt;
-(any) &lt;any&gt; * &lt;any&gt;
-(any) &lt;any&gt; / &lt;any&gt;
-(integer) &lt;any&gt; == &lt;any&gt;
-(integer) &lt;any&gt; != &lt;any&gt;
-(integer) &lt;any&gt; &lt;= &lt;any&gt;
-(integer) &lt;any&gt; gt &lt;any&gt;
-(integer) &lt;any&gt; &lt;&gt; &lt;any&gt;
-(integer) &lt;any&gt; gt &lt;any&gt;
-(integer) not &lt;any&gt;
-</pre>
-<br />
-<h3 style='display: inline'>Bitwise expressions</h3><br />
-<br />
-<pre>
-(integer) &lt;any&gt; :&lt; &lt;any&gt;
-(integer) &lt;any&gt; :&gt; &lt;any&gt;
-(integer) &lt;any&gt; and &lt;any&gt;
-(integer) &lt;any&gt; or &lt;any&gt;
-(integer) &lt;any&gt; xor &lt;any&gt;
-</pre>
-<br />
-<h3 style='display: inline'>Numeric expressions</h3><br />
-<br />
-<pre>
-(number) neg &lt;number&gt;
-</pre>
-<br />
-<span>... returns the negative value of "number":</span><br />
-<br />
-<pre>
-(integer) no &lt;integer&gt;
-</pre>
-<br />
-<span>... returns 1 if the argument is 0; otherwise, it will return 0! If no argument is given, then 0 is returned!</span><br />
-<br />
-<pre>
-(integer) yes &lt;integer&gt;
-</pre>
-<br />
-<span>... always returns 1. The parameter is optional. Example:</span><br />
-<br />
-<pre>
-# Prints out 1, because foo is not defined
-if yes { say no defined foo; } 
-</pre>
-<br />
-<h2 style='display: inline'>Control statements</h2><br />
-<br />
-<span>Control statements available in Fype:</span><br />
-<br />
-<pre>
-if &lt;expression&gt; { &lt;statements&gt; }
-</pre>
-<br />
-<span>... runs the statements if the expression evaluates to a true value.</span><br />
-<br />
-<pre>
-ifnot &lt;expression&gt; { &lt;statements&gt; }
-</pre>
-<br />
-<span>... runs the statements if the expression evaluates to a false value.</span><br />
-<br />
-<pre>
-while &lt;expression&gt; { &lt;statements&gt; }
-</pre>
-<br />
-<span>... runs the statements as long as the expression evaluates to a true value.</span><br />
-<br />
-<pre>
-until &lt;expression&gt; { &lt;statements&gt; }
-</pre>
-<br />
-<span>... runs the statements as long as the expression evaluates to a false value.</span><br />
-<br />
-<h2 style='display: inline'>Scopes</h2><br />
-<br />
-<span>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</span><br />
-<br />
-<pre>
-my foo = 1;
-
-{
-	# Prints out 1
-	put defined foo;
-	{
-		my bar = 2;
-
-		# Prints out 1
-		put defined bar;
-
-		# Prints out all available symbols at this
-		# point to stdout. Those are: bar and foo
-		scope;
-	}
-
-	# Prints out 0
-	put defined bar;
-
-	my baz = 3;
-}
-
-# Prints out 0
-say defined bar;
-</pre>
-<br />
-<span>Another example including an actual output:</span><br />
-<br />
-<pre>
-./fype -e ’my global; func foo { my var4; func bar { my var2, var3; func baz { my var1; scope; } baz; } bar; } foo;’
-Scopes:
-Scope stack size: 3
-Global symbols:
-SYM_VARIABLE: global (id=00034, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
-SYM_FUNCTION: foo
-Local symbols:
-SYM_VARIABLE: var1 (id=00038, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
-1 level(s) up:
-SYM_VARIABLE: var2 (id=00036, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
-SYM_VARIABLE: var3 (id=00037, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
-SYM_FUNCTION: baz
-2 level(s) up:
-SYM_VARIABLE: var4 (id=00035, line=-0001, pos=-001, type=TT_INTEGER, dval=0.000000, refs=-1)
-SYM_FUNCTION: bar
-</pre>
-<br />
-<h2 style='display: inline'>Definedness </h2><br />
-<br />
-<pre>
-(integer) defined &lt;identifier&gt;
-</pre>
-<br />
-<span>... returns 1 if "identifier" has been defined. Returns 0 otherwise.</span><br />
-<br />
-<pre>
-(integer) undef &lt;identifier&gt;
-</pre>
-<br />
-<span>... tries to undefine/delete the "identifier". Returns 1 if it succeeded, otherwise 0 is returned.</span><br />
-<br />
-<h2 style='display: inline'>System </h2><br />
-<br />
-<span>These are some system and interpreter specific built-in functions supported:</span><br />
-<br />
-<pre>
-(void) end
-</pre>
-<br />
-<span>... exits the program with the exit status of 0.</span><br />
-<br />
-<pre>
-(void) exit &lt;integer&gt;
-</pre>
-<br />
-<span>... exits the program with the specified exit status.</span><br />
-<br />
-<pre>
-(integer) fork
-</pre>
-<br />
-<span>... forks a subprocess. It returns 0 for the child process and the PID of the child process otherwise! Example:</span><br />
-<br />
-<pre>
-my pid = fork;
-
-if pid {
-	put "I am the parent process; child has the pid ";
-	say pid;
-
-} ifnot pid {
-	say "I am the child process";
-}
-</pre>
-<br />
-<span>To execute the garbage collector do:</span><br />
-<br />
-<pre>
-(integer) GC
-</pre>
-<br />
-<span>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</span><br />
-<br />
-<h3 style='display: inline'>I/O </h3><br />
-<br />
-<pre>
-(any) put &lt;any&gt;
-</pre>
-<br />
-<span>... prints out the argument</span><br />
-<br />
-<pre>
-(any) say &lt;any&gt;
-</pre>
-<br />
-<span>is the same as put, but also includes an ending newline.</span><br />
-<br />
-<pre>
-(void) ln
-</pre>
-<br />
-<span>... just prints a new line.</span><br />
-<br />
-<h2 style='display: inline'>Procedures and functions</h2><br />
-<br />
-<h3 style='display: inline'>Procedures</h3><br />
-<br />
-<span>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It&#39;s using already defined variables (e.g. global variables). A procedure does not have its own namespace. It&#39;s using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</span><br />
-<br />
-<pre>
-proc foo {
-	say 1 + a * 3 + b;
-	my c = 6;
-}
-
-my a = 2, b = 4;
-
-foo; # Run the procedure. Print out "11\n"
-say c; # Print out "6\n";
-</pre>
-<br />
-<h3 style='display: inline'>Nested procedures</h3><br />
-<br />
-<span>It&#39;s possible to define procedures inside of procedures. Since procedures don&#39;t have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</span><br />
-<br />
-<pre>
-proc foo {
-	say "I am foo";
-
-	undef bar;
-	proc bar {
-		say "I am bar";
-	}
-}
-
-# Here bar would produce an error because 
-# the proc is not yet defined!
-# bar; 
-
-foo; # Here the procedure foo will define the procedure bar!
-bar; # Now the procedure bar is defined!
-foo; # Here the procedure foo will redefine bar again!
-</pre>
-<br />
-<h3 style='display: inline'>Functions</h3><br />
-<br />
-<span>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It&#39;s using local (lexical scoped) variables. If a certain variable does not exist, when It&#39;s using already defined variables (e.g. one scope above). </span><br />
-<br />
-<pre>
-func foo {
-	say 1 + a * 3 + b;
-	my c = 6;
-}
-
-my a = 2, b = 4;
-
-foo; # Run the procedure. Print out "11\n"
-say c; # Will produce an error because c is out of scope!
-</pre>
-<br />
-<h3 style='display: inline'>Nested functions</h3><br />
-<br />
-<span>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</span><br />
-<br />
-<pre>
-func foo {
-	func bar {
-		say "Hello i am nested";
-	}
-
-	bar; # Calling nested
-}
-
-foo;
-bar; # Will produce an error because bar is out of scope!
-</pre>
-<br />
-<h2 style='display: inline'>Arrays</h2><br />
-<br />
-<span>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</span><br />
-<br />
-<pre>
-func bar { say ”bar” }
-my foo = [bar, 1, 4/2, double ”3”, [”A”, [”BA”, ”BB”]]];
-say foo;
-</pre>
-<br />
-<span>It produces the following output:</span><br />
-<br />
-<pre>
-% ./fype arrays.fy
-bar
-01
-2
-3.000000
-A
-BA
-BB
-</pre>
-<br />
-<h2 style='display: inline'>Fancy stuff</h2><br />
-<br />
-<span>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </span><br />
-<br />
-<h2 style='display: inline'>May the source be with you</h2><br />
-<br />
-<span>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/fype'>https://codeberg.org/snonux/fype</a><br />
 <br />
 <span>E-Mail your comments to paul at buetow.org :-)</span><br />
 <br />
