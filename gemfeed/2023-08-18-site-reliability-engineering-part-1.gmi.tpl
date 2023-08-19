@@ -30,7 +30,7 @@ DC on fire:
 
 ## SRE and Organizational Culture: Navigating the Nexus
 
-At the heart of SRE lies the proactive mindset of 'prevention over cure'. Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. However, these aren't mere numbers. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. 
+At the heart of SRE lies the proactive mindset of "prevention over cure". Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. However, these aren't mere numbers. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. 
 
 Another defining SRE concept is the "error budget". This ingenious framework accepts that no system is flawless. Failures are inevitable. However, instead of being punitive, the culture here is to accept, learn, and iterate. By providing teams with a "budget" for errors, organisations foster an environment where innovation is encouraged, and failures are viewed as learning opportunities.
 
