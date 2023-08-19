@@ -8,7 +8,7 @@
 ['Staff Engineer' book notes](./staff-engineer.md)  
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
-['Software Developmers Career Guide & Soft Skills' book notes](./career-guide-and-soft-skills.md)  
+['Software Developmers Career Guide and Soft Skills' book notes](./career-guide-and-soft-skills.md)  
 ['A Monk's Guide to Happiness' book notes](./a-monks-guide-to-happiness.md)  
 
 That were all notes. Hope they were useful!

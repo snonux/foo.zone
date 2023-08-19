@@ -5,7 +5,7 @@
 [2023-08-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-08-19-site-reliability-engineering-part-2.md)  
 [2023-08-18 - Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
 [2023-07-21 - Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
-[2023-07-17 - 'Software Developmers Career Guide & Soft Skills' book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
+[2023-07-17 - 'Software Developmers Career Guide and Soft Skills' book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-06-01 - KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-05-06 - 'The Obstacle is the Way' book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
