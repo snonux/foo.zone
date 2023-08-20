@@ -39,7 +39,9 @@ In conclusion, operational balance in SRE is not a static thing but an ongoing j
 
 That all sounds very romantic. The truth is, it is brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!
 
-The third part of this blog series will be published soon :-)
+Continue with the third part of this series:
+
+<< template::inline::index site-reliability-engineering-part-3
 
 E-Mail your comments to paul at buetow.org :-)
 
