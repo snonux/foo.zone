@@ -1,0 +1,59 @@
+# Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect
+
+> Published at 2023-08-20T12:17:56+03:00
+
+This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will try to share what SRE is about in this blog series.
+
+[2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
+[2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-08-19-site-reliability-engineering-part-2.md)  
+[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect (You are currently reading this)](./2023-08-20-site-reliability-engineering-part-3.md)  
+
+```
+                    ..--""""----..                 
+                 .-"   ..--""""--.j-.              
+              .-"   .-"        .--.""--..          
+           .-"   .-"       ..--"-. \/    ;         
+        .-"   .-"_.--..--""  ..--'  "-.  :         
+      .'    .'  /  `. \..--"" __ _     \ ;         
+     :.__.-"    \  /        .' ( )"-.   Y          
+     ;           ;:        ( )     ( ).  \         
+   .':          /::       :            \  \        
+ .'.-"\._   _.-" ; ;      ( )    .-.  ( )  \       
+  "    `."""  .j"  :      :      \  ;    ;  \      
+    bug /"""""/     ;      ( )    "" :.( )   \     
+       /\    /      :       \         \`.:  _ \    
+      :  `. /        ;       `( )     (\/ :" \ \   
+       \   `.        :         "-.(_)_.'   t-'  ;  
+        \    `.       ;                    ..--":  
+         `.    `.     :              ..--""     :  
+           `.    "-.   ;       ..--""           ;  
+             `.     "-.:_..--""            ..--"   
+               `.      :             ..--""        
+                 "-.   :       ..--""              
+                    "-.;_..--""                    
+
+```
+
+## On-Call Culture and the Human Aspect: Prioritising Well-being in the Realm of Reliability
+
+Site Reliability Engineering is synonymous with ensuring system reliability, but the human factor is an often-underestimated part of this discipline. Ensuring a healthy on-call culture is as critical as any technical solution. The well-being of the engineers is an important factor.
+
+Firstly, a healthy on-call rotation is about more than just managing and responding to incidents. It's about the entire ecosystem that supports this practice. This involves reducing pain points, offering mentorship, rapid iteration, and ensuring that engineers have the right tools and processes. One ceavat is, that engineers should be willing to learn. Especially in on-call rotation mixing SREs with other engineers (for example Software Engineers or QA engineers), it's difficult to motivate everyone to engage. QA engineers want to test the software, Software Engineers want to implement new features; they don't want to troubleshoot and debug production incidents. It can be depressing for the mentoring SRE.
+
+Furthermore, the metrics that measure the success of an on-call experience are only sometimes straightforward. While one might assume that fewer pages translate to better on-call expertise (which is true to a certain degree, as who wants to receive a page out of office hours?), it's not always the volume of pages that matters most. Trust, ownership, accountability, and effective communication play the important roles.
+
+An important part is giving feedback about the on-call experience to ensure continuous learning. If alerts are mostly noise, they should be tuned or even eliminated. If alerts are actionable, can recurring tasks be automated? If there are knowledge gaps, is the documentation not good enough? Continuous retrospection ensures that not only do systems evolve, but the experience for the on-call engineers becomes progressively better.
+
+Onboarding for on-call duties is a crucial aspect of ensuring the reliability and efficiency of systems. This process involves equipping new team members with the knowledge, tools, and support to handle incidents confidently. It begins with an overview of the system architecture and common challenges, followed by training on monitoring tools, alerting mechanisms, and incident response protocols. Shadowing experienced on-call engineers can offer practical exposure. Too often, new engineers are thrown into the cold water without proper onboarding and training because the more experienced engineers are too busy fire-fighting production issues in the first place.
+
+An always-on, always-alert culture can lead to burnout. Engineers should be encouraged to recognise their limits, take breaks, and seek support when needed. This isn't just about individual health; a burnt-out engineer can have cascading effects on the entire team and the systems they manage. A successful on-call culture ensures that while systems are kept running, the engineers are kept happy, healthy, and supported. The more experienced engineers should take time to mentor the junior engineers, but the junior engineers should also be fully engaged, try to investigate and learn new things by themselves.
+
+For the junior engineer, it's too easy to fall back and ask the experts in the team every time an issue arises. This seems reasonable, but serving recipes for solving production issues on a silver tablet will only scale in the short run, as there are infinite scenarios of how production systems can break. So every engineer should learn to debug, troubleshoot and resolve production incidents independently. The experts will still be there for guidance and step in when the junior is stuck after trying, but the experts should also learn to step down so that lesser experienced engineers can step up and learn. But mistakes can always happen here; that's why having a blameless on-call culture is essential.
+
+A blameless on-call culture is a must for fostering a safe and collaborative environment where engineers can effectively respond to incidents without fear of retribution. This approach acknowledges that mistakes are a natural part of the learning and innovation process. When individuals are assured they won't be punished for errors, they're more likely to openly discuss mistakes, allowing the entire team to learn and grow from each incident. Furthermore, a blameless culture promotes psychological safety, enhances job satisfaction, reduces burnout, and ensures that talent remains committed and engaged.
+
+The fourth part of this blog series will be published soon :-)
+
+E-Mail your comments to paul at buetow.org :-)
+
+[Back to the main site](../)  

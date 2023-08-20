@@ -6,6 +6,7 @@ This is the second part of my Site Reliability Engineering (SRE) series. I am cu
 
 [2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
 [2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)](./2023-08-19-site-reliability-engineering-part-2.md)  
+[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
 
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -40,7 +41,9 @@ In conclusion, operational balance in SRE is not a static thing but an ongoing j
 
 That all sounds very romantic. The truth is, it is brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!
 
-The third part of this blog series will be published soon :-)
+Continue with the third part of this series:
+
+[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
 
 E-Mail your comments to paul at buetow.org :-)
 
