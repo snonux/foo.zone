@@ -100,6 +100,8 @@ Finally, the SRE's iterative spirit extends to collaboration and communication. 
 
 In summary, the essence of Site Reliability Engineering is characterised by an iterative spirit, a recognition that perfection is a journey, not a destination. Whether refining system designs, enhancing tooling or fostering collaborative dialogues, SREs are always looking for the next improvement, refinement, and iteration. It's this spirit that ensures systems are reliable and continually evolving to meet the ever-changing demands of the digital age.
 
+## The role of simplicity Simplicity
+
 ## Book tips
 
 * 97 Things Every SRE Should Know: Collective Wisdom from the Experts by Emily Stolarsky and Jaime Woo
