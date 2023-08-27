@@ -52,6 +52,6 @@ Continue with the second part of this series:
 
 << template::inline::index site-reliability-engineering-part-2
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 => ../ Back to the main site

@@ -138,6 +138,6 @@ Other related posts are:
 
 << template::inline::index perl raku
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 => ../ Back to the main site

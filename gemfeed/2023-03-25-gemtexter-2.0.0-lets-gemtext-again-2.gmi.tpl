@@ -140,6 +140,6 @@ Other related posts are:
 
 << template::inline::index gemtext gemini
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 => ../ Back to the main site

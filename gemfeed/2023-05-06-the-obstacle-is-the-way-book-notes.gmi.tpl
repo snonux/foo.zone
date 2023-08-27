@@ -86,7 +86,7 @@ Other book notes of mine are:
 
 << template::inline::index book-notes
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

@@ -43,6 +43,6 @@ Continue with the third part of this series:
 
 << template::inline::index site-reliability-engineering-part-3
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 => ../ Back to the main site
