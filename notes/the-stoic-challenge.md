@@ -30,6 +30,6 @@ Take setbacks as a challenge. Also take it with some humor.
 
 What would the stoic god's do next? This is just a test strategy by them. Don't be frustrated at all but be astonished of what comes next. Thank the stoic gods of testing you. This is comfort zone extension of the stoics aka toughness Training.
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  

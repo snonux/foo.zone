@@ -36,6 +36,6 @@ It was a pain in the ass. My next mobile phone MUST have a full QWERTY keyboard.
 
 At the moment I am in Sofia, Bulgaria. Here I can use at least an unprotected WLAN hotspot which belongs to one of the neighbours which I don’t know in person, and it is not blocking any port at all :)
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  

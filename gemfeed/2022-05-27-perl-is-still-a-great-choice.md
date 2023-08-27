@@ -141,6 +141,6 @@ Other related posts are:
 [2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  
 [2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  

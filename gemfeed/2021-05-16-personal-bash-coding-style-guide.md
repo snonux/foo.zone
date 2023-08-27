@@ -387,6 +387,6 @@ Other related posts are:
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  

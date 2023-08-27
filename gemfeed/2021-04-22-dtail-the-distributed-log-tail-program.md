@@ -109,6 +109,6 @@ Other related posts are:
 [2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
 [2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  

@@ -34,6 +34,6 @@ Sebactical: Take at least six months. Otherwise, it won't be as restored.
 * Get used to writing things down and repeating yourself. You will scale yourself much more.
 * Title inflation: skills correspond to work, but the titles don't.
 
-E-Mail your comments to paul at buetow.org :-)
+E-Mail your comments to `foo@paul.cyou` :-)
 
 [Back to the main site](../)  
