@@ -1,3 +1,23 @@
+## System Design and Incident Analysis: Building Resilience in the SRE Landscape
+
+A significant portion of the work revolves around system design and incident analysis.
+
+The first axiom is the acceptance of a bitter truth: things will always break. No matter the precision of which a system is crafted, the inevitability of failures looms large. However, what distinguishes a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. These failures, if left unchecked, can spiral into global outages with come with consequences.
+
+There's a growing emphasis on building resilient systems to avoid such cascading failures to circumvent this. Such resilience requires foresight in system design, wherein potential weakpoints are identified and addressed before deployed to production. Prevention is better than cure. The primary objective is ensuring that services remain uninterrupted and dependable.
+
+Yet, despite these preventative measures, when incidents do arise, their analysis becomes a goldmine of learning. Every incident exposes gaps within the system. Instead of attributing these incidents to nebulous concepts like "human error," the onus is on dissecting them to uncover underlying systemic issues. Whether it's a tooling gap where operational tools prove insufficient or an operational expertise gap where engineers lack critical skills, incident analysis shines a light on these deficiencies.
+
+In doing so, incident analysis is about rectifying the immediate issue and learning and evolving the system design. Every incident offers an opportunity, a feedback loop, to refine the system further. Through rigorous postmortems focusing on customer impact, organisations can distil valuable lessons. These lessons, when incorporated, make the system more robust and less susceptible to similar failures in the future.
+
+Moreover, as systems grow more complex, the importance of observability tools cannot be overstated. These tools, designed to query against high cardinality data, provide granular insights into system operations. They enable engineers to diagnose problems rapidly, especially in the chaotic aftermath of an incident, giving clarity amidst the turmoil.
+
+In conclusion, the symbiotic relationship between system design and incident analysis underscores the evolving ethos of SRE. While impeccable system design lays the foundation for reliable operations, incident analysis ensures that this foundation remains robust and dynamic, adapting to challenges. Together, they form the pillars of a resilient, customer-centric service environment that stands the test of time.
+
+Add paragraph about product wants features, but observability is often an afterthought. So often, during an incident, people start agreeing, and then it was already too late.
+
+=> add 6 minutes to wt.
+
 ## The Heroic Facade and Team Dynamics: Rethinking Success in SRE
 
 The realm of Site Reliability Engineering is punctuated by the constant ebb and flow of system challenges. While individual excellence is commendable, the overarching belief in the SRE culture should be that true success lies in cohesive teamwork and not in individual heroics.
@@ -13,22 +33,6 @@ However, this isn't to say that individual excellence should be curbed. Instead,
 In the broader spectrum of SRE, it's also crucial to recognise the silent work – the preventive measures, the well-thought-out systems, the meticulous planning – that ensures incidents don't occur. This proactive approach often goes unnoticed because, in a well-functioning system, the absence of issues is the norm. But this 'silence' is a testament to a team working harmoniously, with every member contributing towards system reliability.
 
 To conclude, while the heroics in SRE can often be the stuff of legends, it's vital to see beyond this facade. The countless hours of teamwork, collaboration, and shared responsibility lie in the shadows of these heroic acts. The future of SRE lies not in individual heroics but in teams that operate like well-oiled machines, with every cog, big or small, playing its part to perfection.
-
-## System Design and Incident Analysis: Building Resilience in the SRE Landscape
-
-In the intricate domain of Site Reliability Engineering, a significant portion of the professional narrative revolves around system design and incident analysis.
-
-The first axiom in the world of system reliability is the acceptance of a bitter truth: things will always break. No matter the precision or the prowess with which a system is crafted, the inevitability of failures looms large. However, what distinguishes a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. These failures, if left unchecked, can spiral into global outages with dire consequences.
-
-There's a growing emphasis on building resilient systems to avoid such cascading failures to circumvent this. Such resilience is a testament to the foresight in system design, wherein potential chokepoints and vulnerabilities are identified and fortified. Prevention, as the age-old adage goes, is indeed better than cure. This is particularly pertinent to SRE, whose primary objective is ensuring that services remain uninterrupted and dependable.
-
-Yet, despite these preventative measures, when incidents do arise, their analysis becomes a goldmine of learning. Every incident, irrespective of its severity, exposes gaps within the system. Instead of attributing these incidents to nebulous concepts like "human error," the onus is on dissecting them to uncover underlying systemic issues. Whether it's a tooling gap where operational tools prove insufficient or an operational expertise gap where engineers lack critical skills, incident analysis shines a light on these deficiencies.
-
-In doing so, incident analysis is about rectifying the immediate issue and learning and evolving the system design. Every incident offers an opportunity, a feedback loop, to refine the system further. Through rigorous postmortems focusing on customer impact, organisations can distil valuable lessons. These lessons, when incorporated, make the system more robust and less susceptible to similar failures in the future.
-
-Moreover, as systems grow more complex, the importance of observability tools cannot be overstated. These tools, designed to query against high cardinality data, provide granular insights into system operations. They enable engineers to diagnose problems rapidly, especially in the chaotic aftermath of an incident, giving clarity amidst the turmoil.
-
-In conclusion, the symbiotic relationship between system design and incident analysis underscores the evolving ethos of SRE. While impeccable system design lays the foundation for reliable operations, incident analysis ensures that this foundation remains robust and dynamic, adapting to challenges. Together, they form the pillars of a resilient, customer-centric service environment that stands the test of time.
 
 ## Monitoring, Observability, and the SRE Arsenal: Navigating the Nuances of System Reliability
 
