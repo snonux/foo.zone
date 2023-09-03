@@ -22,6 +22,41 @@ Add paragraph about product wants features, but observability is often an aftert
 
 The realm of Site Reliability Engineering is punctuated by the constant ebb and flow of system challenges. While individual excellence is commendable, the overarching belief in the SRE culture should be that true success lies in cohesive teamwork and not in individual heroics.
 
+he SRE Hero is an anti-pattern that can occur when a few individuals consistently step in to save the day during incidents or emergencies, earning themselves the status of heroes. While this might seem positive at first, it can lead to several negative outcomes and should be addressed to ensure the reliability and sustainability of the SRE team's operations. These individuals might possess specialized knowledge, quick problem-solving skills, or simply a willingness to work long hours. As a result, they become the go-to people whenever something goes wrong.
+
+This culture can emerge for various reasons:
+
+- Immediate Problem Solving: Heroes are praised for their ability to solve issues quickly. However, this may lead to bypassing proper post-incident analysis and learning, as the focus is on getting systems up and running as fast as possible.
+
+- Burnout and Fatigue: Heroes are often overworked and stressed, leading to burnout and high turnover rates.
+
+- Skill Asymmetry: If only a few team members possess specific knowledge or skills, others may not have the chance to learn, grow, and take on more responsibilities.
+
+- Dependency: Teams become dependent on heroes, leading to a lack of collaboration and shared ownership of systems.
+
+How can you fix it?
+
+- Incident Reviews and Post-Mortems: Conduct thorough post-incident reviews to understand the root causes of issues. Focus on learning and prevention rather than just quick fixes.
+
+- Distribute Knowledge: Encourage knowledge sharing by documenting incidents, solutions, and best practices. Consider implementing a knowledge-sharing platform or wiki.
+
+- Rotating Responsibilities: Rotate on-call and incident response responsibilities among team members. This prevents burnout and ensures that everyone gains experience.
+
+- Automation and Tooling: Develop automation and tools that enable the entire team to handle incidents more effectively, reducing the reliance on individual heroics.
+
+- Training and Skill Development: Provide training and resources to help all team members enhance their skills. This levels the playing field and reduces skill asymmetry.
+
+- Recognize Collaborative Efforts: Shift the focus from individual heroics to collaborative efforts. Recognize and reward team members who contribute to preventive measures, incident response improvements, and system stability.
+
+- Leadership Support: Management should actively support efforts to address the hero culture. This might involve setting expectations for collaboration, learning, and shared responsibility.
+
+- Celebrate Learning: Emphasize that learning from failures is a positive outcome. This encourages a culture of continuous improvement rather than blame.
+
+By addressing the hero culture and fostering a collaborative, learning-oriented environment, SRE teams can enhance their overall effectiveness, prevent burnout, and ensure the long-term stability of the systems they manage. 
+
+
+
+
 The allure of the "hero" is undeniable. There's a certain appeal in being the one who swoops in, fixes critical incidents, and saves the day. However, this hero culture, while often romanticised, has its pitfalls. Heroes are necessary, no doubt, but a hero culture can often obscure the collaborative essence of SRE. Recognising that heroes do their best work as part of a team is a profound acknowledgement that true heroes don't need a hero culture to excel.
 
 The danger of a hero-driven approach is that it can lead to an over-reliance on specific individuals. The assumption that certain team members will always be there to address and mitigate issues can be a dangerous precedent. It fosters a reactive culture rather than a proactive one. Instead of developing inherently more resilient and reliable systems, the organisation starts relying on these heroes as a Band-Aid® solution, masking deeper systemic problems.
