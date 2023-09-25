@@ -1,10 +1,35 @@
 # DTail usage examples
 
+> Published at 2023-09-25T14:57:42+03:00
+
+Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They're from the DTail documentation, but not all readers of my blog may be aware of those!
+
 DTail is a distributed DevOps tool for tailing, grepping, catting logs and other text files on many remote machines at once which I programmed in Go.
 
 => https://dtail.dev
 
+```
+                              ,_---~~~~~----._
+                        _,,_,*^____      _____``*g*\"*,
+  ____ _____     _ _   / __/ /'     ^.  /      \ ^@q   f
+ |  _ \_   _|_ _(_) |   @f |      ((@|  |@))    l  0 _/
+ | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
+ | |_| || | (_| | | |   |           _l__l_           I
+ |____/ |_|\__,_|_|_|   }          [______]           I
+                        ]            | | |            |
+                        ]             ~ ~             |
+                        |   Let's tail those logs!   |
+                         |                           |
+```
+
 DTail consists out of a server and several client binaries. In this post, I am showcasing their use!
+
+* Use `dtail` to follow logs
+* Use `dtail` to aggregate logs while they are followed
+* Use `dcat` to display logs and other text files already written
+* Use `dgrep` to grep (search) logs and other text files already written
+* Use `dmap` to aggregate logs and other text files already written
+* `dserver` is the DTail server, where all the clients can connect to
 
 ## Following logs
 
@@ -37,7 +62,7 @@ To run ad-hoc map-reduce aggregations on newly written log lines you must add a 
              last($time),max(lifetimeConnections)'
 ```
 
-> Beware: For map-reduce queries to work, you have to ensure that DTail supports your log format. Check out the documentaiton of the DTail query language and the DTail log formats on the DTail homepage for more information.
+Beware: For map-reduce queries to work, you have to ensure that DTail supports your log format. Check out the documentaiton of the DTail query language and the DTail log formats on the DTail homepage for more information.
 
 => ./dtail-usage-examples/dtail-map.gif Tail map-reduce example
 
@@ -101,7 +126,7 @@ Generally, `dgrep` is also a very useful way to search historic application logs
 
 => ./dtail-usage-examples/dgrep.gif Grep example
 
-Hint: `-regex` is an alias for `-grep`.
+> Hint: `-regex` is an alias for `-grep`.
 
 ## How to use `dmap`
 
@@ -140,7 +165,8 @@ As a shorthand version the following command can be used:
 
 ```shell
 % dmap 'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,
-lifetimeConnections group by $hostname order by max($cgocalls)' /var/log/dsever/dserver.log
+        lifetimeConnections group by $hostname order by max($cgocalls)' \
+        /var/log/dsever/dserver.log
 ```
 
 You can also use a file input pipe as follows:
@@ -198,6 +224,7 @@ diff /etc/test /etc/passwd
 
 ```shell
 % dgrep --before 10 --after 10 --max 10 --grep ERROR /var/log/dserver/dsever.log
+```
 
 Use `--help` for more available options. Or go to the DTail page for more information! Hope you find DTail useful!
 
@@ -205,7 +232,7 @@ Other related posts are:
 
 << template::inline::index dtail
 
-Thanks!
+I hope you find the tools presented in this post useful!
 
 Paul
 
