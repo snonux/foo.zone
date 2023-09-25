@@ -8,9 +8,64 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<h2 style='display: inline'>System Design and Incident Analysis: Building Resilience in the SRE Landscape</h2><br />
+<br />
+<span>A significant portion of the work revolves around system design and incident analysis.</span><br />
+<br />
+<span>The first axiom is the acceptance of a bitter truth: things will always break. No matter the precision of which a system is crafted, the inevitability of failures looms large. However, what distinguishes a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. These failures, if left unchecked, can spiral into global outages with come with consequences.</span><br />
+<br />
+<span>There&#39;s a growing emphasis on building resilient systems to avoid such cascading failures to circumvent this. Such resilience requires foresight in system design, wherein potential weakpoints are identified and addressed before deployed to production. Prevention is better than cure. The primary objective is ensuring that services remain uninterrupted and dependable.</span><br />
+<br />
+<span>Yet, despite these preventative measures, when incidents do arise, their analysis becomes a goldmine of learning. Every incident exposes gaps within the system. Instead of attributing these incidents to nebulous concepts like "human error," the onus is on dissecting them to uncover underlying systemic issues. Whether it&#39;s a tooling gap where operational tools prove insufficient or an operational expertise gap where engineers lack critical skills, incident analysis shines a light on these deficiencies.</span><br />
+<br />
+<span>In doing so, incident analysis is about rectifying the immediate issue and learning and evolving the system design. Every incident offers an opportunity, a feedback loop, to refine the system further. Through rigorous postmortems focusing on customer impact, organisations can distil valuable lessons. These lessons, when incorporated, make the system more robust and less susceptible to similar failures in the future.</span><br />
+<br />
+<span>Moreover, as systems grow more complex, the importance of observability tools cannot be overstated. These tools, designed to query against high cardinality data, provide granular insights into system operations. They enable engineers to diagnose problems rapidly, especially in the chaotic aftermath of an incident, giving clarity amidst the turmoil.</span><br />
+<br />
+<span>In conclusion, the symbiotic relationship between system design and incident analysis underscores the evolving ethos of SRE. While impeccable system design lays the foundation for reliable operations, incident analysis ensures that this foundation remains robust and dynamic, adapting to challenges. Together, they form the pillars of a resilient, customer-centric service environment that stands the test of time.</span><br />
+<br />
+<span>Add paragraph about product wants features, but observability is often an afterthought. So often, during an incident, people start agreeing, and then it was already too late.</span><br />
+<br />
+<a class='textlink' href='add'>6 minutes to wt.</a><br />
+<br />
 <h2 style='display: inline'>The Heroic Facade and Team Dynamics: Rethinking Success in SRE</h2><br />
 <br />
 <span>The realm of Site Reliability Engineering is punctuated by the constant ebb and flow of system challenges. While individual excellence is commendable, the overarching belief in the SRE culture should be that true success lies in cohesive teamwork and not in individual heroics.</span><br />
+<br />
+<span>he SRE Hero is an anti-pattern that can occur when a few individuals consistently step in to save the day during incidents or emergencies, earning themselves the status of heroes. While this might seem positive at first, it can lead to several negative outcomes and should be addressed to ensure the reliability and sustainability of the SRE team&#39;s operations. These individuals might possess specialized knowledge, quick problem-solving skills, or simply a willingness to work long hours. As a result, they become the go-to people whenever something goes wrong.</span><br />
+<br />
+<span>This culture can emerge for various reasons:</span><br />
+<br />
+<span>- Immediate Problem Solving: Heroes are praised for their ability to solve issues quickly. However, this may lead to bypassing proper post-incident analysis and learning, as the focus is on getting systems up and running as fast as possible.</span><br />
+<br />
+<span>- Burnout and Fatigue: Heroes are often overworked and stressed, leading to burnout and high turnover rates.</span><br />
+<br />
+<span>- Skill Asymmetry: If only a few team members possess specific knowledge or skills, others may not have the chance to learn, grow, and take on more responsibilities.</span><br />
+<br />
+<span>- Dependency: Teams become dependent on heroes, leading to a lack of collaboration and shared ownership of systems.</span><br />
+<br />
+<span>How can you fix it?</span><br />
+<br />
+<span>- Incident Reviews and Post-Mortems: Conduct thorough post-incident reviews to understand the root causes of issues. Focus on learning and prevention rather than just quick fixes.</span><br />
+<br />
+<span>- Distribute Knowledge: Encourage knowledge sharing by documenting incidents, solutions, and best practices. Consider implementing a knowledge-sharing platform or wiki.</span><br />
+<br />
+<span>- Rotating Responsibilities: Rotate on-call and incident response responsibilities among team members. This prevents burnout and ensures that everyone gains experience.</span><br />
+<br />
+<span>- Automation and Tooling: Develop automation and tools that enable the entire team to handle incidents more effectively, reducing the reliance on individual heroics.</span><br />
+<br />
+<span>- Training and Skill Development: Provide training and resources to help all team members enhance their skills. This levels the playing field and reduces skill asymmetry.</span><br />
+<br />
+<span>- Recognize Collaborative Efforts: Shift the focus from individual heroics to collaborative efforts. Recognize and reward team members who contribute to preventive measures, incident response improvements, and system stability.</span><br />
+<br />
+<span>- Leadership Support: Management should actively support efforts to address the hero culture. This might involve setting expectations for collaboration, learning, and shared responsibility.</span><br />
+<br />
+<span>- Celebrate Learning: Emphasize that learning from failures is a positive outcome. This encourages a culture of continuous improvement rather than blame.</span><br />
+<br />
+<span>By addressing the hero culture and fostering a collaborative, learning-oriented environment, SRE teams can enhance their overall effectiveness, prevent burnout, and ensure the long-term stability of the systems they manage. </span><br />
+<br />
+<br />
+<br />
 <br />
 <span>The allure of the "hero" is undeniable. There&#39;s a certain appeal in being the one who swoops in, fixes critical incidents, and saves the day. However, this hero culture, while often romanticised, has its pitfalls. Heroes are necessary, no doubt, but a hero culture can often obscure the collaborative essence of SRE. Recognising that heroes do their best work as part of a team is a profound acknowledgement that true heroes don&#39;t need a hero culture to excel.</span><br />
 <br />
@@ -23,22 +78,6 @@
 <span>In the broader spectrum of SRE, it&#39;s also crucial to recognise the silent work – the preventive measures, the well-thought-out systems, the meticulous planning – that ensures incidents don&#39;t occur. This proactive approach often goes unnoticed because, in a well-functioning system, the absence of issues is the norm. But this &#39;silence&#39; is a testament to a team working harmoniously, with every member contributing towards system reliability.</span><br />
 <br />
 <span>To conclude, while the heroics in SRE can often be the stuff of legends, it&#39;s vital to see beyond this facade. The countless hours of teamwork, collaboration, and shared responsibility lie in the shadows of these heroic acts. The future of SRE lies not in individual heroics but in teams that operate like well-oiled machines, with every cog, big or small, playing its part to perfection.</span><br />
-<br />
-<h2 style='display: inline'>System Design and Incident Analysis: Building Resilience in the SRE Landscape</h2><br />
-<br />
-<span>In the intricate domain of Site Reliability Engineering, a significant portion of the professional narrative revolves around system design and incident analysis.</span><br />
-<br />
-<span>The first axiom in the world of system reliability is the acceptance of a bitter truth: things will always break. No matter the precision or the prowess with which a system is crafted, the inevitability of failures looms large. However, what distinguishes a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. These failures, if left unchecked, can spiral into global outages with dire consequences.</span><br />
-<br />
-<span>There&#39;s a growing emphasis on building resilient systems to avoid such cascading failures to circumvent this. Such resilience is a testament to the foresight in system design, wherein potential chokepoints and vulnerabilities are identified and fortified. Prevention, as the age-old adage goes, is indeed better than cure. This is particularly pertinent to SRE, whose primary objective is ensuring that services remain uninterrupted and dependable.</span><br />
-<br />
-<span>Yet, despite these preventative measures, when incidents do arise, their analysis becomes a goldmine of learning. Every incident, irrespective of its severity, exposes gaps within the system. Instead of attributing these incidents to nebulous concepts like "human error," the onus is on dissecting them to uncover underlying systemic issues. Whether it&#39;s a tooling gap where operational tools prove insufficient or an operational expertise gap where engineers lack critical skills, incident analysis shines a light on these deficiencies.</span><br />
-<br />
-<span>In doing so, incident analysis is about rectifying the immediate issue and learning and evolving the system design. Every incident offers an opportunity, a feedback loop, to refine the system further. Through rigorous postmortems focusing on customer impact, organisations can distil valuable lessons. These lessons, when incorporated, make the system more robust and less susceptible to similar failures in the future.</span><br />
-<br />
-<span>Moreover, as systems grow more complex, the importance of observability tools cannot be overstated. These tools, designed to query against high cardinality data, provide granular insights into system operations. They enable engineers to diagnose problems rapidly, especially in the chaotic aftermath of an incident, giving clarity amidst the turmoil.</span><br />
-<br />
-<span>In conclusion, the symbiotic relationship between system design and incident analysis underscores the evolving ethos of SRE. While impeccable system design lays the foundation for reliable operations, incident analysis ensures that this foundation remains robust and dynamic, adapting to challenges. Together, they form the pillars of a resilient, customer-centric service environment that stands the test of time.</span><br />
 <br />
 <h2 style='display: inline'>Monitoring, Observability, and the SRE Arsenal: Navigating the Nuances of System Reliability</h2><br />
 <br />
