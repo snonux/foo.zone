@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-09-25T15:14:22+03:00</updated>
+    <updated>2023-09-26T21:20:36+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -320,7 +320,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Paul</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -394,7 +394,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The fourth part of this blog series will be published soon :-)</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -459,7 +459,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2023-08-20-site-reliability-engineering-part-3.html'>2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -533,7 +533,7 @@ DC on fire:
 <br />
 <a class='textlink' href='./2023-08-19-site-reliability-engineering-part-2.html'>2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -661,7 +661,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -984,7 +984,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -1262,7 +1262,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1371,7 +1371,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -1827,7 +1827,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1982,7 +1982,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2155,7 +2155,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2263,7 +2263,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -2358,7 +2358,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>There are some days at work you feel drained afterwards and think you didn&#39;t progress towards your goals at all. It&#39;s more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.</span><br />
 <span> </span><br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2515,7 +2515,7 @@ Art by Joan Stark
 <br />
 <span>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2639,7 +2639,7 @@ Art by Joan Stark
 <br />
 <span>Am I a Java expert now? No, by far not. But I am better now than before :-).</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -2772,7 +2772,7 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <br />
 <a class='textlink' href='https://github.com/NvChad/NvChad'>https://github.com/NvChad/NvChad</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3138,7 +3138,7 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3252,7 +3252,7 @@ jgs                (________\  \
 <br />
 <span>I wouldn&#39;t say I like checking social media, as it can consume a lot of time and can become addictive. But once in a while, I want to catch up with my "networks". After a bad night&#39;s sleep, it&#39;s the perfect time to check your social media. Once done, you don&#39;t have to do it anymore for the next couple of days!</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3371,7 +3371,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4049,7 +4049,7 @@ rex commons
 <br />
 <span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn&#39;t have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4393,7 +4393,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>Welcome to the Geminispae</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4559,7 +4559,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4718,7 +4718,7 @@ learn () {
 <li>The Off Switch; Mark Cropley; Virgin Books</li>
 <li>Ultralearning; Scott Young; Thorsons</li>
 </ul><br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5039,7 +5039,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>Paul</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5286,7 +5286,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class='textlink' href='https://www.dragonflybsd.org/'>DragonFly BSD - Fork of FreeBSD 4</a><br />
 <a class='textlink' href='http://wiki.postmarketos.org/wiki/Phosh'>Phosh (on postmarketOS) - A true Linux shell for the smartphone</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5351,7 +5351,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <br />
 <span>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won&#39;t change any time soon. I don&#39;t know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5859,7 +5859,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6003,7 +6003,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <a class='textlink' href='https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html'>https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6493,7 +6493,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6614,7 +6614,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>This usually means creating one or more tickets, which will be dealt with soon. Once the permanent fix is deployed, you can remove your ad-hoc automation and monitoring around it and focus on your regular work again.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6728,7 +6728,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Enough ranted for now!</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <span class='quote'>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </span><br />
 <br />
@@ -6808,7 +6808,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>Do you need Microsoft Word? Why don&#39;t you just use the Vim text editor or GNU Emacs to write your letters? If that&#39;s too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don&#39;t know why that is; please....</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <span>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don&#39;t work on my devices.</span><br />
 <br />
@@ -6865,7 +6865,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don&#39;t know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it&#39;s better, but also because for fun and as a hobby. But this doesn&#39;t mean that I invest *all* of my personal free time in it.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6988,7 +6988,7 @@ Hello World
 <br />
 <span>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7193,7 +7193,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7600,7 +7600,7 @@ fi
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7706,7 +7706,7 @@ fi
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7839,7 +7839,7 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8045,7 +8045,7 @@ Total time: 1213.00s
 <a class='textlink' href='https://graphiteapp.org'>Graphite</a><br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/Memory-mapped_I/O'>Memory mapped I/O</a><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8178,7 +8178,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>C is a very old programming language with it&#39;s quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8433,7 +8433,7 @@ apply Service "dig6" {
 </ul><br />
 <span>That&#39;s much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8479,7 +8479,7 @@ apply Service "dig6" {
 <br />
 <span>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>foo@paul.cyou</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
