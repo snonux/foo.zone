@@ -52,6 +52,6 @@ A blameless on-call culture is a must for a safe and collaborative environment w
 
 The fourth part of this blog series will be published soon :-)
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

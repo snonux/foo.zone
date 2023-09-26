@@ -82,6 +82,6 @@ Other related posts are:
 
 << template::inline::index gemtext gemini
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
