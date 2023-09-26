@@ -279,7 +279,7 @@ Other book notes of mine are:
 [2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  

@@ -73,6 +73,6 @@ Every day you gave your best was good; the day's outcome doesn't matter. What ma
 
 There are some days at work you feel drained afterwards and think you didn't progress towards your goals at all. It's more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.
  
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

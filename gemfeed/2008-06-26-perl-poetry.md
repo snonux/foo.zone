@@ -167,6 +167,6 @@ Other related posts are:
 [2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
 [2022-05-27 Perl is still a great choice](./2022-05-27-perl-is-still-a-great-choice.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

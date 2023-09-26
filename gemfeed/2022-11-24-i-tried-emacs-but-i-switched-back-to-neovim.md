@@ -110,6 +110,6 @@ Vim/NeoVim also comes with a very high degree of customization options, but to a
 
 [https://github.com/NvChad/NvChad](https://github.com/NvChad/NvChad)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

@@ -323,6 +323,6 @@ If you wonder what Gemini is:
 
 [Welcome to the Geminispae](./2021-04-24-welcome-to-the-geminispace.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

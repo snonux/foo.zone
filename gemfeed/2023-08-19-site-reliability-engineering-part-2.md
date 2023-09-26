@@ -45,6 +45,6 @@ Continue with the third part of this series:
 
 [2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

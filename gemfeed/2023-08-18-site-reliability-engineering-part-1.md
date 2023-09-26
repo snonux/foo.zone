@@ -54,6 +54,6 @@ Continue with the second part of this series:
 
 [2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-08-19-site-reliability-engineering-part-2.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

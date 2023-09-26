@@ -175,6 +175,6 @@ exit
 
 Reboot & test!  Enjoy!
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

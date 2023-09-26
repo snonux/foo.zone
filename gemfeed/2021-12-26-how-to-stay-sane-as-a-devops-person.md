@@ -123,6 +123,6 @@ Another blog post worth reading:
 
 [https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html](https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

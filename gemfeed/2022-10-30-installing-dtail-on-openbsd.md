@@ -346,6 +346,6 @@ Other related posts are:
 [2022-10-30 Installing DTail on OpenBSD (You are currently reading this)](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2023-09-25 DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

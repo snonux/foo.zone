@@ -147,6 +147,6 @@ In summary, the essence of Site Reliability Engineering is characterised by an i
 * Site Reliability Engineering: How Google runs Production Systems by by Jennifer Petoff, Niall Murphy, Betsy Beyer and Chris Jones
 * Implementing Service Level Objectives by Alex Hidalgo
 
-E-Mail your comments to `foo@paul.cyou` :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
