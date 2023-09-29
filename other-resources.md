@@ -2,5 +2,5 @@
 
 Please go to:
 
-[https://paul.cyou/other-resources.html](https://paul.cyou/other-resources.html)  
-[gemini://paul.cyou/other-resources.gmi](gemini://paul.cyou/other-resources.gmi)  
+[https://paul.buetow.org/other-resources.html](https://paul.buetow.org/other-resources.html)  
+[gemini://paul.buetow.org/other-resources.gmi](gemini://paul.buetow.org/other-resources.gmi)  
