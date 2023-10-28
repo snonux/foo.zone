@@ -1,0 +1,78 @@
+# KISS static web photo albums with `photoalbum.sh`
+
+```
+         ___        .---------.._
+  ______!fsc!_....-' .g8888888p. '-------....._
+.'          //     .g8:       :8p..---....___ \'.
+| foo.zone //  ()  d88:       :88b|==========! !|
+|         //       888:       :888|==========| !|
+|___      \\_______'T88888888888P''----------'//|   
+|   \       """"""""""""""""""""""""""""""""""/ |   
+|    !...._____      .="""=.   .[]    ____...!  |   
+|   /               ! .g$p. !   .[]          :  |   
+|  !               :  $$$$$  :  .[]          :  |   
+|  !irregular.ninja ! 'T$P' !   .[]           '.|   
+|   \__              "=._.="   .()        __    |   
+|.--'  '----._______________________.----'  '--.|
+'._____________________________________________.'   
+```
+
+## Motivation
+
+Once in a while I have the desire to share photos in the interweb with either family and friends or my The Irregular Ninja photo site. One of my hobbies is photography (even though I don't think I have enough time for it - so I an mostly a point-and-shoot type of a photographer).
+
+I don't like to use any of the photo social sharing platforms such as flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody is data mining my photos) and no third party should have any rights on my photos. 
+
+I value KISS (keep it simple and stupid) and simplicity. All what's required for a web photo album is some simple HTML and spice it up a little with CSS. No need for JavaScript, no need for a complex dynamic website. 
+
+## Introducing `photoalbum.sh`
+
+`photoalbum.sh` is a minimal Bash (Bourne Again Shell) script for Unix like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!).
+
+## Installation
+
+Run the following commands to install it:
+
+```bash
+make
+sudo make install
+```
+
+Also, as a requirement, `convert` from ImageMagick needs to be installed.  
+
+## Usage
+
+```bash
+photoalbum clean|generate|version [rcfile] photoalbum
+photoalbum makemake
+```
+
+* `clean`: Cleans up the workspace
+* `generate`: Generates the static photo album
+* `version`: Prints out the version
+* `makemake`: Creates a Makefile and photoalbumrc in the current working directory.
+
+## Example usage
+
+1. See if /etc/default/photoalbum fits your needs. If not, run `photoalbum makemake`, which will create a `photoalbumrc` file in the current directory.
+2. Adjust the `incoming` path in `photoalbum`. Point to a directory with all the pictures in it. 
+3. Run `make` (or `photoalbum generate`) to generate it.
+4. Distribute the `./dist` directory to a static web server.
+5. Clean the mess up with `make clean` or `photoalbum clean`
+
+## HTML templates
+
+Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your likings. 
+
+## Conclusion
+
+Other Bash related posts are:
+
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site
