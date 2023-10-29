@@ -1,0 +1,270 @@
+# KISS static web photo albums with `photoalbum.sh`
+
+> Published at 2023-10-29T22:25:04+02:00
+
+```
+         ___        .---------.._
+  ______!fsc!_....-' .g8888888p. '-------....._
+.'          //     .g8:       :8p..---....___ \'.
+| foo.zone //  ()  d88:       :88b|==========! !|
+|         //       888:       :888|==========| !|
+|___      \\_______'T88888888888P''----------'//|   
+|   \       """"""""""""""""""""""""""""""""""/ |   
+|    !...._____      .="""=.   .[]    ____...!  |   
+|   /               ! .g$p. !   .[]          :  |   
+|  !               :  $$$$$  :  .[]          :  |   
+|  !irregular.ninja ! 'T$P' !   .[]           '.|   
+|   \__              "=._.="   .()        __    |   
+|.--'  '----._______________________.----'  '--.|
+'._____________________________________________.'   
+```
+
+## Motivation
+
+Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
+
+I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
+
+I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+
+## Introducing `photoalbum.sh`
+
+`photoalbum.sh` is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.
+
+## Installation
+
+Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:
+
+```
+% sudo dnf install -y ImageMagick make git
+```
+
+Now, clone, make and install the script:
+
+```
+% git clone https://codeberg.org/snonux/photoalbum
+Cloning into 'photoalbum'...
+remote: Enumerating objects: 1624, done.
+remote: Total 1624 (delta 0), reused 0 (delta 0), pack-reused 1624
+Receiving objects: 100% (1624/1624), 193.36 KiB | 1.49 MiB/s, done.
+Resolving deltas: 100% (1227/1227), done.
+
+% cd photoalbum
+/home/paul/photoalbum
+
+% make
+cut -d' ' -f2 changelog | head -n 1 | sed 's/(//;s/)//' > .version
+test ! -d ./bin && mkdir ./bin || exit 0
+sed "s/PHOTOALBUMVERSION/$(cat .version)/" src/photoalbum.sh > ./bin/photoalbum
+chmod 0755 ./bin/photoalbum
+
+% sudo make install
+test ! -d /usr/bin && mkdir -p /usr/bin || exit 0
+cp ./bin/* /usr/bin
+test ! -d /usr/share/photoalbum/templates && mkdir -p /usr/share/photoalbum/templates || exit 0
+cp -R ./share/templates /usr/share/photoalbum/
+test ! -d /etc/default && mkdir -p /etc/default || exit 0
+cp ./src/photoalbum.default.conf /etc/default/photoalbum
+```
+
+You should now have the `photoalbum` command in your `$PATH`. But wait to use it! First, it needs to be set up!
+
+```
+% photoalbum version
+This is Photoalbum Version 0.5.1
+```
+
+## Setting it up
+
+Now, it's time to set up the Irregular Ninja static web photo album! Create a directory (here: `irregular.ninja` for the Irregular Ninja Photo site), and inside of that directory, create an `incoming` directory. The `incoming` directory. Copy all photos to be part of the album there.
+
+```
+% mkdir irregular.ninja
+% cd irregular.ninja
+% # cp -Rpv ~/Photos/your-photos ./incoming
+```
+
+In this example, I am skipping the `cp ...` part as I intend to use an alternative `incoming` directory, as you will see later in the configuration file.
+
+The general usage of `potoalbum` is as follows:
+
+```
+photoalbum clean|generate|version [rcfile] photoalbum
+photoalbum makemake
+```
+
+Whereas:
+
+* `clean`: Cleans up the workspace
+* `generate`: Generates the static photo album
+* `version`: Prints out the version
+* `makemake`: Creates a `Makefile` and `photoalbumrc` in the current working directory.
+
+So what we will do next is to run the following inside of the `irregular.ninja/` directory; it will generate a `Makefile` and a configuration file `photoalbumrc` with a few configurable options:
+
+```bash
+% photoalbum makemake
+You may now customize ./photoalbumrc and run make
+
+% cat Makefile
+all:
+	photoalbum generate photoalbumrc
+clean:
+	photoalbum clean photoalbumrc
+
+% cat photoalbumrc
+# The title of the photoalbum
+TITLE='A simple Photoalbum'
+
+# Thumbnail height geometry
+THUMBHEIGHT=300
+# Normal geometry height (when viewing photo). Uncomment, to keep original size.
+HEIGHT=1200
+# Max previews per page.
+MAXPREVIEWS=40
+# Randomly shuffle all previews.
+# SHUFFLE=yes
+
+# Diverse directories, need to be full paths, not relative!
+INCOMING_DIR=$(pwd)/incoming
+DIST_DIR=$(pwd)/dist
+TEMPLATE_DIR=/usr/share/photoalbum/templates/default
+#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
+
+# Includes a .tar of the incoming dir in the dist, can be yes or no
+TARBALL_INCLUDE=yes
+TARBALL_SUFFIX=.tar
+TAR_OPTS='-c'
+
+# Some debugging options
+#set -e
+#set -x
+```
+
+In the case for `irregular.ninja`, I modified the defaults to the following:
+
+```diff
+--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200
++++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300
+@@ -1,23 +1,24 @@
+ # The title of the photoalbum
+-TITLE='A simple Photoalbum'
++TITLE='Irregular.Ninja'
+
+ # Thumbnail height geometry
+-THUMBHEIGHT=300
++THUMBHEIGHT=400
+ # Normal geometry height (when viewing photo). Uncomment, to keep original size.
+-HEIGHT=1200
++HEIGHT=1800
+ # Max previews per page.
+ MAXPREVIEWS=40
+-# Randomly shuffle all previews.
+-# SHUFFLE=yes
++# Randomly shuffle
++SHUFFLE=yes
+
+ # Diverse directories, need to be full paths, not relative!
+-INCOMING_DIR=$(pwd)/incoming
++INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja
+ DIST_DIR=$(pwd)/dist
+ TEMPLATE_DIR=/usr/share/photoalbum/templates/default
+ #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
+
+ # Includes a .tar of the incoming dir in the dist, can be yes or no
+-TARBALL_INCLUDE=yes
++TARBALL_INCLUDE=no
+ TARBALL_SUFFIX=.tar
+ TAR_OPTS='-c'
+```
+
+So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don't want to copy them to the local `incoming` directory. Also, a tarball containing the whole album as a download isn't provided.
+
+## Generating the static photo album
+
+Let's generate it. Depending on the image sizes and count, the following step may take a while. 
+
+```
+[paul@earth]~/Desktop/irregular.ninja% make
+photoalbum generate photoalbumrc
+Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
+Processing 11271242324.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271242324.jpg
+Processing 11271306683.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271306683.jpg
+Processing 13950707932.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/13950707932.jpg
+Processing 14077406487.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14077406487.jpg
+Processing 14859380100.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14859380100.jpg
+Processing 14869239578.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14869239578.jpg
+Processing 14879132910.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14879132910.jpg
+.
+.
+.
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-4.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/20211130_091051.jpg
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/20211130_091051.jpg
+Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/DSCF0188.JPG
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/DSCF0188.JPG
+Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/P3500897-01.jpg
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/P3500897-01.jpg
+.
+.
+.
+Generating /home/paul/Desktop/irregular.ninja/dist/html/8-0.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/8-41.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/9-0.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/9-41.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/index.html
+Generating /home/paul/Desktop/irregular.ninja/dist/.//index.html
+```
+
+The result will be in the distribution directory `./dist`. This directory is publishable to the inter-web:
+
+```
+% ls ./dist
+blurs  html  index.html  photos  thumbs
+```
+
+I usually do that via rsync to my web server, which is as simple as:
+
+```
+% rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/
+```
+
+Have a look at the end result here:
+
+[https://irregular.ninja](https://irregular.ninja)  
+
+> PS: There's also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).
+
+## Cleaning it up
+
+A simple `make clean` will clean up the `./dist` directory and all other (if any) temp files created.
+
+## HTML templates
+
+Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. 
+
+## Conclusion
+
+A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). 
+
+Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.
+
+Other Bash and KISS-related posts are:
+
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  
