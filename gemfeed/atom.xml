@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-10-29T22:29:56+02:00</updated>
+    <updated>2023-10-29T22:32:07+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -283,6 +283,8 @@ blurs  html  index.html  photos  thumbs
 <span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
 <br />
 <span>Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/photoalbum'><span class='inlinecode'>photoalbum.sh</span> source code on Codeberg.</a><br />
 <br />
 <span>Other Bash and KISS-related posts are:</span><br />
 <br />
