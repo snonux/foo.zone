@@ -213,6 +213,7 @@ Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/P3500897-01.jpg
 Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/P3500897-01.jpg
 .
 .
+.
 Generating /home/paul/Desktop/irregular.ninja/dist/html/8-0.html
 Generating /home/paul/Desktop/irregular.ninja/dist/html/8-41.html
 Generating /home/paul/Desktop/irregular.ninja/dist/html/9-0.html
@@ -256,11 +257,7 @@ Also, I like the CSS effects which I recently added. In particular, for the Irre
 
 Other Bash and KISS-related posts are:
 
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
+<< template::inline::index bash kiss
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
