@@ -1,11 +1,301 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-09-26T21:20:36+03:00</updated>
+    <updated>2023-10-29T22:25:04+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>KISS static web photo albums with `photoalbum.sh`</title>
+        <link href="https://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html" />
+        <id>https://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html</id>
+        <updated>2023-10-29T22:25:04+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
+<br />
+<pre>
+         ___        .---------.._
+  ______!fsc!_....-&#39; .g8888888p. &#39;-------....._
+.&#39;          //     .g8:       :8p..---....___ \&#39;.
+| foo.zone //  ()  d88:       :88b|==========! !|
+|         //       888:       :888|==========| !|
+|___      \\_______&#39;T88888888888P&#39;&#39;----------&#39;//|   
+|   \       """"""""""""""""""""""""""""""""""/ |   
+|    !...._____      .="""=.   .[]    ____...!  |   
+|   /               ! .g$p. !   .[]          :  |   
+|  !               :  $$$$$  :  .[]          :  |   
+|  !irregular.ninja ! &#39;T$P&#39; !   .[]           &#39;.|   
+|   \__              "=._.="   .()        __    |   
+|.--&#39;  &#39;----._______________________.----&#39;  &#39;--.|
+&#39;._____________________________________________.&#39;   
+</pre>
+<br />
+<h2 style='display: inline'>Motivation</h2><br />
+<br />
+<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
+<br />
+<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
+<br />
+<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
+<br />
+<h2 style='display: inline'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
+<br />
+<span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
+<br />
+<h2 style='display: inline'>Installation</h2><br />
+<br />
+<span>Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:</span><br />
+<br />
+<pre>
+% sudo dnf install -y ImageMagick make git
+</pre>
+<br />
+<span>Now, clone, make and install the script:</span><br />
+<br />
+<pre>
+% git clone https://codeberg.org/snonux/photoalbum
+Cloning into &#39;photoalbum&#39;...
+remote: Enumerating objects: 1624, done.
+remote: Total 1624 (delta 0), reused 0 (delta 0), pack-reused 1624
+Receiving objects: 100% (1624/1624), 193.36 KiB | 1.49 MiB/s, done.
+Resolving deltas: 100% (1227/1227), done.
+
+% cd photoalbum
+/home/paul/photoalbum
+
+% make
+cut -d&#39; &#39; -f2 changelog | head -n 1 | sed &#39;s/(//;s/)//&#39; &gt; .version
+test ! -d ./bin &amp;&amp; mkdir ./bin || exit 0
+sed "s/PHOTOALBUMVERSION/$(cat .version)/" src/photoalbum.sh &gt; ./bin/photoalbum
+chmod 0755 ./bin/photoalbum
+
+% sudo make install
+test ! -d /usr/bin &amp;&amp; mkdir -p /usr/bin || exit 0
+cp ./bin/* /usr/bin
+test ! -d /usr/share/photoalbum/templates &amp;&amp; mkdir -p /usr/share/photoalbum/templates || exit 0
+cp -R ./share/templates /usr/share/photoalbum/
+test ! -d /etc/default &amp;&amp; mkdir -p /etc/default || exit 0
+cp ./src/photoalbum.default.conf /etc/default/photoalbum
+</pre>
+<br />
+<span>You should now have the <span class='inlinecode'>photoalbum</span> command in your <span class='inlinecode'>$PATH</span>. But wait to use it! First, it needs to be set up!</span><br />
+<br />
+<pre>
+% photoalbum version
+This is Photoalbum Version 0.5.1
+</pre>
+<br />
+<h2 style='display: inline'>Setting it up</h2><br />
+<br />
+<span>Now, it&#39;s time to set up the Irregular Ninja static web photo album! Create a directory (here: <span class='inlinecode'>irregular.ninja</span> for the Irregular Ninja Photo site), and inside of that directory, create an <span class='inlinecode'>incoming</span> directory. The <span class='inlinecode'>incoming</span> directory. Copy all photos to be part of the album there.</span><br />
+<br />
+<pre>
+% mkdir irregular.ninja
+% cd irregular.ninja
+% # cp -Rpv ~/Photos/your-photos ./incoming
+</pre>
+<br />
+<span>In this example, I am skipping the <span class='inlinecode'>cp ...</span> part as I intend to use an alternative <span class='inlinecode'>incoming</span> directory, as you will see later in the configuration file.</span><br />
+<br />
+<span>The general usage of <span class='inlinecode'>potoalbum</span> is as follows:</span><br />
+<br />
+<pre>
+photoalbum clean|generate|version [rcfile] photoalbum
+photoalbum makemake
+</pre>
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>clean</span>: Cleans up the workspace</li>
+<li><span class='inlinecode'>generate</span>: Generates the static photo album</li>
+<li><span class='inlinecode'>version</span>: Prints out the version</li>
+<li><span class='inlinecode'>makemake</span>: Creates a <span class='inlinecode'>Makefile</span> and <span class='inlinecode'>photoalbumrc</span> in the current working directory.</li>
+</ul><br />
+<span>So what we will do next is to run the following inside of the <span class='inlinecode'>irregular.ninja/</span> directory; it will generate a <span class='inlinecode'>Makefile</span> and a configuration file <span class='inlinecode'>photoalbumrc</span> with a few configurable options:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#990000">%</font> photoalbum makemake
+You may now customize <font color="#990000">.</font>/photoalbumrc and run make
+
+<font color="#990000">%</font> cat Makefile
+all<font color="#990000">:</font>
+	photoalbum generate photoalbumrc
+clean<font color="#990000">:</font>
+	photoalbum clean photoalbumrc
+
+<font color="#990000">%</font> cat photoalbumrc
+<i><font color="#9A1900"># The title of the photoalbum</font></i>
+<font color="#009900">TITLE</font><font color="#990000">=</font><font color="#FF0000">'A simple Photoalbum'</font>
+
+<i><font color="#9A1900"># Thumbnail height geometry</font></i>
+<font color="#009900">THUMBHEIGHT</font><font color="#990000">=</font><font color="#993399">300</font>
+<i><font color="#9A1900"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
+<font color="#009900">HEIGHT</font><font color="#990000">=</font><font color="#993399">1200</font>
+<i><font color="#9A1900"># Max previews per page.</font></i>
+<font color="#009900">MAXPREVIEWS</font><font color="#990000">=</font><font color="#993399">40</font>
+<i><font color="#9A1900"># Randomly shuffle all previews.</font></i>
+<i><font color="#9A1900"># SHUFFLE=yes</font></i>
+
+<i><font color="#9A1900"># Diverse directories, need to be full paths, not relative!</font></i>
+<font color="#009900">INCOMING_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/incoming
+<font color="#009900">DIST_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/dist
+<font color="#009900">TEMPLATE_DIR</font><font color="#990000">=</font>/usr/share/photoalbum/templates/default
+<i><font color="#9A1900">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
+
+<i><font color="#9A1900"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
+<font color="#009900">TARBALL_INCLUDE</font><font color="#990000">=</font>yes
+<font color="#009900">TARBALL_SUFFIX</font><font color="#990000">=.</font>tar
+<font color="#009900">TAR_OPTS</font><font color="#990000">=</font><font color="#FF0000">'-c'</font>
+
+<i><font color="#9A1900"># Some debugging options</font></i>
+<i><font color="#9A1900">#set -e</font></i>
+<i><font color="#9A1900">#set -x</font></i>
+</pre>
+<br />
+<span>In the case for <span class='inlinecode'>irregular.ninja</span>, I modified the defaults to the following:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#FF6600">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
+<font color="#009900">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
+<font color="#0000FF">@@ -1,23 +1,24 @@</font>
+ # The title of the photoalbum
+<font color="#FF6600">-TITLE='A simple Photoalbum'</font>
+<font color="#009900">+TITLE='Irregular.Ninja'</font>
+
+ # Thumbnail height geometry
+<font color="#FF6600">-THUMBHEIGHT=300</font>
+<font color="#009900">+THUMBHEIGHT=400</font>
+ # Normal geometry height (when viewing photo). Uncomment, to keep original size.
+<font color="#FF6600">-HEIGHT=1200</font>
+<font color="#009900">+HEIGHT=1800</font>
+ # Max previews per page.
+ MAXPREVIEWS=40
+<font color="#FF6600">-# Randomly shuffle all previews.</font>
+<font color="#FF6600">-# SHUFFLE=yes</font>
+<font color="#009900">+# Randomly shuffle</font>
+<font color="#009900">+SHUFFLE=yes</font>
+
+ # Diverse directories, need to be full paths, not relative!
+<font color="#FF6600">-INCOMING_DIR=$(pwd)/incoming</font>
+<font color="#009900">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
+ DIST_DIR=$(pwd)/dist
+ TEMPLATE_DIR=/usr/share/photoalbum/templates/default
+ #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
+
+ # Includes a .tar of the incoming dir in the dist, can be yes or no
+<font color="#FF6600">-TARBALL_INCLUDE=yes</font>
+<font color="#009900">+TARBALL_INCLUDE=no</font>
+ TARBALL_SUFFIX=.tar
+ TAR_OPTS='-c'
+</pre>
+<br />
+<span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
+<br />
+<h2 style='display: inline'>Generating the static photo album</h2><br />
+<br />
+<span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
+<br />
+<pre>
+[paul@earth]~/Desktop/irregular.ninja% make
+photoalbum generate photoalbumrc
+Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
+Processing 11271242324.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271242324.jpg
+Processing 11271306683.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271306683.jpg
+Processing 13950707932.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/13950707932.jpg
+Processing 14077406487.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14077406487.jpg
+Processing 14859380100.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14859380100.jpg
+Processing 14869239578.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14869239578.jpg
+Processing 14879132910.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14879132910.jpg
+.
+.
+.
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-4.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/20211130_091051.jpg
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/20211130_091051.jpg
+Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/DSCF0188.JPG
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/DSCF0188.JPG
+Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
+Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/P3500897-01.jpg
+Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/P3500897-01.jpg
+.
+.
+.
+Generating /home/paul/Desktop/irregular.ninja/dist/html/8-0.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/8-41.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/9-0.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/9-41.html
+Generating /home/paul/Desktop/irregular.ninja/dist/html/index.html
+Generating /home/paul/Desktop/irregular.ninja/dist/.//index.html
+</pre>
+<br />
+<span>The result will be in the distribution directory <span class='inlinecode'>./dist</span>. This directory is publishable to the inter-web:</span><br />
+<br />
+<pre>
+% ls ./dist
+blurs  html  index.html  photos  thumbs
+</pre>
+<br />
+<span>I usually do that via rsync to my web server, which is as simple as:</span><br />
+<br />
+<pre>
+% rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/
+</pre>
+<br />
+<span>Have a look at the end result here:</span><br />
+<br />
+<a class='textlink' href='https://irregular.ninja'>https://irregular.ninja</a><br />
+<br />
+<span class='quote'>PS: There&#39;s also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).</span><br />
+<br />
+<h2 style='display: inline'>Cleaning it up</h2><br />
+<br />
+<span>A simple <span class='inlinecode'>make clean</span> will clean up the <span class='inlinecode'>./dist</span> directory and all other (if any) temp files created.</span><br />
+<br />
+<h2 style='display: inline'>HTML templates</h2><br />
+<br />
+<span>Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. </span><br />
+<br />
+<h2 style='display: inline'>Conclusion</h2><br />
+<br />
+<span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
+<br />
+<span>Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.</span><br />
+<br />
+<span>Other Bash and KISS-related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>DTail usage examples</title>
         <link href="https://foo.zone/gemfeed/2023-09-25-dtail-usage-examples.html" />
@@ -8432,52 +8722,6 @@ apply Service "dig6" {
 <li>The BIND server will notify all slave DNS servers (at the moment, only one). And it will transfer the new version of the zone.</li>
 </ul><br />
 <span>That&#39;s much more comfortable now than manually clicking at some web UIs at Schlund Technologies.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Offsite backup with ZFS (Part 2)</title>
-        <link href="https://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html" />
-        <id>https://foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2.html</id>
-        <updated>2016-04-16T22:43:42+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Offsite backup with ZFS (Part 2)</h1><br />
-<br />
-<span class='quote'>Published at 2016-04-16T22:43:42+01:00</span><br />
-<br />
-<pre>
- ________________
-|# :           : #|
-|  : ZFS/GELI  :  |________________ 
-|  :   Offsite : |# :           : #|
-|  :  Backup 1 : |  : ZFS/GELI  :  |
-|  :___________: |  :   Offsite :  |
-|     _________  |  :  Backup 2 :  |
-|    | __      | |  :___________:  |
-|    ||  |     | |     _________   |
-\____||__|_____|_|    | __      |  |
-                 |    ||  |     |  |
-                 \____||__|_____|__|
-</pre>
-<br />
-<a class='textlink' href='./2016-04-03-offsite-backup-with-zfs.html'>Offsite backup with ZFS Part 1</a><br />
-<a class='textlink' href='./2016-04-16-offsite-backup-with-zfs-part2.html'>Offsite backup with ZFS Part 2 (you are reading this atm.)</a><br />
-<br />
-<span>I enhanced the procedure a bit. From now on, I have two external 2TB USB hard drives. Both are set up precisely the same way. To decrease the probability that both drives will not fail simultaneously, they are of different brands. One drive is kept at a secret location. The other one is held at home, right next to my HP MicroServer.</span><br />
-<br />
-<span>Whenever I update the offsite backup, I am doing it to the drive, which is kept locally. Afterwards, I bring it to the secret location, swap the drives, and bring the other back home. This ensures that I will always have an offsite backup available at a different location than my home - even while updating one copy of it.</span><br />
-<br />
-<span>Furthermore, I added scrubbing ("zpool scrub...") to the script. It ensures that the file system is consistent and that there are no bad blocks on the disk and the file system. To increase the reliability, I also run a "zfs set copies=2 zroot". That setting is also synchronized to the offsite ZFS pool. ZFS stores every data block to disk twice now. Yes, it consumes twice as much disk space, making it better fault-tolerant against hardware errors (e.g. only individual disk sectors going bad). </span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
