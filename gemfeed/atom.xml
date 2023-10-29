@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-10-29T22:39:05+02:00</updated>
+    <updated>2023-10-29T22:46:13+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -258,7 +258,7 @@ Generating /home/paul/irregular.ninja/dist/.//index.html
 blurs  html  index.html  photos  thumbs
 </pre>
 <br />
-<span>I usually do that via rsync to my web server (I use OpenBSD with the standard <span class='inlinecode'>httpd</span> web server, btw), which is as simple as:</span><br />
+<span>I usually do that via rsync to my web server (I use OpenBSD with the standard <span class='inlinecode'>httpd</span> web server, btw.), which is as simple as:</span><br />
 <br />
 <pre>
 % rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/
@@ -1556,6 +1556,11 @@ http://www.gnu.org/software/src-highlite -->
 <h2 style='display: inline'>Conclusion:</h2><br />
 <br />
 <span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
+<br />
+<span>Other KISS-related posts are:</span><br />
+<br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
