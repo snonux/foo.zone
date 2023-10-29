@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-10-29T22:25:04+02:00</updated>
+    <updated>2023-10-29T22:29:56+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
+<br />
+<span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
 <br />
 <pre>
          ___        .---------.._
@@ -119,7 +121,7 @@ photoalbum makemake
 <li><span class='inlinecode'>version</span>: Prints out the version</li>
 <li><span class='inlinecode'>makemake</span>: Creates a <span class='inlinecode'>Makefile</span> and <span class='inlinecode'>photoalbumrc</span> in the current working directory.</li>
 </ul><br />
-<span>So what we will do next is to run the following inside of the <span class='inlinecode'>irregular.ninja/</span> directory; it will generate a <span class='inlinecode'>Makefile</span> and a configuration file <span class='inlinecode'>photoalbumrc</span> with a few configurable options:</span><br />
+<span>So what we will do next is to run the following inside of the <span class='inlinecode'>irregular.ninja/</span> directory; it will generate a <span class='inlinecode'>Makefile</span> and a configuration file <span class='inlinecode'>photoalbumrc</span> containing a few configurable options:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -210,43 +212,43 @@ http://www.gnu.org/software/src-highlite -->
 <span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
 <br />
 <pre>
-[paul@earth]~/Desktop/irregular.ninja% make
+% make
 photoalbum generate photoalbumrc
-Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
-Processing 11271242324.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271242324.jpg
-Processing 11271306683.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271306683.jpg
-Processing 13950707932.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/13950707932.jpg
-Processing 14077406487.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14077406487.jpg
-Processing 14859380100.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14859380100.jpg
-Processing 14869239578.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14869239578.jpg
-Processing 14879132910.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14879132910.jpg
+Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
+Processing 11271242324.jpg to /home/paul/irregular.ninja/dist/photos/11271242324.jpg
+Processing 11271306683.jpg to /home/paul/irregular.ninja/dist/photos/11271306683.jpg
+Processing 13950707932.jpg to /home/paul/irregular.ninja/dist/photos/13950707932.jpg
+Processing 14077406487.jpg to /home/paul/irregular.ninja/dist/photos/14077406487.jpg
+Processing 14859380100.jpg to /home/paul/irregular.ninja/dist/photos/14859380100.jpg
+Processing 14869239578.jpg to /home/paul/irregular.ninja/dist/photos/14869239578.jpg
+Processing 14879132910.jpg to /home/paul/irregular.ninja/dist/photos/14879132910.jpg
 .
 .
 .
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-4.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/20211130_091051.jpg
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/20211130_091051.jpg
-Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/DSCF0188.JPG
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/DSCF0188.JPG
-Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/P3500897-01.jpg
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/P3500897-01.jpg
+Generating /home/paul/irregular.ninja/dist/html/7-4.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/20211130_091051.jpg
+Creating blur /home/paul/irregular.ninja/dist/blurs/20211130_091051.jpg
+Generating /home/paul/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/DSCF0188.JPG
+Creating blur /home/paul/irregular.ninja/dist/blurs/DSCF0188.JPG
+Generating /home/paul/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/P3500897-01.jpg
+Creating blur /home/paul/irregular.ninja/dist/blurs/P3500897-01.jpg
 .
 .
 .
-Generating /home/paul/Desktop/irregular.ninja/dist/html/8-0.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/8-41.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/9-0.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/9-41.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/index.html
-Generating /home/paul/Desktop/irregular.ninja/dist/.//index.html
+Generating /home/paul/irregular.ninja/dist/html/8-0.html
+Generating /home/paul/irregular.ninja/dist/html/8-41.html
+Generating /home/paul/irregular.ninja/dist/html/9-0.html
+Generating /home/paul/irregular.ninja/dist/html/9-41.html
+Generating /home/paul/irregular.ninja/dist/html/index.html
+Generating /home/paul/irregular.ninja/dist/.//index.html
 </pre>
 <br />
 <span>The result will be in the distribution directory <span class='inlinecode'>./dist</span>. This directory is publishable to the inter-web:</span><br />
@@ -289,6 +291,7 @@ blurs  html  index.html  photos  thumbs
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
