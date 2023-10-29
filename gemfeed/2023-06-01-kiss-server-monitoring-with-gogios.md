@@ -236,6 +236,11 @@ There are plans to make it possible to execute certain checks only on certain no
 
 Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.
 
+Other KISS-related posts are:
+
+[2023-06-01 KISS server monitoring with Gogios (You are currently reading this)](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2023-10-29 KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
