@@ -76,7 +76,7 @@ This is Photoalbum Version 0.5.1
 
 ## Setting it up
 
-Now, it's time to set up the Irregular Ninja static web photo album! Create a directory (here: `irregular.ninja` for the Irregular Ninja Photo site), and inside of that directory, create an `incoming` directory. The `incoming` directory. Copy all photos to be part of the album there.
+Now, it's time to set up the Irregular Ninja static web photo album (or any other web photo album you may be setting up!)! Create a directory (here: `irregular.ninja` for the Irregular Ninja Photo site - or any oter sub-directory reflecting your album's name), and inside of that directory, create an `incoming` directory. The `incoming` directory. Copy all photos to be part of the album there.
 
 ```
 % mkdir irregular.ninja
@@ -141,7 +141,7 @@ TAR_OPTS='-c'
 #set -x
 ```
 
-In the case for `irregular.ninja`, I modified the defaults to the following:
+In the case for `irregular.ninja`, I changed the defaults to the following:
 
 ```diff
 --- photoalbumrc        2023-10-29 21:42:00.894202045 +0200
