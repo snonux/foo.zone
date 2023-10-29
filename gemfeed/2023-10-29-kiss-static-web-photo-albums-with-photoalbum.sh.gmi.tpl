@@ -231,7 +231,7 @@ The result will be in the distribution directory `./dist`. This directory is pub
 blurs  html  index.html  photos  thumbs
 ```
 
-I usually do that via rsync to my web server, which is as simple as:
+I usually do that via rsync to my web server (I use OpenBSD with the standard `httpd` web server, btw), which is as simple as:
 
 ```
 % rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/

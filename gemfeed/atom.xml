@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-10-29T22:38:01+02:00</updated>
+    <updated>2023-10-29T22:39:05+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -258,7 +258,7 @@ Generating /home/paul/irregular.ninja/dist/.//index.html
 blurs  html  index.html  photos  thumbs
 </pre>
 <br />
-<span>I usually do that via rsync to my web server, which is as simple as:</span><br />
+<span>I usually do that via rsync to my web server (I use OpenBSD with the standard <span class='inlinecode'>httpd</span> web server, btw), which is as simple as:</span><br />
 <br />
 <pre>
 % rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/
