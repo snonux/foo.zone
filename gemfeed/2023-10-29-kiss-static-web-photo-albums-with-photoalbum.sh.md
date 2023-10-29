@@ -100,7 +100,7 @@ Whereas:
 * `version`: Prints out the version
 * `makemake`: Creates a `Makefile` and `photoalbumrc` in the current working directory.
 
-So what we will do next is to run the following inside of the `irregular.ninja/` directory; it will generate a `Makefile` and a configuration file `photoalbumrc` with a few configurable options:
+So what we will do next is to run the following inside of the `irregular.ninja/` directory; it will generate a `Makefile` and a configuration file `photoalbumrc` containing a few configurable options:
 
 ```bash
 % photoalbum makemake
@@ -185,43 +185,43 @@ So I changed the album title, adjusted some image and thumbnail dimensions, and 
 Let's generate it. Depending on the image sizes and count, the following step may take a while. 
 
 ```
-[paul@earth]~/Desktop/irregular.ninja% make
+% make
 photoalbum generate photoalbumrc
-Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
-Processing 11271242324.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271242324.jpg
-Processing 11271306683.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/11271306683.jpg
-Processing 13950707932.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/13950707932.jpg
-Processing 14077406487.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14077406487.jpg
-Processing 14859380100.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14859380100.jpg
-Processing 14869239578.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14869239578.jpg
-Processing 14879132910.jpg to /home/paul/Desktop/irregular.ninja/dist/photos/14879132910.jpg
+Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
+Processing 11271242324.jpg to /home/paul/irregular.ninja/dist/photos/11271242324.jpg
+Processing 11271306683.jpg to /home/paul/irregular.ninja/dist/photos/11271306683.jpg
+Processing 13950707932.jpg to /home/paul/irregular.ninja/dist/photos/13950707932.jpg
+Processing 14077406487.jpg to /home/paul/irregular.ninja/dist/photos/14077406487.jpg
+Processing 14859380100.jpg to /home/paul/irregular.ninja/dist/photos/14859380100.jpg
+Processing 14869239578.jpg to /home/paul/irregular.ninja/dist/photos/14869239578.jpg
+Processing 14879132910.jpg to /home/paul/irregular.ninja/dist/photos/14879132910.jpg
 .
 .
 .
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-4.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/20211130_091051.jpg
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/20211130_091051.jpg
-Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-5.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/DSCF0188.JPG
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/DSCF0188.JPG
-Generating /home/paul/Desktop/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/7-6.html
-Creating thumb /home/paul/Desktop/irregular.ninja/dist/thumbs/P3500897-01.jpg
-Creating blur /home/paul/Desktop/irregular.ninja/dist/blurs/P3500897-01.jpg
+Generating /home/paul/irregular.ninja/dist/html/7-4.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/20211130_091051.jpg
+Creating blur /home/paul/irregular.ninja/dist/blurs/20211130_091051.jpg
+Generating /home/paul/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Generating /home/paul/irregular.ninja/dist/html/7-5.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/DSCF0188.JPG
+Creating blur /home/paul/irregular.ninja/dist/blurs/DSCF0188.JPG
+Generating /home/paul/irregular.ninja/dist/html/page-7.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Generating /home/paul/irregular.ninja/dist/html/7-6.html
+Creating thumb /home/paul/irregular.ninja/dist/thumbs/P3500897-01.jpg
+Creating blur /home/paul/irregular.ninja/dist/blurs/P3500897-01.jpg
 .
 .
 .
-Generating /home/paul/Desktop/irregular.ninja/dist/html/8-0.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/8-41.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/9-0.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/9-41.html
-Generating /home/paul/Desktop/irregular.ninja/dist/html/index.html
-Generating /home/paul/Desktop/irregular.ninja/dist/.//index.html
+Generating /home/paul/irregular.ninja/dist/html/8-0.html
+Generating /home/paul/irregular.ninja/dist/html/8-41.html
+Generating /home/paul/irregular.ninja/dist/html/9-0.html
+Generating /home/paul/irregular.ninja/dist/html/9-41.html
+Generating /home/paul/irregular.ninja/dist/html/index.html
+Generating /home/paul/irregular.ninja/dist/.//index.html
 ```
 
 The result will be in the distribution directory `./dist`. This directory is publishable to the inter-web:
@@ -264,6 +264,7 @@ Other Bash and KISS-related posts are:
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
