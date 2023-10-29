@@ -96,9 +96,7 @@ Enough ranted for now!
 
 Other KISS-related posts are:
 
-=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 Keep it simple and stupid (You are currently reading this)
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
-=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
+<< template::inline::index kiss simple-and-stupid
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

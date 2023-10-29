@@ -238,7 +238,7 @@ Gogios is a lightweight and straightforward monitoring tool that is perfect for 
 
 Other KISS-related posts are:
 
-<< template::inline::index kiss
+<< template::inline::index kiss simple-and-stupid
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

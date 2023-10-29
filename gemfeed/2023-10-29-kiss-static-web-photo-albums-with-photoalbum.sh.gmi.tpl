@@ -261,7 +261,7 @@ Also, I like the CSS effects which I recently added. In particular, for the Irre
 
 Other Bash and KISS-related posts are:
 
-<< template::inline::index bash kiss
+<< template::inline::index bash kiss simple-and-stupid
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
