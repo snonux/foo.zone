@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-09-30T00:04:47+03:00 by `Gemtexter`
+> This site was generated at 2023-10-29T22:25:04+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -33,6 +33,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+=> ./gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 - KISS static web photo albums with `photoalbum.sh`
 => ./gemfeed/2023-09-25-dtail-usage-examples.gmi 2023-09-25 - DTail usage examples
 => ./gemfeed/2023-08-20-site-reliability-engineering-part-3.gmi 2023-08-20 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect
 => ./gemfeed/2023-08-19-site-reliability-engineering-part-2.gmi 2023-08-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE
