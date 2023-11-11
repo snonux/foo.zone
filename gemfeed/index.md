@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2023-11-11 - 'Mind Management' book notes](./2023-11-11-mind-management-book-notes.md)  
 [2023-10-29 - KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2023-09-25 - DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
 [2023-08-20 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
