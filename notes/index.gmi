@@ -7,6 +7,7 @@
 => ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
 => ./staff-engineer.gmi 'Staff Engineer' book notes
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
+=> ./mind-management.gmi 'Mind Management' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
 => ./career-guide-and-soft-skills.gmi 'Software Developmers Career Guide and Soft Skills' book notes
 => ./a-monks-guide-to-happiness.gmi 'A Monk's Guide to Happiness' book notes
