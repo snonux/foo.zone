@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-11-11T22:22:05+02:00</updated>
+    <updated>2023-12-10T07:56:06+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -5851,6 +5851,8 @@ Foo
 Foo
 </pre>
 <br />
+<span class='quote'>Update: A reader pointed out, that the redirection should actually go to <span class='inlinecode'>/proc/self/fd/1</span> and not <span class='inlinecode'>0</span>. But apparently, either way works for this particular example. Do you know why? </span><br />
+<br />
 <span>Other useful redirections are:</span><br />
 <br />
 <ul>
@@ -8134,8 +8136,8 @@ fi
 <br />
 <span>Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.</span><br />
 <br />
-<a class='textlink' href='gemini://gemini.circumlunar.space'>gemini://gemini.circumlunar.space</a><br />
-<a class='textlink' href='https://gemini.circumlunar.space'>https://gemini.circumlunar.space</a><br />
+<a class='textlink' href='gemini://geminiprotocol.net/'>gemini://geminiprotocol.net/</a><br />
+<a class='textlink' href='https://geminiprotocol.net/'>https://geminiprotocol.net/</a><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />
