@@ -12,7 +12,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
-This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across over time. 
+This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
 
 << template::inline::index bash-golf
 
@@ -20,7 +20,7 @@ This is the third blog post about my Bash Golf series. This series is random Bas
 
 `FUNCNAME` is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable `FUNCNAME`. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element `FUNCNAME[0]` holds the name of the currently executing function, `FUNCNAME[1]` the name of the function that called that, and so on.
 
-This is in particular useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:
+This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:
 
 ```bash
 #!/usr/bin/env bash
@@ -45,7 +45,6 @@ at_home_friday_evening
 
 The output is as follows:
 
-
 ```bash
 ❯ ./logexample.sh
 INFO|20231210-082732|123002|at_home_friday_evening|One Peperoni Pizza, please
@@ -56,8 +55,8 @@ INFO|20231210-082732|123002|at_home_friday_evening|One Peperoni Pizza, please
 This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break `:(){ :|:& };:` down:
 
 * `:(){ }` is really a declaration of the function `:`
-* the `;` is ending the current statement
-* the `:` at the end is calling the function `:`
+* The `;` is ending the current statement
+* The `:` at the end is calling the function `:`
 * `:|:&` is the function body
 
 Let's break down the function body `:|:&`: 
@@ -66,15 +65,15 @@ Let's break down the function body `:|:&`:
 * The `|:` is piping the output to the function `:` again (parallel recursion)
 * The `&` lets it run in the background.
 
-So, it's a fork bomb. If you run it, your computer will run out of resources eventually. (Modern linux distributions could have reasonable limits configured for your login session, so it won't bring down your whole system anymore, unless you run it as `root`!)
+So, it's a fork bomb. If you run it, your computer will run out of resources eventually. (Modern Linux distributions could have reasonable limits configured for your login session, so it won't bring down your whole system anymore unless you run it as `root`!)
 
-And here the cute illustration:
+And here is the cute illustration:
 
 => ./bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
 
 ## Inner functions
 
-Bash defines variables as it is interpreting the code. Same applies to function declarations. Let's consider this code:
+Bash defines variables as it is interpreting the code. The same applies to function declarations. Let's consider this code:
 
 ```bash
 #!/usr/bin/env bash
@@ -100,7 +99,7 @@ Intel inside!
 Intel inside!
 ```
 
-What happened? The first time, `inner` was called, it wasn't defined yet. That only happens after `outer` run. Note, that `inner` will still be globally defined. But functions can be declared multiple times (the last version wins):
+What happened? The first time `inner` was called, it wasn't defined yet. That only happens after the `outer` run. Note that `inner` will still be globally defined. But functions can be declared multiple times (the last version wins):
 
 ```bash
 #!/usr/bin/env bash
@@ -137,7 +136,7 @@ Wintel inside!
 
 ## Exporting functions
 
-Ever wondered how to execute a shell function in parallel through `xargs`? The problem is, that this won't work:
+Have you ever wondered how to execute a shell function in parallel through `xargs`? The problem is that this won't work:
 
 ```bash
 #!/usr/bin/env bash
@@ -150,7 +149,7 @@ for i in {0..9}; do echo $i; done \
   | xargs -P10 -I{} bash -c 'some_expensive_operations "{}"'
 ```
 
-We try here to run ten parallel processes, each of them should run the `some_expensive_operations` function with a different argument. The arguments are provided to `xargs` through `STDIN` one per line. When executed, we get this:
+We try here to run ten parallel processes; each of them should run the `some_expensive_operations` function with a different argument. The arguments are provided to `xargs` through `STDIN` one per line. When executed, we get this:
 
 ```
 ❯ ./xargs.sh
@@ -196,7 +195,7 @@ Doing expensive operations with '8' from pid 132839
 Doing expensive operations with '9' from pid 132840
 ```
 
-If `some_expensive_function` would call another function, so that other function must be exported as well. Otherwise, there will be a runtime error again. E.g., this won't work:
+If `some_expensive_function` would call another function, the other function must also be exported. Otherwise, there will be a runtime error again. E.g., this won't work:
 
 ```bash
 #!/usr/bin/env bash
@@ -214,17 +213,17 @@ for i in {0..9}; do echo $i; done \
   | xargs -P10 -I{} bash -c 'some_expensive_operations "{}"'
 ```
 
-... because `some_other_function` isn't exported! You will need to add a `export -f some_other_function` as well!
+... because `some_other_function` isn't exported! You will also need to add an `export -f some_other_function`!
 
 ## Dynamic variables with `local`
 
-You may know `local` is the way to declare local variables in a function. What most don't know is, that those variables are actually with dynamic scope. Let's consider the following example:
+You may know that `local` is how to declare local variables in a function. Most don't know that those variables actually have dynamic scope. Let's consider the following example:
 
 ```bash
 #!/usr/bin/env bash
 
 foo() {
-  local foo=bar
+  local foo=bar # Declare local/dynamic variable
   bar
   echo "$foo"
 }
@@ -234,7 +233,8 @@ bar() {
   foo=baz
 }
 
-foo
+foo=foo # Declare global variable
+foo # Call function foo
 echo "$foo"
 ```
 
@@ -246,10 +246,111 @@ Let's run it:
 ❯ ./dynamic.sh
 bar
 baz
-
+foo
 ```
 
-What happened? The variable `foo` (declared with `local`) is available in the function it got declared, and in all other functions down the callstack! We can even modify the value of `foo` and the change will be visible up the callstack. It's not a global variable, as we can see that on the last line `echo "$foo"` only echoes an empty line.
+What happened? The variable `foo` (declared with `local`) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of `foo', and the change will be visible up the call stack. It's not a global variable; on the last line, `echo "$foo"` echoes the global variable content.
+
+
+## `if` conditionals
+
+Consider all variants here more or less equivalent:
+
+```bash
+#!/usr/bin/env bash
+
+declare -r foo=foo
+declare -r bar=bar
+
+if [ "$foo" = foo ]; then
+  if [ "$bar" = bar ]; then
+    echo ok1
+  fi
+fi
+
+if [ "$foo" = foo ] && [ "$bar" == bar ]; then
+  echo ok2a
+fi
+
+[ "$foo" = foo ] && [ "$bar" == bar ] && echo ok2b
+
+if [[ "$foo" = foo && "$bar" == bar ]]; then
+  echo ok3a
+fi
+
+ [[ "$foo" = foo && "$bar" == bar ]] && echo ok3b
+
+if test "$foo" = foo && test "$bar" = bar; then
+  echo ok4a
+fi
+
+test "$foo" = foo && test "$bar" = bar && echo ok4b
+```
+
+The output we get is:
+
+```
+❯ ./if.sh
+ok1
+ok2a
+ok2b
+ok3a
+ok3b
+ok4a
+ok4b
+```
+
+## Multi-line comments
+
+You all know how to comment. Put a `#` in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the `:` no-op command to emulate multi-line comments. 
+
+```bash
+#!/usr/bin/env bash
+
+# Single line comment
+
+# These are two single line
+# comments one after another
+
+: <<COMMENT
+This is another way a
+multi line comment
+could be written!
+COMMENT
+```
+
+I will not demonstrate the execution of this script, as it won't print anything! It's obviously not the most pretty way of commenting on your code, but it could sometimes be handy!
+
+## Don't change it while it's executed
+
+Consider this script:
+
+```bash
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz >> $0
+echo bar
+```
+
+When it is run, it will do:
+
+```
+❯ ./if.sh
+foo
+bar
+baz
+❯ cat if.sh
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz >> $0
+echo bar
+echo baz
+```
+
+So what happened? The `echo baz` line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!
+
 
 Other related posts are:
 
