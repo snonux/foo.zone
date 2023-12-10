@@ -253,7 +253,7 @@ baz
 foo
 ```
 
-What happened? The variable `foo` (declared with `local`) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of `foo', and the change will be visible up the call stack. It's not a global variable; on the last line, `echo "$foo"` echoes the global variable content.
+What happened? The variable `foo` (declared with `local`) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of `foo`, and the change will be visible up the call stack. It's not a global variable; on the last line, `echo "$foo"` echoes the global variable content.
 
 
 ## `if` conditionals
