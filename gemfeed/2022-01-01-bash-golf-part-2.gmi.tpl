@@ -46,6 +46,8 @@ Foo
 Foo
 ```
 
+> Update: A reader pointed out, that the redirection should actually go to `/proc/self/fd/1` and not `0`. But apparently, either way works for this particular example. Do you know why? 
+
 Other useful redirections are:
 
 * Redirect stderr to stdin: "echo foo 2>&1"
