@@ -1,11 +1,429 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2023-12-10T07:56:06+02:00</updated>
+    <updated>2023-12-10T11:37:46+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Bash Golf Part 3</title>
+        <link href="https://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.html" />
+        <id>https://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.html</id>
+        <updated>2023-12-10T11:35:54+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Bash Golf Part 3</h1><br />
+<br />
+<span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
+<br />
+<pre>
+    &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
+      \        \         \              .         &#39; .     |
+     O&gt;&gt;      O&gt;&gt;       O&gt;&gt;         .                 &#39;o  |
+      \       .\. ..    .\. ..   .                        |
+      /\    .  /\     .  /\    . .                        |
+     / /   .  / /  .&#39;.  / /  .&#39;    .                      |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+</pre>
+<br />
+<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
+<h2 style='display: inline'><span class='inlinecode'>FUNCNAME</span></h2><br />
+<br />
+<span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
+<br />
+<span>This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">log ()</font></b> {
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">level</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">message</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">pid</font><font color="#990000">=</font><font color="#FF0000">"$$"</font>
+
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">callee</font><font color="#990000">=</font><font color="#009900">${FUNCNAME[1]}</font>
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">stamp</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>Y<font color="#990000">%</font>m<font color="#990000">%</font>d-<font color="#990000">%</font>H<font color="#990000">%</font>M<font color="#990000">%</font>S<font color="#990000">)</font>
+
+    echo <font color="#FF0000">"$level|$stamp|$pid|$callee|$message"</font> <font color="#990000">&gt;&amp;</font><font color="#993399">2</font>
+}
+
+<b><font color="#000000">at_home_friday_evening ()</font></b> {
+    log INFO <font color="#FF0000">'One Peperoni Pizza, please'</font>
+}
+
+at_home_friday_evening
+</pre>
+<br />
+<span>The output is as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ <font color="#990000">.</font>/logexample<font color="#990000">.</font>sh
+INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font color="#993399">082732</font><font color="#990000">|</font><font color="#993399">123002</font><font color="#990000">|</font>at_home_friday_evening<font color="#990000">|</font>One Peperoni Pizza<font color="#990000">,</font> please
+</pre>
+<br />
+<h2 style='display: inline'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
+<br />
+<span>This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break <span class='inlinecode'>:(){ :|:&amp; };:</span> down:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>:(){ }</span> is really a declaration of the function <span class='inlinecode'>:</span></li>
+<li>The <span class='inlinecode'>;</span> is ending the current statement</li>
+<li>The <span class='inlinecode'>:</span> at the end is calling the function <span class='inlinecode'>:</span></li>
+<li><span class='inlinecode'>:|:&amp;</span> is the function body</li>
+</ul><br />
+<span>Let&#39;s break down the function body <span class='inlinecode'>:|:&amp;</span>: </span><br />
+<br />
+<ul>
+<li>The first <span class='inlinecode'>:</span> is calling the function recursively</li>
+<li>The <span class='inlinecode'>|:</span> is piping the output to the function <span class='inlinecode'>:</span> again (parallel recursion)</li>
+<li>The <span class='inlinecode'>&amp;</span> lets it run in the background.</li>
+</ul><br />
+<span>So, it&#39;s a fork bomb. If you run it, your computer will run out of resources eventually. (Modern Linux distributions could have reasonable limits configured for your login session, so it won&#39;t bring down your whole system anymore unless you run it as <span class='inlinecode'>root</span>!)</span><br />
+<br />
+<span>And here is the cute illustration:</span><br />
+<br />
+<a href='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg'><img alt='Bash fork bomb' title='Bash fork bomb' src='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg' /></a><br />
+<br />
+<h2 style='display: inline'>Inner functions</h2><br />
+<br />
+<span>Bash defines variables as it is interpreting the code. The same applies to function declarations. Let&#39;s consider this code:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">outer()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Intel inside!'</font>
+  }
+  inner
+}
+
+inner
+outer
+inner
+</pre>
+<br />
+<span>And let&#39;s execute it:</span><br />
+<br />
+<pre>
+❯ ./inner.sh
+/tmp/inner.sh: line 10: inner: command not found
+Intel inside!
+Intel inside!
+</pre>
+<br />
+<span>What happened? The first time <span class='inlinecode'>inner</span> was called, it wasn&#39;t defined yet. That only happens after the <span class='inlinecode'>outer</span> run. Note that <span class='inlinecode'>inner</span> will still be globally defined. But functions can be declared multiple times (the last version wins):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">outer1()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Intel inside!'</font>
+  }
+  inner
+}
+
+<b><font color="#000000">outer2()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Wintel inside!'</font>
+  }
+  inner
+}
+
+outer1
+inner
+outer2
+inner
+</pre>
+<br />
+<span>And let&#39;s run it:</span><br />
+<br />
+<pre>
+❯ ./inner2.sh
+Intel inside!
+Intel inside!
+Wintel inside!
+Wintel inside!
+</pre>
+<br />
+<h2 style='display: inline'>Exporting functions</h2><br />
+<br />
+<span>Have you ever wondered how to execute a shell function in parallel through <span class='inlinecode'>xargs</span>? The problem is that this won&#39;t work:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>We try here to run ten parallel processes; each of them should run the <span class='inlinecode'>some_expensive_operations</span> function with a different argument. The arguments are provided to <span class='inlinecode'>xargs</span> through <span class='inlinecode'>STDIN</span> one per line. When executed, we get this:</span><br />
+<br />
+<pre>
+❯ ./xargs.sh
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+</pre>
+<br />
+<span>There&#39;s an easy solution for this. Just export the function! It will then be magically available in any sub-shell!</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>When we run this now, we get:</span><br />
+<br />
+<pre>
+❯ ./xargs.sh
+Doing expensive operations with &#39;0&#39; from pid 132831
+Doing expensive operations with &#39;1&#39; from pid 132832
+Doing expensive operations with &#39;2&#39; from pid 132833
+Doing expensive operations with &#39;3&#39; from pid 132834
+Doing expensive operations with &#39;4&#39; from pid 132835
+Doing expensive operations with &#39;5&#39; from pid 132836
+Doing expensive operations with &#39;6&#39; from pid 132837
+Doing expensive operations with &#39;7&#39; from pid 132838
+Doing expensive operations with &#39;8&#39; from pid 132839
+Doing expensive operations with &#39;9&#39; from pid 132840
+</pre>
+<br />
+<span>If <span class='inlinecode'>some_expensive_function</span> would call another function, the other function must also be exported. Otherwise, there will be a runtime error again. E.g., this won&#39;t work:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_other_function()</font></b> {
+  echo <font color="#FF0000">"$1"</font>
+}
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  some_other_function <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
+<br />
+<h2 style='display: inline'>Dynamic variables with <span class='inlinecode'>local</span></h2><br />
+<br />
+<span>You may know that <span class='inlinecode'>local</span> is how to declare local variables in a function. Most don&#39;t know that those variables actually have dynamic scope. Let&#39;s consider the following example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">foo()</font></b> {
+  <b><font color="#0000FF">local</font></b> <font color="#009900">foo</font><font color="#990000">=</font>bar <i><font color="#9A1900"># Declare local/dynamic variable</font></i>
+  bar
+  echo <font color="#FF0000">"$foo"</font>
+}
+
+<b><font color="#000000">bar()</font></b> {
+  echo <font color="#FF0000">"$foo"</font>
+  <font color="#009900">foo</font><font color="#990000">=</font>baz
+}
+
+<font color="#009900">foo</font><font color="#990000">=</font>foo <i><font color="#9A1900"># Declare global variable</font></i>
+foo <i><font color="#9A1900"># Call function foo</font></i>
+echo <font color="#FF0000">"$foo"</font>
+</pre>
+<br />
+<span>Let&#39;s pause a minute. What do you think the output would be?</span><br />
+<br />
+<span>Let&#39;s run it:</span><br />
+<br />
+<pre>
+❯ ./dynamic.sh
+bar
+baz
+foo
+</pre>
+<br />
+<span>What happened? The variable <span class='inlinecode'>foo</span> (declared with <span class='inlinecode'>local</span>) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of <span class='inlinecode'>foo&#39;, and the change will be visible up the call stack. It&#39;s not a global variable; on the last line, </span>echo "$foo"` echoes the global variable content.</span><br />
+<br />
+<br />
+<h2 style='display: inline'><span class='inlinecode'>if</span> conditionals</h2><br />
+<br />
+<span>Consider all variants here more or less equivalent:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">foo</font><font color="#990000">=</font>foo
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">bar</font><font color="#990000">=</font>bar
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    echo ok1
+  <b><font color="#0000FF">fi</font></b>
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  echo ok2a
+<b><font color="#0000FF">fi</font></b>
+
+<font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> echo ok2b
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]];</font> <b><font color="#0000FF">then</font></b>
+  echo ok3a
+<b><font color="#0000FF">fi</font></b>
+
+ <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]]</font> <font color="#990000">&amp;&amp;</font> echo ok3b
+
+<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+  echo ok4a
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">&amp;&amp;</font> echo ok4b
+</pre>
+<br />
+<span>The output we get is:</span><br />
+<br />
+<pre>
+❯ ./if.sh
+ok1
+ok2a
+ok2b
+ok3a
+ok3b
+ok4a
+ok4b
+</pre>
+<br />
+<h2 style='display: inline'>Multi-line comments</h2><br />
+<br />
+<span>You all know how to comment. Put a <span class='inlinecode'>#</span> in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the <span class='inlinecode'>:</span> no-op command to emulate multi-line comments. </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<i><font color="#9A1900"># Single line comment</font></i>
+
+<i><font color="#9A1900"># These are two single line</font></i>
+<i><font color="#9A1900"># comments one after another</font></i>
+
+<font color="#990000">:</font> <font color="#990000">&lt;&lt;</font>COMMENT
+This is another way a
+multi line comment
+could be written<font color="#990000">!</font>
+COMMENT
+</pre>
+<br />
+<span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
+<br />
+<h2 style='display: inline'>Don&#39;t change it while it&#39;s executed</h2><br />
+<br />
+<span>Consider this script:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+echo foo
+echo echo baz <font color="#990000">&gt;&gt;</font> <font color="#009900">$0</font>
+echo bar
+</pre>
+<br />
+<span>When it is run, it will do:</span><br />
+<br />
+<pre>
+❯ ./if.sh
+foo
+bar
+baz
+❯ cat if.sh
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz &gt;&gt; $0
+echo bar
+echo baz
+</pre>
+<br />
+<span>So what happened? The <span class='inlinecode'>echo baz</span> line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!</span><br />
+<br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'Mind Management' book notes</title>
         <link href="https://foo.zone/gemfeed/2023-11-11-mind-management-book-notes.html" />
@@ -422,6 +840,7 @@ blurs  html  index.html  photos  thumbs
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
 <a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -5821,6 +6240,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <h2 style='display: inline'>Redirection</h2><br />
 <br />
@@ -6293,6 +6713,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -6475,6 +6896,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <h2 style='display: inline'>TCP/IP networking</h2><br />
 <br />
@@ -6927,6 +7349,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -7633,6 +8056,7 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -8040,6 +8464,7 @@ fi
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -8485,139 +8910,6 @@ Total time: 1213.00s
 <a class='textlink' href='https://www.coker.com.au/bonnie++/'>Bonnie++</a><br />
 <a class='textlink' href='https://graphiteapp.org'>Graphite</a><br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/Memory-mapped_I/O'>Memory mapped I/O</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Object oriented programming with ANSI C</title>
-        <link href="https://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html" />
-        <id>https://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.html</id>
-        <updated>2016-11-20T22:10:57+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It's easier to use a different programming language than C for OOP. But still it's an interesting exercise to try using C for this.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Object oriented programming with ANSI C</h1><br />
-<br />
-<span class='quote'>Published at 2016-11-20T22:10:57+00:00; Updated at 2022-01-29</span><br />
-<br />
-<pre>
-  ___   ___  ____        ____ 
- / _ \ / _ \|  _ \      / ___|
-| | | | | | | |_) |____| |    
-| |_| | |_| |  __/_____| |___ 
- \___/ \___/|_|         \____|
-                              
-</pre>
-<br />
-<span>You can do a little of object-oriented programming in the C Programming Language. However, that is, in my humble opinion, limited. It&#39;s easier to use a different programming language than C for OOP. But still it&#39;s an interesting exercise to try using C for this.</span><br />
-<br />
-<h2 style='display: inline'>Function pointers</h2><br />
-<br />
-<span>Let&#39;s have a look at the following sample program. All you have to do is to add a function pointer such as "calculate" to the definition of struct "something_s". Later, during the struct initialization, assign a function address to that function pointer:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000080">#include</font></b> <font color="#FF0000">&lt;stdio.h&gt;</font>
-
-<b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
-    <font color="#009900">double</font> <font color="#990000">(*</font>calculate<font color="#990000">)(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font><font color="#990000">);</font>
-    <font color="#009900">char</font> <font color="#990000">*</font>name<font color="#990000">;</font>
-<font color="#FF0000">}</font> something_s<font color="#990000">;</font>
-
-<font color="#009900">double</font> <b><font color="#000000">multiplication</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> b<font color="#990000">)</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">return</font></b> a <font color="#990000">*</font> b<font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-<font color="#009900">double</font> <b><font color="#000000">division</font></b><font color="#990000">(</font><b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a<font color="#990000">,</font> <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> b<font color="#990000">)</font> <font color="#FF0000">{</font>
-    <b><font color="#0000FF">return</font></b> a <font color="#990000">/</font> b<font color="#990000">;</font>
-<font color="#FF0000">}</font>
-
-<font color="#009900">int</font> <b><font color="#000000">main</font></b><font color="#990000">(</font><font color="#009900">void</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-    <font color="#008080">something_s</font> mult <font color="#990000">=</font> <font color="#990000">(</font>something_s<font color="#990000">)</font> <font color="#FF0000">{</font>
-        <font color="#990000">.</font>calculate <font color="#990000">=</font> multiplication<font color="#990000">,</font>
-        <font color="#990000">.</font>name <font color="#990000">=</font> <font color="#FF0000">"Multiplication"</font>
-    <font color="#FF0000">}</font><font color="#990000">;</font>
-
-    <font color="#008080">something_s</font> div <font color="#990000">=</font> <font color="#990000">(</font>something_s<font color="#990000">)</font> <font color="#FF0000">{</font>
-        <font color="#990000">.</font>calculate <font color="#990000">=</font> division<font color="#990000">,</font>
-        <font color="#990000">.</font>name <font color="#990000">=</font> <font color="#FF0000">"Division"</font>
-    <font color="#FF0000">}</font><font color="#990000">;</font>
-
-    <b><font color="#0000FF">const</font></b> <font color="#009900">double</font> a <font color="#990000">=</font> <font color="#993399">3</font><font color="#990000">,</font> b <font color="#990000">=</font> <font color="#993399">2</font><font color="#990000">;</font>
-
-    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-    <b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> div<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-<font color="#FF0000">}</font>
-</pre>
-<br />
-<span>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> div<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-</pre>
-<br />
-<span>However, that&#39;s just syntactic sugar for:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> mult<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#990000">(*</font>mult<font color="#990000">.</font>calculate<font color="#990000">)(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-<b><font color="#000000">printf</font></b><font color="#990000">(</font><font color="#FF0000">"%s(%f, %f) =&gt; %f</font><font color="#CC33CC">\n</font><font color="#FF0000">"</font><font color="#990000">,</font> div<font color="#990000">.</font>name<font color="#990000">,</font> a<font color="#990000">,</font> b<font color="#990000">,</font> <font color="#990000">(*</font>div<font color="#990000">.</font>calculate<font color="#990000">)(</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-</pre>
-<br />
-<span>Output:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>pbuetow <font color="#990000">~</font>/git/blog/source <font color="#990000">[</font><font color="#993399">38268</font><font color="#990000">]%</font> gcc oop-c-example<font color="#990000">.</font>c -o oop-c-example
-pbuetow <font color="#990000">~</font>/git/blog/source <font color="#990000">[</font><font color="#993399">38269</font><font color="#990000">]%</font> <font color="#990000">.</font>/oop-c-example
-Multiplication<font color="#990000">(</font><font color="#993399">3.000000</font><font color="#990000">,</font> <font color="#993399">2.000000</font><font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#993399">6.000000</font>
-Division<font color="#990000">(</font><font color="#993399">3.000000</font><font color="#990000">,</font> <font color="#993399">2.000000</font><font color="#990000">)</font> <font color="#990000">=&gt;</font> <font color="#993399">1.500000</font>
-</pre>
-<br />
-<span>Not complicated at all, but nice to know and helps to make the code easier to read!</span><br />
-<br />
-<h2 style='display: inline'>That&#39;s not OOP, though</h2><br />
-<br />
-<span>However, that&#39;s not really how it works in object-oriented languages such as Java and C++. The method call in this example is not a method call as "mult" and "div" in this example are not "message receivers". I mean that the functions can not access the state of the "mult" and "div" struct objects. In C, you would need to do something like this instead if you wanted to access the state of "mult" from within the calculate function, you would have to pass it as an argument:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>mult<font color="#990000">.</font><b><font color="#000000">calculate</font></b><font color="#990000">(</font>mult<font color="#990000">,</font>a<font color="#990000">,</font>b<font color="#990000">));</font>
-</pre>
-<br />
-<h2 style='display: inline'>Real object oriented programming with C</h2><br />
-<br />
-<span>If you want to take it further, hit "Object-Oriented Programming with ANSI-C" into your favourite internet search engine or follow the link below. It goes as far as writing a C preprocessor in AWK, which takes some object-oriented pseudo-C and transforms it to plain C so that the C compiler can compile it to machine code. This is similar to how the C++ language had its origins.</span><br />
-<br />
-<a class='textlink' href='https://www.cs.rit.edu/~ats/books/ooc.pdf'>https://www.cs.rit.edu/~ats/books/ooc.pdf</a><br />
-<br />
-<h2 style='display: inline'>OOP design patterns in the Linux Kernel</h2><br />
-<br />
-<span>Big C software projects, like Linux, also follow some OOP techniques:</span><br />
-<br />
-<a class='textlink' href='https://lwn.net/Articles/444910/'>https://lwn.net/Articles/444910/</a><br />
-<br />
-<span>C is a very old programming language with it&#39;s quirks. This might be one of the reasons why Linux will also let Rust code in.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
