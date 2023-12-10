@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2023-12-10T07:56:06+02:00 by `Gemtexter`
+> This site was generated at 2023-12-10T11:38:24+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -33,6 +33,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2023-12-10 - Bash Golf Part 3](./gemfeed/2023-12-10-bash-golf-part-3.md)  
 [2023-11-11 - 'Mind Management' book notes](./gemfeed/2023-11-11-mind-management-book-notes.md)  
 [2023-10-29 - KISS static web photo albums with `photoalbum.sh`](./gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2023-09-25 - DTail usage examples](./gemfeed/2023-09-25-dtail-usage-examples.md)  

@@ -268,6 +268,7 @@ Other Bash and KISS-related posts are:
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
