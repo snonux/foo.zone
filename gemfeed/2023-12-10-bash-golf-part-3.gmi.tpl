@@ -1,0 +1,363 @@
+# Bash Golf Part 3
+
+> Published at 2023-12-10T11:35:54+02:00
+
+```
+
+    '\       '\        '\                   .  .          |>18>>
+      \        \         \              .         ' .     |
+     O>>      O>>       O>>         .                 'o  |
+      \       .\. ..    .\. ..   .                        |
+      /\    .  /\     .  /\    . .                        |
+     / /   .  / /  .'.  / /  .'    .                      |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+```
+
+This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
+
+<< template::inline::index bash-golf
+
+## `FUNCNAME`
+
+`FUNCNAME` is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable `FUNCNAME`. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element `FUNCNAME[0]` holds the name of the currently executing function, `FUNCNAME[1]` the name of the function that called that, and so on.
+
+This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:
+
+```bash
+#!/usr/bin/env bash
+
+log () {
+    local -r level="$1"; shift
+    local -r message="$1"; shift
+    local -i pid="$$"
+
+    local -r callee=${FUNCNAME[1]}
+    local -r stamp=$(date +%Y%m%d-%H%M%S)
+
+    echo "$level|$stamp|$pid|$callee|$message" >&2
+}
+
+at_home_friday_evening () {
+    log INFO 'One Peperoni Pizza, please'
+}
+
+at_home_friday_evening
+```
+
+The output is as follows:
+
+```bash
+❯ ./logexample.sh
+INFO|20231210-082732|123002|at_home_friday_evening|One Peperoni Pizza, please
+```
+
+## `:(){ :|:& };:`
+
+This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break `:(){ :|:& };:` down:
+
+* `:(){ }` is really a declaration of the function `:`
+* The `;` is ending the current statement
+* The `:` at the end is calling the function `:`
+* `:|:&` is the function body
+
+Let's break down the function body `:|:&`: 
+
+* The first `:` is calling the function recursively
+* The `|:` is piping the output to the function `:` again (parallel recursion)
+* The `&` lets it run in the background.
+
+So, it's a fork bomb. If you run it, your computer will run out of resources eventually. (Modern Linux distributions could have reasonable limits configured for your login session, so it won't bring down your whole system anymore unless you run it as `root`!)
+
+And here is the cute illustration:
+
+=> ./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
+
+## Inner functions
+
+Bash defines variables as it is interpreting the code. The same applies to function declarations. Let's consider this code:
+
+```bash
+#!/usr/bin/env bash
+
+outer() {
+  inner() {
+    echo 'Intel inside!'
+  }
+  inner
+}
+
+inner
+outer
+inner
+```
+
+And let's execute it:
+
+```
+❯ ./inner.sh
+/tmp/inner.sh: line 10: inner: command not found
+Intel inside!
+Intel inside!
+```
+
+What happened? The first time `inner` was called, it wasn't defined yet. That only happens after the `outer` run. Note that `inner` will still be globally defined. But functions can be declared multiple times (the last version wins):
+
+```bash
+#!/usr/bin/env bash
+
+outer1() {
+  inner() {
+    echo 'Intel inside!'
+  }
+  inner
+}
+
+outer2() {
+  inner() {
+    echo 'Wintel inside!'
+  }
+  inner
+}
+
+outer1
+inner
+outer2
+inner
+```
+
+And let's run it:
+
+```
+❯ ./inner2.sh
+Intel inside!
+Intel inside!
+Wintel inside!
+Wintel inside!
+```
+
+## Exporting functions
+
+Have you ever wondered how to execute a shell function in parallel through `xargs`? The problem is that this won't work:
+
+```bash
+#!/usr/bin/env bash
+
+some_expensive_operations() {
+  echo "Doing expensive operations with '$1' from pid $$"
+}
+
+for i in {0..9}; do echo $i; done \
+  | xargs -P10 -I{} bash -c 'some_expensive_operations "{}"'
+```
+
+We try here to run ten parallel processes; each of them should run the `some_expensive_operations` function with a different argument. The arguments are provided to `xargs` through `STDIN` one per line. When executed, we get this:
+
+```
+❯ ./xargs.sh
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+```
+
+There's an easy solution for this. Just export the function! It will then be magically available in any sub-shell!
+
+```bash
+#!/usr/bin/env bash
+
+some_expensive_operations() {
+  echo "Doing expensive operations with '$1' from pid $$"
+}
+export -f some_expensive_operations
+
+for i in {0..9}; do echo $i; done \
+  | xargs -P10 -I{} bash -c 'some_expensive_operations "{}"'
+```
+
+When we run this now, we get:
+
+```
+❯ ./xargs.sh
+Doing expensive operations with '0' from pid 132831
+Doing expensive operations with '1' from pid 132832
+Doing expensive operations with '2' from pid 132833
+Doing expensive operations with '3' from pid 132834
+Doing expensive operations with '4' from pid 132835
+Doing expensive operations with '5' from pid 132836
+Doing expensive operations with '6' from pid 132837
+Doing expensive operations with '7' from pid 132838
+Doing expensive operations with '8' from pid 132839
+Doing expensive operations with '9' from pid 132840
+```
+
+If `some_expensive_function` would call another function, the other function must also be exported. Otherwise, there will be a runtime error again. E.g., this won't work:
+
+```bash
+#!/usr/bin/env bash
+
+some_other_function() {
+  echo "$1"
+}
+
+some_expensive_operations() {
+  some_other_function "Doing expensive operations with '$1' from pid $$"
+}
+export -f some_expensive_operations
+
+for i in {0..9}; do echo $i; done \
+  | xargs -P10 -I{} bash -c 'some_expensive_operations "{}"'
+```
+
+... because `some_other_function` isn't exported! You will also need to add an `export -f some_other_function`!
+
+## Dynamic variables with `local`
+
+You may know that `local` is how to declare local variables in a function. Most don't know that those variables actually have dynamic scope. Let's consider the following example:
+
+```bash
+#!/usr/bin/env bash
+
+foo() {
+  local foo=bar # Declare local/dynamic variable
+  bar
+  echo "$foo"
+}
+
+bar() {
+  echo "$foo"
+  foo=baz
+}
+
+foo=foo # Declare global variable
+foo # Call function foo
+echo "$foo"
+```
+
+Let's pause a minute. What do you think the output would be?
+
+Let's run it:
+
+```
+❯ ./dynamic.sh
+bar
+baz
+foo
+```
+
+What happened? The variable `foo` (declared with `local`) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of `foo', and the change will be visible up the call stack. It's not a global variable; on the last line, `echo "$foo"` echoes the global variable content.
+
+
+## `if` conditionals
+
+Consider all variants here more or less equivalent:
+
+```bash
+#!/usr/bin/env bash
+
+declare -r foo=foo
+declare -r bar=bar
+
+if [ "$foo" = foo ]; then
+  if [ "$bar" = bar ]; then
+    echo ok1
+  fi
+fi
+
+if [ "$foo" = foo ] && [ "$bar" == bar ]; then
+  echo ok2a
+fi
+
+[ "$foo" = foo ] && [ "$bar" == bar ] && echo ok2b
+
+if [[ "$foo" = foo && "$bar" == bar ]]; then
+  echo ok3a
+fi
+
+ [[ "$foo" = foo && "$bar" == bar ]] && echo ok3b
+
+if test "$foo" = foo && test "$bar" = bar; then
+  echo ok4a
+fi
+
+test "$foo" = foo && test "$bar" = bar && echo ok4b
+```
+
+The output we get is:
+
+```
+❯ ./if.sh
+ok1
+ok2a
+ok2b
+ok3a
+ok3b
+ok4a
+ok4b
+```
+
+## Multi-line comments
+
+You all know how to comment. Put a `#` in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the `:` no-op command to emulate multi-line comments. 
+
+```bash
+#!/usr/bin/env bash
+
+# Single line comment
+
+# These are two single line
+# comments one after another
+
+: <<COMMENT
+This is another way a
+multi line comment
+could be written!
+COMMENT
+```
+
+I will not demonstrate the execution of this script, as it won't print anything! It's obviously not the most pretty way of commenting on your code, but it could sometimes be handy!
+
+## Don't change it while it's executed
+
+Consider this script:
+
+```bash
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz >> $0
+echo bar
+```
+
+When it is run, it will do:
+
+```
+❯ ./if.sh
+foo
+bar
+baz
+❯ cat if.sh
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz >> $0
+echo bar
+echo baz
+```
+
+So what happened? The `echo baz` line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!
+
+
+Other related posts are:
+
+<< template::inline::index bash
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site

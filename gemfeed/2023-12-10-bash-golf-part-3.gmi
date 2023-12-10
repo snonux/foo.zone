@@ -1,4 +1,6 @@
-# Bash Golf Part 4
+# Bash Golf Part 3
+
+> Published at 2023-12-10T11:35:54+02:00
 
 ```
 
@@ -14,7 +16,9 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
 
-<< template::inline::index bash-golf
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3 (You are currently reading this)
 
 ## `FUNCNAME`
 
@@ -69,7 +73,7 @@ So, it's a fork bomb. If you run it, your computer will run out of resources eve
 
 And here is the cute illustration:
 
-=> ./bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
+=> ./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
 
 ## Inner functions
 
@@ -354,7 +358,11 @@ So what happened? The `echo baz` line was appended to the script while it was st
 
 Other related posts are:
 
-<< template::inline::index bash
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3 (You are currently reading this)
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
