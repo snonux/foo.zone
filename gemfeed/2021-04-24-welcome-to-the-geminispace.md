@@ -75,8 +75,8 @@ This site was generated with Gemtexter. You can read more about it here:
 
 Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.
 
-[gemini://gemini.circumlunar.space](gemini://gemini.circumlunar.space)  
-[https://gemini.circumlunar.space](https://gemini.circumlunar.space)  
+[gemini://geminiprotocol.net/](gemini://geminiprotocol.net/)  
+[https://geminiprotocol.net/](https://geminiprotocol.net/)  
 
 Other related posts are:
 
