@@ -2,7 +2,7 @@
 
 > Published at 2023-08-18T22:43:47+03:00
 
-The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it's impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Principal Site Reliability Engineer and will try to share what SRE is about in this blog series.
+The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it's impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.
 
 << template::inline::index site-reliability-engineering-part
 
@@ -34,7 +34,7 @@ At the heart of SRE lies the proactive mindset of "prevention over cure." Tradit
 
 Another defining SRE idea concept the "error budget." This ingenious framework accepts that no system is flawless. Failures are inevitable. However, instead of being punitive, the culture here is to accept, learn, and iterate. By providing teams with a "budget" for errors, organisations create an environment where innovation is encouraged, and failures are viewed as learning opportunities.
 
-But SRE isn't just about technology and metrics; it's deeply human. It challenges the "hero culture" that plagues many IT teams. While individual heroics might occasionally save the day, a sustainable model requires collective expertise. An SRE culture recognises that heroes achieve their best within teams, negating the need for a hero-centric environment. This philosophy promotes a balanced on-call experience, emphasising the importance of trust, ownership, effective communication, and collaboration as cornerstones of team success. I personally have fallen into the hero trap, and know it's unsustainable to be the only go-to person for every problem.
+But SRE isn't just about technology and metrics; it's also human. It challenges the "hero culture" that plagues many IT teams. While individual heroics might occasionally save the day, a sustainable model requires collective expertise. An SRE culture recognises that heroes achieve their best within teams, negating the need for a hero-centric environment. This philosophy promotes a balanced on-call experience, emphasising the importance of trust, ownership, effective communication, and collaboration as cornerstones of team success. I personally have fallen into the hero trap, and know it's unsustainable to be the only go-to person for every arising problem.
 
 Additionally, the SRE model requires good documentation. However, it's essential ensuring that this documentation undergoes the same quality checks as code, reinforcing effective onboarding, training and communication.
 
