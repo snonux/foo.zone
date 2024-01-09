@@ -1,12 +1,12 @@
 # Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect
 
-> Published at 2023-08-20T12:17:56+03:00
+> Published at 2024-01-09T18:35:48+02:00
 
-This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will try to share what SRE is about in this blog series.
+This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.
 
 [2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
-[2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-08-19-site-reliability-engineering-part-2.md)  
-[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect (You are currently reading this)](./2023-08-20-site-reliability-engineering-part-3.md)  
+[2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-11-19-site-reliability-engineering-part-2.md)  
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect (You are currently reading this)](./2024-01-09-site-reliability-engineering-part-3.md)  
 
 ```
                     ..--""""----..                 
@@ -51,8 +51,6 @@ An always-on, always-alert culture can lead to burnout. Engineers should be enco
 For the junior engineer, it's too easy to fall back and ask the experts in the team every time an issue arises. This seems reasonable, but serving recipes for solving production issues on a silver tablet won't scale forever, as there are infinite scenarios of how production systems can break. So every engineer should learn to debug, troubleshoot and resolve production incidents independently. The experts will still be there for guidance and step in when the junior gets stuck after trying, but the experts should also learn to step down so that lesser experienced engineers can step up and learn. But mistakes can always happen here; that's why having a blameless on-call culture is essential.
 
 A blameless on-call culture is a must for a safe and collaborative environment where engineers can effectively respond to incidents without fear of retribution. This approach acknowledges that mistakes are a natural part of the learning and innovation process. When individuals are assured they won't be punished for errors, they're more likely to openly discuss mistakes, allowing the entire team to learn and grow from each incident. Furthermore, a blameless culture promotes psychological safety, enhances job satisfaction, reduces burnout, and ensures that talent remains committed and engaged.
-
-The fourth part of this blog series will be published soon :-)
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

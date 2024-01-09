@@ -1,12 +1,12 @@
 # Site Reliability Engineering - Part 2: Operational Balance in SRE
 
-> Published at 2023-08-19T00:18:18+03:00
+> Published at 2023-11-19T00:18:18+03:00
 
-This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Principal Site Reliability Engineer and will try to share what SRE is about in this blog series.
+This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.
 
 [2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
-[2023-08-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)](./2023-08-19-site-reliability-engineering-part-2.md)  
-[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
+[2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE (You are currently reading this)](./2023-11-19-site-reliability-engineering-part-2.md)  
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2024-01-09-site-reliability-engineering-part-3.md)  
 
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -43,7 +43,7 @@ That all sounds very romantic. The truth is, it's brutal to archive the perfect 
 
 Continue with the third part of this series:
 
-[2023-08-20 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2023-08-20-site-reliability-engineering-part-3.md)  
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2024-01-09-site-reliability-engineering-part-3.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
