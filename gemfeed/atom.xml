@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-01-13T23:34:03+02:00</updated>
+    <updated>2024-01-14T00:23:06+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -46,8 +46,8 @@ SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas installboot sd0 <i><font color="#9A1900"># Update the bootloader (not for every upgrade required)</font></i>
-doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel)</font></i>
+<pre>$ doas installboot sd0 <i><font color="#9A1900"># Update the bootloader (not for every upgrade required)</font></i>
+$ doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel)</font></i>
 </pre>
 <br />
 <span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
@@ -56,9 +56,9 @@ doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas sysmerge <i><font color="#9A1900"># Update system configuration files</font></i>
-doas pkg_add -u <i><font color="#9A1900"># Update all packages</font></i>
-doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</font></i>
+<pre>$ doas sysmerge <i><font color="#9A1900"># Update system configuration files</font></i>
+$ doas pkg_add -u <i><font color="#9A1900"># Update all packages</font></i>
+$ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</font></i>
 </pre>
 <br />
 <span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
