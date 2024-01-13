@@ -78,6 +78,8 @@ Check out one of the following links for more information about Gemini. For exam
 [gemini://geminiprotocol.net/](gemini://geminiprotocol.net/)  
 [https://geminiprotocol.net/](https://geminiprotocol.net/)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 [2021-04-24 Welcome to the Geminispace (You are currently reading this)](./2021-04-24-welcome-to-the-geminispace.md)  
@@ -85,7 +87,5 @@ Other related posts are:
 [2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
 [2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

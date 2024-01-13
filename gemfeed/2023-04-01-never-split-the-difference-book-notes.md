@@ -120,6 +120,8 @@ Establish a range at top places like corp. I get... (e.g. remote London on a pro
 
 Slow.... it.... down....
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 [2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
@@ -127,7 +129,5 @@ Other book notes of mine are:
 [2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-11-11 "Mind Management" book notes](./2023-11-11-mind-management-book-notes.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

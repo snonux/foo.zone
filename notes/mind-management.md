@@ -91,6 +91,8 @@ You could schedule exploratory tasks when you are under grief. Sound systems sho
 * Talk slowly and deepen your voice a bit to appear more confident. You will also become more confident.
 * Also, use power positions for better confidence.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 [2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
@@ -98,8 +100,6 @@ Other book notes of mine are:
 [2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-11-11 "Mind Management" book notes (You are currently reading this)](./2023-11-11-mind-management-book-notes.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  

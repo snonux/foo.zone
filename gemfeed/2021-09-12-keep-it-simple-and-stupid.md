@@ -94,13 +94,13 @@ There is, however, a trap. The more you spend time with things, the more these t
 
 Enough ranted for now!
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other KISS-related posts are:
 
 [2021-09-12 Keep it simple and stupid (You are currently reading this)](./2021-09-12-keep-it-simple-and-stupid.md)  
 [2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 > Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 
