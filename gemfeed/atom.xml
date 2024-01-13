@@ -1,11 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-01-09T18:45:17+02:00</updated>
+    <updated>2024-01-13T23:06:21+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>One reason why I love OpenBSD</title>
+        <link href="gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi</id>
+        <updated>2024-01-13T22:55:33+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I just upgraded my OpenBSD's from `7.3` to `7.4` by following the unattended upgrade guide:</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>One reason why I love OpenBSD</h1><br />
+<br />
+<span class='quote'>Published at 2024-01-13T22:55:33+02:00</span><br />
+<br />
+<pre>
+                         .
+                          A       ;
+                |   ,--,-/ \---,-/|  ,
+               _|\,&#39;. /|      /|   `/|-.
+           \`.&#39;    /|      ,            `;.
+          ,&#39;\   A     A         A   A _ /| `.;
+        ,/  _              A       _  / _   /|  ;
+       /\  / \   ,  ,           A  /    /     `/|
+      /_| | _ \         ,     ,             ,/  \
+     // | |/ `.\  ,-      ,       ,   ,/ ,/      \/
+     / @| |@  / /&#39;   \  \      ,              &gt;  /|    ,--.
+    |\_/   \_/ /      |  |           ,  ,/        \  ./&#39; __:..
+    |  __ __  |       |  | .--.  ,         &gt;  &gt;   |-&#39;   /     `
+  ,/| /  &#39;  \ |       |  |     \      ,           |    /
+ /  |&lt;--.__,-&gt;|       |  | .    `.        &gt;  &gt;    /   (
+/_,&#39; \\  ^  /  \     /  /   `.    &gt;--            /^\   |
+      \\___/    \   /  /      \__&#39;     \   \   \/   \  |
+       `.   |/          ,  ,                  /`\    \  )
+         \  &#39;  |/    ,       V    \          /        `-\
+          `|/  &#39;  V      V           \    \.&#39;            \_
+           &#39;`-.       V       V        \./&#39;\
+               `|/-.      \ /   \ /,---`\         kat
+                n
+                /   `._____V_____V&#39;
+                           &#39;     &#39;
+</pre>
+<br />
+<span>I just upgraded my OpenBSD&#39;s from <span class='inlinecode'>7.3</span> to <span class='inlinecode'>7.4</span> by following the unattended upgrade guide:</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org/faq/upgrade74.html'>https://www.openbsd.org/faq/upgrade74.html</a><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>doas installboot sd0 <i><font color="#9A1900"># Update the bootloader (not for every upgrade required)</font></i>
+doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel)</font></i>
+</pre>
+<br />
+<span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>doas sysmerge <i><font color="#9A1900"># Update system configuration files</font></i>
+doas pkg_add -u <i><font color="#9A1900"># Update all packages</font></i>
+doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</font></i>
+</pre>
+<br />
+<span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
+<br />
+<span>I followed the same procedure the previous times and never encountered any difficulties with any OpenBSD upgrades.</span><br />
+<br />
+<span>I have seen upgrades of other Operating Systems either take a long time or break the system (which takes manual steps to repair). That&#39;s just one of many reasons why I love OpenBSD! There appear never to be any problems. It just gets its job done!</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org'>The OpenBSD Project</a><br />
+<br />
+<span>BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may be for you. They rock (I am having a VM there, too)!</span><br />
+<br />
+<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
+<br />
+<span>Other *BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</title>
         <link href="gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi" />
@@ -4899,6 +4991,13 @@ rex commons
 <br />
 <span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn&#39;t have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
 <br />
+<span>Other *BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -8769,212 +8868,6 @@ dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:er
 <a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Realistic load testing with I/O Riot for Linux</title>
-        <link href="gemini://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi" />
-        <id>gemini://foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi</id>
-        <updated>2018-06-01T14:50:29+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Realistic load testing with I/O Riot for Linux</h1><br />
-<br />
-<span class='quote'>Published at 2018-06-01T14:50:29+01:00; Updated at 2021-05-08</span><br />
-<br />
-<pre>
-       .---.
-      /     \
-      \.@-@./
-      /`\_/`\
-     //  _  \\
-    | \     )|_
-   /`\_`&gt;  &lt;_/ \
-jgs\__/&#39;---&#39;\__/
-</pre>
-<br />
-<h2 style='display: inline'>Foreword</h2><br />
-<br />
-<span>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </span><br />
-<br />
-<a class='textlink' href='https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot'>https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
-<br />
-<span>I havn&#39;t worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work caused by disk I/O.</span><br />
-<br />
-<span>I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn&#39;t have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.</span><br />
-<br />
-<span>Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That&#39;s because the name has changed after taking those.</span><br />
-<br />
-<h1 style='display: inline'>The article</h1><br />
-<br />
-<span>With I/O Riot IT administrators can load test and optimize the I/O subsystem of Linux-based operating systems. The tool makes it possible to record I/O patterns and replay them at a later time as often as desired. This means bottlenecks can be reproduced and eradicated. </span><br />
-<br />
-<span>When storing huge amounts of data, such as more than 200 billion archived emails at Mimecast, it&#39;s not only the available storage capacity that matters, but also the data throughput and latency. At the same time, operating costs must be kept as low as possible. The more systems involved, the more important it is to optimize the hardware, the operating system and the applications running on it.</span><br />
-<br />
-<h2 style='display: inline'>Background: Existing Techniques</h2><br />
-<br />
-<span>Conventional I/O benchmarking: Administrators usually use open source benchmarking tools like IOZone and bonnie++. Available database systems such as Redis and MySQL come with their own benchmarking tools. The common problem with these tools is that they work with prescribed artificial I/O patterns. Although this can test both sequential and randomized data access, the patterns do not correspond to what can be found on production systems.</span><br />
-<br />
-<span>Testing by load test environment: Another option is to use a separate load test environment in which, as far as possible, a production environment with all its dependencies is simulated. However, an environment consisting of many microservices is very complex. Microservices are usually managed by different teams, which means extra coordination effort for each load test. Another challenge is to generate the load as authentically as possible so that the patterns correspond to a productive environment. Such a load test environment can only handle as many requests as its weakest link can handle. For example, load generators send many read and write requests to a frontend microservice, whereby the frontend forwards the requests to a backend microservice responsible for storing the data. If the frontend service does not process the requests efficiently enough, the backend service is not well utilized in the first place. As a rule, all microservices are clustered across many servers, which makes everything even more complicated. Under all these conditions it is very difficult to test I/O of separate backend systems. Moreover, for many small and medium-sized companies, a separate load test environment would not be feasible for cost reasons.</span><br />
-<br />
-<span>Testing in the production environment: For these reasons, benchmarks are often carried out in the production environment. In order to derive value from this such tests are especially performed during peak hours when systems are under high load. However, testing on production systems is associated with risks and can lead to failure or loss of data without adequate protection.</span><br />
-<br />
-<h2 style='display: inline'>Benchmarking the Email Cloud at Mimecast</h2><br />
-<br />
-<span>For email archiving, Mimecast uses an internally developed microservice, which is operated directly on Linux-based storage systems. A storage cluster is divided into several replication volumes. Data is always replicated three times across two secure data centers. Customer data is automatically allocated to one or more volumes, depending on throughput, so that all volumes are automatically assigned the same load. Customer data is archived on conventional, but inexpensive hard disks with several terabytes of storage capacity each. I/O benchmarking proved difficult for all the reasons mentioned above. Furthermore, there are no ready-made tools for this purpose in the case of self-developed software. The service operates on many block devices simultaneously, which can make the RAID controller a bottleneck. None of the freely available benchmarking tools can test several block devices at the same time without extra effort. In addition, emails typically consist of many small files. Randomized access to many small files is particularly inefficient. In addition to many software adaptations, the hardware and operating system must also be optimized.</span><br />
-<br />
-<span>Mimecast encourages employees to be innovative and pursue their own ideas in the form of an internal competition, Pet Project. The goal of the pet project I/O Riot was to simplify OS and hardware level I/O benchmarking. The first prototype of I/O Riot was awarded an internal roadmap prize in the spring of 2017. A few months later, I/O Riot was used to reduce write latency in the storage clusters by about 50%. The improvement was first verified by I/O replay on a test system and then successively applied to all storage systems. I/O Riot was also used to resolve a production incident caused by disk I/O load.</span><br />
-<br />
-<h2 style='display: inline'>Using I/O Riot</h2><br />
-<br />
-<span>First, all I/O events are logged to a file on a production system with I/O Riot. It is then copied to a test system where all events are replayed in the same way. The crucial point here is that you can reproduce I/O patterns as they are found on a production system as often as you like on a test system. This results in the possibility of optimizing the set screws on the system after each run.</span><br />
-<br />
-<h3 style='display: inline'>Installation</h3><br />
-<br />
-<span>I/O Riot was tested under CentOS 7.2 x86_64. For compiling, the GNU C compiler and Systemtap including kernel debug information are required. Other Linux distributions are theoretically compatible but untested. First of all, you should update the systems involved as follows:</span><br />
-<br />
-<pre>
-% sudo yum update
-</pre>
-<br />
-<span>If the kernel is updated, please restart the system. The installation would be done without a restart but this would complicate the installation. The installed kernel version should always correspond to the currently running kernel. You can then install I/O Riot as follows:</span><br />
-<br />
-<pre>
-% sudo yum install gcc git systemtap yum-utils kernel-devel-$(uname -r)
-% sudo debuginfo-install kernel-$(uname -r)
-% git clone https://github.com/mimecast/ioriot
-% cd ioriot
-% make
-% sudo make install
-% export PATH=$PATH:/opt/ioriot/bin
-</pre>
-<br />
-<span>Note: It is not best practice to install any compilers on production systems. For further information please have a look at the enclosed README.md.</span><br />
-<br />
-<h3 style='display: inline'>Recording of I/O events</h3><br />
-<br />
-<span>All I/O events are kernel related. If a process wants to perform an I/O operation, such as opening a file, it must inform the kernel of this by a system call (short syscall). I/O Riot relies on the Systemtap tool to record I/O syscalls. Systemtap, available for all popular Linux distributions, helps you to take a look at the running kernel in productive environments, which makes it predestined to monitor all I/O-relevant Linux syscalls and log them to a file. Other tools, such as strace, are not an alternative because they slow down the system too much.</span><br />
-<br />
-<span>During recording, ioriot acts as a wrapper and executes all relevant Systemtap commands for you. Use the following command to log all events to io.capture:</span><br />
-<br />
-<pre>
-% sudo ioriot -c io.capture
-</pre>
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png'><img alt='Screenshot I/O recording' title='Screenshot I/O recording' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure1-ioriot-io-recording.png' /></a><br />
-<br />
-<span>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</span><br />
-<br />
-<h3 style='display: inline'>Test preparation</h3><br />
-<br />
-<span>Then copy io.capture to a test system. The log also contains all accesses to the pseudo file systems devfs, sysfs and procfs. This makes little sense, which is why you must first generate a cleaned and playable version io.replay from io.capture as follows:</span><br />
-<br />
-<pre>
-% sudo ioriot -c io.capture -r io.replay -u $USER -n TESTNAME
-</pre>
-<br />
-<span>The parameter -n allows you to assign a freely selectable test name. An arbitrary system user under which the test is to be played is specified via paramater -u.</span><br />
-<br />
-<h3 style='display: inline'>Test Initialization</h3><br />
-<br />
-<span>The test will most likely want to access existing files. These are files the test wants to read but does not create by itself. The existence of these must be ensured before the test. You can do this as follows:</span><br />
-<br />
-<pre>
-% sudo ioriot -i io.replay
-</pre>
-<br />
-<span>To avoid any damage to the running system, ioreplay only works in special directories. The tool creates a separate subdirectory for each file system mount point (e.g. /, /usr/local, /store/00,...) (here: /.ioriot/TESTNAME, /usr/local/.ioriot/TESTNAME, /store/00/.ioriot/TESTNAME,...). By default, the working directory of ioriot is /usr/local/ioriot/TESTNAME.</span><br />
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png'><img alt='Screenshot test preparation' title='Screenshot test preparation' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure2-ioriot-test-preparation.png' /></a><br />
-<br />
-<span>You must re-initialize the environment before each run. Data from previous tests will be moved to a trash directory automatically, which can be finally deleted with "sudo ioriot -P".</span><br />
-<br />
-<h3 style='display: inline'>Replay</h3><br />
-<br />
-<span>After initialization, you can replay the log with -r. You can use -R to initiate both test initialization and replay in a single command and -S can be used to specify a file in which statistics are written after the test run.</span><br />
-<br />
-<span>You can also influence the playback speed: "-s 0" is interpreted as "Playback as fast as possible" and is the default setting. With "-s 1" all operations are performed at original speed. "-s 2" would double the playback speed and "-s 0.5" would halve it.</span><br />
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png'><img alt='Screenshot replaying I/O' title='Screenshot replaying I/O' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure3-ioriot-replay.png' /></a><br />
-<br />
-<span>As an initial test, for example, you could compare the two Linux I/O schedulers CFQ and Deadline and check which scheduler the test runs the fastest. They run the test separately for each scheduler. The following shell loop iterates through all attached block devices of the system and changes their I/O scheduler to the one specified in variable $new_scheduler (in this case either cfq or deadline). Subsequently, all I/O events from the io.replay protocol are played back. At the end, an output file with statistics is generated:</span><br />
-<br />
-<pre>
-% new_scheduler=cfq
-% for scheduler in /sys/block/*/queue/scheduler; do
-    echo $new_scheduler | sudo tee $scheduler
-done
-% sudo ioriot -R io.replay -S cfq.txt
-% new_scheduler=deadline
-% for scheduler in /sys/block/*/queue/scheduler; do
-   echo $new_scheduler | sudo tee $scheduler
-done
-% sudo ioriot -R io.replay -S deadline.txt
-</pre>
-<br />
-<span>According to the results, the test could run 940 seconds faster with Deadline Scheduler:</span><br />
-<br />
-<pre>
-% cat cfq.txt
-Num workers: 4
-hreads per worker: 128
-otal threads: 512
-Highest loadavg: 259.29
-Performed ioops: 218624596
-Average ioops/s: 101544.17
-Time ahead: 1452s
-Total time: 2153.00s
-% cat deadline.txt
-Num workers: 4
-Threads per worker: 128
-Total threads: 512
-Highest loadavg: 342.45
-Performed ioops: 218624596
-Average ioops/s: 180234.62
-Time ahead: 2392s
-Total time: 1213.00s
-</pre>
-<br />
-<span>In any case, you should also set up a time series database, such as Graphite, where the I/O throughput can be plotted. Figures 4 and 5 show the read and write access times of both tests. The break-in makes it clear when the CFQ test ended and the deadline test was started. The reading latency of both tests is similar. Write latency is dramatically improved using the Deadline Scheduler.</span><br />
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png'><img alt='Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.' title='Graphite visualization of the mean read access times in ms with CFQ and Deadline Scheduler.' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure4-ioriot-read-latency.png' /></a><br />
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png'><img alt='Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.' title='Graphite visualization of the average write access times in ms with CFQ and Deadline Scheduler.' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure5-ioriot-write-latency.png' /></a><br />
-<br />
-<span>You should also take a look at the iostat tool. The iostat screenshot shows the output of iostat -x 10 during a test run. As you can see, a block device is fully loaded with 99% utilization, while all other block devices still have sufficient buffer. This could be an indication of poor data distribution in the storage system and is worth pursuing. It is not uncommon for I/O Riot to reveal software problems.</span><br />
-<br />
-<a href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png'><img alt='Output of iostat. The block device sdy seems to be almost fully utilized by 99%.' title='Output of iostat. The block device sdy seems to be almost fully utilized by 99%.' src='./2018-06-01-realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png' /></a><br />
-<br />
-<h2 style='display: inline'>I/O Riot is Open Source</h2><br />
-<br />
-<span>The tool has already proven to be very useful and will continue to be actively developed as time and priority permits. Mimecast intends to be an ongoing contributor to Open Source. You can find I/O Riot at:</span><br />
-<br />
-<a class='textlink' href='https://github.com/mimecast/ioriot'>https://github.com/mimecast/ioriot</a><br />
-<br />
-<h2 style='display: inline'>Systemtap</h2><br />
-<br />
-<span>Systemtap is a tool for the instrumentation of the Linux kernel. The tool provides an AWK-like programming language. Programs written in it are compiled from Systemtap to C- and then into a dynamically loadable kernel module. Loaded into the kernel, the program has access to Linux internals. A Systemtap program written for I/O Riot monitors when, with which parameters, at which time, and from which process I/O syscalls take place and their return values.</span><br />
-<br />
-<span>For example, the open syscall opens a file and returns the responsible file descriptor. The read and write syscalls can operate on a file descriptor and return the number of read or written bytes. The close syscall closes a given file descriptor. I/O Riot comes with a ready-made Systemtap program, which you have already compiled into a kernel module and installed to /opt/ioriot. In addition to open, read and close, it logs many other I/O-relevant calls.</span><br />
-<br />
-<a class='textlink' href='https://sourceware.org/systemtap/'>https://sourceware.org/systemtap/</a><br />
-<br />
-<h2 style='display: inline'>More refereces</h2><br />
-<br />
-<a class='textlink' href='http://www.iozone.org/'>IOZone</a><br />
-<a class='textlink' href='https://www.coker.com.au/bonnie++/'>Bonnie++</a><br />
-<a class='textlink' href='https://graphiteapp.org'>Graphite</a><br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Memory-mapped_I/O'>Memory mapped I/O</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

@@ -658,10 +658,7 @@ Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, Op
 
 Other *BSD related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex (You are currently reading this)
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+<< template::inline::index bsd
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
