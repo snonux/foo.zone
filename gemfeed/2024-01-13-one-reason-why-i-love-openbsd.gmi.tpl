@@ -23,16 +23,16 @@ I just upgraded my OpenBSD's from `7.3` to `7.4` by following the unattended upg
 => https://www.openbsd.org/faq/upgrade74.html
 
 ```shell
-doas installboot sd0 # Update the bootloader (not for every upgrade required)
-doas sysupgrade # Update all binaries (including Kernel)
+$ doas installboot sd0 # Update the bootloader (not for every upgrade required)
+$ doas sysupgrade # Update all binaries (including Kernel)
 ``` 
 
 `sysupgrade` downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:
 
 ```shell
-doas sysmerge # Update system configuration files
-doas pkg_add -u # Update all packages
-doas reboot # Just in case, reboot one more time
+$ doas sysmerge # Update system configuration files
+$ doas pkg_add -u # Update all packages
+$ doas reboot # Just in case, reboot one more time
 ```
 
 That's it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.
