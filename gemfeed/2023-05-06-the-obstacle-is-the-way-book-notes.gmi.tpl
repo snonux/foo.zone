@@ -82,11 +82,11 @@ Should I hate people who hate me? That's their problem and not mine. Be always c
 
 Life is a marathon, not a sprint. Each obstacle we overcome prepares us for the next one. Remember, the obstacle is not just a barrier to be turned upside down; it can also be used as a catapult to propel us forward. By embracing challenges and using them as opportunities for growth, we become stronger, more adaptable, and, ultimately, more successful.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 << template::inline::index book-notes
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

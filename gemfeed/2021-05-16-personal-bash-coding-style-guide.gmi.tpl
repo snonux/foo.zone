@@ -384,10 +384,10 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 => https://tldp.org/LDP/abs/html/  Advanced Bash-Scripting Guide
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index bash
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

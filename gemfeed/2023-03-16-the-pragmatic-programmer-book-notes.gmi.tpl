@@ -76,11 +76,11 @@ How to motivate others to contribute something (e.g. ideas to a startup):
 
 By working together, everyone contributes what they can, achieving a greater good together.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 << template::inline::index book-notes
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

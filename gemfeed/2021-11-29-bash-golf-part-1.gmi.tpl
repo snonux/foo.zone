@@ -462,10 +462,10 @@ In the Bash you will have to fall back to an external command like "bc" (the arb
 
 See you later for the next post of this series.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index bash
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

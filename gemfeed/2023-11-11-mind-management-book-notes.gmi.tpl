@@ -91,11 +91,11 @@ You could schedule exploratory tasks when you are under grief. Sound systems sho
 * Talk slowly and deepen your voice a bit to appear more confident. You will also become more confident.
 * Also, use power positions for better confidence.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 << template::inline::index book-notes
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

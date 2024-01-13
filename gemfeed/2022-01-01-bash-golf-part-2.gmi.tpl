@@ -481,10 +481,10 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index bash
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

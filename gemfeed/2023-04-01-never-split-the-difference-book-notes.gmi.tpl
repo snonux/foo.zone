@@ -120,10 +120,10 @@ Establish a range at top places like corp. I get... (e.g. remote London on a pro
 
 Slow.... it.... down....
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 << template::inline::index book-notes
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

@@ -47,10 +47,10 @@ BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may
 
 => https://openbsd.amsterdam
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other *BSD related posts are:
 
 << template::inline::index bsd
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

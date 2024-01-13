@@ -259,10 +259,10 @@ Also, I like the CSS effects which I recently added. In particular, for the Irre
 
 => https://codeberg.org/snonux/photoalbum `photoalbum.sh` source code on Codeberg.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other Bash and KISS-related posts are:
 
 << template::inline::index bash kiss simple-and-stupid
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

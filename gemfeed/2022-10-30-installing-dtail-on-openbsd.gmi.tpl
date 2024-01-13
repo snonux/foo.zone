@@ -339,10 +339,10 @@ Check out the following for more information:
 => https://github.com/mimecast/dtail
 => https://www.rexify.org
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index dtail
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
