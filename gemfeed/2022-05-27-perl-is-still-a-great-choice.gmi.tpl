@@ -134,10 +134,10 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 => https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/ Why Perl is still relevant in 2022
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index perl raku
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

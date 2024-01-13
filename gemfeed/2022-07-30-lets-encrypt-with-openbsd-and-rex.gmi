@@ -656,13 +656,13 @@ OpenBSD suits perfectly here as all the tools are already part of the base insta
 
 Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the `acme.sh` shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other *BSD related posts are:
 
 => ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 => ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex (You are currently reading this)
 => ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

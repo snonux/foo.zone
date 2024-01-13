@@ -385,10 +385,10 @@ Of course I am operating multiple Jails on the same host this way with Puppet:
 
 All done in a pretty automated manor. 
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other *BSD related posts are:
 
 << template::inline::index bsd
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

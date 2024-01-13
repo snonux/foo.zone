@@ -136,10 +136,10 @@ Optionally, when the `xmllint` binary is installed, Gemtexter will perform a sim
 
 Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. 
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index gemtext gemini
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

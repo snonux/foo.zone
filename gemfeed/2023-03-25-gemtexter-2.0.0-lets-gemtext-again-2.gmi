@@ -136,6 +136,8 @@ Optionally, when the `xmllint` binary is installed, Gemtexter will perform a sim
 
 Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. 
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 => ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
@@ -143,7 +145,5 @@ Other related posts are:
 => ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again
 => ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again² (You are currently reading this)
 => ./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi 2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

@@ -353,11 +353,10 @@ echo baz
 
 So what happened? The `echo baz` line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
 << template::inline::index bash
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site

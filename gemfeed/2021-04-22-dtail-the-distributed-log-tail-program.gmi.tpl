@@ -103,10 +103,10 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 => https://dtail.dev
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 << template::inline::index dtail
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
