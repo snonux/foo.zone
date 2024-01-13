@@ -3,31 +3,19 @@
 > Published at 2024-01-13T22:55:33+02:00
 
 ```
-                         .
-                          A       ;
-                |   ,--,-/ \---,-/|  ,
-               _|\,'. /|      /|   `/|-.
-           \`.'    /|      ,            `;.
-          ,'\   A     A         A   A _ /| `.;
-        ,/  _              A       _  / _   /|  ;
-       /\  / \   ,  ,           A  /    /     `/|
-      /_| | _ \         ,     ,             ,/  \
-     // | |/ `.\  ,-      ,       ,   ,/ ,/      \/
-     / @| |@  / /'   \  \      ,              >  /|    ,--.
-    |\_/   \_/ /      |  |           ,  ,/        \  ./' __:..
-    |  __ __  |       |  | .--.  ,         >  >   |-'   /     `
-  ,/| /  '  \ |       |  |     \      ,           |    /
- /  |<--.__,->|       |  | .    `.        >  >    /   (
-/_,' \\  ^  /  \     /  /   `.    >--            /^\   |
-      \\___/    \   /  /      \__'     \   \   \/   \  |
-       `.   |/          ,  ,                  /`\    \  )
-         \  '  |/    ,       V    \          /        `-\
-          `|/  '  V      V           \    \.'            \_
-           '`-.       V       V        \./'\
-               `|/-.      \ /   \ /,---`\         kat
-                n
-                /   `._____V_____V'
-                           '     '
+           FISHKISSFISHKIS               
+       SFISHKISSFISHKISSFISH            F
+    ISHK   ISSFISHKISSFISHKISS         FI
+  SHKISS   FISHKISSFISHKISSFISS       FIS
+HKISSFISHKISSFISHKISSFISHKISSFISH    KISS
+  FISHKISSFISHKISSFISHKISSFISHKISS  FISHK
+      SSFISHKISSFISHKISSFISHKISSFISHKISSF
+  ISHKISSFISHKISSFISHKISSFISHKISSF  ISHKI
+SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
+  HKISSFISHKISSFISHKISSFISHKISS       FIS
+    HKISSFISHKISSFISHKISSFISHK         IS
+       SFISHKISSFISHKISSFISH            K
+         ISSFISHKISSFISHK               
 ```
 
 I just upgraded my OpenBSD's from `7.3` to `7.4` by following the unattended upgrade guide:
