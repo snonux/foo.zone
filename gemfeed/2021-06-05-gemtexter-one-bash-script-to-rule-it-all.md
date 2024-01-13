@@ -163,6 +163,8 @@ It was quite a lot of fun writing Gemtexter. It's a relatively small project, bu
 
 I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. 
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 [2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
@@ -174,7 +176,5 @@ Other related posts are:
 [2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
 [2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

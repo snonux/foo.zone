@@ -355,6 +355,7 @@ echo baz
 
 So what happened? The `echo baz` line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
@@ -363,7 +364,5 @@ Other related posts are:
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
 [2023-12-10 Bash Golf Part 3 (You are currently reading this)](./2023-12-10-bash-golf-part-3.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
