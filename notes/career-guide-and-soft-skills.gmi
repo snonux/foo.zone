@@ -272,6 +272,8 @@ Unit testing Vs regression testing: Unit tests test the smallest possible unit a
 * The war of Art (to combat procrastination)
 * Willpower Instinct
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other book notes of mine are:
 
 => ./2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 "The Pragmatic Programmer" book notes
@@ -279,8 +281,6 @@ Other book notes of mine are:
 => ./2023-05-06-the-obstacle-is-the-way-book-notes.gmi 2023-05-06 "The Obstacle is the Way" book notes
 => ./2023-07-17-career-guide-and-soft-skills-book-notes.gmi 2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)
 => ./2023-11-11-mind-management-book-notes.gmi 2023-11-11 "Mind Management" book notes
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

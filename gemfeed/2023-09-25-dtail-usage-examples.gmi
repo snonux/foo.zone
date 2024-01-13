@@ -228,6 +228,8 @@ diff /etc/test /etc/passwd
 
 Use `--help` for more available options. Or go to the DTail page for more information! Hope you find DTail useful!
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
 => ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
@@ -238,7 +240,5 @@ Other related posts are:
 I hope you find the tools presented in this post useful!
 
 Paul
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
