@@ -1,16 +1,32 @@
 # From `.org` to `.cloud`
 
-I recently migrated most of my self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and rather use smaller indie, self-made solutions. However, I also have to go with the time and try out technologies which are currently hot on the job marked. I don't want become the old man yelling at cloud :D
+I recently migrated all of my Docker based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and rather use smaller indie, self-made solutions. However, I also have to go with the time and try out technologies which are currently hot on the job marked. I don't want to become the old man who yells at cloud :D
 
-=> ./from-.org-to-.cloud/old-man-yells-at-cloud.jpg
-
-Actually, I didn't migrate all of my services to AWS. I migrated *only* the servies which are easier to setup in Docker than to setup manually on the `$OS` of choice.
+=> ./from-.org-to-.cloud/old-man-yells-at-cloud.jpg Old man yells at cloud
 
 ## The old `*.buetow.org` way
 
 Before the migration, all those services were reachable through `buetow.org`-subdomains (Buetow is my last name) and run on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a `nginx` reverse proxy with TLS offloading (with Let's Encrypt certificates).
 
-The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fiction series). I retired only that VM, my other two OpenBSD VMs (one hosted at Hetzner, the other one hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:
+The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fiction series). 
+
+Downsides of this setup were:
+
+* Not high available. If the server goes down, no service is reachable, until it's repaired.
+* Manual installation.
+
+About the manual installation part: I could have used a configuration management systme like Rexify, Puppet. But back in time I decided against it, as setting up Docker containers isn't really so complicated through simple start scripts. And it's only a single Linux box where a manual installation isn't as painful. However, regular backups (which can Hetzner do automatically for you), was a must.
+
+Benefits of this setup were:
+
+* KISS (Keep it Simple Stupid)
+* Cheap (much cheaper than my AWS setup)
+
+## Keeping `buetow.org` OpenBSD boxes alive
+
+As pointed out, I only migrated the Docker based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready to use container images, which makes it easy to deploy them.
+
+My other two OpenBSD VMs (`blowfish.buetow.org`, hosted at Hetzner, and `fishfinger.buetow.org`, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:
 
 * HTTP server for my websites (e.g. `https://foo.zone`, ...)
 * Gemini server for my capsules (e.g. `gemini://foo.zone`)
@@ -22,18 +38,46 @@ The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fic
 
 ## The new `*.buetow.cloud` way
 
-Now, all of those services are reachable through `*.buetow.cloud`-subdomains. I decided to get myself a new domain name, as I then could fully separate my AWS setup from my conventional setup.
+Now, all of the containers (list of them will follow further below) are reachable through `*.buetow.cloud`-subdomains. I decided to get myself a new domain name, as I then could fully separate my AWS setup from my conventional setup.
 
-## `audiobookshelf.buetow.cloud`
+## The services
 
-## `syncthing.buetow.cloud`
+The following FQDNs here may not work. That's because I spin them up only on demand (which is possible through Terraform - more about this "on demand"-automation I will maybe cover in another blog post).
 
-## `flux.buetow.cloud`
+All services are installed automatically to AWS ECS Fargate through Infrastructure as Code (with Terraform). ECS is AWS's Elastic Container Service and Fargate manages the underlying hardware infrastructure (e.g. how many CPUs, RAM etc) for me automatically. So I don't have to bother about having enough EC2 instances to serve my demands, for example.
 
-## `radicale.buetow.cloud`
+The authorative name server for the `buetow.cloud` domain is AWS' Route 53. TLS certificates come for free here at AWS and are offloaded through the Application Loadbalancer. The LB acts as a proxy to the ECS container instances of the services.
 
-## `bag.buetow.cloud`
+All services make require some kind of persistent storage. For that, I am using an encryped EFS file system, which gets automatically replicated across all AZs (availability zones) of my region of choice `eu-central-1`.
 
-## `anki.buetow.cloud`
+The EFS automatically get's backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days.
 
-## `vault.buetow.cloud`
+Some services below also require a Network Loadbalancer.
+
+All services are `IPv4` and `IPv6` ready (dual-stacked).
+
+### `audiobookshelf.buetow.cloud`
+
+### `syncthing.buetow.cloud`
+
+### `flux.buetow.cloud`
+
+### `radicale.buetow.cloud`
+
+### `bag.buetow.cloud`
+
+### `anki.buetow.cloud`
+
+### `vault.buetow.cloud`
+
+### `bastion.buetow.cloud`
+
+## Conclusion
+
+I have learned a lot of AWS and Terraform.
+
+Will I keep it in the cloud? I don't know yet. But maybe I won't renew the `buetow.cloud` domain and instead will use `*.cloud.buetow.org` or `*.aws.buetow.org` subdomains. 
+
+I also have migrated my offsite data backups from my home nAS to S3 Glacier Deep Archive. 
+
+
