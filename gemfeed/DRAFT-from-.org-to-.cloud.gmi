@@ -1,0 +1,39 @@
+# From `.org` to `.cloud`
+
+I recently migrated most of my self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and rather use smaller indie, self-made solutions. However, I also have to go with the time and try out technologies which are currently hot on the job marked. I don't want become the old man yelling at cloud :D
+
+=> ./from-.org-to-.cloud/old-man-yells-at-cloud.jpg
+
+Actually, I didn't migrate all of my services to AWS. I migrated *only* the servies which are easier to setup in Docker than to setup manually on the `$OS` of choice.
+
+## The old `*.buetow.org` way
+
+Before the migration, all those services were reachable through `buetow.org`-subdomains (Buetow is my last name) and run on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a `nginx` reverse proxy with TLS offloading (with Let's Encrypt certificates).
+
+The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fiction series). I retired only that VM, my other two OpenBSD VMs (one hosted at Hetzner, the other one hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:
+
+* HTTP server for my websites (e.g. `https://foo.zone`, ...)
+* Gemini server for my capsules (e.g. `gemini://foo.zone`)
+* Authorative DNS servers for my domain names
+* Mail transfer agent (MTA)
+* My Gorum monitoring system.
+* My IRC bouncer.
+* All automated with Rexify.
+
+## The new `*.buetow.cloud` way
+
+Now, all of those services are reachable through `*.buetow.cloud`-subdomains. I decided to get myself a new domain name, as I then could fully separate my AWS setup from my conventional setup.
+
+## `audiobookshelf.buetow.cloud`
+
+## `syncthing.buetow.cloud`
+
+## `flux.buetow.cloud`
+
+## `radicale.buetow.cloud`
+
+## `bag.buetow.cloud`
+
+## `anki.buetow.cloud`
+
+## `vault.buetow.cloud`
