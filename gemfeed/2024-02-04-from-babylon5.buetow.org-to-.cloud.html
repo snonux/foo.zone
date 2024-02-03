@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>From `babylon5.buetow.org` to `*.buetow.cloud`</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+<br />
+<span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
+<br />
+<span>Recently, my employer sent me to a week-long AWS course. After the course, there wasn&#39;t any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</span><br />
+<br />
+<span>So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don&#39;t want to become the old man who yells at cloud :D</span><br />
+<br />
+<a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
+<br />
+<h2 style='display: inline'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<br />
+<span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Babylon_5'>https://en.wikipedia.org/wiki/Babylon_5</a><br />
+<br />
+<span>The downsides of this setup were:</span><br />
+<br />
+<ul>
+<li>Not highly available. If the server goes down, no service is reachable until it&#39;s repaired. To be fair, the Hetzner cloud VM is redundant by itself and would have re-spawned on a different worker node, I suppose. </li>
+<li>Manual installation.</li>
+</ul><br />
+<span>About the manual installation part: I could have used a configuration management system like Rexify, Puppet, etc. But I decided against it back in time, as setting up Docker containers isn&#39;t so complicated through simple start scripts. And it&#39;s only a single Linux box where a manual installation is less painful. However, regular backups (which Hetzner can do automatically for you) were a must.</span><br />
+<br />
+<span>The benefits of this setup were:</span><br />
+<br />
+<ul>
+<li>KISS (Keep it Simple Stupid)</li>
+<li>Cheap</li>
+</ul><br />
+<h2 style='display: inline'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<br />
+<span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
+<br />
+<span>My other two OpenBSD VMs (<span class='inlinecode'>blowfish.buetow.org</span>, hosted at Hetzner, and <span class='inlinecode'>fishfinger.buetow.org</span>, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:</span><br />
+<br />
+<ul>
+<li>HTTP server for my websites (e.g. <span class='inlinecode'>https://foo.zone</span>, ...)</li>
+<li>ACME for Let&#39;s Encrypt TLS certificate auto-renewal.</li>
+<li>Gemini server for my capsules (e.g. <span class='inlinecode'>gemini://foo.zone</span>)</li>
+<li>Authoritative DNS servers for my domains (but <span class='inlinecode'>buetow.cloud</span>, which is on Route 53 now)</li>
+<li>Mail transfer agent (MTA)</li>
+<li>My Gogios monitoring system.</li>
+<li>My IRC bouncer.</li>
+</ul><br />
+<span>It is all automated with Rex, aka Rexify. This OpenBSD setup is my "fun" or "for pleasure" setup. Whereas the Rocky Linux 9 one I always considered the "pratical means to the end"-setup to have 3rd party Docker containers up and running with as little work as possible.</span><br />
+<br />
+<a class='textlink' href='https://www.rexify.org'>(R)?ex, the friendly automation framework</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
+<br />
+<h2 style='display: inline'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<br />
+<span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
+<br />
+<span>I decided to automate everything with Terraform, as I wanted to learn to use it as it appears standard now in the job market.</span><br />
+<br />
+<span>All services are installed automatically to AWS ECS Fargate. ECS is AWS&#39;s Elastic Container Service, and Fargate automatically manages the underlying hardware infrastructure (e.g., how many CPUs, RAM, etc.) for me. So I don&#39;t have to bother about having enough EC2 instances to serve my demands, for example.</span><br />
+<br />
+<span>The authoritative DNS for the <span class='inlinecode'>buetow.cloud</span> domain is AWS Route 53. TLS certificates are free here at AWS and offloaded through the AWS Application Load Balancer. The LB acts as a proxy to the ECS container instances of the services. A few services I run in ECS Fargate also require the AWS Network Load Balancer.</span><br />
+<br />
+<span>All services require some persistent storage. For that, I use an encrypted EFS file system, automatically replicated across all AZs (availability zones) of my region of choice, <span class='inlinecode'>eu-central-1</span>.</span><br />
+<br />
+<span>In case of an AZ outage, I could re-deploy all the failed containers in another AZ, and all the data would still be there.</span><br />
+<br />
+<span>The EFS automatically gets backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days. </span><br />
+<br />
+<span>Domain registration, TLS certificate configuration and configuration of the EFS backup were quickly done through the AWS web interface. These were only one-off tasks, so they weren&#39;t fully automated through Terraform. </span><br />
+<br />
+<span>You can find all Terraform manifests here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/terraform'>https://codeberg.org/snonux/terraform</a><br />
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPS, EFS, and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
+<li><span class='inlinecode'>org-buetow-bastion</span> sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).</li>
+<li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
+<li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
+</ul><br />
+<h2 style='display: inline'>The container apps</h2><br />
+<br />
+<span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
+<br />
+<span>Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.</span><br />
+<br />
+<span>Miniflux requires two ECS containers. One is the Miniflux app, and the other is the PostgreSQL DB.</span><br />
+<br />
+<a class='textlink' href='https://miniflux.app/'>https://miniflux.app/</a><br />
+<br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
+<br />
+<span>Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.</span><br />
+<br />
+<span>With Audiobookshelf, I replaced my former Audible subscription and my separate Podcast app. For Podcast synchronisation I used to use the Gpodder NextCloud sync app. But that one I retired now with Audiobookshelf as well :-)</span><br />
+<br />
+<a class='textlink' href='https://www.audiobookshelf.org'>https://www.audiobookshelf.org</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
+<br />
+<span>Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it&#39;s transmitted over the internet.</span><br />
+<br />
+<span>With Syncthing, I retired my old NextCloud Files and file sync client on all my devices. I also quit my NextCloud Notes setup. All my Notes are now plain Markdown files in a <span class='inlinecode'>Notes</span> directory. On Android, I can edit them with any text or Markdown editor (e.g. Obsidian), and they will be synchronised via Syncthing to my other computers, both forward and back.</span><br />
+<br />
+<span>I use Syncthing to synchronise some of my Phone&#39;s data (e.g. Notes, Pictures and other documents). Initially, I synced all of my pictures, videos, etc., with AWS. But that was pretty expensive. So for now, I use it only whilst travelling. Otherwise, I will use my Syncthing instance here on my LAN (I have a cheap cloud backup in AWS S3 Glacier Deep Archive, but that&#39;s for another blog post).</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
+<br />
+<span>Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn&#39;t a ready-to-use Docker image. So, I created my own.</span><br />
+<br />
+<span>On Android, it works great together with the DAVx5 client for synchronisation.</span><br />
+<br />
+<a class='textlink' href='https://radicale.org/'>https://radicale.org/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-radicale-server'>https://codeberg.org/snonux/docker-radicale-server</a><br />
+<a class='textlink' href='https://www.davx5.com/'>https://www.davx5.com/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
+<br />
+<span>Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!</span><br />
+<br />
+<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
+<a class='textlink' href='https://github.com/wallabag/wallabag'>https://github.com/wallabag/wallabag</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
+<br />
+<span>Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server <span class='inlinecode'>anki-sync-server</span>. For some reason (not going into the details here), I had to build my own Docker image for the server.</span><br />
+<br />
+<a class='textlink' href='https://apps.ankiweb.net/'>https://apps.ankiweb.net/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-anki-sync-server'>https://codeberg.org/snonux/docker-anki-sync-server</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
+<br />
+<span>Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.</span><br />
+<br />
+<span>I currently don&#39;t use it, but I may in the future. I made it available in my ECS Fargate setup anyway for now.</span><br />
+<br />
+<a class='textlink' href='https://github.com/dani-garcia/vaultwarden'>https://github.com/dani-garcia/vaultwarden</a><br />
+<br />
+<span>I currently use <span class='inlinecode'>geheim</span>, a Ruby command line tool I wrote, as my current password manager. You can read a little bit about it here under "More":</span><br />
+<br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff </a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
+<br />
+<span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
+<br />
+<h2 style='display: inline'>Conclusion</h2><br />
+<br />
+<span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
+<br />
+<span>All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don&#39;t think Terraform is a nice language. It get&#39;s it&#39;s job done, but it could be more elegant IMHO.</span><br />
+<br />
+<span>Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! </span><br />
+<br />
+<span>Will I keep it in the cloud? I don&#39;t know yet. But maybe I won&#39;t renew the <span class='inlinecode'>buetow.cloud</span> domain and instead will use <span class='inlinecode'>*.cloud.buetow.org</span> or <span class='inlinecode'>*.aws.buetow.org</span> subdomains. </span><br />
+<br />
+<span>Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
