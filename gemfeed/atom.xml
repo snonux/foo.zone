@@ -1,11 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-01-14T00:23:06+02:00</updated>
+    <updated>2024-02-04T00:52:14+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>From `babylon5.buetow.org` to `*.buetow.cloud`</title>
+        <link href="gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi</id>
+        <updated>2024-02-04T00:50:50+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+<br />
+<span>Recently, my employer sent me to a week-long AWS course. After the course, there wasn&#39;t any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</span><br />
+<br />
+<span>So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don&#39;t want to become the old man who yells at cloud :D</span><br />
+<br />
+<a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
+<br />
+<h2 style='display: inline'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<br />
+<span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Babylon_5'>https://en.wikipedia.org/wiki/Babylon_5</a><br />
+<br />
+<span>The downsides of this setup were:</span><br />
+<br />
+<ul>
+<li>Not highly available. If the server goes down, no service is reachable until it&#39;s repaired. To be fair, the Hetzner cloud VM is redundant by itself and would have re-spawned on a different worker node, I suppose. </li>
+<li>Manual installation.</li>
+</ul><br />
+<span>About the manual installation part: I could have used a configuration management system like Rexify, Puppet, etc. But I decided against it back in time, as setting up Docker containers isn&#39;t so complicated through simple start scripts. And it&#39;s only a single Linux box where a manual installation is less painful. However, regular backups (which Hetzner can do automatically for you) were a must.</span><br />
+<br />
+<span>The benefits of this setup were:</span><br />
+<br />
+<ul>
+<li>KISS (Keep it Simple Stupid)</li>
+<li>Cheap</li>
+</ul><br />
+<h2 style='display: inline'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<br />
+<span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
+<br />
+<span>My other two OpenBSD VMs (<span class='inlinecode'>blowfish.buetow.org</span>, hosted at Hetzner, and <span class='inlinecode'>fishfinger.buetow.org</span>, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:</span><br />
+<br />
+<ul>
+<li>HTTP server for my websites (e.g. <span class='inlinecode'>https://foo.zone</span>, ...)</li>
+<li>ACME for Let&#39;s Encrypt TLS certificate auto-renewal.</li>
+<li>Gemini server for my capsules (e.g. <span class='inlinecode'>gemini://foo.zone</span>)</li>
+<li>Authoritative DNS servers for my domains (but <span class='inlinecode'>buetow.cloud</span>, which is on Route 53 now)</li>
+<li>Mail transfer agent (MTA)</li>
+<li>My Gogios monitoring system.</li>
+<li>My IRC bouncer.</li>
+</ul><br />
+<span>It is all automated with Rex, aka Rexify. This OpenBSD setup is my "fun" or "for pleasure" setup. Whereas the Rocky Linux 9 one I always considered the "pratical means to the end"-setup to have 3rd party Docker containers up and running with as little work as possible.</span><br />
+<br />
+<a class='textlink' href='https://www.rexify.org'>(R)?ex, the friendly automation framework</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
+<br />
+<h2 style='display: inline'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<br />
+<span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
+<br />
+<span>I decided to automate everything with Terraform, as I wanted to learn to use it as it appears standard now in the job market.</span><br />
+<br />
+<span>All services are installed automatically to AWS ECS Fargate. ECS is AWS&#39;s Elastic Container Service, and Fargate automatically manages the underlying hardware infrastructure (e.g., how many CPUs, RAM, etc.) for me. So I don&#39;t have to bother about having enough EC2 instances to serve my demands, for example.</span><br />
+<br />
+<span>The authoritative DNS for the <span class='inlinecode'>buetow.cloud</span> domain is AWS Route 53. TLS certificates are free here at AWS and offloaded through the AWS Application Load Balancer. The LB acts as a proxy to the ECS container instances of the services. A few services I run in ECS Fargate also require the AWS Network Load Balancer.</span><br />
+<br />
+<span>All services require some persistent storage. For that, I use an encrypted EFS file system, automatically replicated across all AZs (availability zones) of my region of choice, <span class='inlinecode'>eu-central-1</span>.</span><br />
+<br />
+<span>In case of an AZ outage, I could re-deploy all the failed containers in another AZ, and all the data would still be there.</span><br />
+<br />
+<span>The EFS automatically gets backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days. </span><br />
+<br />
+<span>Domain registration, TLS certificate configuration and configuration of the EFS backup were quickly done through the AWS web interface. These were only one-off tasks, so they weren&#39;t fully automated through Terraform. </span><br />
+<br />
+<span>You can find all Terraform manifests here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/terraform'>https://codeberg.org/snonux/terraform</a><br />
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPS, EFS, and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
+<li><span class='inlinecode'>org-buetow-bastion</span> sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).</li>
+<li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
+<li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
+</ul><br />
+<h2 style='display: inline'>The container apps</h2><br />
+<br />
+<span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
+<br />
+<span>Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.</span><br />
+<br />
+<span>Miniflux requires two ECS containers. One is the Miniflux app, and the other is the PostgreSQL DB.</span><br />
+<br />
+<a class='textlink' href='https://miniflux.app/'>https://miniflux.app/</a><br />
+<br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
+<br />
+<span>Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.</span><br />
+<br />
+<span>With Audiobookshelf, I replaced my former Audible subscription and my separate Podcast app. For Podcast synchronisation I used to use the Gpodder NextCloud sync app. But that one I retired now with Audiobookshelf as well :-)</span><br />
+<br />
+<a class='textlink' href='https://www.audiobookshelf.org'>https://www.audiobookshelf.org</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
+<br />
+<span>Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it&#39;s transmitted over the internet.</span><br />
+<br />
+<span>With Syncthing, I retired my old NextCloud Files and file sync client on all my devices. I also quit my NextCloud Notes setup. All my Notes are now plain Markdown files in a <span class='inlinecode'>Notes</span> directory. On Android, I can edit them with any text or Markdown editor (e.g. Obsidian), and they will be synchronised via Syncthing to my other computers, both forward and back.</span><br />
+<br />
+<span>I use Syncthing to synchronise some of my Phone&#39;s data (e.g. Notes, Pictures and other documents). Initially, I synced all of my pictures, videos, etc., with AWS. But that was pretty expensive. So for now, I use it only whilst travelling. Otherwise, I will use my Syncthing instance here on my LAN (I have a cheap cloud backup in AWS S3 Glacier Deep Archive, but that&#39;s for another blog post).</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
+<br />
+<span>Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn&#39;t a ready-to-use Docker image. So, I created my own.</span><br />
+<br />
+<span>On Android, it works great together with the DAVx5 client for synchronisation.</span><br />
+<br />
+<a class='textlink' href='https://radicale.org/'>https://radicale.org/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-radicale-server'>https://codeberg.org/snonux/docker-radicale-server</a><br />
+<a class='textlink' href='https://www.davx5.com/'>https://www.davx5.com/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
+<br />
+<span>Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!</span><br />
+<br />
+<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
+<a class='textlink' href='https://github.com/wallabag/wallabag'>https://github.com/wallabag/wallabag</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
+<br />
+<span>Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server <span class='inlinecode'>anki-sync-server</span>. For some reason (not going into the details here), I had to build my own Docker image for the server.</span><br />
+<br />
+<a class='textlink' href='https://apps.ankiweb.net/'>https://apps.ankiweb.net/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-anki-sync-server'>https://codeberg.org/snonux/docker-anki-sync-server</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
+<br />
+<span>Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.</span><br />
+<br />
+<span>I currently don&#39;t use it, but I may in the future. I made it available in my ECS Fargate setup anyway for now.</span><br />
+<br />
+<a class='textlink' href='https://github.com/dani-garcia/vaultwarden'>https://github.com/dani-garcia/vaultwarden</a><br />
+<br />
+<span>I currently use <span class='inlinecode'>geheim</span>, a Ruby command line tool I wrote, as my current password manager. You can read a little bit about it here under "More":</span><br />
+<br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff </a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
+<br />
+<span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
+<br />
+<h2 style='display: inline'>Conclusion</h2><br />
+<br />
+<span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
+<br />
+<span>All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don&#39;t think Terraform is a nice language. It get&#39;s it&#39;s job done, but it could be more elegant IMHO.</span><br />
+<br />
+<span>Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! </span><br />
+<br />
+<span>Will I keep it in the cloud? I don&#39;t know yet. But maybe I won&#39;t renew the <span class='inlinecode'>buetow.cloud</span> domain and instead will use <span class='inlinecode'>*.cloud.buetow.org</span> or <span class='inlinecode'>*.aws.buetow.org</span> subdomains. </span><br />
+<br />
+<span>Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>One reason why I love OpenBSD</title>
         <link href="gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi" />
@@ -8724,139 +8904,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>DTail - The distributed log tail program</title>
-        <link href="gemini://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi" />
-        <id>gemini://foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program.gmi</id>
-        <updated>2021-04-22T19:28:41+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>DTail - The distributed log tail program</h1><br />
-<br />
-<span class='quote'>Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26</span><br />
-<br />
-<a href='./2021-04-22-dtail-the-distributed-log-tail-program/title.png'><img alt='DTail logo image' title='DTail logo image' src='./2021-04-22-dtail-the-distributed-log-tail-program/title.png' /></a><br />
-<br />
-<span>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</span><br />
-<br />
-<a class='textlink' href='https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb'>Original Mimecast Engineering Blog post at Medium</a><br />
-<br />
-<span>Running a large cloud-based service requires monitoring the state of huge numbers of machines, a task for which many standard UNIX tools were not really designed. In this post, I will describe a simple program, DTail, that Mimecast has built and released as Open-Source, which enables us to monitor log files of many servers at once without the costly overhead of a full-blown log management system.</span><br />
-<br />
-<span>At Mimecast, we run over 10 thousand server boxes. Most of them host multiple microservices and each of them produces log files. Even with the use of time series databases and monitoring systems, raw application logs are still an important source of information when it comes to analysing, debugging, and troubleshooting services.</span><br />
-<br />
-<span>Every engineer familiar with UNIX or a UNIX-like platform (e.g., Linux) is well aware of tail, a command-line program for displaying a text file content on the terminal which is also especially useful for following application or system log files with tail -f logfile.</span><br />
-<br />
-<span>Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis &amp; statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.</span><br />
-<br />
-<h2 style='display: inline'>A Mimecast Pet Project</h2><br />
-<br />
-<span>DTail got its inspiration from public domain tools available already in this area but it is a blue sky from-scratch development which was first presented at Mimecast’s annual internal Pet Project competition (awarded with a Bronze prize). It has gained popularity since and is one of the most widely deployed DevOps tools at Mimecast (reaching nearly 10k server installations) and many engineers use it on a regular basis. The Open-Source version of DTail is available at:</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
-<span>Try it out — We would love any feedback. But first, read on…</span><br />
-<br />
-<h2 style='display: inline'>Differentiating from log management systems</h2><br />
-<br />
-<span>Why not just use a full-blown log management system? There are various Open-Source and commercial log management solutions available on the market you could choose from (e.g. the ELK stack). Most of them store the logs in a centralized location and are fairly complex to set up and operate. Possibly they are also pretty expensive to operate if you have to buy dedicated hardware (or pay fees to your cloud provider) and have to hire support staff for it.</span><br />
-<br />
-<span>DTail does not aim to replace any of the log management tools already available but is rather an additional tool crafted especially for ad-hoc debugging and troubleshooting purposes. DTail is cheap to operate as it does not require any dedicated hardware for log storage as it operates directly on the source of the logs. It means that there is a DTail server installed on all server boxes producing logs. This decentralized comes with the direct advantages that there is no introduced delay because the logs are not shipped to a central log storage device. The reduced complexity also makes it more robust against outages. You won’t be able to troubleshoot your distributed application very well if the log management infrastructure isn’t working either.</span><br />
-<br />
-<a href='./2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif'><img alt='DTail sample session animated gif' title='DTail sample session animated gif' src='./2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif' /></a><br />
-<br />
-<span>As a downside, you won’t be able to access any logs with DTail when the server is down. Furthermore, a server can store logs only up to a certain capacity as disks will fill up. For the purpose of ad-hoc debugging, these are not typically issues. Usually, it’s the application you want to debug and not the server. And disk space is rarely an issue for bare metal and VM-based systems these days, with sufficient space for several weeks’ worth of log storage being available. DTail also supports reading compressed logs. The currently supported compression algorithms are gzip and zstd.</span><br />
-<br />
-<h2 style='display: inline'>Combining simplicity, security and efficiency</h2><br />
-<br />
-<span>DTail also has a client component that connects to multiple servers concurrently for log files (or any other text files).</span><br />
-<br />
-<span>The DTail client interacts with a DTail server on port TCP/2222 via SSH protocol and does not interact in any way with the system’s SSH server (e.g., OpenSSH Server) which might be running at port TCP/22 already. As a matter of fact, you don’t need a regular SSH server running for DTail at all. There is no support for interactive login shells at TCP/2222 either, as by design that port can only be used for text data streaming. The SSH protocol is used for the public/private key infrastructure and transport encryption only and DTail implements its own protocol on top of SSH for the features provided. There is no need to set up or buy any additional TLS certificates. The port 2222 can be easily reconfigured if you preferred to use a different one.</span><br />
-<br />
-<span>The DTail server, which is a single static binary, will not fork an external process. This means that all features are implemented in native Go code (exception: Linux ACL support is implemented in C, but it must be enabled explicitly on compile time) and therefore helping to make it robust, secure, efficient, and easy to deploy. A single client, running on a standard Laptop, can connect to thousands of servers concurrently while still maintaining a small resource footprint.</span><br />
-<br />
-<span>Recent log files are very likely still in the file system caches on the servers. Therefore, there tends to be a minimal I/O overhead involved.</span><br />
-<br />
-<h2 style='display: inline'>The DTail family of commands</h2><br />
-<br />
-<span>Following the UNIX philosophy, DTail includes multiple command-line commands each of them for a different purpose:</span><br />
-<br />
-<ul>
-<li>dserver: The DTail server, the only binary required to be installed on the servers involved.</li>
-<li>dtail: The distributed log tail client for following log files.</li>
-<li>dcat: The distributed cat client for concatenating and displaying text files.</li>
-<li>dgrep: The distributed grep client for searching text files for a regular expression pattern.</li>
-<li>dmap: The distributed map-reduce client for aggregating stats from log files.</li>
-</ul><br />
-<a href='./2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif'><img alt='DGrep sample session animated gif' title='DGrep sample session animated gif' src='./2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif' /></a><br />
-<br />
-<h2 style='display: inline'>Usage example</h2><br />
-<br />
-<span>The use of these commands is almost self-explanatory for a person already used to the standard command line in Unix systems. One of the main goals is to make DTail easy to use. A tool that is too complicated to use under high-pressure scenarios (e.g., during an incident) can be quite detrimental.</span><br />
-<br />
-<span>The basic idea is to start one of the clients from the command line and provide a list of servers to connect to with –servers. You also must provide a path of remote (log) files via –files. If you want to process multiple files per server, you could either provide a comma-separated list of file paths or make use of file system globbing (or a combination of both).</span><br />
-<br />
-<span>The following example would connect to all DTail servers listed in the serverlist.txt, follow all files with the ending .log and filter for lines containing the string error. You can specify any Go compatible regular expression. In this example we add the case-insensitive flag to the regex:</span><br />
-<br />
-<pre>
-dtail –servers serverlist.txt –files ‘/var/log/*.log’ –regex ‘(?i:error)’
-</pre>
-<br />
-<span>You usually want to specify a regular expression as a client argument. This will mean that responses are pre-filtered for all matching lines on the server-side and thus sending back only the relevant lines to the client. If your logs are growing very rapidly and the regex is not specific enough there might be the chance that your client is not fast enough to keep up processing all of the responses. This could be due to a network bottleneck or just as simple as a slow terminal emulator displaying the log lines on the client-side.</span><br />
-<br />
-<span>A green 100 in the client output before each log line received from the server always indicates that there were no such problems and 100% of all log lines could be displayed on your terminal (have a look at the animated Gifs in this post). If the percentage falls below 100 it means that some of the channels used by the servers to send data to the client are congested and lines were dropped. In this case, the color will change from green to red. The user then could decide to run the same query but with a more specific regex.</span><br />
-<br />
-<span>You could also provide a comma-separated list of servers as opposed to a text file. There are many more options you could use. The ones listed here are just the very basic ones. There are more instructions and usage examples on the GitHub page. Also, you can study even more of the available options via the –help switch (some real treasures might be hidden there).</span><br />
-<br />
-<h2 style='display: inline'>Fitting it in</h2><br />
-<br />
-<span>DTail integrates nicely into the user management of existing infrastructure. It follows normal system permissions and does not open new “holes” on the server which helps to keep security departments happy. The user would not have more or less file read permissions than he would have via a regular SSH login shell. There is a full SSH key, traditional UNIX permissions, and Linux ACL support. There is also a very low resource footprint involved. On average for tailing and searching log files less than 100MB RAM and less than a quarter of a CPU core per participating server are required. Complex map-reduce queries on big data sets will require more resources accordingly.</span><br />
-<br />
-<h2 style='display: inline'>Advanced features</h2><br />
-<br />
-<span>The features listed here are out of the scope of this blog post but are worthwhile to mention:</span><br />
-<br />
-<ul>
-<li>Distributed map-reduce queries on stats provided in log files with dmap. dmap comes with its own SQL-like aggregation query language.</li>
-<li>Stats streaming with continuous map-reduce queries. The difference to normal queries is that the stats are aggregated over a specified interval only on the newly written log lines. Thus, giving a de-facto live stat view for each interval.</li>
-<li>Server-side scheduled queries on log files. The queries are configured in the DTail server configuration file and scheduled at certain time intervals. Results are written to CSV files. This is useful for generating daily stats from the log files without the need for an interactive client.</li>
-<li>Server-side stats streaming with continuous map-reduce queries. This for example can be used to periodically generate stats from the logs at a configured interval, e.g., log error counts by the minute. These then can be sent to a time-series database (e.g., Graphite) and then plotted in a Grafana dashboard.</li>
-<li>Support for custom extensions. E.g., for different server discovery methods (so you don’t have to rely on plain server lists) and log file formats (so that map-reduce queries can parse more stats from the logs).</li>
-</ul><br />
-<h2 style='display: inline'>For the future</h2><br />
-<br />
-<span>There are various features we want to see in the future.</span><br />
-<br />
-<ul>
-<li>A spartan mode, not printing out any extra information but the raw remote log files would be a nice feature to have. This will make it easier to post-process the data produced by the DTail client with common UNIX tools. (To some degree this is possible already, just disable the ANSI terminal color output of the client with -noColors and pipe the output to another program).</li>
-<li>Tempting would be implementing the dgoawk command, a distributed version of the AWK programming language purely implemented in Go, for advanced text data stream processing capabilities. There are 3rd party libraries available implementing AWK in pure Go which could be used.</li>
-<li>A more complex change would be the support of federated queries. You can connect to thousands of servers from a single client running on a laptop. But does it scale to 100k of servers? Some of the servers could be used as middleware for connecting to even more servers.</li>
-<li>Another aspect is to extend the documentation. Especially the advanced features such as map-reduce query language and how to configure the server-side queries currently do require more documentation. For now, you can read the code, sample config files or just ask the author for that! But this will be certainly addressed in the future.</li>
-</ul><br />
-<h2 style='display: inline'>Open Source</h2><br />
-<br />
-<span>Mimecast highly encourages you to have a look at DTail and submit an issue for any features you would like to see. Have you found a bug? Maybe you just have a question or comment? If you want to go a step further: We would also love to see pull requests for any features or improvements. Either way, if in doubt just contact us via the DTail GitHub page.</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
