@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 [2024-01-13 - One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
 [2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2024-01-09-site-reliability-engineering-part-3.md)  
 [2023-12-10 - Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  

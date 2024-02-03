@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-01-14T00:23:06+02:00 by `Gemtexter`
+> This site was generated at 2024-02-04T00:52:14+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -33,6 +33,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 [2024-01-13 - One reason why I love OpenBSD](./gemfeed/2024-01-13-one-reason-why-i-love-openbsd.md)  
 [2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./gemfeed/2024-01-09-site-reliability-engineering-part-3.md)  
 [2023-12-10 - Bash Golf Part 3](./gemfeed/2023-12-10-bash-golf-part-3.md)  
