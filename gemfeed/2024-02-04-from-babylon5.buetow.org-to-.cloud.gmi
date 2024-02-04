@@ -70,7 +70,7 @@ You can find all Terraform manifests here:
 
 Whereas:
 
-* `org-buetow-base` sets up the bare VPN (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It's the requirement for most other Terraform manifests in this repository.
+* `org-buetow-base` sets up the bare VPC (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It's the requirement for most other Terraform manifests in this repository.
 * `org-buetow-bastion` sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).
 * `org-buetow-elb` sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.
 * `org-buetow-ecs` finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the `variables.tf` file.
