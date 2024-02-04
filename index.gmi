@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-02-04T18:35:41+02:00 by `Gemtexter`
+> This site was generated at 2024-02-04T18:37:11+02:00 by `Gemtexter`
 
 ```
    |\---/|

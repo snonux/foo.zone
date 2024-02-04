@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-02-04T01:12:45+02:00</updated>
+    <updated>2024-02-04T18:37:11+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -94,7 +94,7 @@
 <span>Whereas:</span><br />
 <br />
 <ul>
-<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPS, EFS, and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
+<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPC (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
 <li><span class='inlinecode'>org-buetow-bastion</span> sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).</li>
 <li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
 <li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
