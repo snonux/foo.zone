@@ -150,7 +150,7 @@ This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up fo
 
 I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.
 
-All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don't think Terraform is a nice language. It get's it's job done, but it could be more elegant IMHO.
+All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don't think Terraform's HCL is a nice language. It get's it's job done, but it could be more elegant IMHO.
 
 Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! 
 
