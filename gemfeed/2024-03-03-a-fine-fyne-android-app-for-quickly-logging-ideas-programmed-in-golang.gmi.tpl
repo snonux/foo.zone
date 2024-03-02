@@ -2,7 +2,7 @@
 
 > Published at 2024-03-03T00:07:21+02:00
 
-I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no journal paper noting it down. 
+I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. 
 
 I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don't do what I want, are proprietary software, or are too bloated. I was never into mobile app development, as I'm not too fond of the complexity of the developer toolchains. I don't want to use Android Studio (as a NeoVim user), and I don't want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.
 
