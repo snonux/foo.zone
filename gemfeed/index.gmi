@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go
 => ./2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi 2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 - One reason why I love OpenBSD
 => ./2024-01-09-site-reliability-engineering-part-3.gmi 2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect
