@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-03T00:24:06+02:00</updated>
+    <updated>2024-03-03T00:38:33+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -36,7 +36,7 @@
 <br />
 <span>There&#39;s no need to navigate complex menus or deal with sync issues. I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can&#39;t be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn&#39;t the need for an edit functionality. I can edit them later on my actual computer if I want to.</span><br />
 <br />
-<span>With Syncthing, the note files are then synchronised to my home computer to my <span class='inlinecode'>~/Notes</span> directory. From there, a Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.</span><br />
+<span>With Syncthing, the note files are then synchronised to my home computer to my <span class='inlinecode'>~/Notes</span> directory. From there, a small glue Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.</span><br />
 <br />
 <a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
 <a class='textlink' href='https://raku.org'>https://raku.org</a><br />

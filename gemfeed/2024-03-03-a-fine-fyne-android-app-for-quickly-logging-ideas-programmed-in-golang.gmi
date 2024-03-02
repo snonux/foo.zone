@@ -16,7 +16,7 @@ Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) 
 
 There's no need to navigate complex menus or deal with sync issues. I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can't be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn't the need for an edit functionality. I can edit them later on my actual computer if I want to.
 
-With Syncthing, the note files are then synchronised to my home computer to my `~/Notes` directory. From there, a Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.
+With Syncthing, the note files are then synchronised to my home computer to my `~/Notes` directory. From there, a small glue Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.
 
 => https://syncthing.net
 => https://raku.org
