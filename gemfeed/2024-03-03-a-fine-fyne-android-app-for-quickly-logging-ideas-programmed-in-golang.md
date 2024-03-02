@@ -32,7 +32,7 @@ My Android apps will never be polished, but they will get the job done, and this
 
 ## All easy-peasy?
 
-I did have some issues with the App logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom `AndroidManifest.xml` for custom app storage permissions. Without a custom `AndroidAmnifest.xml` the app icon would be displayed under Android, but then the app would not have the `MANAGE_EXTERNAL_STORAGE` permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:
+I did have some issues with the app logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom `AndroidManifest.xml` for custom app storage permissions. Without a custom `AndroidAmnifest.xml` the app icon would be displayed under Android, but then the app would not have the `MANAGE_EXTERNAL_STORAGE` permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:
 
 [https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360](https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360)  
 
