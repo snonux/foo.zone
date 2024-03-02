@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-02-04T18:41:15+02:00 by `Gemtexter`
+> This site was generated at 2024-03-03T00:08:32+02:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -15,7 +15,6 @@
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
 
-[All I post here on `foo.zone` is really only just for fun!](https://justforfunnoreally.dev/)  
 [My contact information and resources (via HTTP)](https://paul.buetow.org)  
 [My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
 [My machine uptime statistics](./uptime-stats.md)  
@@ -33,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  
 [2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 [2024-01-13 - One reason why I love OpenBSD](./gemfeed/2024-01-13-one-reason-why-i-love-openbsd.md)  
 [2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./gemfeed/2024-01-09-site-reliability-engineering-part-3.md)  
