@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-03T00:38:33+02:00</updated>
+    <updated>2024-03-03T00:51:10+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -15,14 +15,14 @@
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no journal paper noting it down. </summary>
+        <summary>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
 <br />
 <span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
 <br />
-<span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no journal paper noting it down. </span><br />
+<span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </span><br />
 <br />
 <span>I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don&#39;t do what I want, are proprietary software, or are too bloated. I was never into mobile app development, as I&#39;m not too fond of the complexity of the developer toolchains. I don&#39;t want to use Android Studio (as a NeoVim user), and I don&#39;t want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.</span><br />
 <br />
