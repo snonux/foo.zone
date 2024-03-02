@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-03T00:09:16+02:00</updated>
+    <updated>2024-03-03T00:17:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -52,7 +52,7 @@
 <br />
 <h2 style='display: inline'>All easy-peasy?</h2><br />
 <br />
-<span>I did have some issues with the App logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom <span class='inlinecode'>AndroidManifest.xml</span> for custom app storage permissions. Without a custom <span class='inlinecode'>AndroidAmnifest.xml</span> the app icon would be displayed under Android, but then the app would not have the <span class='inlinecode'>MANAGE_EXTERNAL_STORAGE</span> permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:</span><br />
+<span>I did have some issues with the app logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom <span class='inlinecode'>AndroidManifest.xml</span> for custom app storage permissions. Without a custom <span class='inlinecode'>AndroidAmnifest.xml</span> the app icon would be displayed under Android, but then the app would not have the <span class='inlinecode'>MANAGE_EXTERNAL_STORAGE</span> permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:</span><br />
 <br />
 <a class='textlink' href='https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360'>https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360</a><br />
 <br />
