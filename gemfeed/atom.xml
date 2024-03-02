@@ -1,11 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-02-04T18:41:15+02:00</updated>
+    <updated>2024-03-03T00:09:16+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>A fine Fyne Android app for quickly logging ideas programmed in Go</title>
+        <link href="gemini://foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi</id>
+        <updated>2024-03-03T00:07:21+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no journal paper noting it down. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
+<br />
+<span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
+<br />
+<span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no journal paper noting it down. </span><br />
+<br />
+<span>I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don&#39;t do what I want, are proprietary software, or are too bloated. I was never into mobile app development, as I&#39;m not too fond of the complexity of the developer toolchains. I don&#39;t want to use Android Studio (as a NeoVim user), and I don&#39;t want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.</span><br />
+<br />
+<a href='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png'><img alt='Quick logger Logo' title='Quick logger Logo' src='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png' /></a><br />
+<br />
+<span>Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I&#39;ve crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app&#39;s whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/quicklogger'>https://codeberg.org/snonux/quicklogger</a><br />
+<a class='textlink' href='https://fyne.io'>https://fyne.io</a><br />
+<a class='textlink' href='https://go.dev'>https://go.dev</a><br />
+<br />
+<span>There&#39;s no need to navigate complex menus or deal with sync issues. I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can&#39;t be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn&#39;t the need for an edit functionality. I can edit them later on my actual computer if I want to.</span><br />
+<br />
+<span>With Syncthing, the note files are then synchronised to my home computer to my <span class='inlinecode'>~/Notes</span> directory. From there, a Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
+<a class='textlink' href='https://raku.org'>https://raku.org</a><br />
+<a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
+<br />
+<span>Quick logger&#39;s user interface is as minimal as it gets. When I launch Quick logger, I&#39;m greeted with a simple window where I can type plain text. Hit the "Log text" button, and voilà – the input is timestamped and saved as a file in my chosen directory. If I need to change the directory, the "Preferences" button brings up a window where I can set the notes folder and get back to logging.</span><br />
+<br />
+<span>For the code-savvy folks out there, Quick logger is a neat example of what you can achieve with Go and Fyne. It&#39;s a testament to building functional, cross-platform apps without getting bogged down in the nitty-gritty of platform-specific details. Thanks to Fyne, I am pleased with how easy it is to make mobile Android apps in Go.</span><br />
+<br />
+<a href='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png'><img alt='Quick logger running on Android' title='Quick logger running on Android' src='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png' /></a><br />
+<br />
+<span>My Android apps will never be polished, but they will get the job done, and this is precisely how I want them to be. Minimalistic but functional. I could spend more time polishing Quick logger, but my Quick logger app then may be the same as any other notes app out there (complicated or bloated).</span><br />
+<br />
+<h2 style='display: inline'>All easy-peasy?</h2><br />
+<br />
+<span>I did have some issues with the App logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom <span class='inlinecode'>AndroidManifest.xml</span> for custom app storage permissions. Without a custom <span class='inlinecode'>AndroidAmnifest.xml</span> the app icon would be displayed under Android, but then the app would not have the <span class='inlinecode'>MANAGE_EXTERNAL_STORAGE</span> permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:</span><br />
+<br />
+<a class='textlink' href='https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360'>https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360</a><br />
+<br />
+<span class='quote'>What worked however (app icon showing up) was to clone the fyne project, change the occurances of android.permission.INTERNET to android.permission.MANAGE_EXTERNAL_STORAGE (as these are all the changes I want in my custom android manifest) in the source tree, re-compile fyne. Now all works. I know, this is more of an hammer approach!</span><br />
+<br />
+<span>Hopefully, I won&#39;t need to use this workaround anymore. But for now, it is a fair tradeoff for what I am getting.</span><br />
+<br />
+<span>I hope this will inspire you to write your own small mobile apps in Go using the awesome Fyne framework!</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other Go related posts are:</span><br />
+<br />
+<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1</a><br />
+<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>From `babylon5.buetow.org` to `*.buetow.cloud`</title>
         <link href="gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi" />
@@ -8800,112 +8867,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Welcome to the Geminispace</title>
-        <link href="gemini://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi" />
-        <id>gemini://foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace.gmi</id>
-        <updated>2021-04-24T19:28:41+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>ASCII Art by Andy Hood!</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Welcome to the Geminispace</h1><br />
-<br />
-<span class='quote'>Published at 2021-04-24T19:28:41+01:00; Updated at 2021-06-18</span><br />
-<br />
-<span>ASCII Art by Andy Hood!</span><br />
-<br />
-<span>Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don&#39;t support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:</span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone'>gemini://foo.zone</a><br />
-<br />
-<span>However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).</span><br />
-<br />
-<pre>
-    /\
-   /  \
-  |    |
-  |NASA|
-  |    |
-  |    |
-  |    |
- &#39;      `
- |Gemini|
- |      |
- |______|
-  &#39;-`&#39;-`   .
-  / . \&#39;\ . .&#39;
- &#39;&#39;( .&#39;\.&#39; &#39; .;&#39;
-&#39;.;.;&#39; ;&#39;.;&#39; ..;;&#39; AsH
-
-</pre>
-<br />
-<h2 style='display: inline'>Motivation</h2><br />
-<br />
-<h3 style='display: inline'>My urge to revamp my personal website</h3><br />
-<br />
-<span>For some time, I had to urge to revamp my personal website. Not to update the technology and its design but to update all the content (+ keep it current) and start a small tech blog again. So unconsciously, I began to search for an excellent platform to do all of that in a KISS (keep it simple &amp; stupid) way.</span><br />
-<br />
-<h3 style='display: inline'>My still great Laptop running hot</h3><br />
-<br />
-<span>Earlier this year (2021), I noticed that my almost seven-year-old but still great Laptop started to become hot and slowed down while surfing the web. Also, the Laptop&#39;s fan became quite noisy. This was all due to the additional bloat such as JavaScript, excessive use of CSS, tracking cookies+pixels, ads, and so on there was on the website. </span><br />
-<br />
-<span>All I wanted was to read an interesting article, but after a big advertising pop-up banner appeared and made everything worse, I gave up and closed the browser tab.</span><br />
-<br />
-<h2 style='display: inline'>Discovering the Gemini internet protocol</h2><br />
-<br />
-<span>Around the same time, I discovered a relatively new, more lightweight protocol named Gemini, which does not support all these CPU-intensive features like HTML, JavaScript, and CSS. Also, tracking and ads are unsupported by the Gemini protocol.</span><br />
-<br />
-<span>The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client, such as Lagrange, with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It&#39;s your (the user&#39;s) choice.</span><br />
-<br />
-<a href='./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png'><img alt='Screenshot Amfora Gemini terminal client surfing this site' title='Screenshot Amfora Gemini terminal client surfing this site' src='./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png' /></a><br />
-<a href='./2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png'><img alt='Screenshot graphical Lagrange Gemini client surfing this site' title='Screenshot graphical Lagrange Gemini client surfing this site' src='./2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png' /></a><br />
-<br />
-<span>Why is there a need for a new protocol? As the modern web is a superset of Gemini, can&#39;t we use simple HTML 1.0 instead? That&#39;s a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can ensure that things stay efficient and straightforward as long as you are using the Gemini protocol. On the other hand, you can&#39;t force every website on the modern web to only create plain and straightforward-looking HTML pages.</span><br />
-<br />
-<h2 style='display: inline'>My own Gemini capsule</h2><br />
-<br />
-<span>As it is effortless to set up and maintain your own Gemini capsule (Gemini server + content composed via the Gemtext markup language), I decided to create my own. What I like about Gemini is that I can use my favourite text editor and get typing. I don&#39;t need to worry about the style and design of the presence, and I also don&#39;t have to test anything in ten different web browsers. I can only focus on the content! As a matter of fact, I am using the Vim editor + its spellchecker + auto word completion functionality to write this. </span><br />
-<br />
-<span>This site was generated with Gemtexter. You can read more about it here:</span><br />
-<br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>Gemtexter - One Bash script to rule it all</a><br />
-<br />
-<h2 style='display: inline'>Gemini advantages summarised</h2><br />
-<br />
-<ul>
-<li>Supports an alternative to the modern bloated web</li>
-<li>Easy to operate and easy to write content</li>
-<li>No need to worry about various web browser compatibilities</li>
-<li>It&#39;s the client&#39;s responsibility how the content is designed+presented</li>
-<li>Lightweight (although not as lightweight as the Gopher protocol)</li>
-<li>Supports privacy (no cookies, no request header fingerprinting, TLS encryption)</li>
-<li>Fun to play with (it&#39;s a bit geeky, yes, but a lot of fun!)</li>
-</ul><br />
-<h2 style='display: inline'>Dive into deep Gemini space</h2><br />
-<br />
-<span>Check out one of the following links for more information about Gemini. For example, you will find a FAQ that explains why the protocol is named Gemini. Many Gemini capsules are dual-hosted via Gemini and HTTP(S) so that people new to Gemini can sneak peek at the content with a regular web browser. Some people go as far as tri-hosting all their content via HTTP(S), Gemini and Gopher.</span><br />
-<br />
-<a class='textlink' href='gemini://geminiprotocol.net/'>gemini://geminiprotocol.net/</a><br />
-<a class='textlink' href='https://geminiprotocol.net/'>https://geminiprotocol.net/</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
