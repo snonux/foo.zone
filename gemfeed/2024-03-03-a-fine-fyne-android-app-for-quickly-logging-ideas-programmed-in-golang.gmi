@@ -4,7 +4,7 @@
 
 I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. 
 
-I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don't do what I want, are proprietary software, or are too bloated. I was never into mobile app development, as I'm not too fond of the complexity of the developer toolchains. I don't want to use Android Studio (as a NeoVim user), and I don't want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.
+I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don't do what I want, are proprietary software, require Google Play services (I have the main profile on my phone de-googled) or are too bloated. I was never into mobile app development, as I'm not too fond of the complexity of the developer toolchains. I don't want to use Android Studio (as a NeoVim user), and I don't want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.
 
 => 2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png Quick logger Logo
 
