@@ -6,8 +6,8 @@ All sites listed below are reachable via IPv4 as well as via IPv6.
 
 ## Gemini protocol
 
-[gemini://foo.zone - Falkenstein, Germany (Hetzner Cloud)](gemini://foo.zone)  
-[gemini://www.foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)](gemini://www.foo.zone)  
+[gemini://foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)](gemini://foo.zone)  
+[gemini://mirror.foo.zone - Falkenstein, Germany (Hetzner Cloud)](gemini://mirror.foo.zone)  
 
 Wondering what's the Gemini protocol about? Read:
 
@@ -15,8 +15,8 @@ Wondering what's the Gemini protocol about? Read:
 
 ## HTTP protocol
 
-[https://foo.zone - Falkenstein, Germany (Hetzner Cloud)](https://foo.zone)  
-[https://www.foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)](https://www.foo.zone)  
+[https://foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)](https://foo.zone)  
+[https://mirror.foo.zone - Falkenstein, Germany (Hetzner Cloud)](https://mirror.foo.zone)  
 [https://www2.buetow.org - Codeberg page, somewhere in Germany](https://www2.buetow.org)  
 
 ## OpenBSD.Amsterdam
