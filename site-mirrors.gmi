@@ -2,12 +2,13 @@
 
 This page summarizes all the mirrors of this site. Agreeably, that's all a bit overkill (given the importance of this internet presence), but I did it for fun.
 
-All sites listed below are reachable via IPv4 as well as via IPv6.
+All sites listed below are reachable via IPv4 as well as via IPv6. Depending on the current master node, standby or master may be located in Amsterdam, Netherlands (OpenBSD.Amsterdam) or Falkenstein, Germany (Hetzner Cloud).
 
 ## Gemini protocol
 
-=> gemini://foo.zone gemini://foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)
-=> gemini://mirror.foo.zone gemini://mirror.foo.zone - Falkenstein, Germany (Hetzner Cloud)
+
+=> gemini://foo.zone
+=> gemini://standby.foo.zone
 
 Wondering what's the Gemini protocol about? Read:
 
@@ -15,8 +16,8 @@ Wondering what's the Gemini protocol about? Read:
 
 ## HTTP protocol
 
-=> https://foo.zone https://foo.zone - Amsterdam, Netherlands (OpenBSD.Amsterdam)
-=> https://mirror.foo.zone https://mirror.foo.zone - Falkenstein, Germany (Hetzner Cloud)
+=> https://foo.zone
+=> https://standby.foo.zone
 => https://www2.buetow.org https://www2.buetow.org - Codeberg page, somewhere in Germany
 
 ## OpenBSD.Amsterdam
