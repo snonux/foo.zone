@@ -186,7 +186,7 @@ return 1
 
 A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.
 
-The nameserver is running on both VMs, and both are configured to be "master" DNS servers so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn't work. The side effect is that under a split-brain scenario (both VMs cannot see each other), both would promote themselves to master via their local DNS entries. More about that later, but that's fine in my use case.
+The authorative nameserver for my domains runs on both VMs, and both are configured to be a "master" DNS server so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn't work. The side effect is that under a split-brain scenario (both VMs cannot see each other), both would promote themselves to master via their local DNS entries. More about that later, but that's fine in my use case.
 
 Check out the whole script here:
 
