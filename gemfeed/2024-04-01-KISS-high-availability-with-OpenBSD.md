@@ -3,7 +3,7 @@
 > Published at 2024-03-30T22:12:56+02:00
 
 ```
-Art by Michael J. Penick (mod. by Paul B)
+Art by Michael J. Penick (mod. by Paul B.)
 
         __________
        / nsd tower\                                             (
@@ -29,16 +29,16 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 
 I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
 
-But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space—something as KISS (keep it simple and stupid) as possible.
+But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.
 
 It would be fine if my personal website wasn't highly available, but the geek in me wants it anyway.
 
-> PS: ASCII-art reflects the OpenBSD under-water world with all the tools available in the base system.
+> PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.
 
 ## My auto-failover requirements
 
 * Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. 
-* Don't rely on the hottest and newest tech (don't want to migrate everything to a new and fancier technology next month).
+* Don't rely on the hottest and newest tech (don't want to migrate everything to a new and fancier technology next month already).
 * It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.
 * It should be geo-redundant. 
 * It's fine if my sites aren't reachable for five or ten minutes every other month. Due to their static nature, I don't care if there's a split-brain scenario where some requests reach one server and other requests reach another server.
