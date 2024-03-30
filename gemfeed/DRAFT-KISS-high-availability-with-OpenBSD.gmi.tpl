@@ -1,0 +1,233 @@
+# KISS high-availability with OpenBSD
+
+I have always wanted a high-available setup for my personal websites. I could have used off-the-shelf hosting solutions, or I could also have hosted my sites at a AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD and as well commercial F5 Load-balancers for high-availability at work. 
+
+But still, my personal sites never were high-available. All those technologies are great for professional use, but for my personal space I was looking for something much simpler. Something as KISS (keep it simple and stupid) as possible.
+
+Truth be told, it would be just fine if my personal website wouldn't be high-available. But the geek in me wants it anyways.
+
+## My HA requirements
+
+* Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few as external packages as possible.
+* It should be fairly cheap. I don't want to pay premium for floating IPs or fancy Elastic Load Balancers.
+* It should be geo-redundant. 
+* It's fine if my sites aren't reachable for five or ten minutes or so every other month. Due to the static nature of the sites, I don't care if there's a split-brain scenario where some requests reach one, and other requests reach another server.
+* Failover should work for both, HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be high-available.
+* Let's Encrypt TLS certificates should always work (before and after a failover).
+* Have a good monitoring in-place, so I know when a failover was performed and also when something went wrong with the failover.
+* Don't configure everything manually. The configuration should be automated and reproducable.
+
+## My HA solution
+
+### Only OpenBSD base installation required
+
+My HA-solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple shell script (OpenBSD's `ksh` and some little `sed` and `awk` and `grep`). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.
+
+=> https://man.OpenBSD.org/nsd.8
+=> https://man.OpenBSD.org/ksh
+=> https://man.OpenBSD.org/awk
+=> https://man.OpenBSD.org/sed
+=> https://man.OpenBSD.org/dig
+=> https://man.OpenBSD.org/ftp
+
+I also used the `dig` (for DNS checks) and `ftp` (for HTTP/HTTPs checks) programs. 
+
+The DNS failover is performed automatically. The `ksh` script, executed once per minute, perfoms a health-check whether the current master node is available or not. If the current master isn't available (no HTTPs response as expected), a failover is performed to the standby VM. 
+
+```sh
+local -i health_ok=1
+if ! ftp -4 -o - https://$master/index.txt | grep -q "Welcome to $master"; then
+    echo "https://$master/index.txt IPv4 health check failed"
+    health_ok=0
+elif ! ftp -6 -o - https://$master/index.txt | grep -q "Welcome to $master"; then
+    echo "https://$master/index.txt IPv6 health check failed"
+    health_ok=0
+fi
+
+if [ $health_ok -eq 0 ]; then
+    local tmp=$master
+    master=$standby
+    standby=$tmp
+fi
+```
+
+The failover simply looks for the ` ; Enable failover` in the DNS zone files and changes the A and AAAA records of the DNS entries accordingly.
+
+```sh
+tramsform () {
+	sed -E '
+	/IN A .*; Enable failover/ {
+	    /^standby/! {
+	        s/^(.*) 300 IN A (.*) ; (.*)/\1 300 IN A '$(cat /var/nsd/run/master_a)' ; \3/;
+	    }
+	    /^standby/ {
+	        s/^(.*) 300 IN A (.*) ; (.*)/\1 300 IN A '$(cat /var/nsd/run/standby_a)' ; \3/;
+	    }
+	}
+	/IN AAAA .*; Enable failover/ {
+	    /^standby/! {
+	        s/^(.*) 300 IN AAAA (.*) ; (.*)/\1 300 IN AAAA '$(cat /var/nsd/run/master_aaaa)' ; \3/;
+	    }
+	    /^standby/ {
+	        s/^(.*) 300 IN AAAA (.*) ; (.*)/\1 300 IN AAAA '$(cat /var/nsd/run/standby_aaaa)' ; \3/;
+	    }
+	}
+	/ ; serial/ {
+	    s/^( +) ([0-9]+) .*; (.*)/\1 '$(date +%s)' ; \3/;
+	}
+	'
+}
+```
+
+After the failover, the script will reload `nsd` and performs a sanity check whether DNS still works. If not, a rollback will be performed.
+
+The nameserver is running on both VMs and both are configured to be "master" DNS servers so that they have their own individual zone files which can be changed independently. Otherwise, my setup wouldn't work.
+
+```sh
+# Race condition (e.g. script execution abored in the middle previous run)
+if [ -f $zone_file.bak ]; then
+    mv $zone_file.bak $zone_file
+fi
+
+cat $zone_file | transform > $zone_file.new.tmp 
+
+grep -v ' ; serial' $zone_file.new.tmp > $zone_file.new.noserial.tmp
+grep -v ' ; serial' $zone_file > $zone_file.old.noserial.tmp
+
+echo "Has zone $zone_file changed?"
+if diff -u $zone_file.old.noserial.tmp $zone_file.new.noserial.tmp; then
+    echo "The zone $zone_file hasn't changed"
+    rm $zone_file.*.tmp
+    return 0
+fi
+
+cp $zone_file $zone_file.bak
+mv $zone_file.new.tmp $zone_file
+rm $zone_file.*.tmp
+echo "Reloading nsd"
+nsd-control reload
+
+if ! zone_is_ok $zone; then
+    echo "Rolling back $zone_file changes"
+    cp $zone_file $zone_file.invalid
+    mv $zone_file.bak $zone_file
+    echo "Reloading nsd"
+    nsd-control reload
+    zone_is_ok $zone
+    return 3
+fi
+
+for cleanup in invalid bak; do
+    if [ -f $zone_file.$cleanup ]; then
+        rm $zone_file.$cleanup
+    fi
+done
+
+echo "Failover of zone $zone to $MASTER completed"
+return 1
+```
+
+A non-zero return code (here 3 when a rollback was peformed and 1 when a DNS failover was performed) will cause CRON to send out an E-Mail with the whole's scripts output.
+
+Check out the whole script here:
+
+=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh
+
+### Fairly cheap and geo-redundant
+
+I am renting two small OpenBSD VMs. One at OpenBSD Amsterdam, he other one at Hetzner Cloud. So both VMs are hosted at another provider and are in different IP subnets and also in different countries (Netherlands and Germany).
+
+=> https://openbsd.amsterdam
+=> https://www.hetzner.cloud
+
+I don't have much traffic on my sites. If I suddenly had, I could always upload the static content to AWS S3. But I don't think this will ever be required.
+
+A DNS-based failover is cheap as there isn't any BGP or fancy load-balancer to pay for. And small VMs also don't cost millions.
+
+### Failover time and split-brain
+
+A DNS failover doens't happen immediately. I've configured a DNS TTL of `300` seconds and the failover script checks once per minute whether to perform a failover or not. So in total a failover can take six minutes (not included other DNS caching servers somewhere in the interweb, but that's fine - eventually all requests will resolve to the new master after a failover.)
+
+A split-brain scenario between old master and new master might happen. That's OK as my sites are static and there's no database to synchronise other than HTML, CSS and images when the site is updated.
+
+On my Fedora Laptop, I use Gemtexter to generate the content for `foo.zone` and `paul.buetow.org`. The generated `.gmi` and `.html` files are then comitted to a git repository at Codeberg.
+
+=> https://codeberg.org/snonux/gemtexter Gemtexter
+=> https://codeberg.org/snonux/foo.zone foo.zone static content at Codeberg
+=> https://codeberg.org/snonux/paul.buetow.org paul.buetow.org static content at Codeberg
+
+(check out the `content-html` and `content-gemtext` branches of the content repositories there).
+
+On my two OpenBSD CMs a daily CRON job running `/usr/local/bin/gemtexter.sh` updates the content repositories to `/var/gemini` and `/var/www/htdocs` respectively. Ensuring, that both OpenBSD VMs have always the same content checked out via the `got` command (Game of Trees - a OpenBSD implementation of a subset of Git).
+
+=> https://gameoftrees.org
+
+### Failover support for multiple protocols
+
+With the DNS-failover, HTTP, HTTPS and Gemini protocols are failovered. 
+
+This works because all virtual hosts for all domains are configured on either VM. So both VMs accept requests for all the hosts. It's just a matter of the DNS entry which of the hosts receives the requests.
+
+For example, the master is responsible for `https://www.foo.zone` and `https://foo.zone` hosts, whereas the standby can be reached via `https://standby.foo.zone` (port 80 for plain HTTP works as well). The same princpiple is followed with all the other hosts e.g. `irregular.ninja`, `paul.buetow.org` and so on. Same applies to my Gemini capsules for `geminit://foo.zone`, `gemini://standby.foo.zone`, `gemini://paul.buetow.org` and `gemini://standby.paul.buetow.org`.
+
+On DNS-failover, master and standby simply swap roles without any config changes other than the DNS entries.
+
+### Let's encrypt TLS certificates
+
+All my hosts make use of TLS certificates from Let's Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires, that the host requesting a certificate from Let's Encrypt is also the host using that certificates.
+
+If the master always serves `foo.zone` and the standby always `standby.foo.zone`, then there would be  a problem after the failover, as the new master would't have a valid certificate for `foo.zone` and the new standby wouldn't have a valid certificate for `standby.foo.zone` which would lead to TLS errors.
+
+As a solution the CRON job responsible for the DNS failover also checks for the current week number of the year, so that:
+
+* In an odd week-number, the first server is the default master
+* In an even week-number, the second server is the default master.
+
+```sh
+# Weekly auto-failover for Let's Encrypt automation
+local -i -r week_of_the_year=$(date +%U)
+if [ $(( week_of_the_year % 2 )) -ne 0 ]; then
+    local tmp=$master
+    master=$standby
+    standby=$tmp
+fi
+```
+
+This way, there's an DNS failover performed on weekly basis, so that the ACME automation can update either Let's Encrypt certificates before they expire.
+
+=> https://man.openbsd.org/acme-client.1
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi Let's Encrypt with OpenBSD and Rex
+
+### Monitoring
+
+CRON is sending me an E-Mail whenever a failover is performed. Furthermore, I am monitoring my DNS servers and hosts through Gogios, my own monitoring system I have developed. 
+
+=> https://codeberg.org/snonux/gogios
+=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi KISS server monitoring with Gogios
+ 
+### Rex automation
+
+For the automatic deployment and configuration I am using Rexify, the friendly configuration management system.
+
+=> https://www.rexify.org
+=> https://codeberg.org/snonux/rexify/frontends
+
+## Acceptable failover time and split-brain scenarios
+
+As stated already, I don't expect an instantaneous failover from one VM to the other when one goes down. So one VM will be the master, the other one will be the standby one. When the master goes down, it's simply enough to change the DNS records. I know there's also some DNS caching involved, but that's acceptable for my use case. For now, I chose a DNS TTL of `300`, so that within 5 minutes + 1 minutely CRON interval + potential caching on an external DNS server which I don't control. This is all totally fine for my use case.
+
+## More HA
+
+Other high-available services running on my OpenBSD VMS are mail (OpenSMTPD) and the authorative DNS servers (nsd). There's no special HA-setup required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
+
+As a password manager, I use `geheim`, a command-line driven tool with encrypted files in a git repository. For HA reasons, I simply updated the client code, so that it is always synchronising the database with both servers when I run the `sync` command there.
+
+=> https://codeberg.org/snonux/geheim
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other *BSD and KISS related posts are:
+
+<< template::inline::index bsd kiss
+
+=> ../ Back to the main site
