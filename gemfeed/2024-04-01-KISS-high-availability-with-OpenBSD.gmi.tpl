@@ -45,7 +45,7 @@ It would be fine if my personal website wasn't highly available, but the geek in
 * Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.
 * Let's Encrypt TLS certificates should always work (before and after a failover).
 * Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn't part of the OpenBSD base system, but I coded my own monigoring system in Go.)
-* Don't configure everything manually. The configuration should be automated and reproducible. (This isn't part of the OpenBSD base system, but I didn't need to install any external package on OpenBSD either.)
+* Don't configure everything manually. The configuration should be automated and reproducible. (This isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either.)
 
 ## My HA solution
 
