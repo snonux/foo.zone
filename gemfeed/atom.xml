@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-30T22:48:57+02:00</updated>
+    <updated>2024-03-30T22:50:31+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -66,7 +66,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <li>Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.</li>
 <li>Let&#39;s Encrypt TLS certificates should always work (before and after a failover).</li>
 <li>Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn&#39;t part of the OpenBSD base system, but I coded my own monigoring system in Go.)</li>
-<li>Don&#39;t configure everything manually. The configuration should be automated and reproducible. (This isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external package on OpenBSD either.)</li>
+<li>Don&#39;t configure everything manually. The configuration should be automated and reproducible. (This isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external software on OpenBSD either.)</li>
 </ul><br />
 <h2 style='display: inline'>My HA solution</h2><br />
 <br />
