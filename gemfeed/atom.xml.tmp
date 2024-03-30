@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <updated>2024-03-30T23:38:33+02:00</updated>
+    <title>foo.zone feed</title>
+    <subtitle>To be in the .zone!</subtitle>
+    <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
+    <link href="gemini://foo.zone/" />
+    <id>gemini://foo.zone/</id>
+    <entry>
+        <title>KISS high-availability with OpenBSD</title>
+        <link href="gemini://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi</id>
+        <updated>2024-03-30T22:12:56+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Art by Michael J. Penick (mod. by Paul B.)</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>KISS high-availability with OpenBSD</h1><br />
+<br />
+<span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
+<br />
+<pre>
+Art by Michael J. Penick (mod. by Paul B.)
+                                               ACME-sky
+        __________
+       / nsd tower\                                             (
+      /____________\                                           (\) awk-ward
+       |:_:_:_:_:_|                                             ))   plant
+       |_:_,--.:_:|                       dig-bubble         (\//   )
+       |:_:|__|_:_|  relayd-castle          _               ) ))   ((
+    _  |_   _  :_:|   _   _   _            (_)             ((((   /)\`
+   | |_| |_| |   _|  | |_| |_| |             o              \\)) (( (
+    \_:_:_:_:/|_|_|_|\:_:_:_:_/             .                ((   ))))
+     |_,-._:_:_:_:_:_:_:_.-,_|                                )) ((//
+     |:|_|:_:_:,---,:_:_:|_|:|                               ,-.  )/
+     |_:_:_:_,&#39;puffy `,_:_:_:_|           _  o               ,;&#39;))((
+     |:_:_:_/  _ | _  \_:_:_:|          (_O                   ((  ))
+_____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
+ &#39;, ;|:_:_:| -( .-. )- |:_:_:| &#39;, ; `--._\  /,---.~  goat     \`))
+.  ` |_:_:_|   \`-&#39;/   |_:_:_|.  ` .  `  /()\.__( ) .,-----&#39;`-\(( sed-root
+ &#39;, ;|:_:_:|    `-&#39;    |:_:_:| &#39;, ; &#39;, ; `--&#39;|   \ &#39;, ; &#39;, ; &#39;,&#39;)).,--
+.  ` MJP ` .  ` .  ` .  ` . httpd-soil ` .    .  ` .  ` .  ` .  ` .  `
+ &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ;
+
+</pre>
+<br />
+<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
+<br />
+<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
+<br />
+<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
+<br />
+<span class='quote'>PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
+<br />
+<h2 style='display: inline'>My auto-failover requirements</h2><br />
+<br />
+<ul>
+<li>Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. </li>
+<li>Don&#39;t rely on the hottest and newest tech (don&#39;t want to migrate everything to a new and fancier technology next month already!).</li>
+<li>It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.</li>
+<li>It should be geo-redundant. </li>
+<li>It&#39;s fine if my sites aren&#39;t reachable for five or ten minutes every other month. Due to their static nature, I don&#39;t care if there&#39;s a split-brain scenario where some requests reach one server and other requests reach another server.</li>
+<li>Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.</li>
+<li>Let&#39;s Encrypt TLS certificates should always work (before and after a failover).</li>
+<li>Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn&#39;t part of the OpenBSD base system, but I coded my own monitoring system in Go.)</li>
+<li>Don&#39;t configure everything manually. The configuration should be automated and reproducible. (This isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external software on OpenBSD either.)</li>
+</ul><br />
+<h2 style='display: inline'>My HA solution</h2><br />
+<br />
+<h3 style='display: inline'>Only OpenBSD base installation required</h3><br />
+<br />
+<span>My HA solution for Web and Gemini is based on DNS (OpenBSD&#39;s <span class='inlinecode'>nsd</span>) and a simple shell script (OpenBSD&#39;s <span class='inlinecode'>ksh</span> and some little <span class='inlinecode'>sed</span> and <span class='inlinecode'>awk</span> and <span class='inlinecode'>grep</span>). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.</span><br />
+<br />
+<a class='textlink' href='https://man.OpenBSD.org/nsd.8'>https://man.OpenBSD.org/nsd.8</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/ksh'>https://man.OpenBSD.org/ksh</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/awk'>https://man.OpenBSD.org/awk</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/sed'>https://man.OpenBSD.org/sed</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/dig'>https://man.OpenBSD.org/dig</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/ftp'>https://man.OpenBSD.org/ftp</a><br />
+<a class='textlink' href='https://man.openbsd.org/cron'>https://man.openbsd.org/cron</a><br />
+<br />
+<span>I also used the <span class='inlinecode'>dig</span> (for DNS checks) and <span class='inlinecode'>ftp</span> (for HTTP/HTTPS checks) programs. </span><br />
+<br />
+<span>The DNS failover is performed automatically between the two OpenBSD VMs involved (my setup doesn&#39;t require any quorum for a failover, so there isn&#39;t a need for a 3rd VM). The <span class='inlinecode'>ksh</span> script, executed once per minute via CRON (on both VMs), performs a health check to determine whether the current master node is available. If the current master isn&#39;t available (no HTTP response as expected), a failover is performed to the standby VM: </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/bin/ksh</font></i>
+
+<font color="#009900">ZONES_DIR</font><font color="#990000">=</font>/var/nsd/zones/master<font color="#990000">/</font>
+<font color="#009900">DEFAULT_MASTER</font><font color="#990000">=</font>fishfinger<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+<font color="#009900">DEFAULT_STANDBY</font><font color="#990000">=</font>blowfish<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+
+<b><font color="#000000">determine_master_and_standby ()</font></b> {
+    <b><font color="#0000FF">local</font></b> <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$DEFAULT_MASTER</font>
+    <b><font color="#0000FF">local</font></b> <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$DEFAULT_STANDBY</font>
+
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">1</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> ftp -<font color="#993399">4</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+        echo <font color="#FF0000">"https://$master/index.txt IPv4 health check failed"</font>
+        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
+    <b><font color="#0000FF">elif</font></b> <font color="#990000">!</font> ftp -<font color="#993399">6</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+        echo <font color="#FF0000">"https://$master/index.txt IPv6 health check failed"</font>
+        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
+    <b><font color="#0000FF">fi</font></b>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$health_ok</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
+        <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
+        <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
+    <b><font color="#0000FF">fi</font></b>
+
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+}
+</pre>
+<br />
+<span>The failover scripts looks for the <span class='inlinecode'> ; Enable failover</span> string in the DNS zone files and swaps the <span class='inlinecode'>A</span> and <span class='inlinecode'>AAAA</span> records of the DNS entries accordingly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>fishfinger$ grep failover /var/nsd/zones/master/foo<font color="#990000">.</font>zone<font color="#990000">.</font>zone
+        <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
+        <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
+www     <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
+www     <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
+standby  <font color="#993399">300</font> IN A <font color="#993399">23.88</font><font color="#990000">.</font><font color="#993399">35.144</font> <font color="#990000">;</font> Enable failover
+standby  <font color="#993399">300</font> IN AAAA 2a01<font color="#990000">:</font>4f8<font color="#990000">:</font>c17<font color="#990000">:</font>20f1<font color="#990000">::</font><font color="#993399">42</font> <font color="#990000">;</font> Enable failover
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">tramsform ()</font></b> {
+	sed -E <font color="#FF0000">'</font>
+<font color="#FF0000">	/IN A .*; Enable failover/ {</font>
+<font color="#FF0000">	    /^standby/! {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/master_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	    /^standby/ {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	/IN AAAA .*; Enable failover/ {</font>
+<font color="#FF0000">	    /^standby/! {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/master_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	    /^standby/ {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	/ ; serial/ {</font>
+<font color="#FF0000">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> '</font><font color="#009900">$(</font>date <font color="#990000">+%</font>s<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	'</font>
+}
+</pre>
+<br />
+<span>After the failover, the script reloads <span class='inlinecode'>nsd</span> and performs a sanity check to see if DNS still works. If not, a rollback will be performed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Race condition (e.g. script execution aborted in the middle of the previous run)</font></i>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
+<b><font color="#0000FF">fi</font></b>
+
+cat <font color="#009900">$zone_file</font> <font color="#990000">|</font> transform <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp 
+
+grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font> <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+
+echo <font color="#FF0000">"Has zone $zone_file changed?"</font>
+<b><font color="#0000FF">if</font></b> diff -u <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+    echo <font color="#FF0000">"The zone $zone_file hasn't changed"</font>
+    rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
+    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font>
+<b><font color="#0000FF">fi</font></b>
+
+cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>bak
+mv <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font>
+rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
+echo <font color="#FF0000">"Reloading nsd"</font>
+nsd-control reload
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">!</font> zone_is_ok <font color="#009900">$zone</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+    echo <font color="#FF0000">"Rolling back $zone_file changes"</font>
+    cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>invalid
+    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
+    echo <font color="#FF0000">"Reloading nsd"</font>
+    nsd-control reload
+    zone_is_ok <font color="#009900">$zone</font>
+    <b><font color="#0000FF">return</font></b> <font color="#993399">3</font>
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">for</font></b> cleanup <b><font color="#0000FF">in</font></b> invalid bak<font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        rm <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font>
+    <b><font color="#0000FF">fi</font></b>
+<b><font color="#0000FF">done</font></b>
+
+echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
+<b><font color="#0000FF">return</font></b> <font color="#993399">1</font>
+</pre>
+<br />
+<span>A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.</span><br />
+<br />
+<span>The authorative nameserver for my domains runs on both VMs, and both are configured to be a "master" DNS server so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn&#39;t work. The side effect is that under a split-brain scenario (both VMs cannot see each other), both would promote themselves to master via their local DNS entries. More about that later, but that&#39;s fine in my use case.</span><br />
+<br />
+<span>Check out the whole script here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh'>dns-failover.ksh</a><br />
+<br />
+<h3 style='display: inline'>Fairly cheap and geo-redundant</h3><br />
+<br />
+<span>I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).</span><br />
+<br />
+<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
+<a class='textlink' href='https://www.hetzner.cloud'>https://www.hetzner.cloud</a><br />
+<br />
+<span>I only have a little traffic on my sites. I could always upload the static content to AWS S3 if I suddenly had to. But this will never be required.</span><br />
+<br />
+<span>A DNS-based failover is cheap, as there isn&#39;t any BGP or fancy load balancer to pay for. Small VMs also cost less than millions.</span><br />
+<br />
+<h3 style='display: inline'>Failover time and split-brain</h3><br />
+<br />
+<span>A DNS failover doesn&#39;t happen immediately. I&#39;ve configured a DNS TTL of <span class='inlinecode'>300</span> seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that&#39;s fine - eventually, all requests will resolve to the new master after a failover).</span><br />
+<br />
+<span>A split-brain scenario between the old master and the new master might happen. That&#39;s OK, as my sites are static, and there&#39;s no database to synchronise other than HTML, CSS, and images when the site is updated.</span><br />
+<br />
+<h3 style='display: inline'>Failover support for multiple protocols</h3><br />
+<br />
+<span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entry, which hosts receive the requests.</span><br />
+<br />
+<a class='textlink' href='https://man.openbsd.org/httpd.8'>https://man.openbsd.org/httpd.8</a><br />
+<a class='textlink' href='https://man.openbsd.org/relayd.8'>https://man.openbsd.org/relayd.8</a><br />
+<br />
+<span>For example, the master is responsible for the <span class='inlinecode'>https://www.foo.zone</span> and <span class='inlinecode'>https://foo.zone</span> hosts, whereas the standby can be reached via <span class='inlinecode'>https://standby.foo.zone</span> (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. <span class='inlinecode'>irregular.ninja</span>, <span class='inlinecode'>paul.buetow.org</span> and so on. The same applies to my Gemini capsules for <span class='inlinecode'>gemini://foo.zone</span>, <span class='inlinecode'>gemini://standby.foo.zone</span>, <span class='inlinecode'>gemini://paul.buetow.org</span> and <span class='inlinecode'>gemini://standby.paul.buetow.org</span>.</span><br />
+<br />
+<span>On DNS failover, master and standby swap roles without config changes other than the DNS entries. That&#39;s KISS (keep it simple and stupid)!</span><br />
+<br />
+<h3 style='display: inline'>Let&#39;s encrypt TLS certificates</h3><br />
+<br />
+<span>All my hosts use TLS certificates from Let&#39;s Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires that the host requesting a certificate from Let&#39;s Encrypt is also the host using that certificate.</span><br />
+<br />
+<span>If the master always serves <span class='inlinecode'>foo.zone</span> and the standby always <span class='inlinecode'>standby.foo.zone</span>, then there would be a problem after the failover, as the new master wouldn&#39;t have a valid certificate for <span class='inlinecode'>foo.zone</span> and the new standby wouldn&#39;t have a valid certificate for <span class='inlinecode'>standby.foo.zone</span> which would lead to TLS errors on the clients.</span><br />
+<br />
+<span>As a solution, the CRON job responsible for the DNS failover also checks for the current week number of the year so that:</span><br />
+<br />
+<ul>
+<li>In an odd week number, the first server is the default master</li>
+<li>In an even week number, the second server is the default master.</li>
+</ul><br />
+<span>Which translates to:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
+<b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
+    <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
+    <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
+<b><font color="#0000FF">fi</font></b>
+</pre>
+<br />
+<span>This way, a DNS failover is performed weekly so that the ACME automation can update the Let&#39;s Encrypt certificates (for master and standby) before they expire on each VM.</span><br />
+<br />
+<span>The ACME automation is yet another daily CRON script <span class='inlinecode'>/usr/local/bin/acme.sh</span>. It iterates over all of my Let&#39;s Encrypt hosts, checks whether they resolve to the same IP address as the current VM, and only then invokes the ACME client to request or renew the TLS certificates. So, there are always correct requests made to Let&#39;s Encrypt. </span><br />
+<br />
+<span>Let&#39;s encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
+<a class='textlink' href='https://man.openbsd.org/acme-client.1'>https://man.openbsd.org/acme-client.1</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<br />
+<h3 style='display: inline'>Monitoring</h3><br />
+<br />
+<span>CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. </span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
+<span> </span><br />
+<h3 style='display: inline'>Rex automation</h3><br />
+<br />
+<span>I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.</span><br />
+<br />
+<a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends'>codeberg.org/snonux/rexfiles/frontends</a><br />
+<br />
+<h2 style='display: inline'>More HA</h2><br />
+<br />
+<span>Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authoritative DNS servers (<span class='inlinecode'>nsd</span>) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! </span><br />
+<br />
+<span>As a password manager, I use <span class='inlinecode'>geheim</span>, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the <span class='inlinecode'>sync</span> command there. </span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/geheim'>https://codeberg.org/snonux/geheim</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other *BSD and KISS related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>A fine Fyne Android app for quickly logging ideas programmed in Go</title>
+        <link href="gemini://foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi</id>
+        <updated>2024-03-03T00:07:21+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
+<br />
+<span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
+<br />
+<span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </span><br />
+<br />
+<span>I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don&#39;t do what I want, are proprietary software, require Google Play services (I have the main profile on my phone de-googled) or are too bloated. I was never into mobile app development, as I&#39;m not too fond of the complexity of the developer toolchains. I don&#39;t want to use Android Studio (as a NeoVim user), and I don&#39;t want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.</span><br />
+<br />
+<a href='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png'><img alt='Quick logger Logo' title='Quick logger Logo' src='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png' /></a><br />
+<br />
+<span>Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I&#39;ve crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app&#39;s whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/quicklogger'>https://codeberg.org/snonux/quicklogger</a><br />
+<a class='textlink' href='https://fyne.io'>https://fyne.io</a><br />
+<a class='textlink' href='https://go.dev'>https://go.dev</a><br />
+<br />
+<span>There&#39;s no need to navigate complex menus or deal with sync issues. I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can&#39;t be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn&#39;t the need for an edit functionality. I can edit them later on my actual computer if I want to.</span><br />
+<br />
+<span>With Syncthing, the note files are then synchronised to my home computer to my <span class='inlinecode'>~/Notes</span> directory. From there, a small glue Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
+<a class='textlink' href='https://raku.org'>https://raku.org</a><br />
+<a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
+<br />
+<span>Quick logger&#39;s user interface is as minimal as it gets. When I launch Quick logger, I&#39;m greeted with a simple window where I can type plain text. Hit the "Log text" button, and voilà – the input is timestamped and saved as a file in my chosen directory. If I need to change the directory, the "Preferences" button brings up a window where I can set the notes folder and get back to logging.</span><br />
+<br />
+<span>For the code-savvy folks out there, Quick logger is a neat example of what you can achieve with Go and Fyne. It&#39;s a testament to building functional, cross-platform apps without getting bogged down in the nitty-gritty of platform-specific details. Thanks to Fyne, I am pleased with how easy it is to make mobile Android apps in Go.</span><br />
+<br />
+<a href='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png'><img alt='Quick logger running on Android' title='Quick logger running on Android' src='2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png' /></a><br />
+<br />
+<span>My Android apps will never be polished, but they will get the job done, and this is precisely how I want them to be. Minimalistic but functional. I could spend more time polishing Quick logger, but my Quick logger app then may be the same as any other notes app out there (complicated or bloated).</span><br />
+<br />
+<h2 style='display: inline'>All easy-peasy?</h2><br />
+<br />
+<span>I did have some issues with the app logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom <span class='inlinecode'>AndroidManifest.xml</span> for custom app storage permissions. Without a custom <span class='inlinecode'>AndroidAmnifest.xml</span> the app icon would be displayed under Android, but then the app would not have the <span class='inlinecode'>MANAGE_EXTERNAL_STORAGE</span> permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:</span><br />
+<br />
+<a class='textlink' href='https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360'>https://github.com/fyne-io/fyne/issues/3077#issuecomment-1912697360</a><br />
+<br />
+<span class='quote'>What worked however (app icon showing up) was to clone the fyne project, change the occurances of android.permission.INTERNET to android.permission.MANAGE_EXTERNAL_STORAGE (as these are all the changes I want in my custom android manifest) in the source tree, re-compile fyne. Now all works. I know, this is more of an hammer approach!</span><br />
+<br />
+<span>Hopefully, I won&#39;t need to use this workaround anymore. But for now, it is a fair tradeoff for what I am getting.</span><br />
+<br />
+<span>I hope this will inspire you to write your own small mobile apps in Go using the awesome Fyne framework! PS: The Quick logger logo was generated by ChatGPT.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other Go related posts are:</span><br />
+<br />
+<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1</a><br />
+<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>From `babylon5.buetow.org` to `*.buetow.cloud`</title>
+        <link href="gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi</id>
+        <updated>2024-02-04T00:50:50+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+<br />
+<span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
+<br />
+<span>Recently, my employer sent me to a week-long AWS course. After the course, there wasn&#39;t any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</span><br />
+<br />
+<span>So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don&#39;t want to become the old man who yells at cloud :D</span><br />
+<br />
+<a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
+<br />
+<h2 style='display: inline'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<br />
+<span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Babylon_5'>https://en.wikipedia.org/wiki/Babylon_5</a><br />
+<br />
+<span>The downsides of this setup were:</span><br />
+<br />
+<ul>
+<li>Not highly available. If the server goes down, no service is reachable until it&#39;s repaired. To be fair, the Hetzner cloud VM is redundant by itself and would have re-spawned on a different worker node, I suppose. </li>
+<li>Manual installation.</li>
+</ul><br />
+<span>About the manual installation part: I could have used a configuration management system like Rexify, Puppet, etc. But I decided against it back in time, as setting up Docker containers isn&#39;t so complicated through simple start scripts. And it&#39;s only a single Linux box where a manual installation is less painful. However, regular backups (which Hetzner can do automatically for you) were a must.</span><br />
+<br />
+<span>The benefits of this setup were:</span><br />
+<br />
+<ul>
+<li>KISS (Keep it Simple Stupid)</li>
+<li>Cheap</li>
+</ul><br />
+<h2 style='display: inline'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<br />
+<span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
+<br />
+<span>My other two OpenBSD VMs (<span class='inlinecode'>blowfish.buetow.org</span>, hosted at Hetzner, and <span class='inlinecode'>fishfinger.buetow.org</span>, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:</span><br />
+<br />
+<ul>
+<li>HTTP server for my websites (e.g. <span class='inlinecode'>https://foo.zone</span>, ...)</li>
+<li>ACME for Let&#39;s Encrypt TLS certificate auto-renewal.</li>
+<li>Gemini server for my capsules (e.g. <span class='inlinecode'>gemini://foo.zone</span>)</li>
+<li>Authoritative DNS servers for my domains (but <span class='inlinecode'>buetow.cloud</span>, which is on Route 53 now)</li>
+<li>Mail transfer agent (MTA)</li>
+<li>My Gogios monitoring system.</li>
+<li>My IRC bouncer.</li>
+</ul><br />
+<span>It is all automated with Rex, aka Rexify. This OpenBSD setup is my "fun" or "for pleasure" setup. Whereas the Rocky Linux 9 one I always considered the "pratical means to the end"-setup to have 3rd party Docker containers up and running with as little work as possible.</span><br />
+<br />
+<a class='textlink' href='https://www.rexify.org'>(R)?ex, the friendly automation framework</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
+<br />
+<h2 style='display: inline'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<br />
+<span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
+<br />
+<span>I decided to automate everything with Terraform, as I wanted to learn to use it as it appears standard now in the job market.</span><br />
+<br />
+<span>All services are installed automatically to AWS ECS Fargate. ECS is AWS&#39;s Elastic Container Service, and Fargate automatically manages the underlying hardware infrastructure (e.g., how many CPUs, RAM, etc.) for me. So I don&#39;t have to bother about having enough EC2 instances to serve my demands, for example.</span><br />
+<br />
+<span>The authoritative DNS for the <span class='inlinecode'>buetow.cloud</span> domain is AWS Route 53. TLS certificates are free here at AWS and offloaded through the AWS Application Load Balancer. The LB acts as a proxy to the ECS container instances of the services. A few services I run in ECS Fargate also require the AWS Network Load Balancer.</span><br />
+<br />
+<span>All services require some persistent storage. For that, I use an encrypted EFS file system, automatically replicated across all AZs (availability zones) of my region of choice, <span class='inlinecode'>eu-central-1</span>.</span><br />
+<br />
+<span>In case of an AZ outage, I could re-deploy all the failed containers in another AZ, and all the data would still be there.</span><br />
+<br />
+<span>The EFS automatically gets backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days. </span><br />
+<br />
+<span>Domain registration, TLS certificate configuration and configuration of the EFS backup were quickly done through the AWS web interface. These were only one-off tasks, so they weren&#39;t fully automated through Terraform. </span><br />
+<br />
+<span>You can find all Terraform manifests here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/terraform'>https://codeberg.org/snonux/terraform</a><br />
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPC (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
+<li><span class='inlinecode'>org-buetow-bastion</span> sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).</li>
+<li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
+<li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
+</ul><br />
+<h2 style='display: inline'>The container apps</h2><br />
+<br />
+<span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
+<br />
+<span>Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.</span><br />
+<br />
+<span>Miniflux requires two ECS containers. One is the Miniflux app, and the other is the PostgreSQL DB.</span><br />
+<br />
+<a class='textlink' href='https://miniflux.app/'>https://miniflux.app/</a><br />
+<br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
+<br />
+<span>Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.</span><br />
+<br />
+<span>With Audiobookshelf, I replaced my former Audible subscription and my separate Podcast app. For Podcast synchronisation I used to use the Gpodder NextCloud sync app. But that one I retired now with Audiobookshelf as well :-)</span><br />
+<br />
+<a class='textlink' href='https://www.audiobookshelf.org'>https://www.audiobookshelf.org</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
+<br />
+<span>Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it&#39;s transmitted over the internet.</span><br />
+<br />
+<span>With Syncthing, I retired my old NextCloud Files and file sync client on all my devices. I also quit my NextCloud Notes setup. All my Notes are now plain Markdown files in a <span class='inlinecode'>Notes</span> directory. On Android, I can edit them with any text or Markdown editor (e.g. Obsidian), and they will be synchronised via Syncthing to my other computers, both forward and back.</span><br />
+<br />
+<span>I use Syncthing to synchronise some of my Phone&#39;s data (e.g. Notes, Pictures and other documents). Initially, I synced all of my pictures, videos, etc., with AWS. But that was pretty expensive. So for now, I use it only whilst travelling. Otherwise, I will use my Syncthing instance here on my LAN (I have a cheap cloud backup in AWS S3 Glacier Deep Archive, but that&#39;s for another blog post).</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
+<br />
+<span>Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn&#39;t a ready-to-use Docker image. So, I created my own.</span><br />
+<br />
+<span>On Android, it works great together with the DAVx5 client for synchronisation.</span><br />
+<br />
+<a class='textlink' href='https://radicale.org/'>https://radicale.org/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-radicale-server'>https://codeberg.org/snonux/docker-radicale-server</a><br />
+<a class='textlink' href='https://www.davx5.com/'>https://www.davx5.com/</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
+<br />
+<span>Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!</span><br />
+<br />
+<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
+<a class='textlink' href='https://github.com/wallabag/wallabag'>https://github.com/wallabag/wallabag</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
+<br />
+<span>Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server <span class='inlinecode'>anki-sync-server</span>. For some reason (not going into the details here), I had to build my own Docker image for the server.</span><br />
+<br />
+<a class='textlink' href='https://apps.ankiweb.net/'>https://apps.ankiweb.net/</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/docker-anki-sync-server'>https://codeberg.org/snonux/docker-anki-sync-server</a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
+<br />
+<span>Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.</span><br />
+<br />
+<span>I currently don&#39;t use it, but I may in the future. I made it available in my ECS Fargate setup anyway for now.</span><br />
+<br />
+<a class='textlink' href='https://github.com/dani-garcia/vaultwarden'>https://github.com/dani-garcia/vaultwarden</a><br />
+<br />
+<span>I currently use <span class='inlinecode'>geheim</span>, a Ruby command line tool I wrote, as my current password manager. You can read a little bit about it here under "More":</span><br />
+<br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff </a><br />
+<br />
+<h3 style='display: inline'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
+<br />
+<span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
+<br />
+<h2 style='display: inline'>Conclusion</h2><br />
+<br />
+<span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
+<br />
+<span>All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don&#39;t think Terraform&#39;s HCL is a nice language. It get&#39;s it&#39;s job done, but it could be more elegant IMHO.</span><br />
+<br />
+<span>Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! </span><br />
+<br />
+<span>Will I keep it in the cloud? I don&#39;t know yet. But maybe I won&#39;t renew the <span class='inlinecode'>buetow.cloud</span> domain and instead will use <span class='inlinecode'>*.cloud.buetow.org</span> or <span class='inlinecode'>*.aws.buetow.org</span> subdomains. </span><br />
+<br />
+<span>Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>One reason why I love OpenBSD</title>
+        <link href="gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi</id>
+        <updated>2024-01-13T22:55:33+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>HKISSFISHKISSFISHKISSFISHKISSFISH    KISS</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>One reason why I love OpenBSD</h1><br />
+<br />
+<span class='quote'>Published at 2024-01-13T22:55:33+02:00</span><br />
+<br />
+<pre>
+           FISHKISSFISHKIS               
+       SFISHKISSFISHKISSFISH            F
+    ISHK   ISSFISHKISSFISHKISS         FI
+  SHKISS   FISHKISSFISHKISSFISS       FIS
+HKISSFISHKISSFISHKISSFISHKISSFISH    KISS
+  FISHKISSFISHKISSFISHKISSFISHKISS  FISHK
+      SSFISHKISSFISHKISSFISHKISSFISHKISSF
+  ISHKISSFISHKISSFISHKISSFISHKISSF  ISHKI
+SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
+  HKISSFISHKISSFISHKISSFISHKISS       FIS
+    HKISSFISHKISSFISHKISSFISHK         IS
+       SFISHKISSFISHKISSFISH            K
+         ISSFISHKISSFISHK               
+</pre>
+<br />
+<span>I just upgraded my OpenBSD&#39;s from <span class='inlinecode'>7.3</span> to <span class='inlinecode'>7.4</span> by following the unattended upgrade guide:</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org/faq/upgrade74.html'>https://www.openbsd.org/faq/upgrade74.html</a><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ doas installboot sd0 <i><font color="#9A1900"># Update the bootloader (not for every upgrade required)</font></i>
+$ doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel)</font></i>
+</pre>
+<br />
+<span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ doas sysmerge <i><font color="#9A1900"># Update system configuration files</font></i>
+$ doas pkg_add -u <i><font color="#9A1900"># Update all packages</font></i>
+$ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</font></i>
+</pre>
+<br />
+<span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
+<br />
+<span>I followed the same procedure the previous times and never encountered any difficulties with any OpenBSD upgrades.</span><br />
+<br />
+<span>I have seen upgrades of other Operating Systems either take a long time or break the system (which takes manual steps to repair). That&#39;s just one of many reasons why I love OpenBSD! There appear never to be any problems. It just gets its job done!</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org'>The OpenBSD Project</a><br />
+<br />
+<span>BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may be for you. They rock (I am having a VM there, too)!</span><br />
+<br />
+<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other *BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</title>
+        <link href="gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi</id>
+        <updated>2024-01-09T18:35:48+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</h1><br />
+<br />
+<span class='quote'>Published at 2024-01-09T18:35:48+02:00</span><br />
+<br />
+<span>This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect (You are currently reading this)</a><br />
+<br />
+<pre>
+                    ..--""""----..                 
+                 .-"   ..--""""--.j-.              
+              .-"   .-"        .--.""--..          
+           .-"   .-"       ..--"-. \/    ;         
+        .-"   .-"_.--..--""  ..--&#39;  "-.  :         
+      .&#39;    .&#39;  /  `. \..--"" __ _     \ ;         
+     :.__.-"    \  /        .&#39; ( )"-.   Y          
+     ;           ;:        ( )     ( ).  \         
+   .&#39;:          /::       :            \  \        
+ .&#39;.-"\._   _.-" ; ;      ( )    .-.  ( )  \       
+  "    `."""  .j"  :      :      \  ;    ;  \      
+    bug /"""""/     ;      ( )    "" :.( )   \     
+       /\    /      :       \         \`.:  _ \    
+      :  `. /        ;       `( )     (\/ :" \ \   
+       \   `.        :         "-.(_)_.&#39;   t-&#39;  ;  
+        \    `.       ;                    ..--":  
+         `.    `.     :              ..--""     :  
+           `.    "-.   ;       ..--""           ;  
+             `.     "-.:_..--""            ..--"   
+               `.      :             ..--""        
+                 "-.   :       ..--""              
+                    "-.;_..--""                    
+
+</pre>
+<br />
+<h2 style='display: inline'>On-Call Culture and the Human Aspect: Prioritising Well-being in the Realm of Reliability</h2><br />
+<br />
+<span>Site Reliability Engineering is synonymous with ensuring system reliability, but the human factor is an often-underestimated part of this discipline. Ensuring an healthy on-call culture is as critical as any technical solution. The well-being of the engineers is an important factor.</span><br />
+<br />
+<span>Firstly, a healthy on-call rotation is about more than just managing and responding to incidents. It&#39;s about the entire ecosystem that supports this practice. This involves reducing pain points, offering mentorship, rapid iteration, and ensuring that engineers have the right tools and processes. One ceavat is, that engineers should be willing to learn. Especially in on-call rotation embedding SREs with other engineers (for example Software Engineers or QA Engineers), it&#39;s difficult to motivate everyone to engage. QA Engineers want to test the software, Software Engineers want to implement new features; they don&#39;t want to troubleshoot and debug production incidents. It can be depressing for the mentoring SRE.</span><br />
+<br />
+<span>Furthermore, the metrics that measure the success of an on-call experience are only sometimes straightforward. While one might assume that fewer pages translate to better on-call expertise (which is true to a degree, as who wants to receive a page out of office hours?), it&#39;s not always the volume of pages that matters most. Trust, ownership, accountability, and effective communication play the important roles.</span><br />
+<br />
+<span>An important part is giving feedback about the on-call experience to ensure continuous learning. If alerts are mostly noise, they should be tuned or even eliminated. If alerts are actionable, can recurring tasks be automated? If there are knowledge gaps, is the documentation not good enough? Continuous retrospection ensures that not only do systems evolve, but the experience for the on-call engineers becomes progressively better.</span><br />
+<br />
+<span>Onboarding for on-call duties is a crucial aspect of ensuring the reliability and efficiency of systems. This process involves equipping new team members with the knowledge, tools, and support to handle incidents confidently. It begins with an overview of the system architecture and common challenges, followed by training on monitoring tools, alerting mechanisms, and incident response protocols. Shadowing experienced on-call engineers can offer practical exposure. Too often, new engineers are thrown into the cold water without proper onboarding and training because the more experienced engineers are too busy fire-fighting production issues in the first place.</span><br />
+<br />
+<span>An always-on, always-alert culture can lead to burnout. Engineers should be encouraged to recognise their limits, take breaks, and seek support when needed. This isn&#39;t just about individual health; a burnt-out engineer can have cascading effects on the entire team and the systems they manage. A successful on-call culture ensures that while systems are kept running, the engineers are kept happy, healthy, and supported. The more experienced engineers should take time to mentor the junior engineers, but the junior engineers should also be fully engaged, try to investigate and learn new things by themselves.</span><br />
+<br />
+<span>For the junior engineer, it&#39;s too easy to fall back and ask the experts in the team every time an issue arises. This seems reasonable, but serving recipes for solving production issues on a silver tablet won&#39;t scale forever, as there are infinite scenarios of how production systems can break. So every engineer should learn to debug, troubleshoot and resolve production incidents independently. The experts will still be there for guidance and step in when the junior gets stuck after trying, but the experts should also learn to step down so that lesser experienced engineers can step up and learn. But mistakes can always happen here; that&#39;s why having a blameless on-call culture is essential.</span><br />
+<br />
+<span>A blameless on-call culture is a must for a safe and collaborative environment where engineers can effectively respond to incidents without fear of retribution. This approach acknowledges that mistakes are a natural part of the learning and innovation process. When individuals are assured they won&#39;t be punished for errors, they&#39;re more likely to openly discuss mistakes, allowing the entire team to learn and grow from each incident. Furthermore, a blameless culture promotes psychological safety, enhances job satisfaction, reduces burnout, and ensures that talent remains committed and engaged.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Bash Golf Part 3</title>
+        <link href="gemini://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.gmi</id>
+        <updated>2023-12-10T11:35:54+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>Bash Golf Part 3</h1><br />
+<br />
+<span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
+<br />
+<pre>
+    &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
+      \        \         \              .         &#39; .     |
+     O&gt;&gt;      O&gt;&gt;       O&gt;&gt;         .                 &#39;o  |
+      \       .\. ..    .\. ..   .                        |
+      /\    .  /\     .  /\    . .                        |
+     / /   .  / /  .&#39;.  / /  .&#39;    .                      |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+</pre>
+<br />
+<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
+<h2 style='display: inline'><span class='inlinecode'>FUNCNAME</span></h2><br />
+<br />
+<span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
+<br />
+<span>This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">log ()</font></b> {
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">level</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">message</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">pid</font><font color="#990000">=</font><font color="#FF0000">"$$"</font>
+
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">callee</font><font color="#990000">=</font><font color="#009900">${FUNCNAME[1]}</font>
+    <b><font color="#0000FF">local</font></b> -r <font color="#009900">stamp</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>Y<font color="#990000">%</font>m<font color="#990000">%</font>d-<font color="#990000">%</font>H<font color="#990000">%</font>M<font color="#990000">%</font>S<font color="#990000">)</font>
+
+    echo <font color="#FF0000">"$level|$stamp|$pid|$callee|$message"</font> <font color="#990000">&gt;&amp;</font><font color="#993399">2</font>
+}
+
+<b><font color="#000000">at_home_friday_evening ()</font></b> {
+    log INFO <font color="#FF0000">'One Peperoni Pizza, please'</font>
+}
+
+at_home_friday_evening
+</pre>
+<br />
+<span>The output is as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ <font color="#990000">.</font>/logexample<font color="#990000">.</font>sh
+INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font color="#993399">082732</font><font color="#990000">|</font><font color="#993399">123002</font><font color="#990000">|</font>at_home_friday_evening<font color="#990000">|</font>One Peperoni Pizza<font color="#990000">,</font> please
+</pre>
+<br />
+<h2 style='display: inline'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
+<br />
+<span>This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break <span class='inlinecode'>:(){ :|:&amp; };:</span> down:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>:(){ }</span> is really a declaration of the function <span class='inlinecode'>:</span></li>
+<li>The <span class='inlinecode'>;</span> is ending the current statement</li>
+<li>The <span class='inlinecode'>:</span> at the end is calling the function <span class='inlinecode'>:</span></li>
+<li><span class='inlinecode'>:|:&amp;</span> is the function body</li>
+</ul><br />
+<span>Let&#39;s break down the function body <span class='inlinecode'>:|:&amp;</span>: </span><br />
+<br />
+<ul>
+<li>The first <span class='inlinecode'>:</span> is calling the function recursively</li>
+<li>The <span class='inlinecode'>|:</span> is piping the output to the function <span class='inlinecode'>:</span> again (parallel recursion)</li>
+<li>The <span class='inlinecode'>&amp;</span> lets it run in the background.</li>
+</ul><br />
+<span>So, it&#39;s a fork bomb. If you run it, your computer will run out of resources eventually. (Modern Linux distributions could have reasonable limits configured for your login session, so it won&#39;t bring down your whole system anymore unless you run it as <span class='inlinecode'>root</span>!)</span><br />
+<br />
+<span>And here is the cute illustration:</span><br />
+<br />
+<a href='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg'><img alt='Bash fork bomb' title='Bash fork bomb' src='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg' /></a><br />
+<br />
+<h2 style='display: inline'>Inner functions</h2><br />
+<br />
+<span>Bash defines variables as it is interpreting the code. The same applies to function declarations. Let&#39;s consider this code:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">outer()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Intel inside!'</font>
+  }
+  inner
+}
+
+inner
+outer
+inner
+</pre>
+<br />
+<span>And let&#39;s execute it:</span><br />
+<br />
+<pre>
+❯ ./inner.sh
+/tmp/inner.sh: line 10: inner: command not found
+Intel inside!
+Intel inside!
+</pre>
+<br />
+<span>What happened? The first time <span class='inlinecode'>inner</span> was called, it wasn&#39;t defined yet. That only happens after the <span class='inlinecode'>outer</span> run. Note that <span class='inlinecode'>inner</span> will still be globally defined. But functions can be declared multiple times (the last version wins):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">outer1()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Intel inside!'</font>
+  }
+  inner
+}
+
+<b><font color="#000000">outer2()</font></b> {
+  <b><font color="#000000">inner()</font></b> {
+    echo <font color="#FF0000">'Wintel inside!'</font>
+  }
+  inner
+}
+
+outer1
+inner
+outer2
+inner
+</pre>
+<br />
+<span>And let&#39;s run it:</span><br />
+<br />
+<pre>
+❯ ./inner2.sh
+Intel inside!
+Intel inside!
+Wintel inside!
+Wintel inside!
+</pre>
+<br />
+<h2 style='display: inline'>Exporting functions</h2><br />
+<br />
+<span>Have you ever wondered how to execute a shell function in parallel through <span class='inlinecode'>xargs</span>? The problem is that this won&#39;t work:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>We try here to run ten parallel processes; each of them should run the <span class='inlinecode'>some_expensive_operations</span> function with a different argument. The arguments are provided to <span class='inlinecode'>xargs</span> through <span class='inlinecode'>STDIN</span> one per line. When executed, we get this:</span><br />
+<br />
+<pre>
+❯ ./xargs.sh
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+bash: line 1: some_expensive_operations: command not found
+</pre>
+<br />
+<span>There&#39;s an easy solution for this. Just export the function! It will then be magically available in any sub-shell!</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>When we run this now, we get:</span><br />
+<br />
+<pre>
+❯ ./xargs.sh
+Doing expensive operations with &#39;0&#39; from pid 132831
+Doing expensive operations with &#39;1&#39; from pid 132832
+Doing expensive operations with &#39;2&#39; from pid 132833
+Doing expensive operations with &#39;3&#39; from pid 132834
+Doing expensive operations with &#39;4&#39; from pid 132835
+Doing expensive operations with &#39;5&#39; from pid 132836
+Doing expensive operations with &#39;6&#39; from pid 132837
+Doing expensive operations with &#39;7&#39; from pid 132838
+Doing expensive operations with &#39;8&#39; from pid 132839
+Doing expensive operations with &#39;9&#39; from pid 132840
+</pre>
+<br />
+<span>If <span class='inlinecode'>some_expensive_function</span> would call another function, the other function must also be exported. Otherwise, there will be a runtime error again. E.g., this won&#39;t work:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">some_other_function()</font></b> {
+  echo <font color="#FF0000">"$1"</font>
+}
+
+<b><font color="#000000">some_expensive_operations()</font></b> {
+  some_other_function <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
+}
+<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+
+<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
+  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+</pre>
+<br />
+<span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
+<br />
+<h2 style='display: inline'>Dynamic variables with <span class='inlinecode'>local</span></h2><br />
+<br />
+<span>You may know that <span class='inlinecode'>local</span> is how to declare local variables in a function. Most don&#39;t know that those variables actually have dynamic scope. Let&#39;s consider the following example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#000000">foo()</font></b> {
+  <b><font color="#0000FF">local</font></b> <font color="#009900">foo</font><font color="#990000">=</font>bar <i><font color="#9A1900"># Declare local/dynamic variable</font></i>
+  bar
+  echo <font color="#FF0000">"$foo"</font>
+}
+
+<b><font color="#000000">bar()</font></b> {
+  echo <font color="#FF0000">"$foo"</font>
+  <font color="#009900">foo</font><font color="#990000">=</font>baz
+}
+
+<font color="#009900">foo</font><font color="#990000">=</font>foo <i><font color="#9A1900"># Declare global variable</font></i>
+foo <i><font color="#9A1900"># Call function foo</font></i>
+echo <font color="#FF0000">"$foo"</font>
+</pre>
+<br />
+<span>Let&#39;s pause a minute. What do you think the output would be?</span><br />
+<br />
+<span>Let&#39;s run it:</span><br />
+<br />
+<pre>
+❯ ./dynamic.sh
+bar
+baz
+foo
+</pre>
+<br />
+<span>What happened? The variable <span class='inlinecode'>foo</span> (declared with <span class='inlinecode'>local</span>) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of <span class='inlinecode'>foo</span>, and the change will be visible up the call stack. It&#39;s not a global variable; on the last line, <span class='inlinecode'>echo "$foo"</span> echoes the global variable content.</span><br />
+<br />
+<br />
+<h2 style='display: inline'><span class='inlinecode'>if</span> conditionals</h2><br />
+<br />
+<span>Consider all variants here more or less equivalent:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">foo</font><font color="#990000">=</font>foo
+<b><font color="#0000FF">declare</font></b> -r <font color="#009900">bar</font><font color="#990000">=</font>bar
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    echo ok1
+  <b><font color="#0000FF">fi</font></b>
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+  echo ok2a
+<b><font color="#0000FF">fi</font></b>
+
+<font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> echo ok2b
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]];</font> <b><font color="#0000FF">then</font></b>
+  echo ok3a
+<b><font color="#0000FF">fi</font></b>
+
+ <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]]</font> <font color="#990000">&amp;&amp;</font> echo ok3b
+
+<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+  echo ok4a
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">&amp;&amp;</font> echo ok4b
+</pre>
+<br />
+<span>The output we get is:</span><br />
+<br />
+<pre>
+❯ ./if.sh
+ok1
+ok2a
+ok2b
+ok3a
+ok3b
+ok4a
+ok4b
+</pre>
+<br />
+<h2 style='display: inline'>Multi-line comments</h2><br />
+<br />
+<span>You all know how to comment. Put a <span class='inlinecode'>#</span> in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the <span class='inlinecode'>:</span> no-op command to emulate multi-line comments. </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+<i><font color="#9A1900"># Single line comment</font></i>
+
+<i><font color="#9A1900"># These are two single line</font></i>
+<i><font color="#9A1900"># comments one after another</font></i>
+
+<font color="#990000">:</font> <font color="#990000">&lt;&lt;</font>COMMENT
+This is another way a
+multi line comment
+could be written<font color="#990000">!</font>
+COMMENT
+</pre>
+<br />
+<span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
+<br />
+<h2 style='display: inline'>Don&#39;t change it while it&#39;s executed</h2><br />
+<br />
+<span>Consider this script:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+
+echo foo
+echo echo baz <font color="#990000">&gt;&gt;</font> <font color="#009900">$0</font>
+echo bar
+</pre>
+<br />
+<span>When it is run, it will do:</span><br />
+<br />
+<pre>
+❯ ./if.sh
+foo
+bar
+baz
+❯ cat if.sh
+#!/usr/bin/env bash
+
+echo foo
+echo echo baz &gt;&gt; $0
+echo bar
+echo baz
+</pre>
+<br />
+<span>So what happened? The <span class='inlinecode'>echo baz</span> line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
