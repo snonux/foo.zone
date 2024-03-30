@@ -44,7 +44,7 @@ It would be fine if my personal website wasn't highly available, but the geek in
 * It's fine if my sites aren't reachable for five or ten minutes every other month. Due to their static nature, I don't care if there's a split-brain scenario where some requests reach one server and other requests reach another server.
 * Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.
 * Let's Encrypt TLS certificates should always work (before and after a failover).
-* Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn't part of the OpenBSD base system, but I coded my own monigoring system in Go.)
+* Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn't part of the OpenBSD base system, but I coded my own monitoring system in Go.)
 * Don't configure everything manually. The configuration should be automated and reproducible. (This isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either.)
 
 ## My HA solution
