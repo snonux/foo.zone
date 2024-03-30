@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-30T22:24:56+02:00</updated>
+    <updated>2024-03-30T22:25:58+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -174,7 +174,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Race condition (e.g. script execution abored in the middle of the previous run)</font></i>
+<pre><i><font color="#9A1900"># Race condition (e.g. script execution aborted in the middle of the previous run)</font></i>
 <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
     mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
 <b><font color="#0000FF">fi</font></b>
