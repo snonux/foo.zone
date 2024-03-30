@@ -1,14 +1,42 @@
 # KISS high-availability with OpenBSD
 
+```
+Art by Michael J. Penick (mod. by Paul B)
+
+        __________
+       / nsd tower\                                             (
+      /____________\                                           (\) awk-ward
+       |:_:_:_:_:_|                                             ))   plant
+       |_:_,--.:_:|                       dig-bubble         (\//   )
+       |:_:|__|_:_|  relayd-castle          _               ) ))   ((
+    _  |_   _  :_:|   _   _   _            (_)             ((((   /)\`
+   | |_| |_| |   _|  | |_| |_| |             o              \\)) (( (
+    \_:_:_:_:/|_|_|_|\:_:_:_:_/             .                ((   ))))
+     |_,-._:_:_:_:_:_:_:_.-,_|                                )) ((//
+     |:|_|:_:_:,---,:_:_:|_|:|                               ,-.  )/
+     |_:_:_:_,'puffy `,_:_:_:_|           _  o               ,;'))((
+     |:_:_:_/  _ | _  \_:_:_:|          (_O                   ((  ))
+_____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
+ ', ;|:_:_:| -( .-. )- |:_:_:| ', ; `--._\  /,---.~  goat     \`))
+.  ` |_:_:_|   \`-'/   |_:_:_|.  ` .  `  /()\.__( ) .,-----'`-\(( sed-root
+ ', ;|:_:_:|    `-'    |:_:_:| ', ; ', ; `--'|   \ ', ; ', ; ',')).,--
+.  ` MJP ` .  ` .  ` .  ` . httpd-soil ` .    .  ` .  ` .  ` .  ` .  `
+ ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ; ', ;
+
+```
+
 I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
 
 But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space—something as KISS (keep it simple and stupid) as possible.
 
 It would be fine if my personal website wasn't highly available, but the geek in me wants it anyway.
 
-## My HA requirements
+> PS: ASCII-art reflects the OpenBSD under-water world with all the tools available in the base system.
 
-* Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible.
+## My auto-failover requirements
+
+* Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. 
+* Don't rely on the hottest and newest tech (don't want to migrate everything to a new and fancier technology next month).
 * It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.
 * It should be geo-redundant. 
 * It's fine if my sites aren't reachable for five or ten minutes every other month. Due to their static nature, I don't care if there's a split-brain scenario where some requests reach one server and other requests reach another server.
@@ -174,21 +202,9 @@ A DNS-based failover is cheap, as there isn't any BGP or fancy load balancer to 
 
 ### Failover time and split-brain
 
-A DNS failover doesn't happen immediately. I've configured a DNS TTL of `300` seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that's fine—eventually, all requests will resolve to the new master after a failover).
+A DNS failover doesn't happen immediately. I've configured a DNS TTL of `300` seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that's fine - eventually, all requests will resolve to the new master after a failover).
 
 A split-brain scenario between the old master and the new master might happen. That's OK, as my sites are static, and there's no database to synchronise other than HTML, CSS, and images when the site is updated.
-
-On my Fedora Laptop, I use Gemtexter to generate the content for `foo.zone` and `paul.buetow.org`. The generated `.gmi` and `.html` files are then committed to a git repository at Codeberg.
-
-=> https://codeberg.org/snonux/gemtexter Gemtexter
-=> https://codeberg.org/snonux/foo.zone foo.zone static content at Codeberg
-=> https://codeberg.org/snonux/paul.buetow.org paul.buetow.org static content at Codeberg
-
-(check out the `content-html` and `content-gemtext` branches of the content repositories there).
-
-On my two OpenBSD VMs, a daily CRON job running `/usr/local/bin/gemtexter.sh` updates the content repositories to `/var/gemini` and `/var/www/htdocs`, respectively. This ensures that both OpenBSD VMs always have the same content checked out via the `got` command (Game of Trees—an OpenBSD implementation of a subset of Git).
-
-=> https://gameoftrees.org
 
 ### Failover support for multiple protocols
 
@@ -197,7 +213,7 @@ With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This wo
 => https://man.openbsd.org/httpd.8
 => https://man.openbsd.org/relayd.8
 
-For example, the master is responsible for the `https://www.foo.zone` and `https://foo.zone` hosts, whereas the standby can be reached via `https://standby.foo.zone` (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. `irregular.ninja`, `paul.buetow.org` and so on. The same applies to my Gemini capsules for `geminit://foo.zone`, `gemini://standby.foo.zone`, `gemini://paul.buetow.org` and `gemini://standby.paul.buetow.org`.
+For example, the master is responsible for the `https://www.foo.zone` and `https://foo.zone` hosts, whereas the standby can be reached via `https://standby.foo.zone` (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. `irregular.ninja`, `paul.buetow.org` and so on. The same applies to my Gemini capsules for `gemini://foo.zone`, `gemini://standby.foo.zone`, `gemini://paul.buetow.org` and `gemini://standby.paul.buetow.org`.
 
 On DNS failover, master and standby swap roles without config changes other than the DNS entries. That's KISS (keep it simple and stupid)!
 
@@ -236,7 +252,7 @@ Let's encrypt certificates usually expire after 3 months, so a weekly failover o
 
 ### Monitoring
 
-CRON is sending me an E-Mail whenever a failover is performed. Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. 
+CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. 
 
 => https://codeberg.org/snonux/gogios
 => ./2023-06-01-kiss-server-monitoring-with-gogios.gmi KISS server monitoring with Gogios
@@ -246,13 +262,13 @@ CRON is sending me an E-Mail whenever a failover is performed. Furthermore, I am
 I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.
 
 => https://www.rexify.org
-=> https://codeberg.org/snonux/rexify/frontends
+=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends
 
 ## More HA
 
-Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authoritative DNS servers (nsd) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
+Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authoritative DNS servers (`nsd`) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
 
-As a password manager, I use `geheim`, a command-line tool I wrote in Ruby with encrypted files in a git repository. For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the `sync` command there.
+As a password manager, I use `geheim`, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the `sync` command there. 
 
 => https://codeberg.org/snonux/geheim
 
