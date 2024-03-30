@@ -1,27 +1,27 @@
 # KISS high-availability with OpenBSD
 
-I have always wanted a high-available setup for my personal websites. I could have used off-the-shelf hosting solutions, or I could also have hosted my sites at a AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD and as well commercial F5 Load-balancers for high-availability at work. 
+I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
 
-But still, my personal sites never were high-available. All those technologies are great for professional use, but for my personal space I was looking for something much simpler. Something as KISS (keep it simple and stupid) as possible.
+But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space—something as KISS (keep it simple and stupid) as possible.
 
-Truth be told, it would be just fine if my personal website wouldn't be high-available. But the geek in me wants it anyways.
+It would be fine if my personal website wasn't highly available, but the geek in me wants it anyway.
 
 ## My HA requirements
 
-* Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few as external packages as possible.
-* It should be fairly cheap. I don't want to pay premium for floating IPs or fancy Elastic Load Balancers.
+* Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible.
+* It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.
 * It should be geo-redundant. 
-* It's fine if my sites aren't reachable for five or ten minutes or so every other month. Due to the static nature of the sites, I don't care if there's a split-brain scenario where some requests reach one, and other requests reach another server.
-* Failover should work for both, HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be high-available.
+* It's fine if my sites aren't reachable for five or ten minutes every other month. Due to their static nature, I don't care if there's a split-brain scenario where some requests reach one server and other requests reach another server.
+* Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.
 * Let's Encrypt TLS certificates should always work (before and after a failover).
-* Have a good monitoring in-place, so I know when a failover was performed and also when something went wrong with the failover.
-* Don't configure everything manually. The configuration should be automated and reproducable.
+* Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover.
+* Don't configure everything manually. The configuration should be automated and reproducible.
 
 ## My HA solution
 
 ### Only OpenBSD base installation required
 
-My HA-solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple shell script (OpenBSD's `ksh` and some little `sed` and `awk` and `grep`). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.
+My HA solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple shell script (OpenBSD's `ksh` and some little `sed` and `awk` and `grep`). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.
 
 => https://man.OpenBSD.org/nsd.8
 => https://man.OpenBSD.org/ksh
@@ -30,9 +30,9 @@ My HA-solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple
 => https://man.OpenBSD.org/dig
 => https://man.OpenBSD.org/ftp
 
-I also used the `dig` (for DNS checks) and `ftp` (for HTTP/HTTPs checks) programs. 
+I also used the `dig` (for DNS checks) and `ftp` (for HTTP/HTTPS checks) programs. 
 
-The DNS failover is performed automatically. The `ksh` script, executed once per minute, perfoms a health-check whether the current master node is available or not. If the current master isn't available (no HTTPs response as expected), a failover is performed to the standby VM. 
+The DNS failover is performed automatically. The `ksh` script, executed once per minute via CRON, performs a health check to determine whether the current master node is available. If the current master isn't available (no HTTP response as expected), a failover is performed to the standby VM: 
 
 ```sh
 local -i health_ok=1
@@ -51,7 +51,7 @@ if [ $health_ok -eq 0 ]; then
 fi
 ```
 
-The failover simply looks for the ` ; Enable failover` in the DNS zone files and changes the A and AAAA records of the DNS entries accordingly.
+The failover scripts looks for the ` ; Enable failover` string in the DNS zone files and swaps the `A` and `AAAA` records of the DNS entries accordingly:
 
 ```sh
 tramsform () {
@@ -79,10 +79,10 @@ tramsform () {
 }
 ```
 
-After the failover, the script will reload `nsd` and performs a sanity check whether DNS still works. If not, a rollback will be performed.
+After the failover, the script reloads `nsd` and performs a sanity check to see if DNS still works. If not, a rollback will be performed.
 
-The nameserver is running on both VMs and both are configured to be "master" DNS servers so that they have their own individual zone files which can be changed independently. Otherwise, my setup wouldn't work.
-
+The nameserver is running on both VMs, and both are configured to be "master" DNS servers so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn't work:
+ 
 ```sh
 # Race condition (e.g. script execution abored in the middle previous run)
 if [ -f $zone_file.bak ]; then
@@ -127,7 +127,7 @@ echo "Failover of zone $zone to $MASTER completed"
 return 1
 ```
 
-A non-zero return code (here 3 when a rollback was peformed and 1 when a DNS failover was performed) will cause CRON to send out an E-Mail with the whole's scripts output.
+A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.
 
 Check out the whole script here:
 
@@ -212,15 +212,11 @@ For the automatic deployment and configuration I am using Rexify, the friendly c
 => https://www.rexify.org
 => https://codeberg.org/snonux/rexify/frontends
 
-## Acceptable failover time and split-brain scenarios
-
-As stated already, I don't expect an instantaneous failover from one VM to the other when one goes down. So one VM will be the master, the other one will be the standby one. When the master goes down, it's simply enough to change the DNS records. I know there's also some DNS caching involved, but that's acceptable for my use case. For now, I chose a DNS TTL of `300`, so that within 5 minutes + 1 minutely CRON interval + potential caching on an external DNS server which I don't control. This is all totally fine for my use case.
-
 ## More HA
 
-Other high-available services running on my OpenBSD VMS are mail (OpenSMTPD) and the authorative DNS servers (nsd). There's no special HA-setup required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
+Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authorative DNS servers (nsd) for all of my domains. There's no special HA-setup required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
 
-As a password manager, I use `geheim`, a command-line driven tool with encrypted files in a git repository. For HA reasons, I simply updated the client code, so that it is always synchronising the database with both servers when I run the `sync` command there.
+As a password manager, I use `geheim`, a command-line driven tool I wrote in Ruby with encrypted files in a git repository. For HA reasons, I simply updated the client code, so that it is always synchronising the database with both servers when I run the `sync` command there.
 
 => https://codeberg.org/snonux/geheim
 
