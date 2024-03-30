@@ -59,6 +59,7 @@ My HA solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple
 [https://man.OpenBSD.org/sed](https://man.OpenBSD.org/sed)  
 [https://man.OpenBSD.org/dig](https://man.OpenBSD.org/dig)  
 [https://man.OpenBSD.org/ftp](https://man.OpenBSD.org/ftp)  
+[https://man.openbsd.org/cron](https://man.openbsd.org/cron)  
 
 I also used the `dig` (for DNS checks) and `ftp` (for HTTP/HTTPS checks) programs. 
 
