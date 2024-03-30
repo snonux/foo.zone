@@ -1,5 +1,7 @@
 # KISS high-availability with OpenBSD
 
+> Published at 2024-03-30T22:12:56+02:00
+
 ```
 Art by Michael J. Penick (mod. by Paul B)
 
