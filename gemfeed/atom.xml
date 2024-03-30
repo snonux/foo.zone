@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-30T22:13:12+02:00</updated>
+    <updated>2024-03-30T22:16:56+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -15,7 +15,7 @@
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Art by Michael J. Penick (mod. by Paul B)</summary>
+        <summary>Art by Michael J. Penick (mod. by Paul B.)</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline'>KISS high-availability with OpenBSD</h1><br />
@@ -23,7 +23,7 @@
 <span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
 <br />
 <pre>
-Art by Michael J. Penick (mod. by Paul B)
+Art by Michael J. Penick (mod. by Paul B.)
 
         __________
        / nsd tower\                                             (
@@ -49,17 +49,17 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <br />
 <span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
 <br />
-<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space—something as KISS (keep it simple and stupid) as possible.</span><br />
+<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
 <br />
 <span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
 <br />
-<span class='quote'>PS: ASCII-art reflects the OpenBSD under-water world with all the tools available in the base system.</span><br />
+<span class='quote'>PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
 <br />
 <h2 style='display: inline'>My auto-failover requirements</h2><br />
 <br />
 <ul>
 <li>Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. </li>
-<li>Don&#39;t rely on the hottest and newest tech (don&#39;t want to migrate everything to a new and fancier technology next month).</li>
+<li>Don&#39;t rely on the hottest and newest tech (don&#39;t want to migrate everything to a new and fancier technology next month already).</li>
 <li>It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.</li>
 <li>It should be geo-redundant. </li>
 <li>It&#39;s fine if my sites aren&#39;t reachable for five or ten minutes every other month. Due to their static nature, I don&#39;t care if there&#39;s a split-brain scenario where some requests reach one server and other requests reach another server.</li>
