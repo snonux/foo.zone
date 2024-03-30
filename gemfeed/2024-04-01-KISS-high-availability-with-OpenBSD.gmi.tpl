@@ -190,7 +190,7 @@ The authorative nameserver for my domains runs on both VMs, and both are configu
 
 Check out the whole script here:
 
-=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh
+=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh dns-failover.ksh
 
 ### Fairly cheap and geo-redundant
 
@@ -265,7 +265,7 @@ CRON is sending me an E-Mail whenever a failover is performed (or whenever a fai
 I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.
 
 => https://www.rexify.org
-=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends
+=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends codeberg.org/snonux/rexfiles/frontends
 
 ## More HA
 
