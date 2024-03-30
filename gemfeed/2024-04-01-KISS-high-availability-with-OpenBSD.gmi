@@ -141,7 +141,7 @@ tramsform () {
 After the failover, the script reloads `nsd` and performs a sanity check to see if DNS still works. If not, a rollback will be performed:
 
 ```sh
-# Race condition (e.g. script execution abored in the middle of the previous run)
+# Race condition (e.g. script execution aborted in the middle of the previous run)
 if [ -f $zone_file.bak ]; then
     mv $zone_file.bak $zone_file
 fi
