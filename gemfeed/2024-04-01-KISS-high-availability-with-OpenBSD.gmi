@@ -4,7 +4,7 @@
 
 ```
 Art by Michael J. Penick (mod. by Paul B.)
-
+                                               ACME-sky
         __________
        / nsd tower\                                             (
       /____________\                                           (\) awk-ward
