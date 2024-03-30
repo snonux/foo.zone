@@ -285,5 +285,6 @@ Other *BSD and KISS related posts are:
 [2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2024-01-13 One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
+[2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 
 [Back to the main site](../)  
