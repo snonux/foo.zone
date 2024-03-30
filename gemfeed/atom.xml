@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-30T22:35:33+02:00</updated>
+    <updated>2024-03-30T22:42:12+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -24,7 +24,7 @@
 <br />
 <pre>
 Art by Michael J. Penick (mod. by Paul B.)
-
+                                               ACME-sky
         __________
        / nsd tower\                                             (
       /____________\                                           (\) awk-ward
