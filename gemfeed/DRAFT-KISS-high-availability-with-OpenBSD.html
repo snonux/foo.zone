@@ -1,0 +1,320 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>KISS high-availability with OpenBSD</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline'>KISS high-availability with OpenBSD</h1><br />
+<br />
+<pre>
+Art by Michael J. Penick (mod. by Paul B)
+
+        __________
+       / nsd tower\                                             (
+      /____________\                                           (\) awk-ward
+       |:_:_:_:_:_|                                             ))   plant
+       |_:_,--.:_:|                       dig-bubble         (\//   )
+       |:_:|__|_:_|  relayd-castle          _               ) ))   ((
+    _  |_   _  :_:|   _   _   _            (_)             ((((   /)\`
+   | |_| |_| |   _|  | |_| |_| |             o              \\)) (( (
+    \_:_:_:_:/|_|_|_|\:_:_:_:_/             .                ((   ))))
+     |_,-._:_:_:_:_:_:_:_.-,_|                                )) ((//
+     |:|_|:_:_:,---,:_:_:|_|:|                               ,-.  )/
+     |_:_:_:_,&#39;puffy `,_:_:_:_|           _  o               ,;&#39;))((
+     |:_:_:_/  _ | _  \_:_:_:|          (_O                   ((  ))
+_____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
+ &#39;, ;|:_:_:| -( .-. )- |:_:_:| &#39;, ; `--._\  /,---.~  goat     \`))
+.  ` |_:_:_|   \`-&#39;/   |_:_:_|.  ` .  `  /()\.__( ) .,-----&#39;`-\(( sed-root
+ &#39;, ;|:_:_:|    `-&#39;    |:_:_:| &#39;, ; &#39;, ; `--&#39;|   \ &#39;, ; &#39;, ; &#39;,&#39;)).,--
+.  ` MJP ` .  ` .  ` .  ` . httpd-soil ` .    .  ` .  ` .  ` .  ` .  `
+ &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ;
+
+</pre>
+<br />
+<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like BGP, LVS/IPVS, ldirectord, Pacemaker, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
+<br />
+<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space—something as KISS (keep it simple and stupid) as possible.</span><br />
+<br />
+<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
+<br />
+<span class='quote'>PS: ASCII-art reflects the OpenBSD under-water world with all the tools available in the base system.</span><br />
+<br />
+<h2 style='display: inline'>My auto-failover requirements</h2><br />
+<br />
+<ul>
+<li>Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. </li>
+<li>Don&#39;t rely on the hottest and newest tech (don&#39;t want to migrate everything to a new and fancier technology next month).</li>
+<li>It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.</li>
+<li>It should be geo-redundant. </li>
+<li>It&#39;s fine if my sites aren&#39;t reachable for five or ten minutes every other month. Due to their static nature, I don&#39;t care if there&#39;s a split-brain scenario where some requests reach one server and other requests reach another server.</li>
+<li>Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.</li>
+<li>Let&#39;s Encrypt TLS certificates should always work (before and after a failover).</li>
+<li>Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover.</li>
+<li>Don&#39;t configure everything manually. The configuration should be automated and reproducible.</li>
+</ul><br />
+<h2 style='display: inline'>My HA solution</h2><br />
+<br />
+<h3 style='display: inline'>Only OpenBSD base installation required</h3><br />
+<br />
+<span>My HA solution for Web and Gemini is based on DNS (OpenBSD&#39;s <span class='inlinecode'>nsd</span>) and a simple shell script (OpenBSD&#39;s <span class='inlinecode'>ksh</span> and some little <span class='inlinecode'>sed</span> and <span class='inlinecode'>awk</span> and <span class='inlinecode'>grep</span>). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.</span><br />
+<br />
+<a class='textlink' href='https://man.OpenBSD.org/nsd.8'>https://man.OpenBSD.org/nsd.8</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/ksh'>https://man.OpenBSD.org/ksh</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/awk'>https://man.OpenBSD.org/awk</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/sed'>https://man.OpenBSD.org/sed</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/dig'>https://man.OpenBSD.org/dig</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/ftp'>https://man.OpenBSD.org/ftp</a><br />
+<br />
+<span>I also used the <span class='inlinecode'>dig</span> (for DNS checks) and <span class='inlinecode'>ftp</span> (for HTTP/HTTPS checks) programs. </span><br />
+<br />
+<span>The DNS failover is performed automatically between the two OpenBSD VMs involved (my setup doesn&#39;t require any quorum for a failover, so there isn&#39;t a need for a 3rd VM). The <span class='inlinecode'>ksh</span> script, executed once per minute via CRON (on both VMs), performs a health check to determine whether the current master node is available. If the current master isn&#39;t available (no HTTP response as expected), a failover is performed to the standby VM: </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900">#!/bin/ksh</font></i>
+
+<font color="#009900">ZONES_DIR</font><font color="#990000">=</font>/var/nsd/zones/master<font color="#990000">/</font>
+<font color="#009900">DEFAULT_MASTER</font><font color="#990000">=</font>fishfinger<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+<font color="#009900">DEFAULT_STANDBY</font><font color="#990000">=</font>blowfish<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+
+<b><font color="#000000">determine_master_and_standby ()</font></b> {
+    <b><font color="#0000FF">local</font></b> <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$DEFAULT_MASTER</font>
+    <b><font color="#0000FF">local</font></b> <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$DEFAULT_STANDBY</font>
+
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    
+    <b><font color="#0000FF">local</font></b> -i <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">1</font>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> ftp -<font color="#993399">4</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+        echo <font color="#FF0000">"https://$master/index.txt IPv4 health check failed"</font>
+        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
+    <b><font color="#0000FF">elif</font></b> <font color="#990000">!</font> ftp -<font color="#993399">6</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+        echo <font color="#FF0000">"https://$master/index.txt IPv6 health check failed"</font>
+        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
+    <b><font color="#0000FF">fi</font></b>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$health_ok</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
+        <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
+        <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
+    <b><font color="#0000FF">fi</font></b>
+
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+    <font color="#990000">.</font>
+}
+</pre>
+<br />
+<span>The failover scripts looks for the <span class='inlinecode'> ; Enable failover</span> string in the DNS zone files and swaps the <span class='inlinecode'>A</span> and <span class='inlinecode'>AAAA</span> records of the DNS entries accordingly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>fishfinger$ grep failover /var/nsd/zones/master/foo<font color="#990000">.</font>zone<font color="#990000">.</font>zone
+        <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
+        <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
+www     <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
+www     <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
+standby  <font color="#993399">300</font> IN A <font color="#993399">23.88</font><font color="#990000">.</font><font color="#993399">35.144</font> <font color="#990000">;</font> Enable failover
+standby  <font color="#993399">300</font> IN AAAA 2a01<font color="#990000">:</font>4f8<font color="#990000">:</font>c17<font color="#990000">:</font>20f1<font color="#990000">::</font><font color="#993399">42</font> <font color="#990000">;</font> Enable failover
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#000000">tramsform ()</font></b> {
+	sed -E <font color="#FF0000">'</font>
+<font color="#FF0000">	/IN A .*; Enable failover/ {</font>
+<font color="#FF0000">	    /^standby/! {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/master_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	    /^standby/ {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	/IN AAAA .*; Enable failover/ {</font>
+<font color="#FF0000">	    /^standby/! {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/master_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	    /^standby/ {</font>
+<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	    }</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	/ ; serial/ {</font>
+<font color="#FF0000">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> '</font><font color="#009900">$(</font>date <font color="#990000">+%</font>s<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
+<font color="#FF0000">	}</font>
+<font color="#FF0000">	'</font>
+}
+</pre>
+<br />
+<span>After the failover, the script reloads <span class='inlinecode'>nsd</span> and performs a sanity check to see if DNS still works. If not, a rollback will be performed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Race condition (e.g. script execution abored in the middle of the previous run)</font></i>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
+<b><font color="#0000FF">fi</font></b>
+
+cat <font color="#009900">$zone_file</font> <font color="#990000">|</font> transform <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp 
+
+grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font> <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+
+echo <font color="#FF0000">"Has zone $zone_file changed?"</font>
+<b><font color="#0000FF">if</font></b> diff -u <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+    echo <font color="#FF0000">"The zone $zone_file hasn't changed"</font>
+    rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
+    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font>
+<b><font color="#0000FF">fi</font></b>
+
+cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>bak
+mv <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font>
+rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
+echo <font color="#FF0000">"Reloading nsd"</font>
+nsd-control reload
+
+<b><font color="#0000FF">if</font></b> <font color="#990000">!</font> zone_is_ok <font color="#009900">$zone</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
+    echo <font color="#FF0000">"Rolling back $zone_file changes"</font>
+    cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>invalid
+    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
+    echo <font color="#FF0000">"Reloading nsd"</font>
+    nsd-control reload
+    zone_is_ok <font color="#009900">$zone</font>
+    <b><font color="#0000FF">return</font></b> <font color="#993399">3</font>
+<b><font color="#0000FF">fi</font></b>
+
+<b><font color="#0000FF">for</font></b> cleanup <b><font color="#0000FF">in</font></b> invalid bak<font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
+    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+        rm <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font>
+    <b><font color="#0000FF">fi</font></b>
+<b><font color="#0000FF">done</font></b>
+
+echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
+<b><font color="#0000FF">return</font></b> <font color="#993399">1</font>
+</pre>
+<br />
+<span>A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.</span><br />
+<br />
+<span>The nameserver is running on both VMs, and both are configured to be "master" DNS servers so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn&#39;t work. The side effect is that under a split-brain scenario (both VMs cannot see each other), both would promote themselves to master via their local DNS entries. More about that later, but that&#39;s fine in my use case.</span><br />
+<br />
+<span>Check out the whole script here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh'>https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh</a><br />
+<br />
+<h3 style='display: inline'>Fairly cheap and geo-redundant</h3><br />
+<br />
+<span>I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).</span><br />
+<br />
+<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
+<a class='textlink' href='https://www.hetzner.cloud'>https://www.hetzner.cloud</a><br />
+<br />
+<span>I only have a little traffic on my sites. I could always upload the static content to AWS S3 if I suddenly had to. But this will never be required.</span><br />
+<br />
+<span>A DNS-based failover is cheap, as there isn&#39;t any BGP or fancy load balancer to pay for. Small VMs also cost less than millions.</span><br />
+<br />
+<h3 style='display: inline'>Failover time and split-brain</h3><br />
+<br />
+<span>A DNS failover doesn&#39;t happen immediately. I&#39;ve configured a DNS TTL of <span class='inlinecode'>300</span> seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that&#39;s fine - eventually, all requests will resolve to the new master after a failover).</span><br />
+<br />
+<span>A split-brain scenario between the old master and the new master might happen. That&#39;s OK, as my sites are static, and there&#39;s no database to synchronise other than HTML, CSS, and images when the site is updated.</span><br />
+<br />
+<h3 style='display: inline'>Failover support for multiple protocols</h3><br />
+<br />
+<span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entry, which hosts receive the requests.</span><br />
+<br />
+<a class='textlink' href='https://man.openbsd.org/httpd.8'>https://man.openbsd.org/httpd.8</a><br />
+<a class='textlink' href='https://man.openbsd.org/relayd.8'>https://man.openbsd.org/relayd.8</a><br />
+<br />
+<span>For example, the master is responsible for the <span class='inlinecode'>https://www.foo.zone</span> and <span class='inlinecode'>https://foo.zone</span> hosts, whereas the standby can be reached via <span class='inlinecode'>https://standby.foo.zone</span> (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. <span class='inlinecode'>irregular.ninja</span>, <span class='inlinecode'>paul.buetow.org</span> and so on. The same applies to my Gemini capsules for <span class='inlinecode'>gemini://foo.zone</span>, <span class='inlinecode'>gemini://standby.foo.zone</span>, <span class='inlinecode'>gemini://paul.buetow.org</span> and <span class='inlinecode'>gemini://standby.paul.buetow.org</span>.</span><br />
+<br />
+<span>On DNS failover, master and standby swap roles without config changes other than the DNS entries. That&#39;s KISS (keep it simple and stupid)!</span><br />
+<br />
+<h3 style='display: inline'>Let&#39;s encrypt TLS certificates</h3><br />
+<br />
+<span>All my hosts use TLS certificates from Let&#39;s Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires that the host requesting a certificate from Let&#39;s Encrypt is also the host using that certificate.</span><br />
+<br />
+<span>If the master always serves <span class='inlinecode'>foo.zone</span> and the standby always <span class='inlinecode'>standby.foo.zone</span>, then there would be a problem after the failover, as the new master wouldn&#39;t have a valid certificate for <span class='inlinecode'>foo.zone</span> and the new standby wouldn&#39;t have a valid certificate for <span class='inlinecode'>standby.foo.zone</span> which would lead to TLS errors on the clients.</span><br />
+<br />
+<span>As a solution, the CRON job responsible for the DNS failover also checks for the current week number of the year so that:</span><br />
+<br />
+<ul>
+<li>In an odd week number, the first server is the default master</li>
+<li>In an even week number, the second server is the default master.</li>
+</ul><br />
+<span>Which translates to:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
+<b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
+<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+    <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
+    <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
+    <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
+<b><font color="#0000FF">fi</font></b>
+</pre>
+<br />
+<span>This way, a DNS failover is performed weekly so that the ACME automation can update the Let&#39;s Encrypt certificates (for master and standby) before they expire on each VM.</span><br />
+<br />
+<span>The ACME automation is yet another daily CRON script <span class='inlinecode'>/usr/local/bin/acme.sh</span>. It iterates over all of my Let&#39;s Encrypt hosts, checks whether they resolve to the same IP address as the current VM, and only then invokes the ACME client to request or renew the TLS certificates. So, there are always correct requests made to Let&#39;s Encrypt. </span><br />
+<br />
+<span>Let&#39;s encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
+<a class='textlink' href='https://man.openbsd.org/acme-client.1'>https://man.openbsd.org/acme-client.1</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<br />
+<h3 style='display: inline'>Monitoring</h3><br />
+<br />
+<span>CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. </span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
+<span> </span><br />
+<h3 style='display: inline'>Rex automation</h3><br />
+<br />
+<span>I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.</span><br />
+<br />
+<a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends'>https://codeberg.org/snonux/rexfiles/src/branch/master/frontends</a><br />
+<br />
+<h2 style='display: inline'>More HA</h2><br />
+<br />
+<span>Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authoritative DNS servers (<span class='inlinecode'>nsd</span>) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! </span><br />
+<br />
+<span>As a password manager, I use <span class='inlinecode'>geheim</span>, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the <span class='inlinecode'>sync</span> command there. </span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/geheim'>https://codeberg.org/snonux/geheim</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other *BSD and KISS related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
