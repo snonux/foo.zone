@@ -44,8 +44,8 @@ It would be fine if my personal website wasn't highly available, but the geek in
 * It's fine if my sites aren't reachable for five or ten minutes every other month. Due to their static nature, I don't care if there's a split-brain scenario where some requests reach one server and other requests reach another server.
 * Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.
 * Let's Encrypt TLS certificates should always work (before and after a failover).
-* Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover. (This isn't part of the OpenBSD base system, but I coded my own monitoring system in Go.)
-* Don't configure everything manually. The configuration should be automated and reproducible. (This isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either.)
+* Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover.
+* Don't configure everything manually. The configuration should be automated and reproducible.
 
 ## My HA solution
 
@@ -259,7 +259,9 @@ CRON is sending me an E-Mail whenever a failover is performed (or whenever a fai
 
 => https://codeberg.org/snonux/gogios
 => ./2023-06-01-kiss-server-monitoring-with-gogios.gmi KISS server monitoring with Gogios
- 
+
+Gogios, as I developed it by myself, isn't part of the OpenBSD base system. 
+
 ### Rex automation
 
 I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.
@@ -267,9 +269,13 @@ I use Rexify, a friendly configuration management system that allows automatic d
 => https://www.rexify.org
 => https://codeberg.org/snonux/rexfiles/src/branch/master/frontends codeberg.org/snonux/rexfiles/frontends
 
+Rex isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either as Rex is invoked from my Laptop!
+
 ## More HA
 
-Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD) and the authoritative DNS servers (`nsd`) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
+Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD - also part of the OpenBSD base system) and the authoritative DNS servers (`nsd`) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
+
+=> https://www.opensmtpd.org/
 
 As a password manager, I use `geheim`, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the `sync` command there. 
 
