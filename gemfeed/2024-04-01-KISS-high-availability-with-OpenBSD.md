@@ -59,7 +59,7 @@ My HA solution for Web and Gemini is based on DNS (OpenBSD's `nsd`) and a simple
 [https://man.OpenBSD.org/sed](https://man.OpenBSD.org/sed)  
 [https://man.OpenBSD.org/dig](https://man.OpenBSD.org/dig)  
 [https://man.OpenBSD.org/ftp](https://man.OpenBSD.org/ftp)  
-[https://man.openbsd.org/cron](https://man.openbsd.org/cron)  
+[https://man.OpenBSD.org/cron](https://man.OpenBSD.org/cron)  
 
 I also used the `dig` (for DNS checks) and `ftp` (for HTTP/HTTPS checks) programs. 
 
@@ -211,7 +211,7 @@ A split-brain scenario between the old master and the new master might happen. T
 
 ### Failover support for multiple protocols
 
-With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM's `httpd` (OpenBSD's HTTP server) and `relayd` (it's also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It's just a matter of the DNS entry, which hosts receive the requests.
+With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM's `httpd` (OpenBSD's HTTP server) and `relayd` (it's also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It's just a matter of the DNS entries, which VM receives the requests.
 
 [https://man.openbsd.org/httpd.8](https://man.openbsd.org/httpd.8)  
 [https://man.openbsd.org/relayd.8](https://man.openbsd.org/relayd.8)  
