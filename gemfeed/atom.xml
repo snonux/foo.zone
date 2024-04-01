@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-03-31T11:01:19+03:00</updated>
+    <updated>2024-04-02T01:33:21+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -80,7 +80,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <a class='textlink' href='https://man.OpenBSD.org/sed'>https://man.OpenBSD.org/sed</a><br />
 <a class='textlink' href='https://man.OpenBSD.org/dig'>https://man.OpenBSD.org/dig</a><br />
 <a class='textlink' href='https://man.OpenBSD.org/ftp'>https://man.OpenBSD.org/ftp</a><br />
-<a class='textlink' href='https://man.openbsd.org/cron'>https://man.openbsd.org/cron</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/cron'>https://man.OpenBSD.org/cron</a><br />
 <br />
 <span>I also used the <span class='inlinecode'>dig</span> (for DNS checks) and <span class='inlinecode'>ftp</span> (for HTTP/HTTPS checks) programs. </span><br />
 <br />
@@ -244,7 +244,7 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <h3 style='display: inline'>Failover support for multiple protocols</h3><br />
 <br />
-<span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entry, which hosts receive the requests.</span><br />
+<span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entries, which VM receives the requests.</span><br />
 <br />
 <a class='textlink' href='https://man.openbsd.org/httpd.8'>https://man.openbsd.org/httpd.8</a><br />
 <a class='textlink' href='https://man.openbsd.org/relayd.8'>https://man.openbsd.org/relayd.8</a><br />
