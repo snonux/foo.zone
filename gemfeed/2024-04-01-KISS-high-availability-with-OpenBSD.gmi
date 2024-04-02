@@ -113,8 +113,8 @@ standby  300 IN AAAA 2a01:4f8:c17:20f1::42 ; Enable failover
 ```
 
 ```sh
-tramsform () {
-	sed -E '
+transform () {
+  sed -E '
 	/IN A .*; Enable failover/ {
 	    /^standby/! {
 	        s/^(.*) 300 IN A (.*) ; (.*)/\1 300 IN A '$(cat /var/nsd/run/master_a)' ; \3/;
@@ -134,7 +134,7 @@ tramsform () {
 	/ ; serial/ {
 	    s/^( +) ([0-9]+) .*; (.*)/\1 '$(date +%s)' ; \3/;
 	}
-	'
+  '
 }
 ```
 
