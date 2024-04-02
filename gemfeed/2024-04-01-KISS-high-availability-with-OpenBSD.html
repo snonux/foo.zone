@@ -133,8 +133,8 @@ standby  <font color="#993399">300</font> IN AAAA 2a01<font color="#990000">:</f
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">tramsform ()</font></b> {
-	sed -E <font color="#FF0000">'</font>
+<pre><b><font color="#000000">transform ()</font></b> {
+  sed -E <font color="#FF0000">'</font>
 <font color="#FF0000">	/IN A .*; Enable failover/ {</font>
 <font color="#FF0000">	    /^standby/! {</font>
 <font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/master_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
@@ -154,7 +154,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#FF0000">	/ ; serial/ {</font>
 <font color="#FF0000">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> '</font><font color="#009900">$(</font>date <font color="#990000">+%</font>s<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
 <font color="#FF0000">	}</font>
-<font color="#FF0000">	'</font>
+<font color="#FF0000">  '</font>
 }
 </pre>
 <br />
