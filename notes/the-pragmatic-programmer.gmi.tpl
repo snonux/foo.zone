@@ -1,1 +1,1 @@
-<< cat ../gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi
+<< cat ../gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi | sed 's/....-..-..-//; s/-book-notes//;'
