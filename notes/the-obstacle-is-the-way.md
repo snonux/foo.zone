@@ -86,11 +86,11 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-[2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
-[2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
-[2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
-[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
-[2023-11-11 "Mind Management" book notes](./2023-11-11-mind-management-book-notes.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
+[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
+[2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)](./the-obstacle-is-the-way.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
+[2023-11-11 "Mind Management" book notes](./mind-management.md)  
 
 [More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  
