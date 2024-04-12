@@ -196,8 +196,8 @@ Check out the whole script here:
 
 I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).
 
-[https://openbsd.amsterdam](https://openbsd.amsterdam)  
-[https://www.hetzner.cloud](https://www.hetzner.cloud)  
+[https://OpenBSD.Amsterdam](https://OpenBSD.Amsterdam)  
+[https://www.Hetzner.cloud](https://www.Hetzner.cloud)  
 
 I only have a little traffic on my sites. I could always upload the static content to AWS S3 if I suddenly had to. But this will never be required.
 
@@ -213,8 +213,8 @@ A split-brain scenario between the old master and the new master might happen. T
 
 With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM's `httpd` (OpenBSD's HTTP server) and `relayd` (it's also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It's just a matter of the DNS entries, which VM receives the requests.
 
-[https://man.openbsd.org/httpd.8](https://man.openbsd.org/httpd.8)  
-[https://man.openbsd.org/relayd.8](https://man.openbsd.org/relayd.8)  
+[https://man.OpenBSD.org/httpd.8](https://man.OpenBSD.org/httpd.8)  
+[https://man.OpenBSD.org/relayd.8](https://man.OpenBSD.org/relayd.8)  
 
 For example, the master is responsible for the `https://www.foo.zone` and `https://foo.zone` hosts, whereas the standby can be reached via `https://standby.foo.zone` (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. `irregular.ninja`, `paul.buetow.org` and so on. The same applies to my Gemini capsules for `gemini://foo.zone`, `gemini://standby.foo.zone`, `gemini://paul.buetow.org` and `gemini://standby.paul.buetow.org`.
 
@@ -250,7 +250,7 @@ The ACME automation is yet another daily CRON script `/usr/local/bin/acme.sh`. I
 Let's encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.
 
 [`acme.sh.tpl` - Rex template for the `acme.sh` script of mine.](https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/acme.sh.tpl)  
-[https://man.openbsd.org/acme-client.1](https://man.openbsd.org/acme-client.1)  
+[https://man.OpenBSD.org/acme-client.1](https://man.OpenBSD.org/acme-client.1)  
 [Let's Encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
 
 ### Monitoring
@@ -275,7 +275,7 @@ Rex isn't part of the OpenBSD base system, but I didn't need to install any exte
 
 Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD - also part of the OpenBSD base system) and the authoritative DNS servers (`nsd`) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! 
 
-[https://www.opensmtpd.org/](https://www.opensmtpd.org/)  
+[https://www.OpenSMTPD.org/](https://www.OpenSMTPD.org/)  
 
 As a password manager, I use `geheim`, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the `sync` command there. 
 
