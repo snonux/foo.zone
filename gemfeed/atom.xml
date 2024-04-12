@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-03T00:06:22+03:00</updated>
+    <updated>2024-04-12T23:43:12+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -229,8 +229,8 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <span>I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).</span><br />
 <br />
-<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
-<a class='textlink' href='https://www.hetzner.cloud'>https://www.hetzner.cloud</a><br />
+<a class='textlink' href='https://OpenBSD.Amsterdam'>https://OpenBSD.Amsterdam</a><br />
+<a class='textlink' href='https://www.Hetzner.cloud'>https://www.Hetzner.cloud</a><br />
 <br />
 <span>I only have a little traffic on my sites. I could always upload the static content to AWS S3 if I suddenly had to. But this will never be required.</span><br />
 <br />
@@ -246,8 +246,8 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entries, which VM receives the requests.</span><br />
 <br />
-<a class='textlink' href='https://man.openbsd.org/httpd.8'>https://man.openbsd.org/httpd.8</a><br />
-<a class='textlink' href='https://man.openbsd.org/relayd.8'>https://man.openbsd.org/relayd.8</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/httpd.8'>https://man.OpenBSD.org/httpd.8</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/relayd.8'>https://man.OpenBSD.org/relayd.8</a><br />
 <br />
 <span>For example, the master is responsible for the <span class='inlinecode'>https://www.foo.zone</span> and <span class='inlinecode'>https://foo.zone</span> hosts, whereas the standby can be reached via <span class='inlinecode'>https://standby.foo.zone</span> (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. <span class='inlinecode'>irregular.ninja</span>, <span class='inlinecode'>paul.buetow.org</span> and so on. The same applies to my Gemini capsules for <span class='inlinecode'>gemini://foo.zone</span>, <span class='inlinecode'>gemini://standby.foo.zone</span>, <span class='inlinecode'>gemini://paul.buetow.org</span> and <span class='inlinecode'>gemini://standby.paul.buetow.org</span>.</span><br />
 <br />
@@ -287,7 +287,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>Let&#39;s encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
-<a class='textlink' href='https://man.openbsd.org/acme-client.1'>https://man.openbsd.org/acme-client.1</a><br />
+<a class='textlink' href='https://man.OpenBSD.org/acme-client.1'>https://man.OpenBSD.org/acme-client.1</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <br />
 <h3 style='display: inline'>Monitoring</h3><br />
@@ -312,7 +312,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD - also part of the OpenBSD base system) and the authoritative DNS servers (<span class='inlinecode'>nsd</span>) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! </span><br />
 <br />
-<a class='textlink' href='https://www.opensmtpd.org/'>https://www.opensmtpd.org/</a><br />
+<a class='textlink' href='https://www.OpenSMTPD.org/'>https://www.OpenSMTPD.org/</a><br />
 <br />
 <span>As a password manager, I use <span class='inlinecode'>geheim</span>, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the <span class='inlinecode'>sync</span> command there. </span><br />
 <br />
