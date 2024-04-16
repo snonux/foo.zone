@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
+Correct this paragraph: Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
 => https://paul.buetow.org My contact information and resources (via HTTP)
 => gemini://paul.buetow.org My contact information and resources (via Gemini)
