@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-04-16T23:37:35+03:00 by `Gemtexter`
+> This site was generated at 2024-04-16T23:39:21+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Correct this paragraph: Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
+Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
 [My contact information and resources (via HTTP)](https://paul.buetow.org)  
 [My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
