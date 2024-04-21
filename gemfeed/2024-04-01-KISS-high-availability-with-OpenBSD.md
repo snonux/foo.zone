@@ -250,7 +250,7 @@ As a solution, the CRON job responsible for the DNS failover also checks for the
 Which translates to:
 
 ```sh
-#! Weekly auto-failover for Let's Encrypt automation !#
+# Weekly auto-failover for Let's Encrypt automation
 local -i -r week_of_the_year=$(date +%U)
 if [ $(( week_of_the_year % 2 )) -eq 0 ]; then
     local tmp=$master
