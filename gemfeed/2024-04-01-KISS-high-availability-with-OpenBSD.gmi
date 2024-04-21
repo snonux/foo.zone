@@ -33,13 +33,10 @@ Table of contents:
         My auto-failover requirements
         My HA solution
             Only OpenBSD base installation required
-   !/bin/ksh
-    Race condition (e.g. script execution aborted in the middle of the previous run)
             Fairly cheap and geo-redundant
             Failover time and split-brain
             Failover support for multiple protocols
             Let's encrypt TLS certificates
-    Weekly auto-failover for Let's Encrypt automation
             Monitoring
             Rex automation
         More HA
@@ -159,7 +156,8 @@ transform () {
 After the failover, the script reloads `nsd` and performs a sanity check to see if DNS still works. If not, a rollback will be performed:
 
 ```sh
-# Race condition (e.g. script execution aborted in the middle of the previous run)
+#! Race condition !#
+   
 if [ -f $zone_file.bak ]; then
     mv $zone_file.bak $zone_file
 fi
@@ -252,7 +250,7 @@ As a solution, the CRON job responsible for the DNS failover also checks for the
 Which translates to:
 
 ```sh
-# Weekly auto-failover for Let's Encrypt automation
+#! Weekly auto-failover for Let's Encrypt automation !#
 local -i -r week_of_the_year=$(date +%U)
 if [ $(( week_of_the_year % 2 )) -eq 0 ]; then
     local tmp=$master

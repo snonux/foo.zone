@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-21T11:44:45+03:00</updated>
+    <updated>2024-04-21T11:52:49+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -53,13 +53,10 @@ Table of contents:
         My auto-failover requirements
         My HA solution
             Only OpenBSD base installation required
-   !/bin/ksh
-    Race condition (e.g. script execution aborted in the middle of the previous run)
             Fairly cheap and geo-redundant
             Failover time and split-brain
             Failover support for multiple protocols
             Let&#39;s encrypt TLS certificates
-    Weekly auto-failover for Let&#39;s Encrypt automation
             Monitoring
             Rex automation
         More HA
@@ -192,7 +189,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Race condition (e.g. script execution aborted in the middle of the previous run)</font></i>
+<pre><i><font color="#9A1900">#! Race condition !#</font></i>
+   
 <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
     mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
 <b><font color="#0000FF">fi</font></b>
@@ -289,7 +287,7 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
+<pre><i><font color="#9A1900">#! Weekly auto-failover for Let's Encrypt automation !#</font></i>
 <b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
 <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
     <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
