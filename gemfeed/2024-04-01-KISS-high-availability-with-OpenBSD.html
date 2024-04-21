@@ -277,7 +277,7 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#! Weekly auto-failover for Let's Encrypt automation !#</font></i>
+<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
 <b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
 <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
     <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
