@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-12T23:43:12+03:00</updated>
+    <updated>2024-04-21T11:44:45+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -45,6 +45,24 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 .  ` MJP ` .  ` .  ` .  ` . httpd-soil ` .    .  ` .  ` .  ` .  ` .  `
  &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ;
 
+</pre>
+<br />
+<pre>
+Table of contents:
+    KISS high-availability with OpenBSD
+        My auto-failover requirements
+        My HA solution
+            Only OpenBSD base installation required
+   !/bin/ksh
+    Race condition (e.g. script execution aborted in the middle of the previous run)
+            Fairly cheap and geo-redundant
+            Failover time and split-brain
+            Failover support for multiple protocols
+            Let&#39;s encrypt TLS certificates
+    Weekly auto-failover for Let&#39;s Encrypt automation
+            Monitoring
+            Rex automation
+        More HA
 </pre>
 <br />
 <span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
