@@ -1,11 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-21T13:46:56+03:00</updated>
+    <updated>2024-04-27T14:34:16+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>'Slow Productivity' book notes</title>
+        <link href="https://foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes.html" />
+        <id>https://foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes.html</id>
+        <updated>2024-04-27T14:18:51+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These are my personal takeaways after reading 'Slow Productivity - The lost Art of Accomplishment Without Burnout' by Cal Newport.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline'>"Slow Productivity" book notes</h1><br />
+<br />
+<span class='quote'>Published at 2024-04-27T14:18:51+03:00</span><br />
+<br />
+<span>These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.</span><br />
+<br />
+<span>The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.</span><br />
+<br />
+<span>These notes are mainly for my own use, but you may find them helpful.</span><br />
+<br />
+<pre>
+         ,..........   ..........,
+     ,..,&#39;          &#39;.&#39;          &#39;,..,
+    ,&#39; ,&#39;            :            &#39;, &#39;,
+   ,&#39; ,&#39;             :             &#39;, &#39;,
+  ,&#39; ,&#39;              :              &#39;, &#39;,
+ ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
+,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
+ &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+                    &#39;&#39;&#39;
+</pre>
+<br />
+<span>"Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.</span><br />
+<br />
+<h2 style='display: inline'>Pseudo-productivity and Shallow work</h2><br />
+<br />
+<span>People use visible activity instead of real productivity because it&#39;s easier to measure. This is called pseudo-productivity.</span><br />
+<span>Pseudo-productivity is used as a proxy for real productivity. If you don&#39;t look busy, you are dismissed as lazy or lacking a work ethic.</span><br />
+<br />
+<span>There is a tendency to perform shallow work because people will otherwise dismiss you as lazy. A lot of shallow work can cause burnout, as multiple things are often being worked on in parallel. The more you have on your plate, the more stressed you will be.</span><br />
+<br />
+<span>Shallow work usually doesn&#39;t help you to accomplish big things. Always have the big picture in mind. Shallow work can&#39;t be entirely eliminated, but it can be managed—for example, plan dedicated time slots for certain types of shallow work.</span><br />
+<br />
+<h2 style='display: inline'>Accomplishments without burnout</h2><br />
+<br />
+<span>The overall perception is that if you want to accomplish something, you must put yourself on the verge of burnout. Cal Newport writes about "The lost Art of Accomplishments without Burnouts", where you can accomplish big things without all the stress usually involved.</span><br />
+<br />
+<span>There are three principles for the maintenance of a sustainable work life:</span><br />
+<br />
+<ul>
+<li>Do fewer things</li>
+<li>Work at a natural pace</li>
+<li>Obsess over quality</li>
+</ul><br />
+<h2 style='display: inline'>Do fewer things</h2><br />
+<br />
+<span>There will always be more work. The faster you finish it, the quicker you will have something new on your plate.</span><br />
+<br />
+<span>Reduce the overhead tax. The overhead tax is all the administrative work to be done. With every additional project, there will also be more administrative stuff to be done on your work plate. So, doing fewer things leads to more and better output and better quality for the projects you are working on.</span><br />
+<br />
+<span>Limit the things on your plate. Limit your missions (personal goals, professional goals). Reduce your main objectives in life. More than five missions are usually not sustainable very easily, so you have to really prioritise what is important to you and your professional life.</span><br />
+<br />
+<span>A mission is an overall objective/goal that can have multiple projects. Limit the projects as well. Some projects need clear endings (e.g., work in support of a never-ending flow of incoming requests). In this case, set limits (e.g., time box your support hours). You can also plan "office hours" for collaborative work with colleagues to avoid ad hoc distractions.</span><br />
+<br />
+<span>The key point is that after making these commitments, you really deliver on them. This builds trust, and people will leave you alone and not ask for progress all the time.</span><br />
+<br />
+<span>Doing fever things is essential for modern knowledge workers. Breathing space in your work also makes you more creative and happier overall.</span><br />
+<br />
+<span>Pushing workers more work can make them less productive, so the better approach is the pull model, where workers pull in new work when the previous task is finished.</span><br />
+<br />
+<span>If you can quantify how busy you are or how many other projects you already work on, then it is easier to say no to new things. For example, show what you are doing, what&#39;s in the roadmap, etc. Transparency is the key here. </span><br />
+<br />
+<span>You can have your own simulated pull system if the company doesn&#39;t agree to a global one: </span><br />
+<br />
+<ul>
+<li>State which additional information you would need.</li>
+<li>Create a rough estimate of when you will be able to work on it</li>
+<li>Estimate how long the project would take. Double that estimate, as humans are very bad estimators.</li>
+<li>Respond to the requester and state that you will let him know when the estimates change.</li>
+</ul><br />
+<span>Sometimes, a little friction is all that is needed to combat incoming work, e.g., when your manager starts seeing the reality of your work plate, and you also request additional information for the task. If you already have too much on your plate, then decline the new project or make room for it in your calendar. If you present a large task list, others will struggle to assign more to you.</span><br />
+<br />
+<span>Limit your daily goals. A good measure is to focus on one goal per day. You can time block time for deep work on your daily goal. During that time, you won&#39;t be easily available to others.</span><br />
+<br />
+<span>The battle against distractions must be thought to be the master of your time. Nobody will fight this war for you. You have to do it for yourself. (Also, have a look at Cal Newport&#39;s "time block planning" method).</span><br />
+<br />
+<span>Put tasks on autopilot (regular recurring tasks).</span><br />
+<br />
+<h2 style='display: inline'>Work in a natural pace</h2><br />
+<br />
+<span>We suffer from overambitious timelines, task lists, and business. Focus on what matters. Don&#39;t rush your most important work to achieve better results.</span><br />
+<br />
+<span>Don&#39;t rush. If you rush or are under pressure, you will be less effective and eventually burn out. Our brains work better then not rushy. The stress heuristic usually indicates too much work, and it is generally too late to reduce workload. That&#39;s why we all typically have dangerously too much to do.</span><br />
+<br />
+<span>Have the courage to take longer to do things that are important. For example, plan on a yearly and larger scale, like 2 to 5 years.</span><br />
+<br />
+<span>Find a reasonable time for a project and then double the project timeline against overconfident optimism. Humans are not great at estimating. They gravitate towards best-case estimates. If you have planned more than enough time for your project, then you will fall into a natural work pace. Otherwise, you will struggle with rushing and stress.</span><br />
+<br />
+<span>Some days will still be intense and stressful, but those are exceptional cases. After those exceptions (e.g., finalizing that thing, etc.), calmer periods will follow again.</span><br />
+<br />
+<span>Pace yourself over modest results over time. Simplify and reduce the daily task lists. Meetings: Certain hours are protected for work. For each meeting, add a protected block to your calendar, so you attend meetings only half a day max.</span><br />
+<br />
+<span>Schedule slow seasons (e.g., when on vacation). Disconnect in the slow season. Doing nothing will not satisfy your mind, though. You could read a book on your subject matter to counteract that.</span><br />
+<br />
+<h2 style='display: inline'>Obsess over quality </h2><br />
+<br />
+<span>Obsess over quality even if you lose short-term opportunities by rejecting other projects. Quality demands you slow down. The two previous two principles (do fewer things and work at a natural pace) are mandatory for this principle to work:</span><br />
+<br />
+<ul>
+<li>Focus on the core activities of your work for your obsession - you will only have the time to obsess over some things.</li>
+<li>Deliver solid work with good quality.</li>
+<li>Sharpen the focus to do the best work possible.</li>
+</ul><br />
+<span>Go pro to save time, and don&#39;t squeeze everything out that you can from freemium services. Professional software services eliminate administrative work:</span><br />
+<br />
+<ul>
+<li>Pay people who know what they are doing and focus on your stuff. </li>
+<li>For example, don&#39;t repair that car if you know the mechanic can do that much better than you. </li>
+<li>Or don&#39;t use the free version of the music streaming service if it interrupts you with commercials, hindering your ability to concentrate on your work.</li>
+<li>Hire an accountant for your yearly tax returns. He knows much more about that stuff than you do. And in the end, he will even be cheaper as he knows all the tax laws.</li>
+<li>...</li>
+</ul><br />
+<span>Adjust your workplace to what you want to accomplish. You could have dedicated places in your home for different things, e.g., a place where you read and think (armchair) and a place where you collaborate (your desk or whiteboard). Surround yourself with things that inspire you (e.g., your favourite books on your shelf next to you, etc.).</span><br />
+<br />
+<span>There is the concept of quiet quitting. It doesn&#39;t mean quitting your job, but it means that you don&#39;t go beyond and above the expectations people have of you. Quiet quitting became popular with modern work, which is often meaningless and full of shallow tasks. If you obsess over quality, you enjoy your craft and want to go beyond and above.</span><br />
+<br />
+<span>Implement rituals and routines which shift you towards your goals:</span><br />
+<br />
+<ul>
+<li>For example, if you want to be a good Software Engineer, you also have to put in the work regularly. For instance, progress a bit every day in your project at hand, even if it is only one hour daily. Also, a little quality daily work will be more satisfying over time than many shallow tasks.</li>
+<li>Do you want to be lean and/or healthy? Schedule your daily walks and workouts. They will become habits over time.</li>
+<li>There&#39;s the compounding effect where every small effort made every day will yield significant results in the long run</li>
+</ul><br />
+<span>Deciding what not to do is as important as deciding what to do. </span><br />
+<br />
+<span>It appears to be money thrown out of the window, but you get a $50 expensive paper notebook (and also a good pen). Unconsciously, it will make you take notes more seriously. You will think about what to put into the notebooks more profoundly and have thought through the ideas more intensively. If you used very cheap notebooks, you would scribble a lot of rubbish and wouldn&#39;t even recognise your handwriting after a while anymore. So choosing a high-quality notebook will help you to take higher-quality notes, too.</span><br />
+<br />
+<span>Slow productivity is actionable and can be applied immediately.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>KISS high-availability with OpenBSD</title>
         <link href="https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html" />
@@ -1355,6 +1512,7 @@ echo baz
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -2500,6 +2658,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -2895,6 +3054,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -3507,6 +3667,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3789,6 +3950,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <br />
 <a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -8535,212 +8697,6 @@ Hello World
 <span>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Gemtexter - One Bash script to rule it all</title>
-        <link href="https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html" />
-        <id>https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html</id>
-        <updated>2021-06-05T19:03:32+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Gemtexter - One Bash script to rule it all</h1><br />
-<br />
-<span class='quote'>Published at 2021-06-05T19:03:32+01:00</span><br />
-<br />
-<pre>
-                                                               o .,&lt;&gt;., o
-                                                               |\/\/\/\/|
-                                                               &#39;========&#39;
-                                                               (_ SSSSSSs
-                                                               )a&#39;`SSSSSs
-                                                              /_   SSSSSS
-                                                              .=## SSSSS
-                                                              .####  SSSSs
-                                                              ###::::SSSSS
-                                                             .;:::""""SSS
-                                                            .:;:&#39;  . .  \\
-                                                           .::/  &#39;     .&#39;|
-                                                          .::( .         |
-                                                          :::)           \
-                                                          /\(            /
-                                                         /)            ( |
-                                                       .&#39;  \  .       ./ /
-                                                    _-&#39;    |\  .        |
-                                  _..--..   .  /"---\      | ` |      . |
-          -=====================,&#39; _     \=(*#(7.#####()   |  `/_..   , (
-                      _.-&#39;&#39;``&#39;;&#39;-&#39;&#39;-) ,.  \ &#39;  &#39;+/// |   .&#39;/   \  ``-.) \
-                    ,&#39;  _.-  ((    `-&#39;  `._\    `` \_/_.&#39;  )    /`-._  ) |
-                  ,&#39;\ ,&#39;  _.&#39;.`:-.    \.-&#39;                 /   &lt;_L   )"  |
-                _/   `._,&#39; ,&#39;)`;  `-&#39;`&#39;                    |     L  /    /
-               / `.   ,&#39; ,|_/ / \                          (    &lt;_-&#39;     \
-               \ / `./  &#39;  / /,&#39; \                        /|`         `. |
-               )\   /`._   ,&#39;`._.-\                       |)            \&#39;
-              /  `.&#39;    )-&#39;.-,&#39; )__)                      |\            `|
-             : /`. `.._(--.`&#39;:`&#39;:/ \                      ) \             \
-             |::::\     ,&#39;/::;-))  /                      ( )`.            |
-             ||:::::  . .::&#39;:  :`-(                       |/    .          |
-             ||::::|  . :|  |==[]=:                       .        -       \
-             |||:::|  : ||  :  |  |                      /\           `     |
- ___ ___     &#39;|;:::|  | |&#39;   \=[]=|                     /  \                \
-|   /_  ||``|||:::::  | ;    | |  |                     \_.&#39;\_               `-.
-:   \_``[]--[]|::::&#39;\_;&#39;     )-&#39;..`._                 .-&#39;\``:: ` .              \
- \___.&gt;`&#39;&#39;-.||:.__,&#39;     SSt |_______`&gt;              &lt;_____:::.         . . \  _/
-                                                           `+a:f:......jrei&#39;&#39;&#39;
-</pre>
-<br />
-<span>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</span><br />
-<br />
-<span>This comes with the benefit that I can write content in my favourite text editor (Vim). </span><br />
-<br />
-<h2 style='display: inline'>Motivation</h2><br />
-<br />
-<span>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</span><br />
-<br />
-<a href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg'><img alt='Motivational comic strip' title='Motivational comic strip' src='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg' /></a><br />
-<br />
-<span>I have exactly done that - I wrote a Bash script, named Gemtexter, for that:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<span>In short, Gemtexter is a static site generator and blogging engine that uses Gemtext as its input format.</span><br />
-<br />
-<h2 style='display: inline'>Output formats</h2><br />
-<br />
-<span>Gemtexter takes the Gemtext Markup files as the input and generates the following outputs from it (you find examples for each of these output formats on the Gemtexter GitHub page):</span><br />
-<br />
-<ul>
-<li>HTML files for my website</li>
-<li>Markdown files for a GitHub page</li>
-<li>A Gemtext Atom feed for my blog posts</li>
-<li>A Gemfeed for my blog posts (a particular feed format commonly used in Geminispace. The Gemfeed can be used as an alternative to the Atom feed).</li>
-<li>An HTML Atom feed of my blog posts</li>
-</ul><br />
-<span>I could have done all of that with a more robust language than Bash (such as Perl, Ruby, Go...), but I didn&#39;t. The purpose of this exercise was to challenge what I can do with a "simple" Bash script and learn new things.</span><br />
-<br />
-<h2 style='display: inline'>Taking it as far as I should, but no farther</h2><br />
-<br />
-<span>The Bash is suitable very well for small scripts and ad-hoc automation on the command line. But it is for sure not a robust programming language. Writing this blog post, Gemtexter is nearing 1000 lines of code, which is actually a pretty large Bash script.</span><br />
-<br />
-<h3 style='display: inline'>Modularization </h3><br />
-<br />
-<span>I modularized the code so that each core functionality has its own file in ./lib. All the modules are included from the main Gemtexter script. For example, there is one module for HTML generation, one for Markdown generation, and so on. </span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>paul <b><font color="#0000FF">in</font></b> uranus <b><font color="#0000FF">in</font></b> gemtexter on 🌱 main
-❯ wc -l gemtexter lib<font color="#990000">/*</font>
-    <font color="#993399">117</font> gemtexter
-     <font color="#993399">59</font> lib/assert<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">128</font> lib/atomfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">64</font> lib/gemfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">161</font> lib/generate<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">50</font> lib/git<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">162</font> lib/html<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">30</font> lib/log<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">63</font> lib/md<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">834</font> total
-</pre>
-<br />
-<span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn&#39;t produce results instantly but requires few seconds of runtime already. That&#39;s not a problem yet, though. </span><br />
-<br />
-<h3 style='display: inline'>Bash best practises and ShellCheck</h3><br />
-<br />
-<span>While working on Gemtexter, I also had a look at the Google Shell Style Guide and wrote a blog post on that:</span><br />
-<br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>Personal bash coding style guide</a><br />
-<br />
-<span>I followed all these best practices, and in my opinion, the result is a pretty maintainable Bash script (given that you are fluent with all the sed and grep commands I used).</span><br />
-<br />
-<span>ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. </span><br />
-<br />
-<span>It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won&#39;t reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done &lt; &lt;(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.</span><br />
-<br />
-<span>Furthermore, ShellCheck recommended many more improvements. Declaration of unused variables and missing variable and string quotations were the most common ones. ShellSheck immensely helped to improve the robustness of the script.</span><br />
-<br />
-<a class='textlink' href='https://shellcheck.net'>https://shellcheck.net</a><br />
-<br />
-<h3 style='display: inline'>Unit testing</h3><br />
-<br />
-<span>There is a basic unit test module in ./lib/assert.source.sh, which is used for unit testing. I found this to be very beneficial for cross-platform development. For example, I noticed that some unit tests failed on macOS while everything still worked fine on my Fedora Linux laptop. </span><br />
-<br />
-<span>After digging a bit, I noticed that I had to install the GNU versions of the sed and grep commands on macOS and a newer version of the Bash to make all unit tests pass and Gemtexter work.</span><br />
-<br />
-<span>It has been proven quite helpful to have unit tests in place for the HTML part already when working on the Markdown generator part. To test the Markdown part, I copied the HTML unit tests and changed the expected outcome in the assertions. This way, I could implement the Markdown generator in a test-driven way (writing the test first and afterwards the implementation).</span><br />
-<br />
-<h3 style='display: inline'>HTML unit test example</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
-assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link html "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
-    <font color="#FF0000">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
-</pre>
-<br />
-<h3 style='display: inline'>Markdown unit test example</h3><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
-assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link md "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
-    <font color="#FF0000">'[Description of the link](http://example.org)  '</font>
-</pre>
-<br />
-<h2 style='display: inline'>Handcrafted HTML styles</h2><br />
-<br />
-<span>I had a look at some ready off the shelf CSS styles, but they all seemed too bloated. There is a whole industry selling CSS styles on the interweb. I preferred an effortless and minimalist style for the HTML site. So I handcrafted the Cascading Style Sheets manually with love and included them in the HTML header template. </span><br />
-<br />
-<span>For now, I have to re-generate all HTML files whenever the CSS changes. That should not be an issue now, but I might move the CSS into a separate file one day.</span><br />
-<br />
-<span>It&#39;s worth mentioning that all generated HTML files and Atom feeds pass the W3C validation tests.</span><br />
-<span> </span><br />
-<h2 style='display: inline'>Configurability</h2><br />
-<br />
-<span>In case someone else than me wants to use Gemtexter for his own site, it is pretty much configurable. It is possible to specify your own configuration file and your own HTML templates. Have a look at the GitHub page for examples.</span><br />
-<br />
-<h2 style='display: inline'>Future features</h2><br />
-<br />
-<span>I could think of the following features added to a future version of Gemtexter:</span><br />
-<br />
-<ul>
-<li>Templating of Gemtext files so that the .html files are generated from .gmi.tpl files. The template engine could do such things as an automatic table of contents and sitemap generation. It could also include the output of inlined shell code, e.g. a fortune quote. </li>
-<li>Add support for more output formats, such as Groff, PDF, plain text, Gopher, etc.</li>
-<li>External CSS file for HTML.</li>
-<li>Improve speed by introducing parallelism and/or concurrency and/or better caching.</li>
-</ul><br />
-<h2 style='display: inline'>Conclusion</h2><br />
-<br />
-<span>It was quite a lot of fun writing Gemtexter. It&#39;s a relatively small project, but given that I worked on that in my spare time once in a while, it kept me busy for several weeks. </span><br />
-<br />
-<span>I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. </span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
