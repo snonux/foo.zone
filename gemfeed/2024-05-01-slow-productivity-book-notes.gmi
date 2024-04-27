@@ -74,7 +74,7 @@ The battle against distractions must be fought to be the master of your time. No
 
 Put tasks on autopilot (regular recurring tasks).
 
-## Work in a natural pace
+## Work at a natural pace
 
 We suffer from overambitious timelines, task lists, and business. Focus on what matters. Don't rush your most important work to achieve better results.
 
