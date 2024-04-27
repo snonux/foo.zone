@@ -129,5 +129,6 @@ Other book notes of mine are:
 [2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
 [2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
 [2023-11-11 "Mind Management" book notes](./mind-management.md)  
+[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
 
 [Back to the main site](../)  

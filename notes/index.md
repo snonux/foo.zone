@@ -6,6 +6,7 @@
 ['The Pragmatic Programmer' book notes](./the-pragmatic-programmer.md)  
 ['The Obstacle is the Way' book notes](./the-obstacle-is-the-way.md)  
 ['Staff Engineer' book notes](./staff-engineer.md)  
+['Slow Productivity' book notes](./slow-productivity.md)  
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mind Management' book notes](./mind-management.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
