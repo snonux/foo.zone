@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-27T15:10:08+03:00</updated>
+    <updated>2024-04-27T21:58:16+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -96,7 +96,7 @@
 <br />
 <span>Put tasks on autopilot (regular recurring tasks).</span><br />
 <br />
-<h2 style='display: inline'>Work in a natural pace</h2><br />
+<h2 style='display: inline'>Work at a natural pace</h2><br />
 <br />
 <span>We suffer from overambitious timelines, task lists, and business. Focus on what matters. Don&#39;t rush your most important work to achieve better results.</span><br />
 <br />
