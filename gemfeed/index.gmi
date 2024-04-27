@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2024-05-01-slow-productivity-book-notes.gmi 2024-05-01 - 'Slow Productivity' book notes
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 - KISS high-availability with OpenBSD
 => ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go
 => ./2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi 2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`
