@@ -70,7 +70,7 @@ Sometimes, a little friction is all that is needed to combat incoming work, e.g.
 
 Limit your daily goals. A good measure is to focus on one goal per day. You can time block time for deep work on your daily goal. During that time, you won't be easily available to others.
 
-The battle against distractions must be thought to be the master of your time. Nobody will fight this war for you. You have to do it for yourself. (Also, have a look at Cal Newport's "time block planning" method).
+The battle against distractions must be fought to be the master of your time. Nobody will fight this war for you. You have to do it for yourself. (Also, have a look at Cal Newport's "time block planning" method).
 
 Put tasks on autopilot (regular recurring tasks).
 
