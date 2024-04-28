@@ -10,6 +10,7 @@
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mind-management.gmi 'Mind Management' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
+=> ./influence-wihout-authority.gmi 'Influence without Authority' book notes
 => ./career-guide-and-soft-skills.gmi 'Software Developmers Career Guide and Soft Skills' book notes
 => ./a-monks-guide-to-happiness.gmi 'A Monk's Guide to Happiness' book notes
 
