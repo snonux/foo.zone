@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-27T21:58:16+03:00</updated>
+    <updated>2024-04-30T13:13:33+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,7 @@
         <summary>These are my personal takeaways after reading 'Slow Productivity - The lost Art of Accomplishment Without Burnout' by Cal Newport.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"Slow Productivity" book notes</h1><br />
+                <h1 style='display: inline' id='SlowProductivitybooknotes'>"Slow Productivity" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2024-04-27T14:18:51+03:00</span><br />
 <br />
@@ -42,7 +42,7 @@
 <br />
 <span>"Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.</span><br />
 <br />
-<h2 style='display: inline'>Pseudo-productivity and Shallow work</h2><br />
+<h2 style='display: inline' id='PseudoproductivityandShallowwork'>Pseudo-productivity and Shallow work</h2><br />
 <br />
 <span>People use visible activity instead of real productivity because it&#39;s easier to measure. This is called pseudo-productivity.</span><br />
 <span>Pseudo-productivity is used as a proxy for real productivity. If you don&#39;t look busy, you are dismissed as lazy or lacking a work ethic.</span><br />
@@ -51,7 +51,7 @@
 <br />
 <span>Shallow work usually doesn&#39;t help you to accomplish big things. Always have the big picture in mind. Shallow work can&#39;t be entirely eliminated, but it can be managed—for example, plan dedicated time slots for certain types of shallow work.</span><br />
 <br />
-<h2 style='display: inline'>Accomplishments without burnout</h2><br />
+<h2 style='display: inline' id='Accomplishmentswithoutburnout'>Accomplishments without burnout</h2><br />
 <br />
 <span>The overall perception is that if you want to accomplish something, you must put yourself on the verge of burnout. Cal Newport writes about "The lost Art of Accomplishments without Burnouts", where you can accomplish big things without all the stress usually involved.</span><br />
 <br />
@@ -62,7 +62,7 @@
 <li>Work at a natural pace</li>
 <li>Obsess over quality</li>
 </ul><br />
-<h2 style='display: inline'>Do fewer things</h2><br />
+<h2 style='display: inline' id='Dofewerthings'>Do fewer things</h2><br />
 <br />
 <span>There will always be more work. The faster you finish it, the quicker you will have something new on your plate.</span><br />
 <br />
@@ -96,7 +96,7 @@
 <br />
 <span>Put tasks on autopilot (regular recurring tasks).</span><br />
 <br />
-<h2 style='display: inline'>Work at a natural pace</h2><br />
+<h2 style='display: inline' id='Workatanaturalpace'>Work at a natural pace</h2><br />
 <br />
 <span>We suffer from overambitious timelines, task lists, and business. Focus on what matters. Don&#39;t rush your most important work to achieve better results.</span><br />
 <br />
@@ -112,7 +112,7 @@
 <br />
 <span>Schedule slow seasons (e.g., when on vacation). Disconnect in the slow season. Doing nothing will not satisfy your mind, though. You could read a book on your subject matter to counteract that.</span><br />
 <br />
-<h2 style='display: inline'>Obsess over quality </h2><br />
+<h2 style='display: inline' id='Obsessoverquality'>Obsess over quality </h2><br />
 <br />
 <span>Obsess over quality even if you lose short-term opportunities by rejecting other projects. Quality demands you slow down. The two previous two principles (do fewer things and work at a natural pace) are mandatory for this principle to work:</span><br />
 <br />
@@ -175,7 +175,7 @@
         <summary>Art by Michael J. Penick (mod. by Paul B.)</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>KISS high-availability with OpenBSD</h1><br />
+                <h1 style='display: inline' id='KISShighavailabilitywithOpenBSD'>KISS high-availability with OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
 <br />
@@ -205,18 +205,20 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 </pre>
 <br />
 <pre>
-Table of contents:
-    KISS high-availability with OpenBSD
-        My auto-failover requirements
-        My HA solution
-            Only OpenBSD base installation required
-            Fairly cheap and geo-redundant
-            Failover time and split-brain
-            Failover support for multiple protocols
-            Let&#39;s encrypt TLS certificates
-            Monitoring
-            Rex automation
-        More HA
+Table of contents
+=================
+
+KISS high-availability with OpenBSD
+    My auto-failover requirements
+    My HA solution
+        Only OpenBSD base installation required
+        Fairly cheap and geo-redundant
+        Failover time and split-brain
+        Failover support for multiple protocols
+        Let&#39;s encrypt TLS certificates
+        Monitoring
+        Rex automation
+    More HA
 </pre>
 <br />
 <span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
@@ -227,7 +229,7 @@ Table of contents:
 <br />
 <span class='quote'>PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
 <br />
-<h2 style='display: inline'>My auto-failover requirements</h2><br />
+<h2 style='display: inline' id='Myautofailoverrequirements'>My auto-failover requirements</h2><br />
 <br />
 <ul>
 <li>Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. </li>
@@ -240,9 +242,9 @@ Table of contents:
 <li>Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover.</li>
 <li>Don&#39;t configure everything manually. The configuration should be automated and reproducible.</li>
 </ul><br />
-<h2 style='display: inline'>My HA solution</h2><br />
+<h2 style='display: inline' id='MyHAsolution'>My HA solution</h2><br />
 <br />
-<h3 style='display: inline'>Only OpenBSD base installation required</h3><br />
+<h3 style='display: inline' id='OnlyOpenBSDbaseinstallationrequired'>Only OpenBSD base installation required</h3><br />
 <br />
 <span>My HA solution for Web and Gemini is based on DNS (OpenBSD&#39;s <span class='inlinecode'>nsd</span>) and a simple shell script (OpenBSD&#39;s <span class='inlinecode'>ksh</span> and some little <span class='inlinecode'>sed</span> and <span class='inlinecode'>awk</span> and <span class='inlinecode'>grep</span>). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.</span><br />
 <br />
@@ -398,7 +400,7 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh'>dns-failover.ksh</a><br />
 <br />
-<h3 style='display: inline'>Fairly cheap and geo-redundant</h3><br />
+<h3 style='display: inline' id='Fairlycheapandgeoredundant'>Fairly cheap and geo-redundant</h3><br />
 <br />
 <span>I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).</span><br />
 <br />
@@ -409,13 +411,13 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <span>A DNS-based failover is cheap, as there isn&#39;t any BGP or fancy load balancer to pay for. Small VMs also cost less than millions.</span><br />
 <br />
-<h3 style='display: inline'>Failover time and split-brain</h3><br />
+<h3 style='display: inline' id='Failovertimeandsplitbrain'>Failover time and split-brain</h3><br />
 <br />
 <span>A DNS failover doesn&#39;t happen immediately. I&#39;ve configured a DNS TTL of <span class='inlinecode'>300</span> seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that&#39;s fine - eventually, all requests will resolve to the new master after a failover).</span><br />
 <br />
 <span>A split-brain scenario between the old master and the new master might happen. That&#39;s OK, as my sites are static, and there&#39;s no database to synchronise other than HTML, CSS, and images when the site is updated.</span><br />
 <br />
-<h3 style='display: inline'>Failover support for multiple protocols</h3><br />
+<h3 style='display: inline' id='Failoversupportformultipleprotocols'>Failover support for multiple protocols</h3><br />
 <br />
 <span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entries, which VM receives the requests.</span><br />
 <br />
@@ -426,7 +428,7 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <span>On DNS failover, master and standby swap roles without config changes other than the DNS entries. That&#39;s KISS (keep it simple and stupid)!</span><br />
 <br />
-<h3 style='display: inline'>Let&#39;s encrypt TLS certificates</h3><br />
+<h3 style='display: inline' id='LetsencryptTLScertificates'>Let&#39;s encrypt TLS certificates</h3><br />
 <br />
 <span>All my hosts use TLS certificates from Let&#39;s Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires that the host requesting a certificate from Let&#39;s Encrypt is also the host using that certificate.</span><br />
 <br />
@@ -463,7 +465,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='https://man.OpenBSD.org/acme-client.1'>https://man.OpenBSD.org/acme-client.1</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <br />
-<h3 style='display: inline'>Monitoring</h3><br />
+<h3 style='display: inline' id='Monitoring'>Monitoring</h3><br />
 <br />
 <span>CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. </span><br />
 <br />
@@ -472,7 +474,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Gogios, as I developed it by myself, isn&#39;t part of the OpenBSD base system. </span><br />
 <br />
-<h3 style='display: inline'>Rex automation</h3><br />
+<h3 style='display: inline' id='Rexautomation'>Rex automation</h3><br />
 <br />
 <span>I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.</span><br />
 <br />
@@ -481,7 +483,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Rex isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external software on OpenBSD either as Rex is invoked from my Laptop!</span><br />
 <br />
-<h2 style='display: inline'>More HA</h2><br />
+<h2 style='display: inline' id='MoreHA'>More HA</h2><br />
 <br />
 <span>Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD - also part of the OpenBSD base system) and the authoritative DNS servers (<span class='inlinecode'>nsd</span>) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! </span><br />
 <br />
@@ -519,7 +521,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
+                <h1 style='display: inline' id='AfineFyneAndroidappforquicklyloggingideasprogrammedinGo'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
 <br />
 <span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
 <br />
@@ -551,7 +553,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>My Android apps will never be polished, but they will get the job done, and this is precisely how I want them to be. Minimalistic but functional. I could spend more time polishing Quick logger, but my Quick logger app then may be the same as any other notes app out there (complicated or bloated).</span><br />
 <br />
-<h2 style='display: inline'>All easy-peasy?</h2><br />
+<h2 style='display: inline' id='Alleasypeasy'>All easy-peasy?</h2><br />
 <br />
 <span>I did have some issues with the app logo for Android, though. Android always showed the default app icon and not my custom icon whenever I used a custom <span class='inlinecode'>AndroidManifest.xml</span> for custom app storage permissions. Without a custom <span class='inlinecode'>AndroidAmnifest.xml</span> the app icon would be displayed under Android, but then the app would not have the <span class='inlinecode'>MANAGE_EXTERNAL_STORAGE</span> permission, which is required for Quick logger to write to a custom directory. I found a workaround, which I commented on here at Github:</span><br />
 <br />
@@ -768,7 +770,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>HKISSFISHKISSFISHKISSFISHKISSFISH    KISS</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>One reason why I love OpenBSD</h1><br />
+                <h1 style='display: inline' id='OnereasonwhyIloveOpenBSD'>One reason why I love OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2024-01-13T22:55:33+02:00</span><br />
 <br />
@@ -849,7 +851,7 @@ $ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</fon
         <summary>This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</h1><br />
+                <h1 style='display: inline' id='SiteReliabilityEngineeringPart3OnCallCultureandtheHumanAspect'>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</h1><br />
 <br />
 <span class='quote'>Published at 2024-01-09T18:35:48+02:00</span><br />
 <br />
@@ -885,7 +887,7 @@ $ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</fon
 
 </pre>
 <br />
-<h2 style='display: inline'>On-Call Culture and the Human Aspect: Prioritising Well-being in the Realm of Reliability</h2><br />
+<h2 style='display: inline' id='OnCallCultureandtheHumanAspectPrioritisingWellbeingintheRealmofReliability'>On-Call Culture and the Human Aspect: Prioritising Well-being in the Realm of Reliability</h2><br />
 <br />
 <span>Site Reliability Engineering is synonymous with ensuring system reliability, but the human factor is an often-underestimated part of this discipline. Ensuring an healthy on-call culture is as critical as any technical solution. The well-being of the engineers is an important factor.</span><br />
 <br />
@@ -921,7 +923,7 @@ $ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</fon
         <summary>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Bash Golf Part 3</h1><br />
+                <h1 style='display: inline' id='BashGolfPart3'>Bash Golf Part 3</h1><br />
 <br />
 <span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
 <br />
@@ -942,7 +944,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
 <br />
-<h2 style='display: inline'><span class='inlinecode'>FUNCNAME</span></h2><br />
+<h2 style='display: inline' id='FUNCNAME'><span class='inlinecode'>FUNCNAME</span></h2><br />
 <br />
 <span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
 <br />
@@ -982,7 +984,7 @@ http://www.gnu.org/software/src-highlite -->
 INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font color="#993399">082732</font><font color="#990000">|</font><font color="#993399">123002</font><font color="#990000">|</font>at_home_friday_evening<font color="#990000">|</font>One Peperoni Pizza<font color="#990000">,</font> please
 </pre>
 <br />
-<h2 style='display: inline'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
+<h2 style='display: inline' id=''><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
 <br />
 <span>This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break <span class='inlinecode'>:(){ :|:&amp; };:</span> down:</span><br />
 <br />
@@ -1005,7 +1007,7 @@ INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font co
 <br />
 <a href='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg'><img alt='Bash fork bomb' title='Bash fork bomb' src='./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg' /></a><br />
 <br />
-<h2 style='display: inline'>Inner functions</h2><br />
+<h2 style='display: inline' id='Innerfunctions'>Inner functions</h2><br />
 <br />
 <span>Bash defines variables as it is interpreting the code. The same applies to function declarations. Let&#39;s consider this code:</span><br />
 <br />
@@ -1074,7 +1076,7 @@ Wintel inside!
 Wintel inside!
 </pre>
 <br />
-<h2 style='display: inline'>Exporting functions</h2><br />
+<h2 style='display: inline' id='Exportingfunctions'>Exporting functions</h2><br />
 <br />
 <span>Have you ever wondered how to execute a shell function in parallel through <span class='inlinecode'>xargs</span>? The problem is that this won&#39;t work:</span><br />
 <br />
@@ -1164,7 +1166,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
 <br />
-<h2 style='display: inline'>Dynamic variables with <span class='inlinecode'>local</span></h2><br />
+<h2 style='display: inline' id='Dynamicvariableswithlocal'>Dynamic variables with <span class='inlinecode'>local</span></h2><br />
 <br />
 <span>You may know that <span class='inlinecode'>local</span> is how to declare local variables in a function. Most don&#39;t know that those variables actually have dynamic scope. Let&#39;s consider the following example:</span><br />
 <br />
@@ -1204,7 +1206,7 @@ foo
 <span>What happened? The variable <span class='inlinecode'>foo</span> (declared with <span class='inlinecode'>local</span>) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of <span class='inlinecode'>foo</span>, and the change will be visible up the call stack. It&#39;s not a global variable; on the last line, <span class='inlinecode'>echo "$foo"</span> echoes the global variable content.</span><br />
 <br />
 <br />
-<h2 style='display: inline'><span class='inlinecode'>if</span> conditionals</h2><br />
+<h2 style='display: inline' id='ifconditionals'><span class='inlinecode'>if</span> conditionals</h2><br />
 <br />
 <span>Consider all variants here more or less equivalent:</span><br />
 <br />
@@ -1255,7 +1257,7 @@ ok4a
 ok4b
 </pre>
 <br />
-<h2 style='display: inline'>Multi-line comments</h2><br />
+<h2 style='display: inline' id='Multilinecomments'>Multi-line comments</h2><br />
 <br />
 <span>You all know how to comment. Put a <span class='inlinecode'>#</span> in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the <span class='inlinecode'>:</span> no-op command to emulate multi-line comments. </span><br />
 <br />
@@ -1279,7 +1281,7 @@ COMMENT
 <br />
 <span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
 <br />
-<h2 style='display: inline'>Don&#39;t change it while it&#39;s executed</h2><br />
+<h2 style='display: inline' id='Dontchangeitwhileitsexecuted'>Don&#39;t change it while it&#39;s executed</h2><br />
 <br />
 <span>Consider this script:</span><br />
 <br />
@@ -1338,7 +1340,7 @@ echo baz
         <summary>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Site Reliability Engineering - Part 2: Operational Balance in SRE</h1><br />
+                <h1 style='display: inline' id='SiteReliabilityEngineeringPart2OperationalBalanceinSRE'>Site Reliability Engineering - Part 2: Operational Balance in SRE</h1><br />
 <br />
 <span class='quote'>Published at 2023-11-19T00:18:18+03:00</span><br />
 <br />
@@ -1363,7 +1365,7 @@ echo baz
 ⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
 </pre>
 <br />
-<h2 style='display: inline'>Operational Balance in SRE: Finding the Equilibrium in Reliability and Velocity</h2><br />
+<h2 style='display: inline' id='OperationalBalanceinSREFindingtheEquilibriuminReliabilityandVelocity'>Operational Balance in SRE: Finding the Equilibrium in Reliability and Velocity</h2><br />
 <br />
 <span>Site Reliability Engineering has established itself as more than just a set of best practices or methodologies. Instead, it stands as a beacon of operational excellence, which guides engineering teams through the turbulent waters of modern software development and system management.</span><br />
 <br />
@@ -1403,7 +1405,7 @@ echo baz
         <summary>These are my personal takeaways after reading 'Mind Management' by David Kadavy. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"Mind Management" book notes</h1><br />
+                <h1 style='display: inline' id='MindManagementbooknotes'>"Mind Management" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-11-11T22:21:47+02:00</span><br />
 <br />
@@ -1427,11 +1429,11 @@ echo baz
 <li>The point of diminishing returns</li>
 <li>The point of negative return</li>
 </ul><br />
-<h2 style='display: inline'>Empty slots in the calendar</h2><br />
+<h2 style='display: inline' id='Emptyslotsinthecalendar'>Empty slots in the calendar</h2><br />
 <br />
 <span>If we do more things in less time and use all possible slots, speed read, etc., we are more productive. But in reality, that&#39;s not the entire truth. You also exchange one thing against everything else.... You cut out too much from your actual life.</span><br />
 <br />
-<h2 style='display: inline'>When you safe time...</h2><br />
+<h2 style='display: inline' id='Whenyousafetime'>When you safe time...</h2><br />
 <br />
 <span>...keep it.</span><br />
 <br />
@@ -1440,7 +1442,7 @@ echo baz
 <li>Creative thinking needs space. It will pay dividends tomorrow.</li>
 <li>You will be rewarded with the "Eureka effect" - a sudden new insight.</li>
 </ul><br />
-<h2 style='display: inline'>Follow your mood</h2><br />
+<h2 style='display: inline' id='Followyourmood'>Follow your mood</h2><br />
 <br />
 <span>Ask yourself: what is my mood now? We never have the energy to do anything, so the better strategy is to follow your current mode and energy. E.g.:</span><br />
 <br />
@@ -1448,7 +1450,7 @@ echo baz
 <li>Didn&#39;t sleep enough today? Then, do simple, non-demanding tasks at work</li>
 <li>Had a great sleep, and there is even time before work starts? Pull in a workout...</li>
 </ul><br />
-<h2 style='display: inline'>Boosting creativity</h2><br />
+<h2 style='display: inline' id='Boostingcreativity'>Boosting creativity</h2><br />
 <br />
 <span>The morning without coffee is a gift for creativity, but you often get distracted. Minimize distractions, too. I have no window to stare out but a plain blank wall.</span><br />
 <br />
@@ -1458,7 +1460,7 @@ echo baz
 <li>Don&#39;t race with time but walk alongside it as rough time lines.</li>
 <li>Don&#39;t judge every day after the harvest, but the seed you lay</li>
 </ul><br />
-<h2 style='display: inline'>The right mood for the task at hand</h2><br />
+<h2 style='display: inline' id='Therightmoodforthetaskathand'>The right mood for the task at hand</h2><br />
 <br />
 <span>We need to try many different combinations. Limiting ourselves and trying too hard makes us frustrated and burn out. Creativity requires many iterations.</span><br />
 <br />
@@ -1472,7 +1474,7 @@ echo baz
 <br />
 <span>It gives you pleasure and is in a good mood. This increases creativity if you do what you want to do.</span><br />
 <br />
-<h2 style='display: inline'>Creativity hacks</h2><br />
+<h2 style='display: inline' id='Creativityhacks'>Creativity hacks</h2><br />
 <br />
 <ul>
 <li>Coffee can cause anxiety.</li>
@@ -1483,7 +1485,7 @@ echo baz
 <li>Go to open spaces for creativity.</li>
 <li>Go to closed spaces for polishing.</li>
 </ul><br />
-<h2 style='display: inline'>Planning and strategizing</h2><br />
+<h2 style='display: inline' id='Planningandstrategizing'>Planning and strategizing</h2><br />
 <br />
 <span>Minds work better in sprints and not in marathons. Have a weekly plan, not a daily one.</span><br />
 <br />
@@ -1496,7 +1498,7 @@ echo baz
 <br />
 <span>You could schedule exploratory tasks when you are under grief. Sound systems should create slack for creativity. Plan only for a few minutes.</span><br />
 <br />
-<h2 style='display: inline'>Fake it until you make it. </h2><br />
+<h2 style='display: inline' id='Fakeituntilyoumakeit'>Fake it until you make it. </h2><br />
 <br />
 <ul>
 <li>E.g. act calm if you want to be calm.</li>
@@ -1531,7 +1533,7 @@ echo baz
         <summary>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
+                <h1 style='display: inline' id='KISSstaticwebphotoalbumswithphotoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
 <br />
 <span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
 <br />
@@ -1552,7 +1554,7 @@ echo baz
 &#39;._____________________________________________.&#39;   
 </pre>
 <br />
-<h2 style='display: inline'>Motivation</h2><br />
+<h2 style='display: inline' id='Motivation'>Motivation</h2><br />
 <br />
 <span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
 <br />
@@ -1560,11 +1562,11 @@ echo baz
 <br />
 <span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
 <br />
-<h2 style='display: inline'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
+<h2 style='display: inline' id='Introducingphotoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
 <br />
-<h2 style='display: inline'>Installation</h2><br />
+<h2 style='display: inline' id='Installation'>Installation</h2><br />
 <br />
 <span>Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:</span><br />
 <br />
@@ -1607,7 +1609,7 @@ cp ./src/photoalbum.default.conf /etc/default/photoalbum
 This is Photoalbum Version 0.5.1
 </pre>
 <br />
-<h2 style='display: inline'>Setting it up</h2><br />
+<h2 style='display: inline' id='Settingitup'>Setting it up</h2><br />
 <br />
 <span>Now, it&#39;s time to set up the Irregular Ninja static web photo album (or any other web photo album you may be setting up!)! Create a directory (here: <span class='inlinecode'>irregular.ninja</span> for the Irregular Ninja Photo site - or any oter sub-directory reflecting your album&#39;s name), and inside of that directory, create an <span class='inlinecode'>incoming</span> directory. The <span class='inlinecode'>incoming</span> directory. Copy all photos to be part of the album there.</span><br />
 <br />
@@ -1720,7 +1722,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
 <br />
-<h2 style='display: inline'>Generating the static photo album</h2><br />
+<h2 style='display: inline' id='Generatingthestaticphotoalbum'>Generating the static photo album</h2><br />
 <br />
 <span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
 <br />
@@ -1783,15 +1785,15 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span class='quote'>PS: There&#39;s also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).</span><br />
 <br />
-<h2 style='display: inline'>Cleaning it up</h2><br />
+<h2 style='display: inline' id='Cleaningitup'>Cleaning it up</h2><br />
 <br />
 <span>A simple <span class='inlinecode'>make clean</span> will clean up the <span class='inlinecode'>./dist</span> directory and all other (if any) temp files created.</span><br />
 <br />
-<h2 style='display: inline'>HTML templates</h2><br />
+<h2 style='display: inline' id='HTMLtemplates'>HTML templates</h2><br />
 <br />
 <span>Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. </span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
 <br />
@@ -1829,7 +1831,7 @@ blurs  html  index.html  photos  thumbs
         <summary>Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They're from the DTail documentation, but not all readers of my blog may be aware of those!</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>DTail usage examples</h1><br />
+                <h1 style='display: inline' id='DTailusageexamples'>DTail usage examples</h1><br />
 <br />
 <span class='quote'>Published at 2023-09-25T14:57:42+03:00</span><br />
 <br />
@@ -1863,7 +1865,7 @@ blurs  html  index.html  photos  thumbs
 <li>Use <span class='inlinecode'>dmap</span> to aggregate logs and other text files already written</li>
 <li><span class='inlinecode'>dserver</span> is the DTail server, where all the clients can connect to</li>
 </ul><br />
-<h2 style='display: inline'>Following logs</h2><br />
+<h2 style='display: inline' id='Followinglogs'>Following logs</h2><br />
 <br />
 <span>The following example demonstrates how to follow logs of several servers at once. The server list is provided as a flat text file. The example filters all records containing the string <span class='inlinecode'>INFO</span>. Any other Go compatible regular expression can also be used instead of <span class='inlinecode'>INFO</span>.</span><br />
 <br />
@@ -1887,7 +1889,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt --grep INFO <font color="#FF0000">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
-<h2 style='display: inline'>Aggregating logs</h2><br />
+<h2 style='display: inline' id='Aggregatinglogs'>Aggregating logs</h2><br />
 <br />
 <span>To run ad-hoc map-reduce aggregations on newly written log lines you must add a query. The following example follows all remote log lines and prints out every few seconds the result to standard output.</span><br />
 <br />
@@ -1944,7 +1946,7 @@ http://www.gnu.org/software/src-highlite -->
     --query <font color="#FF0000">'from STATS select ... outfile append result.csv'</font>
 </pre>
 <br />
-<h2 style='display: inline'>How to use <span class='inlinecode'>dcat</span></h2><br />
+<h2 style='display: inline' id='Howtousedcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
 <br />
 <span>The following example demonstrates how to cat files (display the full content of the files) on several servers at once.</span><br />
 <br />
@@ -1968,7 +1970,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#990000">%</font> dcat --servers serverlist<font color="#990000">.</font>txt /etc/hostname
 </pre>
 <br />
-<h2 style='display: inline'>How to use <span class='inlinecode'>dgrep</span></h2><br />
+<h2 style='display: inline' id='Howtousedgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
 <br />
 <span>The following example demonstrates how to grep files (display only the lines which match a given regular expression) of multiple servers at once. In this example, we look after some entries in <span class='inlinecode'>/etc/passwd</span>. This time, we don&#39;t provide the server list via an file but rather via a comma separated list directly on the command line. We also explore the <span class='inlinecode'>-before</span>, <span class='inlinecode'>-after</span> and <span class='inlinecode'>-max</span> flags (see animation).</span><br />
 <br />
@@ -1987,7 +1989,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Hint: <span class='inlinecode'>-regex</span> is an alias for <span class='inlinecode'>-grep</span>.</span><br />
 <br />
-<h2 style='display: inline'>How to use <span class='inlinecode'>dmap</span></h2><br />
+<h2 style='display: inline' id='Howtousedmap'>How to use <span class='inlinecode'>dmap</span></h2><br />
 <br />
 <span>To run a map-reduce aggregation over logs written in the past, the <span class='inlinecode'>dmap</span> command can be used. The following example aggregates all map-reduce fields <span class='inlinecode'>dmap</span> will print interim results every few seconds. You can also write the result to an CSV file by adding <span class='inlinecode'>outfile result.csv</span> to the query.</span><br />
 <br />
@@ -2005,7 +2007,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./dtail-usage-examples/dmap.gif'><img alt='DMap example' title='DMap example' src='./dtail-usage-examples/dmap.gif' /></a><br />
 <br />
-<h2 style='display: inline'>How to use the DTail serverless mode</h2><br />
+<h2 style='display: inline' id='HowtousetheDTailserverlessmode'>How to use the DTail serverless mode</h2><br />
 <br />
 <span>Until now, all examples so far required to have remote server(s) to connect to. That makes sense, as after all DTail is a *distributed* tool. However, there are circumstances where you don&#39;t really need to connect to a server remotely. For example, you already have a login shell open to the server an all what you want is to run some queries directly on local log files.</span><br />
 <br />
@@ -2013,7 +2015,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>All commands shown so far also work in a serverless mode. All what needs to be done is to omit a server list. The DTail client then starts in serverless mode.</span><br />
 <br />
-<h3 style='display: inline'>Serverless map-reduce query</h3><br />
+<h3 style='display: inline' id='Serverlessmapreducequery'>Serverless map-reduce query</h3><br />
 <br />
 <span>The following <span class='inlinecode'>dmap</span> example is the same as the previously shown one, but the difference is that it operates on a local log file directly:</span><br />
 <br />
@@ -2048,7 +2050,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#FF0000">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
-<h3 style='display: inline'>Aggregating CSV files</h3><br />
+<h3 style='display: inline' id='AggregatingCSVfiles'>Aggregating CSV files</h3><br />
 <br />
 <span>In essence, this works exactly like aggregating logs. All files operated on must be valid CSV files and the first line of the CSV must be the header. E.g.:</span><br />
 <br />
@@ -2070,7 +2072,7 @@ Einstein<font color="#990000">,</font>Albert
 <br />
 <span>DMap can also be used to query and aggregate CSV files from remote servers.</span><br />
 <br />
-<h3 style='display: inline'>Other serverless commands</h3><br />
+<h3 style='display: inline' id='Otherserverlesscommands'>Other serverless commands</h3><br />
 <br />
 <span>The serverless mode works transparently with all other DTail commands. Here are some examples:</span><br />
 <br />
@@ -2149,7 +2151,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it's impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Site Reliability Engineering - Part 1: SRE and Organizational Culture</h1><br />
+                <h1 style='display: inline' id='SiteReliabilityEngineeringPart1SREandOrganizationalCulture'>Site Reliability Engineering - Part 1: SRE and Organizational Culture</h1><br />
 <br />
 <span class='quote'>Published at 2023-08-18T22:43:47+03:00</span><br />
 <br />
@@ -2181,7 +2183,7 @@ DC on fire:
   ░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▒▒░░░░░░░░░░░░░░░░░░
 </pre>
 <br />
-<h2 style='display: inline'>SRE and Organizational Culture: Navigating the Nexus</h2><br />
+<h2 style='display: inline' id='SREandOrganizationalCultureNavigatingtheNexus'>SRE and Organizational Culture: Navigating the Nexus</h2><br />
 <br />
 <span>At the heart of SRE lies the proactive mindset of "prevention over cure." Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. </span><br />
 <br />
@@ -2223,7 +2225,7 @@ DC on fire:
         <summary>I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
+                <h1 style='display: inline' id='Gemtexter210LetsGemtextagain'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
 <br />
@@ -2244,17 +2246,17 @@ DC on fire:
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
 <br />
-<h2 style='display: inline'>Why Bash?</h2><br />
+<h2 style='display: inline' id='WhyBash'>Why Bash?</h2><br />
 <br />
 <span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
 <br />
 <span>Let&#39;s list what&#39;s new!</span><br />
 <br />
-<h2 style='display: inline'>Switch to GPL3 license</h2><br />
+<h2 style='display: inline' id='SwitchtoGPL3license'>Switch to GPL3 license</h2><br />
 <br />
 <span>Many (almost all) of the tools and commands (GNU Bash, GMU Sed, GNU Date, GNU Grep, GNU Source Highlight) used by <span class='inlinecode'>Gemtexter</span> are licensed under the GPL anyway. So why not use the same? This was an easy switch, as I was the only code contributor so far!</span><br />
 <br />
-<h2 style='display: inline'>Source code highlighting support</h2><br />
+<h2 style='display: inline' id='Sourcecodehighlightingsupport'>Source code highlighting support</h2><br />
 <br />
 <span>The HTML output now supports source code highlighting, which is pretty neat if your site is about programming. The requirement is to have the <span class='inlinecode'>source-highlight</span> command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:</span><br />
 <br />
@@ -2279,11 +2281,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
 <br />
-<h2 style='display: inline'>HTML exact variant</h2><br />
+<h2 style='display: inline' id='HTMLexactvariant'>HTML exact variant</h2><br />
 <br />
 <span>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
 <br />
-<h2 style='display: inline'>Use of Hack webfont by default</h2><br />
+<h2 style='display: inline' id='UseofHackwebfontbydefault'>Use of Hack webfont by default</h2><br />
 <br />
 <span>The Hack web font is a typeface designed explicitly for source code. It&#39;s a derivative of the Bitstream Vera and DejaVu Mono lineage, but it features many improvements and refinements that make it better suited to reading and writing code.</span><br />
 <br />
@@ -2291,7 +2293,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Hack is open-source and freely available for use and modification under the MIT License.</span><br />
 <br />
-<h2 style='display: inline'>HTML Mastodon verification support</h2><br />
+<h2 style='display: inline' id='HTMLMastodonverificationsupport'>HTML Mastodon verification support</h2><br />
 <br />
 <span>The following link explains how URL verification works in Mastodon:</span><br />
 <br />
@@ -2321,7 +2323,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at Mastodon<b><font color="#0000FF">&lt;/a&gt;</font></b>
 </pre>
 <br />
-<h2 style='display: inline'>More</h2><br />
+<h2 style='display: inline' id='More'>More</h2><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />
@@ -2351,7 +2353,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>These notes are of two books by 'John Sommez' I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"Software Developmers Career Guide and Soft Skills" book notes</h1><br />
+                <h1 style='display: inline' id='SoftwareDevelopmersCareerGuideandSoftSkillsbooknotes'>"Software Developmers Career Guide and Soft Skills" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-17T04:56:20+03:00</span><br />
 <br />
@@ -2369,9 +2371,9 @@ http://www.gnu.org/software/src-highlite -->
                     &#39;&#39;&#39;
 </pre>
 <br />
-<h1 style='display: inline'>Improve</h1><br />
+<h1 style='display: inline' id='Improve'>Improve</h1><br />
 <br />
-<h2 style='display: inline'>Always learn new things</h2><br />
+<h2 style='display: inline' id='Alwayslearnnewthings'>Always learn new things</h2><br />
 <br />
 <span>When you learn something new, e.g. a programming language, first gather an overview, learn from multiple sources, play around and learn by doing and not consuming and form your own questions. Don&#39;t read too much upfront. A large amount of time is spent in learning technical skills which were never use. You want to have a practical set of skills you are actually using. You need to know 20 percent to get out 80 percent of the results.</span><br />
 <br />
@@ -2389,11 +2391,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Boot camps: The advantage of a boot camp is to pragmatically learn things fast. We almost always overestimate what we can do in a day. Especially during boot camps. Connect to others during the boot camps</span><br />
 <br />
-<h2 style='display: inline'>Set goals</h2><br />
+<h2 style='display: inline' id='Setgoals'>Set goals</h2><br />
 <br />
 <span>Your own goals are important but the manager also looks at how the team performs and how someone can help the team perform better. Check whether you are on track with your goals every 2 weeks in order to avoid surprises for the annual review. Make concrete goals for next review. Track and document your progress. Invest in your education. Make your goals known. If you want something, then ask for it. Nobody but you knows what you want.</span><br />
 <br />
-<h2 style='display: inline'>Ratings</h2><br />
+<h2 style='display: inline' id='Ratings'>Ratings</h2><br />
 <br />
 <span>That&#39;s a trap: If you have to rate yourself, that&#39;s a trap. That never works in an unbiased way. Rate yourself always the best way but rate your weakest part as high as possible minus one point. Rate yourself as good as you can otherwise. Nobody is putting for fun a gun on his own head. </span><br />
 <br />
@@ -2401,7 +2403,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Don&#39;t do peer rating, it can fire back on you. What if the colleague becomes your new boss?</li>
 <li>Cooperate rankings are unfortunately HR guidelines and politics and only mirror a little your actual performance.</li>
 </ul><br />
-<h2 style='display: inline'>Promotions</h2><br />
+<h2 style='display: inline' id='Promotions'>Promotions</h2><br />
 <br />
 <span>The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.</span><br />
 <br />
@@ -2414,7 +2416,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>If you want a raise be specific how much and know to back your demands. Don&#39;t make a thread and no ultimatums.</li>
 <li>Best way for a promotion is to switch jobs. You can even switch back with a better salary.</li>
 </ul><br />
-<h2 style='display: inline'>Finish things</h2><br />
+<h2 style='display: inline' id='Finishthings'>Finish things</h2><br />
 <br />
 <span>Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.</span><br />
 <br />
@@ -2429,7 +2431,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Defeat is finally give up. Failure is the road to success, embrace it. Failure does not define you but how you respond to it. Events don&#39;t make your unhappy, but how you react to events do.</span><br />
 <br />
-<h2 style='display: inline'>Expand the empire</h2><br />
+<h2 style='display: inline' id='Expandtheempire'>Expand the empire</h2><br />
 <br />
 <span>The larger your empire is, the larger your circle of influence is. The larger the circle of influence is, the more opportunities you have.</span><br />
 <br />
@@ -2440,7 +2442,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Become visible, keep track that you accomplishments. E.g. write a weekly summary. Do presentations, be seen. Learn new things and share your learnings. Be the problem solver and not the blamer.</span><br />
 <br />
-<h2 style='display: inline'>Be pragmatic and also manage your time</h2><br />
+<h2 style='display: inline' id='Bepragmaticandalsomanageyourtime'>Be pragmatic and also manage your time</h2><br />
 <br />
 <span>Make use of time boxing via the Pomodoro technique: Set a target of rounds and track the rounds. That give you exact focused work time. That&#39;s really the trick. For example set a goal of 6 daily pomodores.</span><br />
 <br />
@@ -2450,7 +2452,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>You should feel good of the work done even if you don&#39;t finished the task. You will feel good about pomodoro wise even you don&#39;t finish the task on hand yet. Helps you to enjoy time off more. Working longer may not sell anything.</span><br />
 <br />
-<h3 style='display: inline'>The quota system</h3><br />
+<h3 style='display: inline' id='Thequotasystem'>The quota system</h3><br />
 <br />
 <span>Defined quota of things done. E.g. N runs per week or M Blog posts per month or O pomodoros per week. This helps with consistency. Truly commit to these quotas. Failure is not an option. Start with small commitments. Don&#39;t commit to something you can&#39;t fulfill otherwise you set yourself up for failure.</span><br />
 <br />
@@ -2459,7 +2461,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Internal motivation is more important over external motivation. Check out Daniels book drive.</li>
 <li>Multitasking: Batching is effective. E.g. emails twice daily at pre-set times..</li>
 </ul><br />
-<h3 style='display: inline'>Don&#39;t waste time</h3><br />
+<h3 style='display: inline' id='Dontwastetime'>Don&#39;t waste time</h3><br />
 <br />
 <span>The biggest time waster is TV watching. The TV is programming you. It&#39;s insane that Americans watch so much TV as they work full time. Schedule one show at a time and watch it when you want to watch it. Most movies are crap anyways. The good movies will come to you as people will talk about them.</span><br />
 <br />
@@ -2468,7 +2470,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Meetings can waste time as well. Simply don&#39;t go to them. Try to cancel meeting if it can be dealt with via email.</li>
 <li>Enjoying things is not a waste of time. E.g. you could still play a game once in a while. It is important not to cut away all you enjoy from your life.</li>
 </ul><br />
-<h3 style='display: inline'>Habits</h3><br />
+<h3 style='display: inline' id='Habits'>Habits</h3><br />
 <br />
 <span>Try to have as many good habits as possible. Start with easy habits, and make them a little bit more challenging over time. Set ankers and rewards. Over time the routines will become habits naturally.</span><br />
 <br />
@@ -2478,7 +2480,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>We don&#39;t have control over our habits but our own routines.</li>
 <li>Routines help to form the habits, though.</li>
 </ul><br />
-<h1 style='display: inline'>Work-life balance</h1><br />
+<h1 style='display: inline' id='Worklifebalance'>Work-life balance</h1><br />
 <br />
 <span>Avoid overwork hours. That&#39;s not as beneficial as you might think and comes only with very small rewards. Invest rather in yourself and not in your employer.</span><br />
 <br />
@@ -2490,7 +2492,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Use your most productive hours to work on you. Make that your priority. Take care of yourself a priority (E.g. do workouts or learn a new language). You can always workout 2 or 1 hour per day, but will you pay the price?</span><br />
 <br />
-<h2 style='display: inline'>Mental health</h2><br />
+<h2 style='display: inline' id='Mentalhealth'>Mental health</h2><br />
 <br />
 <ul>
 <li>Friendships and positive thinking help to have and maintain better health, longer Life, better productivity and increased happiness.</li>
@@ -2501,7 +2503,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>In most cases burnout is just an illusion. If you don&#39;t have motivation push through the wall. People usually don&#39;t pass the wall as they feel they are burned out. After pushing through the wall you will have the most fun, for example you will be able playing the guitar greatly.</span><br />
 <br />
-<h2 style='display: inline'>Physical health</h2><br />
+<h2 style='display: inline' id='Physicalhealth'>Physical health</h2><br />
 <br />
 <span>Utilise a standing desk and treadmill (you could walk and type at the same time). Increase the incline in order to burn more calories. Even on the standing desk you burn more calories than sitting. When you use pomodoro then you can use the small breaks for push-ups (maybe won&#39;t do as good when you are in a fasted state).</span><br />
 <br />
@@ -2513,7 +2515,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Intermittent fasting is an effective method to maintain weight and health. But it does not mean that you can only eat junk food in the feeding windows. Also, diet and nutrition is the most important for health and fitness. They make it also easier to stay focused and positive.</span><br />
 <br />
-<h2 style='display: inline'>No drama</h2><br />
+<h2 style='display: inline' id='Nodrama'>No drama</h2><br />
 <br />
 <span>Avoid drama at work. Where are humans there is drama. You can decide where to spent your energy in. But don&#39;t avoid conflict. Conflict is healthy in any kind of relationship. Be tactful and state your opinion. The goal is to find the best solution to the problem.</span><br />
 <br />
@@ -2529,13 +2531,13 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>You have to learn how to work in a team. Be honest but tactful. It&#39;s not too be the loudest but about selling your ideas. Don&#39;t argue otherwise you won&#39;t sell anything. Be persuasive by finding the common ground. Or lead the colleagues to your idea and don&#39;t sell it upfront. Communicate clearly.</span><br />
 <br />
-<h1 style='display: inline'>Personal brand</h1><br />
+<h1 style='display: inline' id='Personalbrand'>Personal brand</h1><br />
 <br />
 <ul>
 <li>Invest your value outside the company. Build your personal brand. Show how valuable you are, also to other companies. Become an asset.</li>
 <li>Invest in your education. Make your goals known. If you want something ask for it (see also the sections about goals in this document).</li>
 </ul><br />
-<h2 style='display: inline'>Market yourself</h2><br />
+<h2 style='display: inline' id='Marketyourself'>Market yourself</h2><br />
 <br />
 <ul>
 <li>The best way to market yourself is to make you usable.</li>
@@ -2548,11 +2550,11 @@ http://www.gnu.org/software/src-highlite -->
 <li>Have an elevator pitch: "buetow.org - Having fun with computers!"</li>
 <li>Have social media accounts, especially the ones which are more tech related.</li>
 </ul><br />
-<h2 style='display: inline'>Networking</h2><br />
+<h2 style='display: inline' id='Networking'>Networking</h2><br />
 <br />
 <span>Ask people so they talk about themselves. They are not really interested in you. Use meetup.com to find groups you are interested and build up the network over time. Don&#39;t drink on social networking events even when others do. Talking to other people at events only has upsides. Just saying "hi" and introducing yourself is enough. What worse can happen? If the person rejects you so what, life goes on. Ask open questions and no "yes" and "no" questions. E.g.: "What is your story, why are you here?".</span><br />
 <br />
-<h2 style='display: inline'>Public speaking</h2><br />
+<h2 style='display: inline' id='Publicspeaking'>Public speaking</h2><br />
 <br />
 <span>Before your talk go on stage 10 minutes in advance. Introduce yourself to the front row people. During the talk they will smile at you and encourage you during your talk.</span><br />
 <br />
@@ -2562,9 +2564,9 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Just do it. Just go to conferences. Even if you are not speaking. Sell your boss what you would learn and "this and that" and you would present the learnings to the team afterwards.</span><br />
 <br />
-<h1 style='display: inline'>New job</h1><br />
+<h1 style='display: inline' id='Newjob'>New job</h1><br />
 <br />
-<h2 style='display: inline'>For the interview</h2><br />
+<h2 style='display: inline' id='Fortheinterview'>For the interview</h2><br />
 <br />
 <ul>
 <li>Build up a network before the interview. E.g., follow and comment blogs. Or go to meet-ups and conferences. Join user groups.</li>
@@ -2573,7 +2575,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>If you are specialized then there is a better chance to get a fitting job. No one will hire a general lawyer if there are specialized lawyers available. Even if you are specialized, you will have a wide range of skills (T-shape knowledge).</span><br />
 <br />
-<h2 style='display: inline'>Find the right type of company</h2><br />
+<h2 style='display: inline' id='Findtherighttypeofcompany'>Find the right type of company</h2><br />
 <br />
 <span>Not all companies are equal. They have individual cultures and guidelines.</span><br />
 <br />
@@ -2585,7 +2587,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Work in a tech. company if you want to work on/with cutting edge technologies.</span><br />
 <br />
-<h2 style='display: inline'>Apply for the new job</h2><br />
+<h2 style='display: inline' id='Applyforthenewjob'>Apply for the new job</h2><br />
 <br />
 <span>Get a professional resume writer. Get referrals of writers and get samples from there. Get sufficient with algorithm and data structures interview questions. Cracking the coding interview book and blog </span><br />
 <br />
@@ -2598,7 +2600,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Invest in your dress code as appearance masters. It does make sense to invest in your style. You could even hire a professional stylist (not my personal way though).</span><br />
 <br />
-<h2 style='display: inline'>Negotiation</h2><br />
+<h2 style='display: inline' id='Negotiation'>Negotiation</h2><br />
 <br />
 <ul>
 <li>Whoever names the number first loses. You don&#39;t know what someone else is expecting unless told. Low ball number may be an issue but you have to know the market.</li>
@@ -2616,21 +2618,21 @@ http://www.gnu.org/software/src-highlite -->
 <ul>
 <li>Never spilt the difference is the best book for learning negotiation techniques..</li>
 </ul><br />
-<h2 style='display: inline'>Leaving the old job</h2><br />
+<h2 style='display: inline' id='Leavingtheoldjob'>Leaving the old job</h2><br />
 <br />
 <span>When leaving a job make a clean and non personal as possible. Never complain and never explain. Don&#39;t worry about abandonment of the team. Everybody is replacement and you make a business decision. Don&#39;t threaten to quit as you are replaceable.</span><br />
 <br />
-<h1 style='display: inline'>Other things</h1><br />
+<h1 style='display: inline' id='Otherthings'>Other things</h1><br />
 <br />
 <ul>
 <li>As a leader lead by example and don&#39;t lead from the Eiffel tower.</li>
 <li>As a leader you are responsible for the team. If the team fails then it&#39;s your fault only.</li>
 </ul><br />
-<h2 style='display: inline'>Testing</h2><br />
+<h2 style='display: inline' id='Testing'>Testing</h2><br />
 <br />
 <span>Unit testing Vs regression testing: Unit tests test the smallest possible unit and get rewritten if the unit gets changed. It&#39;s like programming against a specification n. Regression tests test whether the software still works after the change. Now you know more than most software engineers.</span><br />
 <br />
-<h2 style='display: inline'>Books to read</h2><br />
+<h2 style='display: inline' id='Bookstoread'>Books to read</h2><br />
 <br />
 <ul>
 <li>Clean Code</li>
@@ -2677,13 +2679,13 @@ http://www.gnu.org/software/src-highlite -->
         <summary>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>KISS server monitoring with Gogios</h1><br />
+                <h1 style='display: inline' id='KISSservermonitoringwithGogios'>KISS server monitoring with Gogios</h1><br />
 <br />
 <span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
 <br />
 <a href='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
 <br />
-<h2 style='display: inline'>Introduction</h2><br />
+<h2 style='display: inline' id='Introduction'>Introduction</h2><br />
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
@@ -2714,7 +2716,7 @@ The original can be found at
 https://asciiart.website/index.php?art=objects/computers
 </pre>
 <br />
-<h2 style='display: inline'>Motivation</h2><br />
+<h2 style='display: inline' id='Motivation'>Motivation</h2><br />
 <br />
 <span>With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn&#39;t necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
 <br />
@@ -2722,7 +2724,7 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance.</span><br />
 <br />
-<h2 style='display: inline'>Features</h2><br />
+<h2 style='display: inline' id='Features'>Features</h2><br />
 <br />
 <ul>
 <li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing to use existing Nagios plugins.</li>
@@ -2733,7 +2735,7 @@ https://asciiart.website/index.php?art=objects/computers
 <li>Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.</li>
 <li>CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.</li>
 </ul><br />
-<h2 style='display: inline'>Example alert</h2><br />
+<h2 style='display: inline' id='Examplealert'>Example alert</h2><br />
 <br />
 <span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we&#39;ve got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
 <br />
@@ -2755,9 +2757,9 @@ CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
 Have a nice day!
 </pre>
 <br />
-<h2 style='display: inline'>Installation</h2><br />
+<h2 style='display: inline' id='Installation'>Installation</h2><br />
 <br />
-<h3 style='display: inline'>Compiling and installing Gogios</h3><br />
+<h3 style='display: inline' id='CompilingandinstallingGogios'>Compiling and installing Gogios</h3><br />
 <br />
 <span>This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace <span class='inlinecode'>does</span> with the <span class='inlinecode'>sudo</span> command and replace the <span class='inlinecode'>/usr/local/bin</span> path with <span class='inlinecode'>/usr/bin</span>.</span><br />
 <br />
@@ -2789,7 +2791,7 @@ go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />
-<h3 style='display: inline'>Setting up user, group and directories</h3><br />
+<h3 style='display: inline' id='Settingupusergroupanddirectories'>Setting up user, group and directories</h3><br />
 <br />
 <span>It is best to create a dedicated system user and group for Gogios to ensure proper isolation and security. Here are the steps to create the <span class='inlinecode'>_gogios</span> user and group under OpenBSD:</span><br />
 <br />
@@ -2806,7 +2808,7 @@ doas chmod <font color="#993399">750</font> /var/run/gogios
 <br />
 <span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
 <br />
-<h3 style='display: inline'>Installing monitoring plugins</h3><br />
+<h3 style='display: inline' id='Installingmonitoringplugins'>Installing monitoring plugins</h3><br />
 <br />
 <span>Gogios relies on external Nagios or Icinga monitoring plugin scripts. On OpenBSD, you can install the <span class='inlinecode'>monitoring-plugins</span> package with Gogios. The monitoring-plugins package is a collection of monitoring plugins, similar to Nagios plugins, that can be used to monitor various services and resources:</span><br />
 <br />
@@ -2820,9 +2822,9 @@ doas pkg_add nrpe <i><font color="#9A1900"># If you want to execute checks remot
 <br />
 <span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
 <br />
-<h2 style='display: inline'>Configuration</h2><br />
+<h2 style='display: inline' id='Configuration'>Configuration</h2><br />
 <br />
-<h3 style='display: inline'>MTA</h3><br />
+<h3 style='display: inline' id='MTA'>MTA</h3><br />
 <br />
 <span>Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.</span><br />
 <br />
@@ -2834,7 +2836,7 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 <br />
 <span>Check the recipient&#39;s inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
 <br />
-<h3 style='display: inline'>Configuring Gogios</h3><br />
+<h3 style='display: inline' id='ConfiguringGogios'>Configuring Gogios</h3><br />
 <br />
 <span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here&#39;s an example configuration:</span><br />
 <br />
@@ -2897,7 +2899,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The <span class='inlinecode'>state.json</span> file mentioned above keeps track of the monitoring state and check results between Gogios runs, enabling Gogios only to send email notifications when there are changes in the check status.</span><br />
 <br />
-<h2 style='display: inline'>Running Gogios</h2><br />
+<h2 style='display: inline' id='RunningGogios'>Running Gogios</h2><br />
 <br />
 <span>Now it is time to give it a first run. On OpenBSD, do:</span><br />
 <br />
@@ -2919,7 +2921,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON as the <span class='inlinecode'>_gogios</span> user. It will execute the checks and send monitoring status whenever a check status changes via email according to your configuration. Also, Gogios will run once at 7 am every morning and re-notify all unhandled alerts as a reminder.</span><br />
 <br />
-<h3 style='display: inline'>High-availability</h3><br />
+<h3 style='display: inline' id='Highavailability'>High-availability</h3><br />
 <br />
 <span>To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.</span><br />
 <br />
@@ -2932,7 +2934,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>There are plans to make it possible to execute certain checks only on certain nodes (e.g. on elected leader or master nodes). This is still in progress (check out my Gorum Git project).</span><br />
 <br />
-<h2 style='display: inline'>Conclusion:</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion:</h2><br />
 <br />
 <span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
 <br />
@@ -2961,7 +2963,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>These are my personal takeaways after reading 'The Obstacle Is the Way' by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"The Obstacle is the Way" book notes</h1><br />
+                <h1 style='display: inline' id='TheObstacleistheWaybooknotes'>"The Obstacle is the Way" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-05-06T17:23:16+03:00</span><br />
 <br />
@@ -2982,7 +2984,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>"The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.</span><br />
 <br />
-<h2 style='display: inline'>Reframe your perspective</h2><br />
+<h2 style='display: inline' id='Reframeyourperspective'>Reframe your perspective</h2><br />
 <br />
 <span>The obstacle in your path can become your path to success. Instead of being paralyzed by challenges, see them as opportunities to learn and grow. Remember, the things that hurt us often instruct us. </span><br />
 <br />
@@ -2991,37 +2993,37 @@ http://www.gnu.org/software/src-highlite -->
 <span>Don&#39;t always try to use the front door; a backdoor could open. It&#39;s nonsense. Don&#39;t fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.</span><br />
 <br />
 <br />
-<h2 style='display: inline'>Embrace rationality</h2><br />
+<h2 style='display: inline' id='Embracerationality'>Embrace rationality</h2><br />
 <br />
 <span>It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals during a fight. Show the middle finger if someone persists on the stupid rules occasionally.</span><br />
 <br />
-<h2 style='display: inline'>Control your response</h2><br />
+<h2 style='display: inline' id='Controlyourresponse'>Control your response</h2><br />
 <br />
 <span>You can choose how you respond to obstacles. Focus on what you can control, and don&#39;t let yourself feel harmed by external circumstances. Remember, you decide how things affect you; nobody else does. Choose to feel good in response to any situation. Embrace the challenges and obstacles that come your way, as they are opportunities for growth and learning.</span><br />
 <br />
-<h2 style='display: inline'>Practice emotional and physical resilience</h2><br />
+<h2 style='display: inline' id='Practiceemotionalandphysicalresilience'>Practice emotional and physical resilience</h2><br />
 <br />
 <span>Martial artists know the importance of developing physical and emotional strength. Cultivate the art of not panicking; it will help you avoid making mistakes during high-pressure situations.</span><br />
 <br />
 <span>Focus on what you can control. Don&#39;t choose to feel harmed, and then you won&#39;t be harmed. I decide things that affect me; nobody else does. E.g., in prison, your mind stays your own. Don&#39;t ignore fear but explain it away, have a different view.</span><br />
 <br />
-<h2 style='display: inline'>Persistence and patience</h2><br />
+<h2 style='display: inline' id='Persistenceandpatience'>Persistence and patience</h2><br />
 <br />
 <span>Practice persistence and patience in your pursuits. Focus on the process rather than the prize and take one step at a time. Remember, the journey is about finishing tasks, projects, or workouts to the best of your ability. Never be in a hurry and never be desperate. There is no reason to be rushed; there are all in the long haul. Follow the process and not the price. Take it one step at a time. The process is about finishing (workout, task, project, etc.).</span><br />
 <br />
-<h2 style='display: inline'>Embrace failure</h2><br />
+<h2 style='display: inline' id='Embracefailure'>Embrace failure</h2><br />
 <br />
 <span>Failure is a natural part of life and can make us stronger. Treat defeat as a stepping stone to success and education. What is defeat? The first step to education. Failure makes you stronger. If we do our best, we can be proud of it, regardless of the result. Do your job, but do it right. Only an asshole thinks he is too good at the things he does. Also, asking for forgiveness is easier than asking for permission. </span><br />
 <br />
-<h2 style='display: inline'>Be adaptable</h2><br />
+<h2 style='display: inline' id='Beadaptable'>Be adaptable</h2><br />
 <br />
 <span>There are many ways to achieve your goals; sometimes, unconventional methods are necessary. Feel free to break the rules or go off the beaten path if it will lead to better results. Transform weaknesses into strengths. We have a choice of how to respond to things. It&#39;s not about being positive but to be creative. Aim high, but stuff will happen; E.g., surprises will always happen.</span><br />
 <br />
-<h2 style='display: inline'>Embrace non-action</h2><br />
+<h2 style='display: inline' id='Embracenonaction'>Embrace non-action</h2><br />
 <br />
 <span>We constantly push to the next thing. Sometimes the best course of action is standing still or even going backwards. Obstacles might resolve by themselves. Or going sideways. Sometimes, the best action is to stand still, go sideways, or even go backwards. Obstacles may resolve themselves or present new opportunities if you&#39;re patient and observant. People always want your input before you have all the facts. They want you to play after their rules. The question is, do you let them? The English call it the cool head. Being in control of Stress; requires practice. Appear, the absence of fear (Greek). When all others do it one way, it does not mean it is the correct or best practice.</span><br />
 <br />
-<h2 style='display: inline'>Leverage crisis</h2><br />
+<h2 style='display: inline' id='Leveragecrisis'>Leverage crisis</h2><br />
 <br />
 <span>In times of crisis, seize the chance to do things never done before. Great people use negative situations to their advantage and become the most effective in challenging circumstances.</span><br />
 <br />
@@ -3029,19 +3031,19 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Be prepared for nothing to work. Problems are an opportunity to do your best, not to do miracles. Always manage your expectations. It will suck, but it will be ok. Be prepared to begin from the beginning. Be cheerful and eagerly work on the next obstacle. Each time you become better. Life is not a sprint but a marathon. After each obstacle lies another obstacle, there won&#39;t be anything without obstacles. Passing one means you are ready for the next.</span><br />
 <br />
-<h2 style='display: inline'>Build your inner citadel</h2><br />
+<h2 style='display: inline' id='Buildyourinnercitadel'>Build your inner citadel</h2><br />
 <br />
 <span>Develop your inner strength during good times so you can rely on it in bad times. Always prepare for adversity and face it with calmness and resilience. Be humble enough that things which happen will happen. Build your inner citadel. In good times strengthen it. In bad times rely on it.</span><br />
 <br />
 <span>We should always prepare for things to get tough. Your house burns down: no worries, we eliminated much rubbish. Imagine what can go wrong before things go wrong. We are prepared for adversity; it&#39;s other people who aren&#39;t. Phil Jackson&#39;s hip problem example. To receive unexpected benefits, you must first accept the unexpected obstacles. Meditate on death. It&#39;s a universal obstacle. Use it as a reminder to do your best.</span><br />
 <br />
-<h2 style='display: inline'>Love everything that happens</h2><br />
+<h2 style='display: inline' id='Loveeverythingthathappens'>Love everything that happens</h2><br />
 <br />
 <span>Turn an obstacle the other way around for your benefit. Use it at fuel. It&#39;s simple but challenging. Most are paralyzed instead. The obstacle in the path becomes the path. Obstacles are neither good nor bad. The things which hurt, instruct.</span><br />
 <br />
 <span>Should I hate people who hate me? That&#39;s their problem and not mine. Be always calm and relaxed during the fight. The story of the battle is the story of the smile. Cheerfulness in all situations, especially the bad ones. Love for everything that happens; if it happens, it was meant to happen. We can choose how we react to things, so why not choose to feel good? I love everything that happens. You must never lower yourself to the person you don&#39;t like.</span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>Life is a marathon, not a sprint. Each obstacle we overcome prepares us for the next one. Remember, the obstacle is not just a barrier to be turned upside down; it can also be used as a catapult to propel us forward. By embracing challenges and using them as opportunities for growth, we become stronger, more adaptable, and, ultimately, more successful.</span><br />
 <br />
@@ -3073,7 +3075,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</h1><br />
+                <h1 style='display: inline' id='UnveilingguprecordsrakuGlobalUptimeRecordswithRaku'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-30T13:10:26+03:00</span><br />
 <br />
@@ -3094,7 +3096,7 @@ http://www.gnu.org/software/src-highlite -->
 +-----+-----------------+-----------------------------+
 </pre>
 <br />
-<h1 style='display: inline'>Introduction</h1><br />
+<h1 style='display: inline' id='Introduction'>Introduction</h1><br />
 <br />
 <span>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</span><br />
 <br />
@@ -3117,7 +3119,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>And I have been following the Raku newsletter, and sometimes I have been lurking around in the IRC channels, too. Watching Raku coding challenges on YouTube was pretty fun, too. However, nothing beats actually using Raku to learn the language. After reading all of these resources, I may have a good idea about the features and paradigms, but I am by far not an expert.</span><br />
 <br />
-<h2 style='display: inline'>How Guprecords works</h2><br />
+<h2 style='display: inline' id='HowGuprecordsworks'>How Guprecords works</h2><br />
 <br />
 <span>Guprecords works in three stages:</span><br />
 <br />
@@ -3143,7 +3145,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Output formats available: Plaintext, Markdown, and Gemtext</li>
 <li>Provides top entries based on the specified limit</li>
 </ul><br />
-<h2 style='display: inline'>Example</h2><br />
+<h2 style='display: inline' id='Example'>Example</h2><br />
 <br />
 <span>You have already seen an example at the very top of this post, where the hosts were grouped by their total lifespans (uptime+downtime). Here&#39;s an example of what the global uptime report (grouped by total host uptimes) might look like:</span><br />
 <br />
@@ -3214,7 +3216,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
    %up               99.997 | since                     Tue Dec 18 10:16:08 2018
 </pre>
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>Guprecords is a small, yet powerful tool for analyzing uptime statistics. While developing Guprecords, I have come to truly appreciate and love Raku&#39;s expressiveness. The language is designed to be both powerful and flexible, allowing developers to express their intentions and logic more clearly and concisely.</span><br />
 <br />
@@ -3255,7 +3257,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
         <summary>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Algorithms and Data Structures in Go - Part 1</h1><br />
+                <h1 style='display: inline' id='AlgorithmsandDataStructuresinGoPart1'>Algorithms and Data Structures in Go - Part 1</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-09T22:31:42+03:00</span><br />
 <br />
@@ -3279,7 +3281,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
 <br />
-<h2 style='display: inline'>Type constraints</h2><br />
+<h2 style='display: inline' id='Typeconstraints'>Type constraints</h2><br />
 <br />
 <span>First, the package <span class='inlinecode'>ds</span> (data structures) defines the <span class='inlinecode'>types.go</span>. All examples will either operate on the <span class='inlinecode'>Integer</span> or <span class='inlinecode'>Number</span> type:</span><br />
 <br />
@@ -3303,7 +3305,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h2 style='display: inline'>ArrayList</h2><br />
+<h2 style='display: inline' id='ArrayList'>ArrayList</h2><br />
 <br />
 <span>Next comes the <span class='inlinecode'>arraylist.go</span>, which defines the underlying data structure all the algorithms of this series will use. <span class='inlinecode'>ArrayList</span> is just a type alias of a Go array (or slice) with custom methods on it:</span><br />
 <br />
@@ -3363,7 +3365,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#FF0000">}</font>
 </pre>
 <br />
-<h2 style='display: inline'>Helper methods</h2><br />
+<h2 style='display: inline' id='Helpermethods'>Helper methods</h2><br />
 <br />
 <span>The <span class='inlinecode'>FirstN</span> method only returns the first N elements of the <span class='inlinecode'>ArrayList</span>. This is useful for printing out only parts of the data structure:</span><br />
 <br />
@@ -3422,7 +3424,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h2 style='display: inline'>Sleep sort</h2><br />
+<h2 style='display: inline' id='Sleepsort'>Sleep sort</h2><br />
 <br />
 <span>Let&#39;s implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It&#39;s more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it&#39;s only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
 <br />
@@ -3469,7 +3471,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
 <br />
-<h3 style='display: inline'>Testing</h3><br />
+<h3 style='display: inline' id='Testing'>Testing</h3><br />
 <br />
 <span>For testing, we only allow values up to 10, as otherwise, it would take too long to finish:</span><br />
 <br />
@@ -3528,7 +3530,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <summary>These are my personal takeaways after reading 'Never split the difference' by Chris Voss. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"Never split the difference" book notes</h1><br />
+                <h1 style='display: inline' id='Neversplitthedifferencebooknotes'>"Never split the difference" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-01T20:00:17+03:00</span><br />
 <br />
@@ -3546,7 +3548,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
                     &#39;&#39;&#39;
 </pre>
 <br />
-<h2 style='display: inline'>Tactical listening, spreading empathy</h2><br />
+<h2 style='display: inline' id='Tacticallisteningspreadingempathy'>Tactical listening, spreading empathy</h2><br />
 <br />
 <span>Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.</span><br />
 <br />
@@ -3557,7 +3559,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 </ul><br />
 <span>Mirror training is like Jedi training. Simple but effective. A mirror needs space. Be silent after "you want this?" </span><br />
 <br />
-<h2 style='display: inline'>Mindset of discovery</h2><br />
+<h2 style='display: inline' id='Mindsetofdiscovery'>Mindset of discovery</h2><br />
 <br />
 <span>Try to have multiple realities in your mind and use facts to distinguish between real and false.</span><br />
 <br />
@@ -3569,7 +3571,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 </ul><br />
 <span>Try: to put a label on someone&#39;s emotion and then be silent. Wait for the other to reveal himself. "You seem unhappy about this?"</span><br />
 <br />
-<h3 style='display: inline'>More tips </h3><br />
+<h3 style='display: inline' id='Moretips'>More tips </h3><br />
 <br />
 <ul>
 <li>Put on a poker face and don&#39;t show emotions.</li>
@@ -3578,7 +3580,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <li>Being right is not the key to successful negotiation; being mindful is.</li>
 <li>Be in the safe zone of empathy and acknowledge bad news.</li>
 </ul><br />
-<h2 style='display: inline'>"No" starts the conversation</h2><br />
+<h2 style='display: inline' id='Nostartstheconversation'>"No" starts the conversation</h2><br />
 <br />
 <span>When the opponent starts with a "no", he feels in control and comfortable. That&#39;s why he has to start with "no".</span><br />
 <br />
@@ -3591,11 +3593,11 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 </ul><br />
 <span>Get a "That&#39;s right" when negotiating. Don&#39;t get a "you&#39;re right". You can summarise the opponent to get a "that&#39;s right".</span><br />
 <br />
-<h2 style='display: inline'>Win-win</h2><br />
+<h2 style='display: inline' id='Winwin'>Win-win</h2><br />
 <br />
 <span>Win-win is a naive approach when encountering the win-lose counterpart, but always cooperate. Don&#39;t compromise, and don&#39;t split the difference. We don&#39;t compromise because it&#39;s right; we do it because it is easy. You must embrace the hard stuff; that&#39;s where the great deals are.</span><br />
 <br />
-<h2 style='display: inline'>On Deadlines</h2><br />
+<h2 style='display: inline' id='OnDeadlines'>On Deadlines</h2><br />
 <br />
 <ul>
 <li>All deadlines are imaginary.</li>
@@ -3603,7 +3605,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <li>They push a deal to a conclusion.</li>
 <li>They rush the counterpart to cause pressure and anxiety.</li>
 </ul><br />
-<h2 style='display: inline'>Analyse the opponent</h2><br />
+<h2 style='display: inline' id='Analysetheopponent'>Analyse the opponent</h2><br />
 <br />
 <ul>
 <li>Understand the motivation of people behind the table as well.</li>
@@ -3613,7 +3615,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 </ul><br />
 <span>The person on the other side is never the issue; the problem is the issue. Keep this in mind to avoid emotional issues with the person and focus on the problem, not the person. The bond is essential; never create an enemy.</span><br />
 <br />
-<h2 style='display: inline'>Use different ways of saying "no."</h2><br />
+<h2 style='display: inline' id='Usedifferentwaysofsayingno'>Use different ways of saying "no."</h2><br />
 <br />
 <span class='quote'>I had paid my rent always in time. I had positive experiences with the building and would be sad for the landlord to lose a good tenant. I am looking for a win-win agreement between us. Pulling out the research, other neighbours offer much lower prices even if your building is a better location and services. How can I effort 200 more.... </span><br />
 <br />
@@ -3621,7 +3623,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>You always have to embrace thoughtful confrontation for good negotiation and life. Don&#39;t avoid honest, clear conflict. It will give you the best deals. Compromises are mostly bad deals for both sides. Most people don&#39;t negotiate a win-win but a win-lose. Know the best and worst outcomes and what is acceptable for you.</span><br />
 <br />
-<h2 style='display: inline'>Calibrated question</h2><br />
+<h2 style='display: inline' id='Calibratedquestion'>Calibrated question</h2><br />
 <br />
 <span>Calibrated questions. Give the opponent a sense of power. Ask open-how questions to get the opponent to solve your problem and move him in your direction. Calibrated questions are the best tools. Summarise everything, and then ask, "how I am supposed to do that?". Asking for help this way with a calibrated question is a powerful tool for joint problem solving</span><br />
 <br />
@@ -3637,11 +3639,11 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 </ul><br />
 <span>Prepare 3 to 5 calibrated questions for your counterpart. Be curious what is really motivating the other side. You can get out the "Black Swan".</span><br />
 <br />
-<h2 style='display: inline'>The black swan </h2><br />
+<h2 style='display: inline' id='Theblackswan'>The black swan </h2><br />
 <br />
 <span>What we don&#39;t know can break our deal. Uncovering it can bring us unexpected success. You get what you ask for in this world, but you must learn to ask correctly. Reveal the black swan by asking questions.</span><br />
 <br />
-<h2 style='display: inline'>More</h2><br />
+<h2 style='display: inline' id='More'>More</h2><br />
 <br />
 <span>Establish a range at top places like corp. I get... (e.g. remote London on a project basis). Set a high salary range and not a number. Also, check on LinkedIn premium for the salaries.</span><br />
 <br />
@@ -3685,7 +3687,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
         <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
+                <h1 style='display: inline' id='Gemtexter200LetsGemtextagain'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
 <br />
@@ -3710,7 +3712,7 @@ ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <fo
 <br />
 <span>Let&#39;s list what&#39;s new!</span><br />
 <br />
-<h2 style='display: inline'>Minimal template engine</h2><br />
+<h2 style='display: inline' id='Minimaltemplateengine'>Minimal template engine</h2><br />
 <br />
 <span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
 <br />
@@ -3776,7 +3778,7 @@ See more entries about DTail and Golang:
 Blablabla...
 </pre>
 <br />
-<h2 style='display: inline'>Added hooks</h2><br />
+<h2 style='display: inline' id='Addedhooks'>Added hooks</h2><br />
 <br />
 <span>You can configure <span class='inlinecode'>PRE_GENERATE_HOOK</span> and <span class='inlinecode'>POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class='inlinecode'>--generate</span>, or after running <span class='inlinecode'>--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class='inlinecode'>--publish</span>.</span><br />
 <br />
@@ -3790,11 +3792,11 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#0000FF">declare</font></b> -xr <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=.</font>/post_publish_hook<font color="#990000">.</font>sh
 </pre>
 <br />
-<h2 style='display: inline'>Use of safer Bash options</h2><br />
+<h2 style='display: inline' id='UseofsaferBashoptions'>Use of safer Bash options</h2><br />
 <br />
 <span>Gemtexter now does <span class='inlinecode'>set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class='inlinecode'>set -e</span>.</span><br />
 <br />
-<h2 style='display: inline'>Meta cache made obsolete</h2><br />
+<h2 style='display: inline' id='Metacachemadeobsolete'>Meta cache made obsolete</h2><br />
 <br />
 <span>Here is the breaking change to older versions of Gemtexter. The <span class='inlinecode'>$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class='inlinecode'>meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class='inlinecode'>.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</span><br />
 <br />
@@ -3824,11 +3826,11 @@ http://www.gnu.org/software/src-highlite -->
 The remaining content of the Gemtext file<font color="#990000">...</font>
 </pre>
 <br />
-<h2 style='display: inline'>XMLLint support</h2><br />
+<h2 style='display: inline' id='XMLLintsupport'>XMLLint support</h2><br />
 <br />
 <span>Optionally, when the <span class='inlinecode'>xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</span><br />
 <br />
-<h2 style='display: inline'>More</h2><br />
+<h2 style='display: inline' id='More'>More</h2><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />
@@ -3858,7 +3860,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
         <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>"The Pragmatic Programmer" book notes</h1><br />
+                <h1 style='display: inline' id='ThePragmaticProgrammerbooknotes'>"The Pragmatic Programmer" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-16T00:55:20+02:00</span><br />
 <br />
@@ -3909,7 +3911,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 <br />
 <span>Do what works and not what&#39;s fashionable. E.g. does SCRUM make sense? The goal is to deliver deliverables and not to "become" agile.</span><br />
 <br />
-<h2 style='display: inline'>Continuous learning</h2><br />
+<h2 style='display: inline' id='Continuouslearning'>Continuous learning</h2><br />
 <br />
 <span>Add new tools to your repertoire every day and keep the momentum up. Learning new things is your most crucial aspect. Invest regularly in your knowledge portfolio. The learning process extends your thinking. It does not matter if you will never use it.</span><br />
 <br />
@@ -3920,7 +3922,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 </ul><br />
 <span>Think critically about everything you learn. Use paper for your notes. There is something special about it.</span><br />
 <br />
-<h2 style='display: inline'>Stay connected</h2><br />
+<h2 style='display: inline' id='Stayconnected'>Stay connected</h2><br />
 <br />
 <span>It&#39;s your life, and you own it. Bruce Lee once said: </span><br />
 <br />
@@ -3933,7 +3935,7 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 </ul><br />
 <span>It&#39;s your life. Share it, celebrate it, be proud and have fun.</span><br />
 <br />
-<h2 style='display: inline'>The story of stone soup</h2><br />
+<h2 style='display: inline' id='Thestoryofstonesoup'>The story of stone soup</h2><br />
 <br />
 <span>How to motivate others to contribute something (e.g. ideas to a startup):</span><br />
 <br />
@@ -4477,7 +4479,7 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
         <summary>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Installing DTail on OpenBSD</h1><br />
+                <h1 style='display: inline' id='InstallingDTailonOpenBSD'>Installing DTail on OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2022-10-30T11:03:19+02:00</span><br />
 <br />
@@ -4530,7 +4532,7 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <br />
 <span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
 <br />
-<h2 style='display: inline'>Compile it</h2><br />
+<h2 style='display: inline' id='Compileit'>Compile it</h2><br />
 <br />
 <span>First of all, DTail needs to be downloaded and compiled. For that, <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span>, and <span class='inlinecode'>gmake</span> are required:</span><br />
 <br />
@@ -4565,7 +4567,7 @@ $ doas pkg_delete git go gmake
 <br />
 <span>One day I shall create an official OpenBSD port for DTail.</span><br />
 <br />
-<h2 style='display: inline'>Install it</h2><br />
+<h2 style='display: inline' id='Installit'>Install it</h2><br />
 <br />
 <span>Installing the binaries is now just a matter of copying them to <span class='inlinecode'>/usr/local/bin</span> as follows:</span><br />
 <br />
@@ -4607,7 +4609,7 @@ END
 $ doas chmod 755 /etc/rc.d/dserver
 </pre>
 <br />
-<h3 style='display: inline'>Rexification</h3><br />
+<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
 <br />
 <span>This is the task for setting it up via Rex. Note the <span class='inlinecode'>. . . .</span>, that&#39;s a placeholder which we will fill up more and more during this blog post:</span><br />
 <br />
@@ -4634,7 +4636,7 @@ task &#39;dtail&#39;, group =&gt; &#39;frontends&#39;,
    };
 </pre>
 <br />
-<h2 style='display: inline'>Configure it</h2><br />
+<h2 style='display: inline' id='Configureit'>Configure it</h2><br />
 <br />
 <span>Now, DTail is fully installed but still needs to be configured. Grab the default config file from GitHub ...</span><br />
 <br />
@@ -4657,7 +4659,7 @@ $ curl https://raw.githubusercontent.com/mimecast/dtail/master/examples/dtail.js
   }
 </pre>
 <br />
-<h3 style='display: inline'>Rexification</h3><br />
+<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
 <br />
 <span>That&#39;s as simple as adding the following to the Rex task:</span><br />
 <br />
@@ -4673,7 +4675,7 @@ file &#39;/etc/dserver/dtail.json&#39;,
   on_change =&gt; sub { $restart = TRUE };
 </pre>
 <br />
-<h2 style='display: inline'>Update the key cache for it</h2><br />
+<h2 style='display: inline' id='Updatethekeycacheforit'>Update the key cache for it</h2><br />
 <br />
 <span>DTail relies on SSH for secure authentication and communication. However, the system user <span class='inlinecode'>_dserver</span> has no permission to read the SSH public keys from the user&#39;s home directories, so the DTail server also checks for available public keys in an alternative path <span class='inlinecode'>/var/run/dserver/cache</span>. </span><br />
 <br />
@@ -4726,7 +4728,7 @@ $ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
 /usr/local/bin/dserver-update-key-cache.sh
 </pre>
 <br />
-<h3 style='display: inline'>Rexification</h3><br />
+<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
 <br />
 <span>That&#39;s done by adding ...</span><br />
 <br />
@@ -4742,7 +4744,7 @@ append_if_no_such_line &#39;/etc/daily.local&#39;, &#39;/usr/local/bin/dserver-u
 <br />
 <span>... to the Rex task!</span><br />
 <br />
-<h2 style='display: inline'>Start it</h2><br />
+<h2 style='display: inline' id='Startit'>Start it</h2><br />
 <br />
 <span>Now, it&#39;s time to enable and start the DTail server:</span><br />
 <br />
@@ -4782,7 +4784,7 @@ Caching /home/rex/.ssh/authorized_keys -&gt; /var/cache/dserver/rex.authorized_k
 All set...
 </pre>
 <br />
-<h2 style='display: inline'>Use it</h2><br />
+<h2 style='display: inline' id='Useit'>Use it</h2><br />
 <br />
 <span>The DTail server is now ready to serve connections. You can use any DTail commands, such as <span class='inlinecode'>dtail</span>, <span class='inlinecode'>dgrep</span>, <span class='inlinecode'>dmap</span>, <span class='inlinecode'>dcat</span>, <span class='inlinecode'>dtailhealth</span>, to do so. Checkout out all the usage examples on the official DTail page.</span><br />
 <br />
@@ -4808,7 +4810,7 @@ REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev
 REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
 </pre>
 <br />
-<h2 style='display: inline'>Conclusions</h2><br />
+<h2 style='display: inline' id='Conclusions'>Conclusions</h2><br />
 <br />
 <span>It&#39;s a bit of manual work, but it&#39;s ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</span><br />
 <br />
@@ -4957,7 +4959,7 @@ jgs                (________\  \
         <summary>I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
+                <h1 style='display: inline' id='Gemtexter110LetsGemtextagain'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
 <br />
@@ -4979,9 +4981,9 @@ jgs                (________\  \
 <br />
 <span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
 <br />
-<h2 style='display: inline'>What&#39;s new?</h2><br />
+<h2 style='display: inline' id='Whatsnew'>What&#39;s new?</h2><br />
 <br />
-<h3 style='display: inline'>Automatic check for GNU version requirements</h3><br />
+<h3 style='display: inline' id='AutomaticcheckforGNUversionrequirements'>Automatic check for GNU version requirements</h3><br />
 <br />
 <span>Gemtexter relies on the GNU versions of the tools <span class='inlinecode'>grep</span>, <span class='inlinecode'>sed</span> and <span class='inlinecode'>date</span> and it also requires the Bash shell in version 5 at least. That&#39;s now done in the <span class='inlinecode'>check_dependencies()</span> function:</span><br />
 <br />
@@ -5010,15 +5012,15 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
 <br />
-<h3 style='display: inline'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</h3><br />
+<h3 style='display: inline' id='BackticksnowproduceinlinecodeblocksintheHTMLoutput'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</h3><br />
 <br />
 <span>The Gemtext format doesn&#39;t support inline code blocks, but Gemtexter now produces <span class='inlinecode'>inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.</span><br />
 <br />
-<h3 style='display: inline'>Cache for Atom feed generation</h3><br />
+<h3 style='display: inline' id='CacheforAtomfeedgeneration'>Cache for Atom feed generation</h3><br />
 <br />
 <span>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class='inlinecode'>.gmi</span> file to decide whether anything of the content has changed or not.</span><br />
 <br />
-<h3 style='display: inline'>Input filter support</h3><br />
+<h3 style='display: inline' id='Inputfiltersupport'>Input filter support</h3><br />
 <br />
 <span>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</span><br />
 <br />
@@ -5029,22 +5031,22 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#990000">.</font>/gemtexter --generate <font color="#FF0000">'.*hello.*'</font>
 </pre>
 <br />
-<h3 style='display: inline'>Revamped <span class='inlinecode'>git</span> support</h3><br />
+<h3 style='display: inline' id='Revampedgitsupport'>Revamped <span class='inlinecode'>git</span> support</h3><br />
 <br />
 <span>The Git support has been completely rewritten. It&#39;s now more reliable and faster too. Have a look at the <span class='inlinecode'>README</span> for more information.</span><br />
 <br />
-<h3 style='display: inline'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</h3><br />
+<h3 style='display: inline' id='Additionofhtmlextrasandwebfontsupport'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</h3><br />
 <br />
 <span>The <span class='inlinecode'>htmlextras</span> folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.</span><br />
 <br />
-<h3 style='display: inline'>Sub-section support</h3><br />
+<h3 style='display: inline' id='Subsectionsupport'>Sub-section support</h3><br />
 <br />
 <span>It&#39;s now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:</span><br />
 <br />
 <a class='textlink' href='https://foo.zone'>The foo.zone main site</a><br />
 <a class='textlink' href='https://foo.zone/notes'>The notes sub-section (with different fonts)</a><br />
 <br />
-<h3 style='display: inline'>More</h3><br />
+<h3 style='display: inline' id='More'>More</h3><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />
@@ -5076,7 +5078,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
+                <h1 style='display: inline' id='LetsEncryptwithOpenBSDandRex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
 <br />
 <span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
 <br />
@@ -5109,7 +5111,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h2 style='display: inline'>What&#39;s Let&#39;s Encrypt?</h2><br />
+<h2 style='display: inline' id='WhatsLetsEncrypt'>What&#39;s Let&#39;s Encrypt?</h2><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
@@ -5117,7 +5119,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</span><br />
 <br />
-<h2 style='display: inline'>Meet <span class='inlinecode'>acme-client</span></h2><br />
+<h2 style='display: inline' id='Meetacmeclient'>Meet <span class='inlinecode'>acme-client</span></h2><br />
 <br />
 <span><span class='inlinecode'>acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. </span><br />
 <br />
@@ -5137,11 +5139,11 @@ http://www.gnu.org/software/src-highlite -->
 <li>Let&#39;s Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class='inlinecode'>http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
 <li>Let&#39;s Encrypt generates a certificate, which then is downloaded to <span class='inlinecode'>/etc/ssl/...</span>.</li>
 </ul><br />
-<h2 style='display: inline'>Configuration</h2><br />
+<h2 style='display: inline' id='Configuration'>Configuration</h2><br />
 <br />
 <span>There is some (but easy) configuration required to make that all work on OpenBSD.</span><br />
 <br />
-<h3 style='display: inline'>acme-client.conf</h3><br />
+<h3 style='display: inline' id='acmeclientconf'>acme-client.conf</h3><br />
 <br />
 <span>This is how my <span class='inlinecode'>/etc/acme-client.conf</span> looks like (I copied a template from <span class='inlinecode'>/etc/examples/acme-client.conf</span> to <span class='inlinecode'>/etc/acme-client.conf</span> and added my domains to the bottom:</span><br />
 <br />
@@ -5207,7 +5209,7 @@ domain snonux.land {
 }
 </pre>
 <br />
-<h3 style='display: inline'>httpd.conf</h3><br />
+<h3 style='display: inline' id='httpdconf'>httpd.conf</h3><br />
 <br />
 <span>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let&#39;s Encrypt are served correctly. I am using the standard OpenBSD <span class='inlinecode'>httpd</span> here. These are the snippets I use for the <span class='inlinecode'>foo.zone</span> host in <span class='inlinecode'>/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</span><br />
 <br />
@@ -5240,7 +5242,7 @@ server "foo.zone" {
 <br />
 <span>It is worth noticing that <span class='inlinecode'>httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let&#39;s Encrypt. As you saw in the config snippet above, Let&#39;s Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn&#39;t need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class='inlinecode'>httpd</span> to use any new certificate.</span><br />
 <br />
-<h3 style='display: inline'>CRON job</h3><br />
+<h3 style='display: inline' id='CRONjob'>CRON job</h3><br />
 <br />
 <span>You could now run <span class='inlinecode'>doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</span><br />
 <br />
@@ -5318,11 +5320,11 @@ acme-client: /etc/ssl/irregular.ninja.fullchain.pem: certificate valid: 80 days 
 acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 </pre>
 <br />
-<h2 style='display: inline'>relayd.conf and smtpd.conf</h2><br />
+<h2 style='display: inline' id='relaydconfandsmtpdconf'>relayd.conf and smtpd.conf</h2><br />
 <br />
 <span>Besides <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> (mainly for Gemini) and <span class='inlinecode'>smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class='inlinecode'>acme.sh</span>, the services are reloaded or restarted (<span class='inlinecode'>smtpd</span> doesn&#39;t support reload) whenever a certificate is generated or updated.</span><br />
 <br />
-<h2 style='display: inline'>Rexification</h2><br />
+<h2 style='display: inline' id='Rexification'>Rexification</h2><br />
 <br />
 <span>I didn&#39;t write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</span><br />
 <br />
@@ -5334,7 +5336,7 @@ acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zone irregular.ninja snonux.land/;
 </pre>
 <br />
-<h3 style='display: inline'>General ACME client configuration</h3><br />
+<h3 style='display: inline' id='GeneralACMEclientconfiguration'>General ACME client configuration</h3><br />
 <br />
 <span>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</span><br />
 <br />
@@ -5486,7 +5488,7 @@ if [ $has_update = yes ]; then
 fi
 </pre>
 <br />
-<h3 style='display: inline'>Service rexification </h3><br />
+<h3 style='display: inline' id='Servicerexification'>Service rexification </h3><br />
 <br />
 <span>These are the Rex tasks setting up <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> and <span class='inlinecode'>smtpd</span> services:</span><br />
 <br />
@@ -5714,7 +5716,7 @@ match from local for local action localmail
 match from local for any action outbound
 </pre>
 <br />
-<h2 style='display: inline'>All pieces together</h2><br />
+<h2 style='display: inline' id='Allpiecestogether'>All pieces together</h2><br />
 <br />
 <span>For the complete <span class='inlinecode'>Rexfile</span> example and all the templates, please look at the Git repository:</span><br />
 <br />
@@ -5728,7 +5730,7 @@ rex commons
 <br />
 <span>The <span class='inlinecode'>commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>ACME and Let&#39;s Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</span><br />
 <br />
@@ -6106,7 +6108,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and `perl` the name of the interpreter or the interpreter command.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Perl is still a great choice</h1><br />
+                <h1 style='display: inline' id='Perlisstillagreatchoice'>Perl is still a great choice</h1><br />
 <br />
 <span class='quote'>Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28</span><br />
 <br />
@@ -6126,7 +6128,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <li>Why use Perl as there are better alternatives?</li>
 <li>Why all the sigils? It looks like an exploding ASCII factory!!</li>
 </ul><br />
-<h2 style='display: inline'>Write-only language</h2><br />
+<h2 style='display: inline' id='Writeonlylanguage'>Write-only language</h2><br />
 <br />
 <span>Is Perl really a write-only language? You have to understand that Perl 5 was released in 1994 (28 years ago as of this writing) and when we refer to Perl we usually mean Perl 5. That&#39;s many years, and there are many old scripts not following the modern Perl best practices (as they didn&#39;t exist yet). So yes, legacy scripts may be difficult to read. Japanese may be difficult to read too if you don&#39;t know Japanese, though.</span><br />
 <br />
@@ -6152,7 +6154,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>This all doesn&#39;t mean that you can&#39;t "get things done" with Perl. Quite the opposite is the case. Perl is a very pragmatic programming language and is suitable very well for rapid prototyping and any kind of small to medium-sized scripts and programs. You can write large enterprise scale application in Perl too, but that wasn&#39;t the original intend of why Perl was invented (more on that later).</span><br />
 <br />
-<h2 style='display: inline'>Is Perl abandoned?</h2><br />
+<h2 style='display: inline' id='IsPerlabandoned'>Is Perl abandoned?</h2><br />
 <br />
 <span>As I pointed out in the previous section, Perl 5 is around for quite some time without any new major version released. This can lead to the impression that development is not progressing and that the project is abandoned. Nothing can be further from the truth. Perl 5.000 was released in 1994 and the latest version (as of this writing) Perl 5.34.1 was released two months ago in 2022. You can check the version history on Wikipedia. You will notice releases being made regularly:</span><br />
 <br />
@@ -6193,7 +6195,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='https://www.leanpub.com/perl_new_features'>Perl New Features</a><br />
 <br />
-<h2 style='display: inline'>Why use Perl as there are better alternatives?</h2><br />
+<h2 style='display: inline' id='WhyusePerlastherearebetteralternatives'>Why use Perl as there are better alternatives?</h2><br />
 <br />
 <span>Here, common sense must be applied. I don&#39;t believe there is anything like "the perfect" programming language. Everyone has got his preferred (or a set of preferred) programming language to chose from. All programming languages come with their own set of strengths and weaknesses. These are the strengths making Perl shine, and you (technically) don&#39;t need to bother to look for "better" alternatives:</span><br />
 <br />
@@ -6222,7 +6224,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 </ul><br />
 <a class='textlink' href='https://github.com/Ovid/Cor'>Cor - Bringing modern OOP to the Perl Core</a><br />
 <br />
-<h2 style='display: inline'>Why all the sigils? It looks like an exploding ASCII factory!!</h2><br />
+<h2 style='display: inline' id='WhyallthesigilsItlookslikeanexplodingASCIIfactory'>Why all the sigils? It looks like an exploding ASCII factory!!</h2><br />
 <br />
 <span>The sigils <span class='inlinecode'>$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class='inlinecode'>$scalar</span> is a scalar variable (holding a single value), <span class='inlinecode'>@array</span> is an array (holding a list of values), <span class='inlinecode'>%hash</span> holds a list of key-value pairs and <span class='inlinecode'>&amp;sub</span> is for subroutines. A given variable <span class='inlinecode'>$ref</span> can also hold reference to something. <span class='inlinecode'>@$arrayref</span> dereferences a reference to an array, <span class='inlinecode'>%$hashref</span> to a hash, <span class='inlinecode'>$$scalarref</span> to a scalar, <span class='inlinecode'>&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</span><br />
 <br />
@@ -6230,7 +6232,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='https://www.perl.com/article/on-sigils/'>https://www.perl.com/article/on-sigils/</a><br />
 <br />
-<h2 style='display: inline'>Where do I personally still use perl?</h2><br />
+<h2 style='display: inline' id='WheredoIpersonallystilluseperl'>Where do I personally still use perl?</h2><br />
 <br />
 <ul>
 <li>I use Rexify for my OpenBSD server automation. Rexify is a configuration management system developed in Perl with similar features to Ansible but less bloated. It suits my personal needs perfectly.</li>
@@ -6431,7 +6433,7 @@ learn () {
         <summary>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>The release of DTail 4.0.0</h1><br />
+                <h1 style='display: inline' id='ThereleaseofDTail400'>The release of DTail 4.0.0</h1><br />
 <br />
 <span class='quote'>Published at 2022-03-06T18:11:39+00:00</span><br />
 <br />
@@ -6453,9 +6455,9 @@ learn () {
 <br />
 <a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
 <br />
-<h2 style='display: inline'>So, what&#39;s new in 4.0.0?</h2><br />
+<h2 style='display: inline' id='Sowhatsnewin400'>So, what&#39;s new in 4.0.0?</h2><br />
 <br />
-<h3 style='display: inline'>Rewritten logging</h3><br />
+<h3 style='display: inline' id='Rewrittenlogging'>Rewritten logging</h3><br />
 <br />
 <span>For DTail 4, logging has been completely rewritten. The new package name is "internal/io/dlog". I rewrote the logging because DTail is a special case here: There are logs processed by DTail, there are logs produced by the DTail server itself, there are logs produced by a DTail client itself, there are logs only logged by a DTail client, there are logs only logged by the DTail server, and there are logs logged by both, server and client. There are also different logging levels and outputs involved.</span><br />
 <br />
@@ -6482,7 +6484,7 @@ const (
 <br />
 <span>DTail also supports multiple log outputs (e.g. to file or to stdout). More are now easily pluggable with the new logging package. The output can also be "enriched" (default) or "plain" (read more about that further below).</span><br />
 <br />
-<h3 style='display: inline'>Configurable terminal color codes</h3><br />
+<h3 style='display: inline' id='Configurableterminalcolorcodes'>Configurable terminal color codes</h3><br />
 <br />
 <span>A complaint I received from the users of DTail 3 were the terminal colors used for the output. Under some circumstances (terminal configuration) it made the output difficult to read so that users defaulted to "--noColor" (disabling colored output completely). I toke it by heart and also rewrote the color handling. It&#39;s now possible to configure the foreground and background colors and an attribute (e.g. dim, bold, ...).</span><br />
 <br />
@@ -6598,7 +6600,7 @@ const (
 jsonschema -i dtail.json schemas/dtail.schema.json
 </pre>
 <br />
-<h3 style='display: inline'>Serverless mode</h3><br />
+<h3 style='display: inline' id='Serverlessmode'>Serverless mode</h3><br />
 <br />
 <span>All DTail commands can now operate on log files (and other text files) directly without any DTail server running. So there isn&#39;t a need anymore to install a DTail server when you are on the target server already anyway, like the following example shows:</span><br />
 <br />
@@ -6614,7 +6616,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <br />
 <span>The way it works in Go code is that a connection to a server is managed through an interface and in serverless mode DTail calls through that interface to the server code directly without any TCP/IP and SSH connection made in the background. This means, that the binaries are a bit larger (also ship with the code which normally would be executed by the server) but the increase of binary size is not much.</span><br />
 <br />
-<h3 style='display: inline'>Shorthand flags</h3><br />
+<h3 style='display: inline' id='Shorthandflags'>Shorthand flags</h3><br />
 <br />
 <span>The "--files" from the previous example is now redundant. As a shorthand, It is now possible to do the following instead:</span><br />
 <br />
@@ -6624,7 +6626,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <br />
 <span>Of course, this also works with all other DTail client commands (dgrep, dcat, ... etc).</span><br />
 <br />
-<h3 style='display: inline'>Spartan (aka plain) mode</h3><br />
+<h3 style='display: inline' id='Spartanakaplainmode'>Spartan (aka plain) mode</h3><br />
 <br />
 <span>There&#39;s a plain mode, which makes DTail only print out the "plain" text of the files operated on (without any DTail specific enriched output). E.g.:</span><br />
 <br />
@@ -6635,7 +6637,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 <br />
 <span>This might be useful if you wanted to post-process the output. </span><br />
 <br />
-<h3 style='display: inline'>Standard input pipe</h3><br />
+<h3 style='display: inline' id='Standardinputpipe'>Standard input pipe</h3><br />
 <br />
 <span>In serverless mode, you might want to process your data in a pipeline. You can do that now too through an input pipe:</span><br />
 <br />
@@ -6650,7 +6652,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 % awk &#39;.....&#39; &lt; /some/file | dtail ....
 </pre>
 <br />
-<h3 style='display: inline'>New command dtailhealth</h3><br />
+<h3 style='display: inline' id='Newcommanddtailhealth'>New command dtailhealth</h3><br />
 <br />
 <span>Prior to DTail 4, there was a flag for the "dtail" command to check the health of a remote DTail server (for use with monitoring system such as Nagios). That has been moved out to a separate binary to reduce complexity of the "dtail" command. The following checks whether DTail is operational on the current machine (you could also check a remote instance of DTail server, just adjust the server address).</span><br />
 <br />
@@ -6661,7 +6663,7 @@ jsonschema -i dtail.json schemas/dtail.schema.json
 exec /usr/local/bin/dtailhealth --server localhost:2222
 </pre>
 <br />
-<h3 style='display: inline'>Improved documentation</h3><br />
+<h3 style='display: inline' id='Improveddocumentation'>Improved documentation</h3><br />
 <br />
 <span>Some features, such as custom log formats and the map-reduce query language, are now documented. Also, the examples have been updated to reflect the new features added. This also includes the new animated example Gifs (plus documentation how they were created).</span><br />
 <br />
@@ -6675,7 +6677,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 </ul><br />
 <span>That will be added in one of the future releases. </span><br />
 <br />
-<h3 style='display: inline'>Integration testing suite</h3><br />
+<h3 style='display: inline' id='Integrationtestingsuite'>Integration testing suite</h3><br />
 <br />
 <span>DTail comes already with some unit tests, but what&#39;s new is a full integration testing suite which covers all common use cases of all the commands (dtail, dcat, dgrep, dmap) with a server backend and also in serverless mode.</span><br />
 <br />
@@ -6696,7 +6698,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 % go test -race -v ./integrationtests
 </pre>
 <br />
-<h3 style='display: inline'>Improved code</h3><br />
+<h3 style='display: inline' id='Improvedcode'>Improved code</h3><br />
 <br />
 <span>Not that the code quality of DTail has been bad (I have been using Go vet and Go lint for previous releases and will keep using these), but this time I had new tools (such as SonarQube and BlackDuck) in my arsenal to:</span><br />
 <br />
@@ -6706,11 +6708,11 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 </ul><br />
 <span>Other than that, a lot of other code has been refactored as I saw fit.</span><br />
 <br />
-<h3 style='display: inline'>Use of memory pools</h3><br />
+<h3 style='display: inline' id='Useofmemorypools'>Use of memory pools</h3><br />
 <br />
 <span>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</span><br />
 <br />
-<h2 style='display: inline'>What&#39;s next</h2><br />
+<h2 style='display: inline' id='Whatsnext'>What&#39;s next</h2><br />
 <br />
 <span>DTail 5 won&#39;t be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</span><br />
 <br />
@@ -7064,7 +7066,7 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
         <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Bash Golf Part 2</h1><br />
+                <h1 style='display: inline' id='BashGolfPart2'>Bash Golf Part 2</h1><br />
 <br />
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
 <br />
@@ -7085,7 +7087,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
-<h2 style='display: inline'>Redirection</h2><br />
+<h2 style='display: inline' id='Redirection'>Redirection</h2><br />
 <br />
 <span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
 <br />
@@ -7217,7 +7219,7 @@ First line: Learn You a Haskell
 Second line: for Great Good
 </pre>
 <br />
-<h2 style='display: inline'>HERE</h2><br />
+<h2 style='display: inline' id='HERE'>HERE</h2><br />
 <br />
 <span>I have mentioned HERE-documents and HERE-strings already in this post. Let&#39;s do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</span><br />
 <br />
@@ -7300,7 +7302,7 @@ Learn you a Golang for Great Good
 I like Perl too
 </pre>
 <br />
-<h2 style='display: inline'>RANDOM</h2><br />
+<h2 style='display: inline' id='RANDOM'>RANDOM</h2><br />
 <br />
 <span>Random is a special built-in variable containing a different pseudo random number each time it&#39;s used.</span><br />
 <br />
@@ -7345,11 +7347,11 @@ Delaying script execution for 42 seconds...
 Continuing script execution...
 </pre>
 <br />
-<h2 style='display: inline'>set -x and set -e and pipefile</h2><br />
+<h2 style='display: inline' id='setxandseteandpipefile'>set -x and set -e and pipefile</h2><br />
 <br />
 <span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
 <br />
-<h3 style='display: inline'>-x</h3><br />
+<h3 style='display: inline' id='x'>-x</h3><br />
 <br />
 <span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
 <br />
@@ -7391,7 +7393,7 @@ Second line: for Great Good
 ❯
 </pre>
 <br />
-<h3 style='display: inline'>-e</h3><br />
+<h3 style='display: inline' id='e'>-e</h3><br />
 <br />
 <span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
 <br />
@@ -7510,7 +7512,7 @@ Hello You!
 <br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>./2021-05-16-personal-bash-coding-style-guide.html</a><br />
 <br />
-<h3 style='display: inline'>pipefail</h3><br />
+<h3 style='display: inline' id='pipefail'>pipefail</h3><br />
 <br />
 <span>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</span><br />
 <br />
@@ -7720,7 +7722,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Bash Golf Part 1</h1><br />
+                <h1 style='display: inline' id='BashGolfPart1'>Bash Golf Part 1</h1><br />
 <br />
 <span class='quote'>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</span><br />
 <br />
@@ -7741,7 +7743,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
-<h2 style='display: inline'>TCP/IP networking</h2><br />
+<h2 style='display: inline' id='TCPIPnetworking'>TCP/IP networking</h2><br />
 <br />
 <span>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</span><br />
 <br />
@@ -7775,7 +7777,7 @@ X-Frame-Options: SAMEORIGIN
 <br />
 <span>You would assume that this also works with the ZSH, but it doesn&#39;t. This is one of the few things which don&#39;t work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</span><br />
 <br />
-<h2 style='display: inline'>Process substitution</h2><br />
+<h2 style='display: inline' id='Processsubstitution'>Process substitution</h2><br />
 <br />
 <span>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</span><br />
 <br />
@@ -7855,7 +7857,7 @@ foo bar baz
 <br />
 <span>Just think a while and see whether you understand fully what is happening here.</span><br />
 <br />
-<h2 style='display: inline'>Grouping</h2><br />
+<h2 style='display: inline' id='Grouping'>Grouping</h2><br />
 <br />
 <span>Command grouping can be quite useful for combining the output of multiple commands:</span><br />
 <br />
@@ -7922,7 +7924,7 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 1028739
 </pre>
 <br />
-<h2 style='display: inline'>Expansions</h2><br />
+<h2 style='display: inline' id='Expansions'>Expansions</h2><br />
 <br />
 <span>Let&#39;s start with simple examples:</span><br />
 <br />
@@ -7979,7 +7981,7 @@ one:A one:B one:C two:A two:B two:C
 Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
 </pre>
 <br />
-<h2 style='display: inline'>- aka stdin and stdout placeholder</h2><br />
+<h2 style='display: inline' id='akastdinandstdoutplaceholder'>- aka stdin and stdout placeholder</h2><br />
 <br />
 <span>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</span><br />
 <br />
@@ -8030,7 +8032,7 @@ $ file -
 /dev/stdin: Perl script text executable
 </pre>
 <br />
-<h2 style='display: inline'>Alternative argument passing</h2><br />
+<h2 style='display: inline' id='Alternativeargumentpassing'>Alternative argument passing</h2><br />
 <br />
 <span>This is a quite unusual way of passing arguments to a Bash script:</span><br />
 <br />
@@ -8072,7 +8074,7 @@ paul:secret
 <br />
 <span>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</span><br />
 <br />
-<h2 style='display: inline'>: aka the null command</h2><br />
+<h2 style='display: inline' id='akathenullcommand'>: aka the null command</h2><br />
 <br />
 <span>First, let&#39;s use the "help" Bash built-in to see what it says about the null command:</span><br />
 <br />
@@ -8159,7 +8161,7 @@ bash: 1: command not found...
 4
 </pre>
 <br />
-<h2 style='display: inline'>(No) floating point support</h2><br />
+<h2 style='display: inline' id='Nofloatingpointsupport'>(No) floating point support</h2><br />
 <br />
 <span>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn&#39;t:</span><br />
 <br />
@@ -8333,7 +8335,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
         <summary>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the 'lasagna' stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>Keep it simple and stupid</h1><br />
+                <h1 style='display: inline' id='Keepitsimpleandstupid'>Keep it simple and stupid</h1><br />
 <br />
 <span class='quote'>Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23</span><br />
 <br />
@@ -8354,23 +8356,23 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today&#39;s world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what&#39;s going on.</span><br />
 <br />
-<h1 style='display: inline'>Need faster hardware</h1><br />
+<h1 style='display: inline' id='Needfasterhardware'>Need faster hardware</h1><br />
 <br />
 <span>This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it&#39;s so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.</span><br />
 <br />
-<h1 style='display: inline'>Too complex to be replaced</h1><br />
+<h1 style='display: inline' id='Toocomplextobereplaced'>Too complex to be replaced</h1><br />
 <br />
-<h2 style='display: inline'>On COBOL</h2><br />
+<h2 style='display: inline' id='OnCOBOL'>On COBOL</h2><br />
 <br />
 <span>Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It&#39;s just too scary to write everything from scratch. There&#39;s too much COBOL code out there that can&#39;t be replaced from today to tomorrow. </span><br />
 <br />
 <a class='textlink' href='https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html'>https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html</a><br />
 <br />
-<h2 style='display: inline'>On Kubernetes</h2><br />
+<h2 style='display: inline' id='OnKubernetes'>On Kubernetes</h2><br />
 <br />
 <span>Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster -  it also applies to the software engineers, who now have to develop &#39;cloud native&#39; applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.</span><br />
 <br />
-<h2 style='display: inline'>The younger generation of IT professionals</h2><br />
+<h2 style='display: inline' id='TheyoungergenerationofITprofessionals'>The younger generation of IT professionals</h2><br />
 <br />
 <span>Maybe the younger generation knows all of this already after graduation, but then they are missing other critical parts of the system for sure. I have seen engineers who knew about containers and how to configure resource restrictions for a Docker container managed via k8s but have never heard the terms Linux control groups and Linux namespaces. So obviously, there is some knowledge gap of the underlying architecture. This can be a big problem when you have to troubleshoot such a system during a production incident and k8s adds a lot of abstraction to the mix which doesn&#39;t make it easier. </span><br />
 <br />
@@ -8386,7 +8388,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <a class='textlink' href='https://christine.website/blog/theres-a-node-2021-10-02'>https://christine.website/blog/theres-a-node-2021-10-02</a><br />
 <br />
-<h1 style='display: inline'>The bloated web</h1><br />
+<h1 style='display: inline' id='Thebloatedweb'>The bloated web</h1><br />
 <br />
 <span>Another example is the modern web. Have you ever wondered why the internet becomes slower and slower nowadays? The modern web is so much like lasagna that I decided to use Gemini to be the primary protocol of my website. The HTML version of this website is just a fallback as many visitors don&#39;t know what Gemini is and don&#39;t have any compatible software installed for surfing the Geminispace:</span><br />
 <br />
@@ -8394,7 +8396,7 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>The Gemtext protocol is KISS. There&#39;s no way to do other formattings than headings, links, paragraphs, lists, quotes, and bare text blocks (e.g., ASCII art or code snippets). There&#39;s no way to create bloated Gemini sites, and due to its limited capabilities, there&#39;s also no way to commercialise it (e.g. there&#39;s no good way to track the site visitors as things like cookies don&#39;t exist). By design, the Gemini protocol can&#39;t be extended, so there is no chance to abuse it even in the future. Gemini sites will stay KISS forever, and there won&#39;t be any fancy HTML/JavaScript frameworks like we see on the modern web.</span><br />
 <br />
-<h1 style='display: inline'>Fancy log-management solutions</h1><br />
+<h1 style='display: inline' id='Fancylogmanagementsolutions'>Fancy log-management solutions</h1><br />
 <br />
 <span>Yet another example I want to bring up is DTail, the distributed log tail program I wrote. There are many great and fancy log-management solutions available to choose from, and they all seem complex to set up and maintain. The ELK stack, for example, requires you to operate an ElasticSearch cluster (or multiple, if you are geo-redundant), Logstash (different configurations and instances, depending on your infrastructure) and a Kibana web-frontend (which also needs to be highly available). I have operated ElasticSearch clusters on multiple occasions, and I must say that it is not an easy task to optimise it for the particular workload you might encounter. I also have seen many ES clusters operated by other people, and I have seen these clusters failing a lot (so it&#39;s not just me). The reduced complexity of DTail also makes it more robust against outages. You won&#39;t troubleshoot your distributed application very well if the log management infrastructure isn&#39;t working either.</span><br />
 <br />
@@ -8402,27 +8404,27 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <br />
 <span>I don&#39;t say that the ELK stack doesn&#39;t work, but it requires experts and additional hardware resources to support it. But instead, if you keep your infrastructure simple (e.g. only use DTail), it will maintain pretty much by itself. </span><br />
 <br />
-<h1 style='display: inline'>More KISS</h1><br />
+<h1 style='display: inline' id='MoreKISS'>More KISS</h1><br />
 <br />
-<h2 style='display: inline'>The Adslowbe PDF Reader</h2><br />
+<h2 style='display: inline' id='TheAdslowbePDFReader'>The Adslowbe PDF Reader</h2><br />
 <br />
 <span>Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems, look at Zathura for example). I believe the reason Adobe&#39;s reader is like this is featuritis, and 90% of the users don&#39;t use 90% of all available features. Less is more; keep it simple and stupid. </span><br />
 <br />
-<h2 style='display: inline'>The power of plain text files</h2><br />
+<h2 style='display: inline' id='Thepowerofplaintextfiles'>The power of plain text files</h2><br />
 <br />
 <span>Speaking of file formats, never underestimate the power of plain text files.  Plain text files don&#39;t require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won&#39;t be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn&#39;t supported anymore and doesn&#39;t run anymore on modern computers.</span><br />
 <br />
-<h2 style='display: inline'>KISS for programmers</h2><br />
+<h2 style='display: inline' id='KISSforprogrammers'>KISS for programmers</h2><br />
 <br />
 <span>Not to mention, keeping things simple and stupid also reduces the potential malicious attack surface. It&#39;s not just about the software and services you use and operate. It&#39;s also about the software you write. Here is a nice article about the KISS principle in software development:</span><br />
 <br />
 <a class='textlink' href='https://thevaluable.dev/kiss-principle-explained/'>https://thevaluable.dev/kiss-principle-explained/</a><br />
 <br />
-<h1 style='display: inline'>When KISS is not KISS anymore</h1><br />
+<h1 style='display: inline' id='WhenKISSisnotKISSanymore'>When KISS is not KISS anymore</h1><br />
 <br />
 <span>There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don&#39;t even notice it until it is too late.</span><br />
 <br />
-<h2 style='display: inline'>Other relevant readings</h2><br />
+<h2 style='display: inline' id='Otherrelevantreadings'>Other relevant readings</h2><br />
 <br />
 <a class='textlink' href='https://unixsheikh.com/articles/is-the-madness-ever-going-to-end.html'>Is the madness ever going to end?</a><br />
 <a class='textlink' href='https://sive.rs/plaintext'>Write plain text files</a><br />
