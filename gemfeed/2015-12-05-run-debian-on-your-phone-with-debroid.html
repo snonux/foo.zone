@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Run Debian on your phone with Debroid</h1><br />
+<h1 style='display: inline' id='RunDebianonyourphonewithDebroid'>Run Debian on your phone with Debroid</h1><br />
 <br />
 <span class='quote'>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</span><br />
 <br />
@@ -25,17 +25,17 @@
 <br />
 <a href='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png'><img src='./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
 <br />
-<h2 style='display: inline'>Foreword</h2><br />
+<h2 style='display: inline' id='Foreword'>Foreword</h2><br />
 <br />
 <span>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </span><br />
 <br />
-<h2 style='display: inline'>Step by step guide</h2><br />
+<h2 style='display: inline' id='Stepbystepguide'>Step by step guide</h2><br />
 <br />
 <span>All scripts mentioned here can be found on GitHub at:</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/debroid'>https://codeberg.org/snonux/debroid</a><br />
 <br />
-<h3 style='display: inline'>First debootstrap stage</h3><br />
+<h3 style='display: inline' id='Firstdebootstrapstage'>First debootstrap stage</h3><br />
 <br />
 <span>This is to be performed on a Fedora Linux machine (could work on a Debian too, but Fedora is just what I use on my Laptop). The following steps prepare an initial Debian base image, which can then be transferred to the phone.</span><br />
 <br />
@@ -63,7 +63,7 @@ sudo debootstrap --foreign --variant<font color="#990000">=</font>minbase <font 
 sudo umount jessie
 </pre>
 <br />
-<h3 style='display: inline'>Copy Debian image to the phone</h3><br />
+<h3 style='display: inline' id='CopyDebianimagetothephone'>Copy Debian image to the phone</h3><br />
 <br />
 <span>Now setup the Debian image on an external SD card on the Phone via Android Debugger as follows:</span><br />
 <br />
@@ -109,7 +109,7 @@ busybox mount --bind /storage/sdcard<font color="#993399">1</font> <font color="
 mount <font color="#990000">|</font> grep jessie
 </pre>
 <br />
-<h3 style='display: inline'>Second debootstrap stage</h3><br />
+<h3 style='display: inline' id='Seconddebootstrapstage'>Second debootstrap stage</h3><br />
 <br />
 <span>This is to be performed on the Android phone itself (inside a Debian chroot):</span><br />
 <br />
@@ -124,7 +124,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Leave adb shell</font></i>
 </pre>
 <br />
-<h3 style='display: inline'>Setup of various scripts</h3><br />
+<h3 style='display: inline' id='Setupofvariousscripts'>Setup of various scripts</h3><br />
 <br />
 <span>jessie.sh deals with all the loopback mount magic and so on. It will be run later every time you start Debroid on your phone.</span><br />
 <br />
@@ -164,7 +164,7 @@ apt-get dist-upgrade
 <b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit chroot</font></i>
 </pre>
 <br />
-<h3 style='display: inline'>Entering Debroid and enable a service</h3><br />
+<h3 style='display: inline' id='EnteringDebroidandenableaservice'>Entering Debroid and enable a service</h3><br />
 <br />
 <span>This enters Debroid on your phone and starts the example service uptimed:</span><br />
 <br />
@@ -187,7 +187,7 @@ chmod <font color="#993399">0755</font> /etc/rc<font color="#990000">.</font>deb
 <b><font color="#0000FF">exit</font></b> <i><font color="#9A1900"># Exit adb shell</font></i>
 </pre>
 <br />
-<h3 style='display: inline'>Include to Android startup:</h3><br />
+<h3 style='display: inline' id='IncludetoAndroidstartup'>Include to Android startup:</h3><br />
 <br />
 <span>If you want to start Debroid automatically whenever your phone starts, then do the following:</span><br />
 <br />

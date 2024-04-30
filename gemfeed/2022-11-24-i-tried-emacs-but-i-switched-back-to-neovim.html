@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1><br />
+<h1 style='display: inline' id='ItriedDoomEmacsbutIswitchedbacktoNeoVim'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1><br />
 <br />
 <span class='quote'>Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26</span><br />
 <br />
@@ -37,13 +37,13 @@ Art by      \ \_!  / __!
 <br />
 <span>So why did I switch back to the Vi-family?</span><br />
 <br />
-<h2 style='display: inline'>Emacs is a giant dragon</h2><br />
+<h2 style='display: inline' id='Emacsisagiantdragon'>Emacs is a giant dragon</h2><br />
 <br />
 <span>Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There&#39;s an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class='inlinecode'>init 1</span> process (if you don&#39;t know what the <span class='inlinecode'>init 1</span> process is: Under UNIX and similar operating systems, it&#39;s the very first userland processed launched. That&#39;s usually <span class='inlinecode'>systemd</span> on Linux-based systems, <span class='inlinecode'>launchd</span> on macOS, or any other init script or init system used by the OS)!</span><br />
 <br />
 <span>In many aspects, Emacs is like shooting at everything with a bazooka! However, I prefer it simple. I only wanted Emacs to be a good editor (which it is, too), but there&#39;s too much other stuff in Emacs that I don&#39;t need to care about! Vim and NeoVim do one thing excellent: Being great text editors and, when loaded with plugins, decent IDEs, too. </span><br />
 <br />
-<h2 style='display: inline'>Magit love</h2><br />
+<h2 style='display: inline' id='Magitlove'>Magit love</h2><br />
 <br />
 <span>I almost fell in love with Magit, an integrated Git client for Emacs. But I think the best way to interact with Git is to use the <span class='inlinecode'>git</span> command line directly. I don&#39;t worry about typing out all the commands, as the most commonly used commands are in my shell history. Other useful Git programs I use frequently are <span class='inlinecode'>bit</span> and <span class='inlinecode'>tig</span>. Also, get a mechanical keyboard that makes hammering whole commands into the terminal even more enjoyable.</span><br />
 <br />
@@ -52,13 +52,13 @@ Art by      \ \_!  / __!
 <br />
 <span>Magit is pretty neat for basic Git operations, but I found myself searching the internet for the correct sub-commands to do the things I wanted to do in Git. Mainly, the way how branches are managed is confusing. Often, I fell back to the command line to fix up the mess I produced with Magit (e.g. accidentally pushing to the wrong remote branch, so I found myself fixing things manually on the terminal with the <span class='inlinecode'>git</span> command with forced pushes....). Magit is hotkey driven, and common commands are quickly explorable through built-in hotkey menus. Still, I found it challenging to navigate to more advanced Git sub-commands that way which was much easier accomplished by using the <span class='inlinecode'>git</span> command directly.</span><br />
 <br />
-<h2 style='display: inline'>Graphical UI</h2><br />
+<h2 style='display: inline' id='GraphicalUI'>Graphical UI</h2><br />
 <br />
 <span>If there is one thing I envy about Emacs is that it&#39;s a graphical program, whereas the Vi-family of editors are purely terminal-based. I see the benefits of being a graphical program as this enables the use of multiple fonts simultaneously to embed pictures and graphs (that would be neat as a Markdown preview, for example). There&#39;s also GVim (Vim with GTK UI), but that&#39;s more of an afterthought.</span><br />
 <br />
 <span>There are now graphical front-end clients for NeoVim, but I still need to dig into them. Let me know your experience if you have one. Luckily, I don&#39;t rely on something graphical in my text editor, but it would improve how the editor looks and feels. UTF8 can already do a lot in the terminal, and terminal emulators also allow you to use TrueType fonts. Still, you will always be limited to one TTF font for the whole terminal, and it isn&#39;t possible to have, for example, a different font for headings, paragraphs, etc... you get the idea. TTF+UTF8 can&#39;t beat authentic graphics. </span><br />
 <br />
-<h2 style='display: inline'>Scripting it</h2><br />
+<h2 style='display: inline' id='Scriptingit'>Scripting it</h2><br />
 <br />
 <span>It is possible to customize every aspect of Emacs through Emacs Lisp. I have done some Elk Scheme programming in the past (a dialect of Lisp), but that was a long time ago, and I am not willing to dive here again to customize my environment. I would instead take the pragmatic approach and script what I need in VimScript (a terrible language, but it gets the job done!). I watched Damian Conway&#39;s VimScript course on O&#39;Reilly Safari Books Online, which I greatly recommend. Yes, VimScript feels clunky, funky and weird and is far less elegant than Lisp, but it gets its job done - in most cases! (That reminds me that the Vim team has announced a new major version of VimScript with improvements and language changes made - I haven&#39;t gotten to it yet - but I assume that VimScript will always stay VimScript).</span><br />
 <br />
@@ -87,7 +87,7 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <br />
 <span>That&#39;s only a very few lines and does precisely what I want. It&#39;s quick and dirty but get&#39;s the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</span><br />
 <br />
-<h2 style='display: inline'>The famous Emacs Org mode</h2><br />
+<h2 style='display: inline' id='ThefamousEmacsOrgmode'>The famous Emacs Org mode</h2><br />
 <br />
 <span>Org-mode is an Emacs mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain-text system. There&#39;s even a dedicated website for it:</span><br />
 <br />
@@ -107,13 +107,13 @@ nmap ,<b><font color="#0000FF">i</font></b> !wpbpaste<font color="#FF6600">&lt;C
 <a class='textlink' href='https://zsh.sourceforge.io/'>Z shell</a><br />
 <a class='textlink' href='https://github.com/tmux/tmux'>tmux terminal multiplexer</a><br />
 <br />
-<h2 style='display: inline'>Seeking simplicity</h2><br />
+<h2 style='display: inline' id='Seekingsimplicity'>Seeking simplicity</h2><br />
 <br />
 <span>I am not ready to dive deep into the whole world of Emacs. I prefer small and simple tools as opposed to complex tools. Emacs comes with many features out of the box, whereas in Vim/NeoVim, you would need to install many plugins to replicate some of the behaviour. Yes, I need to invest time managing all the Vim/NeoVim plugins I use, but I feel more in control compared to Doom Emacs, where a framework around vanilla Emacs manages all the plugins. I could use vanilla Emacs and manage all my plugins the vanilla way, but for me, it&#39;s not worth the effort to learn and dive into that as all that I want to do I can already do with Vim/NeoVim.</span><br />
 <br />
 <span>I am not saying that Vim/NeoVim are simple programs, but they are much simpler than Emacs with much smaller footprints; furthermore, they appear to be more straightforward as I am used to them. I only need Vim/NeoVim to be an editor, an IDE (through some plugins), and nothing more.</span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>I understand the Emacs users now. Emacs is an incredibly powerful platform for almost everything, not just text editing. With Emacs, you can do nearly everything (Writing, editing, programming, calendar scheduling and note taking, Jira integration, playing games, listening to music, reading/writing emails, browsing the web, using as a calculator, generating HTML pages, configuring interactive menus, jumping around between every feature and every file within one single session, chat on IRC, surf the Gopherspace, ... the options are endless....). If you want to have one piece of software which rules it all and you are happy to invest a large part of your time in your platform: Pick Emacs, and over time Emacs will become "your" Emacs, customized to your own needs and change the way it works, which makes the Emacs users stick even more to it.</span><br />
 <br />

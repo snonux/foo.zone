@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
+<h1 style='display: inline' id='Gemtexter210LetsGemtextagain'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
 <br />
@@ -29,17 +29,17 @@
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
 <br />
-<h2 style='display: inline'>Why Bash?</h2><br />
+<h2 style='display: inline' id='WhyBash'>Why Bash?</h2><br />
 <br />
 <span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
 <br />
 <span>Let&#39;s list what&#39;s new!</span><br />
 <br />
-<h2 style='display: inline'>Switch to GPL3 license</h2><br />
+<h2 style='display: inline' id='SwitchtoGPL3license'>Switch to GPL3 license</h2><br />
 <br />
 <span>Many (almost all) of the tools and commands (GNU Bash, GMU Sed, GNU Date, GNU Grep, GNU Source Highlight) used by <span class='inlinecode'>Gemtexter</span> are licensed under the GPL anyway. So why not use the same? This was an easy switch, as I was the only code contributor so far!</span><br />
 <br />
-<h2 style='display: inline'>Source code highlighting support</h2><br />
+<h2 style='display: inline' id='Sourcecodehighlightingsupport'>Source code highlighting support</h2><br />
 <br />
 <span>The HTML output now supports source code highlighting, which is pretty neat if your site is about programming. The requirement is to have the <span class='inlinecode'>source-highlight</span> command, which is GNU Source Highlight, to be installed. Once done, you can annotate a bare block with the language to be highlighted. E.g.:</span><br />
 <br />
@@ -64,11 +64,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
 <br />
-<h2 style='display: inline'>HTML exact variant</h2><br />
+<h2 style='display: inline' id='HTMLexactvariant'>HTML exact variant</h2><br />
 <br />
 <span>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
 <br />
-<h2 style='display: inline'>Use of Hack webfont by default</h2><br />
+<h2 style='display: inline' id='UseofHackwebfontbydefault'>Use of Hack webfont by default</h2><br />
 <br />
 <span>The Hack web font is a typeface designed explicitly for source code. It&#39;s a derivative of the Bitstream Vera and DejaVu Mono lineage, but it features many improvements and refinements that make it better suited to reading and writing code.</span><br />
 <br />
@@ -76,7 +76,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Hack is open-source and freely available for use and modification under the MIT License.</span><br />
 <br />
-<h2 style='display: inline'>HTML Mastodon verification support</h2><br />
+<h2 style='display: inline' id='HTMLMastodonverificationsupport'>HTML Mastodon verification support</h2><br />
 <br />
 <span>The following link explains how URL verification works in Mastodon:</span><br />
 <br />
@@ -106,7 +106,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at Mastodon<b><font color="#0000FF">&lt;/a&gt;</font></b>
 </pre>
 <br />
-<h2 style='display: inline'>More</h2><br />
+<h2 style='display: inline' id='More'>More</h2><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />

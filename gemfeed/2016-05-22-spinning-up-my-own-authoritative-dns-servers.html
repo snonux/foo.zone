@@ -8,17 +8,17 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Spinning up my own authoritative DNS servers</h1><br />
+<h1 style='display: inline' id='SpinningupmyownauthoritativeDNSservers'>Spinning up my own authoritative DNS servers</h1><br />
 <br />
 <span class='quote'>Published at 2016-05-22T18:59:01+01:00</span><br />
 <br />
-<h2 style='display: inline'>Background</h2><br />
+<h2 style='display: inline' id='Background'>Background</h2><br />
 <br />
 <span>Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.</span><br />
 <br />
 <a class='textlink' href='http://www.schlundtech.de'>Schlund Technologies</a><br />
 <br />
-<h2 style='display: inline'>All FreeBSD Jails</h2><br />
+<h2 style='display: inline' id='AllFreeBSDJails'>All FreeBSD Jails</h2><br />
 <br />
 <span>To set up my authoritative DNS servers, I installed a FreeBSD Jail dedicated for DNS with Puppet on my root machine as follows:</span><br />
 <br />
@@ -55,7 +55,7 @@ class { &#39;jail&#39;:
 }
 </pre>
 <br />
-<h2 style='display: inline'>PF firewall</h2><br />
+<h2 style='display: inline' id='PFfirewall'>PF firewall</h2><br />
 <br />
 <span>Please note that "dns.ian.buetow.org" is just the Jail name of the master DNS server (and "caprica.ian.buetow.org" the name of the Jail for the slave DNS server) and that I am using the DNS names "dns1.buetow.org" (master) and "dns2.buetow.org" (slave) for the actual service names (these are the DNS servers visible to the public). Please also note that the IPv4 address is an internal one. I have a PF to use NAT and PAT. The DNS ports are being forwarded (TCP and UDP) to that Jail. By default, all ports are blocked, so I am adding an exception rule for the IPv6 address. These are the PF rules in use:</span><br />
 <br />
@@ -72,7 +72,7 @@ pass in on re0 inet6 proto udp from any to 2a01:4f8:120:30e8::15 port {53} flags
 .
 </pre>
 <br />
-<h2 style='display: inline'>Puppet managed BIND zone files</h2><br />
+<h2 style='display: inline' id='PuppetmanagedBINDzonefiles'>Puppet managed BIND zone files</h2><br />
 <br />
 <span>In "manifests/dns.pp" (the Puppet manifest for the Master DNS Jail itself), I configured the BIND DNS server this way:</span><br />
 <br />
@@ -146,7 +146,7 @@ zone "buetow.zone" {
 };
 </pre>
 <br />
-<h2 style='display: inline'>The result</h2><br />
+<h2 style='display: inline' id='Theresult'>The result</h2><br />
 <br />
 <span>The result looks like this now:</span><br />
 <br />
@@ -206,7 +206,7 @@ dns2.buetow.org.	86400	IN	AAAA	2a03:2500:1:6:20::
 ;; MSG SIZE  rcvd: 322
 </pre>
 <br />
-<h2 style='display: inline'>Monitoring</h2><br />
+<h2 style='display: inline' id='Monitoring'>Monitoring</h2><br />
 <br />
 <span>For monitoring, I am using Icinga2 (I am operating two Icinga2 instances in two different DCs). I may have to post another blog article about Icinga2, but to get the idea, these were the snippets added to my Icinga2 configuration:</span><br />
 <br />
@@ -233,7 +233,7 @@ apply Service "dig6" {
 }
 </pre>
 <br />
-<h2 style='display: inline'>DNS update workflow</h2><br />
+<h2 style='display: inline' id='DNSupdateworkflow'>DNS update workflow</h2><br />
 <br />
 <span>Whenever I have to change a DNS entry, all I have to do is:</span><br />
 <br />

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+<h1 style='display: inline' id='Frombabylon5buetoworgtobuetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
 <br />
 <span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
 <br />
@@ -18,7 +18,7 @@
 <br />
 <a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
 <br />
-<h2 style='display: inline'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<h2 style='display: inline' id='Theoldbuetoworgway'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
 <br />
 <span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
 <br />
@@ -38,7 +38,7 @@
 <li>KISS (Keep it Simple Stupid)</li>
 <li>Cheap</li>
 </ul><br />
-<h2 style='display: inline'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<h2 style='display: inline' id='IkeptmybuetoworgOpenBSDboxesalive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
 <br />
 <span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
 <br />
@@ -59,7 +59,7 @@
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
 <br />
-<h2 style='display: inline'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<h2 style='display: inline' id='Thenewbuetowcloudway'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
 <br />
 <span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
 <br />
@@ -89,11 +89,11 @@
 <li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
 <li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
 </ul><br />
-<h2 style='display: inline'>The container apps</h2><br />
+<h2 style='display: inline' id='Thecontainerapps'>The container apps</h2><br />
 <br />
 <span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='fluxbuetowcloud'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
 <br />
 <span>Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.</span><br />
 <br />
@@ -102,7 +102,7 @@
 <a class='textlink' href='https://miniflux.app/'>https://miniflux.app/</a><br />
 <br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='audiobookshelfbuetowcloud'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
 <br />
 <span>Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.</span><br />
 <br />
@@ -110,7 +110,7 @@
 <br />
 <a class='textlink' href='https://www.audiobookshelf.org'>https://www.audiobookshelf.org</a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='syncthingbuetowcloud'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
 <br />
 <span>Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it&#39;s transmitted over the internet.</span><br />
 <br />
@@ -120,7 +120,7 @@
 <br />
 <a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='radicalebuetowcloud'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
 <br />
 <span>Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn&#39;t a ready-to-use Docker image. So, I created my own.</span><br />
 <br />
@@ -130,21 +130,21 @@
 <a class='textlink' href='https://codeberg.org/snonux/docker-radicale-server'>https://codeberg.org/snonux/docker-radicale-server</a><br />
 <a class='textlink' href='https://www.davx5.com/'>https://www.davx5.com/</a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='bagbuetowcloud'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
 <br />
 <span>Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!</span><br />
 <br />
 <a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
 <a class='textlink' href='https://github.com/wallabag/wallabag'>https://github.com/wallabag/wallabag</a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='ankibuetowcloud'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
 <br />
 <span>Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server <span class='inlinecode'>anki-sync-server</span>. For some reason (not going into the details here), I had to build my own Docker image for the server.</span><br />
 <br />
 <a class='textlink' href='https://apps.ankiweb.net/'>https://apps.ankiweb.net/</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/docker-anki-sync-server'>https://codeberg.org/snonux/docker-anki-sync-server</a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='vaultbuetowcloud'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
 <br />
 <span>Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.</span><br />
 <br />
@@ -156,11 +156,11 @@
 <br />
 <a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff </a><br />
 <br />
-<h3 style='display: inline'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
+<h3 style='display: inline' id='bastionbuetowcloud'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
 <br />
 <span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
 <br />
 <span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
 <br />

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Algorithms and Data Structures in Go - Part 1</h1><br />
+<h1 style='display: inline' id='AlgorithmsandDataStructuresinGoPart1'>Algorithms and Data Structures in Go - Part 1</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-09T22:31:42+03:00</span><br />
 <br />
@@ -32,7 +32,7 @@
 <br />
 <span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
 <br />
-<h2 style='display: inline'>Type constraints</h2><br />
+<h2 style='display: inline' id='Typeconstraints'>Type constraints</h2><br />
 <br />
 <span>First, the package <span class='inlinecode'>ds</span> (data structures) defines the <span class='inlinecode'>types.go</span>. All examples will either operate on the <span class='inlinecode'>Integer</span> or <span class='inlinecode'>Number</span> type:</span><br />
 <br />
@@ -56,7 +56,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h2 style='display: inline'>ArrayList</h2><br />
+<h2 style='display: inline' id='ArrayList'>ArrayList</h2><br />
 <br />
 <span>Next comes the <span class='inlinecode'>arraylist.go</span>, which defines the underlying data structure all the algorithms of this series will use. <span class='inlinecode'>ArrayList</span> is just a type alias of a Go array (or slice) with custom methods on it:</span><br />
 <br />
@@ -116,7 +116,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#FF0000">}</font>
 </pre>
 <br />
-<h2 style='display: inline'>Helper methods</h2><br />
+<h2 style='display: inline' id='Helpermethods'>Helper methods</h2><br />
 <br />
 <span>The <span class='inlinecode'>FirstN</span> method only returns the first N elements of the <span class='inlinecode'>ArrayList</span>. This is useful for printing out only parts of the data structure:</span><br />
 <br />
@@ -175,7 +175,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h2 style='display: inline'>Sleep sort</h2><br />
+<h2 style='display: inline' id='Sleepsort'>Sleep sort</h2><br />
 <br />
 <span>Let&#39;s implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It&#39;s more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it&#39;s only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
 <br />
@@ -222,7 +222,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
 <br />
-<h3 style='display: inline'>Testing</h3><br />
+<h3 style='display: inline' id='Testing'>Testing</h3><br />
 <br />
 <span>For testing, we only allow values up to 10, as otherwise, it would take too long to finish:</span><br />
 <br />
