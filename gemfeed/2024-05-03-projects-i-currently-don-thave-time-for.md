@@ -273,6 +273,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Related and maybe interesting:
 
-[Sweatin the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
+[Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
 
 [Back to the main site](../)  
