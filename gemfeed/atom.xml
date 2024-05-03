@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-03T16:25:19+03:00</updated>
+    <updated>2024-05-03T16:37:54+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -104,7 +104,7 @@ Projects I currently don&#39;t have time for
 <br />
 <h3 style='display: inline' id='Readingstation'>Reading station</h3><br />
 <br />
-<span>I wanted to create the most comfortable setup possible for reading digital notes, articles, and books. This would include a comfy armchair, a silent barebone PC or Raspberry Pi computer running either Linux or *BSD, and an e-Ink display mounted on a flexible arm/stand. There would also be a small table for my paper journal for occasional note-taking. There are a bunch of open-source software available for PDF and ePub reading. It would have been neat, but I am currently using the most straightforward solution: a Kobo Elipsa, which I can use on my sofa.</span><br />
+<span>I wanted to create the most comfortable setup possible for reading digital notes, articles, and books. This would include a comfy armchair, a silent barebone PC or Raspberry Pi computer running either Linux or *BSD, and an e-Ink display mounted on a flexible arm/stand. There would also be a small table for my paper journal for occasional note-taking. There are a bunch of open-source software available for PDF and ePub reading. It would have been neat, but I am currently using the most straightforward solution: a Kobo Elipsa 2E, which I can use on my sofa.</span><br />
 <br />
 <h3 style='display: inline' id='Retrostation'>Retro station</h3><br />
 <br />

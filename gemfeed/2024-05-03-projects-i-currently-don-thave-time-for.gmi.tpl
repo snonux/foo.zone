@@ -50,7 +50,7 @@ I don't have this, and I haven't missed having it, so I guess it would have been
 
 ### Reading station
 
-I wanted to create the most comfortable setup possible for reading digital notes, articles, and books. This would include a comfy armchair, a silent barebone PC or Raspberry Pi computer running either Linux or *BSD, and an e-Ink display mounted on a flexible arm/stand. There would also be a small table for my paper journal for occasional note-taking. There are a bunch of open-source software available for PDF and ePub reading. It would have been neat, but I am currently using the most straightforward solution: a Kobo Elipsa, which I can use on my sofa.
+I wanted to create the most comfortable setup possible for reading digital notes, articles, and books. This would include a comfy armchair, a silent barebone PC or Raspberry Pi computer running either Linux or *BSD, and an e-Ink display mounted on a flexible arm/stand. There would also be a small table for my paper journal for occasional note-taking. There are a bunch of open-source software available for PDF and ePub reading. It would have been neat, but I am currently using the most straightforward solution: a Kobo Elipsa 2E, which I can use on my sofa.
 
 ### Retro station
 
