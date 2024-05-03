@@ -1,11 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-04-30T13:13:33+03:00</updated>
+    <updated>2024-05-03T16:23:03+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Projects I currently don't have time for</title>
+        <link href="gemini://foo.zone/gemfeed/2024-05-03-projects-i-currently-don-thave-time-for.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-05-03-projects-i-currently-don-thave-time-for.gmi</id>
+        <updated>2024-05-03T16:23:03+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Art by Laura Brown</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='ProjectsIcurrentlydonthavetimefor'>Projects I currently don&#39;t have time for</h1><br />
+<br />
+<pre>
+Art by Laura Brown
+
+.&#39;`~~~~~~~~~~~`&#39;.
+(  .&#39;11 12 1&#39;.  )
+|  :10 \    2:  |
+|  :9   @-&gt; 3:  |
+|  :8       4;  |
+&#39;. &#39;..7 6 5..&#39; .&#39;
+ ~-------------~  ldb
+
+</pre>
+<br />
+<h2 style='display: inline' id='Introduction'>Introduction</h2><br />
+<br />
+<span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
+<br />
+<pre>
+Table of contents
+=================
+
+Projects I currently don&#39;t have time for
+    Introduction
+    Hardware projects I don&#39;t have time for
+        I use Arch, btw!
+        OpenBSD home router
+        Infodash
+        Reading station
+        Retro station
+        Sound server
+        Project Freekat
+    Programming projects I don&#39;t have time for
+        CLI-HIVE
+        Enhanced KISS home photo albums
+        KISS file sync server with end-to-end encryption
+        A language that compiles to `bash`
+        A language that compiles to `sed`
+        Renovate VS-Sim
+        KISS ticketing system
+        A domain-specific language (DSL) for work
+    Self-hosting projects I don&#39;t have time for
+        My own Matrix server
+        Ampache music server
+        Librum eBook reader
+        Memos - Note-taking service
+        Bepasty server
+    New websites I don&#39;t have time for
+        Create a "Why Raku Rox" site
+    Research projects I don&#39;t have time for
+        Project secure
+        CPU utilisation is all wrong
+</pre>
+<br />
+<h2 style='display: inline' id='HardwareprojectsIdonthavetimefor'>Hardware projects I don&#39;t have time for</h2><br />
+<br />
+<h3 style='display: inline' id='IuseArchbtw'>I use Arch, btw!</h3><br />
+<br />
+<span>The idea was to build the ultimate Arch Linux setup on an old ThinkPad X200 booting with the open-source LibreBoot firmware, complete with a tiling window manager, dmenu, and all the elite tools. This is mainly for fun, as I am pretty happy (and productive) with my Fedora Linux setup. I ran EndeavourOS (close enough to Arch) on an old ThinkPad for a while, but then I switched back to Fedora because the rolling releases were annoying (there were too many updates).</span><br />
+<br />
+<h3 style='display: inline' id='OpenBSDhomerouter'>OpenBSD home router</h3><br />
+<br />
+<span>In my student days, I operated a 486DX PC with OpenBSD as my home DSL internet router. I bought the setup from my brother back then. The router&#39;s hostname was <span class='inlinecode'>fishbone</span>, and it performed very well until it became too slow for larger broadband bandwidth after a few years of use.</span><br />
+<br />
+<span>I had the idea to revive this concept, implement <span class='inlinecode'>fishbone2</span>, and place it in front of my proprietary ISP router to add an extra layer of security and control in my home LAN. It would serve as the default gateway for all of my devices, including a Wi-Fi access point, would run a DNS server, Pi-hole proxy, VPN client, and DynDNS client. I would also implement high availability using OpenBSD&#39;s CARP protocol.</span><br />
+<br />
+<a class='textlink' href='https://openbsdrouterguide.net'>https://openbsdrouterguide.net</a><br />
+<a class='textlink' href='https://pi-hole.net/'>https://pi-hole.net/</a><br />
+<a class='textlink' href='https://www.OpenBSD.org'>https://www.OpenBSD.org</a><br />
+<a class='textlink' href='https://www.OpenBSD.org/faq/pf/carp.html'>https://www.OpenBSD.org/faq/pf/carp.html</a><br />
+<br />
+<span>However, I am putting this on hold as I have opted for an OpenWRT-based solution, which was much quicker to set up and runs well enough.</span><br />
+<br />
+<a class='textlink' href='https://OpenWRT.org/'>https://OpenWRT.org/</a><br />
+<br />
+<h3 style='display: inline' id='Infodash'>Infodash</h3><br />
+<br />
+<span>The idea was to implement my smart info screen using purely open-source software. It would display information such as the health status of my personal infrastructure, my current work tracker balance (I track how much I work to prevent overworking), and my sports balance (I track my workouts to stay within my quotas for general health). The information would be displayed on a small screen in my home office, on my Pine watch, or remotely from any terminal window.</span><br />
+<br />
+<span>I don&#39;t have this, and I haven&#39;t missed having it, so I guess it would have been nice to have it but not provide any value other than the "fun of tinkering."</span><br />
+<br />
+<h3 style='display: inline' id='Readingstation'>Reading station</h3><br />
+<br />
+<span>I wanted to create the most comfortable setup possible for reading digital notes, articles, and books. This would include a comfy armchair, a silent barebone PC or Raspberry Pi computer running either Linux or *BSD, and an e-Ink display mounted on a flexible arm/stand. There would also be a small table for my paper journal for occasional note-taking. There are a bunch of open-source software available for PDF and ePub reading. It would have been neat, but I am currently using the most straightforward solution: a Kobo Elipsa, which I can use on my sofa.</span><br />
+<br />
+<h3 style='display: inline' id='Retrostation'>Retro station</h3><br />
+<br />
+<span>I had an idea to build a computer infused with retro elements. It wouldn&#39;t use actual retro hardware but would look and feel like a retro machine. I would call this machine HAL or Retron.</span><br />
+<br />
+<span>I would use an old ThinkPad laptop placed on a horizontal stand, running NetBSD, and attaching a keyboard from ModelFkeyboards. I use WindowMaker as a window manager and run terminal applications through Retro Term. For the monitor, I would use an older (black) EIZO model with large bezels.</span><br />
+<br />
+<a class='textlink' href='https://www.NetBSD.org'>https://www.NetBSD.org</a><br />
+<a class='textlink' href='https://www.modelfkeyboards.com'>https://www.modelfkeyboards.com</a><br />
+<a class='textlink' href='https://github.com/Swordfish90/cool-retro-term)'>https://github.com/Swordfish90/cool-retro-term)</a><br />
+<br />
+<span>The computer would occasionally be used to surf the Gemini space, take notes, blog, or do light coding. However, I have abandoned the project for now because there isn&#39;t enough space in my apartment, as my daughter will have a room for herself.</span><br />
+<br />
+<h3 style='display: inline' id='Soundserver'>Sound server</h3><br />
+<br />
+<span>My idea involved using a barebone mini PC running FreeBSD with the Navidrome sound server software. I could remotely connect to it from my phone, workstation/laptop to listen to my music collection. The storage would be based on ZFS with at least two drives for redundancy. The app would run in a Linux Docker container under FreeBSD via Bhyve.</span><br />
+<br />
+<a class='textlink' href='https://github.com/navidrome/navidrome'>https://github.com/navidrome/navidrome</a><br />
+<a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />
+<br />
+<h3 style='display: inline' id='ProjectFreekat'>Project Freekat</h3><br />
+<br />
+<span>My idea involved purchasing the Meerkat mini PC from System76 and installing FreeBSD. Like the sound-server idea (see previous idea), it would run Linux Docker through Bhyve. I would self-host a bunch of applications on it:</span><br />
+<br />
+<ul>
+<li>Wallabag</li>
+<li>Ankidroid</li>
+<li>Miniflux &amp; Postgres</li>
+<li>Audiobookshelf</li>
+<li>...</li>
+</ul><br />
+<span>All of this would be within my LAN, but the services would also be accessible from the internet through either Wireguard or SSH reverse tunnels to one of my OpenBSD VMs, for example:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>wallabag.awesome.buetow.org</span></li>
+<li><span class='inlinecode'>ankidroid.awesome.buetow.org</span></li>
+<li><span class='inlinecode'>miniflux.awesome.buetow.org</span></li>
+<li><span class='inlinecode'>audiobookshelf.awesome.buetow.org</span></li>
+<li>...</li>
+</ul><br />
+<span>I am abandoning this project for now, as I am currently hosting my apps on AWS ECS Fargate under <span class='inlinecode'>*.cool.buetow.org</span>, which is "good enough" for the time being and also offers the benefit of learning to use AWS and Terraform, knowledge that can be applied at work.</span><br />
+<br />
+<h2 style='display: inline' id='ProgrammingprojectsIdonthavetimefor'>Programming projects I don&#39;t have time for</h2><br />
+<br />
+<h3 style='display: inline' id='CLIHIVE'>CLI-HIVE</h3><br />
+<br />
+<span>This was a pet project idea that my brother and I had. The concept was to collect all shell history of all servers at work in a central place, apply ML/AI, and return suggestions for commands to type or allow a fuzzy search on all the commands in the history. The recommendations for the commands on a server could be context-based (e.g., past occurrences on the same server type). </span><br />
+<br />
+<span>You could decide whether to share your command history with others so they would receive better suggestions depending on which server they are on, or you could keep all the history private and secure. The plan was to add hooks into zsh and bash shells so that all commands typed would be pushed to the central location for data mining.</span><br />
+<br />
+<h3 style='display: inline' id='EnhancedKISShomephotoalbums'>Enhanced KISS home photo albums</h3><br />
+<br />
+<span>I don&#39;t use third-party cloud providers such as Google Photos to store/archive my photos. Instead, they are all on a ZFS volume on my home NAS, with regular offsite backups taken. Thus, my project would involve implementing the features I miss most or finding a solution simple enough to host on my LAN:</span><br />
+<br />
+<ul>
+<li>A feature I miss presents me with a random day from the past and some photos from that day. This project would randomly select a day and generate a photo album for me to view and reminisce about memories.</li>
+<li>Another feature I miss is the ability to automatically deduplicate all the photos, as I am sure there are tons of duplicates on my NAS.</li>
+<li>Auto-enhancing the photos (perhaps using ImageMagick?)</li>
+<li>I already have a simple <span class='inlinecode'>photoalbum.sh</span> script that generates an album based on an input directory. However, it would be great also to have a timeline feature to enable browsing through different dates.</li>
+</ul><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
+<br />
+<h3 style='display: inline' id='KISSfilesyncserverwithendtoendencryption'>KISS file sync server with end-to-end encryption</h3><br />
+<br />
+<span>I aimed to have a simple server to which I could sync notes and other documents, ensuring that the data is fully end-to-end encrypted. This way, only the clients could decrypt the data, while an encrypted copy of all the data would be stored on the server side. There are a few solutions (e.g., NextCloud), but they are bloated or complex to set up. </span><br />
+<br />
+<span>I currently use Syncthing for encrypted file sync across all my devices; however, the data is not end-to-end encrypted. It&#39;s a good-enough setup, though, as my Syncthing server is in my home LAN on an encrypted file system.</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
+<br />
+<span>I also had the idea of using this as a pet project for work and naming it <span class='inlinecode'>Cryptolake</span>, utilizing post-quantum-safe encryption algorithms and a distributed data store.</span><br />
+<br />
+<h3 style='display: inline' id='Alanguagethatcompilestobash'>A language that compiles to <span class='inlinecode'>bash</span></h3><br />
+<br />
+<span>I had an idea to implement a higher-level language with strong typing that could be compiled into native Bash code. This would make all resulting Bash scripts more robust and secure by default. The project would involve developing a parser, lexer, and a Bash code generator. I planned to implement this in Go.</span><br />
+<br />
+<span>I had previously implemented a tiny scripting language called Fype (For Your Program Execution), which could have served as inspiration.</span><br />
+<br />
+<a class='textlink' href='./2010-05-09-the-fype-programming-language.html'>The Fype Programming Language</a><br />
+<br />
+<h3 style='display: inline' id='Alanguagethatcompilestosed'>A language that compiles to <span class='inlinecode'>sed</span></h3><br />
+<br />
+<span>This is similar to the previous idea, but the difference is that the language would compile into a sed script. Sed has many features, but the brief syntax makes scripts challenging to read. The higher-level language would mimic sed but in a form that is easier for humans to read.</span><br />
+<br />
+<h3 style='display: inline' id='RenovateVSSim'>Renovate VS-Sim</h3><br />
+<br />
+<span>VS-Sim is an open-source simulator programmed in Java for distributed systems. VS-Sim stands for "Verteilte Systeme Simulator," the German translation for "Distributed Systems Simulator." The VS-Sim project was my diploma thesis at Aachen University of Applied Sciences.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/vs-sim'>https://codeberg.org/snonux/vs-sim</a><br />
+<br />
+<span>The ideas I had was:</span><br />
+<br />
+<ul>
+<li>Translate the project into English.</li>
+<li>Modernise the Java codebase to be compatible with the latest JDK.</li>
+<li>Make it compile to native binaries using GraalVM.</li>
+<li>Distribute the project using AppImages.</li>
+</ul><br />
+<span>I have put this project on hold for now, as I want to do more things in Go and fewer in Java in my personal time.</span><br />
+<br />
+<h3 style='display: inline' id='KISSticketingsystem'>KISS ticketing system</h3><br />
+<br />
+<span>My idea was to program a KISS (Keep It Simple, Stupid) ticketing system for my personal use. However, I am abandoning this project because I now use the excellent Taskwarrior software. You can learn more about it at:</span><br />
+<br />
+<a class='textlink' href='https://taskwarrior.org/'>https://taskwarrior.org/</a><br />
+<br />
+<h3 style='display: inline' id='AdomainspecificlanguageDSLforwork'>A domain-specific language (DSL) for work</h3><br />
+<br />
+<span>At work, an internal service allocates storage space for our customers on our storage clusters. It automates many tasks, but many tweaks are accessible through APIs. I had the idea to implement a Ruby-based DSL that would make using all those APIs for ad-hoc changes effortless, e.g.:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>Cluster <font color="#990000">:</font>UK<font color="#990000">,</font> <font color="#990000">:</font>uk01 <b><font color="#0000FF">do</font></b>
+  Customer<font color="#990000">.</font>C1A1<font color="#990000">.</font>segments<font color="#990000">.</font>volumes<font color="#990000">.</font>each <b><font color="#0000FF">do</font></b> <font color="#990000">|</font>volume<font color="#990000">|</font>
+    puts volume<font color="#990000">.</font>usage_stats
+    volume<font color="#990000">.</font>move_off! <b><font color="#0000FF">if</font></b> volume<font color="#990000">.</font>over_subscribed?
+  <b><font color="#0000FF">end</font></b>
+<b><font color="#0000FF">end</font></b>
+</pre>
+<br />
+<span>I am abandoning this project because my workplace has stopped the annual pet project competition, and I have other more important projects to work on at the moment.</span><br />
+<br />
+<a class='textlink' href='./2022-04-10-creative-universe.html'>Creative universe (Work pet project contests)</a><br />
+<br />
+<h2 style='display: inline' id='SelfhostingprojectsIdonthavetimefor'>Self-hosting projects I don&#39;t have time for</h2><br />
+<br />
+<h3 style='display: inline' id='MyownMatrixserver'>My own Matrix server</h3><br />
+<br />
+<span>I value privacy. It would be great to run my own Matrix server for communication within my family. I have yet to have time to look into this more closely.</span><br />
+<br />
+<a class='textlink' href='https://matrix.org'>https://matrix.org</a><br />
+<br />
+<h3 style='display: inline' id='Ampachemusicserver'>Ampache music server</h3><br />
+<br />
+<span>Ampache is an open-source music streaming server that allows you to host and manage your music collection online, accessible via a web interface. Setting it up involves configuring a web server, installing Ampache, and organising your music files, which can be time-consuming. </span><br />
+<br />
+<h3 style='display: inline' id='LibrumeBookreader'>Librum eBook reader</h3><br />
+<br />
+<span>Librum is a self-hostable e-book reader that allows users to manage and read their e-book collection from a web interface. Designed to be a self-contained platform where users can upload, organise, and access their e-books, Librum emphasises privacy and control over one&#39;s digital library.</span><br />
+<br />
+<a class='textlink' href='https://github.com/Librum-Reader/Librum'>https://github.com/Librum-Reader/Librum</a><br />
+<br />
+<span>I am using my Kobo devices or my laptop to read these kinds of things for now.</span><br />
+<br />
+<h3 style='display: inline' id='MemosNotetakingservice'>Memos - Note-taking service</h3><br />
+<br />
+<span>Memos is a note-taking service that simplifies and streamlines information capture and organisation. It focuses on providing users with a minimalistic and intuitive interface, aiming to enhance productivity without the clutter commonly associated with more complex note-taking apps.</span><br />
+<br />
+<a class='textlink' href='https://www.usememos.com'>https://www.usememos.com</a><br />
+<br />
+<span>I am abandoning this idea for now, as I am currently using plain Markdown files for notes and syncing them with Syncthing across my devices.</span><br />
+<br />
+<h3 style='display: inline' id='Bepastyserver'>Bepasty server</h3><br />
+<br />
+<span>Bepasty is like a Pastebin for all kinds of files (text, image, audio, video, documents, binary, etc.). It seems very neat, but I only share a little nowadays. When I do, I upload files via SCP to one of my OpenBSD VMs and serve them via vanilla httpd there, keeping it KISS.</span><br />
+<br />
+<a class='textlink' href='https://github.com/bepasty/bepasty-server'>https://github.com/bepasty/bepasty-server</a><br />
+<br />
+<h2 style='display: inline' id='NewwebsitesIdonthavetimefor'>New websites I don&#39;t have time for</h2><br />
+<br />
+<h3 style='display: inline' id='CreateaWhyRakuRoxsite'>Create a "Why Raku Rox" site</h3><br />
+<br />
+<span>The website "Why Raku Rox" would showcase the unique features and benefits of the Raku programming language and highlight why it is an exceptional choice for developers. Raku, originally known as Perl 6, is a dynamic, expressive language designed for flexible and powerful software development.</span><br />
+<br />
+<span>This would be similar to the "Why OpenBSD rocks" site:</span><br />
+<br />
+<a class='textlink' href='https://why-openbsd.rocks'>https://why-openbsd.rocks</a><br />
+<a class='textlink' href='https://raku.org'>https://raku.org</a><br />
+<br />
+<span>I am not working on this for now, as I currently don’t even have time to program in Raku.</span><br />
+<br />
+<h2 style='display: inline' id='ResearchprojectsIdonthavetimefor'>Research projects I don&#39;t have time for</h2><br />
+<br />
+<h3 style='display: inline' id='Projectsecure'>Project secure</h3><br />
+<br />
+<span>For work: Implement a PoC that dumps Java heaps to extract secrets from memory. Based on the findings, write a Java program that encrypts secrets in the kernel using the <span class='inlinecode'>memfd_secret()</span> syscall to make it even more secure.</span><br />
+<br />
+<a class='textlink' href='https://lwn.net/Articles/865256/'>https://lwn.net/Articles/865256/</a><br />
+<br />
+<span>Due to other priorities, I am putting this on hold for now. The software we have built is pretty damn secure already!</span><br />
+<br />
+<h3 style='display: inline' id='CPUutilisationisallwrong'>CPU utilisation is all wrong</h3><br />
+<br />
+<span>This research project, based on Brendan Gregg&#39;s blog post, could potentially significantly impact my work.</span><br />
+<br />
+<a class='textlink' href='https://brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html'>https://brendangregg.com/blog/2017-05-09/cpu-utilization-is-wrong.html</a><br />
+<br />
+<span>The research project would involve setting up dashboards that display actual CPU usage and the cycles versus waiting time for memory access.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Related and maybe interesting:</span><br />
+<br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweatin the small stuff - Tiny projects of mine</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'Slow Productivity' book notes</title>
         <link href="gemini://foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes.gmi" />
@@ -8574,129 +8872,6 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <span>Should you be pedantic about open-source software? It depends. It depends on your fundamental values and how much time you are ready to invest. Open-source software is not just free as in money, but also free as in freedom. You will gain back complete control of your personal data. Unfortunately, installing ready proprietary apps from the Play Store is much more convenient than building up a trustworthy open-source-based infrastructure by yourself. As a guideline, use proprietary software and services with caution. Be mindful about your choices and where you leave your digital fingerprints. In doubt, think less is more. Do you really need this new shiny app? What benefit does it provide to you? Probably you don&#39;t really need that shiny new app.</span><br />
 <br />
 <span>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don&#39;t know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it&#39;s better, but also because for fun and as a hobby. But this doesn&#39;t mean that I invest *all* of my personal free time in it.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>The Well-Grounded Rubyist</title>
-        <link href="gemini://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi" />
-        <id>gemini://foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist.gmi</id>
-        <updated>2021-07-04T10:51:23+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>The Well-Grounded Rubyist</h1><br />
-<br />
-<span class='quote'>Published at 2021-07-04T10:51:23+01:00</span><br />
-<br />
-<span>When I was a Linux System Administrator, I have been programming in Perl for years. I still maintain some personal Perl programming projects (e.g. Xerl, guprecords, Loadbars). After switching jobs a couple of years ago (becoming a Site Reliability Engineer), I found Ruby (and some Python) widely used there. As I wanted to do something new, I decided to give Ruby a go.</span><br />
-<br />
-<span>You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that&#39;s not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!</span><br />
-<br />
-<a href='./2021-07-04-the-well-grounded-rubyist/book-cover.jpg'><img src='./2021-07-04-the-well-grounded-rubyist/book-cover.jpg' /></a><br />
-<br />
-<span>Superficially, Perl seems to have many similarities to Ruby (but, of course, it is entirely different to Perl when you look closer), which pushed me towards Ruby instead of Python. I have tried Python a couple of times before, and I managed to write good code, but I never felt satisfied with the language. I didn&#39;t love the syntax, especially the indentations used; they always confused me. I don&#39;t dislike Python, but I don&#39;t prefer to program in it if I have a choice, especially when there are more propelling alternatives available. Personally, it&#39;s so much more fun to program in Ruby than in Python.</span><br />
-<br />
-<a href='./2021-07-04-the-well-grounded-rubyist/book-backside.jpg'><img src='./2021-07-04-the-well-grounded-rubyist/book-backside.jpg' /></a><br />
-<br />
-<span>Yukihiro Matsumoto, the inventor of Ruby, said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don&#39;t believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what&#39;s already used at my workplace.</span><br />
-<br />
-<h2 style='display: inline'>My Ruby problem domain</h2><br />
-<br />
-<span>I wrote a lot of Ruby code over the last couple of years. There were many small to medium-sized tools and other projects such as Nagios monitoring checks, even an internal monitoring &amp; reporting site based on Sinatra. All Ruby scripts I wrote do their work well; I didn&#39;t encounter any significant problems using Ruby for any of these tasks. Of course, there&#39;s nothing that couldn&#39;t be written in Perl (or Python), though, after all, these languages are all Turing-complete and all these languages also come with a huge set of 3rd party libraries :-).</span><br />
-<br />
-<span>I don&#39;t use Ruby for all programming projects, though. </span><br />
-<br />
-<ul>
-<li>I am using Bash for small sized (usually below 500 lines of code) scripts and ad-hoc command-line automation.</li>
-<li>I program in Google Go for more complex tools (such as DTail) and for problem solving involving data crunching.</li>
-<li>Occasionally, I write some lines of Java code for minor feature enhancements and fixes to improve the reliability of some the services.</li>
-<li>Sometimes, I still program in good old C. This is for special projects (e.g. I/O Riot) or low-level PoCs or SystemTap guru mode scripts.</li>
-</ul><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>Also have a look at my personal Bash coding style.</a><br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>Read here about DTail - the distributed log tail program.</a><br />
-<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>This is a magazine article about I/O Riot I wrote.</a><br />
-<br />
-<span>For all other in-between tasks I mainly use the Ruby programming language (unless I decide to give something new a shot once in a while).</span><br />
-<br />
-<h2 style='display: inline'>Being stuck in Ruby-mediocrity</h2><br />
-<br />
-<span>As a Site Reliability Engineer there were many tasks and problems to be solved as efficiently and quickly as possible and, of course, without bugs. So I learned Ruby relatively fast by doing and the occasional web search for "how to do thing X". I always was eager to get the problem at hand solved and as long as the code solved the problem I usually was happy.</span><br />
-<br />
-<span>Until now, I never read a whole book or took a course on Ruby. As a result, I found myself writing Ruby in a Perl-ish procedural style (with Perl, you can do object-oriented programming too, but Perl wasn&#39;t designed from the ground up to be an object-oriented language). I didn&#39;t take advantage of all the specialities Ruby has to offer as I invested most of my time in the problems at hand and not in the Ruby idiomatic way of doing things.</span><br />
-<br />
-<span>An unexpected benefit was that most of my Ruby code (probably not all, there are always dark corners in some old code bases lurking around) was easy to follow and extend or fix, even by people who usually don&#39;t speak Ruby, as there wasn&#39;t too much magic involved in my code - However, I could have done better still. Looking at other Ruby projects, I noticed over time that there is so much more to the language I wanted to explore. For example new techniques and the Ruby best practise, and much more about how things work under the hood, I wanted to learn about.</span><br />
-<br />
-<h2 style='display: inline'>O&#39;Reilly Safari Books Online</h2><br />
-<br />
-<span>I do have an O&#39;Reilly Safari Online subscription (thank you, employer). To my liking, I found the "The Well-Grounded Rubyist" book there (the text version and also the video version of it). I watched the video version for a couple of weeks, chunking the content into small pieces so it was able to fit into my schedule, increasing the playback speed for the topics I knew already well enough and slowed it down to actual pace when there was something new to learn and occasionally jumped back to the text book to review what I just learned. To my satisfaction, I was already familiar with over half of the language. But there was still the big chunk, especially how the magic happens under the hood in Ruby, which I missed out on, but I am happy now to be aware of it now.</span><br />
-<br />
-<span>I also loved the occasional dry humour in the book: "An enumerator is like a brain in a science fiction movie, sitting on a table with no connection to a body but still able to think". :-)</span><br />
-<br />
-<span>Will I rewrite and refactor all of my existing Ruby programs? Probably not, as they all do their work as intended. Some of these scripts will be eventually replaced or retired. But depending on the situation, I might refactor a module, class or a method or two once in a while. I already knew how to program in an object-oriented style from other languages (e.g. Java, C++, Perl Moose and plain) before I started Ruby, so my existing Ruby code is not as bad as you might assume after reading this article :-). In contrast to Java/C++, Ruby is a dynamic language, and the idiomatic ways of doing things differs from statically typed languages.</span><br />
-<br />
-<h2 style='display: inline'>Key takeaways</h2><br />
-<br />
-<span>These are my key takeaways. These only point out some specific things I have learned, and represent, by far, not everything I&#39;ve learned from the book.</span><br />
-<br />
-<h3 style='display: inline'>"Everything" is an object</h3><br />
-<br />
-<span>In Ruby, everything is an object. However, Ruby is not Smalltalk. It depends on what you mean by "everything". Fixnums are objects. Classes also are, as instances of class Class. Methods, operators and blocks aren&#39;t but can be wrapped by objects via a "Proc". A simple assignment is not and can&#39;t. Statements like "while" also aren&#39;t and can&#39;t. Comments obviously also fall in the latter group. Ruby is more object-oriented than everything else I have ever seen, except for Smalltalk.</span><br />
-<br />
-<span>In Ruby, like in Java/C++, classes are classes, objects are instances of classes, and there are class inheritances. There is single inheritance in Ruby, but with the power of mixing in modules, you can extend your classes in a better way than multiple class inheritances (like in C++) would allow. It&#39;s also different to Java interfaces, as interfaces in Java only come with the method prototypes and not with the actual method implementations like Ruby modules.</span><br />
-<br />
-<h3 style='display: inline'>"Normal" objects and singleton objects</h3><br />
-<br />
-<span>In Ruby, you can also have singleton objects. A singleton object can be an instance of a class but be modified after its creation (e.g. a method added to only this particular instance after its instantiation). Or, another variant of a singleton object is a class (yes, classes are also objects in Ruby). All of that is way better described in the book, so have a read by yourself if you are confused now; just remember: Rubys object system is very dynamic and flexible. At runtime, you can add and modify classes, objects of classes, singleton objects and modules. You don&#39;t need to restart the Ruby interpreter; you can change the code during runtime dynamically through Ruby code.</span><br />
-<br />
-<h3 style='display: inline'>Domain specific languages</h3><br />
-<br />
-<span>Due to Ruby&#39;s flexibility through object individualization (e.g. adding methods at runtime, or changing the core behaviour of classes, catching unknown method calls and dynamically dispatch and/or generate the missing methods via the "method_missing" method), Ruby is a very good language to write your own small domain specific language (DSL) on top of Ruby syntax. I only noticed that after reading this book. Maybe, this is one of the reasons why even the configuration management system Puppet once tried to use a Ruby DSL instead of the Puppet DSL for its manifests. I am not sure why the project got abandoned though, probably it has to do with performance. Do be honest, Ruby is not the fastest language, but it is fast enough for most use cases. And, especially from Ruby 3, performance is one of the main things being worked on currently. If I want performance, I can always use another programming language.</span><br />
-<br />
-<h3 style='display: inline'>Ruby is "self-ish"</h3><br />
-<br />
-<span>Ruby will fall back to the default "self" object if you don&#39;t specify an object method receiver. To give you an example, some more explanation is needed: There is the "Kernel" module mixed into almost every Ruby object. For example, "puts" is just a method of module "Kernel". When you write "puts :foo", Ruby sends the message "puts" to the current object "self". The class of object "self" is "Object". Class Object has module "Kernel" mixed in, and "Kernel" defines the method "puts". </span><br />
-<br />
-<pre>
-&gt;&gt; self
-=&gt; main
-&gt;&gt; self.class
-=&gt; Object
-&gt;&gt; self.class.included_modules
-=&gt; [PP::ObjectMixin, Kernel]
-&gt;&gt; Kernel.class
-=&gt; Module
-&gt;&gt; Kernel.methods.grep(/puts/)
-=&gt; [:puts]
-&gt;&gt; puts &#39;Hello Ruby&#39;
-Hello Ruby
-=&gt; nil
-&gt;&gt; self.puts &#39;Hello World&#39;
-Hello World
-=&gt; nil
-</pre>
-<br />
-<span>Ruby offers a lot of syntactic sugar and seemingly magic, but it all comes back to objects and messages to objects under the hood. As all is hidden in objects, you can unwrap and even change the magic and see what&#39;s happening under the hood. Then, suddenly everything makes so much sense.</span><br />
-<br />
-<h3 style='display: inline'>Functional programming</h3><br />
-<br />
-<span>Ruby embraces an object-oriented programming style. But there is good news for fans of the functional programming paradigm: From immutable data (frozen objects), pure functions, lambdas and higher-order functions, lazy evaluation, tail-recursion optimization, method chaining, currying and partial function application, all of that is there. I am delighted about that, as I am a big fan of functional programming (having played with Haskell and Standard ML before).</span><br />
-<br />
-<span>Remember, however, that Ruby is not a pure functional programming language. You, the Rubyist, need to explicitly decide when to apply a functional style, as, by heart, Ruby is designed to be an object-oriented language. The language will not enforce side effect avoidance, and you will have to enable tail-recursion optimization (as of Ruby 2.5) explicitly, and variables/objects aren&#39;t immutable by default either. But that all does not hinder you from using these features. </span><br />
-<br />
-<span>I liked this book so much so that I even bought myself a (used) paper copy of it. To my delight, there was also a free eBook version in ePub format included, which I now have on my Kobo Forma eBook reader. :-)</span><br />
-<br />
-<h2 style='display: inline'>Perl</h2><br />
-<br />
-<span>Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I use at work. But unfortunately I only have a limited amount of time and I have to use it wisely. I might look into Raku (formerly known as Perl 6) next year and use it for a personal pet project, who knows. :-). I also highly recommend reading the two Perl books "Modern Perl" and "Higher-Order Perl".</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
