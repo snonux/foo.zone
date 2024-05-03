@@ -125,6 +125,8 @@ All of this would be within my LAN, but the services would also be accessible fr
 
 I am abandoning this project for now, as I am currently hosting my apps on AWS ECS Fargate under `*.cool.buetow.org`, which is "good enough" for the time being and also offers the benefit of learning to use AWS and Terraform, knowledge that can be applied at work.
 
+[My personal AWS setup](./2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
+
 ## Programming projects I don't have time for
 
 ### CLI-HIVE

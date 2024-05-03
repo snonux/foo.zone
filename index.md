@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-05-03T16:37:54+03:00 by `Gemtexter`
+> This site was generated at 2024-05-03T16:54:56+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,7 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
-[2024-05-03 - Projects I currently don't have time for](./gemfeed/2024-05-03-projects-i-currently-don-thave-time-for.md)  
+[2024-05-03 - Projects I currently don't have time for](./gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.md)  
 [2024-05-01 - 'Slow Productivity' book notes](./gemfeed/2024-05-01-slow-productivity-book-notes.md)  
 [2024-04-01 - KISS high-availability with OpenBSD](./gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  

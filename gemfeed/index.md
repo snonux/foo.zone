@@ -2,7 +2,7 @@
 
 ## To be in the .zone!
 
-[2024-05-03 - Projects I currently don't have time for](./2024-05-03-projects-i-currently-don-thave-time-for.md)  
+[2024-05-03 - Projects I currently don't have time for](./2024-05-03-projects-i-currently-dont-have-time-for.md)  
 [2024-05-01 - 'Slow Productivity' book notes](./2024-05-01-slow-productivity-book-notes.md)  
 [2024-04-01 - KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  
