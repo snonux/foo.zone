@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-03T16:37:54+03:00</updated>
+    <updated>2024-05-03T16:54:56+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -8,8 +8,8 @@
     <id>https://foo.zone/</id>
     <entry>
         <title>Projects I currently don't have time for</title>
-        <link href="https://foo.zone/gemfeed/2024-05-03-projects-i-currently-don-thave-time-for.html" />
-        <id>https://foo.zone/gemfeed/2024-05-03-projects-i-currently-don-thave-time-for.html</id>
+        <link href="https://foo.zone/gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.html" />
+        <id>https://foo.zone/gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.html</id>
         <updated>2024-05-03T16:23:03+03:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
@@ -146,6 +146,8 @@ Projects I currently don&#39;t have time for
 <li>...</li>
 </ul><br />
 <span>I am abandoning this project for now, as I am currently hosting my apps on AWS ECS Fargate under <span class='inlinecode'>*.cool.buetow.org</span>, which is "good enough" for the time being and also offers the benefit of learning to use AWS and Terraform, knowledge that can be applied at work.</span><br />
+<br />
+<a class='textlink' href='./2024-02-04-from-babylon5.buetow.org-to-.cloud.html'>My personal AWS setup</a><br />
 <br />
 <h2 style='display: inline' id='ProgrammingprojectsIdonthavetimefor'>Programming projects I don&#39;t have time for</h2><br />
 <br />
