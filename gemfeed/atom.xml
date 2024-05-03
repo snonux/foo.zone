@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-03T16:23:03+03:00</updated>
+    <updated>2024-05-03T16:25:19+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='ProjectsIcurrentlydonthavetimefor'>Projects I currently don&#39;t have time for</h1><br />
+<br />
+<span class='quote'>Published at 2024-05-03T16:23:03+03:00</span><br />
 <br />
 <pre>
 Art by Laura Brown
@@ -298,7 +300,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Related and maybe interesting:</span><br />
 <br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweatin the small stuff - Tiny projects of mine</a><br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff - Tiny projects of mine</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
