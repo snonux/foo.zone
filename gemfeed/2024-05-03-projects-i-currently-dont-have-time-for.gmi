@@ -19,7 +19,41 @@ Art by Laura Brown
 
 Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don't get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.
 
-<< template::inline::toc
+```
+Table of contents
+=================
+
+Projects I currently don't have time for
+    Introduction
+    Hardware projects I don't have time for
+        I use Arch, btw!
+        OpenBSD home router
+        Infodash
+        Reading station
+        Retro station
+        Sound server
+        Project Freekat
+    Programming projects I don't have time for
+        CLI-HIVE
+        Enhanced KISS home photo albums
+        KISS file sync server with end-to-end encryption
+        A language that compiles to `bash`
+        A language that compiles to `sed`
+        Renovate VS-Sim
+        KISS ticketing system
+        A domain-specific language (DSL) for work
+    Self-hosting projects I don't have time for
+        My own Matrix server
+        Ampache music server
+        Librum eBook reader
+        Memos - Note-taking service
+        Bepasty server
+    New websites I don't have time for
+        Create a "Why Raku Rox" site
+    Research projects I don't have time for
+        Project secure
+        CPU utilisation is all wrong
+```
 
 ## Hardware projects I don't have time for
 
@@ -90,6 +124,8 @@ All of this would be within my LAN, but the services would also be accessible fr
 * ...
 
 I am abandoning this project for now, as I am currently hosting my apps on AWS ECS Fargate under `*.cool.buetow.org`, which is "good enough" for the time being and also offers the benefit of learning to use AWS and Terraform, knowledge that can be applied at work.
+
+=> ./2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi My personal AWS setup
 
 ## Programming projects I don't have time for
 
