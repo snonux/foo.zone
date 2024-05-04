@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-03T16:54:56+03:00</updated>
+    <updated>2024-05-04T17:46:33+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -68,6 +68,10 @@ Projects I currently don&#39;t have time for
         Librum eBook reader
         Memos - Note-taking service
         Bepasty server
+    Books I don&#39;t have time to read
+        Fluent Python
+        Programming Ruby
+    Peter F. Hamilton science fiction books
     New websites I don&#39;t have time for
         Create a "Why Raku Rox" site
     Research projects I don&#39;t have time for
@@ -266,6 +270,28 @@ http://www.gnu.org/software/src-highlite -->
 <span>Bepasty is like a Pastebin for all kinds of files (text, image, audio, video, documents, binary, etc.). It seems very neat, but I only share a little nowadays. When I do, I upload files via SCP to one of my OpenBSD VMs and serve them via vanilla httpd there, keeping it KISS.</span><br />
 <br />
 <a class='textlink' href='https://github.com/bepasty/bepasty-server'>https://github.com/bepasty/bepasty-server</a><br />
+<br />
+<h2 style='display: inline' id='BooksIdonthavetimetoread'>Books I don&#39;t have time to read</h2><br />
+<br />
+<h3 style='display: inline' id='FluentPython'>Fluent Python</h3><br />
+<br />
+<span>I consider myself an advanced programmer in Ruby, Bash, and Perl. However, Python seems to be ubiquitous nowadays, and most of my colleagues prefer Python over any other languages. Thus, it makes sense for me to also learn and use Python. After conducting some research, "Fluent Python" appears to be the best book for this purpose.</span><br />
+<br />
+<span>I don&#39;t have time to read this book at the moment, as I am focusing more on Go (Golang) and I know just enough Python to get by (e.g., for code reviews). Additionally, there are still enough colleagues around who can review my Ruby or Bash code.</span><br />
+<br />
+<h3 style='display: inline' id='ProgrammingRuby'>Programming Ruby</h3><br />
+<br />
+<span>I&#39;ve read a couple of Ruby books already, but "Programming Ruby," which covers up to Ruby 3.2, was just recently released. I would like to read this to deepen my Ruby knowledge further and to revisit some concepts that I may have forgotten.</span><br />
+<br />
+<span>As stated in this blog post, I am currently more eager to focus on Go, so I&#39;ve put the Ruby book on hold. Additionally, there wouldn&#39;t be enough colleagues who could "understand" my advanced Ruby skills anyway, as most of them are either Java developers or SREs who don&#39;t code a lot.</span><br />
+<br />
+<h2 style='display: inline' id='PeterFHamiltonsciencefictionbooks'>Peter F. Hamilton science fiction books</h2><br />
+<br />
+<span>I am a big fan of science fiction, but my reading list is currently too long anyway. So, I&#39;ve put the Hamilton books on the back burner for now. You can see all the novels I&#39;ve read here:</span><br />
+<br />
+<a class='textlink' href='https://paul.buetow.org/novels.html'>https://paul.buetow.org/novels.html</a><br />
+<a class='textlink' href='https://paul.buetow.org/novels.gmi'>https://paul.buetow.org/novels.gmi</a><br />
+<br />
 <br />
 <h2 style='display: inline' id='NewwebsitesIdonthavetimefor'>New websites I don&#39;t have time for</h2><br />
 <br />
