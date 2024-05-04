@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-04T17:46:33+03:00</updated>
+    <updated>2024-05-04T17:52:44+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -71,7 +71,7 @@ Projects I currently don&#39;t have time for
     Books I don&#39;t have time to read
         Fluent Python
         Programming Ruby
-    Peter F. Hamilton science fiction books
+        Peter F. Hamilton science fiction books
     New websites I don&#39;t have time for
         Create a "Why Raku Rox" site
     Research projects I don&#39;t have time for
@@ -285,7 +285,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>As stated in this blog post, I am currently more eager to focus on Go, so I&#39;ve put the Ruby book on hold. Additionally, there wouldn&#39;t be enough colleagues who could "understand" my advanced Ruby skills anyway, as most of them are either Java developers or SREs who don&#39;t code a lot.</span><br />
 <br />
-<h2 style='display: inline' id='PeterFHamiltonsciencefictionbooks'>Peter F. Hamilton science fiction books</h2><br />
+<h3 style='display: inline' id='PeterFHamiltonsciencefictionbooks'>Peter F. Hamilton science fiction books</h3><br />
 <br />
 <span>I am a big fan of science fiction, but my reading list is currently too long anyway. So, I&#39;ve put the Hamilton books on the back burner for now. You can see all the novels I&#39;ve read here:</span><br />
 <br />
