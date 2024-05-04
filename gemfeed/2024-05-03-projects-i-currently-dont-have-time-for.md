@@ -51,7 +51,7 @@ Projects I currently don't have time for
     Books I don't have time to read
         Fluent Python
         Programming Ruby
-    Peter F. Hamilton science fiction books
+        Peter F. Hamilton science fiction books
     New websites I don't have time for
         Create a "Why Raku Rox" site
     Research projects I don't have time for
@@ -258,7 +258,7 @@ I've read a couple of Ruby books already, but "Programming Ruby," which covers u
 
 As stated in this blog post, I am currently more eager to focus on Go, so I've put the Ruby book on hold. Additionally, there wouldn't be enough colleagues who could "understand" my advanced Ruby skills anyway, as most of them are either Java developers or SREs who don't code a lot.
 
-## Peter F. Hamilton science fiction books
+### Peter F. Hamilton science fiction books
 
 I am a big fan of science fiction, but my reading list is currently too long anyway. So, I've put the Hamilton books on the back burner for now. You can see all the novels I've read here:
 
