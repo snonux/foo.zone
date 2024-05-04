@@ -206,6 +206,28 @@ Bepasty is like a Pastebin for all kinds of files (text, image, audio, video, do
 
 => https://github.com/bepasty/bepasty-server
 
+## Books I don't have time to read
+
+### Fluent Python
+
+I consider myself an advanced programmer in Ruby, Bash, and Perl. However, Python seems to be ubiquitous nowadays, and most of my colleagues prefer Python over any other languages. Thus, it makes sense for me to also learn and use Python. After conducting some research, "Fluent Python" appears to be the best book for this purpose.
+
+I don't have time to read this book at the moment, as I am focusing more on Go (Golang) and I know just enough Python to get by (e.g., for code reviews). Additionally, there are still enough colleagues around who can review my Ruby or Bash code.
+
+### Programming Ruby
+
+I've read a couple of Ruby books already, but "Programming Ruby," which covers up to Ruby 3.2, was just recently released. I would like to read this to deepen my Ruby knowledge further and to revisit some concepts that I may have forgotten.
+
+As stated in this blog post, I am currently more eager to focus on Go, so I've put the Ruby book on hold. Additionally, there wouldn't be enough colleagues who could "understand" my advanced Ruby skills anyway, as most of them are either Java developers or SREs who don't code a lot.
+
+## Peter F. Hamilton science fiction books
+
+I am a big fan of science fiction, but my reading list is currently too long anyway. So, I've put the Hamilton books on the back burner for now. You can see all the novels I've read here:
+
+=> https://paul.buetow.org/novels.html
+=> gemini://paul.buetow.org/novels.gmi
+
+
 ## New websites I don't have time for
 
 ### Create a "Why Raku Rox" site
