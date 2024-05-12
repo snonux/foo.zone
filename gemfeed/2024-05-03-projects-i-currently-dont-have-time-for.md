@@ -28,6 +28,7 @@ Projects I currently don't have time for
     Hardware projects I don't have time for
         I use Arch, btw!
         OpenBSD home router
+        Pi-Hole server
         Infodash
         Reading station
         Retro station
@@ -79,6 +80,12 @@ I had the idea to revive this concept, implement `fishbone2`, and place it in fr
 However, I am putting this on hold as I have opted for an OpenWRT-based solution, which was much quicker to set up and runs well enough.
 
 [https://OpenWRT.org/](https://OpenWRT.org/)  
+
+### Pi-Hole server
+
+Install Pi-hole on one of my Pis or run it in a container on Freekat. For now, I am putting this on hold as the primary use for this would be ad-blocking, and I am avoiding surfing ad-heavy sites anyway. So there's no significant use for me personally at the moment.
+
+[https://pi-hole.net/](https://pi-hole.net/)  
 
 ### Infodash
 
