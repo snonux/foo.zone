@@ -42,7 +42,7 @@ However, I am putting this on hold as I have opted for an OpenWRT-based solution
 
 => https://OpenWRT.org/
 
-### PiHole
+### Pi-Hole server
 
 Install Pi-hole on one of my Pis or run it in a container on Freekat. For now, I am putting this on hold as the primary use for this would be ad-blocking, and I am avoiding surfing ad-heavy sites anyway. So there's no significant use for me personally at the moment.
 
