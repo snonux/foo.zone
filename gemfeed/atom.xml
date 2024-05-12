@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-04T17:52:44+03:00</updated>
+    <updated>2024-05-12T14:48:38+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -48,6 +48,7 @@ Projects I currently don&#39;t have time for
     Hardware projects I don&#39;t have time for
         I use Arch, btw!
         OpenBSD home router
+        Pi-Hole server
         Infodash
         Reading station
         Retro station
@@ -99,6 +100,12 @@ Projects I currently don&#39;t have time for
 <span>However, I am putting this on hold as I have opted for an OpenWRT-based solution, which was much quicker to set up and runs well enough.</span><br />
 <br />
 <a class='textlink' href='https://OpenWRT.org/'>https://OpenWRT.org/</a><br />
+<br />
+<h3 style='display: inline' id='PiHoleserver'>Pi-Hole server</h3><br />
+<br />
+<span>Install Pi-hole on one of my Pis or run it in a container on Freekat. For now, I am putting this on hold as the primary use for this would be ad-blocking, and I am avoiding surfing ad-heavy sites anyway. So there&#39;s no significant use for me personally at the moment.</span><br />
+<br />
+<a class='textlink' href='https://pi-hole.net/'>https://pi-hole.net/</a><br />
 <br />
 <h3 style='display: inline' id='Infodash'>Infodash</h3><br />
 <br />
