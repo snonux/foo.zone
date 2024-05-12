@@ -4,6 +4,7 @@
 
 ['The Stoic Challenge' book notes](./the-stoic-challenge.md)  
 ['The Pragmatic Programmer' book notes](./the-pragmatic-programmer.md)  
+['The power of Neuroplasticity' book notes](./the-power-of-neuroplasticity.md)  
 ['The Obstacle is the Way' book notes](./the-obstacle-is-the-way.md)  
 ['Staff Engineer' book notes](./staff-engineer.md)  
 ['Slow Productivity' book notes](./slow-productivity.md)  
