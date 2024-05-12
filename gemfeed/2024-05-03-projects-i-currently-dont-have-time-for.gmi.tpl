@@ -42,6 +42,12 @@ However, I am putting this on hold as I have opted for an OpenWRT-based solution
 
 => https://OpenWRT.org/
 
+### PiHole
+
+Install Pi-hole on one of my Pis or run it in a container on Freekat. For now, I am putting this on hold as the primary use for this would be ad-blocking, and I am avoiding surfing ad-heavy sites anyway. So there's no significant use for me personally at the moment.
+
+=> https://pi-hole.net/
+
 ### Infodash
 
 The idea was to implement my smart info screen using purely open-source software. It would display information such as the health status of my personal infrastructure, my current work tracker balance (I track how much I work to prevent overworking), and my sports balance (I track my workouts to stay within my quotas for general health). The information would be displayed on a small screen in my home office, on my Pine watch, or remotely from any terminal window.
