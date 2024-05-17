@@ -4,7 +4,7 @@
 
 => ./the-stoic-challenge.gmi 'The Stoic Challenge' book notes
 => ./the-pragmatic-programmer.gmi 'The Pragmatic Programmer' book notes
-=> ./the-power-of-neuroplasticity.gmi 'The power of Neuroplasticity' book notes
+=> ./the-power-of-neuroplasticity.gmi 'The Power of Neuroplasticity' book notes
 => ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
 => ./staff-engineer.gmi 'Staff Engineer' book notes
 => ./slow-productivity.gmi 'Slow Productivity' book notes

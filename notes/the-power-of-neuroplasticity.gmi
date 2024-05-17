@@ -1,4 +1,4 @@
-# "The power of Neuroplasticity" book notes
+# "The Power of Neuroplasticity" book notes
 
 These notes capture key points from "The Power of Neuroplasticity" by Shad Helmstetter. These are for my personal use, but you might find them useful, too.
 
