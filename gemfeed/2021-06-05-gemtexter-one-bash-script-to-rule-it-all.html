@@ -94,18 +94,18 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul <b><font color="#0000FF">in</font></b> uranus <b><font color="#0000FF">in</font></b> gemtexter on 🌱 main
-❯ wc -l gemtexter lib<font color="#990000">/*</font>
-    <font color="#993399">117</font> gemtexter
-     <font color="#993399">59</font> lib/assert<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">128</font> lib/atomfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">64</font> lib/gemfeed<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">161</font> lib/generate<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">50</font> lib/git<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-    <font color="#993399">162</font> lib/html<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">30</font> lib/log<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">63</font> lib/md<font color="#990000">.</font><b><font color="#0000FF">source</font></b><font color="#990000">.</font>sh
-     <font color="#993399">834</font> total
+<pre><font color="#ff0000">paul </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> uranus </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> gemtexter on 🌱 main</font>
+<font color="#ff0000">❯ wc -l gemtexter lib</font><font color="#F3E651">/*</font>
+<font color="#ff0000">    </font><font color="#bb00ff">117</font><font color="#ff0000"> gemtexter</font>
+<font color="#ff0000">     </font><font color="#bb00ff">59</font><font color="#ff0000"> lib/assert</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">    </font><font color="#bb00ff">128</font><font color="#ff0000"> lib/atomfeed</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">     </font><font color="#bb00ff">64</font><font color="#ff0000"> lib/gemfeed</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">    </font><font color="#bb00ff">161</font><font color="#ff0000"> lib/generate</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">     </font><font color="#bb00ff">50</font><font color="#ff0000"> lib/git</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">    </font><font color="#bb00ff">162</font><font color="#ff0000"> lib/html</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">     </font><font color="#bb00ff">30</font><font color="#ff0000"> lib/log</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">     </font><font color="#bb00ff">63</font><font color="#ff0000"> lib/md</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">     </font><font color="#bb00ff">834</font><font color="#ff0000"> total</font>
 </pre>
 <br />
 <span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn&#39;t produce results instantly but requires few seconds of runtime already. That&#39;s not a problem yet, though. </span><br />
@@ -140,9 +140,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
-assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link html "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
-    <font color="#FF0000">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
+<pre><font color="#ff0000">gemtext</font><font color="#F3E651">=</font><font color="#bb00ff">'=&gt; http://example.org Description of the link'</font>
+<font color="#ff0000">assert</font><font color="#F3E651">::</font><font color="#ff0000">equals </font><font color="#bb00ff">"$(generate::make_link html "</font><font color="#ff0000">$gemtext</font><font color="#bb00ff">")"</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    </font><font color="#bb00ff">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='Markdownunittestexample'>Markdown unit test example</h3><br />
@@ -151,9 +151,9 @@ assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::m
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#009900">gemtext</font><font color="#990000">=</font><font color="#FF0000">'=&gt; http://example.org Description of the link'</font>
-assert<font color="#990000">::</font>equals <font color="#FF0000">"$(generate::make_link md "</font><font color="#009900">$gemtext</font><font color="#FF0000">")"</font> <font color="#990000">\</font>
-    <font color="#FF0000">'[Description of the link](http://example.org)  '</font>
+<pre><font color="#ff0000">gemtext</font><font color="#F3E651">=</font><font color="#bb00ff">'=&gt; http://example.org Description of the link'</font>
+<font color="#ff0000">assert</font><font color="#F3E651">::</font><font color="#ff0000">equals </font><font color="#bb00ff">"$(generate::make_link md "</font><font color="#ff0000">$gemtext</font><font color="#bb00ff">")"</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    </font><font color="#bb00ff">'[Description of the link](http://example.org)  '</font>
 </pre>
 <br />
 <h2 style='display: inline' id='HandcraftedHTMLstyles'>Handcrafted HTML styles</h2><br />

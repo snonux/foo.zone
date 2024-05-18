@@ -37,12 +37,12 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">typedef</font></b> <b><font color="#0000FF">struct</font></b> <font color="#FF0000">{</font>
-   <font color="#008080">Tupel</font> <font color="#990000">*</font>p_tupel_argv<font color="#990000">;</font> <i><font color="#9A1900">// Contains command line options</font></i>
-   <font color="#008080">List</font> <font color="#990000">*</font>p_list_token<font color="#990000">;</font> <i><font color="#9A1900">// Initial list of token</font></i>
-   <font color="#008080">Hash</font> <font color="#990000">*</font>p_hash_syms<font color="#990000">;</font> <i><font color="#9A1900">// Symbol table</font></i>
-   <font color="#009900">char</font> <font color="#990000">*</font>c_basename<font color="#990000">;</font>
-<font color="#FF0000">}</font> Fype<font color="#990000">;</font>
+<pre><b><font color="#ffffff">typedef</font></b><font color="#ff0000"> </font><b><font color="#ffffff">struct</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">   </font><font color="#ff0000">Tupel</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_tupel_argv</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab">// Contains command line options</font></i>
+<font color="#ff0000">   </font><font color="#ff0000">List</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_list_token</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab">// Initial list of token</font></i>
+<font color="#ff0000">   </font><font color="#ff0000">Hash</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_hash_syms</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab">// Symbol table</font></i>
+<font color="#ff0000">   </font><b><font color="#F35E1E">char</font></b><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">c_basename</font><font color="#F3E651">;</font>
+<font color="#F3E651">}</font><font color="#ff0000"> Fype</font><font color="#F3E651">;</font>
 </pre>
 <br />
 <span>And here is a snippet from the primary Fype "class implementation":</span><br />
@@ -51,53 +51,53 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>Fype<font color="#990000">*</font>
-<b><font color="#000000">fype_new</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">malloc</font></b><font color="#990000">(</font><b><font color="#0000FF">sizeof</font></b><font color="#990000">(</font>Fype<font color="#990000">));</font>
+<pre><font color="#ff0000">Fype</font><font color="#F3E651">*</font>
+<font color="#7bc710">fype_new</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">   </font><font color="#ff0000">Fype</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_fype </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">malloc</font><font color="#F3E651">(</font><b><font color="#ffffff">sizeof</font></b><font color="#F3E651">(</font><font color="#ff0000">Fype</font><font color="#F3E651">));</font>
 
-   p_fype<font color="#990000">-&gt;</font>p_hash_syms <font color="#990000">=</font> <b><font color="#000000">hash_new</font></b><font color="#990000">(</font><font color="#993399">512</font><font color="#990000">);</font>
-   p_fype<font color="#990000">-&gt;</font>p_list_token <font color="#990000">=</font> <b><font color="#000000">list_new</font></b><font color="#990000">();</font>
-   p_fype<font color="#990000">-&gt;</font>p_tupel_argv <font color="#990000">=</font> <b><font color="#000000">tupel_new</font></b><font color="#990000">();</font>
-   p_fype<font color="#990000">-&gt;</font>c_basename <font color="#990000">=</font> NULL<font color="#990000">;</font>
+<font color="#ff0000">   p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_hash_syms </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">hash_new</font><font color="#F3E651">(</font><font color="#bb00ff">512</font><font color="#F3E651">);</font>
+<font color="#ff0000">   p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_list_token </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">list_new</font><font color="#F3E651">();</font>
+<font color="#ff0000">   p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_tupel_argv </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">tupel_new</font><font color="#F3E651">();</font>
+<font color="#ff0000">   p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">c_basename </font><font color="#F3E651">=</font><font color="#ff0000"> NULL</font><font color="#F3E651">;</font>
 
-   <b><font color="#000000">garbage_init</font></b><font color="#990000">();</font>
+<font color="#ff0000">   </font><font color="#7bc710">garbage_init</font><font color="#F3E651">();</font>
 
-   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font>p_fype<font color="#990000">);</font>
-<font color="#FF0000">}</font>
+<font color="#ff0000">   </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">);</font>
+<font color="#F3E651">}</font>
 
-<font color="#009900">void</font>
-<b><font color="#000000">fype_delete</font></b><font color="#990000">(</font><font color="#008080">Fype</font> <font color="#990000">*</font>p_fype<font color="#990000">)</font> <font color="#FF0000">{</font>
-   <b><font color="#000000">argv_tupel_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_tupel_argv<font color="#990000">);</font>
+<b><font color="#F35E1E">void</font></b>
+<font color="#7bc710">fype_delete</font><font color="#F3E651">(</font><font color="#ff0000">Fype</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_fype</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">   </font><font color="#7bc710">argv_tupel_delete</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_tupel_argv</font><font color="#F3E651">);</font>
 
-   <b><font color="#000000">hash_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">,</font> symbol_cleanup_hash_syms_cb<font color="#990000">);</font>
-   <b><font color="#000000">hash_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_hash_syms<font color="#990000">);</font>
+<font color="#ff0000">   </font><font color="#7bc710">hash_iterate</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_hash_syms</font><font color="#F3E651">,</font><font color="#ff0000"> symbol_cleanup_hash_syms_cb</font><font color="#F3E651">);</font>
+<font color="#ff0000">   </font><font color="#7bc710">hash_delete</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_hash_syms</font><font color="#F3E651">);</font>
 
-   <b><font color="#000000">list_iterate</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">,</font> token_ref_down_cb<font color="#990000">);</font>
-   <b><font color="#000000">list_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>p_list_token<font color="#990000">);</font>
+<font color="#ff0000">   </font><font color="#7bc710">list_iterate</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_list_token</font><font color="#F3E651">,</font><font color="#ff0000"> token_ref_down_cb</font><font color="#F3E651">);</font>
+<font color="#ff0000">   </font><font color="#7bc710">list_delete</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">p_list_token</font><font color="#F3E651">);</font>
 
-   <b><font color="#0000FF">if</font></b> <font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">)</font>
-      <b><font color="#000000">free</font></b><font color="#990000">(</font>p_fype<font color="#990000">-&gt;</font>c_basename<font color="#990000">);</font>
+<font color="#ff0000">   </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">c_basename</font><font color="#F3E651">)</font>
+<font color="#ff0000">      </font><font color="#7bc710">free</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">-&gt;</font><font color="#ff0000">c_basename</font><font color="#F3E651">);</font>
 
-   <b><font color="#000000">garbage_destroy</font></b><font color="#990000">();</font>
-<font color="#FF0000">}</font>
+<font color="#ff0000">   </font><font color="#7bc710">garbage_destroy</font><font color="#F3E651">();</font>
+<font color="#F3E651">}</font>
 
-<font color="#009900">int</font>
-<b><font color="#000000">fype_run</font></b><font color="#990000">(</font><font color="#009900">int</font> i_argc<font color="#990000">,</font> <font color="#009900">char</font> <font color="#990000">**</font>pc_argv<font color="#990000">)</font> <font color="#FF0000">{</font>
-   <font color="#008080">Fype</font> <font color="#990000">*</font>p_fype <font color="#990000">=</font> <b><font color="#000000">fype_new</font></b><font color="#990000">();</font>
+<b><font color="#F35E1E">int</font></b>
+<font color="#7bc710">fype_run</font><font color="#F3E651">(</font><b><font color="#F35E1E">int</font></b><font color="#ff0000"> i_argc</font><font color="#F3E651">,</font><font color="#ff0000"> </font><b><font color="#F35E1E">char</font></b><font color="#ff0000"> </font><font color="#F3E651">**</font><font color="#ff0000">pc_argv</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">   </font><font color="#ff0000">Fype</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">p_fype </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">fype_new</font><font color="#F3E651">();</font>
 
-   <i><font color="#9A1900">// argv: Maintains command line options</font></i>
-   <b><font color="#000000">argv_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">,</font> i_argc<font color="#990000">,</font> pc_argv<font color="#990000">);</font>
+<font color="#ff0000">   </font><i><font color="#ababab">// argv: Maintains command line options</font></i>
+<font color="#ff0000">   </font><font color="#7bc710">argv_run</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">,</font><font color="#ff0000"> i_argc</font><font color="#F3E651">,</font><font color="#ff0000"> pc_argv</font><font color="#F3E651">);</font>
 
-   <i><font color="#9A1900">// scanner: Creates a list of token</font></i>
-   <b><font color="#000000">scanner_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
+<font color="#ff0000">   </font><i><font color="#ababab">// scanner: Creates a list of token</font></i>
+<font color="#ff0000">   </font><font color="#7bc710">scanner_run</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">);</font>
 
-   <i><font color="#9A1900">// interpret: Interpret the list of token</font></i>
-   <b><font color="#000000">interpret_run</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
+<font color="#ff0000">   </font><i><font color="#ababab">// interpret: Interpret the list of token</font></i>
+<font color="#ff0000">   </font><font color="#7bc710">interpret_run</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">);</font>
 
-   <b><font color="#000000">fype_delete</font></b><font color="#990000">(</font>p_fype<font color="#990000">);</font>
+<font color="#ff0000">   </font><font color="#7bc710">fype_delete</font><font color="#F3E651">(</font><font color="#ff0000">p_fype</font><font color="#F3E651">);</font>
 
-   <b><font color="#0000FF">return</font></b> <font color="#990000">(</font><font color="#993399">0</font><font color="#990000">);</font>
-<font color="#FF0000">}</font>
+<font color="#ff0000">   </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">);</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Datatypes'>Data types</h2><br />

@@ -40,19 +40,19 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> ds
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"golang.org/x/exp/constraints"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"golang.org/x/exp/constraints"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">type</font></b> Integer <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
-	constraints<font color="#990000">.</font>Integer
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> Integer </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">type</font></b> Number <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
-	constraints<font color="#990000">.</font>Integer <font color="#990000">|</font> constraints<font color="#990000">.</font>Float
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> Number </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer </font><font color="#F3E651">|</font><font color="#ff0000"> constraints</font><font color="#F3E651">.</font><font color="#ff0000">Float</font>
+<font color="#F3E651">}</font>
 
 </pre>
 <br />
@@ -64,19 +64,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> ds
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"fmt"</font>
-	<font color="#FF0000">"math/rand"</font>
-	<font color="#FF0000">"strings"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"math/rand"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"strings"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">type</font></b> ArrayList<font color="#990000">[</font>V Number<font color="#990000">]</font> <font color="#990000">[]</font>V
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">[]</font><font color="#ff0000">V</font>
 
-<b><font color="#0000FF">func</font></b> NewArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">return</font></b> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>As you can see, the code uses Go generics, which I refactored recently. Besides the default constructor (which only returns an empty <span class='inlinecode'>ArrayList</span> with a given capacity), there are also a bunch of special constructors. <span class='inlinecode'>NewRandomArrayList</span> is returning an <span class='inlinecode'>ArrayList</span> with random numbers, <span class='inlinecode'>NewAscendingArrayList</span> and <span class='inlinecode'>NewDescendingArrayList</span> are returning <span class='inlinecode'>ArrayList</span>s in either ascending or descending order. They all will be used later on for testing and benchmarking the algorithms.</span><br />
@@ -85,35 +85,35 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> NewRandomArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l<font color="#990000">,</font> max int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		<b><font color="#0000FF">if</font></b> max <font color="#990000">&gt;</font> <font color="#993399">0</font> <font color="#FF0000">{</font>
-			a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Intn</font></b><font color="#990000">(</font>max<font color="#990000">))</font>
-			<b><font color="#0000FF">continue</font></b>
-		<font color="#FF0000">}</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Int</font></b><font color="#990000">())</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l</font><font color="#F3E651">,</font><font color="#ff0000"> max int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> max </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Intn</font><font color="#F3E651">(</font><font color="#ff0000">max</font><font color="#F3E651">))</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">continue</font></b>
+<font color="#ff0000">		</font><font color="#F3E651">}</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Int</font><font color="#F3E651">())</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">func</font></b> NewAscendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>i<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewAscendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">func</font></b> NewDescendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	j <font color="#990000">:=</font> l <font color="#990000">-</font> <font color="#993399">1</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>j<font color="#990000">)</font>
-		j<font color="#990000">--</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewDescendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> l </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">j</font><font color="#F3E651">)</font>
+<font color="#ff0000">		j</font><font color="#F3E651">--</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Helpermethods'>Helper methods</h2><br />
@@ -124,25 +124,25 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">FirstN</font></b><font color="#990000">(</font>n int<font color="#990000">)</font> <font color="#009900">string</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">var</font></b> sb strings<font color="#990000">.</font>Builder
-	j <font color="#990000">:=</font> n
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">FirstN</font><font color="#F3E651">(</font><font color="#ff0000">n int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><b><font color="#F35E1E">string</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> sb strings</font><font color="#F3E651">.</font><font color="#ff0000">Builder</font>
+<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> n</font>
 
-	l <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
-	<b><font color="#0000FF">if</font></b> j <font color="#990000">&gt;</font> l <font color="#FF0000">{</font>
-		j <font color="#990000">=</font> l
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	l </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&gt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
+<font color="#ff0000">		j </font><font color="#F3E651">=</font><font color="#ff0000"> l</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> j<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"%v "</font><font color="#990000">,</font> a<font color="#990000">[</font>i<font color="#990000">])</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> j</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"%v "</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">])</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">if</font></b> j <font color="#990000">&lt;</font> l <font color="#FF0000">{</font>
-		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"... "</font><font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
+<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"... "</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">return</font></b> sb<font color="#990000">.</font><b><font color="#000000">String</font></b><font color="#990000">()</font>
-<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sb</font><font color="#F3E651">.</font><font color="#7bc710">String</font><font color="#F3E651">()</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>Sorted</span> method checks whether the <span class='inlinecode'>ArrayList</span> is sorted. This will be used by the unit tests later on:</span><br />
@@ -151,14 +151,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#009900">bool</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font> i <font color="#990000">&gt;</font> <font color="#993399">0</font><font color="#990000">;</font> i<font color="#990000">--</font> <font color="#FF0000">{</font>
-		<b><font color="#0000FF">if</font></b> a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">&lt;</font> a<font color="#990000">[</font>i<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#FF0000">{</font>
-			<b><font color="#0000FF">return</font></b> false
-		<font color="#FF0000">}</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> true
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><b><font color="#F35E1E">bool</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">--</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&lt;</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">-</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> false</font>
+<font color="#ff0000">		</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> true</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>And the last utility method used is <span class='inlinecode'>Swap</span>, which allows swapping the values of two indices in the <span class='inlinecode'>ArrayList</span>:</span><br />
@@ -167,11 +167,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Swap</font></b><font color="#990000">(</font>i<font color="#990000">,</font> j int<font color="#990000">)</font> <font color="#FF0000">{</font>
-	aux <font color="#990000">:=</font> a<font color="#990000">[</font>i<font color="#990000">]</font>
-	a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> a<font color="#990000">[</font>j<font color="#990000">]</font>
-	a<font color="#990000">[</font>j<font color="#990000">]</font> <font color="#990000">=</font> aux
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Swap</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">,</font><font color="#ff0000"> j int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	aux </font><font color="#F3E651">:=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font>
+<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font>
+<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> aux</font>
+<font color="#F3E651">}</font>
 
 </pre>
 <br />
@@ -184,40 +184,40 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> sort
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
-	<font color="#FF0000">"sync"</font>
-	<font color="#FF0000">"time"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"sync"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"time"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">func</font></b> Sleep<font color="#990000">[</font>V ds<font color="#990000">.</font>Integer<font color="#990000">](</font>a ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	sorted <font color="#990000">:=</font> ds<font color="#990000">.</font>NewArrayList<font color="#990000">[</font>V<font color="#990000">](</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> Sleep</font><font color="#F3E651">[</font><font color="#ff0000">V ds</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font><font color="#F3E651">](</font><font color="#ff0000">a ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	sorted </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">](</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
 
-	numCh <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font><b><font color="#0000FF">chan</font></b> V<font color="#990000">)</font>
-	<b><font color="#0000FF">var</font></b> wg sync<font color="#990000">.</font>WaitGroup
-	wg<font color="#990000">.</font><b><font color="#000000">Add</font></b><font color="#990000">(</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+<font color="#ff0000">	numCh </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><b><font color="#ffffff">chan</font></b><font color="#ff0000"> V</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> wg sync</font><font color="#F3E651">.</font><font color="#ff0000">WaitGroup</font>
+<font color="#ff0000">	wg</font><font color="#F3E651">.</font><font color="#7bc710">Add</font><font color="#F3E651">(</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
 
-	<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-		wg<font color="#990000">.</font><b><font color="#000000">Wait</font></b><font color="#990000">()</font>
-		<b><font color="#000000">close</font></b><font color="#990000">(</font>numCh<font color="#990000">)</font>
-	<font color="#FF0000">}</font><font color="#990000">()</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		wg</font><font color="#F3E651">.</font><font color="#7bc710">Wait</font><font color="#F3E651">()</font>
+<font color="#ff0000">		</font><font color="#7bc710">close</font><font color="#F3E651">(</font><font color="#ff0000">numCh</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font><font color="#F3E651">()</font>
 
-	<b><font color="#0000FF">for</font></b> _<font color="#990000">,</font> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> a <font color="#FF0000">{</font>
-		<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">(</font>num V<font color="#990000">)</font> <font color="#FF0000">{</font>
-			<b><font color="#0000FF">defer</font></b> wg<font color="#990000">.</font><b><font color="#000000">Done</font></b><font color="#990000">()</font>
-			time<font color="#990000">.</font><b><font color="#000000">Sleep</font></b><font color="#990000">(</font>time<font color="#990000">.</font><b><font color="#000000">Duration</font></b><font color="#990000">(</font>num<font color="#990000">)</font> <font color="#990000">*</font> time<font color="#990000">.</font>Second<font color="#990000">)</font>
-			numCh <font color="#990000">&lt;-</font> num
-		<font color="#FF0000">}</font><font color="#990000">(</font>num<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> _</font><font color="#F3E651">,</font><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> a </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">(</font><font color="#ff0000">num V</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">defer</font></b><font color="#ff0000"> wg</font><font color="#F3E651">.</font><font color="#7bc710">Done</font><font color="#F3E651">()</font>
+<font color="#ff0000">			time</font><font color="#F3E651">.</font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">time</font><font color="#F3E651">.</font><font color="#7bc710">Duration</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000"> time</font><font color="#F3E651">.</font><font color="#ff0000">Second</font><font color="#F3E651">)</font>
+<font color="#ff0000">			numCh </font><font color="#F3E651">&lt;-</font><font color="#ff0000"> num</font>
+<font color="#ff0000">		</font><font color="#F3E651">}</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">for</font></b> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> numCh <font color="#FF0000">{</font>
-		sorted <font color="#990000">=</font> <b><font color="#000000">append</font></b><font color="#990000">(</font>sorted<font color="#990000">,</font> num<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> numCh </font><font color="#F3E651">{</font>
+<font color="#ff0000">		sorted </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">append</font><font color="#F3E651">(</font><font color="#ff0000">sorted</font><font color="#F3E651">,</font><font color="#ff0000"> num</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">return</font></b> sorted
-<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sorted</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
@@ -230,22 +230,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> sort
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"fmt"</font>
-	<font color="#FF0000">"testing"</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"testing"</font>
 
-	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
-<font color="#990000">)</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">func</font></b> <b><font color="#000000">TestSleepSort</font></b><font color="#990000">(</font>t <font color="#990000">*</font>testing<font color="#990000">.</font>T<font color="#990000">)</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> ds<font color="#990000">.</font>NewRandomArrayList<font color="#990000">[</font>int<font color="#990000">](</font><font color="#993399">10</font><font color="#990000">,</font> <font color="#993399">10</font><font color="#990000">)</font>
-	a <font color="#990000">=</font> <b><font color="#000000">Sleep</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
-	<b><font color="#0000FF">if</font></b> <font color="#990000">!</font>a<font color="#990000">.</font><b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-		t<font color="#990000">.</font><b><font color="#000000">Errorf</font></b><font color="#990000">(</font><font color="#FF0000">"Array not sorted: %v"</font><font color="#990000">,</font> a<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#7bc710">TestSleepSort</font><font color="#F3E651">(</font><font color="#ff0000">t </font><font color="#F3E651">*</font><font color="#ff0000">testing</font><font color="#F3E651">.</font><font color="#ff0000">T</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">int</font><font color="#F3E651">](</font><font color="#bb00ff">10</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">10</font><font color="#F3E651">)</font>
+<font color="#ff0000">	a </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000">a</font><font color="#F3E651">.</font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		t</font><font color="#F3E651">.</font><font color="#7bc710">Errorf</font><font color="#F3E651">(</font><font color="#bb00ff">"Array not sorted: %v"</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>As you can see, it takes <span class='inlinecode'>9s</span> here for the algorithm to finish (which is the highest value in the <span class='inlinecode'>ArrayList</span>):</span><br />
@@ -254,11 +254,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ go <b><font color="#0000FF">test</font></b> <font color="#990000">.</font>/sort -v -run SleepSort
-<font color="#990000">===</font> RUN   TestSleepSort
---- PASS<font color="#990000">:</font> TestSleepSort <font color="#990000">(</font><font color="#993399">9</font><font color="#990000">.</font>00s<font color="#990000">)</font>
-PASS
-ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <font color="#993399">9</font><font color="#990000">.</font>002s
+<pre><font color="#ff0000">❯ go </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#F3E651">.</font><font color="#ff0000">/sort -v -run SleepSort</font>
+<font color="#F3E651">===</font><font color="#ff0000"> RUN   TestSleepSort</font>
+<font color="#ff0000">--- PASS</font><font color="#F3E651">:</font><font color="#ff0000"> TestSleepSort </font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">00s</font><font color="#F3E651">)</font>
+<font color="#ff0000">PASS</font>
+<font color="#ff0000">ok      codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/algorithms/sort     </font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">002s</font>
 </pre>
 <br />
 <span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />

@@ -117,42 +117,42 @@ photoalbum makemake
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> photoalbum makemake
-You may now customize <font color="#990000">.</font>/photoalbumrc and run make
+<pre><font color="#F3E651">%</font><font color="#ff0000"> photoalbum makemake</font>
+<font color="#ff0000">You may now customize </font><font color="#F3E651">.</font><font color="#ff0000">/photoalbumrc and run make</font>
 
-<font color="#990000">%</font> cat Makefile
-all<font color="#990000">:</font>
-	photoalbum generate photoalbumrc
-clean<font color="#990000">:</font>
-	photoalbum clean photoalbumrc
+<font color="#F3E651">%</font><font color="#ff0000"> cat Makefile</font>
+<font color="#ff0000">all</font><font color="#F3E651">:</font>
+<font color="#ff0000">	photoalbum generate photoalbumrc</font>
+<font color="#ff0000">clean</font><font color="#F3E651">:</font>
+<font color="#ff0000">	photoalbum clean photoalbumrc</font>
 
-<font color="#990000">%</font> cat photoalbumrc
-<i><font color="#9A1900"># The title of the photoalbum</font></i>
-<font color="#009900">TITLE</font><font color="#990000">=</font><font color="#FF0000">'A simple Photoalbum'</font>
+<font color="#F3E651">%</font><font color="#ff0000"> cat photoalbumrc</font>
+<i><font color="#ababab"># The title of the photoalbum</font></i>
+<font color="#ff0000">TITLE</font><font color="#F3E651">=</font><font color="#bb00ff">'A simple Photoalbum'</font>
 
-<i><font color="#9A1900"># Thumbnail height geometry</font></i>
-<font color="#009900">THUMBHEIGHT</font><font color="#990000">=</font><font color="#993399">300</font>
-<i><font color="#9A1900"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
-<font color="#009900">HEIGHT</font><font color="#990000">=</font><font color="#993399">1200</font>
-<i><font color="#9A1900"># Max previews per page.</font></i>
-<font color="#009900">MAXPREVIEWS</font><font color="#990000">=</font><font color="#993399">40</font>
-<i><font color="#9A1900"># Randomly shuffle all previews.</font></i>
-<i><font color="#9A1900"># SHUFFLE=yes</font></i>
+<i><font color="#ababab"># Thumbnail height geometry</font></i>
+<font color="#ff0000">THUMBHEIGHT</font><font color="#F3E651">=</font><font color="#bb00ff">300</font>
+<i><font color="#ababab"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
+<font color="#ff0000">HEIGHT</font><font color="#F3E651">=</font><font color="#bb00ff">1200</font>
+<i><font color="#ababab"># Max previews per page.</font></i>
+<font color="#ff0000">MAXPREVIEWS</font><font color="#F3E651">=</font><font color="#bb00ff">40</font>
+<i><font color="#ababab"># Randomly shuffle all previews.</font></i>
+<i><font color="#ababab"># SHUFFLE=yes</font></i>
 
-<i><font color="#9A1900"># Diverse directories, need to be full paths, not relative!</font></i>
-<font color="#009900">INCOMING_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/incoming
-<font color="#009900">DIST_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/dist
-<font color="#009900">TEMPLATE_DIR</font><font color="#990000">=</font>/usr/share/photoalbum/templates/default
-<i><font color="#9A1900">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
+<i><font color="#ababab"># Diverse directories, need to be full paths, not relative!</font></i>
+<font color="#ff0000">INCOMING_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$(pwd)</font><font color="#ff0000">/incoming</font>
+<font color="#ff0000">DIST_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$(pwd)</font><font color="#ff0000">/dist</font>
+<font color="#ff0000">TEMPLATE_DIR</font><font color="#F3E651">=</font><font color="#ff0000">/usr/share/photoalbum/templates/default</font>
+<i><font color="#ababab">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
 
-<i><font color="#9A1900"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
-<font color="#009900">TARBALL_INCLUDE</font><font color="#990000">=</font>yes
-<font color="#009900">TARBALL_SUFFIX</font><font color="#990000">=.</font>tar
-<font color="#009900">TAR_OPTS</font><font color="#990000">=</font><font color="#FF0000">'-c'</font>
+<i><font color="#ababab"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
+<font color="#ff0000">TARBALL_INCLUDE</font><font color="#F3E651">=</font><font color="#ff0000">yes</font>
+<font color="#ff0000">TARBALL_SUFFIX</font><font color="#F3E651">=.</font><font color="#ff0000">tar</font>
+<font color="#ff0000">TAR_OPTS</font><font color="#F3E651">=</font><font color="#bb00ff">'-c'</font>
 
-<i><font color="#9A1900"># Some debugging options</font></i>
-<i><font color="#9A1900">#set -e</font></i>
-<i><font color="#9A1900">#set -x</font></i>
+<i><font color="#ababab"># Some debugging options</font></i>
+<i><font color="#ababab">#set -e</font></i>
+<i><font color="#ababab">#set -x</font></i>
 </pre>
 <br />
 <span>In the case for <span class='inlinecode'>irregular.ninja</span>, I changed the defaults to the following:</span><br />
@@ -161,38 +161,38 @@ clean<font color="#990000">:</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#FF6600">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
-<font color="#009900">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
-<font color="#0000FF">@@ -1,23 +1,24 @@</font>
- # The title of the photoalbum
-<font color="#FF6600">-TITLE='A simple Photoalbum'</font>
-<font color="#009900">+TITLE='Irregular.Ninja'</font>
+<pre><font color="#ff0000">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
+<font color="#ff0000">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
+<font color="#ff0000">@@ -1,23 +1,24 @@</font>
+<font color="#ff0000"> # The title of the photoalbum</font>
+<font color="#ff0000">-TITLE='A simple Photoalbum'</font>
+<font color="#ff0000">+TITLE='Irregular.Ninja'</font>
 
- # Thumbnail height geometry
-<font color="#FF6600">-THUMBHEIGHT=300</font>
-<font color="#009900">+THUMBHEIGHT=400</font>
- # Normal geometry height (when viewing photo). Uncomment, to keep original size.
-<font color="#FF6600">-HEIGHT=1200</font>
-<font color="#009900">+HEIGHT=1800</font>
- # Max previews per page.
- MAXPREVIEWS=40
-<font color="#FF6600">-# Randomly shuffle all previews.</font>
-<font color="#FF6600">-# SHUFFLE=yes</font>
-<font color="#009900">+# Randomly shuffle</font>
-<font color="#009900">+SHUFFLE=yes</font>
+<font color="#ff0000"> # Thumbnail height geometry</font>
+<font color="#ff0000">-THUMBHEIGHT=300</font>
+<font color="#ff0000">+THUMBHEIGHT=400</font>
+<font color="#ff0000"> # Normal geometry height (when viewing photo). Uncomment, to keep original size.</font>
+<font color="#ff0000">-HEIGHT=1200</font>
+<font color="#ff0000">+HEIGHT=1800</font>
+<font color="#ff0000"> # Max previews per page.</font>
+<font color="#ff0000"> MAXPREVIEWS=40</font>
+<font color="#ff0000">-# Randomly shuffle all previews.</font>
+<font color="#ff0000">-# SHUFFLE=yes</font>
+<font color="#ff0000">+# Randomly shuffle</font>
+<font color="#ff0000">+SHUFFLE=yes</font>
 
- # Diverse directories, need to be full paths, not relative!
-<font color="#FF6600">-INCOMING_DIR=$(pwd)/incoming</font>
-<font color="#009900">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
- DIST_DIR=$(pwd)/dist
- TEMPLATE_DIR=/usr/share/photoalbum/templates/default
- #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
+<font color="#ff0000"> # Diverse directories, need to be full paths, not relative!</font>
+<font color="#ff0000">-INCOMING_DIR=$(pwd)/incoming</font>
+<font color="#ff0000">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
+<font color="#ff0000"> DIST_DIR=$(pwd)/dist</font>
+<font color="#ff0000"> TEMPLATE_DIR=/usr/share/photoalbum/templates/default</font>
+<font color="#ff0000"> #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font>
 
- # Includes a .tar of the incoming dir in the dist, can be yes or no
-<font color="#FF6600">-TARBALL_INCLUDE=yes</font>
-<font color="#009900">+TARBALL_INCLUDE=no</font>
- TARBALL_SUFFIX=.tar
- TAR_OPTS='-c'
+<font color="#ff0000"> # Includes a .tar of the incoming dir in the dist, can be yes or no</font>
+<font color="#ff0000">-TARBALL_INCLUDE=yes</font>
+<font color="#ff0000">+TARBALL_INCLUDE=no</font>
+<font color="#ff0000"> TARBALL_SUFFIX=.tar</font>
+<font color="#ff0000"> TAR_OPTS='-c'</font>
 </pre>
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />

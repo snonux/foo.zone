@@ -77,38 +77,38 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/bin/ksh</font></i>
+<pre><i><font color="#ababab">#!/bin/ksh</font></i>
 
-<font color="#009900">ZONES_DIR</font><font color="#990000">=</font>/var/nsd/zones/master<font color="#990000">/</font>
-<font color="#009900">DEFAULT_MASTER</font><font color="#990000">=</font>fishfinger<font color="#990000">.</font>buetow<font color="#990000">.</font>org
-<font color="#009900">DEFAULT_STANDBY</font><font color="#990000">=</font>blowfish<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+<font color="#ff0000">ZONES_DIR</font><font color="#F3E651">=</font><font color="#ff0000">/var/nsd/zones/master</font><font color="#F3E651">/</font>
+<font color="#ff0000">DEFAULT_MASTER</font><font color="#F3E651">=</font><font color="#ff0000">fishfinger</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
+<font color="#ff0000">DEFAULT_STANDBY</font><font color="#F3E651">=</font><font color="#ff0000">blowfish</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
 
-<b><font color="#000000">determine_master_and_standby ()</font></b> {
-    <b><font color="#0000FF">local</font></b> <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$DEFAULT_MASTER</font>
-    <b><font color="#0000FF">local</font></b> <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$DEFAULT_STANDBY</font>
+<font color="#7bc710">determine_master_and_standby ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$DEFAULT_MASTER</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$DEFAULT_STANDBY</font>
 
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    
-    <b><font color="#0000FF">local</font></b> -i <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">1</font>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> ftp -<font color="#993399">4</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-        echo <font color="#FF0000">"https://$master/index.txt IPv4 health check failed"</font>
-        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
-    <b><font color="#0000FF">elif</font></b> <font color="#990000">!</font> ftp -<font color="#993399">6</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-        echo <font color="#FF0000">"https://$master/index.txt IPv6 health check failed"</font>
-        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
-    <b><font color="#0000FF">fi</font></b>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$health_ok</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
-        <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
-        <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
-    <b><font color="#0000FF">fi</font></b>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">1</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> ftp -</font><font color="#bb00ff">4</font><font color="#ff0000"> -o - https</font><font color="#F3E651">://</font><font color="#ff0000">$master</font><font color="#ff0000">/index</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q </font><font color="#bb00ff">"Welcome to $master"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"https://$master/index.txt IPv4 health check failed"</font>
+<font color="#ff0000">        </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">0</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">elif</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> ftp -</font><font color="#bb00ff">6</font><font color="#ff0000"> -o - https</font><font color="#F3E651">://</font><font color="#ff0000">$master</font><font color="#ff0000">/index</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q </font><font color="#bb00ff">"Welcome to $master"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"https://$master/index.txt IPv6 health check failed"</font>
+<font color="#ff0000">        </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">0</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">$health_ok</font><font color="#ff0000"> -eq </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">tmp</font><font color="#F3E651">=</font><font color="#ff0000">$master</font>
+<font color="#ff0000">        </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$standby</font>
+<font color="#ff0000">        </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$tmp</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
 
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-}
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">}</font>
 </pre>
 <br />
 <span>The failover scripts looks for the <span class='inlinecode'> ; Enable failover</span> string in the DNS zone files and swaps the <span class='inlinecode'>A</span> and <span class='inlinecode'>AAAA</span> records of the DNS entries accordingly:</span><br />
@@ -117,42 +117,42 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>fishfinger$ grep failover /var/nsd/zones/master/foo<font color="#990000">.</font>zone<font color="#990000">.</font>zone
-        <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
-        <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
-www     <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
-www     <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
-standby  <font color="#993399">300</font> IN A <font color="#993399">23.88</font><font color="#990000">.</font><font color="#993399">35.144</font> <font color="#990000">;</font> Enable failover
-standby  <font color="#993399">300</font> IN AAAA 2a01<font color="#990000">:</font>4f8<font color="#990000">:</font>c17<font color="#990000">:</font>20f1<font color="#990000">::</font><font color="#993399">42</font> <font color="#990000">;</font> Enable failover
+<pre><font color="#ff0000">fishfinger$ grep failover /var/nsd/zones/master/foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">        </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">46.23</font><font color="#F3E651">.</font><font color="#bb00ff">94.99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">        </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a03</font><font color="#F3E651">:</font><font color="#bb00ff">6000</font><font color="#F3E651">:</font><font color="#ff0000">6f67</font><font color="#F3E651">:</font><font color="#bb00ff">624</font><font color="#F3E651">::</font><font color="#bb00ff">99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">www     </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">46.23</font><font color="#F3E651">.</font><font color="#bb00ff">94.99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">www     </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a03</font><font color="#F3E651">:</font><font color="#bb00ff">6000</font><font color="#F3E651">:</font><font color="#ff0000">6f67</font><font color="#F3E651">:</font><font color="#bb00ff">624</font><font color="#F3E651">::</font><font color="#bb00ff">99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">standby  </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">23.88</font><font color="#F3E651">.</font><font color="#bb00ff">35.144</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">standby  </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a01</font><font color="#F3E651">:</font><font color="#ff0000">4f8</font><font color="#F3E651">:</font><font color="#ff0000">c17</font><font color="#F3E651">:</font><font color="#ff0000">20f1</font><font color="#F3E651">::</font><font color="#bb00ff">42</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">tramsform ()</font></b> {
-	sed -E <font color="#FF0000">'</font>
-<font color="#FF0000">	/IN A .*; Enable failover/ {</font>
-<font color="#FF0000">	    /^standby/! {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/master_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	    /^standby/ {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">	/IN AAAA .*; Enable failover/ {</font>
-<font color="#FF0000">	    /^standby/! {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/master_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	    /^standby/ {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">	/ ; serial/ {</font>
-<font color="#FF0000">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> '</font><font color="#009900">$(</font>date <font color="#990000">+%</font>s<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">	'</font>
-}
+<pre><font color="#7bc710">tramsform ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">	sed -E </font><font color="#bb00ff">'</font>
+<font color="#bb00ff">	/IN A .*; Enable failover/ {</font>
+<font color="#bb00ff">	    /^standby/! {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN A '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/master_a</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	    /^standby/ {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN A '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/standby_a</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">	/IN AAAA .*; Enable failover/ {</font>
+<font color="#bb00ff">	    /^standby/! {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN AAAA '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/master_aaaa</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	    /^standby/ {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN AAAA '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/standby_aaaa</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">	/ ; serial/ {</font>
+<font color="#bb00ff">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> '</font><font color="#ff0000">$(</font><font color="#ff0000">date </font><font color="#F3E651">+%</font><font color="#ff0000">s</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">	'</font>
+<font color="#ff0000">}</font>
 </pre>
 <br />
 <span>After the failover, the script reloads <span class='inlinecode'>nsd</span> and performs a sanity check to see if DNS still works. If not, a rollback will be performed:</span><br />
@@ -161,47 +161,47 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Race condition (e.g. script execution abored in the middle of the previous run)</font></i>
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
-<b><font color="#0000FF">fi</font></b>
+<pre><i><font color="#ababab"># Race condition (e.g. script execution abored in the middle of the previous run)</font></i>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#ff0000">$zone_file</font>
+<b><font color="#ffffff">fi</font></b>
 
-cat <font color="#009900">$zone_file</font> <font color="#990000">|</font> transform <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp 
+<font color="#ff0000">cat </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> transform </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font>
 
-grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
-grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font> <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+<font color="#ff0000">grep -v </font><font color="#bb00ff">' ; serial'</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">grep -v </font><font color="#bb00ff">' ; serial'</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">old</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font>
 
-echo <font color="#FF0000">"Has zone $zone_file changed?"</font>
-<b><font color="#0000FF">if</font></b> diff -u <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-    echo <font color="#FF0000">"The zone $zone_file hasn't changed"</font>
-    rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
-    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font>
-<b><font color="#0000FF">fi</font></b>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Has zone $zone_file changed?"</font>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> diff -u </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">old</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"The zone $zone_file hasn't changed"</font>
+<font color="#ff0000">    rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.*.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">0</font>
+<b><font color="#ffffff">fi</font></b>
 
-cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>bak
-mv <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font>
-rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
-echo <font color="#FF0000">"Reloading nsd"</font>
-nsd-control reload
+<font color="#ff0000">cp </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak</font>
+<font color="#ff0000">mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$zone_file</font>
+<font color="#ff0000">rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.*.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Reloading nsd"</font>
+<font color="#ff0000">nsd-control reload</font>
 
-<b><font color="#0000FF">if</font></b> <font color="#990000">!</font> zone_is_ok <font color="#009900">$zone</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-    echo <font color="#FF0000">"Rolling back $zone_file changes"</font>
-    cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>invalid
-    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
-    echo <font color="#FF0000">"Reloading nsd"</font>
-    nsd-control reload
-    zone_is_ok <font color="#009900">$zone</font>
-    <b><font color="#0000FF">return</font></b> <font color="#993399">3</font>
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> zone_is_ok </font><font color="#ff0000">$zone</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"Rolling back $zone_file changes"</font>
+<font color="#ff0000">    cp </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">invalid</font>
+<font color="#ff0000">    mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#ff0000">$zone_file</font>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"Reloading nsd"</font>
+<font color="#ff0000">    nsd-control reload</font>
+<font color="#ff0000">    zone_is_ok </font><font color="#ff0000">$zone</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">3</font>
+<b><font color="#ffffff">fi</font></b>
 
-<b><font color="#0000FF">for</font></b> cleanup <b><font color="#0000FF">in</font></b> invalid bak<font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        rm <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font>
-    <b><font color="#0000FF">fi</font></b>
-<b><font color="#0000FF">done</font></b>
+<b><font color="#ffffff">for</font></b><font color="#ff0000"> cleanup </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> invalid bak</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">$cleanup</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">$cleanup</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<b><font color="#ffffff">done</font></b>
 
-echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
-<b><font color="#0000FF">return</font></b> <font color="#993399">1</font>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Failover of zone $zone to $MASTER completed"</font>
+<b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">1</font>
 </pre>
 <br />
 <span>A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.</span><br />
@@ -258,13 +258,13 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
-<b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-    <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
-    <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
-    <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
-<b><font color="#0000FF">fi</font></b>
+<pre><i><font color="#ababab"># Weekly auto-failover for Let's Encrypt automation</font></i>
+<b><font color="#ffffff">local</font></b><font color="#ff0000"> -i -r </font><font color="#ff0000">week_of_the_year</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">date </font><font color="#F3E651">+%</font><font color="#ff0000">U</font><font color="#F3E651">)</font>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">$(</font><font color="#F3E651">(</font><font color="#ff0000"> week_of_the_year </font><font color="#F3E651">%</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#F3E651">))</font><font color="#ff0000"> -eq </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">tmp</font><font color="#F3E651">=</font><font color="#ff0000">$master</font>
+<font color="#ff0000">    </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$standby</font>
+<font color="#ff0000">    </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$tmp</font>
+<b><font color="#ffffff">fi</font></b>
 </pre>
 <br />
 <span>This way, a DNS failover is performed weekly so that the ACME automation can update the Let&#39;s Encrypt certificates (for master and standby) before they expire on each VM.</span><br />

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-12T14:48:38+03:00</updated>
+    <updated>2024-05-18T13:15:08+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -232,12 +232,12 @@ Projects I currently don&#39;t have time for
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>Cluster <font color="#990000">:</font>UK<font color="#990000">,</font> <font color="#990000">:</font>uk01 <b><font color="#0000FF">do</font></b>
-  Customer<font color="#990000">.</font>C1A1<font color="#990000">.</font>segments<font color="#990000">.</font>volumes<font color="#990000">.</font>each <b><font color="#0000FF">do</font></b> <font color="#990000">|</font>volume<font color="#990000">|</font>
-    puts volume<font color="#990000">.</font>usage_stats
-    volume<font color="#990000">.</font>move_off! <b><font color="#0000FF">if</font></b> volume<font color="#990000">.</font>over_subscribed?
-  <b><font color="#0000FF">end</font></b>
-<b><font color="#0000FF">end</font></b>
+<pre><font color="#ff0000">Cluster </font><font color="#F3E651">:</font><font color="#ff0000">UK</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#F3E651">:</font><font color="#ff0000">uk01 </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">  Customer</font><font color="#F3E651">.</font><font color="#ff0000">C1A1</font><font color="#F3E651">.</font><font color="#ff0000">segments</font><font color="#F3E651">.</font><font color="#ff0000">volumes</font><font color="#F3E651">.</font><font color="#ff0000">each </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000">volume</font><font color="#F3E651">|</font>
+<font color="#ff0000">    puts volume</font><font color="#F3E651">.</font><font color="#ff0000">usage_stats</font>
+<font color="#ff0000">    volume</font><font color="#F3E651">.</font><font color="#ff0000">move_off! </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> volume</font><font color="#F3E651">.</font><font color="#ff0000">over_subscribed?</font>
+<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+<b><font color="#ffffff">end</font></b>
 </pre>
 <br />
 <span>I am abandoning this project because my workplace has stopped the annual pet project competition, and I have other more important projects to work on at the moment.</span><br />
@@ -599,38 +599,38 @@ KISS high-availability with OpenBSD
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/bin/ksh</font></i>
+<pre><i><font color="#ababab">#!/bin/ksh</font></i>
 
-<font color="#009900">ZONES_DIR</font><font color="#990000">=</font>/var/nsd/zones/master<font color="#990000">/</font>
-<font color="#009900">DEFAULT_MASTER</font><font color="#990000">=</font>fishfinger<font color="#990000">.</font>buetow<font color="#990000">.</font>org
-<font color="#009900">DEFAULT_STANDBY</font><font color="#990000">=</font>blowfish<font color="#990000">.</font>buetow<font color="#990000">.</font>org
+<font color="#ff0000">ZONES_DIR</font><font color="#F3E651">=</font><font color="#ff0000">/var/nsd/zones/master</font><font color="#F3E651">/</font>
+<font color="#ff0000">DEFAULT_MASTER</font><font color="#F3E651">=</font><font color="#ff0000">fishfinger</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
+<font color="#ff0000">DEFAULT_STANDBY</font><font color="#F3E651">=</font><font color="#ff0000">blowfish</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
 
-<b><font color="#000000">determine_master_and_standby ()</font></b> {
-    <b><font color="#0000FF">local</font></b> <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$DEFAULT_MASTER</font>
-    <b><font color="#0000FF">local</font></b> <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$DEFAULT_STANDBY</font>
+<font color="#7bc710">determine_master_and_standby ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$DEFAULT_MASTER</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$DEFAULT_STANDBY</font>
 
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    
-    <b><font color="#0000FF">local</font></b> -i <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">1</font>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> ftp -<font color="#993399">4</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-        echo <font color="#FF0000">"https://$master/index.txt IPv4 health check failed"</font>
-        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
-    <b><font color="#0000FF">elif</font></b> <font color="#990000">!</font> ftp -<font color="#993399">6</font> -o - https<font color="#990000">://</font><font color="#009900">$master</font>/index<font color="#990000">.</font>txt <font color="#990000">|</font> grep -q <font color="#FF0000">"Welcome to $master"</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-        echo <font color="#FF0000">"https://$master/index.txt IPv6 health check failed"</font>
-        <font color="#009900">health_ok</font><font color="#990000">=</font><font color="#993399">0</font>
-    <b><font color="#0000FF">fi</font></b>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$health_ok</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
-        <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
-        <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
-    <b><font color="#0000FF">fi</font></b>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">1</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> ftp -</font><font color="#bb00ff">4</font><font color="#ff0000"> -o - https</font><font color="#F3E651">://</font><font color="#ff0000">$master</font><font color="#ff0000">/index</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q </font><font color="#bb00ff">"Welcome to $master"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"https://$master/index.txt IPv4 health check failed"</font>
+<font color="#ff0000">        </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">0</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">elif</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> ftp -</font><font color="#bb00ff">6</font><font color="#ff0000"> -o - https</font><font color="#F3E651">://</font><font color="#ff0000">$master</font><font color="#ff0000">/index</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q </font><font color="#bb00ff">"Welcome to $master"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"https://$master/index.txt IPv6 health check failed"</font>
+<font color="#ff0000">        </font><font color="#ff0000">health_ok</font><font color="#F3E651">=</font><font color="#bb00ff">0</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">$health_ok</font><font color="#ff0000"> -eq </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">tmp</font><font color="#F3E651">=</font><font color="#ff0000">$master</font>
+<font color="#ff0000">        </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$standby</font>
+<font color="#ff0000">        </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$tmp</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
 
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-    <font color="#990000">.</font>
-}
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">    </font><font color="#F3E651">.</font>
+<font color="#ff0000">}</font>
 </pre>
 <br />
 <span>The failover scripts looks for the <span class='inlinecode'> ; Enable failover</span> string in the DNS zone files and swaps the <span class='inlinecode'>A</span> and <span class='inlinecode'>AAAA</span> records of the DNS entries accordingly:</span><br />
@@ -639,42 +639,42 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>fishfinger$ grep failover /var/nsd/zones/master/foo<font color="#990000">.</font>zone<font color="#990000">.</font>zone
-        <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
-        <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
-www     <font color="#993399">300</font> IN A <font color="#993399">46.23</font><font color="#990000">.</font><font color="#993399">94.99</font> <font color="#990000">;</font> Enable failover
-www     <font color="#993399">300</font> IN AAAA 2a03<font color="#990000">:</font><font color="#993399">6000</font><font color="#990000">:</font>6f67<font color="#990000">:</font><font color="#993399">624</font><font color="#990000">::</font><font color="#993399">99</font> <font color="#990000">;</font> Enable failover
-standby  <font color="#993399">300</font> IN A <font color="#993399">23.88</font><font color="#990000">.</font><font color="#993399">35.144</font> <font color="#990000">;</font> Enable failover
-standby  <font color="#993399">300</font> IN AAAA 2a01<font color="#990000">:</font>4f8<font color="#990000">:</font>c17<font color="#990000">:</font>20f1<font color="#990000">::</font><font color="#993399">42</font> <font color="#990000">;</font> Enable failover
+<pre><font color="#ff0000">fishfinger$ grep failover /var/nsd/zones/master/foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">        </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">46.23</font><font color="#F3E651">.</font><font color="#bb00ff">94.99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">        </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a03</font><font color="#F3E651">:</font><font color="#bb00ff">6000</font><font color="#F3E651">:</font><font color="#ff0000">6f67</font><font color="#F3E651">:</font><font color="#bb00ff">624</font><font color="#F3E651">::</font><font color="#bb00ff">99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">www     </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">46.23</font><font color="#F3E651">.</font><font color="#bb00ff">94.99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">www     </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a03</font><font color="#F3E651">:</font><font color="#bb00ff">6000</font><font color="#F3E651">:</font><font color="#ff0000">6f67</font><font color="#F3E651">:</font><font color="#bb00ff">624</font><font color="#F3E651">::</font><font color="#bb00ff">99</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">standby  </font><font color="#bb00ff">300</font><font color="#ff0000"> IN A </font><font color="#bb00ff">23.88</font><font color="#F3E651">.</font><font color="#bb00ff">35.144</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
+<font color="#ff0000">standby  </font><font color="#bb00ff">300</font><font color="#ff0000"> IN AAAA 2a01</font><font color="#F3E651">:</font><font color="#ff0000">4f8</font><font color="#F3E651">:</font><font color="#ff0000">c17</font><font color="#F3E651">:</font><font color="#ff0000">20f1</font><font color="#F3E651">::</font><font color="#bb00ff">42</font><font color="#ff0000"> </font><font color="#F3E651">;</font><font color="#ff0000"> Enable failover</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">transform ()</font></b> {
-  sed -E <font color="#FF0000">'</font>
-<font color="#FF0000">	/IN A .*; Enable failover/ {</font>
-<font color="#FF0000">	    /^standby/! {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/master_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	    /^standby/ {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN A '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_a<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">	/IN AAAA .*; Enable failover/ {</font>
-<font color="#FF0000">	    /^standby/! {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/master_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	    /^standby/ {</font>
-<font color="#FF0000">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> 300 IN AAAA '</font><font color="#009900">$(</font>cat /var/nsd/run/standby_aaaa<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	    }</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">	/ ; serial/ {</font>
-<font color="#FF0000">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#CC33CC">\1</font><font color="#FF0000"> '</font><font color="#009900">$(</font>date <font color="#990000">+%</font>s<font color="#990000">)</font><font color="#FF0000">' ; </font><font color="#CC33CC">\3</font><font color="#FF0000">/;</font>
-<font color="#FF0000">	}</font>
-<font color="#FF0000">  '</font>
-}
+<pre><font color="#7bc710">transform ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  sed -E </font><font color="#bb00ff">'</font>
+<font color="#bb00ff">	/IN A .*; Enable failover/ {</font>
+<font color="#bb00ff">	    /^standby/! {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN A '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/master_a</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	    /^standby/ {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN A (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN A '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/standby_a</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">	/IN AAAA .*; Enable failover/ {</font>
+<font color="#bb00ff">	    /^standby/! {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN AAAA '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/master_aaaa</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	    /^standby/ {</font>
+<font color="#bb00ff">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> 300 IN AAAA '</font><font color="#ff0000">$(</font><font color="#ff0000">cat /var/nsd/run/standby_aaaa</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	    }</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">	/ ; serial/ {</font>
+<font color="#bb00ff">	    s/^( +) ([0-9]+) .*; (.*)/</font><font color="#ffffff">\1</font><font color="#bb00ff"> '</font><font color="#ff0000">$(</font><font color="#ff0000">date </font><font color="#F3E651">+%</font><font color="#ff0000">s</font><font color="#F3E651">)</font><font color="#bb00ff">' ; </font><font color="#ffffff">\3</font><font color="#bb00ff">/;</font>
+<font color="#bb00ff">	}</font>
+<font color="#bb00ff">  '</font>
+<font color="#ff0000">}</font>
 </pre>
 <br />
 <span>After the failover, the script reloads <span class='inlinecode'>nsd</span> and performs a sanity check to see if DNS still works. If not, a rollback will be performed:</span><br />
@@ -683,48 +683,48 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#! Race condition !#</font></i>
-   
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
-<b><font color="#0000FF">fi</font></b>
+<pre><i><font color="#ababab">#! Race condition !#</font></i>
+<font color="#ff0000">   </font>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#ff0000">$zone_file</font>
+<b><font color="#ffffff">fi</font></b>
 
-cat <font color="#009900">$zone_file</font> <font color="#990000">|</font> transform <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp 
+<font color="#ff0000">cat </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> transform </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font>
 
-grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
-grep -v <font color="#FF0000">' ; serial'</font> <font color="#009900">$zone_file</font> <font color="#990000">&gt;</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp
+<font color="#ff0000">grep -v </font><font color="#bb00ff">' ; serial'</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">grep -v </font><font color="#bb00ff">' ; serial'</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">old</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font>
 
-echo <font color="#FF0000">"Has zone $zone_file changed?"</font>
-<b><font color="#0000FF">if</font></b> diff -u <font color="#009900">$zone_file</font><font color="#990000">.</font>old<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>noserial<font color="#990000">.</font>tmp<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-    echo <font color="#FF0000">"The zone $zone_file hasn't changed"</font>
-    rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
-    <b><font color="#0000FF">return</font></b> <font color="#993399">0</font>
-<b><font color="#0000FF">fi</font></b>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Has zone $zone_file changed?"</font>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> diff -u </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">old</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">noserial</font><font color="#F3E651">.</font><font color="#ff0000">tmp</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"The zone $zone_file hasn't changed"</font>
+<font color="#ff0000">    rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.*.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">0</font>
+<b><font color="#ffffff">fi</font></b>
 
-cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>bak
-mv <font color="#009900">$zone_file</font><font color="#990000">.</font>new<font color="#990000">.</font>tmp <font color="#009900">$zone_file</font>
-rm <font color="#009900">$zone_file</font><font color="#990000">.*.</font>tmp
-echo <font color="#FF0000">"Reloading nsd"</font>
-nsd-control reload
+<font color="#ff0000">cp </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak</font>
+<font color="#ff0000">mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$zone_file</font>
+<font color="#ff0000">rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.*.</font><font color="#ff0000">tmp</font>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Reloading nsd"</font>
+<font color="#ff0000">nsd-control reload</font>
 
-<b><font color="#0000FF">if</font></b> <font color="#990000">!</font> zone_is_ok <font color="#009900">$zone</font><font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-    echo <font color="#FF0000">"Rolling back $zone_file changes"</font>
-    cp <font color="#009900">$zone_file</font> <font color="#009900">$zone_file</font><font color="#990000">.</font>invalid
-    mv <font color="#009900">$zone_file</font><font color="#990000">.</font>bak <font color="#009900">$zone_file</font>
-    echo <font color="#FF0000">"Reloading nsd"</font>
-    nsd-control reload
-    zone_is_ok <font color="#009900">$zone</font>
-    <b><font color="#0000FF">return</font></b> <font color="#993399">3</font>
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> zone_is_ok </font><font color="#ff0000">$zone</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"Rolling back $zone_file changes"</font>
+<font color="#ff0000">    cp </font><font color="#ff0000">$zone_file</font><font color="#ff0000"> </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">invalid</font>
+<font color="#ff0000">    mv </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">bak </font><font color="#ff0000">$zone_file</font>
+<font color="#ff0000">    echo </font><font color="#bb00ff">"Reloading nsd"</font>
+<font color="#ff0000">    nsd-control reload</font>
+<font color="#ff0000">    zone_is_ok </font><font color="#ff0000">$zone</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">3</font>
+<b><font color="#ffffff">fi</font></b>
 
-<b><font color="#0000FF">for</font></b> cleanup <b><font color="#0000FF">in</font></b> invalid bak<font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        rm <font color="#009900">$zone_file</font><font color="#990000">.</font><font color="#009900">$cleanup</font>
-    <b><font color="#0000FF">fi</font></b>
-<b><font color="#0000FF">done</font></b>
+<b><font color="#ffffff">for</font></b><font color="#ff0000"> cleanup </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> invalid bak</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">$cleanup</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        rm </font><font color="#ff0000">$zone_file</font><font color="#F3E651">.</font><font color="#ff0000">$cleanup</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<b><font color="#ffffff">done</font></b>
 
-echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
-<b><font color="#0000FF">return</font></b> <font color="#993399">1</font>
+<font color="#ff0000">echo </font><font color="#bb00ff">"Failover of zone $zone to $MASTER completed"</font>
+<b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">1</font>
 </pre>
 <br />
 <span>A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.</span><br />
@@ -781,13 +781,13 @@ echo <font color="#FF0000">"Failover of zone $zone to $MASTER completed"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Weekly auto-failover for Let's Encrypt automation</font></i>
-<b><font color="#0000FF">local</font></b> -i -r <font color="#009900">week_of_the_year</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>U<font color="#990000">)</font>
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#009900">$(</font><font color="#990000">(</font> week_of_the_year <font color="#990000">%</font> <font color="#993399">2</font> <font color="#990000">))</font> -eq <font color="#993399">0</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-    <b><font color="#0000FF">local</font></b> <font color="#009900">tmp</font><font color="#990000">=</font><font color="#009900">$master</font>
-    <font color="#009900">master</font><font color="#990000">=</font><font color="#009900">$standby</font>
-    <font color="#009900">standby</font><font color="#990000">=</font><font color="#009900">$tmp</font>
-<b><font color="#0000FF">fi</font></b>
+<pre><i><font color="#ababab"># Weekly auto-failover for Let's Encrypt automation</font></i>
+<b><font color="#ffffff">local</font></b><font color="#ff0000"> -i -r </font><font color="#ff0000">week_of_the_year</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">date </font><font color="#F3E651">+%</font><font color="#ff0000">U</font><font color="#F3E651">)</font>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">$(</font><font color="#F3E651">(</font><font color="#ff0000"> week_of_the_year </font><font color="#F3E651">%</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#F3E651">))</font><font color="#ff0000"> -eq </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">tmp</font><font color="#F3E651">=</font><font color="#ff0000">$master</font>
+<font color="#ff0000">    </font><font color="#ff0000">master</font><font color="#F3E651">=</font><font color="#ff0000">$standby</font>
+<font color="#ff0000">    </font><font color="#ff0000">standby</font><font color="#F3E651">=</font><font color="#ff0000">$tmp</font>
+<b><font color="#ffffff">fi</font></b>
 </pre>
 <br />
 <span>This way, a DNS failover is performed weekly so that the ACME automation can update the Let&#39;s Encrypt certificates (for master and standby) before they expire on each VM.</span><br />
@@ -1133,8 +1133,8 @@ SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ doas installboot sd0 <i><font color="#9A1900"># Update the bootloader (not for every upgrade required)</font></i>
-$ doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kernel)</font></i>
+<pre><font color="#ff0000">$ doas installboot sd0 </font><i><font color="#ababab"># Update the bootloader (not for every upgrade required)</font></i>
+<font color="#ff0000">$ doas sysupgrade </font><i><font color="#ababab"># Update all binaries (including Kernel)</font></i>
 </pre>
 <br />
 <span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
@@ -1143,9 +1143,9 @@ $ doas sysupgrade <i><font color="#9A1900"># Update all binaries (including Kern
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ doas sysmerge <i><font color="#9A1900"># Update system configuration files</font></i>
-$ doas pkg_add -u <i><font color="#9A1900"># Update all packages</font></i>
-$ doas reboot <i><font color="#9A1900"># Just in case, reboot one more time</font></i>
+<pre><font color="#ff0000">$ doas sysmerge </font><i><font color="#ababab"># Update system configuration files</font></i>
+<font color="#ff0000">$ doas pkg_add -u </font><i><font color="#ababab"># Update all packages</font></i>
+<font color="#ff0000">$ doas reboot </font><i><font color="#ababab"># Just in case, reboot one more time</font></i>
 </pre>
 <br />
 <span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
@@ -1289,24 +1289,24 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">log ()</font></b> {
-    <b><font color="#0000FF">local</font></b> -r <font color="#009900">level</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
-    <b><font color="#0000FF">local</font></b> -r <font color="#009900">message</font><font color="#990000">=</font><font color="#FF0000">"$1"</font><font color="#990000">;</font> <b><font color="#0000FF">shift</font></b>
-    <b><font color="#0000FF">local</font></b> -i <font color="#009900">pid</font><font color="#990000">=</font><font color="#FF0000">"$$"</font>
+<font color="#7bc710">log ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">level</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">message</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">pid</font><font color="#F3E651">=</font><font color="#bb00ff">"$$"</font>
 
-    <b><font color="#0000FF">local</font></b> -r <font color="#009900">callee</font><font color="#990000">=</font><font color="#009900">${FUNCNAME[1]}</font>
-    <b><font color="#0000FF">local</font></b> -r <font color="#009900">stamp</font><font color="#990000">=</font><font color="#009900">$(</font>date <font color="#990000">+%</font>Y<font color="#990000">%</font>m<font color="#990000">%</font>d-<font color="#990000">%</font>H<font color="#990000">%</font>M<font color="#990000">%</font>S<font color="#990000">)</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">callee</font><font color="#F3E651">=</font><font color="#ff0000">${FUNCNAME[1]}</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">stamp</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">date </font><font color="#F3E651">+%</font><font color="#ff0000">Y</font><font color="#F3E651">%</font><font color="#ff0000">m</font><font color="#F3E651">%</font><font color="#ff0000">d-</font><font color="#F3E651">%</font><font color="#ff0000">H</font><font color="#F3E651">%</font><font color="#ff0000">M</font><font color="#F3E651">%</font><font color="#ff0000">S</font><font color="#F3E651">)</font>
 
-    echo <font color="#FF0000">"$level|$stamp|$pid|$callee|$message"</font> <font color="#990000">&gt;&amp;</font><font color="#993399">2</font>
-}
+<font color="#ff0000">    echo </font><font color="#bb00ff">"$level|$stamp|$pid|$callee|$message"</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
+<font color="#ff0000">}</font>
 
-<b><font color="#000000">at_home_friday_evening ()</font></b> {
-    log INFO <font color="#FF0000">'One Peperoni Pizza, please'</font>
-}
+<font color="#7bc710">at_home_friday_evening ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    log INFO </font><font color="#bb00ff">'One Peperoni Pizza, please'</font>
+<font color="#ff0000">}</font>
 
-at_home_friday_evening
+<font color="#ff0000">at_home_friday_evening</font>
 </pre>
 <br />
 <span>The output is as follows:</span><br />
@@ -1315,8 +1315,8 @@ at_home_friday_evening
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ <font color="#990000">.</font>/logexample<font color="#990000">.</font>sh
-INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font color="#993399">082732</font><font color="#990000">|</font><font color="#993399">123002</font><font color="#990000">|</font>at_home_friday_evening<font color="#990000">|</font>One Peperoni Pizza<font color="#990000">,</font> please
+<pre><font color="#ff0000">❯ </font><font color="#F3E651">.</font><font color="#ff0000">/logexample</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<font color="#ff0000">INFO</font><font color="#F3E651">|</font><font color="#bb00ff">20231210</font><font color="#ff0000">-</font><font color="#bb00ff">082732</font><font color="#F3E651">|</font><font color="#bb00ff">123002</font><font color="#F3E651">|</font><font color="#ff0000">at_home_friday_evening</font><font color="#F3E651">|</font><font color="#ff0000">One Peperoni Pizza</font><font color="#F3E651">,</font><font color="#ff0000"> please</font>
 </pre>
 <br />
 <h2 style='display: inline' id=''><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
@@ -1350,18 +1350,18 @@ INFO<font color="#990000">|</font><font color="#993399">20231210</font>-<font co
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">outer()</font></b> {
-  <b><font color="#000000">inner()</font></b> {
-    echo <font color="#FF0000">'Intel inside!'</font>
-  }
-  inner
-}
+<font color="#7bc710">outer()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  </font><font color="#7bc710">inner()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    echo </font><font color="#bb00ff">'Intel inside!'</font>
+<font color="#ff0000">  }</font>
+<font color="#ff0000">  inner</font>
+<font color="#ff0000">}</font>
 
-inner
-outer
-inner
+<font color="#ff0000">inner</font>
+<font color="#ff0000">outer</font>
+<font color="#ff0000">inner</font>
 </pre>
 <br />
 <span>And let&#39;s execute it:</span><br />
@@ -1379,26 +1379,26 @@ Intel inside!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">outer1()</font></b> {
-  <b><font color="#000000">inner()</font></b> {
-    echo <font color="#FF0000">'Intel inside!'</font>
-  }
-  inner
-}
+<font color="#7bc710">outer1()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  </font><font color="#7bc710">inner()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    echo </font><font color="#bb00ff">'Intel inside!'</font>
+<font color="#ff0000">  }</font>
+<font color="#ff0000">  inner</font>
+<font color="#ff0000">}</font>
 
-<b><font color="#000000">outer2()</font></b> {
-  <b><font color="#000000">inner()</font></b> {
-    echo <font color="#FF0000">'Wintel inside!'</font>
-  }
-  inner
-}
+<font color="#7bc710">outer2()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  </font><font color="#7bc710">inner()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    echo </font><font color="#bb00ff">'Wintel inside!'</font>
+<font color="#ff0000">  }</font>
+<font color="#ff0000">  inner</font>
+<font color="#ff0000">}</font>
 
-outer1
-inner
-outer2
-inner
+<font color="#ff0000">outer1</font>
+<font color="#ff0000">inner</font>
+<font color="#ff0000">outer2</font>
+<font color="#ff0000">inner</font>
 </pre>
 <br />
 <span>And let&#39;s run it:</span><br />
@@ -1419,14 +1419,14 @@ Wintel inside!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">some_expensive_operations()</font></b> {
-  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
-}
+<font color="#7bc710">some_expensive_operations()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"Doing expensive operations with '$1' from pid $$"</font>
+<font color="#ff0000">}</font>
 
-<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
-  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+<b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> {</font><font color="#bb00ff">0</font><font color="#F3E651">..</font><font color="#bb00ff">9</font><font color="#ff0000">}</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> echo </font><font color="#ff0000">$i</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> xargs -P</font><font color="#bb00ff">10</font><font color="#ff0000"> -I{} bash -c </font><font color="#bb00ff">'some_expensive_operations "{}"'</font>
 </pre>
 <br />
 <span>We try here to run ten parallel processes; each of them should run the <span class='inlinecode'>some_expensive_operations</span> function with a different argument. The arguments are provided to <span class='inlinecode'>xargs</span> through <span class='inlinecode'>STDIN</span> one per line. When executed, we get this:</span><br />
@@ -1451,15 +1451,15 @@ bash: line 1: some_expensive_operations: command not found
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">some_expensive_operations()</font></b> {
-  echo <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
-}
-<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+<font color="#7bc710">some_expensive_operations()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"Doing expensive operations with '$1' from pid $$"</font>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">export</font></b><font color="#ff0000"> -f some_expensive_operations</font>
 
-<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
-  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+<b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> {</font><font color="#bb00ff">0</font><font color="#F3E651">..</font><font color="#bb00ff">9</font><font color="#ff0000">}</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> echo </font><font color="#ff0000">$i</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> xargs -P</font><font color="#bb00ff">10</font><font color="#ff0000"> -I{} bash -c </font><font color="#bb00ff">'some_expensive_operations "{}"'</font>
 </pre>
 <br />
 <span>When we run this now, we get:</span><br />
@@ -1484,19 +1484,19 @@ Doing expensive operations with &#39;9&#39; from pid 132840
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">some_other_function()</font></b> {
-  echo <font color="#FF0000">"$1"</font>
-}
+<font color="#7bc710">some_other_function()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"$1"</font>
+<font color="#ff0000">}</font>
 
-<b><font color="#000000">some_expensive_operations()</font></b> {
-  some_other_function <font color="#FF0000">"Doing expensive operations with '$1' from pid $$"</font>
-}
-<b><font color="#0000FF">export</font></b> -f some_expensive_operations
+<font color="#7bc710">some_expensive_operations()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  some_other_function </font><font color="#bb00ff">"Doing expensive operations with '$1' from pid $$"</font>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">export</font></b><font color="#ff0000"> -f some_expensive_operations</font>
 
-<b><font color="#0000FF">for</font></b> i <b><font color="#0000FF">in</font></b> {<font color="#993399">0</font><font color="#990000">..</font><font color="#993399">9</font>}<font color="#990000">;</font> <b><font color="#0000FF">do</font></b> echo <font color="#009900">$i</font><font color="#990000">;</font> <b><font color="#0000FF">done</font></b> <font color="#990000">\</font>
-  <font color="#990000">|</font> xargs -P<font color="#993399">10</font> -I{} bash -c <font color="#FF0000">'some_expensive_operations "{}"'</font>
+<b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> {</font><font color="#bb00ff">0</font><font color="#F3E651">..</font><font color="#bb00ff">9</font><font color="#ff0000">}</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> echo </font><font color="#ff0000">$i</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> xargs -P</font><font color="#bb00ff">10</font><font color="#ff0000"> -I{} bash -c </font><font color="#bb00ff">'some_expensive_operations "{}"'</font>
 </pre>
 <br />
 <span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
@@ -1509,22 +1509,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#000000">foo()</font></b> {
-  <b><font color="#0000FF">local</font></b> <font color="#009900">foo</font><font color="#990000">=</font>bar <i><font color="#9A1900"># Declare local/dynamic variable</font></i>
-  bar
-  echo <font color="#FF0000">"$foo"</font>
-}
+<font color="#7bc710">foo()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">foo</font><font color="#F3E651">=</font><font color="#ff0000">bar </font><i><font color="#ababab"># Declare local/dynamic variable</font></i>
+<font color="#ff0000">  bar</font>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"$foo"</font>
+<font color="#ff0000">}</font>
 
-<b><font color="#000000">bar()</font></b> {
-  echo <font color="#FF0000">"$foo"</font>
-  <font color="#009900">foo</font><font color="#990000">=</font>baz
-}
+<font color="#7bc710">bar()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"$foo"</font>
+<font color="#ff0000">  </font><font color="#ff0000">foo</font><font color="#F3E651">=</font><font color="#ff0000">baz</font>
+<font color="#ff0000">}</font>
 
-<font color="#009900">foo</font><font color="#990000">=</font>foo <i><font color="#9A1900"># Declare global variable</font></i>
-foo <i><font color="#9A1900"># Call function foo</font></i>
-echo <font color="#FF0000">"$foo"</font>
+<font color="#ff0000">foo</font><font color="#F3E651">=</font><font color="#ff0000">foo </font><i><font color="#ababab"># Declare global variable</font></i>
+<font color="#ff0000">foo </font><i><font color="#ababab"># Call function foo</font></i>
+<font color="#ff0000">echo </font><font color="#bb00ff">"$foo"</font>
 </pre>
 <br />
 <span>Let&#39;s pause a minute. What do you think the output would be?</span><br />
@@ -1549,34 +1549,34 @@ foo
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<b><font color="#0000FF">declare</font></b> -r <font color="#009900">foo</font><font color="#990000">=</font>foo
-<b><font color="#0000FF">declare</font></b> -r <font color="#009900">bar</font><font color="#990000">=</font>bar
+<b><font color="#ffffff">declare</font></b><font color="#ff0000"> -r </font><font color="#ff0000">foo</font><font color="#F3E651">=</font><font color="#ff0000">foo</font>
+<b><font color="#ffffff">declare</font></b><font color="#ff0000"> -r </font><font color="#ff0000">bar</font><font color="#F3E651">=</font><font color="#ff0000">bar</font>
 
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-  <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-    echo ok1
-  <b><font color="#0000FF">fi</font></b>
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">  </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> bar </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">    echo ok1</font>
+<font color="#ff0000">  </font><b><font color="#ffffff">fi</font></b>
+<b><font color="#ffffff">fi</font></b>
 
-<b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-  echo ok2a
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> bar </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">  echo ok2a</font>
+<b><font color="#ffffff">fi</font></b>
 
-<font color="#990000">[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> <font color="#990000">[</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]</font> <font color="#990000">&amp;&amp;</font> echo ok2b
+<font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> bar </font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> echo ok2b</font>
 
-<b><font color="#0000FF">if</font></b> <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]];</font> <b><font color="#0000FF">then</font></b>
-  echo ok3a
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> bar </font><font color="#F3E651">]];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">  echo ok3a</font>
+<b><font color="#ffffff">fi</font></b>
 
- <font color="#990000">[[</font> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <font color="#FF0000">"$bar"</font> <font color="#990000">==</font> bar <font color="#990000">]]</font> <font color="#990000">&amp;&amp;</font> echo ok3b
+<font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> bar </font><font color="#F3E651">]]</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> echo ok3b</font>
 
-<b><font color="#0000FF">if</font></b> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-  echo ok4a
-<b><font color="#0000FF">fi</font></b>
+<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> bar</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">  echo ok4a</font>
+<b><font color="#ffffff">fi</font></b>
 
-<b><font color="#0000FF">test</font></b> <font color="#FF0000">"$foo"</font> <font color="#990000">=</font> foo <font color="#990000">&amp;&amp;</font> <b><font color="#0000FF">test</font></b> <font color="#FF0000">"$bar"</font> <font color="#990000">=</font> bar <font color="#990000">&amp;&amp;</font> echo ok4b
+<b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> foo </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$bar"</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> bar </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> echo ok4b</font>
 </pre>
 <br />
 <span>The output we get is:</span><br />
@@ -1600,18 +1600,18 @@ ok4b
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-<i><font color="#9A1900"># Single line comment</font></i>
+<i><font color="#ababab"># Single line comment</font></i>
 
-<i><font color="#9A1900"># These are two single line</font></i>
-<i><font color="#9A1900"># comments one after another</font></i>
+<i><font color="#ababab"># These are two single line</font></i>
+<i><font color="#ababab"># comments one after another</font></i>
 
-<font color="#990000">:</font> <font color="#990000">&lt;&lt;</font>COMMENT
-This is another way a
-multi line comment
-could be written<font color="#990000">!</font>
-COMMENT
+<font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">COMMENT</font>
+<font color="#ff0000">This is another way a</font>
+<font color="#ff0000">multi line comment</font>
+<font color="#ff0000">could be written</font><font color="#F3E651">!</font>
+<font color="#ff0000">COMMENT</font>
 </pre>
 <br />
 <span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
@@ -1624,11 +1624,11 @@ COMMENT
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 
-echo foo
-echo echo baz <font color="#990000">&gt;&gt;</font> <font color="#009900">$0</font>
-echo bar
+<font color="#ff0000">echo foo</font>
+<font color="#ff0000">echo echo baz </font><font color="#F3E651">&gt;&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$0</font>
+<font color="#ff0000">echo bar</font>
 </pre>
 <br />
 <span>When it is run, it will do:</span><br />
@@ -1977,42 +1977,42 @@ photoalbum makemake
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> photoalbum makemake
-You may now customize <font color="#990000">.</font>/photoalbumrc and run make
+<pre><font color="#F3E651">%</font><font color="#ff0000"> photoalbum makemake</font>
+<font color="#ff0000">You may now customize </font><font color="#F3E651">.</font><font color="#ff0000">/photoalbumrc and run make</font>
 
-<font color="#990000">%</font> cat Makefile
-all<font color="#990000">:</font>
-	photoalbum generate photoalbumrc
-clean<font color="#990000">:</font>
-	photoalbum clean photoalbumrc
+<font color="#F3E651">%</font><font color="#ff0000"> cat Makefile</font>
+<font color="#ff0000">all</font><font color="#F3E651">:</font>
+<font color="#ff0000">	photoalbum generate photoalbumrc</font>
+<font color="#ff0000">clean</font><font color="#F3E651">:</font>
+<font color="#ff0000">	photoalbum clean photoalbumrc</font>
 
-<font color="#990000">%</font> cat photoalbumrc
-<i><font color="#9A1900"># The title of the photoalbum</font></i>
-<font color="#009900">TITLE</font><font color="#990000">=</font><font color="#FF0000">'A simple Photoalbum'</font>
+<font color="#F3E651">%</font><font color="#ff0000"> cat photoalbumrc</font>
+<i><font color="#ababab"># The title of the photoalbum</font></i>
+<font color="#ff0000">TITLE</font><font color="#F3E651">=</font><font color="#bb00ff">'A simple Photoalbum'</font>
 
-<i><font color="#9A1900"># Thumbnail height geometry</font></i>
-<font color="#009900">THUMBHEIGHT</font><font color="#990000">=</font><font color="#993399">300</font>
-<i><font color="#9A1900"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
-<font color="#009900">HEIGHT</font><font color="#990000">=</font><font color="#993399">1200</font>
-<i><font color="#9A1900"># Max previews per page.</font></i>
-<font color="#009900">MAXPREVIEWS</font><font color="#990000">=</font><font color="#993399">40</font>
-<i><font color="#9A1900"># Randomly shuffle all previews.</font></i>
-<i><font color="#9A1900"># SHUFFLE=yes</font></i>
+<i><font color="#ababab"># Thumbnail height geometry</font></i>
+<font color="#ff0000">THUMBHEIGHT</font><font color="#F3E651">=</font><font color="#bb00ff">300</font>
+<i><font color="#ababab"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
+<font color="#ff0000">HEIGHT</font><font color="#F3E651">=</font><font color="#bb00ff">1200</font>
+<i><font color="#ababab"># Max previews per page.</font></i>
+<font color="#ff0000">MAXPREVIEWS</font><font color="#F3E651">=</font><font color="#bb00ff">40</font>
+<i><font color="#ababab"># Randomly shuffle all previews.</font></i>
+<i><font color="#ababab"># SHUFFLE=yes</font></i>
 
-<i><font color="#9A1900"># Diverse directories, need to be full paths, not relative!</font></i>
-<font color="#009900">INCOMING_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/incoming
-<font color="#009900">DIST_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/dist
-<font color="#009900">TEMPLATE_DIR</font><font color="#990000">=</font>/usr/share/photoalbum/templates/default
-<i><font color="#9A1900">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
+<i><font color="#ababab"># Diverse directories, need to be full paths, not relative!</font></i>
+<font color="#ff0000">INCOMING_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$(pwd)</font><font color="#ff0000">/incoming</font>
+<font color="#ff0000">DIST_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$(pwd)</font><font color="#ff0000">/dist</font>
+<font color="#ff0000">TEMPLATE_DIR</font><font color="#F3E651">=</font><font color="#ff0000">/usr/share/photoalbum/templates/default</font>
+<i><font color="#ababab">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
 
-<i><font color="#9A1900"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
-<font color="#009900">TARBALL_INCLUDE</font><font color="#990000">=</font>yes
-<font color="#009900">TARBALL_SUFFIX</font><font color="#990000">=.</font>tar
-<font color="#009900">TAR_OPTS</font><font color="#990000">=</font><font color="#FF0000">'-c'</font>
+<i><font color="#ababab"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
+<font color="#ff0000">TARBALL_INCLUDE</font><font color="#F3E651">=</font><font color="#ff0000">yes</font>
+<font color="#ff0000">TARBALL_SUFFIX</font><font color="#F3E651">=.</font><font color="#ff0000">tar</font>
+<font color="#ff0000">TAR_OPTS</font><font color="#F3E651">=</font><font color="#bb00ff">'-c'</font>
 
-<i><font color="#9A1900"># Some debugging options</font></i>
-<i><font color="#9A1900">#set -e</font></i>
-<i><font color="#9A1900">#set -x</font></i>
+<i><font color="#ababab"># Some debugging options</font></i>
+<i><font color="#ababab">#set -e</font></i>
+<i><font color="#ababab">#set -x</font></i>
 </pre>
 <br />
 <span>In the case for <span class='inlinecode'>irregular.ninja</span>, I changed the defaults to the following:</span><br />
@@ -2021,38 +2021,38 @@ clean<font color="#990000">:</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#FF6600">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
-<font color="#009900">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
-<font color="#0000FF">@@ -1,23 +1,24 @@</font>
- # The title of the photoalbum
-<font color="#FF6600">-TITLE='A simple Photoalbum'</font>
-<font color="#009900">+TITLE='Irregular.Ninja'</font>
+<pre><font color="#ff0000">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
+<font color="#ff0000">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
+<font color="#ff0000">@@ -1,23 +1,24 @@</font>
+<font color="#ff0000"> # The title of the photoalbum</font>
+<font color="#ff0000">-TITLE='A simple Photoalbum'</font>
+<font color="#ff0000">+TITLE='Irregular.Ninja'</font>
 
- # Thumbnail height geometry
-<font color="#FF6600">-THUMBHEIGHT=300</font>
-<font color="#009900">+THUMBHEIGHT=400</font>
- # Normal geometry height (when viewing photo). Uncomment, to keep original size.
-<font color="#FF6600">-HEIGHT=1200</font>
-<font color="#009900">+HEIGHT=1800</font>
- # Max previews per page.
- MAXPREVIEWS=40
-<font color="#FF6600">-# Randomly shuffle all previews.</font>
-<font color="#FF6600">-# SHUFFLE=yes</font>
-<font color="#009900">+# Randomly shuffle</font>
-<font color="#009900">+SHUFFLE=yes</font>
+<font color="#ff0000"> # Thumbnail height geometry</font>
+<font color="#ff0000">-THUMBHEIGHT=300</font>
+<font color="#ff0000">+THUMBHEIGHT=400</font>
+<font color="#ff0000"> # Normal geometry height (when viewing photo). Uncomment, to keep original size.</font>
+<font color="#ff0000">-HEIGHT=1200</font>
+<font color="#ff0000">+HEIGHT=1800</font>
+<font color="#ff0000"> # Max previews per page.</font>
+<font color="#ff0000"> MAXPREVIEWS=40</font>
+<font color="#ff0000">-# Randomly shuffle all previews.</font>
+<font color="#ff0000">-# SHUFFLE=yes</font>
+<font color="#ff0000">+# Randomly shuffle</font>
+<font color="#ff0000">+SHUFFLE=yes</font>
 
- # Diverse directories, need to be full paths, not relative!
-<font color="#FF6600">-INCOMING_DIR=$(pwd)/incoming</font>
-<font color="#009900">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
- DIST_DIR=$(pwd)/dist
- TEMPLATE_DIR=/usr/share/photoalbum/templates/default
- #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
+<font color="#ff0000"> # Diverse directories, need to be full paths, not relative!</font>
+<font color="#ff0000">-INCOMING_DIR=$(pwd)/incoming</font>
+<font color="#ff0000">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
+<font color="#ff0000"> DIST_DIR=$(pwd)/dist</font>
+<font color="#ff0000"> TEMPLATE_DIR=/usr/share/photoalbum/templates/default</font>
+<font color="#ff0000"> #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font>
 
- # Includes a .tar of the incoming dir in the dist, can be yes or no
-<font color="#FF6600">-TARBALL_INCLUDE=yes</font>
-<font color="#009900">+TARBALL_INCLUDE=no</font>
- TARBALL_SUFFIX=.tar
- TAR_OPTS='-c'
+<font color="#ff0000"> # Includes a .tar of the incoming dir in the dist, can be yes or no</font>
+<font color="#ff0000">-TARBALL_INCLUDE=yes</font>
+<font color="#ff0000">+TARBALL_INCLUDE=no</font>
+<font color="#ff0000"> TARBALL_SUFFIX=.tar</font>
+<font color="#ff0000"> TAR_OPTS='-c'</font>
 </pre>
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
@@ -2208,7 +2208,7 @@ blurs  html  index.html  photos  thumbs
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt --grep INFO --files <font color="#FF0000">"/var/log/dserver/*.log"</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --grep INFO --files </font><font color="#bb00ff">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
 <span>Hint: you can also provide a comma separated server list, e.g.: <span class='inlinecode'>servers server1.example.org,server2.example.org:PORT,...</span></span><br />
@@ -2221,7 +2221,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt --grep INFO <font color="#FF0000">"/var/log/dserver/*.log"</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --grep INFO </font><font color="#bb00ff">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Aggregatinglogs'>Aggregating logs</h2><br />
@@ -2234,10 +2234,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt <font color="#990000">\</font>
-    --files <font color="#FF0000">'/var/log/dserver/*.log'</font> <font color="#990000">\</font>
-    --query <font color="#FF0000">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#FF0000">             last($time),max(lifetimeConnections)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select sum($goroutines),sum($cgocalls),</font>
+<font color="#bb00ff">             last($time),max(lifetimeConnections)'</font>
 </pre>
 <br />
 <span>Beware: For map-reduce queries to work, you have to ensure that DTail supports your log format. Check out the documentaiton of the DTail query language and the DTail log formats on the DTail homepage for more information.</span><br />
@@ -2250,10 +2250,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt <font color="#990000">\</font>
-    --files <font color="#FF0000">'/var/log/dserver/*.log'</font> <font color="#990000">\</font>
-    <font color="#FF0000">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#FF0000">     last($time),max(lifetimeConnections)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    </font><font color="#bb00ff">'from STATS select sum($goroutines),sum($cgocalls),</font>
+<font color="#bb00ff">     last($time),max(lifetimeConnections)'</font>
 </pre>
 <br />
 <span>Here is another example:</span><br />
@@ -2262,10 +2262,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt <font color="#990000">\</font>
-    --files <font color="#FF0000">'/var/log/dserver/*.log'</font> <font color="#990000">\</font>
-    --query <font color="#FF0000">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#FF0000">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#bb00ff">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <a href='./dtail-usage-examples/dtail-map2.gif'><img alt='Tail map-reduce example 2' title='Tail map-reduce example 2' src='./dtail-usage-examples/dtail-map2.gif' /></a><br />
@@ -2276,9 +2276,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --servers serverlist<font color="#990000">.</font>txt <font color="#990000">\</font>
-    --files <font color="#FF0000">'/var/log/dserver/*.log'</font> <font color="#990000">\</font>
-    --query <font color="#FF0000">'from STATS select ... outfile append result.csv'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select ... outfile append result.csv'</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Howtousedcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
@@ -2291,7 +2291,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dcat --servers serverlist<font color="#990000">.</font>txt --files /etc/hostname
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --files /etc/hostname</font>
 </pre>
 <br />
 <a href='./dtail-usage-examples/dcat.gif'><img alt='Cat example' title='Cat example' src='./dtail-usage-examples/dcat.gif' /></a><br />
@@ -2302,7 +2302,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dcat --servers serverlist<font color="#990000">.</font>txt /etc/hostname
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt /etc/hostname</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Howtousedgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
@@ -2313,9 +2313,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dgrep --servers server1<font color="#990000">.</font>example<font color="#990000">.</font>org<font color="#990000">:</font><font color="#993399">2223</font> <font color="#990000">\</font>
-    --files /etc/passwd <font color="#990000">\</font>
-    --regex nologin
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --servers server1</font><font color="#F3E651">.</font><font color="#ff0000">example</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">2223</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files /etc/passwd </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --regex nologin</font>
 </pre>
 <br />
 <span>Generally, <span class='inlinecode'>dgrep</span> is also a very useful way to search historic application logs for certain content.</span><br />
@@ -2332,10 +2332,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dmap --servers serverlist<font color="#990000">.</font>txt <font color="#990000">\</font>
-    --files <font color="#FF0000">'/var/log/dserver/*.log'</font> <font color="#990000">\</font>
-    --query <font color="#FF0000">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#FF0000">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#bb00ff">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <span>Remember: For that to work, you have to make sure that DTail supports your log format. You can either use the ones already defined in <span class='inlinecode'>internal/mapr/logformat</span> or add an extension to support a custom log format. The example here works out of the box though, as DTail understands its own log format already. </span><br />
@@ -2358,9 +2358,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dmap --files /var/log/dserver/dserver<font color="#990000">.</font>log
-    --query <font color="#FF0000">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#FF0000">              lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap --files /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#bb00ff">              lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <span>As a shorthand version the following command can be used:</span><br />
@@ -2369,9 +2369,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dmap <font color="#FF0000">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#FF0000">        lifetimeConnections group by $hostname order by max($cgocalls)'</font> <font color="#990000">\</font>
-        /var/log/dsever/dserver<font color="#990000">.</font>log
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#bb00ff">        lifetimeConnections group by $hostname order by max($cgocalls)'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        /var/log/dsever/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
 </pre>
 <br />
 <span>You can also use a file input pipe as follows:</span><br />
@@ -2380,9 +2380,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat /var/log/dserver/dserver<font color="#990000">.</font>log <font color="#990000">|</font> <font color="#990000">\</font>
-    dmap <font color="#FF0000">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#FF0000">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> cat /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    dmap </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#bb00ff">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='AggregatingCSVfiles'>Aggregating CSV files</h3><br />
@@ -2393,16 +2393,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat example<font color="#990000">.</font>csv
-name<font color="#990000">,</font>lastname<font color="#990000">,</font>age<font color="#990000">,</font>profession
-Michael<font color="#990000">,</font>Jordan<font color="#990000">,</font><font color="#993399">40</font><font color="#990000">,</font>Basketball player
-Michael<font color="#990000">,</font>Jackson<font color="#990000">,</font><font color="#993399">100</font><font color="#990000">,</font>Singer
-Albert<font color="#990000">,</font>Einstein<font color="#990000">,</font><font color="#993399">200</font><font color="#990000">,</font>Physician
-<font color="#990000">%</font> dmap --query <font color="#FF0000">'select lastname,name where age &gt; 40 logformat csv outfile result.csv'</font> example<font color="#990000">.</font>csv
-<font color="#990000">%</font> cat result<font color="#990000">.</font>csv
-lastname<font color="#990000">,</font>name
-Jackson<font color="#990000">,</font>Michael
-Einstein<font color="#990000">,</font>Albert
+<pre><font color="#F3E651">%</font><font color="#ff0000"> cat example</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
+<font color="#ff0000">name</font><font color="#F3E651">,</font><font color="#ff0000">lastname</font><font color="#F3E651">,</font><font color="#ff0000">age</font><font color="#F3E651">,</font><font color="#ff0000">profession</font>
+<font color="#ff0000">Michael</font><font color="#F3E651">,</font><font color="#ff0000">Jordan</font><font color="#F3E651">,</font><font color="#bb00ff">40</font><font color="#F3E651">,</font><font color="#ff0000">Basketball player</font>
+<font color="#ff0000">Michael</font><font color="#F3E651">,</font><font color="#ff0000">Jackson</font><font color="#F3E651">,</font><font color="#bb00ff">100</font><font color="#F3E651">,</font><font color="#ff0000">Singer</font>
+<font color="#ff0000">Albert</font><font color="#F3E651">,</font><font color="#ff0000">Einstein</font><font color="#F3E651">,</font><font color="#bb00ff">200</font><font color="#F3E651">,</font><font color="#ff0000">Physician</font>
+<font color="#F3E651">%</font><font color="#ff0000"> dmap --query </font><font color="#bb00ff">'select lastname,name where age &gt; 40 logformat csv outfile result.csv'</font><font color="#ff0000"> example</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
+<font color="#F3E651">%</font><font color="#ff0000"> cat result</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
+<font color="#ff0000">lastname</font><font color="#F3E651">,</font><font color="#ff0000">name</font>
+<font color="#ff0000">Jackson</font><font color="#F3E651">,</font><font color="#ff0000">Michael</font>
+<font color="#ff0000">Einstein</font><font color="#F3E651">,</font><font color="#ff0000">Albert</font>
 </pre>
 <br />
 <span>DMap can also be used to query and aggregate CSV files from remote servers.</span><br />
@@ -2415,44 +2415,44 @@ Einstein<font color="#990000">,</font>Albert
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail /var/log/dserver/dserver<font color="#990000">.</font>log
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dtail --logLevel trace /var/log/dserver/dserver<font color="#990000">.</font>log
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --logLevel trace /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dcat /etc/passwd
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat /etc/passwd</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dcat --plain /etc/passwd <font color="#990000">&gt;</font> /etc/test
-<i><font color="#9A1900"># Should show no differences.</font></i>
-diff /etc/test /etc/passwd 
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --plain /etc/passwd </font><font color="#F3E651">&gt;</font><font color="#ff0000"> /etc/test</font>
+<i><font color="#ababab"># Should show no differences.</font></i>
+<font color="#ff0000">diff /etc/test /etc/passwd </font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dgrep --regex ERROR --files /var/log/dserver/dsever<font color="#990000">.</font>log
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --regex ERROR --files /var/log/dserver/dsever</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> dgrep --before <font color="#993399">10</font> --after <font color="#993399">10</font> --max <font color="#993399">10</font> --grep ERROR /var/log/dserver/dsever<font color="#990000">.</font>log
+<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --before </font><font color="#bb00ff">10</font><font color="#ff0000"> --after </font><font color="#bb00ff">10</font><font color="#ff0000"> --max </font><font color="#bb00ff">10</font><font color="#ff0000"> --grep ERROR /var/log/dserver/dsever</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
 </pre>
 <br />
 <span>Use <span class='inlinecode'>--help</span> for more available options. Or go to the DTail page for more information! Hope you find DTail useful!</span><br />
@@ -2609,9 +2609,9 @@ DC on fire:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -n <font color="#FF0000">"$foo"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-  echo <font color="#FF0000">"$foo"</font>
-<b><font color="#0000FF">fi</font></b>
+<pre><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -n </font><font color="#bb00ff">"$foo"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">  echo </font><font color="#bb00ff">"$foo"</font>
+<b><font color="#ffffff">fi</font></b>
 </pre>
 <br />
 <span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
@@ -2640,7 +2640,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">MASTODON_URI</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font>
+<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">MASTODON_URI</font><font color="#F3E651">=</font><font color="#bb00ff">'https://fosstodon.org/@snonux'</font>
 </pre>
 <br />
 <span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
@@ -2655,7 +2655,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">&lt;a</font></b> <font color="#009900">href</font><font color="#990000">=</font><font color="#FF0000">'https://fosstodon.org/@snonux'</font> <font color="#009900">rel</font><font color="#990000">=</font><font color="#FF0000">'me'</font><b><font color="#0000FF">&gt;</font></b>Me at Mastodon<b><font color="#0000FF">&lt;/a&gt;</font></b>
+<pre><b><font color="#ffffff">&lt;a</font></b><font color="#ff0000"> </font><b><font color="#F35E1E">href</font></b><font color="#F3E651">=</font><font color="#bb00ff">'https://fosstodon.org/@snonux'</font><font color="#ff0000"> </font><b><font color="#F35E1E">rel</font></b><font color="#F3E651">=</font><font color="#bb00ff">'me'</font><b><font color="#ffffff">&gt;</font></b><font color="#ff0000">Me at Mastodon</font><b><font color="#ffffff">&lt;/a&gt;</font></b>
 </pre>
 <br />
 <h2 style='display: inline' id='More'>More</h2><br />
@@ -3104,11 +3104,11 @@ Have a nice day!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>git clone https<font color="#990000">:</font>//codeberg<font color="#990000">.</font>org/snonux/gogios<font color="#990000">.</font>git
-cd gogios
-go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
-doas cp gogios /usr/local/bin/gogios
-doas chmod <font color="#993399">755</font> /usr/local/bin/gogios
+<pre><font color="#ff0000">git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/gogios</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
+<font color="#ff0000">cd gogios</font>
+<font color="#ff0000">go build -o gogios cmd/gogios/main</font><font color="#F3E651">.</font><font color="#ff0000">go</font>
+<font color="#ff0000">doas cp gogios /usr/local/bin/gogios</font>
+<font color="#ff0000">doas chmod </font><font color="#bb00ff">755</font><font color="#ff0000"> /usr/local/bin/gogios</font>
 </pre>
 <br />
 <span>You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:</span><br />
@@ -3117,9 +3117,9 @@ doas chmod <font color="#993399">755</font> /usr/local/bin/gogios
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">export</font></b> <font color="#009900">GOOS</font><font color="#990000">=</font>openbsd
-<b><font color="#0000FF">export</font></b> <font color="#009900">GOARCH</font><font color="#990000">=</font>amd64
-go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
+<pre><b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GOOS</font><font color="#F3E651">=</font><font color="#ff0000">openbsd</font>
+<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GOARCH</font><font color="#F3E651">=</font><font color="#ff0000">amd64</font>
+<font color="#ff0000">go build -o gogios cmd/gogios/main</font><font color="#F3E651">.</font><font color="#ff0000">go</font>
 </pre>
 <br />
 <span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
@@ -3134,11 +3134,11 @@ go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas adduser -group _gogios -batch _gogios
-doas usermod -d /var/run/gogios _gogios
-doas mkdir -p /var/run/gogios
-doas chown _gogios<font color="#990000">:</font>_gogios /var/run/gogios
-doas chmod <font color="#993399">750</font> /var/run/gogios
+<pre><font color="#ff0000">doas adduser -group _gogios -batch _gogios</font>
+<font color="#ff0000">doas usermod -d /var/run/gogios _gogios</font>
+<font color="#ff0000">doas mkdir -p /var/run/gogios</font>
+<font color="#ff0000">doas chown _gogios</font><font color="#F3E651">:</font><font color="#ff0000">_gogios /var/run/gogios</font>
+<font color="#ff0000">doas chmod </font><font color="#bb00ff">750</font><font color="#ff0000"> /var/run/gogios</font>
 </pre>
 <br />
 <span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
@@ -3151,8 +3151,8 @@ doas chmod <font color="#993399">750</font> /var/run/gogios
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas pkg_add monitoring-plugins
-doas pkg_add nrpe <i><font color="#9A1900"># If you want to execute checks remotely via NRPE.</font></i>
+<pre><font color="#ff0000">doas pkg_add monitoring-plugins</font>
+<font color="#ff0000">doas pkg_add nrpe </font><i><font color="#ababab"># If you want to execute checks remotely via NRPE.</font></i>
 </pre>
 <br />
 <span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
@@ -3179,41 +3179,41 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">{</font>
-  "EmailTo": "<font color="#FF0000">paul@dev.buetow.org</font>"<font color="#990000">,</font>
-  "EmailFrom": "<font color="#FF0000">gogios@buetow.org</font>"<font color="#990000">,</font>
-  "CheckTimeoutS": <font color="#993399">10</font><font color="#990000">,</font>
-  "CheckConcurrency": <font color="#993399">2</font><font color="#990000">,</font>
-  "StateDir": "<font color="#FF0000">/var/run/gogios</font>"<font color="#990000">,</font>
-  "Checks": <font color="#990000">{</font>
-    "Check ICMP4 www.foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_ping</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font> "-H"<font color="#990000">,</font> "www.foo.zone"<font color="#990000">,</font> "-4"<font color="#990000">,</font> "-w"<font color="#990000">,</font> "50,10%"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "100,15%" <font color="#990000">],</font>
-      "Retries": <font color="#993399">3</font><font color="#990000">,</font>
-      "RetryInterval": <font color="#993399">10</font>
-    <font color="#990000">},</font>
-    "Check ICMP6 www.foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_ping</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font> "-H"<font color="#990000">,</font> "www.foo.zone"<font color="#990000">,</font> "-6"<font color="#990000">,</font> "-w"<font color="#990000">,</font> "50,10%"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "100,15%" <font color="#990000">],</font>
-      "Retries": <font color="#993399">3</font><font color="#990000">,</font>
-      "RetryInterval": <font color="#993399">10</font>
-    <font color="#990000">},</font>
-    "www.foo.zone HTTP IPv4": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_http</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"www.foo.zone"<font color="#990000">,</font> "-4"<font color="#990000">],</font>
-      "DependsOn": <font color="#990000">[</font>"Check ICMP4 www.foo.zone"<font color="#990000">]</font>
-    <font color="#990000">},</font>
-    "www.foo.zone HTTP IPv6": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_http</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"www.foo.zone"<font color="#990000">,</font> "-6"<font color="#990000">],</font>
-      "DependsOn": <font color="#990000">[</font>"Check ICMP6 www.foo.zone"<font color="#990000">]</font>
-    <font color="#990000">}</font>
-    "Check NRPE Disk Usage foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_nrpe</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"-H"<font color="#990000">,</font> "foo.zone"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "check_disk"<font color="#990000">,</font> "-p"<font color="#990000">,</font> "5666"<font color="#990000">,</font> "-4"<font color="#990000">]</font>
-    <font color="#990000">}</font>
-  <font color="#990000">}</font>
-<font color="#990000">}</font>
+<pre><font color="#F3E651">{</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">EmailTo</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">paul@dev.buetow.org</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">EmailFrom</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">gogios@buetow.org</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">CheckTimeoutS</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">CheckConcurrency</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">2</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">StateDir</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/var/run/gogios</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">Checks</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP4 www.foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-w</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">50,10%</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">100,15%</font><font color="#ff0000">"</font><font color="#ff0000"> </font><font color="#F3E651">],</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Retries</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">3</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">RetryInterval</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font>
+<font color="#ff0000">    </font><font color="#F3E651">},</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP6 www.foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-6</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-w</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">50,10%</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">100,15%</font><font color="#ff0000">"</font><font color="#ff0000"> </font><font color="#F3E651">],</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Retries</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">3</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">RetryInterval</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font>
+<font color="#ff0000">    </font><font color="#F3E651">},</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone HTTP IPv4</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_http</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">],</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">DependsOn</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP4 www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
+<font color="#ff0000">    </font><font color="#F3E651">},</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone HTTP IPv6</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_http</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-6</font><font color="#ff0000">"</font><font color="#F3E651">],</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">DependsOn</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP6 www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
+<font color="#ff0000">    </font><font color="#F3E651">}</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check NRPE Disk Usage foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_nrpe</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">check_disk</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-p</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">5666</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
+<font color="#ff0000">    </font><font color="#F3E651">}</font>
+<font color="#ff0000">  </font><font color="#F3E651">}</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <ul>
@@ -3242,7 +3242,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios<font color="#990000">.</font>json
+<pre><font color="#ff0000">doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios</font><font color="#F3E651">.</font><font color="#ff0000">json</font>
 </pre>
 <br />
 <span>To run Gogios via CRON on OpenBSD as the <span class='inlinecode'>gogios</span> user and check all services once per minute, follow these steps:</span><br />
@@ -3467,7 +3467,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ raku guprecords<font color="#990000">.</font>raku --stats<font color="#990000">=</font><font color="#009900">dir</font><font color="#990000">=</font><font color="#009900">$HOME</font>/git/uprecords/stats --all
+<pre><font color="#ff0000">$ raku guprecords</font><font color="#F3E651">.</font><font color="#ff0000">raku --stats</font><font color="#F3E651">=</font><font color="#ff0000">dir</font><font color="#F3E651">=</font><font color="#ff0000">$HOME</font><font color="#ff0000">/git/uprecords/stats --all</font>
 </pre>
 <br />
 <span>This command will generate a comprehensive uptime report from the collected statistics, making it easy to review and enjoy the data.</span><br />
@@ -3624,19 +3624,19 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> ds
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"golang.org/x/exp/constraints"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"golang.org/x/exp/constraints"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">type</font></b> Integer <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
-	constraints<font color="#990000">.</font>Integer
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> Integer </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">type</font></b> Number <b><font color="#0000FF">interface</font></b> <font color="#FF0000">{</font>
-	constraints<font color="#990000">.</font>Integer <font color="#990000">|</font> constraints<font color="#990000">.</font>Float
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> Number </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer </font><font color="#F3E651">|</font><font color="#ff0000"> constraints</font><font color="#F3E651">.</font><font color="#ff0000">Float</font>
+<font color="#F3E651">}</font>
 
 </pre>
 <br />
@@ -3648,19 +3648,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> ds
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"fmt"</font>
-	<font color="#FF0000">"math/rand"</font>
-	<font color="#FF0000">"strings"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"math/rand"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"strings"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">type</font></b> ArrayList<font color="#990000">[</font>V Number<font color="#990000">]</font> <font color="#990000">[]</font>V
+<b><font color="#ffffff">type</font></b><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">[]</font><font color="#ff0000">V</font>
 
-<b><font color="#0000FF">func</font></b> NewArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">return</font></b> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>As you can see, the code uses Go generics, which I refactored recently. Besides the default constructor (which only returns an empty <span class='inlinecode'>ArrayList</span> with a given capacity), there are also a bunch of special constructors. <span class='inlinecode'>NewRandomArrayList</span> is returning an <span class='inlinecode'>ArrayList</span> with random numbers, <span class='inlinecode'>NewAscendingArrayList</span> and <span class='inlinecode'>NewDescendingArrayList</span> are returning <span class='inlinecode'>ArrayList</span>s in either ascending or descending order. They all will be used later on for testing and benchmarking the algorithms.</span><br />
@@ -3669,35 +3669,35 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> NewRandomArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l<font color="#990000">,</font> max int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		<b><font color="#0000FF">if</font></b> max <font color="#990000">&gt;</font> <font color="#993399">0</font> <font color="#FF0000">{</font>
-			a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Intn</font></b><font color="#990000">(</font>max<font color="#990000">))</font>
-			<b><font color="#0000FF">continue</font></b>
-		<font color="#FF0000">}</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>rand<font color="#990000">.</font><b><font color="#000000">Int</font></b><font color="#990000">())</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l</font><font color="#F3E651">,</font><font color="#ff0000"> max int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> max </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Intn</font><font color="#F3E651">(</font><font color="#ff0000">max</font><font color="#F3E651">))</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">continue</font></b>
+<font color="#ff0000">		</font><font color="#F3E651">}</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Int</font><font color="#F3E651">())</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">func</font></b> NewAscendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>i<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewAscendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 
-<b><font color="#0000FF">func</font></b> NewDescendingArrayList<font color="#990000">[</font>V Number<font color="#990000">](</font>l int<font color="#990000">)</font> ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font>ArrayList<font color="#990000">[</font>V<font color="#990000">],</font> l<font color="#990000">)</font>
-	j <font color="#990000">:=</font> l <font color="#990000">-</font> <font color="#993399">1</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> l<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> <b><font color="#000000">V</font></b><font color="#990000">(</font>j<font color="#990000">)</font>
-		j<font color="#990000">--</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> a
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewDescendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
+<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> l </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">j</font><font color="#F3E651">)</font>
+<font color="#ff0000">		j</font><font color="#F3E651">--</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <h2 style='display: inline' id='Helpermethods'>Helper methods</h2><br />
@@ -3708,25 +3708,25 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">FirstN</font></b><font color="#990000">(</font>n int<font color="#990000">)</font> <font color="#009900">string</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">var</font></b> sb strings<font color="#990000">.</font>Builder
-	j <font color="#990000">:=</font> n
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">FirstN</font><font color="#F3E651">(</font><font color="#ff0000">n int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><b><font color="#F35E1E">string</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> sb strings</font><font color="#F3E651">.</font><font color="#ff0000">Builder</font>
+<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> n</font>
 
-	l <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
-	<b><font color="#0000FF">if</font></b> j <font color="#990000">&gt;</font> l <font color="#FF0000">{</font>
-		j <font color="#990000">=</font> l
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	l </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&gt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
+<font color="#ff0000">		j </font><font color="#F3E651">=</font><font color="#ff0000"> l</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <font color="#993399">0</font><font color="#990000">;</font> i <font color="#990000">&lt;</font> j<font color="#990000">;</font> i<font color="#990000">++</font> <font color="#FF0000">{</font>
-		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"%v "</font><font color="#990000">,</font> a<font color="#990000">[</font>i<font color="#990000">])</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> j</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"%v "</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">])</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">if</font></b> j <font color="#990000">&lt;</font> l <font color="#FF0000">{</font>
-		fmt<font color="#990000">.</font><b><font color="#000000">Fprintf</font></b><font color="#990000">(&amp;</font>sb<font color="#990000">,</font> <font color="#FF0000">"... "</font><font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
+<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"... "</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">return</font></b> sb<font color="#990000">.</font><b><font color="#000000">String</font></b><font color="#990000">()</font>
-<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sb</font><font color="#F3E651">.</font><font color="#7bc710">String</font><font color="#F3E651">()</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>Sorted</span> method checks whether the <span class='inlinecode'>ArrayList</span> is sorted. This will be used by the unit tests later on:</span><br />
@@ -3735,14 +3735,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#009900">bool</font> <font color="#FF0000">{</font>
-	<b><font color="#0000FF">for</font></b> i <font color="#990000">:=</font> <b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">)</font> <font color="#990000">-</font> <font color="#993399">1</font><font color="#990000">;</font> i <font color="#990000">&gt;</font> <font color="#993399">0</font><font color="#990000">;</font> i<font color="#990000">--</font> <font color="#FF0000">{</font>
-		<b><font color="#0000FF">if</font></b> a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">&lt;</font> a<font color="#990000">[</font>i<font color="#990000">-</font><font color="#993399">1</font><font color="#990000">]</font> <font color="#FF0000">{</font>
-			<b><font color="#0000FF">return</font></b> false
-		<font color="#FF0000">}</font>
-	<font color="#FF0000">}</font>
-	<b><font color="#0000FF">return</font></b> true
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><b><font color="#F35E1E">bool</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">--</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&lt;</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">-</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> false</font>
+<font color="#ff0000">		</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> true</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>And the last utility method used is <span class='inlinecode'>Swap</span>, which allows swapping the values of two indices in the <span class='inlinecode'>ArrayList</span>:</span><br />
@@ -3751,11 +3751,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">func</font></b> <font color="#990000">(</font>a ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> <b><font color="#000000">Swap</font></b><font color="#990000">(</font>i<font color="#990000">,</font> j int<font color="#990000">)</font> <font color="#FF0000">{</font>
-	aux <font color="#990000">:=</font> a<font color="#990000">[</font>i<font color="#990000">]</font>
-	a<font color="#990000">[</font>i<font color="#990000">]</font> <font color="#990000">=</font> a<font color="#990000">[</font>j<font color="#990000">]</font>
-	a<font color="#990000">[</font>j<font color="#990000">]</font> <font color="#990000">=</font> aux
-<font color="#FF0000">}</font>
+<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Swap</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">,</font><font color="#ff0000"> j int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	aux </font><font color="#F3E651">:=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font>
+<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font>
+<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> aux</font>
+<font color="#F3E651">}</font>
 
 </pre>
 <br />
@@ -3768,40 +3768,40 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> sort
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
-	<font color="#FF0000">"sync"</font>
-	<font color="#FF0000">"time"</font>
-<font color="#990000">)</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"sync"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"time"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">func</font></b> Sleep<font color="#990000">[</font>V ds<font color="#990000">.</font>Integer<font color="#990000">](</font>a ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">])</font> ds<font color="#990000">.</font>ArrayList<font color="#990000">[</font>V<font color="#990000">]</font> <font color="#FF0000">{</font>
-	sorted <font color="#990000">:=</font> ds<font color="#990000">.</font>NewArrayList<font color="#990000">[</font>V<font color="#990000">](</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> Sleep</font><font color="#F3E651">[</font><font color="#ff0000">V ds</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font><font color="#F3E651">](</font><font color="#ff0000">a ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	sorted </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">](</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
 
-	numCh <font color="#990000">:=</font> <b><font color="#000000">make</font></b><font color="#990000">(</font><b><font color="#0000FF">chan</font></b> V<font color="#990000">)</font>
-	<b><font color="#0000FF">var</font></b> wg sync<font color="#990000">.</font>WaitGroup
-	wg<font color="#990000">.</font><b><font color="#000000">Add</font></b><font color="#990000">(</font><b><font color="#000000">len</font></b><font color="#990000">(</font>a<font color="#990000">))</font>
+<font color="#ff0000">	numCh </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><b><font color="#ffffff">chan</font></b><font color="#ff0000"> V</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> wg sync</font><font color="#F3E651">.</font><font color="#ff0000">WaitGroup</font>
+<font color="#ff0000">	wg</font><font color="#F3E651">.</font><font color="#7bc710">Add</font><font color="#F3E651">(</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
 
-	<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-		wg<font color="#990000">.</font><b><font color="#000000">Wait</font></b><font color="#990000">()</font>
-		<b><font color="#000000">close</font></b><font color="#990000">(</font>numCh<font color="#990000">)</font>
-	<font color="#FF0000">}</font><font color="#990000">()</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		wg</font><font color="#F3E651">.</font><font color="#7bc710">Wait</font><font color="#F3E651">()</font>
+<font color="#ff0000">		</font><font color="#7bc710">close</font><font color="#F3E651">(</font><font color="#ff0000">numCh</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font><font color="#F3E651">()</font>
 
-	<b><font color="#0000FF">for</font></b> _<font color="#990000">,</font> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> a <font color="#FF0000">{</font>
-		<b><font color="#0000FF">go</font></b> <b><font color="#0000FF">func</font></b><font color="#990000">(</font>num V<font color="#990000">)</font> <font color="#FF0000">{</font>
-			<b><font color="#0000FF">defer</font></b> wg<font color="#990000">.</font><b><font color="#000000">Done</font></b><font color="#990000">()</font>
-			time<font color="#990000">.</font><b><font color="#000000">Sleep</font></b><font color="#990000">(</font>time<font color="#990000">.</font><b><font color="#000000">Duration</font></b><font color="#990000">(</font>num<font color="#990000">)</font> <font color="#990000">*</font> time<font color="#990000">.</font>Second<font color="#990000">)</font>
-			numCh <font color="#990000">&lt;-</font> num
-		<font color="#FF0000">}</font><font color="#990000">(</font>num<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> _</font><font color="#F3E651">,</font><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> a </font><font color="#F3E651">{</font>
+<font color="#ff0000">		</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">(</font><font color="#ff0000">num V</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">			</font><b><font color="#ffffff">defer</font></b><font color="#ff0000"> wg</font><font color="#F3E651">.</font><font color="#7bc710">Done</font><font color="#F3E651">()</font>
+<font color="#ff0000">			time</font><font color="#F3E651">.</font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">time</font><font color="#F3E651">.</font><font color="#7bc710">Duration</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000"> time</font><font color="#F3E651">.</font><font color="#ff0000">Second</font><font color="#F3E651">)</font>
+<font color="#ff0000">			numCh </font><font color="#F3E651">&lt;-</font><font color="#ff0000"> num</font>
+<font color="#ff0000">		</font><font color="#F3E651">}</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">for</font></b> num <font color="#990000">:=</font> <b><font color="#0000FF">range</font></b> numCh <font color="#FF0000">{</font>
-		sorted <font color="#990000">=</font> <b><font color="#000000">append</font></b><font color="#990000">(</font>sorted<font color="#990000">,</font> num<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> numCh </font><font color="#F3E651">{</font>
+<font color="#ff0000">		sorted </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">append</font><font color="#F3E651">(</font><font color="#ff0000">sorted</font><font color="#F3E651">,</font><font color="#ff0000"> num</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
 
-	<b><font color="#0000FF">return</font></b> sorted
-<font color="#FF0000">}</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sorted</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
@@ -3814,22 +3814,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">package</font></b> sort
+<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
 
-<b><font color="#0000FF">import</font></b> <font color="#990000">(</font>
-	<font color="#FF0000">"fmt"</font>
-	<font color="#FF0000">"testing"</font>
+<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"testing"</font>
 
-	<font color="#FF0000">"codeberg.org/snonux/algorithms/ds"</font>
-<font color="#990000">)</font>
+<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
+<font color="#F3E651">)</font>
 
-<b><font color="#0000FF">func</font></b> <b><font color="#000000">TestSleepSort</font></b><font color="#990000">(</font>t <font color="#990000">*</font>testing<font color="#990000">.</font>T<font color="#990000">)</font> <font color="#FF0000">{</font>
-	a <font color="#990000">:=</font> ds<font color="#990000">.</font>NewRandomArrayList<font color="#990000">[</font>int<font color="#990000">](</font><font color="#993399">10</font><font color="#990000">,</font> <font color="#993399">10</font><font color="#990000">)</font>
-	a <font color="#990000">=</font> <b><font color="#000000">Sleep</font></b><font color="#990000">(</font>a<font color="#990000">)</font>
-	<b><font color="#0000FF">if</font></b> <font color="#990000">!</font>a<font color="#990000">.</font><b><font color="#000000">Sorted</font></b><font color="#990000">()</font> <font color="#FF0000">{</font>
-		t<font color="#990000">.</font><b><font color="#000000">Errorf</font></b><font color="#990000">(</font><font color="#FF0000">"Array not sorted: %v"</font><font color="#990000">,</font> a<font color="#990000">)</font>
-	<font color="#FF0000">}</font>
-<font color="#FF0000">}</font>
+<b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#7bc710">TestSleepSort</font><font color="#F3E651">(</font><font color="#ff0000">t </font><font color="#F3E651">*</font><font color="#ff0000">testing</font><font color="#F3E651">.</font><font color="#ff0000">T</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">int</font><font color="#F3E651">](</font><font color="#bb00ff">10</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">10</font><font color="#F3E651">)</font>
+<font color="#ff0000">	a </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000">a</font><font color="#F3E651">.</font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">		t</font><font color="#F3E651">.</font><font color="#7bc710">Errorf</font><font color="#F3E651">(</font><font color="#bb00ff">"Array not sorted: %v"</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">)</font>
+<font color="#ff0000">	</font><font color="#F3E651">}</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>As you can see, it takes <span class='inlinecode'>9s</span> here for the algorithm to finish (which is the highest value in the <span class='inlinecode'>ArrayList</span>):</span><br />
@@ -3838,11 +3838,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ go <b><font color="#0000FF">test</font></b> <font color="#990000">.</font>/sort -v -run SleepSort
-<font color="#990000">===</font> RUN   TestSleepSort
---- PASS<font color="#990000">:</font> TestSleepSort <font color="#990000">(</font><font color="#993399">9</font><font color="#990000">.</font>00s<font color="#990000">)</font>
-PASS
-ok      codeberg<font color="#990000">.</font>org/snonux/algorithms/sort     <font color="#993399">9</font><font color="#990000">.</font>002s
+<pre><font color="#ff0000">❯ go </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#F3E651">.</font><font color="#ff0000">/sort -v -run SleepSort</font>
+<font color="#F3E651">===</font><font color="#ff0000"> RUN   TestSleepSort</font>
+<font color="#ff0000">--- PASS</font><font color="#F3E651">:</font><font color="#ff0000"> TestSleepSort </font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">00s</font><font color="#F3E651">)</font>
+<font color="#ff0000">PASS</font>
+<font color="#ff0000">ok      codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/algorithms/sort     </font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">002s</font>
 </pre>
 <br />
 <span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
@@ -4123,8 +4123,8 @@ Blablabla...
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">PRE_GENERATE_HOOK</font><font color="#990000">=.</font>/pre_generate_hook<font color="#990000">.</font>sh
-<b><font color="#0000FF">declare</font></b> -xr <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=.</font>/post_publish_hook<font color="#990000">.</font>sh
+<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">PRE_GENERATE_HOOK</font><font color="#F3E651">=.</font><font color="#ff0000">/pre_generate_hook</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">POST_PUBLISH_HOOK</font><font color="#F3E651">=.</font><font color="#ff0000">/post_publish_hook</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
 </pre>
 <br />
 <h2 style='display: inline' id='UseofsaferBashoptions'>Use of safer Bash options</h2><br />
@@ -4141,10 +4141,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
-<i><font color="#9A1900"># Title here</font></i>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> cat gemfeed</font><font color="#F3E651">/</font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-</font><font color="#bb00ff">26</font><font color="#ff0000">-title-here</font><font color="#F3E651">.</font><font color="#ff0000">gmi</font>
+<i><font color="#ababab"># Title here</font></i>
 
-The remaining content of the Gemtext file<font color="#990000">...</font>
+<font color="#ff0000">The remaining content of the Gemtext file</font><font color="#F3E651">...</font>
 </pre>
 <br />
 <span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
@@ -4153,12 +4153,12 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
-<i><font color="#9A1900"># Title here</font></i>
+<pre><font color="#F3E651">%</font><font color="#ff0000"> cat gemfeed</font><font color="#F3E651">/</font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-</font><font color="#bb00ff">26</font><font color="#ff0000">-title-here</font><font color="#F3E651">.</font><font color="#ff0000">gmi</font>
+<i><font color="#ababab"># Title here</font></i>
 
-<font color="#990000">&gt;</font> Published at <font color="#993399">2023</font>-<font color="#993399">02</font>-26T21<font color="#990000">:</font><font color="#993399">43</font><font color="#990000">:</font><font color="#993399">51</font><font color="#990000">+</font><font color="#993399">01</font><font color="#990000">:</font><font color="#993399">00</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> Published at </font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-26T21</font><font color="#F3E651">:</font><font color="#bb00ff">43</font><font color="#F3E651">:</font><font color="#bb00ff">51</font><font color="#F3E651">+</font><font color="#bb00ff">01</font><font color="#F3E651">:</font><font color="#bb00ff">00</font>
 
-The remaining content of the Gemtext file<font color="#990000">...</font>
+<font color="#ff0000">The remaining content of the Gemtext file</font><font color="#F3E651">...</font>
 </pre>
 <br />
 <h2 style='display: inline' id='XMLLintsupport'>XMLLint support</h2><br />
@@ -5326,23 +5326,23 @@ jgs                (________\  \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">check_dependencies ()</font></b> {
-    <i><font color="#9A1900"># At least, Bash 5 is required</font></i>
-    <b><font color="#0000FF">local</font></b> -i <font color="#009900">required_version</font><font color="#990000">=</font><font color="#993399">5</font>
-    <font color="#009900">IFS</font><font color="#990000">=.</font> <b><font color="#0000FF">read</font></b> -ra version <font color="#990000">&lt;&lt;&lt;</font> <font color="#FF0000">"$BASH_VERSION"</font>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"${version[0]}"</font> -lt <font color="#009900">$required_version</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">bash</font><font color="#CC33CC">\"</font><font color="#FF0000"> must be at least at major version $required_version!"</font>
-        <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
-    <b><font color="#0000FF">fi</font></b>
+<pre><font color="#7bc710">check_dependencies ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><i><font color="#ababab"># At least, Bash 5 is required</font></i>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">required_version</font><font color="#F3E651">=</font><font color="#bb00ff">5</font>
+<font color="#ff0000">    </font><font color="#ff0000">IFS</font><font color="#F3E651">=.</font><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -ra version </font><font color="#F3E651">&lt;&lt;&lt;</font><font color="#ff0000"> </font><font color="#bb00ff">"$BASH_VERSION"</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"${version[0]}"</font><font color="#ff0000"> -lt </font><font color="#ff0000">$required_version</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">bash</font><font color="#ffffff">\"</font><font color="#bb00ff"> must be at least at major version $required_version!"</font>
+<font color="#ff0000">        </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
 
-    <i><font color="#9A1900"># These must be the GNU versions of the commands</font></i>
-    <b><font color="#0000FF">for</font></b> tool <b><font color="#0000FF">in</font></b> <font color="#009900">$DATE</font> <font color="#009900">$SED</font> <font color="#009900">$GREP</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
-        <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> <font color="#009900">$tool</font> --version <font color="#990000">|</font> grep -q GNU<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-            log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">$tool</font><font color="#CC33CC">\"</font><font color="#FF0000"> command is not the GNU version, please install!"</font>
-            <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
-        <b><font color="#0000FF">fi</font></b>
-    <b><font color="#0000FF">done</font></b>
-}
+<font color="#ff0000">    </font><i><font color="#ababab"># These must be the GNU versions of the commands</font></i>
+<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> tool </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#ff0000">$DATE</font><font color="#ff0000"> </font><font color="#ff0000">$SED</font><font color="#ff0000"> </font><font color="#ff0000">$GREP</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> </font><font color="#ff0000">$tool</font><font color="#ff0000"> --version </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q GNU</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">            log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">$tool</font><font color="#ffffff">\"</font><font color="#bb00ff"> command is not the GNU version, please install!"</font>
+<font color="#ff0000">            </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">        </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
+<font color="#ff0000">}</font>
 </pre>
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
@@ -5363,7 +5363,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">.</font>/gemtexter --generate <font color="#FF0000">'.*hello.*'</font>
+<pre><font color="#F3E651">.</font><font color="#ff0000">/gemtexter --generate </font><font color="#bb00ff">'.*hello.*'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='Revampedgitsupport'>Revamped <span class='inlinecode'>git</span> support</h3><br />
