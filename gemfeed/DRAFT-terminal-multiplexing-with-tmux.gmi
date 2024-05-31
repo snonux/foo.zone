@@ -1,0 +1,170 @@
+# Terminal multiplexing with `tmux`
+
+## Introduction
+
+Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that allows to manage multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
+
+* Session management
+* Window and Pane management
+* Persistent Workspacec
+* Customization
+
+=> https://github.com/tmux/tmux/wiki
+
+Before continuing reading this post, I encourage to get familiar with Tmux first (unless, of course, you know already the basics). You could go through the official getting started guide:
+
+=> https://github.com/tmux/tmux/wiki/Getting-Started
+
+Over the years, I have build a couple of shell helper functions to optimize my workflows. 
+
+Tmux is integrated into my daily workflows (personal and work) a lot. I had colleagues asking me about my tmux config and halper scripts for temux a couple of times. I thought it would be neat to blog about it, so that everyone who is interested in it, can make a copy of my configuration and scripts.
+
+The configuration and the scripts in this blog post are only the non-work specific parts. There are more helper scripts which I only use for work (and aren't really useful outside of work due to the nature how servers and clusters are structured there).
+
+Tmux is highly configurable and I think I am only scratching the surfice with what is possible with it. Nethertheless, it may be still useful for you.
+
+## Shell aliases
+
+I am a user of the Z-Shell (`zsh`) but I believe all the snippets mentioned in this blog post also work with Bash. 
+
+=> https://www.zsh.org
+
+For the most common tmux commands I use I have created the following shell aliases:
+
+```bash
+alias tm=tmux
+alias tl='tmux list-sessions'
+alias tn=tmux::new
+alias ta=tmux::attach
+alias tx=tmux::remote
+alias ts=tmux::search
+alias tssh=tmux::cluster_ssh
+```
+
+Note all `tmux::...`, those are custom shell functions doing certain things, those aren't part of the Tmux distribution. But let's run through every alias one-by-one. 
+
+The first two are pretty straight forward. `tm` is simply a shorthand for `tmux`, so I have to type less and `tl` simply lists all Tmux sessions currently open. Not much magic here.
+
+### The `tn` alias
+
+The `tn` alias is referencing this function:
+
+```bash
+# Create new session and if alread exists attach to it
+tmux::new () {
+    readonly session=$1
+    local date=date
+    if where gdate &>/dev/null; then
+        date=gdate
+    fi
+
+    tmux::cleanup_default
+    if [ -z "$session" ]; then
+        tmux::new T$($date +%s)
+    else
+        tmux new-session -d -s $session
+        tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+    fi
+}
+alias tn=tmux::new
+```
+
+There is a lot of stuff going on here. Let's have a look in detail what it is doing. As a note, the function relies on GNU Date, so for MacOS it is looking for the `gdate` commans to be available. Otherwise, it will fallback to `date`. For Mac, you would need to install GNU Date as it isn't installed by default there.
+
+First, as a first argument, a Tmux session name can be passed to the function. That session name is only optional. Without it, Tmux will select a session named `T$($date +%s)` as a default. Which is T followed by the UNIX epoch, e.g. `T1717133796`.
+
+Note also the call to `tmux::cleanup_default`, it would clean up all already opened default sessions if they aren't attached. Those kind of sessions are only of temporal nature and I found myself that I had too many flying around after a while. So I decided to auto delete the sessions if they aren't still attached. If I want to keep sessions around I would rename them with the Tmux command `prefix-key $`. This is the cleanup function:
+
+```bash
+tmux::cleanup_default () {
+    local s
+    tmux list-sessions | grep '^T.*: ' | grep -F -v attached |
+    cut -d: -f1 | while read -r s; do
+        echo "Killing $s"
+        tmux kill-session -t "$s"
+    done
+}
+```
+
+
+## Cluster SSH replacement
+
+I am using `tmux` as a Cluster SSH replacement.
+
+# Tmux
+
+
+This is my `~/.tmux.conf`:
+
+```
+source ~/.tmux.local.conf
+
+set-option -g allow-rename off
+set-option -g default-terminal "screen-256color"
+set-option -g history-limit 100000
+set-option -g status-bg '#444444'
+set-option -g status-fg '#ffa500'
+set-option -s escape-time 0
+
+set-window-option -g mode-keys vi
+
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+bind-key H resize-pane -L 5
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key L resize-pane -R 5
+
+bind-key c new-window -c '#{pane_current_path}'
+bind-key F new-window -n "session-switcher" "tmux list-sessions | fzf | cut -d: -f1 | xargs tmux switch-client -t"
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+bind-key T choose-tree
+```
+
+* I don't like programs running in tmux to change the window title, so i configured `allow-rename` to `off.`
+* Somtimes, I deal with a lot of terminal output which I also want to search. So I configured the `history-limit` to apretty high value.
+* The `escape-time` had to be configured to 0 to avoid issues with Helix, the text editor of my choice.
+* I am using vi key bindings in tmux, which is configured with `set-window-option -g mode-keys vi`.
+* The `bind-key h`...`bind-key l` make it so, that I can cycle tyhrought the tmux windows with the hjkl keys (vi and Helix editor emulation for arrow keys)
+* Respectively, the capital letters HJKL are used to resize the windows.
+* bind-key c creates a new window.
+* bind-key F opens a fuzzy finder for all open sessions.
+* bind-key p and C-P for controlling whether to syncrhonise the panes or not.
+* bind-key T to show a tree of all sessions and windows.
+
+
+
+This is my `~/.tmux.local.conf` on my local laptops:
+
+```
+bind-key -T copy-mode-vi 'v' send -X begin-selection
+bind-key -T copy-mode-vi 'y' send -X copy-selection-and-cancel
+```
+
+    
+
+Copy n paste, buffer search
+
+Clusterssh + p P
+
+Nested tmuxes are nice, too. E.g. one tmux on your laptop or workstation. In there you SSH into remote servers (use tmux as a ClusterSSH replacement). And then on the remote servers you start tmux again. I have configured a different leader key for the remote tmux instances, so they dont conflict with the local instance of tmux.
+
+Remote config file
+
+Zsh helper functions
+
+foo alias on remote servers
+
+Tmux is part of the OpenBSD Base system.
+
+Tmux book I read.
+
+Rename sessions I use frequently 
+
+TL and ta aliases 
+
