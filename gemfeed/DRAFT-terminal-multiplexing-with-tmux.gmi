@@ -15,6 +15,10 @@ Before continuing reading this post, I encourage to get familiar with Tmux first
 
 => https://github.com/tmux/tmux/wiki/Getting-Started
 
+I can also recommendc this book (this is the book I got started with with Tmux):
+
+=> https://pragprog.com/titles/bhtmux2/tmux-2/
+
 Over the years, I have build a couple of shell helper functions to optimize my workflows. 
 
 Tmux is integrated into my daily workflows (personal and work) a lot. I had colleagues asking me about my tmux config and helper scripts for temux a couple of times. I thought it would be neat to blog about it, so that everyone who is interested in it, can make a copy of my configuration and scripts.
@@ -22,6 +26,8 @@ Tmux is integrated into my daily workflows (personal and work) a lot. I had coll
 The configuration and the scripts in this blog post are only the non-work specific parts. There are more helper scripts which I only use for work (and aren't really useful outside of work due to the nature how servers and clusters are structured there).
 
 Tmux is highly configurable and I think I am only scratching the surfice with what is possible with it. Nethertheless, it may be still useful for you.
+
+I also love the fact that Tmux is actually part of the OpenBSD base system!
 
 ## Shell aliases
 
@@ -90,6 +96,10 @@ tmux::cleanup_default () {
 
 The cleanup function kills all open Tmux session which haven't beren renamed properly yet - but only if they aren't attached (e.g. don't run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as it gets. 
 
+### Renaming sessions
+
+Whenever I am in a temporary session (named `T....`), I may decide that I want to keep this session around. To avoid the cleanup function from doing its thing, I have to rename the session. That's easily accomplished with the standard `prefix-key $` Tmux command.
+
 ## The `ta` alias - Attaching to a session
 
 This alias refers to the following function, which simply tries to attach to an already-running Tmux session.
@@ -124,10 +134,10 @@ alias tr=tmux::remote
 
 ### Change of the Tmux prefix for better nesting
 
-In order to make nested Tmux sessions work smoothly, one must change the Tmux key either locally or remotely. I think there might also be another way around this (without reconfiguring the prefix key), but that is pretty cumbersome to use as far as I remember. To change the prefix key from the standard `b` to, for example, `w`, you must add this to the `tmux.conf`:
+In order to make nested Tmux sessions work smoothly, one must change the Tmux key either locally or remotely. I think there might also be another way around this (without reconfiguring the prefix key), but that is pretty cumbersome to use as far as I remember. To change the prefix key from the standard `b` to, for example, `g`, you must add this to the `tmux.conf`:
 
 ```
-set-option -g prefix C-w
+set-option -g prefix C-g
 ```
 
 In my case, I have that deployed to all remote servers through a configuration management system (out of scope for this blog post).
@@ -226,6 +236,18 @@ tmux::tssh_from_file () {
 }
 ```
 
+## Copy and paste workflow
+
+As you will see a bit later in this blog post, I have configured a history limit of 1 million items in Tmux, so I can scroll back quite far. One main workflow of mine is to search for text in the Tmux history, select and copy it, and then switch to another window or session and paste it there (e.g., into my text editor to do something with it).
+
+How this works is I press `prefix-key [` to enter Tmux copy mode. From there, I can browse the Tmux history of the current window using either the arrow keys or vi-like navigation (see vi configuration later in this blog post) and the Pg-Dn and Pg-Up keys.
+
+Most often, I am searching the history backward with `prefix-key [` followed by a `?`, which opens the search prompt.
+
+Once I have identified the terminal text to be copied, I enter visual select mode with `v`, highlight all the text to be copied, and press `y` to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).
+
+Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with `prefix-key ]`.
+
 ## Tmux configurations
 
 There are some features I have configured directly in Tmux that don't require an external shell alias to function properly. Let's walk line by line through my local `~/config/tmux/tmux.conf`:
@@ -272,20 +294,17 @@ The next set of lines in the configuration file are:
 ```
 bind-key c new-window -c '#{pane_current_path}'
 bind-key F new-window -n "session-switcher" "tmux list-sessions | fzf | cut -d: -f1 | xargs tmux switch-client -t"
-bind-key p setw synchronize-panes off
-bind-key P setw synchronize-panes on
-bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
 bind-key T choose-tree
 ```
 
+The first one makes is to, that any new window starts in the current directory. The second one is a bit more interesting. I lists all open sessions in the fuzzy finder. I rely heavily on this during my daily workflow for switching between various sessions depending on my task at hand. E.g. from a remote cluster SSH session to a local code editor. The third one `choose-tree` simply opens a tree view in Tmux listing all sessions and windows and panes. This one is pretty handy to get a better overview of what is currently running in any of the local Tmux sessions.
 
-Tmux is part of the OpenBSD Base system.
+The last remaining lines in my configuration file are:
+  
+```
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+```
 
-Tmux book I read.
-
-Rename sessions I use frequently 
-
- uText search copy and paste  i use frequently
-
-TL and ta aliases 
-
+We discussed `synchronized-panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (all remote SSH sessions) receive the same keystrokes. It is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like `htop` to quickly monitor system resources.
