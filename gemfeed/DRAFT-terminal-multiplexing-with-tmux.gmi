@@ -21,7 +21,7 @@ I can also recommendc this book (this is the book I got started with with Tmux):
 
 Over the years, I have build a couple of shell helper functions to optimize my workflows. 
 
-Tmux is integrated into my daily workflows (personal and work) a lot. I had colleagues asking me about my tmux config and helper scripts for temux a couple of times. I thought it would be neat to blog about it, so that everyone who is interested in it, can make a copy of my configuration and scripts.
+Tmux is integrated into my daily workflows (personal and work) a lot. I had colleagues asking me about my Tmux config and helper scripts for Tmux a couple of times. I thought it would be neat to blog about it, so that everyone who is interested in it, can make a copy of my configuration and scripts.
 
 The configuration and the scripts in this blog post are only the non-work specific parts. There are more helper scripts which I only use for work (and aren't really useful outside of work due to the nature how servers and clusters are structured there).
 
