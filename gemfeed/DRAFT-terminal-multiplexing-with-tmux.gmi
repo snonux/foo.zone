@@ -304,7 +304,9 @@ The last remaining lines in my configuration file are:
 ```
 bind-key p setw synchronize-panes off
 bind-key P setw synchronize-panes on
-bind-key r source-file ~/.tmux.conf \; display-message "~/.tmux.conf reloaded"
+bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 ```
 
 We discussed `synchronized-panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (all remote SSH sessions) receive the same keystrokes. It is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like `htop` to quickly monitor system resources.
+
+The last one simply reloads my Tmux configuratin on the fly.
