@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-05-18T13:34:09+03:00 by `Gemtexter`
+> This site was generated at 2024-06-23T23:06:46+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2024-06-23 - Terminal multiplexing with `tmux`](./gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md)  
 [2024-05-03 - Projects I currently don't have time for](./gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.md)  
 [2024-05-01 - 'Slow Productivity' book notes](./gemfeed/2024-05-01-slow-productivity-book-notes.md)  
 [2024-04-01 - KISS high-availability with OpenBSD](./gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
