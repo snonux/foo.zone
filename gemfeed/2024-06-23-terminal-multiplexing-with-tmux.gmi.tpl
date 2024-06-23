@@ -295,7 +295,7 @@ Once the text is yanked, I switch to another Tmux window or session where, for e
 
 ## Tmux configurations
 
-Some features I have configured directly in Tmux don't require an external shell alias to function correctly. Let's walk line by line through my local `~/config/tmux/tmux.conf`:
+Some features I have configured directly in Tmux don't require an external shell alias to function correctly. Let's walk line by line through my local `~/.config/tmux/tmux.conf`:
 
 ```
 source ~/.config/tmux/tmux.local.conf
