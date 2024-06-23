@@ -25,28 +25,7 @@ _____________|','   ///_/-------------/   |
     
 ```
 
-```
-Table of contents
-=================
-
-Terminal multiplexing with `tmux`
-    Introduction
-    Shell aliases
-    The `tn` alias - Creating a new session
-        Cleaning up default sessions automatically
-        Renaming sessions
-    The `ta` alias - Attaching to a session
-    The `tr` alias - For a nested remote session
-        Change of the Tmux prefix for better nesting
-    The `ts` alias - Searching sessions with fuzzy finder
-    The `tssh` alias - Cluster SSH replacement
-        The `tmux::tssh_from_argument` helper
-        The `tmux::tssh_from_file` helper
-        `tssh` examples
-        Common Tmux commands I use in `tssh`
-    Copy and paste workflow
-    Tmux configurations
-```
+<< template::inline::toc
 
 ## Introduction
 
