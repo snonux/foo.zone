@@ -19,15 +19,11 @@ I can also recommend this book (this is the book I got started with with Tmux):
 
 => https://pragprog.com/titles/bhtmux2/tmux-2/
 
-Over the years, I have built a couple of shell helper functions to optimize my workflows. 
-
-Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.
+Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.
 
 The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren't really useful outside of work due to the way servers and clusters are structured there).
 
-Tmux is highly configurable, and I think I am only scratching the surface of what is possible with it. Nevertheless, it may still be useful for you.
-
-I also love that Tmux is part of the OpenBSD base system!
+Tmux is highly configurable, and I think I am only scratching the surface of what is possible with it. Nevertheless, it may still be useful for you. I also love that Tmux is part of the OpenBSD base system!
 
 ## Shell aliases
 
@@ -49,7 +45,7 @@ alias tssh=tmux::cluster_ssh
 
 Note all `tmux::...`; those are custom shell functions doing certain things, and they aren't part of the Tmux distribution. But let's run through every aliases one by one. 
 
-The first two are pretty straightforward. `tm` is simply a shorthand for `tmux`, so I have to type less, and `tl` lists all Tmux sessions that are currently open. Only a little magic here.
+The first two are pretty straightforward. `tm` is simply a shorthand for `tmux`, so I have to type less, and `tl` lists all Tmux sessions that are currently open. No magic here.
 
 ## The `tn` alias - Creating a new session
 
@@ -98,7 +94,7 @@ The cleanup function kills all open Tmux sessions that haven't been renamed prop
 
 ### Renaming sessions
 
-Whenever I am in a temporary session (named `T....`), I may decide that I want to keep this session around. I have to rename the session to prevent the cleanup function from doing its thing. That's easily accomplished with the standard `prefix-key $` Tmux command.
+Whenever I am in a temporary session (named `T....`), I may decide that I want to keep this session around. I have to rename the session to prevent the cleanup function from doing its thing. That's, as mentioned already, easily accomplished with the standard `prefix-key $` Tmux command.
 
 ## The `ta` alias - Attaching to a session
 
@@ -134,13 +130,15 @@ alias tr=tmux::remote
 
 ### Change of the Tmux prefix for better nesting
 
-To make nested Tmux sessions work smoothly, one must change the Tmux key locally or remotely. There might also be another way around this (without reconfiguring the prefix key), but that is cumbersome, as far as I remember. To change the prefix key from the standard `b` to, for example, `g`, you must add this to the `tmux.conf`:
+To make nested Tmux sessions work smoothly, one must change the Tmux prefix key locally or remotely. By default, the Tmux prefix key is `Ctrl-b`, so `Ctrl-b $`, for example, renames the current session. To change the prefix key from the standard `Ctrl-b` to, for example, `Ctrl-g`, you must add this to the `tmux.conf`:
 
 ```
 set-option -g prefix C-g
 ```
 
-In my case, I have that deployed to all remote servers through a configuration management system (out of scope for this blog post).
+This way, when I want to rename the remote Tmux session, I have to use `Ctrl-g $`, and when I want to rename the local Tmux session, I still have to use `Ctrl-b $`. In my case, I have this deployed to all remote servers through a configuration management system (out of scope for this blog post).
+
+There might also be another way around this (without reconfiguring the prefix key), but that is cumbersome, as far as I remember. 
 
 ## The `ts` alias - Searching sessions with fuzzy finder
 
@@ -160,7 +158,9 @@ alias ts=tmux::search
 
 All it does is list all currently open sessions in `fzf`, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).
 
-You must install the `fzf` command on your computer for this to work.
+You must install the `fzf` command on your computer for this to work. This is how it looks like:
+
+=> ./terminal-multiplexing-with-tmux/tmux-session-fzf.png Tmux session fuzzy finder
 
 ## The `tssh` alias - Cluster SSH replacement
 
@@ -168,12 +168,12 @@ Before I used Tmux, I was a heavy user of ClusterSSH, which allowed me to log in
 
 => https://github.com/duncs/clusterssh
 
-However, since I started using Tmux, I retired ClusterSSH, as it came with the benefit that Tmux only needs to be run in the terminal, whereas ClusterSSH spawned terminal windows. The `tmux::cluster_ssh` function can have N arguments, where:
+However, since I started using Tmux, I retired ClusterSSH, as it came with the benefit that Tmux only needs to be run in the terminal, whereas ClusterSSH spawned terminal windows, which aren't easily portable (e.g., from a Linux desktop to macOS). The `tmux::cluster_ssh` function can have N arguments, where:
 
 * ...the first argument will be the session name (see `tmux::tssh_from_argument` helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.
 * ...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see `tmux::ssh_from_file` helper function)
 
-This is how it looks:
+This is the helper function definition:
  
 ```bash
 tmux::cluster_ssh () {
@@ -213,10 +213,9 @@ tmux::tssh_from_argument () {
 }
 ```
 
-It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with `tmux split-window -t $session....`. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.
+It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with `tmux split-window -t $session...`. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.
 
-Sometimes, I don't want the synchronized panes behaviour and want to switch it off temporarily. I can do that with `prefix-key p` and `prefix-key P` after adding the following to my local `tmux.conf`:
-
+Sometimes, I don't want the synchronized panes behavior and want to switch it off temporarily. I can do that with `prefix-key p` and `prefix-key P` after adding the following to my local `tmux.conf`:
 
 ```
 bind-key p setw synchronize-panes off
@@ -236,17 +235,40 @@ tmux::tssh_from_file () {
 }
 ```
 
+### `tssh` examples
+
+To open a new session named `fish` and log in to 4 remote hosts, run this command (Note that it is also possible to specify the remote user):
+
+```
+$ tssh fish blowfish.buetow.org fishfinger.buetow.org \
+    fishbone.buetow.org user@octopus.buetow.org
+```
+
+To open a new session named `manyservers`, put many servers (one FQDN per line) into a file called `manyservers.txt` and simply run:
+
+```
+$ tssh manyservers.txt
+```
+
+### Common Tmux commands I use in `tssh`
+
+These are default Tmux commands that I make heavy use of in a `tssh` session:
+
+* Press `prefix-key DIRECTION` to switch panes. DIRECTION is by default any of the arrow keys, but I also configured Vi keybindings.
+* Press `prefix-key <space>` to change the pane layout (can be pressed multiple times to cycle through them).
+* Press `prefix-key z` to zoom in and out of the current active pane.
+
 ## Copy and paste workflow
 
 As you will see later in this blog post, I have configured a history limit of 1 million items in Tmux so that I can scroll back quite far. One main workflow of mine is to search for text in the Tmux history, select and copy it, and then switch to another window or session and paste it there (e.g., into my text editor to do something with it).
 
 This works by pressing `prefix-key [` to enter Tmux copy mode. From there, I can browse the Tmux history of the current window using either the arrow keys or vi-like navigation (see vi configuration later in this blog post) and the Pg-Dn and Pg-Up keys.
 
-I often search the history backwards with `prefix-key [` followed by a `?`, which opens the search prompt.
+I often search the history backwards with `prefix-key [` followed by a `?`, which opens the Tmux history search prompt.
 
-Once I have identified the terminal text to be copied, I enter visual select mode with `v`, highlight all the text to be copied, and press `y` to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).
+Once I have identified the terminal text to be copied, I enter visual select mode with `v`, highlight all the text to be copied (using arrow keys or Vi motions), and press `y` to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).
 
-Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with `prefix-key ]`.
+Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with `prefix-key ]`. Note that when pasting into a modal text editor like Vi or Helix, you would first need to enter insert mode before `prefix-key ]` would paste anything.
 
 ## Tmux configurations
 
@@ -296,7 +318,12 @@ bind-key F new-window -n "session-switcher" "tmux list-sessions | fzf | cut -d: 
 bind-key T choose-tree
 ```
 
-The first one is that any new window starts in the current directory. The second one is more interesting. I list all open sessions in the fuzzy finder. I rely heavily on this during my daily workflow to switch between various sessions depending on the task. E.g. from a remote cluster SSH session to a local code editor. The third one, `choose-tree`, opens a tree view in Tmux listing all sessions, windows, and panes. This one is handy to overview better what is currently running in any local Tmux sessions.
+The first one is that any new window starts in the current directory. The second one is more interesting. I list all open sessions in the fuzzy finder. I rely heavily on this during my daily workflow to switch between various sessions depending on the task. E.g. from a remote cluster SSH session to a local code editor. 
+
+The third one, `choose-tree`, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):
+
+=> ./terminal-multiplexing-with-tmux/tmux-tree-view.png Tmux sessiont tree view
+
 
 The last remaining lines in my configuration file are:
   
