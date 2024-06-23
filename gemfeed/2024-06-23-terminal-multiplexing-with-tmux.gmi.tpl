@@ -1,5 +1,30 @@
 # Terminal multiplexing with `tmux`
 
+> Published at 2024-06-23T22:41:59+03:00
+
+```
+                              \\\\\\\
+                            \\\\\\\\\\\\
+                          \\\\\\\\\\\\\\\
+  -----------,-|           |C>   // )\\\\|
+           ,','|          /    || ,'/////|
+---------,',' X|         (,    ||   /////
+         ||  U |          \\  ||||//''''|
+         || M .|           |||||||     _|
+         ||T . |______      `````\____/ \
+         || .  |     ,|         _/_____/ \
+         ||$ ,'    ,' |        /          |
+         ||,'    ,'   |       |         \  |
+_________|/    ,'     |      /           | |
+_____________,'      ,',_____|      |    | |
+             |     ,','      |      |    | |
+             |   ,','    ____|_____/    /  |
+             | ,','  __/ |             /   |
+_____________|','   ///_/-------------/   |
+              |===========,'
+    
+```
+
 ## Introduction
 
 Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
@@ -336,3 +361,7 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 We discussed `synchronized panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like `htop` to quickly monitor system resources.
 
 The last one reloads my Tmux configuration on the fly.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site

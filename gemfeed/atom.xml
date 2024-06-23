@@ -1,11 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-05-18T13:15:08+03:00</updated>
+    <updated>2024-06-23T22:41:59+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Terminal multiplexing with `tmux`</title>
+        <link href="gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi</id>
+        <updated>2024-06-23T22:41:59+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='Terminalmultiplexingwithtmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></h1><br />
+<br />
+<pre>
+                              \\\\\\\
+                            \\\\\\\\\\\\
+                          \\\\\\\\\\\\\\\
+  -----------,-|           |C&gt;   // )\\\\|
+           ,&#39;,&#39;|          /    || ,&#39;/////|
+---------,&#39;,&#39; X|         (,    ||   /////
+         ||  U |          \\  ||||//&#39;&#39;&#39;&#39;|
+         || M .|           |||||||     _|
+         ||T . |______      `````\____/ \
+         || .  |     ,|         _/_____/ \
+         ||$ ,&#39;    ,&#39; |        /          |
+         ||,&#39;    ,&#39;   |       |         \  |
+_________|/    ,&#39;     |      /           | |
+_____________,&#39;      ,&#39;,_____|      |    | |
+             |     ,&#39;,&#39;      |      |    | |
+             |   ,&#39;,&#39;    ____|_____/    /  |
+             | ,&#39;,&#39;  __/ |             /   |
+_____________|&#39;,&#39;   ///_/-------------/   |
+              |===========,&#39;
+    
+</pre>
+<br />
+<h2 style='display: inline' id='Introduction'>Introduction</h2><br />
+<br />
+<span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
+<br />
+<ul>
+<li>Session management</li>
+<li>Window and Pane management</li>
+<li>Persistent Workspace</li>
+<li>Customization</li>
+</ul><br />
+<a class='textlink' href='https://github.com/tmux/tmux/wiki'>https://github.com/tmux/tmux/wiki</a><br />
+<br />
+<span>Before continuing to read this post, I encourage you to get familiar with Tmux first (unless you already know the basics). You can go through the official getting started guide:</span><br />
+<br />
+<a class='textlink' href='https://github.com/tmux/tmux/wiki/Getting-Started'>https://github.com/tmux/tmux/wiki/Getting-Started</a><br />
+<br />
+<span>I can also recommend this book (this is the book I got started with with Tmux):</span><br />
+<br />
+<a class='textlink' href='https://pragprog.com/titles/bhtmux2/tmux-2/'>https://pragprog.com/titles/bhtmux2/tmux-2/</a><br />
+<br />
+<span>Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
+<br />
+<span>The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren&#39;t really useful outside of work due to the way servers and clusters are structured there).</span><br />
+<br />
+<span>Tmux is highly configurable, and I think I am only scratching the surface of what is possible with it. Nevertheless, it may still be useful for you. I also love that Tmux is part of the OpenBSD base system!</span><br />
+<br />
+<h2 style='display: inline' id='Shellaliases'>Shell aliases</h2><br />
+<br />
+<span>I am a user of the Z-Shell (<span class='inlinecode'>zsh</span>), but I believe all the snippets mentioned in this blog post also work with Bash. </span><br />
+<br />
+<a class='textlink' href='https://www.zsh.org'>https://www.zsh.org</a><br />
+<br />
+<span>For the most common Tmux commands I use, I have created the following shell aliases:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tm</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tl</font><font color="#F3E651">=</font><font color="#bb00ff">'tmux list-sessions'</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tn</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ta</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">attach</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tx</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">remote</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ts</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">search</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tssh</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">cluster_ssh</font>
+</pre>
+<br />
+<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
+<br />
+<span>The first two are pretty straightforward. <span class='inlinecode'>tm</span> is simply a shorthand for <span class='inlinecode'>tmux</span>, so I have to type less, and <span class='inlinecode'>tl</span> lists all Tmux sessions that are currently open. No magic here.</span><br />
+<br />
+<h2 style='display: inline' id='ThetnaliasCreatinganewsession'>The <span class='inlinecode'>tn</span> alias - Creating a new session</h2><br />
+<br />
+<span>The <span class='inlinecode'>tn</span> alias is referencing this function:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="#ababab"># Create new session and if alread exists attach to it</font></i>
+<font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">new ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">date</font><font color="#F3E651">=</font><font color="#ff0000">date</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> where gdate </font><font color="#F3E651">&amp;&gt;</font><font color="#ff0000">/dev/null</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        </font><font color="#ff0000">date</font><font color="#F3E651">=</font><font color="#ff0000">gdate</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+
+<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">cleanup_default</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$session"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        tmux</font><font color="#F3E651">::</font><font color="#ff0000">new T</font><font color="#ff0000">$($date</font><font color="#ff0000"> </font><font color="#F3E651">+%</font><font color="#ff0000">s</font><font color="#F3E651">)</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
+<font color="#ff0000">        tmux new-session -d -s </font><font color="#ff0000">$session</font>
+<font color="#ff0000">        tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> switch-client -t </font><font color="#ff0000">$session</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tn</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
+</pre>
+<br />
+<span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. As a note, the function relies on GNU Date, so MacOS is looking for the <span class='inlinecode'>gdate</span> commands to be available. Otherwise, it will fall back to <span class='inlinecode'>date</span>. You need to install GNU Date for Mac, as it isn&#39;t installed by default there. As I use Fedora Linux on my personal Laptop and a MacBook for work, I have to make it work for both.</span><br />
+<br />
+<span>First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named <span class='inlinecode'>T$($date +%s)</span> as a default. Which is T followed by the UNIX epoch, e.g. <span class='inlinecode'>T1717133796</span>.</span><br />
+<br />
+<h3 style='display: inline' id='Cleaningupdefaultsessionsautomatically'>Cleaning up default sessions automatically</h3><br />
+<br />
+<span>Note also the call to <span class='inlinecode'>tmux::cleanup_default</span>; it would clean up all already opened default sessions if they aren&#39;t attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren&#39;t attached. If I want to keep sessions around, I will rename them with the Tmux command <span class='inlinecode'>prefix-key $</span>. This is the cleanup function:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">cleanup_default ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> s</font>
+<font color="#ff0000">    tmux list-sessions </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">'^T.*: '</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> grep -F -v attached </font><font color="#F3E651">|</font>
+<font color="#ff0000">    cut -d</font><font color="#F3E651">:</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><b><font color="#ffffff">while</font></b><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -r s</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"Killing $s"</font>
+<font color="#ff0000">        tmux kill-session -t </font><font color="#bb00ff">"$s"</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
+<font color="#ff0000">}</font>
+</pre>
+<br />
+<span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
+<br />
+<h3 style='display: inline' id='Renamingsessions'>Renaming sessions</h3><br />
+<br />
+<span>Whenever I am in a temporary session (named <span class='inlinecode'>T....</span>), I may decide that I want to keep this session around. I have to rename the session to prevent the cleanup function from doing its thing. That&#39;s, as mentioned already, easily accomplished with the standard <span class='inlinecode'>prefix-key $</span> Tmux command.</span><br />
+<br />
+<h2 style='display: inline' id='ThetaaliasAttachingtoasession'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</h2><br />
+<br />
+<span>This alias refers to the following function, which tries to attach to an already-running Tmux session.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">attach ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
+
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$session"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        tmux attach-session </font><font color="#F3E651">||</font><font color="#ff0000"> tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
+<font color="#ff0000">        tmux attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> tmux</font><font color="#F3E651">::</font><font color="#ff0000">new </font><font color="#ff0000">$session</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ta</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">attach</font>
+</pre>
+<br />
+<span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
+<br />
+<h2 style='display: inline' id='ThetraliasForanestedremotesession'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</h2><br />
+<br />
+<span>This SSHs into the remote server specified and then, remotely on the server itself, starts a nested Tmux session. So we have one Tmux session on the local computer and, inside of it, an SSH connection to a remote server with a Tmux session running again. The benefit of this is that, in case my network connection breaks down, the next time I connect, I can continue my work on the remote server exactly where I left off. The session name is the name of the server being SSHed into. If a session like this already exists, it simply attaches to it.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">remote ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">server</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
+<font color="#ff0000">    tmux new -s </font><font color="#ff0000">$server</font><font color="#ff0000"> </font><font color="#bb00ff">"ssh -t $server 'tmux attach-session || tmux'"</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        tmux attach-session -d -t </font><font color="#ff0000">$server</font>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tr</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">remote</font>
+</pre>
+<br />
+<h3 style='display: inline' id='ChangeoftheTmuxprefixforbetternesting'>Change of the Tmux prefix for better nesting</h3><br />
+<br />
+<span>To make nested Tmux sessions work smoothly, one must change the Tmux prefix key locally or remotely. By default, the Tmux prefix key is <span class='inlinecode'>Ctrl-b</span>, so <span class='inlinecode'>Ctrl-b $</span>, for example, renames the current session. To change the prefix key from the standard <span class='inlinecode'>Ctrl-b</span> to, for example, <span class='inlinecode'>Ctrl-g</span>, you must add this to the <span class='inlinecode'>tmux.conf</span>:</span><br />
+<br />
+<pre>
+set-option -g prefix C-g
+</pre>
+<br />
+<span>This way, when I want to rename the remote Tmux session, I have to use <span class='inlinecode'>Ctrl-g $</span>, and when I want to rename the local Tmux session, I still have to use <span class='inlinecode'>Ctrl-b $</span>. In my case, I have this deployed to all remote servers through a configuration management system (out of scope for this blog post).</span><br />
+<br />
+<span>There might also be another way around this (without reconfiguring the prefix key), but that is cumbersome, as far as I remember. </span><br />
+<br />
+<h2 style='display: inline' id='ThetsaliasSearchingsessionswithfuzzyfinder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</h2><br />
+<br />
+<span>Despite the fact that with <span class='inlinecode'>tmux::cleanup_default</span>, I don&#39;t leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don&#39;t remember the exact session names.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">search ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">tmux list-sessions </font><font color="#F3E651">|</font><font color="#ff0000"> fzf </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">:</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#F3E651">)</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$TMUX"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        tmux attach-session -t </font><font color="#ff0000">$session</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
+<font color="#ff0000">        tmux switch -t </font><font color="#ff0000">$session</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ts</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">search</font>
+</pre>
+<br />
+<span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
+<br />
+<span>You must install the <span class='inlinecode'>fzf</span> command on your computer for this to work. This is how it looks like:</span><br />
+<br />
+<a href='./terminal-multiplexing-with-tmux/tmux-session-fzf.png'><img alt='Tmux session fuzzy finder' title='Tmux session fuzzy finder' src='./terminal-multiplexing-with-tmux/tmux-session-fzf.png' /></a><br />
+<br />
+<h2 style='display: inline' id='ThetsshaliasClusterSSHreplacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</h2><br />
+<br />
+<span>Before I used Tmux, I was a heavy user of ClusterSSH, which allowed me to log in to multiple servers at once in a single terminal window and type and run commands on all of them in parallel.</span><br />
+<br />
+<a class='textlink' href='https://github.com/duncs/clusterssh'>https://github.com/duncs/clusterssh</a><br />
+<br />
+<span>However, since I started using Tmux, I retired ClusterSSH, as it came with the benefit that Tmux only needs to be run in the terminal, whereas ClusterSSH spawned terminal windows, which aren&#39;t easily portable (e.g., from a Linux desktop to macOS). The <span class='inlinecode'>tmux::cluster_ssh</span> function can have N arguments, where:</span><br />
+<br />
+<ul>
+<li>...the first argument will be the session name (see <span class='inlinecode'>tmux::tssh_from_argument</span> helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.</li>
+<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
+</ul><br />
+<span>This is the helper function definition:</span><br />
+<span> </span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">cluster_ssh ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#bb00ff">"$1"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_file </font><font color="#ff0000">$1</font>
+<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+
+<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_argument </font><font color="#ff0000">$@</font>
+<font color="#ff0000">}</font>
+<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tssh</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">cluster_ssh</font>
+</pre>
+<br />
+<span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
+<br />
+<h3 style='display: inline' id='Thetmuxtsshfromargumenthelper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</h3><br />
+<br />
+<span>This is the most magic helper function we will cover in this post. It looks like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">tssh_from_argument ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">first_server</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+
+<font color="#ff0000">    tmux new-session -d -s </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#bb00ff">"ssh -t $first_server"</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> tmux list-session </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">"^$session:"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
+<font color="#ff0000">        echo </font><font color="#bb00ff">"Could not create session $session"</font>
+<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+
+<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> server </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#bb00ff">"${@[@]}"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#ff0000">        tmux split-window -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#bb00ff">"tmux select-layout tiled; ssh -t $server"</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
+
+<font color="#ff0000">    tmux setw -t </font><font color="#ff0000">$session</font><font color="#ff0000"> synchronize-panes on</font>
+<font color="#ff0000">    tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> switch-client -t </font><font color="#ff0000">$session</font>
+<font color="#ff0000">}</font>
+</pre>
+<br />
+<span>It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with <span class='inlinecode'>tmux split-window -t $session...</span>. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.</span><br />
+<br />
+<span>Sometimes, I don&#39;t want the synchronized panes behavior and want to switch it off temporarily. I can do that with <span class='inlinecode'>prefix-key p</span> and <span class='inlinecode'>prefix-key P</span> after adding the following to my local <span class='inlinecode'>tmux.conf</span>:</span><br />
+<br />
+<pre>
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+</pre>
+<br />
+<h3 style='display: inline' id='Thetmuxtsshfromfilehelper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</h3><br />
+<br />
+<span>This one sets the session name to the file name and then reads a list of servers from that file, passing the list of servers to <span class='inlinecode'>tmux::tssh_from_argument</span> as the arguments. So, this is a neat little wrapper that also enables me to open clustered SSH sessions from an input file.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">tssh_from_file ()</font><font color="#ff0000"> {</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">serverlist</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">basename </font><font color="#ff0000">$serverlist</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">.</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#F3E651">)</font>
+
+<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_argument </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#ff0000">$(</font><font color="#ff0000">awk </font><font color="#bb00ff">'{ print $1} '</font><font color="#ff0000"> </font><font color="#ff0000">$serverlist</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> sed </font><font color="#bb00ff">'s/.lan./.lan/g'</font><font color="#F3E651">)</font>
+<font color="#ff0000">}</font>
+</pre>
+<br />
+<h3 style='display: inline' id='tsshexamples'><span class='inlinecode'>tssh</span> examples</h3><br />
+<br />
+<span>To open a new session named <span class='inlinecode'>fish</span> and log in to 4 remote hosts, run this command (Note that it is also possible to specify the remote user):</span><br />
+<br />
+<pre>
+$ tssh fish blowfish.buetow.org fishfinger.buetow.org \
+    fishbone.buetow.org user@octopus.buetow.org
+</pre>
+<br />
+<span>To open a new session named <span class='inlinecode'>manyservers</span>, put many servers (one FQDN per line) into a file called <span class='inlinecode'>manyservers.txt</span> and simply run:</span><br />
+<br />
+<pre>
+$ tssh manyservers.txt
+</pre>
+<br />
+<h3 style='display: inline' id='CommonTmuxcommandsIuseintssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></h3><br />
+<br />
+<span>These are default Tmux commands that I make heavy use of in a <span class='inlinecode'>tssh</span> session:</span><br />
+<br />
+<ul>
+<li>Press <span class='inlinecode'>prefix-key DIRECTION</span> to switch panes. DIRECTION is by default any of the arrow keys, but I also configured Vi keybindings.</li>
+<li>Press <span class='inlinecode'>prefix-key &lt;space&gt;</span> to change the pane layout (can be pressed multiple times to cycle through them).</li>
+<li>Press <span class='inlinecode'>prefix-key z</span> to zoom in and out of the current active pane.</li>
+</ul><br />
+<h2 style='display: inline' id='Copyandpasteworkflow'>Copy and paste workflow</h2><br />
+<br />
+<span>As you will see later in this blog post, I have configured a history limit of 1 million items in Tmux so that I can scroll back quite far. One main workflow of mine is to search for text in the Tmux history, select and copy it, and then switch to another window or session and paste it there (e.g., into my text editor to do something with it).</span><br />
+<br />
+<span>This works by pressing <span class='inlinecode'>prefix-key [</span> to enter Tmux copy mode. From there, I can browse the Tmux history of the current window using either the arrow keys or vi-like navigation (see vi configuration later in this blog post) and the Pg-Dn and Pg-Up keys.</span><br />
+<br />
+<span>I often search the history backwards with <span class='inlinecode'>prefix-key [</span> followed by a <span class='inlinecode'>?</span>, which opens the Tmux history search prompt.</span><br />
+<br />
+<span>Once I have identified the terminal text to be copied, I enter visual select mode with <span class='inlinecode'>v</span>, highlight all the text to be copied (using arrow keys or Vi motions), and press <span class='inlinecode'>y</span> to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).</span><br />
+<br />
+<span>Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with <span class='inlinecode'>prefix-key ]</span>. Note that when pasting into a modal text editor like Vi or Helix, you would first need to enter insert mode before <span class='inlinecode'>prefix-key ]</span> would paste anything.</span><br />
+<br />
+<h2 style='display: inline' id='Tmuxconfigurations'>Tmux configurations</h2><br />
+<br />
+<span>Some features I have configured directly in Tmux don&#39;t require an external shell alias to function correctly. Let&#39;s walk line by line through my local <span class='inlinecode'>~/config/tmux/tmux.conf</span>:</span><br />
+<br />
+<pre>
+source ~/.config/tmux/tmux.local.conf
+
+set-option -g allow-rename off
+set-option -g history-limit 100000
+set-option -g status-bg &#39;#444444&#39;
+set-option -g status-fg &#39;#ffa500&#39;
+set-option -s escape-time 0
+set-window-option -g mode-keys vi
+
+</pre>
+<br />
+<span>There&#39;s yet to be much magic happening here. I source a <span class='inlinecode'>tmux.local.conf</span>, which I sometimes use to override the default configuration that comes from the configuration management system. But it is mostly just an empty file, so it doesn&#39;t throw any errors on Tmux startup when I don&#39;t use it.</span><br />
+<br />
+<span>I work with many terminal outputs, which I also like to search within Tmux. So, I added a large enough <span class='inlinecode'>history-limit</span>, enabling me to search backwards in Tmux for any output up to a million lines of text.</span><br />
+<br />
+<span>Besides changing some colours (personal taste), I also set <span class='inlinecode'>escape-time</span> to <span class='inlinecode'>0</span>, which is just a workaround. Otherwise, my Helix text editor&#39;s <span class='inlinecode'>ESC</span> key would take ages to trigger within Tmux. I am trying to remember the gory details. You can leave it out; if everything works fine for you, leave it out.</span><br />
+<br />
+<span>I navigate within Tmux using Vi keybindings, so the <span class='inlinecode'>mode-keys</span> is set to <span class='inlinecode'>vi</span>. I use the Helix modal text editor, which is close enough to Vi bindings for simple navigation to feel "native" to me. (By the way, I have been a long-time Vim and NeoVim user, but I eventually switched to Helix. It&#39;s off-topic here, but it may be worth another blog post once.)</span><br />
+<br />
+<span>The next set of lines in the configuration file are:</span><br />
+<br />
+<pre>
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+bind-key H resize-pane -L 5
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key L resize-pane -R 5
+</pre>
+<br />
+<span>These allow me to use <span class='inlinecode'>prefix-key h</span>, <span class='inlinecode'>prefix-key j</span>, <span class='inlinecode'>prefix-key k</span>, and <span class='inlinecode'>prefix-key l</span> for switching panes and <span class='inlinecode'>prefix-key H</span>, <span class='inlinecode'>prefix-key J</span>, <span class='inlinecode'>prefix-key K</span>, and <span class='inlinecode'>prefix-key L</span> for resizing the panes. If you don&#39;t know Vi/Vim/NeoVim, the letters <span class='inlinecode'>hjkl</span> are commonly used there for left, down, up, and right, which is also the same for Helix, by the way.</span><br />
+<br />
+<span>The next set of lines in the configuration file are:</span><br />
+<br />
+<pre>
+bind-key c new-window -c &#39;#{pane_current_path}&#39;
+bind-key F new-window -n "session-switcher" "tmux list-sessions | fzf | cut -d: -f1 | xargs tmux switch-client -t"
+bind-key T choose-tree
+</pre>
+<br />
+<span>The first one is that any new window starts in the current directory. The second one is more interesting. I list all open sessions in the fuzzy finder. I rely heavily on this during my daily workflow to switch between various sessions depending on the task. E.g. from a remote cluster SSH session to a local code editor. </span><br />
+<br />
+<span>The third one, <span class='inlinecode'>choose-tree</span>, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):</span><br />
+<br />
+<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux sessiont tree view' title='Tmux sessiont tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
+<br />
+<br />
+<span>The last remaining lines in my configuration file are:</span><br />
+<span>  </span><br />
+<pre>
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
+</pre>
+<br />
+<span>We discussed <span class='inlinecode'>synchronized panes</span> earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like <span class='inlinecode'>htop</span> to quickly monitor system resources.</span><br />
+<br />
+<span>The last one reloads my Tmux configuration on the fly.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Projects I currently don't have time for</title>
         <link href="gemini://foo.zone/gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.gmi" />
@@ -8776,141 +9186,6 @@ bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <br />
 <span class='quote'>Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas </span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>On being Pedantic about Open-Source</title>
-        <link href="gemini://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi" />
-        <id>gemini://foo.zone/gemfeed/2021-08-01-on-being-pedantic-about-open-source.gmi</id>
-        <updated>2021-08-01T10:37:58+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline'>On being Pedantic about Open-Source</h1><br />
-<br />
-<span class='quote'>Published at 2021-08-01T10:37:58+03:00; Updated at 2023-01-23</span><br />
-<br />
-<pre>
-                                           __
-                               _____....--&#39; .&#39;
-                     ___...---&#39;._ o      -`(
-           ___...---&#39;            \   .--.  `\
- ___...---&#39;                      |   \   \ `|
-|                                |o o |  |  |
-|                                 \___&#39;.-`.  &#39;.
-|                                      |   `---&#39;
-&#39;^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^&#39; LGB - Art by lgbearrd
-</pre>
-<br />
-<span>I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. </span><br />
-<br />
-<h2 style='display: inline'>The costs of open-source</h2><br />
-<br />
-<span>One benefit of using open-source software is that it doesn&#39;t cost anything, right? That&#39;s correct in many cases. However, in some cases you still need to spend a significant amount of time configuring the software to work for you. It will be more expensive to use open-source software than proprietary commercial one if you aren&#39;t careful. </span><br />
-<br />
-<span>Not to say that I haven&#39;t seen the same effect with commercial software where people had to, after buying it, put a bunch of effort to make it work due to the lack of quality or due to high complexity. But that&#39;s either bad luck or bad decision-making. Most commercial providers  I have worked with try to make it work for you, so you also will buy other products and services from them later on and don&#39;t lose you as a happy customer.</span><br />
-<br />
-<h2 style='display: inline'>Commercial providers</h2><br />
-<br />
-<span>Producers of commercial software want to earn money after all. This is to grow their businesses and also to be able to pay their employees, who also need to care for their families. Employees build up their careers, build houses, and are proud of their accomplishments in the company.</span><br />
-<br />
-<span>So per se, commercial software is not a bad thing. Right? At least, commercial closed-source software is not a bad thing in its heart. Unfortunately, some companies have to keep their software closed-source to not lose their competitive edge over other competitors. </span><br />
-<br />
-<h2 style='display: inline'>Earning on open-source</h2><br />
-<br />
-<span>There are also companies that earn on open-source software. All the code they write is free for download and use, but you, as a customer, could pay for service and support if you are not an expert and can&#39;t manage it by yourself. </span><br />
-<br />
-<span>I like this approach, as you can balance the effort and costs the way it suits you best, and in doubt, you can audit the source code. Are you already an expert? Perfect, you don&#39;t need to buy additional support for the software. Everything can be set up by yourself, given that you have the time and priority.</span><br />
-<br />
-<span>Also, once an open-source project reached a certain size, it is unlikely to be abandoned one day. As long as at least one person is willing to be the open-source maintainer, the project won&#39;t die. Whereas commercial providers can decide from today to tomorrow to retire software or go bankrupt (unless you purchase Microsoft Word, I don&#39;t believe it will die anytime soon). </span><br />
-<br />
-<h2 style='display: inline'>Open-source organizations and individual contributors</h2><br />
-<br />
-<span>Besides corporations, millions of individual open-source contributors write free and open-source software not for money but for pleasure. Often, they are organized in non-profit organizations, working together to reach a common goal (it is worth mentioning that there are also many professionals, payed by large corporations, working full-time for non-profit open-source projects in order to push the features and reach the goals of the corporations). Sometimes, people don&#39;t agree on the project goal, so it gets forked, which can be a good thing. The more diversity, the better, as this is where competition and innovation happens. Also, the end user will end up with more choices. </span><br />
-<br />
-<span>These open-source projects are of a very high quality standard and are rock-solid, if not better, alternatives to proprietary counterparts. If the project isn&#39;t backed by a large corporation already, you should donate to these open-source organizations and/or individual contributors. I have donated to some projects I use personally. Do you learn a foreign language and use Anki flashcards? It&#39;s entirely free and open-source, and they happily accept donations ensuring future maintenance and development.</span><br />
-<br />
-<h2 style='display: inline'>Lesser known projects and the charm of clunkiness</h2><br />
-<br />
-<span>Looking at the smaller, lesser-known open-source projects (not talking about established open-source projects like FreeBSD and Linux): You can&#39;t, however, expect the software to be perfect and bug-free. After all, most of the code is written for pleasure and fun in the developers&#39; free time. Besides the developer himself, you might be the only user of the project. The software may be a bit clunky to use, and probably bugs are lurking around, and it might only work for a very specific use case.</span><br />
-<br />
-<span>Clunkiness can be charmful, though. And it can also encourage you to contribute code to make it better. There is a lot of such code in personal GitHub and GitLab repositories. The quality of such small open-source projects varies drastically. Many hobbyist programmers see programming as an art and put tons of effort into their projects. Others upload broken crap, which is dangerous to use. So have a look at the code before you use it!</span><br />
-<br />
-<h2 style='display: inline'>The security aspect</h2><br />
-<br />
-<span>One of the main conceptions about open-source software is that it is more secure than closed-source software because everybody can read and fix the code. Is that actually true? You can only be sure when you audit the code by yourself. If you are like me, you won&#39;t have time to audit all the open-source software you use. It&#39;s impossible to audit more than 100 million lines of Linux kernel code. Static code analysis tools come in handy here, but they still require humans to look at the results.</span><br />
-<br />
-<span>Security bugs in open-source projects are exposed to the public and fixed quickly, while we don&#39;t know exactly what happens to security bugs in closed-source ones. Still, hackers and security specialists can find them through reverse engineering and penetration testing. Overall, thinking of security, In my opinion it is still better to prefer open-source software because the more significant the project, the higher the probability that security bugs are found and fixed as more parties are looking into it. Furthermore, provided you have the necessary resources, you could still deduct an audit by yourself. The latter especially happens when companies with its own security and penetration testing departments are evaluating the use of open-source. This is something not every company can afford though.</span><br />
-<br />
-<h2 style='display: inline'>Always watch out for open-source alternatives</h2><br />
-<br />
-<span>Do you need Microsoft Word? Why don&#39;t you just use the Vim text editor or GNU Emacs to write your letters? If that&#39;s too nerdy, you can still use open-source alternatives such as AbiWord or LibreOffice. Larger organizations have the tendency to standardize the software their employees have to use. Unfortunately, as Microsoft Word is the de-facto standard text processing program, most companies prefer Word over LibreOffice. Same with Microsoft Excel vs LibreOffice Calc or other spreadsheet alternatives like Gnumeric. I don&#39;t know why that is; please....</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>I only use free and open-source operating systems on my personal Laptops, Desktop PCs and servers (FreeBSD and Linux based ones). Most of the programs and apps I use on them are free and open-source as well, and I am comfortable with it for over twenty years. Exceptions are the BIOSes and some firmwares of my devices. I also use Skype as most of my friends and family are using it. They are, unfortunately, proprietary software still. But I will be looking into Matrix as a Skype alternative when I have time. There are also open BIOS alternatives, but they usually don&#39;t work on my devices.</span><br />
-<br />
-<h2 style='display: inline'>What about mobile?</h2><br />
-<br />
-<span class='quote'>Update 2023-01-21: Check out my newer post about GrapheneOS, which solves some of my dilemmas</span><br />
-<br />
-<a class='textlink' href='./2023-01-23-why-grapheneos-rox.html'>Why GrapheneOS Rox</a><br />
-<br />
-<span>I struggle to go 100% open-source on my Smartphone. I use a Samsung phone with the stock Android as provided by Samsung. I love the device as it is large enough to use as a portable reading and note-taking device, and it can also take decent pictures. As a cloud backup solution, I have my own NextCloud server (open-source). Android is mainly open-source software, but many closed parts are still included. I replaced most of the standard apps with free and open-source variants from the F-Droid store though.</span><br />
-<br />
-<span>I could get a LineageOS based phone to get rid of the proprietary Android parts (I tried that out a couple of times in the past). But then a couple of convenient apps, such as Google Maps or Banking or Skype or the E-Ticket apps of various Airlines, various review apps when searching for restaurants, Audible (I think Audible offers an excellent service), etc., won&#39;t work anymore. The proprietary Google Maps is still the best maps app, even though there are open alternatives available. It&#39;s not that I couldn&#39;t live without these apps, but they make life a lot more convenient.</span><br />
-<br />
-<h2 style='display: inline'>Know the alternatives</h2><br />
-<br />
-<span>Thinking about alternative solutions is always a good idea. My advice is never to be entirely dependant on any proprietary software. Before you decide to use proprietary software, try to find alternatives in the open-source world. You might need to invest some time playing around with the options available. Maybe they are good enough for you, or maybe not.</span><br />
-<br />
-<span>If you still want to use proprietary software, use it with caution. Have a look at the recent change at Google Photos: For a long time, "high quality" photos could be uploaded there quota-less for free. However, Google recently changed the model so that people exceeding a quota have to start paying for the extra space consumed. I am not against Google&#39;s decision, but it shows you that a provider can always change its direction. So you can&#39;t entirely rely on these. I repeat myself: Don&#39;t fully rely on anything proprietary, but you might still use proprietary software or services for your own convenience.</span><br />
-<br />
-<h2 style='display: inline'>You can&#39;t control it all</h2><br />
-<br />
-<span>The biggest problem I have with going 100% open-source is actually time. You can&#39;t control all the software you use or might be using in the future. You have only a finite amount of time available in your life. So you have to decide what&#39;s more important: Investigate and use an open-source alternative of every program and app you have installed, or rather spend quality time with your family and have a nice walk in the park or go to a sports class or cook a nice meal? You can&#39;t control it all in today&#39;s world of tech, not as a user and even not as a tech worker. There&#39;s a great blog post worth reading: </span><br />
-<br />
-<a class='textlink' href='https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html'>https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
-<br />
-<h2 style='display: inline'>The middle way</h2><br />
-<br />
-<span>Regarding my personal Smartphone dilemma: I guess the middle way is to use two phones: </span><br />
-<br />
-<ul>
-<li>Have a secondary, proprietary Android phone with Google Play store (or an Apple iPhone if this is more your thing) and all its benefits for occasional use. Use the proprietary phone only with intention. Such a phone implies some risks regarding your privacy. If you aren&#39;t careful, app providers will collect your personal data for building a digital profile of you, which gets used for online advertisement and other things. This doesn&#39;t only applies to the Smartphone, this also applies to some proprietary software (including cloud services such as Google Photos) you use on your home computer or websites you visit (I am looking at you, Facebook, Twitter and friends). Try to disable all tracking features on such a phone. It&#39;s not a guarantee that nobody will be collecting data from you anymore, but you should take at least the chance. Cal Newport once mentioned that you should not use privacy concerning apps as much anyway and instead spend more time on things which matter.</li>
-<li>Have a primary phone, entirely based on free and open-source software. There will be probably no app collecting your personal data. Try to use the primary phone for all of your everyday activities and fall back to the proprietary phone only for particular use cases. Once there is decent hardware (with a decent camera) running Linux (such as Mobian, for example) available, I will consider a purchase. The only 3rd party which then will still be able to track you will be your network provider. You could start your own phone network, but that seems overkill. There is already the Pinephone and the Librem 5 running a real Linux (Android is Linux based, but it doesn&#39;t count as a real Linux for me). Still, I want to wait a bit longer for better hardware to be available (I want to have a good camera always with me).</li>
-<li>You could also add a tertiary phone to the mix, which you only use for work and nothing else. That one will be very likely a proprietary phone too. You only have to keep this one around when you are working or when you are on-call.</li>
-</ul><br />
-<span>I have been playing with other smartphone OS alternatives, especially with MeeGo (which has died already) and SailfishOS, too. Security and privacy seem to be significantly improved compared to an Android. As a matter of fact, I bought a cheap and used Sony Xperia XA2 last year and installed SailfishOS on it. It&#39;s a nice toy, but it&#39;s still not the holy open-source grail as there are also proprietary parts in SailfishOS. Platforms such as Mobian, Ubuntu Touch and Plasma Mobile are more compelling to me. People must explore alternatives to Android and Apple here, as otherwise, you won&#39;t own any gadgets anymore:</span><br />
-<br />
-<a class='textlink' href='https://news.slashdot.org/story/21/07/10/0120236/by-2030-you-wont-own-any-gadgets'>https://news.slashdot.org/story/21/07/10/0120236/by-2030-you-wont-own-any-gadgets</a><br />
-<br />
-<span>Anyhow, any gadgets, including your phone, should be a tool you use. Don&#39;t let the phone use you!</span><br />
-<br />
-<h2 style='display: inline'>The downside of being a nobody</h2><br />
-<br />
-<span>Be aware that it might be to your disadvantage if you manage to go completely under cover without anyone collecting data from you. Suppose you are a nobody on the web (no social media profiles, no tracking history, etc.). In that case, you aren&#39;t behaving like the mass, and therefore you are suspicious. So it might be even a good thing to leave your marks here and there once in a while. You aren&#39;t hiding anything anyway, correct? Just be mindful what you are sharing about yourself. I share personal things very rarely on Facebook for example. And I only share a small subset of my personal life on my personal homepage and this blog and on all of my social media accounts. Nobody is interested in what I have for breakfast anyway I guess. Write me an E-Mail if you are interested in what I am having for breakfast.</span><br />
-<br />
-<h2 style='display: inline'>Mobile open-source OSes are still evolving</h2><br />
-<br />
-<span>You might have noticed that I wrote a lot about Smartphones in this article. The reason is that free and open-source software for Smartphones is still evolving. In contrast, for Laptops and Desktop PCs, it&#39;s already there. There is no reason to use proprietary operating systems such as Windows or macOS on your computers unless your employer forces you to use one of these. Why would they force you? It has to do with standardization again. The IT department only can manage so many platforms. It wouldn&#39;t be manageable by IT if every employee would install their own Linux distribution or one of the *BSDs. That might work for small startups but not for larger companies, especially not for a security-focused companies.</span><br />
-<br />
-<span>I would love a standardized Linux at work, though. Dell and Lenovo also officially support Linux on their notebooks. The culprit may be knowledgeable IT staff maintaining and giving support to the Desktop Linux users. Not all colleagues are Linux geeks like you and me. I am using macOS for work, but I am not an Apple expert. Occasionally I have to contact IT support regarding some issues I have. I don&#39;t use the macOS GUI a lot; I mainly live in the terminal so I can run the same tools I also use on Linux.</span><br />
-<br />
-<h2 style='display: inline'>Conclusion</h2><br />
-<br />
-<span>Should you be pedantic about open-source software? It depends. It depends on your fundamental values and how much time you are ready to invest. Open-source software is not just free as in money, but also free as in freedom. You will gain back complete control of your personal data. Unfortunately, installing ready proprietary apps from the Play Store is much more convenient than building up a trustworthy open-source-based infrastructure by yourself. As a guideline, use proprietary software and services with caution. Be mindful about your choices and where you leave your digital fingerprints. In doubt, think less is more. Do you really need this new shiny app? What benefit does it provide to you? Probably you don&#39;t really need that shiny new app.</span><br />
-<br />
-<span>You have better chances when you know how to manage your own server and install and manage alternatives to the big cloud providers by yourself. I have the advantage that I have work experience as a Linux Systems Administrator here. I mentioned NextCloud already. I use NextCloud for online photo and file storage, contact and calendar sync and as an RSS news feed server. You could do the same with your own E-Mail server, you can also host your own website and blog. I also mentioned Matrix as a Skype alternative (which could also be an alternative to WhatsApp, Skype, Telegram, Viber, ...). I don&#39;t know a lot about Matrix yet, but it seems to be a very neat alternative. I am ready to invest time in it as one of my future personal pet projects. Not only because I think it&#39;s better, but also because for fun and as a hobby. But this doesn&#39;t mean that I invest *all* of my personal free time in it.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
