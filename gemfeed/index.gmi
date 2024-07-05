@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2024-07-05-random-weird-things.gmi 2024-07-05 - Random Weird Things
 => ./2024-06-23-terminal-multiplexing-with-tmux.gmi 2024-06-23 - Terminal multiplexing with `tmux`
 => ./2024-05-03-projects-i-currently-dont-have-time-for.gmi 2024-05-03 - Projects I currently don't have time for
 => ./2024-05-01-slow-productivity-book-notes.gmi 2024-05-01 - 'Slow Productivity' book notes
