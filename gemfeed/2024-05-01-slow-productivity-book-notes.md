@@ -132,6 +132,7 @@ Other book notes of mine are:
 [2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-11-11 "Mind Management" book notes](./2023-11-11-mind-management-book-notes.md)  
 [2024-05-01 "Slow Productivity" book notes (You are currently reading this)](./2024-05-01-slow-productivity-book-notes.md)  
+[2024-07-07 "The Stoic Challenge" book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
 
 [More books and other resources I found useful.](../resources.md)  
 [Back to the main site](../)  

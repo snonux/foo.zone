@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-07-07 - 'The Stoic Challenge' book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
 [2024-07-05 - Random Weird Things](./2024-07-05-random-weird-things.md)  
 [2024-06-23 - Terminal multiplexing with `tmux`](./2024-06-23-terminal-multiplexing-with-tmux.md)  
 [2024-05-03 - Projects I currently don't have time for](./2024-05-03-projects-i-currently-dont-have-time-for.md)  
