@@ -8,6 +8,7 @@
 => ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
 => ./staff-engineer.gmi 'Staff Engineer' book notes
 => ./slow-productivity.gmi 'Slow Productivity' book notes
+=> ./search-inside-yourself.gmi 'Search Inside Yourself' book notes
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mind-management.gmi 'Mind Management' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
