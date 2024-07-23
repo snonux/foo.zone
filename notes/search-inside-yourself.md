@@ -1,6 +1,6 @@
 # "Search Inside Yourself" book notes
 
-> Last updated 12.7.2024
+> Last updated 23.7.2024
 
 ## Mindfulness and Personal Development
 
@@ -642,6 +642,37 @@ I want to create a world where meditation is widely treated like exercise for th
 ## Other
 
 I see great people. Walking around like regular people. They don't even know they are great.
+
+## Audio Book notes
+
+
+
+
+Understanding emotional intelligence starts with self-awareness. Mindfulness plays a crucial role in this process. Like a Swiss army knife, mindfulness is versatile and beneficial in any situation.
+
+A life filled with self-awareness, happiness, and kindness is enriched by meditation. Meditation has no specific goal; it simply provides time to disconnect from goals and other distractions.
+
+You will learn to calm your mind on demand. Response flexibility involves pausing before reacting.
+
+Happiness is an optimal state of being, not just a stream of positive emotions. It is a skill that can be trained and sustained over time. Our default level of happiness, or happiness setpoint, can be moved through training.
+
+Labeling your emotions, such as saying "I feel anger," can make it easier to manage them. You can consciously capture anger before it fully arises by noticing changes in breath or tension.
+
+Meta-attention is the awareness of your attention. If your mind wanders and you notice it, you can regain your focus. The stronger your meta-attention, the more continuous and robust your attention becomes.
+
+Mindfulness is especially useful when you can call upon it in daily life. To keep meditation sustainable, practice less than you think you can handle. For instance, meditating for just 5 minutes or taking a deep breath can be effective. Sit frequently, but for short durations.
+
+Ease and flow are best achieved through meditation. Simply rest for 10 minutes. Self-confidence stems from self-knowledge.
+
+Paying attention to the body helps it relax, leading to overall increased relaxation. Most people are stressed because their bodies are not relaxed.
+
+Daily journaling about emotionally impactful events, such as for 10 minutes a day, leads to improvement.
+
+Self-control is not about suppressing emotions but about skillfully managing them. While it is impossible to prevent a thought or emotion from arising, we have the power to let it go.
+
+Counting to ten is a deliberate practice to avoid reacting to emotions or triggers. Taking a restroom break can also help. Allow feelings to pass through you like a mesh.
+
+Uncertainty can occupy your mind, preventing you from doing other things.
 
 ### Books to Check Out
 
