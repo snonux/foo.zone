@@ -73,7 +73,7 @@ So, it's a fork bomb. If you run it, your computer will run out of resources eve
 
 And here is the cute illustration:
 
-=> ./2023-12-10-bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
+=> ./bash-golf-part-3/bash-fork-bomb.jpg Bash fork bomb
 
 ## Inner functions
 

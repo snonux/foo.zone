@@ -23,7 +23,7 @@ The last week I was in Vidin, Bulgaria with no internet access and I had to fix 
 
 My first attempt to find an internet café, which was working during Christmastime, failed. However, I found with my N95 phone lots of free WLAN hotspots. The hotspots refused me logging into my server using SSH as I have configured a non-standard port for SSH for security reasons. Without knowing the costs, I used the GPRS internet access of my German phone provider (yes, I had to pay roaming fees). 
 
-=> ./2008-12-29-using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg Picture of a Nokia N95
+=> ./using-my-nokia-n95-for-fixing-my-mta/nokia-n95.jpg Picture of a Nokia N95
 
 With Putty for N95 and configuring Postfix with Vim and the T9 input mechanism, I managed to fix the problem. But it took half of an hour:
 

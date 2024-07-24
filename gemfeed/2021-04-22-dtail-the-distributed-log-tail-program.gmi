@@ -2,7 +2,7 @@
 
 > Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program/title.png DTail logo image
+=> ./dtail-the-distributed-log-tail-program/title.png DTail logo image
 
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
@@ -30,7 +30,7 @@ Why not just use a full-blown log management system? There are various Open-Sour
 
 DTail does not aim to replace any of the log management tools already available but is rather an additional tool crafted especially for ad-hoc debugging and troubleshooting purposes. DTail is cheap to operate as it does not require any dedicated hardware for log storage as it operates directly on the source of the logs. It means that there is a DTail server installed on all server boxes producing logs. This decentralized comes with the direct advantages that there is no introduced delay because the logs are not shipped to a central log storage device. The reduced complexity also makes it more robust against outages. You won’t be able to troubleshoot your distributed application very well if the log management infrastructure isn’t working either.
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif DTail sample session animated gif
+=> ./dtail-the-distributed-log-tail-program/dtail.gif DTail sample session animated gif
 
 As a downside, you won’t be able to access any logs with DTail when the server is down. Furthermore, a server can store logs only up to a certain capacity as disks will fill up. For the purpose of ad-hoc debugging, these are not typically issues. Usually, it’s the application you want to debug and not the server. And disk space is rarely an issue for bare metal and VM-based systems these days, with sufficient space for several weeks’ worth of log storage being available. DTail also supports reading compressed logs. The currently supported compression algorithms are gzip and zstd.
 
@@ -54,7 +54,7 @@ Following the UNIX philosophy, DTail includes multiple command-line commands eac
 * dgrep: The distributed grep client for searching text files for a regular expression pattern.
 * dmap: The distributed map-reduce client for aggregating stats from log files.
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif DGrep sample session animated gif
+=> ./dtail-the-distributed-log-tail-program/dgrep.gif DGrep sample session animated gif
 
 ## Usage example
 
