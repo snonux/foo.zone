@@ -2,7 +2,7 @@
 
 > Published at 2022-12-24T23:18:40+02:00
 
-[![./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)  
+[![./ultrarelearning-java-my-takeaways/learnjava.jpg](./ultrarelearning-java-my-takeaways/learnjava.jpg)](./ultrarelearning-java-my-takeaways/learnjava.jpg)  
 
 As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:
 
@@ -26,7 +26,7 @@ Over time, I had been missing out on many new features that were added to the la
 
 This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself in it. I fully agree; this is a great book. Every Java developer or Java software engineer should read it!
 
-[![./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg](./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg)](./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg)  
+[![./ultrarelearning-java-my-takeaways/effective-java.jpg](./ultrarelearning-java-my-takeaways/effective-java.jpg)](./ultrarelearning-java-my-takeaways/effective-java.jpg)  
 
 I recommend reading the 90-part effective Java Series on `dev.to`. It's a perfect companion to the book as it explains all the chapters again but from a slightly different perspective and helps you to really understand the content.
 

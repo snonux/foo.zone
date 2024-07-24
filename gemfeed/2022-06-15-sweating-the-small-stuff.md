@@ -47,7 +47,7 @@ But now, let's continue with the small projects worth mentioning :-)
 
 Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.
 
-[![./2022-06-15-sweating-the-small-stuff/ninja.jpg](./2022-06-15-sweating-the-small-stuff/ninja.jpg)](./2022-06-15-sweating-the-small-stuff/ninja.jpg)  
+[![./sweating-the-small-stuff/ninja.jpg](./sweating-the-small-stuff/ninja.jpg)](./sweating-the-small-stuff/ninja.jpg)  
 
 More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
 
@@ -229,7 +229,7 @@ This is a shell script for the Mutt email client for delaying sending out E-Mail
 
 `jsmstrade` is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.
 
-[![./2022-06-15-sweating-the-small-stuff/jsmstrade.png](./2022-06-15-sweating-the-small-stuff/jsmstrade.png)](./2022-06-15-sweating-the-small-stuff/jsmstrade.png)  
+[![./sweating-the-small-stuff/jsmstrade.png](./sweating-the-small-stuff/jsmstrade.png)](./sweating-the-small-stuff/jsmstrade.png)  
 
 [https://codeberg.org/snonux/jsmstrade](https://codeberg.org/snonux/jsmstrade)  
 [https://smstrade.de](https://smstrade.de)  

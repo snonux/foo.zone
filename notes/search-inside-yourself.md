@@ -645,9 +645,6 @@ I see great people. Walking around like regular people. They don't even know the
 
 ## Audio Book notes
 
-
-
-
 Understanding emotional intelligence starts with self-awareness. Mindfulness plays a crucial role in this process. Like a Swiss army knife, mindfulness is versatile and beneficial in any situation.
 
 A life filled with self-awareness, happiness, and kindness is enriched by meditation. Meditation has no specific goal; it simply provides time to disconnect from goals and other distractions.

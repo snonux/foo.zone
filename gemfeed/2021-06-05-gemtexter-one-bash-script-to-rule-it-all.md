@@ -51,7 +51,7 @@ This comes with the benefit that I can write content in my favourite text editor
 
 Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.
 
-[![Motivational comic strip](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg "Motivational comic strip")](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg)  
+[![Motivational comic strip](./gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg "Motivational comic strip")](./gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg)  
 
 I have exactly done that - I wrote a Bash script, named Gemtexter, for that:
 

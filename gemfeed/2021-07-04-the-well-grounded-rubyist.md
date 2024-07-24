@@ -6,11 +6,11 @@ When I was a Linux System Administrator, I have been programming in Perl for yea
 
 You should learn or try out one new programming language once yearly anyway. If you end up not using the new language, that's not a problem. You will learn new techniques with each new programming language and this also helps you to improve your overall programming skills even for other languages. Also, having some background in a similar programming language makes it reasonably easy to get started. Besides that, learning a new programming language is kick-a** fun!
 
-[![./2021-07-04-the-well-grounded-rubyist/book-cover.jpg](./2021-07-04-the-well-grounded-rubyist/book-cover.jpg)](./2021-07-04-the-well-grounded-rubyist/book-cover.jpg)  
+[![./the-well-grounded-rubyist/book-cover.jpg](./the-well-grounded-rubyist/book-cover.jpg)](./the-well-grounded-rubyist/book-cover.jpg)  
 
 Superficially, Perl seems to have many similarities to Ruby (but, of course, it is entirely different to Perl when you look closer), which pushed me towards Ruby instead of Python. I have tried Python a couple of times before, and I managed to write good code, but I never felt satisfied with the language. I didn't love the syntax, especially the indentations used; they always confused me. I don't dislike Python, but I don't prefer to program in it if I have a choice, especially when there are more propelling alternatives available. Personally, it's so much more fun to program in Ruby than in Python.
 
-[![./2021-07-04-the-well-grounded-rubyist/book-backside.jpg](./2021-07-04-the-well-grounded-rubyist/book-backside.jpg)](./2021-07-04-the-well-grounded-rubyist/book-backside.jpg)  
+[![./the-well-grounded-rubyist/book-backside.jpg](./the-well-grounded-rubyist/book-backside.jpg)](./the-well-grounded-rubyist/book-backside.jpg)  
 
 Yukihiro Matsumoto, the inventor of Ruby, said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don't believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what's already used at my workplace.
 

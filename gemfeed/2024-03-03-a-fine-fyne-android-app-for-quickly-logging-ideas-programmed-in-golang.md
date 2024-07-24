@@ -6,7 +6,7 @@ I am an ideas person. I find myself frequently somewhere on the streets with an 
 
 I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don't do what I want, are proprietary software, require Google Play services (I have the main profile on my phone de-googled) or are too bloated. I was never into mobile app development, as I'm not too fond of the complexity of the developer toolchains. I don't want to use Android Studio (as a NeoVim user), and I don't want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.
 
-[![Quick logger Logo](2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png "Quick logger Logo")](2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png)  
+[![Quick logger Logo](a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png "Quick logger Logo")](a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png)  
 
 Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I've crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app's whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!
 
@@ -26,7 +26,7 @@ Quick logger's user interface is as minimal as it gets. When I launch Quick logg
 
 For the code-savvy folks out there, Quick logger is a neat example of what you can achieve with Go and Fyne. It's a testament to building functional, cross-platform apps without getting bogged down in the nitty-gritty of platform-specific details. Thanks to Fyne, I am pleased with how easy it is to make mobile Android apps in Go.
 
-[![Quick logger running on Android](2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png "Quick logger running on Android")](2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png)  
+[![Quick logger running on Android](a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png "Quick logger running on Android")](a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png)  
 
 My Android apps will never be polished, but they will get the job done, and this is precisely how I want them to be. Minimalistic but functional. I could spend more time polishing Quick logger, but my Quick logger app then may be the same as any other notes app out there (complicated or bloated).
 

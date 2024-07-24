@@ -2,7 +2,7 @@
 
 > Published at 2023-06-01T21:10:17+03:00
 
-[![Gogios logo](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png "Gogios logo")](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png)  
+[![Gogios logo](./kiss-server-monitoring-with-gogios/gogios-small.png "Gogios logo")](./kiss-server-monitoring-with-gogios/gogios-small.png)  
 
 ## Introduction
 

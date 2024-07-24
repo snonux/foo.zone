@@ -48,8 +48,8 @@ Around the same time, I discovered a relatively new, more lightweight protocol n
 
 The "downside" is that due to the limited capabilities of the Gemini protocol, all sites look very old and spartan. But that is not a downside; that is, in fact, a design choice people made. It is up to the client software how your capsule looks. For example, you could use a graphical client, such as Lagrange, with nice font renderings and colours to improve the appearance. Or you could use a very minimalistic command line black-and-white Gemini client. It's your (the user's) choice.
 
-[![Screenshot Amfora Gemini terminal client surfing this site](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png "Screenshot Amfora Gemini terminal client surfing this site")](./2021-04-24-welcome-to-the-geminispace/amfora-screenshot.png)  
-[![Screenshot graphical Lagrange Gemini client surfing this site](./2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png "Screenshot graphical Lagrange Gemini client surfing this site")](./2021-04-24-welcome-to-the-geminispace/lagrange-screenshot.png)  
+[![Screenshot Amfora Gemini terminal client surfing this site](./welcome-to-the-geminispace/amfora-screenshot.png "Screenshot Amfora Gemini terminal client surfing this site")](./welcome-to-the-geminispace/amfora-screenshot.png)  
+[![Screenshot graphical Lagrange Gemini client surfing this site](./welcome-to-the-geminispace/lagrange-screenshot.png "Screenshot graphical Lagrange Gemini client surfing this site")](./welcome-to-the-geminispace/lagrange-screenshot.png)  
 
 Why is there a need for a new protocol? As the modern web is a superset of Gemini, can't we use simple HTML 1.0 instead? That's a good and valid question. It is not a technical problem but a human problem. We tend to abuse the features once they are available. You can ensure that things stay efficient and straightforward as long as you are using the Gemini protocol. On the other hand, you can't force every website on the modern web to only create plain and straightforward-looking HTML pages.
 
