@@ -15,25 +15,25 @@
       Nieminen Mika	
 ```
 
-<< template::inline::toc
-
-After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortho-linear split keyboards. Wait, what?
+After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...
 
 * Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for `e` on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter `p`).
 * Ortholinear: The keys are arranged in a straight vertical line, unlike most keyboards on the market. These keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.
 * Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.
 
-After discovering ThePrimagen (I found him long ago, but I never bothered buying the same Keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the Keyboard? I purchased myself the Kinesis Advantage 360 Professional keyboard. 
+After discovering ThePrimagen (I found him long ago, but I never bothered buying the same Keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the Keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. 
 
 ## Kinesis review
 
 For an in-depth review, have a look at this great article, but in the following, I will also add my personal notes in this blog post:
 
-=> https://arslan.io/2022/10/22/review-of-the-kinesis-advantage360-professional Review of the Kinesis Advantage360 Professional 
+=> https://arslan.io/2022/10/22/review-of-the-kinesis-advantage360-professional Review of the Kinesis Advantage360 Professional Keyboard
 
 ### Top build quality
 
 Overall, the keyboard feels excellent quality and robust. It has got some weight to it. Because of that, it is not ideally suited for travel, though. But I have a different keyboard to solve this (see later in this post). Overall, I love how it is built and how it feels.
+
+=> ./typing-more-than-100-words-per-minute/kinesis2.jpg Kinesis Advv.360 Pro at home
 
 ### Bluetooth connectivity
 
@@ -53,6 +53,8 @@ If you ever purchase a Kinesis keyboard, go with the PCB keycaps. They upgrade t
 
 I went with the blank keycaps, by the way.
 
+=> ./typing-more-than-100-words-per-minute/kinesis1.jpg Kinesis Adv.360 Pro at home
+
 ### Keymap editor
 
 There is no official keymap editor. You have to edit a configuration file manually, build the firmware from scratch, and upload the firmware with the new keymap to both keyboard halves. 
@@ -63,7 +65,7 @@ There is a 3rd party solution which is supposed to configure the keymap as bliss
 
 ## First steps
 
-I didn't measure the usual words per minute (WPM) on my previous keyboard, the ZSA Moonlander, but it was around 40-50. Once the Kinesis arrived, I started practising. The experience was quite different due to the concave keycaps, so I barely managed 10 WPM on the first day.
+I didn't measure the usual words per minute (wpm) on my previous keyboard, the ZSA Moonlander, but it was around 40-50. Once the Kinesis arrived, I started practising. The experience was quite different due to the concave keycaps, so I barely managed 10wpm on the first day.
 
 I quickly noticed that I could not continue using the freestyle 6-finger typing system I was used to on my Moonlander or any previous keyboards I used. I learned ten-finger touch typing from scratch to be more efficient with the Kinesis keyboard. The keyboard forces you to embrace touch typing.
 
@@ -79,14 +81,14 @@ I also had a problem with the left pinky finger, where I could not comfortably r
 
 As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the query to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: 
 
-* These layouts will minimize the finger travel for the most commonly used English words, but they necessarily don't give you a better WPM score. 
+* These layouts will minimize the finger travel for the most commonly used English words, but they necessarily don't give you a better wpm score. 
 * One comment also mentioned that getting stiffer fingers with these layouts is more likely than with Qwerty, as in Qwerty, he had to stretch out his fingers more often, which helps here.
 * There are also many applications and websites with keyboard shortcuts and for Qwerty.
 * You won't be able to use other computers if they all use Qwerty. Some report that after using an alternative layout for a while, they forget how to use Qwerty, which would be a disaster if you quickly need to type on someone else's computer, for example.
 
 ### Tools
 
-One of the most influential tools in my touch typing journey has been keybr.com. It helped me learn 10-finger touch typing, and I practice daily for 30 minutes (in the first two weeks, up to an hour per day). The key is persistence and focus on technique rather than speed; the latter naturally improves with regular practice. Precision matters, too, so I always correct my errors using the backspace key.
+One of the most influential tools in my touch typing journey has been `keybr.com`. This site/app helped me learn 10-finger touch typing, and I practice daily for 30 minutes (in the first two weeks, up to an hour per day). The key is persistence and focus on technique rather than speed; the latter naturally improves with regular practice. Precision matters, too, so I always correct my errors using the backspace key.
 
 => https://keybr.com 
 
@@ -96,11 +98,17 @@ I also used a command-line tool called `tt`, which is written in Go. It has a fe
 
 I wrote myself a small Ruby script that would randomly select a paragraph from one of my eBooks or book notes and pipe it to `tt`. This helped me remember some of the books I read and also practice touch typing.
 
-## Stats graphs
+## My `keybr.com` statistics
 
-TODO INSERT HERE
+Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).
 
-ALSO ALL TIME TOP WPM
+=> ./typing-more-than-100-words-per-minute/all-time-stats.png
+
+My overall average speed over those 5,000 sessions was 80wpm. The average speed over the last week was over 100wpm. The green line represents the wpm average (increasing trend), the purple line represents the number of keys included (not much movement there, as all keys are unlocked), and the red line represents the average typing accuracy.
+
+=> ./typing-more-than-100-words-per-minute/typing-speed-over-lessons.png
+
+Around the middle, you see a break-in of the wpm average value. This was where I swapped the `p` and `;` keys, but after some retraining, I came back to the previous level and beyond.
 
 ## Tips and tricks
 
@@ -108,7 +116,7 @@ These are some tips and tricks I learned along the way to improve my typing spee
 
 ### Relax
 
-It's easy to get cramped when trying to hit this new WPM mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice. 
+It's easy to get cramped when trying to hit this new wpm mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice. 
 
 ### Focus on accuracy first
 
@@ -116,11 +124,11 @@ This goes with the previous point. Instead of trying to speed through sessions a
 
 ### Chording
 
-A trick to getting faster is to type by word and pause between each word so you learn the words by chords. From 80 WPM and beyond, this makes a real difference. There's a setting on keybr.com that makes it so that every word is always repeated, having you type every word twice in a row.
+A trick to getting faster is to type by word and pause between each word so you learn the words by chords. From 80wpm and beyond, this makes a real difference. There's a setting on `keybr.com` that makes it so that every word is always repeated, having you type every word twice in a row.
 
 ### Punctuation and Capitalization
 
-I included 10% punctuation and 20% capital letters in my keybr.com practice sessions to simulate real typing conditions, which improved my overall working efficiency.
+I included 10% punctuation and 20% capital letters in my `keybr.com` practice sessions to simulate real typing conditions, which improved my overall working efficiency.
 
 ### Reverse shifting
 
@@ -137,7 +145,7 @@ Listening to music helps me enter a flow state during practice sessions, which m
 
 ### Repeat every word
 
-On keybr.com, there is an option to repeat every word, so you must type it twice. I liked this feature very much, and it improved my practice.
+On `keybr.com`, there is an option to repeat every word, so you must type it twice. I liked this feature very much, and it improved my practice.
 
 ### Don't use the same finger for two consecutive keystrokes
 
@@ -155,17 +163,25 @@ As mentioned, the Kinesis is a great keyboard, but it is not meant for travel.
 
 I guess keyboards will always be my expensive hobby, so I also purchased another ergonomic, ortho-linear, concave split keyboard, the Glove80 (with the Red Pro low-profile switches). This keyboard is much lighter and, in my opinion, much better suited for travel than the Kinesis. It also comes with a great travel case.  
 
+=> ./typing-more-than-100-words-per-minute/glove80.jpg Traveling with the Glove80 using my Surface Go 2
+
 For everyday work, I prefer the tactile Browns on the Kinesis over the Red Pro I have on the Glove80 (normal profile vs. low profile). The Kinesis feels much more premium. 
 
 The F-key row is odd at the glove. I would have preferred more keys on the sides like the Kinesis, and I use them for `[]` `{}` `()`, which is pretty handy there. However, I like the thumb cluster of the Glove80 more than the one on the Kinesis.
 
 The good thing is that I can switch between both Keyboards instantly without retraining my typing memories. I've configured (as much as possible) the same keymaps on both my Kinesis and Glove80, making it easy to switch between them. 
 
+Interested in the Glove80? I suggest also reading this review:
+
+=> https://arslan.io/2024/04/22/review-of-the-moergo-glove80-keyboard/ Review of the Glove80 Keyboard
+
 ### Upcoming custom built
 
 As I mentioned, Keyboards will remain an expensive hobby of mine. I don't regret anything here, though. After all, I use keyboards at my day job. I've ordered a Kinesis custom build with the Gateron Kangaroo switches, and I'm excited to see how that compares to my current setup. I'm still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting.
 
 ## Conclusion
+
+When I traveled with the Glove80 for work to the London office, a colleague stared at my keyboard and made jokes that it might be broken (split into two halves). But other than that...
 
 Touch typing has improved my efficiency and has become a rewarding discipline. Whether it's the keyboards I use, the tools I practice with, or the techniques I've adopted, each step has been a learning experience. I hope sharing my journey provides valuable insights and inspiration for anyone looking to improve their touch typing skills.
 
