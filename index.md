@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-07-24T22:37:51+03:00 by `Gemtexter`
+> This site was generated at 2024-08-05T17:47:37+03:00 by `Gemtexter`
 
 ```
    |\---/|
@@ -32,6 +32,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./gemfeed/2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./gemfeed/2024-07-07-the-stoic-challenge-book-notes.md)  
 [2024-07-05 - Random Weird Things](./gemfeed/2024-07-05-random-weird-things.md)  
 [2024-06-23 - Terminal multiplexing with `tmux`](./gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md)  
