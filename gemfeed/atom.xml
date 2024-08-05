@@ -1,11 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-07-24T22:36:34+03:00</updated>
+    <updated>2024-08-05T17:45:01+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Typing `127.1` words per minute (`>100wpm average`)</title>
+        <link href="gemini://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi</id>
+        <updated>2024-08-05T17:39:30+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='Typing1271wordsperminute100wpmaverage'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</h1><br />
+<br />
+<span class='quote'>Published at 2024-08-05T17:39:30+03:00</span><br />
+<br />
+<pre>
+,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
+|1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | &#39; | &lt;-    |
+|---&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-----|
+| -&gt;| | Q | W | E | R | T | Y | U | I | O | P | ] | ^ |     |
+|-----&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;|    |
+| Caps | A | S | D | F | G | H | J | K | L | \ | [ | * |    |
+|----,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;---&#39;----|
+|    | &lt; | Z | X | C | V | B | N | M | , | . | - |          |
+|----&#39;-,-&#39;,--&#39;--,&#39;---&#39;---&#39;---&#39;---&#39;---&#39;---&#39;-,-&#39;---&#39;,--,------|
+| ctrl |  | alt |                          |altgr |  | ctrl |
+&#39;------&#39;  &#39;-----&#39;--------------------------&#39;------&#39;  &#39;------&#39;
+      Nieminen Mika	
+</pre>
+<br />
+<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
+<br />
+<ul>
+<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
+<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
+<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
+</ul><br />
+<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same Keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the Keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
+<h2 style='display: inline' id='Kinesisreview'>Kinesis review</h2><br />
+<br />
+<span>For an in-depth review, have a look at this great article:</span><br />
+<br />
+<a class='textlink' href='https://arslan.io/2022/10/22/review-of-the-kinesis-advantage360-professional'>Review of the Kinesis Advantage360 Professional Keyboard</a><br />
+<br />
+<h3 style='display: inline' id='Topbuildquality'>Top build quality</h3><br />
+<br />
+<span>Overall, the keyboard feels excellent quality and robust. It has got some weight to it. Because of that, it is not ideally suited for travel, though. But I have a different keyboard to solve this (see later in this post). Overall, I love how it is built and how it feels.</span><br />
+<br />
+<a href='./typing-127.1-words-per-minute/kinesis2.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis2.jpg' /></a><br />
+<br />
+<h3 style='display: inline' id='Bluetoothconnectivity'>Bluetooth connectivity</h3><br />
+<br />
+<span>Despite encountering concerns about Bluetooth connectivity issues with the Kinesis keyboard during my research, I purchased one anyway as I intended to use it only via USB. However, I discovered that the firmware updates available afterwards had addressed these reported Bluetooth issues, and as a result, I did not experience any difficulties with the Bluetooth functionality. This positive outcome allowed me to enjoy using the keyboard also wirelessly.</span><br />
+<h3 style='display: inline' id='GateronBrowmkeyswitches'>Gateron Browm key switches</h3><br />
+<br />
+<span>Many voices on the internet seem to dislike the Gateron Brown switches, the only official choice for non-clicky tactile switches in the Kinesis, so I was also a bit concerned. I almost went with Cherry MX Browns for my Kinesis (a custom build from a 3rd party provider that is partnershipping with Kinesis). Still, I decided on Gateron Browns to try different switches than the Cherry MX Browns I already have on my ZSA Moonlander keyboard (another ortho-linear split keyboard, but without a concave keycap layout). </span><br />
+<br />
+<span>I was disappointed by the Gaterons, as they initially felt a bit meshy compared to the Cherries. Still, over the weeks I grew to prefer them because of their smoothness. Over time, the tactile bumps also became more noticeable (as my perception of them improved). Because of their less pronounced tactile feedback, the Gaterons are less tiring for long typing sessions and better suited for a relaxed typing experience.</span><br />
+<br />
+<span>So, the Cherry MX feel sharper but are more tiring in the long run, and the Gaterons are easier to write on and the tactile Feedback is slightly less pronounced. </span><br />
+<br />
+<h3 style='display: inline' id='Keycaps'>Keycaps</h3><br />
+<br />
+<span>If you ever purchase a Kinesis keyboard, go with the PCB keycaps. They upgrade the typing experience a lot. The only thing you will lose is that the backlighting won&#39;t shine through them. But that is a reasonable tradeoff. When do I need backlighting? I am supposed to look at the screen and not the keyboard while typing. </span><br />
+<br />
+<span>I went with the blank keycaps, by the way.</span><br />
+<br />
+<a href='./typing-127.1-words-per-minute/kinesis1.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis1.jpg' /></a><br />
+<br />
+<h3 style='display: inline' id='Keymapeditor'>Keymap editor</h3><br />
+<br />
+<span>There is no official keymap editor. You have to edit a configuration file manually, build the firmware from scratch, and upload the firmware with the new keymap to both keyboard halves. The Professional version of his keyboard, by the way, runs on the ZMK open-source firmware.</span><br />
+<br />
+<span>Many users find the need for an easy-to-use keymap editor an issue. But this is the Pro model. You can also go with the non-Pro, which runs on non-open-source firmware and has no Bluetooth (it must be operated entirely on USB). They should have called it &#39;Advanced&#39; and not &#39;Professional&#39;.</span><br />
+<br />
+<span>There is a 3rd party solution which is supposed to configure the keymap for the Professional model as bliss, but I have never used it. As a part-time programmer and full-time Site Reliability Engineer, I am okay configuring the keymap in my text editor and building it in a local docker container. This is one of the standard ways of doing it here. You could also use a GitHub pipeline for the firmware build, but I prefer building it locally on my machine. This all seems natural to me, but this may be an issue for others, those job is not to be a programmer. </span><br />
+<br />
+<h2 style='display: inline' id='Firststeps'>First steps</h2><br />
+<br />
+<span>I didn&#39;t measure the usual words per minute (wpm) on my previous keyboard, the ZSA Moonlander, but I guess that it was around 40-50wp,. Once the Kinesis arrived, I started practising. The experience was quite different due to the concave keycaps, so I barely managed 10wpm on the first day.</span><br />
+<br />
+<span>I quickly noticed that I could not continue using the freestyle 6-finger typing system I was used to on my Moonlander or any previous keyboards I worked with. I learned ten-finger touch typing from scratch to be more efficient with the Kinesis keyboard. The keyboard forces you to embrace touch typing.</span><br />
+<br />
+<span>Sometimes, there were brain farts, and I couldn&#39;t type at all. The trick was not to freak out about it, but to move on. If your average goes down a bit for a day, it doesn&#39;t matter; the long-term trend over several days and weeks matters, not the one-off wpm high score.</span><br />
+<br />
+<span>Although my wrist pain seemed to go away during the first week of using the Kinesis, my fingers became tired of adjusting to the new way of typing. My hands were stiff, as if I had been training for the Olympics. Only after three weeks did I start to feel comfortable with it. If it weren&#39;t for the comments I read online, I would have sent it back after week 2.</span><br />
+<br />
+<span>I also had a problem with the left pinky finger, where I could not comfortably reach the <span class='inlinecode'>p</span> key. This involved moving the whole hand. An easy fix was to swap <span class='inlinecode'>p</span> with <span class='inlinecode'>;</span> on the keyboard layout.</span><br />
+<br />
+<h2 style='display: inline' id='Consideringalternatelayouts'>Considering alternate layouts</h2><br />
+<br />
+<span>As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the Qwerty to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: </span><br />
+<ul>
+<li>These layouts (Dvorak and Colemak) will minimize the finger travel for the most commonly used English words, but they necessarily don&#39;t give you a better wpm score. </li>
+<li>One comment on Redit also mentioned that getting stiffer fingers with these layouts is more likely than with Qwerty, as in Qwerty, he had to stretch out his fingers more often, which helps here.</li>
+<li>There are also many applications and websites with keyboard shortcuts and are Qwerty-optimized.</li>
+<li>You won&#39;t be able to use someone else&#39;s computer as there will be likely Qwerty. Some report that after using an alternative layout for a while, they forget how to use Qwerty.</li>
+</ul><br />
+<h2 style='display: inline' id='Traininghowtotype'>Training how to type</h2><br />
+<br />
+<h3 style='display: inline' id='Tools'>Tools</h3><br />
+<br />
+<span>One of the most influential tools in my touch typing journey has been <span class='inlinecode'>keybr.com</span>. This site/app helped me learn 10-finger touch typing, and I practice daily for 30 minutes (in the first two weeks, up to an hour every day). The key is persistence and focus on technique rather than speed; the latter naturally improves with regular practice. Precision matters, too, so I always correct my errors using the backspace key.</span><br />
+<br />
+<a class='textlink' href='https://keybr.com'>https://keybr.com</a><br />
+<br />
+<span>I also used a command-line tool called <span class='inlinecode'>tt</span>, which is written in Go. It has a feature that I found very helpful: the ability to practice typing by piping custom text into it. Additionally, I appreciated its customization options, such as choosing a colour theme and specifying how statistics are displayed.</span><br />
+<br />
+<a class='textlink' href='https://github.com/lemnos/tt'>https://github.com/lemnos/tt</a><br />
+<br />
+<span>I wrote myself a small Ruby script that would randomly select a paragraph from one of my eBooks or book notes and pipe it to <span class='inlinecode'>tt</span>. This helped me remember some of the books I read and also practice touch typing.</span><br />
+<br />
+<h2 style='display: inline' id='Mykeybrcomstatistics'>My <span class='inlinecode'>keybr.com</span> statistics</h2><br />
+<br />
+<span>Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).</span><br />
+<br />
+<a href='./typing-127.1-words-per-minute/all-time-stats.png'><img src='./typing-127.1-words-per-minute/all-time-stats.png' /></a><br />
+<br />
+<span>My overall average speed over those 5,000 sessions was 80wpm. The average speed over the last week was over 100wpm. The green line represents the wpm average (increasing trend), the purple line represents the number of keys in the practices (not much movement there, as all keys are unlocked), and the red line represents the average typing accuracy.</span><br />
+<br />
+<a href='./typing-127.1-words-per-minute/typing-speed-over-lessons.png'><img src='./typing-127.1-words-per-minute/typing-speed-over-lessons.png' /></a><br />
+<br />
+<span>Around the middle, you see a break-in of the wpm average value. This was where I swapped the <span class='inlinecode'>p</span> and <span class='inlinecode'>;</span> keys, but after some retraining, I came back to the previous level and beyond.</span><br />
+<br />
+<h2 style='display: inline' id='Tipsandtricks'>Tips and tricks</h2><br />
+<br />
+<span>These are some tips and tricks I learned along the way to improve my typing speed:</span><br />
+<br />
+<h3 style='display: inline' id='Relax'>Relax</h3><br />
+<br />
+<span>It&#39;s easy to get cramped when trying to hit this new wpm mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice.... It didn&#39;t help much back then, though, as it is difficult to relax while someone screams at you! </span><br />
+<br />
+<h3 style='display: inline' id='Focusonaccuracyfirst'>Focus on accuracy first</h3><br />
+<br />
+<span>This goes with the previous point. Instead of trying to speed through sessions as quickly as possible, slow down and try to type the words correctly—so don&#39;t rush it. If you aren&#39;t fast yet, the reason is that your brain hasn&#39;t trained enough. It will come over time, and you will be faster.</span><br />
+<br />
+<h3 style='display: inline' id='Chording'>Chording</h3><br />
+<br />
+<span>A trick to getting faster is to type by word and pause between each word so you learn the words by chords. From 80wpm and beyond, this makes a real difference. </span><br />
+<br />
+<h3 style='display: inline' id='PunctuationandCapitalization'>Punctuation and Capitalization</h3><br />
+<br />
+<span>I included 10% punctuation and 20% capital letters in my <span class='inlinecode'>keybr.com</span> practice sessions to simulate real typing conditions, which improved my overall working efficiency. I guess I would have gone to 120wpm in average if I didn&#39;t include this options...</span><br />
+<br />
+<h3 style='display: inline' id='Reverseshifting'>Reverse shifting</h3><br />
+<br />
+<span>Reverse shifting aka left-right shifting is to is to...</span><br />
+<br />
+<ul>
+<li>...use the left shift key for letters on the right keyboard side.</li>
+<li>...use the right shift key for letters on the left keyboard side.</li>
+</ul><br />
+<span>This makes using the shift key a blaze.</span><br />
+<br />
+<h3 style='display: inline' id='Entertheflowstate'>Enter the flow state</h3><br />
+<br />
+<span>Listening to music helps me enter a flow state during practice sessions, which makes typing training a bit addictive (which is good, or isn&#39;t it?).</span><br />
+<br />
+<h3 style='display: inline' id='Repeateveryword'>Repeat every word</h3><br />
+<br />
+<span>There&#39;s a setting on <span class='inlinecode'>keybr.com</span> that makes it so that every word is always repeated, having you type every word twice in a row. I liked this feature very much, and I think it also helped to improve my practice.</span><br />
+<br />
+<h3 style='display: inline' id='Dontusethesamefingerfortwoconsecutivekeystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
+<br />
+<span>Apparently, if you want to type fast, avoid using the same finger for two consecutive keystrokes. This means you don&#39;t always need to use the same finger for the same keys. </span><br />
+<br />
+<span>However, there are no hard and fast rules. Thus, everyone develops their system for typing word combinations. An exception would be if you are typing the very same letter in a row (e.g., t in letter)—here, you are using the same finger for both ts.</span><br />
+<br />
+<h3 style='display: inline' id='Warmup'>Warm-up</h3><br />
+<br />
+<span>You can&#39;t reach your average typing speed first ting the morning. It would help if you warmed up before the exercise or practice later during the day. Also, some days are good, others not so, e.g., after a bad night&#39;s sleep. What matters is the mid- and long-term trend, not the fluctuations here, though.</span><br />
+<br />
+<h2 style='display: inline' id='Travelkeyboard'>Travel keyboard</h2><br />
+<br />
+<span>As mentioned, the Kinesis is a great keyboard, but it is not meant for travel.</span><br />
+<br />
+<span>I guess keyboards will always be my expensive hobby, so I also purchased another ergonomic, ortho-linear, concave split keyboard, the Glove80 (with the Red Pro low-profile switches). This keyboard is much lighter and, in my opinion, much better suited for travel than the Kinesis. It also comes with a great travel case.  </span><br />
+<br />
+<span>Here is a photo of me using it with my Surface Go 2 (it runs Linux, by the way) while waiting for the baggage drop at the airport:</span><br />
+<br />
+<a href='./typing-127.1-words-per-minute/glove80.jpg'><img alt='Traveling with the Glove80 using my Surface Go 2' title='Traveling with the Glove80 using my Surface Go 2' src='./typing-127.1-words-per-minute/glove80.jpg' /></a><br />
+<br />
+<span>For everyday work, I prefer the tactile Browns on the Kinesis over the Red Pro I have on the Glove80 (normal profile vs. low profile). However, the Kinesis feels much more premium. </span><br />
+<br />
+<span>The F-key row is odd at the Glove80. I would have preferred more keys on the sides like the Kinesis, and I use them for <span class='inlinecode'>[]</span> <span class='inlinecode'>{}</span> <span class='inlinecode'>()</span>, which is pretty handy there. However, I like the thumb cluster of the Glove80 more than the one on the Kinesis.</span><br />
+<br />
+<span>The good thing is that I can switch between both Keyboards instantly without retraining my typing memories. I&#39;ve configured (as much as possible) the same keymaps on both my Kinesis and Glove80, making it easy to switch between them at any occasion. </span><br />
+<br />
+<span>Interested in the Glove80? I suggest also reading this review:</span><br />
+<br />
+<a class='textlink' href='https://arslan.io/2024/04/22/review-of-the-moergo-glove80-keyboard/'>Review of the Glove80 Keyboard</a><br />
+<br />
+<h2 style='display: inline' id='UpcomingcustomKinesisbuilt'>Upcoming custom Kinesis built</h2><br />
+<br />
+<span>As I mentioned, Keyboards will remain an expensive hobby of mine. I don&#39;t regret anything here, though. After all, I use keyboards at my day job. I&#39;ve ordered a Kinesis custom build with the Gateron Kangaroo switches, and I&#39;m excited to see how that compares to my current setup. I&#39;m still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting.</span><br />
+<br />
+<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<br />
+<span>When I traveled with the Glove80 for work to the London office, a colleague stared at my keyboard and made jokes that it might be broken (split into two halves). But other than that... </span><br />
+<br />
+<span>Ten-finger touch typing has improved my efficiency and has become a rewarding discipline. Whether it&#39;s the keyboards I use, the tools I practice with, or the techniques I&#39;ve adopted, each step has been a learning experience. I hope sharing my journey provides valuable insights and inspiration for anyone looking to improve their touch typing skills.</span><br />
+<br />
+<span>I also accidentally started using a 10-finger-like system (maybe still 6 fingers, but better than before) on my regular laptop keyboard. I could be more efficient on the laptop keyboard. The form is different there (not ortholinear, not concave keycaps, etc.), but my typing has improved there too (even if it is only by a little bit).</span><br />
+<br />
+<span>I don&#39;t want to return to a non-concave keyboard as my default. I will use other keyboards still once in a while but only for short periods or when I have to (e.g. travelling with my Laptop and when there is no space to put an external keyboard)</span><br />
+<br />
+<span>Learning to touch type has been an eye-opening experience for me, not just for work but also for personal projects. Now, writing documentation is so much fun; who could believe that? Furthermore, working with Slack (communicating with colleagues) is more fun now as well.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'The Stoic Challenge' book notes</title>
         <link href="gemini://foo.zone/gemfeed/2024-07-07-the-stoic-challenge-book-notes.gmi" />
@@ -8925,498 +9140,6 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <a class='textlink' href='https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html'>https://unixsheikh.com/articles/how-to-stay-sane-in-todays-world-of-tech.html</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Bash Golf Part 1</title>
-        <link href="gemini://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.gmi" />
-        <id>gemini://foo.zone/gemfeed/2021-11-29-bash-golf-part-1.gmi</id>
-        <updated>2021-11-29T14:06:14+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='BashGolfPart1'>Bash Golf Part 1</h1><br />
-<br />
-<span class='quote'>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</span><br />
-<br />
-<pre>
-     &#39;\                   .  .                        |&gt;18&gt;&gt;
-       \              .         &#39; .                   |
-      O&gt;&gt;         .                 &#39;o                |
-       \       .                                      |
-       /\    .                                        |
-      / /  .&#39;                                         |
-jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                                            Art by Joan Stark
-</pre>
-<br />
-<span>This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<br />
-<h2 style='display: inline' id='TCPIPnetworking'>TCP/IP networking</h2><br />
-<br />
-<span>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</span><br />
-<br />
-<span>Have a look here how that works:</span><br />
-<br />
-<pre>
-❯ cat &lt; /dev/tcp/time.nist.gov/13
-
-59536 21-11-18 08:09:16 00 0 0 153.6 UTC(NIST) *
-</pre>
-<br />
-<span>The Bash treats /dev/tcp/HOST/PORT in a special way so that it is actually establishing a TCP connection to HOST:PORT. The example above redirects the TCP output of the time-server to cat and cat is printing it on standard output (stdout).</span><br />
-<br />
-<span>A more sophisticated example is firing up an HTTP request. Let&#39;s create a new read-write (rw) file descriptor (fd) 5, redirect the HTTP request string to it, and then read the response back:</span><br />
-<br />
-<pre>
-❯ exec 5&lt;&gt;/dev/tcp/google.de/80
-❯ echo -e "GET / HTTP/1.1\nhost: google.de\n\n" &gt;&amp;5
-❯ cat &lt;&amp;5 | head
-HTTP/1.1 301 Moved Permanently
-Location: http://www.google.de/
-Content-Type: text/html; charset=UTF-8
-Date: Thu, 18 Nov 2021 08:27:18 GMT
-Expires: Sat, 18 Dec 2021 08:27:18 GMT
-Cache-Control: public, max-age=2592000
-Server: gws
-Content-Length: 218
-X-XSS-Protection: 0
-X-Frame-Options: SAMEORIGIN
-</pre>
-<br />
-<span>You would assume that this also works with the ZSH, but it doesn&#39;t. This is one of the few things which don&#39;t work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</span><br />
-<br />
-<h2 style='display: inline' id='Processsubstitution'>Process substitution</h2><br />
-<br />
-<span>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</span><br />
-<br />
-<pre>
-❯ uptime # Without process substitution
- 10:58:03 up 4 days, 22:08,  1 user,  load average: 0.16, 0.34, 0.41
-
-❯ cat &lt;(uptime) # With process substitution
- 10:58:16 up 4 days, 22:08,  1 user,  load average: 0.14, 0.33, 0.41
-
-❯ stat &lt;(uptime)
-  File: /dev/fd/63 -&gt; pipe:[468130]
-  Size: 64              Blocks: 0          IO Block: 1024   symbolic link
-Device: 16h/22d Inode: 468137      Links: 1
-Access: (0500/lr-x------)  Uid: ( 1001/    paul)   Gid: ( 1001/    paul)
-Context: unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023
-Access: 2021-11-20 10:59:31.482411961 +0000
-Modify: 2021-11-20 10:59:31.482411961 +0000
-Change: 2021-11-20 10:59:31.482411961 +0000
- Birth: -
-</pre>
-<br />
-<span>This example doesn&#39;t make any sense practically speaking, but it clearly demonstrates how process substitution works. The standard output pipe of "uptime" is redirected to an anonymous file descriptor. That fd then is opened by the "cat" command as a regular file.</span><br />
-<br />
-<span>A useful use case is displaying the differences of two sorted files:</span><br />
-<br />
-<pre>
-❯ echo a &gt; /tmp/file-a.txt
-❯ echo b &gt;&gt; /tmp/file-a.txt
-❯ echo c &gt;&gt; /tmp/file-a.txt
-❯ echo b &gt; /tmp/file-b.txt
-❯ echo a &gt;&gt; /tmp/file-b.txt
-❯ echo c &gt;&gt; /tmp/file-b.txt
-❯ echo X &gt;&gt; /tmp/file-b.txt
-❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
---- /dev/fd/63  2021-11-20 11:05:03.667713554 +0000
-+++ /dev/fd/62  2021-11-20 11:05:03.667713554 +0000
-@@ -1,3 +1,4 @@
- a
- b
- c
-+X
-❯ echo X &gt;&gt; /tmp/file-a.txt # Now, both files have the same content again.
-❯ diff -u &lt;(sort /tmp/file-a.txt) &lt;(sort /tmp/file-b.txt)
-❯
-</pre>
-<br />
-<span>Another example is displaying the differences of two directories:</span><br />
-<br />
-<pre>
-❯ diff -u &lt;(ls ./dir1/ | sort) &lt;(ls ./dir2/ | sort)
-</pre>
-<br />
-<span>More (Bash golfing) examples:</span><br />
-<br />
-<pre>
-❯ wc -l &lt;(ls /tmp/) /etc/passwd &lt;(env)
-     24 /dev/fd/63
-     49 /etc/passwd
-     24 /dev/fd/62
-     97 total
-❯
-
-❯ while read foo; do
-&gt;    echo $foo
-&gt; done &lt; &lt;(echo foo bar baz)
-foo bar baz
-❯
-</pre>
-<br />
-<span>So far, we only used process substitution for stdout redirection. But it also works for stdin. The following two commands result into the same outcome, but the second one is writing the tar data stream to an anonymous file descriptor which is substituted by the "bzip2" command reading the data stream from stdin and compressing it to its own stdout, which then gets redirected to a file:</span><br />
-<br />
-<pre>
-❯ tar cjf file.tar.bz2 foo
-❯ tar cjf &gt;(bzip2 -c &gt; file.tar.bz2) foo
-</pre>
-<br />
-<span>Just think a while and see whether you understand fully what is happening here.</span><br />
-<br />
-<h2 style='display: inline' id='Grouping'>Grouping</h2><br />
-<br />
-<span>Command grouping can be quite useful for combining the output of multiple commands:</span><br />
-<br />
-<pre>
-❯ { ls /tmp; cat /etc/passwd; env; } | wc -l
-97
-❯ ( ls /tmp; cat /etc/passwd; env; ) | wc -l
-97
-</pre>
-<br />
-<span>But wait, what is the difference between curly braces and normal braces? I assumed that the normal braces create a subprocess whereas the curly ones don&#39;t, but I was wrong:</span><br />
-<br />
-<pre>
-❯ echo $$
-62676
-❯ { echo $$; }
-62676
-❯ ( echo $$; )
-62676
-</pre>
-<br />
-<span>One difference is, that the curly braces require you to end the last statement with a semicolon, whereas with the normal braces you can omit the last semicolon:</span><br />
-<br />
-<pre>
-❯ ( env; ls ) | wc -l
-27
-❯ { env; ls } | wc -l
-&gt;
-&gt; ^C
-</pre>
-<br />
-<span>In case you know more (subtle) differences, please write me an E-Mail and let me know.</span><br />
-<br />
-<span class='quote'>Update: A reader sent me an E-Mail and pointed me to the Bash manual page, which explains the difference between () and {} (I should have checked that by myself):</span><br />
-<br />
-<pre>
-(list) list is executed in a subshell environment (see COMMAND EXECUTION ENVIRONMENT
-       below).   Variable  assignments  and builtin commands that affect the shell&#39;s
-       environment do not remain in effect after the command completes.  The  return
-       status is the exit status of list.
-
-{ list; }
-       list  is simply executed in the current shell environment.  list must be ter‐
-       minated with a newline or semicolon.  This is known as a group command.   The
-       return  status  is the exit status of list.  Note that unlike the metacharac‐
-       ters ( and ), { and } are reserved words and must occur where a reserved word
-       is  permitted  to  be recognized.  Since they do not cause a word break, they
-       must be separated from list by whitespace or another shell metacharacter.
-</pre>
-<br />
-<span>So I was right that () is executed in a subprocess. But why does $$ not show a different PID? Also here (as pointed out by the reader) is the answer in the manual page:</span><br />
-<br />
-<pre>
-$      Expands to the process ID of the shell.  In a () subshell, it expands to  the
-       process ID of the current shell, not the subshell.
-</pre>
-<br />
-<span>If we want print the subprocess PID, we can use the BASHPID variable:</span><br />
-<br />
-<pre>
-❯ echo $BASHPID; { echo $BASHPID; }; ( echo $BASHPID; )
-1028465
-1028465
-1028739
-</pre>
-<br />
-<h2 style='display: inline' id='Expansions'>Expansions</h2><br />
-<br />
-<span>Let&#39;s start with simple examples:</span><br />
-<br />
-<pre>
-❯ echo {0..5}
-0 1 2 3 4 5
-❯ for i in {0..5}; do echo $i; done
-0
-1
-2
-3
-4
-5
-</pre>
-<br />
-<span>You can also add leading 0 or expand to any number range:</span><br />
-<br />
-<pre>
-❯ echo {00..05}
-00 01 02 03 04 05
-❯ echo {000..005}
-000 001 002 003 004 005
-❯ echo {201..205}
-201 202 203 204 205
-</pre>
-<br />
-<span>It also works with letters:</span><br />
-<br />
-<pre>
-❯ echo {a..e}
-a b c d e
-</pre>
-<br />
-<span>Now it gets interesting. The following takes a list of words and expands it so that all words are quoted:</span><br />
-<br />
-<pre>
-❯ echo \"{These,words,are,quoted}\"
-"These" "words" "are" "quoted"
-</pre>
-<br />
-<span>Let&#39;s also expand to the cross product of two given lists:</span><br />
-<br />
-<pre>
-❯ echo {one,two}\:{A,B,C}
-one:A one:B one:C two:A two:B two:C
-❯ echo \"{one,two}\:{A,B,C}\"
-"one:A" "one:B" "one:C" "two:A" "two:B" "two:C"
-</pre>
-<br />
-<span>Just because we can:</span><br />
-<br />
-<pre>
-❯ echo Linux-{one,two,three}\:{A,B,C}-FreeBSD
-Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
-</pre>
-<br />
-<h2 style='display: inline' id='akastdinandstdoutplaceholder'>- aka stdin and stdout placeholder</h2><br />
-<br />
-<span>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</span><br />
-<br />
-<pre>
-❯ echo Hello world
-Hello world
-❯ echo Hello world | cat -
-Hello world
-❯ cat - &lt;&lt;ONECHEESEBURGERPLEASE
-Hello world
-ONECHEESEBURGERPLEASE
-Hello world
-❯ cat - &lt;&lt;&lt; &#39;Hello world&#39;
-Hello world
-</pre>
-<br />
-<span>Let&#39;s walk through all three examples from the above snippet:</span><br />
-<br />
-<ul>
-<li>The first example is obvious (the Bash builtin "echo" prints its arguments to stdout).</li>
-<li>The second pipes "Hello world" via stdout to stdin of the "cat" command. As cat&#39;s argument is "-" it reads its data from stdin and not from a regular file named "-". So "-" has a special meaning for cat.</li>
-<li>The third and fourth examples are interesting as we don&#39;t use a pipe as of "|" but a so-called HERE-document and a HERE-string. But the end results are the same.</li>
-</ul><br />
-<span>The "tar" command understands "-" too. The following example tars up some local directory and sends the data to stdout (this is what "-f -" commands it to do). stdout then is piped via an SSH session to a remote tar process (running on buetow.org) and reads the data from stdin and extracts all the data coming from stdin (as we told tar with "-f -") on the remote machine:</span><br />
-<br />
-<pre>
-❯ tar -czf - /some/dir | ssh hercules@buetow.org tar -xzvf - 
-</pre>
-<br />
-<span>This is yet another example of using "-", but this time using the "file" command:</span><br />
-<br />
-<pre>
-$ head -n 1 grandmaster.sh
-#!/usr/bin/env bash
-$ file - &lt; &lt;(head -n 1 grandmaster.sh)
-/dev/stdin: a /usr/bin/env bash script, ASCII text executable
-</pre>
-<br />
-<span>Some more golfing:</span><br />
-<br />
-<pre>
-$ cat -
-hello
-hello
-^C
-$ file -
-#!/usr/bin/perl
-/dev/stdin: Perl script text executable
-</pre>
-<br />
-<h2 style='display: inline' id='Alternativeargumentpassing'>Alternative argument passing</h2><br />
-<br />
-<span>This is a quite unusual way of passing arguments to a Bash script:</span><br />
-<br />
-<pre>
-❯ cat foo.sh
-#/usr/bin/env bash
-declare -r USER=${USER:?Missing the username}
-declare -r PASS=${PASS:?Missing the secret password for $USER}
-echo $USER:$PASS
-</pre>
-<br />
-<span>So what we are doing here is to pass the arguments via environment variables to the script. The script will abort with an error when there&#39;s an undefined argument.</span><br />
-<br />
-<pre>
-❯ chmod +x foo.sh
-❯ ./foo.sh
-./foo.sh: line 3: USER: Missing the username
-❯ USER=paul ./foo.sh
-./foo.sh: line 4: PASS: Missing the secret password for paul
-❯ echo $?
-1
-❯ USER=paul PASS=secret ./foo.sh
-paul:secret
-</pre>
-<br />
-<span>You have probably noticed this *strange* syntax:</span><br />
-<br />
-<pre>
-❯ VARIABLE1=value1 VARIABLE2=value2 ./script.sh
-</pre>
-<br />
-<span>That&#39;s just another way to pass environment variables to a script. You can write it as well as like this:</span><br />
-<br />
-<pre>
-❯ export VARIABLE1=value1
-❯ export VARIABLE2=value2
-❯ ./script.sh
-</pre>
-<br />
-<span>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</span><br />
-<br />
-<h2 style='display: inline' id='akathenullcommand'>: aka the null command</h2><br />
-<br />
-<span>First, let&#39;s use the "help" Bash built-in to see what it says about the null command:</span><br />
-<br />
-<pre>
-❯ help :
-:: :
-    Null command.
-
-    No effect; the command does nothing.
-
-    Exit Status:
-    Always succeeds.
-</pre>
-<br />
-<span>PS: IMHO, people should use the Bash help more often. It is a very useful Bash reference. Too many fallbacks to a Google search and then land on Stack Overflow. Sadly, there&#39;s no help built-in for the ZSH shell though (so even when I am using the ZSH I make use of the Bash help as most of the built-ins are compatible). </span><br />
-<br />
-<span>OK, back to the null command. What happens when you try to run it? As you can see, absolutely nothing. And its exit status is 0 (success):</span><br />
-<br />
-<pre>
-❯ :
-❯ echo $?
-0
-</pre>
-<br />
-<span>Why would that be useful? You can use it as a placeholder in an endless while-loop:</span><br />
-<br />
-<pre>
-❯ while : ; do date; sleep 1; done
-Sun 21 Nov 12:08:31 GMT 2021
-Sun 21 Nov 12:08:32 GMT 2021
-Sun 21 Nov 12:08:33 GMT 2021
-^C
-❯
-</pre>
-<br />
-<span>You can also use it as a placeholder for a function body not yet fully implemented, as an empty function ill result in a syntax error:</span><br />
-<br />
-<pre>
-❯ foo () {  }
--bash: syntax error near unexpected token `}&#39;
-❯ foo () { :; }
-❯ foo
-❯
-</pre>
-<br />
-<span>Or use it as a placeholder for not yet implemented conditional branches:</span><br />
-<br />
-<pre>
-❯ if foo; then :; else echo bar; fi
-</pre>
-<br />
-<span>Or (not recommended) as a fancy way to comment your Bash code:</span><br />
-<br />
-<pre>
-❯ : I am a comment and have no other effect
-❯ : I am a comment and result in a syntax error ()
--bash: syntax error near unexpected token `(&#39;
-❯ : "I am a comment and don&#39;t result in a syntax error ()"
-❯
-</pre>
-<br />
-<span>As you can see in the previous example, the Bash still tries to interpret some syntax of all text following after ":". This can be exploited (also not recommended) like this:</span><br />
-<br />
-<pre>
-❯ declare i=0
-❯ $[ i = i + 1 ]
-bash: 1: command not found...
-❯ : $[ i = i + 1 ]
-❯ : $[ i = i + 1 ]
-❯ : $[ i = i + 1 ]
-❯ echo $i
-4
-</pre>
-<br />
-<span>For these kinds of expressions it&#39;s always better to use "let" though. And you should also use $((...expression...)) instead of the old (deprecated) way $[ ...expression... ] like this example demonstrates:</span><br />
-<br />
-<pre>
-❯ declare j=0
-❯ let j=$((j + 1))
-❯ let j=$((j + 1))
-❯ let j=$((j + 1))
-❯ let j=$((j + 1))
-❯ echo $j
-4
-</pre>
-<br />
-<h2 style='display: inline' id='Nofloatingpointsupport'>(No) floating point support</h2><br />
-<br />
-<span>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn&#39;t:</span><br />
-<br />
-<pre>
-❯ bash -c &#39;echo $(( 1/10 ))&#39;
-0
-❯ zsh -c &#39;echo $(( 1/10 ))&#39;
-0
-❯ bash -c &#39;echo $(( 1/10.0 ))&#39;
-bash: line 1: 1/10.0 : syntax error: invalid arithmetic operator (error token is ".0 ")
-❯ zsh -c &#39;echo $(( 1/10.0 ))&#39;
-0.10000000000000001
-❯
-</pre>
-<br />
-<span>It would be nice to have native floating point support for the Bash too, but you don&#39;t want to use the shell for complicated calculations anyway. So it&#39;s fine that Bash doesn&#39;t have that, I guess. </span><br />
-<br />
-<span>In the Bash you will have to fall back to an external command like "bc" (the arbitrary precision calculator language):</span><br />
-<br />
-<pre>
-❯ bc &lt;&lt;&lt; &#39;scale=2; 1/10&#39;
-.10
-</pre>
-<br />
-<span>See you later for the next post of this series.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1 (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

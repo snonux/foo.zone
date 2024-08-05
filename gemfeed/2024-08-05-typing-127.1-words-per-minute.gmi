@@ -1,4 +1,6 @@
-# Typing `>100` words per minute
+# Typing `127.1` words per minute (`>100wpm average`)
+
+> Published at 2024-08-05T17:39:30+03:00
 
 ```
 ,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
@@ -32,7 +34,7 @@ For an in-depth review, have a look at this great article:
 
 Overall, the keyboard feels excellent quality and robust. It has got some weight to it. Because of that, it is not ideally suited for travel, though. But I have a different keyboard to solve this (see later in this post). Overall, I love how it is built and how it feels.
 
-=> ./typing-more-than-100-words-per-minute/kinesis2.jpg Kinesis Adv.360 Pro at home
+=> ./typing-127.1-words-per-minute/kinesis2.jpg Kinesis Adv.360 Pro at home
 
 ### Bluetooth connectivity
 
@@ -51,7 +53,7 @@ If you ever purchase a Kinesis keyboard, go with the PCB keycaps. They upgrade t
 
 I went with the blank keycaps, by the way.
 
-=> ./typing-more-than-100-words-per-minute/kinesis1.jpg Kinesis Adv.360 Pro at home
+=> ./typing-127.1-words-per-minute/kinesis1.jpg Kinesis Adv.360 Pro at home
 
 ### Keymap editor
 
@@ -99,11 +101,11 @@ I wrote myself a small Ruby script that would randomly select a paragraph from o
 
 Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).
 
-=> ./typing-more-than-100-words-per-minute/all-time-stats.png
+=> ./typing-127.1-words-per-minute/all-time-stats.png
 
 My overall average speed over those 5,000 sessions was 80wpm. The average speed over the last week was over 100wpm. The green line represents the wpm average (increasing trend), the purple line represents the number of keys in the practices (not much movement there, as all keys are unlocked), and the red line represents the average typing accuracy.
 
-=> ./typing-more-than-100-words-per-minute/typing-speed-over-lessons.png
+=> ./typing-127.1-words-per-minute/typing-speed-over-lessons.png
 
 Around the middle, you see a break-in of the wpm average value. This was where I swapped the `p` and `;` keys, but after some retraining, I came back to the previous level and beyond.
 
@@ -162,7 +164,7 @@ I guess keyboards will always be my expensive hobby, so I also purchased another
 
 Here is a photo of me using it with my Surface Go 2 (it runs Linux, by the way) while waiting for the baggage drop at the airport:
 
-=> ./typing-more-than-100-words-per-minute/glove80.jpg Traveling with the Glove80 using my Surface Go 2
+=> ./typing-127.1-words-per-minute/glove80.jpg Traveling with the Glove80 using my Surface Go 2
 
 For everyday work, I prefer the tactile Browns on the Kinesis over the Red Pro I have on the Glove80 (normal profile vs. low profile). However, the Kinesis feels much more premium. 
 
