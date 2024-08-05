@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-08-05T17:45:01+03:00</updated>
+    <updated>2024-08-05T18:01:39+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -45,6 +45,7 @@
 <li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
 </ul><br />
 <span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same Keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the Keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
+<br />
 <h2 style='display: inline' id='Kinesisreview'>Kinesis review</h2><br />
 <br />
 <span>For an in-depth review, have a look at this great article:</span><br />
@@ -60,6 +61,7 @@
 <h3 style='display: inline' id='Bluetoothconnectivity'>Bluetooth connectivity</h3><br />
 <br />
 <span>Despite encountering concerns about Bluetooth connectivity issues with the Kinesis keyboard during my research, I purchased one anyway as I intended to use it only via USB. However, I discovered that the firmware updates available afterwards had addressed these reported Bluetooth issues, and as a result, I did not experience any difficulties with the Bluetooth functionality. This positive outcome allowed me to enjoy using the keyboard also wirelessly.</span><br />
+<br />
 <h3 style='display: inline' id='GateronBrowmkeyswitches'>Gateron Browm key switches</h3><br />
 <br />
 <span>Many voices on the internet seem to dislike the Gateron Brown switches, the only official choice for non-clicky tactile switches in the Kinesis, so I was also a bit concerned. I almost went with Cherry MX Browns for my Kinesis (a custom build from a 3rd party provider that is partnershipping with Kinesis). Still, I decided on Gateron Browns to try different switches than the Cherry MX Browns I already have on my ZSA Moonlander keyboard (another ortho-linear split keyboard, but without a concave keycap layout). </span><br />
