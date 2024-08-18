@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-08-18T18:58:17+03:00</updated>
+    <updated>2024-08-18T22:23:22+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2271,7 +2271,7 @@ http://www.gnu.org/software/src-highlite -->
         </content>
     </entry>
     <entry>
-        <title>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</title>
+        <title>Site Reliability Engineering - Part 3: On-Call Culture and the Human Side</title>
         <link href="gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi" />
         <id>gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi</id>
         <updated>2024-01-09T18:35:48+02:00</updated>
@@ -2279,14 +2279,14 @@ http://www.gnu.org/software/src-highlite -->
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
+        <summary>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I'm currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='SiteReliabilityEngineeringPart3OnCallCultureandtheHumanAspect'>Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect</h1><br />
+                <h1 style='display: inline' id='SiteReliabilityEngineeringPart3OnCallCultureandtheHumanSide'>Site Reliability Engineering - Part 3: On-Call Culture and the Human Side</h1><br />
 <br />
 <span class='quote'>Published at 2024-01-09T18:35:48+02:00</span><br />
 <br />
-<span>This is the third part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</span><br />
+<span>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
 <br />
 <a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
 <a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
@@ -2318,23 +2318,25 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h2 style='display: inline' id='OnCallCultureandtheHumanAspectPrioritisingWellbeingintheRealmofReliability'>On-Call Culture and the Human Aspect: Prioritising Well-being in the Realm of Reliability</h2><br />
+<h2 style='display: inline' id='OnCallCultureandtheHumanSidePuttingWellbeingFirstintheWorldofReliability'>On-Call Culture and the Human Side: Putting Well-being First in the World of Reliability</h2><br />
 <br />
-<span>Site Reliability Engineering is synonymous with ensuring system reliability, but the human factor is an often-underestimated part of this discipline. Ensuring an healthy on-call culture is as critical as any technical solution. The well-being of the engineers is an important factor.</span><br />
+<span>Site Reliability Engineering is all about keeping systems reliable, but we often forget how important the human side is. A healthy on-call culture is just as crucial as any technical fix. The well-being of the engineers really matters.</span><br />
 <br />
-<span>Firstly, a healthy on-call rotation is about more than just managing and responding to incidents. It&#39;s about the entire ecosystem that supports this practice. This involves reducing pain points, offering mentorship, rapid iteration, and ensuring that engineers have the right tools and processes. One ceavat is, that engineers should be willing to learn. Especially in on-call rotation embedding SREs with other engineers (for example Software Engineers or QA Engineers), it&#39;s difficult to motivate everyone to engage. QA Engineers want to test the software, Software Engineers want to implement new features; they don&#39;t want to troubleshoot and debug production incidents. It can be depressing for the mentoring SRE.</span><br />
+<span>First off, a healthy on-call rotation is about more than just handling incidents. It&#39;s about creating a supportive ecosystem. This means cutting down on pain points, offering mentorship, quickly iterating on processes, and making sure engineers have the right tools. But there&#39;s a catch—engineers need to be willing to learn. Especially in on-call rotations where SREs work with Software Engineers or QA Engineers, it can be tough to get everyone motivated. QA Engineers want to test, Software Engineers want to build new features; they don’t want to deal with production issues. This can be really frustrating for the SREs trying to mentor them.</span><br />
 <br />
-<span>Furthermore, the metrics that measure the success of an on-call experience are only sometimes straightforward. While one might assume that fewer pages translate to better on-call expertise (which is true to a degree, as who wants to receive a page out of office hours?), it&#39;s not always the volume of pages that matters most. Trust, ownership, accountability, and effective communication play the important roles.</span><br />
+<span>Plus, measuring a good on-call experience isn&#39;t always clear-cut. You might think fewer pages mean a better on-call setup—and yeah, no one wants to get paged after hours—but it&#39;s not just about the number of pages. Trust, ownership, accountability, and solid communication are what really matter.</span><br />
 <br />
-<span>An important part is giving feedback about the on-call experience to ensure continuous learning. If alerts are mostly noise, they should be tuned or even eliminated. If alerts are actionable, can recurring tasks be automated? If there are knowledge gaps, is the documentation not good enough? Continuous retrospection ensures that not only do systems evolve, but the experience for the on-call engineers becomes progressively better.</span><br />
+<span>A key part is giving feedback about the on-call experience to keep learning and improving. If alerts are mostly noise, they need to be tweaked or even ditched. If alerts are helpful, can we automate the repetitive tasks? If there are knowledge gaps, is the documentation lacking? Regular retrospectives ensure that the systems get better over time and the on-call experience improves for the engineers.</span><br />
 <br />
-<span>Onboarding for on-call duties is a crucial aspect of ensuring the reliability and efficiency of systems. This process involves equipping new team members with the knowledge, tools, and support to handle incidents confidently. It begins with an overview of the system architecture and common challenges, followed by training on monitoring tools, alerting mechanisms, and incident response protocols. Shadowing experienced on-call engineers can offer practical exposure. Too often, new engineers are thrown into the cold water without proper onboarding and training because the more experienced engineers are too busy fire-fighting production issues in the first place.</span><br />
+<span>Getting new team members ready for on-call duties is super important for keeping systems reliable and efficient. This means giving them the knowledge, tools, and support they need to handle incidents with confidence. It starts with a rundown of the system architecture and common issues, then training on monitoring tools, alerting systems, and incident response protocols. Watching experienced on-call engineers in action can provide some hands-on learning. Too often, though, new engineers get thrown into the deep end without proper onboarding because the more experienced engineers are too busy dealing with ongoing production issues.</span><br />
 <br />
-<span>An always-on, always-alert culture can lead to burnout. Engineers should be encouraged to recognise their limits, take breaks, and seek support when needed. This isn&#39;t just about individual health; a burnt-out engineer can have cascading effects on the entire team and the systems they manage. A successful on-call culture ensures that while systems are kept running, the engineers are kept happy, healthy, and supported. The more experienced engineers should take time to mentor the junior engineers, but the junior engineers should also be fully engaged, try to investigate and learn new things by themselves.</span><br />
+<span>A culture where everyone&#39;s always on and alert can cause burnout. Engineers need to know their limits, take breaks, and ask for help when they need it. This isn&#39;t just about personal health; a burnt-out engineer can drag down the whole team and the systems they manage. A good on-call culture keeps systems running while making sure engineers are happy, healthy, and supported. Experienced engineers should take the time to mentor juniors, but junior engineers should also stay engaged, investigate issues, and learn new things on their own.</span><br />
 <br />
-<span>For the junior engineer, it&#39;s too easy to fall back and ask the experts in the team every time an issue arises. This seems reasonable, but serving recipes for solving production issues on a silver tablet won&#39;t scale forever, as there are infinite scenarios of how production systems can break. So every engineer should learn to debug, troubleshoot and resolve production incidents independently. The experts will still be there for guidance and step in when the junior gets stuck after trying, but the experts should also learn to step down so that lesser experienced engineers can step up and learn. But mistakes can always happen here; that&#39;s why having a blameless on-call culture is essential.</span><br />
+<span>For junior engineers, it&#39;s tempting to always ask the experts for help whenever something goes wrong. While that might seem reasonable, constantly handing out solutions doesn&#39;t scale—there are endless ways for production systems to break. So, every engineer needs to learn how to debug, troubleshoot, and resolve incidents on their own. The experts should be there for guidance and can step in when a junior gets really stuck, but they also need to give space for less experienced engineers to grow and learn.</span><br />
 <br />
-<span>A blameless on-call culture is a must for a safe and collaborative environment where engineers can effectively respond to incidents without fear of retribution. This approach acknowledges that mistakes are a natural part of the learning and innovation process. When individuals are assured they won&#39;t be punished for errors, they&#39;re more likely to openly discuss mistakes, allowing the entire team to learn and grow from each incident. Furthermore, a blameless culture promotes psychological safety, enhances job satisfaction, reduces burnout, and ensures that talent remains committed and engaged.</span><br />
+<span>A blameless on-call culture is essential for creating a safe and collaborative environment where engineers can handle incidents without worrying about getting blamed. It recognizes that mistakes are just part of learning and innovating. When people know they won’t be punished for errors, they’re more likely to talk openly about what went wrong, which helps the whole team learn and improve. Plus, a blameless culture boosts psychological safety, job satisfaction, and reduces burnout, keeping everyone committed and engaged.</span><br />
+<br />
+<span>Mistakes are gonna happen, which is why having a blameless on-call culture is so important.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -2796,23 +2798,22 @@ echo baz
 ⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
 </pre>
 <br />
-<h2 style='display: inline' id='OperationalBalanceinSREFindingtheEquilibriuminReliabilityandVelocity'>Operational Balance in SRE: Finding the Equilibrium in Reliability and Velocity</h2><br />
+<h2 style='display: inline' id='OperationalBalanceinSREStrikingtheRightBalanceBetweenReliabilityandSpeed'>Operational Balance in SRE: Striking the Right Balance Between Reliability and Speed</h2><br />
 <br />
-<span>Site Reliability Engineering has established itself as more than just a set of best practices or methodologies. Instead, it stands as a beacon of operational excellence, which guides engineering teams through the turbulent waters of modern software development and system management.</span><br />
+<span>Site Reliability Engineering is more than just a bunch of best practices or methods. It&#39;s a guiding light for engineering teams, helping them navigate the tricky waters of modern software development and system management.</span><br />
+<span>In the world of software production, there are two big forces that often clash: the push for fast feature releases (velocity) and the need for reliable systems. Traditionally, moving faster meant more risk. SRE helps balance these opposing goals with things like error budgets and SLIs/SLOs. These tools give teams a clear way to measure how much they can push changes without hurting system health. So, the error budget becomes a balancing act, helping teams trade off between innovation and reliability.</span><br />
 <br />
-<span>In the universe of software production, two fundamental forces are often at odds: The drive for rapid feature release (velocity) and the need for system reliability. Traditionally, the faster teams moved, the more risk was introduced into systems. SRE offers a approach to mitigate these conflicting drives through concepts like error budgets and SLIs/SLOs. These mechanisms offer a tangible metric, allowing teams to quantify how much they can push changes while ensuring they don&#39;t compromise system health. Thus, the error budget becomes a balancing act, where teams weigh the trade-offs between innovation and reliability.</span><br />
+<span>Finding the right balance in SRE means juggling operations and coding. Ideally, engineers should split their time 50/50 between these tasks. This isn&#39;t just a random rule; it highlights how much SRE values both maintaining smooth operations and driving innovation. This way, SREs not only handle today&#39;s problems but also prepare for tomorrow&#39;s challenges.</span><br />
 <br />
-<span>An important part of this balance is the dichotomy between operations and coding. According to SRE principles, an engineer should ideally spend an equal amount of time on operations work and coding - 50% on each. This isn&#39;t just a random metric; it&#39;s a reflection of the value SRE places on both maintaining operational excellence and progressing forward with innovations. This balance ensures that while SREs are solving today&#39;s problems, they are also preparing for tomorrow&#39;s challenges. </span><br />
+<span>But not all operations tasks are the same. SRE makes a clear distinction between "ops work" and "toil." Ops work is essential for maintaining systems and adds value, while toil is the repetitive, boring stuff that doesn’t. It&#39;s super important to recognize and minimize toil because a culture that lets engineers get bogged down in it will kill innovation and growth. The way an organization handles toil says a lot about its operational health and commitment to balance.</span><br />
 <br />
-<span>However, not all operational tasks are equal. SRE differentiates between "ops work" and "toil". While ops work is integral to system maintenance and can provide value, toil represents repetitive, mundane tasks which offer little value in the long run. Recognising and minimising toil is crucial. A culture that allows engineers to drown in toil stifles innovation and growth. Hence, an organisation&#39;s approach to toil indicates its operational health and commitment to balance.</span><br />
+<span>A key part of finding operational balance is the tools and processes that SREs use. Great monitoring and observability tools, especially those that can handle lots of complex data, are essential. This isn’t just about having the right tech—it shows that the organization values proactive problem-solving. With systems that can spot potential issues early, SREs can keep things stable while still pushing forward.</span><br />
 <br />
-<span>A cornerstone of achieving operational balance lies in the tools and processes SREs use. Effective monitoring, observability tools, and ensuring that tools can handle high cardinality data are foundational. These aren&#39;t just technical requisites but reflective of an organisational culture prioritising proactive problem-solving. By having systems that effectively flag potential issues before they escalate, SREs can maintain the balance between system stability and forward momentum.</span><br />
+<span>Operational balance isn&#39;t just about tech or processes; it&#39;s also about people. The well-being of on-call engineers is just as important as the health of the services they manage. Doing postmortems after incidents, having continuous feedback loops, and identifying gaps in tools, skills, or resources all help make sure the human side of operations gets the attention it deserves.</span><br />
 <br />
-<span>Moreover, operational balance isn&#39;t just a technological or process challenge; it&#39;s a human one. The health of on-call engineers is as crucial as the health of the services they manage. On-call postmortems, continuous feedback loops, and recognising gaps (be it tooling, operational expertise, or resources) ensure that the human elements of operations are noticed. </span><br />
+<span>In the end, finding operational balance in SRE is an ongoing journey, not a one-time thing. Companies need to keep reassessing their practices, tools, and especially their culture. When they get this balance right, they can keep innovating without sacrificing the reliability of their systems, leading to long-term success.</span><br />
 <br />
-<span>In conclusion, operational balance in SRE isn&#39;t static thing but an ongoing journey. It requires organisations to constantly evaluate their practices, tools, and, most importantly, their culture. By achieving this balance, organisations can ensure that they have time for innovation while maintaining the robustness and reliability of their systems, resulting in sustainable long-term success.</span><br />
-<br />
-<span>That all sounds very romantic. The truth is, it&#39;s brutal to archive the perfect balance. No system will ever be perfect. But at least we should aim for it!</span><br />
+<span>That all sounds pretty idealistic. The reality is that getting the perfect balance is really tough. No system is ever going to be perfect. But hey, we should still strive for it!</span><br />
 <br />
 <span>Continue with the third part of this series:</span><br />
 <br />
@@ -3580,14 +3581,14 @@ http://www.gnu.org/software/src-highlite -->
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it's impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It's not just technical; it's also about communication, collaboration and teamwork. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</summary>
+        <summary>Being a Site Reliability Engineer (SRE) is like stepping into a lively, ever-evolving universe. The world of SRE mixes together different tech, a unique culture, and a whole lot of determination. It’s one of the toughest but most exciting jobs out there. There's zero chance of getting bored because there's always a fresh challenge to tackle and new technology to play around with. It's not just about the tech side of things either; it's heavily rooted in communication, collaboration, and teamwork. As someone currently working as an SRE, I’m here to break it all down for you in this blog series. Let's dive into what SRE is really all about!</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='SiteReliabilityEngineeringPart1SREandOrganizationalCulture'>Site Reliability Engineering - Part 1: SRE and Organizational Culture</h1><br />
 <br />
 <span class='quote'>Published at 2023-08-18T22:43:47+03:00</span><br />
 <br />
-<span>The universe of Site Reliability Engineering (SRE) is like an intricate tapestry woven with diverse technology, culture, and personal grit threads. Site Reliability Engineering is one of the most demanding jobs. With all the facets, it&#39;s impossible to get bored. There is always a new challenge to master, and there is always a new technology to tinker with. It&#39;s not just technical; it&#39;s also about communication, collaboration and teamwork. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</span><br />
+<span>Being a Site Reliability Engineer (SRE) is like stepping into a lively, ever-evolving universe. The world of SRE mixes together different tech, a unique culture, and a whole lot of determination. It’s one of the toughest but most exciting jobs out there. There&#39;s zero chance of getting bored because there&#39;s always a fresh challenge to tackle and new technology to play around with. It&#39;s not just about the tech side of things either; it&#39;s heavily rooted in communication, collaboration, and teamwork. As someone currently working as an SRE, I’m here to break it all down for you in this blog series. Let&#39;s dive into what SRE is really all about!</span><br />
 <br />
 <a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE</a><br />
@@ -3617,23 +3618,23 @@ DC on fire:
 <br />
 <h2 style='display: inline' id='SREandOrganizationalCultureNavigatingtheNexus'>SRE and Organizational Culture: Navigating the Nexus</h2><br />
 <br />
-<span>At the heart of SRE lies the proactive mindset of "prevention over cure." Traditional IT models focused predominantly on reactive solutions, but SRE mandates a shift towards foresight. By adopting Service Level Indicators (SLIs) and Service Level Objectives (SLOs), teams are equipped with clear metrics and goals that guide them toward ensuring reliability and user satisfaction. They reflect an organisational culture prioritising user experience and constant system alignment with user needs. </span><br />
+<span>At the core of SRE is the principle of "prevention over cure." Unlike traditional IT setups that mostly react to problems, SRE focuses on spotting issues before they happen. This proactive approach involves using Service Level Indicators (SLIs) and Service Level Objectives (SLOs). These tools give teams specific metrics and targets to aim for, helping them keep systems reliable and users happy. It&#39;s all about creating a culture that prioritizes user experience and makes sure everything runs smoothly to meet their needs.</span><br />
 <br />
-<span>Another defining SRE idea concept the "error budget." This ingenious framework accepts that no system is flawless. Failures are inevitable. However, instead of being punitive, the culture here is to accept, learn, and iterate. By providing teams with a "budget" for errors, organisations create an environment where innovation is encouraged, and failures are viewed as learning opportunities.</span><br />
+<span>Another key concept in SRE is the "error budget." It’s a clever approach that recognizes no system is perfect and that failures will happen. Instead of punishing mistakes, SRE culture embraces them as chances to learn and improve. The idea is to give teams a "budget" for errors, creating a space where innovation can thrive and failures are simply seen as lessons learned.</span><br />
 <br />
-<span>But SRE isn&#39;t just about technology and metrics; it&#39;s also human. It challenges the "hero culture" that plagues many IT teams. While individual heroics might occasionally save the day, a sustainable model requires collective expertise. An SRE culture recognises that heroes achieve their best within teams, negating the need for a hero-centric environment. This philosophy promotes a balanced on-call experience, emphasising the importance of trust, ownership, effective communication, and collaboration as cornerstones of team success. I personally have fallen into the hero trap, and know it&#39;s unsustainable to be the only go-to person for every arising problem.</span><br />
+<span>SRE isn&#39;t just about tech and metrics; it&#39;s also about people. It tackles the "hero culture" that often ends up burning out IT teams. Sure, having a hero swoop in to save the day can be great, but relying on that all the time just isn’t sustainable. Instead, SRE focuses on collective expertise and teamwork. It recognizes that heroes are at their best within a solid team, making the need for constant heroics unnecessary. This way of thinking promotes a balanced on-call experience and highlights trust, ownership, good communication, and collaboration as key to success. I&#39;ve been there myself, falling into the hero trap, and I know firsthand that it&#39;s just not feasible to be the go-to person for every problem that comes up.</span><br />
 <br />
-<span>Additionally, the SRE model requires good documentation. However, it&#39;s essential ensuring that this documentation undergoes the same quality checks as code, reinforcing effective onboarding, training and communication.</span><br />
+<span>Also, the SRE model puts a big emphasis on good documentation. It&#39;s not enough to just have docs; they need to be top-notch and go through the same quality checks as code. This really helps with onboarding new team members, training, and keeping everyone on the same page.</span><br />
 <br />
-<span>Organisations might face a significant challenge when adopting SRE. Some might feel SRE principles counter their goals. They might prioritise feature rollouts over reliability or view SRE practices as cumbersome. Hence, creating an SRE culture often demands patient explanations and showcasing benefits, such as increased release velocity and improved user experience.</span><br />
+<span>Adopting SRE can be a big challenge for some organizations. They might think the SRE approach goes against their goals, like preferring to roll out new features quickly rather than focusing on reliability, or seeing SRE practices as too much hassle. Building an SRE culture often means taking the time to explain things patiently and showing the benefits, like faster release cycles and a better user experience.</span><br />
 <br />
-<span>Monitoring and observability form another SRE aspect, emphasising the need for high-quality tools to query and analyse data. This ties back to the cultural emphasis on continuous learning and adaptability. SREs, by nature, need to be curious, ready to delve into anomalies, and keen on adopting new tools and practices. </span><br />
+<span>Monitoring and observability are also big parts of SRE, highlighting the need for top-notch tools to query and analyze data. This aligns with the SRE focus on continuous learning and being adaptable. SREs naturally need to be curious, ready to dive into any strange issues, and always open to picking up new tools and practices.</span><br />
 <br />
-<span>The success of SRE within any organisation depends on the broader acceptance of its principles. It demands a move away from siloed operations, where SRE acts as a bandage on flawed systems, to a model where reliability is everyone&#39;s responsibility.</span><br />
+<span>For SRE to really work in any organization, everyone needs to buy into its principles. It&#39;s about moving away from working in isolated silos and relying on SRE to just patch things up. Instead, it’s about making reliability a shared responsibility across the whole team.</span><br />
 <br />
-<span>In essence, the integration of SRE principles transcends technical practices. It paves the way for a shift in organisational culture that values proactive prevention, continuous learning, collaboration, and transparent communication. The successful melding of SRE and corporate culture promises not just reliable systems but also a robust, resilient, and progressive work environment.</span><br />
+<span>In short, bringing SRE principles into the mix goes beyond just the technical stuff. It helps shift the whole organizational culture to value things like preventing issues before they happen, always learning, working together, and being open with communication. When SRE and corporate culture blend well, you end up with not just reliable systems but also a strong, resilient, and forward-thinking workplace.</span><br />
 <br />
-<span>Organisations with the implementation of SLIs, SLOs and error budgets are already advanced in their SRE journey. It takes a lot of communication, convincing, and patience until that point is reached.</span><br />
+<span>Organizations that have SLIs, SLOs, and error budgets in place are already pretty far along in their SRE journey. Getting there takes a lot of communication, convincing people, and patience.</span><br />
 <br />
 <span>Continue with the second part of this series:</span><br />
 <br />
