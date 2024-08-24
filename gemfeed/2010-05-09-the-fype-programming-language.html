@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='TheFypeProgrammingLanguage'>The Fype Programming Language</h1><br />
+<h1 style='display: inline' id='the-fype-programming-language'>The Fype Programming Language</h1><br />
 <br />
 <span class='quote'>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</span><br />
 <br />
@@ -27,7 +27,7 @@
 <br />
 <span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It&#39;s not a hype - it&#39;s Fype!".</span><br />
 <br />
-<h2 style='display: inline' id='ObjectorientedCstyle'>Object-oriented C style</h2><br />
+<h2 style='display: inline' id='object-oriented-c-style'>Object-oriented C style</h2><br />
 <br />
 <span>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </span><br />
 <br />
@@ -100,7 +100,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#F3E651">}</font>
 </pre>
 <br />
-<h2 style='display: inline' id='Datatypes'>Data types</h2><br />
+<h2 style='display: inline' id='data-types'>Data types</h2><br />
 <br />
 <span>Fype uses auto type conversion. However, if you want to know what&#39;s going on, you may take a look at the following basic data types:</span><br />
 <ul>
@@ -114,13 +114,13 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>There is no boolean type, but we can use the integer values 0 for false and 1 for true. There is support for explicit type casting too.</span><br />
 <br />
-<h2 style='display: inline' id='Syntax'>Syntax</h2><br />
+<h2 style='display: inline' id='syntax'>Syntax</h2><br />
 <br />
-<h3 style='display: inline' id='Comments'>Comments</h3><br />
+<h3 style='display: inline' id='comments'>Comments</h3><br />
 <br />
 <span>Text from a # character until the end of the current line is considered being a comment. Multi-line comments may start with an #* and with a *# anywhere. Exceptions are if those signs are inside of strings.</span><br />
 <br />
-<h3 style='display: inline' id='Variables'>Variables</h3><br />
+<h3 style='display: inline' id='variables'>Variables</h3><br />
 <br />
 <span>Variables are defined with the "my" keyword (inspired by Perl :-). If you don&#39;t assign a value during declaration, it uses the default integer value 0. Variables may be changed during program runtime. Variables may be deleted using the "undef" keyword! Example:</span><br />
 <br />
@@ -151,7 +151,7 @@ if defined foo {
 }
 </pre>
 <br />
-<h3 style='display: inline' id='Synonyms'>Synonyms</h3><br />
+<h3 style='display: inline' id='synonyms'>Synonyms</h3><br />
 <br />
 <span>Each variable can have as many synonyms as wished. A synonym is another name to access the content of a specific variable. Here is an example of how to use it:</span><br />
 <br />
@@ -193,7 +193,7 @@ undef baz;
 say syms foo; # Prints 1
 </pre>
 <br />
-<h2 style='display: inline' id='Statementsandexpressions'>Statements and expressions</h2><br />
+<h2 style='display: inline' id='statements-and-expressions'>Statements and expressions</h2><br />
 <br />
 <span>A Fype program is a list of statements. Each keyword, expression or function call is part of a statement. Each statement is ended with a semicolon. Example:</span><br />
 <br />
@@ -203,11 +203,11 @@ say foo;
 exit foo - bar;
 </pre>
 <br />
-<h3 style='display: inline' id='Parenthesis'>Parenthesis</h3><br />
+<h3 style='display: inline' id='parenthesis'>Parenthesis</h3><br />
 <br />
 <span>All parenthesis for function arguments is optional. They help to make the code better readable. They also help to force the precedence of expressions.</span><br />
 <br />
-<h3 style='display: inline' id='Basicexpressions'>Basic expressions</h3><br />
+<h3 style='display: inline' id='basic-expressions'>Basic expressions</h3><br />
 <br />
 <span>Any "any" value holding a string will be automatically converted to an integer value.</span><br />
 <br />
@@ -225,7 +225,7 @@ exit foo - bar;
 (integer) not &lt;any&gt;
 </pre>
 <br />
-<h3 style='display: inline' id='Bitwiseexpressions'>Bitwise expressions</h3><br />
+<h3 style='display: inline' id='bitwise-expressions'>Bitwise expressions</h3><br />
 <br />
 <pre>
 (integer) &lt;any&gt; :&lt; &lt;any&gt;
@@ -235,7 +235,7 @@ exit foo - bar;
 (integer) &lt;any&gt; xor &lt;any&gt;
 </pre>
 <br />
-<h3 style='display: inline' id='Numericexpressions'>Numeric expressions</h3><br />
+<h3 style='display: inline' id='numeric-expressions'>Numeric expressions</h3><br />
 <br />
 <pre>
 (number) neg &lt;number&gt;
@@ -260,7 +260,7 @@ exit foo - bar;
 if yes { say no defined foo; } 
 </pre>
 <br />
-<h2 style='display: inline' id='Controlstatements'>Control statements</h2><br />
+<h2 style='display: inline' id='control-statements'>Control statements</h2><br />
 <br />
 <span>Control statements available in Fype:</span><br />
 <br />
@@ -288,7 +288,7 @@ until &lt;expression&gt; { &lt;statements&gt; }
 <br />
 <span>... runs the statements as long as the expression evaluates to a false value.</span><br />
 <br />
-<h2 style='display: inline' id='Scopes'>Scopes</h2><br />
+<h2 style='display: inline' id='scopes'>Scopes</h2><br />
 <br />
 <span>A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:</span><br />
 <br />
@@ -339,7 +339,7 @@ SYM_VARIABLE: var4 (id=00035, line=-0001, pos=-001, type=TT_INTEGER, dval=0.0000
 SYM_FUNCTION: bar
 </pre>
 <br />
-<h2 style='display: inline' id='Definedness'>Definedness </h2><br />
+<h2 style='display: inline' id='definedness-'>Definedness </h2><br />
 <br />
 <pre>
 (integer) defined &lt;identifier&gt;
@@ -353,7 +353,7 @@ SYM_FUNCTION: bar
 <br />
 <span>... tries to undefine/delete the "identifier". Returns 1 if it succeeded, otherwise 0 is returned.</span><br />
 <br />
-<h2 style='display: inline' id='System'>System </h2><br />
+<h2 style='display: inline' id='system-'>System </h2><br />
 <br />
 <span>These are some system and interpreter specific built-in functions supported:</span><br />
 <br />
@@ -395,7 +395,7 @@ if pid {
 <br />
 <span>It returns the number of items freed! You may wonder why most of the time, it will produce a value of 0! Fype tries to free not needed memory ASAP. This may change in future versions to gain faster execution speed!</span><br />
 <br />
-<h3 style='display: inline' id='IO'>I/O </h3><br />
+<h3 style='display: inline' id='io-'>I/O </h3><br />
 <br />
 <pre>
 (any) put &lt;any&gt;
@@ -415,9 +415,9 @@ if pid {
 <br />
 <span>... just prints a new line.</span><br />
 <br />
-<h2 style='display: inline' id='Proceduresandfunctions'>Procedures and functions</h2><br />
+<h2 style='display: inline' id='procedures-and-functions'>Procedures and functions</h2><br />
 <br />
-<h3 style='display: inline' id='Procedures'>Procedures</h3><br />
+<h3 style='display: inline' id='procedures'>Procedures</h3><br />
 <br />
 <span>A procedure can be defined with the "proc" keyword and deleted with the "undef" keyword. A procedure does not return any value and does not support parameter passing. It&#39;s using already defined variables (e.g. global variables). A procedure does not have its own namespace. It&#39;s using the calling namespace. It is possible to define new variables inside of a procedure in the current namespace.</span><br />
 <br />
@@ -433,7 +433,7 @@ foo; # Run the procedure. Print out "11\n"
 say c; # Print out "6\n";
 </pre>
 <br />
-<h3 style='display: inline' id='Nestedprocedures'>Nested procedures</h3><br />
+<h3 style='display: inline' id='nested-procedures'>Nested procedures</h3><br />
 <br />
 <span>It&#39;s possible to define procedures inside of procedures. Since procedures don&#39;t have their own scope, nested procedures will be available to the current scope as soon as the main procedure has run the first time. You may use the "defined" keyword to check if a procedure has been defined or not.</span><br />
 <br />
@@ -456,7 +456,7 @@ bar; # Now the procedure bar is defined!
 foo; # Here the procedure foo will redefine bar again!
 </pre>
 <br />
-<h3 style='display: inline' id='Functions'>Functions</h3><br />
+<h3 style='display: inline' id='functions'>Functions</h3><br />
 <br />
 <span>A function can be defined with the "func" keyword and deleted with the "undef" keyword. Function do not yet return values and do not yet supports parameter passing. It&#39;s using local (lexical scoped) variables. If a certain variable does not exist, when It&#39;s using already defined variables (e.g. one scope above). </span><br />
 <br />
@@ -472,7 +472,7 @@ foo; # Run the procedure. Print out "11\n"
 say c; # Will produce an error because c is out of scope!
 </pre>
 <br />
-<h3 style='display: inline' id='Nestedfunctions'>Nested functions</h3><br />
+<h3 style='display: inline' id='nested-functions'>Nested functions</h3><br />
 <br />
 <span>Nested functions work the same way the nested procedures work, except that nested functions will not be available anymore after the function has been left!</span><br />
 <br />
@@ -489,7 +489,7 @@ foo;
 bar; # Will produce an error because bar is out of scope!
 </pre>
 <br />
-<h2 style='display: inline' id='Arrays'>Arrays</h2><br />
+<h2 style='display: inline' id='arrays'>Arrays</h2><br />
 <br />
 <span>Some progress on arrays has been made too. The following example creates a multidimensional array "foo". Its first element is the return value of the func which is "bar". The fourth value is a string" 3" converted to a double number. The last element is an anonymous array which itself contains another anonymous array as its final element:</span><br />
 <br />
@@ -512,11 +512,11 @@ BA
 BB
 </pre>
 <br />
-<h2 style='display: inline' id='Fancystuff'>Fancy stuff</h2><br />
+<h2 style='display: inline' id='fancy-stuff'>Fancy stuff</h2><br />
 <br />
 <span>Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like function pointers and closures may be considered.:) </span><br />
 <br />
-<h2 style='display: inline' id='Maythesourcebewithyou'>May the source be with you</h2><br />
+<h2 style='display: inline' id='may-the-source-be-with-you'>May the source be with you</h2><br />
 <br />
 <span>You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!</span><br />
 <br />

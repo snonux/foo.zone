@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='DTailusageexamples'>DTail usage examples</h1><br />
+<h1 style='display: inline' id='dtail-usage-examples'>DTail usage examples</h1><br />
 <br />
 <span class='quote'>Published at 2023-09-25T14:57:42+03:00</span><br />
 <br />
@@ -42,7 +42,7 @@
 <li>Use <span class='inlinecode'>dmap</span> to aggregate logs and other text files already written</li>
 <li><span class='inlinecode'>dserver</span> is the DTail server, where all the clients can connect to</li>
 </ul><br />
-<h2 style='display: inline' id='Followinglogs'>Following logs</h2><br />
+<h2 style='display: inline' id='following-logs'>Following logs</h2><br />
 <br />
 <span>The following example demonstrates how to follow logs of several servers at once. The server list is provided as a flat text file. The example filters all records containing the string <span class='inlinecode'>INFO</span>. Any other Go compatible regular expression can also be used instead of <span class='inlinecode'>INFO</span>.</span><br />
 <br />
@@ -66,7 +66,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --grep INFO </font><font color="#bb00ff">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
-<h2 style='display: inline' id='Aggregatinglogs'>Aggregating logs</h2><br />
+<h2 style='display: inline' id='aggregating-logs'>Aggregating logs</h2><br />
 <br />
 <span>To run ad-hoc map-reduce aggregations on newly written log lines you must add a query. The following example follows all remote log lines and prints out every few seconds the result to standard output.</span><br />
 <br />
@@ -123,7 +123,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select ... outfile append result.csv'</font>
 </pre>
 <br />
-<h2 style='display: inline' id='Howtousedcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
+<h2 style='display: inline' id='how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
 <br />
 <span>The following example demonstrates how to cat files (display the full content of the files) on several servers at once.</span><br />
 <br />
@@ -147,7 +147,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt /etc/hostname</font>
 </pre>
 <br />
-<h2 style='display: inline' id='Howtousedgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
+<h2 style='display: inline' id='how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
 <br />
 <span>The following example demonstrates how to grep files (display only the lines which match a given regular expression) of multiple servers at once. In this example, we look after some entries in <span class='inlinecode'>/etc/passwd</span>. This time, we don&#39;t provide the server list via an file but rather via a comma separated list directly on the command line. We also explore the <span class='inlinecode'>-before</span>, <span class='inlinecode'>-after</span> and <span class='inlinecode'>-max</span> flags (see animation).</span><br />
 <br />
@@ -166,7 +166,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Hint: <span class='inlinecode'>-regex</span> is an alias for <span class='inlinecode'>-grep</span>.</span><br />
 <br />
-<h2 style='display: inline' id='Howtousedmap'>How to use <span class='inlinecode'>dmap</span></h2><br />
+<h2 style='display: inline' id='how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></h2><br />
 <br />
 <span>To run a map-reduce aggregation over logs written in the past, the <span class='inlinecode'>dmap</span> command can be used. The following example aggregates all map-reduce fields <span class='inlinecode'>dmap</span> will print interim results every few seconds. You can also write the result to an CSV file by adding <span class='inlinecode'>outfile result.csv</span> to the query.</span><br />
 <br />
@@ -184,7 +184,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./dtail-usage-examples/dmap.gif'><img alt='DMap example' title='DMap example' src='./dtail-usage-examples/dmap.gif' /></a><br />
 <br />
-<h2 style='display: inline' id='HowtousetheDTailserverlessmode'>How to use the DTail serverless mode</h2><br />
+<h2 style='display: inline' id='how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</h2><br />
 <br />
 <span>Until now, all examples so far required to have remote server(s) to connect to. That makes sense, as after all DTail is a *distributed* tool. However, there are circumstances where you don&#39;t really need to connect to a server remotely. For example, you already have a login shell open to the server an all what you want is to run some queries directly on local log files.</span><br />
 <br />
@@ -192,7 +192,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>All commands shown so far also work in a serverless mode. All what needs to be done is to omit a server list. The DTail client then starts in serverless mode.</span><br />
 <br />
-<h3 style='display: inline' id='Serverlessmapreducequery'>Serverless map-reduce query</h3><br />
+<h3 style='display: inline' id='serverless-map-reduce-query'>Serverless map-reduce query</h3><br />
 <br />
 <span>The following <span class='inlinecode'>dmap</span> example is the same as the previously shown one, but the difference is that it operates on a local log file directly:</span><br />
 <br />
@@ -227,7 +227,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#bb00ff">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
-<h3 style='display: inline' id='AggregatingCSVfiles'>Aggregating CSV files</h3><br />
+<h3 style='display: inline' id='aggregating-csv-files'>Aggregating CSV files</h3><br />
 <br />
 <span>In essence, this works exactly like aggregating logs. All files operated on must be valid CSV files and the first line of the CSV must be the header. E.g.:</span><br />
 <br />
@@ -249,7 +249,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>DMap can also be used to query and aggregate CSV files from remote servers.</span><br />
 <br />
-<h3 style='display: inline' id='Otherserverlesscommands'>Other serverless commands</h3><br />
+<h3 style='display: inline' id='other-serverless-commands'>Other serverless commands</h3><br />
 <br />
 <span>The serverless mode works transparently with all other DTail commands. Here are some examples:</span><br />
 <br />

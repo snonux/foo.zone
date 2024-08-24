@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='BashGolfPart2'>Bash Golf Part 2</h1><br />
+<h1 style='display: inline' id='bash-golf-part-2'>Bash Golf Part 2</h1><br />
 <br />
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
 <br />
@@ -29,7 +29,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
-<h2 style='display: inline' id='Redirection'>Redirection</h2><br />
+<h2 style='display: inline' id='redirection'>Redirection</h2><br />
 <br />
 <span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
 <br />
@@ -161,7 +161,7 @@ First line: Learn You a Haskell
 Second line: for Great Good
 </pre>
 <br />
-<h2 style='display: inline' id='HERE'>HERE</h2><br />
+<h2 style='display: inline' id='here'>HERE</h2><br />
 <br />
 <span>I have mentioned HERE-documents and HERE-strings already in this post. Let&#39;s do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</span><br />
 <br />
@@ -244,7 +244,7 @@ Learn you a Golang for Great Good
 I like Perl too
 </pre>
 <br />
-<h2 style='display: inline' id='RANDOM'>RANDOM</h2><br />
+<h2 style='display: inline' id='random'>RANDOM</h2><br />
 <br />
 <span>Random is a special built-in variable containing a different pseudo random number each time it&#39;s used.</span><br />
 <br />
@@ -289,11 +289,11 @@ Delaying script execution for 42 seconds...
 Continuing script execution...
 </pre>
 <br />
-<h2 style='display: inline' id='setxandseteandpipefile'>set -x and set -e and pipefile</h2><br />
+<h2 style='display: inline' id='set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</h2><br />
 <br />
 <span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
 <br />
-<h3 style='display: inline' id='x'>-x</h3><br />
+<h3 style='display: inline' id='-x'>-x</h3><br />
 <br />
 <span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
 <br />
@@ -335,7 +335,7 @@ Second line: for Great Good
 ❯
 </pre>
 <br />
-<h3 style='display: inline' id='e'>-e</h3><br />
+<h3 style='display: inline' id='-e'>-e</h3><br />
 <br />
 <span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
 <br />

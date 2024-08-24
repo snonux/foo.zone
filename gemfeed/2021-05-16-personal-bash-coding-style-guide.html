@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='PersonalBashcodingstyleguide'>Personal Bash coding style guide</h1><br />
+<h1 style='display: inline' id='personal-bash-coding-style-guide'>Personal Bash coding style guide</h1><br />
 <br />
 <span class='quote'>Published at 2021-05-16T14:51:57+01:00</span><br />
 <br />
@@ -29,11 +29,11 @@
 <br />
 <a class='textlink' href='https://google.github.io/styleguide/shellguide.html'>Google Shell Style Guide</a><br />
 <br />
-<h2 style='display: inline' id='Mymodifications'>My modifications</h2><br />
+<h2 style='display: inline' id='my-modifications'>My modifications</h2><br />
 <br />
 <span>These are my modifications to the Google Guide.</span><br />
 <br />
-<h3 style='display: inline' id='Shebang'>Shebang</h3><br />
+<h3 style='display: inline' id='shebang'>Shebang</h3><br />
 <br />
 <span>Google recommends using always...</span><br />
 <br />
@@ -53,7 +53,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
 </pre>
 <br />
-<h3 style='display: inline' id='Twospacesofttabsindentation'>Two space soft-tabs indentation</h3><br />
+<h3 style='display: inline' id='two-space-soft-tabs-indentation'>Two space soft-tabs indentation</h3><br />
 <br />
 <span>I know there have been many tab- and soft-tab wars on this planet. Google recommends using two space soft-tabs for Bash scripts. </span><br />
 <br />
@@ -63,7 +63,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I hit the 80 character line length quicker with the four spaces than with two spaces, but that makes me refactor the Bash code more aggressively, which is a good thing. </span><br />
 <br />
-<h3 style='display: inline' id='Breakinglongpipes'>Breaking long pipes</h3><br />
+<h3 style='display: inline' id='breaking-long-pipes'>Breaking long pipes</h3><br />
 <br />
 <span>Google recommends breaking up long pipes like this:</span><br />
 <br />
@@ -96,7 +96,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Update: It&#39;s 2023 now, and I have changed my mind. I think Google&#39;s way is the better one. It may be a bit more to type, but the leading <span class='inlinecode'>|</span> are a nice eye catcher, so you know immediately what is going on!</span><br />
 <br />
-<h3 style='display: inline' id='Quotingyourvariables'>Quoting your variables</h3><br />
+<h3 style='display: inline' id='quoting-your-variables'>Quoting your variables</h3><br />
 <br />
 <span>Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:</span><br />
 <br />
@@ -137,7 +137,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That&#39;s because it will be more likely that you might not remember that some of the functions don&#39;t work on values with spaces in them, for example. It&#39;s just that I won&#39;t quote everything in every small script I write. </span><br />
 <br />
-<h3 style='display: inline' id='Preferbuiltincommandsoverexternalcommands'>Prefer built-in commands over external commands</h3><br />
+<h3 style='display: inline' id='prefer-built-in-commands-over-external-commands'>Prefer built-in commands over external commands</h3><br />
 <br />
 <span>Google recommends using the built-in commands over available external commands where possible:</span><br />
 <br />
@@ -162,9 +162,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I even didn&#39;t get started with what you can do with awk (especially GNU Awk), a fully-fledged programming language. Tiny Awk snippets tend to be used quite often in Shell scripts without honouring the real power of Awk. But if you did everything in Perl or Awk or another scripting language, then it wouldn&#39;t be a Bash script anymore, wouldn&#39;t it? ;-)</span><br />
 <br />
-<h2 style='display: inline' id='Myadditions'>My additions</h2><br />
+<h2 style='display: inline' id='my-additions'>My additions</h2><br />
 <br />
-<h3 style='display: inline' id='Useofyesandno'>Use of &#39;yes&#39; and &#39;no&#39;</h3><br />
+<h3 style='display: inline' id='use-of-yes-and-no'>Use of &#39;yes&#39; and &#39;no&#39;</h3><br />
 <br />
 <span>Bash does not support a boolean type. I tend just to use the strings &#39;yes&#39; and &#39;no&#39; here. I used 0 for false and 1 for true for some time, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is crucial to you, you wouldn&#39;t want to use a Bash script anyway, correct?</span><br />
 <br />
@@ -188,7 +188,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">buy_soda </font><font color="#ff0000">$I_NEED_THE_BUZZ</font>
 </pre>
 <br />
-<h3 style='display: inline' id='Nonevilalternativetovariableassignmentsviaeval'>Non-evil alternative to variable assignments via eval</h3><br />
+<h3 style='display: inline' id='non-evil-alternative-to-variable-assignments-via-eval'>Non-evil alternative to variable assignments via eval</h3><br />
 <br />
 <span>Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:</span><br />
 <br />
@@ -232,7 +232,7 @@ Hello paul, it is Sat 15 May 19:21:12 BST 2021
 <br />
 <span>The downside is that ShellCheck won&#39;t be able to follow the dynamic sourcing anymore.</span><br />
 <br />
-<h3 style='display: inline' id='Preferpipesoverarraysforlistprocessing'>Prefer pipes over arrays for list processing</h3><br />
+<h3 style='display: inline' id='prefer-pipes-over-arrays-for-list-processing'>Prefer pipes over arrays for list processing</h3><br />
 <br />
 <span>When I do list processing in Bash, I prefer to use pipes. You can chain them through Bash functions as well, which is pretty neat. Usually, my list processing scripts are of a structure like this:</span><br />
 <br />
@@ -277,7 +277,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</span><br />
 <br />
-<h3 style='display: inline' id='Assignthenshift'>Assign-then-shift</h3><br />
+<h3 style='display: inline' id='assign-then-shift'>Assign-then-shift</h3><br />
 <br />
 <span>I often refactor existing Bash code. That leads me to add and removing function arguments quite often. It&#39;s pretty repetitive work changing the $1, $2.... function argument numbers every time you change the order or add/remove possible arguments.</span><br />
 <br />
@@ -329,7 +329,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>As you can see, I didn&#39;t need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</span><br />
 <br />
-<h3 style='display: inline' id='Paranoidmode'>Paranoid mode</h3><br />
+<h3 style='display: inline' id='paranoid-mode'>Paranoid mode</h3><br />
 <br />
 <span>I call this the paranoid mode. The Bash will stop executing when a command exits with a status not equal to 0:</span><br />
 <br />
@@ -370,11 +370,11 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">}</font>
 </pre>
 <br />
-<h2 style='display: inline' id='Learned'>Learned</h2><br />
+<h2 style='display: inline' id='learned'>Learned</h2><br />
 <br />
 <span>There are also a couple of things I&#39;ve learned from Google&#39;s guide.</span><br />
 <br />
-<h3 style='display: inline' id='Unintendedlexicographicalcomparison'>Unintended lexicographical comparison.</h3><br />
+<h3 style='display: inline' id='unintended-lexicographical-comparison'>Unintended lexicographical comparison.</h3><br />
 <br />
 <span>The following looks like a valid Bash code:</span><br />
 <br />
@@ -410,7 +410,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#ffffff">fi</font></b>
 </pre>
 <br />
-<h3 style='display: inline' id='PIPESTATUS'>PIPESTATUS</h3><br />
+<h3 style='display: inline' id='pipestatus'>PIPESTATUS</h3><br />
 <br />
 <span>I have never used the PIPESTATUS variable before. I knew that it&#39;s there, but I never bothered to understand how it works until now thoroughly.</span><br />
 <br />
@@ -442,7 +442,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#ffffff">fi</font></b>
 </pre>
 <br />
-<h2 style='display: inline' id='UsecommonsenseandBECONSISTENT'>Use common sense and BE CONSISTENT.</h2><br />
+<h2 style='display: inline' id='use-common-sense-and-be-consistent'>Use common sense and BE CONSISTENT.</h2><br />
 <br />
 <span>The following two paragraphs are thoroughly quoted from the Google guidelines. But they hit the hammer on the head:</span><br />
 <br />
@@ -451,7 +451,7 @@ http://www.gnu.org/software/src-highlite -->
 <span class='quote'>The point of having style guidelines is to have a common vocabulary of coding so people can concentrate on what you are saying rather than on how you are saying it. We present global style rules here, so people know the vocabulary. But local style is also important. If the code you add to a file looks drastically different from the existing code around it, the discontinuity throws readers out of their rhythm when they go to read it. Try to avoid this.</span><br />
 <br />
 <br />
-<h2 style='display: inline' id='AdvancedBashlearningprotip'>Advanced Bash learning pro tip</h2><br />
+<h2 style='display: inline' id='advanced-bash-learning-pro-tip'>Advanced Bash learning pro tip</h2><br />
 <br />
 <span>I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (not from Google). I use it as the universal Bash reference and learn something new every time I look at it.</span><br />
 <br />

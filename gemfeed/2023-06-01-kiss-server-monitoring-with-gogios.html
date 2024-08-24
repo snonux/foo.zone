@@ -8,13 +8,13 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='KISSservermonitoringwithGogios'>KISS server monitoring with Gogios</h1><br />
+<h1 style='display: inline' id='kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</h1><br />
 <br />
 <span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
 <br />
 <a href='./kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
 <br />
-<h2 style='display: inline' id='Introduction'>Introduction</h2><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
@@ -45,7 +45,7 @@ The original can be found at
 https://asciiart.website/index.php?art=objects/computers
 </pre>
 <br />
-<h2 style='display: inline' id='Motivation'>Motivation</h2><br />
+<h2 style='display: inline' id='motivation'>Motivation</h2><br />
 <br />
 <span>With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn&#39;t necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
 <br />
@@ -53,7 +53,7 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance.</span><br />
 <br />
-<h2 style='display: inline' id='Features'>Features</h2><br />
+<h2 style='display: inline' id='features'>Features</h2><br />
 <br />
 <ul>
 <li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing to use existing Nagios plugins.</li>
@@ -64,7 +64,7 @@ https://asciiart.website/index.php?art=objects/computers
 <li>Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.</li>
 <li>CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.</li>
 </ul><br />
-<h2 style='display: inline' id='Examplealert'>Example alert</h2><br />
+<h2 style='display: inline' id='example-alert'>Example alert</h2><br />
 <br />
 <span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we&#39;ve got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
 <br />
@@ -86,9 +86,9 @@ CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
 Have a nice day!
 </pre>
 <br />
-<h2 style='display: inline' id='Installation'>Installation</h2><br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
 <br />
-<h3 style='display: inline' id='CompilingandinstallingGogios'>Compiling and installing Gogios</h3><br />
+<h3 style='display: inline' id='compiling-and-installing-gogios'>Compiling and installing Gogios</h3><br />
 <br />
 <span>This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace <span class='inlinecode'>does</span> with the <span class='inlinecode'>sudo</span> command and replace the <span class='inlinecode'>/usr/local/bin</span> path with <span class='inlinecode'>/usr/bin</span>.</span><br />
 <br />
@@ -120,7 +120,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />
-<h3 style='display: inline' id='Settingupusergroupanddirectories'>Setting up user, group and directories</h3><br />
+<h3 style='display: inline' id='setting-up-user-group-and-directories'>Setting up user, group and directories</h3><br />
 <br />
 <span>It is best to create a dedicated system user and group for Gogios to ensure proper isolation and security. Here are the steps to create the <span class='inlinecode'>_gogios</span> user and group under OpenBSD:</span><br />
 <br />
@@ -137,7 +137,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
 <br />
-<h3 style='display: inline' id='Installingmonitoringplugins'>Installing monitoring plugins</h3><br />
+<h3 style='display: inline' id='installing-monitoring-plugins'>Installing monitoring plugins</h3><br />
 <br />
 <span>Gogios relies on external Nagios or Icinga monitoring plugin scripts. On OpenBSD, you can install the <span class='inlinecode'>monitoring-plugins</span> package with Gogios. The monitoring-plugins package is a collection of monitoring plugins, similar to Nagios plugins, that can be used to monitor various services and resources:</span><br />
 <br />
@@ -151,9 +151,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
 <br />
-<h2 style='display: inline' id='Configuration'>Configuration</h2><br />
+<h2 style='display: inline' id='configuration'>Configuration</h2><br />
 <br />
-<h3 style='display: inline' id='MTA'>MTA</h3><br />
+<h3 style='display: inline' id='mta'>MTA</h3><br />
 <br />
 <span>Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.</span><br />
 <br />
@@ -165,7 +165,7 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 <br />
 <span>Check the recipient&#39;s inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
 <br />
-<h3 style='display: inline' id='ConfiguringGogios'>Configuring Gogios</h3><br />
+<h3 style='display: inline' id='configuring-gogios'>Configuring Gogios</h3><br />
 <br />
 <span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here&#39;s an example configuration:</span><br />
 <br />
@@ -228,7 +228,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The <span class='inlinecode'>state.json</span> file mentioned above keeps track of the monitoring state and check results between Gogios runs, enabling Gogios only to send email notifications when there are changes in the check status.</span><br />
 <br />
-<h2 style='display: inline' id='RunningGogios'>Running Gogios</h2><br />
+<h2 style='display: inline' id='running-gogios'>Running Gogios</h2><br />
 <br />
 <span>Now it is time to give it a first run. On OpenBSD, do:</span><br />
 <br />
@@ -250,7 +250,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON as the <span class='inlinecode'>_gogios</span> user. It will execute the checks and send monitoring status whenever a check status changes via email according to your configuration. Also, Gogios will run once at 7 am every morning and re-notify all unhandled alerts as a reminder.</span><br />
 <br />
-<h3 style='display: inline' id='Highavailability'>High-availability</h3><br />
+<h3 style='display: inline' id='high-availability'>High-availability</h3><br />
 <br />
 <span>To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.</span><br />
 <br />
@@ -263,7 +263,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>There are plans to make it possible to execute certain checks only on certain nodes (e.g. on elected leader or master nodes). This is still in progress (check out my Gorum Git project).</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion:</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion:</h2><br />
 <br />
 <span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
 <br />

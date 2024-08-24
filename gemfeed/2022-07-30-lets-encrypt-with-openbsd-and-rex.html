@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='LetsEncryptwithOpenBSDandRex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
+<h1 style='display: inline' id='lets-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
 <br />
 <span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
 <br />
@@ -41,7 +41,7 @@
 <br />
 <span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h2 style='display: inline' id='WhatsLetsEncrypt'>What&#39;s Let&#39;s Encrypt?</h2><br />
+<h2 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h2><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
@@ -49,7 +49,7 @@
 <br />
 <span>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</span><br />
 <br />
-<h2 style='display: inline' id='Meetacmeclient'>Meet <span class='inlinecode'>acme-client</span></h2><br />
+<h2 style='display: inline' id='meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></h2><br />
 <br />
 <span><span class='inlinecode'>acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. </span><br />
 <br />
@@ -69,11 +69,11 @@
 <li>Let&#39;s Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class='inlinecode'>http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
 <li>Let&#39;s Encrypt generates a certificate, which then is downloaded to <span class='inlinecode'>/etc/ssl/...</span>.</li>
 </ul><br />
-<h2 style='display: inline' id='Configuration'>Configuration</h2><br />
+<h2 style='display: inline' id='configuration'>Configuration</h2><br />
 <br />
 <span>There is some (but easy) configuration required to make that all work on OpenBSD.</span><br />
 <br />
-<h3 style='display: inline' id='acmeclientconf'>acme-client.conf</h3><br />
+<h3 style='display: inline' id='acme-clientconf'>acme-client.conf</h3><br />
 <br />
 <span>This is how my <span class='inlinecode'>/etc/acme-client.conf</span> looks like (I copied a template from <span class='inlinecode'>/etc/examples/acme-client.conf</span> to <span class='inlinecode'>/etc/acme-client.conf</span> and added my domains to the bottom:</span><br />
 <br />
@@ -172,7 +172,7 @@ server "foo.zone" {
 <br />
 <span>It is worth noticing that <span class='inlinecode'>httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let&#39;s Encrypt. As you saw in the config snippet above, Let&#39;s Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn&#39;t need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class='inlinecode'>httpd</span> to use any new certificate.</span><br />
 <br />
-<h3 style='display: inline' id='CRONjob'>CRON job</h3><br />
+<h3 style='display: inline' id='cron-job'>CRON job</h3><br />
 <br />
 <span>You could now run <span class='inlinecode'>doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</span><br />
 <br />
@@ -250,11 +250,11 @@ acme-client: /etc/ssl/irregular.ninja.fullchain.pem: certificate valid: 80 days 
 acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 </pre>
 <br />
-<h2 style='display: inline' id='relaydconfandsmtpdconf'>relayd.conf and smtpd.conf</h2><br />
+<h2 style='display: inline' id='relaydconf-and-smtpdconf'>relayd.conf and smtpd.conf</h2><br />
 <br />
 <span>Besides <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> (mainly for Gemini) and <span class='inlinecode'>smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class='inlinecode'>acme.sh</span>, the services are reloaded or restarted (<span class='inlinecode'>smtpd</span> doesn&#39;t support reload) whenever a certificate is generated or updated.</span><br />
 <br />
-<h2 style='display: inline' id='Rexification'>Rexification</h2><br />
+<h2 style='display: inline' id='rexification'>Rexification</h2><br />
 <br />
 <span>I didn&#39;t write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</span><br />
 <br />
@@ -266,7 +266,7 @@ acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
 our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zone irregular.ninja snonux.land/;
 </pre>
 <br />
-<h3 style='display: inline' id='GeneralACMEclientconfiguration'>General ACME client configuration</h3><br />
+<h3 style='display: inline' id='general-acme-client-configuration'>General ACME client configuration</h3><br />
 <br />
 <span>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</span><br />
 <br />
@@ -418,7 +418,7 @@ if [ $has_update = yes ]; then
 fi
 </pre>
 <br />
-<h3 style='display: inline' id='Servicerexification'>Service rexification </h3><br />
+<h3 style='display: inline' id='service-rexification-'>Service rexification </h3><br />
 <br />
 <span>These are the Rex tasks setting up <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> and <span class='inlinecode'>smtpd</span> services:</span><br />
 <br />
@@ -646,7 +646,7 @@ match from local for local action localmail
 match from local for any action outbound
 </pre>
 <br />
-<h2 style='display: inline' id='Allpiecestogether'>All pieces together</h2><br />
+<h2 style='display: inline' id='all-pieces-together'>All pieces together</h2><br />
 <br />
 <span>For the complete <span class='inlinecode'>Rexfile</span> example and all the templates, please look at the Git repository:</span><br />
 <br />
@@ -660,7 +660,7 @@ rex commons
 <br />
 <span>The <span class='inlinecode'>commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>ACME and Let&#39;s Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</span><br />
 <br />

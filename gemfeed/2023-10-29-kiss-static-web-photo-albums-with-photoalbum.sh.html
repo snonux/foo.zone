@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='KISSstaticwebphotoalbumswithphotoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
+<h1 style='display: inline' id='kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
 <br />
 <span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
 <br />
@@ -29,7 +29,7 @@
 &#39;._____________________________________________.&#39;   
 </pre>
 <br />
-<h2 style='display: inline' id='Motivation'>Motivation</h2><br />
+<h2 style='display: inline' id='motivation'>Motivation</h2><br />
 <br />
 <span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
 <br />
@@ -37,11 +37,11 @@
 <br />
 <span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
 <br />
-<h2 style='display: inline' id='Introducingphotoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
+<h2 style='display: inline' id='introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
 <br />
-<h2 style='display: inline' id='Installation'>Installation</h2><br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
 <br />
 <span>Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:</span><br />
 <br />
@@ -84,7 +84,7 @@ cp ./src/photoalbum.default.conf /etc/default/photoalbum
 This is Photoalbum Version 0.5.1
 </pre>
 <br />
-<h2 style='display: inline' id='Settingitup'>Setting it up</h2><br />
+<h2 style='display: inline' id='setting-it-up'>Setting it up</h2><br />
 <br />
 <span>Now, it&#39;s time to set up the Irregular Ninja static web photo album (or any other web photo album you may be setting up!)! Create a directory (here: <span class='inlinecode'>irregular.ninja</span> for the Irregular Ninja Photo site - or any oter sub-directory reflecting your album&#39;s name), and inside of that directory, create an <span class='inlinecode'>incoming</span> directory. The <span class='inlinecode'>incoming</span> directory. Copy all photos to be part of the album there.</span><br />
 <br />
@@ -197,7 +197,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
 <br />
-<h2 style='display: inline' id='Generatingthestaticphotoalbum'>Generating the static photo album</h2><br />
+<h2 style='display: inline' id='generating-the-static-photo-album'>Generating the static photo album</h2><br />
 <br />
 <span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
 <br />
@@ -260,15 +260,15 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span class='quote'>PS: There&#39;s also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).</span><br />
 <br />
-<h2 style='display: inline' id='Cleaningitup'>Cleaning it up</h2><br />
+<h2 style='display: inline' id='cleaning-it-up'>Cleaning it up</h2><br />
 <br />
 <span>A simple <span class='inlinecode'>make clean</span> will clean up the <span class='inlinecode'>./dist</span> directory and all other (if any) temp files created.</span><br />
 <br />
-<h2 style='display: inline' id='HTMLtemplates'>HTML templates</h2><br />
+<h2 style='display: inline' id='html-templates'>HTML templates</h2><br />
 <br />
 <span>Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. </span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
 <br />

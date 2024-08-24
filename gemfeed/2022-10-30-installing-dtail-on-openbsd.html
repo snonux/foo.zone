@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='InstallingDTailonOpenBSD'>Installing DTail on OpenBSD</h1><br />
+<h1 style='display: inline' id='installing-dtail-on-openbsd'>Installing DTail on OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2022-10-30T11:03:19+02:00</span><br />
 <br />
@@ -61,7 +61,7 @@
 <br />
 <span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
 <br />
-<h2 style='display: inline' id='Compileit'>Compile it</h2><br />
+<h2 style='display: inline' id='compile-it'>Compile it</h2><br />
 <br />
 <span>First of all, DTail needs to be downloaded and compiled. For that, <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span>, and <span class='inlinecode'>gmake</span> are required:</span><br />
 <br />
@@ -96,7 +96,7 @@ $ doas pkg_delete git go gmake
 <br />
 <span>One day I shall create an official OpenBSD port for DTail.</span><br />
 <br />
-<h2 style='display: inline' id='Installit'>Install it</h2><br />
+<h2 style='display: inline' id='install-it'>Install it</h2><br />
 <br />
 <span>Installing the binaries is now just a matter of copying them to <span class='inlinecode'>/usr/local/bin</span> as follows:</span><br />
 <br />
@@ -138,7 +138,7 @@ END
 $ doas chmod 755 /etc/rc.d/dserver
 </pre>
 <br />
-<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
+<h3 style='display: inline' id='rexification'>Rexification</h3><br />
 <br />
 <span>This is the task for setting it up via Rex. Note the <span class='inlinecode'>. . . .</span>, that&#39;s a placeholder which we will fill up more and more during this blog post:</span><br />
 <br />
@@ -165,7 +165,7 @@ task &#39;dtail&#39;, group =&gt; &#39;frontends&#39;,
    };
 </pre>
 <br />
-<h2 style='display: inline' id='Configureit'>Configure it</h2><br />
+<h2 style='display: inline' id='configure-it'>Configure it</h2><br />
 <br />
 <span>Now, DTail is fully installed but still needs to be configured. Grab the default config file from GitHub ...</span><br />
 <br />
@@ -188,7 +188,7 @@ $ curl https://raw.githubusercontent.com/mimecast/dtail/master/examples/dtail.js
   }
 </pre>
 <br />
-<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
+<h3 style='display: inline' id='rexification'>Rexification</h3><br />
 <br />
 <span>That&#39;s as simple as adding the following to the Rex task:</span><br />
 <br />
@@ -204,7 +204,7 @@ file &#39;/etc/dserver/dtail.json&#39;,
   on_change =&gt; sub { $restart = TRUE };
 </pre>
 <br />
-<h2 style='display: inline' id='Updatethekeycacheforit'>Update the key cache for it</h2><br />
+<h2 style='display: inline' id='update-the-key-cache-for-it'>Update the key cache for it</h2><br />
 <br />
 <span>DTail relies on SSH for secure authentication and communication. However, the system user <span class='inlinecode'>_dserver</span> has no permission to read the SSH public keys from the user&#39;s home directories, so the DTail server also checks for available public keys in an alternative path <span class='inlinecode'>/var/run/dserver/cache</span>. </span><br />
 <br />
@@ -257,7 +257,7 @@ $ echo /usr/local/bin/dserver-update-key-cache.sh | doas tee -a /etc/daily.local
 /usr/local/bin/dserver-update-key-cache.sh
 </pre>
 <br />
-<h3 style='display: inline' id='Rexification'>Rexification</h3><br />
+<h3 style='display: inline' id='rexification'>Rexification</h3><br />
 <br />
 <span>That&#39;s done by adding ...</span><br />
 <br />
@@ -273,7 +273,7 @@ append_if_no_such_line &#39;/etc/daily.local&#39;, &#39;/usr/local/bin/dserver-u
 <br />
 <span>... to the Rex task!</span><br />
 <br />
-<h2 style='display: inline' id='Startit'>Start it</h2><br />
+<h2 style='display: inline' id='start-it'>Start it</h2><br />
 <br />
 <span>Now, it&#39;s time to enable and start the DTail server:</span><br />
 <br />
@@ -313,7 +313,7 @@ Caching /home/rex/.ssh/authorized_keys -&gt; /var/cache/dserver/rex.authorized_k
 All set...
 </pre>
 <br />
-<h2 style='display: inline' id='Useit'>Use it</h2><br />
+<h2 style='display: inline' id='use-it'>Use it</h2><br />
 <br />
 <span>The DTail server is now ready to serve connections. You can use any DTail commands, such as <span class='inlinecode'>dtail</span>, <span class='inlinecode'>dgrep</span>, <span class='inlinecode'>dmap</span>, <span class='inlinecode'>dcat</span>, <span class='inlinecode'>dtailhealth</span>, to do so. Checkout out all the usage examples on the official DTail page.</span><br />
 <br />
@@ -339,7 +339,7 @@ REMOTE|blowfish|100|7|fstab|31bfd9d9a6788844.h /usr/local ffs rw,wxallowed,nodev
 REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nodev 1 2
 </pre>
 <br />
-<h2 style='display: inline' id='Conclusions'>Conclusions</h2><br />
+<h2 style='display: inline' id='conclusions'>Conclusions</h2><br />
 <br />
 <span>It&#39;s a bit of manual work, but it&#39;s ok on this small scale! I shall invest time in creating an official OpenBSD port, though. That would render most of the manual steps obsolete, as outlined in this post!</span><br />
 <br />

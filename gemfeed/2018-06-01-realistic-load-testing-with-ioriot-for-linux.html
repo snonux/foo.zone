@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='RealisticloadtestingwithIORiotforLinux'>Realistic load testing with I/O Riot for Linux</h1><br />
+<h1 style='display: inline' id='realistic-load-testing-with-io-riot-for-linux'>Realistic load testing with I/O Riot for Linux</h1><br />
 <br />
 <span class='quote'>Published at 2018-06-01T14:50:29+01:00; Updated at 2021-05-08</span><br />
 <br />
@@ -23,7 +23,7 @@
 jgs\__/&#39;---&#39;\__/
 </pre>
 <br />
-<h2 style='display: inline' id='Foreword'>Foreword</h2><br />
+<h2 style='display: inline' id='foreword'>Foreword</h2><br />
 <br />
 <span>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </span><br />
 <br />
@@ -35,13 +35,13 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That&#39;s because the name has changed after taking those.</span><br />
 <br />
-<h1 style='display: inline' id='Thearticle'>The article</h1><br />
+<h1 style='display: inline' id='the-article'>The article</h1><br />
 <br />
 <span>With I/O Riot IT administrators can load test and optimize the I/O subsystem of Linux-based operating systems. The tool makes it possible to record I/O patterns and replay them at a later time as often as desired. This means bottlenecks can be reproduced and eradicated. </span><br />
 <br />
 <span>When storing huge amounts of data, such as more than 200 billion archived emails at Mimecast, it&#39;s not only the available storage capacity that matters, but also the data throughput and latency. At the same time, operating costs must be kept as low as possible. The more systems involved, the more important it is to optimize the hardware, the operating system and the applications running on it.</span><br />
 <br />
-<h2 style='display: inline' id='BackgroundExistingTechniques'>Background: Existing Techniques</h2><br />
+<h2 style='display: inline' id='background-existing-techniques'>Background: Existing Techniques</h2><br />
 <br />
 <span>Conventional I/O benchmarking: Administrators usually use open source benchmarking tools like IOZone and bonnie++. Available database systems such as Redis and MySQL come with their own benchmarking tools. The common problem with these tools is that they work with prescribed artificial I/O patterns. Although this can test both sequential and randomized data access, the patterns do not correspond to what can be found on production systems.</span><br />
 <br />
@@ -49,17 +49,17 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>Testing in the production environment: For these reasons, benchmarks are often carried out in the production environment. In order to derive value from this such tests are especially performed during peak hours when systems are under high load. However, testing on production systems is associated with risks and can lead to failure or loss of data without adequate protection.</span><br />
 <br />
-<h2 style='display: inline' id='BenchmarkingtheEmailCloudatMimecast'>Benchmarking the Email Cloud at Mimecast</h2><br />
+<h2 style='display: inline' id='benchmarking-the-email-cloud-at-mimecast'>Benchmarking the Email Cloud at Mimecast</h2><br />
 <br />
 <span>For email archiving, Mimecast uses an internally developed microservice, which is operated directly on Linux-based storage systems. A storage cluster is divided into several replication volumes. Data is always replicated three times across two secure data centers. Customer data is automatically allocated to one or more volumes, depending on throughput, so that all volumes are automatically assigned the same load. Customer data is archived on conventional, but inexpensive hard disks with several terabytes of storage capacity each. I/O benchmarking proved difficult for all the reasons mentioned above. Furthermore, there are no ready-made tools for this purpose in the case of self-developed software. The service operates on many block devices simultaneously, which can make the RAID controller a bottleneck. None of the freely available benchmarking tools can test several block devices at the same time without extra effort. In addition, emails typically consist of many small files. Randomized access to many small files is particularly inefficient. In addition to many software adaptations, the hardware and operating system must also be optimized.</span><br />
 <br />
 <span>Mimecast encourages employees to be innovative and pursue their own ideas in the form of an internal competition, Pet Project. The goal of the pet project I/O Riot was to simplify OS and hardware level I/O benchmarking. The first prototype of I/O Riot was awarded an internal roadmap prize in the spring of 2017. A few months later, I/O Riot was used to reduce write latency in the storage clusters by about 50%. The improvement was first verified by I/O replay on a test system and then successively applied to all storage systems. I/O Riot was also used to resolve a production incident caused by disk I/O load.</span><br />
 <br />
-<h2 style='display: inline' id='UsingIORiot'>Using I/O Riot</h2><br />
+<h2 style='display: inline' id='using-io-riot'>Using I/O Riot</h2><br />
 <br />
 <span>First, all I/O events are logged to a file on a production system with I/O Riot. It is then copied to a test system where all events are replayed in the same way. The crucial point here is that you can reproduce I/O patterns as they are found on a production system as often as you like on a test system. This results in the possibility of optimizing the set screws on the system after each run.</span><br />
 <br />
-<h3 style='display: inline' id='Installation'>Installation</h3><br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
 <br />
 <span>I/O Riot was tested under CentOS 7.2 x86_64. For compiling, the GNU C compiler and Systemtap including kernel debug information are required. Other Linux distributions are theoretically compatible but untested. First of all, you should update the systems involved as follows:</span><br />
 <br />
@@ -81,7 +81,7 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>Note: It is not best practice to install any compilers on production systems. For further information please have a look at the enclosed README.md.</span><br />
 <br />
-<h3 style='display: inline' id='RecordingofIOevents'>Recording of I/O events</h3><br />
+<h3 style='display: inline' id='recording-of-io-events'>Recording of I/O events</h3><br />
 <br />
 <span>All I/O events are kernel related. If a process wants to perform an I/O operation, such as opening a file, it must inform the kernel of this by a system call (short syscall). I/O Riot relies on the Systemtap tool to record I/O syscalls. Systemtap, available for all popular Linux distributions, helps you to take a look at the running kernel in productive environments, which makes it predestined to monitor all I/O-relevant Linux syscalls and log them to a file. Other tools, such as strace, are not an alternative because they slow down the system too much.</span><br />
 <br />
@@ -95,7 +95,7 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>A Ctrl-C (SIGINT) stops recording prematurely. Otherwise, ioriot terminates itself automatically after 1 hour. Depending on the system load, the output file can grow to several gigabytes. Only metadata is logged, not the read and written data itself. When replaying later, only random data is used. Under certain circumstances, Systemtap may omit some system calls and issue warnings. This is to ensure that Systemtap does not consume too many resources.</span><br />
 <br />
-<h3 style='display: inline' id='Testpreparation'>Test preparation</h3><br />
+<h3 style='display: inline' id='test-preparation'>Test preparation</h3><br />
 <br />
 <span>Then copy io.capture to a test system. The log also contains all accesses to the pseudo file systems devfs, sysfs and procfs. This makes little sense, which is why you must first generate a cleaned and playable version io.replay from io.capture as follows:</span><br />
 <br />
@@ -105,7 +105,7 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>The parameter -n allows you to assign a freely selectable test name. An arbitrary system user under which the test is to be played is specified via paramater -u.</span><br />
 <br />
-<h3 style='display: inline' id='TestInitialization'>Test Initialization</h3><br />
+<h3 style='display: inline' id='test-initialization'>Test Initialization</h3><br />
 <br />
 <span>The test will most likely want to access existing files. These are files the test wants to read but does not create by itself. The existence of these must be ensured before the test. You can do this as follows:</span><br />
 <br />
@@ -119,7 +119,7 @@ jgs\__/&#39;---&#39;\__/
 <br />
 <span>You must re-initialize the environment before each run. Data from previous tests will be moved to a trash directory automatically, which can be finally deleted with "sudo ioriot -P".</span><br />
 <br />
-<h3 style='display: inline' id='Replay'>Replay</h3><br />
+<h3 style='display: inline' id='replay'>Replay</h3><br />
 <br />
 <span>After initialization, you can replay the log with -r. You can use -R to initiate both test initialization and replay in a single command and -S can be used to specify a file in which statistics are written after the test run.</span><br />
 <br />
@@ -175,13 +175,13 @@ Total time: 1213.00s
 <br />
 <a href='./realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png'><img alt='Output of iostat. The block device sdy seems to be almost fully utilized by 99%.' title='Output of iostat. The block device sdy seems to be almost fully utilized by 99%.' src='./realistic-load-testing-with-ioriot-for-linux/figure6-iostat.png' /></a><br />
 <br />
-<h2 style='display: inline' id='IORiotisOpenSource'>I/O Riot is Open Source</h2><br />
+<h2 style='display: inline' id='io-riot-is-open-source'>I/O Riot is Open Source</h2><br />
 <br />
 <span>The tool has already proven to be very useful and will continue to be actively developed as time and priority permits. Mimecast intends to be an ongoing contributor to Open Source. You can find I/O Riot at:</span><br />
 <br />
 <a class='textlink' href='https://github.com/mimecast/ioriot'>https://github.com/mimecast/ioriot</a><br />
 <br />
-<h2 style='display: inline' id='Systemtap'>Systemtap</h2><br />
+<h2 style='display: inline' id='systemtap'>Systemtap</h2><br />
 <br />
 <span>Systemtap is a tool for the instrumentation of the Linux kernel. The tool provides an AWK-like programming language. Programs written in it are compiled from Systemtap to C- and then into a dynamically loadable kernel module. Loaded into the kernel, the program has access to Linux internals. A Systemtap program written for I/O Riot monitors when, with which parameters, at which time, and from which process I/O syscalls take place and their return values.</span><br />
 <br />
@@ -189,7 +189,7 @@ Total time: 1213.00s
 <br />
 <a class='textlink' href='https://sourceware.org/systemtap/'>https://sourceware.org/systemtap/</a><br />
 <br />
-<h2 style='display: inline' id='Morerefereces'>More refereces</h2><br />
+<h2 style='display: inline' id='more-refereces'>More refereces</h2><br />
 <br />
 <a class='textlink' href='http://www.iozone.org/'>IOZone</a><br />
 <a class='textlink' href='https://www.coker.com.au/bonnie++/'>Bonnie++</a><br />

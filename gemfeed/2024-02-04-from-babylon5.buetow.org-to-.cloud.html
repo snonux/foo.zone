@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='Frombabylon5buetoworgtobuetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+<h1 style='display: inline' id='from-babylon5buetoworg-to-buetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
 <br />
 <span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
 <br />
@@ -18,7 +18,7 @@
 <br />
 <a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
 <br />
-<h2 style='display: inline' id='Theoldbuetoworgway'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<h2 style='display: inline' id='the-old-buetoworg-way'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
 <br />
 <span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
 <br />
@@ -38,7 +38,7 @@
 <li>KISS (Keep it Simple Stupid)</li>
 <li>Cheap</li>
 </ul><br />
-<h2 style='display: inline' id='IkeptmybuetoworgOpenBSDboxesalive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<h2 style='display: inline' id='i-kept-my-buetoworg-openbsd-boxes-alive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
 <br />
 <span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
 <br />
@@ -59,7 +59,7 @@
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
 <br />
-<h2 style='display: inline' id='Thenewbuetowcloudway'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<h2 style='display: inline' id='the-new-buetowcloud-way'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
 <br />
 <span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
 <br />
@@ -89,7 +89,7 @@
 <li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
 <li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
 </ul><br />
-<h2 style='display: inline' id='Thecontainerapps'>The container apps</h2><br />
+<h2 style='display: inline' id='the-container-apps'>The container apps</h2><br />
 <br />
 <span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
 <br />
@@ -160,7 +160,7 @@
 <br />
 <span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
 <br />

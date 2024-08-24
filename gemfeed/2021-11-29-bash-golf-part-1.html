@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='BashGolfPart1'>Bash Golf Part 1</h1><br />
+<h1 style='display: inline' id='bash-golf-part-1'>Bash Golf Part 1</h1><br />
 <br />
 <span class='quote'>Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05</span><br />
 <br />
@@ -29,7 +29,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
-<h2 style='display: inline' id='TCPIPnetworking'>TCP/IP networking</h2><br />
+<h2 style='display: inline' id='tcpip-networking'>TCP/IP networking</h2><br />
 <br />
 <span>You probably know the Netcat tool, which is a swiss army knife for TCP/IP networking on the command line. But did you know that the Bash natively supports TCP/IP networking?</span><br />
 <br />
@@ -63,7 +63,7 @@ X-Frame-Options: SAMEORIGIN
 <br />
 <span>You would assume that this also works with the ZSH, but it doesn&#39;t. This is one of the few things which don&#39;t work with the ZSH but in the Bash. There might be plugins you could use for ZSH to do something similar, though.</span><br />
 <br />
-<h2 style='display: inline' id='Processsubstitution'>Process substitution</h2><br />
+<h2 style='display: inline' id='process-substitution'>Process substitution</h2><br />
 <br />
 <span>The idea here is, that you can read the output (stdout) of a command from a file descriptor:</span><br />
 <br />
@@ -143,7 +143,7 @@ foo bar baz
 <br />
 <span>Just think a while and see whether you understand fully what is happening here.</span><br />
 <br />
-<h2 style='display: inline' id='Grouping'>Grouping</h2><br />
+<h2 style='display: inline' id='grouping'>Grouping</h2><br />
 <br />
 <span>Command grouping can be quite useful for combining the output of multiple commands:</span><br />
 <br />
@@ -210,7 +210,7 @@ $      Expands to the process ID of the shell.  In a () subshell, it expands to 
 1028739
 </pre>
 <br />
-<h2 style='display: inline' id='Expansions'>Expansions</h2><br />
+<h2 style='display: inline' id='expansions'>Expansions</h2><br />
 <br />
 <span>Let&#39;s start with simple examples:</span><br />
 <br />
@@ -267,7 +267,7 @@ one:A one:B one:C two:A two:B two:C
 Linux-one:A-FreeBSD Linux-one:B-FreeBSD Linux-one:C-FreeBSD Linux-two:A-FreeBSD Linux-two:B-FreeBSD Linux-two:C-FreeBSD Linux-three:A-FreeBSD Linux-three:B-FreeBSD Linux-three:C-FreeBSD
 </pre>
 <br />
-<h2 style='display: inline' id='akastdinandstdoutplaceholder'>- aka stdin and stdout placeholder</h2><br />
+<h2 style='display: inline' id='--aka-stdin-and-stdout-placeholder'>- aka stdin and stdout placeholder</h2><br />
 <br />
 <span>Some commands and Bash builtins use "-" as a placeholder for stdin and stdout:</span><br />
 <br />
@@ -318,7 +318,7 @@ $ file -
 /dev/stdin: Perl script text executable
 </pre>
 <br />
-<h2 style='display: inline' id='Alternativeargumentpassing'>Alternative argument passing</h2><br />
+<h2 style='display: inline' id='alternative-argument-passing'>Alternative argument passing</h2><br />
 <br />
 <span>This is a quite unusual way of passing arguments to a Bash script:</span><br />
 <br />
@@ -360,7 +360,7 @@ paul:secret
 <br />
 <span>But the downside of it is that the variables will also be defined in your current shell environment and not just in the scripts sub-process.</span><br />
 <br />
-<h2 style='display: inline' id='akathenullcommand'>: aka the null command</h2><br />
+<h2 style='display: inline' id='-aka-the-null-command'>: aka the null command</h2><br />
 <br />
 <span>First, let&#39;s use the "help" Bash built-in to see what it says about the null command:</span><br />
 <br />
@@ -447,7 +447,7 @@ bash: 1: command not found...
 4
 </pre>
 <br />
-<h2 style='display: inline' id='Nofloatingpointsupport'>(No) floating point support</h2><br />
+<h2 style='display: inline' id='no-floating-point-support'>(No) floating point support</h2><br />
 <br />
 <span>I have to give a plus-point to the ZSH here. As the ZSH supports floating point calculation, whereas the Bash doesn&#39;t:</span><br />
 <br />

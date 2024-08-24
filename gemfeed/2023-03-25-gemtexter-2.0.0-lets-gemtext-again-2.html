@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='Gemtexter200LetsGemtextagain'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
+<h1 style='display: inline' id='gemtexter-200---lets-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
 <br />
@@ -33,7 +33,7 @@
 <br />
 <span>Let&#39;s list what&#39;s new!</span><br />
 <br />
-<h2 style='display: inline' id='Minimaltemplateengine'>Minimal template engine</h2><br />
+<h2 style='display: inline' id='minimal-template-engine'>Minimal template engine</h2><br />
 <br />
 <span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
 <br />
@@ -99,7 +99,7 @@ See more entries about DTail and Golang:
 Blablabla...
 </pre>
 <br />
-<h2 style='display: inline' id='Addedhooks'>Added hooks</h2><br />
+<h2 style='display: inline' id='added-hooks'>Added hooks</h2><br />
 <br />
 <span>You can configure <span class='inlinecode'>PRE_GENERATE_HOOK</span> and <span class='inlinecode'>POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class='inlinecode'>--generate</span>, or after running <span class='inlinecode'>--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class='inlinecode'>--publish</span>.</span><br />
 <br />
@@ -113,11 +113,11 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">POST_PUBLISH_HOOK</font><font color="#F3E651">=.</font><font color="#ff0000">/post_publish_hook</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
 </pre>
 <br />
-<h2 style='display: inline' id='UseofsaferBashoptions'>Use of safer Bash options</h2><br />
+<h2 style='display: inline' id='use-of-safer-bash-options'>Use of safer Bash options</h2><br />
 <br />
 <span>Gemtexter now does <span class='inlinecode'>set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class='inlinecode'>set -e</span>.</span><br />
 <br />
-<h2 style='display: inline' id='Metacachemadeobsolete'>Meta cache made obsolete</h2><br />
+<h2 style='display: inline' id='meta-cache-made-obsolete'>Meta cache made obsolete</h2><br />
 <br />
 <span>Here is the breaking change to older versions of Gemtexter. The <span class='inlinecode'>$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class='inlinecode'>meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class='inlinecode'>.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</span><br />
 <br />
@@ -147,11 +147,11 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">The remaining content of the Gemtext file</font><font color="#F3E651">...</font>
 </pre>
 <br />
-<h2 style='display: inline' id='XMLLintsupport'>XMLLint support</h2><br />
+<h2 style='display: inline' id='xmllint-support'>XMLLint support</h2><br />
 <br />
 <span>Optionally, when the <span class='inlinecode'>xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</span><br />
 <br />
-<h2 style='display: inline' id='More'>More</h2><br />
+<h2 style='display: inline' id='more'>More</h2><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />

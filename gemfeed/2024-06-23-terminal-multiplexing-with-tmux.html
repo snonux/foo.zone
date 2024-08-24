@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline' id='Terminalmultiplexingwithtmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></h1><br />
+<h1 style='display: inline' id='terminal-multiplexing-with-tmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></h1><br />
 <br />
 <span class='quote'>Published at 2024-06-23T22:41:59+03:00</span><br />
 <br />
@@ -24,30 +24,28 @@ jgs   `-=========-`()
     mod. by Paul B.
 </pre>
 <br />
-<pre>
-Table of contents
-=================
-
-Terminal multiplexing with `tmux`
-    Introduction
-    Shell aliases
-    The `tn` alias - Creating a new session
-        Cleaning up default sessions automatically
-        Renaming sessions
-    The `ta` alias - Attaching to a session
-    The `tr` alias - For a nested remote session
-        Change of the Tmux prefix for better nesting
-    The `ts` alias - Searching sessions with fuzzy finder
-    The `tssh` alias - Cluster SSH replacement
-        The `tmux::tssh_from_argument` helper
-        The `tmux::tssh_from_file` helper
-        `tssh` examples
-        Common Tmux commands I use in `tssh`
-    Copy and paste workflow
-    Tmux configurations
-</pre>
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<h2 style='display: inline' id='Introduction'>Introduction</h2><br />
+<ul>
+<li><a href='#terminal-multiplexing-with-tmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#shell-aliases'>Shell aliases</a></li>
+<li>⇢ <a href='#the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</a></li>
+<li>⇢ ⇢ <a href='#cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</a></li>
+<li>⇢ ⇢ <a href='#renaming-sessions'>Renaming sessions</a></li>
+<li>⇢ <a href='#the-ta-alias---attaching-to-a-session'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</a></li>
+<li>⇢ <a href='#the-tr-alias---for-a-nested-remote-session'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</a></li>
+<li>⇢ ⇢ <a href='#change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</a></li>
+<li>⇢ <a href='#the-ts-alias---searching-sessions-with-fuzzy-finder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</a></li>
+<li>⇢ <a href='#the-tssh-alias---cluster-ssh-replacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</a></li>
+<li>⇢ ⇢ <a href='#the-tmuxtsshfromargument-helper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</a></li>
+<li>⇢ ⇢ <a href='#the-tmuxtsshfromfile-helper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</a></li>
+<li>⇢ ⇢ <a href='#tssh-examples'><span class='inlinecode'>tssh</span> examples</a></li>
+<li>⇢ ⇢ <a href='#common-tmux-commands-i-use-in-tssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></a></li>
+<li>⇢ <a href='#copy-and-paste-workflow'>Copy and paste workflow</a></li>
+<li>⇢ <a href='#tmux-configurations'>Tmux configurations</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
 <br />
@@ -73,7 +71,7 @@ Terminal multiplexing with `tmux`
 <br />
 <span>Tmux is highly configurable, and I think I am only scratching the surface of what is possible with it. Nevertheless, it may still be useful for you. I also love that Tmux is part of the OpenBSD base system!</span><br />
 <br />
-<h2 style='display: inline' id='Shellaliases'>Shell aliases</h2><br />
+<h2 style='display: inline' id='shell-aliases'>Shell aliases</h2><br />
 <br />
 <span>I am a user of the Z-Shell (<span class='inlinecode'>zsh</span>), but I believe all the snippets mentioned in this blog post also work with Bash. </span><br />
 <br />
@@ -98,7 +96,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The first two are pretty straightforward. <span class='inlinecode'>tm</span> is simply a shorthand for <span class='inlinecode'>tmux</span>, so I have to type less, and <span class='inlinecode'>tl</span> lists all Tmux sessions that are currently open. No magic here.</span><br />
 <br />
-<h2 style='display: inline' id='ThetnaliasCreatinganewsession'>The <span class='inlinecode'>tn</span> alias - Creating a new session</h2><br />
+<h2 style='display: inline' id='the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</h2><br />
 <br />
 <span>The <span class='inlinecode'>tn</span> alias is referencing this function:</span><br />
 <br />
@@ -129,7 +127,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named <span class='inlinecode'>T$($date +%s)</span> as a default. Which is T followed by the UNIX epoch, e.g. <span class='inlinecode'>T1717133796</span>.</span><br />
 <br />
-<h3 style='display: inline' id='Cleaningupdefaultsessionsautomatically'>Cleaning up default sessions automatically</h3><br />
+<h3 style='display: inline' id='cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</h3><br />
 <br />
 <span>Note also the call to <span class='inlinecode'>tmux::cleanup_default</span>; it would clean up all already opened default sessions if they aren&#39;t attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren&#39;t attached. If I want to keep sessions around, I will rename them with the Tmux command <span class='inlinecode'>prefix-key $</span>. This is the cleanup function:</span><br />
 <br />
@@ -149,11 +147,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
 <br />
-<h3 style='display: inline' id='Renamingsessions'>Renaming sessions</h3><br />
+<h3 style='display: inline' id='renaming-sessions'>Renaming sessions</h3><br />
 <br />
 <span>Whenever I am in a temporary session (named <span class='inlinecode'>T....</span>), I may decide that I want to keep this session around. I have to rename the session to prevent the cleanup function from doing its thing. That&#39;s, as mentioned already, easily accomplished with the standard <span class='inlinecode'>prefix-key $</span> Tmux command.</span><br />
 <br />
-<h2 style='display: inline' id='ThetaaliasAttachingtoasession'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</h2><br />
+<h2 style='display: inline' id='the-ta-alias---attaching-to-a-session'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</h2><br />
 <br />
 <span>This alias refers to the following function, which tries to attach to an already-running Tmux session.</span><br />
 <br />
@@ -175,7 +173,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
 <br />
-<h2 style='display: inline' id='ThetraliasForanestedremotesession'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</h2><br />
+<h2 style='display: inline' id='the-tr-alias---for-a-nested-remote-session'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</h2><br />
 <br />
 <span>This SSHs into the remote server specified and then, remotely on the server itself, starts a nested Tmux session. So we have one Tmux session on the local computer and, inside of it, an SSH connection to a remote server with a Tmux session running again. The benefit of this is that, in case my network connection breaks down, the next time I connect, I can continue my work on the remote server exactly where I left off. The session name is the name of the server being SSHed into. If a session like this already exists, it simply attaches to it.</span><br />
 <br />
@@ -191,7 +189,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tr</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">remote</font>
 </pre>
 <br />
-<h3 style='display: inline' id='ChangeoftheTmuxprefixforbetternesting'>Change of the Tmux prefix for better nesting</h3><br />
+<h3 style='display: inline' id='change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</h3><br />
 <br />
 <span>To make nested Tmux sessions work smoothly, one must change the Tmux prefix key locally or remotely. By default, the Tmux prefix key is <span class='inlinecode'>Ctrl-b</span>, so <span class='inlinecode'>Ctrl-b $</span>, for example, renames the current session. To change the prefix key from the standard <span class='inlinecode'>Ctrl-b</span> to, for example, <span class='inlinecode'>Ctrl-g</span>, you must add this to the <span class='inlinecode'>tmux.conf</span>:</span><br />
 <br />
@@ -203,7 +201,7 @@ set-option -g prefix C-g
 <br />
 <span>There might also be another way around this (without reconfiguring the prefix key), but that is cumbersome to use, as far as I remember. </span><br />
 <br />
-<h2 style='display: inline' id='ThetsaliasSearchingsessionswithfuzzyfinder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</h2><br />
+<h2 style='display: inline' id='the-ts-alias---searching-sessions-with-fuzzy-finder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</h2><br />
 <br />
 <span>Despite the fact that with <span class='inlinecode'>tmux::cleanup_default</span>, I don&#39;t leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don&#39;t remember the exact session names.</span><br />
 <br />
@@ -228,7 +226,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./terminal-multiplexing-with-tmux/tmux-session-fzf.png'><img alt='Tmux session fuzzy finder' title='Tmux session fuzzy finder' src='./terminal-multiplexing-with-tmux/tmux-session-fzf.png' /></a><br />
 <br />
-<h2 style='display: inline' id='ThetsshaliasClusterSSHreplacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</h2><br />
+<h2 style='display: inline' id='the-tssh-alias---cluster-ssh-replacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</h2><br />
 <br />
 <span>Before I used Tmux, I was a heavy user of ClusterSSH, which allowed me to log in to multiple servers at once in a single terminal window and type and run commands on all of them in parallel.</span><br />
 <br />
@@ -259,7 +257,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
 <br />
-<h3 style='display: inline' id='Thetmuxtsshfromargumenthelper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</h3><br />
+<h3 style='display: inline' id='the-tmuxtsshfromargument-helper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</h3><br />
 <br />
 <span>This is the most magic helper function we will cover in this post. It looks like this:</span><br />
 <br />
@@ -295,7 +293,7 @@ bind-key p setw synchronize-panes off
 bind-key P setw synchronize-panes on
 </pre>
 <br />
-<h3 style='display: inline' id='Thetmuxtsshfromfilehelper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</h3><br />
+<h3 style='display: inline' id='the-tmuxtsshfromfile-helper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</h3><br />
 <br />
 <span>This one sets the session name to the file name and then reads a list of servers from that file, passing the list of servers to <span class='inlinecode'>tmux::tssh_from_argument</span> as the arguments. So, this is a neat little wrapper that also enables me to open clustered SSH sessions from an input file.</span><br />
 <br />
@@ -311,7 +309,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">}</font>
 </pre>
 <br />
-<h3 style='display: inline' id='tsshexamples'><span class='inlinecode'>tssh</span> examples</h3><br />
+<h3 style='display: inline' id='tssh-examples'><span class='inlinecode'>tssh</span> examples</h3><br />
 <br />
 <span>To open a new session named <span class='inlinecode'>fish</span> and log in to 4 remote hosts, run this command (Note that it is also possible to specify the remote user):</span><br />
 <br />
@@ -326,7 +324,7 @@ $ tssh fish blowfish.buetow.org fishfinger.buetow.org \
 $ tssh manyservers.txt
 </pre>
 <br />
-<h3 style='display: inline' id='CommonTmuxcommandsIuseintssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></h3><br />
+<h3 style='display: inline' id='common-tmux-commands-i-use-in-tssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></h3><br />
 <br />
 <span>These are default Tmux commands that I make heavy use of in a <span class='inlinecode'>tssh</span> session:</span><br />
 <br />
@@ -335,7 +333,7 @@ $ tssh manyservers.txt
 <li>Press <span class='inlinecode'>prefix-key &lt;space&gt;</span> to change the pane layout (can be pressed multiple times to cycle through them).</li>
 <li>Press <span class='inlinecode'>prefix-key z</span> to zoom in and out of the current active pane.</li>
 </ul><br />
-<h2 style='display: inline' id='Copyandpasteworkflow'>Copy and paste workflow</h2><br />
+<h2 style='display: inline' id='copy-and-paste-workflow'>Copy and paste workflow</h2><br />
 <br />
 <span>As you will see later in this blog post, I have configured a history limit of 1 million items in Tmux so that I can scroll back quite far. One main workflow of mine is to search for text in the Tmux history, select and copy it, and then switch to another window or session and paste it there (e.g., into my text editor to do something with it).</span><br />
 <br />
@@ -354,7 +352,7 @@ bind-key -T copy-mode-vi &#39;y&#39; send -X copy-selection-and-cancel
 <br />
 <span>Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with <span class='inlinecode'>prefix-key ]</span>. Note that when pasting into a modal text editor like Vi or Helix, you would first need to enter insert mode before <span class='inlinecode'>prefix-key ]</span> would paste anything.</span><br />
 <br />
-<h2 style='display: inline' id='Tmuxconfigurations'>Tmux configurations</h2><br />
+<h2 style='display: inline' id='tmux-configurations'>Tmux configurations</h2><br />
 <br />
 <span>Some features I have configured directly in Tmux don&#39;t require an external shell alias to function correctly. Let&#39;s walk line by line through my local <span class='inlinecode'>~/.config/tmux/tmux.conf</span>:</span><br />
 <br />
