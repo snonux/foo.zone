@@ -30,6 +30,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 ## Table of Contents
 
 * [⇢ KISS high-availability with OpenBSD](#kiss-high-availability-with-openbsd)
+* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ My auto-failover requirements](#my-auto-failover-requirements)
 * [⇢ ⇢ My HA solution](#my-ha-solution)
 * [⇢ ⇢ ⇢ Only OpenBSD base installation required](#only-openbsd-base-installation-required)
@@ -40,6 +41,8 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 * [⇢ ⇢ ⇢ Monitoring](#monitoring)
 * [⇢ ⇢ ⇢ Rex automation](#rex-automation)
 * [⇢ ⇢ More HA](#more-ha)
+
+## Introduction
 
 I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
 

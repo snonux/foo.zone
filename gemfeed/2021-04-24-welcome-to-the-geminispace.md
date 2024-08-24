@@ -30,6 +30,17 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 
 ```
 
+## Table of Contents
+
+* [⇢ Welcome to the Geminispace](#welcome-to-the-geminispace)
+* [⇢ ⇢ Motivation](#motivation)
+* [⇢ ⇢ ⇢ My urge to revamp my personal website](#my-urge-to-revamp-my-personal-website)
+* [⇢ ⇢ ⇢ My still great Laptop running hot](#my-still-great-laptop-running-hot)
+* [⇢ ⇢ Discovering the Gemini internet protocol](#discovering-the-gemini-internet-protocol)
+* [⇢ ⇢ My own Gemini capsule](#my-own-gemini-capsule)
+* [⇢ ⇢ Gemini advantages summarised](#gemini-advantages-summarised)
+* [⇢ ⇢ Dive into deep Gemini space](#dive-into-deep-gemini-space)
+
 ## Motivation
 
 ### My urge to revamp my personal website

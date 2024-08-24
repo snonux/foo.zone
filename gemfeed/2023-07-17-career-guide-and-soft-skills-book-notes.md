@@ -2,6 +2,41 @@
 
 > Published at 2023-07-17T04:56:20+03:00
 
+## Table of Contents
+
+* [⇢ "Software Developmers Career Guide and Soft Skills" book notes](#software-developmers-career-guide-and-soft-skills-book-notes)
+* [⇢ Introduction](#introduction)
+* [⇢ Improve](#improve)
+* [⇢ ⇢ Always learn new things](#always-learn-new-things)
+* [⇢ ⇢ Set goals](#set-goals)
+* [⇢ ⇢ Ratings](#ratings)
+* [⇢ ⇢ Promotions](#promotions)
+* [⇢ ⇢ Finish things](#finish-things)
+* [⇢ ⇢ Expand the empire](#expand-the-empire)
+* [⇢ ⇢ Be pragmatic and also manage your time](#be-pragmatic-and-also-manage-your-time)
+* [⇢ ⇢ ⇢ The quota system](#the-quota-system)
+* [⇢ ⇢ ⇢ Don't waste time](#dont-waste-time)
+* [⇢ ⇢ ⇢ Habits](#habits)
+* [⇢ Work-life balance](#work-life-balance)
+* [⇢ ⇢ Mental health](#mental-health)
+* [⇢ ⇢ Physical health](#physical-health)
+* [⇢ ⇢ No drama](#no-drama)
+* [⇢ Personal brand](#personal-brand)
+* [⇢ ⇢ Market yourself](#market-yourself)
+* [⇢ ⇢ Networking](#networking)
+* [⇢ ⇢ Public speaking](#public-speaking)
+* [⇢ New job](#new-job)
+* [⇢ ⇢ For the interview](#for-the-interview)
+* [⇢ ⇢ Find the right type of company](#find-the-right-type-of-company)
+* [⇢ ⇢ Apply for the new job](#apply-for-the-new-job)
+* [⇢ ⇢ Negotiation](#negotiation)
+* [⇢ ⇢ Leaving the old job](#leaving-the-old-job)
+* [⇢ Other things](#other-things)
+* [⇢ ⇢ Testing](#testing)
+* [⇢ ⇢ Books to read](#books-to-read)
+
+# Introduction
+
 These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.
 
 ```

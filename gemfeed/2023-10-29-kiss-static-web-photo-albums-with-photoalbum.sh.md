@@ -19,6 +19,18 @@
 '._____________________________________________.'   
 ```
 
+## Table of Contents
+
+* [⇢ KISS static web photo albums with `photoalbum.sh`](#kiss-static-web-photo-albums-with-photoalbumsh)
+* [⇢ ⇢ Motivation](#motivation)
+* [⇢ ⇢ Introducing `photoalbum.sh`](#introducing-photoalbumsh)
+* [⇢ ⇢ Installation](#installation)
+* [⇢ ⇢ Setting it up](#setting-it-up)
+* [⇢ ⇢ Generating the static photo album](#generating-the-static-photo-album)
+* [⇢ ⇢ Cleaning it up](#cleaning-it-up)
+* [⇢ ⇢ HTML templates](#html-templates)
+* [⇢ ⇢ Conclusion](#conclusion)
+
 ## Motivation
 
 Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).

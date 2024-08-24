@@ -9,6 +9,22 @@
       //\ //\\   //\ //\\       //\ //\\jrei
 ```
 
+## Table of Contents
+
+* [⇢ Perl Daemon (Service Framework)](#perl-daemon-service-framework)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Features](#features)
+* [⇢ ⇢ Quick Guide](#quick-guide)
+* [⇢ ⇢ How to configure](#how-to-configure)
+* [⇢ ⇢ Example ](#example-)
+* [⇢ ⇢ HiRes event loop](#hires-event-loop)
+* [⇢ ⇢ Writing your own modules](#writing-your-own-modules)
+* [⇢ ⇢ ⇢ Example module](#example-module)
+* [⇢ ⇢ ⇢ Your own module](#your-own-module)
+* [⇢ ⇢ May the source be with you](#may-the-source-be-with-you)
+
+## Introduction
+
 PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.
 
 ## Features

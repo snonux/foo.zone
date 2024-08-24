@@ -19,7 +19,15 @@
 +-----+-----------------+-----------------------------+
 ```
 
-# Introduction
+## Table of Contents
+
+* [⇢ Unveiling `guprecords.raku`: Global Uptime Records with Raku](#unveiling-guprecordsraku-global-uptime-records-with-raku)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ How Guprecords works](#how-guprecords-works)
+* [⇢ ⇢ Example](#example)
+* [⇢ ⇢ Conclusion](#conclusion)
+
+## Introduction
 
 For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.
 

@@ -14,6 +14,21 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
+## Table of Contents
+
+* [⇢ Bash Golf Part 3](#bash-golf-part-3)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ `FUNCNAME`](#funcname)
+* [⇢ ⇢ `:(){ :|:& };:`](#--)
+* [⇢ ⇢ Inner functions](#inner-functions)
+* [⇢ ⇢ Exporting functions](#exporting-functions)
+* [⇢ ⇢ Dynamic variables with `local`](#dynamic-variables-with-local)
+* [⇢ ⇢ `if` conditionals](#if-conditionals)
+* [⇢ ⇢ Multi-line comments](#multi-line-comments)
+* [⇢ ⇢ Don't change it while it's executed](#dont-change-it-while-its-executed)
+
+## Introduction
+
 This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
 
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  

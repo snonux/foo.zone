@@ -39,6 +39,23 @@
                                        '     '
 ```
 
+## Table of Contents
+
+* [⇢ Installing DTail on OpenBSD](#installing-dtail-on-openbsd)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Compile it](#compile-it)
+* [⇢ ⇢ Install it](#install-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Configure it](#configure-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Update the key cache for it](#update-the-key-cache-for-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Start it](#start-it)
+* [⇢ ⇢ Use it](#use-it)
+* [⇢ ⇢ Conclusions](#conclusions)
+
+## Introduction
+
 This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
 
  In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!

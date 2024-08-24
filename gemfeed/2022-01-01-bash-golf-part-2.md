@@ -14,6 +14,20 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
+## Table of Contents
+
+* [⇢ Bash Golf Part 2](#bash-golf-part-2)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Redirection](#redirection)
+* [⇢ ⇢ HERE](#here)
+* [⇢ ⇢ RANDOM](#random)
+* [⇢ ⇢ set -x and set -e and pipefile](#set--x-and-set--e-and-pipefile)
+* [⇢ ⇢ ⇢ -x](#-x)
+* [⇢ ⇢ ⇢ -e](#-e)
+* [⇢ ⇢ ⇢ pipefail](#pipefail)
+
+## Introduction
+
 This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  

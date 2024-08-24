@@ -14,6 +14,21 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
+## Table of Contents
+
+* [⇢ Bash Golf Part 1](#bash-golf-part-1)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ TCP/IP networking](#tcpip-networking)
+* [⇢ ⇢ Process substitution](#process-substitution)
+* [⇢ ⇢ Grouping](#grouping)
+* [⇢ ⇢ Expansions](#expansions)
+* [⇢ ⇢ - aka stdin and stdout placeholder](#--aka-stdin-and-stdout-placeholder)
+* [⇢ ⇢ Alternative argument passing](#alternative-argument-passing)
+* [⇢ ⇢ : aka the null command](#-aka-the-null-command)
+* [⇢ ⇢ (No) floating point support](#no-floating-point-support)
+
+## Introduction
+
 This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
 [2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  

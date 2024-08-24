@@ -15,6 +15,30 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
+## Table of Contents
+
+* [⇢ Personal Bash coding style guide](#personal-bash-coding-style-guide)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ My modifications](#my-modifications)
+* [⇢ ⇢ ⇢ Shebang](#shebang)
+* [⇢ ⇢ ⇢ Two space soft-tabs indentation](#two-space-soft-tabs-indentation)
+* [⇢ ⇢ ⇢ Breaking long pipes](#breaking-long-pipes)
+* [⇢ ⇢ ⇢ Quoting your variables](#quoting-your-variables)
+* [⇢ ⇢ ⇢ Prefer built-in commands over external commands](#prefer-built-in-commands-over-external-commands)
+* [⇢ ⇢ My additions](#my-additions)
+* [⇢ ⇢ ⇢ Use of 'yes' and 'no'](#use-of-yes-and-no)
+* [⇢ ⇢ ⇢ Non-evil alternative to variable assignments via eval](#non-evil-alternative-to-variable-assignments-via-eval)
+* [⇢ ⇢ ⇢ Prefer pipes over arrays for list processing](#prefer-pipes-over-arrays-for-list-processing)
+* [⇢ ⇢ ⇢ Assign-then-shift](#assign-then-shift)
+* [⇢ ⇢ ⇢ Paranoid mode](#paranoid-mode)
+* [⇢ ⇢ Learned](#learned)
+* [⇢ ⇢ ⇢ Unintended lexicographical comparison.](#unintended-lexicographical-comparison)
+* [⇢ ⇢ ⇢ PIPESTATUS](#pipestatus)
+* [⇢ ⇢ Use common sense and BE CONSISTENT.](#use-common-sense-and-be-consistent)
+* [⇢ ⇢ Advanced Bash learning pro tip](#advanced-bash-learning-pro-tip)
+
+## Introduction
+
 Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
 
 [Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)  

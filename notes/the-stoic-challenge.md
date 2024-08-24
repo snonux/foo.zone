@@ -2,6 +2,15 @@
 
 > Published at 2024-07-07T12:46:55+03:00
 
+## Table of Contents
+
+* [⇢ "The Stoic Challenge" book notes](#the-stoic-challenge-book-notes)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Negative visualization](#negative-visualization)
+* [⇢ ⇢ Oh, nice trick, you stoic "god"! ;-)](#oh-nice-trick-you-stoic-god--)
+
+## Introduction
+
 These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher's Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. 
 
 ```

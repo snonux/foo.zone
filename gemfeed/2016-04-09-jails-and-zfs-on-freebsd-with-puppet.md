@@ -22,6 +22,17 @@
                \      `.
 ```
 
+## Table of Contents
+
+* [⇢ Jails and ZFS with Puppet on FreeBSD](#jails-and-zfs-with-puppet-on-freebsd)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ ZFS](#zfs)
+* [⇢ ⇢ Jails](#jails)
+* [⇢ ⇢ Inside-Jail Puppet](#inside-jail-puppet)
+* [⇢ ⇢ Managing multiple Jails](#managing-multiple-jails)
+
+## Introduction
+
 Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
 
 ## ZFS

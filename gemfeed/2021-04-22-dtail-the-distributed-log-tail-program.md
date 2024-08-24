@@ -4,6 +4,22 @@
 
 [![DTail logo image](./dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./dtail-the-distributed-log-tail-program/title.png)  
 
+## Table of Contents
+
+* [⇢ DTail - The distributed log tail program](#dtail---the-distributed-log-tail-program)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ A Mimecast Pet Project](#a-mimecast-pet-project)
+* [⇢ ⇢ Differentiating from log management systems](#differentiating-from-log-management-systems)
+* [⇢ ⇢ Combining simplicity, security and efficiency](#combining-simplicity-security-and-efficiency)
+* [⇢ ⇢ The DTail family of commands](#the-dtail-family-of-commands)
+* [⇢ ⇢ Usage example](#usage-example)
+* [⇢ ⇢ Fitting it in](#fitting-it-in)
+* [⇢ ⇢ Advanced features](#advanced-features)
+* [⇢ ⇢ For the future](#for-the-future)
+* [⇢ ⇢ Open Source](#open-source)
+
+## Introduction
+
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 [Original Mimecast Engineering Blog post at Medium](https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb)  

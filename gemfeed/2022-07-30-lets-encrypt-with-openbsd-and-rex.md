@@ -29,9 +29,28 @@
                                  ASCII Art by John Savard
 ```
 
+## Table of Contents
+
+* [⇢ Let's Encrypt with OpenBSD and Rex](#lets-encrypt-with-openbsd-and-rex)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ ⇢ What's Let's Encrypt?](#whats-lets-encrypt)
+* [⇢ ⇢ Meet `acme-client`](#meet-acme-client)
+* [⇢ ⇢ Configuration](#configuration)
+* [⇢ ⇢ ⇢ acme-client.conf](#acme-clientconf)
+* [⇢ ⇢ ⇢ httpd.conf](#httpdconf)
+* [⇢ ⇢ ⇢ CRON job](#cron-job)
+* [⇢ ⇢ relayd.conf and smtpd.conf](#relaydconf-and-smtpdconf)
+* [⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ ⇢ General ACME client configuration](#general-acme-client-configuration)
+* [⇢ ⇢ ⇢ Service rexification ](#service-rexification-)
+* [⇢ ⇢ All pieces together](#all-pieces-together)
+* [⇢ ⇢ Conclusion](#conclusion)
+
+## Introduction
+
 I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
-## What's Let's Encrypt?
+### What's Let's Encrypt?
 
 > Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.
 
