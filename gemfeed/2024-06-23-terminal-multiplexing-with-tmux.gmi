@@ -16,7 +16,6 @@ jgs   `-=========-`()
 
 ## Table of Contents
 
-<<<<<<< HEAD
 * ⇢ Terminal multiplexing with `tmux`
 * ⇢ ⇢ Introduction
 * ⇢ ⇢ Shell aliases
@@ -34,25 +33,6 @@ jgs   `-=========-`()
 * ⇢ ⇢ ⇢ Common Tmux commands I use in `tssh`
 * ⇢ ⇢ Copy and paste workflow
 * ⇢ ⇢ Tmux configurations
-=======
-* . Terminal multiplexing with `tmux`
-* .. Introduction
-* .. Shell aliases
-* .. The `tn` alias - Creating a new session
-* ... Cleaning up default sessions automatically
-* ... Renaming sessions
-* .. The `ta` alias - Attaching to a session
-* .. The `tr` alias - For a nested remote session
-* ... Change of the Tmux prefix for better nesting
-* .. The `ts` alias - Searching sessions with fuzzy finder
-* .. The `tssh` alias - Cluster SSH replacement
-* ... The `tmux::tssh_from_argument` helper
-* ... The `tmux::tssh_from_file` helper
-* ... `tssh` examples
-* ... Common Tmux commands I use in `tssh`
-* .. Copy and paste workflow
-* .. Tmux configurations
->>>>>>> 5cb2199b2dfe5ac5d7a677a86e2ceddc125044d8
 
 ## Introduction
 
