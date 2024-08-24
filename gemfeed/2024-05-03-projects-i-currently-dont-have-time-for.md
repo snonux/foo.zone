@@ -19,46 +19,43 @@ Art by Laura Brown
 
 Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don't get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.
 
-```
-Table of contents
-=================
+## Table of Contents
 
-Projects I currently don't have time for
-    Introduction
-    Hardware projects I don't have time for
-        I use Arch, btw!
-        OpenBSD home router
-        Pi-Hole server
-        Infodash
-        Reading station
-        Retro station
-        Sound server
-        Project Freekat
-    Programming projects I don't have time for
-        CLI-HIVE
-        Enhanced KISS home photo albums
-        KISS file sync server with end-to-end encryption
-        A language that compiles to `bash`
-        A language that compiles to `sed`
-        Renovate VS-Sim
-        KISS ticketing system
-        A domain-specific language (DSL) for work
-    Self-hosting projects I don't have time for
-        My own Matrix server
-        Ampache music server
-        Librum eBook reader
-        Memos - Note-taking service
-        Bepasty server
-    Books I don't have time to read
-        Fluent Python
-        Programming Ruby
-        Peter F. Hamilton science fiction books
-    New websites I don't have time for
-        Create a "Why Raku Rox" site
-    Research projects I don't have time for
-        Project secure
-        CPU utilisation is all wrong
-```
+* [⇢ Projects I currently don't have time for](#projects-i-currently-dont-have-time-for)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Hardware projects I don't have time for](#hardware-projects-i-dont-have-time-for)
+* [⇢ ⇢ ⇢ I use Arch, btw!](#i-use-arch-btw)
+* [⇢ ⇢ ⇢ OpenBSD home router](#openbsd-home-router)
+* [⇢ ⇢ ⇢ Pi-Hole server](#pi-hole-server)
+* [⇢ ⇢ ⇢ Infodash](#infodash)
+* [⇢ ⇢ ⇢ Reading station](#reading-station)
+* [⇢ ⇢ ⇢ Retro station](#retro-station)
+* [⇢ ⇢ ⇢ Sound server](#sound-server)
+* [⇢ ⇢ ⇢ Project Freekat](#project-freekat)
+* [⇢ ⇢ Programming projects I don't have time for](#programming-projects-i-dont-have-time-for)
+* [⇢ ⇢ ⇢ CLI-HIVE](#cli-hive)
+* [⇢ ⇢ ⇢ Enhanced KISS home photo albums](#enhanced-kiss-home-photo-albums)
+* [⇢ ⇢ ⇢ KISS file sync server with end-to-end encryption](#kiss-file-sync-server-with-end-to-end-encryption)
+* [⇢ ⇢ ⇢ A language that compiles to `bash`](#a-language-that-compiles-to-bash)
+* [⇢ ⇢ ⇢ A language that compiles to `sed`](#a-language-that-compiles-to-sed)
+* [⇢ ⇢ ⇢ Renovate VS-Sim](#renovate-vs-sim)
+* [⇢ ⇢ ⇢ KISS ticketing system](#kiss-ticketing-system)
+* [⇢ ⇢ ⇢ A domain-specific language (DSL) for work](#a-domain-specific-language-dsl-for-work)
+* [⇢ ⇢ Self-hosting projects I don't have time for](#self-hosting-projects-i-dont-have-time-for)
+* [⇢ ⇢ ⇢ My own Matrix server](#my-own-matrix-server)
+* [⇢ ⇢ ⇢ Ampache music server](#ampache-music-server)
+* [⇢ ⇢ ⇢ Librum eBook reader](#librum-ebook-reader)
+* [⇢ ⇢ ⇢ Memos - Note-taking service](#memos---note-taking-service)
+* [⇢ ⇢ ⇢ Bepasty server](#bepasty-server)
+* [⇢ ⇢ Books I don't have time to read](#books-i-dont-have-time-to-read)
+* [⇢ ⇢ ⇢ Fluent Python](#fluent-python)
+* [⇢ ⇢ ⇢ Programming Ruby](#programming-ruby)
+* [⇢ ⇢ ⇢ Peter F. Hamilton science fiction books](#peter-f-hamilton-science-fiction-books)
+* [⇢ ⇢ New websites I don't have time for](#new-websites-i-dont-have-time-for)
+* [⇢ ⇢ ⇢ Create a "Why Raku Rox" site](#create-a-why-raku-rox-site)
+* [⇢ ⇢ Research projects I don't have time for](#research-projects-i-dont-have-time-for)
+* [⇢ ⇢ ⇢ Project secure](#project-secure)
+* [⇢ ⇢ ⇢ CPU utilisation is all wrong](#cpu-utilisation-is-all-wrong)
 
 ## Hardware projects I don't have time for
 

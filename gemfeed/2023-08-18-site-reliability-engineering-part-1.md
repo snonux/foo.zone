@@ -6,7 +6,7 @@ Being a Site Reliability Engineer (SRE) is like stepping into a lively, ever-evo
 
 [2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)](./2023-08-18-site-reliability-engineering-part-1.md)  
 [2023-11-19 Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-11-19-site-reliability-engineering-part-2.md)  
-[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./2024-01-09-site-reliability-engineering-part-3.md)  
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture and the Human Side](./2024-01-09-site-reliability-engineering-part-3.md)  
 
 ```
 ▓▓▓▓░░                                                                                  

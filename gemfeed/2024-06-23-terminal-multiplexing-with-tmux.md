@@ -14,28 +14,25 @@ jgs   `-=========-`()
     mod. by Paul B.
 ```
 
-```
-Table of contents
-=================
+## Table of Contents
 
-Terminal multiplexing with `tmux`
-    Introduction
-    Shell aliases
-    The `tn` alias - Creating a new session
-        Cleaning up default sessions automatically
-        Renaming sessions
-    The `ta` alias - Attaching to a session
-    The `tr` alias - For a nested remote session
-        Change of the Tmux prefix for better nesting
-    The `ts` alias - Searching sessions with fuzzy finder
-    The `tssh` alias - Cluster SSH replacement
-        The `tmux::tssh_from_argument` helper
-        The `tmux::tssh_from_file` helper
-        `tssh` examples
-        Common Tmux commands I use in `tssh`
-    Copy and paste workflow
-    Tmux configurations
-```
+* [⇢ Terminal multiplexing with `tmux`](#terminal-multiplexing-with-tmux)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Shell aliases](#shell-aliases)
+* [⇢ ⇢ The `tn` alias - Creating a new session](#the-tn-alias---creating-a-new-session)
+* [⇢ ⇢ ⇢ Cleaning up default sessions automatically](#cleaning-up-default-sessions-automatically)
+* [⇢ ⇢ ⇢ Renaming sessions](#renaming-sessions)
+* [⇢ ⇢ The `ta` alias - Attaching to a session](#the-ta-alias---attaching-to-a-session)
+* [⇢ ⇢ The `tr` alias - For a nested remote session](#the-tr-alias---for-a-nested-remote-session)
+* [⇢ ⇢ ⇢ Change of the Tmux prefix for better nesting](#change-of-the-tmux-prefix-for-better-nesting)
+* [⇢ ⇢ The `ts` alias - Searching sessions with fuzzy finder](#the-ts-alias---searching-sessions-with-fuzzy-finder)
+* [⇢ ⇢ The `tssh` alias - Cluster SSH replacement](#the-tssh-alias---cluster-ssh-replacement)
+* [⇢ ⇢ ⇢ The `tmux::tssh_from_argument` helper](#the-tmuxtsshfromargument-helper)
+* [⇢ ⇢ ⇢ The `tmux::tssh_from_file` helper](#the-tmuxtsshfromfile-helper)
+* [⇢ ⇢ ⇢ `tssh` examples](#tssh-examples)
+* [⇢ ⇢ ⇢ Common Tmux commands I use in `tssh`](#common-tmux-commands-i-use-in-tssh)
+* [⇢ ⇢ Copy and paste workflow](#copy-and-paste-workflow)
+* [⇢ ⇢ Tmux configurations](#tmux-configurations)
 
 ## Introduction
 
