@@ -53,11 +53,31 @@
                                                            `+a:f:......jrei&#39;&#39;&#39;
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter---one-bash-script-to-rule-it-all'>Gemtexter - One Bash script to rule it all</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#output-formats'>Output formats</a></li>
+<li>⇢ <a href='#taking-it-as-far-as-i-should-but-no-farther'>Taking it as far as I should, but no farther</a></li>
+<li>⇢ ⇢ <a href='#modularization-'>Modularization </a></li>
+<li>⇢ ⇢ <a href='#bash-best-practises-and-shellcheck'>Bash best practises and ShellCheck</a></li>
+<li>⇢ ⇢ <a href='#unit-testing'>Unit testing</a></li>
+<li>⇢ ⇢ <a href='#html-unit-test-example'>HTML unit test example</a></li>
+<li>⇢ ⇢ <a href='#markdown-unit-test-example'>Markdown unit test example</a></li>
+<li>⇢ <a href='#handcrafted-html-styles'>Handcrafted HTML styles</a></li>
+<li>⇢ <a href='#configurability'>Configurability</a></li>
+<li>⇢ <a href='#future-features'>Future features</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.</span><br />
 <br />
 <span>This comes with the benefit that I can write content in my favourite text editor (Vim). </span><br />
 <br />
-<h2 style='display: inline' id='motivation'>Motivation</h2><br />
+<h3 style='display: inline' id='motivation'>Motivation</h3><br />
 <br />
 <span>Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.</span><br />
 <br />

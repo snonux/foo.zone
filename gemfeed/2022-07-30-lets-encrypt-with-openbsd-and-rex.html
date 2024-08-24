@@ -39,9 +39,29 @@
                                  ASCII Art by John Savard
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#lets-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
+<li>⇢ <a href='#meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></a></li>
+<li>⇢ <a href='#configuration'>Configuration</a></li>
+<li>⇢ ⇢ <a href='#acme-clientconf'>acme-client.conf</a></li>
+<li>⇢ ⇢ <a href='#httpdconf'>httpd.conf</a></li>
+<li>⇢ ⇢ <a href='#cron-job'>CRON job</a></li>
+<li>⇢ <a href='#relaydconf-and-smtpdconf'>relayd.conf and smtpd.conf</a></li>
+<li>⇢ <a href='#rexification'>Rexification</a></li>
+<li>⇢ ⇢ <a href='#general-acme-client-configuration'>General ACME client configuration</a></li>
+<li>⇢ ⇢ <a href='#service-rexification-'>Service rexification </a></li>
+<li>⇢ <a href='#all-pieces-together'>All pieces together</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h2 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h2><br />
+<h3 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
