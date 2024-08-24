@@ -21,6 +21,7 @@ Over the years, I have collected many ideas for my personal projects and noted t
 
 ## Table of Contents
 
+<<<<<<< HEAD
 * ⇢ Projects I currently don't have time for
 * ⇢ ⇢ Introduction
 * ⇢ ⇢ Hardware projects I don't have time for
@@ -56,6 +57,43 @@ Over the years, I have collected many ideas for my personal projects and noted t
 * ⇢ ⇢ Research projects I don't have time for
 * ⇢ ⇢ ⇢ Project secure
 * ⇢ ⇢ ⇢ CPU utilisation is all wrong
+=======
+* . Projects I currently don't have time for
+* .. Introduction
+* .. Hardware projects I don't have time for
+* ... I use Arch, btw!
+* ... OpenBSD home router
+* ... Pi-Hole server
+* ... Infodash
+* ... Reading station
+* ... Retro station
+* ... Sound server
+* ... Project Freekat
+* .. Programming projects I don't have time for
+* ... CLI-HIVE
+* ... Enhanced KISS home photo albums
+* ... KISS file sync server with end-to-end encryption
+* ... A language that compiles to `bash`
+* ... A language that compiles to `sed`
+* ... Renovate VS-Sim
+* ... KISS ticketing system
+* ... A domain-specific language (DSL) for work
+* .. Self-hosting projects I don't have time for
+* ... My own Matrix server
+* ... Ampache music server
+* ... Librum eBook reader
+* ... Memos - Note-taking service
+* ... Bepasty server
+* .. Books I don't have time to read
+* ... Fluent Python
+* ... Programming Ruby
+* ... Peter F. Hamilton science fiction books
+* .. New websites I don't have time for
+* ... Create a "Why Raku Rox" site
+* .. Research projects I don't have time for
+* ... Project secure
+* ... CPU utilisation is all wrong
+>>>>>>> 5cb2199b2dfe5ac5d7a677a86e2ceddc125044d8
 
 ## Hardware projects I don't have time for
 

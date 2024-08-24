@@ -1,6 +1,10 @@
 # foo.zone
 
+<<<<<<< HEAD
 > This site was generated at 2024-08-24T19:42:05+03:00 by `Gemtexter`
+=======
+> This site was generated at 2024-08-24T14:20:28+01:00 by `Gemtexter`
+>>>>>>> 5cb2199b2dfe5ac5d7a677a86e2ceddc125044d8
 
 ```
    |\---/|
