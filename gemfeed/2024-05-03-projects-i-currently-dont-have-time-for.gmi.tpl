@@ -15,11 +15,11 @@ Art by Laura Brown
 
 ```
 
+<< template::inline::toc
+
 ## Introduction
 
 Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don't get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.
-
-<< template::inline::toc
 
 ## Hardware projects I don't have time for
 

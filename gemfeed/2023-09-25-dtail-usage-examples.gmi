@@ -2,6 +2,22 @@
 
 > Published at 2023-09-25T14:57:42+03:00
 
+## Table of Contents
+
+* ⇢ DTail usage examples
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Following logs
+* ⇢ ⇢ Aggregating logs
+* ⇢ ⇢ How to use `dcat`
+* ⇢ ⇢ How to use `dgrep`
+* ⇢ ⇢ How to use `dmap`
+* ⇢ ⇢ How to use the DTail serverless mode
+* ⇢ ⇢ ⇢ Serverless map-reduce query
+* ⇢ ⇢ ⇢ Aggregating CSV files
+* ⇢ ⇢ ⇢ Other serverless commands
+
+## Introduction
+
 Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They're from the DTail documentation, but not all readers of my blog may be aware of those!
 
 DTail is a distributed DevOps tool for tailing, grepping, catting logs and other text files on many remote machines at once which I programmed in Go.

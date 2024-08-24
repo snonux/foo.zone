@@ -2,6 +2,10 @@
 
 > Published at 2024-04-27T14:18:51+03:00
 
+<< template::inline::toc
+
+## Introduction
+
 These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.
 
 The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.

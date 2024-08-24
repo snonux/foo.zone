@@ -16,6 +16,26 @@
                          |                           |
 ```
 
+## Table of Contents
+
+* ⇢ The release of DTail 4.0.0
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ So, what's new in 4.0.0?
+* ⇢ ⇢ ⇢ Rewritten logging
+* ⇢ ⇢ ⇢ Configurable terminal color codes
+* ⇢ ⇢ ⇢ Serverless mode
+* ⇢ ⇢ ⇢ Shorthand flags
+* ⇢ ⇢ ⇢ Spartan (aka plain) mode
+* ⇢ ⇢ ⇢ Standard input pipe
+* ⇢ ⇢ ⇢ New command dtailhealth
+* ⇢ ⇢ ⇢ Improved documentation
+* ⇢ ⇢ ⇢ Integration testing suite
+* ⇢ ⇢ ⇢ Improved code
+* ⇢ ⇢ ⇢ Use of memory pools
+* ⇢ ⇢ What's next
+
+## Introduction
+
 I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
 
 => https://dtail.dev

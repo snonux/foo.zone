@@ -2,6 +2,10 @@
 
 > Published at 2023-05-06T17:23:16+03:00
 
+<< template::inline::toc
+
+## Introduction
+
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
 
 
@@ -26,7 +30,6 @@ The obstacle in your path can become your path to success. Instead of being para
 We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn't need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn't need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.
 
 Don't always try to use the front door; a backdoor could open. It's nonsense. Don't fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.
-
 
 ## Embrace rationality
 

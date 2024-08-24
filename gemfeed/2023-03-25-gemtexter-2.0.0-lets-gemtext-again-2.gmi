@@ -15,6 +15,19 @@
   mod. by Paul Buetow  `"""""""""`
 ```
 
+## Table of Contents
+
+* ⇢ Gemtexter 2.0.0 - Let's Gemtext again²
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Minimal template engine
+* ⇢ ⇢ Added hooks
+* ⇢ ⇢ Use of safer Bash options
+* ⇢ ⇢ Meta cache made obsolete
+* ⇢ ⇢ XMLLint support
+* ⇢ ⇢ More
+
+## Introduction
+
 I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
 
 => https://codeberg.org/snonux/gemtexter

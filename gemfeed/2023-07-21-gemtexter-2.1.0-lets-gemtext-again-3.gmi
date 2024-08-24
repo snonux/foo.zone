@@ -15,6 +15,20 @@
   mod. by Paul Buetow  `"""""""""`
 ```
 
+## Table of Contents
+
+* ⇢ Gemtexter 2.1.0 - Let's Gemtext again³
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Why Bash?
+* ⇢ ⇢ Switch to GPL3 license
+* ⇢ ⇢ Source code highlighting support
+* ⇢ ⇢ HTML exact variant
+* ⇢ ⇢ Use of Hack webfont by default
+* ⇢ ⇢ HTML Mastodon verification support
+* ⇢ ⇢ More
+
+## Introduction
+
 I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.
 
 => https://codeberg.org/snonux/gemtexter

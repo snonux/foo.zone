@@ -30,6 +30,8 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 
 ```
 
+<< template::inline::toc
+
 ## Motivation
 
 ### My urge to revamp my personal website

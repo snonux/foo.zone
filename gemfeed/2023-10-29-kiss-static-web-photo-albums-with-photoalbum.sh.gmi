@@ -19,6 +19,18 @@
 '._____________________________________________.'   
 ```
 
+## Table of Contents
+
+* ⇢ KISS static web photo albums with `photoalbum.sh`
+* ⇢ ⇢ Motivation
+* ⇢ ⇢ Introducing `photoalbum.sh`
+* ⇢ ⇢ Installation
+* ⇢ ⇢ Setting it up
+* ⇢ ⇢ Generating the static photo album
+* ⇢ ⇢ Cleaning it up
+* ⇢ ⇢ HTML templates
+* ⇢ ⇢ Conclusion
+
 ## Motivation
 
 Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).

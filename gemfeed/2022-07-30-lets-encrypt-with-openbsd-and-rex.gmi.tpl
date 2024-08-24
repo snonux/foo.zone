@@ -29,9 +29,13 @@
                                  ASCII Art by John Savard
 ```
 
+<< template::inline::toc
+
+## Introduction
+
 I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
-## What's Let's Encrypt?
+### What's Let's Encrypt?
 
 > Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.
 

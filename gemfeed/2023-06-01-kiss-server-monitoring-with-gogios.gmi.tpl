@@ -4,6 +4,8 @@
 
 => ./kiss-server-monitoring-with-gogios/gogios-small.png Gogios logo
 
+<< template::inline::toc
+
 ## Introduction
 
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.

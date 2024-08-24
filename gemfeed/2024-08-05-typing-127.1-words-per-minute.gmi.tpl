@@ -17,34 +17,7 @@
       Nieminen Mika	
 ```
 
-## Table of Contents
-
-* ⇢ Typing `127.1` words per minute (`>100wpm average`)
-* ⇢ ⇢ Introduction
-* ⇢ ⇢ Kinesis review
-* ⇢ ⇢ ⇢ Top build quality
-* ⇢ ⇢ ⇢ Bluetooth connectivity
-* ⇢ ⇢ ⇢ Gateron Brown key switches
-* ⇢ ⇢ ⇢ Keycaps
-* ⇢ ⇢ ⇢ Keymap editor
-* ⇢ ⇢ First steps
-* ⇢ ⇢ Considering alternate layouts
-* ⇢ ⇢ Training how to type
-* ⇢ ⇢ ⇢ Tools
-* ⇢ ⇢ My `keybr.com` statistics
-* ⇢ ⇢ Tips and tricks
-* ⇢ ⇢ ⇢ Relax
-* ⇢ ⇢ ⇢ Focus on accuracy first
-* ⇢ ⇢ ⇢ Chording
-* ⇢ ⇢ ⇢ Punctuation and Capitalization
-* ⇢ ⇢ ⇢ Reverse shifting
-* ⇢ ⇢ ⇢ Enter the flow state
-* ⇢ ⇢ ⇢ Repeat every word
-* ⇢ ⇢ ⇢ Don't use the same finger for two consecutive keystrokes
-* ⇢ ⇢ ⇢ Warm-up
-* ⇢ ⇢ Travel keyboard
-* ⇢ ⇢ Upcoming custom Kinesis build
-* ⇢ ⇢ Conclusion
+<< template::inline::toc
 
 ## Introduction
 

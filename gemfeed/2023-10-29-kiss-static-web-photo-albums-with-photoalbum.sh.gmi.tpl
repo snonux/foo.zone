@@ -19,6 +19,8 @@
 '._____________________________________________.'   
 ```
 
+<< template::inline::toc
+
 ## Motivation
 
 Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).

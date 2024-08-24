@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-08-24T19:37:43+03:00</updated>
+    <updated>2024-08-24T19:58:56+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -18,7 +18,7 @@
         <summary>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Typing1271wordsperminute100wpmaverage'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</h1><br />
+                <h1 style='display: inline' id='typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</h1><br />
 <br />
 <span class='quote'>Published at 2024-08-05T17:39:30+03:00</span><br />
 <br />
@@ -37,6 +37,38 @@
       Nieminen Mika	
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#kinesis-review'>Kinesis review</a></li>
+<li>⇢ ⇢ <a href='#top-build-quality'>Top build quality</a></li>
+<li>⇢ ⇢ <a href='#bluetooth-connectivity'>Bluetooth connectivity</a></li>
+<li>⇢ ⇢ <a href='#gateron-brown-key-switches'>Gateron Brown key switches</a></li>
+<li>⇢ ⇢ <a href='#keycaps'>Keycaps</a></li>
+<li>⇢ ⇢ <a href='#keymap-editor'>Keymap editor</a></li>
+<li>⇢ <a href='#first-steps'>First steps</a></li>
+<li>⇢ <a href='#considering-alternate-layouts'>Considering alternate layouts</a></li>
+<li>⇢ <a href='#training-how-to-type'>Training how to type</a></li>
+<li>⇢ ⇢ <a href='#tools'>Tools</a></li>
+<li>⇢ <a href='#my-keybrcom-statistics'>My <span class='inlinecode'>keybr.com</span> statistics</a></li>
+<li>⇢ <a href='#tips-and-tricks'>Tips and tricks</a></li>
+<li>⇢ ⇢ <a href='#relax'>Relax</a></li>
+<li>⇢ ⇢ <a href='#focus-on-accuracy-first'>Focus on accuracy first</a></li>
+<li>⇢ ⇢ <a href='#chording'>Chording</a></li>
+<li>⇢ ⇢ <a href='#punctuation-and-capitalization'>Punctuation and Capitalization</a></li>
+<li>⇢ ⇢ <a href='#reverse-shifting'>Reverse shifting</a></li>
+<li>⇢ ⇢ <a href='#enter-the-flow-state'>Enter the flow state</a></li>
+<li>⇢ ⇢ <a href='#repeat-every-word'>Repeat every word</a></li>
+<li>⇢ ⇢ <a href='#dont-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</a></li>
+<li>⇢ ⇢ <a href='#warm-up'>Warm-up</a></li>
+<li>⇢ <a href='#travel-keyboard'>Travel keyboard</a></li>
+<li>⇢ <a href='#upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
 <br />
 <ul>
@@ -46,23 +78,23 @@
 </ul><br />
 <span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
 <br />
-<h2 style='display: inline' id='Kinesisreview'>Kinesis review</h2><br />
+<h2 style='display: inline' id='kinesis-review'>Kinesis review</h2><br />
 <br />
 <span>For an in-depth review, have a look at this great article:</span><br />
 <br />
 <a class='textlink' href='https://arslan.io/2022/10/22/review-of-the-kinesis-advantage360-professional'>Review of the Kinesis Advantage360 Professional keyboard</a><br />
 <br />
-<h3 style='display: inline' id='Topbuildquality'>Top build quality</h3><br />
+<h3 style='display: inline' id='top-build-quality'>Top build quality</h3><br />
 <br />
 <span>Overall, the keyboard feels excellent quality and robust. It has got some weight to it. Because of that, it is not ideally suited for travel, though. But I have a different keyboard to solve this (see later in this post). Overall, I love how it is built and how it feels.</span><br />
 <br />
 <a href='./typing-127.1-words-per-minute/kinesis2.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis2.jpg' /></a><br />
 <br />
-<h3 style='display: inline' id='Bluetoothconnectivity'>Bluetooth connectivity</h3><br />
+<h3 style='display: inline' id='bluetooth-connectivity'>Bluetooth connectivity</h3><br />
 <br />
 <span>Despite encountering concerns about Bluetooth connectivity issues with the Kinesis keyboard during my research, I purchased one anyway as I intended to use it only via USB. However, I discovered that the firmware updates available afterwards had addressed these reported Bluetooth issues, and as a result, I did not experience any difficulties with the Bluetooth functionality. This positive outcome allowed me to enjoy using the keyboard also wirelessly.</span><br />
 <br />
-<h3 style='display: inline' id='GateronBrownkeyswitches'>Gateron Brown key switches</h3><br />
+<h3 style='display: inline' id='gateron-brown-key-switches'>Gateron Brown key switches</h3><br />
 <br />
 <span>Many voices on the internet seem to dislike the Gateron Brown switches, the only official choice for non-clicky tactile switches in the Kinesis, so I was also a bit concerned. I almost went with Cherry MX Browns for my Kinesis (a custom build from a 3rd party provider that is partnershipping with Kinesis). Still, I decided on Gateron Browns to try different switches than the Cherry MX Browns I already have on my ZSA Moonlander keyboard (another ortho-linear split keyboard, but without a concave keycap layout). </span><br />
 <br />
@@ -70,7 +102,7 @@
 <br />
 <span>So, the Cherry MX feel sharper but are more tiring in the long run, and the Gaterons are easier to write on and the tactile Feedback is slightly less pronounced. </span><br />
 <br />
-<h3 style='display: inline' id='Keycaps'>Keycaps</h3><br />
+<h3 style='display: inline' id='keycaps'>Keycaps</h3><br />
 <br />
 <span>If you ever purchase a Kinesis keyboard, go with the PCB keycaps. They upgrade the typing experience a lot. The only thing you will lose is that the backlighting won&#39;t shine through them. But that is a reasonable tradeoff. When do I need backlighting? I am supposed to look at the screen and not the keyboard while typing. </span><br />
 <br />
@@ -78,7 +110,7 @@
 <br />
 <a href='./typing-127.1-words-per-minute/kinesis1.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis1.jpg' /></a><br />
 <br />
-<h3 style='display: inline' id='Keymapeditor'>Keymap editor</h3><br />
+<h3 style='display: inline' id='keymap-editor'>Keymap editor</h3><br />
 <br />
 <span>There is no official keymap editor. You have to edit a configuration file manually, build the firmware from scratch, and upload the firmware with the new keymap to both keyboard halves. The Professional version of his keyboard, by the way, runs on the ZMK open-source firmware.</span><br />
 <br />
@@ -86,7 +118,7 @@
 <br />
 <span>There is a 3rd party solution which is supposed to configure the keymap for the Professional model as bliss, but I have never used it. As a part-time programmer and full-time Site Reliability Engineer, I am okay configuring the keymap in my text editor and building it in a local docker container. This is one of the standard ways of doing it here. You could also use a GitHub pipeline for the firmware build, but I prefer building it locally on my machine. This all seems natural to me, but this may be an issue for "the average Joe" user.</span><br />
 <br />
-<h2 style='display: inline' id='Firststeps'>First steps</h2><br />
+<h2 style='display: inline' id='first-steps'>First steps</h2><br />
 <br />
 <span>I didn&#39;t measure the usual words per minute (wpm) on my previous keyboard, the ZSA Moonlander, but I guess that it was around 40-50wpm. Once the Kinesis arrived, I started practising. The experience was quite different due to the concave keycaps, so I barely managed 10wpm on the first day.</span><br />
 <br />
@@ -98,7 +130,7 @@
 <br />
 <span>I also had a problem with the left pinky finger, where I could not comfortably reach the <span class='inlinecode'>p</span> key. This involved moving the whole hand. An easy fix was to swap <span class='inlinecode'>p</span> with <span class='inlinecode'>;</span> on the keyboard layout.</span><br />
 <br />
-<h2 style='display: inline' id='Consideringalternatelayouts'>Considering alternate layouts</h2><br />
+<h2 style='display: inline' id='considering-alternate-layouts'>Considering alternate layouts</h2><br />
 <br />
 <span>As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the Qwerty to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: </span><br />
 <br />
@@ -108,9 +140,9 @@
 <li>There are also many applications and websites with keyboard shortcuts and are Qwerty-optimized.</li>
 <li>You won&#39;t be able to use someone else&#39;s computer as there will be likely Qwerty. Some report that after using an alternative layout for a while, they forget how to use Qwerty.</li>
 </ul><br />
-<h2 style='display: inline' id='Traininghowtotype'>Training how to type</h2><br />
+<h2 style='display: inline' id='training-how-to-type'>Training how to type</h2><br />
 <br />
-<h3 style='display: inline' id='Tools'>Tools</h3><br />
+<h3 style='display: inline' id='tools'>Tools</h3><br />
 <br />
 <span>One of the most influential tools in my touch typing journey has been <span class='inlinecode'>keybr.com</span>. This site/app helped me learn 10-finger touch typing, and I practice daily for 30 minutes (in the first two weeks, up to an hour every day). The key is persistence and focus on technique rather than speed; the latter naturally improves with regular practice. Precision matters, too, so I always correct my errors using the backspace key.</span><br />
 <br />
@@ -122,7 +154,7 @@
 <br />
 <span>I wrote myself a small Ruby script that would randomly select a paragraph from one of my eBooks or book notes and pipe it to <span class='inlinecode'>tt</span>. This helped me remember some of the books I read and also practice touch typing.</span><br />
 <br />
-<h2 style='display: inline' id='Mykeybrcomstatistics'>My <span class='inlinecode'>keybr.com</span> statistics</h2><br />
+<h2 style='display: inline' id='my-keybrcom-statistics'>My <span class='inlinecode'>keybr.com</span> statistics</h2><br />
 <br />
 <span>Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).</span><br />
 <br />
@@ -134,26 +166,26 @@
 <br />
 <span>Around the middle, you see a break-in of the wpm average value. This was where I swapped the <span class='inlinecode'>p</span> and <span class='inlinecode'>;</span> keys, but after some retraining, I came back to the previous level and beyond.</span><br />
 <br />
-<h2 style='display: inline' id='Tipsandtricks'>Tips and tricks</h2><br />
+<h2 style='display: inline' id='tips-and-tricks'>Tips and tricks</h2><br />
 <br />
 <span>These are some tips and tricks I learned along the way to improve my typing speed:</span><br />
 <br />
-<h3 style='display: inline' id='Relax'>Relax</h3><br />
+<h3 style='display: inline' id='relax'>Relax</h3><br />
 <br />
 <span>It&#39;s easy to get cramped when trying to hit this new wpm mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice.... It didn&#39;t help much back then, though, as it is difficult to relax while someone screams at you! </span><br />
-<h3 style='display: inline' id='Focusonaccuracyfirst'>Focus on accuracy first</h3><br />
+<h3 style='display: inline' id='focus-on-accuracy-first'>Focus on accuracy first</h3><br />
 <br />
 <span>This goes with the previous point. Instead of trying to speed through sessions as quickly as possible, slow down and try to type the words correctly—so don&#39;t rush it. If you aren&#39;t fast yet, the reason is that your brain hasn&#39;t trained enough. It will come over time, and you will be faster.</span><br />
 <br />
-<h3 style='display: inline' id='Chording'>Chording</h3><br />
+<h3 style='display: inline' id='chording'>Chording</h3><br />
 <br />
 <span>A trick to getting faster is to type by word and pause between each word so you learn the words by chords. From 80wpm and beyond, this makes a real difference. </span><br />
 <br />
-<h3 style='display: inline' id='PunctuationandCapitalization'>Punctuation and Capitalization</h3><br />
+<h3 style='display: inline' id='punctuation-and-capitalization'>Punctuation and Capitalization</h3><br />
 <br />
 <span>I included 10% punctuation and 20% capital letters in my <span class='inlinecode'>keybr.com</span> practice sessions to simulate real typing conditions, which improved my overall working efficiency. I guess I would have gone to 120wpm in average if I didn&#39;t include this options...</span><br />
 <br />
-<h3 style='display: inline' id='Reverseshifting'>Reverse shifting</h3><br />
+<h3 style='display: inline' id='reverse-shifting'>Reverse shifting</h3><br />
 <br />
 <span>Reverse shifting aka left-right shifting is to... </span><br />
 <br />
@@ -163,24 +195,24 @@
 </ul><br />
 <span>This makes using the shift key a blaze.</span><br />
 <br />
-<h3 style='display: inline' id='Entertheflowstate'>Enter the flow state</h3><br />
+<h3 style='display: inline' id='enter-the-flow-state'>Enter the flow state</h3><br />
 <br />
 <span>Listening to music helps me enter a flow state during practice sessions, which makes typing training a bit addictive (which is good, or isn&#39;t it?).</span><br />
 <br />
-<h3 style='display: inline' id='Repeateveryword'>Repeat every word</h3><br />
+<h3 style='display: inline' id='repeat-every-word'>Repeat every word</h3><br />
 <br />
 <span>There&#39;s a setting on <span class='inlinecode'>keybr.com</span> that makes it so that every word is always repeated, having you type every word twice in a row. I liked this feature very much, and I think it also helped to improve my practice.</span><br />
 <br />
-<h3 style='display: inline' id='Dontusethesamefingerfortwoconsecutivekeystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
+<h3 style='display: inline' id='dont-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
 <br />
 <span>Apparently, if you want to type fast, avoid using the same finger for two consecutive keystrokes. This means you don&#39;t always need to use the same finger for the same keys. </span><br />
 <span>However, there are no hard and fast rules. Thus, everyone develops their system for typing word combinations. An exception would be if you are typing the very same letter in a row (e.g., t in letter)—here, you are using the same finger for both ts.</span><br />
 <br />
-<h3 style='display: inline' id='Warmup'>Warm-up</h3><br />
+<h3 style='display: inline' id='warm-up'>Warm-up</h3><br />
 <br />
 <span>You can&#39;t reach your average typing speed first ting the morning. It would help if you warmed up before the exercise or practice later during the day. Also, some days are good, others not so, e.g., after a bad night&#39;s sleep. What matters is the mid- and long-term trend, not the fluctuations here, though.</span><br />
 <br />
-<h2 style='display: inline' id='Travelkeyboard'>Travel keyboard</h2><br />
+<h2 style='display: inline' id='travel-keyboard'>Travel keyboard</h2><br />
 <br />
 <span>As mentioned, the Kinesis is a great keyboard, but it is not meant for travel.</span><br />
 <br />
@@ -200,11 +232,11 @@
 <br />
 <a class='textlink' href='https://arslan.io/2024/04/22/review-of-the-moergo-glove80-keyboard/'>Review of the Glove80 keyboard</a><br />
 <br />
-<h2 style='display: inline' id='UpcomingcustomKinesisbuild'>Upcoming custom Kinesis build</h2><br />
+<h2 style='display: inline' id='upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</h2><br />
 <br />
 <span>As I mentioned, keyboards will remain an expensive hobby of mine. I don&#39;t regret anything here, though. After all, I use keyboards at my day job. I&#39;ve ordered a Kinesis custom build with the Gateron Kangaroo switches, and I&#39;m excited to see how that compares to my current setup. I&#39;m still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting or to sell it.</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>When I traveled with the Glove80 for work to the London office, a colleague stared at my keyboard and made jokes that it might be broken (split into two halves). But other than that... </span><br />
 <br />
@@ -237,6 +269,16 @@
                 <h1 style='display: inline' id='the-stoic-challenge-book-notes'>"The Stoic Challenge" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2024-07-07T12:46:55+03:00</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#the-stoic-challenge-book-notes'>"The Stoic Challenge" book notes</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#negative-visualization'>Negative visualization</a></li>
+<li>⇢ <a href='#oh-nice-trick-you-stoic-god--'>Oh, nice trick, you stoic "god"! ;-)</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher&#39;s Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. </span><br />
 <br />
@@ -1128,10 +1170,6 @@ Art by Laura Brown
 
 </pre>
 <br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
-<br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
@@ -1171,6 +1209,10 @@ Art by Laura Brown
 <li>⇢ ⇢ <a href='#project-secure'>Project secure</a></li>
 <li>⇢ ⇢ <a href='#cpu-utilisation-is-all-wrong'>CPU utilisation is all wrong</a></li>
 </ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
+<br />
 <h2 style='display: inline' id='hardware-projects-i-dont-have-time-for'>Hardware projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='i-use-arch-btw'>I use Arch, btw!</h3><br />
@@ -1448,6 +1490,19 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2024-04-27T14:18:51+03:00</span><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#slow-productivity-book-notes'>"Slow Productivity" book notes</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#pseudo-productivity-and-shallow-work'>Pseudo-productivity and Shallow work</a></li>
+<li>⇢ <a href='#accomplishments-without-burnout'>Accomplishments without burnout</a></li>
+<li>⇢ <a href='#do-fewer-things'>Do fewer things</a></li>
+<li>⇢ <a href='#work-at-a-natural-pace'>Work at a natural pace</a></li>
+<li>⇢ <a href='#obsess-over-quality-'>Obsess over quality </a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.</span><br />
 <br />
 <span>The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.</span><br />
@@ -1635,6 +1690,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <br />
 <ul>
 <li><a href='#kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#my-auto-failover-requirements'>My auto-failover requirements</a></li>
 <li>⇢ <a href='#my-ha-solution'>My HA solution</a></li>
 <li>⇢ ⇢ <a href='#only-openbsd-base-installation-required'>Only OpenBSD base installation required</a></li>
@@ -1646,6 +1702,8 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <li>⇢ ⇢ <a href='#rex-automation'>Rex automation</a></li>
 <li>⇢ <a href='#more-ha'>More HA</a></li>
 </ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
 <br />
 <span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
@@ -1949,6 +2007,15 @@ http://www.gnu.org/software/src-highlite -->
                 <h1 style='display: inline' id='a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-go'>A fine Fyne Android app for quickly logging ideas programmed in Go</h1><br />
 <br />
 <span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-go'>A fine Fyne Android app for quickly logging ideas programmed in Go</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#all-easy-peasy'>All easy-peasy?</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </span><br />
 <br />
@@ -2364,6 +2431,22 @@ http://www.gnu.org/software/src-highlite -->
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#bash-golf-part-3'>Bash Golf Part 3</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#funcname'><span class='inlinecode'>FUNCNAME</span></a></li>
+<li>⇢ <a href='#--'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
+<li>⇢ <a href='#inner-functions'>Inner functions</a></li>
+<li>⇢ <a href='#exporting-functions'>Exporting functions</a></li>
+<li>⇢ <a href='#dynamic-variables-with-local'>Dynamic variables with <span class='inlinecode'>local</span></a></li>
+<li>⇢ <a href='#if-conditionals'><span class='inlinecode'>if</span> conditionals</a></li>
+<li>⇢ <a href='#multi-line-comments'>Multi-line comments</a></li>
+<li>⇢ <a href='#dont-change-it-while-its-executed'>Don&#39;t change it while it&#39;s executed</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
 <br />
@@ -2835,6 +2918,22 @@ echo baz
 <br />
 <span class='quote'>Published at 2023-11-11T22:21:47+02:00</span><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#mind-management-book-notes'>"Mind Management" book notes</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#empty-slots-in-the-calendar'>Empty slots in the calendar</a></li>
+<li>⇢ <a href='#when-you-safe-time'>When you safe time...</a></li>
+<li>⇢ <a href='#follow-your-mood'>Follow your mood</a></li>
+<li>⇢ <a href='#boosting-creativity'>Boosting creativity</a></li>
+<li>⇢ <a href='#the-right-mood-for-the-task-at-hand'>The right mood for the task at hand</a></li>
+<li>⇢ <a href='#creativity-hacks'>Creativity hacks</a></li>
+<li>⇢ <a href='#planning-and-strategizing'>Planning and strategizing</a></li>
+<li>⇢ <a href='#fake-it-until-you-make-it-'>Fake it until you make it. </a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>These are my personal takeaways after reading "Mind Management" by David Kadavy. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</span><br />
 <br />
 <pre>
@@ -2981,6 +3080,19 @@ echo baz
 &#39;._____________________________________________.&#39;   
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a></li>
+<li>⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#setting-it-up'>Setting it up</a></li>
+<li>⇢ <a href='#generating-the-static-photo-album'>Generating the static photo album</a></li>
+<li>⇢ <a href='#cleaning-it-up'>Cleaning it up</a></li>
+<li>⇢ <a href='#html-templates'>HTML templates</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
 <h2 style='display: inline' id='motivation'>Motivation</h2><br />
 <br />
 <span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
@@ -3261,6 +3373,23 @@ blurs  html  index.html  photos  thumbs
                 <h1 style='display: inline' id='dtail-usage-examples'>DTail usage examples</h1><br />
 <br />
 <span class='quote'>Published at 2023-09-25T14:57:42+03:00</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#dtail-usage-examples'>DTail usage examples</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#following-logs'>Following logs</a></li>
+<li>⇢ <a href='#aggregating-logs'>Aggregating logs</a></li>
+<li>⇢ <a href='#how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></a></li>
+<li>⇢ <a href='#how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></a></li>
+<li>⇢ <a href='#how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></a></li>
+<li>⇢ <a href='#how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</a></li>
+<li>⇢ ⇢ <a href='#serverless-map-reduce-query'>Serverless map-reduce query</a></li>
+<li>⇢ ⇢ <a href='#aggregating-csv-files'>Aggregating CSV files</a></li>
+<li>⇢ ⇢ <a href='#other-serverless-commands'>Other serverless commands</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They&#39;re from the DTail documentation, but not all readers of my blog may be aware of those!</span><br />
 <br />
@@ -3669,6 +3798,21 @@ DC on fire:
   mod. by Paul Buetow  `"""""""""`
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-210---lets-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#why-bash'>Why Bash?</a></li>
+<li>⇢ <a href='#switch-to-gpl3-license'>Switch to GPL3 license</a></li>
+<li>⇢ <a href='#source-code-highlighting-support'>Source code highlighting support</a></li>
+<li>⇢ <a href='#html-exact-variant'>HTML exact variant</a></li>
+<li>⇢ <a href='#use-of-hack-webfont-by-default'>Use of Hack webfont by default</a></li>
+<li>⇢ <a href='#html-mastodon-verification-support'>HTML Mastodon verification support</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
@@ -3783,6 +3927,42 @@ http://www.gnu.org/software/src-highlite -->
                 <h1 style='display: inline' id='software-developmers-career-guide-and-soft-skills-book-notes'>"Software Developmers Career Guide and Soft Skills" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-17T04:56:20+03:00</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#software-developmers-career-guide-and-soft-skills-book-notes'>"Software Developmers Career Guide and Soft Skills" book notes</a></li>
+<li><a href='#introduction'>Introduction</a></li>
+<li><a href='#improve'>Improve</a></li>
+<li>⇢ <a href='#always-learn-new-things'>Always learn new things</a></li>
+<li>⇢ <a href='#set-goals'>Set goals</a></li>
+<li>⇢ <a href='#ratings'>Ratings</a></li>
+<li>⇢ <a href='#promotions'>Promotions</a></li>
+<li>⇢ <a href='#finish-things'>Finish things</a></li>
+<li>⇢ <a href='#expand-the-empire'>Expand the empire</a></li>
+<li>⇢ <a href='#be-pragmatic-and-also-manage-your-time'>Be pragmatic and also manage your time</a></li>
+<li>⇢ ⇢ <a href='#the-quota-system'>The quota system</a></li>
+<li>⇢ ⇢ <a href='#dont-waste-time'>Don&#39;t waste time</a></li>
+<li>⇢ ⇢ <a href='#habits'>Habits</a></li>
+<li><a href='#work-life-balance'>Work-life balance</a></li>
+<li>⇢ <a href='#mental-health'>Mental health</a></li>
+<li>⇢ <a href='#physical-health'>Physical health</a></li>
+<li>⇢ <a href='#no-drama'>No drama</a></li>
+<li><a href='#personal-brand'>Personal brand</a></li>
+<li>⇢ <a href='#market-yourself'>Market yourself</a></li>
+<li>⇢ <a href='#networking'>Networking</a></li>
+<li>⇢ <a href='#public-speaking'>Public speaking</a></li>
+<li><a href='#new-job'>New job</a></li>
+<li>⇢ <a href='#for-the-interview'>For the interview</a></li>
+<li>⇢ <a href='#find-the-right-type-of-company'>Find the right type of company</a></li>
+<li>⇢ <a href='#apply-for-the-new-job'>Apply for the new job</a></li>
+<li>⇢ <a href='#negotiation'>Negotiation</a></li>
+<li>⇢ <a href='#leaving-the-old-job'>Leaving the old job</a></li>
+<li><a href='#other-things'>Other things</a></li>
+<li>⇢ <a href='#testing'>Testing</a></li>
+<li>⇢ <a href='#books-to-read'>Books to read</a></li>
+</ul><br />
+<h1 style='display: inline' id='introduction'>Introduction</h1><br />
 <br />
 <span>These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</span><br />
 <br />
@@ -4113,6 +4293,25 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#features'>Features</a></li>
+<li>⇢ <a href='#example-alert'>Example alert</a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ ⇢ <a href='#compiling-and-installing-gogios'>Compiling and installing Gogios</a></li>
+<li>⇢ ⇢ <a href='#setting-up-user-group-and-directories'>Setting up user, group and directories</a></li>
+<li>⇢ ⇢ <a href='#installing-monitoring-plugins'>Installing monitoring plugins</a></li>
+<li>⇢ <a href='#configuration'>Configuration</a></li>
+<li>⇢ ⇢ <a href='#mta'>MTA</a></li>
+<li>⇢ ⇢ <a href='#configuring-gogios'>Configuring Gogios</a></li>
+<li>⇢ <a href='#running-gogios'>Running Gogios</a></li>
+<li>⇢ ⇢ <a href='#high-availability'>High-availability</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion:</a></li>
+</ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
@@ -4395,6 +4594,26 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-05-06T17:23:16+03:00</span><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#the-obstacle-is-the-way-book-notes'>"The Obstacle is the Way" book notes</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#reframe-your-perspective'>Reframe your perspective</a></li>
+<li>⇢ <a href='#embrace-rationality'>Embrace rationality</a></li>
+<li>⇢ <a href='#control-your-response'>Control your response</a></li>
+<li>⇢ <a href='#practice-emotional-and-physical-resilience'>Practice emotional and physical resilience</a></li>
+<li>⇢ <a href='#persistence-and-patience'>Persistence and patience</a></li>
+<li>⇢ <a href='#embrace-failure'>Embrace failure</a></li>
+<li>⇢ <a href='#be-adaptable'>Be adaptable</a></li>
+<li>⇢ <a href='#embrace-non-action'>Embrace non-action</a></li>
+<li>⇢ <a href='#leverage-crisis'>Leverage crisis</a></li>
+<li>⇢ <a href='#build-your-inner-citadel'>Build your inner citadel</a></li>
+<li>⇢ <a href='#love-everything-that-happens'>Love everything that happens</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</span><br />
 <br />
 <br />
@@ -4419,7 +4638,6 @@ http://www.gnu.org/software/src-highlite -->
 <span>We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn&#39;t need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn&#39;t need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.</span><br />
 <br />
 <span>Don&#39;t always try to use the front door; a backdoor could open. It&#39;s nonsense. Don&#39;t fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.</span><br />
-<br />
 <br />
 <h2 style='display: inline' id='embrace-rationality'>Embrace rationality</h2><br />
 <br />
@@ -4525,7 +4743,16 @@ http://www.gnu.org/software/src-highlite -->
 +-----+-----------------+-----------------------------+
 </pre>
 <br />
-<h1 style='display: inline' id='introduction'>Introduction</h1><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unveiling-guprecordsraku-global-uptime-records-with-raku'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#how-guprecords-works'>How Guprecords works</a></li>
+<li>⇢ <a href='#example'>Example</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</span><br />
 <br />
@@ -4703,6 +4930,19 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
   |                            |   
    |                           |   
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#algorithms-and-data-structures-in-go---part-1'>Algorithms and Data Structures in Go - Part 1</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#type-constraints'>Type constraints</a></li>
+<li>⇢ <a href='#arraylist'>ArrayList</a></li>
+<li>⇢ <a href='#helper-methods'>Helper methods</a></li>
+<li>⇢ <a href='#sleep-sort'>Sleep sort</a></li>
+<li>⇢ ⇢ <a href='#testing'>Testing</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
 <br />
@@ -5133,6 +5373,20 @@ http://www.gnu.org/software/src-highlite -->
  jgs  `"""""""""`      |o=======.|
   mod. by Paul Buetow  `"""""""""`
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-200---lets-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
+<li>⇢ <a href='#added-hooks'>Added hooks</a></li>
+<li>⇢ <a href='#use-of-safer-bash-options'>Use of safer Bash options</a></li>
+<li>⇢ <a href='#meta-cache-made-obsolete'>Meta cache made obsolete</a></li>
+<li>⇢ <a href='#xmllint-support'>XMLLint support</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
 <br />
@@ -5951,6 +6205,24 @@ http://www.gnu.org/software/src-highlite -->
                                        &#39;     &#39;
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#installing-dtail-on-openbsd'>Installing DTail on OpenBSD</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#compile-it'>Compile it</a></li>
+<li>⇢ <a href='#install-it'>Install it</a></li>
+<li>⇢ ⇢ <a href='#rexification'>Rexification</a></li>
+<li>⇢ <a href='#configure-it'>Configure it</a></li>
+<li>⇢ ⇢ <a href='#rexification'>Rexification</a></li>
+<li>⇢ <a href='#update-the-key-cache-for-it'>Update the key cache for it</a></li>
+<li>⇢ ⇢ <a href='#rexification'>Rexification</a></li>
+<li>⇢ <a href='#start-it'>Start it</a></li>
+<li>⇢ <a href='#use-it'>Use it</a></li>
+<li>⇢ <a href='#conclusions'>Conclusions</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
 <br />
 <span> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</span><br />
@@ -6406,6 +6678,23 @@ jgs                (________\  \
  jgs  `"""""""""`
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-110---lets-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#whats-new'>What&#39;s new?</a></li>
+<li>⇢ ⇢ <a href='#automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</a></li>
+<li>⇢ ⇢ <a href='#backticks-now-produce-inline-code-blocks-in-the-html-output'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</a></li>
+<li>⇢ ⇢ <a href='#cache-for-atom-feed-generation'>Cache for Atom feed generation</a></li>
+<li>⇢ ⇢ <a href='#input-filter-support'>Input filter support</a></li>
+<li>⇢ ⇢ <a href='#revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</a></li>
+<li>⇢ ⇢ <a href='#addition-of-htmlextras-and-web-font-support'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</a></li>
+<li>⇢ ⇢ <a href='#sub-section-support'>Sub-section support</a></li>
+<li>⇢ ⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>1.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
@@ -6540,9 +6829,29 @@ http://www.gnu.org/software/src-highlite -->
                                  ASCII Art by John Savard
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#lets-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
+<li>⇢ <a href='#meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></a></li>
+<li>⇢ <a href='#configuration'>Configuration</a></li>
+<li>⇢ ⇢ <a href='#acme-clientconf'>acme-client.conf</a></li>
+<li>⇢ ⇢ <a href='#httpdconf'>httpd.conf</a></li>
+<li>⇢ ⇢ <a href='#cron-job'>CRON job</a></li>
+<li>⇢ <a href='#relaydconf-and-smtpdconf'>relayd.conf and smtpd.conf</a></li>
+<li>⇢ <a href='#rexification'>Rexification</a></li>
+<li>⇢ ⇢ <a href='#general-acme-client-configuration'>General ACME client configuration</a></li>
+<li>⇢ ⇢ <a href='#service-rexification-'>Service rexification </a></li>
+<li>⇢ <a href='#all-pieces-together'>All pieces together</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h2 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h2><br />
+<h3 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
@@ -7545,6 +7854,19 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a href='./perl-is-still-a-great-choice/regular_expressions.png'><img alt='Comic source: XKCD' title='Comic source: XKCD' src='./perl-is-still-a-great-choice/regular_expressions.png' /></a><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#perl-is-still-a-great-choice'>Perl is still a great choice</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#write-only-language'>Write-only language</a></li>
+<li>⇢ <a href='#is-perl-abandoned'>Is Perl abandoned?</a></li>
+<li>⇢ <a href='#why-use-perl-as-there-are-better-alternatives'>Why use Perl as there are better alternatives?</a></li>
+<li>⇢ <a href='#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory'>Why all the sigils? It looks like an exploding ASCII factory!!</a></li>
+<li>⇢ <a href='#where-do-i-personally-still-use-perl'>Where do I personally still use perl?</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
 <span>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it&#39;s not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class='inlinecode'>perl</span> the name of the interpreter or the interpreter command.</span><br />
 <br />
 <span>Unfortunately (it makes me sad), Perl&#39;s popularity has been declining over the last years as Google trends shows:</span><br />
@@ -7881,6 +8203,27 @@ learn () {
                         |                            |
                          |                           |
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#the-release-of-dtail-400'>The release of DTail 4.0.0</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#so-whats-new-in-400'>So, what&#39;s new in 4.0.0?</a></li>
+<li>⇢ ⇢ <a href='#rewritten-logging'>Rewritten logging</a></li>
+<li>⇢ ⇢ <a href='#configurable-terminal-color-codes'>Configurable terminal color codes</a></li>
+<li>⇢ ⇢ <a href='#serverless-mode'>Serverless mode</a></li>
+<li>⇢ ⇢ <a href='#shorthand-flags'>Shorthand flags</a></li>
+<li>⇢ ⇢ <a href='#spartan-aka-plain-mode'>Spartan (aka plain) mode</a></li>
+<li>⇢ ⇢ <a href='#standard-input-pipe'>Standard input pipe</a></li>
+<li>⇢ ⇢ <a href='#new-command-dtailhealth'>New command dtailhealth</a></li>
+<li>⇢ ⇢ <a href='#improved-documentation'>Improved documentation</a></li>
+<li>⇢ ⇢ <a href='#integration-testing-suite'>Integration testing suite</a></li>
+<li>⇢ ⇢ <a href='#improved-code'>Improved code</a></li>
+<li>⇢ ⇢ <a href='#use-of-memory-pools'>Use of memory pools</a></li>
+<li>⇢ <a href='#whats-next'>What&#39;s next</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</span><br />
 <br />
@@ -8511,6 +8854,21 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#bash-golf-part-2'>Bash Golf Part 2</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#redirection'>Redirection</a></li>
+<li>⇢ <a href='#here'>HERE</a></li>
+<li>⇢ <a href='#random'>RANDOM</a></li>
+<li>⇢ <a href='#set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</a></li>
+<li>⇢ ⇢ <a href='#-x'>-x</a></li>
+<li>⇢ ⇢ <a href='#-e'>-e</a></li>
+<li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
 <br />

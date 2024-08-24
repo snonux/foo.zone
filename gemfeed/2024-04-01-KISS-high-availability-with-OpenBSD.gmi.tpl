@@ -29,6 +29,8 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 
 << template::inline::toc
 
+## Introduction
+
 I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
 
 But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.

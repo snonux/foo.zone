@@ -19,7 +19,9 @@
 +-----+-----------------+-----------------------------+
 ```
 
-# Introduction
+<< template::inline::toc
+
+## Introduction
 
 For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.
 

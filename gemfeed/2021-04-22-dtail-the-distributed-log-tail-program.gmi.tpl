@@ -4,6 +4,10 @@
 
 => ./dtail-the-distributed-log-tail-program/title.png DTail logo image
 
+<< template::inline::toc
+
+## Introduction
+
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 => https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb Original Mimecast Engineering Blog post at Medium

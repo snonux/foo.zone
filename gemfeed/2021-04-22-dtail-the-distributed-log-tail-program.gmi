@@ -4,6 +4,22 @@
 
 => ./dtail-the-distributed-log-tail-program/title.png DTail logo image
 
+## Table of Contents
+
+* ⇢ DTail - The distributed log tail program
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ A Mimecast Pet Project
+* ⇢ ⇢ Differentiating from log management systems
+* ⇢ ⇢ Combining simplicity, security and efficiency
+* ⇢ ⇢ The DTail family of commands
+* ⇢ ⇢ Usage example
+* ⇢ ⇢ Fitting it in
+* ⇢ ⇢ Advanced features
+* ⇢ ⇢ For the future
+* ⇢ ⇢ Open Source
+
+## Introduction
+
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 => https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb Original Mimecast Engineering Blog post at Medium

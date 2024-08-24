@@ -15,6 +15,10 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
+<< template::inline::toc
+
+## Introduction
+
 Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
 
 => https://google.github.io/styleguide/shellguide.html Google Shell Style Guide

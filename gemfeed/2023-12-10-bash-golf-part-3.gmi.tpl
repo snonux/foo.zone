@@ -14,6 +14,10 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
+<< template::inline::toc
+
+## Introduction
+
 This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
 
 << template::inline::index bash-golf

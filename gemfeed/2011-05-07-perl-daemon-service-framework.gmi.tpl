@@ -9,6 +9,10 @@
       //\ //\\   //\ //\\       //\ //\\jrei
 ```
 
+<< template::inline::toc
+
+## Introduction
+
 PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.
 
 ## Features
