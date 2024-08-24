@@ -123,6 +123,7 @@ These are some tips and tricks I learned along the way to improve my typing spee
 ### Relax
 
 It's easy to get cramped when trying to hit this new wpm mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice.... It didn't help much back then, though, as it is difficult to relax while someone screams at you! 
+
 ### Focus on accuracy first
 
 This goes with the previous point. Instead of trying to speed through sessions as quickly as possible, slow down and try to type the words correctly—so don't rush it. If you aren't fast yet, the reason is that your brain hasn't trained enough. It will come over time, and you will be faster.
