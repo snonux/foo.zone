@@ -26,7 +26,7 @@
 * [⇢ ⇢ ⇢ Quoting your variables](#quoting-your-variables)
 * [⇢ ⇢ ⇢ Prefer built-in commands over external commands](#prefer-built-in-commands-over-external-commands)
 * [⇢ ⇢ My additions](#my-additions)
-* [⇢ ⇢ ⇢ Use of 'yes' and 'no'](#use-of-yes-and-no)
+* [⇢ ⇢ ⇢ Use of 'yes' and 'no'](#use-of--yes--and--no-)
 * [⇢ ⇢ ⇢ Non-evil alternative to variable assignments via eval](#non-evil-alternative-to-variable-assignments-via-eval)
 * [⇢ ⇢ ⇢ Prefer pipes over arrays for list processing](#prefer-pipes-over-arrays-for-list-processing)
 * [⇢ ⇢ ⇢ Assign-then-shift](#assign-then-shift)

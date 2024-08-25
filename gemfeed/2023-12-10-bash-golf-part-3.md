@@ -25,7 +25,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * [⇢ ⇢ Dynamic variables with `local`](#dynamic-variables-with-local)
 * [⇢ ⇢ `if` conditionals](#if-conditionals)
 * [⇢ ⇢ Multi-line comments](#multi-line-comments)
-* [⇢ ⇢ Don't change it while it's executed](#dont-change-it-while-its-executed)
+* [⇢ ⇢ Don't change it while it's executed](#don-t-change-it-while-it-s-executed)
 
 ## Introduction
 

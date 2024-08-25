@@ -15,7 +15,7 @@
 * [⇢ ⇢ Expand the empire](#expand-the-empire)
 * [⇢ ⇢ Be pragmatic and also manage your time](#be-pragmatic-and-also-manage-your-time)
 * [⇢ ⇢ ⇢ The quota system](#the-quota-system)
-* [⇢ ⇢ ⇢ Don't waste time](#dont-waste-time)
+* [⇢ ⇢ ⇢ Don't waste time](#don-t-waste-time)
 * [⇢ ⇢ ⇢ Habits](#habits)
 * [⇢ Work-life balance](#work-life-balance)
 * [⇢ ⇢ Mental health](#mental-health)

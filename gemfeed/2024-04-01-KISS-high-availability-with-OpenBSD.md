@@ -37,7 +37,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 * [⇢ ⇢ ⇢ Fairly cheap and geo-redundant](#fairly-cheap-and-geo-redundant)
 * [⇢ ⇢ ⇢ Failover time and split-brain](#failover-time-and-split-brain)
 * [⇢ ⇢ ⇢ Failover support for multiple protocols](#failover-support-for-multiple-protocols)
-* [⇢ ⇢ ⇢ Let's encrypt TLS certificates](#lets-encrypt-tls-certificates)
+* [⇢ ⇢ ⇢ Let's encrypt TLS certificates](#let-s-encrypt-tls-certificates)
 * [⇢ ⇢ ⇢ Monitoring](#monitoring)
 * [⇢ ⇢ ⇢ Rex automation](#rex-automation)
 * [⇢ ⇢ More HA](#more-ha)

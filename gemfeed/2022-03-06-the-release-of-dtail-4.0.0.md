@@ -20,7 +20,7 @@
 
 * [⇢ The release of DTail 4.0.0](#the-release-of-dtail-400)
 * [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ So, what's new in 4.0.0?](#so-whats-new-in-400)
+* [⇢ ⇢ So, what's new in 4.0.0?](#so-what-s-new-in-400)
 * [⇢ ⇢ ⇢ Rewritten logging](#rewritten-logging)
 * [⇢ ⇢ ⇢ Configurable terminal color codes](#configurable-terminal-color-codes)
 * [⇢ ⇢ ⇢ Serverless mode](#serverless-mode)
@@ -32,7 +32,7 @@
 * [⇢ ⇢ ⇢ Integration testing suite](#integration-testing-suite)
 * [⇢ ⇢ ⇢ Improved code](#improved-code)
 * [⇢ ⇢ ⇢ Use of memory pools](#use-of-memory-pools)
-* [⇢ ⇢ What's next](#whats-next)
+* [⇢ ⇢ What's next](#what-s-next)
 
 ## Introduction
 

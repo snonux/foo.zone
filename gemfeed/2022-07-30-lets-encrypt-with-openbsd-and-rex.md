@@ -31,9 +31,9 @@
 
 ## Table of Contents
 
-* [⇢ Let's Encrypt with OpenBSD and Rex](#lets-encrypt-with-openbsd-and-rex)
+* [⇢ Let's Encrypt with OpenBSD and Rex](#let-s-encrypt-with-openbsd-and-rex)
 * [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ ⇢ What's Let's Encrypt?](#whats-lets-encrypt)
+* [⇢ ⇢ ⇢ What's Let's Encrypt?](#what-s-let-s-encrypt)
 * [⇢ ⇢ Meet `acme-client`](#meet-acme-client)
 * [⇢ ⇢ Configuration](#configuration)
 * [⇢ ⇢ ⇢ acme-client.conf](#acme-clientconf)
