@@ -19,7 +19,7 @@ Art by Laura Brown
 
 * [⇢ Projects I currently don't have time for](#projects-i-currently-dont-have-time-for)
 * [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Hardware projects I don't have time for](#hardware-projects-i-don't-have-time-for)
+* [⇢ ⇢ Hardware projects I don't have time for](#hardware-projects-i-don-t-have-time-for)
 * [⇢ ⇢ ⇢ I use Arch, btw!](#i-use-arch-btw)
 * [⇢ ⇢ ⇢ OpenBSD home router](#openbsd-home-router)
 * [⇢ ⇢ ⇢ Pi-Hole server](#pi-hole-server)
