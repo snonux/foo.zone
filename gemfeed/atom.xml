@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-08-25T23:04:41+03:00</updated>
+    <updated>2024-08-25T23:16:42+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -61,7 +61,7 @@
 <li>⇢ ⇢ <a href='#reverse-shifting'>Reverse shifting</a></li>
 <li>⇢ ⇢ <a href='#enter-the-flow-state'>Enter the flow state</a></li>
 <li>⇢ ⇢ <a href='#repeat-every-word'>Repeat every word</a></li>
-<li>⇢ ⇢ <a href='#dont-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</a></li>
+<li>⇢ ⇢ <a href='#don-t-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</a></li>
 <li>⇢ ⇢ <a href='#warm-up'>Warm-up</a></li>
 <li>⇢ <a href='#travel-keyboard'>Travel keyboard</a></li>
 <li>⇢ <a href='#upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</a></li>
@@ -204,7 +204,7 @@
 <br />
 <span>There&#39;s a setting on <span class='inlinecode'>keybr.com</span> that makes it so that every word is always repeated, having you type every word twice in a row. I liked this feature very much, and I think it also helped to improve my practice.</span><br />
 <br />
-<h3 style='display: inline' id='dont-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
+<h3 style='display: inline' id='don-t-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
 <br />
 <span>Apparently, if you want to type fast, avoid using the same finger for two consecutive keystrokes. This means you don&#39;t always need to use the same finger for the same keys. </span><br />
 <span>However, there are no hard and fast rules. Thus, everyone develops their system for typing word combinations. An exception would be if you are typing the very same letter in a row (e.g., t in letter)—here, you are using the same finger for both ts.</span><br />
@@ -1154,7 +1154,7 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
         <summary>Art by Laura Brown</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='projects-i-currently-dont-have-time-for'>Projects I currently don&#39;t have time for</h1><br />
+                <h1 style='display: inline' id='projects-i-currently-don-t-have-time-for'>Projects I currently don&#39;t have time for</h1><br />
 <br />
 <span class='quote'>Published at 2024-05-03T16:23:03+03:00</span><br />
 <br />
@@ -1174,9 +1174,9 @@ Art by Laura Brown
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#projects-i-currently-dont-have-time-for'>Projects I currently don&#39;t have time for</a></li>
+<li><a href='#projects-i-currently-don-t-have-time-for'>Projects I currently don&#39;t have time for</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#hardware-projects-i-dont-have-time-for'>Hardware projects I don&#39;t have time for</a></li>
+<li>⇢ <a href='#hardware-projects-i-don-t-have-time-for'>Hardware projects I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#i-use-arch-btw'>I use Arch, btw!</a></li>
 <li>⇢ ⇢ <a href='#openbsd-home-router'>OpenBSD home router</a></li>
 <li>⇢ ⇢ <a href='#pi-hole-server'>Pi-Hole server</a></li>
@@ -1185,7 +1185,7 @@ Art by Laura Brown
 <li>⇢ ⇢ <a href='#retro-station'>Retro station</a></li>
 <li>⇢ ⇢ <a href='#sound-server'>Sound server</a></li>
 <li>⇢ ⇢ <a href='#project-freekat'>Project Freekat</a></li>
-<li>⇢ <a href='#programming-projects-i-dont-have-time-for'>Programming projects I don&#39;t have time for</a></li>
+<li>⇢ <a href='#programming-projects-i-don-t-have-time-for'>Programming projects I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#cli-hive'>CLI-HIVE</a></li>
 <li>⇢ ⇢ <a href='#enhanced-kiss-home-photo-albums'>Enhanced KISS home photo albums</a></li>
 <li>⇢ ⇢ <a href='#kiss-file-sync-server-with-end-to-end-encryption'>KISS file sync server with end-to-end encryption</a></li>
@@ -1194,19 +1194,19 @@ Art by Laura Brown
 <li>⇢ ⇢ <a href='#renovate-vs-sim'>Renovate VS-Sim</a></li>
 <li>⇢ ⇢ <a href='#kiss-ticketing-system'>KISS ticketing system</a></li>
 <li>⇢ ⇢ <a href='#a-domain-specific-language-dsl-for-work'>A domain-specific language (DSL) for work</a></li>
-<li>⇢ <a href='#self-hosting-projects-i-dont-have-time-for'>Self-hosting projects I don&#39;t have time for</a></li>
+<li>⇢ <a href='#self-hosting-projects-i-don-t-have-time-for'>Self-hosting projects I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#my-own-matrix-server'>My own Matrix server</a></li>
 <li>⇢ ⇢ <a href='#ampache-music-server'>Ampache music server</a></li>
 <li>⇢ ⇢ <a href='#librum-ebook-reader'>Librum eBook reader</a></li>
 <li>⇢ ⇢ <a href='#memos---note-taking-service'>Memos - Note-taking service</a></li>
 <li>⇢ ⇢ <a href='#bepasty-server'>Bepasty server</a></li>
-<li>⇢ <a href='#books-i-dont-have-time-to-read'>Books I don&#39;t have time to read</a></li>
+<li>⇢ <a href='#books-i-don-t-have-time-to-read'>Books I don&#39;t have time to read</a></li>
 <li>⇢ ⇢ <a href='#fluent-python'>Fluent Python</a></li>
 <li>⇢ ⇢ <a href='#programming-ruby'>Programming Ruby</a></li>
 <li>⇢ ⇢ <a href='#peter-f-hamilton-science-fiction-books'>Peter F. Hamilton science fiction books</a></li>
-<li>⇢ <a href='#new-websites-i-dont-have-time-for'>New websites I don&#39;t have time for</a></li>
+<li>⇢ <a href='#new-websites-i-don-t-have-time-for'>New websites I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#create-a-why-raku-rox-site'>Create a "Why Raku Rox" site</a></li>
-<li>⇢ <a href='#research-projects-i-dont-have-time-for'>Research projects I don&#39;t have time for</a></li>
+<li>⇢ <a href='#research-projects-i-don-t-have-time-for'>Research projects I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#project-secure'>Project secure</a></li>
 <li>⇢ ⇢ <a href='#cpu-utilisation-is-all-wrong'>CPU utilisation is all wrong</a></li>
 </ul><br />
@@ -1214,7 +1214,7 @@ Art by Laura Brown
 <br />
 <span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
 <br />
-<h2 style='display: inline' id='hardware-projects-i-dont-have-time-for'>Hardware projects I don&#39;t have time for</h2><br />
+<h2 style='display: inline' id='hardware-projects-i-don-t-have-time-for'>Hardware projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='i-use-arch-btw'>I use Arch, btw!</h3><br />
 <br />
@@ -1294,7 +1294,7 @@ Art by Laura Brown
 <br />
 <a class='textlink' href='./2024-02-04-from-babylon5.buetow.org-to-.cloud.html'>My personal AWS setup</a><br />
 <br />
-<h2 style='display: inline' id='programming-projects-i-dont-have-time-for'>Programming projects I don&#39;t have time for</h2><br />
+<h2 style='display: inline' id='programming-projects-i-don-t-have-time-for'>Programming projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='cli-hive'>CLI-HIVE</h3><br />
 <br />
@@ -1378,7 +1378,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2022-04-10-creative-universe.html'>Creative universe (Work pet project contests)</a><br />
 <br />
-<h2 style='display: inline' id='self-hosting-projects-i-dont-have-time-for'>Self-hosting projects I don&#39;t have time for</h2><br />
+<h2 style='display: inline' id='self-hosting-projects-i-don-t-have-time-for'>Self-hosting projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='my-own-matrix-server'>My own Matrix server</h3><br />
 <br />
@@ -1412,7 +1412,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://github.com/bepasty/bepasty-server'>https://github.com/bepasty/bepasty-server</a><br />
 <br />
-<h2 style='display: inline' id='books-i-dont-have-time-to-read'>Books I don&#39;t have time to read</h2><br />
+<h2 style='display: inline' id='books-i-don-t-have-time-to-read'>Books I don&#39;t have time to read</h2><br />
 <br />
 <h3 style='display: inline' id='fluent-python'>Fluent Python</h3><br />
 <br />
@@ -1434,7 +1434,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='gemini://paul.buetow.org/novels.gmi'>gemini://paul.buetow.org/novels.gmi</a><br />
 <br />
 <br />
-<h2 style='display: inline' id='new-websites-i-dont-have-time-for'>New websites I don&#39;t have time for</h2><br />
+<h2 style='display: inline' id='new-websites-i-don-t-have-time-for'>New websites I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='create-a-why-raku-rox-site'>Create a "Why Raku Rox" site</h3><br />
 <br />
@@ -1447,7 +1447,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I am not working on this for now, as I currently don’t even have time to program in Raku.</span><br />
 <br />
-<h2 style='display: inline' id='research-projects-i-dont-have-time-for'>Research projects I don&#39;t have time for</h2><br />
+<h2 style='display: inline' id='research-projects-i-don-t-have-time-for'>Research projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='project-secure'>Project secure</h3><br />
 <br />
@@ -1698,7 +1698,7 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <li>⇢ ⇢ <a href='#fairly-cheap-and-geo-redundant'>Fairly cheap and geo-redundant</a></li>
 <li>⇢ ⇢ <a href='#failover-time-and-split-brain'>Failover time and split-brain</a></li>
 <li>⇢ ⇢ <a href='#failover-support-for-multiple-protocols'>Failover support for multiple protocols</a></li>
-<li>⇢ ⇢ <a href='#lets-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</a></li>
+<li>⇢ ⇢ <a href='#let-s-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</a></li>
 <li>⇢ ⇢ <a href='#monitoring'>Monitoring</a></li>
 <li>⇢ ⇢ <a href='#rex-automation'>Rex automation</a></li>
 <li>⇢ <a href='#more-ha'>More HA</a></li>
@@ -1912,7 +1912,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>On DNS failover, master and standby swap roles without config changes other than the DNS entries. That&#39;s KISS (keep it simple and stupid)!</span><br />
 <br />
-<h3 style='display: inline' id='lets-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</h3><br />
+<h3 style='display: inline' id='let-s-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</h3><br />
 <br />
 <span>All my hosts use TLS certificates from Let&#39;s Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires that the host requesting a certificate from Let&#39;s Encrypt is also the host using that certificate.</span><br />
 <br />
@@ -2445,7 +2445,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ <a href='#dynamic-variables-with-local'>Dynamic variables with <span class='inlinecode'>local</span></a></li>
 <li>⇢ <a href='#if-conditionals'><span class='inlinecode'>if</span> conditionals</a></li>
 <li>⇢ <a href='#multi-line-comments'>Multi-line comments</a></li>
-<li>⇢ <a href='#dont-change-it-while-its-executed'>Don&#39;t change it while it&#39;s executed</a></li>
+<li>⇢ <a href='#don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
@@ -2792,7 +2792,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
 <br />
-<h2 style='display: inline' id='dont-change-it-while-its-executed'>Don&#39;t change it while it&#39;s executed</h2><br />
+<h2 style='display: inline' id='don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</h2><br />
 <br />
 <span>Consider this script:</span><br />
 <br />
@@ -3782,7 +3782,7 @@ DC on fire:
         <summary>I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gemtexter-210---lets-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
+                <h1 style='display: inline' id='gemtexter-210---let-s-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
 <br />
@@ -3802,7 +3802,7 @@ DC on fire:
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#gemtexter-210---lets-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a></li>
+<li><a href='#gemtexter-210---let-s-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#why-bash'>Why Bash?</a></li>
 <li>⇢ <a href='#switch-to-gpl3-license'>Switch to GPL3 license</a></li>
@@ -3943,7 +3943,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ <a href='#expand-the-empire'>Expand the empire</a></li>
 <li>⇢ <a href='#be-pragmatic-and-also-manage-your-time'>Be pragmatic and also manage your time</a></li>
 <li>⇢ ⇢ <a href='#the-quota-system'>The quota system</a></li>
-<li>⇢ ⇢ <a href='#dont-waste-time'>Don&#39;t waste time</a></li>
+<li>⇢ ⇢ <a href='#don-t-waste-time'>Don&#39;t waste time</a></li>
 <li>⇢ ⇢ <a href='#habits'>Habits</a></li>
 <li><a href='#work-life-balance'>Work-life balance</a></li>
 <li>⇢ <a href='#mental-health'>Mental health</a></li>
@@ -4069,7 +4069,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Internal motivation is more important over external motivation. Check out Daniels book drive.</li>
 <li>Multitasking: Batching is effective. E.g. emails twice daily at pre-set times..</li>
 </ul><br />
-<h3 style='display: inline' id='dont-waste-time'>Don&#39;t waste time</h3><br />
+<h3 style='display: inline' id='don-t-waste-time'>Don&#39;t waste time</h3><br />
 <br />
 <span>The biggest time waster is TV watching. The TV is programming you. It&#39;s insane that Americans watch so much TV as they work full time. Schedule one show at a time and watch it when you want to watch it. Most movies are crap anyways. The good movies will come to you as people will talk about them.</span><br />
 <br />
@@ -5358,7 +5358,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gemtexter-200---lets-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
+                <h1 style='display: inline' id='gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
 <br />
@@ -5378,7 +5378,7 @@ http://www.gnu.org/software/src-highlite -->
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#gemtexter-200---lets-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
+<li><a href='#gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
 <li>⇢ <a href='#added-hooks'>Added hooks</a></li>
@@ -6663,7 +6663,7 @@ jgs                (________\  \
         <summary>I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gemtexter-110---lets-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
+                <h1 style='display: inline' id='gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
 <br />
@@ -6682,9 +6682,9 @@ jgs                (________\  \
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#gemtexter-110---lets-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</a></li>
+<li><a href='#gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#whats-new'>What&#39;s new?</a></li>
+<li>⇢ <a href='#what-s-new'>What&#39;s new?</a></li>
 <li>⇢ ⇢ <a href='#automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</a></li>
 <li>⇢ ⇢ <a href='#backticks-now-produce-inline-code-blocks-in-the-html-output'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</a></li>
 <li>⇢ ⇢ <a href='#cache-for-atom-feed-generation'>Cache for Atom feed generation</a></li>
@@ -6702,7 +6702,7 @@ jgs                (________\  \
 <br />
 <span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
 <br />
-<h2 style='display: inline' id='whats-new'>What&#39;s new?</h2><br />
+<h2 style='display: inline' id='what-s-new'>What&#39;s new?</h2><br />
 <br />
 <h3 style='display: inline' id='automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</h3><br />
 <br />
@@ -6799,7 +6799,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='lets-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
+                <h1 style='display: inline' id='let-s-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
 <br />
 <span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
 <br />
@@ -6833,9 +6833,9 @@ http://www.gnu.org/software/src-highlite -->
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#lets-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
+<li><a href='#let-s-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ ⇢ <a href='#whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
+<li>⇢ ⇢ <a href='#what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
 <li>⇢ <a href='#meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></a></li>
 <li>⇢ <a href='#configuration'>Configuration</a></li>
 <li>⇢ ⇢ <a href='#acme-clientconf'>acme-client.conf</a></li>
@@ -6852,7 +6852,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
 <br />
-<h3 style='display: inline' id='whats-lets-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
+<h3 style='display: inline' id='what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
 <br />
@@ -8210,7 +8210,7 @@ learn () {
 <ul>
 <li><a href='#the-release-of-dtail-400'>The release of DTail 4.0.0</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#so-whats-new-in-400'>So, what&#39;s new in 4.0.0?</a></li>
+<li>⇢ <a href='#so-what-s-new-in-400'>So, what&#39;s new in 4.0.0?</a></li>
 <li>⇢ ⇢ <a href='#rewritten-logging'>Rewritten logging</a></li>
 <li>⇢ ⇢ <a href='#configurable-terminal-color-codes'>Configurable terminal color codes</a></li>
 <li>⇢ ⇢ <a href='#serverless-mode'>Serverless mode</a></li>
@@ -8222,7 +8222,7 @@ learn () {
 <li>⇢ ⇢ <a href='#integration-testing-suite'>Integration testing suite</a></li>
 <li>⇢ ⇢ <a href='#improved-code'>Improved code</a></li>
 <li>⇢ ⇢ <a href='#use-of-memory-pools'>Use of memory pools</a></li>
-<li>⇢ <a href='#whats-next'>What&#39;s next</a></li>
+<li>⇢ <a href='#what-s-next'>What&#39;s next</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
@@ -8230,7 +8230,7 @@ learn () {
 <br />
 <a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
 <br />
-<h2 style='display: inline' id='so-whats-new-in-400'>So, what&#39;s new in 4.0.0?</h2><br />
+<h2 style='display: inline' id='so-what-s-new-in-400'>So, what&#39;s new in 4.0.0?</h2><br />
 <br />
 <h3 style='display: inline' id='rewritten-logging'>Rewritten logging</h3><br />
 <br />
@@ -8487,7 +8487,7 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span>DTail makes excessive use of string builder and byte buffer objects. For performance reasons, those are now re-used from memory pools.</span><br />
 <br />
-<h2 style='display: inline' id='whats-next'>What&#39;s next</h2><br />
+<h2 style='display: inline' id='what-s-next'>What&#39;s next</h2><br />
 <br />
 <span>DTail 5 won&#39;t be released any time soon I guess, but some 4.x.y releases will follow this year fore sure. I can think of:</span><br />
 <br />
