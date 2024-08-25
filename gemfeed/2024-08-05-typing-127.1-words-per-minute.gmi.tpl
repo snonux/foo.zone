@@ -108,11 +108,11 @@ I wrote myself a small Ruby script that would randomly select a paragraph from o
 
 Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).
 
-=> ./typing-127.1-words-per-minute/all-time-stats.png
+=> ./typing-127.1-words-per-minute/all-time-stats.png All time stats
 
 My overall average speed over those 5,000 sessions was 80wpm. The average speed over the last week was over 100wpm. The green line represents the wpm average (increasing trend), the purple line represents the number of keys in the practices (not much movement there, as all keys are unlocked), and the red line represents the average typing accuracy.
 
-=> ./typing-127.1-words-per-minute/typing-speed-over-lessons.png
+=> ./typing-127.1-words-per-minute/typing-speed-over-lessons.png Typing speed over leson
 
 Around the middle, you see a break-in of the wpm average value. This was where I swapped the `p` and `;` keys, but after some retraining, I came back to the previous level and beyond.
 
