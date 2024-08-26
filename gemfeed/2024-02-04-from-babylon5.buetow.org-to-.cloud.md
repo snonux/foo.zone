@@ -8,6 +8,23 @@ So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am
 
 [![Old man yells at cloud](./from-.org-to-.cloud/old-man-yells-at-cloud.jpg "Old man yells at cloud")](./from-.org-to-.cloud/old-man-yells-at-cloud.jpg)  
 
+## Table of Contents
+
+* [⇢ From `babylon5.buetow.org` to `*.buetow.cloud`](#from-babylon5buetoworg-to-buetowcloud)
+* [⇢ ⇢ The old `*.buetow.org` way](#the-old-buetoworg-way)
+* [⇢ ⇢ I kept my `buetow.org` OpenBSD boxes alive](#i-kept-my-buetoworg-openbsd-boxes-alive)
+* [⇢ ⇢ The new `*.buetow.cloud` way](#the-new-buetowcloud-way)
+* [⇢ ⇢ The container apps](#the-container-apps)
+* [⇢ ⇢ ⇢ `flux.buetow.cloud`](#fluxbuetowcloud)
+* [⇢ ⇢ ⇢ `audiobookshelf.buetow.cloud`](#audiobookshelfbuetowcloud)
+* [⇢ ⇢ ⇢ `syncthing.buetow.cloud`](#syncthingbuetowcloud)
+* [⇢ ⇢ ⇢ `radicale.buetow.cloud`](#radicalebuetowcloud)
+* [⇢ ⇢ ⇢ `bag.buetow.cloud`](#bagbuetowcloud)
+* [⇢ ⇢ ⇢ `anki.buetow.cloud`](#ankibuetowcloud)
+* [⇢ ⇢ ⇢ `vault.buetow.cloud`](#vaultbuetowcloud)
+* [⇢ ⇢ ⇢ `bastion.buetow.cloud`](#bastionbuetowcloud)
+* [⇢ ⇢ Conclusion](#conclusion)
+
 ## The old `*.buetow.org` way
 
 Before the migration, all those services were reachable through `buetow.org`-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let's Encrypt certificates). The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fiction series). 

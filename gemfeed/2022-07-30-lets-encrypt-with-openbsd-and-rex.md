@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+
 ```
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -32,7 +34,6 @@
 ## Table of Contents
 
 * [⇢ Let's Encrypt with OpenBSD and Rex](#let-s-encrypt-with-openbsd-and-rex)
-* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ ⇢ What's Let's Encrypt?](#what-s-let-s-encrypt)
 * [⇢ ⇢ Meet `acme-client`](#meet-acme-client)
 * [⇢ ⇢ Configuration](#configuration)
@@ -45,10 +46,6 @@
 * [⇢ ⇢ ⇢ Service rexification ](#service-rexification-)
 * [⇢ ⇢ All pieces together](#all-pieces-together)
 * [⇢ ⇢ Conclusion](#conclusion)
-
-## Introduction
-
-I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
 ### What's Let's Encrypt?
 

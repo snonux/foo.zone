@@ -2,10 +2,20 @@
 
 > Published at 2024-07-05T10:59:59+03:00
 
+Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.
+
+```
+		       /\_/\
+WHOA!! 	     ( o.o )
+		       > ^ <
+		      /  -  \
+		    /        \
+		   /______\  \
+```
+
 ## Table of Contents
 
 * [⇢ Random Weird Things](#random-weird-things)
-* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ 1. `bad.horse` traceroute](#1-badhorse-traceroute)
 * [⇢ ⇢ 2. ASCII cinema](#2-ascii-cinema)
 * [⇢ ⇢ 3. Netflix's Hello World application](#3-netflix-s-hello-world-application)
@@ -17,19 +27,6 @@
 * [⇢ ⇢ 8. "I am a Teapot" HTTP response code](#8-i-am-a-teapot-http-response-code)
 * [⇢ ⇢ 9. `jq` is a functional programming language](#9-jq-is-a-functional-programming-language)
 * [⇢ ⇢ 10. Regular expression to verify email addresses](#10-regular-expression-to-verify-email-addresses)
-
-## Introduction
-
-Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.
-
-```
-		       /\_/\
-WHOA!! 	     ( o.o )
-		       > ^ <
-		      /  -  \
-		    /        \
-		   /______\  \
-```
 
 ## 1. `bad.horse` traceroute
 

@@ -2,20 +2,6 @@
 
 > Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28
 
-[![Comic source: XKCD](./perl-is-still-a-great-choice/regular_expressions.png "Comic source: XKCD")](./perl-is-still-a-great-choice/regular_expressions.png)  
-
-## Table of Contents
-
-* [⇢ Perl is still a great choice](#perl-is-still-a-great-choice)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Write-only language](#write-only-language)
-* [⇢ ⇢ Is Perl abandoned?](#is-perl-abandoned)
-* [⇢ ⇢ Why use Perl as there are better alternatives?](#why-use-perl-as-there-are-better-alternatives)
-* [⇢ ⇢ Why all the sigils? It looks like an exploding ASCII factory!!](#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory)
-* [⇢ ⇢ Where do I personally still use perl?](#where-do-i-personally-still-use-perl)
-
-## Introduction
-
 Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and `perl` the name of the interpreter or the interpreter command.
 
 Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:
@@ -28,6 +14,17 @@ So why is that? Once the de-facto standard super-glue language for the web nowad
 * Perl? Isn't it abandoned? It's still at version 5!
 * Why use Perl as there are better alternatives?
 * Why all the sigils? It looks like an exploding ASCII factory!!
+
+[![Comic source: XKCD](./perl-is-still-a-great-choice/regular_expressions.png "Comic source: XKCD")](./perl-is-still-a-great-choice/regular_expressions.png)  
+
+## Table of Contents
+
+* [⇢ Perl is still a great choice](#perl-is-still-a-great-choice)
+* [⇢ ⇢ Write-only language](#write-only-language)
+* [⇢ ⇢ Is Perl abandoned?](#is-perl-abandoned)
+* [⇢ ⇢ Why use Perl as there are better alternatives?](#why-use-perl-as-there-are-better-alternatives)
+* [⇢ ⇢ Why all the sigils? It looks like an exploding ASCII factory!!](#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory)
+* [⇢ ⇢ Where do I personally still use perl?](#where-do-i-personally-still-use-perl)
 
 ## Write-only language
 

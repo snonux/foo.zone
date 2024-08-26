@@ -16,6 +16,21 @@ These are my personal takeaways after reading "Never split the difference" by Ch
                     '''
 ```
 
+## Table of Contents
+
+* [⇢ "Never split the difference" book notes](#never-split-the-difference-book-notes)
+* [⇢ ⇢ Tactical listening, spreading empathy](#tactical-listening-spreading-empathy)
+* [⇢ ⇢ Mindset of discovery](#mindset-of-discovery)
+* [⇢ ⇢ ⇢ More tips ](#more-tips-)
+* [⇢ ⇢ "No" starts the conversation](#no-starts-the-conversation)
+* [⇢ ⇢ Win-win](#win-win)
+* [⇢ ⇢ On Deadlines](#on-deadlines)
+* [⇢ ⇢ Analyse the opponent](#analyse-the-opponent)
+* [⇢ ⇢ Use different ways of saying "no."](#use-different-ways-of-saying-no)
+* [⇢ ⇢ Calibrated question](#calibrated-question)
+* [⇢ ⇢ The black swan ](#the-black-swan-)
+* [⇢ ⇢ More](#more)
+
 ## Tactical listening, spreading empathy
 
 Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.

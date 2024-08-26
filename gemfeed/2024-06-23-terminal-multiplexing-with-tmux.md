@@ -2,6 +2,15 @@
 
 > Published at 2024-06-23T22:41:59+03:00
 
+Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
+
+* Session management
+* Window and Pane management
+* Persistent Workspace
+* Customization
+
+[https://github.com/tmux/tmux/wiki](https://github.com/tmux/tmux/wiki)  
+
 ```
          _______
         |.-----.|
@@ -17,7 +26,7 @@ jgs   `-=========-`()
 ## Table of Contents
 
 * [⇢ Terminal multiplexing with `tmux`](#terminal-multiplexing-with-tmux)
-* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Before continuing...](#before-continuing)
 * [⇢ ⇢ Shell aliases](#shell-aliases)
 * [⇢ ⇢ The `tn` alias - Creating a new session](#the-tn-alias---creating-a-new-session)
 * [⇢ ⇢ ⇢ Cleaning up default sessions automatically](#cleaning-up-default-sessions-automatically)
@@ -34,16 +43,7 @@ jgs   `-=========-`()
 * [⇢ ⇢ Copy and paste workflow](#copy-and-paste-workflow)
 * [⇢ ⇢ Tmux configurations](#tmux-configurations)
 
-## Introduction
-
-Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
-
-* Session management
-* Window and Pane management
-* Persistent Workspace
-* Customization
-
-[https://github.com/tmux/tmux/wiki](https://github.com/tmux/tmux/wiki)  
+## Before continuing...
 
 Before continuing to read this post, I encourage you to get familiar with Tmux first (unless you already know the basics). You can go through the official getting started guide:
 

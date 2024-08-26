@@ -6,6 +6,16 @@ These notes capture key strategies from "Influence Without Authority" by Allan R
 
 These are my personal notes, but maybe you will find them usefull too.
 
+## Table of Contents
+
+* [⇢ "Influence without Authority" book notes](#influence-without-authority-book-notes)
+* [⇢ ⇢ Building Relationships and Communication](#building-relationships-and-communication)
+* [⇢ ⇢ Managing Emotions and Conflicts](#managing-emotions-and-conflicts)
+* [⇢ ⇢ Strategic Influence and Reciprocity](#strategic-influence-and-reciprocity)
+* [⇢ ⇢ Working with Management](#working-with-management)
+* [⇢ ⇢ Adapting to Workplace Culture](#adapting-to-workplace-culture)
+* [⇢ ⇢ Diplomacy and Discretion](#diplomacy-and-discretion)
+
 ## Building Relationships and Communication
 
 * Make relationships before they are needed. A good reputation acts as a reserve for difficult times.

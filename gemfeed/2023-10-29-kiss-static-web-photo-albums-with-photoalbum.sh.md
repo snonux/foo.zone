@@ -2,6 +2,12 @@
 
 > Published at 2023-10-29T22:25:04+02:00
 
+Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
+
+I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
+
+I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+
 ```
          ___        .---------.._
   ______!fsc!_....-' .g8888888p. '-------....._
@@ -22,7 +28,6 @@
 ## Table of Contents
 
 * [⇢ KISS static web photo albums with `photoalbum.sh`](#kiss-static-web-photo-albums-with-photoalbumsh)
-* [⇢ ⇢ Motivation](#motivation)
 * [⇢ ⇢ Introducing `photoalbum.sh`](#introducing-photoalbumsh)
 * [⇢ ⇢ Installation](#installation)
 * [⇢ ⇢ Setting it up](#setting-it-up)
@@ -30,14 +35,6 @@
 * [⇢ ⇢ Cleaning it up](#cleaning-it-up)
 * [⇢ ⇢ HTML templates](#html-templates)
 * [⇢ ⇢ Conclusion](#conclusion)
-
-## Motivation
-
-Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
-
-I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
-
-I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
 
 ## Introducing `photoalbum.sh`
 

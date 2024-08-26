@@ -2,6 +2,16 @@
 
 > Published at 2018-06-01T14:50:29+01:00; Updated at 2021-05-08
 
+This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. 
+
+[https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot](https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot)  
+
+I havn't worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work caused by disk I/O.
+
+I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
+
+Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That's because the name has changed after taking those.
+
 ```
        .---.
       /     \
@@ -13,17 +23,21 @@
 jgs\__/'---'\__/
 ```
 
-## Foreword
+## Table of Contents
 
-This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. 
-
-[https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot](https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot)  
-
-I havn't worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work caused by disk I/O.
-
-I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn't have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.
-
-Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That's because the name has changed after taking those.
+* [⇢ Realistic load testing with I/O Riot for Linux](#realistic-load-testing-with-io-riot-for-linux)
+* [⇢ The article](#the-article)
+* [⇢ ⇢ Background: Existing Techniques](#background-existing-techniques)
+* [⇢ ⇢ Benchmarking the Email Cloud at Mimecast](#benchmarking-the-email-cloud-at-mimecast)
+* [⇢ ⇢ Using I/O Riot](#using-io-riot)
+* [⇢ ⇢ ⇢ Installation](#installation)
+* [⇢ ⇢ ⇢ Recording of I/O events](#recording-of-io-events)
+* [⇢ ⇢ ⇢ Test preparation](#test-preparation)
+* [⇢ ⇢ ⇢ Test Initialization](#test-initialization)
+* [⇢ ⇢ ⇢ Replay](#replay)
+* [⇢ ⇢ I/O Riot is Open Source](#io-riot-is-open-source)
+* [⇢ ⇢ Systemtap](#systemtap)
+* [⇢ ⇢ More refereces](#more-refereces)
 
 # The article
 

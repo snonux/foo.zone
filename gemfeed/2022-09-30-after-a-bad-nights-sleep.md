@@ -2,6 +2,8 @@
 
 > Published at 2022-09-30T09:53:23+03:00; Updated at 2022-10-12
 
+Everyone has it once in a while: A bad night's sleep. Here I attempt to list valuable tips on how to deal with it.
+
 ```
                z
                 z
@@ -16,7 +18,24 @@ jgs                (________\  \
                              '-'
 ```
 
-Everyone has it once in a while: A bad night's sleep. Here I attempt to list valuable tips on how to deal with it.
+## Table of Contents
+
+* [⇢ After a bad night's sleep](#after-a-bad-night-s-sleep)
+* [⇢ ⇢ Don't take the day off.](#don-t-take-the-day-off)
+* [⇢ ⇢ Start work early](#start-work-early)
+* [⇢ ⇢ Sweat the small stuff](#sweat-the-small-stuff)
+* [⇢ ⇢ Enter the flow state](#enter-the-flow-state)
+* [⇢ ⇢ Reschedule meetings](#reschedule-meetings)
+* [⇢ ⇢ Invent](#invent)
+* [⇢ ⇢ Fast](#fast)
+* [⇢ ⇢ Stretch](#stretch)
+* [⇢ ⇢ Walk](#walk)
+* [⇢ ⇢ Red Bull](#red-bull)
+* [⇢ ⇢ Power nap](#power-nap)
+* [⇢ ⇢ Don't take anything personally.](#don-t-take-anything-personally)
+* [⇢ ⇢ Meditate](#meditate)
+* [⇢ ⇢ Write things down](#write-things-down)
+* [⇢ ⇢ Social media](#social-media)
 
 ## Don't take the day off.
 

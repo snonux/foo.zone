@@ -2,6 +2,12 @@
 
 > Published at 2023-12-10T11:35:54+02:00
 
+This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
+
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2023-12-10 Bash Golf Part 3 (You are currently reading this)](./2023-12-10-bash-golf-part-3.md)  
+
 ```
 
     '\       '\        '\                   .  .          |>18>>
@@ -17,7 +23,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ## Table of Contents
 
 * [⇢ Bash Golf Part 3](#bash-golf-part-3)
-* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ `FUNCNAME`](#funcname)
 * [⇢ ⇢ `:(){ :|:& };:`](#--)
 * [⇢ ⇢ Inner functions](#inner-functions)
@@ -26,14 +31,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * [⇢ ⇢ `if` conditionals](#if-conditionals)
 * [⇢ ⇢ Multi-line comments](#multi-line-comments)
 * [⇢ ⇢ Don't change it while it's executed](#don-t-change-it-while-it-s-executed)
-
-## Introduction
-
-This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
-
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2023-12-10 Bash Golf Part 3 (You are currently reading this)](./2023-12-10-bash-golf-part-3.md)  
 
 ## `FUNCNAME`
 

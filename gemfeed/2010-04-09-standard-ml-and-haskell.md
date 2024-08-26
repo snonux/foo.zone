@@ -8,6 +8,16 @@ As you will see, SML and Haskell are very similar (at least when it comes to the
 
 Haskell is also a "pure functional" programming language, whereas SML also makes explicit use of imperative concepts. I am by far not a specialist in either of these languages, but here are a few functions implemented in both SML and Haskell:
 
+## Table of Contents
+
+* [⇢ Standard ML and Haskell](#standard-ml-and-haskell)
+* [⇢ ⇢ Defining a multi-data type](#defining-a-multi-data-type)
+* [⇢ ⇢ Processing a multi](#processing-a-multi)
+* [⇢ ⇢ Simplify function](#simplify-function)
+* [⇢ ⇢ Delete all](#delete-all)
+* [⇢ ⇢ Delete one](#delete-one)
+* [⇢ ⇢ Higher-order functions](#higher-order-functions)
+
 ## Defining a multi-data type
 
 Standard ML:

@@ -2,24 +2,6 @@
 
 > Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26
 
-[![DTail logo image](./dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./dtail-the-distributed-log-tail-program/title.png)  
-
-## Table of Contents
-
-* [⇢ DTail - The distributed log tail program](#dtail---the-distributed-log-tail-program)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ A Mimecast Pet Project](#a-mimecast-pet-project)
-* [⇢ ⇢ Differentiating from log management systems](#differentiating-from-log-management-systems)
-* [⇢ ⇢ Combining simplicity, security and efficiency](#combining-simplicity-security-and-efficiency)
-* [⇢ ⇢ The DTail family of commands](#the-dtail-family-of-commands)
-* [⇢ ⇢ Usage example](#usage-example)
-* [⇢ ⇢ Fitting it in](#fitting-it-in)
-* [⇢ ⇢ Advanced features](#advanced-features)
-* [⇢ ⇢ For the future](#for-the-future)
-* [⇢ ⇢ Open Source](#open-source)
-
-## Introduction
-
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 [Original Mimecast Engineering Blog post at Medium](https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb)  
@@ -31,6 +13,21 @@ At Mimecast, we run over 10 thousand server boxes. Most of them host multiple mi
 Every engineer familiar with UNIX or a UNIX-like platform (e.g., Linux) is well aware of tail, a command-line program for displaying a text file content on the terminal which is also especially useful for following application or system log files with tail -f logfile.
 
 Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis & statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.
+
+[![DTail logo image](./dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./dtail-the-distributed-log-tail-program/title.png)  
+
+## Table of Contents
+
+* [⇢ DTail - The distributed log tail program](#dtail---the-distributed-log-tail-program)
+* [⇢ ⇢ A Mimecast Pet Project](#a-mimecast-pet-project)
+* [⇢ ⇢ Differentiating from log management systems](#differentiating-from-log-management-systems)
+* [⇢ ⇢ Combining simplicity, security and efficiency](#combining-simplicity-security-and-efficiency)
+* [⇢ ⇢ The DTail family of commands](#the-dtail-family-of-commands)
+* [⇢ ⇢ Usage example](#usage-example)
+* [⇢ ⇢ Fitting it in](#fitting-it-in)
+* [⇢ ⇢ Advanced features](#advanced-features)
+* [⇢ ⇢ For the future](#for-the-future)
+* [⇢ ⇢ Open Source](#open-source)
 
 ## A Mimecast Pet Project
 

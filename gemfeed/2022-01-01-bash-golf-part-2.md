@@ -2,6 +2,12 @@
 
 > Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05
 
+This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
+
 ```
 
     '\       '\                   .  .                |>18>>
@@ -17,7 +23,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ## Table of Contents
 
 * [⇢ Bash Golf Part 2](#bash-golf-part-2)
-* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ Redirection](#redirection)
 * [⇢ ⇢ HERE](#here)
 * [⇢ ⇢ RANDOM](#random)
@@ -25,14 +30,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * [⇢ ⇢ ⇢ -x](#-x)
 * [⇢ ⇢ ⇢ -e](#-e)
 * [⇢ ⇢ ⇢ pipefail](#pipefail)
-
-## Introduction
-
-This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
-
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
-[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 
 ## Redirection
 

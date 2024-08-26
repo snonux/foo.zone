@@ -14,6 +14,20 @@ Superficially, Perl seems to have many similarities to Ruby (but, of course, it 
 
 Yukihiro Matsumoto, the inventor of Ruby, said: "I wanted a scripting language that was more powerful than Perl and more object-oriented than Python" - So I can see where some of the similarities come from. I personally don't believe that Ruby is more powerful than Perl, though, especially when you take CPAN and/or Perl 6 (now known as Raku) into the equation. Well, it all depends on what you mean with "more powerful". But I want to stay pragmatic and use what's already used at my workplace.
 
+## Table of Contents
+
+* [⇢ The Well-Grounded Rubyist](#the-well-grounded-rubyist)
+* [⇢ ⇢ My Ruby problem domain](#my-ruby-problem-domain)
+* [⇢ ⇢ Being stuck in Ruby-mediocrity](#being-stuck-in-ruby-mediocrity)
+* [⇢ ⇢ O'Reilly Safari Books Online](#o-reilly-safari-books-online)
+* [⇢ ⇢ Key takeaways](#key-takeaways)
+* [⇢ ⇢ ⇢ "Everything" is an object](#everything-is-an-object)
+* [⇢ ⇢ ⇢ "Normal" objects and singleton objects](#normal-objects-and-singleton-objects)
+* [⇢ ⇢ ⇢ Domain specific languages](#domain-specific-languages)
+* [⇢ ⇢ ⇢ Ruby is "self-ish"](#ruby-is-self-ish)
+* [⇢ ⇢ ⇢ Functional programming](#functional-programming)
+* [⇢ ⇢ Perl](#perl)
+
 ## My Ruby problem domain
 
 I wrote a lot of Ruby code over the last couple of years. There were many small to medium-sized tools and other projects such as Nagios monitoring checks, even an internal monitoring & reporting site based on Sinatra. All Ruby scripts I wrote do their work well; I didn't encounter any significant problems using Ruby for any of these tasks. Of course, there's nothing that couldn't be written in Perl (or Python), though, after all, these languages are all Turing-complete and all these languages also come with a huge set of 3rd party libraries :-).

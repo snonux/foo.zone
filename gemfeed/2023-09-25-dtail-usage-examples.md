@@ -2,22 +2,6 @@
 
 > Published at 2023-09-25T14:57:42+03:00
 
-## Table of Contents
-
-* [⇢ DTail usage examples](#dtail-usage-examples)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Following logs](#following-logs)
-* [⇢ ⇢ Aggregating logs](#aggregating-logs)
-* [⇢ ⇢ How to use `dcat`](#how-to-use-dcat)
-* [⇢ ⇢ How to use `dgrep`](#how-to-use-dgrep)
-* [⇢ ⇢ How to use `dmap`](#how-to-use-dmap)
-* [⇢ ⇢ How to use the DTail serverless mode](#how-to-use-the-dtail-serverless-mode)
-* [⇢ ⇢ ⇢ Serverless map-reduce query](#serverless-map-reduce-query)
-* [⇢ ⇢ ⇢ Aggregating CSV files](#aggregating-csv-files)
-* [⇢ ⇢ ⇢ Other serverless commands](#other-serverless-commands)
-
-## Introduction
-
 Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They're from the DTail documentation, but not all readers of my blog may be aware of those!
 
 DTail is a distributed DevOps tool for tailing, grepping, catting logs and other text files on many remote machines at once which I programmed in Go.
@@ -37,6 +21,22 @@ DTail is a distributed DevOps tool for tailing, grepping, catting logs and other
                         |   Let's tail those logs!   |
                          |                           |
 ```
+
+## Table of Contents
+
+* [⇢ DTail usage examples](#dtail-usage-examples)
+* [⇢ ⇢ Commands](#commands)
+* [⇢ ⇢ Following logs](#following-logs)
+* [⇢ ⇢ Aggregating logs](#aggregating-logs)
+* [⇢ ⇢ How to use `dcat`](#how-to-use-dcat)
+* [⇢ ⇢ How to use `dgrep`](#how-to-use-dgrep)
+* [⇢ ⇢ How to use `dmap`](#how-to-use-dmap)
+* [⇢ ⇢ How to use the DTail serverless mode](#how-to-use-the-dtail-serverless-mode)
+* [⇢ ⇢ ⇢ Serverless map-reduce query](#serverless-map-reduce-query)
+* [⇢ ⇢ ⇢ Aggregating CSV files](#aggregating-csv-files)
+* [⇢ ⇢ ⇢ Other serverless commands](#other-serverless-commands)
+
+## Commands
 
 DTail consists out of a server and several client binaries. In this post, I am showcasing their use!
 

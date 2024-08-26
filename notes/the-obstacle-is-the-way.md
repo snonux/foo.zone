@@ -2,27 +2,7 @@
 
 > Published at 2023-05-06T17:23:16+03:00
 
-## Table of Contents
-
-* [⇢ "The Obstacle is the Way" book notes](#the-obstacle-is-the-way-book-notes)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Reframe your perspective](#reframe-your-perspective)
-* [⇢ ⇢ Embrace rationality](#embrace-rationality)
-* [⇢ ⇢ Control your response](#control-your-response)
-* [⇢ ⇢ Practice emotional and physical resilience](#practice-emotional-and-physical-resilience)
-* [⇢ ⇢ Persistence and patience](#persistence-and-patience)
-* [⇢ ⇢ Embrace failure](#embrace-failure)
-* [⇢ ⇢ Be adaptable](#be-adaptable)
-* [⇢ ⇢ Embrace non-action](#embrace-non-action)
-* [⇢ ⇢ Leverage crisis](#leverage-crisis)
-* [⇢ ⇢ Build your inner citadel](#build-your-inner-citadel)
-* [⇢ ⇢ Love everything that happens](#love-everything-that-happens)
-* [⇢ ⇢ Conclusion](#conclusion)
-
-## Introduction
-
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
-
 
 ```
          ,..........   ..........,
@@ -35,6 +15,22 @@ These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan 
  '''''''''''''''''';''';''''''''''''''''''
                     '''
 ```
+
+## Table of Contents
+
+* [⇢ "The Obstacle is the Way" book notes](#the-obstacle-is-the-way-book-notes)
+* [⇢ ⇢ Reframe your perspective](#reframe-your-perspective)
+* [⇢ ⇢ Embrace rationality](#embrace-rationality)
+* [⇢ ⇢ Control your response](#control-your-response)
+* [⇢ ⇢ Practice emotional and physical resilience](#practice-emotional-and-physical-resilience)
+* [⇢ ⇢ Persistence and patience](#persistence-and-patience)
+* [⇢ ⇢ Embrace failure](#embrace-failure)
+* [⇢ ⇢ Be adaptable](#be-adaptable)
+* [⇢ ⇢ Embrace non-action](#embrace-non-action)
+* [⇢ ⇢ Leverage crisis](#leverage-crisis)
+* [⇢ ⇢ Build your inner citadel](#build-your-inner-citadel)
+* [⇢ ⇢ Love everything that happens](#love-everything-that-happens)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 "The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.
 

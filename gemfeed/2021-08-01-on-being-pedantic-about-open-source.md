@@ -2,6 +2,8 @@
 
 > Published at 2021-08-01T10:37:58+03:00; Updated at 2023-01-23
 
+I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. 
+
 ```
                                            __
                                _____....--' .'
@@ -14,7 +16,23 @@
 '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' LGB - Art by lgbearrd
 ```                     
 
-I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. 
+## Table of Contents
+
+* [⇢ On being Pedantic about Open-Source](#on-being-pedantic-about-open-source)
+* [⇢ ⇢ The costs of open-source](#the-costs-of-open-source)
+* [⇢ ⇢ Commercial providers](#commercial-providers)
+* [⇢ ⇢ Earning on open-source](#earning-on-open-source)
+* [⇢ ⇢ Open-source organizations and individual contributors](#open-source-organizations-and-individual-contributors)
+* [⇢ ⇢ Lesser known projects and the charm of clunkiness](#lesser-known-projects-and-the-charm-of-clunkiness)
+* [⇢ ⇢ The security aspect](#the-security-aspect)
+* [⇢ ⇢ Always watch out for open-source alternatives](#always-watch-out-for-open-source-alternatives)
+* [⇢ ⇢ What about mobile?](#what-about-mobile)
+* [⇢ ⇢ Know the alternatives](#know-the-alternatives)
+* [⇢ ⇢ You can't control it all](#you-can-t-control-it-all)
+* [⇢ ⇢ The middle way](#the-middle-way)
+* [⇢ ⇢ The downside of being a nobody](#the-downside-of-being-a-nobody)
+* [⇢ ⇢ Mobile open-source OSes are still evolving](#mobile-open-source-oses-are-still-evolving)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 ## The costs of open-source
 
