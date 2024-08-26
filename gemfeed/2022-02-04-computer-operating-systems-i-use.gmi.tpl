@@ -23,30 +23,7 @@
          `--{__________)        \/   "Berkeley Unix Daemon"
 ```
 
-## Table of Contents
-
-* ⇢ Computer operating systems I use(d)
-* ⇢ ⇢ Introduction
-* ⇢ ⇢ Fedora Linux
-* ⇢ ⇢ EndeavourOS
-* ⇢ ⇢ FreeBSD
-* ⇢ ⇢ CentOS 7
-* ⇢ ⇢ OpenBSD
-* ⇢ ⇢ macOS (proprietary)
-* ⇢ ⇢ LineageOS (mobile)
-* ⇢ ⇢ Samsung's Stock Android (mobile proprietary)
-* ⇢ ⇢ iOS (mobile proprietary)
-* ⇢ ⇢ Other OSes
-* ⇢ ⇢ ⇢ InfinyTime (smartwatch)
-* ⇢ ⇢ ⇢ motionEyeOS
-* ⇢ ⇢ ⇢ Kobo OS (proprietary)
-* ⇢ ⇢ ⇢ Android TV (proprietary)
-* ⇢ ⇢ Other OSes..
-* ⇢ ⇢ ⇢ NetBSD
-* ⇢ ⇢ ⇢ Other OSes in use...
-* ⇢ ⇢ ⇢ Other OSes not used any more...
-* ⇢ ⇢ ⇢ Other OSes I only had a glance at...
-* ⇢ ⇢ ⇢ Other OSes which seem interesting...
+<< template::inline::toc
 
 ## Introduction
 
