@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+
 ```
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -30,10 +32,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
 ### What's Let's Encrypt?
 

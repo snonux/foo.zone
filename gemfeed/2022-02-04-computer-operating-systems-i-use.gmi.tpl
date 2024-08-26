@@ -2,6 +2,8 @@
 
 > Published at 2022-02-04T09:58:22+00:00; Updated at 2022-02-18
 
+This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
+
 ```
               /(        )`
               \ \___   / |
@@ -24,10 +26,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
 
 ## Fedora Linux
 

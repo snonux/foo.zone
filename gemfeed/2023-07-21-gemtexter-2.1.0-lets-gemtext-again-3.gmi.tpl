@@ -2,6 +2,10 @@
 
 > Published at 2023-07-21T10:19:31+03:00
 
+I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.
+
+=> https://codeberg.org/snonux/gemtexter
+
 ```
 -=[ typewriters ]=-  1/98
                                         .-------.
@@ -16,12 +20,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-I proudly announce that I've released Gemtexter version `2.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.
-
-=> https://codeberg.org/snonux/gemtexter
 
 ## Why Bash?
 

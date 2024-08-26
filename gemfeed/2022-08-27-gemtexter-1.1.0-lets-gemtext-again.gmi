@@ -2,6 +2,12 @@
 
 > Published at 2022-08-27T18:25:57+01:00
 
+I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
+
+=> https://codeberg.org/snonux/gemtexter
+
+It has been around a year since I released the first version `1.0.0`. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.
+
 ```
 -=[ typewriter ]=-  1/98
 
@@ -17,7 +23,6 @@
 ## Table of Contents
 
 * ⇢ Gemtexter 1.1.0 - Let's Gemtext again
-* ⇢ ⇢ Introduction
 * ⇢ ⇢ What's new?
 * ⇢ ⇢ ⇢ Automatic check for GNU version requirements
 * ⇢ ⇢ ⇢ Backticks now produce `inline code blocks` in the HTML output
@@ -27,14 +32,6 @@
 * ⇢ ⇢ ⇢ Addition of `htmlextras` and web font support
 * ⇢ ⇢ ⇢ Sub-section support
 * ⇢ ⇢ ⇢ More
-
-## Introduction
-
-I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
-
-=> https://codeberg.org/snonux/gemtexter
-
-It has been around a year since I released the first version `1.0.0`. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.
 
 ## What's new?
 

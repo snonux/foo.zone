@@ -2,12 +2,7 @@
 
 > Published at 2023-05-06T17:23:16+03:00
 
-<< template::inline::toc
-
-## Introduction
-
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
-
 
 ```
          ,..........   ..........,
@@ -20,6 +15,8 @@ These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan 
  '''''''''''''''''';''';''''''''''''''''''
                     '''
 ```
+
+<< template::inline::toc
 
 "The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.
 

@@ -2,6 +2,8 @@
 
 > Published at 2021-08-01T10:37:58+03:00; Updated at 2023-01-23
 
+I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. 
+
 ```
                                            __
                                _____....--' .'
@@ -14,7 +16,23 @@
 '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' LGB - Art by lgbearrd
 ```                     
 
-I believe that it is essential to always have free and open-source alternatives to any kind of closed-source proprietary software available to choose from. But there are a couple of points you need to take into consideration. 
+## Table of Contents
+
+* ⇢ On being Pedantic about Open-Source
+* ⇢ ⇢ The costs of open-source
+* ⇢ ⇢ Commercial providers
+* ⇢ ⇢ Earning on open-source
+* ⇢ ⇢ Open-source organizations and individual contributors
+* ⇢ ⇢ Lesser known projects and the charm of clunkiness
+* ⇢ ⇢ The security aspect
+* ⇢ ⇢ Always watch out for open-source alternatives
+* ⇢ ⇢ What about mobile?
+* ⇢ ⇢ Know the alternatives
+* ⇢ ⇢ You can't control it all
+* ⇢ ⇢ The middle way
+* ⇢ ⇢ The downside of being a nobody
+* ⇢ ⇢ Mobile open-source OSes are still evolving
+* ⇢ ⇢ Conclusion
 
 ## The costs of open-source
 

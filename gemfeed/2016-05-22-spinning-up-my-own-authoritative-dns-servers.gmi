@@ -2,11 +2,19 @@
 
 > Published at 2016-05-22T18:59:01+01:00
 
-## Background
-
 Finally, I had time to deploy my authoritative DNS servers (master and slave) for my domains "buetow.org" and "buetow.zone". My domain name provider is Schlund Technologies. They allow their customers to edit the DNS records (BIND files) manually. And they also allow you to set your authoritative DNS servers for your domains. From now, I am making use of that option.
 
 => http://www.schlundtech.de Schlund Technologies
+
+## Table of Contents
+
+* ⇢ Spinning up my own authoritative DNS servers
+* ⇢ ⇢ All FreeBSD Jails
+* ⇢ ⇢ PF firewall
+* ⇢ ⇢ Puppet managed BIND zone files
+* ⇢ ⇢ The result
+* ⇢ ⇢ Monitoring
+* ⇢ ⇢ DNS update workflow
 
 ## All FreeBSD Jails
 

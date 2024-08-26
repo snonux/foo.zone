@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-08-26T22:12:05+03:00</updated>
+    <updated>2024-08-26T23:06:58+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -22,6 +22,15 @@
 <br />
 <span class='quote'>Published at 2024-08-05T17:39:30+03:00</span><br />
 <br />
+<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
+<br />
+<ul>
+<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
+<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
+<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
+</ul><br />
+<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
+<br />
 <pre>
 ,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
 |1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | &#39; | &lt;-    |
@@ -41,7 +50,6 @@
 <br />
 <ul>
 <li><a href='#typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#kinesis-review'>Kinesis review</a></li>
 <li>⇢ ⇢ <a href='#top-build-quality'>Top build quality</a></li>
 <li>⇢ ⇢ <a href='#bluetooth-connectivity'>Bluetooth connectivity</a></li>
@@ -67,17 +75,6 @@
 <li>⇢ <a href='#upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
-<br />
-<ul>
-<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
-<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
-<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
-</ul><br />
-<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
-<br />
 <h2 style='display: inline' id='kinesis-review'>Kinesis review</h2><br />
 <br />
 <span>For an in-depth review, have a look at this great article:</span><br />
@@ -271,16 +268,6 @@
 <br />
 <span class='quote'>Published at 2024-07-07T12:46:55+03:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#the-stoic-challenge-book-notes'>"The Stoic Challenge" book notes</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#negative-visualization'>Negative visualization</a></li>
-<li>⇢ <a href='#oh-nice-trick-you-stoic-god--'>Oh, nice trick, you stoic "god"! ;-)</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher&#39;s Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. </span><br />
 <br />
 <pre>
@@ -294,6 +281,16 @@
  &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
                     &#39;&#39;&#39;
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#the-stoic-challenge-book-notes'>"The Stoic Challenge" book notes</a></li>
+<li>⇢ <a href='#got-sets-you-up-for-a-challenge'>Got sets you up for a challenge</a></li>
+<li>⇢ <a href='#negative-visualization'>Negative visualization</a></li>
+<li>⇢ <a href='#oh-nice-trick-you-stoic-god--'>Oh, nice trick, you stoic "god"! ;-)</a></li>
+</ul><br />
+<h2 style='display: inline' id='got-sets-you-up-for-a-challenge'>Got sets you up for a challenge</h2><br />
 <br />
 <span>Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.</span><br />
 <br />
@@ -358,11 +355,21 @@
 <br />
 <span class='quote'>Published at 2024-07-05T10:59:59+03:00</span><br />
 <br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.</span><br />
+<br />
+<pre>
+		       /\_/\
+WHOA!! 	     ( o.o )
+		       &gt; ^ &lt;
+		      /  -  \
+		    /        \
+		   /______\  \
+</pre>
+<br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
 <li><a href='#random-weird-things'>Random Weird Things</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#1-badhorse-traceroute'>1. <span class='inlinecode'>bad.horse</span> traceroute</a></li>
 <li>⇢ <a href='#2-ascii-cinema'>2. ASCII cinema</a></li>
 <li>⇢ <a href='#3-netflix-s-hello-world-application'>3. Netflix&#39;s Hello World application</a></li>
@@ -375,19 +382,6 @@
 <li>⇢ <a href='#9-jq-is-a-functional-programming-language'>9. <span class='inlinecode'>jq</span> is a functional programming language</a></li>
 <li>⇢ <a href='#10-regular-expression-to-verify-email-addresses'>10. Regular expression to verify email addresses</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.</span><br />
-<br />
-<pre>
-		       /\_/\
-WHOA!! 	     ( o.o )
-		       &gt; ^ &lt;
-		      /  -  \
-		    /        \
-		   /______\  \
-</pre>
-<br />
 <h2 style='display: inline' id='1-badhorse-traceroute'>1. <span class='inlinecode'>bad.horse</span> traceroute</h2><br />
 <br />
 <span>Run traceroute to get the poem (or song).</span><br />
@@ -740,6 +734,16 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
 <br />
 <span class='quote'>Published at 2024-06-23T22:41:59+03:00</span><br />
 <br />
+<span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
+<br />
+<ul>
+<li>Session management</li>
+<li>Window and Pane management</li>
+<li>Persistent Workspace</li>
+<li>Customization</li>
+</ul><br />
+<a class='textlink' href='https://github.com/tmux/tmux/wiki'>https://github.com/tmux/tmux/wiki</a><br />
+<br />
 <pre>
          _______
         |.-----.|
@@ -756,7 +760,7 @@ jgs   `-=========-`()
 <br />
 <ul>
 <li><a href='#terminal-multiplexing-with-tmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#before-continuing'>Before continuing...</a></li>
 <li>⇢ <a href='#shell-aliases'>Shell aliases</a></li>
 <li>⇢ <a href='#the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</a></li>
 <li>⇢ ⇢ <a href='#cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</a></li>
@@ -773,17 +777,7 @@ jgs   `-=========-`()
 <li>⇢ <a href='#copy-and-paste-workflow'>Copy and paste workflow</a></li>
 <li>⇢ <a href='#tmux-configurations'>Tmux configurations</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
-<br />
-<ul>
-<li>Session management</li>
-<li>Window and Pane management</li>
-<li>Persistent Workspace</li>
-<li>Customization</li>
-</ul><br />
-<a class='textlink' href='https://github.com/tmux/tmux/wiki'>https://github.com/tmux/tmux/wiki</a><br />
+<h2 style='display: inline' id='before-continuing'>Before continuing...</h2><br />
 <br />
 <span>Before continuing to read this post, I encourage you to get familiar with Tmux first (unless you already know the basics). You can go through the official getting started guide:</span><br />
 <br />
@@ -1170,12 +1164,14 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Art by Laura Brown</summary>
+        <summary>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to 'get rid of them' from my notes folder, I decided to simply put them in this blog post so that those ideas don't get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='projects-i-currently-don-t-have-time-for'>Projects I currently don&#39;t have time for</h1><br />
 <br />
 <span class='quote'>Published at 2024-05-03T16:23:03+03:00</span><br />
+<br />
+<span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
 <br />
 <pre>
 Art by Laura Brown
@@ -1194,7 +1190,6 @@ Art by Laura Brown
 <br />
 <ul>
 <li><a href='#projects-i-currently-don-t-have-time-for'>Projects I currently don&#39;t have time for</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#hardware-projects-i-don-t-have-time-for'>Hardware projects I don&#39;t have time for</a></li>
 <li>⇢ ⇢ <a href='#i-use-arch-btw'>I use Arch, btw!</a></li>
 <li>⇢ ⇢ <a href='#openbsd-home-router'>OpenBSD home router</a></li>
@@ -1229,10 +1224,6 @@ Art by Laura Brown
 <li>⇢ ⇢ <a href='#project-secure'>Project secure</a></li>
 <li>⇢ ⇢ <a href='#cpu-utilisation-is-all-wrong'>CPU utilisation is all wrong</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don&#39;t get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.</span><br />
-<br />
 <h2 style='display: inline' id='hardware-projects-i-don-t-have-time-for'>Hardware projects I don&#39;t have time for</h2><br />
 <br />
 <h3 style='display: inline' id='i-use-arch-btw'>I use Arch, btw!</h3><br />
@@ -1510,19 +1501,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2024-04-27T14:18:51+03:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#slow-productivity-book-notes'>"Slow Productivity" book notes</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#pseudo-productivity-and-shallow-work'>Pseudo-productivity and Shallow work</a></li>
-<li>⇢ <a href='#accomplishments-without-burnout'>Accomplishments without burnout</a></li>
-<li>⇢ <a href='#do-fewer-things'>Do fewer things</a></li>
-<li>⇢ <a href='#work-at-a-natural-pace'>Work at a natural pace</a></li>
-<li>⇢ <a href='#obsess-over-quality-'>Obsess over quality </a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.</span><br />
 <br />
 <span>The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.</span><br />
@@ -1540,6 +1518,19 @@ http://www.gnu.org/software/src-highlite -->
  &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
                     &#39;&#39;&#39;
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#slow-productivity-book-notes'>"Slow Productivity" book notes</a></li>
+<li>⇢ <a href='#it-s-not-slow-productivity'>It&#39;s not "slow productivity"</a></li>
+<li>⇢ <a href='#pseudo-productivity-and-shallow-work'>Pseudo-productivity and Shallow work</a></li>
+<li>⇢ <a href='#accomplishments-without-burnout'>Accomplishments without burnout</a></li>
+<li>⇢ <a href='#do-fewer-things'>Do fewer things</a></li>
+<li>⇢ <a href='#work-at-a-natural-pace'>Work at a natural pace</a></li>
+<li>⇢ <a href='#obsess-over-quality-'>Obsess over quality </a></li>
+</ul><br />
+<h2 style='display: inline' id='it-s-not-slow-productivity'>It&#39;s not "slow productivity"</h2><br />
 <br />
 <span>"Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.</span><br />
 <br />
@@ -1674,12 +1665,20 @@ http://www.gnu.org/software/src-highlite -->
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Art by Michael J. Penick (mod. by Paul B.)</summary>
+        <summary>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
+<br />
+<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
+<br />
+<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
+<br />
+<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
+<br />
+<span class='quote'>PS: ASCII-art below reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
 <br />
 <pre>
 Art by Michael J. Penick (mod. by Paul B.)
@@ -1710,7 +1709,6 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <br />
 <ul>
 <li><a href='#kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#my-auto-failover-requirements'>My auto-failover requirements</a></li>
 <li>⇢ <a href='#my-ha-solution'>My HA solution</a></li>
 <li>⇢ ⇢ <a href='#only-openbsd-base-installation-required'>Only OpenBSD base installation required</a></li>
@@ -1722,16 +1720,6 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <li>⇢ ⇢ <a href='#rex-automation'>Rex automation</a></li>
 <li>⇢ <a href='#more-ha'>More HA</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
-<br />
-<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
-<br />
-<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
-<br />
-<span class='quote'>PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
-<br />
 <h2 style='display: inline' id='my-auto-failover-requirements'>My auto-failover requirements</h2><br />
 <br />
 <ul>
@@ -2028,20 +2016,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2024-03-03T00:07:21+02:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-go'>A fine Fyne Android app for quickly logging ideas programmed in Go</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#all-easy-peasy'>All easy-peasy?</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. </span><br />
 <br />
 <span>I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don&#39;t do what I want, are proprietary software, require Google Play services (I have the main profile on my phone de-googled) or are too bloated. I was never into mobile app development, as I&#39;m not too fond of the complexity of the developer toolchains. I don&#39;t want to use Android Studio (as a NeoVim user), and I don&#39;t want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.</span><br />
 <br />
 <a href='a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png'><img alt='Quick logger Logo' title='Quick logger Logo' src='a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-go'>A fine Fyne Android app for quickly logging ideas programmed in Go</a></li>
+<li>⇢ <a href='#enter-quick-logger'>Enter Quick logger</a></li>
+<li>⇢ <a href='#all-easy-peasy'>All easy-peasy?</a></li>
+</ul><br />
+<h2 style='display: inline' id='enter-quick-logger'>Enter Quick logger</h2><br />
 <br />
 <span>Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I&#39;ve crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app&#39;s whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!</span><br />
 <br />
@@ -2100,7 +2088,7 @@ http://www.gnu.org/software/src-highlite -->
         <summary>Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Frombabylon5buetoworgtobuetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
+                <h1 style='display: inline' id='from-babylon5buetoworg-to-buetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
 <br />
 <span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
 <br />
@@ -2110,7 +2098,25 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
 <br />
-<h2 style='display: inline' id='Theoldbuetoworgway'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#from-babylon5buetoworg-to-buetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></a></li>
+<li>⇢ <a href='#the-old-buetoworg-way'>The old <span class='inlinecode'>*.buetow.org</span> way</a></li>
+<li>⇢ <a href='#i-kept-my-buetoworg-openbsd-boxes-alive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</a></li>
+<li>⇢ <a href='#the-new-buetowcloud-way'>The new <span class='inlinecode'>*.buetow.cloud</span> way</a></li>
+<li>⇢ <a href='#the-container-apps'>The container apps</a></li>
+<li>⇢ ⇢ <a href='#fluxbuetowcloud'><span class='inlinecode'>flux.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#audiobookshelfbuetowcloud'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#syncthingbuetowcloud'><span class='inlinecode'>syncthing.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#radicalebuetowcloud'><span class='inlinecode'>radicale.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#bagbuetowcloud'><span class='inlinecode'>bag.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#ankibuetowcloud'><span class='inlinecode'>anki.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#vaultbuetowcloud'><span class='inlinecode'>vault.buetow.cloud</span></a></li>
+<li>⇢ ⇢ <a href='#bastionbuetowcloud'><span class='inlinecode'>bastion.buetow.cloud</span></a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='the-old-buetoworg-way'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
 <br />
 <span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
 <br />
@@ -2130,7 +2136,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>KISS (Keep it Simple Stupid)</li>
 <li>Cheap</li>
 </ul><br />
-<h2 style='display: inline' id='IkeptmybuetoworgOpenBSDboxesalive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
+<h2 style='display: inline' id='i-kept-my-buetoworg-openbsd-boxes-alive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
 <br />
 <span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
 <br />
@@ -2151,7 +2157,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
 <br />
-<h2 style='display: inline' id='Thenewbuetowcloudway'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
+<h2 style='display: inline' id='the-new-buetowcloud-way'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
 <br />
 <span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
 <br />
@@ -2181,7 +2187,7 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
 <li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
 </ul><br />
-<h2 style='display: inline' id='Thecontainerapps'>The container apps</h2><br />
+<h2 style='display: inline' id='the-container-apps'>The container apps</h2><br />
 <br />
 <span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
 <br />
@@ -2252,7 +2258,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
 <br />
@@ -2441,6 +2447,12 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
 <br />
+<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
 <pre>
     &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
       \        \         \              .         &#39; .     |
@@ -2456,7 +2468,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <ul>
 <li><a href='#bash-golf-part-3'>Bash Golf Part 3</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#funcname'><span class='inlinecode'>FUNCNAME</span></a></li>
 <li>⇢ <a href='#--'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
 <li>⇢ <a href='#inner-functions'>Inner functions</a></li>
@@ -2466,14 +2477,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ <a href='#multi-line-comments'>Multi-line comments</a></li>
 <li>⇢ <a href='#don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
-<br />
 <h2 style='display: inline' id='funcname'><span class='inlinecode'>FUNCNAME</span></h2><br />
 <br />
 <span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
@@ -2938,22 +2941,6 @@ echo baz
 <br />
 <span class='quote'>Published at 2023-11-11T22:21:47+02:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#mind-management-book-notes'>"Mind Management" book notes</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#empty-slots-in-the-calendar'>Empty slots in the calendar</a></li>
-<li>⇢ <a href='#when-you-safe-time'>When you safe time...</a></li>
-<li>⇢ <a href='#follow-your-mood'>Follow your mood</a></li>
-<li>⇢ <a href='#boosting-creativity'>Boosting creativity</a></li>
-<li>⇢ <a href='#the-right-mood-for-the-task-at-hand'>The right mood for the task at hand</a></li>
-<li>⇢ <a href='#creativity-hacks'>Creativity hacks</a></li>
-<li>⇢ <a href='#planning-and-strategizing'>Planning and strategizing</a></li>
-<li>⇢ <a href='#fake-it-until-you-make-it-'>Fake it until you make it. </a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>These are my personal takeaways after reading "Mind Management" by David Kadavy. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</span><br />
 <br />
 <pre>
@@ -2967,6 +2954,22 @@ echo baz
  &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
                     &#39;&#39;&#39;
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#mind-management-book-notes'>"Mind Management" book notes</a></li>
+<li>⇢ <a href='#it-s-not-about-time-management'>It&#39;s not about time management</a></li>
+<li>⇢ <a href='#empty-slots-in-the-calendar'>Empty slots in the calendar</a></li>
+<li>⇢ <a href='#when-you-safe-time'>When you safe time...</a></li>
+<li>⇢ <a href='#follow-your-mood'>Follow your mood</a></li>
+<li>⇢ <a href='#boosting-creativity'>Boosting creativity</a></li>
+<li>⇢ <a href='#the-right-mood-for-the-task-at-hand'>The right mood for the task at hand</a></li>
+<li>⇢ <a href='#creativity-hacks'>Creativity hacks</a></li>
+<li>⇢ <a href='#planning-and-strategizing'>Planning and strategizing</a></li>
+<li>⇢ <a href='#fake-it-until-you-make-it-'>Fake it until you make it. </a></li>
+</ul><br />
+<h2 style='display: inline' id='it-s-not-about-time-management'>It&#39;s not about time management</h2><br />
 <br />
 <span>Productivity isn&#39;t about time management - it&#39;s about mind management. When you put a lot of effort into something, there are:</span><br />
 <br />
@@ -3083,6 +3086,12 @@ echo baz
 <br />
 <span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
 <br />
+<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
+<br />
+<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
+<br />
+<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
+<br />
 <pre>
          ___        .---------.._
   ______!fsc!_....-&#39; .g8888888p. &#39;-------....._
@@ -3104,7 +3113,6 @@ echo baz
 <br />
 <ul>
 <li><a href='#kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a></li>
-<li>⇢ <a href='#motivation'>Motivation</a></li>
 <li>⇢ <a href='#introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></a></li>
 <li>⇢ <a href='#installation'>Installation</a></li>
 <li>⇢ <a href='#setting-it-up'>Setting it up</a></li>
@@ -3113,14 +3121,6 @@ echo baz
 <li>⇢ <a href='#html-templates'>HTML templates</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
-<h2 style='display: inline' id='motivation'>Motivation</h2><br />
-<br />
-<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
-<br />
-<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
-<br />
-<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
-<br />
 <h2 style='display: inline' id='introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
@@ -3394,23 +3394,6 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span class='quote'>Published at 2023-09-25T14:57:42+03:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#dtail-usage-examples'>DTail usage examples</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#following-logs'>Following logs</a></li>
-<li>⇢ <a href='#aggregating-logs'>Aggregating logs</a></li>
-<li>⇢ <a href='#how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></a></li>
-<li>⇢ <a href='#how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></a></li>
-<li>⇢ <a href='#how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></a></li>
-<li>⇢ <a href='#how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</a></li>
-<li>⇢ ⇢ <a href='#serverless-map-reduce-query'>Serverless map-reduce query</a></li>
-<li>⇢ ⇢ <a href='#aggregating-csv-files'>Aggregating CSV files</a></li>
-<li>⇢ ⇢ <a href='#other-serverless-commands'>Other serverless commands</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They&#39;re from the DTail documentation, but not all readers of my blog may be aware of those!</span><br />
 <br />
 <span>DTail is a distributed DevOps tool for tailing, grepping, catting logs and other text files on many remote machines at once which I programmed in Go.</span><br />
@@ -3430,6 +3413,23 @@ blurs  html  index.html  photos  thumbs
                         |   Let&#39;s tail those logs!   |
                          |                           |
 </pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#dtail-usage-examples'>DTail usage examples</a></li>
+<li>⇢ <a href='#commands'>Commands</a></li>
+<li>⇢ <a href='#following-logs'>Following logs</a></li>
+<li>⇢ <a href='#aggregating-logs'>Aggregating logs</a></li>
+<li>⇢ <a href='#how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></a></li>
+<li>⇢ <a href='#how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></a></li>
+<li>⇢ <a href='#how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></a></li>
+<li>⇢ <a href='#how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</a></li>
+<li>⇢ ⇢ <a href='#serverless-map-reduce-query'>Serverless map-reduce query</a></li>
+<li>⇢ ⇢ <a href='#aggregating-csv-files'>Aggregating CSV files</a></li>
+<li>⇢ ⇢ <a href='#other-serverless-commands'>Other serverless commands</a></li>
+</ul><br />
+<h2 style='display: inline' id='commands'>Commands</h2><br />
 <br />
 <span>DTail consists out of a server and several client binaries. In this post, I am showcasing their use!</span><br />
 <br />
@@ -3805,6 +3805,10 @@ DC on fire:
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
 <br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
 <pre>
 -=[ typewriters ]=-  1/98
                                         .-------.
@@ -3822,7 +3826,6 @@ DC on fire:
 <br />
 <ul>
 <li><a href='#gemtexter-210---let-s-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#why-bash'>Why Bash?</a></li>
 <li>⇢ <a href='#switch-to-gpl3-license'>Switch to GPL3 license</a></li>
 <li>⇢ <a href='#source-code-highlighting-support'>Source code highlighting support</a></li>
@@ -3831,12 +3834,6 @@ DC on fire:
 <li>⇢ <a href='#html-mastodon-verification-support'>HTML Mastodon verification support</a></li>
 <li>⇢ <a href='#more'>More</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
 <h2 style='display: inline' id='why-bash'>Why Bash?</h2><br />
 <br />
 <span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
@@ -3948,17 +3945,30 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-07-17T04:56:20+03:00</span><br />
 <br />
+<span>These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</span><br />
+<br />
+<pre>
+         ,..........   ..........,
+     ,..,&#39;          &#39;.&#39;          &#39;,..,
+    ,&#39; ,&#39;            :            &#39;, &#39;,
+   ,&#39; ,&#39;             :             &#39;, &#39;,
+  ,&#39; ,&#39;              :              &#39;, &#39;,
+ ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
+,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
+ &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+                    &#39;&#39;&#39;
+</pre>
+<br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
 <li><a href='#software-developmers-career-guide-and-soft-skills-book-notes'>"Software Developmers Career Guide and Soft Skills" book notes</a></li>
-<li><a href='#introduction'>Introduction</a></li>
-<li><a href='#improve'>Improve</a></li>
-<li>⇢ <a href='#always-learn-new-things'>Always learn new things</a></li>
-<li>⇢ <a href='#set-goals'>Set goals</a></li>
-<li>⇢ <a href='#ratings'>Ratings</a></li>
-<li>⇢ <a href='#promotions'>Promotions</a></li>
-<li>⇢ <a href='#finish-things'>Finish things</a></li>
+<li>⇢ <a href='#improve'>Improve</a></li>
+<li>⇢ ⇢ <a href='#always-learn-new-things'>Always learn new things</a></li>
+<li>⇢ ⇢ <a href='#set-goals'>Set goals</a></li>
+<li>⇢ ⇢ <a href='#ratings'>Ratings</a></li>
+<li>⇢ ⇢ <a href='#promotions'>Promotions</a></li>
+<li>⇢ ⇢ <a href='#finish-things'>Finish things</a></li>
 <li>⇢ <a href='#expand-the-empire'>Expand the empire</a></li>
 <li>⇢ <a href='#be-pragmatic-and-also-manage-your-time'>Be pragmatic and also manage your time</a></li>
 <li>⇢ ⇢ <a href='#the-quota-system'>The quota system</a></li>
@@ -3982,25 +3992,9 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ <a href='#testing'>Testing</a></li>
 <li>⇢ <a href='#books-to-read'>Books to read</a></li>
 </ul><br />
-<h1 style='display: inline' id='introduction'>Introduction</h1><br />
+<h2 style='display: inline' id='improve'>Improve</h2><br />
 <br />
-<span>These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</span><br />
-<br />
-<pre>
-         ,..........   ..........,
-     ,..,&#39;          &#39;.&#39;          &#39;,..,
-    ,&#39; ,&#39;            :            &#39;, &#39;,
-   ,&#39; ,&#39;             :             &#39;, &#39;,
-  ,&#39; ,&#39;              :              &#39;, &#39;,
- ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
-,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
- &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-                    &#39;&#39;&#39;
-</pre>
-<br />
-<h1 style='display: inline' id='improve'>Improve</h1><br />
-<br />
-<h2 style='display: inline' id='always-learn-new-things'>Always learn new things</h2><br />
+<h3 style='display: inline' id='always-learn-new-things'>Always learn new things</h3><br />
 <br />
 <span>When you learn something new, e.g. a programming language, first gather an overview, learn from multiple sources, play around and learn by doing and not consuming and form your own questions. Don&#39;t read too much upfront. A large amount of time is spent in learning technical skills which were never use. You want to have a practical set of skills you are actually using. You need to know 20 percent to get out 80 percent of the results.</span><br />
 <br />
@@ -4018,11 +4012,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Boot camps: The advantage of a boot camp is to pragmatically learn things fast. We almost always overestimate what we can do in a day. Especially during boot camps. Connect to others during the boot camps</span><br />
 <br />
-<h2 style='display: inline' id='set-goals'>Set goals</h2><br />
+<h3 style='display: inline' id='set-goals'>Set goals</h3><br />
 <br />
 <span>Your own goals are important but the manager also looks at how the team performs and how someone can help the team perform better. Check whether you are on track with your goals every 2 weeks in order to avoid surprises for the annual review. Make concrete goals for next review. Track and document your progress. Invest in your education. Make your goals known. If you want something, then ask for it. Nobody but you knows what you want.</span><br />
 <br />
-<h2 style='display: inline' id='ratings'>Ratings</h2><br />
+<h3 style='display: inline' id='ratings'>Ratings</h3><br />
 <br />
 <span>That&#39;s a trap: If you have to rate yourself, that&#39;s a trap. That never works in an unbiased way. Rate yourself always the best way but rate your weakest part as high as possible minus one point. Rate yourself as good as you can otherwise. Nobody is putting for fun a gun on his own head. </span><br />
 <br />
@@ -4030,7 +4024,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Don&#39;t do peer rating, it can fire back on you. What if the colleague becomes your new boss?</li>
 <li>Cooperate rankings are unfortunately HR guidelines and politics and only mirror a little your actual performance.</li>
 </ul><br />
-<h2 style='display: inline' id='promotions'>Promotions</h2><br />
+<h3 style='display: inline' id='promotions'>Promotions</h3><br />
 <br />
 <span>The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.</span><br />
 <br />
@@ -4043,7 +4037,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>If you want a raise be specific how much and know to back your demands. Don&#39;t make a thread and no ultimatums.</li>
 <li>Best way for a promotion is to switch jobs. You can even switch back with a better salary.</li>
 </ul><br />
-<h2 style='display: inline' id='finish-things'>Finish things</h2><br />
+<h3 style='display: inline' id='finish-things'>Finish things</h3><br />
 <br />
 <span>Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.</span><br />
 <br />
@@ -4311,13 +4305,18 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
 <br />
+<span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
+<br />
+<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
+<br />
 <a href='./kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
 <li><a href='#kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#motivation'>Motivation</a></li>
 <li>⇢ <a href='#features'>Features</a></li>
 <li>⇢ <a href='#example-alert'>Example alert</a></li>
@@ -4332,14 +4331,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ ⇢ <a href='#high-availability'>High-availability</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion:</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
-<br />
-<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
-<br />
 <pre>
     _____________________________    ____________________________
    /                             \  /                            \
@@ -4614,28 +4605,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-05-06T17:23:16+03:00</span><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#the-obstacle-is-the-way-book-notes'>"The Obstacle is the Way" book notes</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#reframe-your-perspective'>Reframe your perspective</a></li>
-<li>⇢ <a href='#embrace-rationality'>Embrace rationality</a></li>
-<li>⇢ <a href='#control-your-response'>Control your response</a></li>
-<li>⇢ <a href='#practice-emotional-and-physical-resilience'>Practice emotional and physical resilience</a></li>
-<li>⇢ <a href='#persistence-and-patience'>Persistence and patience</a></li>
-<li>⇢ <a href='#embrace-failure'>Embrace failure</a></li>
-<li>⇢ <a href='#be-adaptable'>Be adaptable</a></li>
-<li>⇢ <a href='#embrace-non-action'>Embrace non-action</a></li>
-<li>⇢ <a href='#leverage-crisis'>Leverage crisis</a></li>
-<li>⇢ <a href='#build-your-inner-citadel'>Build your inner citadel</a></li>
-<li>⇢ <a href='#love-everything-that-happens'>Love everything that happens</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</span><br />
-<br />
 <br />
 <pre>
          ,..........   ..........,
@@ -4649,6 +4619,23 @@ http://www.gnu.org/software/src-highlite -->
                     &#39;&#39;&#39;
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#the-obstacle-is-the-way-book-notes'>"The Obstacle is the Way" book notes</a></li>
+<li>⇢ <a href='#reframe-your-perspective'>Reframe your perspective</a></li>
+<li>⇢ <a href='#embrace-rationality'>Embrace rationality</a></li>
+<li>⇢ <a href='#control-your-response'>Control your response</a></li>
+<li>⇢ <a href='#practice-emotional-and-physical-resilience'>Practice emotional and physical resilience</a></li>
+<li>⇢ <a href='#persistence-and-patience'>Persistence and patience</a></li>
+<li>⇢ <a href='#embrace-failure'>Embrace failure</a></li>
+<li>⇢ <a href='#be-adaptable'>Be adaptable</a></li>
+<li>⇢ <a href='#embrace-non-action'>Embrace non-action</a></li>
+<li>⇢ <a href='#leverage-crisis'>Leverage crisis</a></li>
+<li>⇢ <a href='#build-your-inner-citadel'>Build your inner citadel</a></li>
+<li>⇢ <a href='#love-everything-that-happens'>Love everything that happens</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
 <span>"The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.</span><br />
 <br />
 <h2 style='display: inline' id='reframe-your-perspective'>Reframe your perspective</h2><br />
@@ -4937,6 +4924,12 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <span class='quote'>Published at 2023-04-09T22:31:42+03:00</span><br />
 <br />
+<span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
+<br />
+<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)</a><br />
+<br />
+<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
+<br />
 <pre>
          ,_---~~~~~----._         
   _,,_,*^____      _____``*g*\"*, 
@@ -4955,21 +4948,12 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <ul>
 <li><a href='#algorithms-and-data-structures-in-go---part-1'>Algorithms and Data Structures in Go - Part 1</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#type-constraints'>Type constraints</a></li>
 <li>⇢ <a href='#arraylist'>ArrayList</a></li>
 <li>⇢ <a href='#helper-methods'>Helper methods</a></li>
 <li>⇢ <a href='#sleep-sort'>Sleep sort</a></li>
 <li>⇢ ⇢ <a href='#testing'>Testing</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
-<br />
-<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)</a><br />
-<br />
-<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
-<br />
 <h2 style='display: inline' id='type-constraints'>Type constraints</h2><br />
 <br />
 <span>First, the package <span class='inlinecode'>ds</span> (data structures) defines the <span class='inlinecode'>types.go</span>. All examples will either operate on the <span class='inlinecode'>Integer</span> or <span class='inlinecode'>Number</span> type:</span><br />
@@ -5237,6 +5221,22 @@ http://www.gnu.org/software/src-highlite -->
                     &#39;&#39;&#39;
 </pre>
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#never-split-the-difference-book-notes'>"Never split the difference" book notes</a></li>
+<li>⇢ <a href='#tactical-listening-spreading-empathy'>Tactical listening, spreading empathy</a></li>
+<li>⇢ <a href='#mindset-of-discovery'>Mindset of discovery</a></li>
+<li>⇢ ⇢ <a href='#more-tips-'>More tips </a></li>
+<li>⇢ <a href='#no-starts-the-conversation'>"No" starts the conversation</a></li>
+<li>⇢ <a href='#win-win'>Win-win</a></li>
+<li>⇢ <a href='#on-deadlines'>On Deadlines</a></li>
+<li>⇢ <a href='#analyse-the-opponent'>Analyse the opponent</a></li>
+<li>⇢ <a href='#use-different-ways-of-saying-no'>Use different ways of saying "no."</a></li>
+<li>⇢ <a href='#calibrated-question'>Calibrated question</a></li>
+<li>⇢ <a href='#the-black-swan-'>The black swan </a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
 <h2 style='display: inline' id='tactical-listening-spreading-empathy'>Tactical listening, spreading empathy</h2><br />
 <br />
 <span>Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.</span><br />
@@ -5381,6 +5381,14 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
 <br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
 <pre>
 -=[ typewriters ]=-  1/98
 
@@ -5398,7 +5406,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li><a href='#gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
 <li>⇢ <a href='#added-hooks'>Added hooks</a></li>
 <li>⇢ <a href='#use-of-safer-bash-options'>Use of safer Bash options</a></li>
@@ -5406,16 +5413,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ <a href='#xmllint-support'>XMLLint support</a></li>
 <li>⇢ <a href='#more'>More</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
-<br />
-<span>Let&#39;s list what&#39;s new!</span><br />
-<br />
 <h2 style='display: inline' id='minimal-template-engine'>Minimal template engine</h2><br />
 <br />
 <span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
@@ -5676,9 +5673,11 @@ http://www.gnu.org/software/src-highlite -->
         <summary>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won't just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers' interest that you fully relax and shut down after work. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Howtoshutdownafterwork'>How to shut down after work</h1><br />
+                <h1 style='display: inline' id='how-to-shut-down-after-work'>How to shut down after work</h1><br />
 <br />
 <span class='quote'>Published at 2023-02-26T23:48:01+02:00</span><br />
+<br />
+<span>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won&#39;t just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers&#39; interest that you fully relax and shut down after work. </span><br />
 <br />
 <pre>
     |\   "Music should be heard not only with the ears, but also the soul."
@@ -5695,15 +5694,25 @@ http://www.gnu.org/software/src-highlite -->
                                   -@-        [kom...@uwec.edu]
 </pre>
 <br />
-<span>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won&#39;t just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers&#39; interest that you fully relax and shut down after work. </span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<h2 style='display: inline' id='Haveashutdownroutine'>Have a shutdown routine</h2><br />
+<ul>
+<li><a href='#how-to-shut-down-after-work'>How to shut down after work</a></li>
+<li>⇢ <a href='#have-a-shutdown-routine'>Have a shutdown routine</a></li>
+<li>⇢ <a href='#don-t-work-when-you-officially-don-t-work'>Don&#39;t work when you officially don&#39;t work</a></li>
+<li>⇢ <a href='#distract-your-mind'>Distract your mind</a></li>
+<li>⇢ <a href='#get-a-pet'>Get a pet</a></li>
+<li>⇢ <a href='#journal-your-day'>Journal your day</a></li>
+<li>⇢ <a href='#don-t-stress-about-what-your-employer-expects-from-you'>Don&#39;t stress about what your employer expects from you</a></li>
+<li>⇢ <a href='#call-it-a-day'>Call it a day</a></li>
+</ul><br />
+<h2 style='display: inline' id='have-a-shutdown-routine'>Have a shutdown routine</h2><br />
 <br />
 <span>Have a routine. Try to finish work around the same time every day. Write any outstanding tasks down for the next day, so you are sure you will remember them. Writing them down brings wonders as you can remove them from your mind for the remainder of the day (or the upcoming weekend) as you know you will surely pick them up the next working day. Tidying up your workplace could also count toward your daily shutdown routine. </span><br />
 <br />
 <span>A commute home from the office also greatly helps, as it disconnects your work from your personal life. Don&#39;t work on your commute home, though! If you don&#39;t commute but work from home, then it helps to walk around the block or in a nearby park to disconnect from work. </span><br />
 <br />
-<h2 style='display: inline' id='Dontworkwhenyouofficiallydontwork'>Don&#39;t work when you officially don&#39;t work</h2><br />
+<h2 style='display: inline' id='don-t-work-when-you-officially-don-t-work'>Don&#39;t work when you officially don&#39;t work</h2><br />
 <br />
 <span>Unless you are self-employed, you have likely signed an N-hour per week contract with your employer, and your regular working times are from X o&#39;clock in the morning to Y o&#39;clock in the evening (with M minutes lunch break in the middle). And there might be some flexibility in your working times, too. But that kind of flexibility (e.g. extending the lunch break so that there is time to pick up a family member from the airport) will be agreed upon, and you will counteract it, for example, by starting working earlier the next day or working late, that one exception. But overall, your weekly working time will stay N hours. </span><br />
 <br />
@@ -5717,7 +5726,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Checking for your messages constantly outside of regular office times makes it impossible to shut down and relax from work altogether. </span><br />
 <br />
-<h2 style='display: inline' id='Distractyourmind'>Distract your mind</h2><br />
+<h2 style='display: inline' id='distract-your-mind'>Distract your mind</h2><br />
 <br />
 <span>Often, your mind goes back to work-related stuff even after work. That&#39;s normal as you concentrated highly on your work throughout the day. The brain unconsciously continues to work and will automatically present you with random work-related thoughts. You can counteract this by focusing on non-work stuff, which may include:</span><br />
 <br />
@@ -5730,23 +5739,23 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>Some of these can be habit-stacked: Exercise could be combined with watching videos about your passion project (e.g. watching lectures about that new programming language you are currently learning for fun). With walking, for example, you could combine listening to an Audiobook or music, or you could also think about your passion project during that walk.  </span><br />
 <br />
-<h2 style='display: inline' id='Getapet'>Get a pet</h2><br />
+<h2 style='display: inline' id='get-a-pet'>Get a pet</h2><br />
 <br />
 <span>Even if you have children, it helps wonders to get a pet. My cat, for example, will remind me a few times daily to take a few minute&#39;s breaks to pet, play or give food. So my cat not only helps me after work but throughout the day.</span><br />
 <br />
 <span>My neighbour also works from home, and he has dogs, which he regularly has to take out to the park.</span><br />
 <br />
-<h2 style='display: inline' id='Journalyourday'>Journal your day</h2><br />
+<h2 style='display: inline' id='journal-your-day'>Journal your day</h2><br />
 <br />
 <span>If you are upset about something, making it impossible to shut down from work, write down everything (e.g., with a pen in a paper journal). Writing things down helps you to "get rid" of the negative. Especially after conflicts with colleagues or company decisions, you don&#39;t agree on. This kind of self-therapy is excellent. Brainstorm all your emotions and (even if opinionated) opinions so you have everything on paper. Once done, you don&#39;t think about it so much anymore, as you know you can access that information if required. But stopping ruminating about it will be much easier now. You will likely never access that information again, though. But at least writing the thoughts down saved your day. </span><br />
 <br />
 <span>Write down three things which went well for the day. This helps you to appreciate the day. </span><br />
 <br />
-<h2 style='display: inline' id='Dontstressaboutwhatyouremployerexpectsfromyou'>Don&#39;t stress about what your employer expects from you</h2><br />
+<h2 style='display: inline' id='don-t-stress-about-what-your-employer-expects-from-you'>Don&#39;t stress about what your employer expects from you</h2><br />
 <br />
 <span>Think about what&#39;s fun and motivates you. Maybe the next promotion to Principal or a Manager role isn&#39;t for you. Many fall into the trap of stressing themselves out to satisfy the employer so that the next upgrade will happen and think about it constantly, even after work. But it is more important that you enjoy your craftsmanship. Work on what you expect from yourself. Ideally, your goals should be aligned with your employer. I am not saying you should abandon everything what your manager is asking you to do, but it is, after all, your life. And you have to decide where and on what you want to work. But don&#39;t sell yourself short. Keep track of your accomplishments.</span><br />
 <br />
-<h2 style='display: inline' id='Callitaday'>Call it a day</h2><br />
+<h2 style='display: inline' id='call-it-a-day'>Call it a day</h2><br />
 <br />
 <span>Every day you gave your best was good; the day&#39;s outcome doesn&#39;t matter. What matters is that you know you gave your best and are closer to your goals than the previous day. This gives you a sense of progress and accomplishment.</span><br />
 <br />
@@ -5767,12 +5776,25 @@ http://www.gnu.org/software/src-highlite -->
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Art by Joan Stark</summary>
+        <summary>In 2021 I wrote 'On Being Pedantic about Open-Source', and there was a section 'What about mobile?' where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='WhyGrapheneOSrox'>Why GrapheneOS rox</h1><br />
+                <h1 style='display: inline' id='why-grapheneos-rox'>Why GrapheneOS rox</h1><br />
 <br />
 <span class='quote'>Published at 2023-01-23T15:31:52+02:00</span><br />
+<br />
+<span>In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </span><br />
+<br />
+<a class='textlink' href='./2021-08-01-on-being-pedantic-about-open-source.html'>On Being Pedantic about Open-Source</a><br />
+<br />
+<span>What is GrapheneOS?</span><br />
+<br />
+<span class='quote'>GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It&#39;s focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.</span><br />
+<br />
+<span>GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.</span><br />
+<br />
+<a class='textlink' href='https://GrapheneOS.org'>https://GrapheneOS.org</a><br />
+<a class='textlink' href='https://LineageOS.org'>https://LineageOS.org</a><br />
 <br />
 <pre>
 Art by Joan Stark
@@ -5797,20 +5819,20 @@ Art by Joan Stark
   &#39;-&#39;-&#39;-&#39;--&#39;
 </pre>
 <br />
-<span>In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<a class='textlink' href='./2021-08-01-on-being-pedantic-about-open-source.html'>On Being Pedantic about Open-Source</a><br />
-<br />
-<span>What is GrapheneOS?</span><br />
-<br />
-<span class='quote'>GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It&#39;s focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.</span><br />
-<br />
-<span>GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.</span><br />
-<br />
-<a class='textlink' href='https://GrapheneOS.org'>https://GrapheneOS.org</a><br />
-<a class='textlink' href='https://LineageOS.org'>https://LineageOS.org</a><br />
-<br />
-<h2 style='display: inline' id='UserProfiles'>User Profiles</h2><br />
+<ul>
+<li><a href='#why-grapheneos-rox'>Why GrapheneOS rox</a></li>
+<li>⇢ <a href='#user-profiles'>User Profiles</a></li>
+<li>⇢ <a href='#proxying-some-of-the-google-offerings-'>Proxying some of the Google offerings </a></li>
+<li>⇢ <a href='#google-play-sandboxing-'>Google Play Sandboxing </a></li>
+<li>⇢ <a href='#the-camera-and-the-cloud-'>The camera and the cloud </a></li>
+<li>⇢ <a href='#fine-granular-permissions'>Fine granular permissions</a></li>
+<li>⇢ <a href='#termux'>Termux</a></li>
+<li>⇢ <a href='#so-why-not-use-a-pure-linux-phone'>So, why not use a pure Linux phone?</a></li>
+<li>⇢ <a href='#small-grapheneos-downsides-'>Small GrapheneOS downsides </a></li>
+</ul><br />
+<h2 style='display: inline' id='user-profiles'>User Profiles</h2><br />
 <br />
 <span>GrapheneOS allows configuring up to 32 user profiles (including a guest profile) on a single phone. A profile is a completely different environment within the phone, and it is possible to switch between them instantly. Sessions of a profile can continue running in the background or be fully terminated. Each profile can have completely different settings and different applications installed.</span><br />
 <br />
@@ -5820,7 +5842,7 @@ Art by Joan Stark
 <br />
 <span>You notice how much longer (multiple days) your phone can be on a single charge when Google Play Services isn&#39;t running in the background. This tells a lot about the background activities and indicates that using Google Play shouldn&#39;t be the norm.</span><br />
 <br />
-<h2 style='display: inline' id='ProxyingsomeoftheGoogleofferings'>Proxying some of the Google offerings </h2><br />
+<h2 style='display: inline' id='proxying-some-of-the-google-offerings-'>Proxying some of the Google offerings </h2><br />
 <br />
 <span>There&#39;s also the case that I am using an app from the Google Play store (as the app isn&#39;t available from F-Droid), which doesn&#39;t require Google Play Services to run in the background. Here&#39;s where I use the Aurora Android store. The Aurora store can be installed through F-Droid. Aurora acts as an anonymous proxy from your phone to the Google Play Store and lets you install apps from there. No Google credentials are required for that!</span><br />
 <br />
@@ -5828,7 +5850,7 @@ Art by Joan Stark
 <br />
 <span>There&#39;s a similar solution for watching videos on YouTube. You can use the NewPipe app (also from F-Droid), which acts as an anonymous proxy for watching videos from YouTube. So there isn&#39;t any need to install the official YouTube app, and there isn&#39;t any need to login to your Google account. What&#39;s so bad about the official app? You don&#39;t know which data it is sending about you to Google, so it is a privacy concern. </span><br />
 <br />
-<h2 style='display: inline' id='GooglePlaySandboxing'>Google Play Sandboxing </h2><br />
+<h2 style='display: inline' id='google-play-sandboxing-'>Google Play Sandboxing </h2><br />
 <br />
 <span>Before switching to GrapheneOS, I had been using LineageOS on one of my phones for a couple of years. Still, I always had to have a secondary personal phone with all of these proprietary apps which (partially) only work with Google Play on the phone (e.g. Banking, Navigation, various travel apps from various Airlines, etc.) somewhere around as I didn&#39;t install Google Play on my LineageOS phone due to privacy concerns and only installed apps from the F-Droid store on it. When travelling, I always had to carry around a second phone with Google Play on it, as without it; life would become inconvenient pretty soon. </span><br />
 <br />
@@ -5846,7 +5868,7 @@ Art by Joan Stark
 <br />
 <span>It is great to have the flexibility to use any proprietary Android app when needed. That only applies to around 1% of my phone usage time, but you often don&#39;t always know when you need "that one app now". So it&#39;s perfect that it&#39;s covered with the phone you always have with you. </span><br />
 <br />
-<h2 style='display: inline' id='Thecameraandthecloud'>The camera and the cloud </h2><br />
+<h2 style='display: inline' id='the-camera-and-the-cloud-'>The camera and the cloud </h2><br />
 <br />
 <span>I really want my phone to shoot good looking pictures, so that I can later upload them to the Irregular Ninja:</span><br />
 <br />
@@ -5866,7 +5888,7 @@ Art by Joan Stark
 <br />
 <span>I also use NextCloud to synchronize my notes (NextCloud Notes), my RSS news feeds (NextCloud News) and contacts (DAVx5). All apps required are available in the F-Droid store.</span><br />
 <br />
-<h2 style='display: inline' id='Finegranularpermissions'>Fine granular permissions</h2><br />
+<h2 style='display: inline' id='fine-granular-permissions'>Fine granular permissions</h2><br />
 <br />
 <span>Another great thing about GrapheneOS is that, besides putting your apps into different profiles, you can also restrict network access and configure storage scopes per app individually.</span><br />
 <br />
@@ -5874,7 +5896,7 @@ Art by Joan Stark
 <br />
 <span>The app also wants to store and read some data from your phone (e.g. it could be a proprietary app for enhancing photos, and therefore storage access to a photo folder would be required). In GrapheneOS, you can configure a storage scope for that particular app, e.g. only read and write from one folder but still forbid access to all other folders on your phone.</span><br />
 <br />
-<h2 style='display: inline' id='Termux'>Termux</h2><br />
+<h2 style='display: inline' id='termux'>Termux</h2><br />
 <br />
 <span>Termux can be installed on any Android phone through F-Droid, so it doesn&#39;t need to be a GrapheneOS phone. But I have to mention Termux here as it significantly adds value to my phone experience. </span><br />
 <br />
@@ -5886,7 +5908,7 @@ Art by Joan Stark
 <br />
 <span>There are Pixel phones with a screen size of 6", and that&#39;s decent enough for occasional use like that, and everything (the phone, the BT keyboard, maybe an external battery pack) all fit nicely in a small travel pocket.</span><br />
 <br />
-<h2 style='display: inline' id='SowhynotuseapureLinuxphone'>So, why not use a pure Linux phone?</h2><br />
+<h2 style='display: inline' id='so-why-not-use-a-pure-linux-phone'>So, why not use a pure Linux phone?</h2><br />
 <br />
 <span>Strictly speaking, an Android phone is a Linux phone, but it&#39;s heavily modified and customized. For me, a "pure" Linux phone is a more streamlined Linux kernel running in a distribution like Ubuntu Touch or Mobian. </span><br />
 <br />
@@ -5901,7 +5923,7 @@ Art by Joan Stark
 <br />
 <a class='textlink' href='https://sailfishos.org'>SailfishOS</a><br />
 <br />
-<h2 style='display: inline' id='SmallGrapheneOSdownsides'>Small GrapheneOS downsides </h2><br />
+<h2 style='display: inline' id='small-grapheneos-downsides-'>Small GrapheneOS downsides </h2><br />
 <br />
 <span>Sometimes, switching a profile to use a different app is annoying, and you can&#39;t copy and paste from the system clipboard from one profile to another. But that&#39;s a small price I am willing to pay!</span><br />
 <br />
@@ -5927,11 +5949,9 @@ Art by Joan Stark
         <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my 'Creative universe' post:</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='RelearningJavaMytakeaways'>(Re)learning Java - My takeaways</h1><br />
+                <h1 style='display: inline' id='relearning-java---my-takeaways'>(Re)learning Java - My takeaways</h1><br />
 <br />
 <span class='quote'>Published at 2022-12-24T23:18:40+02:00</span><br />
-<br />
-<a href='./ultrarelearning-java-my-takeaways/learnjava.jpg'><img src='./ultrarelearning-java-my-takeaways/learnjava.jpg' /></a><br />
 <br />
 <span>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:</span><br />
 <br />
@@ -5945,13 +5965,31 @@ Art by Joan Stark
 <br />
 <span>At my workplace, as an SRE, I don&#39;t do Java a lot. I have been reading Java code to understand the software better so I can apply and suggest workarounds or fixes to existing issues and bugs. However, most of our stack is in Java, and our Software Engineers use Java as their primary programming language.</span><br />
 <br />
-<h2 style='display: inline' id='StuckatJava14'>Stuck at Java 1.4</h2><br />
+<a href='./ultrarelearning-java-my-takeaways/learnjava.jpg'><img src='./ultrarelearning-java-my-takeaways/learnjava.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#relearning-java---my-takeaways'>(Re)learning Java - My takeaways</a></li>
+<li>⇢ <a href='#stuck-at-java-14'>Stuck at Java 1.4</a></li>
+<li>⇢ <a href='#relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</a></li>
+<li>⇢ ⇢ <a href='#effective-java'>Effective Java</a></li>
+<li>⇢ ⇢ <a href='#java-pub-house'>Java Pub House</a></li>
+<li>⇢ ⇢ <a href='#java-concurrency-course'>Java Concurrency course</a></li>
+<li>⇢ ⇢ <a href='#read-a-lot-of-java-code'>Read a lot of Java code</a></li>
+<li>⇢ ⇢ <a href='#observed-java-code-reviews'>Observed Java code reviews</a></li>
+<li>⇢ ⇢ <a href='#took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</a></li>
+<li>⇢ <a href='#the-good'>The good</a></li>
+<li>⇢ <a href='#the-bad-and-the-ugly'>The bad and the ugly</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='stuck-at-java-14'>Stuck at Java 1.4</h2><br />
 <br />
 <span>Over time, I had been missing out on many new features that were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and learn every further aspect of the language as my main goal. Of course, I still liked the idea of winning a Pet Project Prize, but my main objective was to level up my Java skills.</span><br />
 <br />
-<h2 style='display: inline' id='RelearningupskillingtoJava18'>(Re)learning &amp; upskilling to Java 18</h2><br />
+<h2 style='display: inline' id='relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</h2><br />
 <br />
-<h3 style='display: inline' id='EffectiveJava'>Effective Java</h3><br />
+<h3 style='display: inline' id='effective-java'>Effective Java</h3><br />
 <br />
 <span>This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself in it. I fully agree; this is a great book. Every Java developer or Java software engineer should read it!</span><br />
 <br />
@@ -5961,30 +5999,30 @@ Art by Joan Stark
 <br />
 <a class='textlink' href='https://dev.to/kylec32/series/2292'>Kyle Carter&#39;s 90-part Effective Java Series </a><br />
 <br />
-<h3 style='display: inline' id='JavaPubHouse'>Java Pub House</h3><br />
+<h3 style='display: inline' id='java-pub-house'>Java Pub House</h3><br />
 <br />
 <span>During my lunch breaks, I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast. Especially GraalVM, a high-performance JDK distribution written for Java and other JVM languages, captured my attention. GraalVM can compile Java code into native binaries, improving performance and easing the distribution of Java programs. Because of the latter, I should release a VS-Sim GraalVM edition one day through a Linux AppImage ;-).</span><br />
 <br />
 <a class='textlink' href='https://www.javapubhouse.com'>https://www.javapubhouse.com</a><br />
 <a class='textlink' href='https://www.graalvm.org'>https://www.graalvm.org</a><br />
 <br />
-<h3 style='display: inline' id='JavaConcurrencycourse'>Java Concurrency course</h3><br />
+<h3 style='display: inline' id='java-concurrency-course'>Java Concurrency course</h3><br />
 <br />
 <span>I also watched a course on O&#39;Reilly Safari Books online about Java Concurrency. That gave an excellent refresher on how the Java thread pools work and what were the concurrency primitives available in the standard library.</span><br />
 <br />
-<h3 style='display: inline' id='ReadalotofJavacode'>Read a lot of Java code</h3><br />
+<h3 style='display: inline' id='read-a-lot-of-java-code'>Read a lot of Java code</h3><br />
 <br />
 <span>First, the source code is often the best documentation (if programmed nicely), and second, it helps to get the hang of the language and standard practices. I started to read more and more Java code at work. I did that whenever I had to understand how something, in particular, worked (e.g. while troubleshooting and debugging an issue). </span><br />
 <br />
-<h3 style='display: inline' id='ObservedJavacodereviews'>Observed Java code reviews</h3><br />
+<h3 style='display: inline' id='observed-java-code-reviews'>Observed Java code reviews</h3><br />
 <br />
 <span>Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. They are the expert on the matter and are a great source to copy knowledge. It&#39;s OK to stay passive and only follow the reviews. Sometimes, it&#39;s OK to step up and take ownership of the review. The developers will also always be happy to answer any naive questions which come up.</span><br />
 <br />
-<h3 style='display: inline' id='TookownershipofaroadmapJavaproject'>Took ownership of a roadmap-Java project</h3><br />
+<h3 style='display: inline' id='took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</h3><br />
 <br />
 <span>Besides my Pet Project, I also took ownership of a regular roadmap Java project at work, making an internal Java service capable of running in  Kubernetes. This was a bunch of minor changes and adding a bunch of classes and unit tests dealing with the statelessness and a persistent job queue in Redis. The job also involved reading and understanding a lot of already existing Java code. It wasn&#39;t part of my job description, but it was fun, and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.</span><br />
 <br />
-<h2 style='display: inline' id='Thegood'>The good</h2><br />
+<h2 style='display: inline' id='the-good'>The good</h2><br />
 <br />
 <span>From the new language features and syntaxes, there are many personal takeaways, and I can&#39;t possibly list them all, but here are some of my personal highlights:</span><br />
 <br />
@@ -6005,7 +6043,7 @@ Art by Joan Stark
 <li>Lambdas are much cleaner, shorter and easier to read than anonymous classes. Many Java libraries require passing instances of (anonymous) classes (e.g. in Swing) to other objects. Lambdas are so lovely because they are primarily compatible with the passing of anonymous classes, so they are a 1:1 replacement in many instances. Lambdas also play very nicely together with the Java functional interfaces, as each Lambda got a type, and the type can be an already existing functional interface (or, if you got a particular case, you could define your custom functional interface for your own set of Lambdas, of course).</li>
 <li>I love the concept of Java records. You can think of a record as an immutable object holding some data (as members). They are ideal for pipe and stream processing. They are much easier to define (with much less boilerplate) and come with write protection out of the box.</li>
 </ul><br />
-<h2 style='display: inline' id='Thebadandtheugly'>The bad and the ugly</h2><br />
+<h2 style='display: inline' id='the-bad-and-the-ugly'>The bad and the ugly</h2><br />
 <br />
 <span>There are also many ugly corners in Java. Many are doomed to stay there forever due to historical decisions and ensuring backward compatibility with older versions of the Java language and the Java standard library. </span><br />
 <br />
@@ -6019,7 +6057,7 @@ Art by Joan Stark
 <li>Being a bit spoiled by Golang&#39;s Goroutines, I was shocked about the limitations of the Java threads. They are resource hungry, and you can&#39;t just spin up millions of them as you would with Goroutines. I knew this limitation of threads already (as it&#39;s not a problem of the language but of how threads work in the OS), but still, I was pretty shocked when I got reminded of them again. Of course, there&#39;s a workaround: Use asynchronous sockets so that you don&#39;t waste a whole thread on a single I/O operation (in my case, waiting for a network response). Golang&#39;s runtime does that automatically for you: An OS thread will be re-used for other tasks until the network socket unblocks. Every modern programming language should support lightweight threads or Coroutines like Go&#39;s Goroutines. </li>
 </ul><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>While (re)learning Java, I felt like a student again and was quite enthusiastic about it initially. I invested around half a year, immersing myself intensively in Java (again). The last time I did that was many years ago as a university student. I even won a Silver Prize at work, implementing a project this year (2022 as of writing this). I feel confident now with understanding, debugging and patching Java code at work, which boosted my debugging and troubleshooting skills. </span><br />
 <br />
@@ -6048,12 +6086,24 @@ Art by Joan Stark
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Art by      \ \_!  / __!</summary>
+        <summary>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='ItriedDoomEmacsbutIswitchedbacktoNeoVim'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1><br />
+                <h1 style='display: inline' id='i-tried-doom-emacs-but-i-switched-back-to-neovim'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1><br />
 <br />
 <span class='quote'>Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26</span><br />
+<br />
+<span>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn&#39;t try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it&#39;s emulating Vim within Emacs), and I am pretty sure I won&#39;t be ready to give up all the muscle memory I have built over more than a decade.</span><br />
+<br />
+<a class='textlink' href='https://www.gnu.org/software/emacs/'>GNU Emacs</a><br />
+<a class='textlink' href='https://github.com/doomemacs/'>Doom Emacs</a><br />
+<br />
+<span>I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don&#39;t have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).</span><br />
+<br />
+<a class='textlink' href='https://www.vim.org'>Vim</a><br />
+<a class='textlink' href='https://neovim.io'>NeoVim</a><br />
+<br />
+<span>So why did I switch back to the Vi-family?</span><br />
 <br />
 <pre>
              _/  \    _(\(o
@@ -6068,25 +6118,25 @@ Art by      \ \_!  / __!
          ^^----^^    "^--v&#39;
 </pre>
 <br />
-<span>As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn&#39;t try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it&#39;s emulating Vim within Emacs), and I am pretty sure I won&#39;t be ready to give up all the muscle memory I have built over more than a decade.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<a class='textlink' href='https://www.gnu.org/software/emacs/'>GNU Emacs</a><br />
-<a class='textlink' href='https://github.com/doomemacs/'>Doom Emacs</a><br />
-<br />
-<span>I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don&#39;t have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).</span><br />
-<br />
-<a class='textlink' href='https://www.vim.org'>Vim</a><br />
-<a class='textlink' href='https://neovim.io'>NeoVim</a><br />
-<br />
-<span>So why did I switch back to the Vi-family?</span><br />
-<br />
-<h2 style='display: inline' id='Emacsisagiantdragon'>Emacs is a giant dragon</h2><br />
+<ul>
+<li><a href='#i-tried-doom-emacs-but-i-switched-back-to-neovim'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</a></li>
+<li>⇢ <a href='#emacs-is-a-giant-dragon'>Emacs is a giant dragon</a></li>
+<li>⇢ <a href='#magit-love'>Magit love</a></li>
+<li>⇢ <a href='#graphical-ui'>Graphical UI</a></li>
+<li>⇢ <a href='#scripting-it'>Scripting it</a></li>
+<li>⇢ <a href='#the-famous-emacs-org-mode'>The famous Emacs Org mode</a></li>
+<li>⇢ <a href='#seeking-simplicity'>Seeking simplicity</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='emacs-is-a-giant-dragon'>Emacs is a giant dragon</h2><br />
 <br />
 <span>Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There&#39;s an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class='inlinecode'>init 1</span> process (if you don&#39;t know what the <span class='inlinecode'>init 1</span> process is: Under UNIX and similar operating systems, it&#39;s the very first userland processed launched. That&#39;s usually <span class='inlinecode'>systemd</span> on Linux-based systems, <span class='inlinecode'>launchd</span> on macOS, or any other init script or init system used by the OS)!</span><br />
 <br />
 <span>In many aspects, Emacs is like shooting at everything with a bazooka! However, I prefer it simple. I only wanted Emacs to be a good editor (which it is, too), but there&#39;s too much other stuff in Emacs that I don&#39;t need to care about! Vim and NeoVim do one thing excellent: Being great text editors and, when loaded with plugins, decent IDEs, too. </span><br />
 <br />
-<h2 style='display: inline' id='Magitlove'>Magit love</h2><br />
+<h2 style='display: inline' id='magit-love'>Magit love</h2><br />
 <br />
 <span>I almost fell in love with Magit, an integrated Git client for Emacs. But I think the best way to interact with Git is to use the <span class='inlinecode'>git</span> command line directly. I don&#39;t worry about typing out all the commands, as the most commonly used commands are in my shell history. Other useful Git programs I use frequently are <span class='inlinecode'>bit</span> and <span class='inlinecode'>tig</span>. Also, get a mechanical keyboard that makes hammering whole commands into the terminal even more enjoyable.</span><br />
 <br />
@@ -6095,13 +6145,13 @@ Art by      \ \_!  / __!
 <br />
 <span>Magit is pretty neat for basic Git operations, but I found myself searching the internet for the correct sub-commands to do the things I wanted to do in Git. Mainly, the way how branches are managed is confusing. Often, I fell back to the command line to fix up the mess I produced with Magit (e.g. accidentally pushing to the wrong remote branch, so I found myself fixing things manually on the terminal with the <span class='inlinecode'>git</span> command with forced pushes....). Magit is hotkey driven, and common commands are quickly explorable through built-in hotkey menus. Still, I found it challenging to navigate to more advanced Git sub-commands that way which was much easier accomplished by using the <span class='inlinecode'>git</span> command directly.</span><br />
 <br />
-<h2 style='display: inline' id='GraphicalUI'>Graphical UI</h2><br />
+<h2 style='display: inline' id='graphical-ui'>Graphical UI</h2><br />
 <br />
 <span>If there is one thing I envy about Emacs is that it&#39;s a graphical program, whereas the Vi-family of editors are purely terminal-based. I see the benefits of being a graphical program as this enables the use of multiple fonts simultaneously to embed pictures and graphs (that would be neat as a Markdown preview, for example). There&#39;s also GVim (Vim with GTK UI), but that&#39;s more of an afterthought.</span><br />
 <br />
 <span>There are now graphical front-end clients for NeoVim, but I still need to dig into them. Let me know your experience if you have one. Luckily, I don&#39;t rely on something graphical in my text editor, but it would improve how the editor looks and feels. UTF8 can already do a lot in the terminal, and terminal emulators also allow you to use TrueType fonts. Still, you will always be limited to one TTF font for the whole terminal, and it isn&#39;t possible to have, for example, a different font for headings, paragraphs, etc... you get the idea. TTF+UTF8 can&#39;t beat authentic graphics. </span><br />
 <br />
-<h2 style='display: inline' id='Scriptingit'>Scripting it</h2><br />
+<h2 style='display: inline' id='scripting-it'>Scripting it</h2><br />
 <br />
 <span>It is possible to customize every aspect of Emacs through Emacs Lisp. I have done some Elk Scheme programming in the past (a dialect of Lisp), but that was a long time ago, and I am not willing to dive here again to customize my environment. I would instead take the pragmatic approach and script what I need in VimScript (a terrible language, but it gets the job done!). I watched Damian Conway&#39;s VimScript course on O&#39;Reilly Safari Books Online, which I greatly recommend. Yes, VimScript feels clunky, funky and weird and is far less elegant than Lisp, but it gets its job done - in most cases! (That reminds me that the Vim team has announced a new major version of VimScript with improvements and language changes made - I haven&#39;t gotten to it yet - but I assume that VimScript will always stay VimScript).</span><br />
 <br />
@@ -6130,7 +6180,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>That&#39;s only a very few lines and does precisely what I want. It&#39;s quick and dirty but get&#39;s the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</span><br />
 <br />
-<h2 style='display: inline' id='ThefamousEmacsOrgmode'>The famous Emacs Org mode</h2><br />
+<h2 style='display: inline' id='the-famous-emacs-org-mode'>The famous Emacs Org mode</h2><br />
 <br />
 <span>Org-mode is an Emacs mode for keeping notes, authoring documents, computational notebooks, literate programming, maintaining to-do lists, planning projects, and more — in a fast and effective plain-text system. There&#39;s even a dedicated website for it:</span><br />
 <br />
@@ -6150,13 +6200,13 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='https://zsh.sourceforge.io/'>Z shell</a><br />
 <a class='textlink' href='https://github.com/tmux/tmux'>tmux terminal multiplexer</a><br />
 <br />
-<h2 style='display: inline' id='Seekingsimplicity'>Seeking simplicity</h2><br />
+<h2 style='display: inline' id='seeking-simplicity'>Seeking simplicity</h2><br />
 <br />
 <span>I am not ready to dive deep into the whole world of Emacs. I prefer small and simple tools as opposed to complex tools. Emacs comes with many features out of the box, whereas in Vim/NeoVim, you would need to install many plugins to replicate some of the behaviour. Yes, I need to invest time managing all the Vim/NeoVim plugins I use, but I feel more in control compared to Doom Emacs, where a framework around vanilla Emacs manages all the plugins. I could use vanilla Emacs and manage all my plugins the vanilla way, but for me, it&#39;s not worth the effort to learn and dive into that as all that I want to do I can already do with Vim/NeoVim.</span><br />
 <br />
 <span>I am not saying that Vim/NeoVim are simple programs, but they are much simpler than Emacs with much smaller footprints; furthermore, they appear to be more straightforward as I am used to them. I only need Vim/NeoVim to be an editor, an IDE (through some plugins), and nothing more.</span><br />
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>I understand the Emacs users now. Emacs is an incredibly powerful platform for almost everything, not just text editing. With Emacs, you can do nearly everything (Writing, editing, programming, calendar scheduling and note taking, Jira integration, playing games, listening to music, reading/writing emails, browsing the web, using as a calculator, generating HTML pages, configuring interactive menus, jumping around between every feature and every file within one single session, chat on IRC, surf the Gopherspace, ... the options are endless....). If you want to have one piece of software which rules it all and you are happy to invest a large part of your time in your platform: Pick Emacs, and over time Emacs will become "your" Emacs, customized to your own needs and change the way it works, which makes the Emacs users stick even more to it.</span><br />
 <br />
@@ -6187,6 +6237,18 @@ http://www.gnu.org/software/src-highlite -->
                 <h1 style='display: inline' id='installing-dtail-on-openbsd'>Installing DTail on OpenBSD</h1><br />
 <br />
 <span class='quote'>Published at 2022-10-30T11:03:19+02:00</span><br />
+<br />
+<span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
+<br />
+<span> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</span><br />
+<br />
+<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
+<br />
+<span>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</span><br />
+<br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<br />
+<span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
 <br />
 <pre>
        ,_---~~~~~----._
@@ -6229,7 +6291,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li><a href='#installing-dtail-on-openbsd'>Installing DTail on OpenBSD</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#compile-it'>Compile it</a></li>
 <li>⇢ <a href='#install-it'>Install it</a></li>
 <li>⇢ ⇢ <a href='#rexification'>Rexification</a></li>
@@ -6241,20 +6302,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ <a href='#use-it'>Use it</a></li>
 <li>⇢ <a href='#conclusions'>Conclusions</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
-<br />
-<span> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
-<span>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</span><br />
-<br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<br />
-<span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
-<br />
 <h2 style='display: inline' id='compile-it'>Compile it</h2><br />
 <br />
 <span>First of all, DTail needs to be downloaded and compiled. For that, <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span>, and <span class='inlinecode'>gmake</span> are required:</span><br />
@@ -6568,9 +6615,11 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
         <summary>Everyone has it once in a while: A bad night's sleep. Here I attempt to list valuable tips on how to deal with it.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Afterabadnightssleep'>After a bad night&#39;s sleep</h1><br />
+                <h1 style='display: inline' id='after-a-bad-night-s-sleep'>After a bad night&#39;s sleep</h1><br />
 <br />
 <span class='quote'>Published at 2022-09-30T09:53:23+03:00; Updated at 2022-10-12</span><br />
+<br />
+<span>Everyone has it once in a while: A bad night&#39;s sleep. Here I attempt to list valuable tips on how to deal with it.</span><br />
 <br />
 <pre>
                z
@@ -6586,17 +6635,35 @@ jgs                (________\  \
                              &#39;-&#39;
 </pre>
 <br />
-<span>Everyone has it once in a while: A bad night&#39;s sleep. Here I attempt to list valuable tips on how to deal with it.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<h2 style='display: inline' id='Donttakethedayoff'>Don&#39;t take the day off.</h2><br />
+<ul>
+<li><a href='#after-a-bad-night-s-sleep'>After a bad night&#39;s sleep</a></li>
+<li>⇢ <a href='#don-t-take-the-day-off'>Don&#39;t take the day off.</a></li>
+<li>⇢ <a href='#start-work-early'>Start work early</a></li>
+<li>⇢ <a href='#sweat-the-small-stuff'>Sweat the small stuff</a></li>
+<li>⇢ <a href='#enter-the-flow-state'>Enter the flow state</a></li>
+<li>⇢ <a href='#reschedule-meetings'>Reschedule meetings</a></li>
+<li>⇢ <a href='#invent'>Invent</a></li>
+<li>⇢ <a href='#fast'>Fast</a></li>
+<li>⇢ <a href='#stretch'>Stretch</a></li>
+<li>⇢ <a href='#walk'>Walk</a></li>
+<li>⇢ <a href='#red-bull'>Red Bull</a></li>
+<li>⇢ <a href='#power-nap'>Power nap</a></li>
+<li>⇢ <a href='#don-t-take-anything-personally'>Don&#39;t take anything personally.</a></li>
+<li>⇢ <a href='#meditate'>Meditate</a></li>
+<li>⇢ <a href='#write-things-down'>Write things down</a></li>
+<li>⇢ <a href='#social-media'>Social media</a></li>
+</ul><br />
+<h2 style='display: inline' id='don-t-take-the-day-off'>Don&#39;t take the day off.</h2><br />
 <br />
 <span>Don&#39;t take a day off after not sleeping enough the previous night. That would be wasting the holiday allowance. It wouldn&#39;t be possible to enjoy my free time anyway, so why not just work? There&#39;s still a way for an IT Engineer to be productive (sometimes even more) with half or less of the concentration power available!</span><br />
 <br />
-<h2 style='display: inline' id='Startworkearly'>Start work early</h2><br />
+<h2 style='display: inline' id='start-work-early'>Start work early</h2><br />
 <br />
 <span>Probably I am already awake early and am unable to fall asleep again. My strategy here is to "attack" the day: Start work early and finish early. The early bird will also encounter fewer distractions from colleagues.</span><br />
 <br />
-<h2 style='display: inline' id='Sweatthesmallstuff'>Sweat the small stuff</h2><br />
+<h2 style='display: inline' id='sweat-the-small-stuff'>Sweat the small stuff</h2><br />
 <br />
 <span>There&#39;s never a shortage of small items to hook off my list. Most of these items don&#39;t require my full concentration power, and I will be happy to get them off my list so that the next day, after a good night&#39;s sleep, I can immerse myself again in focused, deep work with all concentration powers at hand.</span><br />
 <br />
@@ -6610,57 +6677,57 @@ jgs                (________\  \
 <li>Going through any tedious paperwork.</li>
 <li>Catch up with the journal and mark off all trivial action items.</li>
 </ul><br />
-<h2 style='display: inline' id='Entertheflowstate'>Enter the flow state</h2><br />
+<h2 style='display: inline' id='enter-the-flow-state'>Enter the flow state</h2><br />
 <br />
 <span>I find it easy to enter the "flow state" after a bad night&#39;s sleep. All I need to do is to put on some ambient music (preferably instrumental chill house) and start to work on a not-too-difficult ticket.</span><br />
 <br />
 <span>Usually, the "flow state" is associated with deep-focused work, but deep-focused work isn&#39;t easily possible under sleep deprivation. It&#39;s still possible to be in the flow by working on more manageable tasks and leaving the difficult ones for the next day.</span><br />
 <br />
-<h2 style='display: inline' id='Reschedulemeetings'>Reschedule meetings</h2><br />
+<h2 style='display: inline' id='reschedule-meetings'>Reschedule meetings</h2><br />
 <br />
 <span>I find engaging in discussions and demanding meetings challenging after a lousy night&#39;s sleep. I still attend the sessions I am invited to as "only" a participant, but I prefer to reschedule all meetings I am the primary driver of.</span><br />
 <br />
 <span>This, unfortunately, also includes interviews. Interviews require full concentration power. So for interviews, I would find a colleague to step in for me or ask to reschedule the interview altogether. Everything else wouldn&#39;t make it justice and would waste everyone&#39;s time!</span><br />
 <br />
-<h2 style='display: inline' id='Invent'>Invent</h2><br />
+<h2 style='display: inline' id='invent'>Invent</h2><br />
 <br />
 <span>The mind works differently under sleep deprivation: It&#39;s easier to invent new stuff as it&#39;s easier to have a look at things from different perspectives. Until an hour ago, I didn&#39;t know yet what I would be blogging about for this month, and then I just started writing this, and it took me only half an hour to write the first draft of this blog post!</span><br />
 <br />
-<h2 style='display: inline' id='Fast'>Fast</h2><br />
+<h2 style='display: inline' id='fast'>Fast</h2><br />
 <br />
 <span>I don&#39;t eat breakfast, and I don&#39;t eat lunch on these days. I only have dinner. Not eating means my mind doesn&#39;t get foggy, and I keep up the work momentum. This is called intermittent fasting, which not only generally helps to keep the weight under control and boosts the concentration power. Furthermore, intermittent fasting is healthy. You should include it in your routine, even after a good night&#39;s sleep.</span><br />
 <br />
-<h2 style='display: inline' id='Stretch'>Stretch</h2><br />
+<h2 style='display: inline' id='stretch'>Stretch</h2><br />
 <br />
 <span>I won&#39;t have enough energy for strenuous physical exercise on those days, but a 30 to a 60-minute stretching session can make the day. Stretching will even hurt less under sleep deprivation! The stretching could also be substituted with a light Yoga session.</span><br />
 <br />
-<h2 style='display: inline' id='Walk'>Walk</h2><br />
+<h2 style='display: inline' id='walk'>Walk</h2><br />
 <br />
 <span>Walking is healthy, and the time can be used to listen to interesting podcasts. The available concentration power might not be enough for more sophisticated audio literature. I will have enough energy for one or two daily walks (~10k steps for the day in total). Sometimes, I listen to music during walks. I also try to catch the bright sunlight.</span><br />
 <br />
-<h2 style='display: inline' id='RedBull'>Red Bull</h2><br />
+<h2 style='display: inline' id='red-bull'>Red Bull</h2><br />
 <br />
 <span>I don&#39;t think that Red Bull is a healthy drink. But once in a while, a can in the early afternoon brings wonders, and productivity will skyrocket. Other than Red Bull, drink a lot of water throughout the day. Don&#39;t forget to drink the sugar-free version; otherwise, your intermittent fast will be broken.</span><br />
 <br />
-<h2 style='display: inline' id='Powernap'>Power nap</h2><br />
+<h2 style='display: inline' id='power-nap'>Power nap</h2><br />
 <br />
 <span>I don&#39;t know how to "enforce" a nap, but sometimes I manage to power nap, and it helps wonders. A 30-minute nap sometimes brings me back to normal. If you don&#39;t tend to fast as you are too hungry, it helps to try to nap approximately 30 minutes after eating something.</span><br />
 <br />
-<h2 style='display: inline' id='Donttakeanythingpersonally'>Don&#39;t take anything personally.</h2><br />
+<h2 style='display: inline' id='don-t-take-anything-personally'>Don&#39;t take anything personally.</h2><br />
 <br />
 <span>It&#39;s much more challenging to keep the mind "under control" in this state. Every annoyance can potentially upset, which could reflect on the work colleagues. It is wise to attempt to go with a positive attitude into the day, always smile and be polite to the family and colleagues at work. Don&#39;t let anything drop out to the people next; they don&#39;t deserve it as they didn&#39;t do anything wrong! Also, remember, it can&#39;t be controlled at all. It&#39;s time to let go of the annoyances for the day.</span><br />
 <br />
-<h2 style='display: inline' id='Meditate'>Meditate</h2><br />
+<h2 style='display: inline' id='meditate'>Meditate</h2><br />
 <br />
 <span>To keep the good vibe, it helps to meditate for 10 minutes. Meditation must nothing be fancy. It can be just lying on the sofa and observing your thoughts as they come and go. Don&#39;t judge your thoughts, as that could put you in a negative mood. It&#39;s not necessary to sit in an uncomfortable Yoga pose, and it is not required to chant "Ohhmmmmm".</span><br />
 <br />
-<h2 style='display: inline' id='Writethingsdown'>Write things down</h2><br />
+<h2 style='display: inline' id='write-things-down'>Write things down</h2><br />
 <br />
 <span>Sometimes something requiring more concentration power demands time. This is where it helps to write a note in a journal and return to it another day. This doesn&#39;t mean slacking off but managing the rarely available concentration power for the day. I might repeat myself: Today, sweat all the small stuff. Tomorrow, do the deep-focused work on that crucial project again.</span><br />
 <br />
 <span>It&#39;s easier to forget things on those days, so everything should be written down so that it can be worked off later. Things written down will not be overlooked!</span><br />
 <br />
-<h2 style='display: inline' id='Socialmedia'>Social media</h2><br />
+<h2 style='display: inline' id='social-media'>Social media</h2><br />
 <br />
 <span>I wouldn&#39;t say I like checking social media, as it can consume a lot of time and can become addictive. But once in a while, I want to catch up with my "networks". After a bad night&#39;s sleep, it&#39;s the perfect time to check your social media. Once done, you don&#39;t have to do it anymore for the next couple of days!</span><br />
 <br />
@@ -6686,6 +6753,12 @@ jgs                (________\  \
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
 <br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>1.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
+<br />
 <pre>
 -=[ typewriter ]=-  1/98
 
@@ -6702,7 +6775,6 @@ jgs                (________\  \
 <br />
 <ul>
 <li><a href='#gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#what-s-new'>What&#39;s new?</a></li>
 <li>⇢ ⇢ <a href='#automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</a></li>
 <li>⇢ ⇢ <a href='#backticks-now-produce-inline-code-blocks-in-the-html-output'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</a></li>
@@ -6713,14 +6785,6 @@ jgs                (________\  \
 <li>⇢ ⇢ <a href='#sub-section-support'>Sub-section support</a></li>
 <li>⇢ ⇢ <a href='#more'>More</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>1.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
-<br />
 <h2 style='display: inline' id='what-s-new'>What&#39;s new?</h2><br />
 <br />
 <h3 style='display: inline' id='automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</h3><br />
@@ -6822,6 +6886,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
 <br />
+<span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
+<br />
 <pre>
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -6853,7 +6919,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li><a href='#let-s-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ ⇢ <a href='#what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
 <li>⇢ <a href='#meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></a></li>
 <li>⇢ <a href='#configuration'>Configuration</a></li>
@@ -6867,10 +6932,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>⇢ <a href='#all-pieces-together'>All pieces together</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
-<br />
 <h3 style='display: inline' id='what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
 <br />
 <span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
@@ -7524,17 +7585,9 @@ rex commons
         <summary>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's 'Tiny programs' blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='SweatingthesmallstuffTinyprojectsofmine'>Sweating the small stuff - Tiny projects of mine</h1><br />
+                <h1 style='display: inline' id='sweating-the-small-stuff---tiny-projects-of-mine'>Sweating the small stuff - Tiny projects of mine</h1><br />
 <br />
 <span class='quote'>Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18</span><br />
-<br />
-<pre>
-         _
-        /_/_      .&#39;&#39;&#39;.
-     =O(_)))) ...&#39;     `.
- jgs    \_\              `.    .&#39;&#39;&#39;
-                           `..&#39;
-</pre>
 <br />
 <span>This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan&#39;s "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:</span><br />
 <br />
@@ -7545,7 +7598,41 @@ rex commons
 <br />
 <span>But before going through the tiny projects let&#39;s take a paragraph for the <span class='inlinecode'>1y</span> anniversary retrospective.</span><br />
 <br />
-<h2 style='display: inline' id='1yanniversary'><span class='inlinecode'>1y</span> anniversary</h2><br />
+<pre>
+         _
+        /_/_      .&#39;&#39;&#39;.
+     =O(_)))) ...&#39;     `.
+ jgs    \_\              `.    .&#39;&#39;&#39;
+                           `..&#39;
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#sweating-the-small-stuff---tiny-projects-of-mine'>Sweating the small stuff - Tiny projects of mine</a></li>
+<li>⇢ <a href='#1y-anniversary'><span class='inlinecode'>1y</span> anniversary</a></li>
+<li>⇢ <a href='#static-photo-album-generator'>Static photo album generator</a></li>
+<li>⇢ ⇢ <a href='#the-irregular-ninja'>The Irregular Ninja</a></li>
+<li>⇢ <a href='#random-journal-page-extractor'>Random journal page extractor</a></li>
+<li>⇢ <a href='#global-uptime-records-statistic-generator'>Global uptime records statistic generator</a></li>
+<li>⇢ <a href='#server-configuration-management'>Server configuration management</a></li>
+<li>⇢ <a href='#fancy-ssh-execution-loop'>Fancy SSH execution loop</a></li>
+<li>⇢ <a href='#a-kiss-dynamic-dns-solution'>A KISS dynamic DNS solution</a></li>
+<li>⇢ <a href='#cpu-information-gatherer-for-linux'>CPU information gatherer for Linux</a></li>
+<li>⇢ <a href='#show-differences-of-two-files-over-the-network'>Show differences of two files over the network</a></li>
+<li>⇢ <a href='#delay-sending-out-e-mails-with-mutt'>Delay sending out E-Mails with Mutt</a></li>
+<li>⇢ <a href='#graphical-ui-for-sending-text-messages'>Graphical UI for sending text messages</a></li>
+<li>⇢ <a href='#ipv6-and-ipv4-connectivity-testing-site'>IPv6 and IPv4 connectivity testing site</a></li>
+<li>⇢ <a href='#list-open-jira-tickets-in-the-terminal'>List open Jira tickets in the terminal</a></li>
+<li>⇢ <a href='#debian-running-on-your-android-phone'>Debian running on "your" Android phone</a></li>
+<li>⇢ <a href='#perl-service-framework'>Perl service framework</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+<li>⇢ ⇢ <a href='#work-time-tracker'>Work time tracker</a></li>
+<li>⇢ ⇢ <a href='#password-and-document-store'>Password and document store</a></li>
+<li>⇢ ⇢ <a href='#backup-procedure'>Backup procedure</a></li>
+<li>⇢ <a href='#konpeitomedia'>konpeito.media</a></li>
+</ul><br />
+<h2 style='display: inline' id='1y-anniversary'><span class='inlinecode'>1y</span> anniversary</h2><br />
 <br />
 <span>It has been one year since I started posting regularly (at least once monthly) on this blog again. It has been a lot of fun (and work) doing so for various reasons:</span><br />
 <br />
@@ -7564,13 +7651,13 @@ rex commons
 <br />
 <span>But now, let&#39;s continue with the small projects worth mentioning :-)</span><br />
 <br />
-<h2 style='display: inline' id='Staticphotoalbumgenerator'>Static photo album generator</h2><br />
+<h2 style='display: inline' id='static-photo-album-generator'>Static photo album generator</h2><br />
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal static HTML photo album generator. I use it to drive "The Irregular Ninja" site and for some ad-hoc (personal) albums to share photos with the family and friends.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/photoalbum'>https://codeberg.org/snonux/photoalbum</a><br />
 <br />
-<h3 style='display: inline' id='TheIrregularNinja'>The Irregular Ninja</h3><br />
+<h3 style='display: inline' id='the-irregular-ninja'>The Irregular Ninja</h3><br />
 <br />
 <span>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</span><br />
 <br />
@@ -7588,7 +7675,7 @@ rex commons
 <br />
 <span>I hope you like this photo site. It&#39;s worth checking it out again around once every other month!</span><br />
 <br />
-<h2 style='display: inline' id='Randomjournalpageextractor'>Random journal page extractor</h2><br />
+<h2 style='display: inline' id='random-journal-page-extractor'>Random journal page extractor</h2><br />
 <br />
 <span>I bullet journal. I write my notes into a Leuchtturm paper notebook. Once full, I am scanning it to a PDF file and archive it. As of writing this, I am at journal #7 (each from 123 up to 251 pages in A5). It means that there is a lot of material already.</span><br />
 <br />
@@ -7598,7 +7685,7 @@ rex commons
 <br />
 <span>There&#39;s also a weekly <span class='inlinecode'>CRON</span> job on my servers to send me a reminder that I might want to read in my old journals again. My laptop also runs this script each time it boots and saves the output to a NextCloud folder. From there, it&#39;s synchronized to the NextCloud server so I can pick it up from there with my smartphone later when I am "on the road".</span><br />
 <br />
-<h2 style='display: inline' id='Globaluptimerecordsstatisticgenerator'>Global uptime records statistic generator</h2><br />
+<h2 style='display: inline' id='global-uptime-records-statistic-generator'>Global uptime records statistic generator</h2><br />
 <br />
 <span><span class='inlinecode'>guprecords</span> is a Perl script which reads multiple <span class='inlinecode'>uprecord</span> files (produced by <span class='inlinecode'>uptimed</span> - a widely available daemon for recording server uptimes) and generates uptime statistics of multiple hosts combined. I keep all the record files of all my personal computers in a Git repository (I even keep the records of the boxes I don&#39;t own or use anymore) and there&#39;s already quite a collection of it. It looks like this:</span><br />
 <br />
@@ -7658,7 +7745,7 @@ Pos |            System |               Kernel |        Uptime |
 <br />
 <span>This all is of no real practical use but fun!</span><br />
 <br />
-<h2 style='display: inline' id='Serverconfigurationmanagement'>Server configuration management</h2><br />
+<h2 style='display: inline' id='server-configuration-management'>Server configuration management</h2><br />
 <br />
 <span>The <span class='inlinecode'>rexfiles</span> project contains all Rex files for my (personal) server setup automation. A <span class='inlinecode'>Rexfile</span> is written in a Perl DSL run by the Rex configuration management system. It&#39;s pretty much KISS and that&#39;s why I love it. It suits my personal needs perfectly. </span><br />
 <br />
@@ -7669,7 +7756,7 @@ Pos |            System |               Kernel |        Uptime |
 <br />
 <span class='quote'>Hi there! I was searching for a simple way to automate my personal OpenBSD setup. I found that configuration management systems like Puppet, Salt, Chef, etc.. were too bloated for my personal needs. So for a while I was configuring everything by hand. At one point I got fed up and started writing Shell scripts. But that was not the holy grail so that I looked at Ansible. I found that Ansible had some dependencies on Python on the target machine when you want to use all the features. Furthermore, I am not really familiar with Python. But then I remembered that there was also Rex. It&#39;s written in my beloved Perl. Also, OpenBSD comes with Perl in the base system out of the box which makes it integrate better than all my scripts (automation and also scripts deployed via the automation to the system) are all in the same language. Rex may not have all the features like other configuration management systems, but its easy to work-around or extend when you know Perl. Thanks!</span><br />
 <br />
-<h2 style='display: inline' id='FancySSHexecutionloop'>Fancy SSH execution loop</h2><br />
+<h2 style='display: inline' id='fancy-ssh-execution-loop'>Fancy SSH execution loop</h2><br />
 <br />
 <span><span class='inlinecode'>rubyfy</span> is a fancy SSH loop wrapper written in Ruby for running shell commands on multiple remote servers at once. I also forked this project for work (under a different name) where I added even more features such as automatic server discovery. It&#39;s used by many colleagues on a frequent basis. Here are some examples:</span><br />
 <br />
@@ -7694,7 +7781,7 @@ echo foo.example.com |
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/rubyfy'>https://codeberg.org/snonux/rubyfy</a><br />
 <br />
-<h2 style='display: inline' id='AKISSdynamicDNSsolution'>A KISS dynamic DNS solution</h2><br />
+<h2 style='display: inline' id='a-kiss-dynamic-dns-solution'>A KISS dynamic DNS solution</h2><br />
 <br />
 <span><span class='inlinecode'>dyndns</span> is a tiny shell script which implements "your" own DynDNS service. It relies on SSH access to the authoritative DNS server and the <span class='inlinecode'>nsupdate</span> command. There is really no need to use any of the "other" free DynDNS services out there.</span><br />
 <br />
@@ -7714,7 +7801,7 @@ ssh dyndns@dyndnsserver /path/to/dyndns-update \
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/dyndns'>https://codeberg.org/snonux/dyndns</a><br />
 <br />
-<h2 style='display: inline' id='CPUinformationgathererforLinux'>CPU information gatherer for Linux</h2><br />
+<h2 style='display: inline' id='cpu-information-gatherer-for-linux'>CPU information gatherer for Linux</h2><br />
 <br />
 <span>This is a tiny GNU Awk script for Linux which displays information about the CPU. All what it does is presenting <span class='inlinecode'>/proc/cpuinfo</span> in an easier to read way. The output is somewhat more compact than the standard <span class='inlinecode'>lscpu</span> command you find commonly on Linux distributions.</span><br />
 <br />
@@ -7738,7 +7825,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/cpuinfo'>https://codeberg.org/snonux/cpuinfo</a><br />
 <br />
-<h2 style='display: inline' id='Showdifferencesoftwofilesoverthenetwork'>Show differences of two files over the network</h2><br />
+<h2 style='display: inline' id='show-differences-of-two-files-over-the-network'>Show differences of two files over the network</h2><br />
 <br />
 <span>This is a shell wrapper to use the standard diff tool over the network to compare a file between two computers. It uses NetCat for the network part and also encrypts all traffic using OpenSSL. This is how its used:</span><br />
 <br />
@@ -7746,13 +7833,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/netdiff'>https://codeberg.org/snonux/netdiff</a><br />
 <br />
-<h2 style='display: inline' id='DelaysendingoutEMailswithMutt'>Delay sending out E-Mails with Mutt</h2><br />
+<h2 style='display: inline' id='delay-sending-out-e-mails-with-mutt'>Delay sending out E-Mails with Mutt</h2><br />
 <br />
 <span>This is a shell script for the Mutt email client for delaying sending out E-Mails. For example, you want to write an email on Saturday but don&#39;t want to bother the recipient earlier than Monday. It relies on CRON.</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/muttdelay'>https://codeberg.org/snonux/muttdelay</a><br />
 <br />
-<h2 style='display: inline' id='GraphicalUIforsendingtextmessages'>Graphical UI for sending text messages</h2><br />
+<h2 style='display: inline' id='graphical-ui-for-sending-text-messages'>Graphical UI for sending text messages</h2><br />
 <br />
 <span><span class='inlinecode'>jsmstrade</span> is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.</span><br />
 <br />
@@ -7761,19 +7848,19 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class='textlink' href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
 <a class='textlink' href='https://smstrade.de'>https://smstrade.de</a><br />
 <br />
-<h2 style='display: inline' id='IPv6andIPv4connectivitytestingsite'>IPv6 and IPv4 connectivity testing site</h2><br />
+<h2 style='display: inline' id='ipv6-and-ipv4-connectivity-testing-site'>IPv6 and IPv4 connectivity testing site</h2><br />
 <br />
 <span><span class='inlinecode'>ipv6test</span> is a quick and dirty Perl CGI script for testing whether your browser connects via IPv4 or IPv6. It requires you to setup three sub-domains: One reachable only via IPv4 (e.g. <span class='inlinecode'>test4.ipv6.buetow.org</span>), another reachable only via IPv6 (e.g. <span class='inlinecode'>test6.ipv6.buetow.org</span>) and the main one reachable through both protocols (e.g. <span class='inlinecode'>ipv6.buetow.org</span>).</span><br />
 <br />
 <span>I don&#39;t have it running on any of my servers at the moment. This means that there is no demo to show now. Sorry!</span><br />
 <br />
-<h2 style='display: inline' id='ListopenJiraticketsintheterminal'>List open Jira tickets in the terminal</h2><br />
+<h2 style='display: inline' id='list-open-jira-tickets-in-the-terminal'>List open Jira tickets in the terminal</h2><br />
 <br />
 <span><span class='inlinecode'>japi</span> s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
 <span> </span><br />
-<h2 style='display: inline' id='DebianrunningonyourAndroidphone'>Debian running on "your" Android phone</h2><br />
+<h2 style='display: inline' id='debian-running-on-your-android-phone'>Debian running on "your" Android phone</h2><br />
 <br />
 <span>Debroid is a tutorial and a set of scripts to install and to run a Debian <span class='inlinecode'>chroot</span> on an Android phone.</span><br />
 <br />
@@ -7783,17 +7870,17 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a class='textlink' href='https://termux.com'>https://termux.com</a><br />
 <br />
-<h2 style='display: inline' id='Perlserviceframework'>Perl service framework</h2><br />
+<h2 style='display: inline' id='perl-service-framework'>Perl service framework</h2><br />
 <br />
 <span>PerlDaemon is a minimal daemon for Linux and other Unix like operating systems programmed in Perl. It is a minimal but pretty functional and fairly generic service framework. This means that it does not do anything useful other than providing a framework for starting, stopping, configuring and logging. To do something useful, a module (written in Perl) must be provided.</span><br />
 <br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>Checkout my previous post about it</a><br />
 <br />
-<h2 style='display: inline' id='More'>More</h2><br />
+<h2 style='display: inline' id='more'>More</h2><br />
 <br />
 <span>There are more projects on my Codeberg page but they aren&#39;t as tiny as the ones mentioned in this post or aren&#39;t finished yet so I won&#39;t bother listing them here. However, there also a few more scripts used frequently by me (not publicly accessible (yet?)) which I would like to mention here:</span><br />
 <br />
-<h3 style='display: inline' id='Worktimetracker'>Work time tracker</h3><br />
+<h3 style='display: inline' id='work-time-tracker'>Work time tracker</h3><br />
 <br />
 <span><span class='inlinecode'>worktime.rb</span>, for example, is a command line Ruby script I use to track my time spent working. This is to make sure that I don&#39;t overwork (in particular useful when working from home). It also generates some daily and weekly stats and carries over work time (surpluses or minuses) to the next work day, week or even year.</span><br />
 <br />
@@ -7815,13 +7902,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>All I do when I start work is to run the <span class='inlinecode'>wtlogin</span> command and after finishing work to run the <span class='inlinecode'>wtlogout</span> command. My shell will remind me when I work without having logged in. It uses a simple JSON database which is editable with <span class='inlinecode'>wtedit</span> (this opens the JSON in Vim). The report shown above can be generated with <span class='inlinecode'>wtreport</span>. Any out-of-bounds reporting can be added with the <span class='inlinecode'>wtadd</span> command.</span><br />
 <br />
-<h3 style='display: inline' id='Passwordanddocumentstore'>Password and document store</h3><br />
+<h3 style='display: inline' id='password-and-document-store'>Password and document store</h3><br />
 <br />
 <span><span class='inlinecode'>geheim.rb</span> is my personal password and document store ("geheim" is the German word for secret). It&#39;s written in Ruby and heavily relies on Git, FZF (for search), Vim and standard encryption algorithms. Other than the standard <span class='inlinecode'>pass</span> Unix password manager, <span class='inlinecode'>geheim</span> also encrypts the file names and password titles.</span><br />
 <br />
 <span>The tool is command line driven but also provides an interactive shell when invoked with <span class='inlinecode'>geheim shell</span>. It also works on my Android phone via Termux so I have all my documents and passwords always with me. </span><br />
 <br />
-<h3 style='display: inline' id='Backupprocedure'>Backup procedure</h3><br />
+<h3 style='display: inline' id='backup-procedure'>Backup procedure</h3><br />
 <br />
 <span><span class='inlinecode'>backup</span> is a Bash script which does run once daily (or every time on boot) on my home FreeBSD NAS server and performs backup related tasks such as creating a local backup of my remote NextCloud instance, creating encrypted (incremental) ZFS snapshots of everything what&#39;s stored on the NAS and synchronizes (via <span class='inlinecode'>rsync</span>) backups to a remote cloud storage. It also can synchronize backups to a local external USB drive.</span><br />
 <br />
@@ -7872,21 +7959,6 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span class='quote'>Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28</span><br />
 <br />
-<a href='./perl-is-still-a-great-choice/regular_expressions.png'><img alt='Comic source: XKCD' title='Comic source: XKCD' src='./perl-is-still-a-great-choice/regular_expressions.png' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#perl-is-still-a-great-choice'>Perl is still a great choice</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#write-only-language'>Write-only language</a></li>
-<li>⇢ <a href='#is-perl-abandoned'>Is Perl abandoned?</a></li>
-<li>⇢ <a href='#why-use-perl-as-there-are-better-alternatives'>Why use Perl as there are better alternatives?</a></li>
-<li>⇢ <a href='#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory'>Why all the sigils? It looks like an exploding ASCII factory!!</a></li>
-<li>⇢ <a href='#where-do-i-personally-still-use-perl'>Where do I personally still use perl?</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it&#39;s not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class='inlinecode'>perl</span> the name of the interpreter or the interpreter command.</span><br />
 <br />
 <span>Unfortunately (it makes me sad), Perl&#39;s popularity has been declining over the last years as Google trends shows:</span><br />
@@ -7900,6 +7972,18 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <li>Perl? Isn&#39;t it abandoned? It&#39;s still at version 5!</li>
 <li>Why use Perl as there are better alternatives?</li>
 <li>Why all the sigils? It looks like an exploding ASCII factory!!</li>
+</ul><br />
+<a href='./perl-is-still-a-great-choice/regular_expressions.png'><img alt='Comic source: XKCD' title='Comic source: XKCD' src='./perl-is-still-a-great-choice/regular_expressions.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#perl-is-still-a-great-choice'>Perl is still a great choice</a></li>
+<li>⇢ <a href='#write-only-language'>Write-only language</a></li>
+<li>⇢ <a href='#is-perl-abandoned'>Is Perl abandoned?</a></li>
+<li>⇢ <a href='#why-use-perl-as-there-are-better-alternatives'>Why use Perl as there are better alternatives?</a></li>
+<li>⇢ <a href='#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory'>Why all the sigils? It looks like an exploding ASCII factory!!</a></li>
+<li>⇢ <a href='#where-do-i-personally-still-use-perl'>Where do I personally still use perl?</a></li>
 </ul><br />
 <h2 style='display: inline' id='write-only-language'>Write-only language</h2><br />
 <br />
@@ -8047,10 +8131,27 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
         <summary>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a 'silver' prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Creativeuniverse'>Creative universe</h1><br />
+                <h1 style='display: inline' id='creative-universe'>Creative universe</h1><br />
 <br />
 <span class='quote'>Published at 2022-04-10T10:09:11+01:00; Updated at 2022-04-18</span><br />
 <br />
+<span>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer&#39;s engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</span><br />
+<br />
+<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>Realistic load testing with I/O Riot for linux</a><br />
+<br />
+<span>Note that my latest silver prize project isn&#39;t open source software and because of that there is no public material I can refer to. Maybe the next one again?</span><br />
+<br />
+<span>I want to point out that I never won the "gold" prize and it&#39;s the first time I won "silver", though. I believe, looking at the company&#39;s contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn&#39;t participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</span><br />
+<br />
+<span>I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓</span><br />
+<br />
+<span>So why would I sign up myself for such side projects? Isn&#39;t it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:</span><br />
+<br />
+<ul>
+<li>I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don&#39;t win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It&#39;s good to have a hard deadline for a project. And the project will also benefit the company in some way. So it&#39;s a win-win.</li>
+<li>I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn&#39;t exist as a Lego block before and could not be built by using only the already existing blocks.</li>
+</ul><br />
 <pre>
  .              +   .                .   . .     .  .
                    .                    .       .     *
@@ -8072,36 +8173,31 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
                                          - the universe
 </pre>
 <br />
-<h2 style='display: inline' id='Prelude'>Prelude</h2><br />
-<br />
-<span>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer&#39;s engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</span><br />
-<br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>DTail - The distributed log tail program</a><br />
-<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>Realistic load testing with I/O Riot for linux</a><br />
-<br />
-<span>Note that my latest silver prize project isn&#39;t open source software and because of that there is no public material I can refer to. Maybe the next one again?</span><br />
-<br />
-<span>I want to point out that I never won the "gold" prize and it&#39;s the first time I won "silver", though. I believe, looking at the company&#39;s contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn&#39;t participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</span><br />
-<br />
-<span>I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓</span><br />
-<br />
-<span>So why would I sign up myself for such side projects? Isn&#39;t it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li>I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don&#39;t win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It&#39;s good to have a hard deadline for a project. And the project will also benefit the company in some way. So it&#39;s a win-win.</li>
-<li>I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn&#39;t exist as a Lego block before and could not be built by using only the already existing blocks.</li>
+<li><a href='#creative-universe'>Creative universe</a></li>
+<li>⇢ <a href='#how-to-be-creative'>How to be creative</a></li>
+<li>⇢ ⇢ <a href='#know-which-problem-you-want-to-solve'>Know which problem you want to solve</a></li>
+<li>⇢ ⇢ <a href='#immerse--deep-dive'>Immerse / deep dive</a></li>
+<li>⇢ ⇢ <a href='#always-have-a-notebook-with-you'>Always have a notebook with you</a></li>
+<li>⇢ ⇢ <a href='#when-you-didn-t-sleep-enough'>When you didn&#39;t sleep enough</a></li>
+<li>⇢ ⇢ <a href='#have-regular-breaks-and-relax'>Have regular breaks and relax</a></li>
+<li>⇢ ⇢ <a href='#upside-down-approach'>Upside-down approach</a></li>
+<li>⇢ ⇢ <a href='#don-t-be-busy-all-the-time'>Don&#39;t be busy all the time</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
-<h2 style='display: inline' id='Howtobecreative'>How to be creative</h2><br />
+<h2 style='display: inline' id='how-to-be-creative'>How to be creative</h2><br />
 <br />
 <span>How did I manage to be creative with all these Pet Projects? Unfortunately, there is no step-by-step guide I could point you to. But what I want to do in this blog post is share my personal experience so far.</span><br />
 <br />
-<h3 style='display: inline' id='Knowwhichproblemyouwanttosolve'>Know which problem you want to solve</h3><br />
+<h3 style='display: inline' id='know-which-problem-you-want-to-solve'>Know which problem you want to solve</h3><br />
 <br />
 <span>There must be a problem to be solved or a thing to be improved. It makes no sense to have a project without a goal. A problem might be obvious to you, and you don&#39;t even need to think about it. In that case, you are all set, and you can immerse yourself with the problem.</span><br />
 <br />
 <span>If, however, you don&#39;t know what problem you want to solve: Do you really need to be creative? All problems are solved anyway, correct? In that case, just go on with your work. As you immerse yourself with your daily work, you will find a project naturally after a while. I don&#39;t believe you should artificially find a project. It should come naturally to you. You should have an interest in the problem domain and a strong desire to find a proper solution for the problem. Artificially created projects come with the catch that you might give up on it rather sooner than later due to lack of motivation and desire.</span><br />
 <br />
-<h3 style='display: inline' id='Immersedeepdive'>Immerse / deep dive</h3><br />
+<h3 style='display: inline' id='immerse--deep-dive'>Immerse / deep dive</h3><br />
 <br />
 <span>If you want to be creative in a field, you must know a lot about it. The more you know about it, the more dots you can connect. When you are learning a new technology or if you are thinking about a tough problem, do it thoroughly. Don&#39;t let anything distract you. Read books, watch lectures, listen to podcasts or audiobooks about the topic, talk to other people working on similar topics. Immerse yourself for multiple hours per day, multiple days per week, multiple weeks and maybe even months. Create your own inner universe.</span><br />
 <br />
@@ -8111,7 +8207,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Sometimes, depending on how deeply you were immersed, you may need to let the problem go for a couple of days (e.g. over a weekend) before you can download a new insight.</span><br />
 <br />
-<h3 style='display: inline' id='Alwayshaveanotebookwithyou'>Always have a notebook with you</h3><br />
+<h3 style='display: inline' id='always-have-a-notebook-with-you'>Always have a notebook with you</h3><br />
 <br />
 <span>Wherever you go, ensure that you always have something to take notes with you. Once you have an idea from nowhere (or from your unconscious but volatile brain), you really want to write it down to persistent storage. It doesn&#39;t matter what kind of note-taking device you use here. It can be a paper journal, or it can be your smartphone. </span><br />
 <br />
@@ -8119,13 +8215,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>I prefer taking notes on paper, as it gives you more freedom of how to structure it. You can use any colour, and you can also quickly create diagrams without the use of any complex computer program.</span><br />
 <br />
-<h3 style='display: inline' id='Whenyoudidntsleepenough'>When you didn&#39;t sleep enough</h3><br />
+<h3 style='display: inline' id='when-you-didn-t-sleep-enough'>When you didn&#39;t sleep enough</h3><br />
 <br />
 <span>I noticed while being sleep-deprived I am (obviously) unable to concentrate so much, and it is difficult to be immersed in a focused way. But on the other hand, I am a lot more creative compared to when I am not sleep-deprived. Then, my brain suddenly presents me with connections I have not thought of before. Here, I usually write any idea I have down on a sheet of paper or in my journal, so I can pick it up later. I then often continue to philosophise about a possible solution. Sometimes to the absurd, and sometimes to something pretty useful.</span><br />
 <br />
 <span>I am not saying that you should skip sleep. By all means, if you can sleep, then sleep. But there are some days when you don&#39;t manage to sleep (e.g. think too much about a project and didn&#39;t manage to hit the off switch). This is, where you can take advantage of your current state of mind. Disclaimer: Skipping sleep damages your health. So, please don&#39;t try this out on purpose. But in case you had a bad night, remember this trick.</span><br />
 <br />
-<h3 style='display: inline' id='Haveregularbreaksandrelax'>Have regular breaks and relax</h3><br />
+<h3 style='display: inline' id='have-regular-breaks-and-relax'>Have regular breaks and relax</h3><br />
 <br />
 <span>Have regular breaks. Don&#39;t skip your lunch break. Best, have a walk during lunchtime. And after work, do some kind of workout or visit a sports class. Do something completely unrelated to work before going to sleep (e.g. visit a parallel universe and read a Science Fiction novel). In short: Totally hit the off-switch after your work for the day is finished. You will be much more energised and motivated the next time you open your work laptop.</span><br />
 <br />
@@ -8135,7 +8231,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>It also helps a lot eat healthy. Healthy food makes your brain work more efficiently. But I won&#39;t go into more details here, as nothing is as contradictory as the health and food industry. Conduct your own research. Your opinion may be different from mine anyway, and everyone&#39;s body reacts to certain foods differently. What for one person works may not work for another person. But be aware that you will find a lot of wrong and also conflicting information on the internet. So always use multiple resources for your research.</span><br />
 <br />
-<h3 style='display: inline' id='Upsidedownapproach'>Upside-down approach</h3><br />
+<h3 style='display: inline' id='upside-down-approach'>Upside-down approach</h3><br />
 <br />
 <span>It&#39;s easy to fall into the habit of "boxed" thinking, but creativity is exactly the opposite. Once in a while, make yourself think "Is A really required to do B?". Many assumptions are believed to be true. But are they really? A concrete example: "At work we only use the programming language L and framework F" and therefore, it is the standard we must use.</span><br />
 <br />
@@ -8149,7 +8245,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>A small additional trick: you can train yourself to generate new and unconventional ideas. Just write down 20 random ideas every day. It doesn&#39;t matter what the ideas are about and whether they are useful or not. The purpose of this exercise is to make your brain think about something new and unconventional. These can be absurd ideas such as "Jump out of the window naked in the morning in order to wake up faster". Of course, you would never do that, but at least you had an idea and made your brain generate something.</span><br />
 <br />
-<h3 style='display: inline' id='Dontbebusyallthetime'>Don&#39;t be busy all the time</h3><br />
+<h3 style='display: inline' id='don-t-be-busy-all-the-time'>Don&#39;t be busy all the time</h3><br />
 <br />
 <span>Especially as a DevOps Engineer, you could be busy all the time with small, but frequent, ad hoc tasks. Don&#39;t lose yourself here. Yes, you should pay attention to your job and those tasks, but you should also make some room for creativity. Don&#39;t schedule meeting after ad hoc work after meeting after Jira ticket work after another Jira ticket. There should also be some "free" space in your calendar.</span><br />
 <br />
@@ -8169,7 +8265,7 @@ learn () {
        timedatectl - Control the system time and date
 </pre>
 <br />
-<h2 style='display: inline' id='Conclusion'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>This all summarises advice I have, really.  I hope this was interesting and helpful for you.</span><br />
 <br />
@@ -8210,6 +8306,10 @@ learn () {
 <br />
 <span class='quote'>Published at 2022-03-06T18:11:39+00:00</span><br />
 <br />
+<span>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</span><br />
+<br />
+<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
+<br />
 <pre>
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
@@ -8228,7 +8328,6 @@ learn () {
 <br />
 <ul>
 <li><a href='#the-release-of-dtail-400'>The release of DTail 4.0.0</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#so-what-s-new-in-400'>So, what&#39;s new in 4.0.0?</a></li>
 <li>⇢ ⇢ <a href='#rewritten-logging'>Rewritten logging</a></li>
 <li>⇢ ⇢ <a href='#configurable-terminal-color-codes'>Configurable terminal color codes</a></li>
@@ -8243,12 +8342,6 @@ learn () {
 <li>⇢ ⇢ <a href='#use-of-memory-pools'>Use of memory pools</a></li>
 <li>⇢ <a href='#what-s-next'>What&#39;s next</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
 <h2 style='display: inline' id='so-what-s-new-in-400'>So, what&#39;s new in 4.0.0?</h2><br />
 <br />
 <h3 style='display: inline' id='rewritten-logging'>Rewritten logging</h3><br />
@@ -8552,6 +8645,8 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <span class='quote'>Published at 2022-02-04T09:58:22+00:00; Updated at 2022-02-18</span><br />
 <br />
+<span>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</span><br />
+<br />
 <pre>
               /(        )`
               \ \___   / |
@@ -8577,7 +8672,6 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <br />
 <ul>
 <li><a href='#computer-operating-systems-i-used'>Computer operating systems I use(d)</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#fedora-linux'>Fedora Linux</a></li>
 <li>⇢ <a href='#endeavouros'>EndeavourOS</a></li>
 <li>⇢ <a href='#freebsd'>FreeBSD</a></li>
@@ -8599,10 +8693,6 @@ exec /usr/local/bin/dtailhealth --server localhost:2222
 <li>⇢ ⇢ <a href='#other-oses-i-only-had-a-glance-at'>Other OSes I only had a glance at...</a></li>
 <li>⇢ ⇢ <a href='#other-oses-which-seem-interesting'>Other OSes which seem interesting...</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.</span><br />
-<br />
 <h2 style='display: inline' id='fedora-linux'>Fedora Linux</h2><br />
 <br />
 <span>Fedora Linux is the operating system I use on my primary (personal) laptop. It&#39;s a ThinkPad X1 Carbon Gen. 9. Lenovo which comes along with official Lenovo Linux support. I already noticed hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It&#39;s baked by Red Hat.</span><br />
@@ -8892,6 +8982,12 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <br />
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
 <br />
+<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<br />
 <pre>
     &#39;\       &#39;\                   .  .                |&gt;18&gt;&gt;
       \        \              .         &#39; .           |
@@ -8907,7 +9003,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <ul>
 <li><a href='#bash-golf-part-2'>Bash Golf Part 2</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#redirection'>Redirection</a></li>
 <li>⇢ <a href='#here'>HERE</a></li>
 <li>⇢ <a href='#random'>RANDOM</a></li>
@@ -8916,14 +9011,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ ⇢ <a href='#-e'>-e</a></li>
 <li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<br />
 <h2 style='display: inline' id='redirection'>Redirection</h2><br />
 <br />
 <span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
@@ -9415,9 +9502,15 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
         <summary>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='HowtostaysaneasaDevOpsperson'>How to stay sane as a DevOps person </h1><br />
+                <h1 style='display: inline' id='how-to-stay-sane-as-a-devops-person-'>How to stay sane as a DevOps person </h1><br />
 <br />
 <span class='quote'>Published at 2021-12-26T12:02:02+00:00; Updated at 2022-01-12</span><br />
+<br />
+<span>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</span><br />
+<br />
+<span>(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).</span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Log4Shell'>https://en.wikipedia.org/wiki/Log4Shell</a><br />
 <br />
 <pre>
                                      )
@@ -9441,13 +9534,26 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
   ~~~~~&#39;
 </pre>
 <br />
-<span>Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span>(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Log4Shell'>https://en.wikipedia.org/wiki/Log4Shell</a><br />
-<br />
-<h2 style='display: inline' id='Setclearexpectations'>Set clear expectations</h2><br />
+<ul>
+<li><a href='#how-to-stay-sane-as-a-devops-person-'>How to stay sane as a DevOps person </a></li>
+<li>⇢ <a href='#set-clear-expectations'>Set clear expectations</a></li>
+<li>⇢ <a href='#always-respond-to-requests-but-set-expectations-and-boundaries'>Always respond to requests but set expectations and boundaries</a></li>
+<li>⇢ ⇢ <a href='#dealing-with-requests'>Dealing with requests</a></li>
+<li>⇢ ⇢ <a href='#escalation-is-only-a-tool'>Escalation is only a tool</a></li>
+<li>⇢ <a href='#think-positively'>Think positively</a></li>
+<li>⇢ <a href='#go-slower-even-if-you-could-go-faster'>Go slower even if you could go faster</a></li>
+<li>⇢ ⇢ <a href='#you-work-in-a-team'>You work in a team</a></li>
+<li>⇢ ⇢ <a href='#don-t-rush'>Don&#39;t rush</a></li>
+<li>⇢ <a href='#you-are-not-a-superhero'>You are not a superhero</a></li>
+<li>⇢ ⇢ <a href='#give-away-some-of-your-superpowers'>Give away some of your superpowers</a></li>
+<li>⇢ <a href='#don-t-jump-on-all-problems-immediately'>Don&#39;t jump on all problems immediately</a></li>
+<li>⇢ <a href='#force-breaks-and-shutdown-now'>Force breaks; and shutdown now</a></li>
+<li>⇢ <a href='#block-time-every-day-for-personal-advance'>Block time every day for personal advance</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='set-clear-expectations'>Set clear expectations</h2><br />
 <br />
 <span>It&#39;s important to set clear expectations. It can be difficult to guess what others expect or don&#39;t expect from you. If you know exactly what you are supposed to do, you can work towards a specific goal and don&#39;t worry about all the other noise so much.</span><br />
 <br />
@@ -9455,21 +9561,21 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>Due to politeness, many people are not setting clear expectations. I personally may sound sometimes "too German" when setting expectations, but so far nobody complained, and I have even received positive feedback about it.</span><br />
 <br />
-<h2 style='display: inline' id='Alwaysrespondtorequestsbutsetexpectationsandboundaries'>Always respond to requests but set expectations and boundaries</h2><br />
+<h2 style='display: inline' id='always-respond-to-requests-but-set-expectations-and-boundaries'>Always respond to requests but set expectations and boundaries</h2><br />
 <br />
 <span>There are many temptations to get side-tracked by other projects and/or issues. It is important to set boundaries here. But always answer to all requests as nothing is more frustrating than asking a person and never getting any answer back. This is especially the case when everyone is working form home where people are using tools such as Slack and E-Mail for most of their communications.</span><br />
 <br />
-<h3 style='display: inline' id='Dealingwithrequests'>Dealing with requests</h3><br />
+<h3 style='display: inline' id='dealing-with-requests'>Dealing with requests</h3><br />
 <br />
 <span>If the request is urgent, and you have the capacity to help, probably you should help. If it&#39;s not urgent, maybe ask to pospone the request (e.g. ask to create a ticket, so that someone from your team can work on it later).</span><br />
 <br />
 <span>If the request is urgent, but you don&#39;t have the knowledge or the capacity to help, try to defer to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent why you might not have the time right now, as this can help the person to review his own priorities or to escalate.  </span><br />
 <br />
-<h3 style='display: inline' id='Escalationisonlyatool'>Escalation is only a tool</h3><br />
+<h3 style='display: inline' id='escalation-is-only-a-tool'>Escalation is only a tool</h3><br />
 <br />
 <span>Never make or take an escalation personally. The only forms of escalation should be due to technical issues or lack of resources. An escalation then becomes like a math equation and does not need human resources involved. So de-facto, an escalation is nothing negative, but just a process people can follow to form decision-making. In a good company escalations tend to be an exception, though. Staff knows how to deal with the things by themselves without bothering management too much. </span><br />
 <br />
-<h2 style='display: inline' id='Thinkpositively'>Think positively</h2><br />
+<h2 style='display: inline' id='think-positively'>Think positively</h2><br />
 <br />
 <span>If times are very stressful, think that it could always be worse:</span><br />
 <br />
@@ -9479,17 +9585,17 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <li>You probably will never run out of work in the IT sector. So you will always be able to make a living.</li>
 <li>Your IT job and life is actually pretty good (compared to a homeless person for example). You are probably part of the world&#39;s top 1% regarding life standard.</li>
 </ul><br />
-<h2 style='display: inline' id='Goslowerevenifyoucouldgofaster'>Go slower even if you could go faster</h2><br />
+<h2 style='display: inline' id='go-slower-even-if-you-could-go-faster'>Go slower even if you could go faster</h2><br />
 <br />
 <span>When working in a team, you may feel that you could get done things faster when you just did everything by yourself. This can be a bit frustrating at times, as you might need to work late hours and also might need to explain things over and over again to others. Also, you could be the one who needs to get things explained over and over again as you are not so familiar with the topic (yet). You will appreciate it if the other person is slowing down for you a bit.</span><br />
 <br />
-<h3 style='display: inline' id='Youworkinateam'>You work in a team</h3><br />
+<h3 style='display: inline' id='you-work-in-a-team'>You work in a team</h3><br />
 <br />
 <span>Security is a team sport. So slow down and make sure that everyone is on track with the goals. You can go full-speed with your very own subtasks, though. Not everyone knows how to use all the tools so well like a full-time DevOps person. As a DevOps person, you are not a security expert, though. Security experts are different people in your company, but DevOps will be the main tribe deploying mitigations (following the security recommendations) and management will be the main tribe coordinating all the efforts. </span><br />
 <br />
 <span>So even if you think that you can do everything faster by your own, can you really? You probably don&#39;t know what you don&#39;t know about IT security. The more you know about it, the more you know about what you don&#39;t know.</span><br />
 <br />
-<h3 style='display: inline' id='Dontrush'>Don&#39;t rush</h3><br />
+<h3 style='display: inline' id='don-t-rush'>Don&#39;t rush</h3><br />
 <br />
 <span>Slowing down also helps to prevent errors. Don&#39;t rush your tasks, even if they are urgent. Try to be quick, but don&#39;t rush them. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.</span><br />
 <br />
@@ -9497,7 +9603,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <a class='textlink' href='./2021-10-22-defensive-devops.html'>Read also "Defensive DevOps" about deploying mitigation scripts.</a><br />
 <br />
-<h2 style='display: inline' id='Youarenotasuperhero'>You are not a superhero</h2><br />
+<h2 style='display: inline' id='you-are-not-a-superhero'>You are not a superhero</h2><br />
 <br />
 <span>Always keep that in mind. You can&#39;t solve all problems by your own. Maybe you could, but that would be a lot of additional stress (and this will reflect to your personal life). Also, Superman and Wonder Woman receive much higher salaries than you will ever do ;-).</span><br />
 <br />
@@ -9505,7 +9611,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>This doesn&#39;t mean, that you shouldn&#39;t try your best. But you don&#39;t need to try to be the superhero. Maybe someone else will be the superhero, but that&#39;s OK as long as it&#39;s not always the same person every time. Everyone can have a good day after all. If I could choose between being a superhero or having a good night sleep, I would probably prefer the sleep. </span><br />
 <br />
-<h3 style='display: inline' id='Giveawaysomeofyoursuperpowers'>Give away some of your superpowers</h3><br />
+<h3 style='display: inline' id='give-away-some-of-your-superpowers'>Give away some of your superpowers</h3><br />
 <br />
 <span>If you are a superhero, try to give away some of your superpowers, so that you can relax in the evening knowing that others (e.g. the current on-call engineers) know how to tackle things. Every member of the team needs to do DevOps (even the team managers, in my humble opinion). Some may be less experienced than others or have other expertises, but to counteract this you could document the recurring tasks so that they are easy to follow (which then later could be either automated away or, even better, fully fixed).</span><br />
 <br />
@@ -9513,7 +9619,7 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>So you are not a superhero. Or, if you are a superhero, then all colleagues should be superheroes too.</span><br />
 <br />
-<h2 style='display: inline' id='Dontjumponallproblemsimmediately'>Don&#39;t jump on all problems immediately</h2><br />
+<h2 style='display: inline' id='don-t-jump-on-all-problems-immediately'>Don&#39;t jump on all problems immediately</h2><br />
 <br />
 <span>In a perfect world, every member of a team comes along with the same strengths and skills. But in reality, everyone is different. </span><br />
 <br />
@@ -9523,19 +9629,19 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <br />
 <span>If the issue is a very critical one, then you might better off trying to resolve it as fast as possible with your full powers in order to avoid any major damage to the company. This, of course, only works if you know how to resolve it quickly. So, don&#39;t leave others with not much experience yet looking at it. If possible, work with the team to resolve the issue. Unfortunately, solving it with the team is not always the fastest way. So in this particular circumstance, the company may be better off being saved by a single superhero. Make sure that the problem will not occur again or, at least, that others can fix it the next time without Superman flying by.</span><br />
 <br />
-<h2 style='display: inline' id='Forcebreaksandshutdownnow'>Force breaks; and shutdown now</h2><br />
+<h2 style='display: inline' id='force-breaks-and-shutdown-now'>Force breaks; and shutdown now</h2><br />
 <br />
 <span>Be strict about your time off. Nowadays, tech workers check their messages also out of office hours and are reachable 24/7. This really should only be the case when you are on-call, to be honest (or if you work for a startup). All other out-of-office time is owned by you and not your employer. You have signed an 40 hour/week and not 7 days/week contract. Of course, there will be always some sort of flexibility and exceptions. You might need to work over the weekend to get a migration done or a problem solved. But to balance it out, you should have other days off as substitutes.</span><br />
 <br />
 <span>It&#39;s important to shut down your brain from work during your breaks (be strict with your breaks, leave your desk for lunch or for a walk early afternoon and if you aren&#39;t on-call also don&#39;t take your work-phone with you). You will be happier and also much more energized and productive in the afternoon. Also, when you are reachable 24/7, your colleagues will start thinking that you don&#39;t have anything more important to do than work.</span><br />
 <br />
-<h2 style='display: inline' id='Blocktimeeverydayforpersonaladvance'>Block time every day for personal advance</h2><br />
+<h2 style='display: inline' id='block-time-every-day-for-personal-advance'>Block time every day for personal advance</h2><br />
 <br />
 <span>It does not matter how many tasks are in your backlog or how many issues are to be tackled. *Always* find time for personal advance. The most issues aren&#39;t critical anyway and can wait a bit. At the end of the day, you will have a nice feeling that you have accomplished something meaningful. This can be an interesting project or learning a new technology you are interested in. Of course, there must be consensus with your manager (unless you do that kind of thing in your personal time of course). </span><br />
 <br />
 <span>If you are too busy at work and just can&#39;t block time, then maybe it&#39;s time to think about alternatives. But before you do that, probably there is something else you can do. Perhaps you just think you can&#39;t block time, but you would be positively surprised to hear from your manager that he will fully support you. Of course, he won&#39;t agree to you working full-time on your pet projects. But a certain portion of your time should be allocated for personal advance. After all, your employer also want&#39;s you to stay happy so that you don&#39;t look for alternatives. It&#39;s of everyone&#39;s interest that you like your job and stay motivated. The more you are motivated, the more productive you are. The more productive you are, the more valuable you are for the company.</span><br />
 <br />
-<h2 style='display: inline' id='More'>More</h2><br />
+<h2 style='display: inline' id='more'>More</h2><br />
 <br />
 <span>Another blog post worth reading:</span><br />
 <br />

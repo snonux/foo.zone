@@ -2,6 +2,10 @@
 
 > Published at 2022-03-06T18:11:39+00:00
 
+I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+
+=> https://dtail.dev
+
 ```
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
@@ -17,12 +21,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
-
-=> https://dtail.dev
 
 ## So, what's new in 4.0.0?
 

@@ -6,6 +6,8 @@ These notes capture key strategies from "Influence Without Authority" by Allan R
 
 These are my personal notes, but maybe you will find them usefull too.
 
+<< template::inline::toc
+
 ## Building Relationships and Communication
 
 * Make relationships before they are needed. A good reputation acts as a reserve for difficult times.

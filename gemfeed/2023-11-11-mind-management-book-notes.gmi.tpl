@@ -2,10 +2,6 @@
 
 > Published at 2023-11-11T22:21:47+02:00
 
-<< template::inline::toc
-
-## Introduction
-
 These are my personal takeaways after reading "Mind Management" by David Kadavy. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.
 
 ```
@@ -19,6 +15,10 @@ These are my personal takeaways after reading "Mind Management" by David Kadavy.
  '''''''''''''''''';''';''''''''''''''''''
                     '''
 ```
+
+<< template::inline::toc
+
+## It's not about time management
 
 Productivity isn't about time management - it's about mind management. When you put a lot of effort into something, there are:
 

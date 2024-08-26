@@ -1,0 +1,142 @@
+# Creative universe
+
+> Published at 2022-04-10T10:09:11+01:00; Updated at 2022-04-18
+
+I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:
+
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi DTail - The distributed log tail program
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi Realistic load testing with I/O Riot for linux
+
+Note that my latest silver prize project isn't open source software and because of that there is no public material I can refer to. Maybe the next one again?
+
+I want to point out that I never won the "gold" prize and it's the first time I won "silver", though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.
+
+I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓
+
+So why would I sign up myself for such side projects? Isn't it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:
+
+* I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don't win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It's good to have a hard deadline for a project. And the project will also benefit the company in some way. So it's a win-win.
+* I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn't exist as a Lego block before and could not be built by using only the already existing blocks.
+
+```
+ .              +   .                .   . .     .  .
+                   .                    .       .     *
+  .       *                        . . . .  .   .  + .
+            "You Are Here"            .   .  +  . . .
+.                 |             .  .   .    .    . .
+                  |           .     .     . +.    +  .
+                 \|/            .       .   . .
+        . .       V          .    * . . .  .  +   .
+           +      .           .   .      +
+                            .       . +  .+. .
+  .                      .     . + .  . .     .      .
+           .      .    .     . .   . . .        ! /
+      *             .    . .  +    .  .       - O -
+          .     .    .  +   . .  *  .       . / |
+               . + .  .  .  .. +  .
+.      .  .  .  *   .  *  . +..  .            *
+ .      .   . .   .   .   . .  +   .    .            +
+                                         - the universe
+```
+
+<< template::inline::toc
+
+## How to be creative
+
+How did I manage to be creative with all these Pet Projects? Unfortunately, there is no step-by-step guide I could point you to. But what I want to do in this blog post is share my personal experience so far.
+
+### Know which problem you want to solve
+
+There must be a problem to be solved or a thing to be improved. It makes no sense to have a project without a goal. A problem might be obvious to you, and you don't even need to think about it. In that case, you are all set, and you can immerse yourself with the problem.
+
+If, however, you don't know what problem you want to solve: Do you really need to be creative? All problems are solved anyway, correct? In that case, just go on with your work. As you immerse yourself with your daily work, you will find a project naturally after a while. I don't believe you should artificially find a project. It should come naturally to you. You should have an interest in the problem domain and a strong desire to find a proper solution for the problem. Artificially created projects come with the catch that you might give up on it rather sooner than later due to lack of motivation and desire.
+
+### Immerse / deep dive
+
+If you want to be creative in a field, you must know a lot about it. The more you know about it, the more dots you can connect. When you are learning a new technology or if you are thinking about a tough problem, do it thoroughly. Don't let anything distract you. Read books, watch lectures, listen to podcasts or audiobooks about the topic, talk to other people working on similar topics. Immerse yourself for multiple hours per day, multiple days per week, multiple weeks and maybe even months. Create your own inner universe.
+
+But once a day is over, shut your thoughts down. Hit the off-switch. Stop thinking about this problem for the remainder of the day. This can be difficult, as you didn't solve the problem- or didn't understand everything of the new technology yet, and you really want to get to the point. But be strict to yourself and stop thinking about it for a while.
+
+You must understand that you are more than just your conscious thoughts. Your brain does a lot of work in the background that you aren't aware of consciously. What happens when you stop consciously thinking about a problem is that your brain continues processing it. You might have experienced the "AHA"-effect, where suddenly you had an idea out of nowhere (e.g. during a walk, in the shower, or in the morning when you woke up)? This is your conscious self downloading a result from the background thread of your brain. You can elevate this effect by immersing with the problem immensely before giving your conscious self a break.
+
+Sometimes, depending on how deeply you were immersed, you may need to let the problem go for a couple of days (e.g. over a weekend) before you can download a new insight.
+
+### Always have a notebook with you
+
+Wherever you go, ensure that you always have something to take notes with you. Once you have an idea from nowhere (or from your unconscious but volatile brain), you really want to write it down to persistent storage. It doesn't matter what kind of note-taking device you use here. It can be a paper journal, or it can be your smartphone. 
+
+My advice is to have a separate section where you put your notes of all of your ideas. At home or in the office, I write everything in my paper journal. When I am not at home, I use a digital note-taking app on my phone. Later, I copy the digital notes from it into a project-specific section of my paper journal.
+
+I prefer taking notes on paper, as it gives you more freedom of how to structure it. You can use any colour, and you can also quickly create diagrams without the use of any complex computer program.
+
+### When you didn't sleep enough
+
+I noticed while being sleep-deprived I am (obviously) unable to concentrate so much, and it is difficult to be immersed in a focused way. But on the other hand, I am a lot more creative compared to when I am not sleep-deprived. Then, my brain suddenly presents me with connections I have not thought of before. Here, I usually write any idea I have down on a sheet of paper or in my journal, so I can pick it up later. I then often continue to philosophise about a possible solution. Sometimes to the absurd, and sometimes to something pretty useful.
+
+I am not saying that you should skip sleep. By all means, if you can sleep, then sleep. But there are some days when you don't manage to sleep (e.g. think too much about a project and didn't manage to hit the off switch). This is, where you can take advantage of your current state of mind. Disclaimer: Skipping sleep damages your health. So, please don't try this out on purpose. But in case you had a bad night, remember this trick.
+
+### Have regular breaks and relax
+
+Have regular breaks. Don't skip your lunch break. Best, have a walk during lunchtime. And after work, do some kind of workout or visit a sports class. Do something completely unrelated to work before going to sleep (e.g. visit a parallel universe and read a Science Fiction novel). In short: Totally hit the off-switch after your work for the day is finished. You will be much more energised and motivated the next time you open your work laptop.
+
+=> ../other-resources.gmi I personally love to read Science Fiction novels
+
+I skip breakfast and lunch during the week. This means that on average, I intermittent fast on average 18-20 hours daily. It may sound odd to most people (who don't intermittent fast), but in a fasted state, I can be even more focused, thus helping me immerse myself in something even more. Not having breakfast and lunch also gives me back some time for other things (e.g. a nice walk, where I listen to podcasts or audiobooks or practise using my camera (street photography)). I relax my routine during the week ends, where I may enjoy a meal at any given time of the day.
+
+It also helps a lot eat healthy. Healthy food makes your brain work more efficiently. But I won't go into more details here, as nothing is as contradictory as the health and food industry. Conduct your own research. Your opinion may be different from mine anyway, and everyone's body reacts to certain foods differently. What for one person works may not work for another person. But be aware that you will find a lot of wrong and also conflicting information on the internet. So always use multiple resources for your research.
+
+### Upside-down approach
+
+It's easy to fall into the habit of "boxed" thinking, but creativity is exactly the opposite. Once in a while, make yourself think "Is A really required to do B?". Many assumptions are believed to be true. But are they really? A concrete example: "At work we only use the programming language L and framework F" and therefore, it is the standard we must use.
+
+Another way to think about it is "Is there an alternative way to accomplish the desired result? What if there were no programming language L and framework F? What would I do instead?". Maybe you would use programming language X to implement your own domain-specific language, which does what framework F would have done but in exactly the way you want to + much more flexible than F! And maybe language X would be much better suitable than L to implement a DSL anyway. Conclusion: It never hurts to verify your assumptions.
+
+Often, you will also find solutions to problems you never intended to solve and find new problems you never imagined to actually exist. That might not be a bad thing, but it might sidetrack you on your path to finding a solution for a particular problem. So be careful not to get sidetracked too much. In this case, just save a note for later reference (maybe your next Pet Project?) somewhere and go on with your actual problem.
+
+Don't be afraid to think about weird and unconventional solutions. Sometimes, the most unconventional solution is the best solution to a problem. Also, try to keep to the basics. The best solutions are KISS.
+
+=> ./2021-09-12-keep-it-simple-and-stupid.gmi Keep it simple and stupid
+
+A small additional trick: you can train yourself to generate new and unconventional ideas. Just write down 20 random ideas every day. It doesn't matter what the ideas are about and whether they are useful or not. The purpose of this exercise is to make your brain think about something new and unconventional. These can be absurd ideas such as "Jump out of the window naked in the morning in order to wake up faster". Of course, you would never do that, but at least you had an idea and made your brain generate something.
+
+### Don't be busy all the time
+
+Especially as a DevOps Engineer, you could be busy all the time with small, but frequent, ad hoc tasks. Don't lose yourself here. Yes, you should pay attention to your job and those tasks, but you should also make some room for creativity. Don't schedule meeting after ad hoc work after meeting after Jira ticket work after another Jira ticket. There should also be some "free" space in your calendar.
+
+Use the "free" time to play around with your tech stack. Try out new options, explore the system metrics, explore new tools, etc. Dividends will pay off with new ideas, which you would have never come up with if you were "just busy" like a machine.
+
+Sometimes, I pick a Unix manual page of a random command and start reading it. I have a bash helper function which will pick one for me:
+
+```
+❯ where learn
+learn () {
+  man $(ls /bin /sbin /usr/bin /usr/sbin 2>/dev/null | shuf -n 1) |
+    sed -n "/^NAME/ { n;p;q }"
+}
+❯ learn
+       perltidy - a perl script indenter and reformatter
+❯ learn
+       timedatectl - Control the system time and date
+```
+
+## Conclusion
+
+This all summarises advice I have, really.  I hope this was interesting and helpful for you.
+
+I have one more small tip: I never published a blog post the same day I wrote it. After finishing writing it, I always wait for a couple of days. In all cases so far, I had an additional idea to add or to fine tune the blog post.
+
+Another article I found interesting and relevant is
+
+=> https://thesephist.com/posts/paradise/ Creative Paradise by The Sephist
+
+Relevant books I can recommend are:
+
+* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
+* Deep Work; Cal Newport; Piatkus
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* The Off Switch; Mark Cropley; Virgin Books
+* Ultralearning; Scott Young; Thorsons
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site

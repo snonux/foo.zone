@@ -2,6 +2,8 @@
 
 These notes capture key points from "The Power of Neuroplasticity" by Shad Helmstetter. These are for my personal use, but you might find them useful, too.
 
+<< template::inline::toc
+
 ## Your thoughts can influence changes in your brain
 
 Your thoughts can influence changes in your brain, a concept derived from the field of neuroscience. It's observed that your brain can rewire itself based on your thoughts and it doesn't remain fixed once you reach adulthood. Its plasticity allows it to adapt even in old age - yes, you can teach an old dog new tricks. If you want to change your life, you need to rewire your brain. This rewiring is a continuous feedback loop. You can program your future self by focusing on your desired outcomes, and your brain will then unconsciously guide you toward them. For instance, if you ruminate negatively about an upcoming presentation, you're likely to perform poorly. You would perform significantly better if you had approached it with a positive mindset. Ultimately, you become what you think about most.

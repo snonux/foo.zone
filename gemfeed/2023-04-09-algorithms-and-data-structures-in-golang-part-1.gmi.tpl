@@ -2,6 +2,12 @@
 
 > Published at 2023-04-09T22:31:42+03:00
 
+This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.
+
+<< template::inline::index algorithms-and-data-structures-in-golang-part
+
+This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.
+
 ```
          ,_---~~~~~----._         
   _,,_,*^____      _____``*g*\"*, 
@@ -17,14 +23,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.
-
-<< template::inline::index algorithms-and-data-structures-in-golang-part
-
-This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.
 
 ## Type constraints
 

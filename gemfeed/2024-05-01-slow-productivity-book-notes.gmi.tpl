@@ -2,10 +2,6 @@
 
 > Published at 2024-04-27T14:18:51+03:00
 
-<< template::inline::toc
-
-## Introduction
-
 These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.
 
 The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.
@@ -23,6 +19,10 @@ These notes are mainly for my own use, but you may find them helpful.
  '''''''''''''''''';''';''''''''''''''''''
                     '''
 ```
+
+<< template::inline::toc
+
+## It's not "slow productivity"
 
 "Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.
 

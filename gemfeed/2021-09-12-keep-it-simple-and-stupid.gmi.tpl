@@ -2,6 +2,8 @@
 
 > Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23
 
+A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
+
 ```
   _______________                        |*\_/*|_______
   |  ___________  |     .-.     .-.      ||_/-\_|______  |
@@ -18,10 +20,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
 
 ## Need faster hardware
 

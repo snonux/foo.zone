@@ -2,6 +2,8 @@
 
 > Published at 2016-04-09T18:29:47+01:00
 
+Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
+
 ```
             __     __
            (( \---/ ))
@@ -23,10 +25,6 @@
 ```
 
 << template::inline::toc
-
-## Introduction
-
-Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
 
 ## ZFS
 

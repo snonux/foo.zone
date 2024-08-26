@@ -2,15 +2,15 @@
 
 > Published at 2024-03-03T00:07:21+02:00
 
-<< template::inline::toc
-
-## Introduction
-
 I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. 
 
 I have tried many note apps for my Android (I use GrapheneOS) phone. Most of them either don't do what I want, are proprietary software, require Google Play services (I have the main profile on my phone de-googled) or are too bloated. I was never into mobile app development, as I'm not too fond of the complexity of the developer toolchains. I don't want to use Android Studio (as a NeoVim user), and I don't want to use Java or Kotlin. I want to use a language I know (and like) for mobile app development. Go would be one of those languages.
 
 => a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png Quick logger Logo
+
+<< template::inline::toc
+
+## Enter Quick logger
 
 Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I've crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app's whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!
 

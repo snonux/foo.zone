@@ -2,6 +2,12 @@
 
 > Published at 2021-12-26T12:02:02+00:00; Updated at 2022-01-12
 
+Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
+
+(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).
+
+=> https://en.wikipedia.org/wiki/Log4Shell
+
 ```
                                      )
                              )      ((     (
@@ -22,13 +28,25 @@
     ||| \       __/_||  __||__
 -----||-/------`-._/||-o--o---o---
   ~~~~~'
-```
+``` 
 
-Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
+## Table of Contents
 
-(PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).
-
-=> https://en.wikipedia.org/wiki/Log4Shell
+* ⇢ How to stay sane as a DevOps person 
+* ⇢ ⇢ Set clear expectations
+* ⇢ ⇢ Always respond to requests but set expectations and boundaries
+* ⇢ ⇢ ⇢ Dealing with requests
+* ⇢ ⇢ ⇢ Escalation is only a tool
+* ⇢ ⇢ Think positively
+* ⇢ ⇢ Go slower even if you could go faster
+* ⇢ ⇢ ⇢ You work in a team
+* ⇢ ⇢ ⇢ Don't rush
+* ⇢ ⇢ You are not a superhero
+* ⇢ ⇢ ⇢ Give away some of your superpowers
+* ⇢ ⇢ Don't jump on all problems immediately
+* ⇢ ⇢ Force breaks; and shutdown now
+* ⇢ ⇢ Block time every day for personal advance
+* ⇢ ⇢ More
 
 ## Set clear expectations
 
