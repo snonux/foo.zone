@@ -12,6 +12,23 @@
 <br />
 <span class='quote'>Published at 2022-04-10T10:09:11+01:00; Updated at 2022-04-18</span><br />
 <br />
+<span>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer&#39;s engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</span><br />
+<br />
+<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>DTail - The distributed log tail program</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>Realistic load testing with I/O Riot for linux</a><br />
+<br />
+<span>Note that my latest silver prize project isn&#39;t open source software and because of that there is no public material I can refer to. Maybe the next one again?</span><br />
+<br />
+<span>I want to point out that I never won the "gold" prize and it&#39;s the first time I won "silver", though. I believe, looking at the company&#39;s contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn&#39;t participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</span><br />
+<br />
+<span>I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓</span><br />
+<br />
+<span>So why would I sign up myself for such side projects? Isn&#39;t it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:</span><br />
+<br />
+<ul>
+<li>I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don&#39;t win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It&#39;s good to have a hard deadline for a project. And the project will also benefit the company in some way. So it&#39;s a win-win.</li>
+<li>I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn&#39;t exist as a Lego block before and could not be built by using only the already existing blocks.</li>
+</ul><br />
 <pre>
  .              +   .                .   . .     .  .
                    .                    .       .     *
@@ -33,24 +50,19 @@
                                          - the universe
 </pre>
 <br />
-<h2 style='display: inline' id='prelude'>Prelude</h2><br />
-<br />
-<span>I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer&#39;s engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:</span><br />
-<br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>DTail - The distributed log tail program</a><br />
-<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>Realistic load testing with I/O Riot for linux</a><br />
-<br />
-<span>Note that my latest silver prize project isn&#39;t open source software and because of that there is no public material I can refer to. Maybe the next one again?</span><br />
-<br />
-<span>I want to point out that I never won the "gold" prize and it&#39;s the first time I won "silver", though. I believe, looking at the company&#39;s contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn&#39;t participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.</span><br />
-<br />
-<span>I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓</span><br />
-<br />
-<span>So why would I sign up myself for such side projects? Isn&#39;t it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li>I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don&#39;t win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It&#39;s good to have a hard deadline for a project. And the project will also benefit the company in some way. So it&#39;s a win-win.</li>
-<li>I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn&#39;t exist as a Lego block before and could not be built by using only the already existing blocks.</li>
+<li><a href='#creative-universe'>Creative universe</a></li>
+<li>⇢ <a href='#how-to-be-creative'>How to be creative</a></li>
+<li>⇢ ⇢ <a href='#know-which-problem-you-want-to-solve'>Know which problem you want to solve</a></li>
+<li>⇢ ⇢ <a href='#immerse--deep-dive'>Immerse / deep dive</a></li>
+<li>⇢ ⇢ <a href='#always-have-a-notebook-with-you'>Always have a notebook with you</a></li>
+<li>⇢ ⇢ <a href='#when-you-didn-t-sleep-enough'>When you didn&#39;t sleep enough</a></li>
+<li>⇢ ⇢ <a href='#have-regular-breaks-and-relax'>Have regular breaks and relax</a></li>
+<li>⇢ ⇢ <a href='#upside-down-approach'>Upside-down approach</a></li>
+<li>⇢ ⇢ <a href='#don-t-be-busy-all-the-time'>Don&#39;t be busy all the time</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
 <h2 style='display: inline' id='how-to-be-creative'>How to be creative</h2><br />
 <br />

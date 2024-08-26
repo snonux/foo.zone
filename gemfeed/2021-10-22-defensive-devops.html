@@ -12,16 +12,6 @@
 <br />
 <span class='quote'>Published at 2021-10-22T10:02:46+03:00</span><br />
 <br />
-<pre>
-                                                            c=====e
-                                                               H
-      ____________                                         _,,_H__
-     (__((__((___()                                       //|     |
-    (__((__((___()()_____________________________________// |ACME |
-   (__((__((___()()()------------------------------------&#39;  |_____|
-                           ASCII Art by Clyde Watson
-</pre>
-<br />
 <span>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</span><br />
 <br />
 <span>Unfortunately, no system is 100% reliable, and you can never be prepared for a subset of the possible problem-space. IT infrastructures can be complex. Not even mentioning Kubernetes yet, a Microservice-based infrastructure can complicate things even further. You can take care of 99% of all potential problems by following all DevOps best practices. Those best practices are not the subject of this blog post; this post is about the sub 1% of the issues arising from nowhere you can&#39;t be prepared for. </span><br />
@@ -32,6 +22,29 @@
 <br />
 <span>Over time, I have compiled a list of fire-fighting automation strategies, which I would like to share here. </span><br />
 <br />
+<pre>
+                                                            c=====e
+                                                               H
+      ____________                                         _,,_H__
+     (__((__((___()                                       //|     |
+    (__((__((___()()_____________________________________// |ACME |
+   (__((__((___()()()------------------------------------&#39;  |_____|
+                           ASCII Art by Clyde Watson
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#defensive-devops'>Defensive DevOps</a></li>
+<li>⇢ <a href='#meet-defensive-devops'>Meet Defensive DevOps</a></li>
+<li>⇢ <a href='#don-t-fully-automate-from-the-beginning'>Don&#39;t fully automate from the beginning</a></li>
+<li>⇢ <a href='#develop-code-directly-on-production-systems'>Develop code directly on production systems</a></li>
+<li>⇢ ⇢ <a href='#don-t-make-it-worse'>Don&#39;t make it worse</a></li>
+<li>⇢ <a href='#test-your-code'>Test your code</a></li>
+<li>⇢ <a href='#automation'>Automation</a></li>
+<li>⇢ <a href='#out-of-office-hours'>Out of office hours</a></li>
+<li>⇢ <a href='#retrospective'>Retrospective</a></li>
+</ul><br />
 <h2 style='display: inline' id='meet-defensive-devops'>Meet Defensive DevOps</h2><br />
 <br />
 <span>Defensive DevOps is a term I invented by myself. I define it this way:</span><br />

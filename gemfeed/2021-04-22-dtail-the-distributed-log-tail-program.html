@@ -12,25 +12,6 @@
 <br />
 <span class='quote'>Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26</span><br />
 <br />
-<a href='./dtail-the-distributed-log-tail-program/title.png'><img alt='DTail logo image' title='DTail logo image' src='./dtail-the-distributed-log-tail-program/title.png' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#dtail---the-distributed-log-tail-program'>DTail - The distributed log tail program</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#a-mimecast-pet-project'>A Mimecast Pet Project</a></li>
-<li>⇢ <a href='#differentiating-from-log-management-systems'>Differentiating from log management systems</a></li>
-<li>⇢ <a href='#combining-simplicity-security-and-efficiency'>Combining simplicity, security and efficiency</a></li>
-<li>⇢ <a href='#the-dtail-family-of-commands'>The DTail family of commands</a></li>
-<li>⇢ <a href='#usage-example'>Usage example</a></li>
-<li>⇢ <a href='#fitting-it-in'>Fitting it in</a></li>
-<li>⇢ <a href='#advanced-features'>Advanced features</a></li>
-<li>⇢ <a href='#for-the-future'>For the future</a></li>
-<li>⇢ <a href='#open-source'>Open Source</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
 <span>This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.</span><br />
 <br />
 <a class='textlink' href='https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb'>Original Mimecast Engineering Blog post at Medium</a><br />
@@ -43,6 +24,22 @@
 <br />
 <span>Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis &amp; statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.</span><br />
 <br />
+<a href='./dtail-the-distributed-log-tail-program/title.png'><img alt='DTail logo image' title='DTail logo image' src='./dtail-the-distributed-log-tail-program/title.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#dtail---the-distributed-log-tail-program'>DTail - The distributed log tail program</a></li>
+<li>⇢ <a href='#a-mimecast-pet-project'>A Mimecast Pet Project</a></li>
+<li>⇢ <a href='#differentiating-from-log-management-systems'>Differentiating from log management systems</a></li>
+<li>⇢ <a href='#combining-simplicity-security-and-efficiency'>Combining simplicity, security and efficiency</a></li>
+<li>⇢ <a href='#the-dtail-family-of-commands'>The DTail family of commands</a></li>
+<li>⇢ <a href='#usage-example'>Usage example</a></li>
+<li>⇢ <a href='#fitting-it-in'>Fitting it in</a></li>
+<li>⇢ <a href='#advanced-features'>Advanced features</a></li>
+<li>⇢ <a href='#for-the-future'>For the future</a></li>
+<li>⇢ <a href='#open-source'>Open Source</a></li>
+</ul><br />
 <h2 style='display: inline' id='a-mimecast-pet-project'>A Mimecast Pet Project</h2><br />
 <br />
 <span>DTail got its inspiration from public domain tools available already in this area but it is a blue sky from-scratch development which was first presented at Mimecast’s annual internal Pet Project competition (awarded with a Bronze prize). It has gained popularity since and is one of the most widely deployed DevOps tools at Mimecast (reaching nearly 10k server installations) and many engineers use it on a regular basis. The Open-Source version of DTail is available at:</span><br />

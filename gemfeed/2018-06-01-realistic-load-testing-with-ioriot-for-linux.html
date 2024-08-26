@@ -12,6 +12,16 @@
 <br />
 <span class='quote'>Published at 2018-06-01T14:50:29+01:00; Updated at 2021-05-08</span><br />
 <br />
+<span>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </span><br />
+<br />
+<a class='textlink' href='https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot'>https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
+<br />
+<span>I havn&#39;t worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work caused by disk I/O.</span><br />
+<br />
+<span>I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn&#39;t have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.</span><br />
+<br />
+<span>Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That&#39;s because the name has changed after taking those.</span><br />
+<br />
 <pre>
        .---.
       /     \
@@ -23,18 +33,23 @@
 jgs\__/&#39;---&#39;\__/
 </pre>
 <br />
-<h2 style='display: inline' id='foreword'>Foreword</h2><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span>This text first was published in the german IT-Administrator computer Magazine. 3 years have passed since and I decided to publish it on my blog too. </span><br />
-<br />
-<a class='textlink' href='https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot'>https://www.admin-magazin.de/Das-Heft/2018/06/Realistische-Lasttests-mit-I-O-Riot</a><br />
-<br />
-<span>I havn&#39;t worked on I/O Riot for some time now, but all what is written here is still valid. I am still using I/O Riot to debug I/O issues and pattern once in a while, so by all means the tool is not obsolete yet. The tool even helped to resolve a major production incident at work caused by disk I/O.</span><br />
-<br />
-<span>I am eagerly looking forward to revamp I/O Riot so that it uses the new BPF Linux capabilities instead of plain old Systemtap (or alternatively: Newer versions of Systemtap can also use BPF as the backend I have learned). Also, when I wrote I/O Riot initially, I didn&#39;t have any experience with the Go programming language yet and therefore I wrote it in C. Once it gets revamped I might consider using Go instead of C as it would spare me from many segmentation faults and headaches during development ;-). I might also just stick to C for plain performance reasons and just refactor the code dealing with concurrency.</span><br />
-<br />
-<span>Pleace notice that some of the screenshots show the command "ioreplay" instead of "ioriot". That&#39;s because the name has changed after taking those.</span><br />
-<br />
+<ul>
+<li><a href='#realistic-load-testing-with-io-riot-for-linux'>Realistic load testing with I/O Riot for Linux</a></li>
+<li><a href='#the-article'>The article</a></li>
+<li>⇢ <a href='#background-existing-techniques'>Background: Existing Techniques</a></li>
+<li>⇢ <a href='#benchmarking-the-email-cloud-at-mimecast'>Benchmarking the Email Cloud at Mimecast</a></li>
+<li>⇢ <a href='#using-io-riot'>Using I/O Riot</a></li>
+<li>⇢ ⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ ⇢ <a href='#recording-of-io-events'>Recording of I/O events</a></li>
+<li>⇢ ⇢ <a href='#test-preparation'>Test preparation</a></li>
+<li>⇢ ⇢ <a href='#test-initialization'>Test Initialization</a></li>
+<li>⇢ ⇢ <a href='#replay'>Replay</a></li>
+<li>⇢ <a href='#io-riot-is-open-source'>I/O Riot is Open Source</a></li>
+<li>⇢ <a href='#systemtap'>Systemtap</a></li>
+<li>⇢ <a href='#more-refereces'>More refereces</a></li>
+</ul><br />
 <h1 style='display: inline' id='the-article'>The article</h1><br />
 <br />
 <span>With I/O Riot IT administrators can load test and optimize the I/O subsystem of Linux-based operating systems. The tool makes it possible to record I/O patterns and replay them at a later time as often as desired. This means bottlenecks can be reproduced and eradicated. </span><br />

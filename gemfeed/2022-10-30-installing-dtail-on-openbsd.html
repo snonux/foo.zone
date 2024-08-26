@@ -12,6 +12,18 @@
 <br />
 <span class='quote'>Published at 2022-10-30T11:03:19+02:00</span><br />
 <br />
+<span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
+<br />
+<span> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</span><br />
+<br />
+<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
+<br />
+<span>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</span><br />
+<br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<br />
+<span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
+<br />
 <pre>
        ,_---~~~~~----._
  _,,_,*^____      _____``*g*\"*,
@@ -53,7 +65,6 @@
 <br />
 <ul>
 <li><a href='#installing-dtail-on-openbsd'>Installing DTail on OpenBSD</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#compile-it'>Compile it</a></li>
 <li>⇢ <a href='#install-it'>Install it</a></li>
 <li>⇢ ⇢ <a href='#rexification'>Rexification</a></li>
@@ -65,20 +76,6 @@
 <li>⇢ <a href='#use-it'>Use it</a></li>
 <li>⇢ <a href='#conclusions'>Conclusions</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)</span><br />
-<br />
-<span> In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
-<span>I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:</span><br />
-<br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<br />
-<span>I will also mention some relevant <span class='inlinecode'>Rexfile</span> snippets in this post!</span><br />
-<br />
 <h2 style='display: inline' id='compile-it'>Compile it</h2><br />
 <br />
 <span>First of all, DTail needs to be downloaded and compiled. For that, <span class='inlinecode'>git</span>, <span class='inlinecode'>go</span>, and <span class='inlinecode'>gmake</span> are required:</span><br />

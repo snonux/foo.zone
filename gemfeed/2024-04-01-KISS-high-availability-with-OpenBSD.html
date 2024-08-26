@@ -12,6 +12,14 @@
 <br />
 <span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
 <br />
+<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
+<br />
+<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
+<br />
+<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
+<br />
+<span class='quote'>PS: ASCII-art below reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
+<br />
 <pre>
 Art by Michael J. Penick (mod. by Paul B.)
                                                ACME-sky
@@ -41,7 +49,6 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <br />
 <ul>
 <li><a href='#kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#my-auto-failover-requirements'>My auto-failover requirements</a></li>
 <li>⇢ <a href='#my-ha-solution'>My HA solution</a></li>
 <li>⇢ ⇢ <a href='#only-openbsd-base-installation-required'>Only OpenBSD base installation required</a></li>
@@ -53,16 +60,6 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
 <li>⇢ ⇢ <a href='#rex-automation'>Rex automation</a></li>
 <li>⇢ <a href='#more-ha'>More HA</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
-<br />
-<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
-<br />
-<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
-<br />
-<span class='quote'>PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
-<br />
 <h2 style='display: inline' id='my-auto-failover-requirements'>My auto-failover requirements</h2><br />
 <br />
 <ul>

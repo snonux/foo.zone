@@ -12,6 +12,12 @@
 <br />
 <span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
 <br />
+<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<br />
 <pre>
     &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
       \        \         \              .         &#39; .     |
@@ -27,7 +33,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <br />
 <ul>
 <li><a href='#bash-golf-part-3'>Bash Golf Part 3</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#funcname'><span class='inlinecode'>FUNCNAME</span></a></li>
 <li>⇢ <a href='#--'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
 <li>⇢ <a href='#inner-functions'>Inner functions</a></li>
@@ -37,14 +42,6 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ <a href='#multi-line-comments'>Multi-line comments</a></li>
 <li>⇢ <a href='#don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</a></li>
 </ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
-<br />
 <h2 style='display: inline' id='funcname'><span class='inlinecode'>FUNCNAME</span></h2><br />
 <br />
 <span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />

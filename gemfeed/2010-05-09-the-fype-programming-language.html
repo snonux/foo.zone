@@ -12,6 +12,12 @@
 <br />
 <span class='quote'>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</span><br />
 <br />
+<span>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</span><br />
+<br />
+<span>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </span><br />
+<br />
+<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It&#39;s not a hype - it&#39;s Fype!".</span><br />
+<br />
 <pre>
       ____                                      _        __       
      / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
@@ -21,12 +27,35 @@
            |___/|_|            |___/                        |___/ 
 </pre>
 <br />
-<span>Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span>The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. </span><br />
-<br />
-<span>Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It&#39;s not a hype - it&#39;s Fype!".</span><br />
-<br />
+<ul>
+<li><a href='#the-fype-programming-language'>The Fype Programming Language</a></li>
+<li>⇢ <a href='#object-oriented-c-style'>Object-oriented C style</a></li>
+<li>⇢ <a href='#data-types'>Data types</a></li>
+<li>⇢ <a href='#syntax'>Syntax</a></li>
+<li>⇢ ⇢ <a href='#comments'>Comments</a></li>
+<li>⇢ ⇢ <a href='#variables'>Variables</a></li>
+<li>⇢ ⇢ <a href='#synonyms'>Synonyms</a></li>
+<li>⇢ <a href='#statements-and-expressions'>Statements and expressions</a></li>
+<li>⇢ ⇢ <a href='#parenthesis'>Parenthesis</a></li>
+<li>⇢ ⇢ <a href='#basic-expressions'>Basic expressions</a></li>
+<li>⇢ ⇢ <a href='#bitwise-expressions'>Bitwise expressions</a></li>
+<li>⇢ ⇢ <a href='#numeric-expressions'>Numeric expressions</a></li>
+<li>⇢ <a href='#control-statements'>Control statements</a></li>
+<li>⇢ <a href='#scopes'>Scopes</a></li>
+<li>⇢ <a href='#definedness-'>Definedness </a></li>
+<li>⇢ <a href='#system-'>System </a></li>
+<li>⇢ ⇢ <a href='#io-'>I/O </a></li>
+<li>⇢ <a href='#procedures-and-functions'>Procedures and functions</a></li>
+<li>⇢ ⇢ <a href='#procedures'>Procedures</a></li>
+<li>⇢ ⇢ <a href='#nested-procedures'>Nested procedures</a></li>
+<li>⇢ ⇢ <a href='#functions'>Functions</a></li>
+<li>⇢ ⇢ <a href='#nested-functions'>Nested functions</a></li>
+<li>⇢ <a href='#arrays'>Arrays</a></li>
+<li>⇢ <a href='#fancy-stuff'>Fancy stuff</a></li>
+<li>⇢ <a href='#may-the-source-be-with-you'>May the source be with you</a></li>
+</ul><br />
 <h2 style='display: inline' id='object-oriented-c-style'>Object-oriented C style</h2><br />
 <br />
 <span>The Fype interpreter is written in an object-oriented style of C. Each "main component" has its own .h and .c file. There is a struct type for each (most components at least) component, which can be initialized using a "COMPONENT_new" function and destroyed using a "COMPONENT_delete" function. Method calls follow the same schema, e.g. "COMPONENT_METHODNAME". There is no such as class inheritance and polymorphism involved. </span><br />
