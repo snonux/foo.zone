@@ -23,6 +23,33 @@
          `--{__________)        \/   "Berkeley Unix Daemon"
 ```
 
+## Table of Contents
+
+* [⇢ Computer operating systems I use(d)](#computer-operating-systems-i-used)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Fedora Linux](#fedora-linux)
+* [⇢ ⇢ EndeavourOS](#endeavouros)
+* [⇢ ⇢ FreeBSD](#freebsd)
+* [⇢ ⇢ CentOS 7](#centos-7)
+* [⇢ ⇢ OpenBSD](#openbsd)
+* [⇢ ⇢ macOS (proprietary)](#macos-proprietary)
+* [⇢ ⇢ LineageOS (mobile)](#lineageos-mobile)
+* [⇢ ⇢ Samsung's Stock Android (mobile proprietary)](#samsung-s-stock-android-mobile-proprietary)
+* [⇢ ⇢ iOS (mobile proprietary)](#ios-mobile-proprietary)
+* [⇢ ⇢ Other OSes](#other-oses)
+* [⇢ ⇢ ⇢ InfinyTime (smartwatch)](#infinytime-smartwatch)
+* [⇢ ⇢ ⇢ motionEyeOS](#motioneyeos)
+* [⇢ ⇢ ⇢ Kobo OS (proprietary)](#kobo-os-proprietary)
+* [⇢ ⇢ ⇢ Android TV (proprietary)](#android-tv-proprietary)
+* [⇢ ⇢ Other OSes..](#other-oses)
+* [⇢ ⇢ ⇢ NetBSD](#netbsd)
+* [⇢ ⇢ ⇢ Other OSes in use...](#other-oses-in-use)
+* [⇢ ⇢ ⇢ Other OSes not used any more...](#other-oses-not-used-any-more)
+* [⇢ ⇢ ⇢ Other OSes I only had a glance at...](#other-oses-i-only-had-a-glance-at)
+* [⇢ ⇢ ⇢ Other OSes which seem interesting...](#other-oses-which-seem-interesting)
+
+## Introduction
+
 This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
 
 ## Fedora Linux
