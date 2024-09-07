@@ -1,4 +1,4 @@
-# Site Reliability Engineering - Part 3: On-Call Culture and the Human Side
+# Site Reliability Engineering - Part 3: On-Call Culture
 
 > Published at 2024-01-09T18:35:48+02:00
 
@@ -32,7 +32,7 @@ Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I'm currently
 
 ```
 
-## On-Call Culture and the Human Side: Putting Well-being First in the World of Reliability
+## Putting Well-being First
 
 Site Reliability Engineering is all about keeping systems reliable, but we often forget how important the human side is. A healthy on-call culture is just as crucial as any technical fix. The well-being of the engineers really matters.
 

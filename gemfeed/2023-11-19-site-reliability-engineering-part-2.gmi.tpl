@@ -1,4 +1,4 @@
-# Site Reliability Engineering - Part 2: Operational Balance in SRE
+# Site Reliability Engineering - Part 2: Operational Balance
 
 > Published at 2023-11-19T00:18:18+03:00
 
@@ -21,7 +21,7 @@ This is the second part of my Site Reliability Engineering (SRE) series. I am cu
 ⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
 ```
 
-## Operational Balance in SRE: Striking the Right Balance Between Reliability and Speed
+## Striking the Right Balance Between Reliability and Speed
 
 Site Reliability Engineering is more than just a bunch of best practices or methods. It's a guiding light for engineering teams, helping them navigate the tricky waters of modern software development and system management.
 In the world of software production, there are two big forces that often clash: the push for fast feature releases (velocity) and the need for reliable systems. Traditionally, moving faster meant more risk. SRE helps balance these opposing goals with things like error budgets and SLIs/SLOs. These tools give teams a clear way to measure how much they can push changes without hurting system health. So, the error budget becomes a balancing act, helping teams trade off between innovation and reliability.
