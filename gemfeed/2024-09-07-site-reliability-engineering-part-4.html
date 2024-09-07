@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline' id='site-reliability-engineering---part-4-onboarding-for-on-call-engineers'>Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</h1><br />
+<br />
+<span class='quote'>Published at 2024-09-07T16:27:58+03:00</span><br />
+<br />
+<span>Welcome to Part 4 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers (You are currently reading this)</a><br />
+<br />
+<pre>
+       __..._   _...__
+  _..-"      `Y`      "-._
+  \ Once upon |           /
+  \\  a time..|          //
+  \\\         |         ///
+   \\\ _..---.|.---.._ ///
+jgs \\`_..---.Y.---.._`//	
+</pre>
+<br />
+<span>This time, I want to share some tips on how to onboard software engineers, QA engineers, and Site Reliability Engineers (SREs) to the primary on-call rotation. Traditionally, onboarding might take half a year (depending on the complexity of the infrastructure), but with a bit of strategy and structured sessions, we&#39;ve managed to reduce it to just six weeks per person. Let&#39;s dive in!</span><br />
+<br />
+<h2 style='display: inline' id='setting-the-scene-tier-1-on-call-rotation'>Setting the Scene: Tier-1 On-Call Rotation</h2><br />
+<br />
+<span>First things first, let&#39;s talk about Tier-1. This is where the magic begins. Tier-1 covers over 80% of the common on-call cases and is the perfect breeding ground for new on-call engineers to get their feet wet. It&#39;s designed to be manageable training ground.</span><br />
+<br />
+<h3 style='display: inline' id='why-tier-1'>Why Tier-1?</h3><br />
+<br />
+<ul>
+<li>Easy to Understand: Every on-call engineer should be familiar with Tier-1 tasks. </li>
+<li>Training Ground: This is where engineers start their on-call career. It&#39;s purposefully kept simple so that it&#39;s not overwhelming right off the bat.</li>
+<li>Runbook/recipe driven: Every alert is attached to a comprehensive runbook, making it easy for every engineer to follow.</li>
+</ul><br />
+<h2 style='display: inline' id='onboarding-process-from-6-months-to-6-weeks'>Onboarding Process: From 6 Months to 6 Weeks</h2><br />
+<br />
+<span>So how did we cut down the onboarding time so drastically? Here’s the breakdown of our process:</span><br />
+<br />
+<span>Knowledge Transfer (KT) Sessions: We kicked things off with more than 10 KT sessions, complete with video recordings. These sessions are comprehensive and cover everything from the basics to some more advanced topics. The recorded sessions mean that new engineers can revisit them anytime they need a refresher.</span><br />
+<br />
+<span>Shadowing Sessions: Each new engineer undergoes two on-call week shadowing sessions. This hands-on experience is invaluable. They get to see real-time incident handling and resolution, gaining practical knowledge that&#39;s hard to get from just reading docs.</span><br />
+<br />
+<span>Comprehensive Runbooks: We created 64 runbooks (by the time writing this probably more than 100) that are composable like Lego bricks. Each runbook covers a specific scenario and guides the engineer step-by-step to resolution. Pairing these with monitoring alerts linked directly to Confluence docs, and from there to the respective runbooks, ensures every alert can be navigated with ease (well, there are always exceptions to the rule...).</span><br />
+<br />
+<span>Self-Sufficiency &amp; Confidence Building:  With all these resources at their fingertips, our on-call engineers become self-sufficient for most of the common issues they&#39;ll face (new starters can now handle around 80% of the most common issue after 6 weeks they had joined the company). This boosts their confidence and ensures they can handle Tier-1 incidents independently.</span><br />
+<br />
+<span>Documentation and Feedback Loop: Continuous improvement is key. We regularly update our documentation based on feedback from the engineers. This makes our process even more robust and user-friendly.</span><br />
+<br />
+<h2 style='display: inline' id='it-s-all-about-the-tiers'>It&#39;s All About the Tiers</h2><br />
+<br />
+<span>Let’s briefly touch on the Tier levels:</span><br />
+<br />
+<ul>
+<li>Tier 1: Easy and foundational tasks. Perfect for getting new engineers started. This covers around 80% of all on-call cases we face. This is what we trained on.</li>
+<li>Tier 2: Slightly more complex, requiring more background knowledge. We trained on some of the topics but not all.</li>
+<li>Tier 3: Requires a good understanding of the platform/architecture. Likely needs KT sessions with domain experts.</li>
+<li>Tier DE (Domain Expert): The heavy hitters. Domain experts are required for these tasks. </li>
+</ul><br />
+<h3 style='display: inline' id='growing-into-higher-tiers'>Growing into Higher Tiers</h3><br />
+<br />
+<span>From Tier-1, engineers naturally grow into Tier-2 and beyond. The structured training and gradual increase in complexity help ensure a smooth transition as they gain experience and confidence. The key here is that engineers stay curous and engaged in the on-call, so that they always keep learning.</span><br />
+<br />
+<h2 style='display: inline' id='keeping-runbooks-up-to-date'>Keeping Runbooks Up to Date</h2><br />
+<br />
+<span>It is important that runbooks are not a "project to be finished"; runbooks have to be maintained and updated over time. Sections may change, new runbooks need to be added, and old ones can be deleted. So the acceptance criteria of an on-call shift would not just be reacting to alerts and incidents, but also reviewing and updating the current runbooks.</span><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>By structuring the onboarding process with KT sessions, shadowing, comprehensive runbooks, and a feedback loop, we&#39;ve been able to fast-track the process from six months to just six weeks. This not only prepares our engineers for the on-call rotation quicker but also ensures they&#39;re confident and capable when handling incidents.</span><br />
+<br />
+<span>If you&#39;re looking to optimize your on-call onboarding process, these strategies could be your ticket to a more efficient and effective transition. Happy on-calling!</span><br />
+<p class="footer">
+Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.0-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
