@@ -1,4 +1,4 @@
-# Projects I support
+# Projects I financially support
 
 > Published at 2024-09-07T16:04:19+03:00
 
@@ -25,7 +25,7 @@ This is the list of projects and initiatives I support/sponsor.
 
 ## Table of Contents
 
-* [⇢ Projects I support](#projects-i-support)
+* [⇢ Projects I financially support](#projects-i-financially-support)
 * [⇢ ⇢ Motivation](#motivation)
 * [⇢ ⇢ Cup o' Go Podcast](#cup-o--go-podcast)
 * [⇢ ⇢ Codeberg](#codeberg)
