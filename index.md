@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-09-07T16:11:00+03:00 by `Gemtexter`
+> This site was generated at 2024-09-07T16:32:50+03:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
@@ -30,6 +30,7 @@ If you reach this site via the modern web, please read this:
 
 ### Posts
 
+[2024-09-07 - Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./gemfeed/2024-09-07-site-reliability-engineering-part-4.md)  
 [2024-09-07 - Projects I support](./gemfeed/2024-09-07-projects-i-support.md)  
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./gemfeed/2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./gemfeed/2024-07-07-the-stoic-challenge-book-notes.md)  
@@ -41,9 +42,9 @@ If you reach this site via the modern web, please read this:
 [2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  
 [2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 [2024-01-13 - One reason why I love OpenBSD](./gemfeed/2024-01-13-one-reason-why-i-love-openbsd.md)  
-[2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Side](./gemfeed/2024-01-09-site-reliability-engineering-part-3.md)  
+[2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture](./gemfeed/2024-01-09-site-reliability-engineering-part-3.md)  
 [2023-12-10 - Bash Golf Part 3](./gemfeed/2023-12-10-bash-golf-part-3.md)  
-[2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE](./gemfeed/2023-11-19-site-reliability-engineering-part-2.md)  
+[2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance](./gemfeed/2023-11-19-site-reliability-engineering-part-2.md)  
 [2023-11-11 - 'Mind Management' book notes](./gemfeed/2023-11-11-mind-management-book-notes.md)  
 [2023-10-29 - KISS static web photo albums with `photoalbum.sh`](./gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2023-09-25 - DTail usage examples](./gemfeed/2023-09-25-dtail-usage-examples.md)  

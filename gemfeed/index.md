@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-09-07 - Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./2024-09-07-site-reliability-engineering-part-4.md)  
 [2024-09-07 - Projects I support](./2024-09-07-projects-i-support.md)  
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
@@ -13,9 +14,9 @@
 [2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  
 [2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 [2024-01-13 - One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
-[2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Side](./2024-01-09-site-reliability-engineering-part-3.md)  
+[2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture](./2024-01-09-site-reliability-engineering-part-3.md)  
 [2023-12-10 - Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
-[2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE](./2023-11-19-site-reliability-engineering-part-2.md)  
+[2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance](./2023-11-19-site-reliability-engineering-part-2.md)  
 [2023-11-11 - 'Mind Management' book notes](./2023-11-11-mind-management-book-notes.md)  
 [2023-10-29 - KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2023-09-25 - DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
