@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-07T16:44:29+03:00</updated>
+    <updated>2024-09-07T16:50:52+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -201,7 +201,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Libro.fm began as a conversation among friends at Third Place Books, a local bookstore in Seattle, Washington, about the growing popularity of audiobooks and the lack of a way for readers to purchase them from independent bookstores. Flash forward, and Libro.fm was founded in 2014.</span><br />
 <br />
-<a class='textlink' href='https://libfo.fm'>https://libfo.fm</a><br />
+<a class='textlink' href='https://libro.fm'>https://libro.fm</a><br />
 <br />
 <span>E-mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
