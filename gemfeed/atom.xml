@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-07T16:40:35+03:00</updated>
+    <updated>2024-09-07T16:44:29+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -89,6 +89,8 @@ jgs \\`_..---.Y.---.._`//
 <span>By structuring the onboarding process with KT sessions, shadowing, comprehensive runbooks, and a feedback loop, we&#39;ve been able to fast-track the process from six months to just six weeks. This not only prepares our engineers for the on-call rotation quicker but also ensures they&#39;re confident and capable when handling incidents.</span><br />
 <br />
 <span>If you&#39;re looking to optimize your on-call onboarding process, these strategies could be your ticket to a more efficient and effective transition. Happy on-calling!</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
