@@ -55,6 +55,10 @@ A blameless on-call culture is essential for creating a safe and collaborative e
 
 Mistakes are gonna happen, which is why having a blameless on-call culture is so important.
 
+Continue with the fourth part of this series:
+
+[2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./2024-09-07-site-reliability-engineering-part-4.md)  
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
