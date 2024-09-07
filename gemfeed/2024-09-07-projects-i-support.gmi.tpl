@@ -1,4 +1,4 @@
-# Projects I support
+# Projects I financially support
 
 > Published at 2024-09-07T16:04:19+03:00
 
