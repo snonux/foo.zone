@@ -92,7 +92,7 @@ This is the alternative to Audible if you are into audiobooks (like I am). For e
 
 Libro.fm began as a conversation among friends at Third Place Books, a local bookstore in Seattle, Washington, about the growing popularity of audiobooks and the lack of a way for readers to purchase them from independent bookstores. Flash forward, and Libro.fm was founded in 2014.
 
-[https://libfo.fm](https://libfo.fm)  
+[https://libro.fm](https://libro.fm)  
 
 E-mail your comments to `paul@nospam.buetow.org` :-)
 
