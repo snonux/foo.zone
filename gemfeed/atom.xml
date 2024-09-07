@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-07T16:37:27+03:00</updated>
+    <updated>2024-09-07T16:40:35+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2626,6 +2626,10 @@ http://www.gnu.org/software/src-highlite -->
 <span>A blameless on-call culture is essential for creating a safe and collaborative environment where engineers can handle incidents without worrying about getting blamed. It recognizes that mistakes are just part of learning and innovating. When people know they won’t be punished for errors, they’re more likely to talk openly about what went wrong, which helps the whole team learn and improve. Plus, a blameless culture boosts psychological safety, job satisfaction, and reduces burnout, keeping everyone committed and engaged.</span><br />
 <br />
 <span>Mistakes are gonna happen, which is why having a blameless on-call culture is so important.</span><br />
+<br />
+<span>Continue with the fourth part of this series:</span><br />
+<br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
