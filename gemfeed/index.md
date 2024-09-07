@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-09-07 - Projects I support](./2024-09-07-projects-i-support.md)  
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
 [2024-07-05 - Random Weird Things](./2024-07-05-random-weird-things.md)  
