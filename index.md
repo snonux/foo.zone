@@ -1,16 +1,8 @@
 # foo.zone
 
-> This site was generated at 2024-09-07T16:50:52+03:00 by `Gemtexter`
+> This site was generated at 2024-09-09T22:26:26+03:00 by `Gemtexter`
 
-Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
-
-[My contact information and resources (via HTTP)](https://paul.buetow.org)  
-[My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
-[My machine uptime statistics](./uptime-stats.md)  
-
-If you reach this site via the modern web, please read this:
-
-[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. 
 
 ```
    |\---/|
@@ -21,9 +13,36 @@ If you reach this site via the modern web, please read this:
   (_,...'(_,.`__)/'.....+
 ```
 
-## Personal blog
+## Table of Contents
 
-### Stay updated
+* [⇢ foo.zone](#foozone)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Contact information](#contact-information)
+* [⇢ ⇢ Links](#links)
+* [⇢ ⇢ Blog](#blog)
+* [⇢ ⇢ ⇢ Atom and Gemfeeds](#atom-and-gemfeeds)
+* [⇢ ⇢ ⇢ Posts](#posts)
+
+## Introduction
+
+You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
+
+## Contact information
+
+[My contact information and resources (via HTTP)](https://paul.buetow.org)  
+[My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
+
+## Links
+
+[My machine uptime statistics](./uptime-stats.md)  
+
+If you reach this site via the modern web, please read this:
+
+[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+
+## Blog
+
+### Atom and Gemfeeds
 
 [Subscribe to this blog's Atom feed](./gemfeed/atom.xml)  
 [Subscribe to this blog's Gemfeed](./gemfeed/index.md)  
