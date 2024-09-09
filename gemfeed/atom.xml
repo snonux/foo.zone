@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-07T16:50:52+03:00</updated>
+    <updated>2024-09-09T22:26:26+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -225,15 +225,6 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span class='quote'>Published at 2024-08-05T17:39:30+03:00</span><br />
 <br />
-<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
-<br />
-<ul>
-<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
-<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
-<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
-</ul><br />
-<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
-<br />
 <pre>
 ,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
 |1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | &#39; | &lt;-    |
@@ -253,6 +244,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <ul>
 <li><a href='#typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ <a href='#kinesis-review'>Kinesis review</a></li>
 <li>⇢ ⇢ <a href='#top-build-quality'>Top build quality</a></li>
 <li>⇢ ⇢ <a href='#bluetooth-connectivity'>Bluetooth connectivity</a></li>
@@ -278,6 +270,16 @@ jgs \\`_..---.Y.---.._`//
 <li>⇢ <a href='#upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
+<br />
+<ul>
+<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
+<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
+<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
+</ul><br />
+<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
 <h2 style='display: inline' id='kinesis-review'>Kinesis review</h2><br />
 <br />
 <span>For an in-depth review, have a look at this great article:</span><br />
