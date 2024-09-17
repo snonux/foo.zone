@@ -31,6 +31,7 @@ a:hover {
 a.textlink:before {
     content: "⇒ ";
     padding-left: 11px;
+    color: #ff6600;
 }
 
 .quote {
@@ -40,11 +41,13 @@ a.textlink:before {
 .quote:before {
     content: "« ";
     padding-left: 2px;
+    color: #ff6600;
 }
 
 .quote:after {
     content: " »";
     padding-right: 2px;
+    color: #ff6600;
 }
 
 ul {
@@ -55,6 +58,7 @@ ul {
 li:before {
     content: "★";
     padding-right: 5px;
+    color: #ff6600;
 }
 
 img {
