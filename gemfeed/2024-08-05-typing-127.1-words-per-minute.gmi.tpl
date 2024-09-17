@@ -28,6 +28,7 @@ After work one day, I noticed some discomfort in my right wrist. Upon research, 
 * Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.
 
 After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. 
+
 ## Kinesis review
 
 For an in-depth review, have a look at this great article:

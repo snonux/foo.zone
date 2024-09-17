@@ -15,7 +15,7 @@ This is the list of projects and initiatives I support/sponsor.
 ||>>|         \$/            ||  $$ --/  ||        One Hundred     |<<||
 ||<<|      L38036133B        *\\  |\_/  //* series                 |>>||
 ||>>|  12                     *\\/___\_//*   1989                  |<<||
-||<<\      Open Soure    ______/Franklin\________     Supporting   />>||
+||<<\      Open Source   ______/Franklin\________     Supporting   />>||
 ||//$\                 ~| SPONSORING AND FUNDING |~               /$\\||
 ||(100)===================  AWESOME OPEN SOURCE =================(100)||
 ||\\$//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\$//||
