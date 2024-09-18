@@ -33,7 +33,7 @@ a:hover {
 }
 
 a.textlink:before {
-    content: "🡆 ";
+    content: "⇒ ";
     color: #ff8533;
 }
 
