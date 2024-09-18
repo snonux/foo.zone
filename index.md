@@ -1,9 +1,8 @@
 # foo.zone
 
-> This site was generated at 2024-09-18T21:38:05+03:00 by `Gemtexter`
+> This site was generated at 2024-09-18T21:45:43+03:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
-
 
 ```
    |\---/|
@@ -14,13 +13,10 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
   (_,...'(_,.`__)/'.....+
 ```
 
-## Links
+## Some links
 
 [About me](./about/index.md)  
 [My machine uptime statistics](./uptime-stats.md)  
-
-If you reach this site via the modern web, please read this:
-
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 
 ## Blog
