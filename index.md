@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-09-18T14:01:41+03:00 by `Gemtexter`
+> This site was generated at 2024-09-18T21:34:35+03:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. 
 
@@ -17,7 +17,6 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 
 * [⇢ foo.zone](#foozone)
 * [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Contact information](#contact-information)
 * [⇢ ⇢ Links](#links)
 * [⇢ ⇢ Blog](#blog)
 * [⇢ ⇢ ⇢ Atom and Gemfeeds](#atom-and-gemfeeds)
@@ -27,13 +26,9 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 
 You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
-## Contact information
-
-[My contact information and resources (via HTTP)](https://paul.buetow.org)  
-[My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
-
 ## Links
 
+[About me](./about/index.md)  
 [My machine uptime statistics](./uptime-stats.md)  
 
 If you reach this site via the modern web, please read this:
