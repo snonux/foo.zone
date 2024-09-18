@@ -2,14 +2,6 @@
 
 > Published at 2021-04-24T19:28:41+01:00; Updated at 2021-06-18
 
-ASCII Art by Andy Hood!
-
-Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
-
-[gemini://foo.zone](gemini://foo.zone)  
-
-However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
-
 ```
 
     /\
@@ -33,6 +25,7 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 ## Table of Contents
 
 * [⇢ Welcome to the Geminispace](#welcome-to-the-geminispace)
+* [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ Motivation](#motivation)
 * [⇢ ⇢ ⇢ My urge to revamp my personal website](#my-urge-to-revamp-my-personal-website)
 * [⇢ ⇢ ⇢ My still great Laptop running hot](#my-still-great-laptop-running-hot)
@@ -40,6 +33,14 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 * [⇢ ⇢ My own Gemini capsule](#my-own-gemini-capsule)
 * [⇢ ⇢ Gemini advantages summarised](#gemini-advantages-summarised)
 * [⇢ ⇢ Dive into deep Gemini space](#dive-into-deep-gemini-space)
+
+## Introduction
+
+Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
+
+[gemini://foo.zone](gemini://foo.zone)  
+
+However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
 
 ## Motivation
 
