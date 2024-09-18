@@ -4,7 +4,6 @@
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
-
 ```
    |\---/|
    | ,_, |
@@ -14,13 +13,10 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
   (_,...'(_,.`__)/'.....+
 ```
 
-## Links
+## Some links
 
 => ./about/index.gmi About me
 => ./uptime-stats.gmi My machine uptime statistics
-
-If you reach this site via the modern web, please read this:
-
 => ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
 
 ## Blog
