@@ -1,7 +1,7 @@
 # About
 
 * Name: Paul Buetow
-* Profession: Computerist
+* Profession: Computerist -  Solving problems with computers that we wouldn't have without them
 * Current job title: Site Reliability Engineer
 * E-Mail: `paul@nospam.buetow.org`
 
@@ -9,7 +9,7 @@
 
 ## My sites
 
-[My blog](../)  
+[My blog here at foo.zone](../)  
 [codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
 [dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
