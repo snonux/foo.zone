@@ -2,12 +2,6 @@
 
 > Published at 2021-04-24T19:28:41+01:00; Updated at 2021-06-18
 
-Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
-
-=> gemini://foo.zone
-
-However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
-
 ```
 
     /\
@@ -29,6 +23,14 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 ```
 
 << template::inline::toc
+
+## Introduction
+
+Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
+
+=> gemini://foo.zone
+
+However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
 
 ## Motivation
 
