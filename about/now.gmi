@@ -17,6 +17,12 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Read it
 * "Seeking SRE"
 * ↑ Read it
+* "Terraform Cookbook"
+* ↑ Read it
+* "Kubernetes Cookbook"
+* ↑ Read it
+* "Prometheus"
+* ↑ Read it
 
 ## Soon (???)
 
@@ -25,7 +31,6 @@ This is a "hidden" now site listing my personal projects.
 * `libbpf-tools` Pet Project?
 * Bulgarian Language School for Citizenship test
 * Re-activate my photo hobby: E.g. shoot more RAW and learn to use Darktable.?
-* Blog about the Helix modal editor
 * Work on I/O Riot NG and towards 1.0 (Go, C, Raku)
 * Work through "Bash it out" challenges (Bash)
 
