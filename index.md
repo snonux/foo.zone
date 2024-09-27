@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-09-18T21:56:39+03:00 by `Gemtexter`
+> This site was generated at 2024-09-27T23:27:37+03:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
@@ -52,7 +52,6 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 [2023-06-01 - KISS server monitoring with Gogios](./gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-05-06 - 'The Obstacle is the Way' book notes](./gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
-[2023-04-09 - Algorithms and Data Structures in Go - Part 1](./gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./gemfeed/2023-04-01-never-split-the-difference-book-notes.md)  
 [2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again²](./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.md)  

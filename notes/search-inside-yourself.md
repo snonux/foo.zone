@@ -5,6 +5,7 @@
 ## Table of Contents
 
 * [⇢ "Search Inside Yourself" book notes](#search-inside-yourself-book-notes)
+* [⇢ ⇢ How to Master Your Mind in 100 Minutes](#how-to-master-your-mind-in-100-minutes)
 * [⇢ ⇢ Mindfulness and Personal Development](#mindfulness-and-personal-development)
 * [⇢ ⇢ Three Steps of "Search Inside Yourself"](#three-steps-of-search-inside-yourself)
 * [⇢ ⇢ Even an Engineer Can Thrive on Emotional Intelligence](#even-an-engineer-can-thrive-on-emotional-intelligence)
@@ -80,10 +81,15 @@
 * [⇢ ⇢ ⇢ Practice of Mindful E-Mailing](#practice-of-mindful-e-mailing)
 * [⇢ ⇢ Three Easy Steps to World Peace](#three-easy-steps-to-world-peace)
 * [⇢ ⇢ ⇢ Align Meditation with Real Life](#align-meditation-with-real-life)
+* [⇢ ⇢ MacGyver's Swiss Army knife](#macgyver-s-swiss-army-knife)
 * [⇢ ⇢ Other](#other)
 * [⇢ ⇢ Audio Book notes](#audio-book-notes)
 * [⇢ ⇢ ⇢ Books to Check Out](#books-to-check-out)
 * [⇢ ⇢ ⇢ Videos](#videos)
+
+## How to Master Your Mind in 100 Minutes
+
+If you are thinking of reading the book "Search Inside Yourself," you can also check out a very short summary of it in a book called "How To Master Your Mind in 100 Minutes: Increase Productivity, Creativity and Happiness (Collins Shorts, Book 8)." However, it is not the whole story!
 
 ## Mindfulness and Personal Development
 
@@ -175,6 +181,8 @@ Imagine thinking, "I wish for this person to be happy," whenever you meet anyone
 The aim of developing emotional intelligence is to help you optimize yourself and function at an even higher level than what you are already capable of. Emotional skillfulness frees us from emotional compulsion. Neuroplasticity tells us that we can intentionally change our brains with training. 
 
 It is possible to train the brain to overcome even serious emotional disorders; just imagine the possibility of using it to greatly improve the quality of our emotional lives. This also works with physical pain. Suffering can be trained "away." Brain. Trainable. Good.
+
+Social skills are highly trainable and can also help others love you, by the way.
 
 ## Train at the Level of Physiology
 
@@ -722,6 +730,14 @@ With that combination of relaxation and alertness, three wonderful qualities of 
 
 I want to create a world where meditation is widely treated like exercise for the mind.
 
+## MacGyver's Swiss Army knife
+
+There was a study which tested the development of antibodies (flu shots). One control group meditated, the other didn't before they were given flu shots. Those in the meditation group developed more antibodies to the influenza vaccine than the ones who didn't. Another study revealed, that mindfulness can greatly accelerate the healing of a skin condition known as psoriasis.
+
+It's also about the ability to pay attention to information for a prolonged period of time where meditation is beneficial.
+
+Mindfulness feels almost like MagGyver's Swiss Army knife - it is sueful in every situation.
+
 ## Other
 
 I see great people. Walking around like regular people. They don't even know they are great.
@@ -777,10 +793,6 @@ Uncertainty can occupy your mind, preventing you from doing other things.
 [Shinzen Young on the science and practice of mindfulness meditation](http://siybook.com/v/gtalk_shinzen)  
 [Dan Pink on the surprising science of motivation](http://siybook.com/v/ted_dpink)  
 [Jill Bolte Taylor on her "stroke of insight"](http://siybook.com/v/tdd_jbt)  
-
-For more resources, including those you can use to bring Search Inside Yourself to your own company, visit:
-
-[http://www.siybook.com](http://www.siybook.com)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
