@@ -54,7 +54,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Go related posts are:
 
-=> ./2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi 2023-04-09 Algorithms and Data Structures in Go - Part 1
 => ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)
 
 => ../ Back to the main site

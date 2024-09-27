@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-17T05:21:15+03:00</updated>
+    <updated>2024-09-27T23:27:37+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2275,7 +2275,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other Go related posts are:</span><br />
 <br />
-<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1</a><br />
 <a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -5116,289 +5115,6 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
 <a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Algorithms and Data Structures in Go - Part 1</title>
-        <link href="gemini://foo.zone/gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi" />
-        <id>gemini://foo.zone/gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi</id>
-        <updated>2023-04-09T22:31:42+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='algorithms-and-data-structures-in-go---part-1'>Algorithms and Data Structures in Go - Part 1</h1><br />
-<br />
-<span class='quote'>Published at 2023-04-09T22:31:42+03:00</span><br />
-<br />
-<span>This is the first blog post about my Algorithms and Data Structures in Go series. I am not a Software Developer in my day job. In my current role, programming and scripting skills are desirable but not mandatory. I have been learning about Data Structures and Algorithms many years ago at University. I thought it would be fun to revisit/refresh my knowledge here and implement many of the algorithms in Go.</span><br />
-<br />
-<a class='textlink' href='./2023-04-09-algorithms-and-data-structures-in-golang-part-1.html'>2023-04-09 Algorithms and Data Structures in Go - Part 1 (You are currently reading this)</a><br />
-<br />
-<span>This post is about setting up some basic data structures and methods for this blog series. I promise, everything will be easy to follow in this post. It will become more interesting later in this series.</span><br />
-<br />
-<pre>
-         ,_---~~~~~----._         
-  _,,_,*^____      _____``*g*\"*, 
- / __/ /&#39;     ^.  /      \ ^@q   f 
-[  @f | @))    |  | @))   l  0 _/  
- \`/   \~____ / __ \_____/    \   
-  |           _l__l_           I   
-  }          [______]           I  
-  ]            | | |            |  
-  ]             ~ ~             |  
-  |                            |   
-   |                           |   
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#algorithms-and-data-structures-in-go---part-1'>Algorithms and Data Structures in Go - Part 1</a></li>
-<li>⇢ <a href='#type-constraints'>Type constraints</a></li>
-<li>⇢ <a href='#arraylist'>ArrayList</a></li>
-<li>⇢ <a href='#helper-methods'>Helper methods</a></li>
-<li>⇢ <a href='#sleep-sort'>Sleep sort</a></li>
-<li>⇢ ⇢ <a href='#testing'>Testing</a></li>
-</ul><br />
-<h2 style='display: inline' id='type-constraints'>Type constraints</h2><br />
-<br />
-<span>First, the package <span class='inlinecode'>ds</span> (data structures) defines the <span class='inlinecode'>types.go</span>. All examples will either operate on the <span class='inlinecode'>Integer</span> or <span class='inlinecode'>Number</span> type:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
-
-<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"golang.org/x/exp/constraints"</font>
-<font color="#F3E651">)</font>
-
-<b><font color="#ffffff">type</font></b><font color="#ff0000"> Integer </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font>
-<font color="#F3E651">}</font>
-
-<b><font color="#ffffff">type</font></b><font color="#ff0000"> Number </font><b><font color="#ffffff">interface</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	constraints</font><font color="#F3E651">.</font><font color="#ff0000">Integer </font><font color="#F3E651">|</font><font color="#ff0000"> constraints</font><font color="#F3E651">.</font><font color="#ff0000">Float</font>
-<font color="#F3E651">}</font>
-
-</pre>
-<br />
-<h2 style='display: inline' id='arraylist'>ArrayList</h2><br />
-<br />
-<span>Next comes the <span class='inlinecode'>arraylist.go</span>, which defines the underlying data structure all the algorithms of this series will use. <span class='inlinecode'>ArrayList</span> is just a type alias of a Go array (or slice) with custom methods on it:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> ds</font>
-
-<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"math/rand"</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"strings"</font>
-<font color="#F3E651">)</font>
-
-<b><font color="#ffffff">type</font></b><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">[]</font><font color="#ff0000">V</font>
-
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<span>As you can see, the code uses Go generics, which I refactored recently. Besides the default constructor (which only returns an empty <span class='inlinecode'>ArrayList</span> with a given capacity), there are also a bunch of special constructors. <span class='inlinecode'>NewRandomArrayList</span> is returning an <span class='inlinecode'>ArrayList</span> with random numbers, <span class='inlinecode'>NewAscendingArrayList</span> and <span class='inlinecode'>NewDescendingArrayList</span> are returning <span class='inlinecode'>ArrayList</span>s in either ascending or descending order. They all will be used later on for testing and benchmarking the algorithms.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l</font><font color="#F3E651">,</font><font color="#ff0000"> max int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> max </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">			a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Intn</font><font color="#F3E651">(</font><font color="#ff0000">max</font><font color="#F3E651">))</font>
-<font color="#ff0000">			</font><b><font color="#ffffff">continue</font></b>
-<font color="#ff0000">		</font><font color="#F3E651">}</font>
-<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">rand</font><font color="#F3E651">.</font><font color="#7bc710">Int</font><font color="#F3E651">())</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
-<font color="#F3E651">}</font>
-
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewAscendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
-<font color="#F3E651">}</font>
-
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> NewDescendingArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V Number</font><font color="#F3E651">](</font><font color="#ff0000">l int</font><font color="#F3E651">)</font><font color="#ff0000"> ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">],</font><font color="#ff0000"> l</font><font color="#F3E651">)</font>
-<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> l </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">V</font><font color="#F3E651">(</font><font color="#ff0000">j</font><font color="#F3E651">)</font>
-<font color="#ff0000">		j</font><font color="#F3E651">--</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> a</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<h2 style='display: inline' id='helper-methods'>Helper methods</h2><br />
-<br />
-<span>The <span class='inlinecode'>FirstN</span> method only returns the first N elements of the <span class='inlinecode'>ArrayList</span>. This is useful for printing out only parts of the data structure:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">FirstN</font><font color="#F3E651">(</font><font color="#ff0000">n int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><b><font color="#F35E1E">string</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> sb strings</font><font color="#F3E651">.</font><font color="#ff0000">Builder</font>
-<font color="#ff0000">	j </font><font color="#F3E651">:=</font><font color="#ff0000"> n</font>
-
-<font color="#ff0000">	l </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&gt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
-<font color="#ff0000">		j </font><font color="#F3E651">=</font><font color="#ff0000"> l</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> j</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"%v "</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">])</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> j </font><font color="#F3E651">&lt;</font><font color="#ff0000"> l </font><font color="#F3E651">{</font>
-<font color="#ff0000">		fmt</font><font color="#F3E651">.</font><font color="#7bc710">Fprintf</font><font color="#F3E651">(&amp;</font><font color="#ff0000">sb</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"... "</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sb</font><font color="#F3E651">.</font><font color="#7bc710">String</font><font color="#F3E651">()</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<span>The <span class='inlinecode'>Sorted</span> method checks whether the <span class='inlinecode'>ArrayList</span> is sorted. This will be used by the unit tests later on:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><b><font color="#F35E1E">bool</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">--</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">&lt;</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">-</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">			</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> false</font>
-<font color="#ff0000">		</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> true</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<span>And the last utility method used is <span class='inlinecode'>Swap</span>, which allows swapping the values of two indices in the <span class='inlinecode'>ArrayList</span>:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">a ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> </font><font color="#7bc710">Swap</font><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">,</font><font color="#ff0000"> j int</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	aux </font><font color="#F3E651">:=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font>
-<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">i</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font>
-<font color="#ff0000">	a</font><font color="#F3E651">[</font><font color="#ff0000">j</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> aux</font>
-<font color="#F3E651">}</font>
-
-</pre>
-<br />
-<h2 style='display: inline' id='sleep-sort'>Sleep sort</h2><br />
-<br />
-<span>Let&#39;s implement our first algorithm, sleep sort. Sleep sort is a non-traditional and unconventional sorting algorithm based on the idea of waiting a certain amount of time corresponding to the value of each element in the input <span class='inlinecode'>ArrayList</span>. It&#39;s more of a fun, creative concept rather than an efficient or practical sorting technique. This is not a sorting algorithm you would use in any production code. As you can imagine, it is quite an inefficient sorting algorithm (it&#39;s only listed here as a warm-up exercise). This sorting method may also return false results depending on how the Goroutines are scheduled by the Go runtime. </span><br />
-<br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
-
-<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"sync"</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"time"</font>
-<font color="#F3E651">)</font>
-
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> Sleep</font><font color="#F3E651">[</font><font color="#ff0000">V ds</font><font color="#F3E651">.</font><font color="#ff0000">Integer</font><font color="#F3E651">](</font><font color="#ff0000">a ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">])</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">ArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	sorted </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewArrayList</font><font color="#F3E651">[</font><font color="#ff0000">V</font><font color="#F3E651">](</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
-
-<font color="#ff0000">	numCh </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#7bc710">make</font><font color="#F3E651">(</font><b><font color="#ffffff">chan</font></b><font color="#ff0000"> V</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> wg sync</font><font color="#F3E651">.</font><font color="#ff0000">WaitGroup</font>
-<font color="#ff0000">	wg</font><font color="#F3E651">.</font><font color="#7bc710">Add</font><font color="#F3E651">(</font><font color="#7bc710">len</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">))</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		wg</font><font color="#F3E651">.</font><font color="#7bc710">Wait</font><font color="#F3E651">()</font>
-<font color="#ff0000">		</font><font color="#7bc710">close</font><font color="#F3E651">(</font><font color="#ff0000">numCh</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font><font color="#F3E651">()</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> _</font><font color="#F3E651">,</font><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> a </font><font color="#F3E651">{</font>
-<font color="#ff0000">		</font><b><font color="#ffffff">go</font></b><font color="#ff0000"> </font><b><font color="#ffffff">func</font></b><font color="#F3E651">(</font><font color="#ff0000">num V</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">			</font><b><font color="#ffffff">defer</font></b><font color="#ff0000"> wg</font><font color="#F3E651">.</font><font color="#7bc710">Done</font><font color="#F3E651">()</font>
-<font color="#ff0000">			time</font><font color="#F3E651">.</font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">time</font><font color="#F3E651">.</font><font color="#7bc710">Duration</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000"> time</font><font color="#F3E651">.</font><font color="#ff0000">Second</font><font color="#F3E651">)</font>
-<font color="#ff0000">			numCh </font><font color="#F3E651">&lt;-</font><font color="#ff0000"> num</font>
-<font color="#ff0000">		</font><font color="#F3E651">}</font><font color="#F3E651">(</font><font color="#ff0000">num</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> num </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#ffffff">range</font></b><font color="#ff0000"> numCh </font><font color="#F3E651">{</font>
-<font color="#ff0000">		sorted </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">append</font><font color="#F3E651">(</font><font color="#ff0000">sorted</font><font color="#F3E651">,</font><font color="#ff0000"> num</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-
-<font color="#ff0000">	</font><b><font color="#ffffff">return</font></b><font color="#ff0000"> sorted</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<span>This Go code implements the sleep sort algorithm using generics and goroutines. The main function <span class='inlinecode'>Sleep[V ds.Integer](a ds.ArrayList[V]) ds.ArrayList[V]</span> takes a generic <span class='inlinecode'>ArrayList</span> as input and returns a sorted <span class='inlinecode'>ArrayList</span>. The code creates a separate goroutine for each element in the input array, sleeps for a duration proportional to the element&#39;s value, and then sends the element to a channel. Another goroutine waits for all the sleeping goroutines to finish and then closes the channel. The sorted result <span class='inlinecode'>ArrayList</span> is constructed by appending the elements received from the channel in the order they arrive. The <span class='inlinecode'>sync.WaitGroup</span> is used to synchronize goroutines and ensure that all of them have completed before closing the channel.</span><br />
-<br />
-<h3 style='display: inline' id='testing'>Testing</h3><br />
-<br />
-<span>For testing, we only allow values up to 10, as otherwise, it would take too long to finish:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> sort</font>
-
-<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"fmt"</font>
-<font color="#ff0000">	</font><font color="#bb00ff">"testing"</font>
-
-<font color="#ff0000">	</font><font color="#bb00ff">"codeberg.org/snonux/algorithms/ds"</font>
-<font color="#F3E651">)</font>
-
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#7bc710">TestSleepSort</font><font color="#F3E651">(</font><font color="#ff0000">t </font><font color="#F3E651">*</font><font color="#ff0000">testing</font><font color="#F3E651">.</font><font color="#ff0000">T</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	a </font><font color="#F3E651">:=</font><font color="#ff0000"> ds</font><font color="#F3E651">.</font><font color="#ff0000">NewRandomArrayList</font><font color="#F3E651">[</font><font color="#ff0000">int</font><font color="#F3E651">](</font><font color="#bb00ff">10</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">10</font><font color="#F3E651">)</font>
-<font color="#ff0000">	a </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Sleep</font><font color="#F3E651">(</font><font color="#ff0000">a</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000">a</font><font color="#F3E651">.</font><font color="#7bc710">Sorted</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		t</font><font color="#F3E651">.</font><font color="#7bc710">Errorf</font><font color="#F3E651">(</font><font color="#bb00ff">"Array not sorted: %v"</font><font color="#F3E651">,</font><font color="#ff0000"> a</font><font color="#F3E651">)</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
-</pre>
-<br />
-<span>As you can see, it takes <span class='inlinecode'>9s</span> here for the algorithm to finish (which is the highest value in the <span class='inlinecode'>ArrayList</span>):</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">❯ go </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> </font><font color="#F3E651">.</font><font color="#ff0000">/sort -v -run SleepSort</font>
-<font color="#F3E651">===</font><font color="#ff0000"> RUN   TestSleepSort</font>
-<font color="#ff0000">--- PASS</font><font color="#F3E651">:</font><font color="#ff0000"> TestSleepSort </font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">00s</font><font color="#F3E651">)</font>
-<font color="#ff0000">PASS</font>
-<font color="#ff0000">ok      codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/algorithms/sort     </font><font color="#bb00ff">9</font><font color="#F3E651">.</font><font color="#ff0000">002s</font>
-</pre>
-<br />
-<span>I won&#39;t write any benchmark for sleep sort; that will be done for the algorithms to come in this series :-).</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -9174,6 +8890,530 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <span>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won&#39;t change any time soon. I don&#39;t know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Bash Golf Part 2</title>
+        <link href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi</id>
+        <updated>2022-01-01T23:36:15+00:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='bash-golf-part-2'>Bash Golf Part 2</h1><br />
+<br />
+<span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
+<br />
+<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<br />
+<pre>
+    &#39;\       &#39;\                   .  .                |&gt;18&gt;&gt;
+      \        \              .         &#39; .           |
+     O&gt;&gt;      O&gt;&gt;         .                 &#39;o        |
+      \       .\. ..   .                              |
+      /\    .  /\    . .                              |
+     / /   .  / /  .&#39;    .                            |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#bash-golf-part-2'>Bash Golf Part 2</a></li>
+<li>⇢ <a href='#redirection'>Redirection</a></li>
+<li>⇢ <a href='#here'>HERE</a></li>
+<li>⇢ <a href='#random'>RANDOM</a></li>
+<li>⇢ <a href='#set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</a></li>
+<li>⇢ ⇢ <a href='#-x'>-x</a></li>
+<li>⇢ ⇢ <a href='#-e'>-e</a></li>
+<li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
+</ul><br />
+<h2 style='display: inline' id='redirection'>Redirection</h2><br />
+<br />
+<span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
+<br />
+<ul>
+<li>0 aka stdin (standard input)</li>
+<li>1 aka stdout (standard output)</li>
+<li>2 aka stderr (standard error output)</li>
+</ul><br />
+<span>These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current Bash shell itself):</span><br />
+<br />
+<pre>
+❯ ls -l /proc/self/fd/
+total 0
+lrwx------. 1 paul paul 64 Nov 23 09:46 0 -&gt; /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 1 -&gt; /dev/pts/9
+lrwx------. 1 paul paul 64 Nov 23 09:46 2 -&gt; /dev/pts/9
+lr-x------. 1 paul paul 64 Nov 23 09:46 3 -&gt; /proc/162912/fd
+</pre>
+<br />
+<span>The following examples demonstrate two different ways to accomplish the same thing. The difference is that the first command is directly printing out "Foo" to stdout and the second command is explicitly redirecting stdout to its own stdout file descriptor:</span><br />
+<br />
+<pre>
+❯ echo Foo
+Foo
+❯ echo Foo &gt; /proc/self/fd/0
+Foo
+</pre>
+<br />
+<span class='quote'>Update: A reader pointed out, that the redirection should actually go to <span class='inlinecode'>/proc/self/fd/1</span> and not <span class='inlinecode'>0</span>. But apparently, either way works for this particular example. Do you know why? </span><br />
+<br />
+<span>Other useful redirections are:</span><br />
+<br />
+<ul>
+<li>Redirect stderr to stdin: "echo foo 2&gt;&amp;1"</li>
+<li>Redirect stdin to stderr: "echo foo &gt;&amp;2"</li>
+</ul><br />
+<span>It is, however, not possible to redirect multiple times within the same command. E.g. the following won&#39;t work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:</span><br />
+<br />
+<pre>
+❯ echo Foo 1&gt;&amp;2 2&gt;/dev/null
+Foo
+</pre>
+<br />
+<span class='quote'>Update: A reader sent me an email and pointed out that the order of the redirections is important. </span><br />
+<br />
+<span>As you can see, the following will not print out anything:</span><br />
+<br />
+<pre>
+❯ echo Foo 2&gt;/dev/null 1&gt;&amp;2
+❯
+</pre>
+<br />
+<span>A good description (also pointed out by the reader) can be found here:</span><br />
+<br />
+<a class='textlink' href='https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file'>Order of redirection</a><br />
+<br />
+<span>Ok, back to the original blog post. You can also use grouping here (neither of these commands will print out anything to stdout):</span><br />
+<br />
+<pre>
+❯ { echo Foo 1&gt;&amp;2; } 2&gt;/dev/null
+❯ ( echo Foo 1&gt;&amp;2; ) 2&gt;/dev/null
+❯ { { { echo Foo 1&gt;&amp;2; } 2&gt;&amp;1; } 1&gt;&amp;2; } 2&gt;/dev/null
+❯ ( ( ( echo Foo 1&gt;&amp;2; ) 2&gt;&amp;1; ) 1&gt;&amp;2; ) 2&gt;/dev/null
+❯
+</pre>
+<br />
+<span>A handy way to list all open file descriptors is to use the "lsof" command (that&#39;s not a Bash built-in), whereas $$ is the process id (pid) of the current shell process:</span><br />
+<br />
+<pre>
+❯ lsof -a -p $$ -d0,1,2
+COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+bash    62676 paul    0u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    1u   CHR  136,9      0t0   12 /dev/pts/9
+bash    62676 paul    2u   CHR  136,9      0t0   12 /dev/pts/9
+</pre>
+<br />
+<span>Let&#39;s create our own descriptor "3" for redirection to a file named "foo":</span><br />
+<br />
+<pre>
+❯ touch foo
+❯ exec 3&gt;foo # This opens fd 3 and binds it to file foo.
+❯ ls -l /proc/self/fd/3
+l-wx------. 1 paul paul 64 Nov 23 10:10 \
+    /proc/self/fd/3 -&gt; /home/paul/foo
+❯ cat foo
+❯ echo Bratwurst &gt;&amp;3
+❯ cat foo
+Bratwurst
+❯ exec 3&gt;&amp;- # This closes fd 3.
+❯ echo Steak &gt;&amp;3
+-bash: 3: Bad file descriptor
+</pre>
+<br />
+<span>You can also override the default file descriptors, as the following example script demonstrates:</span><br />
+<br />
+<pre>
+❯ cat grandmaster.sh
+#!/usr/bin/env bash
+
+# Write a file data-file containing two lines
+echo Learn You a Haskell &gt; data-file
+echo for Great Good &gt;&gt; data-file
+
+# Link fd with fd 6 (saves default stdin)
+exec 6&lt;&amp;0
+
+# Overwrite stdin with data-file
+exec &lt; data-file
+
+# Read the first two lines from it
+declare LINE1 LINE2
+read LINE1
+read LINE2
+
+# Print them
+echo First line: $LINE1
+echo Second line: $LINE2
+
+# Restore default stdin and delete fd 6
+exec 0&lt;&amp;6 6&lt;&amp;-
+</pre>
+<br />
+<span>Let&#39;s execute it:</span><br />
+<br />
+<pre>
+❯ chmod 750 ./grandmaster.sh
+❯ ./grandmaster.sh
+First line: Learn You a Haskell
+Second line: for Great Good
+</pre>
+<br />
+<h2 style='display: inline' id='here'>HERE</h2><br />
+<br />
+<span>I have mentioned HERE-documents and HERE-strings already in this post. Let&#39;s do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</span><br />
+<br />
+<pre>
+❯ cat &lt;&lt;END
+&gt; Hello World
+&gt; It’s $(date)
+&gt; END
+Hello World
+It&#39;s Fri 26 Nov 08:46:52 GMT 2021
+</pre>
+<br />
+<span>You can also write it the following way, but that&#39;s less readable (it&#39;s good for an obfuscation contest):</span><br />
+<br />
+<pre>
+❯ &lt;&lt;END cat
+&gt; Hello Universe
+&gt; It’s $(date)
+&gt; END
+Hello Universe
+It&#39;s Fri 26 Nov 08:47:32 GMT 2021
+</pre>
+<br />
+<span>Besides of an HERE-document, there is also a so-called HERE-string. Besides of...</span><br />
+<br />
+<pre>
+❯ declare VAR=foo
+❯ if echo "$VAR" | grep -q foo; then
+&gt; echo &#39;$VAR ontains foo&#39;
+&gt; fi
+$VAR ontains foo
+</pre>
+<br />
+<span>...you can use a HERE-string like that:</span><br />
+<br />
+<pre>
+❯ if grep -q foo &lt;&lt;&lt; "$VAR"; then
+&gt; echo &#39;$VAR contains foo&#39;
+&gt; fi
+$VAR contains foo
+</pre>
+<br />
+<span>Or even shorter, you can do:</span><br />
+<br />
+<pre>
+❯ grep -q foo &lt;&lt;&lt; "$VAR" &amp;&amp; echo &#39;$VAR contains foo&#39;
+$VAR contains foo
+</pre>
+<br />
+<span>You can also use a Bash regex to accomplish the same thing, but the points of the examples so far were to demonstrate HERE-{documents,strings} and not Bash regular expressions:</span><br />
+<br />
+<pre>
+❯ if [[ "$VAR" =~ foo ]]; then echo yay; fi
+yay
+</pre>
+<br />
+<span>You can also use it with "read":</span><br />
+<br />
+<pre>
+❯ read a &lt;&lt;&lt; ja
+❯ echo $a
+ja
+❯ read b &lt;&lt;&lt; &#39;NEIN!!!&#39;
+❯ echo $b
+NEIN!!!
+❯ dumdidumstring=&#39;Learn you a Golang for Great Good&#39;
+❯ read -a words &lt;&lt;&lt; "$dumdidumstring"
+❯ echo ${words[0]}
+Learn
+❯ echo ${words[3]}
+Golang
+</pre>
+<br />
+<span>The following is good for an obfuscation contest too:</span><br />
+<br />
+<pre>
+❯ echo &#39;I like Perl too&#39; &gt; perllove.txt
+❯ cat - perllove.txt &lt;&lt;&lt; "$dumdidumstring"
+Learn you a Golang for Great Good
+I like Perl too
+</pre>
+<br />
+<h2 style='display: inline' id='random'>RANDOM</h2><br />
+<br />
+<span>Random is a special built-in variable containing a different pseudo random number each time it&#39;s used.</span><br />
+<br />
+<pre>
+❯ echo $RANDOM
+11811
+❯ echo $RANDOM
+14997
+❯ echo $RANDOM
+9104
+</pre>
+<br />
+<span>That&#39;s very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently, just to spread the server load (which might be caused by the script run) better.</span><br />
+<br />
+<span>Let&#39;s say you want to introduce a random delay of 1 minute. You can accomplish it with:</span><br />
+<br />
+<pre>
+❯ cat ./calc_answer_to_ultimate_question_in_life.sh
+#!/usr/bin/env bash
+
+declare -i MAX_DELAY=60
+
+random_delay () {
+    local -i sleep_for=$((RANDOM % MAX_DELAY))
+    echo "Delaying script execution for $sleep_for seconds..."
+    sleep $sleep_for
+    echo &#39;Continuing script execution...&#39;
+}
+
+main () {
+    random_delay
+    # From here, do the real work. Calculating the answer to
+    # the ultimate question can take billions of years....
+    : ....
+}
+
+main
+
+❯
+❯ ./calc_answer_to_ultimate_question_in_life.sh
+Delaying script execution for 42 seconds...
+Continuing script execution...
+</pre>
+<br />
+<h2 style='display: inline' id='set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</h2><br />
+<br />
+<span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
+<br />
+<h3 style='display: inline' id='-x'>-x</h3><br />
+<br />
+<span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
+<br />
+<pre>
+❯ set -x
+❯ square () { local -i num=$1; echo $((num*num)); }
+❯ num=11; echo "Square of $num is $(square $num)"
++ num=11
+++ square 11
+++ local -i num=11
+++ echo 121
++ echo &#39;Square of 11 is 121&#39;
+Square of 11 is 121
+</pre>
+<br />
+<span>You can also set it when calling an external script without modifying the script itself:</span><br />
+<br />
+<pre>
+❯ bash -x ./half_broken_script_to_be_debugged.sh
+</pre>
+<br />
+<span>Let&#39;s do that on one of the example scripts we covered earlier:</span><br />
+<br />
+<pre>
+❯ bash -x ./grandmaster.sh
++ bash -x ./grandmaster.sh
++ echo Learn You a Haskell
++ echo for Great Good
++ exec
++ exec
++ declare LINE1 LINE2
++ read LINE1
++ read LINE2
++ echo First line: Learn You a Haskell
+First line: Learn You a Haskell
++ echo Second line: for Great Good
+Second line: for Great Good
++ exec
+❯
+</pre>
+<br />
+<h3 style='display: inline' id='-e'>-e</h3><br />
+<br />
+<span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
+<br />
+<span>Ok, let&#39;s dig deeper:</span><br />
+<br />
+<pre>
+❯ help set | grep -- -e
+      -e  Exit immediately if a command exits with a non-zero status.
+</pre>
+<br />
+<span>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:</span><br />
+<br />
+<pre>
+❯ bash -c &#39;set -e; echo hello; grep -q bar &lt;&lt;&lt; foo; echo bar&#39;
+hello
+❯ echo $?
+1
+</pre>
+<br />
+<span>Whereas the outcome changes when the regex matches:</span><br />
+<br />
+<pre>
+❯ bash -c &#39;set -e; echo hello; grep -q bar &lt;&lt;&lt; barman; echo bar&#39;
+hello
+bar
+❯ echo $?
+0
+</pre>
+<br />
+<span>So does it mean that grep will always make the shell terminate whenever its exit code isn&#39;t 0? This will render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script abruptly. Usually, what you want is to branch your code based on the outcome (exit code) of a command:</span><br />
+<br />
+<pre>
+❯ bash -c &#39;set -e
+&gt;    grep -q bar &lt;&lt;&lt; foo
+&gt;    if [ $? -eq 0 ]; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi&#39;
+❯ echo $?
+1
+</pre>
+<br />
+<span>...but the example above won&#39;t reach any of the branches and won&#39;t print out anything, as the script terminates right after grep.</span><br />
+<br />
+<span>The proper solution is to use grep as an expression in a conditional (e.g. in an if-else statement):</span><br />
+<br />
+<pre>
+❯ bash -c &#39;set -e
+&gt;    if grep -q bar &lt;&lt;&lt; foo; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi&#39;
+not matching
+❯ echo $?
+0
+❯ bash -c &#39;set -e
+&gt;    if grep -q bar &lt;&lt;&lt; barman; then
+&gt;        echo "matching"
+&gt;    else
+&gt;        echo "not matching"
+&gt;    fi&#39;
+matching
+❯ echo $?
+0
+</pre>
+<br />
+<span>You can also temporally undo "set -e" if there is no other way:</span><br />
+<br />
+<pre>
+❯ cat ./e.sh
+#!/usr/bin/env bash
+
+set -e
+
+foo () {
+    local arg="$1"; shift
+
+    if [ -z "$arg" ]; then
+        arg=&#39;You!&#39;
+    fi
+    echo "Hello $arg"
+}
+
+bar () {
+    # Temporally disable e
+    set +e
+    local arg="$1"; shift
+    # Enable e again.
+    set -e
+
+    if [ -z "$arg" ]; then
+        arg=&#39;You!&#39;
+    fi
+    echo "Hello $arg"
+}
+
+# Will succeed
+bar World
+foo Universe
+bar
+
+# Will terminate the script
+foo
+
+❯ ./e.sh
+Hello World
+Hello Universe
+Hello You!
+</pre>
+<br />
+<span>Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won&#39;t have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.</span><br />
+<br />
+<span>Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):</span><br />
+<br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>./2021-05-16-personal-bash-coding-style-guide.html</a><br />
+<br />
+<h3 style='display: inline' id='pipefail'>pipefail</h3><br />
+<br />
+<span>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</span><br />
+<br />
+<pre>
+❯ help set | grep pipefail -A 2
+    pipefail     the return value of a pipeline is the status of
+                 the last command to exit with a non-zero status,
+                 or zero if no command exited with a non-zero status
+</pre>
+<br />
+<span>The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:</span><br />
+<br />
+<pre>
+❯ grep paul /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
+PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
+❯ echo $?
+0
+</pre>
+<br />
+<span>Let&#39;s look at another example, where "TheRock" doesn&#39;t exist in the passwd file. However, the pipes exit status is still 0 (success). This is so because the last command ("tr" in this case) still succeeded. It is just that it didn&#39;t get any input on stdin to process:</span><br />
+<br />
+<pre>
+❯ grep TheRock /etc/passwd
+❯ echo $?
+1
+❯ grep TheRock /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
+❯ echo $?
+0
+</pre>
+<br />
+<span>To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:</span><br />
+<br />
+<pre>
+❯ set -o pipefail
+❯ grep TheRock /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
+❯ echo $?
+1
+</pre>
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
