@@ -1,5 +1,4 @@
 * 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
-* Tmux 2: Productive Mouse-free Development; Brain P. Hogan; The Pragmatic Programmers 
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
 * Amazon Web Services in Action; Michael Wittig and Andreas Wittig; Manning Publications
@@ -31,10 +30,12 @@
 * Site Reliability Engineering; How Google runs production systems; O'Reilly
 * Systemprogrammierung in Go; Frank Müller; dpunkt
 * Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
+* Terraform Cookbook; Mikael Krief; Packt Publishing
 * The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
 * The Docker Book; James Turnbull; Kindle
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
 * The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional Pro Git; Scott Chacon, Ben Straub; Apress
 * The Pragmatic Programmer; David Thomas; Addison-Wesley
 * Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
+* Tmux 2: Productive Mouse-free Development; Brain P. Hogan; The Pragmatic Programmers 
 * Ultimate Go Notebook; Bill Kennedy
