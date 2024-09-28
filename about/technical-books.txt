@@ -1,4 +1,5 @@
 * 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
+* Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
 * Amazon Web Services in Action; Michael Wittig and Andreas Wittig; Manning Publications
