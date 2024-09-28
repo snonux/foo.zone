@@ -32,6 +32,7 @@
 * Systemprogrammierung in Go; Frank Müller; dpunkt
 * Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
 * Terraform Cookbook; Mikael Krief; Packt Publishing
+* Kubernetes Cookbook; Sameer Naik, Sébastien Goasguen, Jonathan Michaux; O'Reilly
 * The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
 * The Docker Book; James Turnbull; Kindle
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
