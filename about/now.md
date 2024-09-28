@@ -17,8 +17,6 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Read it
 * "Seeking SRE"
 * ↑ Read it
-* "Terraform Cookbook"
-* ↑ Read it
 * "Kubernetes Cookbook"
 * ↑ Read it
 * "Prometheus"
@@ -36,6 +34,8 @@ This is a "hidden" now site listing my personal projects.
 
 ## Done
 
+* "Terraform Cookbook"
+* ↑ Read it
 * Mechanical Keyboard: Learn touch typing (100 WPM in average) on my Kinesis Adv. 360 Pro
 * ↑ Blog about once 100WPM in average for one session reached
 * "Programming Ruby 3.3" (fun to read)
