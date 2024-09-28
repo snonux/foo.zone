@@ -37,8 +37,7 @@ In random order:
 
 << sort -R self-skills.txt
 
-=> https://foo.zone/notes/index.html Here are notes of mine for some of the books (HTTP)
-=> gemini://foo.zone/notes/index.gmi Here are notes of mine for some of the books (Gemini)
+=> ../notes/index.gmi Here are notes of mine for some of the books
 
 ## Technical video lectures and courses
 
