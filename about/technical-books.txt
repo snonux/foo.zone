@@ -1,4 +1,5 @@
 * 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
+* Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
 * Amazon Web Services in Action; Michael Wittig and Andreas Wittig; Manning Publications
@@ -31,6 +32,8 @@
 * Systemprogrammierung in Go; Frank Müller; dpunkt
 * Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
 * Terraform Cookbook; Mikael Krief; Packt Publishing
+* The Kubernetes Book; Nigel Poulton; Unabridged Audiobook
+* Kubernetes Cookbook; Sameer Naik, Sébastien Goasguen, Jonathan Michaux; O'Reilly
 * The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
 * The Docker Book; James Turnbull; Kindle
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional

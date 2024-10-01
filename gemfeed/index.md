@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴](./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
 [2024-09-07 - Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./2024-09-07-site-reliability-engineering-part-4.md)  
 [2024-09-07 - Projects I financially support](./2024-09-07-projects-i-support.md)  
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./2024-08-05-typing-127.1-words-per-minute.md)  
