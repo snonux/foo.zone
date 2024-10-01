@@ -1,11 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-09-27T23:27:37+03:00</updated>
+    <updated>2024-10-01T21:46:26+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Gemtexter 3.0.0 - Let's Gemtext again⁴</title>
+        <link href="gemini://foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi</id>
+        <updated>2024-10-01T21:46:26+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I proudly announce that I've released Gemtexter version `3.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</h1><br />
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>3.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<pre>
+-=[ typewriters ]=-  1/98
+                                      .-------.
+       .-------.                     _|~~ ~~  |_
+      _|~~ ~~  |_       .-------.  =(_|_______|_)
+    =(_|_______|_)=    _|~~ ~~  |_   |:::::::::|    .-------.
+      |:::::::::|    =(_|_______|_)  |:::::::[]|   _|~~ ~~  |_
+      |:::::::[]|      |:::::::::|   |o=======.| =(_|_______|_)
+      |o=======.|      |:::::::[]|   `"""""""""`   |:::::::::|
+ jgs  `"""""""""`      |o=======.|                 |:::::::[]|
+  mod. by Paul Buetow  `"""""""""`                 |o=======.|
+                                                   `"""""""""`
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a></li>
+<li>⇢ <a href='#why-bash'>Why Bash?</a></li>
+<li>⇢ <a href='#html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</a></li>
+<li>⇢ <a href='#table-of-contents-auto-generation'>Table of Contents auto-generation</a></li>
+<li>⇢ <a href='#configurable-themes'>Configurable themes</a></li>
+<li>⇢ <a href='#no-use-of-webfonts-by-default'>No use of webfonts by default</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-bash'>Why Bash?</h2><br />
+<br />
+<span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
+<h2 style='display: inline' id='html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</h2><br />
+<br />
+<span>The last version of Gemtexter introduced the HTML exact variant, which wasn&#39;t enabled by default. This version of Gemtexter removes the previous (inexact) variant and makes the exact variant the default. This is a breaking change, which is why there is a major version bump of Gemtexter. Here is a reminder of what the exact variant was:</span><br />
+<br />
+<span class='quote'>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents-auto-generation'>Table of Contents auto-generation</h2><br />
+<br />
+<span>Just add...</span><br />
+<br />
+<pre>
+ &lt;&lt; template::inline::toc
+</pre>
+<br />
+<span>...into a Gemtexter template file and Gemtexter will automatically generate a table of contents for the page based on the headings (see this page&#39;s ToC for example). The ToC will also have links to the relevant sections in HTML and Markdown output. The Gemtext format does not support links, so the ToC will simply be displayed as a bullet list. </span><br />
+<br />
+<h2 style='display: inline' id='configurable-themes'>Configurable themes</h2><br />
+<br />
+<span>It was always possible to customize the style of a Gemtexter&#39;s resulting HTML page, but all the config options were scattered across multiple files. Now, the CSS style, web fonts, etc., are all configurable via themes.</span><br />
+<br />
+<span>Simply configure <span class='inlinecode'>HTML_THEME_DIR</span> in the <span class='inlinecode'>gemtexter.conf</span> file to the corresponding directory. For example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">HTML_THEME_DIR</font><font color="#F3E651">=.</font><font color="#ff0000">/extras/html/themes/simple</font>
+</pre>
+<br />
+<span>To customize the theme or create your own, simply copy the theme directory and modify it as needed. This makes it also much easier to switch between layouts.</span><br />
+<br />
+<h2 style='display: inline' id='no-use-of-webfonts-by-default'>No use of webfonts by default</h2><br />
+<br />
+<span>The default theme is now "back to the basics" and does not utilize any web fonts. The previous themes are still part of the release and can be easily configured. These are currently the <span class='inlinecode'>future</span> and <span class='inlinecode'>business</span> themes. You can check them out from the themes directory.</span><br />
+<br />
+<h2 style='display: inline' id='more'>More</h2><br />
+<br />
+<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴ (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</title>
         <link href="gemini://foo.zone/gemfeed/2024-09-07-site-reliability-engineering-part-4.gmi" />
@@ -4136,6 +4239,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5473,6 +5577,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6794,6 +6899,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8890,530 +8996,6 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <span>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won&#39;t change any time soon. I don&#39;t know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Bash Golf Part 2</title>
-        <link href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi" />
-        <id>gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi</id>
-        <updated>2022-01-01T23:36:15+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='bash-golf-part-2'>Bash Golf Part 2</h1><br />
-<br />
-<span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
-<br />
-<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<br />
-<pre>
-    &#39;\       &#39;\                   .  .                |&gt;18&gt;&gt;
-      \        \              .         &#39; .           |
-     O&gt;&gt;      O&gt;&gt;         .                 &#39;o        |
-      \       .\. ..   .                              |
-      /\    .  /\    . .                              |
-     / /   .  / /  .&#39;    .                            |
-jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        Art by Joan Stark, mod. by Paul Buetow
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#bash-golf-part-2'>Bash Golf Part 2</a></li>
-<li>⇢ <a href='#redirection'>Redirection</a></li>
-<li>⇢ <a href='#here'>HERE</a></li>
-<li>⇢ <a href='#random'>RANDOM</a></li>
-<li>⇢ <a href='#set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</a></li>
-<li>⇢ ⇢ <a href='#-x'>-x</a></li>
-<li>⇢ ⇢ <a href='#-e'>-e</a></li>
-<li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
-</ul><br />
-<h2 style='display: inline' id='redirection'>Redirection</h2><br />
-<br />
-<span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
-<br />
-<ul>
-<li>0 aka stdin (standard input)</li>
-<li>1 aka stdout (standard output)</li>
-<li>2 aka stderr (standard error output)</li>
-</ul><br />
-<span>These are most certainly the ones you are using on regular basis. "/proc/self/fd" lists all file descriptors which are open by the current process (in this case: the current Bash shell itself):</span><br />
-<br />
-<pre>
-❯ ls -l /proc/self/fd/
-total 0
-lrwx------. 1 paul paul 64 Nov 23 09:46 0 -&gt; /dev/pts/9
-lrwx------. 1 paul paul 64 Nov 23 09:46 1 -&gt; /dev/pts/9
-lrwx------. 1 paul paul 64 Nov 23 09:46 2 -&gt; /dev/pts/9
-lr-x------. 1 paul paul 64 Nov 23 09:46 3 -&gt; /proc/162912/fd
-</pre>
-<br />
-<span>The following examples demonstrate two different ways to accomplish the same thing. The difference is that the first command is directly printing out "Foo" to stdout and the second command is explicitly redirecting stdout to its own stdout file descriptor:</span><br />
-<br />
-<pre>
-❯ echo Foo
-Foo
-❯ echo Foo &gt; /proc/self/fd/0
-Foo
-</pre>
-<br />
-<span class='quote'>Update: A reader pointed out, that the redirection should actually go to <span class='inlinecode'>/proc/self/fd/1</span> and not <span class='inlinecode'>0</span>. But apparently, either way works for this particular example. Do you know why? </span><br />
-<br />
-<span>Other useful redirections are:</span><br />
-<br />
-<ul>
-<li>Redirect stderr to stdin: "echo foo 2&gt;&amp;1"</li>
-<li>Redirect stdin to stderr: "echo foo &gt;&amp;2"</li>
-</ul><br />
-<span>It is, however, not possible to redirect multiple times within the same command. E.g. the following won&#39;t work. You would expect stdin to be redirected to stderr and then stderr to be redirected to /dev/null. But as the example shows, Foo is still printed out:</span><br />
-<br />
-<pre>
-❯ echo Foo 1&gt;&amp;2 2&gt;/dev/null
-Foo
-</pre>
-<br />
-<span class='quote'>Update: A reader sent me an email and pointed out that the order of the redirections is important. </span><br />
-<br />
-<span>As you can see, the following will not print out anything:</span><br />
-<br />
-<pre>
-❯ echo Foo 2&gt;/dev/null 1&gt;&amp;2
-❯
-</pre>
-<br />
-<span>A good description (also pointed out by the reader) can be found here:</span><br />
-<br />
-<a class='textlink' href='https://wiki.bash-hackers.org/howto/redirection_tutorial#order_of_redirection_ie_file_2_1_vs_2_1_file'>Order of redirection</a><br />
-<br />
-<span>Ok, back to the original blog post. You can also use grouping here (neither of these commands will print out anything to stdout):</span><br />
-<br />
-<pre>
-❯ { echo Foo 1&gt;&amp;2; } 2&gt;/dev/null
-❯ ( echo Foo 1&gt;&amp;2; ) 2&gt;/dev/null
-❯ { { { echo Foo 1&gt;&amp;2; } 2&gt;&amp;1; } 1&gt;&amp;2; } 2&gt;/dev/null
-❯ ( ( ( echo Foo 1&gt;&amp;2; ) 2&gt;&amp;1; ) 1&gt;&amp;2; ) 2&gt;/dev/null
-❯
-</pre>
-<br />
-<span>A handy way to list all open file descriptors is to use the "lsof" command (that&#39;s not a Bash built-in), whereas $$ is the process id (pid) of the current shell process:</span><br />
-<br />
-<pre>
-❯ lsof -a -p $$ -d0,1,2
-COMMAND   PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-bash    62676 paul    0u   CHR  136,9      0t0   12 /dev/pts/9
-bash    62676 paul    1u   CHR  136,9      0t0   12 /dev/pts/9
-bash    62676 paul    2u   CHR  136,9      0t0   12 /dev/pts/9
-</pre>
-<br />
-<span>Let&#39;s create our own descriptor "3" for redirection to a file named "foo":</span><br />
-<br />
-<pre>
-❯ touch foo
-❯ exec 3&gt;foo # This opens fd 3 and binds it to file foo.
-❯ ls -l /proc/self/fd/3
-l-wx------. 1 paul paul 64 Nov 23 10:10 \
-    /proc/self/fd/3 -&gt; /home/paul/foo
-❯ cat foo
-❯ echo Bratwurst &gt;&amp;3
-❯ cat foo
-Bratwurst
-❯ exec 3&gt;&amp;- # This closes fd 3.
-❯ echo Steak &gt;&amp;3
--bash: 3: Bad file descriptor
-</pre>
-<br />
-<span>You can also override the default file descriptors, as the following example script demonstrates:</span><br />
-<br />
-<pre>
-❯ cat grandmaster.sh
-#!/usr/bin/env bash
-
-# Write a file data-file containing two lines
-echo Learn You a Haskell &gt; data-file
-echo for Great Good &gt;&gt; data-file
-
-# Link fd with fd 6 (saves default stdin)
-exec 6&lt;&amp;0
-
-# Overwrite stdin with data-file
-exec &lt; data-file
-
-# Read the first two lines from it
-declare LINE1 LINE2
-read LINE1
-read LINE2
-
-# Print them
-echo First line: $LINE1
-echo Second line: $LINE2
-
-# Restore default stdin and delete fd 6
-exec 0&lt;&amp;6 6&lt;&amp;-
-</pre>
-<br />
-<span>Let&#39;s execute it:</span><br />
-<br />
-<pre>
-❯ chmod 750 ./grandmaster.sh
-❯ ./grandmaster.sh
-First line: Learn You a Haskell
-Second line: for Great Good
-</pre>
-<br />
-<h2 style='display: inline' id='here'>HERE</h2><br />
-<br />
-<span>I have mentioned HERE-documents and HERE-strings already in this post. Let&#39;s do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</span><br />
-<br />
-<pre>
-❯ cat &lt;&lt;END
-&gt; Hello World
-&gt; It’s $(date)
-&gt; END
-Hello World
-It&#39;s Fri 26 Nov 08:46:52 GMT 2021
-</pre>
-<br />
-<span>You can also write it the following way, but that&#39;s less readable (it&#39;s good for an obfuscation contest):</span><br />
-<br />
-<pre>
-❯ &lt;&lt;END cat
-&gt; Hello Universe
-&gt; It’s $(date)
-&gt; END
-Hello Universe
-It&#39;s Fri 26 Nov 08:47:32 GMT 2021
-</pre>
-<br />
-<span>Besides of an HERE-document, there is also a so-called HERE-string. Besides of...</span><br />
-<br />
-<pre>
-❯ declare VAR=foo
-❯ if echo "$VAR" | grep -q foo; then
-&gt; echo &#39;$VAR ontains foo&#39;
-&gt; fi
-$VAR ontains foo
-</pre>
-<br />
-<span>...you can use a HERE-string like that:</span><br />
-<br />
-<pre>
-❯ if grep -q foo &lt;&lt;&lt; "$VAR"; then
-&gt; echo &#39;$VAR contains foo&#39;
-&gt; fi
-$VAR contains foo
-</pre>
-<br />
-<span>Or even shorter, you can do:</span><br />
-<br />
-<pre>
-❯ grep -q foo &lt;&lt;&lt; "$VAR" &amp;&amp; echo &#39;$VAR contains foo&#39;
-$VAR contains foo
-</pre>
-<br />
-<span>You can also use a Bash regex to accomplish the same thing, but the points of the examples so far were to demonstrate HERE-{documents,strings} and not Bash regular expressions:</span><br />
-<br />
-<pre>
-❯ if [[ "$VAR" =~ foo ]]; then echo yay; fi
-yay
-</pre>
-<br />
-<span>You can also use it with "read":</span><br />
-<br />
-<pre>
-❯ read a &lt;&lt;&lt; ja
-❯ echo $a
-ja
-❯ read b &lt;&lt;&lt; &#39;NEIN!!!&#39;
-❯ echo $b
-NEIN!!!
-❯ dumdidumstring=&#39;Learn you a Golang for Great Good&#39;
-❯ read -a words &lt;&lt;&lt; "$dumdidumstring"
-❯ echo ${words[0]}
-Learn
-❯ echo ${words[3]}
-Golang
-</pre>
-<br />
-<span>The following is good for an obfuscation contest too:</span><br />
-<br />
-<pre>
-❯ echo &#39;I like Perl too&#39; &gt; perllove.txt
-❯ cat - perllove.txt &lt;&lt;&lt; "$dumdidumstring"
-Learn you a Golang for Great Good
-I like Perl too
-</pre>
-<br />
-<h2 style='display: inline' id='random'>RANDOM</h2><br />
-<br />
-<span>Random is a special built-in variable containing a different pseudo random number each time it&#39;s used.</span><br />
-<br />
-<pre>
-❯ echo $RANDOM
-11811
-❯ echo $RANDOM
-14997
-❯ echo $RANDOM
-9104
-</pre>
-<br />
-<span>That&#39;s very useful if you want to randomly delay the execution of your scripts when you run it on many servers concurrently, just to spread the server load (which might be caused by the script run) better.</span><br />
-<br />
-<span>Let&#39;s say you want to introduce a random delay of 1 minute. You can accomplish it with:</span><br />
-<br />
-<pre>
-❯ cat ./calc_answer_to_ultimate_question_in_life.sh
-#!/usr/bin/env bash
-
-declare -i MAX_DELAY=60
-
-random_delay () {
-    local -i sleep_for=$((RANDOM % MAX_DELAY))
-    echo "Delaying script execution for $sleep_for seconds..."
-    sleep $sleep_for
-    echo &#39;Continuing script execution...&#39;
-}
-
-main () {
-    random_delay
-    # From here, do the real work. Calculating the answer to
-    # the ultimate question can take billions of years....
-    : ....
-}
-
-main
-
-❯
-❯ ./calc_answer_to_ultimate_question_in_life.sh
-Delaying script execution for 42 seconds...
-Continuing script execution...
-</pre>
-<br />
-<h2 style='display: inline' id='set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</h2><br />
-<br />
-<span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
-<br />
-<h3 style='display: inline' id='-x'>-x</h3><br />
-<br />
-<span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
-<br />
-<pre>
-❯ set -x
-❯ square () { local -i num=$1; echo $((num*num)); }
-❯ num=11; echo "Square of $num is $(square $num)"
-+ num=11
-++ square 11
-++ local -i num=11
-++ echo 121
-+ echo &#39;Square of 11 is 121&#39;
-Square of 11 is 121
-</pre>
-<br />
-<span>You can also set it when calling an external script without modifying the script itself:</span><br />
-<br />
-<pre>
-❯ bash -x ./half_broken_script_to_be_debugged.sh
-</pre>
-<br />
-<span>Let&#39;s do that on one of the example scripts we covered earlier:</span><br />
-<br />
-<pre>
-❯ bash -x ./grandmaster.sh
-+ bash -x ./grandmaster.sh
-+ echo Learn You a Haskell
-+ echo for Great Good
-+ exec
-+ exec
-+ declare LINE1 LINE2
-+ read LINE1
-+ read LINE2
-+ echo First line: Learn You a Haskell
-First line: Learn You a Haskell
-+ echo Second line: for Great Good
-Second line: for Great Good
-+ exec
-❯
-</pre>
-<br />
-<h3 style='display: inline' id='-e'>-e</h3><br />
-<br />
-<span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
-<br />
-<span>Ok, let&#39;s dig deeper:</span><br />
-<br />
-<pre>
-❯ help set | grep -- -e
-      -e  Exit immediately if a command exits with a non-zero status.
-</pre>
-<br />
-<span>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:</span><br />
-<br />
-<pre>
-❯ bash -c &#39;set -e; echo hello; grep -q bar &lt;&lt;&lt; foo; echo bar&#39;
-hello
-❯ echo $?
-1
-</pre>
-<br />
-<span>Whereas the outcome changes when the regex matches:</span><br />
-<br />
-<pre>
-❯ bash -c &#39;set -e; echo hello; grep -q bar &lt;&lt;&lt; barman; echo bar&#39;
-hello
-bar
-❯ echo $?
-0
-</pre>
-<br />
-<span>So does it mean that grep will always make the shell terminate whenever its exit code isn&#39;t 0? This will render "set -e" quite unusable. Frankly, there are other commands where an exit status other than 0 should not terminate the whole script abruptly. Usually, what you want is to branch your code based on the outcome (exit code) of a command:</span><br />
-<br />
-<pre>
-❯ bash -c &#39;set -e
-&gt;    grep -q bar &lt;&lt;&lt; foo
-&gt;    if [ $? -eq 0 ]; then
-&gt;        echo "matching"
-&gt;    else
-&gt;        echo "not matching"
-&gt;    fi&#39;
-❯ echo $?
-1
-</pre>
-<br />
-<span>...but the example above won&#39;t reach any of the branches and won&#39;t print out anything, as the script terminates right after grep.</span><br />
-<br />
-<span>The proper solution is to use grep as an expression in a conditional (e.g. in an if-else statement):</span><br />
-<br />
-<pre>
-❯ bash -c &#39;set -e
-&gt;    if grep -q bar &lt;&lt;&lt; foo; then
-&gt;        echo "matching"
-&gt;    else
-&gt;        echo "not matching"
-&gt;    fi&#39;
-not matching
-❯ echo $?
-0
-❯ bash -c &#39;set -e
-&gt;    if grep -q bar &lt;&lt;&lt; barman; then
-&gt;        echo "matching"
-&gt;    else
-&gt;        echo "not matching"
-&gt;    fi&#39;
-matching
-❯ echo $?
-0
-</pre>
-<br />
-<span>You can also temporally undo "set -e" if there is no other way:</span><br />
-<br />
-<pre>
-❯ cat ./e.sh
-#!/usr/bin/env bash
-
-set -e
-
-foo () {
-    local arg="$1"; shift
-
-    if [ -z "$arg" ]; then
-        arg=&#39;You!&#39;
-    fi
-    echo "Hello $arg"
-}
-
-bar () {
-    # Temporally disable e
-    set +e
-    local arg="$1"; shift
-    # Enable e again.
-    set -e
-
-    if [ -z "$arg" ]; then
-        arg=&#39;You!&#39;
-    fi
-    echo "Hello $arg"
-}
-
-# Will succeed
-bar World
-foo Universe
-bar
-
-# Will terminate the script
-foo
-
-❯ ./e.sh
-Hello World
-Hello Universe
-Hello You!
-</pre>
-<br />
-<span>Why does calling "foo" with no arguments make the script terminate? Because as no argument was given, the "shift" won&#39;t have anything to do as the argument list $@ is empty, and therefore "shift" fails with a non-zero status.</span><br />
-<br />
-<span>Why would you want to use "shift" after function-local variable assignments? Have a look at my personal Bash coding style guide for an explanation :-):</span><br />
-<br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>./2021-05-16-personal-bash-coding-style-guide.html</a><br />
-<br />
-<h3 style='display: inline' id='pipefail'>pipefail</h3><br />
-<br />
-<span>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</span><br />
-<br />
-<pre>
-❯ help set | grep pipefail -A 2
-    pipefail     the return value of a pipeline is the status of
-                 the last command to exit with a non-zero status,
-                 or zero if no command exited with a non-zero status
-</pre>
-<br />
-<span>The following greps for paul in passwd and converts all lowercase letters to uppercase letters. The exit code of the pipe is 0, as the last command of the pipe (converting from lowercase to uppercase) succeeded:</span><br />
-<br />
-<pre>
-❯ grep paul /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
-PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
-❯ echo $?
-0
-</pre>
-<br />
-<span>Let&#39;s look at another example, where "TheRock" doesn&#39;t exist in the passwd file. However, the pipes exit status is still 0 (success). This is so because the last command ("tr" in this case) still succeeded. It is just that it didn&#39;t get any input on stdin to process:</span><br />
-<br />
-<pre>
-❯ grep TheRock /etc/passwd
-❯ echo $?
-1
-❯ grep TheRock /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
-❯ echo $?
-0
-</pre>
-<br />
-<span>To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 (fail), because the pipe contains at least one command (in this case grep) which exited with status 1:</span><br />
-<br />
-<pre>
-❯ set -o pipefail
-❯ grep TheRock /etc/passwd | tr &#39;[a-z]&#39; &#39;[A-Z]&#39;
-❯ echo $?
-1
-</pre>
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
