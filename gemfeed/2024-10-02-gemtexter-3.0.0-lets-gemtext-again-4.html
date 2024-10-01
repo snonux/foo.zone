@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Gemtexter 3.0.0 - Let's Gemtext again⁴</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<h1 style='display: inline' id='gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</h1><br />
+<br />
+<span class='quote'>Published at 2024-10-01T21:46:26+03:00</span><br />
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>3.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<pre>
+-=[ typewriters ]=-  1/98
+                                      .-------.
+       .-------.                     _|~~ ~~  |_
+      _|~~ ~~  |_       .-------.  =(_|_______|_)
+    =(_|_______|_)=    _|~~ ~~  |_   |:::::::::|    .-------.
+      |:::::::::|    =(_|_______|_)  |:::::::[]|   _|~~ ~~  |_
+      |:::::::[]|      |:::::::::|   |o=======.| =(_|_______|_)
+      |o=======.|      |:::::::[]|   `"""""""""`   |:::::::::|
+ jgs  `"""""""""`      |o=======.|                 |:::::::[]|
+  mod. by Paul Buetow  `"""""""""`                 |o=======.|
+                                                   `"""""""""`
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a></li>
+<li>⇢ <a href='#why-bash'>Why Bash?</a></li>
+<li>⇢ <a href='#html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</a></li>
+<li>⇢ <a href='#table-of-contents-auto-generation'>Table of Contents auto-generation</a></li>
+<li>⇢ <a href='#configurable-themes'>Configurable themes</a></li>
+<li>⇢ <a href='#no-use-of-webfonts-by-default'>No use of webfonts by default</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-bash'>Why Bash?</h2><br />
+<br />
+<span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
+<h2 style='display: inline' id='html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</h2><br />
+<br />
+<span>The last version of Gemtexter introduced the HTML exact variant, which wasn&#39;t enabled by default. This version of Gemtexter removes the previous (inexact) variant and makes the exact variant the default. This is a breaking change, which is why there is a major version bump of Gemtexter. Here is a reminder of what the exact variant was:</span><br />
+<br />
+<span class='quote'>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents-auto-generation'>Table of Contents auto-generation</h2><br />
+<br />
+<span>Just add...</span><br />
+<br />
+<pre>
+ &lt;&lt; template::inline::toc
+</pre>
+<br />
+<span>...into a Gemtexter template file and Gemtexter will automatically generate a table of contents for the page based on the headings (see this page&#39;s ToC for example). The ToC will also have links to the relevant sections in HTML and Markdown output. The Gemtext format does not support links, so the ToC will simply be displayed as a bullet list. </span><br />
+<br />
+<h2 style='display: inline' id='configurable-themes'>Configurable themes</h2><br />
+<br />
+<span>It was always possible to customize the style of a Gemtexter&#39;s resulting HTML page, but all the config options were scattered across multiple files. Now, the CSS style, web fonts, etc., are all configurable via themes.</span><br />
+<br />
+<span>Simply configure <span class='inlinecode'>HTML_THEME_DIR</span> in the <span class='inlinecode'>gemtexter.conf</span> file to the corresponding directory. For example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">HTML_THEME_DIR</font><font color="#F3E651">=.</font><font color="#ff0000">/extras/html/themes/simple</font>
+</pre>
+<br />
+<span>To customize the theme or create your own, simply copy the theme directory and modify it as needed. This makes it also much easier to switch between layouts.</span><br />
+<br />
+<h2 style='display: inline' id='no-use-of-webfonts-by-default'>No use of webfonts by default</h2><br />
+<br />
+<span>The default theme is now "back to the basics" and does not utilize any web fonts. The previous themes are still part of the release and can be easily configured. These are currently the <span class='inlinecode'>future</span> and <span class='inlinecode'>business</span> themes. You can check them out from the themes directory.</span><br />
+<br />
+<h2 style='display: inline' id='more'>More</h2><br />
+<br />
+<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴ (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.0-</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
