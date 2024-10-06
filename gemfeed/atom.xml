@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-10-01T21:46:26+03:00</updated>
+    <updated>2024-10-06T11:28:37+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</h1><br />
+<br />
+<span class='quote'>Published at 2024-10-01T21:46:26+03:00</span><br />
 <br />
 <span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>3.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
 <br />
