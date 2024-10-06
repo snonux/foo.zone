@@ -2,10 +2,11 @@
 
 This page summarizes all the mirrors of this site. Agreeably, that's all a bit overkill (given the importance of this internet presence), but I did it for fun.
 
-All sites listed below are reachable via IPv4 as well as via IPv6. Depending on the current master node, standby or master may be located in Amsterdam, Netherlands (OpenBSD.Amsterdam) or Falkenstein, Germany (Hetzner Cloud).
+All sites listed below are reachable via IPv4 as well as via IPv6. Depending on the current master node, standby or master may be located in Amsterdam, Netherlands (OpenBSD.Amsterdam) or Falkenstein, Germany (Hetzner Cloud). You can read about the master failover construct here:
+
+[How `foo.zone` fails over.](./gemtext/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 
 ## Gemini protocol
-
 
 [gemini://foo.zone](gemini://foo.zone)  
 [gemini://standby.foo.zone](gemini://standby.foo.zone)  
