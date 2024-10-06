@@ -51,11 +51,19 @@ These are not whole books, but guides (smaller or larger) which I found very use
 
 << sort -R technical-guides.txt
 
-## Podcasts I like
+## Podcasts
+
+### Podcasts I like
 
 In random order:
 
 << sort -R podcasts.txt
+
+### Podcasts I liked
+
+I liked them but am not listening to them anymore. The podcasts have either "finished" (no more episodes) or I stopped listening to them due to time constraints or a shift in my interests.
+
+<< sort -R old-podcasts.txt
 
 ## Newsletters I like
 
