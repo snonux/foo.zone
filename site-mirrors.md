@@ -4,14 +4,14 @@ This page summarizes all the mirrors of this site. Agreeably, that's all a bit o
 
 All sites listed below are reachable via IPv4 as well as via IPv6. Depending on the current master node, standby or master may be located in Amsterdam, Netherlands (OpenBSD.Amsterdam) or Falkenstein, Germany (Hetzner Cloud). 
 
+[Wondering how's decided what's the master and what's the standby host?](./gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+
 ## Gemini protocol
 
 [gemini://foo.zone](gemini://foo.zone)  
 [gemini://standby.foo.zone](gemini://standby.foo.zone)  
 
-Wondering what's the Gemini protocol about? Read:
-
-[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+[Wondering what's the Gemini protocol about?](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 
 ## HTTP protocol
 
