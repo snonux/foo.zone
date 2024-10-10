@@ -7,7 +7,6 @@ This is a "hidden" now site listing my personal projects.
 ## Now (in progress)
 
 * Work project involving AWS
-* ↑ In progress
 * Gos (gosd/gos) / (Go)
 * Practice using the Helix modal editor 
 * "Instant Happiness"
@@ -19,21 +18,20 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Read it
 * "Kubernetes Cookbook"
 * ↑ Read it
-* "Prometheus"
+* "Ewiges Leben"
 * ↑ Read it
 
 ## Soon (???)
 
-* Read "Observability Engineering" (maybe not all fun to read, more work kind of thing)
 * Read https://understandingdistributed.systems/
-* `libbpf-tools` Pet Project?
 * Bulgarian Language School for Citizenship test
-* Re-activate my photo hobby: E.g. shoot more RAW and learn to use Darktable.?
 * Work on I/O Riot NG and towards 1.0 (Go, C, Raku)
 * Work through "Bash it out" challenges (Bash)
 
 ## Done
 
+* "Prometheus"
+* ↑ Read it
 * "Terraform Cookbook"
 * ↑ Read it
 * Mechanical Keyboard: Learn touch typing (100 WPM in average) on my Kinesis Adv. 360 Pro
