@@ -2,7 +2,7 @@
 
 * Name: Paul Buetow
 * Profession: Computerist -  Solving problems with computers that we wouldn't have without them
-* Current job title: Principal Site Reliability Engineer
+* Current job: Site Reliability Engineer
 * E-Mail: `paul@nospam.buetow.org`
 
 [![Paul Buetow](./paul.jpg "Paul Buetow")](./paul.jpg)  
