@@ -90,13 +90,14 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 1979 - The Hitchhikers Guide to the Galaxy (english) / Per Anhalter durch die Galaxis (german), Adam Douglas - All books of the series
 * 2009 - Quest, Andreas Eschbach
 * 2010 - The Icarus Hunt (english) / Jagt auf Ikarus (german), Timothy Zahn
+* 2010 - Der Astronaut (german), Andy Weir, Audiobook
 * 2019 - Die Unvollkommenen (german), Theresa Hannig, Audiobook
 * 2022 - Mickey 7 - Der letzte Klon (german), Edward Ashton, Audiobook
 
 ## Currently reading
 
 * 2018 - Ewiges Leben (german), Andreas Brandhorst
-* 2010 - Der Astronaut (german), Andy Weir, Audiobook
+* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens (german), David Reimer (Audiobook)
 
 ## Soon
 
