@@ -108,7 +108,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### On my wishlist
 
-* Oxygen (german), Andreas Brandhorst
+* 2024 - Der Riss (german), Andreas Brandhorst
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
