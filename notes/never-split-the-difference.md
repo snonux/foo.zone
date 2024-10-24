@@ -146,5 +146,6 @@ Other book notes of mine are:
 [2023-11-11 "Mind Management" book notes](./mind-management.md)  
 [2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
 [2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
+[2024-10-24 "Staff Engineer" book notes](./staff-engineer.md)  
 
 [Back to the main site](../)  

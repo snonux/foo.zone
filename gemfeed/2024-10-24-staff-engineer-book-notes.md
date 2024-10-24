@@ -59,14 +59,13 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
-[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
-[2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
-[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
-[2023-11-11 "Mind Management" book notes](./mind-management.md)  
-[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
-[2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
-[2024-10-24 "Staff Engineer" book notes (You are currently reading this)](./staff-engineer.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
+[2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
+[2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
+[2023-11-11 "Mind Management" book notes](./2023-11-11-mind-management-book-notes.md)  
+[2024-05-01 "Slow Productivity" book notes](./2024-05-01-slow-productivity-book-notes.md)  
+[2024-07-07 "The Stoic Challenge" book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
+[2024-10-24 "Staff Engineer" book notes (You are currently reading this)](./2024-10-24-staff-engineer-book-notes.md)  
 
 [Back to the main site](../)  
-
