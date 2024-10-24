@@ -1,4 +1,5 @@
 * 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
+* The KCNA (Kubernetes and Cloud Native Associate) Book; Nigel Poulton
 * Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
 * 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
