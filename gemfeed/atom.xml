@@ -1,11 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-10-06T11:28:37+03:00</updated>
+    <updated>2024-10-24T20:59:32+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>'Staff Engineer' book notes</title>
+        <link href="gemini://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi" />
+        <id>gemini://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi</id>
+        <updated>2024-10-24T20:57:44+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These are my personal takeaways after reading 'Staff Engineer' by Will Larson. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='staff-engineer-book-notes'>"Staff Engineer" book notes</h1><br />
+<br />
+<span class='quote'>Published at 2024-10-24T20:57:44+03:00</span><br />
+<br />
+<span>These are my personal takeaways after reading "Staff Engineer" by Will Larson. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</span><br />
+<br />
+<pre>
+         ,..........   ..........,
+     ,..,&#39;          &#39;.&#39;          &#39;,..,
+    ,&#39; ,&#39;            :            &#39;, &#39;,
+   ,&#39; ,&#39;             :             &#39;, &#39;,
+  ,&#39; ,&#39;              :              &#39;, &#39;,
+ ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
+,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
+ &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
+                    &#39;&#39;&#39;
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#staff-engineer-book-notes'>"Staff Engineer" book notes</a></li>
+<li>⇢ <a href='#not-a-faster-senior-engineer'>Not a faster Senior Engineer</a></li>
+<li>⇢ <a href='#the-balance'>The Balance</a></li>
+<li>⇢ <a href='#more-things'>More things</a></li>
+</ul><br />
+<h2 style='display: inline' id='not-a-faster-senior-engineer'>Not a faster Senior Engineer</h2><br />
+<br />
+<ul>
+<li>A Staff engineer is more than just a faster Senior.</li>
+<li>A staff engineer is not a senior engineer but a bit better. (But I want to be a senior engineer but a bit better).</li>
+</ul><br />
+<span>It&#39;s important to know what work or which role most energizes you. A Staff engineer is not a more senior engineer. A Staff engineer also fits into another archetype.</span><br />
+<br />
+<span>As a staff engineer, you are always expected to go beyond your comfort zone and learn new things.</span><br />
+<br />
+<span>Your job sometimes will feel like an SEM and sometimes strangely similar to your senior roles.</span><br />
+<br />
+<span>A Staff engineer is, like a Manager, a leader. However, being a Manager is a specific job. Leaders can apply to any job, especially to Staff engineers.</span><br />
+<br />
+<h2 style='display: inline' id='the-balance'>The Balance</h2><br />
+<br />
+<span>The more senior you become, the more responsibility you will have to cope with them in less time. Balance your speed of progress with your personal life, don&#39;t work late hours and don&#39;t skip these personal care events.</span><br />
+<br />
+<span>Do fewer things but do them better. Everything done will accelerate the organization. Everything else will drag it down—quality over quantity.</span><br />
+<br />
+<span>Don&#39;t work at ten things and progress slowly; focus on one thing and finish it.</span><br />
+<br />
+<span>Only spend some of the time firefighting. Have time for deep thinking. Only deep think some of the time. Otherwise, you lose touch with reality.</span><br />
+<br />
+<span>Sebactical: Take at least six months. Otherwise, it won&#39;t be as restored.</span><br />
+<br />
+<h2 style='display: inline' id='more-things'>More things</h2><br />
+<br />
+<ul>
+<li>Provide simple but widely used tools. Complex and powerful tools will have power users but only a very few. All others will not use the tool.</li>
+<li>In meetings, when someone is inactive, try to pull him in. Pull in max one person at a time. Don&#39;t open the discussion to multiple people.</li>
+<li>Get used to writing things down and repeating yourself. You will scale yourself much more.</li>
+<li>Title inflation: skills correspond to work, but the titles don&#39;t.</li>
+</ul><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Gemtexter 3.0.0 - Let's Gemtext again⁴</title>
         <link href="gemini://foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi" />
@@ -644,8 +733,8 @@ jgs \\`_..---.Y.---.._`//
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -1961,8 +2050,8 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -3380,8 +3469,8 @@ echo baz
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -4601,8 +4690,8 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -5029,8 +5118,8 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -5395,6 +5484,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5691,8 +5781,8 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <br />
-<a class='textlink' href='../resources.html'>More books and other resources I found useful.</a><br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
@@ -8262,7 +8352,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>Have regular breaks. Don&#39;t skip your lunch break. Best, have a walk during lunchtime. And after work, do some kind of workout or visit a sports class. Do something completely unrelated to work before going to sleep (e.g. visit a parallel universe and read a Science Fiction novel). In short: Totally hit the off-switch after your work for the day is finished. You will be much more energised and motivated the next time you open your work laptop.</span><br />
 <br />
-<a class='textlink' href='../other-resources.html'>I personally love to read Science Fiction novels</a><br />
+<a class='textlink' href='../about/novels.html'>I personally love to read Science Fiction novels</a><br />
 <br />
 <span>I skip breakfast and lunch during the week. This means that on average, I intermittent fast on average 18-20 hours daily. It may sound odd to most people (who don&#39;t intermittent fast), but in a fasted state, I can be even more focused, thus helping me immerse myself in something even more. Not having breakfast and lunch also gives me back some time for other things (e.g. a nice walk, where I listen to podcasts or audiobooks or practise using my camera (street photography)). I relax my routine during the week ends, where I may enjoy a meal at any given time of the day.</span><br />
 <br />
@@ -8931,71 +9021,6 @@ GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 2
 <a class='textlink' href='https://asteroidos.org/'>Asteroids OS - Open source smartphone OS</a><br />
 <a class='textlink' href='https://www.dragonflybsd.org/'>DragonFly BSD - Fork of FreeBSD 4</a><br />
 <a class='textlink' href='http://wiki.postmarketos.org/wiki/Phosh'>Phosh (on postmarketOS) - A true Linux shell for the smartphone</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Welcome to the foo.zone</title>
-        <link href="gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi" />
-        <id>gemini://foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone.gmi</id>
-        <updated>2022-01-23T16:42:04+00:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I don't count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, 'foo.zone' is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='Welcometothefoozone'>Welcome to the foo.zone</h1><br />
-<br />
-<span class='quote'>Published at 2022-01-23T16:42:04+00:00</span><br />
-<br />
-<pre>
-  __                                  
- / _| ___   ___   _______  _ __   ___ 
-| |_ / _ \ / _ \ |_  / _ \| &#39;_ \ / _ \
-|  _| (_) | (_) | / / (_) | | | |  __/
-|_|  \___/ \___(_)___\___/|_| |_|\___|
-                                      
-</pre>
-<br />
-<span>I don&#39;t count this as a real blog post, but more of an announcement (I aim to write one real post once monthly). From now on, "foo.zone" is the new address of this site. All other addresses will still forward to it and eventually (based on the traffic still going through) will be deactivated.</span><br />
-<br />
-<span>As you can read on Wikipedia, "foo" is, alongside to "bar" and "baz", a metasyntactic variable (you know what I mean if you are a programmer or IT person):</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Metasyntactic_variable'>https://en.wikipedia.org/wiki/Metasyntactic_variable</a><br />
-<br />
-<h2 style='display: inline' id='Whatisthefoozone'>What is the foo zone?</h2><br />
-<br />
-<span>It&#39;s my personal internet site and blog. Everything you read on this site is my personal opinion and experience. It&#39;s not intended to be anything professional. If you want my professional background, then go to my LinkedIn profile.</span><br />
-<br />
-<span>Since I re-booted this blog last year, I struggled to find a good host name for it. I started off with "buetow.org", and later I switched halfway to "snonux.de". Buetow is my last name, and snonux relates to some of my internet nicknames and personal IT projects. I also have a "SnonuxBSD" ASCII-art banner in the motd of my FreeBSD based home-NAS.</span><br />
-<br />
-<span>For a while, I was thinking about a better host name for this site, meeting the following criteria:</span><br />
-<br />
-<ul>
-<li>Isn&#39;t directly linked to my name or my internet nicknames.</li>
-<li>Reflects the "nature" of this site.</li>
-<li>Is still pretty generic.</li>
-<li>Is "cool".</li>
-<li>Is short and easy to remember. </li>
-<li>Doesn&#39;t cost millions.</li>
-</ul><br />
-<span>So I think that foo.zone is the perfect match. It&#39;s a bit geeky, but so is this site. The meta-syntactic variable relates to computer science and programming, so does this site. Other than that, staying in this sphere, it&#39;s a pretty generic name.</span><br />
-<br />
-<h2 style='display: inline' id='Tobeinthezoneandnotinasurfclub'>To be in the .zone and not in a .surf club</h2><br />
-<br />
-<span>I was pretty happy finding out that foo.zone was still available for registration. I stumbled across it just yesterday while I was playing around with my new authoritative DNS servers. I was actually quite surprised as usually such short SLDs (second level domains), especially "foo", are all taken already.</span><br />
-<br />
-<span>As a funny bit, I almost chose "foo.surf" over "foo.zone" as in "surfing this site", but then decided against it as I would have to tell everyone that I am not into water sports so much. Well, on the other hand, I now may have to explain to non-programmers that I am not a fan of the rock band "Foo Fighters". But that will be acceptable, as I don&#39;t expect "normal" people visiting the foo zone as much anyway. If you reached as far, I have to congratulate you. You are not a normal person.</span><br />
-<br />
-<h2 style='display: inline' id='Whataboutmyoldhosts'>What about my old hosts</h2><br />
-<br />
-<span>The host buetow.org will stay. However, not as the primary address for this site. I will keep using it for my personal internet infrastructure as well as for most of my E-Mail addresses. I used buetow.org for that over the past 10 years already anyway and that won&#39;t change any time soon. I don&#39;t know what I am going to do with snonux.de in the long run. A .de SLD (for Germany) is pretty cheap, so I might just keep it for now. </span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

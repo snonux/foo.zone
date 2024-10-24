@@ -315,6 +315,6 @@ Other book notes of mine are:
 => ./mind-management.gmi 2023-11-11 "Mind Management" book notes
 => ./slow-productivity.gmi 2024-05-01 "Slow Productivity" book notes
 => ./the-stoic-challenge.gmi 2024-07-07 "The Stoic Challenge" book notes
+=> ./staff-engineer.gmi 2024-10-24 "Staff Engineer" book notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site
