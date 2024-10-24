@@ -19,9 +19,71 @@ These are my personal takeaways after reading "Staff Engineer" by Will Larson. N
 ## Table of Contents
 
 * [⇢ "Staff Engineer" book notes](#staff-engineer-book-notes)
+* [⇢ ⇢ The Four Archetypes of a Staff Engineer](#the-four-archetypes-of-a-staff-engineer)
+* [⇢ ⇢ Influence and Impact over Authority](#influence-and-impact-over-authority)
+* [⇢ ⇢ Breadth and Depth of Knowledge](#breadth-and-depth-of-knowledge)
+* [⇢ ⇢ Mentorship and Sponsorship](#mentorship-and-sponsorship)
+* [⇢ ⇢ Managing Up and Across](#managing-up-and-across)
+* [⇢ ⇢ Strategic Thinking](#strategic-thinking)
+* [⇢ ⇢ Emotional Intelligence](#emotional-intelligence)
+* [⇢ ⇢ Navigating Ambiguity](#navigating-ambiguity)
+* [⇢ ⇢ Visible and Invisible Work](#visible-and-invisible-work)
+* [⇢ ⇢ Scaling Yourself](#scaling-yourself)
+* [⇢ ⇢ Career Progression and Title Inflation](#career-progression-and-title-inflation)
 * [⇢ ⇢ Not a faster Senior Engineer](#not-a-faster-senior-engineer)
 * [⇢ ⇢ The Balance](#the-balance)
 * [⇢ ⇢ More things](#more-things)
+
+## The Four Archetypes of a Staff Engineer
+
+Larson breaks down the role of a Staff Engineer into four main archetypes, which can help frame how you approach the role:
+
+* Tech Lead: Focuses on the technical direction of a team, ensuring high-quality execution, architecture, and aligning the team around shared goals.
+* Solver: Gets pulled into complex, high-impact problems that often involve many teams or systems, operating as a fixer or troubleshooter.
+* Architect: Works on the long-term technical vision for an organization, setting standards and designing systems that will scale and last over time.
+* Right Hand: Functions as a trusted technical advisor to leadership, providing input on strategy, long-term decisions, and navigating organizational politics.
+
+## Influence and Impact over Authority
+
+As a Staff Engineer, influence is often more important than formal authority. You’ll rarely have direct control over teams or projects but will need to drive outcomes by influencing peers, other teams, and leadership. It’s about understanding how to persuade, align, and mentor others to achieve technical outcomes.
+
+## Breadth and Depth of Knowledge
+
+Staff Engineers often need to maintain a breadth of knowledge across various areas while maintaining depth in a few. This can mean keeping a high-level understanding of several domains (e.g., infrastructure, security, product development) but being able to dive deep when needed in certain core areas.
+
+## Mentorship and Sponsorship
+
+An important part of a Staff Engineer’s role is mentoring others, not just in technical matters but in career development as well. Sponsorship goes a step beyond mentorship, where you actively advocate for others, create opportunities for them, and push them toward growth.
+
+## Managing Up and Across
+
+Success as a Staff Engineer often depends on managing up (influencing leadership and setting expectations) and managing across (working effectively with peers and other teams). This is often tied to communication skills, the ability to advocate for technical needs, and fostering alignment across departments or organizations.
+
+## Strategic Thinking
+
+While Senior Engineers may focus on execution, Staff Engineers are expected to think strategically, making decisions that will affect the company or product months or years down the line. This means balancing short-term execution needs with long-term architectural decisions, which may require challenging short-term pressures.
+
+## Emotional Intelligence
+
+The higher you go in engineering roles, the more soft skills, particularly emotional intelligence (EQ), come into play. Building relationships, resolving conflicts, and understanding the broader emotional dynamics of the team and organization become key parts of your role.
+
+## Navigating Ambiguity
+
+Staff Engineers are often placed in situations with high ambiguity—whether in defining the problem space, coming up with a solution, or aligning stakeholders. The ability to operate effectively in these unclear areas is critical to success.
+
+## Visible and Invisible Work
+
+Much of the work done by Staff Engineers is invisible. Solving complex problems, creating alignment, or influencing decisions doesn’t always result in tangible code, but it can have a massive impact. Larson emphasizes that part of the role is being comfortable with this type of invisible contribution.
+
+## Scaling Yourself
+
+At the Staff Engineer level, you must scale your impact beyond direct contribution. This can involve improving documentation, developing repeatable processes, mentoring others, or automating parts of the workflow. The idea is to enable teams and individuals to be more effective, even when you’re not directly involved.
+
+## Career Progression and Title Inflation
+
+Larson touches on how different companies have varying definitions of "Staff Engineer," and titles don’t always correlate directly with responsibility or skill. He emphasizes the importance of focusing more on the work you're doing and the impact you're having, rather than the title itself.
+
+These additional points reflect more of the strategic, interpersonal, and leadership aspects that go beyond the technical expertise expected at this level. The role of a Staff Engineer is often about balancing high-level strategy with technical execution, while influencing teams and projects in a sustainable, long-term way.
 
 ## Not a faster Senior Engineer
 
