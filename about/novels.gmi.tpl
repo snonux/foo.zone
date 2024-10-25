@@ -105,9 +105,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 2004 - Träume von Unendlichkeit (german), Alastair Reynolds
 * 2021 - Die Tiefe der Zeit (german), Andreas Brandhorst
-
-### On my wishlist
-
 * 2024 - Der Riss (german), Andreas Brandhorst
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
