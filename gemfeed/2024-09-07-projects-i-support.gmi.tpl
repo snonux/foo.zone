@@ -31,6 +31,11 @@ Sponsoring free and open-source projects, even for personal use, is important to
 
 Albeit I am not putting a lot of money into my sponsoring efforts, it still helps the open-source maintainers because the more little sponsors there are, the higher the total sum.
 
+## OSNews
+
+I am a silver Patreon member of OSNews. I have been following this site since my student years. It's always been a great source of independent IT news.
+=> https://osnews.com
+
 ## Cup o' Go Podcast
 
 I am a Patreon of the Cup o' Go Podcast. The podcast helps me stay updated with the Go community for around 15 minutes per week. I am not a full-time software developer, but my long-term ambition is to become better in Go every week by working on personal projects and tools for work.
