@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-10-24T21:11:23+03:00 by `Gemtexter`
+> This site was generated at 2024-11-01T09:32:29+02:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 

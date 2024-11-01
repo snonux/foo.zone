@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-10-24T21:11:23+03:00</updated>
+    <updated>2024-11-01T09:32:29+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -111,7 +111,7 @@
 <br />
 <ul>
 <li>A Staff engineer is more than just a faster Senior.</li>
-<li>A staff engineer is not a senior engineer but a bit better. (But I want to be a senior engineer but a bit better).</li>
+<li>A staff engineer is not a senior engineer but a bit better.</li>
 </ul><br />
 <span>It&#39;s important to know what work or which role most energizes you. A Staff engineer is not a more senior engineer. A Staff engineer also fits into another archetype.</span><br />
 <br />
