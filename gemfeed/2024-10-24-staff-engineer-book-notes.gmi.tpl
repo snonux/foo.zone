@@ -72,7 +72,7 @@ These additional points reflect more of the strategic, interpersonal, and leader
 ## Not a faster Senior Engineer
 
 * A Staff engineer is more than just a faster Senior.
-* A staff engineer is not a senior engineer but a bit better. (But I want to be a senior engineer but a bit better).
+* A staff engineer is not a senior engineer but a bit better.
 
 It's important to know what work or which role most energizes you. A Staff engineer is not a more senior engineer. A Staff engineer also fits into another archetype.
 
