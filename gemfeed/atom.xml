@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-01T11:59:22+02:00</updated>
+    <updated>2024-11-07T09:27:54+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -393,7 +393,7 @@ jgs \\`_..---.Y.---.._`//
 <ul>
 <li><a href='#projects-i-financially-support'>Projects I financially support</a></li>
 <li>⇢ <a href='#motivation'>Motivation</a></li>
-<li>⇢ <a href='#osnews'>OSNews</a></li>
+<li>⇢ <a href='#osnews'>OSnews</a></li>
 <li>⇢ <a href='#cup-o--go-podcast'>Cup o&#39; Go Podcast</a></li>
 <li>⇢ <a href='#codeberg'>Codeberg</a></li>
 <li>⇢ <a href='#grapheneos'>GrapheneOS</a></li>
@@ -408,9 +408,9 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Albeit I am not putting a lot of money into my sponsoring efforts, it still helps the open-source maintainers because the more little sponsors there are, the higher the total sum.</span><br />
 <br />
-<h2 style='display: inline' id='osnews'>OSNews</h2><br />
+<h2 style='display: inline' id='osnews'>OSnews</h2><br />
 <br />
-<span>I am a silver Patreon member of OSNews. I have been following this site since my student years. It&#39;s always been a great source of independent and slightly alternative IT news.</span><br />
+<span>I am a silver Patreon member of OSnews. I have been following this site since my student years. It&#39;s always been a great source of independent and slightly alternative IT news.</span><br />
 <br />
 <a class='textlink' href='https://osnews.com'>https://osnews.com</a><br />
 <br />
