@@ -27,7 +27,7 @@ This is the list of projects and initiatives I support/sponsor.
 
 * [⇢ Projects I financially support](#projects-i-financially-support)
 * [⇢ ⇢ Motivation](#motivation)
-* [⇢ ⇢ OSNews](#osnews)
+* [⇢ ⇢ OSnews](#osnews)
 * [⇢ ⇢ Cup o' Go Podcast](#cup-o--go-podcast)
 * [⇢ ⇢ Codeberg](#codeberg)
 * [⇢ ⇢ GrapheneOS](#grapheneos)
@@ -42,9 +42,9 @@ Sponsoring free and open-source projects, even for personal use, is important to
 
 Albeit I am not putting a lot of money into my sponsoring efforts, it still helps the open-source maintainers because the more little sponsors there are, the higher the total sum.
 
-## OSNews
+## OSnews
 
-I am a silver Patreon member of OSNews. I have been following this site since my student years. It's always been a great source of independent and slightly alternative IT news.
+I am a silver Patreon member of OSnews. I have been following this site since my student years. It's always been a great source of independent and slightly alternative IT news.
 
 [https://osnews.com](https://osnews.com)  
 

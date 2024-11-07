@@ -78,6 +78,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2016 - Omni (german) - Omniversum
 * 2017 - Das Arkonadia-Rätsel (german) - Omniversum
 * 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie
+* 2018 - Ewiges Leben (german), Andreas Brandhorst
 * 2019 - Das Netz der Sterne (german), Audiobook
 * 2019 - Seelenfänger (german), Andreas Brandhorst, Audiobook
 * 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie
@@ -109,8 +110,8 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ## Currently reading
 
-* 2018 - Ewiges Leben (german), Andreas Brandhorst
 * 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens (german), David Reimer (Audiobook)
+* 2024 - Der Riss (german), Andreas Brandhorst
 
 ## Soon
 
@@ -118,7 +119,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 2004 - Träume von Unendlichkeit (german), Alastair Reynolds
 * 2021 - Die Tiefe der Zeit (german), Andreas Brandhorst
-* 2024 - Der Riss (german), Andreas Brandhorst
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
