@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-16T23:08:11+02:00</updated>
+    <updated>2024-11-16T23:20:14+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,7 +10,7 @@
         <title>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</title>
         <link href="https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html" />
         <id>https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html</id>
-        <updated>2024-11-16T23:08:10+02:00</updated>
+        <updated>2024-11-16T23:20:14+02:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -98,6 +98,8 @@
 <span>A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.</span><br />
 <br />
 <a class='textlink' href='https://wiki.freebsd.org/HighlyAvailableStorage'>https://wiki.freebsd.org/HighlyAvailableStorage</a><br />
+<br />
+<span>You can think of DRBD being the Linux equivalent to FreeBSD&#39;s HAST.</span><br />
 <br />
 <h3 style='display: inline' id='openbsdrelayd-to-the-rescue-for-external-connectivity'>OpenBSD/<span class='inlinecode'>relayd</span> to the rescue for external connectivity</h3><br />
 <br />

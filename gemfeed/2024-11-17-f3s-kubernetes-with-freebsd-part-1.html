@@ -10,7 +10,7 @@
 <body>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---setting-the-stage---part-1'>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</h1><br />
 <br />
-<span class='quote'>Published at 2024-11-16T23:08:10+02:00</span><br />
+<span class='quote'>Published at 2024-11-16T23:20:14+02:00</span><br />
 <br />
 <span>This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
@@ -90,6 +90,8 @@
 <span>A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.</span><br />
 <br />
 <a class='textlink' href='https://wiki.freebsd.org/HighlyAvailableStorage'>https://wiki.freebsd.org/HighlyAvailableStorage</a><br />
+<br />
+<span>You can think of DRBD being the Linux equivalent to FreeBSD&#39;s HAST.</span><br />
 <br />
 <h3 style='display: inline' id='openbsdrelayd-to-the-rescue-for-external-connectivity'>OpenBSD/<span class='inlinecode'>relayd</span> to the rescue for external connectivity</h3><br />
 <br />
