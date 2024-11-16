@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-16T23:45:38+02:00</updated>
+    <updated>2024-11-16T23:52:20+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -73,7 +73,7 @@
 <br />
 <h3 style='display: inline' id='physical-freebsd-nodes-and-linux-vms'>Physical FreeBSD nodes and Linux VMs</h3><br />
 <br />
-<span>The setup starts with three physical FreeBSD nodes. On these, I&#39;m running Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).</span><br />
+<span>The setup starts with three physical FreeBSD nodes deployed into my home LAN. On these, I&#39;m going to run Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).</span><br />
 <br />
 <a class='textlink' href='https://www.freebsd.org/'>https://www.freebsd.org/</a><br />
 <a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />

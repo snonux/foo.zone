@@ -51,7 +51,7 @@ This is still in progress, and I need to own the hardware. But in this first par
 
 ### Physical FreeBSD nodes and Linux VMs
 
-The setup starts with three physical FreeBSD nodes. On these, I'm running Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).
+The setup starts with three physical FreeBSD nodes deployed into my home LAN. On these, I'm going to run Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).
 
 => https://www.freebsd.org/
 => https://wiki.freebsd.org/bhyve
