@@ -16,7 +16,7 @@ Let's begin...
 
 ## Why this setup?
 
-Look at my previous setup, which was great to learn Terraform and AWS, but the setup is too expensive. Costs are under control there, but only because I am shutting down all containers after use (so they are offline ninety per cent of the time and still cost around 20 bucks monthly). With the new setup, I could run all containers 24/7 at home, which would still be cheaper for electricity consumption.
+My previous setup was great for learning Terraform and AWS, but it is too expensive. Costs are under control there, but only because I am shutting down all containers after use (so they are offline ninety percent of the time and still cost around $20 monthly). With the new setup, I could run all containers 24/7 at home, which would still be cheaper in terms of electricity consumption. I have a 50 MBit/s uplink (I could have more if I wanted, but it is plenty for my use case already).
 
 => https://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.html From `babylon5.buetow.org` to `.cloud`
 
