@@ -58,7 +58,7 @@ These Linux VMs form a three-node k3s Kubernetes cluster, where my containers wi
 
 Persistent storage for the k3s cluster will be handled by highly available (HA) NFS shares backed by ZFS on the FreeBSD hosts. 
 
-On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a `pool` ZFS pool. With HAST (FreeBSD's solution for highly available storage), this `pool` will be replicated at the byte level to a standby node.
+On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a `zhast` ZFS pool. With HAST (FreeBSD's solution for highly available storage), this `pool` will be replicated at the byte level to a standby node.
 
 A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.
 

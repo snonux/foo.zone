@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-16T23:20:14+02:00</updated>
+    <updated>2024-11-16T23:24:56+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---setting-the-stage---part-1'>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</h1><br />
+<br />
+<span class='quote'>Published at 2024-11-16T23:20:14+02:00</span><br />
 <br />
 <span>This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
@@ -93,7 +95,7 @@
 <br />
 <span>Persistent storage for the k3s cluster will be handled by highly available (HA) NFS shares backed by ZFS on the FreeBSD hosts. </span><br />
 <br />
-<span>On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a <span class='inlinecode'>pool</span> ZFS pool. With HAST (FreeBSD&#39;s solution for highly available storage), this <span class='inlinecode'>pool</span> will be replicated at the byte level to a standby node.</span><br />
+<span>On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a <span class='inlinecode'>zhast</span> ZFS pool. With HAST (FreeBSD&#39;s solution for highly available storage), this <span class='inlinecode'>pool</span> will be replicated at the byte level to a standby node.</span><br />
 <br />
 <span>A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.</span><br />
 <br />
