@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-16T23:30:04+02:00</updated>
+    <updated>2024-11-16T23:34:14+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -114,7 +114,7 @@
 <span>So, when I want to access a service running in k3s, I will hit an external DNS endpoint (with the authoritative DNS servers being the OpenBSD boxes). The DNS will resolve to the master OpenBSD VM (see my KISS highly-available with OpenBSD blog post), and from there, the <span class='inlinecode'>relayd</span> process (with a Let&#39;s Encrypt certificate—see my Let&#39;s Encrypt with OpenBSD and Rex blog post) will accept the TCP connection and forward it through the WireGuard tunnel to a reachable node port of one of the k3s nodes, thus serving the traffic.</span><br />
 <br />
 <a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Le&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <br />
 <span>The OpenBSD setup described here already exists and is ready to use. The only thing that does not yet exist is the configuration of <span class='inlinecode'>relayd</span> to forward requests to k3s through the WireGuard tunnel(s).</span><br />
 <br />
