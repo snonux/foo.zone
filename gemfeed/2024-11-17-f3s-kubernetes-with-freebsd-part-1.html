@@ -85,7 +85,7 @@
 <br />
 <span>Persistent storage for the k3s cluster will be handled by highly available (HA) NFS shares backed by ZFS on the FreeBSD hosts. </span><br />
 <br />
-<span>On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a <span class='inlinecode'>pool</span> ZFS pool. With HAST (FreeBSD&#39;s solution for highly available storage), this <span class='inlinecode'>pool</span> will be replicated at the byte level to a standby node.</span><br />
+<span>On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a <span class='inlinecode'>zhast</span> ZFS pool. With HAST (FreeBSD&#39;s solution for highly available storage), this <span class='inlinecode'>pool</span> will be replicated at the byte level to a standby node.</span><br />
 <br />
 <span>A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.</span><br />
 <br />
