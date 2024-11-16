@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
 
-> Published at 2024-11-16T23:08:10+02:00
+> Published at 2024-11-16T23:20:14+02:00
 
 This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
@@ -63,6 +63,8 @@ On two of the three physical FreeBSD nodes, I will add a second SSD drive to eac
 A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.
 
 => https://wiki.freebsd.org/HighlyAvailableStorage
+
+You can think of DRBD being the Linux equivalent to FreeBSD's HAST.
 
 ### OpenBSD/`relayd` to the rescue for external connectivity
 
