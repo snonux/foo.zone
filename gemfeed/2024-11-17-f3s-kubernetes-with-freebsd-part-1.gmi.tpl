@@ -77,7 +77,7 @@ All of this (every Linux VM to every OpenBSD box) will be connected via WireGuar
 So, when I want to access a service running in k3s, I will hit an external DNS endpoint (with the authoritative DNS servers being the OpenBSD boxes). The DNS will resolve to the master OpenBSD VM (see my KISS highly-available with OpenBSD blog post), and from there, the `relayd` process (with a Let's Encrypt certificate—see my Let's Encrypt with OpenBSD and Rex blog post) will accept the TCP connection and forward it through the WireGuard tunnel to a reachable node port of one of the k3s nodes, thus serving the traffic.
 
 => https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html KISS high-availability with OpenBSD
-=> https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html Le's Encrypt with OpenBSD and Rex
+=> https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html Let's Encrypt with OpenBSD and Rex
 
 The OpenBSD setup described here already exists and is ready to use. The only thing that does not yet exist is the configuration of `relayd` to forward requests to k3s through the WireGuard tunnel(s).
 
