@@ -402,5 +402,6 @@ Other *BSD related posts are:
 [2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2024-01-13 One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2024-11-17 f3s: Kubernetes with FreeBSD - Setting the stage - Part 1](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 
 [Back to the main site](../)  
