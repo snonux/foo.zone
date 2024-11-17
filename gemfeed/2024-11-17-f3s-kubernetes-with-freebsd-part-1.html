@@ -118,6 +118,8 @@
 <br />
 <span>On the HAST master node, incremental and encrypted ZFS snapshots are created daily and automatically backed up to AWS S3 Glacier Deep Archive via CRON. I have a bunch of scripts already available, which I currently use for a similar purpose on my FreeBSD Home NAS server (an old ThinkPad T440 with an external USB drive enclosure, which I will eventually retire when the HAST setup is ready). I will copy them and slightly modify them to fit the purpose.</span><br />
 <br />
+<span>There&#39;s also <span class='inlinecode'>zfstools</span> in the ports, which helps set up an automatic snapshot regime:</span><br />
+<br />
 <a class='textlink' href='https://www.freshports.org/sysutils/zfstools'>https://www.freshports.org/sysutils/zfstools</a><br />
 <br />
 <span>The backup scripts also perform some zpool scrubbing now and then. A scrub once in a while keeps the trouble away.</span><br />
