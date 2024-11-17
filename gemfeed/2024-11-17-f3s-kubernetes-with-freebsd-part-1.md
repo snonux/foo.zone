@@ -79,7 +79,7 @@ On two of the three physical FreeBSD nodes, I will add a second SSD drive to eac
 
 A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.
 
-[https://wiki.freebsd.org/HighlyAvailableStorage](https://wiki.freebsd.org/HighlyAvailableStorage)  
+[FreeBSD Wiki: Highly Available Storage](https://wiki.freebsd.org/HighlyAvailableStorage)  
 
 You can think of DRBD being the Linux equivalent to FreeBSD's HAST.
 
