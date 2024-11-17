@@ -138,7 +138,7 @@ Ironically, I implemented Gogios to avoid using more complex alerting systems li
 
 This setup may be just the beginning. Some ideas I'm thinking about for the future:
 
-* Adding more FreeBSD nodes (in different physical locations, maybe at my wider family's places?) for better redundancy. (HA storage then might be trickier)
+* Adding more FreeBSD nodes (in different physical locations, maybe at my wider family's places? WireGuard would make it possible!) for better redundancy. (HA storage then might be trickier)
 * Deploying more Docker apps (data-intensive ones, like a picture gallery, my entire audiobook catalogue, or even a music server) to k3s.
 
 For now, though, I'm focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.

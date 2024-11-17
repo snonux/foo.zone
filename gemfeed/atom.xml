@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-16T23:52:20+02:00</updated>
+    <updated>2024-11-17T09:31:43+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -161,7 +161,7 @@
 <span>This setup may be just the beginning. Some ideas I&#39;m thinking about for the future:</span><br />
 <br />
 <ul>
-<li>Adding more FreeBSD nodes (in different physical locations, maybe at my wider family&#39;s places?) for better redundancy. (HA storage then might be trickier)</li>
+<li>Adding more FreeBSD nodes (in different physical locations, maybe at my wider family&#39;s places? WireGuard would make it possible!) for better redundancy. (HA storage then might be trickier)</li>
 <li>Deploying more Docker apps (data-intensive ones, like a picture gallery, my entire audiobook catalogue, or even a music server) to k3s.</li>
 </ul><br />
 <span>For now, though, I&#39;m focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.</span><br />
