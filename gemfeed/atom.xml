@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-11-17T18:02:52+02:00</updated>
+    <updated>2024-12-01T12:50:15+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</title>
+        <title>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</title>
         <link href="https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html" />
         <id>https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html</id>
         <updated>2024-11-16T23:20:14+02:00</updated>
@@ -18,7 +18,7 @@
         <summary>This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---setting-the-stage---part-1'>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</h1><br />
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-1-setting-the-stage'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</h1><br />
 <br />
 <span class='quote'>Published at 2024-11-16T23:20:14+02:00</span><br />
 <br />
@@ -37,7 +37,7 @@
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#f3s-kubernetes-with-freebsd---setting-the-stage---part-1'>f3s: Kubernetes with FreeBSD - Setting the stage - Part 1</a></li>
+<li><a href='#f3s-kubernetes-with-freebsd---part-1-setting-the-stage'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a></li>
 <li>⇢ <a href='#why-this-setup'>Why this setup?</a></li>
 <li>⇢ <a href='#the-infrastructure'>The infrastructure</a></li>
 <li>⇢ ⇢ <a href='#physical-freebsd-nodes-and-linux-vms'>Physical FreeBSD nodes and Linux VMs</a></li>
