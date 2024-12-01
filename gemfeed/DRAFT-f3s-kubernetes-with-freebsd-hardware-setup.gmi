@@ -6,7 +6,7 @@ This is the second blog post about my f3s series for my self-hosting demands in 
 
 I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).
 
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -32,7 +32,7 @@ Other *BSD-related posts:
 => ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

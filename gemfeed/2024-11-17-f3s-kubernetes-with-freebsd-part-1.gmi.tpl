@@ -1,4 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
+# f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 > Published at 2024-11-16T23:20:14+02:00
 

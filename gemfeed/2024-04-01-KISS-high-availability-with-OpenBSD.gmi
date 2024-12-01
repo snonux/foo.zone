@@ -307,6 +307,6 @@ Other *BSD and KISS related posts are:
 => ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 => ../ Back to the main site
