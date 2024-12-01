@@ -8,12 +8,17 @@
 * [⇢ ⇢ ⇢ Alastair Reynolds](#alastair-reynolds)
 * [⇢ ⇢ ⇢ Arthur C. Clarke](#arthur-c-clarke)
 * [⇢ ⇢ ⇢ Andreas Brandhorst (german)](#andreas-brandhorst-german)
+* [⇢ ⇢ David Reimer (german)](#david-reimer-german)
 * [⇢ ⇢ ⇢ Ian Banks](#ian-banks)
 * [⇢ ⇢ ⇢ Dan Simmons](#dan-simmons)
 * [⇢ ⇢ ⇢ Other authors](#other-authors)
 * [⇢ ⇢ Currently reading](#currently-reading)
-* [⇢ ⇢ Soon](#soon)
-* [⇢ ⇢ ⇢ Unread books already in my shelf](#unread-books-already-in-my-shelf)
+* [⇢ ⇢ ⇢ Andreas Brandhorst](#andreas-brandhorst)
+* [⇢ ⇢ ⇢ David Reimer](#david-reimer)
+* [⇢ ⇢ Unread books already in my shelf](#unread-books-already-in-my-shelf)
+* [⇢ ⇢ ⇢ Alastair Reynolds](#alastair-reynolds)
+* [⇢ ⇢ ⇢ Andreas Brandhorst](#andreas-brandhorst)
+* [⇢ ⇢ ⇢ David Reimer](#david-reimer)
 
 ## Introduction
 
@@ -88,6 +93,11 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 
+## David Reimer (german)
+
+* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), (Audiobook)
+* 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), (Audiobook)
+
 ### Ian Banks
 
 * 1987 - Consider Pheblas (english) / Bedenke Pheblas (german) - Culture Book 1
@@ -110,15 +120,27 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ## Currently reading
 
-* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens (german), David Reimer (Audiobook)
-* 2024 - Der Riss (german), Andreas Brandhorst
+### Andreas Brandhorst
 
-## Soon
+* 2024 - Der Riss (german)
 
-### Unread books already in my shelf
+### David Reimer
 
-* 2004 - Träume von Unendlichkeit (german), Alastair Reynolds
-* 2021 - Die Tiefe der Zeit (german), Andreas Brandhorst
+* 2022 - Das Signal der Schoepfer - Die Wächter des Wissens - Band 3 (german), (Audiobook)
+
+## Unread books already in my shelf
+
+### Alastair Reynolds
+
+* 2004 - Träume von Unendlichkeit (german)
+
+### Andreas Brandhorst
+
+* 2021 - Die Tiefe der Zeit (german)
+
+### David Reimer
+
+* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), (Audiobook)
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
