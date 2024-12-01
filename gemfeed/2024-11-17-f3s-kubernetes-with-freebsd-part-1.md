@@ -1,4 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Setting the stage - Part 1
+# f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 > Published at 2024-11-16T23:20:14+02:00
 
@@ -16,7 +16,7 @@ Let's begin...
 
 ## Table of Contents
 
-* [⇢ f3s: Kubernetes with FreeBSD - Setting the stage - Part 1](#f3s-kubernetes-with-freebsd---setting-the-stage---part-1)
+* [⇢ f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](#f3s-kubernetes-with-freebsd---part-1-setting-the-stage)
 * [⇢ ⇢ Why this setup?](#why-this-setup)
 * [⇢ ⇢ The infrastructure](#the-infrastructure)
 * [⇢ ⇢ ⇢ Physical FreeBSD nodes and Linux VMs](#physical-freebsd-nodes-and-linux-vms)

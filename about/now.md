@@ -7,7 +7,6 @@ This is a "hidden" now site listing my personal projects.
 ## Now (in progress)
 
 * Kitchen
-* ↑ Measure
 * ↑ Plan
 * ↑ Order
 * ↑ Remove old one
@@ -24,6 +23,12 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Read it
 * "Der Riss"
 * ↑ Read it
+* "f3s"
+* ↑ The hardware and base install and blog post
+* ↑ k3s basic setup and blog post
+* ↑ ...
+* ↑ UPS... and Grafana dashboard
+
 
 ## Soon (???)
 
@@ -36,6 +41,10 @@ This is a "hidden" now site listing my personal projects.
 
 ## Done
 
+* "f3s"
+* ↑ Setting the stage blog post
+* Kitchen
+* ↑ Measure
 * Gos (gosd/gos) / (Go)
 * ↑ Retire buffer.com
 * "Kubernetes Cookbook"
