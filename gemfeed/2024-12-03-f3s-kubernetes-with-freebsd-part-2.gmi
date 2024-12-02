@@ -52,7 +52,7 @@ I needed something compact, efficient, and capable enough to handle the demands 
 
 => https://www.bee-link.com/products/beelink-mini-s12-pro-n100 Beelink Min S12 Pro N100 official page
 
-The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they're more than capable of running multiple containers, even with moderate workloads. Plus, they consume only 6W of power, keeping the electricity bill low and the setup quiet - perfect for 24/7 operation.
+The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they're more than capable of running multiple containers, even with moderate workloads. Plus, they consume only around 8W of power (ok, that's more than the Pis...), keeping the electricity bill low enough and the setup quiet - perfect for 24/7 operation.
 
 => ./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg Beelink preparation
 
@@ -270,7 +270,7 @@ Idle, all three Beelinks plus the switch consumed 26.2W. But with `ubench` stres
 
 ## Conclusion
 
-The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.
+The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.
 
 => ./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg Beelinks stacked
 
