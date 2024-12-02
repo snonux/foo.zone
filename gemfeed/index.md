@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-10-24 - 'Staff Engineer' book notes](./2024-10-24-staff-engineer-book-notes.md)  
 [2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴](./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
