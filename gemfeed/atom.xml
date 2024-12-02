@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-02T23:56:36+02:00</updated>
+    <updated>2024-12-02T23:57:43+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -289,14 +289,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f1</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> sysctl hw</font><font color="#F3E651">.</font><font color="#ff0000">physmem</font>
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> sysctl hw</font><font color="#F3E651">.</font><font color="#ff0000">physmem</font>
 <font color="#ff0000">hw</font><font color="#F3E651">.</font><font color="#ff0000">physmem</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">16902905856</font>
 
 </pre>
 <br />
 <h3 style='display: inline' id='cpus'>CPUs</h3><br />
 <br />
-<span>Work:</span><br />
+<span>They work:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
