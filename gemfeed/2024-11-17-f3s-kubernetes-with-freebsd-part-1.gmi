@@ -6,7 +6,10 @@ This is the first blog post about my f3s series for my self-hosting demands in m
 
 I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).
 
+These are all the posts so far:
+
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -149,6 +152,10 @@ For now, though, I'm focused on completing the migration from AWS ECS and gettin
 
 What's your take on self-hosting? Are you planning to move away from managed cloud services? Stay tuned for the second part of this series, where I will likely write about the hardware and the OS setups.
 
+Read the next post of this series:
+
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+
 Other *BSD-related posts:
 
 => ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
@@ -157,6 +164,7 @@ Other *BSD-related posts:
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

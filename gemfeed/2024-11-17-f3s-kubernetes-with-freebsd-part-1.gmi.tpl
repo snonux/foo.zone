@@ -6,7 +6,9 @@ This is the first blog post about my f3s series for my self-hosting demands in m
 
 I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).
 
-<< template::inline::index f3s-kubernetes-with-freebsd-part
+These are all the posts so far:
+
+<< template::inline::index f3s
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -133,6 +135,10 @@ This setup may be just the beginning. Some ideas I'm thinking about for the futu
 For now, though, I'm focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.
 
 What's your take on self-hosting? Are you planning to move away from managed cloud services? Stay tuned for the second part of this series, where I will likely write about the hardware and the OS setups.
+
+Read the next post of this series:
+
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 Other *BSD-related posts:
 
