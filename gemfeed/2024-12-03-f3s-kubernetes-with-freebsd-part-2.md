@@ -109,7 +109,7 @@ The installation was uneventful. I selected:
 * Guided ZFS on root (pool `zroot`)
 * Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without human interaction)
 * Static IP configuration (to ensure that the boxes always have the same IPs, even after switching the router/DHCP server)
-* I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled powerd for automatic CPU frequency scaling.
+* I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled `powerd` for automatic CPU frequency scaling.
 * In addition to `root,` I added a personal user, `paul,` whom I placed in the `wheel` group.
 
 After doing all that three times (once for each Beelink PC), I had three ready-to-use FreeBSD boxes! Their hostnames are `f0`, `f1` and `f2`!
@@ -202,6 +202,10 @@ NewRec     0 days, 00:07:33 | since                     Mon Dec  2 12:21:44 2024
   down     0 days, 00:00:00 | since                     Mon Dec  2 12:21:44 2024
    %up              100.000 | since                     Mon Dec  2 12:21:44 2024
 ```
+
+This is how I track the uptimes for all of my host:
+
+[Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 
 ## Hardware check
 
