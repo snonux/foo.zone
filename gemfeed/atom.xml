@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-02T23:48:21+02:00</updated>
+    <updated>2024-12-02T23:51:40+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
+<br />
+<span class='quote'>Published at 2024-12-02T23:48:21+02:00</span><br />
 <br />
 <span>This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
@@ -85,7 +87,7 @@
 <li>Four USB 3.2 Gen2 ports (maybe I want to mount something externally at some point)</li>
 <li>Dimensions and weight:  115*102*39mm, 280g</li>
 <li>Silent cooling system.</li>
-<li>HDMI output (needed only for the initial installation)</li>
+<li>HDMI output (needed only for the initial installation and maybe for troubleshooting later)</li>
 <li>Auto power on via WoL (may make use of it)</li>
 <li>Wi-Fi (not going to use it)</li>
 </ul><br />
