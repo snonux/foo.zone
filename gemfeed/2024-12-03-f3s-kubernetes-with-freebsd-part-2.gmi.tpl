@@ -194,7 +194,7 @@ This is how I track the uptimes for all of my host:
 
 ### Ethernet
 
-Works. Nothing eventful, really. It's a cheap Realtek chip, but it will do what it is supposed to do.
+Works. Nothing eventful, really. It's a cheap Realtek chip, but it will do what it is supposed to do (I hope).
 
 ```sh
 paul@f0:~ % ifconfig re0
