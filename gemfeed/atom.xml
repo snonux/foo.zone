@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-02T23:57:43+02:00</updated>
+    <updated>2024-12-03T00:00:42+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -73,7 +73,7 @@
 <br />
 <a class='textlink' href='https://www.bee-link.com/products/beelink-mini-s12-pro-n100'>Beelink Min S12 Pro N100 official page</a><br />
 <br />
-<span>The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they&#39;re more than capable of running multiple containers, even with moderate workloads. Plus, they consume only 6W of power, keeping the electricity bill low and the setup quiet - perfect for 24/7 operation.</span><br />
+<span>The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they&#39;re more than capable of running multiple containers, even with moderate workloads. Plus, they consume only around 8W of power (ok, that&#39;s more than the Pis...), keeping the electricity bill low enough and the setup quiet - perfect for 24/7 operation.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg'><img alt='Beelink preparation' title='Beelink preparation' src='./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg' /></a><br />
 <br />
@@ -333,7 +333,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.</span><br />
+<span>The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg'><img alt='Beelinks stacked' title='Beelinks stacked' src='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg' /></a><br />
 <br />
