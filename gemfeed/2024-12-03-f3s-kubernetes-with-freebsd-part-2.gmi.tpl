@@ -215,14 +215,14 @@ re0: flags=1008843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST,LOWER_UP> metric 0 mtu
 All there:
 
 ```sh
-paul@f1:~ % sysctl hw.physmem
+paul@f0:~ % sysctl hw.physmem
 hw.physmem: 16902905856
 
 ```
 
 ### CPUs
 
-Work:
+They work:
 
 ```sh
 paul@f0:~ % sysctl dev.cpu | grep freq:
