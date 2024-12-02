@@ -1,5 +1,7 @@
 # f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
+> Published at 2024-12-02T23:48:21+02:00
+
 This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
 We set the stage last time; this time, we will set up the hardware for this project. 
@@ -18,7 +20,7 @@ Let's continue...
 
 ## Deciding on the hardware
 
-Note that the OpenBSD VMs included in the F3S setup (which will be used later in this blog series for internet ingress) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.
+Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.
 
 => https://openbsd.amsterdam
 => https://hetzner.cloud
