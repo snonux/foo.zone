@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-02T23:46:16+02:00</updated>
+    <updated>2024-12-02T23:48:21+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,7 +10,7 @@
         <title>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</title>
         <link href="https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html" />
         <id>https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html</id>
-        <updated>2024-12-02T23:46:16+02:00</updated>
+        <updated>2024-12-02T23:48:21+02:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -56,7 +56,7 @@
 </ul><br />
 <h2 style='display: inline' id='deciding-on-the-hardware'>Deciding on the hardware</h2><br />
 <br />
-<span>Note that the OpenBSD VMs included in the F3S setup (which will be used later in this blog series for internet ingress) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.</span><br />
+<span>Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.</span><br />
 <br />
 <a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
 <a class='textlink' href='https://hetzner.cloud'>https://hetzner.cloud</a><br />
