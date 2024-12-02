@@ -37,7 +37,7 @@ Let's continue...
 
 ## Deciding on the hardware
 
-Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.
+Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress - as you know from the first part of this blog series) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.
 
 [https://openbsd.amsterdam](https://openbsd.amsterdam)  
 [https://hetzner.cloud](https://hetzner.cloud)  
@@ -50,7 +50,7 @@ I've been considering whether to use Raspberry Pis or look for alternatives. It 
 
 I needed something compact, efficient, and capable enough to handle the demands of a small-scale Kubernetes cluster and preferably something I don't have to assemble a lot. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.
 
-[Beelink Min S12 Pro N100 official page](https://www.bee-link.com/products/beelink-mini-s12-pro-n100)  
+[Beelink Mini S12 Pro N100 official page](https://www.bee-link.com/products/beelink-mini-s12-pro-n100)  
 
 The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they're more than capable of running multiple containers, even with moderate workloads. Plus, they consume only around 8W of power (ok, that's more than the Pis...), keeping the electricity bill low enough and the setup quiet - perfect for 24/7 operation.
 
