@@ -126,7 +126,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Guided ZFS on root (pool <span class='inlinecode'>zroot</span>)</li>
 <li>Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without human interaction)</li>
 <li>Static IP configuration (to ensure that the boxes always have the same IPs, even after switching the router/DHCP server)</li>
-<li>I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled powerd for automatic CPU frequency scaling.</li>
+<li>I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled <span class='inlinecode'>powerd</span> for automatic CPU frequency scaling.</li>
 <li>In addition to <span class='inlinecode'>root,</span> I added a personal user, <span class='inlinecode'>paul,</span> whom I placed in the <span class='inlinecode'>wheel</span> group.</li>
 </ul><br />
 <span>After doing all that three times (once for each Beelink PC), I had three ready-to-use FreeBSD boxes! Their hostnames are <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>!</span><br />
@@ -243,6 +243,10 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">  down     </font><font color="#bb00ff">0</font><font color="#ff0000"> days</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">00</font><font color="#F3E651">:</font><font color="#bb00ff">00</font><font color="#F3E651">:</font><font color="#bb00ff">00</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> since                     Mon Dec  </font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#bb00ff">12</font><font color="#F3E651">:</font><font color="#bb00ff">21</font><font color="#F3E651">:</font><font color="#bb00ff">44</font><font color="#ff0000"> </font><font color="#bb00ff">2024</font>
 <font color="#ff0000">   </font><font color="#F3E651">%</font><font color="#ff0000">up              </font><font color="#bb00ff">100.000</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> since                     Mon Dec  </font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#bb00ff">12</font><font color="#F3E651">:</font><font color="#bb00ff">21</font><font color="#F3E651">:</font><font color="#bb00ff">44</font><font color="#ff0000"> </font><font color="#bb00ff">2024</font>
 </pre>
+<br />
+<span>This is how I track the uptimes for all of my host:</span><br />
+<br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
 <h2 style='display: inline' id='hardware-check'>Hardware check</h2><br />
 <br />
