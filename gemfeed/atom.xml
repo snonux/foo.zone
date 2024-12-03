@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-03T09:09:25+02:00</updated>
+    <updated>2024-12-03T10:16:32+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -212,8 +212,8 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">monthly_zfs_snapshot_enable</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> YES</font>
 <font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_pools=zroot</font></i>
 <font color="#ff0000">monthly_zfs_snapshot_pools</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> zroot</font>
-<font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_keep=2</font></i>
-<font color="#ff0000">monthly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">5</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_keep=6</font></i>
+<font color="#ff0000">monthly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">6</font>
 </pre>
 <br />
 <span><span class='inlinecode'>uptimed</span>? I like to track my uptimes. This is how I configured the daemon:</span><br />
