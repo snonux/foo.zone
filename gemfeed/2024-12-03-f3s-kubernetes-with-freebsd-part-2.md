@@ -60,7 +60,7 @@ The Beelink comes with the following specs:
 
 * 12th Gen Intel N100 processor, with four cores and four threads, and a maximum frequency of up to 3.4 GHz.
 * 16 GB of DDR4 RAM, with a maximum (official) size of 16 GB (but people could install 32 GB on it).
-* 500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to use later in this blog series).
+* 500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to make use of later in this blog series).
 * GBit ethernet
 * Four USB 3.2 Gen2 ports (maybe I want to mount something externally at some point)
 * Dimensions and weight:  115*102*39mm, 280g
@@ -86,7 +86,7 @@ Overall, I love the small form factor.
 
 ### Network switch
 
-I went with the TP-Link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall Ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.
+I went with the tp-link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.
 
 [![Switch](./f3s-kubernetes-with-freebsd-part-2/switch.jpg "Switch")](./f3s-kubernetes-with-freebsd-part-2/switch.jpg)  
 
@@ -94,7 +94,7 @@ I went with the TP-Link mini 5-port switch, as I had a spare one available. That
 
 ### Base install
 
-First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick on my Fedora laptop:
+First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick via my Fedora laptop:
 
 ```sh
 [paul@earth]~/Downloads% sudo dd \
@@ -107,7 +107,7 @@ Next, I plugged the Beelinks (one after another) into my monitor via HDMI (the r
 The installation was uneventful. I selected:
 
 * Guided ZFS on root (pool `zroot`)
-* Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without human interaction)
+* Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without manual interaction)
 * Static IP configuration (to ensure that the boxes always have the same IPs, even after switching the router/DHCP server)
 * I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled `powerd` for automatic CPU frequency scaling.
 * In addition to `root,` I added a personal user, `paul,` whom I placed in the `wheel` group.
@@ -170,8 +170,8 @@ root@f0:~ # sysrc monthly_zfs_snapshot_enable=YES
 monthly_zfs_snapshot_enable:  -> YES
 root@f0:~ # sysrc monthly_zfs_snapshot_pools=zroot
 monthly_zfs_snapshot_pools:  -> zroot
-root@f0:~ # sysrc weekly_zfs_snapshot_keep=2
-weekly_zfs_snapshot_keep: 5 -> 2
+root@f0:~ # sysrc monthly_zfs_snapshot_keep=2
+monthly_zfs_snapshot_keep: 5 -> 2
 ```
 
 `uptimed`? I like to track my uptimes. This is how I configured the daemon:
@@ -211,7 +211,7 @@ This is how I track the uptimes for all of my host:
 
 ### Ethernet
 
-Works. Nothing eventful, really. It's a cheap Realtek chip, but it will do what it is supposed to do (I hope).
+Works. Nothing eventful, really. It's a cheap Realtek chip, but it will do what it is supposed to do.
 
 ```sh
 paul@f0:~ % ifconfig re0
@@ -274,9 +274,9 @@ The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project:
 
 [![Beelinks stacked](./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg "Beelinks stacked")](./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg)  
 
-To ease cable management, I need to get shorter Ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).
+To ease cable management, I need to get shorter ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).
 
-What will be covered in the next post of this series? The bhyve/Rocky Linux and WireGuard setup as described in part 1 of this series.
+What will be covered in the next post of this series? Maybe ttttbhyve/Rocky Linux and WireGuard setup as described in part 1 of this series...
 
 Other *BSD-related posts:
 
