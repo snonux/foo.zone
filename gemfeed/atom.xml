@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-03T00:20:49+02:00</updated>
+    <updated>2024-12-03T09:09:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -82,7 +82,7 @@
 <ul>
 <li>12th Gen Intel N100 processor, with four cores and four threads, and a maximum frequency of up to 3.4 GHz.</li>
 <li>16 GB of DDR4 RAM, with a maximum (official) size of 16 GB (but people could install 32 GB on it).</li>
-<li>500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to use later in this blog series).</li>
+<li>500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to make use of later in this blog series).</li>
 <li>GBit ethernet</li>
 <li>Four USB 3.2 Gen2 ports (maybe I want to mount something externally at some point)</li>
 <li>Dimensions and weight:  115*102*39mm, 280g</li>
@@ -109,7 +109,7 @@
 <br />
 <h3 style='display: inline' id='network-switch'>Network switch</h3><br />
 <br />
-<span>I went with the TP-Link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall Ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.</span><br />
+<span>I went with the tp-link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/switch.jpg'><img alt='Switch' title='Switch' src='./f3s-kubernetes-with-freebsd-part-2/switch.jpg' /></a><br />
 <br />
@@ -117,7 +117,7 @@
 <br />
 <h3 style='display: inline' id='base-install'>Base install</h3><br />
 <br />
-<span>First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick on my Fedora laptop:</span><br />
+<span>First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick via my Fedora laptop:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -134,7 +134,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li>Guided ZFS on root (pool <span class='inlinecode'>zroot</span>)</li>
-<li>Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without human interaction)</li>
+<li>Unencrypted ZFS (I will encrypt separate datasets later; I want it to be able to boot without manual interaction)</li>
 <li>Static IP configuration (to ensure that the boxes always have the same IPs, even after switching the router/DHCP server)</li>
 <li>I decided to enable the SSH daemon, NTP server, and NTP time synchronization at boot, and I also enabled <span class='inlinecode'>powerd</span> for automatic CPU frequency scaling.</li>
 <li>In addition to <span class='inlinecode'>root,</span> I added a personal user, <span class='inlinecode'>paul,</span> whom I placed in the <span class='inlinecode'>wheel</span> group.</li>
@@ -212,8 +212,8 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">monthly_zfs_snapshot_enable</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> YES</font>
 <font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_pools=zroot</font></i>
 <font color="#ff0000">monthly_zfs_snapshot_pools</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> zroot</font>
-<font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc weekly_zfs_snapshot_keep=2</font></i>
-<font color="#ff0000">weekly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">5</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_keep=2</font></i>
+<font color="#ff0000">monthly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">5</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
 </pre>
 <br />
 <span><span class='inlinecode'>uptimed</span>? I like to track my uptimes. This is how I configured the daemon:</span><br />
@@ -262,7 +262,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='ethernet'>Ethernet</h3><br />
 <br />
-<span>Works. Nothing eventful, really. It&#39;s a cheap Realtek chip, but it will do what it is supposed to do (I hope).</span><br />
+<span>Works. Nothing eventful, really. It&#39;s a cheap Realtek chip, but it will do what it is supposed to do.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -337,9 +337,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg'><img alt='Beelinks stacked' title='Beelinks stacked' src='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg' /></a><br />
 <br />
-<span>To ease cable management, I need to get shorter Ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).</span><br />
+<span>To ease cable management, I need to get shorter ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).</span><br />
 <br />
-<span>What will be covered in the next post of this series? The bhyve/Rocky Linux and WireGuard setup as described in part 1 of this series.</span><br />
+<span>What will be covered in the next post of this series? Maybe ttttbhyve/Rocky Linux and WireGuard setup as described in part 1 of this series...</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
