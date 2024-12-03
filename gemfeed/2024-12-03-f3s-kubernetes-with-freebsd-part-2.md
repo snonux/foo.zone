@@ -170,8 +170,8 @@ root@f0:~ # sysrc monthly_zfs_snapshot_enable=YES
 monthly_zfs_snapshot_enable:  -> YES
 root@f0:~ # sysrc monthly_zfs_snapshot_pools=zroot
 monthly_zfs_snapshot_pools:  -> zroot
-root@f0:~ # sysrc monthly_zfs_snapshot_keep=2
-monthly_zfs_snapshot_keep: 5 -> 2
+root@f0:~ # sysrc monthly_zfs_snapshot_keep=6
+monthly_zfs_snapshot_keep: 2 -> 6
 ```
 
 `uptimed`? I like to track my uptimes. This is how I configured the daemon:
