@@ -20,22 +20,26 @@ Let's continue...
 ## Table of Contents
 
 * ⇢ f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
-* ⇢ ⇢ Deciding on the hardware
-* ⇢ ⇢ ⇢ Not ARM but Intel N100 
-* ⇢ ⇢ ⇢ Beelink unboxing
-* ⇢ ⇢ ⇢ Network switch
-* ⇢ ⇢ Installing FreeBSD
-* ⇢ ⇢ ⇢ Base install
-* ⇢ ⇢ ⇢ Latest patch level and customizing `/etc/hosts`
-* ⇢ ⇢ ⇢ Additional packages after install
-* ⇢ ⇢ Hardware check
-* ⇢ ⇢ ⇢ Ethernet
-* ⇢ ⇢ ⇢ RAM
-* ⇢ ⇢ ⇢ CPUs
-* ⇢ ⇢ ⇢ CPU throttling
-* ⇢ ⇢ Conclusion
+* ⇢ Deciding on the hardware
+* ⇢ ⇢ Not ARM but Intel N100 
+* ⇢ ⇢ Beelink unboxing
+* ⇢ ⇢ Network switch
+* ⇢ Installing FreeBSD
+* ⇢ ⇢ Base install
+* ⇢ ⇢ Latest patch level and customizing `/etc/hosts`
+* ⇢ ⇢ Additional packages after install
+* ⇢ ⇢ ⇢ Helix editor
+* ⇢ ⇢ ⇢ `doas`
+* ⇢ ⇢ ⇢ Periodic ZFS snapshotting
+* ⇢ ⇢ ⇢ Uptime tracking
+* ⇢ Hardware check
+* ⇢ ⇢ Ethernet
+* ⇢ ⇢ RAM
+* ⇢ ⇢ CPUs
+* ⇢ ⇢ CPU throttling
+* ⇢ Conclusion
 
-## Deciding on the hardware
+# Deciding on the hardware
 
 Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress - as you know from the first part of this blog series) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.
 
@@ -46,7 +50,7 @@ This means that the FreeBSD boxes need to be covered, which will later be runnin
 
 I've been considering whether to use Raspberry Pis or look for alternatives. It turns out that complete N100-based mini-computers aren't much more expensive than Raspberry Pi 5s, and they don't require assembly. Furthermore, I like that they are AMD64 and not ARM-based, which increases compatibility with some applications (e.g., I might want to virtualize Windows (via bhyve) on one of those, though that's out of scope for this blog series).
 
-### Not ARM but Intel N100 
+## Not ARM but Intel N100 
 
 I needed something compact, efficient, and capable enough to handle the demands of a small-scale Kubernetes cluster and preferably something I don't have to assemble a lot. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.
 
@@ -71,7 +75,7 @@ The Beelink comes with the following specs:
 
 I bought three (3) of them for the cluster I intend to build.
 
-### Beelink unboxing
+## Beelink unboxing
 
 Unboxing was uneventful. Every Beelink PC came with: 
 
@@ -84,15 +88,15 @@ Unboxing was uneventful. Every Beelink PC came with:
 
 Overall, I love the small form factor.
 
-### Network switch
+## Network switch
 
 I went with the tp-link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.
 
 => ./f3s-kubernetes-with-freebsd-part-2/switch.jpg Switch
 
-## Installing FreeBSD
+# Installing FreeBSD
 
-### Base install
+## Base install
 
 First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick via my Fedora laptop:
 
@@ -116,7 +120,7 @@ After doing all that three times (once for each Beelink PC), I had three ready-t
 
 => ./f3s-kubernetes-with-freebsd-part-2/f3s-collage2.jpg Beelink installation
 
-### Latest patch level and customizing `/etc/hosts`
+## Latest patch level and customizing `/etc/hosts`
 
 After the first boot, I upgraded to the latest FreeBSD patch level as follows:
 
@@ -135,7 +139,7 @@ root@f0:~ # cat <<END >>/etc/hosts
 END
 ```
 
-### Additional packages after install
+## Additional packages after install
 
 After that, I installed the following additional packages:
 
@@ -143,13 +147,19 @@ After that, I installed the following additional packages:
 root@f0:~ # pkg install helix doas zfs-periodic uptimed
 ```
 
+### Helix editor
+
 Helix? It's my favourite text editor. I have nothing against `vi` but like `hx` (Helix) more!
+
+### `doas`
 
 `doas`? It's a pretty neat (and KISS) replacement for `sudo`. It has far fewer features than `sudo`, which is supposed to make it more secure. Its origin is the OpenBSD project. For `doas`, I accepted the default configuration (where users in the `wheel` group are allowed to run commands as `root`):
 
 ```sh
 root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 ```
+
+### Periodic ZFS snapshotting
 
 `zfs-periodic` is a nifty tool for automatically creating ZFS snapshots. I decided to go with the following configuration here:
 
@@ -173,6 +183,8 @@ monthly_zfs_snapshot_pools:  -> zroot
 root@f0:~ # sysrc monthly_zfs_snapshot_keep=6
 monthly_zfs_snapshot_keep: 2 -> 6
 ```
+
+### Uptime tracking
 
 `uptimed`? I like to track my uptimes. This is how I configured the daemon:
 
@@ -207,9 +219,9 @@ This is how I track the uptimes for all of my host:
 
 => ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Global Uptime Records with Raku
 
-## Hardware check
+# Hardware check
 
-### Ethernet
+## Ethernet
 
 Works. Nothing eventful, really. It's a cheap Realtek chip, but it will do what it is supposed to do.
 
@@ -227,7 +239,7 @@ re0: flags=1008843<UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST,LOWER_UP> metric 0 mtu
         nd6 options=23<PERFORMNUD,ACCEPT_RTADV,AUTO_LINKLOCAL>
 ```
 
-### RAM
+## RAM
 
 All there:
 
@@ -237,7 +249,7 @@ hw.physmem: 16902905856
 
 ```
 
-### CPUs
+## CPUs
 
 They work:
 
@@ -249,7 +261,7 @@ dev.cpu.1.freq: 604
 dev.cpu.0.freq: 604
 ```
 
-### CPU throttling
+## CPU throttling
 
 With `powerd` running, CPU freq is dowthrottled when the box isn't jam-packed. To stress it a bit, I run `ubench` to see the frequencies being unthrottled again:
 
@@ -268,7 +280,7 @@ Idle, all three Beelinks plus the switch consumed 26.2W. But with `ubench` stres
 
 => ./f3s-kubernetes-with-freebsd-part-2/watt.jpg Idle consumption.
 
-## Conclusion
+# Conclusion
 
 The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.
 
