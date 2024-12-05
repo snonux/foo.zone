@@ -118,7 +118,7 @@ root@f0:~ # cat <<END >>/etc/hosts
 END
 ```
 
-## Additional packages after install
+## After install
 
 After that, I installed the following additional packages:
 
@@ -130,6 +130,8 @@ root@f0:~ # pkg install helix doas zfs-periodic uptimed
 
 Helix? It's my favourite text editor. I have nothing against `vi` but like `hx` (Helix) more!
 
+=> https://helix-editor.com/
+
 ### `doas`
 
 `doas`? It's a pretty neat (and KISS) replacement for `sudo`. It has far fewer features than `sudo`, which is supposed to make it more secure. Its origin is the OpenBSD project. For `doas`, I accepted the default configuration (where users in the `wheel` group are allowed to run commands as `root`):
@@ -137,6 +139,8 @@ Helix? It's my favourite text editor. I have nothing against `vi` but like `hx` 
 ```sh
 root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 ```
+
+=> https://man.openbsd.org/doas
 
 ### Periodic ZFS snapshotting
 
@@ -162,6 +166,8 @@ monthly_zfs_snapshot_pools:  -> zroot
 root@f0:~ # sysrc monthly_zfs_snapshot_keep=6
 monthly_zfs_snapshot_keep: 2 -> 6
 ```
+
+=> https://github.com/ross/zfs-periodic
 
 ### Uptime tracking
 
@@ -196,7 +202,8 @@ NewRec     0 days, 00:07:33 | since                     Mon Dec  2 12:21:44 2024
 
 This is how I track the uptimes for all of my host:
 
-=> ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Global Uptime Records with Raku
+=> ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Global Uptime Records with Raku-
+=> https://github.com/rpodgorny/uptimed
 
 # Hardware check
 

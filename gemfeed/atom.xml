@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-05T11:28:33+02:00</updated>
+    <updated>2024-12-05T11:31:52+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -48,7 +48,7 @@
 <li><a href='#installing-freebsd'>Installing FreeBSD</a></li>
 <li>⇢ <a href='#base-install'>Base install</a></li>
 <li>⇢ <a href='#latest-patch-level-and-customizing-etchosts'>Latest patch level and customizing <span class='inlinecode'>/etc/hosts</span></a></li>
-<li>⇢ <a href='#additional-packages-after-install'>Additional packages after install</a></li>
+<li>⇢ <a href='#after-install'>After install</a></li>
 <li>⇢ ⇢ <a href='#helix-editor'>Helix editor</a></li>
 <li>⇢ ⇢ <a href='#doas'><span class='inlinecode'>doas</span></a></li>
 <li>⇢ ⇢ <a href='#periodic-zfs-snapshotting'>Periodic ZFS snapshotting</a></li>
@@ -172,7 +172,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">END</font>
 </pre>
 <br />
-<h2 style='display: inline' id='additional-packages-after-install'>Additional packages after install</h2><br />
+<h2 style='display: inline' id='after-install'>After install</h2><br />
 <br />
 <span>After that, I installed the following additional packages:</span><br />
 <br />
@@ -187,6 +187,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Helix? It&#39;s my favourite text editor. I have nothing against <span class='inlinecode'>vi</span> but like <span class='inlinecode'>hx</span> (Helix) more!</span><br />
 <br />
+<a class='textlink' href='https://helix-editor.com/'>https://helix-editor.com/</a><br />
+<br />
 <h3 style='display: inline' id='doas'><span class='inlinecode'>doas</span></h3><br />
 <br />
 <span><span class='inlinecode'>doas</span>? It&#39;s a pretty neat (and KISS) replacement for <span class='inlinecode'>sudo</span>. It has far fewer features than <span class='inlinecode'>sudo</span>, which is supposed to make it more secure. Its origin is the OpenBSD project. For <span class='inlinecode'>doas</span>, I accepted the default configuration (where users in the <span class='inlinecode'>wheel</span> group are allowed to run commands as <span class='inlinecode'>root</span>):</span><br />
@@ -197,6 +199,8 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</font></i>
 </pre>
+<br />
+<a class='textlink' href='https://man.openbsd.org/doas'>https://man.openbsd.org/doas</a><br />
 <br />
 <h3 style='display: inline' id='periodic-zfs-snapshotting'>Periodic ZFS snapshotting</h3><br />
 <br />
@@ -225,6 +229,8 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_keep=6</font></i>
 <font color="#ff0000">monthly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">6</font>
 </pre>
+<br />
+<a class='textlink' href='https://github.com/ross/zfs-periodic'>https://github.com/ross/zfs-periodic</a><br />
 <br />
 <h3 style='display: inline' id='uptime-tracking'>Uptime tracking</h3><br />
 <br />
@@ -268,7 +274,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This is how I track the uptimes for all of my host:</span><br />
 <br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
+<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku-</a><br />
+<a class='textlink' href='https://github.com/rpodgorny/uptimed'>https://github.com/rpodgorny/uptimed</a><br />
 <br />
 <h1 style='display: inline' id='hardware-check'>Hardware check</h1><br />
 <br />
