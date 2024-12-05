@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-03T10:16:32+02:00</updated>
+    <updated>2024-12-05T11:28:33+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -41,22 +41,26 @@
 <br />
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a></li>
-<li>⇢ <a href='#deciding-on-the-hardware'>Deciding on the hardware</a></li>
-<li>⇢ ⇢ <a href='#not-arm-but-intel-n100-'>Not ARM but Intel N100 </a></li>
-<li>⇢ ⇢ <a href='#beelink-unboxing'>Beelink unboxing</a></li>
-<li>⇢ ⇢ <a href='#network-switch'>Network switch</a></li>
-<li>⇢ <a href='#installing-freebsd'>Installing FreeBSD</a></li>
-<li>⇢ ⇢ <a href='#base-install'>Base install</a></li>
-<li>⇢ ⇢ <a href='#latest-patch-level-and-customizing-etchosts'>Latest patch level and customizing <span class='inlinecode'>/etc/hosts</span></a></li>
-<li>⇢ ⇢ <a href='#additional-packages-after-install'>Additional packages after install</a></li>
-<li>⇢ <a href='#hardware-check'>Hardware check</a></li>
-<li>⇢ ⇢ <a href='#ethernet'>Ethernet</a></li>
-<li>⇢ ⇢ <a href='#ram'>RAM</a></li>
-<li>⇢ ⇢ <a href='#cpus'>CPUs</a></li>
-<li>⇢ ⇢ <a href='#cpu-throttling'>CPU throttling</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+<li><a href='#deciding-on-the-hardware'>Deciding on the hardware</a></li>
+<li>⇢ <a href='#not-arm-but-intel-n100-'>Not ARM but Intel N100 </a></li>
+<li>⇢ <a href='#beelink-unboxing'>Beelink unboxing</a></li>
+<li>⇢ <a href='#network-switch'>Network switch</a></li>
+<li><a href='#installing-freebsd'>Installing FreeBSD</a></li>
+<li>⇢ <a href='#base-install'>Base install</a></li>
+<li>⇢ <a href='#latest-patch-level-and-customizing-etchosts'>Latest patch level and customizing <span class='inlinecode'>/etc/hosts</span></a></li>
+<li>⇢ <a href='#additional-packages-after-install'>Additional packages after install</a></li>
+<li>⇢ ⇢ <a href='#helix-editor'>Helix editor</a></li>
+<li>⇢ ⇢ <a href='#doas'><span class='inlinecode'>doas</span></a></li>
+<li>⇢ ⇢ <a href='#periodic-zfs-snapshotting'>Periodic ZFS snapshotting</a></li>
+<li>⇢ ⇢ <a href='#uptime-tracking'>Uptime tracking</a></li>
+<li><a href='#hardware-check'>Hardware check</a></li>
+<li>⇢ <a href='#ethernet'>Ethernet</a></li>
+<li>⇢ <a href='#ram'>RAM</a></li>
+<li>⇢ <a href='#cpus'>CPUs</a></li>
+<li>⇢ <a href='#cpu-throttling'>CPU throttling</a></li>
+<li><a href='#conclusion'>Conclusion</a></li>
 </ul><br />
-<h2 style='display: inline' id='deciding-on-the-hardware'>Deciding on the hardware</h2><br />
+<h1 style='display: inline' id='deciding-on-the-hardware'>Deciding on the hardware</h1><br />
 <br />
 <span>Note that the OpenBSD VMs included in the f3s setup (which will be used later in this blog series for internet ingress - as you know from the first part of this blog series) are already there. These are virtual machines that I rent at OpenBSD Amsterdam and Hetzner.</span><br />
 <br />
@@ -67,7 +71,7 @@
 <br />
 <span>I&#39;ve been considering whether to use Raspberry Pis or look for alternatives. It turns out that complete N100-based mini-computers aren&#39;t much more expensive than Raspberry Pi 5s, and they don&#39;t require assembly. Furthermore, I like that they are AMD64 and not ARM-based, which increases compatibility with some applications (e.g., I might want to virtualize Windows (via bhyve) on one of those, though that&#39;s out of scope for this blog series).</span><br />
 <br />
-<h3 style='display: inline' id='not-arm-but-intel-n100-'>Not ARM but Intel N100 </h3><br />
+<h2 style='display: inline' id='not-arm-but-intel-n100-'>Not ARM but Intel N100 </h2><br />
 <br />
 <span>I needed something compact, efficient, and capable enough to handle the demands of a small-scale Kubernetes cluster and preferably something I don&#39;t have to assemble a lot. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.</span><br />
 <br />
@@ -93,7 +97,7 @@
 </ul><br />
 <span>I bought three (3) of them for the cluster I intend to build.</span><br />
 <br />
-<h3 style='display: inline' id='beelink-unboxing'>Beelink unboxing</h3><br />
+<h2 style='display: inline' id='beelink-unboxing'>Beelink unboxing</h2><br />
 <br />
 <span>Unboxing was uneventful. Every Beelink PC came with: </span><br />
 <br />
@@ -107,15 +111,15 @@
 </ul><br />
 <span>Overall, I love the small form factor.</span><br />
 <br />
-<h3 style='display: inline' id='network-switch'>Network switch</h3><br />
+<h2 style='display: inline' id='network-switch'>Network switch</h2><br />
 <br />
 <span>I went with the tp-link mini 5-port switch, as I had a spare one available. That switch will be plugged into my wall ethernet port, which connects directly to my fiber internet router with 100 Mbit/s down and 50 Mbit/s upload speed.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/switch.jpg'><img alt='Switch' title='Switch' src='./f3s-kubernetes-with-freebsd-part-2/switch.jpg' /></a><br />
 <br />
-<h2 style='display: inline' id='installing-freebsd'>Installing FreeBSD</h2><br />
+<h1 style='display: inline' id='installing-freebsd'>Installing FreeBSD</h1><br />
 <br />
-<h3 style='display: inline' id='base-install'>Base install</h3><br />
+<h2 style='display: inline' id='base-install'>Base install</h2><br />
 <br />
 <span>First, I downloaded the boot-only ISO of the latest FreeBSD release and dumped it on a USB stick via my Fedora laptop:</span><br />
 <br />
@@ -143,7 +147,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/f3s-collage2.jpg'><img alt='Beelink installation' title='Beelink installation' src='./f3s-kubernetes-with-freebsd-part-2/f3s-collage2.jpg' /></a><br />
 <br />
-<h3 style='display: inline' id='latest-patch-level-and-customizing-etchosts'>Latest patch level and customizing <span class='inlinecode'>/etc/hosts</span></h3><br />
+<h2 style='display: inline' id='latest-patch-level-and-customizing-etchosts'>Latest patch level and customizing <span class='inlinecode'>/etc/hosts</span></h2><br />
 <br />
 <span>After the first boot, I upgraded to the latest FreeBSD patch level as follows:</span><br />
 <br />
@@ -168,7 +172,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">END</font>
 </pre>
 <br />
-<h3 style='display: inline' id='additional-packages-after-install'>Additional packages after install</h3><br />
+<h2 style='display: inline' id='additional-packages-after-install'>Additional packages after install</h2><br />
 <br />
 <span>After that, I installed the following additional packages:</span><br />
 <br />
@@ -179,7 +183,11 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># pkg install helix doas zfs-periodic uptimed</font></i>
 </pre>
 <br />
+<h3 style='display: inline' id='helix-editor'>Helix editor</h3><br />
+<br />
 <span>Helix? It&#39;s my favourite text editor. I have nothing against <span class='inlinecode'>vi</span> but like <span class='inlinecode'>hx</span> (Helix) more!</span><br />
+<br />
+<h3 style='display: inline' id='doas'><span class='inlinecode'>doas</span></h3><br />
 <br />
 <span><span class='inlinecode'>doas</span>? It&#39;s a pretty neat (and KISS) replacement for <span class='inlinecode'>sudo</span>. It has far fewer features than <span class='inlinecode'>sudo</span>, which is supposed to make it more secure. Its origin is the OpenBSD project. For <span class='inlinecode'>doas</span>, I accepted the default configuration (where users in the <span class='inlinecode'>wheel</span> group are allowed to run commands as <span class='inlinecode'>root</span>):</span><br />
 <br />
@@ -189,6 +197,8 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</font></i>
 </pre>
+<br />
+<h3 style='display: inline' id='periodic-zfs-snapshotting'>Periodic ZFS snapshotting</h3><br />
 <br />
 <span><span class='inlinecode'>zfs-periodic</span> is a nifty tool for automatically creating ZFS snapshots. I decided to go with the following configuration here:</span><br />
 <br />
@@ -215,6 +225,8 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">root@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># sysrc monthly_zfs_snapshot_keep=6</font></i>
 <font color="#ff0000">monthly_zfs_snapshot_keep</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">6</font>
 </pre>
+<br />
+<h3 style='display: inline' id='uptime-tracking'>Uptime tracking</h3><br />
 <br />
 <span><span class='inlinecode'>uptimed</span>? I like to track my uptimes. This is how I configured the daemon:</span><br />
 <br />
@@ -258,9 +270,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
-<h2 style='display: inline' id='hardware-check'>Hardware check</h2><br />
+<h1 style='display: inline' id='hardware-check'>Hardware check</h1><br />
 <br />
-<h3 style='display: inline' id='ethernet'>Ethernet</h3><br />
+<h2 style='display: inline' id='ethernet'>Ethernet</h2><br />
 <br />
 <span>Works. Nothing eventful, really. It&#39;s a cheap Realtek chip, but it will do what it is supposed to do.</span><br />
 <br />
@@ -281,7 +293,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">        nd6 </font><font color="#ff0000">options</font><font color="#F3E651">=</font><font color="#bb00ff">23</font><font color="#F3E651">&lt;</font><font color="#ff0000">PERFORMNUD</font><font color="#F3E651">,</font><font color="#ff0000">ACCEPT_RTADV</font><font color="#F3E651">,</font><font color="#ff0000">AUTO_LINKLOCAL</font><font color="#F3E651">&gt;</font>
 </pre>
 <br />
-<h3 style='display: inline' id='ram'>RAM</h3><br />
+<h2 style='display: inline' id='ram'>RAM</h2><br />
 <br />
 <span>All there:</span><br />
 <br />
@@ -294,7 +306,7 @@ http://www.gnu.org/software/src-highlite -->
 
 </pre>
 <br />
-<h3 style='display: inline' id='cpus'>CPUs</h3><br />
+<h2 style='display: inline' id='cpus'>CPUs</h2><br />
 <br />
 <span>They work:</span><br />
 <br />
@@ -309,7 +321,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">dev</font><font color="#F3E651">.</font><font color="#ff0000">cpu</font><font color="#F3E651">.</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">freq</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">604</font>
 </pre>
 <br />
-<h3 style='display: inline' id='cpu-throttling'>CPU throttling</h3><br />
+<h2 style='display: inline' id='cpu-throttling'>CPU throttling</h2><br />
 <br />
 <span>With <span class='inlinecode'>powerd</span> running, CPU freq is dowthrottled when the box isn&#39;t jam-packed. To stress it a bit, I run <span class='inlinecode'>ubench</span> to see the frequencies being unthrottled again:</span><br />
 <br />
@@ -331,7 +343,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/watt.jpg'><img alt='Idle consumption.' title='Idle consumption.' src='./f3s-kubernetes-with-freebsd-part-2/watt.jpg' /></a><br />
 <br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<h1 style='display: inline' id='conclusion'>Conclusion</h1><br />
 <br />
 <span>The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.</span><br />
 <br />
