@@ -10,9 +10,7 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Plan
 * ↑ Order
 * ↑ Remove old one
-* Work project involving AWS / EKS
 * Gos (gosd/gos) / (Go)
-* ↑ Implement
 * ↑ Release v1.0.0 and blog post
 * Practice using the Helix modal editor 
 * "Joy on Demmand"
@@ -24,11 +22,13 @@ This is a "hidden" now site listing my personal projects.
 * "Der Riss"
 * ↑ Read it
 * "f3s"
-* ↑ The hardware and base install and blog post
-* ↑ k3s basic setup and blog post
 * ↑ ...
-* ↑ UPS... and Grafana dashboard
-
+* ↑ bhyve Rocky Linux VMs setup
+* ↑ Wireguard mesh network
+* ↑ Ingress via nsd, relayd, wireguard
+* ↑ 2nd SSD drive, FreeBSD HAST, HA NFS server
+* ↑ UPS setup and other hardware changes (e.g. relocating to behind the TV, use of wall mounted switch)
+* ↑ Periodic backups to AWS S3 Deep Glacier Archive
 
 ## Soon (???)
 
@@ -41,6 +41,12 @@ This is a "hidden" now site listing my personal projects.
 
 ## Done
 
+* "f3s"
+* ↑ The hardware and base install and blog post
+* ↑ k3s basic setup and blog post
+* Gos (gosd/gos) / (Go)
+* ↑ Implement
+* Work project involving AWS / EKS
 * "f3s"
 * ↑ Setting the stage blog post
 * Kitchen
