@@ -32,12 +32,16 @@ This is a "hidden" now site listing my personal projects.
 
 ## Soon (???)
 
+* Read Production Kubernetes (Kobo books)
 * Quicklogger: Larger text area
 * Quicklogger: Maybe tags-pre-selector + custom tag field
 * Read https://understandingdistributed.systems/
 * Bulgarian Language School for Citizenship test
 * Work on I/O Riot NG and towards 1.0 (Go, C, Raku)
 * Work through "Bash it out" challenges (Bash)
+* Home OpenBSD router? HA with CARP?
+* Pixel Fold with GrapheneOS setup?
+* Quest 2 VR headset?
 
 ## Done
 
