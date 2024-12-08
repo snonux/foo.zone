@@ -1,7 +1,7 @@
 # About
 
 * Name: Paul Buetow
-* Father, Husband, Computer tinkerer, Yogi, cat owner
+* Father, Husband, Computer tinkerer, Yogi, Science fiction lover, cat owner
 * Profession: Computerist -  Solving problems with computers that we wouldn't have without them
 * Current job: Site Reliability Engineer
 * E-Mail: `paul@nospam.buetow.org`
