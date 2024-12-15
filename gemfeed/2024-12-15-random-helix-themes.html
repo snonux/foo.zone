@@ -33,6 +33,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">theme_dir</font><font color="#F3E651">=</font><font color="#ff0000">/usr/share/helix/runtime/themes</font>
 <font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> -d </font><font color="#ff0000">$theme_dir</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
 <font color="#ff0000">        echo </font><font color="#bb00ff">"Helix theme dir $theme_dir doesnt exist"</font>
+<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">1</font>
 <font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
 
 <font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">config_file</font><font color="#F3E651">=</font><font color="#ff0000">$HELIX_CONFIG_DIR</font><font color="#ff0000">/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
