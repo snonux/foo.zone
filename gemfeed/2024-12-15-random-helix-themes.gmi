@@ -1,4 +1,4 @@
-# Random Helix themes
+# Random Helix Themes
 
 > Published at 2024-12-15T13:55:05+02:00
 
