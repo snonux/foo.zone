@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-15T13:59:52+02:00</updated>
+    <updated>2024-12-15T18:50:02+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
     <entry>
-        <title>Random Helix themes</title>
+        <title>Random Helix Themes</title>
         <link href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi" />
         <id>gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi</id>
         <updated>2024-12-15T13:55:05+02:00</updated>
@@ -18,7 +18,7 @@
         <summary>I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='random-helix-themes'>Random Helix themes</h1><br />
+                <h1 style='display: inline' id='random-helix-themes'>Random Helix Themes</h1><br />
 <br />
 <span class='quote'>Published at 2024-12-15T13:55:05+02:00</span><br />
 <br />
