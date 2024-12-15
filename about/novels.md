@@ -8,7 +8,7 @@
 * [⇢ ⇢ ⇢ Alastair Reynolds](#alastair-reynolds)
 * [⇢ ⇢ ⇢ Arthur C. Clarke](#arthur-c-clarke)
 * [⇢ ⇢ ⇢ Andreas Brandhorst (german)](#andreas-brandhorst-german)
-* [⇢ ⇢ David Reimer (german)](#david-reimer-german)
+* [⇢ ⇢ ⇢ David Reimer (german)](#david-reimer-german)
 * [⇢ ⇢ ⇢ Ian Banks](#ian-banks)
 * [⇢ ⇢ ⇢ Dan Simmons](#dan-simmons)
 * [⇢ ⇢ ⇢ Other authors](#other-authors)
@@ -93,7 +93,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 
-## David Reimer (german)
+### David Reimer (german)
 
 * 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), (Audiobook)
 * 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), (Audiobook)

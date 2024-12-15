@@ -4,6 +4,14 @@
 
 This is a "hidden" now site listing my personal projects.
 
+## Current pet projects (liimt 5)
+
+* `foostats.pl`
+* RCM
+* Gos
+* f3s
+* Kinesis Keyboard (clean it)
+
 ## Now (in progress)
 
 * Kitchen

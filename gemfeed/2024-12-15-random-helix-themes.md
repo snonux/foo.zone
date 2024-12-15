@@ -1,0 +1,57 @@
+# Random Helix themes
+
+> Published at 2024-12-15T13:55:05+02:00
+
+I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.
+
+[https://helix-editor.com/](https://helix-editor.com/)  
+
+So I put this into my `zsh` dotfiles (in some `editor.zsh.source` in my `~` directory):
+
+```sh
+export EDITOR=hx
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
+export HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::random_theme () {
+    # May add more theme search paths based on OS. This one is
+    # for Fedora Linux, but there is also MacOS, etc.
+    local -r theme_dir=/usr/share/helix/runtime/themes
+    if [ ! -d $theme_dir ]; then
+        echo "Helix theme dir $theme_dir doesnt exist"
+    fi
+
+    local -r config_file=$HELIX_CONFIG_DIR/config.toml
+    local -r random_theme="$(basename "$(ls $theme_dir \
+        | grep -v random.toml | grep .toml | sort -R \
+        | head -n 1)" | cut -d. -f1)"
+
+    sed "/^theme =/ { s/.*/theme = \"$random_theme\"/; }" \
+        $config_file > $config_file.tmp && 
+        mv $config_file.tmp $config_file
+}
+
+if [ -f $HELIX_CONFIG_DIR/config.toml ]; then
+    editor::helix::random_theme
+fi
+```
+
+So every time I open a new terminal or shell, `editor::helix::random_theme` gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.
+
+```sh
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n 1 ~/.config/helix/config.toml
+theme = "jellybeans"
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n 1 ~/.config/helix/config.toml
+theme = "rose_pine"
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n 1 ~/.config/helix/config.toml
+theme = "noctis"
+[paul@earth] ~ %
+```
+
+I hope you had some fun. E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  
