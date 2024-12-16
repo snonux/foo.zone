@@ -2,7 +2,7 @@
 
 << template::inline::toc
 
-# Mindfulness and Joy
+## Mindfulness and Joy
 
 Happiness is highly trainable in the same way that physical qualities such as strength and agility are. People who won a lot of money in the lottery or who were paralyzed in accidents eventually returned to their average level of happiness. With physical health and fitness, every single aspect of your life improves. You have more energy, suffer fewer sick days, and become more successful at your work. You look better in the mirror, you are confident, and you feel great. Meditation is, if you will, bicep curls for the mind. We can develop major mental skills like the ability to access joy on demand and, in doing so, improve every single aspect of our lives. 
 
