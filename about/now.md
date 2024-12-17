@@ -1,8 +1,7 @@
 # Now
 
-> Thid page was last updated at Wed  5 Jun 09:20:44 EEST 2024
-
 This is a "hidden" now site listing my personal projects.
+
 
 ## Now (in progress) 
 
@@ -15,11 +14,8 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Baby Kangoroo Kinesis receive and program and use
 * PET PROJCET 5/5 `foostats.pl`
 * ↑ Make reports work
+* ↑ Add a site stats section to foo.zone, e.g. foo.zone/stats/{uptime-records,site-stats}.gmi.tpl
 * ↑ Perl new features and `foostats.pl` blog post
-* Kitchen
-* ↑ Plan
-* ↑ Order
-* ↑ Remove old one
 * PET PROJECT 1/5 Gos (gosd/gos) / (Go)
 * ↑ Release v1.0.0 and blog post
 * Practice using the Helix modal editor 
@@ -41,6 +37,14 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Periodic backups to AWS S3 Deep Glacier Archive
 * PET PROJECT 3/5 RCM
 
+## Parked
+
+* Kitchen
+* ↑ Plan
+* ↑ Order
+* ↑ Remove old one
+* Work on I/O Riot NG and towards 1.0 (Go, C, Raku)
+
 ## Soon (???)
 
 * Quest 3 VR headset?
@@ -50,7 +54,6 @@ Maximum amount of concurrent pet projects is 5!
 * Quicklogger: Maybe tags-pre-selector + custom tag field
 * Read https://understandingdistributed.systems/
 * Bulgarian Language School for Citizenship test
-* Work on I/O Riot NG and towards 1.0 (Go, C, Raku)
 * Work through "Bash it out" challenges (Bash)
 * Home OpenBSD router? HA with CARP?
 * Pixel Fold with GrapheneOS setup?
