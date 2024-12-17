@@ -2,6 +2,13 @@
 
 This is a "hidden" now site listing my personal projects.
 
+## Table of Contents
+
+* [⇢ Now](#now)
+* [⇢ ⇢ Now (in progress) ](#now-in-progress-)
+* [⇢ ⇢ Parked](#parked)
+* [⇢ ⇢ Soon (???)](#soon-)
+* [⇢ ⇢ Done](#done)
 
 ## Now (in progress) 
 
