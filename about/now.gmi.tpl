@@ -2,6 +2,7 @@
 
 This is a "hidden" now site listing my personal projects.
 
+<< template::inline::index f3s
 
 ## Now (in progress) 
 
