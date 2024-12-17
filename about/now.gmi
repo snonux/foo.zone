@@ -4,21 +4,23 @@
 
 This is a "hidden" now site listing my personal projects.
 
-## Current pet projects (liimt 5)
+## Now (in progress) 
 
-* `foostats.pl`
-* RCM
-* Gos
-* f3s
-* Kinesis Keyboard (clean it)
+Maximum amount of concurrent pet projects is 5!
 
-## Now (in progress)
-
+* PET PROJECT 4/5 Keyboard errands
+* ↑ Clean Kinesis Keyboard
+* ↑ Program Glove80's Numpad
+* ↑ Other Glove80's programming
+* ↑ Baby Kangoroo Kinesis receive and program and use
+* PET PROJCET 5/5 `foostats.pl`
+* ↑ Make reports work
+* ↑ Perl new features and `foostats.pl` blog post
 * Kitchen
 * ↑ Plan
 * ↑ Order
 * ↑ Remove old one
-* Gos (gosd/gos) / (Go)
+* PET PROJECT 1/5 Gos (gosd/gos) / (Go)
 * ↑ Release v1.0.0 and blog post
 * Practice using the Helix modal editor 
 * "Joy on Demmand"
@@ -29,7 +31,7 @@ This is a "hidden" now site listing my personal projects.
 * ↑ Read it
 * "Der Riss"
 * ↑ Read it
-* "f3s"
+* PET PROJECT 2/5 "f3s"
 * ↑ ...
 * ↑ bhyve Rocky Linux VMs setup
 * ↑ Wireguard mesh network
@@ -37,9 +39,12 @@ This is a "hidden" now site listing my personal projects.
 * ↑ 2nd SSD drive, FreeBSD HAST, HA NFS server
 * ↑ UPS setup and other hardware changes (e.g. relocating to behind the TV, use of wall mounted switch)
 * ↑ Periodic backups to AWS S3 Deep Glacier Archive
+* PET PROJECT 3/5 RCM
 
 ## Soon (???)
 
+* Quest 3 VR headset?
+* HelixEditor: Edit remote files (e.g. auto-upload on save)
 * Read Production Kubernetes (Kobo books)
 * Quicklogger: Larger text area
 * Quicklogger: Maybe tags-pre-selector + custom tag field
@@ -49,7 +54,6 @@ This is a "hidden" now site listing my personal projects.
 * Work through "Bash it out" challenges (Bash)
 * Home OpenBSD router? HA with CARP?
 * Pixel Fold with GrapheneOS setup?
-* Quest 2 VR headset?
 
 ## Done
 
