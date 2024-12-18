@@ -32,13 +32,9 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Add a site stats section to foo.zone, e.g. foo.zone/stats/{uptime-records,site-stats}.gmi.tpl
 * ↑ Perl new features and `foostats.pl` blog post
 * Practice using the Helix modal editor 
-* "Joy on Demmand"
-* ↑ Put notes on foo.zone/notes
 * "Programming Ruby 3.3"
 * ↑ Read it
 * "Seeking SRE"
-* ↑ Read it
-* "Der Riss"
 * ↑ Read it
 
 ## Parked
@@ -64,6 +60,8 @@ Maximum amount of concurrent pet projects is 5!
 
 ## Done
 
+* "Joy on Demmand"
+* ↑ Put notes on foo.zone/notes
 * Keyboard errands
 * ↑ Clean Kinesis Keyboard
 * "f3s"
