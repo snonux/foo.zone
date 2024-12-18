@@ -1,6 +1,6 @@
 # Random Helix Themes
 
-> Published at 2024-12-15T13:55:05+02:00
+> Published at 2024-12-15T13:55:05+02:00; Last updated 2024-12-18
 
 I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.
 
@@ -51,6 +51,40 @@ theme = "rose_pine"
 [paul@earth] ~ % head -n 1 ~/.config/helix/config.toml
 theme = "noctis"
 [paul@earth] ~ %
+```
+
+## A better version
+
+> Update 2024-12-18: This is an improved version, which works cross platform (e.g., also on MacOS) and multiple theme directories:
+
+```sh
+export EDITOR=hx
+export VISUAL=$EDITOR
+export GIT_EDITOR=$EDITOR
+export HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::theme::get_random () {
+    for dir in $(hx --health \
+        | awk '/^Runtime directories/ { print $3 }' | tr ';' ' '); do
+        if [ -d $dir/themes ]; then
+            ls $dir/themes
+        fi
+    done | grep -F .toml | sort -R | head -n 1 | cut -d. -f1
+}
+
+editor::helix::theme::set () {
+    local -r theme="$1"; shift
+
+    local -r config_file=$HELIX_CONFIG_DIR/config.toml
+
+    sed "/^theme =/ { s/.*/theme = \"$theme\"/; }" \
+        $config_file > $config_file.tmp && 
+        mv $config_file.tmp $config_file
+}
+
+if [ -f $HELIX_CONFIG_DIR/config.toml ]; then
+    editor::helix::theme::set $(editor::helix::theme::get_random)
+fi
 ```
 
 I hope you had some fun. E-Mail your comments to `paul@nospam.buetow.org` :-)
