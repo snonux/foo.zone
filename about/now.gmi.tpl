@@ -8,8 +8,22 @@ This is a "hidden" now site listing my personal projects.
 
 Maximum amount of concurrent pet projects is 5!
 
+* PET PROJECT 1/5 Gos (gosd/gos) / (Go)
+* ↑ Release v1.0.0 and blog post
+* PET PROJECT 2/5 "f3s"
+* ↑ ...
+* ↑ bhyve Rocky Linux VMs setup
+* ↑ Wireguard mesh network
+* ↑ Ingress via nsd, relayd, wireguard
+* ↑ 2nd SSD drive, FreeBSD HAST, HA NFS server
+* ↑ UPS setup and other hardware changes (e.g. relocating to behind the TV, use of wall mounted switch)
+* ↑ Periodic backups to AWS S3 Deep Glacier Archive
+* PET PROJECT 3/5 RCM (Ruby Configuration Management)
+* ↑ Be able to configure my `.`-files and packages @ Fedora
+* ↑ Be able to configure my `.`-files and packages @ Darwin
+* ↑ Be able to configure f3s
+* ↑ Release `v1.0` and blog post
 * PET PROJECT 4/5 Keyboard errands
-* ↑ Clean Kinesis Keyboard
 * ↑ Program Glove80's Numpad
 * ↑ Other Glove80's programming
 * ↑ Baby Kangoroo Kinesis receive and program and use
@@ -17,8 +31,6 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Make reports work
 * ↑ Add a site stats section to foo.zone, e.g. foo.zone/stats/{uptime-records,site-stats}.gmi.tpl
 * ↑ Perl new features and `foostats.pl` blog post
-* PET PROJECT 1/5 Gos (gosd/gos) / (Go)
-* ↑ Release v1.0.0 and blog post
 * Practice using the Helix modal editor 
 * "Joy on Demmand"
 * ↑ Put notes on foo.zone/notes
@@ -28,15 +40,6 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Read it
 * "Der Riss"
 * ↑ Read it
-* PET PROJECT 2/5 "f3s"
-* ↑ ...
-* ↑ bhyve Rocky Linux VMs setup
-* ↑ Wireguard mesh network
-* ↑ Ingress via nsd, relayd, wireguard
-* ↑ 2nd SSD drive, FreeBSD HAST, HA NFS server
-* ↑ UPS setup and other hardware changes (e.g. relocating to behind the TV, use of wall mounted switch)
-* ↑ Periodic backups to AWS S3 Deep Glacier Archive
-* PET PROJECT 3/5 RCM
 
 ## Parked
 
@@ -61,6 +64,8 @@ Maximum amount of concurrent pet projects is 5!
 
 ## Done
 
+* Keyboard errands
+* ↑ Clean Kinesis Keyboard
 * "f3s"
 * ↑ The hardware and base install and blog post
 * ↑ k3s basic setup and blog post
