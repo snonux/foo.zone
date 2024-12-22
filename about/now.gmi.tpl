@@ -49,6 +49,7 @@ Maximum amount of concurrent pet projects is 5!
 
 * Quest 3 VR headset?
 * On *BSD, switch from git to got.
+* Tool to memorize directories I was in and to be able to fuzzy search and re-cd into them.
 * HelixEditor: Edit remote files (e.g. auto-upload on save)
 * GPD Pocket 4
 * ↑ Linux support a must.
