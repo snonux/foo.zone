@@ -48,7 +48,15 @@ Maximum amount of concurrent pet projects is 5!
 ## Soon (???)
 
 * Quest 3 VR headset?
+* GPD Pocket 4
+* ↑ Linux support a must. *BSD support a bonus.
+* ↑ Need to be able to sync my Taskwarrior tasks (task sync server with taskwarrior 4.0) across my personal devices.
 * HelixEditor: Edit remote files (e.g. auto-upload on save)
+* Switch to Fish shell?
+* ↑ Vi/Helix key bindings
+* ↑ Fuzzy search of the command history like in zsh
+* ↑ Need to be able to run all my helpers (zsh functions) for Linux and for Darwin
+* ↑ Go through fish shell scripting tutorial
 * Read Production Kubernetes (Kobo books)
 * Quicklogger: Larger text area
 * Quicklogger: Maybe tags-pre-selector + custom tag field
