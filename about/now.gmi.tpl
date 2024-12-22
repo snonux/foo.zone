@@ -48,10 +48,11 @@ Maximum amount of concurrent pet projects is 5!
 ## Soon (???)
 
 * Quest 3 VR headset?
-* GPD Pocket 4
-* ↑ Linux support a must. *BSD support a bonus.
-* ↑ Need to be able to sync my Taskwarrior tasks (task sync server with taskwarrior 4.0) across my personal devices.
 * HelixEditor: Edit remote files (e.g. auto-upload on save)
+* GPD Pocket 4
+* ↑ Linux support a must.
+* ↑ *BSD support a bonus.
+* ↑ Need to be able to sync my Taskwarrior tasks (task sync server with taskwarrior 4.0) across my personal devices.
 * Switch to Fish shell?
 * ↑ LSP support (w/ Helix)
 * ↑ Vi/Helix key bindings
