@@ -53,6 +53,7 @@ Maximum amount of concurrent pet projects is 5!
 * ↑ Need to be able to sync my Taskwarrior tasks (task sync server with taskwarrior 4.0) across my personal devices.
 * HelixEditor: Edit remote files (e.g. auto-upload on save)
 * Switch to Fish shell?
+* ↑ LSP support (w/ Helix)
 * ↑ Vi/Helix key bindings
 * ↑ Fuzzy search of the command history like in zsh
 * ↑ Need to be able to run all my helpers (zsh functions) for Linux and for Darwin
