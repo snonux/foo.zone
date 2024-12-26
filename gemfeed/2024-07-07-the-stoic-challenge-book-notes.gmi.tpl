@@ -18,7 +18,7 @@ These are my personal takeaways after reading "The Stoic Challenge:  A Philosoph
 
 << template::inline::toc
 
-## Got sets you up for a challenge
+## God sets you up for a challenge
 
 Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.
 
