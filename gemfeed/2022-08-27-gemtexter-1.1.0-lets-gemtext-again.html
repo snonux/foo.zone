@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<p class="header">
+View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi">Gemtext</a>
+</p>
 <h1 style='display: inline' id='gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
@@ -54,23 +57,23 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">check_dependencies ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># At least, Bash 5 is required</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">required_version</font><font color="#F3E651">=</font><font color="#bb00ff">5</font>
-<font color="#ff0000">    </font><font color="#ff0000">IFS</font><font color="#F3E651">=.</font><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -ra version </font><font color="#F3E651">&lt;&lt;&lt;</font><font color="#ff0000"> </font><font color="#bb00ff">"$BASH_VERSION"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"${version[0]}"</font><font color="#ff0000"> -lt </font><font color="#ff0000">$required_version</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">bash</font><font color="#ffffff">\"</font><font color="#bb00ff"> must be at least at major version $required_version!"</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<pre>check_dependencies () {
+    <i><font color="silver"># At least, Bash 5 is required</font></i>
+    <b><u><font color="#000000">local</font></u></b> -i required_version=<font color="#000000">5</font>
+    IFS=. <b><u><font color="#000000">read</font></u></b> -ra version &lt;&lt;&lt; <font color="#808080">"$BASH_VERSION"</font>
+    <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"${version[0]}"</font> -lt $required_version ]; <b><u><font color="#000000">then</font></u></b>
+        log ERROR <font color="#808080">"ERROR, </font>\"<font color="#808080">bash</font>\"<font color="#808080"> must be at least at major version $required_version!"</font>
+        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">2</font>
+    <b><u><font color="#000000">fi</font></u></b>
 
-<font color="#ff0000">    </font><i><font color="#ababab"># These must be the GNU versions of the commands</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> tool </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#ff0000">$DATE</font><font color="#ff0000"> </font><font color="#ff0000">$SED</font><font color="#ff0000"> </font><font color="#ff0000">$GREP</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> </font><font color="#ff0000">$tool</font><font color="#ff0000"> --version </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q GNU</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">            log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">$tool</font><font color="#ffffff">\"</font><font color="#bb00ff"> command is not the GNU version, please install!"</font>
-<font color="#ff0000">            </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
-<font color="#ff0000">}</font>
+    <i><font color="silver"># These must be the GNU versions of the commands</font></i>
+    <b><u><font color="#000000">for</font></u></b> tool <b><u><font color="#000000">in</font></u></b> $DATE $SED $GREP; <b><u><font color="#000000">do</font></u></b>
+        <b><u><font color="#000000">if</font></u></b> ! $tool --version | grep -q GNU; <b><u><font color="#000000">then</font></u></b>
+            log ERROR <font color="#808080">"ERROR, </font>\"<font color="#808080">$tool</font>\"<font color="#808080"> command is not the GNU version, please install!"</font>
+            <b><u><font color="#000000">exit</font></u></b> <font color="#000000">2</font>
+        <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">done</font></u></b>
+}
 </pre>
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
@@ -91,7 +94,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">.</font><font color="#ff0000">/gemtexter --generate </font><font color="#bb00ff">'.*hello.*'</font>
+<pre>./gemtexter --generate <font color="#808080">'.*hello.*'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</h3><br />
@@ -128,7 +131,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.0-stable</a> |
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
 <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>

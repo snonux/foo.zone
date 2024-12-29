@@ -8,6 +8,9 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<p class="header">
+View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi">Gemtext</a>
+</p>
 <h1 style='display: inline' id='gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
@@ -120,8 +123,8 @@ Blablabla...
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">PRE_GENERATE_HOOK</font><font color="#F3E651">=.</font><font color="#ff0000">/pre_generate_hook</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
-<b><font color="#ffffff">declare</font></b><font color="#ff0000"> -xr </font><font color="#ff0000">POST_PUBLISH_HOOK</font><font color="#F3E651">=.</font><font color="#ff0000">/post_publish_hook</font><font color="#F3E651">.</font><font color="#ff0000">sh</font>
+<pre><b><u><font color="#000000">declare</font></u></b> -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
+<b><u><font color="#000000">declare</font></u></b> -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 </pre>
 <br />
 <h2 style='display: inline' id='use-of-safer-bash-options'>Use of safer Bash options</h2><br />
@@ -138,10 +141,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> cat gemfeed</font><font color="#F3E651">/</font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-</font><font color="#bb00ff">26</font><font color="#ff0000">-title-here</font><font color="#F3E651">.</font><font color="#ff0000">gmi</font>
-<i><font color="#ababab"># Title here</font></i>
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
 
-<font color="#ff0000">The remaining content of the Gemtext file</font><font color="#F3E651">...</font>
+The remaining content of the Gemtext file...
 </pre>
 <br />
 <span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
@@ -150,12 +153,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> cat gemfeed</font><font color="#F3E651">/</font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-</font><font color="#bb00ff">26</font><font color="#ff0000">-title-here</font><font color="#F3E651">.</font><font color="#ff0000">gmi</font>
-<i><font color="#ababab"># Title here</font></i>
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
 
-<font color="#F3E651">&gt;</font><font color="#ff0000"> Published at </font><font color="#bb00ff">2023</font><font color="#ff0000">-</font><font color="#bb00ff">02</font><font color="#ff0000">-26T21</font><font color="#F3E651">:</font><font color="#bb00ff">43</font><font color="#F3E651">:</font><font color="#bb00ff">51</font><font color="#F3E651">+</font><font color="#bb00ff">01</font><font color="#F3E651">:</font><font color="#bb00ff">00</font>
+&gt; Published at <font color="#000000">2023</font>-<font color="#000000">02</font>-26T21:<font color="#000000">43</font>:<font color="#000000">51</font>+<font color="#000000">01</font>:<font color="#000000">00</font>
 
-<font color="#ff0000">The remaining content of the Gemtext file</font><font color="#F3E651">...</font>
+The remaining content of the Gemtext file...
 </pre>
 <br />
 <h2 style='display: inline' id='xmllint-support'>XMLLint support</h2><br />
@@ -179,7 +182,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.0-stable</a> |
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
 <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
