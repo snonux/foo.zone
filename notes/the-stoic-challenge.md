@@ -19,11 +19,11 @@ These are my personal takeaways after reading "The Stoic Challenge:  A Philosoph
 ## Table of Contents
 
 * [⇢ "The Stoic Challenge" book notes](#the-stoic-challenge-book-notes)
-* [⇢ ⇢ Got sets you up for a challenge](#got-sets-you-up-for-a-challenge)
+* [⇢ ⇢ God sets you up for a challenge](#god-sets-you-up-for-a-challenge)
 * [⇢ ⇢ Negative visualization](#negative-visualization)
 * [⇢ ⇢ Oh, nice trick, you stoic "god"! ;-)](#oh-nice-trick-you-stoic-god--)
 
-## Got sets you up for a challenge
+## God sets you up for a challenge
 
 Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.
 
