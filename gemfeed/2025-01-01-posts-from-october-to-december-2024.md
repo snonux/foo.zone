@@ -322,7 +322,6 @@ My plan for the New Year is not to start any new non-fiction books (or only a fe
 Other related posts:
 
 [2025-01-01 Posts from October to December 2024 (You are currently reading this)](./2025-01-01-posts-from-october-to-december-2024.md)  
-[20250101-posts-from Posts from October to December 2024](./20250101-posts-from-october-to-december-2024.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
