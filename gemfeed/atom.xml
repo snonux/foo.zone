@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-31T18:46:45+02:00</updated>
+    <updated>2024-12-31T18:48:23+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -139,7 +139,7 @@
 <br />
 <span>Until now, I wasn&#39;t aware, that Go is under a BSD-style license (3-clause as it seems). Neat. I don&#39;t know why, but I always was under the impression it would be MIT. <span class='inlinecode'>#bsd</span> <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://go.dev/LICENSE'>https://go.dev/LICENSE</a><br />
+<a class='textlink' href='https://go.dev/LICENSE'>go.dev/LICENSE</a><br />
 <br />
 <h3 style='display: inline' id='these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</h3><br />
 <br />
@@ -156,7 +156,7 @@
 <span>There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other <span class='inlinecode'>#OpenBSD</span> VM!</span><br />
 <br />
 <a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>foo.zone/gemf...-OpenBSD.html</a><br />
-<a class='textlink' href='https://openbsd.amsterdam/'>https://openbsd.amsterdam/</a><br />
+<a class='textlink' href='https://openbsd.amsterdam/'>openbsd.amsterdam/</a><br />
 <br />
 <h3 style='display: inline' id='one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</h3><br />
 <br />
@@ -174,13 +174,13 @@
 <br />
 <span>I like the idea of types in Ruby. Raku is supports that already, but in Ruby, you must specify the types in a separate .rbs file, which is, in my opinion, cumbersome and is a reason not to use it extensively for now. I believe there are efforts to embed the type information in the standard .rb files, and that the .rbs is just an experiment to see how types could work out without introducing changes into the core Ruby language itself right now? <span class='inlinecode'>#Ruby</span> <span class='inlinecode'>#RakuLang</span></span><br />
 <br />
-<a class='textlink' href='https://github.com/ruby/rbs'>https://github.com/ruby/rbs</a><br />
+<a class='textlink' href='https://github.com/ruby/rbs'>github.com/ruby/rbs</a><br />
 <br />
 <h3 style='display: inline' id='so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</h3><br />
 <br />
 <span>So, <span class='inlinecode'>#Haskell</span> is better suited for general purpose than <span class='inlinecode'>#Rust</span>? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:</span><br />
 <br />
-<a class='textlink' href='https://chrisdone.com/posts/rust/'>chrisdone.com...m/posts/rust/</a><br />
+<a class='textlink' href='https://chrisdone.com/posts/rust/'>chrisdone.com/posts/rust/</a><br />
 <br />
 <h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
 <br />
@@ -216,7 +216,7 @@
 <br />
 <span>Have put more Photos on - On my static photo sites - Generated with a <span class='inlinecode'>#bash</span> script</span><br />
 <br />
-<a class='textlink' href='https://irregular.ninja'>https://irregular.ninja</a><br />
+<a class='textlink' href='https://irregular.ninja'>irregular.ninja</a><br />
 <br />
 <h3 style='display: inline' id='in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</h3><br />
 <br />
@@ -238,7 +238,7 @@
 <br />
 <span>This is an interactive summary of the Go release, with a lot of examples utilising iterators in the slices and map packages. Love it! <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://antonz.org/go-1-23/'>https://antonz.org/go-1-23/</a><br />
+<a class='textlink' href='https://antonz.org/go-1-23/'>antonz.org/go-1-23/</a><br />
 <br />
 <h2 style='display: inline' id='december-2024'>December 2024</h2><br />
 <br />
@@ -264,7 +264,7 @@
 <br />
 <span>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the <span class='inlinecode'>#linux</span> kernel. Highly recommend!</span><br />
 <br />
-<a class='textlink' href='https://github.com/Netflix/bpftop'>github.com/Ne...etflix/bpftop</a><br />
+<a class='textlink' href='https://github.com/Netflix/bpftop'>github.com/Netflix/bpftop</a><br />
 <br />
 <h3 style='display: inline' id='89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</h3><br />
 <br />
@@ -299,7 +299,7 @@
 <span>This blog post is basically a rant against DataDog... Personally, I don&#39;t have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! <span class='inlinecode'>#dtail</span> <span class='inlinecode'>#logs</span> <span class='inlinecode'>#logmanagement</span></span><br />
 <br />
 <a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>crys.site/blo...int-the-weel/</a><br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
+<a class='textlink' href='https://dtail.dev'>dtail.dev</a><br />
 <br />
 <h3 style='display: inline' id='quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</h3><br />
 <br />
@@ -329,7 +329,7 @@
 <br />
 <span>I just finished reading all chapters of CPU land: ... not claiming to remember every detail, but it is a great refresher how CPUs and operating systems actually work under the hood when you execute a program, which we tend to forget in our higher abstraction world. I liked the "story" and some of the jokes along the way! Size wise, it is pretty digestable (not talking about books, but only 7 web articles/chapters)! <span class='inlinecode'>#cpu</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#unix</span> <span class='inlinecode'>#kernel</span> <span class='inlinecode'>#macOS</span></span><br />
 <br />
-<a class='textlink' href='https://cpu.land/'>https://cpu.land/</a><br />
+<a class='textlink' href='https://cpu.land/'>cpu.land/</a><br />
 <br />
 <h3 style='display: inline' id='indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</h3><br />
 <br />
