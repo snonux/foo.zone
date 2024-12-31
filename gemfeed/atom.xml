@@ -1,11 +1,349 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-29T23:48:55+02:00</updated>
+    <updated>2024-12-31T18:09:58+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Posts from October to December 2024</title>
+        <link href="https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html" />
+        <id>https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html</id>
+        <updated>2024-12-31T18:09:58+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Happy new year!</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='posts-from-october-to-december-2024'>Posts from October to December 2024</h1><br />
+<br />
+<span>Happy new year!</span><br />
+<br />
+<span>These are my social media posts from the last three months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </span><br />
+<br />
+<span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
+<br />
+<a class='textlink' href='../about/index.html'>My about page</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#posts-from-october-to-december-2024'>Posts from October to December 2024</a></li>
+<li>⇢ <a href='#october-2024'>October 2024</a></li>
+<li>⇢ ⇢ <a href='#first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</a></li>
+<li>⇢ ⇢ <a href='#reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</a></li>
+<li>⇢ ⇢ <a href='#fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</a></li>
+<li>⇢ ⇢ <a href='#i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</a></li>
+<li>⇢ ⇢ <a href='#little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</a></li>
+<li>⇢ ⇢ <a href='#reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</a></li>
+<li>⇢ ⇢ <a href='#the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</a></li>
+<li>⇢ <a href='#november-2024'>November 2024</a></li>
+<li>⇢ ⇢ <a href='#i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</a></li>
+<li>⇢ ⇢ <a href='#until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</a></li>
+<li>⇢ ⇢ <a href='#these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</a></li>
+<li>⇢ ⇢ <a href='#looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</a></li>
+<li>⇢ ⇢ <a href='#there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</a></li>
+<li>⇢ ⇢ <a href='#one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</a></li>
+<li>⇢ ⇢ <a href='#agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</a></li>
+<li>⇢ ⇢ <a href='#i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</a></li>
+<li>⇢ ⇢ <a href='#so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</a></li>
+<li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
+<li>⇢ ⇢ <a href='#revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</a></li>
+<li>⇢ ⇢ <a href='#wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</a></li>
+<li>⇢ ⇢ <a href='#eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</a></li>
+<li>⇢ ⇢ <a href='#have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</a></li>
+<li>⇢ ⇢ <a href='#in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</a></li>
+<li>⇢ ⇢ <a href='#myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</a></li>
+<li>⇢ ⇢ <a href='#feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</a></li>
+<li>⇢ <a href='#december-2024'>December 2024</a></li>
+<li>⇢ ⇢ <a href='#thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</a></li>
+<li>⇢ ⇢ <a href='#my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</a></li>
+<li>⇢ ⇢ <a href='#very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</a></li>
+<li>⇢ ⇢ <a href='#for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</a></li>
+<li>⇢ ⇢ <a href='#89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</a></li>
+<li>⇢ ⇢ <a href='#i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</a></li>
+<li>⇢ ⇢ <a href='#agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</a></li>
+<li>⇢ ⇢ <a href='#plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</a></li>
+<li>⇢ ⇢ <a href='#this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</a></li>
+<li>⇢ ⇢ <a href='#quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</a></li>
+<li>⇢ ⇢ <a href='#example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</a></li>
+<li>⇢ ⇢ <a href='#llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</a></li>
+<li>⇢ ⇢ <a href='#excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</a></li>
+<li>⇢ ⇢ <a href='#i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</a></li>
+<li>⇢ ⇢ <a href='#indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</a></li>
+<li>⇢ ⇢ <a href='#it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</a></li>
+<li>⇢ ⇢ <a href='#my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</a></li>
+</ul><br />
+<h2 style='display: inline' id='october-2024'>October 2024</h2><br />
+<br />
+<h3 style='display: inline' id='first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</h3><br />
+<br />
+<span>First on-call experience in a startup. Doesn&#39;t sound a lot of fun! But the lessons were learned! <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/lessons-from-my-first-on-call/'>https://ntietz.com/blog/lessons-from-my-first-on-call/</a><br />
+<br />
+<h3 style='display: inline' id='reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</h3><br />
+<br />
+<span>Reviewing your own PR or MR before asking others to review it makes a lot of sense. Have seen so many silly mistakes which would have been avoided. Saving time for the real reviewer.</span><br />
+<br />
+<a class='textlink' href='https://www.jvt.me/posts/2019/01/12/self-code-review/'>https://www.jvt.me/posts/2019/01/12/self-code-review/</a><br />
+<br />
+<h3 style='display: inline' id='fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</h3><br />
+<br />
+<span>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that a defer object can either be heap or stack allocated. And there are some rules for inlining, too.</span><br />
+<br />
+<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>https://victoriametrics.com/blog/defer-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</h3><br />
+<br />
+<span>I have been in incidents. Understandably, everyone wants the issue to be resolved as quickly and others want to know how long TTR will be. IMHO, providing no estimates at all is no solution either. So maybe give a rough estimate but clearly communicate that the estimate is rough and that X, Y, and Z can interfere, meaning there is a chance it will take longer to resolve the incident. Just my thought. What&#39;s yours?</span><br />
+<br />
+<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>https://firehydrant.com/blog/hot-...de-incident-resolution-estimates/</a><br />
+<br />
+<h3 style='display: inline' id='little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</h3><br />
+<br />
+<span>Little tips using strings in <span class='inlinecode'>#golang</span> and I personally think one must look more into the std lib (not just for strings, also for slices, maps,...), there are tons of useful helper functions.</span><br />
+<br />
+<a class='textlink' href='https://www.calhoun.io/6-tips-for-using-strings-in-go/'>https://www.calhoun.io/6-tips-for-using-strings-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</h3><br />
+<br />
+<span>Reading this post about <span class='inlinecode'>#rust</span> (especially the first part), I think I made a good choice in deciding to dive into <span class='inlinecode'>#golang</span> instead. There was a point where I wanted to learn a new programming language, and Rust was on my list of choices. I think the Go project does a much better job of deciding what goes into the language and how. What are your thoughts?</span><br />
+<br />
+<a class='textlink' href='https://josephg.com/blog/rewriting-rust/'>https://josephg.com/blog/rewriting-rust/</a><br />
+<br />
+<h3 style='display: inline' id='the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</h3><br />
+<br />
+<span>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... automatically repairing and healing services helping to reduce manual toil work. Runbooks and scripts are only the first step, followed by a fully blown service written in Go. Could be useful, but IMHO why not rather address the root causes of the manual toil work? <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/'>https://blog.cloudflare.com/nl-nl...latform-resilience-at-cloudflare/</a><br />
+<br />
+<h2 style='display: inline' id='november-2024'>November 2024</h2><br />
+<br />
+<h3 style='display: inline' id='i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</h3><br />
+<br />
+<span>I just became a Silver Patreon for OSnews. What is OSnews? It is an independent news site about IT. It is slightly independent and, at times, alternative. I have enjoyed it since my early student days. This one and other projects I financially support are listed here:</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-09-07-projects-i-support.html'>https://foo.zone/gemfeed/2024-09-07-projects-i-support.html</a><br />
+<br />
+<h3 style='display: inline' id='until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</h3><br />
+<br />
+<span>Until now, I wasn&#39;t aware, that Go is under a BSD-style license (3-clause as it seems). Neat. I don&#39;t know why, but I always was under the impression it would be MIT. <span class='inlinecode'>#bsd</span> <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://go.dev/LICENSE'>https://go.dev/LICENSE</a><br />
+<br />
+<h3 style='display: inline' id='these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</h3><br />
+<br />
+<span>These are some book notes from "Staff Engineer" – there is some really good insight into what is expected from a Staff Engineer and beyond in the industry. I wish I had read the book earlier.</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html'>https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html</a><br />
+<br />
+<h3 style='display: inline' id='looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</h3><br />
+<br />
+<span>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much following the Unix way of doing things. It has many tools, but each tool has its own single purpose: DNS, scheduling, container runtime, various controllers, networking, observability, alerting, and more services in the control plane. Everything is managed by different services or plugins, mostly running in their dedicated pods. They don&#39;t communicate through pipes, but network sockets, though. <span class='inlinecode'>#k8s</span></span><br />
+<br />
+<h3 style='display: inline' id='there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</h3><br />
+<br />
+<span>There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other <span class='inlinecode'>#OpenBSD</span> VM!</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>https://foo.zone/gemfeed/2024-04-...gh-availability-with-OpenBSD.html</a><br />
+<a class='textlink' href='https://openbsd.amsterdam/'>https://openbsd.amsterdam/</a><br />
+<br />
+<h3 style='display: inline' id='one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</h3><br />
+<br />
+<span>One of the more confusing parts in Go, nil values vs nil errors: <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html'>https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html</a><br />
+<br />
+<h3 style='display: inline' id='agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</h3><br />
+<br />
+<span>Agreeably, writing down with Diagrams helps you to think things more through. And keeps others on the same page. Only worth for projects from a certain size, IMHO.</span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/reasons-to-write-design-docs/'>https://ntietz.com/blog/reasons-to-write-design-docs/</a><br />
+<br />
+<h3 style='display: inline' id='i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</h3><br />
+<br />
+<span>I like the idea of types in Ruby. Raku is supports that already, but in Ruby, you must specify the types in a separate .rbs file, which is, in my opinion, cumbersome and is a reason not to use it extensively for now. I believe there are efforts to embed the type information in the standard .rb files, and that the .rbs is just an experiment to see how types could work out without introducing changes into the core Ruby language itself right now? <span class='inlinecode'>#Ruby</span> <span class='inlinecode'>#RakuLang</span></span><br />
+<br />
+<a class='textlink' href='https://github.com/ruby/rbs'>https://github.com/ruby/rbs</a><br />
+<br />
+<h3 style='display: inline' id='so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</h3><br />
+<br />
+<span>So, <span class='inlinecode'>#Haskell</span> is better suited for general purpose than <span class='inlinecode'>#Rust</span>? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:</span><br />
+<br />
+<a class='textlink' href='https://chrisdone.com/posts/rust/'>https://chrisdone.com/posts/rust/</a><br />
+<br />
+<h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
+<br />
+<span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>https://www.calhoun.io/using-func...instead-of-method-chaining-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
+<br />
+<span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kuberbetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#self</span>-hosting <span class='inlinecode'>#homelab</span> <span class='inlinecode'>#home</span>-lab</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>https://foo.zone/gemfeed/2024-11-...bernetes-with-freebsd-part-1.html</a><br />
+<br />
+<h3 style='display: inline' id='wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</h3><br />
+<br />
+<span>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should switch now personally ...</span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/'>https://www.osnews.com/story/1411...cy-for-open-web-privacy-and-more/</a><br />
+<br />
+<h3 style='display: inline' id='eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</h3><br />
+<br />
+<span>eks-node-viewer is a nifty tool, showing the compute nodes currently in use in the <span class='inlinecode'>#EKS</span> cluster. especially useful when dynamically allocating nodes with <span class='inlinecode'>#karpenter</span> or auto scaling groups.</span><br />
+<br />
+<a class='textlink' href='https://github.com/awslabs/eks-node-viewer'>https://github.com/awslabs/eks-node-viewer</a><br />
+<br />
+<h3 style='display: inline' id='have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</h3><br />
+<br />
+<span>Have put more Photos on - On my static photo sites - Generated with a <span class='inlinecode'>#bash</span> script</span><br />
+<br />
+<a class='textlink' href='https://irregular.ninja'>https://irregular.ninja</a><br />
+<br />
+<h3 style='display: inline' id='in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</h3><br />
+<br />
+<span>In Go, passing pointers are not automatically faster than values. Pointers often force the memory to be allocated on the heap, adding GC overhad. With values, Go can determine whether to put the memory on the stack instead. But with large structs/objects (how you want to call them) or if you want to modify state, then pointers are the semantic to use. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://blog.boot.dev/golang/pointers-faster-than-values/'>https://blog.boot.dev/golang/pointers-faster-than-values/</a><br />
+<br />
+<h3 style='display: inline' id='myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</h3><br />
+<br />
+<span>Myself being part of an on-call rotations over my whole professional life, just have learned this lesson "Tell people who are new to on-call: Just have fun" :-) This is a neat blog post to read:</span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/what-i-tell-people-new-to-oncall/'>https://ntietz.com/blog/what-i-tell-people-new-to-oncall/</a><br />
+<br />
+<h3 style='display: inline' id='feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</h3><br />
+<br />
+<span>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again after a while. I am implementing a log parser for generating site stats of my personal homepage! :-) @Perl</span><br />
+<br />
+<h3 style='display: inline' id='this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</h3><br />
+<br />
+<span>This is an interactive summary of the Go release, with a lot of examples utilising iterators in the slices and map packages. Love it! <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://antonz.org/go-1-23/'>https://antonz.org/go-1-23/</a><br />
+<br />
+<h2 style='display: inline' id='december-2024'>December 2024</h2><br />
+<br />
+<h3 style='display: inline' id='thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</h3><br />
+<br />
+<span>Thats unexpected, you cant remove a NaN key from a map without clearing it! <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>https://unexpected-go.com/you-can...om-a-map-without-clearing-it.html</a><br />
+<br />
+<h3 style='display: inline' id='my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</h3><br />
+<br />
+<span>My second blog post about revamping my home lab a little bit just hit the net. <span class='inlinecode'>#FreeBSD</span> <span class='inlinecode'>#ZFS</span> <span class='inlinecode'>#n100</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span></span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>https://foo.zone/gemfeed/2024-12-...bernetes-with-freebsd-part-2.html</a><br />
+<br />
+<h3 style='display: inline' id='very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</h3><br />
+<br />
+<span>Very insightful article about tech hiring in the age of LLMs. As an interviewer, I have experienced some of the scrnarios already first hand...</span><br />
+<br />
+<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring'>https://newsletter.pragmaticengin...m/p/how-genai-changes-tech-hiring</a><br />
+<br />
+<h3 style='display: inline' id='for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</h3><br />
+<br />
+<span>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the <span class='inlinecode'>#linux</span> kernel. Highly recommend!</span><br />
+<br />
+<a class='textlink' href='https://github.com/Netflix/bpftop'>https://github.com/Netflix/bpftop</a><br />
+<br />
+<h3 style='display: inline' id='89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</h3><br />
+<br />
+<span>89 things he/she knows about Git commits is a neat list of <span class='inlinecode'>#Git</span> wisdoms</span><br />
+<br />
+<a class='textlink' href='https://www.jvt.me/posts/2024/07/12/things-know-commits/'>https://www.jvt.me/posts/2024/07/12/things-know-commits/</a><br />
+<br />
+<h3 style='display: inline' id='i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</h3><br />
+<br />
+<span>I found that working on multiple side projects concurrently is better than concentrating on just one. This seems inefficient at first, but whenever you tend to lose motivation, you can temporarily switch to another one with full élan. However, remember to stop starting and start finishing. This doesn&#39;t mean you should be working on 10+ (and a growing list of) side projects concurrently! Select your projects and commit to finishing them before starting the next thing. For example, my current limit of concurrent side projects is around five.</span><br />
+<br />
+<h3 style='display: inline' id='agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</h3><br />
+<br />
+<span>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also add <span class='inlinecode'>#RakuLang</span> and <span class='inlinecode'>#Perl</span> @Perl to the list of languages that are great for shell scripts - "Making Easy Things Easy and Hard Things Possible"</span><br />
+<br />
+<a class='textlink' href='https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/'>https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/</a><br />
+<br />
+<h3 style='display: inline' id='plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</h3><br />
+<br />
+<span>Plan9 assembly format in Go, but wait, it&#39;s not the Operating System Plan9! <span class='inlinecode'>#golang</span> <span class='inlinecode'>#rabbithole</span></span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/'>https://www.osnews.com/story/1409...emo-speeding-up-calculations-450/</a><br />
+<br />
+<h3 style='display: inline' id='this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</h3><br />
+<br />
+<span>This is a neat blog post about the Helix text editor, to which I personally switched around a year ago (from NeoVim). I should blog about my experience as well. To summarize: I am using it together with the terminal multiplexer <span class='inlinecode'>#tmux</span>. It doesn&#39;t bother me that Helix is purely terminal-based and therefore everything has to be in the same font. <span class='inlinecode'>#HelixEditor</span></span><br />
+<br />
+<a class='textlink' href='https://jonathan-frere.com/posts/helix/'>https://jonathan-frere.com/posts/helix/</a><br />
+<br />
+<h3 style='display: inline' id='this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</h3><br />
+<br />
+<span>This blog post is basically a rant against DataDog... Personally, I don&#39;t have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! <span class='inlinecode'>#dtail</span> <span class='inlinecode'>#logs</span> <span class='inlinecode'>#logmanagement</span></span><br />
+<br />
+<a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>https://crys.site/blog/2024/reinventint-the-weel/</a><br />
+<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
+<br />
+<h3 style='display: inline' id='quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</h3><br />
+<br />
+<span>Quick trick to get Helix themes selected randomly <span class='inlinecode'>#HelixEditor</span></span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html'>https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html</a><br />
+<br />
+<h3 style='display: inline' id='example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</h3><br />
+<br />
+<span>Example where complexity attacks you from behind <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#OpenAI</span></span><br />
+<br />
+<a class='textlink' href='https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/'>https://surfingcomplexity.blog/20...-openai-public-incident-write-up/</a><br />
+<br />
+<h3 style='display: inline' id='llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</h3><br />
+<br />
+<span>LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generating Ansible, some uses cases are there. Wouldn&#39;t trust it fully, though.</span><br />
+<br />
+<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI</a><br />
+<br />
+<h3 style='display: inline' id='excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</h3><br />
+<br />
+<span>Excellent article about your dream Product Manager: Why every software team needs a product manager to thrive via @wallabagapp</span><br />
+<br />
+<a class='textlink' href='https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery'>https://testdouble.com/insights/w...elerate-improve-software-delivery</a><br />
+<br />
+<h3 style='display: inline' id='i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</h3><br />
+<br />
+<span>I just finished reading all chapters of CPU land: ... not claiming to remember every detail, but it is a great refresher how CPUs and operating systems actually work under the hood when you execute a program, which we tend to forget in our higher abstraction world. I liked the "story" and some of the jokes along the way! Size wise, it is pretty digestable (not talking about books, but only 7 web articles/chapters)! <span class='inlinecode'>#cpu</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#unix</span> <span class='inlinecode'>#kernel</span> <span class='inlinecode'>#macOS</span></span><br />
+<br />
+<a class='textlink' href='https://cpu.land/'>https://cpu.land/</a><br />
+<br />
+<h3 style='display: inline' id='indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</h3><br />
+<br />
+<span>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/'>https://biriukov.dev/docs/resolve...vers-and-dual-stack-applications/</a><br />
+<br />
+<h3 style='display: inline' id='it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</h3><br />
+<br />
+<span>It&#39;s the small things, which make Unix like systems, like GNU/Linux, interesting. Didn&#39;t know about this <span class='inlinecode'>#GNU</span> <span class='inlinecode'>#Tar</span> behaviour yet:</span><br />
+<br />
+<a class='textlink' href='https://xeiaso.net/notes/2024/pop-quiz-tar/'>https://xeiaso.net/notes/2024/pop-quiz-tar/</a><br />
+<br />
+<h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
+<br />
+<span>My plan for the New Year is not to start any new non-fiction books (or only a few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Random Helix Themes</title>
         <link href="https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html" />
@@ -8816,182 +9154,6 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>Welcome to the Geminispae</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Perl is still a great choice</title>
-        <link href="https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html" />
-        <id>https://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.html</id>
-        <updated>2022-05-27T07:50:12+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. 'Perl' is the name of the language and `perl` the name of the interpreter or the interpreter command.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='perl-is-still-a-great-choice'>Perl is still a great choice</h1><br />
-<br />
-<span class='quote'>Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28</span><br />
-<br />
-<span>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it&#39;s not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class='inlinecode'>perl</span> the name of the interpreter or the interpreter command.</span><br />
-<br />
-<span>Unfortunately (it makes me sad), Perl&#39;s popularity has been declining over the last years as Google trends shows:</span><br />
-<br />
-<a href='./perl-is-still-a-great-choice/googletrendsperl.jpg'><img src='./perl-is-still-a-great-choice/googletrendsperl.jpg' /></a><br />
-<br />
-<span>So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:</span><br />
-<br />
-<ul>
-<li>Perl is a write-only language. Nobody can read Perl code.</li>
-<li>Perl? Isn&#39;t it abandoned? It&#39;s still at version 5!</li>
-<li>Why use Perl as there are better alternatives?</li>
-<li>Why all the sigils? It looks like an exploding ASCII factory!!</li>
-</ul><br />
-<a href='./perl-is-still-a-great-choice/regular_expressions.png'><img alt='Comic source: XKCD' title='Comic source: XKCD' src='./perl-is-still-a-great-choice/regular_expressions.png' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#perl-is-still-a-great-choice'>Perl is still a great choice</a></li>
-<li>⇢ <a href='#write-only-language'>Write-only language</a></li>
-<li>⇢ <a href='#is-perl-abandoned'>Is Perl abandoned?</a></li>
-<li>⇢ <a href='#why-use-perl-as-there-are-better-alternatives'>Why use Perl as there are better alternatives?</a></li>
-<li>⇢ <a href='#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory'>Why all the sigils? It looks like an exploding ASCII factory!!</a></li>
-<li>⇢ <a href='#where-do-i-personally-still-use-perl'>Where do I personally still use perl?</a></li>
-</ul><br />
-<h2 style='display: inline' id='write-only-language'>Write-only language</h2><br />
-<br />
-<span>Is Perl really a write-only language? You have to understand that Perl 5 was released in 1994 (28 years ago as of this writing) and when we refer to Perl we usually mean Perl 5. That&#39;s many years, and there are many old scripts not following the modern Perl best practices (as they didn&#39;t exist yet). So yes, legacy scripts may be difficult to read. Japanese may be difficult to read too if you don&#39;t know Japanese, though.</span><br />
-<br />
-<span>To come back to the question: Is Perl a write-only language? I don&#39;t think so. Like in any other language, you have to apply best practices in order to keep your code maintainable. Some other programming languages enforce best practices, but that makes these languages less expressive. Perl follows the principles "there is more than one way to do it" (aka TIMTOWDI) and "making easy things easy and hard things possible".</span><br />
-<br />
-<span>Perl gives the programmer more flexibility in how to do things, and this results in a stronger learning curve than for lesser expressive languages like for example Go or Python. But, like in everything in life, common sense has to be applied. You should not take TIMTOWDI to the extreme in a production piece of code. In my personal opinion, it is also more satisfying to program in an expressive language.</span><br />
-<br />
-<span>Some good books on "good" Perl I can recommend are:</span><br />
-<br />
-<a class='textlink' href='http://modernperlbooks.com'>Modern Perl</a><br />
-<a class='textlink' href='https://hop.perl.plover.com'>Higher Order Perl</a><br />
-<br />
-<span>Due to Perl&#39;s expressiveness you will find a lot of obscure code in the interweb in form of obfuscation, fancy email signatures (JAPHs), art, polyglots and even poetry in Perl syntax. But that&#39;s not what you will find in production code. That&#39;s only people having fun with the language which is different to "getting things done". The expressiveness is a bonus. It makes the Perl programmers love Perl.</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Just_another_Perl_hacker'>JAPH</a><br />
-<a class='textlink' href='http://www.cpan.org/misc/japh'>http://www.cpan.org/misc/japh</a><br />
-<a class='textlink' href='https://www.perlmonks.org/index.pl?next=20;node_id=1590'>Perl Poetry</a><br />
-<br />
-<span>Even I personally have written some poetry in Perl and experimented with a polyglot script:</span><br />
-<br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>My very own Perl Poetry</a><br />
-<a class='textlink' href='./2014-03-24-the-fibonacci.pl.c-polyglot.html'>A Perl-Raku-C polyglot generating the Fibonacci sequence</a><br />
-<br />
-<span>This all doesn&#39;t mean that you can&#39;t "get things done" with Perl. Quite the opposite is the case. Perl is a very pragmatic programming language and is suitable very well for rapid prototyping and any kind of small to medium-sized scripts and programs. You can write large enterprise scale application in Perl too, but that wasn&#39;t the original intend of why Perl was invented (more on that later).</span><br />
-<br />
-<h2 style='display: inline' id='is-perl-abandoned'>Is Perl abandoned?</h2><br />
-<br />
-<span>As I pointed out in the previous section, Perl 5 is around for quite some time without any new major version released. This can lead to the impression that development is not progressing and that the project is abandoned. Nothing can be further from the truth. Perl 5.000 was released in 1994 and the latest version (as of this writing) Perl 5.34.1 was released two months ago in 2022. You can check the version history on Wikipedia. You will notice releases being made regularly:</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Perl_5_version_history'>Perl 5 version history</a><br />
-<br />
-<span>As you can see, Perl 5 is under active development. I can also recommend to have a look at the following book, it summarizes all new Perl features which showed up after Perl v5.10:</span><br />
-<br />
-<a class='textlink' href='https://perlschool.com/books/perl-new-features/'>Perl New Features by Joshua McAdams and brian d foy</a><br />
-<br />
-<span>Actually, Perl is a family of two high-level, general-purpose, interpreted, dynamic programming languages. "Perl" refers to Perl 5, but from 2000 to 2019 it also referred to its redesigned "sister language", Perl 6, before the latter&#39;s name was officially changed to Raku in October 2019 as the differences between Perl 5 and Perl 6 were too groundbreaking. Raku would be a different topic (mostly out of scope of this blog article) but I at least wanted it to mention here. In my opinion, Raku is the "most powerful" programming language out there (I recently started learning it and intend to use it for some of my future personal programming projects):</span><br />
-<br />
-<a class='textlink' href='https://raku.org'>The Raku Programming Language</a><br />
-<br />
-<span>So it means that Perl and Raku now exist in parallel. They influence each other, but are different programming languages now. So why not just all use Raku instead of Perl? There are still a couple of reasons of why to choose Perl over Raku:</span><br />
-<br />
-<ul>
-<li>Many programmers already know Perl and many scripts are already written in Perl. It&#39;s possible to call Perl code from Raku (either inline or as a library) and it is also possible to auto-convert Perl code into Raku code, but that&#39;s either a workaround or involves some kind of additional work.</li>
-<li>Perl 5 comes with a great backwards compatibility. Perl scripts from 5.000 will generally still work on a recent version of Perl. New features usually have to be enabled via a so-called "use pragmas". For example, in order to enable sub signatures, <span class='inlinecode'>use signatures;</span> has to be specified.</li>
-<li>Perl is pre-installed almost everywhere. Fancy running a quick one-off script? In almost all cases, there&#39;s no need to install Perl first - it&#39;s already there on almost any Linux or *BSD or Unix or other Unix like operating system!</li>
-<li>Perl has been ported to "zillions" of platforms. One day I found myself on a VMS box. Perl doesn&#39;t come installed by default on VMS, but the admin installed Perl there already. The whole operating system was very strange to me, but I was able to write "shell scripts" in Perl and became productive pretty quickly on VMS without knowing almost anything about VMS :-).</li>
-<li>Perl is reliable. It has been proven itself "millions" of times, over and over again. Large enterprises, such as booking.com, heavily rely on Perl. Did you know that the package manager of the OpenBSD operating system is programmed in Perl, too?</li>
-<li>Perl is a great language to program in (given that you follow the modern best practices). Don&#39;t get confused when Perl is doing some things differently than other programming languages.</li>
-</ul><br />
-<a class='textlink' href='https://perldoc.perl.org/feature'>Perl feature pragmas</a><br />
-<a class='textlink' href='https://www.OpenBSD.org'>The OpenBSD Operating System</a><br />
-<a class='textlink' href='https://news.ycombinator.com/item?id=23360338'>Why does OpenBSD still include Perl in its base installation?</a><br />
-<br />
-<span>The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas <span class='inlinecode'>use strict;</span>,  <span class='inlinecode'>use warnings;</span>, <span class='inlinecode'>use signatures;</span> and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren&#39;t many Perl jobs out there nowadays. That&#39;s mostly due to Perl&#39;s bad (bad for no real reasons) reputation.</span><br />
-<br />
-<span class='quote'>Update 2022-12-10: A reader pointed out, that <span class='inlinecode'>use v5.36;</span> already turns strict, warnings and signatures pragmas automatically on! </span><br />
-<br />
-<a class='textlink' href='https://www.perl.com/article/announcing-perl-7/'>Announcing Perl 7</a><br />
-<a class='textlink' href='http://blogs.perl.org/users/psc/2022/05/what-happened-to-perl-7.html'>What happened to Perl 7? (maybe have to use <span class='inlinecode'>use v7;</span>)</a><br />
-<br />
-<span class='quote'>Update 2022-12-10: A reader pointed out, that Perl 7 needs to provide a big improvement to earn and keep the attention for a major version bump.</span><br />
-<br />
-<span class='quote'>Update 2023-01-28: Meanwhile, I was also reading brian d foy&#39;s Perl New Feature book. It nicely presents all new features added to Perl since <span class='inlinecode'>v5.10</span>.</span><br />
-<br />
-<a class='textlink' href='https://www.leanpub.com/perl_new_features'>Perl New Features</a><br />
-<br />
-<h2 style='display: inline' id='why-use-perl-as-there-are-better-alternatives'>Why use Perl as there are better alternatives?</h2><br />
-<br />
-<span>Here, common sense must be applied. I don&#39;t believe there is anything like "the perfect" programming language. Everyone has got his preferred (or a set of preferred) programming language to chose from. All programming languages come with their own set of strengths and weaknesses. These are the strengths making Perl shine, and you (technically) don&#39;t need to bother to look for "better" alternatives:</span><br />
-<br />
-<ul>
-<li>Perl is better than Shell/AWK/SED scripts. There&#39;s a point where shell scripts become fairly complex. The next step-up is to switch to Perl. There are many different versions of shells and AWK and SED interpreters. Do you always know which versions (<span class='inlinecode'>mawk</span>, <span class='inlinecode'>nawk</span>, <span class='inlinecode'>gawk</span>, <span class='inlinecode'>sed</span>, <span class='inlinecode'>gsed</span>, <span class='inlinecode'>grep</span>, <span class='inlinecode'>ggrep</span>...) are currently installed? These commands aren&#39;t fully compatible to each other. However, there is only one Perl 5. Simply: Perl is faster, more powerful, more expressive than any shell script can ever be, and it is also extendible through CPAN. Perl can directly talk to databases, which shell scripts can&#39;t.</li>
-<li>Perl code tends to be compact so that it&#39;s much better suitable for "shell scripting" and quick "one-liners" than other languages. In my own experience: Ruby and Python code tends to blow up quickly. It doesn&#39;t mean that Ruby and Python are not suitable for this task, but I think Perl does much better.</li>
-<li>Perl 5 has proven itself for decades and is a very stable/robust language. It is a battle-tested and mature as something can ever become.</li>
-<li>Perl is the reference standard for regular expressions. Even so much that there is a PCRE library (Perl Compatible Regular Expressions) used by many other languages now. Perl fully integrates regular expression syntax into the language, which doesn&#39;t feel like an odd add-on like in most other languages.</li>
-<li>Perl 5 is the master of text processing (well, maybe after Raku now. But you might not have the latest Raku available everywhere). The chief objective of developing the language was for text processing, and this is where Perl (Practical extraction and report language) really shines.</li>
-<li>Perl is a "deep" language. That means Perl got a lot of features and syntactic sugar and magic. Depending on the perspective, this could be interpreted as a downside too. But IMHO mastery of a "deep" language brings big rewards. The code can be very compact, and it is fun to code in it.</li>
-<li>Perl is the only language I know which can do "taint checking". Running a script in taint mode makes Perl sanitize all external input and that&#39;s a great security feature. Ruby used to have this feature too, but it got removed (as I understand there were some problems with the implementation not completely safe and it was easier just to remove it from the language than to fix it).</li>
-</ul><br />
-<span>About the first point, using Perl for better "shell" scripts was actually the original intend of why Perl was invented in the first place.</span><br />
-<br />
-<a class='textlink' href='https://nostarch.com/perloneliners'>Perl one-liners</a><br />
-<a class='textlink' href='http://regex.info/book.html'>Mastering Regular Expressions</a><br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Taint_checking'>Taint checking</a><br />
-<br />
-<span>Here are some reasons why not to chose Perl and look for "better" alternatives:</span><br />
-<br />
-<ul>
-<li>If performance is your main objectives, then Perl might not be the language to use. Perl is a dynamic interpreted language, and it will generally never be as fast as statically typed languages compiled to native binaries (e.g. C/C++/Rust/Haskell) or statically typed languages run in a VM with JIT (e.g. Java) or languages like Golang (statically typed, compiled to a binary but still with a runtime in the binary). Perl might be still faster than the other language listed here in certain circumstances (e.g. faster startup time than Java or faster regular expressions engine), but usually it&#39;s not. It&#39;s not a problem of Perl, it&#39;s a problem of all dynamic scripting languages including Python, Ruby, ....</li>
-<li>Don&#39;t use Perl (just yet) if you want to code object-oriented. Perl supports OOP, but it feels clunky and odd to use (blessed references to any data types are objects) and doesn&#39;t support real encapsulation out of the box. There are many (many) extensions available on CPAN to make OOP better, but that&#39;s totally fragmented. The most popular extension, Moose, comes with a huge dependency tree. But wait for Perl 7. It will maybe come with a new object system (an object system inspired by Raku).</li>
-<li>It&#39;s possible to write large programs in Perl (make difficult things possible), but it might not be the best choice here. This also leads back to the clunky object system Perl has. You could write your projects in a procedural or functional style (Perl perfectly fits here), but OOP seems to be the gold standard for large projects nowadays. Functional programming requires a different mindset, and pure procedural programming lacks abstractions.</li>
-<li>Apply common sense. What is the skill set your team has? What&#39;s already widely used and supported at work? Which languages comes with the best modules for the things you want to work on? Maybe Python is the answer (better machine learning modules). Maybe Perl is the better choice (better Bioinformatic modules). Perhaps Ruby is already the de-facto standard at work and everyone knows at least a little Ruby (as it happened to be at my workplace) and Ruby is "good enough" for all the tasks already. But that&#39;s not a hindrance to throw in a Perl one-liner once in a while :P.</li>
-</ul><br />
-<a class='textlink' href='https://github.com/Ovid/Cor'>Cor - Bringing modern OOP to the Perl Core</a><br />
-<br />
-<h2 style='display: inline' id='why-all-the-sigils-it-looks-like-an-exploding-ascii-factory'>Why all the sigils? It looks like an exploding ASCII factory!!</h2><br />
-<br />
-<span>The sigils <span class='inlinecode'>$ @ % &amp;</span> (where Perl is famously known for) serve a purpose. They seem confusing at first, but they actually make the code better readable. <span class='inlinecode'>$scalar</span> is a scalar variable (holding a single value), <span class='inlinecode'>@array</span> is an array (holding a list of values), <span class='inlinecode'>%hash</span> holds a list of key-value pairs and <span class='inlinecode'>&amp;sub</span> is for subroutines. A given variable <span class='inlinecode'>$ref</span> can also hold reference to something. <span class='inlinecode'>@$arrayref</span> dereferences a reference to an array, <span class='inlinecode'>%$hashref</span> to a hash, <span class='inlinecode'>$$scalarref</span> to a scalar, <span class='inlinecode'>&amp;$subref</span> dereferences a referene to a subroutine, etc. That can be encapsulated as deep as you want. (This paragraph only scratched the surface here of what Perl can do, and there is a lot of syntactic sugar not mentioned here).</span><br />
-<br />
-<span>In most other programming languages, you won&#39;t know instantly what&#39;s the "basic type" of a given variable without looking at the variable declaration or the variable name (If named intelligently, e.g. a variable name containing a list of cats is <span class='inlinecode'>cat_list</span>). Even Ruby makes some use of sigils (<span class='inlinecode'>@</span>, <span class='inlinecode'>@@</span> and <span class='inlinecode'>$</span>), but that&#39;s for a different purpose than in Perl (in Ruby it is about object scope, class scope and global scope). Raku uses all the sigils Perl uses plus an additional bunch of twigils, e.g. <span class='inlinecode'>$.foo</span> for a scalar object variable with public accessors, <span class='inlinecode'>$!foo</span> for a private scalar object variable, <span class='inlinecode'>@.foo</span>, <span class='inlinecode'>@!foo</span>, <span class='inlinecode'>%.foo</span>, <span class='inlinecode'>%!foo</span> and so on. Sigils (and twigils) are very convenient once you get used to them. Don&#39;t let them scare you off - they are there to help you!</span><br />
-<br />
-<a class='textlink' href='https://www.perl.com/article/on-sigils/'>https://www.perl.com/article/on-sigils/</a><br />
-<br />
-<h2 style='display: inline' id='where-do-i-personally-still-use-perl'>Where do I personally still use perl?</h2><br />
-<br />
-<ul>
-<li>I use Rexify for my OpenBSD server automation. Rexify is a configuration management system developed in Perl with similar features to Ansible but less bloated. It suits my personal needs perfectly.</li>
-<li>I have written a couple of smaller to medium-sized Perl scripts which I (mostly) still use regularly. You can find them on my Codeberg page.</li>
-<li>My day-to-day workflow heavily relies on "ack-grep". Ack is a tool developed in Perl aimed at programmers and can be used for quick searches on source code at the command line.</li>
-<li>I aim to leave my OpenBSD servers as "vanilla" as possible (trying to rely only on the standard/base installation without installing additional software from the packaging system or ports tree). All my scripts are written either Bourne shell or in Perl here. So there is no need to install additional interpreters.</li>
-<li>Here and there, I drop a Perl one-liner in order to get stuff done (work and personally). A wise Perl Monk would say: "One one-liner a day keeps the troubles away".</li>
-</ul><br />
-<span>Btw.: Did you know that the first version of PHP was a set of Perl snippets? Only later, PHP became an independent programming language.</span><br />
-<br />
-<a class='textlink' href='https://www.perl.org'>https://www.perl.org</a><br />
-<br />
-<span class='quote'>Update 2022-12-17: The following is another related post. I don&#39;t agree to the statement made there, that Python code tends to be shorter than Perl code, though!</span><br />
-<br />
-<a class='textlink' href='https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/'>Why Perl is still relevant in 2022</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
