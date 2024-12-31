@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-31T18:42:15+02:00</updated>
+    <updated>2024-12-31T18:46:45+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -31,13 +31,10 @@
 <a class='textlink' href='../about/index.html'>My about page</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
 <br />
-<h1 style='display: inline' id='posts-for-202410-202411-202412'>Posts for 202410 202411 202412</h1><br />
-<br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
 <li><a href='#posts-from-october-to-december-2024'>Posts from October to December 2024</a></li>
-<li><a href='#posts-for-202410-202411-202412'>Posts for 202410 202411 202412</a></li>
 <li>⇢ <a href='#october-2024'>October 2024</a></li>
 <li>⇢ ⇢ <a href='#first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</a></li>
 <li>⇢ ⇢ <a href='#reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</a></li>
@@ -92,43 +89,43 @@
 <br />
 <span>First on-call experience in a startup. Doesn&#39;t sound a lot of fun! But the lessons were learned! <span class='inlinecode'>#sre</span></span><br />
 <br />
-<a class='textlink' href='https://ntietz.com/blog/lessons-from-my-first-on-call/'>https://ntiet...irst-on-call/</a><br />
+<a class='textlink' href='https://ntietz.com/blog/lessons-from-my-first-on-call/'>ntietz.com/bl...irst-on-call/</a><br />
 <br />
 <h3 style='display: inline' id='reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</h3><br />
 <br />
 <span>Reviewing your own PR or MR before asking others to review it makes a lot of sense. Have seen so many silly mistakes which would have been avoided. Saving time for the real reviewer.</span><br />
 <br />
-<a class='textlink' href='https://www.jvt.me/posts/2019/01/12/self-code-review/'>https://www.j...-code-review/</a><br />
+<a class='textlink' href='https://www.jvt.me/posts/2019/01/12/self-code-review/'>www.jvt.me/po...-code-review/</a><br />
 <br />
 <h3 style='display: inline' id='fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</h3><br />
 <br />
 <span>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that a defer object can either be heap or stack allocated. And there are some rules for inlining, too.</span><br />
 <br />
-<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>https://victo.../defer-in-go/</a><br />
+<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>victoriametri.../defer-in-go/</a><br />
 <br />
 <h3 style='display: inline' id='i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</h3><br />
 <br />
 <span>I have been in incidents. Understandably, everyone wants the issue to be resolved as quickly and others want to know how long TTR will be. IMHO, providing no estimates at all is no solution either. So maybe give a rough estimate but clearly communicate that the estimate is rough and that X, Y, and Z can interfere, meaning there is a chance it will take longer to resolve the incident. Just my thought. What&#39;s yours?</span><br />
 <br />
-<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>https://fireh...on-estimates/</a><br />
+<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>firehydrant.c...on-estimates/</a><br />
 <br />
 <h3 style='display: inline' id='little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</h3><br />
 <br />
 <span>Little tips using strings in <span class='inlinecode'>#golang</span> and I personally think one must look more into the std lib (not just for strings, also for slices, maps,...), there are tons of useful helper functions.</span><br />
 <br />
-<a class='textlink' href='https://www.calhoun.io/6-tips-for-using-strings-in-go/'>https://www.c...trings-in-go/</a><br />
+<a class='textlink' href='https://www.calhoun.io/6-tips-for-using-strings-in-go/'>www.calhoun.i...trings-in-go/</a><br />
 <br />
 <h3 style='display: inline' id='reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</h3><br />
 <br />
 <span>Reading this post about <span class='inlinecode'>#rust</span> (especially the first part), I think I made a good choice in deciding to dive into <span class='inlinecode'>#golang</span> instead. There was a point where I wanted to learn a new programming language, and Rust was on my list of choices. I think the Go project does a much better job of deciding what goes into the language and how. What are your thoughts?</span><br />
 <br />
-<a class='textlink' href='https://josephg.com/blog/rewriting-rust/'>https://josep...writing-rust/</a><br />
+<a class='textlink' href='https://josephg.com/blog/rewriting-rust/'>josephg.com/b...writing-rust/</a><br />
 <br />
 <h3 style='display: inline' id='the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</h3><br />
 <br />
 <span>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... automatically repairing and healing services helping to reduce manual toil work. Runbooks and scripts are only the first step, followed by a fully blown service written in Go. Could be useful, but IMHO why not rather address the root causes of the manual toil work? <span class='inlinecode'>#sre</span></span><br />
 <br />
-<a class='textlink' href='https://blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/'>https://blog....t-cloudflare/</a><br />
+<a class='textlink' href='https://blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/'>blog.cloudfla...t-cloudflare/</a><br />
 <br />
 <h2 style='display: inline' id='november-2024'>November 2024</h2><br />
 <br />
@@ -136,7 +133,7 @@
 <br />
 <span>I just became a Silver Patreon for OSnews. What is OSnews? It is an independent news site about IT. It is slightly independent and, at times, alternative. I have enjoyed it since my early student days. This one and other projects I financially support are listed here:</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-09-07-projects-i-support.html'>https://foo.z...-support.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-09-07-projects-i-support.html'>foo.zone/gemf...-support.html</a><br />
 <br />
 <h3 style='display: inline' id='until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</h3><br />
 <br />
@@ -148,7 +145,7 @@
 <br />
 <span>These are some book notes from "Staff Engineer" – there is some really good insight into what is expected from a Staff Engineer and beyond in the industry. I wish I had read the book earlier.</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html'>https://foo.z...ok-notes.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html'>foo.zone/gemf...ok-notes.html</a><br />
 <br />
 <h3 style='display: inline' id='looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</h3><br />
 <br />
@@ -158,20 +155,20 @@
 <br />
 <span>There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other <span class='inlinecode'>#OpenBSD</span> VM!</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>https://foo.z...-OpenBSD.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>foo.zone/gemf...-OpenBSD.html</a><br />
 <a class='textlink' href='https://openbsd.amsterdam/'>https://openbsd.amsterdam/</a><br />
 <br />
 <h3 style='display: inline' id='one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</h3><br />
 <br />
 <span>One of the more confusing parts in Go, nil values vs nil errors: <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html'>https://unexp...l-errors.html</a><br />
+<a class='textlink' href='https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html'>unexpected-go...l-errors.html</a><br />
 <br />
 <h3 style='display: inline' id='agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</h3><br />
 <br />
 <span>Agreeably, writing down with Diagrams helps you to think things more through. And keeps others on the same page. Only worth for projects from a certain size, IMHO.</span><br />
 <br />
-<a class='textlink' href='https://ntietz.com/blog/reasons-to-write-design-docs/'>https://ntiet...-design-docs/</a><br />
+<a class='textlink' href='https://ntietz.com/blog/reasons-to-write-design-docs/'>ntietz.com/bl...-design-docs/</a><br />
 <br />
 <h3 style='display: inline' id='i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</h3><br />
 <br />
@@ -183,37 +180,37 @@
 <br />
 <span>So, <span class='inlinecode'>#Haskell</span> is better suited for general purpose than <span class='inlinecode'>#Rust</span>? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:</span><br />
 <br />
-<a class='textlink' href='https://chrisdone.com/posts/rust/'>https://chris...m/posts/rust/</a><br />
+<a class='textlink' href='https://chrisdone.com/posts/rust/'>chrisdone.com...m/posts/rust/</a><br />
 <br />
 <h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
 <br />
 <span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>https://www.c...aining-in-go/</a><br />
+<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.i...aining-in-go/</a><br />
 <br />
 <h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
 <br />
 <span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kuberbetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#self</span>-hosting <span class='inlinecode'>#homelab</span> <span class='inlinecode'>#home</span>-lab</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>https://foo.z...d-part-1.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>foo.zone/gemf...d-part-1.html</a><br />
 <br />
 <h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
 <br />
 <span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#homelab</span></span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>https://foo.z...d-part-1.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>foo.zone/gemf...d-part-1.html</a><br />
 <br />
 <h3 style='display: inline' id='wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</h3><br />
 <br />
 <span>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should switch now personally ...</span><br />
 <br />
-<a class='textlink' href='https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/'>https://www.o...acy-and-more/</a><br />
+<a class='textlink' href='https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/'>www.osnews.co...acy-and-more/</a><br />
 <br />
 <h3 style='display: inline' id='eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</h3><br />
 <br />
 <span>eks-node-viewer is a nifty tool, showing the compute nodes currently in use in the <span class='inlinecode'>#EKS</span> cluster. especially useful when dynamically allocating nodes with <span class='inlinecode'>#karpenter</span> or auto scaling groups.</span><br />
 <br />
-<a class='textlink' href='https://github.com/awslabs/eks-node-viewer'>https://githu...s-node-viewer</a><br />
+<a class='textlink' href='https://github.com/awslabs/eks-node-viewer'>github.com/aw...s-node-viewer</a><br />
 <br />
 <h3 style='display: inline' id='have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</h3><br />
 <br />
@@ -225,13 +222,13 @@
 <br />
 <span>In Go, passing pointers are not automatically faster than values. Pointers often force the memory to be allocated on the heap, adding GC overhad. With values, Go can determine whether to put the memory on the stack instead. But with large structs/objects (how you want to call them) or if you want to modify state, then pointers are the semantic to use. <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://blog.boot.dev/golang/pointers-faster-than-values/'>https://blog....-than-values/</a><br />
+<a class='textlink' href='https://blog.boot.dev/golang/pointers-faster-than-values/'>blog.boot.dev...-than-values/</a><br />
 <br />
 <h3 style='display: inline' id='myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</h3><br />
 <br />
 <span>Myself being part of an on-call rotations over my whole professional life, just have learned this lesson "Tell people who are new to on-call: Just have fun" :-) This is a neat blog post to read:</span><br />
 <br />
-<a class='textlink' href='https://ntietz.com/blog/what-i-tell-people-new-to-oncall/'>https://ntiet...ew-to-oncall/</a><br />
+<a class='textlink' href='https://ntietz.com/blog/what-i-tell-people-new-to-oncall/'>ntietz.com/bl...ew-to-oncall/</a><br />
 <br />
 <h3 style='display: inline' id='feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</h3><br />
 <br />
@@ -249,31 +246,31 @@
 <br />
 <span>Thats unexpected, you cant remove a NaN key from a map without clearing it! <span class='inlinecode'>#golang</span></span><br />
 <br />
-<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>https://unexp...aring-it.html</a><br />
+<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>unexpected-go...aring-it.html</a><br />
 <br />
 <h3 style='display: inline' id='my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</h3><br />
 <br />
 <span>My second blog post about revamping my home lab a little bit just hit the net. <span class='inlinecode'>#FreeBSD</span> <span class='inlinecode'>#ZFS</span> <span class='inlinecode'>#n100</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span></span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>https://foo.z...d-part-2.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>foo.zone/gemf...d-part-2.html</a><br />
 <br />
 <h3 style='display: inline' id='very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</h3><br />
 <br />
 <span>Very insightful article about tech hiring in the age of LLMs. As an interviewer, I have experienced some of the scrnarios already first hand...</span><br />
 <br />
-<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring'>https://newsl...s-tech-hiring</a><br />
+<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring'>newsletter.pr...s-tech-hiring</a><br />
 <br />
 <h3 style='display: inline' id='for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</h3><br />
 <br />
 <span>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the <span class='inlinecode'>#linux</span> kernel. Highly recommend!</span><br />
 <br />
-<a class='textlink' href='https://github.com/Netflix/bpftop'>https://githu...etflix/bpftop</a><br />
+<a class='textlink' href='https://github.com/Netflix/bpftop'>github.com/Ne...etflix/bpftop</a><br />
 <br />
 <h3 style='display: inline' id='89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</h3><br />
 <br />
 <span>89 things he/she knows about Git commits is a neat list of <span class='inlinecode'>#Git</span> wisdoms</span><br />
 <br />
-<a class='textlink' href='https://www.jvt.me/posts/2024/07/12/things-know-commits/'>https://www.j...know-commits/</a><br />
+<a class='textlink' href='https://www.jvt.me/posts/2024/07/12/things-know-commits/'>www.jvt.me/po...know-commits/</a><br />
 <br />
 <h3 style='display: inline' id='i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</h3><br />
 <br />
@@ -283,50 +280,50 @@
 <br />
 <span>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also add <span class='inlinecode'>#RakuLang</span> and <span class='inlinecode'>#Perl</span> @Perl to the list of languages that are great for shell scripts - "Making Easy Things Easy and Hard Things Possible"</span><br />
 <br />
-<a class='textlink' href='https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/'>https://lucas...-shellscript/</a><br />
+<a class='textlink' href='https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/'>lucasoshiro.g...-shellscript/</a><br />
 <br />
 <h3 style='display: inline' id='plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</h3><br />
 <br />
 <span>Plan9 assembly format in Go, but wait, it&#39;s not the Operating System Plan9! <span class='inlinecode'>#golang</span> <span class='inlinecode'>#rabbithole</span></span><br />
 <br />
-<a class='textlink' href='https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/'>https://www.o...ulations-450/</a><br />
+<a class='textlink' href='https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/'>www.osnews.co...ulations-450/</a><br />
 <br />
 <h3 style='display: inline' id='this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</h3><br />
 <br />
 <span>This is a neat blog post about the Helix text editor, to which I personally switched around a year ago (from NeoVim). I should blog about my experience as well. To summarize: I am using it together with the terminal multiplexer <span class='inlinecode'>#tmux</span>. It doesn&#39;t bother me that Helix is purely terminal-based and therefore everything has to be in the same font. <span class='inlinecode'>#HelixEditor</span></span><br />
 <br />
-<a class='textlink' href='https://jonathan-frere.com/posts/helix/'>https://jonat.../posts/helix/</a><br />
+<a class='textlink' href='https://jonathan-frere.com/posts/helix/'>jonathan-frer.../posts/helix/</a><br />
 <br />
 <h3 style='display: inline' id='this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</h3><br />
 <br />
 <span>This blog post is basically a rant against DataDog... Personally, I don&#39;t have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! <span class='inlinecode'>#dtail</span> <span class='inlinecode'>#logs</span> <span class='inlinecode'>#logmanagement</span></span><br />
 <br />
-<a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>https://crys....int-the-weel/</a><br />
+<a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>crys.site/blo...int-the-weel/</a><br />
 <a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
 <br />
 <h3 style='display: inline' id='quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</h3><br />
 <br />
 <span>Quick trick to get Helix themes selected randomly <span class='inlinecode'>#HelixEditor</span></span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html'>https://foo.z...x-themes.html</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html'>foo.zone/gemf...x-themes.html</a><br />
 <br />
 <h3 style='display: inline' id='example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</h3><br />
 <br />
 <span>Example where complexity attacks you from behind <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#OpenAI</span></span><br />
 <br />
-<a class='textlink' href='https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/'>https://surfi...ent-write-up/</a><br />
+<a class='textlink' href='https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/'>surfingcomple...ent-write-up/</a><br />
 <br />
 <h3 style='display: inline' id='llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</h3><br />
 <br />
 <span>LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generating Ansible, some uses cases are there. Wouldn&#39;t trust it fully, though.</span><br />
 <br />
-<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>https://youtu...0egrfl5izCSQI</a><br />
+<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>youtu.be/Woda...0egrfl5izCSQI</a><br />
 <br />
 <h3 style='display: inline' id='excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</h3><br />
 <br />
 <span>Excellent article about your dream Product Manager: Why every software team needs a product manager to thrive via @wallabagapp</span><br />
 <br />
-<a class='textlink' href='https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery'>https://testd...ware-delivery</a><br />
+<a class='textlink' href='https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery'>testdouble.co...ware-delivery</a><br />
 <br />
 <h3 style='display: inline' id='i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</h3><br />
 <br />
@@ -338,13 +335,13 @@
 <br />
 <span>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span></span><br />
 <br />
-<a class='textlink' href='https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/'>https://biriu...applications/</a><br />
+<a class='textlink' href='https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/'>biriukov.dev/...applications/</a><br />
 <br />
 <h3 style='display: inline' id='it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</h3><br />
 <br />
 <span>It&#39;s the small things, which make Unix like systems, like GNU/Linux, interesting. Didn&#39;t know about this <span class='inlinecode'>#GNU</span> <span class='inlinecode'>#Tar</span> behaviour yet:</span><br />
 <br />
-<a class='textlink' href='https://xeiaso.net/notes/2024/pop-quiz-tar/'>https://xeias...pop-quiz-tar/</a><br />
+<a class='textlink' href='https://xeiaso.net/notes/2024/pop-quiz-tar/'>xeiaso.net/no...pop-quiz-tar/</a><br />
 <br />
 <h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
 <br />
