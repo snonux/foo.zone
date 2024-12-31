@@ -69,7 +69,7 @@ I just became a Silver Patreon for OSnews. What is OSnews? It is an independent 
 
 Until now, I wasn't aware, that Go is under a BSD-style license (3-clause as it seems). Neat. I don't know why, but I always was under the impression it would be MIT. `#bsd` `#golang`
 
-=> https://go.dev/LICENSE
+=> https://go.dev/LICENSE go.dev/LICENSE
 
 ### These are some book notes from "Staff Engineer" ...
 
@@ -86,7 +86,7 @@ Looking at `#Kubernetes`, it's pretty much following the Unix way of doing thing
 There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other `#OpenBSD` VM!
 
 => https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html foo.zone/gemf...-OpenBSD.html
-=> https://openbsd.amsterdam/
+=> https://openbsd.amsterdam/ openbsd.amsterdam/
 
 ### One of the more confusing parts in Go, nil ...
 
@@ -104,13 +104,13 @@ Agreeably, writing down with Diagrams helps you to think things more through. An
 
 I like the idea of types in Ruby. Raku is supports that already, but in Ruby, you must specify the types in a separate .rbs file, which is, in my opinion, cumbersome and is a reason not to use it extensively for now. I believe there are efforts to embed the type information in the standard .rb files, and that the .rbs is just an experiment to see how types could work out without introducing changes into the core Ruby language itself right now? `#Ruby` `#RakuLang`
 
-=> https://github.com/ruby/rbs
+=> https://github.com/ruby/rbs github.com/ruby/rbs
 
 ### So, `#Haskell` is better suited for general ...
 
 So, `#Haskell` is better suited for general purpose than `#Rust`? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:
 
-=> https://chrisdone.com/posts/rust/ chrisdone.com...m/posts/rust/
+=> https://chrisdone.com/posts/rust/ chrisdone.com/posts/rust/
 
 ### At first, functional options add a bit of ...
 
@@ -146,7 +146,7 @@ eks-node-viewer is a nifty tool, showing the compute nodes currently in use in t
 
 Have put more Photos on - On my static photo sites - Generated with a `#bash` script
 
-=> https://irregular.ninja
+=> https://irregular.ninja irregular.ninja
 
 ### In Go, passing pointers are not automatically ...
 
@@ -168,7 +168,7 @@ Feels good to code in my old love `#Perl` again after a while. I am implementing
 
 This is an interactive summary of the Go release, with a lot of examples utilising iterators in the slices and map packages. Love it! `#golang`
 
-=> https://antonz.org/go-1-23/
+=> https://antonz.org/go-1-23/ antonz.org/go-1-23/
 
 ## December 2024
 
@@ -194,7 +194,7 @@ Very insightful article about tech hiring in the age of LLMs. As an interviewer,
 
 for `#bpf` `#ebpf` performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the `#linux` kernel. Highly recommend!
 
-=> https://github.com/Netflix/bpftop github.com/Ne...etflix/bpftop
+=> https://github.com/Netflix/bpftop github.com/Netflix/bpftop
 
 ### 89 things he/she knows about Git commits is a ...
 
@@ -229,7 +229,7 @@ This is a neat blog post about the Helix text editor, to which I personally swit
 This blog post is basically a rant against DataDog... Personally, I don't have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! `#dtail` `#logs` `#logmanagement`
 
 => https://crys.site/blog/2024/reinventint-the-weel/ crys.site/blo...int-the-weel/
-=> https://dtail.dev
+=> https://dtail.dev dtail.dev
 
 ### Quick trick to get Helix themes selected ...
 
@@ -259,7 +259,7 @@ Excellent article about your dream Product Manager: Why every software team need
 
 I just finished reading all chapters of CPU land: ... not claiming to remember every detail, but it is a great refresher how CPUs and operating systems actually work under the hood when you execute a program, which we tend to forget in our higher abstraction world. I liked the "story" and some of the jokes along the way! Size wise, it is pretty digestable (not talking about books, but only 7 web articles/chapters)! `#cpu` `#linux` `#unix` `#kernel` `#macOS`
 
-=> https://cpu.land/
+=> https://cpu.land/ cpu.land/
 
 ### Indeed, useful to know this stuff! `#sre` ...
 
