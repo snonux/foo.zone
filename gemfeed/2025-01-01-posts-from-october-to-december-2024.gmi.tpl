@@ -271,6 +271,10 @@ It's the small things, which make Unix like systems, like GNU/Linux, interesting
 
 My plan for the New Year is not to start any new non-fiction books (or only a few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.
 
+Other related posts:
+
+<< template::inline::index posts-from
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
