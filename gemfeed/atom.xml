@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-31T18:48:23+02:00</updated>
+    <updated>2024-12-31T19:00:17+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -54,7 +54,6 @@
 <li>⇢ ⇢ <a href='#i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</a></li>
 <li>⇢ ⇢ <a href='#so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</a></li>
 <li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
-<li>⇢ ⇢ <a href='#revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</a></li>
 <li>⇢ ⇢ <a href='#revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</a></li>
 <li>⇢ ⇢ <a href='#wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</a></li>
 <li>⇢ ⇢ <a href='#eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</a></li>
@@ -187,12 +186,6 @@
 <span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
 <br />
 <a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.i...aining-in-go/</a><br />
-<br />
-<h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
-<br />
-<span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kuberbetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#self</span>-hosting <span class='inlinecode'>#homelab</span> <span class='inlinecode'>#home</span>-lab</span><br />
-<br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>foo.zone/gemf...d-part-1.html</a><br />
 <br />
 <h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
 <br />
@@ -345,7 +338,7 @@
 <br />
 <h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
 <br />
-<span>My New Year&#39;s resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.</span><br />
+<span>A plan of mine for next year is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.</span><br />
 <br />
 <span>Other related posts:</span><br />
 <br />
