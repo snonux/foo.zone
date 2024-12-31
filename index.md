@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2024-12-30T10:21:25+02:00 by `Gemtexter`
+> This site was generated at 2024-12-31T18:09:58+02:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. Note that this blog usually does not overlap with what I do at my day job as a Site Reliability Engineer.
 
@@ -28,6 +28,7 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 
 ### Posts
 
+[2025-01-01 - Posts from October to December 2024](./gemfeed/2025-01-01-posts-from-october-to-december-2024.md)  
 [2024-12-15 - Random Helix Themes](./gemfeed/2024-12-15-random-helix-themes.md)  
 [2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  

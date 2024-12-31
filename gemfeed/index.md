@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-01-01 - Posts from October to December 2024](./2025-01-01-posts-from-october-to-december-2024.md)  
 [2024-12-15 - Random Helix Themes](./2024-12-15-random-helix-themes.md)  
 [2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
