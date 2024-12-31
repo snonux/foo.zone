@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2024-12-31T18:09:58+02:00</updated>
+    <updated>2024-12-31T18:25:31+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='posts-from-october-to-december-2024'>Posts from October to December 2024</h1><br />
+<br />
+<span class='quote'>Published at 2024-12-31T18:09:58+02:00</span><br />
 <br />
 <span>Happy new year!</span><br />
 <br />
@@ -337,6 +339,11 @@
 <h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
 <br />
 <span>My plan for the New Year is not to start any new non-fiction books (or only a few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024 (You are currently reading this)</a><br />
+<a class='textlink' href='./20250101-posts-from-october-to-december-2024.html'>20250101-posts-from Posts from October to December 2024</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
