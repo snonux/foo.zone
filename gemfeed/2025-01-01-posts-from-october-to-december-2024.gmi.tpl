@@ -120,12 +120,6 @@ At first, functional options add a bit of boilerplate, but they turn out to be q
 
 ### Revamping my home lab a little bit. `#freebsd` ...
 
-Revamping my home lab a little bit. `#freebsd` `#bhyve` `#rocky` `#linux` `#vm` `#k3s` `#kuberbetes` `#wireguard` `#zfs` `#nfs` `#ha` `#relayd` `#k8s` `#selfhosting` `#self`-hosting `#homelab` `#home`-lab
-
-=> https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html foo.zone/gemf...d-part-1.html
-
-### Revamping my home lab a little bit. `#freebsd` ...
-
 Revamping my home lab a little bit. `#freebsd` `#bhyve` `#rocky` `#linux` `#vm` `#k3s` `#kubernetes` `#wireguard` `#zfs` `#nfs` `#ha` `#relayd` `#k8s` `#selfhosting` `#homelab`
 
 => https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html foo.zone/gemf...d-part-1.html
@@ -275,7 +269,7 @@ It's the small things, which make Unix like systems, like GNU/Linux, interesting
 
 ### My New Year's resolution is not to start any ...
 
-My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.
+A plan of mine for next year is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.
 
 Other related posts:
 
