@@ -1,28 +1,40 @@
+@font-face {
+    font-family: 'text';
+    src: url("./text.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'heading';
+    src: url("./heading.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'code';
+    src: url("./code.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'handnotes';
+    src: url("./handnotes.ttf") format("truetype");
+}
+
 body {
-    font-family: courier, monospace;
+    font-family: text, sans-serif;
     max-width: 1200px;
     padding: 20px;
     margin: 20px auto;
-    border: 1px solid #000000;
+    border: 1px solid #eeeeee;
     border-radius: 15px;
 }
 
 a {
-    font-family: courier, monospace;
+    font-family: code, monospace;
     text-decoration: none;
     color: #0e0e0e;
 }
 
-h1 {
-    font-family: courier, monospace;
-}
-
-h2 {
-    font-family: courier, monospace;
-}
-
-h3 {
-    font-family: courier, monospace;
+h1, h2, h3 {
+    font-family: heading, serif;
 }
 
 a {
@@ -68,12 +80,12 @@ img {
 }
 
 pre {
-    font-family: courier, monospace;
+    font-family: code, monospace;
     padding: 20px;
-    border: 1px solid #666666;
+    border: 1px solid #cccccc;
 }
 
 span.inlinecode {
-    font-family: courier, monospace;
-    border: 1px solid #666666;
+    font-family: code, monospace;
+    border: 1px solid #999999;
 }
