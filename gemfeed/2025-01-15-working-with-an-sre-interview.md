@@ -2,9 +2,10 @@
 
 > Published at 2025-01-15T00:16:04+02:00
 
-I have been interviewed by Florian Buetow about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer. 
+I have been interviewed by Florian Buetow on `cracking-ai-engineering.com`  about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.
 
 [See original interview here](https://www.cracking-ai-engineering.com/writing/2025/01/12/working-with-an-sre-interview/)  
+[Cracking AI Engineering](https://www.cracking-ai-engineering.com)  
 
 Below, I am posting the interview here on my blog as well.
 
