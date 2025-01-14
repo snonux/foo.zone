@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-01-15T00:22:35+02:00</updated>
+    <updated>2025-01-15T00:27:56+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -196,7 +196,7 @@
 <br />
 <span>Dear reader, I hope this conversation with Paul Bütow provided an exciting peak into the world of Site Reliability Engineering. Whether you’re a software developer, data scientist, ML engineer, or manager, reliable systems are always a team effort. Hopefully, you’ve taken some insights or tips from Paul’s experiences for your own team or next project. Thanks for joining us, and best of luck refining your own SRE practices!</span><br />
 <br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> or contact Florian via the Cracking AI Engineering :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
