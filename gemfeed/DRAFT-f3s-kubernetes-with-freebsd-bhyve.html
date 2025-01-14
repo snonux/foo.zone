@@ -30,12 +30,15 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 <li>⇢ ⇢ <a href='#iso-download'>ISO download</a></li>
 <li>⇢ ⇢ <a href='#vm-configuration'>VM configuration</a></li>
 <li>⇢ ⇢ <a href='#vm-installation'>VM installation</a></li>
+<li>⇢ ⇢ <a href='#increase-of-the-disk-image'>Increase of the disk image</a></li>
+<li>⇢ ⇢ <a href='#connect-to-vpn'>Connect to VPN</a></li>
+<li>⇢ <a href='#after-install'>After install</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>In this blog post, we are going to install the Bhyve hypervisor.</span><br />
 <br />
-<span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management. </span><br />
+<span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
 <br />
 <span>Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.</span><br />
 <br />
@@ -51,15 +54,15 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % doas pkg install vm-bhyve bhyve-firmware
-paul@f2:~ % doas sysrc vm_enable=YES
+<pre>paul@f0:~ % doas pkg install vm-bhyve bhyve-firmware
+paul@f0:~ % doas sysrc vm_enable=YES
 vm_enable:  -&gt; YES
-paul@f2:~ % doas sysrc vm_dir=zfs:zroot/bhyve
+paul@f0:~ % doas sysrc vm_dir=zfs:zroot/bhyve
 vm_dir:  -&gt; zfs:zroot/bhyve
-paul@f2:~ % doas zfs create zroot/bhyve
-paul@f2:~ % doas vm init
-paul@f2:~ % doas vm create public
-paul@f2:~ % doas vm switch add public re0
+paul@f0:~ % doas zfs create zroot/bhyve
+paul@f0:~ % doas vm init
+paul@f0:~ % doas vm switch create public
+paul@f0:~ % doas vm switch add public re0
 </pre>
 <br />
 <span>Bhyve stores all it&#39;s data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
@@ -68,7 +71,7 @@ paul@f2:~ % doas vm switch add public re0
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % zfs list | grep bhyve
+<pre>paul@f0:~ % zfs list | grep bhyve
 zroot/bhyve                                   <font color="#000000">1</font>.74M   453G  <font color="#000000">1</font>.74M  /zroot/bhyve
 </pre>
 <br />
@@ -78,7 +81,7 @@ zroot/bhyve                                   <font color="#000000">1</font>.74M
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % doas ln -s /zroot/bhyve/ /bhyve
+<pre>paul@f0:~ % doas ln -s /zroot/bhyve/ /bhyve
 
 </pre>
 <br />
@@ -88,7 +91,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % doas vm list
+<pre>paul@f0:~ % doas vm list
 NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 </pre>
 <br />
@@ -102,10 +105,10 @@ NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % doas vm iso \
+<pre>paul@f0:~ % doas vm iso \
  https://download.rockylinux.org/pub/rocky/<font color="#000000">9</font>/isos/x86_64/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
 /zroot/bhyve/.iso/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso        <font color="#000000">1808</font> MB <font color="#000000">4780</font> kBps 06m28s
-paul@f2:/bhyve % doas vm create rocky
+paul@f0:/bhyve % doas vm create rocky
 </pre>
 <h3 style='display: inline' id='vm-configuration'>VM configuration</h3><br />
 <br />
@@ -115,7 +118,7 @@ paul@f2:/bhyve % doas vm create rocky
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:/bhyve/rocky % cat rocky.conf
+<pre>paul@f0:/bhyve/rocky % cat rocky.conf
 loader=<font color="#808080">"bhyveload"</font>
 cpu=<font color="#000000">1</font>
 memory=256M
@@ -127,7 +130,28 @@ uuid=<font color="#808080">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
 network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
 </pre>
 <br />
-<span>but in order to make Rocky Linux boot, it...</span><br />
+<span>Whereas the <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ on each of the 3 hosts.</span><br />
+<br />
+<span>but in order to make Rocky Linux boot it (plus some other adjustments, e.g. as I am intending to run the majority of the workload in the k3s cluster running on those linux VMs, I give them beefy specs like 4 CPU cores and 14GB RAM), I modified it to:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>guest=<font color="#808080">"linux"</font>
+loader=<font color="#808080">"uefi"</font>
+uefi_vars=<font color="#808080">"yes"</font>
+cpu=<font color="#000000">4</font>
+memory=14G
+network0_type=<font color="#808080">"virtio-net"</font>
+network0_switch=<font color="#808080">"public"</font>
+disk0_type=<font color="#808080">"virtio-blk"</font>
+disk0_name=<font color="#808080">"disk0.img"</font>
+graphics=<font color="#808080">"yes"</font>
+graphics_vga=io
+uuid=<font color="#808080">"1c45400b-c828-11ef-8871-e8ff1ed71cac"</font>
+network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
+</pre>
 <br />
 <h3 style='display: inline' id='vm-installation'>VM installation</h3><br />
 <br />
@@ -135,7 +159,7 @@ network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f2:~ % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+<pre>paul@f0:~ % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
 Starting rocky
   * found guest <b><u><font color="#000000">in</font></u></b> /zroot/bhyve/rocky
   * booting...
@@ -150,6 +174,50 @@ root     bhyve       <font color="#000000">6079</font> <font color="#000000">8</
 <br />
 <span>Port 5900 is now also open for VNC connections, so we connect to it with a VNC client and run through the installation dialogs. I&#39;m sure this could be done unattended or more automated, but we have only 3 VMs to install, and the automation doesn&#39;t seem worth it as we are doing it only once.</span><br />
 <br />
+<h3 style='display: inline' id='increase-of-the-disk-image'>Increase of the disk image</h3><br />
+<br />
+<span>By default the VMs disk image is only 20G, which is a bit small for my purposes, so I stopped the VMs again and run <span class='inlinecode'>truncate</span> on the image file to enlarge them to 100G, and re-started the installation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % doas vm stop rocky
+paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
+paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+</pre>
+<br />
+<h3 style='display: inline' id='connect-to-vpn'>Connect to VPN</h3><br />
+<br />
+<span>For the installation, I opened the VPN client on my Fedora laptop (GNOME comes with a simple VPN client) and ran through the base installation for each of the VMs manually. I am sure this could have been automated a bit more, but there were just 3 VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were: <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f0:5900</span>.</span><br />
+<br />
+<span>I mostly selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.</span><br />
+<br />
+<h2 style='display: inline' id='after-install'>After install</h2><br />
+<br />
+<span>After that, I changed the network configuration to be static here as well.</span><br />
+<br />
+<span>As per previous post of this series, the 3 FreeBSD hosts were already in my <span class='inlinecode'>/etc/hosts</span> file:</span><br />
+<br />
+<pre>
+192.168.1.130 f0 f0.lan f0.lan.buetow.org
+192.168.1.131 f1 f1.lan f1.lan.buetow.org
+192.168.1.132 f2 f2.lan f2.lan.buetow.org
+</pre>
+<br />
+<span>For the Rocky VMs I added those:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat &lt;&lt;END &gt;&gt;/etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
+</pre>
+<span>and configured the IPs accordingly on the VMs themselves.</span><br />
 <br />
 <br />
 <span>Other *BSD-related posts:</span><br />
