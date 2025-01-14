@@ -110,6 +110,7 @@ root@f0:~ # freebsd-update reboot
 ```
 
 I also added the following entries for the three FreeBSD boxes to the `/etc/hosts` file:
+
 ```sh
 root@f0:~ # cat <<END >>/etc/hosts
 192.168.1.130 f0 f0.lan f0.lan.buetow.org
@@ -117,6 +118,8 @@ root@f0:~ # cat <<END >>/etc/hosts
 192.168.1.132 f2 f2.lan f2.lan.buetow.org
 END
 ```
+
+You might wonder why bother using the hosts file? Why not use DNS properly? The reason is simplicity. I don't manage 100 hosts, only a few here and there. Having an OpenWRT router in my home, I could also configure everything there, but maybe I'll do that later. For now, keep it simple and straightforward.
 
 ## After install
 
