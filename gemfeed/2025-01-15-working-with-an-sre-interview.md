@@ -173,6 +173,6 @@ Thank you very much for your time and this insightful interview into the world o
 
 Dear reader, I hope this conversation with Paul Bütow provided an exciting peak into the world of Site Reliability Engineering. Whether you’re a software developer, data scientist, ML engineer, or manager, reliable systems are always a team effort. Hopefully, you’ve taken some insights or tips from Paul’s experiences for your own team or next project. Thanks for joining us, and best of luck refining your own SRE practices!
 
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+E-Mail your comments to `paul@nospam.buetow.org` or contact Florian via the Cracking AI Engineering :-)
 
 [Back to the main site](../)  
