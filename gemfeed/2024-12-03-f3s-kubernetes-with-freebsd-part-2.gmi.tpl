@@ -150,24 +150,18 @@ root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 `zfs-periodic` is a nifty tool for automatically creating ZFS snapshots. I decided to go with the following configuration here:
 
 ```sh
-root@f0:~ # sysrc daily_zfs_snapshot_enable=YES
-daily_zfs_snapshot_enable:  -> YES
-root@f0:~ # sysrc daily_zfs_snapshot_pools=zroot
-daily_zfs_snapshot_pools:  -> zroot
-root@f0:~ # sysrc daily_zfs_snapshot_keep=7
-daily_zfs_snapshot_keep:  -> 7
-root@f0:~ # sysrc weekly_zfs_snapshot_enable=YES
-weekly_zfs_snapshot_enable:  -> YES
-root@f0:~ # sysrc weekly_zfs_snapshot_pools=zroot
-weekly_zfs_snapshot_pools:  -> zroot
-root@f0:~ # sysrc weekly_zfs_snapshot_keep=5
-weekly_zfs_snapshot_keep:  -> 5
-root@f0:~ # sysrc monthly_zfs_snapshot_enable=YES
-monthly_zfs_snapshot_enable:  -> YES
-root@f0:~ # sysrc monthly_zfs_snapshot_pools=zroot
-monthly_zfs_snapshot_pools:  -> zroot
-root@f0:~ # sysrc monthly_zfs_snapshot_keep=6
-monthly_zfs_snapshot_keep: 2 -> 6
+root@f0:~ # 
+cat <<END >>/etc/periodic.conf
+daily_zfs_snapshot_enable="YES"
+daily_zfs_snapshot_pools="zroot"
+daily_zfs_snapshot_keep="7"
+weekly_zfs_snapshot_enable="YES"
+weekly_zfs_snapshot_pools="zroot"
+weekly_zfs_snapshot_keep="5"
+monthly_zfs_snapshot_enable="YES"
+monthly_zfs_snapshot_pools="zroot"
+monthly_zfs_snapshot_keep="6"
+END
 ```
 
 => https://github.com/ross/zfs-periodic
