@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-01-15T00:27:56+02:00</updated>
+    <updated>2025-01-16T22:57:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -869,24 +869,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>root@f0:~ <i><font color="silver"># sysrc daily_zfs_snapshot_enable=YES</font></i>
-daily_zfs_snapshot_enable:  -&gt; YES
-root@f0:~ <i><font color="silver"># sysrc daily_zfs_snapshot_pools=zroot</font></i>
-daily_zfs_snapshot_pools:  -&gt; zroot
-root@f0:~ <i><font color="silver"># sysrc daily_zfs_snapshot_keep=7</font></i>
-daily_zfs_snapshot_keep:  -&gt; <font color="#000000">7</font>
-root@f0:~ <i><font color="silver"># sysrc weekly_zfs_snapshot_enable=YES</font></i>
-weekly_zfs_snapshot_enable:  -&gt; YES
-root@f0:~ <i><font color="silver"># sysrc weekly_zfs_snapshot_pools=zroot</font></i>
-weekly_zfs_snapshot_pools:  -&gt; zroot
-root@f0:~ <i><font color="silver"># sysrc weekly_zfs_snapshot_keep=5</font></i>
-weekly_zfs_snapshot_keep:  -&gt; <font color="#000000">5</font>
-root@f0:~ <i><font color="silver"># sysrc monthly_zfs_snapshot_enable=YES</font></i>
-monthly_zfs_snapshot_enable:  -&gt; YES
-root@f0:~ <i><font color="silver"># sysrc monthly_zfs_snapshot_pools=zroot</font></i>
-monthly_zfs_snapshot_pools:  -&gt; zroot
-root@f0:~ <i><font color="silver"># sysrc monthly_zfs_snapshot_keep=6</font></i>
-monthly_zfs_snapshot_keep: <font color="#000000">2</font> -&gt; <font color="#000000">6</font>
+<pre>root@f0:~ <i><font color="silver"># </font></i>
+cat &lt;&lt;END &gt;&gt;/etc/periodic.conf
+daily_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+daily_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+daily_zfs_snapshot_keep=<font color="#808080">"7"</font>
+weekly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+weekly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+weekly_zfs_snapshot_keep=<font color="#808080">"5"</font>
+monthly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+monthly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+monthly_zfs_snapshot_keep=<font color="#808080">"6"</font>
+END
 </pre>
 <br />
 <a class='textlink' href='https://github.com/ross/zfs-periodic'>https://github.com/ross/zfs-periodic</a><br />
