@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi">Gemtext</a>
+View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi">Gemini</a>
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
 <br />
@@ -206,8 +206,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>root@f0:~ <i><font color="silver"># </font></i>
-cat &lt;&lt;END &gt;&gt;/etc/periodic.conf
+<pre>root@f0:~ <i><font color="silver"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</font></i>
 daily_zfs_snapshot_enable=<font color="#808080">"YES"</font>
 daily_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
 daily_zfs_snapshot_keep=<font color="#808080">"7"</font>
