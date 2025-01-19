@@ -14,6 +14,7 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 ## Table of Contents
 
 * ⇢ Posts from October to December 2024
+* ⇢ Posts for 202410 202411 202412
 * ⇢ ⇢ October 2024
 * ⇢ ⇢ ⇢ First on-call experience in a startup. Doesn't ...
 * ⇢ ⇢ ⇢ Reviewing your own PR or MR before asking ...
@@ -60,6 +61,8 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * ⇢ ⇢ ⇢ Indeed, useful to know this stuff! `#sre` ...
 * ⇢ ⇢ ⇢ It's the small things, which make Unix like ...
 * ⇢ ⇢ ⇢ My New Year's resolution is not to start any ...
+
+# Posts for 202410 202411 202412
 
 ## October 2024
 
@@ -111,6 +114,7 @@ The opposite of `#ChaosMonkey` ... automatically repairing and healing services 
 
 I just became a Silver Patreon for OSnews. What is OSnews? It is an independent news site about IT. It is slightly independent and, at times, alternative. I have enjoyed it since my early student days. This one and other projects I financially support are listed here:
 
+=> gemini://foo.zone/gemfeed/2024-09-07-projects-i-support.gmi foo.zone/gemf...i-support.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-09-07-projects-i-support.html foo.zone/gemf...-support.html
 
 ### Until now, I wasn't aware, that Go is under a ...
@@ -123,6 +127,7 @@ Until now, I wasn't aware, that Go is under a BSD-style license (3-clause as it 
 
 These are some book notes from "Staff Engineer" – there is some really good insight into what is expected from a Staff Engineer and beyond in the industry. I wish I had read the book earlier.
 
+=> gemini://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi foo.zone/gemf...ook-notes.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html foo.zone/gemf...ok-notes.html
 
 ### Looking at `#Kubernetes`, it's pretty much ...
@@ -133,6 +138,7 @@ Looking at `#Kubernetes`, it's pretty much following the Unix way of doing thing
 
 There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other `#OpenBSD` VM!
 
+=> gemini://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi foo.zone/gemf...h-OpenBSD.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html foo.zone/gemf...-OpenBSD.html
 => https://openbsd.amsterdam/ openbsd.amsterdam/
 
@@ -170,6 +176,7 @@ At first, functional options add a bit of boilerplate, but they turn out to be q
 
 Revamping my home lab a little bit. `#freebsd` `#bhyve` `#rocky` `#linux` `#vm` `#k3s` `#kubernetes` `#wireguard` `#zfs` `#nfs` `#ha` `#relayd` `#k8s` `#selfhosting` `#homelab`
 
+=> gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi foo.zone/gemf...sd-part-1.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html foo.zone/gemf...d-part-1.html
 
 ### Wondering to which `#web` `#browser` I should ...
@@ -224,6 +231,7 @@ Thats unexpected, you cant remove a NaN key from a map without clearing it! `#go
 
 My second blog post about revamping my home lab a little bit just hit the net. `#FreeBSD` `#ZFS` `#n100` `#k8s` `#k3s` `#kubernetes`
 
+=> gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi foo.zone/gemf...sd-part-2.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html foo.zone/gemf...d-part-2.html
 
 ### Very insightful article about tech hiring in ...
@@ -277,6 +285,7 @@ This blog post is basically a rant against DataDog... Personally, I don't have m
 
 Quick trick to get Helix themes selected randomly `#HelixEditor`
 
+=> gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi foo.zone/gemf...ix-themes.gmi (Gemini)
 => https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html foo.zone/gemf...x-themes.html
 
 ### Example where complexity attacks you from ...
@@ -317,7 +326,7 @@ It's the small things, which make Unix like systems, like GNU/Linux, interesting
 
 ### My New Year's resolution is not to start any ...
 
-A plan of mine for next year is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.
+My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.<nil>16350
 
 Other related posts:
 
