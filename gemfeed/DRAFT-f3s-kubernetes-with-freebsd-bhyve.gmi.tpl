@@ -151,7 +151,8 @@ I performed the following steps for all 3 VMs. In the following, the examples ar
 To automatically start the VM on the servers I added the following to the `rc.conf` on the FreeBSD hosts:
 
 ```sh
-paul@f0:/bhyve/rocky % doas cat <<END >>/etc/rc.conf
+
+paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/rc.conf
 vm_list="rocky"
 vm_delay="5"
 ```
@@ -166,7 +167,7 @@ rocky  default    uefi    4    14G     0.0.0.0:5900  Yes [1]  Running (2063)
 
 ### Static IP configuration
 
-After that, I changed the network configuration of the VMs to be static (from DHCP) here as well. As per previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
+After that, I changed the network configuration of the VMs to be static (from DHCP) here. As per previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
 
 ```
 192.168.1.130 f0 f0.lan f0.lan.buetow.org
@@ -177,7 +178,7 @@ After that, I changed the network configuration of the VMs to be static (from DH
 For the Rocky VMs I added those to the FreeBSD hosts systems as well:
 
 ```sh
-paul@f0:/bhyve/rocky % doas cat <<END >>/etc/hosts
+paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/hosts
 192.168.1.120 r0 r0.lan r0.lan.buetow.org
 192.168.1.121 r1 r1.lan r1.lan.buetow.org
 192.168.1.122 r2 r2.lan r2.lan.buetow.org
@@ -187,14 +188,14 @@ END
 and configured the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:
 
 ```sh
-[root@r0 ~]# dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
-[root@r0 ~]# dnmcli connection modify enp0s5 ipv4.gateway 192.168.1.1
-[root@r0 ~]# dnmcli connection modify enp0s5 ipv4.dns 192.168.1.1
-[root@r0 ~]# dnmcli connection modify enp0s5 ipv4.method manual
-[root@r0 ~]# dnmcli connection down enp0s5
-[root@r0 ~]# dnmcli connection up enp0s5
-[root@r0 ~]# hostnamectl set-hostname r0.lan.buetow.org
-[root@r0 ~]# cat <<END >>/etc/hosts
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway 192.168.1.1
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.dns 192.168.1.1
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % dnmcli connection down enp0s5
+[root@r0 ~] % dnmcli connection up enp0s5
+[root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
+[root@r0 ~] % cat <<END >>/etc/hosts
 192.168.1.120 r0 r0.lan r0.lan.buetow.org
 192.168.1.121 r1 r1.lan r1.lan.buetow.org
 192.168.1.122 r2 r2.lan r2.lan.buetow.org
@@ -223,9 +224,11 @@ And then I edited the `/etc/ssh/sshd_config` file again on all 3 VMs and configu
 ### Install latest updates
 
 ```sh
-[root@r0 ~]# dnf update
-[root@r0 ~]# dreboot
+[root@r0 ~] % dnf update
+[root@r0 ~] % dreboot
 ```
+
+CPU STRESS TESTER VM VS NOT VM
 
 Other *BSD-related posts:
 
