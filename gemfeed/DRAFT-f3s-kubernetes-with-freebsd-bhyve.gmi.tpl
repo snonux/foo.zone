@@ -155,7 +155,7 @@ As per previous post of this series, the 3 FreeBSD hosts were already in my `/et
 For the Rocky VMs I added those:
 
 ```sh
-cat <<END >>/etc/hosts
+paul@f0:/bhyve/rocky % doas cat <<END >>/etc/hosts
 192.168.1.120 r0 r0.lan r0.lan.buetow.org
 192.168.1.121 r1 r1.lan r1.lan.buetow.org
 192.168.1.122 r2 r2.lan r2.lan.buetow.org
@@ -163,6 +163,24 @@ END
 ```
 and configured the IPs accordingly on the VMs themselves.
 
+### Auto-start
+
+To automatically start the VM on the servers I added the following to the `rc.conf`:
+
+```sh
+paul@f0:/bhyve/rocky % doas cat <<END >>/etc/rc.conf
+vm_list="rocky"
+vm_delay="5"
+```
+
+The `vm_delay` isn't really required. It is used to wait 5 seconds before starting each VM, but as of now, there is only one VM per host. Maybe later, when there are more, this will be useful to have. After adding, there's now a `Yes` indicator in the `AUTO` column.
+
+
+```sh
+paul@f1:~ % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE
+rocky  default    uefi    4    14G     0.0.0.0:5900  Yes [1]  Running (2063)
+```
 
 Other *BSD-related posts:
 
