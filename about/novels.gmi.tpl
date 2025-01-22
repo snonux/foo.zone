@@ -80,6 +80,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), (Audiobook)
 * 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), (Audiobook)
 * 2022 - Das Signal der Schöpfer - Die Wächter des Wissens - Band 3 (german), (Audiobook)
+* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), (Audiobook)
 
 ### Ian Banks
 
@@ -106,10 +107,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 ### Andreas Brandhorst
 
 * 2024 - Der Riss (german)
-
-### David Reimer
-
-* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), (Audiobook)
+* 2023 - Oxygen: Welt ohne Sauerstoff, Audiobook (german)
 
 ## Unread books already in my shelf
 
