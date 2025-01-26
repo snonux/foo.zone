@@ -1,4 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 3
+# f3s: Kubernetes with FreeBSD - Protecting from power outages - Part 3
 
 This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
 
@@ -10,227 +10,251 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 
 ## Introduction
 
-In this blog post, we are going to install the Bhyve hypervisor.
+In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, is crucial for safeguarding my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out, allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important as I will also store some of my data on the f3s nodes.
 
-The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve's strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.
+## Changes since last time
 
-Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.
+### FreeBSD upgrade to 14.2
 
-## Basic Bhyve setup
+There has been a new release since the last blog post of this series.
 
-For the management of the Bhyve VMs, we are using `vm-bhyve`, a tool not part of the FreeBSD operating system but available as a ready-to-use package. It eases VM management and reduces a lot of the overhead. We also install the required package to make Bhyve work with the UEFI firmware.
+* New location, behind the TV
+* Also changed the switch to my OpenWRT one. Exactly got 3 ethernet slots!
+* OpenWRT Wifi hotspot (out of scope for f3s series) also connected to UPS.
 
-=> https://github.com/churchers/vm-bhyve
+## The UPS hardware.
 
-The following commands are executed on all three hosts `f0`, `f1`, and `f2`, where `re0` is the name of the Ethernet interface (which may need to be adjusted if your hardware is different):
+I wanted a UPS to which I could connect to via FreeBSD and would give enough back-up power to operate the f3s cluster for a couple of minutes (turned out to be around an hour) and to automatically initate the shutdown of all the f3s nodes.
 
-```sh
-paul@f0:~ % doas pkg install vm-bhyve bhyve-firmware
-paul@f0:~ % doas sysrc vm_enable=YES
-vm_enable:  -> YES
-paul@f0:~ % doas sysrc vm_dir=zfs:zroot/bhyve
-vm_dir:  -> zfs:zroot/bhyve
-paul@f0:~ % doas zfs create zroot/bhyve
-paul@f0:~ % doas vm init
-paul@f0:~ % doas vm switch create public
-paul@f0:~ % doas vm switch add public re0
-```
+I decided on the APS Back-UPS BX750MI model due to:
 
-Bhyve stores all it's data in the `/bhyve` of the `zroot` ZFS pool:
+* Costs: Being relatively affordable (not costing thousands)
+* USB connectivity: Can be connected via USB to one of the FreeBSD hosts - reading the UPS status.
+* A power output of 750VA (or 410 watts), suitable for an hour of runtime of my f3s nodes.
+* Multiple power outlets: Can connect all 3 f3s nodes there directly.
+* User-Replaceable Batteries: So after two years or more (depending on the usage), I can replace the batteries of the UPS by myself.
+* It's compact design. Overall, I like how it looks.
 
-```sh
-paul@f0:~ % zfs list | grep bhyve
-zroot/bhyve                                   1.74M   453G  1.74M  /zroot/bhyve
-```
+## A new home
 
-For convenience, we also create this symlink:
+## Configuring FreeBSD to work with the UPS
+
+### USB device detection
+
+Once plugged in via USB on FreeBSD, the following can be seen in the kernel messages:
 
 ```sh
-paul@f0:~ % doas ln -s /zroot/bhyve/ /bhyve
-
+paul@f0: ~ % doas dmesg | grep UPS
+ugen0.2: <American Power Conversion Back-UPS BX750MI> at usbus0 (disconnected)
+ugen0.2: <American Power Conversion Back-UPS BX750MI> at usbus0
 ```
 
-Now, Bhyve is ready to rumble, but no VMs are there yet:
+### `apcupsd` installation
+
+To make use of the USB connection, the `apcupsd` package must be installed:
 
 ```sh
-paul@f0:~ % doas vm list
-NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
+paul@f0: ~ % doas install apcupsd
 ```
 
-## Rocky Linux VMs
-
-### ISO download
-
-We're going to install the Rocky Linux from the latest minimal iso:
+I have made the following modifications to the configuration file so that the UPS can be used via the USB interface:
 
 ```sh
-paul@f0:~ % doas vm iso \
- https://download.rockylinux.org/pub/rocky/9/isos/x86_64/Rocky-9.5-x86_64-minimal.iso
-/zroot/bhyve/.iso/Rocky-9.5-x86_64-minimal.iso        1808 MB 4780 kBps 06m28s
-paul@f0:/bhyve % doas vm create rocky
-```
-### VM configuration
+paul@f0:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample  apcupsd.conf
+--- apcupsd.conf.sample 2024-11-01 16:40:42.000000000 +0200
++++ apcupsd.conf        2024-12-03 10:58:24.009501000 +0200
+@@ -31,7 +31,7 @@
+ #     940-1524C, 940-0024G, 940-0095A, 940-0095B,
+ #     940-0095C, 940-0625A, M-04-02-2000
+ #
+-UPSCABLE smart
++UPSCABLE usb
 
-The default configuration looks like this now:
+ # To get apcupsd to work, in addition to defining the cable
+ # above, you must also define a UPSTYPE, which corresponds to
+@@ -88,8 +88,10 @@
+ #                            that apcupsd binds to that particular unit
+ #                            (helpful if you have more than one USB UPS).
+ #
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE usb
++DEVICE
+
+ # POLLTIME <int>
+ #   Interval (in seconds) at which apcupsd polls the UPS for status. This
+```
+
+I left the remaining settings as the default ones, for example, the following are of my main interest:
+
+```
+# If during a power failure, the remaining battery percentage
+# (as reported by the UPS) is below or equal to BATTERYLEVEL,
+# apcupsd will initiate a system shutdown.
+BATTERYLEVEL 5
+
+# If during a power failure, the remaining runtime in minutes
+# (as calculated internally by the UPS) is below or equal to MINUTES,
+# apcupsd, will initiate a system shutdown.
+MINUTES 3
+```
+
+and enabled and started the deamon:
 
 ```sh
-paul@f0:/bhyve/rocky % cat rocky.conf
-loader="bhyveload"
-cpu=1
-memory=256M
-network0_type="virtio-net"
-network0_switch="public"
-disk0_type="virtio-blk"
-disk0_name="disk0.img"
-uuid="1c4655ac-c828-11ef-a920-e8ff1ed71ca0"
-network0_mac="58:9c:fc:0d:13:3f"
+paul@f0:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -> YES
+paul@f0:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
 ```
 
-Whereas the `uuid` and the `network0_mac` differ on each of the 3 hosts.
+### UPS connectivity test
 
-but in order to make Rocky Linux boot it (plus some other adjustments, e.g. as I am intending to run the majority of the workload in the k3s cluster running on those linux VMs, I give them beefy specs like 4 CPU cores and 14GB RAM), I run `doas vm configure rocky` and modified it to:
-
-```
-guest="linux"
-loader="uefi"
-uefi_vars="yes"
-cpu=4
-memory=14G
-network0_type="virtio-net"
-network0_switch="public"
-disk0_type="virtio-blk"
-disk0_name="disk0.img"
-graphics="yes"
-graphics_vga=io
-uuid="1c45400b-c828-11ef-8871-e8ff1ed71cac"
-network0_mac="58:9c:fc:0d:13:3f"
-```
-
-### VM installation
-
-To start the installer from the downloaded ISO, I run:
+And voila, I can now access the UPS information via the `apcaccess` command, how convenient :-) (I had a read through the manual page as well, which gives a good understanding what else can be done with it!).
 
 ```sh
-paul@f0:~ % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
-Starting rocky
-  * found guest in /zroot/bhyve/rocky
-  * booting...
-
-paul@f0:/bhyve/rocky % doas vm list
-NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO  STATE
-rocky  default    uefi    4    14G     0.0.0.0:5900  No    Locked (f0.lan.buetow.org)
-
-paul@f0:/bhyve/rocky % doas sockstat -4 | grep 5900
-root     bhyve       6079 8   tcp4   *:5900                *:*
+paul@f0:~ % apcaccess
+APC      : 001,035,0857
+DATE     : 2025-01-26 14:43:27 +0200
+HOSTNAME : f0.lan.buetow.org
+VERSION  : 3.14.14 (31 May 2016) freebsd
+UPSNAME  : f0.lan.buetow.org
+CABLE    : USB Cable
+DRIVER   : USB UPS Driver
+UPSMODE  : Stand Alone
+STARTTIME: 2025-01-26 14:43:25 +0200
+MODEL    : Back-UPS BX750MI
+STATUS   : ONLINE
+LINEV    : 230.0 Volts
+LOADPCT  : 4.0 Percent
+BCHARGE  : 100.0 Percent
+TIMELEFT : 65.3 Minutes
+MBATTCHG : 5 Percent
+MINTIMEL : 3 Minutes
+MAXTIME  : 0 Seconds
+SENSE    : Medium
+LOTRANS  : 145.0 Volts
+HITRANS  : 295.0 Volts
+ALARMDEL : No alarm
+BATTV    : 13.6 Volts
+LASTXFER : Automatic or explicit self test
+NUMXFERS : 0
+TONBATT  : 0 Seconds
+CUMONBATT: 0 Seconds
+XOFFBATT : N/A
+SELFTEST : NG
+STATFLAG : 0x05000008
+SERIALNO : 9B2414A03599
+BATTDATE : 2001-01-01
+NOMINV   : 230 Volts
+NOMBATTV : 12.0 Volts
+NOMPOWER : 410 Watts
+END APC  : 2025-01-26 14:44:06 +0200
 ```
 
-Port 5900 now also opened for VNC connections, so I connected to it with a VNC client and run through the installation dialogs. I'm sure this could be done unattended or more automated, there are only 3 VMs to install, and the automation doesn't seem worth it as we are doing it only once in a year or less often.
+## APC info on partner nodes:
 
-### Increase of the disk image
+### Installation
 
-By default the VMs disk image is only 20G, which is a bit small for my purposes, so I stopped the VMs again and run `truncate` on the image file to enlarge them to 100G, and re-started the installation:
+I installed apcupsd via `doas pkg install apcupsd` also on f1 and f2, and then I could connect to it this way:
 
 ```sh
-paul@f0:/bhyve/rocky % doas vm stop rocky
-paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
-paul@f0:/bhyve/rocky % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
+paul@f1:~ % apcaccess -h f0.lan.buetow.org | grep Percent
+LOADPCT  : 12.0 Percent
+BCHARGE  : 94.0 Percent
+MBATTCHG : 5 Percent
 ```
 
-### Connect to VPN
+but we want the daemon to be configured and enabled in such a way that it connects to the master UPS note (the one with the UPS connected via USB) so that it can also initiate the system downtime when ther battery goes low.
 
-For the installation, I opened the VPN client on my Fedora laptop (GNOME comes with a simple VPN client) and ran through the base installation for each of the VMs manually. Again, I am sure this could have been automated a bit more, but there were just 3 VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were: `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f0:5900`.
-
-I mostly selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.
-
-## After install
-
-I performed the following steps for all 3 VMs. In the following, the examples are all executed on `f0` (bzw the VM `r0` running on `f0`):
-
-### VM auto-start after host reboot
-
-To automatically start the VM on the servers I added the following to the `rc.conf` on the FreeBSD hosts:
+On `f1` and `f2`, I changed the configuration to use `f0` (where `upsapcd` is listening) as a remote device. I also changed the `MINUTES` setting from 3 to 6 and the `BATTERYLEVEL` setting from 5 to 10, to ensure that the `f1` and `f2` nodes can still connect to the `f0` node for UPS information before `f0` decides to shut down.
 
 ```sh
+paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
+--- apcupsd.conf.sample 2024-11-01 16:40:42.000000000 +0200
++++ apcupsd.conf        2025-01-26 15:52:45.108469000 +0200
+@@ -31,7 +31,7 @@
+ #     940-1524C, 940-0024G, 940-0095A, 940-0095B,
+ #     940-0095C, 940-0625A, M-04-02-2000
+ #
+-UPSCABLE smart
++UPSCABLE ether
 
-paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/rc.conf
-vm_list="rocky"
-vm_delay="5"
+ # To get apcupsd to work, in addition to defining the cable
+ # above, you must also define a UPSTYPE, which corresponds to
+@@ -52,7 +52,6 @@
+ #                            Network Information Server. This is used if the
+ #                            UPS powering your computer is connected to a
+ #                            different computer for monitoring.
+-#
+ # snmp      hostname:port:vendor:community
+ #                            SNMP network link to an SNMP-enabled UPS device.
+ #                            Hostname is the ip address or hostname of the UPS
+@@ -88,8 +87,8 @@
+ #                            that apcupsd binds to that particular unit
+ #                            (helpful if you have more than one USB UPS).
+ #
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE net
++DEVICE f0.lan.buetow.org:3551
+
+ # POLLTIME <int>
+ #   Interval (in seconds) at which apcupsd polls the UPS for status. This
+@@ -147,12 +146,12 @@
+ # If during a power failure, the remaining battery percentage
+ # (as reported by the UPS) is below or equal to BATTERYLEVEL,
+ # apcupsd will initiate a system shutdown.
+-BATTERYLEVEL 5
++BATTERYLEVEL 10
+
+ # If during a power failure, the remaining runtime in minutes
+ # (as calculated internally by the UPS) is below or equal to MINUTES,
+ # apcupsd, will initiate a system shutdown.
+-MINUTES 3
++MINUTES 6
+
+ # If during a power failure, the UPS has run on batteries for TIMEOUT
+ # many seconds or longer, apcupsd will initiate a system shutdown.
+
 ```
 
-The `vm_delay` isn't really required. It is used to wait 5 seconds before starting each VM, but as of now, there is only one VM per host. Maybe later, when there are more, this will be useful to have. After adding, there's now a `Yes` indicator in the `AUTO` column.
+So I also run the following commands on `f1` and `f2`:
 
 ```sh
-paul@f0:~ % doas vm list
-NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE
-rocky  default    uefi    4    14G     0.0.0.0:5900  Yes [1]  Running (2063)
+paul@f1:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -> YES
+paul@f1:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
 ```
 
-### Static IP configuration
+And then was able to connect to localhost via the `apcaccess` command:
 
-After that, I changed the network configuration of the VMs to be static (from DHCP) here. As per previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
-
-```
-192.168.1.130 f0 f0.lan f0.lan.buetow.org
-192.168.1.131 f1 f1.lan f1.lan.buetow.org
-192.168.1.132 f2 f2.lan f2.lan.buetow.org
-```
-
-For the Rocky VMs I added those to the FreeBSD hosts systems as well:
 
 ```sh
-paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/hosts
-192.168.1.120 r0 r0.lan r0.lan.buetow.org
-192.168.1.121 r1 r1.lan r1.lan.buetow.org
-192.168.1.122 r2 r2.lan r2.lan.buetow.org
-END
+paul@f1:~ % doas apcaccess | grep Percent
+LOADPCT  : 5.0 Percent
+BCHARGE  : 95.0 Percent
+MBATTCHG : 5 Percent
 ```
 
-and configured the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:
+## Power outage simulation
 
-```sh
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway 192.168.1.1
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.dns 192.168.1.1
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
-[root@r0 ~] % dnmcli connection down enp0s5
-[root@r0 ~] % dnmcli connection up enp0s5
-[root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
-[root@r0 ~] % cat <<END >>/etc/hosts
-192.168.1.120 r0 r0.lan r0.lan.buetow.org
-192.168.1.121 r1 r1.lan r1.lan.buetow.org
-192.168.1.122 r2 r2.lan r2.lan.buetow.org
-END
-````
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
 
-Whereas:
+Power failure. Running on UPS batteries.                                              
 
-* `192.168.1.120` is the IP of the VM itself (here: `r0.lan.buetow.org`)
-* `192.168.1.1` is the address of my home router, which also does DNS.
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:08 EET...
 
-### Permitting root login
+Power has returned... 
 
-As these VMs arent directly reachable via SSH from the internet, I enabled `root` login by adding a line with `PermitRootLogin yes` to `/etc/sshd/sshd_config`.
 
-Once done, I rebooted the VM by running `reboot` inside of the vm to test whether everything was configured and persisted correctly.
+paul@f0:/usr/local/etc/apcupsd % apcaccess | grep TIMELEFT
+TIMELEFT : 63.9 Minutes
 
-After reboot, I copied my public key from my Laptop to the 3 VMs:
-
-```sh
-% for i in 0 1 2; do ssh-copy-id root@r$i.lan.buetow.org; done
-```
-
-And then I edited the `/etc/ssh/sshd_config` file again on all 3 VMs and configured `PasswordAuthentication no`, to only allow SSH key authentication from now on.
-
-### Install latest updates
-
-```sh
-[root@r0 ~] % dnf update
-[root@r0 ~] % dreboot
-```
-
-CPU STRESS TESTER VM VS NOT VM
-
-Other *BSD-related posts:
+Other BSD related posts are:
 
 << template::inline::index bsd
 
