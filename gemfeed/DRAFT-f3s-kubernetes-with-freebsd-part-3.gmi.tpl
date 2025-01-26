@@ -10,13 +10,13 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 
 ## Introduction
 
-In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, is crucial for safeguarding my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out (especially useful for my area, as here are frequent power cuts), allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important as I will also store some of my data on the f3s nodes.
+In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, safeguards my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out—especially useful in my area, where power cuts are frequent—allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important since I will also store some of my data on the f3s nodes.
 
 ## Changes since last time
 
 ### FreeBSD upgrade from 14.1 to 14.2
 
-There has been a new release since the last blog post of this series. The upgrade from 14.1 was as easy as:
+There has been a new release since the last blog post in this series. The upgrade from 14.1 was as easy as:
 
 ```sh
 paul@f0: ~ % doas freebsd-update fetch
@@ -26,7 +26,7 @@ paul@f0: ~ % doas freebsd-update install
 paul@f0: ~ % doas shutdown -r now
 ```
 
-And after rebooting, I run:
+And after rebooting, I ran:
 
 ```sh
 paul@f0: ~ % doas freebsd-update install
@@ -35,7 +35,7 @@ paul@f0: ~ % doas pkg upgrade
 paul@f0: ~ % doas shutdown -r now
 ```
 
-And after another reboot, I were on 14.2:
+And after another reboot, I was on 14.2:
 
 ```sh
 paul@f0:~ % uname -a
@@ -43,41 +43,41 @@ FreeBSD f0.lan.buetow.org 14.2-RELEASE FreeBSD 14.2-RELEASE
  releng/14.2-n269506-c8918d6c7412 GENERIC amd64
 ```
 
-And this, of course, I run on all 3 nodes!
+And, of course, I ran this on all 3 nodes!
 
 ## A new home (behind the TV)
 
-I've decided to put all the infrastructure behind my TV, as there is plenty of space available. The TV hides most of the setup, which improves the WAF (women acceptance factor) drastically.
+I've put all the infrastructure behind my TV, as plenty of space is available. The TV hides most of the setup, which drastically improved the SAF (spouse acceptance factor).
 
 => ./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg New hardware placement arrangement
 
-I got rid of the mini switch I mentioned in the previous blog post, as I have the TP-Link EAP615-Wall on the wall mounted nearby, which is my OpenWrt powered Wifi hotspot, which also happened to have 3 ethernet ports to which I connected the Beelink nodes to. That's the device you see at the very top. The ethernet cables go downwards through the cable boxes to the Beelink nodes.
+I got rid of the mini-switch I mentioned in the previous blog post. I have the TP-Link EAP615-Wall mounted on the wall nearby, which is my OpenWrt-powered Wi-Fi hotspot. It also has 3 Ethernet ports, to which I connected the Beelink nodes. That's the device you see at the very top.
 
-Besides of the Beelink f3s nodes, I will connect the TP-Link to the UPS as well (won't be further mentioned in this blog post - but the positive side effect is, that my Wifi will still work on power loss for some time).
+The Ethernet cables go downward through the cable boxes to the Beelink nodes. In addition to the Beelink f3s nodes, I connected the TP-Link to the UPS as well (not discussed further in this blog post, but the positive side effect is that my Wi-Fi will still work during a power loss for some time—and during a power cut, the Beelink nodes will still be able to communicate with each other).
 
-On the very left (the black box) is the UPS, with 4 power outlets. 3 go to the Beelink nodes, and one goes to the TP-Link. There is also an USB output, which is conected o te first Beelink node `f0`.
+On the very left (the black box) is the UPS, with four power outlets. Three go to the Beelink nodes, and one goes to the TP-Link. A USB output is also connected to the first Beelink node, `f0`. 
 
-On the very right (half way hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. Only downside (or upside?) is, that my 14 months old daughter is now chaos testing the Beelink nodes as the red power buttons (which are now reachable to her) are very attractive for her to randomly press when passing by. :-)  - Luckily, that will only cause graceful system shutdowns!
+On the very right (halfway hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. The only downside (or upside?) is that my 14-month-old daughter is now chaos-testing the Beelink nodes, as the red power buttons (now reachable for her) are very attractive for her to press when passing by randomly. :-) Luckily, that will only cause graceful system shutdowns!
 
-## The UPS hardware.
+## The UPS hardware
 
-I wanted a UPS to which I could connect to via FreeBSD and would give enough back-up power to operate the cluster for a couple of minutes (turned out to be around an hour - but that time will likely be shortened after future HW upgrades like additional drives and backup enclosure) and to automatically initate the shutdown of all the f3s nodes.
+I wanted a UPS that I could connect to via FreeBSD, and that would provide enough backup power to operate the cluster for a couple of minutes (it turned out to be around an hour, but this time will likely be shortened after future hardware upgrades, like additional drives and a backup enclosure) and to automatically initiate the shutdown of all the f3s nodes.
 
-I decided on the APC Back-UPS BX750MI model due to:
+I decided on the APC Back-UPS BX750MI model because:
 
-* Zero noise level when there is no power-cut (some light noise when battery is in operation during a power cut.)
-* Costs: Being relatively affordable (not costing thousands)
-* USB connectivity: Can be connected via USB to one of the FreeBSD hosts - reading the UPS status.
-* A power output of 750VA (or 410 watts), suitable for an hour of runtime of my f3s nodes.
-* Multiple power outlets: Can connect all 3 f3s nodes there directly.
-* User-Replaceable Batteries: So after two years or more (depending on the usage), I can replace the batteries of the UPS by myself.
-* It's compact design. Overall, I like how it looks.
+* Zero noise level when there is no power cut (some light noise when the battery is in operation during a power cut).
+* Cost: It is relatively affordable (not costing thousands).
+* USB connectivity: Can be connected via USB to one of the FreeBSD hosts to read the UPS status.
+* A power output of 750VA (or 410 watts), suitable for an hour of runtime for my f3s nodes (plus the Wi-Fi router).
+* Multiple power outlets: Can connect all 3 f3s nodes directly.
+* User-replaceable batteries: I can replace the batteries myself after two years or more (depending on usage).
+* Its compact design. Overall, I like how it looks.
 
 => ./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg The APC Back-UPS BX750MI in operation.
 
-## Configuring FreeBSD to work with the UPS
+## Configuring FreeBSD to Work with the UPS
 
-### USB device detection
+### USB Device Detection
 
 Once plugged in via USB on FreeBSD, I could see the following in the kernel messages:
 
@@ -86,7 +86,7 @@ paul@f0: ~ % doas dmesg | grep UPS
 ugen0.2: <American Power Conversion Back-UPS BX750MI> at usbus0
 ```
 
-### `apcupsd` installation
+### `apcupsd` Installation
 
 To make use of the USB connection, the `apcupsd` package had to be installed:
 
@@ -122,7 +122,7 @@ paul@f0:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample  apcupsd.conf
  #   Interval (in seconds) at which apcupsd polls the UPS for status. This
 ```
 
-I left the remaining settings as the default ones, for example, the following are of my main interest:
+I left the remaining settings as the default ones; for example, the following are of main interest:
 
 ```
 # If during a power failure, the remaining battery percentage
@@ -136,7 +136,7 @@ BATTERYLEVEL 5
 MINUTES 3
 ```
 
-and enabled and started the deamon:
+I then enabled and started the daemon:
 
 ```sh
 paul@f0:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
@@ -145,9 +145,9 @@ paul@f0:/usr/local/etc/apcupsd % doas service apcupsd start
 Starting apcupsd.
 ```
 
-### UPS connectivity test
+### UPS Connectivity Test
 
-And voila, I could now access the UPS information via the `apcaccess` command, how convenient :-) (I had a read through the manual page as well, which gives a good understanding what else can be done with it!).
+And voila, I could now access the UPS information via the `apcaccess` command; how convenient :-) (I also read through the manual page, which provides a good understanding of what else can be done with it!).
 
 ```sh
 paul@f0:~ % apcaccess
@@ -189,11 +189,15 @@ NOMPOWER : 410 Watts
 END APC  : 2025-01-26 14:44:06 +0200
 ```
 
-## APC info on partner nodes:
+## APC Info on Partner Nodes:
+
+So far, so good. Host `f0` would shut down itself when short on power. But what about the `f1` and `f2` nodes? They aren't connected directly to the UPS and, therefore, wouldn't know that their power is about to be cut off. For this, `apcupsd` running on the `f1` and `f2` nodes can be configured to retrieve UPS information via the network from the `apcupsd` server running on the `f0` node, which is connected directly to the APC via USB.
+
+Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an `f0` system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.
 
 ### Installation on partners
 
-I installed apcupsd via `doas pkg install apcupsd` also on f1 and f2, and then I could connect to it this way:
+To do this, I installed `apcupsd` via `doas pkg install apcupsd` on `f1` and `f2`, and then I could connect to it this way:
 
 ```sh
 paul@f1:~ % apcaccess -h f0.lan.buetow.org | grep Percent
@@ -202,9 +206,9 @@ BCHARGE  : 94.0 Percent
 MBATTCHG : 5 Percent
 ```
 
-But I want the daemon to be configured and enabled in such a way that it connects to the master UPS note (the one with the UPS connected via USB) so that it can also initiate the system shutdown when the UPS battery reaches low levels.
+But I want the daemon to be configured and enabled in such a way that it connects to the master UPS node (the one with the UPS connected via USB) so that it can also initiate a system shutdown when the UPS battery reaches low levels. For that, `apcupsd` itself needs to be aware of the UPS status.
 
-On `f1` and `f2`, I changed the configuration to use `f0` (where `upsapcd` is listening) as a remote device. I also changed the `MINUTES` setting from 3 to 6 and the `BATTERYLEVEL` setting from 5 to 10, to ensure that the `f1` and `f2` nodes could still connect to the `f0` node for UPS information before `f0` decides to shut down.
+On `f1` and `f2`, I changed the configuration to use `f0` (where `apcupsd` is listening) as a remote device. I also changed the `MINUTES` setting from 3 to 6 and the `BATTERYLEVEL` setting from 5 to 10 to ensure that the `f1` and `f2` nodes could still connect to the `f0` node for UPS information before `f0` decides to shut down itself. So `f1` and `f2` must shut down earlier than `f0`:
 
 ```sh
 paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
@@ -255,8 +259,7 @@ paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
  # many seconds or longer, apcupsd will initiate a system shutdown.
 
 ```
-
-So I also run the following commands on `f1` and `f2`:
+So I also ran the following commands on `f1` and `f2`:
 
 ```sh
 paul@f1:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
@@ -265,7 +268,7 @@ paul@f1:/usr/local/etc/apcupsd % doas service apcupsd start
 Starting apcupsd.
 ```
 
-And then was able to connect to localhost via the `apcaccess` command:
+And then I was able to connect to localhost via the `apcaccess` command:
 
 ```sh
 paul@f1:~ % doas apcaccess | grep Percent
@@ -276,11 +279,27 @@ MBATTCHG : 5 Percent
 
 ## Power outage simulation
 
+### Pulling the plug
+
+I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:
+
+````
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:03 EET...
 
 Power failure. Running on UPS batteries.                                              
+```
 
+I ran the following command to confirm the available battery time:
+
+```sh
+paul@f0:/usr/local/etc/apcupsd % apcaccess | grep TIMELEFT
+TIMELEFT : 63.9 Minutes
+```
+
+And after almost 60 minutes (`f1` and `f2` a bit earlier, `f0` a bit later due to the different `BATTERYLEVEL` and `MINUTES` settings outlined earlier), the following broadcast was sent out:
+
+```
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:08 EET...
 
@@ -288,13 +307,26 @@ Broadcast Message from root@f0.lan.buetow.org
 
 System going down IMMEDIATELY
 
-
 apcupsd initiated shutdown
+```
 
+And all the nodes shut down safely before the UPS ran out of battery!
 
+### Restoring power
 
-paul@f0:/usr/local/etc/apcupsd % apcaccess | grep TIMELEFT
-TIMELEFT : 63.9 Minutes
+After restoring power, I checked the logs in `/var/log/daemon.log` and found the following on all 3 nodes:
+
+```
+Jan 26 17:36:24 f2 apcupsd[2159]: Power failure.
+Jan 26 17:36:30 f2 apcupsd[2159]: Running on UPS batteries.
+Jan 26 17:36:30 f2 apcupsd[2159]: Battery charge below low limit.
+Jan 26 17:36:30 f2 apcupsd[2159]: Initiating system shutdown!
+Jan 26 17:36:30 f2 apcupsd[2159]: User logins prohibited
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
+```
+
+All good :-) 
 
 Other BSD related posts are:
 
