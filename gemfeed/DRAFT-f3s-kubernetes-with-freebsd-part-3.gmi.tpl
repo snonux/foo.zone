@@ -1,4 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Protecting from power outages - Part 3
+# f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
 
 This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
 
