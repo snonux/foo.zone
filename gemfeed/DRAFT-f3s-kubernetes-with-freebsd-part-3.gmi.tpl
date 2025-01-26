@@ -195,6 +195,8 @@ So far, so good. Host `f0` would shut down itself when short on power. But what 
 
 Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an `f0` system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.
 
+And if `f0` is down and `f1` and `f2` receive new data and crash midway, it's likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data loss recoverable. I'd receive an alert if any of the nodes go down (more on monitoring later in this blog series).
+
 ### Installation on partners
 
 To do this, I installed `apcupsd` via `doas pkg install apcupsd` on `f1` and `f2`, and then I could connect to it this way:
@@ -303,7 +305,7 @@ And after almost 60 minutes (`f1` and `f2` a bit earlier, `f0` a bit later due t
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:08 EET...
 
-        *** FINAL System shutdown message from paul@f1.lan.buetow.org ***
+        *** FINAL System shutdown message from root@f0.lan.buetow.org ***
 
 System going down IMMEDIATELY
 
