@@ -45,7 +45,7 @@ FreeBSD f0.lan.buetow.org 14.2-RELEASE FreeBSD 14.2-RELEASE
 
 And, of course, I ran this on all 3 nodes!
 
-## A new home (behind the TV)
+### A new home (behind the TV)
 
 I've put all the infrastructure behind my TV, as plenty of space is available. The TV hides most of the setup, which drastically improved the SAF (spouse acceptance factor).
 
