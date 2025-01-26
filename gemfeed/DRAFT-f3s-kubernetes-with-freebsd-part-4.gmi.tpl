@@ -1,6 +1,6 @@
-# f3s: Kubernetes with FreeBSD - VMs - Part 3
+# f3s: Kubernetes with FreeBSD - UPS - Part 3
 
-This is the fourth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
+This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
 
@@ -13,6 +13,13 @@ This is the fourth blog post about my f3s series for my self-hosting demands in 
 In this blog post we are setting up the UPS for the cluster used.
 
 A UPS, or Uninterruptible Power Supply, is crucial for safeguarding my cluster from unexpected power outages and surges. It acts like a backup battery that kicks in when the electricity cuts out, giving the chance for a graceful system shutdown, thus preventing data loss and corruption. The latter is very important, as I am also going to store some of my data on the f3s nodes.
+
+## Changes since last time
+
+* FreeBSD upgrade to 14.2
+* New location, behind the TV
+* Also changed the switch to my OpenWRT one. Exactly got 3 ethernet slots!
+* OpenWRT Wifi hotspot (out of scope for f3s series) also connected to UPS.
 
 ## The UPS hardware.
 
