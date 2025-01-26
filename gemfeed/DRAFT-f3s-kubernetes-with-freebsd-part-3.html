@@ -1,0 +1,421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-3.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</h1><br />
+<br />
+<span>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#changes-since-last-time'>Changes since last time</a></li>
+<li>⇢ ⇢ <a href='#freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</a></li>
+<li>⇢ ⇢ <a href='#a-new-home-behind-the-tv'>A new home (behind the TV)</a></li>
+<li>⇢ <a href='#the-ups-hardware'>The UPS hardware</a></li>
+<li>⇢ <a href='#configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</a></li>
+<li>⇢ ⇢ <a href='#usb-device-detection'>USB Device Detection</a></li>
+<li>⇢ ⇢ <a href='#apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</a></li>
+<li>⇢ ⇢ <a href='#ups-connectivity-test'>UPS Connectivity Test</a></li>
+<li>⇢ <a href='#apc-info-on-partner-nodes'>APC Info on Partner Nodes:</a></li>
+<li>⇢ ⇢ <a href='#installation-on-partners'>Installation on partners</a></li>
+<li>⇢ <a href='#power-outage-simulation'>Power outage simulation</a></li>
+<li>⇢ ⇢ <a href='#pulling-the-plug'>Pulling the plug</a></li>
+<li>⇢ ⇢ <a href='#restoring-power'>Restoring power</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, safeguards my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out—especially useful in my area, where power cuts are frequent—allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important since I will also store some of my data on the f3s nodes.</span><br />
+<br />
+<h2 style='display: inline' id='changes-since-last-time'>Changes since last time</h2><br />
+<br />
+<h3 style='display: inline' id='freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</h3><br />
+<br />
+<span>There has been a new release since the last blog post in this series. The upgrade from 14.1 was as easy as:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update fetch
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after rebooting, I ran:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas pkg update
+paul@f0: ~ % doas pkg upgrade
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after another reboot, I was on 14.2:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org <font color="#000000">14.2</font>-RELEASE FreeBSD <font color="#000000">14.2</font>-RELEASE 
+ releng/<font color="#000000">14.2</font>-n<font color="#000000">269506</font>-c8918d6c7412 GENERIC amd64
+</pre>
+<br />
+<span>And, of course, I ran this on all 3 nodes!</span><br />
+<br />
+<h3 style='display: inline' id='a-new-home-behind-the-tv'>A new home (behind the TV)</h3><br />
+<br />
+<span>I&#39;ve put all the infrastructure behind my TV, as plenty of space is available. The TV hides most of the setup, which drastically improved the SAF (spouse acceptance factor).</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg'><img alt='New hardware placement arrangement' title='New hardware placement arrangement' src='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg' /></a><br />
+<br />
+<span>I got rid of the mini-switch I mentioned in the previous blog post. I have the TP-Link EAP615-Wall mounted on the wall nearby, which is my OpenWrt-powered Wi-Fi hotspot. It also has 3 Ethernet ports, to which I connected the Beelink nodes. That&#39;s the device you see at the very top.</span><br />
+<br />
+<span>The Ethernet cables go downward through the cable boxes to the Beelink nodes. In addition to the Beelink f3s nodes, I connected the TP-Link to the UPS as well (not discussed further in this blog post, but the positive side effect is that my Wi-Fi will still work during a power loss for some time—and during a power cut, the Beelink nodes will still be able to communicate with each other).</span><br />
+<br />
+<span>On the very left (the black box) is the UPS, with four power outlets. Three go to the Beelink nodes, and one goes to the TP-Link. A USB output is also connected to the first Beelink node, <span class='inlinecode'>f0</span>. </span><br />
+<br />
+<span>On the very right (halfway hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. The only downside (or upside?) is that my 14-month-old daughter is now chaos-testing the Beelink nodes, as the red power buttons (now reachable for her) are very attractive for her to press when passing by randomly. :-) Luckily, that will only cause graceful system shutdowns!</span><br />
+<br />
+<h2 style='display: inline' id='the-ups-hardware'>The UPS hardware</h2><br />
+<br />
+<span>I wanted a UPS that I could connect to via FreeBSD, and that would provide enough backup power to operate the cluster for a couple of minutes (it turned out to be around an hour, but this time will likely be shortened after future hardware upgrades, like additional drives and a backup enclosure) and to automatically initiate the shutdown of all the f3s nodes.</span><br />
+<br />
+<span>I decided on the APC Back-UPS BX750MI model because:</span><br />
+<br />
+<ul>
+<li>Zero noise level when there is no power cut (some light noise when the battery is in operation during a power cut).</li>
+<li>Cost: It is relatively affordable (not costing thousands).</li>
+<li>USB connectivity: Can be connected via USB to one of the FreeBSD hosts to read the UPS status.</li>
+<li>A power output of 750VA (or 410 watts), suitable for an hour of runtime for my f3s nodes (plus the Wi-Fi router).</li>
+<li>Multiple power outlets: Can connect all 3 f3s nodes directly.</li>
+<li>User-replaceable batteries: I can replace the batteries myself after two years or more (depending on usage).</li>
+<li>Its compact design. Overall, I like how it looks.</li>
+</ul><br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg'><img alt='The APC Back-UPS BX750MI in operation.' title='The APC Back-UPS BX750MI in operation.' src='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</h2><br />
+<br />
+<h3 style='display: inline' id='usb-device-detection'>USB Device Detection</h3><br />
+<br />
+<span>Once plugged in via USB on FreeBSD, I could see the following in the kernel messages:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas dmesg | grep UPS
+ugen0.<font color="#000000">2</font>: &lt;American Power Conversion Back-UPS BX750MI&gt; at usbus0
+</pre>
+<br />
+<h3 style='display: inline' id='apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</h3><br />
+<br />
+<span>To make use of the USB connection, the <span class='inlinecode'>apcupsd</span> package had to be installed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas install apcupsd
+</pre>
+<br />
+<span>I have made the following modifications to the configuration file so that the UPS can be used via the USB interface:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample  apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2024</font>-<font color="#000000">12</font>-<font color="#000000">03</font> <font color="#000000">10</font>:<font color="#000000">58</font>:<font color="#000000">24.009501000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE usb
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">88</font>,<font color="#000000">10</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE usb
++DEVICE
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+</pre>
+<br />
+<span>I left the remaining settings as the default ones; for example, the following are of main interest:</span><br />
+<br />
+<pre>
+# If during a power failure, the remaining battery percentage
+# (as reported by the UPS) is below or equal to BATTERYLEVEL,
+# apcupsd will initiate a system shutdown.
+BATTERYLEVEL 5
+
+# If during a power failure, the remaining runtime in minutes
+# (as calculated internally by the UPS) is below or equal to MINUTES,
+# apcupsd, will initiate a system shutdown.
+MINUTES 3
+</pre>
+<br />
+<span>I then enabled and started the daemon:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f0:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<h3 style='display: inline' id='ups-connectivity-test'>UPS Connectivity Test</h3><br />
+<br />
+<span>And voila, I could now access the UPS information via the <span class='inlinecode'>apcaccess</span> command; how convenient :-) (I also read through the manual page, which provides a good understanding of what else can be done with it!).</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % apcaccess
+APC      : <font color="#000000">001</font>,<font color="#000000">035</font>,<font color="#000000">0857</font>
+DATE     : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">27</font> +<font color="#000000">0200</font>
+HOSTNAME : f0.lan.buetow.org
+VERSION  : <font color="#000000">3.14</font>.<font color="#000000">14</font> (<font color="#000000">31</font> May <font color="#000000">2016</font>) freebsd
+UPSNAME  : f0.lan.buetow.org
+CABLE    : USB Cable
+DRIVER   : USB UPS Driver
+UPSMODE  : Stand Alone
+STARTTIME: <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">25</font> +<font color="#000000">0200</font>
+MODEL    : Back-UPS BX750MI
+STATUS   : ONLINE
+LINEV    : <font color="#000000">230.0</font> Volts
+LOADPCT  : <font color="#000000">4.0</font> Percent
+BCHARGE  : <font color="#000000">100.0</font> Percent
+TIMELEFT : <font color="#000000">65.3</font> Minutes
+MBATTCHG : <font color="#000000">5</font> Percent
+MINTIMEL : <font color="#000000">3</font> Minutes
+MAXTIME  : <font color="#000000">0</font> Seconds
+SENSE    : Medium
+LOTRANS  : <font color="#000000">145.0</font> Volts
+HITRANS  : <font color="#000000">295.0</font> Volts
+ALARMDEL : No alarm
+BATTV    : <font color="#000000">13.6</font> Volts
+LASTXFER : Automatic or explicit self <b><u><font color="#000000">test</font></u></b>
+NUMXFERS : <font color="#000000">0</font>
+TONBATT  : <font color="#000000">0</font> Seconds
+CUMONBATT: <font color="#000000">0</font> Seconds
+XOFFBATT : N/A
+SELFTEST : NG
+STATFLAG : <font color="#000000">0x05000008</font>
+SERIALNO : 9B2414A03599
+BATTDATE : <font color="#000000">2001</font>-<font color="#000000">01</font>-<font color="#000000">01</font>
+NOMINV   : <font color="#000000">230</font> Volts
+NOMBATTV : <font color="#000000">12.0</font> Volts
+NOMPOWER : <font color="#000000">410</font> Watts
+END APC  : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">44</font>:<font color="#000000">06</font> +<font color="#000000">0200</font>
+</pre>
+<br />
+<h2 style='display: inline' id='apc-info-on-partner-nodes'>APC Info on Partner Nodes:</h2><br />
+<br />
+<span>So far, so good. Host <span class='inlinecode'>f0</span> would shut down itself when short on power. But what about the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes? They aren&#39;t connected directly to the UPS and, therefore, wouldn&#39;t know that their power is about to be cut off. For this, <span class='inlinecode'>apcupsd</span> running on the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes can be configured to retrieve UPS information via the network from the <span class='inlinecode'>apcupsd</span> server running on the <span class='inlinecode'>f0</span> node, which is connected directly to the APC via USB.</span><br />
+<br />
+<span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.</span><br />
+<br />
+<h3 style='display: inline' id='installation-on-partners'>Installation on partners</h3><br />
+<br />
+<span>To do this, I installed <span class='inlinecode'>apcupsd</span> via <span class='inlinecode'>doas pkg install apcupsd</span> on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, and then I could connect to it this way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % apcaccess -h f0.lan.buetow.org | grep Percent
+LOADPCT  : <font color="#000000">12.0</font> Percent
+BCHARGE  : <font color="#000000">94.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<span>But I want the daemon to be configured and enabled in such a way that it connects to the master UPS node (the one with the UPS connected via USB) so that it can also initiate a system shutdown when the UPS battery reaches low levels. For that, <span class='inlinecode'>apcupsd</span> itself needs to be aware of the UPS status.</span><br />
+<br />
+<span>On <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, I changed the configuration to use <span class='inlinecode'>f0</span> (where <span class='inlinecode'>apcupsd</span> is listening) as a remote device. I also changed the <span class='inlinecode'>MINUTES</span> setting from 3 to 6 and the <span class='inlinecode'>BATTERYLEVEL</span> setting from 5 to 10 to ensure that the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes could still connect to the <span class='inlinecode'>f0</span> node for UPS information before <span class='inlinecode'>f0</span> decides to shut down itself. So <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> must shut down earlier than <span class='inlinecode'>f0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">15</font>:<font color="#000000">52</font>:<font color="#000000">45.108469000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE ether
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">52</font>,<font color="#000000">7</font> +<font color="#000000">52</font>,<font color="#000000">6</font> @@
+ <i><font color="silver">#                            Network Information Server. This is used if the</font></i>
+ <i><font color="silver">#                            UPS powering your computer is connected to a</font></i>
+ <i><font color="silver">#                            different computer for monitoring.</font></i>
+-<i><font color="silver">#</font></i>
+ <i><font color="silver"># snmp      hostname:port:vendor:community</font></i>
+ <i><font color="silver">#                            SNMP network link to an SNMP-enabled UPS device.</font></i>
+ <i><font color="silver">#                            Hostname is the ip address or hostname of the UPS</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">87</font>,<font color="#000000">8</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE net
++DEVICE f0.lan.buetow.org:<font color="#000000">3551</font>
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+@@ -<font color="#000000">147</font>,<font color="#000000">12</font> +<font color="#000000">146</font>,<font color="#000000">12</font> @@
+ <i><font color="silver"># If during a power failure, the remaining battery percentage</font></i>
+ <i><font color="silver"># (as reported by the UPS) is below or equal to BATTERYLEVEL,</font></i>
+ <i><font color="silver"># apcupsd will initiate a system shutdown.</font></i>
+-BATTERYLEVEL <font color="#000000">5</font>
++BATTERYLEVEL <font color="#000000">10</font>
+
+ <i><font color="silver"># If during a power failure, the remaining runtime in minutes</font></i>
+ <i><font color="silver"># (as calculated internally by the UPS) is below or equal to MINUTES,</font></i>
+ <i><font color="silver"># apcupsd, will initiate a system shutdown.</font></i>
+-MINUTES <font color="#000000">3</font>
++MINUTES <font color="#000000">6</font>
+
+ <i><font color="silver"># If during a power failure, the UPS has run on batteries for TIMEOUT</font></i>
+ <i><font color="silver"># many seconds or longer, apcupsd will initiate a system shutdown.</font></i>
+
+</pre>
+<span>So I also ran the following commands on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f1:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<span>And then I was able to connect to localhost via the <span class='inlinecode'>apcaccess</span> command:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas apcaccess | grep Percent
+LOADPCT  : <font color="#000000">5.0</font> Percent
+BCHARGE  : <font color="#000000">95.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<h2 style='display: inline' id='power-outage-simulation'>Power outage simulation</h2><br />
+<br />
+<h3 style='display: inline' id='pulling-the-plug'>Pulling the plug</h3><br />
+<br />
+<span>I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
+
+Power failure. Running on UPS batteries.                                              
+</pre>
+<br />
+<span>I ran the following command to confirm the available battery time:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % apcaccess -p TIMELEFT
+<font color="#000000">63.9</font> Minutes
+</pre>
+<br />
+<span>And after almost 60 minutes (<span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> a bit earlier, <span class='inlinecode'>f0</span> a bit later due to the different <span class='inlinecode'>BATTERYLEVEL</span> and <span class='inlinecode'>MINUTES</span> settings outlined earlier), the following broadcast was sent out:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:08 EET...
+
+        *** FINAL System shutdown message from paul@f1.lan.buetow.org ***
+
+System going down IMMEDIATELY
+
+apcupsd initiated shutdown
+</pre>
+<br />
+<span>And all the nodes shut down safely before the UPS ran out of battery!</span><br />
+<br />
+<h3 style='display: inline' id='restoring-power'>Restoring power</h3><br />
+<br />
+<span>After restoring power, I checked the logs in <span class='inlinecode'>/var/log/daemon.log</span> and found the following on all 3 nodes:</span><br />
+<br />
+<pre>
+Jan 26 17:36:24 f2 apcupsd[2159]: Power failure.
+Jan 26 17:36:30 f2 apcupsd[2159]: Running on UPS batteries.
+Jan 26 17:36:30 f2 apcupsd[2159]: Battery charge below low limit.
+Jan 26 17:36:30 f2 apcupsd[2159]: Initiating system shutdown!
+Jan 26 17:36:30 f2 apcupsd[2159]: User logins prohibited
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
+</pre>
+<br />
+<span>All good :-) </span><br />
+<br />
+<span>Other BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
