@@ -4,30 +4,68 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
 
-=> ./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png f3s logo
+=> ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
 << template::inline::toc
 
 ## Introduction
 
-In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, is crucial for safeguarding my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out, allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important as I will also store some of my data on the f3s nodes.
+In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, is crucial for safeguarding my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out (especially useful for my area, as here are frequent power cuts), allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important as I will also store some of my data on the f3s nodes.
 
 ## Changes since last time
 
-### FreeBSD upgrade to 14.2
+### FreeBSD upgrade from 14.1 to 14.2
 
-There has been a new release since the last blog post of this series.
+There has been a new release since the last blog post of this series. The upgrade from 14.1 was as easy as:
 
-* New location, behind the TV
-* Also changed the switch to my OpenWRT one. Exactly got 3 ethernet slots!
-* OpenWRT Wifi hotspot (out of scope for f3s series) also connected to UPS.
+```sh
+paul@f0: ~ % doas freebsd-update fetch
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas freebsd-update -r 14.2-RELEASE upgrade
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas shutdown -r now
+```
+
+And after rebooting, I run:
+
+```sh
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas pkg update
+paul@f0: ~ % doas pkg upgrade
+paul@f0: ~ % doas shutdown -r now
+```
+
+And after another reboot, I were on 14.2:
+
+```sh
+paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org 14.2-RELEASE FreeBSD 14.2-RELEASE 
+ releng/14.2-n269506-c8918d6c7412 GENERIC amd64
+```
+
+And this, of course, I run on all 3 nodes!
+
+## A new home (behind the TV)
+
+I've decided to put all the infrastructure behind my TV, as there is plenty of space available. The TV hides most of the setup, which improves the WAF (women acceptance factor) drastically.
+
+=> ./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg New hardware placement arrangement
+
+I got rid of the mini switch I mentioned in the previous blog post, as I have the TP-Link EAP615-Wall on the wall mounted nearby, which is my OpenWrt powered Wifi hotspot, which also happened to have 3 ethernet ports to which I connected the Beelink nodes to. That's the device you see at the very top. The ethernet cables go downwards through the cable boxes to the Beelink nodes.
+
+Besides of the Beelink f3s nodes, I will connect the TP-Link to the UPS as well (won't be further mentioned in this blog post - but the positive side effect is, that my Wifi will still work on power loss for some time).
+
+On the very left (the black box) is the UPS, with 4 power outlets. 3 go to the Beelink nodes, and one goes to the TP-Link. There is also an USB output, which is conected o te first Beelink node `f0`.
+
+On the very right (half way hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. Only downside (or upside?) is, that my 14 months old daughter is now chaos testing the Beelink nodes as the red power buttons (which are now reachable to her) are very attractive for her to randomly press when passing by. :-)  - Luckily, that will only cause graceful system shutdowns!
 
 ## The UPS hardware.
 
-I wanted a UPS to which I could connect to via FreeBSD and would give enough back-up power to operate the f3s cluster for a couple of minutes (turned out to be around an hour) and to automatically initate the shutdown of all the f3s nodes.
+I wanted a UPS to which I could connect to via FreeBSD and would give enough back-up power to operate the cluster for a couple of minutes (turned out to be around an hour - but that time will likely be shortened after future HW upgrades like additional drives and backup enclosure) and to automatically initate the shutdown of all the f3s nodes.
 
-I decided on the APS Back-UPS BX750MI model due to:
+I decided on the APC Back-UPS BX750MI model due to:
 
+* Zero noise level when there is no power-cut (some light noise when battery is in operation during a power cut.)
 * Costs: Being relatively affordable (not costing thousands)
 * USB connectivity: Can be connected via USB to one of the FreeBSD hosts - reading the UPS status.
 * A power output of 750VA (or 410 watts), suitable for an hour of runtime of my f3s nodes.
@@ -35,23 +73,22 @@ I decided on the APS Back-UPS BX750MI model due to:
 * User-Replaceable Batteries: So after two years or more (depending on the usage), I can replace the batteries of the UPS by myself.
 * It's compact design. Overall, I like how it looks.
 
-## A new home
+=> ./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg The APC Back-UPS BX750MI in operation.
 
 ## Configuring FreeBSD to work with the UPS
 
 ### USB device detection
 
-Once plugged in via USB on FreeBSD, the following can be seen in the kernel messages:
+Once plugged in via USB on FreeBSD, I could see the following in the kernel messages:
 
 ```sh
 paul@f0: ~ % doas dmesg | grep UPS
-ugen0.2: <American Power Conversion Back-UPS BX750MI> at usbus0 (disconnected)
 ugen0.2: <American Power Conversion Back-UPS BX750MI> at usbus0
 ```
 
 ### `apcupsd` installation
 
-To make use of the USB connection, the `apcupsd` package must be installed:
+To make use of the USB connection, the `apcupsd` package had to be installed:
 
 ```sh
 paul@f0: ~ % doas install apcupsd
@@ -110,7 +147,7 @@ Starting apcupsd.
 
 ### UPS connectivity test
 
-And voila, I can now access the UPS information via the `apcaccess` command, how convenient :-) (I had a read through the manual page as well, which gives a good understanding what else can be done with it!).
+And voila, I could now access the UPS information via the `apcaccess` command, how convenient :-) (I had a read through the manual page as well, which gives a good understanding what else can be done with it!).
 
 ```sh
 paul@f0:~ % apcaccess
@@ -154,7 +191,7 @@ END APC  : 2025-01-26 14:44:06 +0200
 
 ## APC info on partner nodes:
 
-### Installation
+### Installation on partners
 
 I installed apcupsd via `doas pkg install apcupsd` also on f1 and f2, and then I could connect to it this way:
 
@@ -165,9 +202,9 @@ BCHARGE  : 94.0 Percent
 MBATTCHG : 5 Percent
 ```
 
-but we want the daemon to be configured and enabled in such a way that it connects to the master UPS note (the one with the UPS connected via USB) so that it can also initiate the system downtime when ther battery goes low.
+But I want the daemon to be configured and enabled in such a way that it connects to the master UPS note (the one with the UPS connected via USB) so that it can also initiate the system shutdown when the UPS battery reaches low levels.
 
-On `f1` and `f2`, I changed the configuration to use `f0` (where `upsapcd` is listening) as a remote device. I also changed the `MINUTES` setting from 3 to 6 and the `BATTERYLEVEL` setting from 5 to 10, to ensure that the `f1` and `f2` nodes can still connect to the `f0` node for UPS information before `f0` decides to shut down.
+On `f1` and `f2`, I changed the configuration to use `f0` (where `upsapcd` is listening) as a remote device. I also changed the `MINUTES` setting from 3 to 6 and the `BATTERYLEVEL` setting from 5 to 10, to ensure that the `f1` and `f2` nodes could still connect to the `f0` node for UPS information before `f0` decides to shut down.
 
 ```sh
 paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
@@ -230,7 +267,6 @@ Starting apcupsd.
 
 And then was able to connect to localhost via the `apcaccess` command:
 
-
 ```sh
 paul@f1:~ % doas apcaccess | grep Percent
 LOADPCT  : 5.0 Percent
@@ -248,7 +284,13 @@ Power failure. Running on UPS batteries.
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:08 EET...
 
-Power has returned... 
+        *** FINAL System shutdown message from paul@f1.lan.buetow.org ***
+
+System going down IMMEDIATELY
+
+
+apcupsd initiated shutdown
+
 
 
 paul@f0:/usr/local/etc/apcupsd % apcaccess | grep TIMELEFT
