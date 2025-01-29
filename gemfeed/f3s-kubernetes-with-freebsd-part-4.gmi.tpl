@@ -16,6 +16,21 @@ The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables vi
 
 Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.
 
+## Check for `POPCNT` CPU support
+
+POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. In terms of CPU virtualization and Bhyve support for the POPCNT instruction is important because  guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines to for better performance. Without POPCNT support, some applications might not run, or they might perform suboptimally in virtualized environments.
+
+To check for `POPCNT` support, I run:
+
+```sh
+paul@f0:~ % dmesg | grep 'Features2=.*POPCNT'
+  Features2=0x7ffafbbf<SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.1,SSE4.2,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND>
+```
+
+So it's there! All good.
+
 ## Basic Bhyve setup
 
 For the management of the Bhyve VMs, we are using `vm-bhyve`, a tool not part of the FreeBSD operating system but available as a ready-to-use package. It eases VM management and reduces a lot of the overhead. We also install the required package to make Bhyve work with the UEFI firmware.
