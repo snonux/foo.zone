@@ -106,8 +106,8 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Andreas Brandhorst
 
-* 2024 - Der Riss (german)
 * 2023 - Oxygen: Welt ohne Sauerstoff, Audiobook (german)
+* 2024 - Der Riss (german)
 
 ## Unread books already in my shelf
 
