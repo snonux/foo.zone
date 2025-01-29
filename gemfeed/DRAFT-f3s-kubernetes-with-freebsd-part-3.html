@@ -17,6 +17,7 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -251,6 +252,8 @@ END APC  : <font color="#000000">2025</font>-<font color="#000000">01</font>-<fo
 <br />
 <span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.</span><br />
 <br />
+<span>And if <span class='inlinecode'>f0</span> is down and <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> receive new data and crash midway, it&#39;s likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data loss recoverable. I&#39;d receive an alert if any of the nodes go down (more on monitoring later in this blog series).</span><br />
+<br />
 <h3 style='display: inline' id='installation-on-partners'>Installation on partners</h3><br />
 <br />
 <span>To do this, I installed <span class='inlinecode'>apcupsd</span> via <span class='inlinecode'>doas pkg install apcupsd</span> on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, and then I could connect to it this way:</span><br />
@@ -374,7 +377,7 @@ http://www.gnu.org/software/src-highlite -->
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:08 EET...
 
-        *** FINAL System shutdown message from paul@f1.lan.buetow.org ***
+        *** FINAL System shutdown message from root@f0.lan.buetow.org ***
 
 System going down IMMEDIATELY
 
@@ -408,6 +411,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
