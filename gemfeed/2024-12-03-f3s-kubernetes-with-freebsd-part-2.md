@@ -10,6 +10,7 @@ These are all the posts so far:
 
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](./f3s-kubernetes-with-freebsd-part-4.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -302,6 +303,7 @@ Other *BSD-related posts:
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](./f3s-kubernetes-with-freebsd-part-4.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
