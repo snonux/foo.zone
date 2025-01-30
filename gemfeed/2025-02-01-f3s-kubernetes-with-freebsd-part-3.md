@@ -1,10 +1,12 @@
 # f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
 
+> Published at 2025-01-30T09:22:06+02:00
+
 This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
 
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](./f3s-kubernetes-with-freebsd-part-4.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -211,9 +213,9 @@ END APC  : 2025-01-26 14:44:06 +0200
 
 So far, so good. Host `f0` would shut down itself when short on power. But what about the `f1` and `f2` nodes? They aren't connected directly to the UPS and, therefore, wouldn't know that their power is about to be cut off. For this, `apcupsd` running on the `f1` and `f2` nodes can be configured to retrieve UPS information via the network from the `apcupsd` server running on the `f0` node, which is connected directly to the APC via USB.
 
-Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an `f0` system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.
+Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an `f0` system crash, sudden power outages on the two other nodes would occur at different times making real data loss (the main concern here) less likely.
 
-And if `f0` is down and `f1` and `f2` receive new data and crash midway, it's likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data loss recoverable. I'd receive an alert if any of the nodes go down (more on monitoring later in this blog series).
+And if `f0` is down and `f1` and `f2` receive new data and crash midway, it's likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data recoverable and data loss overall nearly impossible. I'd receive an alert if any of the nodes go down (more on monitoring later in this blog series).
 
 ### Installation on partners
 
@@ -346,7 +348,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
 Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 ```
 
-All good :-) 
+All good :-) See you in the next post of this series!
 
 Other BSD related posts are:
 
@@ -357,7 +359,7 @@ Other BSD related posts are:
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](./f3s-kubernetes-with-freebsd-part-4.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

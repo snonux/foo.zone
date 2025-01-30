@@ -309,6 +309,6 @@ Other *BSD and KISS related posts are:
 [2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](./f3s-kubernetes-with-freebsd-part-4.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 
 [Back to the main site](../)  

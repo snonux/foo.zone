@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2025-01-15 - Working with an SRE Interview](./2025-01-15-working-with-an-sre-interview.md)  
 [2025-01-01 - Posts from October to December 2024](./2025-01-01-posts-from-october-to-december-2024.md)  
 [2024-12-15 - Random Helix Themes](./2024-12-15-random-helix-themes.md)  

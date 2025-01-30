@@ -4,7 +4,7 @@ This is the thourth blog post about my f3s series for my self-hosting demands in
 
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4 (You are currently reading this)](./f3s-kubernetes-with-freebsd-part-4.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 
 [![f3s logo](./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png)  
 
@@ -12,6 +12,7 @@ This is the thourth blog post about my f3s series for my self-hosting demands in
 
 * [⇢ f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4](#f3s-kubernetes-with-freebsd---rocky-linux-bhyve-vms---part-4)
 * [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Check for `POPCNT` CPU support](#check-for-popcnt-cpu-support)
 * [⇢ ⇢ Basic Bhyve setup](#basic-bhyve-setup)
 * [⇢ ⇢ Rocky Linux VMs](#rocky-linux-vms)
 * [⇢ ⇢ ⇢ ISO download](#iso-download)
@@ -32,6 +33,21 @@ In this blog post, we are going to install the Bhyve hypervisor.
 The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve's strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.
 
 Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.
+
+## Check for `POPCNT` CPU support
+
+POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. In terms of CPU virtualization and Bhyve support for the POPCNT instruction is important because  guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines to for better performance. Without POPCNT support, some applications might not run, or they might perform suboptimally in virtualized environments.
+
+To check for `POPCNT` support, I run:
+
+```sh
+paul@f0:~ % dmesg | grep 'Features2=.*POPCNT'
+  Features2=0x7ffafbbf<SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.1,SSE4.2,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND>
+```
+
+So it's there! All good.
 
 ## Basic Bhyve setup
 
@@ -256,7 +272,7 @@ Other *BSD-related posts:
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4 (You are currently reading this)](./f3s-kubernetes-with-freebsd-part-4.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
