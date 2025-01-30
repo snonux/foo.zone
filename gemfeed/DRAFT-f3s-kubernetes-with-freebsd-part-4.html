@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/f3s-kubernetes-with-freebsd-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/f3s-kubernetes-with-freebsd-part-4.gmi">Gemini</a>
+View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-4.gmi">Gemini</a>
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---rocky-linux-bhyve-vms---part-4'>f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</h1><br />
 <br />
@@ -17,7 +17,7 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4 (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <a href='./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -26,6 +26,7 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---rocky-linux-bhyve-vms---part-4'>f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</a></li>
 <li>⇢ <a href='#basic-bhyve-setup'>Basic Bhyve setup</a></li>
 <li>⇢ <a href='#rocky-linux-vms'>Rocky Linux VMs</a></li>
 <li>⇢ ⇢ <a href='#iso-download'>ISO download</a></li>
@@ -46,6 +47,24 @@ View this page as <a href="https://codeberg.org/snonux/foo.zone/src/branch/conte
 <span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
 <br />
 <span>Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.</span><br />
+<br />
+<h2 style='display: inline' id='check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</h2><br />
+<br />
+<span>POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. In terms of CPU virtualization and Bhyve support for the POPCNT instruction is important because  guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines to for better performance. Without POPCNT support, some applications might not run, or they might perform suboptimally in virtualized environments.</span><br />
+<br />
+<span>To check for <span class='inlinecode'>POPCNT</span> support, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % dmesg | grep <font color="#808080">'Features2=.*POPCNT'</font>
+  Features2=<font color="#000000">0x7ffafbbf</font>&lt;SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.<font color="#000000">1</font>,SSE4.<font color="#000000">2</font>,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND&gt;
+</pre>
+<br />
+<span>So it&#39;s there! All good.</span><br />
 <br />
 <h2 style='display: inline' id='basic-bhyve-setup'>Basic Bhyve setup</h2><br />
 <br />
@@ -312,7 +331,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4 (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

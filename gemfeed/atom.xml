@@ -1,11 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-01-29T08:04:40+02:00</updated>
+    <updated>2025-01-30T09:32:36+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</title>
+        <link href="https://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html" />
+        <id>https://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html</id>
+        <updated>2025-01-30T09:22:06+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</h1><br />
+<br />
+<span class='quote'>Published at 2025-01-30T09:22:06+02:00</span><br />
+<br />
+<span>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#changes-since-last-time'>Changes since last time</a></li>
+<li>⇢ ⇢ <a href='#freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</a></li>
+<li>⇢ ⇢ <a href='#a-new-home-behind-the-tv'>A new home (behind the TV)</a></li>
+<li>⇢ <a href='#the-ups-hardware'>The UPS hardware</a></li>
+<li>⇢ <a href='#configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</a></li>
+<li>⇢ ⇢ <a href='#usb-device-detection'>USB Device Detection</a></li>
+<li>⇢ ⇢ <a href='#apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</a></li>
+<li>⇢ ⇢ <a href='#ups-connectivity-test'>UPS Connectivity Test</a></li>
+<li>⇢ <a href='#apc-info-on-partner-nodes'>APC Info on Partner Nodes:</a></li>
+<li>⇢ ⇢ <a href='#installation-on-partners'>Installation on partners</a></li>
+<li>⇢ <a href='#power-outage-simulation'>Power outage simulation</a></li>
+<li>⇢ ⇢ <a href='#pulling-the-plug'>Pulling the plug</a></li>
+<li>⇢ ⇢ <a href='#restoring-power'>Restoring power</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, safeguards my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out—especially useful in my area, where power cuts are frequent—allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important since I will also store some of my data on the f3s nodes.</span><br />
+<br />
+<h2 style='display: inline' id='changes-since-last-time'>Changes since last time</h2><br />
+<br />
+<h3 style='display: inline' id='freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</h3><br />
+<br />
+<span>There has been a new release since the last blog post in this series. The upgrade from 14.1 was as easy as:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update fetch
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after rebooting, I ran:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas pkg update
+paul@f0: ~ % doas pkg upgrade
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after another reboot, I was on 14.2:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org <font color="#000000">14.2</font>-RELEASE FreeBSD <font color="#000000">14.2</font>-RELEASE 
+ releng/<font color="#000000">14.2</font>-n<font color="#000000">269506</font>-c8918d6c7412 GENERIC amd64
+</pre>
+<br />
+<span>And, of course, I ran this on all 3 nodes!</span><br />
+<br />
+<h3 style='display: inline' id='a-new-home-behind-the-tv'>A new home (behind the TV)</h3><br />
+<br />
+<span>I&#39;ve put all the infrastructure behind my TV, as plenty of space is available. The TV hides most of the setup, which drastically improved the SAF (spouse acceptance factor).</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg'><img alt='New hardware placement arrangement' title='New hardware placement arrangement' src='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg' /></a><br />
+<br />
+<span>I got rid of the mini-switch I mentioned in the previous blog post. I have the TP-Link EAP615-Wall mounted on the wall nearby, which is my OpenWrt-powered Wi-Fi hotspot. It also has 3 Ethernet ports, to which I connected the Beelink nodes. That&#39;s the device you see at the very top.</span><br />
+<br />
+<span>The Ethernet cables go downward through the cable boxes to the Beelink nodes. In addition to the Beelink f3s nodes, I connected the TP-Link to the UPS as well (not discussed further in this blog post, but the positive side effect is that my Wi-Fi will still work during a power loss for some time—and during a power cut, the Beelink nodes will still be able to communicate with each other).</span><br />
+<br />
+<span>On the very left (the black box) is the UPS, with four power outlets. Three go to the Beelink nodes, and one goes to the TP-Link. A USB output is also connected to the first Beelink node, <span class='inlinecode'>f0</span>. </span><br />
+<br />
+<span>On the very right (halfway hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. The only downside (or upside?) is that my 14-month-old daughter is now chaos-testing the Beelink nodes, as the red power buttons (now reachable for her) are very attractive for her to press when passing by randomly. :-) Luckily, that will only cause graceful system shutdowns!</span><br />
+<br />
+<h2 style='display: inline' id='the-ups-hardware'>The UPS hardware</h2><br />
+<br />
+<span>I wanted a UPS that I could connect to via FreeBSD, and that would provide enough backup power to operate the cluster for a couple of minutes (it turned out to be around an hour, but this time will likely be shortened after future hardware upgrades, like additional drives and a backup enclosure) and to automatically initiate the shutdown of all the f3s nodes.</span><br />
+<br />
+<span>I decided on the APC Back-UPS BX750MI model because:</span><br />
+<br />
+<ul>
+<li>Zero noise level when there is no power cut (some light noise when the battery is in operation during a power cut).</li>
+<li>Cost: It is relatively affordable (not costing thousands).</li>
+<li>USB connectivity: Can be connected via USB to one of the FreeBSD hosts to read the UPS status.</li>
+<li>A power output of 750VA (or 410 watts), suitable for an hour of runtime for my f3s nodes (plus the Wi-Fi router).</li>
+<li>Multiple power outlets: Can connect all 3 f3s nodes directly.</li>
+<li>User-replaceable batteries: I can replace the batteries myself after two years or more (depending on usage).</li>
+<li>Its compact design. Overall, I like how it looks.</li>
+</ul><br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg'><img alt='The APC Back-UPS BX750MI in operation.' title='The APC Back-UPS BX750MI in operation.' src='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</h2><br />
+<br />
+<h3 style='display: inline' id='usb-device-detection'>USB Device Detection</h3><br />
+<br />
+<span>Once plugged in via USB on FreeBSD, I could see the following in the kernel messages:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas dmesg | grep UPS
+ugen0.<font color="#000000">2</font>: &lt;American Power Conversion Back-UPS BX750MI&gt; at usbus0
+</pre>
+<br />
+<h3 style='display: inline' id='apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</h3><br />
+<br />
+<span>To make use of the USB connection, the <span class='inlinecode'>apcupsd</span> package had to be installed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas install apcupsd
+</pre>
+<br />
+<span>I have made the following modifications to the configuration file so that the UPS can be used via the USB interface:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample  apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2024</font>-<font color="#000000">12</font>-<font color="#000000">03</font> <font color="#000000">10</font>:<font color="#000000">58</font>:<font color="#000000">24.009501000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE usb
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">88</font>,<font color="#000000">10</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE usb
++DEVICE
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+</pre>
+<br />
+<span>I left the remaining settings as the default ones; for example, the following are of main interest:</span><br />
+<br />
+<pre>
+# If during a power failure, the remaining battery percentage
+# (as reported by the UPS) is below or equal to BATTERYLEVEL,
+# apcupsd will initiate a system shutdown.
+BATTERYLEVEL 5
+
+# If during a power failure, the remaining runtime in minutes
+# (as calculated internally by the UPS) is below or equal to MINUTES,
+# apcupsd, will initiate a system shutdown.
+MINUTES 3
+</pre>
+<br />
+<span>I then enabled and started the daemon:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f0:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<h3 style='display: inline' id='ups-connectivity-test'>UPS Connectivity Test</h3><br />
+<br />
+<span>And voila, I could now access the UPS information via the <span class='inlinecode'>apcaccess</span> command; how convenient :-) (I also read through the manual page, which provides a good understanding of what else can be done with it!).</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % apcaccess
+APC      : <font color="#000000">001</font>,<font color="#000000">035</font>,<font color="#000000">0857</font>
+DATE     : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">27</font> +<font color="#000000">0200</font>
+HOSTNAME : f0.lan.buetow.org
+VERSION  : <font color="#000000">3.14</font>.<font color="#000000">14</font> (<font color="#000000">31</font> May <font color="#000000">2016</font>) freebsd
+UPSNAME  : f0.lan.buetow.org
+CABLE    : USB Cable
+DRIVER   : USB UPS Driver
+UPSMODE  : Stand Alone
+STARTTIME: <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">25</font> +<font color="#000000">0200</font>
+MODEL    : Back-UPS BX750MI
+STATUS   : ONLINE
+LINEV    : <font color="#000000">230.0</font> Volts
+LOADPCT  : <font color="#000000">4.0</font> Percent
+BCHARGE  : <font color="#000000">100.0</font> Percent
+TIMELEFT : <font color="#000000">65.3</font> Minutes
+MBATTCHG : <font color="#000000">5</font> Percent
+MINTIMEL : <font color="#000000">3</font> Minutes
+MAXTIME  : <font color="#000000">0</font> Seconds
+SENSE    : Medium
+LOTRANS  : <font color="#000000">145.0</font> Volts
+HITRANS  : <font color="#000000">295.0</font> Volts
+ALARMDEL : No alarm
+BATTV    : <font color="#000000">13.6</font> Volts
+LASTXFER : Automatic or explicit self <b><u><font color="#000000">test</font></u></b>
+NUMXFERS : <font color="#000000">0</font>
+TONBATT  : <font color="#000000">0</font> Seconds
+CUMONBATT: <font color="#000000">0</font> Seconds
+XOFFBATT : N/A
+SELFTEST : NG
+STATFLAG : <font color="#000000">0x05000008</font>
+SERIALNO : 9B2414A03599
+BATTDATE : <font color="#000000">2001</font>-<font color="#000000">01</font>-<font color="#000000">01</font>
+NOMINV   : <font color="#000000">230</font> Volts
+NOMBATTV : <font color="#000000">12.0</font> Volts
+NOMPOWER : <font color="#000000">410</font> Watts
+END APC  : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">44</font>:<font color="#000000">06</font> +<font color="#000000">0200</font>
+</pre>
+<br />
+<h2 style='display: inline' id='apc-info-on-partner-nodes'>APC Info on Partner Nodes:</h2><br />
+<br />
+<span>So far, so good. Host <span class='inlinecode'>f0</span> would shut down itself when short on power. But what about the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes? They aren&#39;t connected directly to the UPS and, therefore, wouldn&#39;t know that their power is about to be cut off. For this, <span class='inlinecode'>apcupsd</span> running on the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes can be configured to retrieve UPS information via the network from the <span class='inlinecode'>apcupsd</span> server running on the <span class='inlinecode'>f0</span> node, which is connected directly to the APC via USB.</span><br />
+<br />
+<span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times making real data loss (the main concern here) less likely.</span><br />
+<br />
+<span>And if <span class='inlinecode'>f0</span> is down and <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> receive new data and crash midway, it&#39;s likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data recoverable and data loss overall nearly impossible. I&#39;d receive an alert if any of the nodes go down (more on monitoring later in this blog series).</span><br />
+<br />
+<h3 style='display: inline' id='installation-on-partners'>Installation on partners</h3><br />
+<br />
+<span>To do this, I installed <span class='inlinecode'>apcupsd</span> via <span class='inlinecode'>doas pkg install apcupsd</span> on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, and then I could connect to it this way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % apcaccess -h f0.lan.buetow.org | grep Percent
+LOADPCT  : <font color="#000000">12.0</font> Percent
+BCHARGE  : <font color="#000000">94.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<span>But I want the daemon to be configured and enabled in such a way that it connects to the master UPS node (the one with the UPS connected via USB) so that it can also initiate a system shutdown when the UPS battery reaches low levels. For that, <span class='inlinecode'>apcupsd</span> itself needs to be aware of the UPS status.</span><br />
+<br />
+<span>On <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, I changed the configuration to use <span class='inlinecode'>f0</span> (where <span class='inlinecode'>apcupsd</span> is listening) as a remote device. I also changed the <span class='inlinecode'>MINUTES</span> setting from 3 to 6 and the <span class='inlinecode'>BATTERYLEVEL</span> setting from 5 to 10 to ensure that the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes could still connect to the <span class='inlinecode'>f0</span> node for UPS information before <span class='inlinecode'>f0</span> decides to shut down itself. So <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> must shut down earlier than <span class='inlinecode'>f0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">15</font>:<font color="#000000">52</font>:<font color="#000000">45.108469000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE ether
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">52</font>,<font color="#000000">7</font> +<font color="#000000">52</font>,<font color="#000000">6</font> @@
+ <i><font color="silver">#                            Network Information Server. This is used if the</font></i>
+ <i><font color="silver">#                            UPS powering your computer is connected to a</font></i>
+ <i><font color="silver">#                            different computer for monitoring.</font></i>
+-<i><font color="silver">#</font></i>
+ <i><font color="silver"># snmp      hostname:port:vendor:community</font></i>
+ <i><font color="silver">#                            SNMP network link to an SNMP-enabled UPS device.</font></i>
+ <i><font color="silver">#                            Hostname is the ip address or hostname of the UPS</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">87</font>,<font color="#000000">8</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE net
++DEVICE f0.lan.buetow.org:<font color="#000000">3551</font>
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+@@ -<font color="#000000">147</font>,<font color="#000000">12</font> +<font color="#000000">146</font>,<font color="#000000">12</font> @@
+ <i><font color="silver"># If during a power failure, the remaining battery percentage</font></i>
+ <i><font color="silver"># (as reported by the UPS) is below or equal to BATTERYLEVEL,</font></i>
+ <i><font color="silver"># apcupsd will initiate a system shutdown.</font></i>
+-BATTERYLEVEL <font color="#000000">5</font>
++BATTERYLEVEL <font color="#000000">10</font>
+
+ <i><font color="silver"># If during a power failure, the remaining runtime in minutes</font></i>
+ <i><font color="silver"># (as calculated internally by the UPS) is below or equal to MINUTES,</font></i>
+ <i><font color="silver"># apcupsd, will initiate a system shutdown.</font></i>
+-MINUTES <font color="#000000">3</font>
++MINUTES <font color="#000000">6</font>
+
+ <i><font color="silver"># If during a power failure, the UPS has run on batteries for TIMEOUT</font></i>
+ <i><font color="silver"># many seconds or longer, apcupsd will initiate a system shutdown.</font></i>
+
+</pre>
+<span>So I also ran the following commands on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f1:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<span>And then I was able to connect to localhost via the <span class='inlinecode'>apcaccess</span> command:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas apcaccess | grep Percent
+LOADPCT  : <font color="#000000">5.0</font> Percent
+BCHARGE  : <font color="#000000">95.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<h2 style='display: inline' id='power-outage-simulation'>Power outage simulation</h2><br />
+<br />
+<h3 style='display: inline' id='pulling-the-plug'>Pulling the plug</h3><br />
+<br />
+<span>I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
+
+Power failure. Running on UPS batteries.                                              
+</pre>
+<br />
+<span>I ran the following command to confirm the available battery time:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % apcaccess -p TIMELEFT
+<font color="#000000">63.9</font> Minutes
+</pre>
+<br />
+<span>And after almost 60 minutes (<span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> a bit earlier, <span class='inlinecode'>f0</span> a bit later due to the different <span class='inlinecode'>BATTERYLEVEL</span> and <span class='inlinecode'>MINUTES</span> settings outlined earlier), the following broadcast was sent out:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:08 EET...
+
+        *** FINAL System shutdown message from root@f0.lan.buetow.org ***
+
+System going down IMMEDIATELY
+
+apcupsd initiated shutdown
+</pre>
+<br />
+<span>And all the nodes shut down safely before the UPS ran out of battery!</span><br />
+<br />
+<h3 style='display: inline' id='restoring-power'>Restoring power</h3><br />
+<br />
+<span>After restoring power, I checked the logs in <span class='inlinecode'>/var/log/daemon.log</span> and found the following on all 3 nodes:</span><br />
+<br />
+<pre>
+Jan 26 17:36:24 f2 apcupsd[2159]: Power failure.
+Jan 26 17:36:30 f2 apcupsd[2159]: Running on UPS batteries.
+Jan 26 17:36:30 f2 apcupsd[2159]: Battery charge below low limit.
+Jan 26 17:36:30 f2 apcupsd[2159]: Initiating system shutdown!
+Jan 26 17:36:30 f2 apcupsd[2159]: User logins prohibited
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
+</pre>
+<br />
+<span>All good :-) See you in the next post of this series!</span><br />
+<br />
+<span>Other BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Working with an SRE Interview</title>
         <link href="https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html" />
@@ -695,7 +1117,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1020,7 +1442,9 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>To ease cable management, I need to get shorter ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).</span><br />
 <br />
-<span>What will be covered in the next post of this series? Maybe ttttbhyve/Rocky Linux and WireGuard setup as described in part 1 of this series...</span><br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -1031,7 +1455,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1063,7 +1487,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1222,7 +1646,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -3691,7 +4115,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4050,7 +4474,7 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8292,712 +8716,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Let's Encrypt with OpenBSD and Rex</title>
-        <link href="https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html" />
-        <id>https://foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex.html</id>
-        <updated>2022-07-30T12:14:31+01:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='let-s-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</h1><br />
-<br />
-<span class='quote'>Published at 2022-07-30T12:14:31+01:00</span><br />
-<br />
-<span>I was amazed at how easy it is to automatically generate and update Let&#39;s Encrypt certificates with OpenBSD.</span><br />
-<br />
-<pre>
-                                               /    _    \
-  The Hebern Machine                            \ ." ". /
-                                  ___            /     \
-                              ..""   ""..       |   O   |
-                             /           \      |       |
-                            /             \     |       |
-                          ---------------------------------
-                        _/  o     (O)     o   _            |
-                      _/                    ." ".          |
-                    I/    _________________/     \         |
-                  _/I   ."                        |        |
-          =====  /  I  /                         /         |
-     =====  | | |   \ |       _________________."          |
-=====  | |  | | |   /  \     /  _|_|__|_|_          __     |
-  | |  | |  | | |   \   "._."  /  o    o  \       ."  ".   |
-  |  --|  --|  -|   /          \         _/      /      \  |
-   \____\____\__|   \  ______   |       /       |        | |
-               --------      ---       /        |        | |
-              ( )        (O)          /          \      /  |
-               -----------------------            ".__."   |
-               _|__________________________________________|_
-              /                                              \
-             /________________________________________________\
-                                 ASCII Art by John Savard
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#let-s-encrypt-with-openbsd-and-rex'>Let&#39;s Encrypt with OpenBSD and Rex</a></li>
-<li>⇢ ⇢ <a href='#what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</a></li>
-<li>⇢ <a href='#meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></a></li>
-<li>⇢ <a href='#configuration'>Configuration</a></li>
-<li>⇢ ⇢ <a href='#acme-clientconf'>acme-client.conf</a></li>
-<li>⇢ ⇢ <a href='#httpdconf'>httpd.conf</a></li>
-<li>⇢ ⇢ <a href='#cron-job'>CRON job</a></li>
-<li>⇢ <a href='#relaydconf-and-smtpdconf'>relayd.conf and smtpd.conf</a></li>
-<li>⇢ <a href='#rexification'>Rexification</a></li>
-<li>⇢ ⇢ <a href='#general-acme-client-configuration'>General ACME client configuration</a></li>
-<li>⇢ ⇢ <a href='#service-rexification-'>Service rexification </a></li>
-<li>⇢ <a href='#all-pieces-together'>All pieces together</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h3 style='display: inline' id='what-s-let-s-encrypt'>What&#39;s Let&#39;s Encrypt?</h3><br />
-<br />
-<span class='quote'>Let&#39;s Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world&#39;s largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Let&#39;s_Encrypt'>Source: Wikipedia</a><br />
-<br />
-<span>In short, it gives away TLS certificates for your website - for free! The catch is, that the certificates are only valid for three months. So it is better to automate certificate generation and renewals.</span><br />
-<br />
-<h2 style='display: inline' id='meet-acme-client'>Meet <span class='inlinecode'>acme-client</span></h2><br />
-<br />
-<span><span class='inlinecode'>acme-client</span> is the default Automatic Certifcate Management Environment (ACME) client on OpenBSD and part of the OpenBSD base system. </span><br />
-<br />
-<span>When invoked, the client first checks whether certificates actually require to be generated.</span><br />
-<br />
-<ul>
-<li>It first checks whether a certificate already exists; if not, it will attempt to generate a new one.</li>
-<li>If the certificate already exists but expires within the next 30 days, it will renew it.</li>
-<li>Otherwise, <span class='inlinecode'>acme-client</span> won&#39;t do anything.</li>
-</ul><br />
-<span>Oversimplified, the following steps are undertaken by <span class='inlinecode'>acme-client</span> for generating a new certificate:</span><br />
-<br />
-<ul>
-<li>Reading its config file <span class='inlinecode'>/etc/acme-client.conf</span> for a list of hosts (and their alternative names) to generate certificates. So it means you can also have certificates for arbitrary subdomains!</li>
-<li>Automatic generation of the private certificate part (the certificate key) and the certificate signing request (CSR) to <span class='inlinecode'>/etc/ssl/...</span>.</li>
-<li>Requesting Let&#39;s Encrypt to sign the certificate. This also includes providing a set of temporary files requested by Let&#39;s Encrypt in the next step for verification.</li>
-<li>Let&#39;s Encrypt then will contact the hostname for the certificate through a particular URL (e.g. <span class='inlinecode'>http://foo.zone/.well-known/acme-challenge/...</span>) to verify that the requester is the valid owner of the host.</li>
-<li>Let&#39;s Encrypt generates a certificate, which then is downloaded to <span class='inlinecode'>/etc/ssl/...</span>.</li>
-</ul><br />
-<h2 style='display: inline' id='configuration'>Configuration</h2><br />
-<br />
-<span>There is some (but easy) configuration required to make that all work on OpenBSD.</span><br />
-<br />
-<h3 style='display: inline' id='acme-clientconf'>acme-client.conf</h3><br />
-<br />
-<span>This is how my <span class='inlinecode'>/etc/acme-client.conf</span> looks like (I copied a template from <span class='inlinecode'>/etc/examples/acme-client.conf</span> to <span class='inlinecode'>/etc/acme-client.conf</span> and added my domains to the bottom:</span><br />
-<br />
-<pre>
-#
-# $OpenBSD: acme-client.conf,v 1.4 2020/09/17 09:13:06 florian Exp $
-#
-authority letsencrypt {
-    api url "https://acme-v02.api.letsencrypt.org/directory"
-    account key "/etc/acme/letsencrypt-privkey.pem"
-}
-
-authority letsencrypt-staging {
-    api url "https://acme-staging-v02.api.letsencrypt.org/directory"
-    account key "/etc/acme/letsencrypt-staging-privkey.pem"
-}
-
-authority buypass {
-    api url "https://api.buypass.com/acme/directory"
-    account key "/etc/acme/buypass-privkey.pem"
-    contact "mailto:me@example.com"
-}
-
-authority buypass-test {
-    api url "https://api.test4.buypass.no/acme/directory"
-    account key "/etc/acme/buypass-test-privkey.pem"
-    contact "mailto:me@example.com"
-}
-
-domain buetow.org {
-    alternative names { www.buetow.org paul.buetow.org }
-    domain key "/etc/ssl/private/buetow.org.key"
-    domain full chain certificate "/etc/ssl/buetow.org.fullchain.pem"
-    sign with letsencrypt
-}
-
-domain dtail.dev {
-    alternative names { www.dtail.dev }
-    domain key "/etc/ssl/private/dtail.dev.key"
-    domain full chain certificate "/etc/ssl/dtail.dev.fullchain.pem"
-    sign with letsencrypt
-}
-
-domain foo.zone {
-    alternative names { www.foo.zone }
-    domain key "/etc/ssl/private/foo.zone.key"
-    domain full chain certificate "/etc/ssl/foo.zone.fullchain.pem"
-    sign with letsencrypt
-}
-
-domain irregular.ninja {
-    alternative names { www.irregular.ninja }
-    domain key "/etc/ssl/private/irregular.ninja.key"
-    domain full chain certificate "/etc/ssl/irregular.ninja.fullchain.pem"
-    sign with letsencrypt
-}
-
-domain snonux.land {
-    alternative names { www.snonux.land }
-    domain key "/etc/ssl/private/snonux.land.key"
-    domain full chain certificate "/etc/ssl/snonux.land.fullchain.pem"
-    sign with letsencrypt
-}
-</pre>
-<br />
-<h3 style='display: inline' id='httpdconf'>httpd.conf</h3><br />
-<br />
-<span>For ACME to work, you will need to configure the HTTP daemon so that the "special" ACME requests from Let&#39;s Encrypt are served correctly. I am using the standard OpenBSD <span class='inlinecode'>httpd</span> here. These are the snippets I use for the <span class='inlinecode'>foo.zone</span> host in <span class='inlinecode'>/etc/httpd.conf</span> (of course, you need a similar setup for all other hosts as well):</span><br />
-<br />
-<pre>
-server "foo.zone" {
-  listen on * port 80
-  location "/.well-known/acme-challenge/*" {
-    root "/acme"
-    request strip 2
-  }
-  location * {
-    block return 302 "https://$HTTP_HOST$REQUEST_URI"
-  }
-}
-
-server "foo.zone" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/foo.zone.fullchain.pem"
-    key "/etc/ssl/private/foo.zone.key"
-  }
-  location * {
-    root "/htdocs/gemtexter/foo.zone"
-    directory auto index
-  }
-}
-</pre>
-<br />
-<span>As you see, plain HTTP only serves the ACME challenge path. Otherwise, it redirects the requests to TLS. The TLS section then attempts to use the Let&#39;s Encrypt certificates.</span><br />
-<br />
-<span>It is worth noticing that <span class='inlinecode'>httpd</span> will start without the certificates being present. This will cause a certificate error when you try to reach the HTTPS endpoint, but it helps to bootstrap Let&#39;s Encrypt. As you saw in the config snippet above, Let&#39;s Encrypt only requests the plain HTTP endpoint for the verification process, so HTTPS doesn&#39;t need to be operational yet at this stage. But once the certificates are generated, you will have to reload or restart <span class='inlinecode'>httpd</span> to use any new certificate.</span><br />
-<br />
-<h3 style='display: inline' id='cron-job'>CRON job</h3><br />
-<br />
-<span>You could now run <span class='inlinecode'>doas acme-client foo.zone</span> to generate the certificate or to renew it. Or you could automate it with CRON.</span><br />
-<br />
-<span>I have created a script <span class='inlinecode'>/usr/local/bin/acme.sh</span> for that for all of my domains:</span><br />
-<br />
-<pre>
-#!/bin/sh
-
-function handle_cert {
-    host=$1
-    # Create symlink, so that relayd also can read it.
-    crt_path=/etc/ssl/$host
-    if [ -e $crt_path.crt ]; then
-        rm $crt_path.crt
-    fi
-    ln -s $crt_path.fullchain.pem $crt_path.crt
-    # Requesting and renewing certificate.
-    /usr/sbin/acme-client -v $host
-}
-
-has_update=no
-handle_cert www.buetow.org
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.paul.buetow.org
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.tmp.buetow.org
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.dtail.dev
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.foo.zone
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.irregular.ninja
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-handle_cert www.snonux.land
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-
-# Pick up the new certs.
-if [ $has_update = yes ]; then
-    /usr/sbin/rcctl reload httpd
-    /usr/sbin/rcctl reload relayd
-    /usr/sbin/rcctl restart smtpd
-fi
-</pre>
-<br />
-<span>And added the following line to <span class='inlinecode'>/etc/daily.local</span> to run the script once daily so that certificates will be renewed fully automatically:</span><br />
-<br />
-<pre>
-/usr/local/bin/acme.sh
-</pre>
-<br />
-<span>I am receiving a daily output via E-Mail like this now:</span><br />
-<br />
-<pre>
-Running daily.local:
-acme-client: /etc/ssl/buetow.org.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/paul.buetow.org.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/tmp.buetow.org.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/dtail.dev.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/foo.zone.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/irregular.ninja.fullchain.pem: certificate valid: 80 days left
-acme-client: /etc/ssl/snonux.land.fullchain.pem: certificate valid: 79 days left
-</pre>
-<br />
-<h2 style='display: inline' id='relaydconf-and-smtpdconf'>relayd.conf and smtpd.conf</h2><br />
-<br />
-<span>Besides <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> (mainly for Gemini) and <span class='inlinecode'>smtpd</span> (for mail, of course) also use TLS certificates. And as you can see in <span class='inlinecode'>acme.sh</span>, the services are reloaded or restarted (<span class='inlinecode'>smtpd</span> doesn&#39;t support reload) whenever a certificate is generated or updated.</span><br />
-<br />
-<h2 style='display: inline' id='rexification'>Rexification</h2><br />
-<br />
-<span>I didn&#39;t write all these configuration files by hand. As a matter of fact, everything is automated with the Rex configuration management system.</span><br />
-<br />
-<a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
-<br />
-<span>At the top of the <span class='inlinecode'>Rexfile</span> I define all my hosts:</span><br />
-<br />
-<pre>
-our @acme_hosts = qw/buetow.org paul.buetow.org tmp.buetow.org dtail.dev foo.zone irregular.ninja snonux.land/;
-</pre>
-<br />
-<h3 style='display: inline' id='general-acme-client-configuration'>General ACME client configuration</h3><br />
-<br />
-<span>ACME will be installed into the frontend group of hosts. Here, blowfish is the primary, and twofish is the secondary OpenBSD box.</span><br />
-<br />
-<pre>
-group frontends =&gt; &#39;blowfish.buetow.org&#39;, &#39;twofish.buetow.org&#39;;
-</pre>
-<br />
-<span>This is my Rex task for the general ACME configuration:</span><br />
-<br />
-<pre>
-desc &#39;Configure ACME client&#39;;
-task &#39;acme&#39;, group =&gt; &#39;frontends&#39;,
-  sub {
-    file &#39;/etc/acme-client.conf&#39;,
-      content =&gt; template(&#39;./etc/acme-client.conf.tpl&#39;,
-        acme_hosts =&gt; \@acme_hosts,
-        is_primary =&gt; $is_primary),
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;;
-
-    file &#39;/usr/local/bin/acme.sh&#39;,
-      content =&gt; template(&#39;./scripts/acme.sh.tpl&#39;,
-        acme_hosts =&gt; \@acme_hosts,
-        is_primary =&gt; $is_primary),
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;744&#39;;
-
-    file &#39;/etc/daily.local&#39;,
-      ensure =&gt; &#39;present&#39;,
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;;
-
-    append_if_no_such_line &#39;/etc/daily.local&#39;, &#39;/usr/local/bin/acme.sh&#39;;
-  };
-</pre>
-<br />
-<span>And there is also a Rex task just to run the ACME script remotely:</span><br />
-<br />
-<pre>
-desc &#39;Invoke ACME client&#39;;
-task &#39;acme_invoke&#39;, group =&gt; &#39;frontends&#39;,
-  sub {
-    say run &#39;/usr/local/bin/acme.sh&#39;;
-  };
-
-</pre>
-<br />
-<span>Furthermore, this snippet (also at the top of the Rexfile) helps to determine whether the current server is the primary server (all hosts will be without the <span class='inlinecode'>www.</span> prefix) or the secondary server (all hosts will be with the <span class='inlinecode'>www.</span> prefix):</span><br />
-<br />
-<pre>
-# Bootstrapping the FQDN based on the server IP as the hostname and domain
-# facts aren&#39;t set yet due to the myname file in the first place.
-our $fqdns = sub {
-  my $ipv4 = shift;
-  return &#39;blowfish.buetow.org&#39; if $ipv4 eq &#39;23.88.35.144&#39;;
-  return &#39;twofish.buetow.org&#39; if $ipv4 eq &#39;108.160.134.135&#39;;
-  Rex::Logger::info("Unable to determine hostname for $ipv4", &#39;error&#39;);
-  return &#39;HOSTNAME-UNKNOWN.buetow.org&#39;;
-};
-
-# To determine whether the server is the primary or the secondary.
-our $is_primary = sub {
-  my $ipv4 = shift;
-  $fqdns-&gt;($ipv4) eq &#39;blowfish.buetow.org&#39;;
-};
-</pre>
-<br />
-<span>The following is the <span class='inlinecode'>acme-client.conf.tpl</span> Rex template file used for the automation. You see that the <span class='inlinecode'>www.</span> prefix isn&#39;t sent for the primary server. E.g. <span class='inlinecode'>foo.zone</span> will be served by the primary server (in my case, a server located in Germany) and <span class='inlinecode'>www.foo.zone</span> by the secondary server (in my case, a server located in Japan):</span><br />
-<br />
-<pre>
-#
-# $OpenBSD: acme-client.conf,v 1.4 2020/09/17 09:13:06 florian Exp $
-#
-authority letsencrypt {
-	api url "https://acme-v02.api.letsencrypt.org/directory"
-	account key "/etc/acme/letsencrypt-privkey.pem"
-}
-
-authority letsencrypt-staging {
-	api url "https://acme-staging-v02.api.letsencrypt.org/directory"
-	account key "/etc/acme/letsencrypt-staging-privkey.pem"
-}
-
-authority buypass {
-	api url "https://api.buypass.com/acme/directory"
-	account key "/etc/acme/buypass-privkey.pem"
-	contact "mailto:me@example.com"
-}
-
-authority buypass-test {
-	api url "https://api.test4.buypass.no/acme/directory"
-	account key "/etc/acme/buypass-test-privkey.pem"
-	contact "mailto:me@example.com"
-}
-
-&lt;%
-  our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
-%&gt;
-
-&lt;% for my $host (@$acme_hosts) { %&gt;
-domain &lt;%= $prefix.$host %&gt; {
-	domain key "/etc/ssl/private/&lt;%= $prefix.$host %&gt;.key"
-	domain full chain certificate "/etc/ssl/&lt;%= $prefix.$host %&gt;.fullchain.pem"
-	sign with letsencrypt
-}
-&lt;% } %&gt;
-
-</pre>
-<br />
-<span>And this is the <span class='inlinecode'>acme.sh.tpl</span>:</span><br />
-<br />
-<pre>
-#!/bin/sh
-
-&lt;%
-  our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
--%&gt;
-
-function handle_cert {
-    host=$1
-    # Create symlink, so that relayd also can read it.
-    crt_path=/etc/ssl/$host
-    if [ -e $crt_path.crt ]; then
-        rm $crt_path.crt
-    fi
-    ln -s $crt_path.fullchain.pem $crt_path.crt
-    # Requesting and renewing certificate.
-    /usr/sbin/acme-client -v $host
-}
-
-has_update=no
-&lt;% for my $host (@$acme_hosts) { -%&gt;
-handle_cert &lt;%= $prefix.$host %&gt;
-if [ $? -eq 0 ]; then
-    has_update=yes
-fi
-&lt;% } -%&gt;
-
-# Pick up the new certs.
-if [ $has_update = yes ]; then
-    /usr/sbin/rcctl reload httpd
-    /usr/sbin/rcctl reload relayd
-    /usr/sbin/rcctl restart smtpd
-fi
-</pre>
-<br />
-<h3 style='display: inline' id='service-rexification-'>Service rexification </h3><br />
-<br />
-<span>These are the Rex tasks setting up <span class='inlinecode'>httpd</span>, <span class='inlinecode'>relayd</span> and <span class='inlinecode'>smtpd</span> services:</span><br />
-<br />
-<pre>
-desc &#39;Setup httpd&#39;;
-task &#39;httpd&#39;, group =&gt; &#39;frontends&#39;,
-  sub {
-    append_if_no_such_line &#39;/etc/rc.conf.local&#39;, &#39;httpd_flags=&#39;;
-
-    file &#39;/etc/httpd.conf&#39;,
-      content =&gt; template(&#39;./etc/httpd.conf.tpl&#39;,
-        acme_hosts =&gt; \@acme_hosts,
-        is_primary =&gt; $is_primary),
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;,
-      on_change =&gt; sub { service &#39;httpd&#39; =&gt; &#39;restart&#39; };
-
-    service &#39;httpd&#39;, ensure =&gt; &#39;started&#39;;
-  };
-
-desc &#39;Setup relayd&#39;;
-task &#39;relayd&#39;, group =&gt; &#39;frontends&#39;,
-  sub {
-    append_if_no_such_line &#39;/etc/rc.conf.local&#39;, &#39;relayd_flags=&#39;;
-
-    file &#39;/etc/relayd.conf&#39;,
-      content =&gt; template(&#39;./etc/relayd.conf.tpl&#39;,
-        ipv6address =&gt; $ipv6address,
-        is_primary =&gt; $is_primary),
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;600&#39;,
-      on_change =&gt; sub { service &#39;relayd&#39; =&gt; &#39;restart&#39; };
-
-    service &#39;relayd&#39;, ensure =&gt; &#39;started&#39;;
-  };
-
-desc &#39;Setup OpenSMTPD&#39;;
-task &#39;smtpd&#39;, group =&gt; &#39;frontends&#39;,
-  sub {
-    Rex::Logger::info(&#39;Dealing with mail aliases&#39;);
-    file &#39;/etc/mail/aliases&#39;,
-      source =&gt; &#39;./etc/mail/aliases&#39;,
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;,
-      on_change =&gt; sub { say run &#39;newaliases&#39; };
-
-    Rex::Logger::info(&#39;Dealing with mail virtual domains&#39;);
-    file &#39;/etc/mail/virtualdomains&#39;,
-      source =&gt; &#39;./etc/mail/virtualdomains&#39;,
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;,
-      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
-
-    Rex::Logger::info(&#39;Dealing with mail virtual users&#39;);
-    file &#39;/etc/mail/virtualusers&#39;,
-      source =&gt; &#39;./etc/mail/virtualusers&#39;,
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;,
-      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
-
-    Rex::Logger::info(&#39;Dealing with smtpd.conf&#39;);
-    file &#39;/etc/mail/smtpd.conf&#39;,
-      content =&gt; template(&#39;./etc/mail/smtpd.conf.tpl&#39;,
-        is_primary =&gt; $is_primary),
-      owner =&gt; &#39;root&#39;,
-      group =&gt; &#39;wheel&#39;,
-      mode =&gt; &#39;644&#39;,
-      on_change =&gt; sub { service &#39;smtpd&#39; =&gt; &#39;restart&#39; };
-
-    service &#39;smtpd&#39;, ensure =&gt; &#39;started&#39;;
-  };
-
-</pre>
-<br />
-<span>This is the <span class='inlinecode'>httpd.conf.tpl</span>:</span><br />
-<br />
-<pre>
-&lt;%
-  our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
-%&gt;
-
-# Plain HTTP for ACME and HTTPS redirect
-&lt;% for my $host (@$acme_hosts) { %&gt;
-server "&lt;%= $prefix.$host %&gt;" {
-  listen on * port 80
-  location "/.well-known/acme-challenge/*" {
-    root "/acme"
-    request strip 2
-  }
-  location * {
-    block return 302 "https://$HTTP_HOST$REQUEST_URI"
-  }
-}
-&lt;% } %&gt;
-
-# Gemtexter hosts
-&lt;% for my $host (qw/foo.zone snonux.land/) { %&gt;
-server "&lt;%= $prefix.$host %&gt;" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix.$host %&gt;.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix.$host %&gt;.key"
-  }
-  location * {
-    root "/htdocs/gemtexter/&lt;%= $host %&gt;"
-    directory auto index
-  }
-}
-&lt;% } %&gt;
-
-# DTail special host
-server "&lt;%= $prefix %&gt;dtail.dev" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix %&gt;dtail.dev.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix %&gt;dtail.dev.key"
-  }
-  location * {
-    block return 302 "https://github.dtail.dev$REQUEST_URI"
-  }
-}
-
-# Irregular Ninja special host
-server "&lt;%= $prefix %&gt;irregular.ninja" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix %&gt;irregular.ninja.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix %&gt;irregular.ninja.key"
-  }
-  location * {
-    root "/htdocs/irregular.ninja"
-    directory auto index
-  }
-}
-
-# buetow.org special host.
-server "&lt;%= $prefix %&gt;buetow.org" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix %&gt;buetow.org.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix %&gt;buetow.org.key"
-  }
-  block return 302 "https://paul.buetow.org"
-}
-
-server "&lt;%= $prefix %&gt;paul.buetow.org" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix %&gt;paul.buetow.org.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix %&gt;paul.buetow.org.key"
-  }
-  block return 302 "https://foo.zone/contact-information.html"
-}
-
-server "&lt;%= $prefix %&gt;tmp.buetow.org" {
-  listen on * tls port 443
-  tls {
-    certificate "/etc/ssl/&lt;%= $prefix %&gt;tmp.buetow.org.fullchain.pem"
-    key "/etc/ssl/private/&lt;%= $prefix %&gt;tmp.buetow.org.key"
-  }
-  root "/htdocs/buetow.org/tmp"
-  directory auto index
-}
-</pre>
-<br />
-<span>and this the <span class='inlinecode'>relayd.conf.tpl</span>:</span><br />
-<br />
-<pre>
-&lt;%
-  our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
-%&gt;
-
-log connection
-
-tcp protocol "gemini" {
-    tls keypair &lt;%= $prefix %&gt;foo.zone
-    tls keypair &lt;%= $prefix %&gt;buetow.org
-}
-
-relay "gemini4" {
-    listen on &lt;%= $vio0_ip %&gt; port 1965 tls
-    protocol "gemini"
-    forward to 127.0.0.1 port 11965
-}
-
-relay "gemini6" {
-    listen on &lt;%= $ipv6address-&gt;($hostname) %&gt; port 1965 tls
-    protocol "gemini"
-    forward to 127.0.0.1 port 11965
-}
-</pre>
-<br />
-<span>And last but not least, this is the <span class='inlinecode'>smtpd.conf.tpl</span>:</span><br />
-<br />
-<pre>
-&lt;%
-  our $primary = $is_primary-&gt;($vio0_ip);
-  our $prefix = $primary ? &#39;&#39; : &#39;www.&#39;;
-%&gt;
-
-pki "buetow_org_tls" cert "/etc/ssl/&lt;%= $prefix %&gt;buetow.org.fullchain.pem"
-pki "buetow_org_tls" key "/etc/ssl/private/&lt;%= $prefix %&gt;buetow.org.key"
-
-table aliases file:/etc/mail/aliases
-table virtualdomains file:/etc/mail/virtualdomains
-table virtualusers file:/etc/mail/virtualusers
-
-listen on socket
-listen on all tls pki "buetow_org_tls" hostname "&lt;%= $prefix %&gt;buetow.org"
-#listen on all
-
-action localmail mbox alias &lt;aliases&gt;
-action receive mbox virtual &lt;virtualusers&gt;
-action outbound relay
-
-match from any for domain &lt;virtualdomains&gt; action receive
-match from local for local action localmail
-match from local for any action outbound
-</pre>
-<br />
-<h2 style='display: inline' id='all-pieces-together'>All pieces together</h2><br />
-<br />
-<span>For the complete <span class='inlinecode'>Rexfile</span> example and all the templates, please look at the Git repository:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/rexfiles'>https://codeberg.org/snonux/rexfiles</a><br />
-<br />
-<span>Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:</span><br />
-<br />
-<pre>
-rex commons
-</pre>
-<br />
-<span>The <span class='inlinecode'>commons</span> is a group of tasks I specified which combines a set of common tasks I always want to execute on all frontend machines. This also includes the ACME tasks mentioned in this article!</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>ACME and Let&#39;s Encrypt greatly help reduce recurring manual maintenance work (creating and renewing certificates). Furthermore, all the certificates are free of cost! I love to use OpenBSD and Rex to automate all of this.</span><br />
-<br />
-<span>OpenBSD suits perfectly here as all the tools are already part of the base installation. But I like underdogs. Rex is not as powerful and popular as other configuration management systems (e.g. Puppet, Chef, SALT or even Ansible). It is more of an underdog, and the community is small.</span><br />
-<br />
-<span>Why re-inventing the wheel? I love that a <span class='inlinecode'>Rexfile</span> is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the <span class='inlinecode'>acme.sh</span> shell script is not a Bash but a standard Bourne shell script, so I didn&#39;t have to install an additional shell as OpenBSD does not come with the Bash pre-installed.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other *BSD related posts are:</span><br />
-<br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
