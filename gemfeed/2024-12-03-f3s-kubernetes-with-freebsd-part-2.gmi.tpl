@@ -270,7 +270,9 @@ The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project:
 
 To ease cable management, I need to get shorter ethernet cables. I will place the tower on my shelf, where most of the cables will be hidden (together with a UPS, which will also be added to the setup).
 
-What will be covered in the next post of this series? Maybe ttttbhyve/Rocky Linux and WireGuard setup as described in part 1 of this series...
+Read the next post of this series:
+
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
 
 Other *BSD-related posts:
 
