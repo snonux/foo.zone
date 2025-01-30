@@ -319,7 +319,7 @@ paul@f0:/usr/local/etc/apcupsd % apcaccess -p TIMELEFT
 63.9 Minutes
 ```
 
-And after almost 60 minutes (`f1` and `f2` a bit earlier, `f0` a bit later due to the different `BATTERYLEVEL` and `MINUTES` settings outlined earlier), the following broadcast was sent out:
+And after around one hour (`f1` and `f2` a bit earlier, `f0` a bit later due to the different `BATTERYLEVEL` and `MINUTES` settings outlined earlier), the following broadcast was sent out:
 
 ```
 Broadcast Message from root@f0.lan.buetow.org
