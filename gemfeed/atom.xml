@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-01-30T09:22:06+02:00</updated>
+    <updated>2025-01-30T09:32:36+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -20,12 +20,13 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</h1><br />
 <br />
+<span class='quote'>Published at 2025-01-30T09:22:06+02:00</span><br />
+<br />
 <span>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -258,9 +259,9 @@ END APC  : <font color="#000000">2025</font>-<font color="#000000">01</font>-<fo
 <br />
 <span>So far, so good. Host <span class='inlinecode'>f0</span> would shut down itself when short on power. But what about the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes? They aren&#39;t connected directly to the UPS and, therefore, wouldn&#39;t know that their power is about to be cut off. For this, <span class='inlinecode'>apcupsd</span> running on the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes can be configured to retrieve UPS information via the network from the <span class='inlinecode'>apcupsd</span> server running on the <span class='inlinecode'>f0</span> node, which is connected directly to the APC via USB.</span><br />
 <br />
-<span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) effectively impossible.</span><br />
+<span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times making real data loss (the main concern here) less likely.</span><br />
 <br />
-<span>And if <span class='inlinecode'>f0</span> is down and <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> receive new data and crash midway, it&#39;s likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data loss recoverable. I&#39;d receive an alert if any of the nodes go down (more on monitoring later in this blog series).</span><br />
+<span>And if <span class='inlinecode'>f0</span> is down and <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> receive new data and crash midway, it&#39;s likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data recoverable and data loss overall nearly impossible. I&#39;d receive an alert if any of the nodes go down (more on monitoring later in this blog series).</span><br />
 <br />
 <h3 style='display: inline' id='installation-on-partners'>Installation on partners</h3><br />
 <br />
@@ -420,7 +421,6 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1118,7 +1118,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1457,7 +1456,6 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1490,7 +1488,6 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1650,7 +1647,6 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -4120,7 +4116,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4480,7 +4475,6 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./f3s-kubernetes-with-freebsd-part-4.html'>f3s-kubernetes-with f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
