@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-01-30T09:40:10+02:00</updated>
+    <updated>2025-02-02T10:46:43+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -24,9 +24,9 @@
 <br />
 <span>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
 <br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -413,14 +413,14 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>Other BSD related posts are:</span><br />
 <br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1115,9 +1115,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>These are all the posts so far:</span><br />
 <br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1448,14 +1448,14 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1485,9 +1485,9 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>These are all the posts so far:</span><br />
 <br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1639,14 +1639,14 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -1793,14 +1793,14 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1900,12 +1900,12 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴ (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -1929,10 +1929,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Welcome to Part 4 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
 <br />
-<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
-<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
-<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
 <a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
 <br />
 <pre>
        __..._   _...__
@@ -2444,14 +2444,14 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3761,14 +3761,14 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4106,16 +4106,16 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other *BSD and KISS related posts are:</span><br />
 <br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4467,14 +4467,14 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>Other *BSD related posts are:</span><br />
 <br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4498,10 +4498,10 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
 <br />
-<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
-<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
-<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
 <br />
 <pre>
                     ..--""""----..                 
@@ -4577,9 +4577,9 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
 <br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <br />
 <pre>
     &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
@@ -4979,11 +4979,11 @@ echo baz
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5007,10 +5007,10 @@ echo baz
 <br />
 <span>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</span><br />
 <br />
-<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
-<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
 <a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
 <br />
 <pre>
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -5186,14 +5186,14 @@ echo baz
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5493,15 +5493,15 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span>Other Bash and KISS-related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -5831,10 +5831,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
 <br />
 <span>I hope you find the tools presented in this post useful!</span><br />
 <br />
@@ -5862,10 +5862,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Being a Site Reliability Engineer (SRE) is like stepping into a lively, ever-evolving universe. The world of SRE mixes together different tech, a unique culture, and a whole lot of determination. It’s one of the toughest but most exciting jobs out there. There&#39;s zero chance of getting bored because there&#39;s always a fresh challenge to tackle and new technology to play around with. It&#39;s not just about the tech side of things either; it&#39;s heavily rooted in communication, collaboration, and teamwork. As someone currently working as an SRE, I’m here to break it all down for you in this blog series. Let&#39;s dive into what SRE is really all about!</span><br />
 <br />
-<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
-<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
 <a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture (You are currently reading this)</a><br />
 <br />
 <pre>
 ▓▓▓▓░░                                                                                  
@@ -6049,12 +6049,12 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³ (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6407,14 +6407,14 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6711,10 +6711,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other KISS-related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -6835,14 +6835,14 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7029,11 +7029,11 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7201,14 +7201,14 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7388,12 +7388,12 @@ The remaining content of the Gemtext file...
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -7498,14 +7498,14 @@ The remaining content of the Gemtext file...
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8444,10 +8444,10 @@ REMOTE|fishfinger|100|7|fstab|093f510ec5c0f512.h /usr/local ffs rw,wxallowed,nod
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -8710,12 +8710,12 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
 <a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
