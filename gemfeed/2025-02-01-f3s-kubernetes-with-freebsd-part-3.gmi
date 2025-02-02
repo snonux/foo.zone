@@ -4,9 +4,9 @@
 
 This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
 
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -352,14 +352,14 @@ All good :-) See you in the next post of this series!
 
 Other BSD related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
-=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

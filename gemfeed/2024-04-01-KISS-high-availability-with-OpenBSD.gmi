@@ -300,15 +300,15 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD and KISS related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
-=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
-=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
+=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 => ../ Back to the main site

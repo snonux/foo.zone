@@ -147,9 +147,9 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry
-=> ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework)
-=> ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice (You are currently reading this)
 => ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi 2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku
+=> ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice (You are currently reading this)
+=> ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework)
+=> ./2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry
 
 => ../ Back to the main site
