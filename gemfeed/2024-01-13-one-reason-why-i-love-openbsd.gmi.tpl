@@ -51,6 +51,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD related posts are:
 
-<< template::inline::index bsd
+<< template::inline::rindex bsd
 
 => ../ Back to the main site

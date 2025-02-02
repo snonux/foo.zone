@@ -288,6 +288,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD and KISS related posts are:
 
-<< template::inline::index bsd kiss
+<< template::inline::rindex bsd kiss
 
 => ../ Back to the main site

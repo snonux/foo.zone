@@ -50,6 +50,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Go related posts are:
 
-<< template::inline::index golang
+<< template::inline::rindex golang
 
 => ../ Back to the main site

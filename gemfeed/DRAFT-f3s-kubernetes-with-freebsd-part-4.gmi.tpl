@@ -247,7 +247,7 @@ CPU STRESS TESTER VM VS NOT VM
 
 Other *BSD-related posts:
 
-<< template::inline::index bsd
+<< template::inline::rindex bsd
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

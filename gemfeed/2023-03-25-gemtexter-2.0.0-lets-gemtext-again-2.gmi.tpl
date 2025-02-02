@@ -73,7 +73,7 @@ Another thing you can do is insert an index with links to similar blog posts. E.
 ```
 See more entries about DTail and Golang:
 
-[[ template::inline::index dtail golang
+[[ template::inline::rindex dtail golang
 
 Blablabla...
 ```

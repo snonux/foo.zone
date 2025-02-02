@@ -263,6 +263,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Bash and KISS-related posts are:
 
-<< template::inline::index bash kiss simple-and-stupid
+<< template::inline::rindex bash kiss simple-and-stupid
 
 => ../ Back to the main site

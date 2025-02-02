@@ -281,7 +281,7 @@ My New Year's resolution is not to start any new non-fiction books (or only very
 
 Other related posts:
 
-<< template::inline::index posts-from
+<< template::inline::rindex posts-from
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

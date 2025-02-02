@@ -153,6 +153,6 @@ E-Mail your comments to hi@foo.zone :-)
 
 Other related posts are:
 
-<< template::inline::index perl raku sweating-the-small-stuff
+<< template::inline::rindex perl raku sweating-the-small-stuff
 
 => ../ Back to the main site

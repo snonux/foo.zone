@@ -334,7 +334,7 @@ All good :-) See you in the next post of this series!
 
 Other BSD related posts are:
 
-<< template::inline::index bsd
+<< template::inline::rindex bsd
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
