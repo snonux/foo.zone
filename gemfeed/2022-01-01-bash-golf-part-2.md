@@ -4,9 +4,9 @@
 
 This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
 
-[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
-[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
 [2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 
 ```
 
