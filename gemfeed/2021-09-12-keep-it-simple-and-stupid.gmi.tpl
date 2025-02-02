@@ -100,7 +100,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other KISS-related posts are:
 
-<< template::inline::index kiss simple-and-stupid
+<< template::inline::rindex kiss simple-and-stupid
 
 > Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 

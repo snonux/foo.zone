@@ -164,6 +164,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index perl
+<< template::inline::rindex perl
 
 => ../ Back to the main site

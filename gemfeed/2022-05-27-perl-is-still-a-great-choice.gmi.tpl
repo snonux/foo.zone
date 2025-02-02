@@ -140,6 +140,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index perl raku
+<< template::inline::rindex perl raku
 
 => ../ Back to the main site

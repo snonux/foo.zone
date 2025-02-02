@@ -142,6 +142,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index gemtext gemini
+<< template::inline::rindex gemtext gemini
 
 => ../ Back to the main site

@@ -487,6 +487,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index bash
+<< template::inline::rindex bash
 
 => ../ Back to the main site

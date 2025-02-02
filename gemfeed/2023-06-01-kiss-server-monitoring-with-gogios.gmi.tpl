@@ -240,6 +240,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other KISS-related posts are:
 
-<< template::inline::index kiss simple-and-stupid
+<< template::inline::rindex kiss simple-and-stupid
 
 => ../ Back to the main site

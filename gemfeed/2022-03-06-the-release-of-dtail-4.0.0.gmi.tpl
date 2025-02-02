@@ -292,7 +292,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index dtail
+<< template::inline::rindex dtail
 
 Thanks!
 
