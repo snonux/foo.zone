@@ -272,14 +272,14 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Bash and KISS-related posts are:
 
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
-[2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
-[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
+[2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
+[2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 [Back to the main site](../)  
