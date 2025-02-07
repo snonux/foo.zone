@@ -14,7 +14,12 @@ Every so often, I come across random, weird, and unexpected things on the intern
 
 << template::inline::toc
 
-## 11. Go functions can have methods
+## Go Programming
+
+### 11. Official Go font
+
+
+### 12. Go functions can have methods
 
 Have a look at this snippet:
 
@@ -50,7 +55,10 @@ It runs just fin:
 2025/02/07 22:56:14 Example 4:  Bar
 ```
 
-## 12. ß and ss are treated the same on MacOS X
+
+## MacOS X
+
+### 13. ß and ss are treated the same
 
 Know german? In german, there is the "sarp s", written ß. ß is treated the same as ss on MacOS X.
 
@@ -76,7 +84,12 @@ So, even though "Maß" and "Mass" are not strictly equivalent, the MacOS X file 
 
 ```
 
-## 13. Polyglots - programs written in multiple languages
+### 14. Colon as file path separator
+
+MacOS x colon as file path separator https://social.jvns.ca/@b0rk/113041293527832730
+and https://narrativ.es/@janl/113041301678495651
+
+## 15. Polyglots - programs written in multiple languages
 
 A coding polyglot is a program or script that is written in such a way that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting code that is valid and meaningful in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.
 
@@ -84,7 +97,7 @@ Check out my very own polyglot:
 
 => ./2014-03-24-the-fibonacci.pl.c-polyglot.gmi The `fibonatti.pl.c` Polyglot
 
-## 14. Languages, where indices start at 1
+## 16. Languages, where indices start at 1
 
 Array indices start at 1 instead of 0 in some programming languages, which is known as one-based indexing. This can be controversial because zero-based indexing is more common in popular languages like C, C++, Java, and Python. One-based indexing can lead to off-by-one errors when developers switch between languages with different indexing schemes.
 
@@ -111,7 +124,7 @@ print(arr[1]) -- Accessing the first element
 
 One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.
 
-## 15. Perl Poetry
+## 17. Perl Poetry
 
 Perl Poetry is a playful and creative practice within the programming community where Perl code is written in the form of a poem. These poems are crafted to be both syntactically valid Perl code and to make sense as poetic text, often with whimsical or humorous intent. This showcases Perl's flexibility and expressiveness, as well as the creativity of its programmers.
 
@@ -161,25 +174,17 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 => ./2008-06-26-perl-poetry.gmi More Perl Poetry of mine
 
-## 16. CSS3 is turing complete
+## 18. CSS3 is turing complete
 
 CSS3 is turing complete https://stackoverflow.com/questions/2497146/is-css-turing-complete
 
-### 17. MacOS X colon as file path separator
-
-MacOS x colon as file path separator https://social.jvns.ca/@b0rk/113041293527832730
-and https://narrativ.es/@janl/113041301678495651
-
-### 18. SQLite codebase is a gem
+## 19. SQLite codebase is a gem
 
 sqlite codebase is a gem https://wetdry.world/@memes/112717700557038278
 
 
-### 19. The biggest shell programs 
+## 20. The biggest shell programs 
 The Biggest Shell Programs in the World https://github.com/oils-for-unix/oils/wiki/The-Biggest-Shell-Programs-in-the-World via @wallabagapp
-
-
-### Official Go font
 
 I hope you had some fun. E-Mail your comments to `paul@nospam.buetow.org` :-)
 
