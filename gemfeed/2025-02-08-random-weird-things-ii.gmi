@@ -4,7 +4,8 @@
 
 Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the second run.
 
-<< template::inline::index random-weird-things
+=> ./2024-07-05-random-weird-things.gmi 2024-07-05 Random Weird Things - Part Ⅰ
+=> ./2025-02-08-random-weird-things-ii.gmi 2025-02-08 Random Weird Things - Part Ⅱ (You are currently reading this)
 
 ```
 /\_/\           /\_/\
@@ -14,7 +15,21 @@ Every so often, I come across random, weird, and unexpected things on the intern
 /______\       /______\
 ```
 
-<< template::inline::toc
+## Table of Contents
+
+* ⇢ Random Weird Things - Part Ⅱ
+* ⇢ ⇢ Go Programming
+* ⇢ ⇢ ⇢ 11. Official Go font
+* ⇢ ⇢ ⇢ 12. Go functions can have methods
+* ⇢ ⇢ macOS
+* ⇢ ⇢ ⇢ 13. ß and ss are treated the same
+* ⇢ ⇢ ⇢ 14. Colon as file path separator
+* ⇢ ⇢ 15. Polyglots - programs written in multiple languages
+* ⇢ ⇢ 16. Languages, where indices start at 1
+* ⇢ ⇢ 17. Perl Poetry
+* ⇢ ⇢ 18. CSS3 is turing complete
+* ⇢ ⇢ 19. The SQLite codebase is a gem
+* ⇢ ⇢ 20. The biggest shell programs 
 
 ## Go Programming
 
