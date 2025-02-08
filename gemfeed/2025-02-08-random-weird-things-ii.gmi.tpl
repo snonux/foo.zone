@@ -16,9 +16,19 @@ Every so often, I come across random, weird, and unexpected things on the intern
 
 << template::inline::toc
 
+## 11. The SQLite codebase is a gem
+
+Check this out:
+
+=> ./random-weird-things-ii/sqlite-gem.png SQLite Gem
+
+Source:
+
+=> https://wetdry.world/@memes/112717700557038278
+
 ## Go Programming
 
-### 11. Official Go font
+### 12. Official Go font
 
 The Go programming language has an official font called "Go Font." It was created to complement the aesthetic of the Go language, ensuring clear and legible rendering of code. The font includes a monospace version for code and a proportional version for general text, supporting consistent look and readability in Go-related materials and development environments. 
 
@@ -32,7 +42,7 @@ The design emphasizes simplicity and readability, reflecting Go's philosophy of 
 
 I found it interesting and/or weird, as Go is a programming language. Why should it bother having its own font? I have never seen another open-source project like Go do this. But I also like it. Maybe I will use it in the future for this blog :-) 
 
-### 12. Go functions can have methods
+### 13. Go functions can have methods
 
 Functions on struct types? Well, know. Functions on types like `int` and `string`? It's also known of, but a bit lesser. Functions on function types? That sounds a bit funky, but it's possible, too! For demonstration, have a look at this snippet:
 
@@ -72,7 +82,7 @@ It runs just fine:
 
 For personal computing, I don't use Apple, but I have to use it for work. 
 
-### 13. ß and ss are treated the same
+### 14. ß and ss are treated the same
 
 Know German? In German, the letter "sarp s" is written as ß. ß is treated the same as ss on macOS.
 
@@ -98,7 +108,7 @@ So, even though "Maß" and "Mass" are not strictly equivalent, the macOS file sy
 
 ```
 
-### 14. Colon as file path separator
+### 15. Colon as file path separator
 
 MacOS can use the colon as a file path separator on its ADFS (file system). A typical ADFS file pathname on a hard disc might be:
 
@@ -110,7 +120,7 @@ I can't reproduce this on my (work) Mac, though, as it now uses the APFS file sy
 
 => https://social.jvns.ca/@b0rk/113041293527832730
 
-## 15. Polyglots - programs written in multiple languages
+## 16. Polyglots - programs written in multiple languages
 
 A coding polyglot is a program or script written so that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting valid and meaningful code in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.
 
@@ -118,7 +128,7 @@ Check out my very own polyglot:
 
 => ./2014-03-24-the-fibonacci.pl.c-polyglot.gmi The `fibonatti.pl.c` Polyglot
 
-## 16. Languages, where indices start at 1
+## 17. Languages, where indices start at 1
 
 Array indices start at 1 instead of 0 in some programming languages, known as one-based indexing. This can be controversial because zero-based indexing is more common in popular languages like C, C++, Java, and Python. One-based indexing can lead to off-by-one errors when developers switch between languages with different indexing schemes.
 
@@ -145,7 +155,7 @@ print(arr[1]) -- Accessing the first element
 
 One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.
 
-## 17. Perl Poetry
+## 18. Perl Poetry
 
 Perl Poetry is a playful and creative practice within the programming community where Perl code is written as a poem. These poems are crafted to be syntactically valid Perl code and make sense as poetic text, often with whimsical or humorous intent. This showcases Perl's flexibility and expressiveness, as well as the creativity of its programmers.
 
@@ -195,7 +205,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 => ./2008-06-26-perl-poetry.gmi More Perl Poetry of mine
 
-## 18. CSS3 is turing complete
+## 19. CSS3 is turing complete
 
 CSS3 is Turing complete because it can simulate a Turing machine using only CSS animations and styles without any JavaScript or external logic. This is achieved by using keyframe animations to change the styles of HTML elements in a way that encodes computation, performing calculations and state transitions. 
 
@@ -210,16 +220,6 @@ Check out this 100% CSS implementation of the Conways Game of Life:
 => https://github.com/propjockey/css-conways-game-of-life CSS Conways Game of Life
 
 Conway's Game of Life is Turing complete because it can simulate a universal Turing machine, meaning it can perform any computation that a computer can, given the right initial conditions and sufficient time and space. Suppose a language can implement Conway's Game of Life. In that case, it demonstrates the language's ability to handle complex state transitions and computations. It has the necessary constructs (like iteration, conditionals, and data manipulation) to simulate any algorithm, thus confirming its Turing completeness.
-
-## 19. The SQLite codebase is a gem
-
-Check this out:
-
-=> ./random-weird-things-ii/sqlite-gem.png SQLite Gem
-
-Source:
-
-=> https://wetdry.world/@memes/112717700557038278
 
 ## 20. The biggest shell programs 
 
