@@ -21,39 +21,55 @@ WHOA!! 	     ( o.o )
 
 Run traceroute to get the poem (or song).
 
+> Update: A reader hinted that by specifying `-n 60`, there will be even more output!
+
 ```bash
-% traceroute bad.horse
-traceroute to bad.horse (162.252.205.157), 30 hops max, 60 byte packets
- 1  dsldevice.lan (192.168.1.1)  5.712 ms  5.800 ms  6.466 ms
- 2  87-243-116-2.ip.btc-net.bg (87.243.116.2)  8.017 ms  7.506 ms  8.432 ms
- 3  * * *
+❯ traceroute -m 60 bad.horse
+traceroute to bad.horse (162.252.205.157), 60 hops max, 60 byte packets
+ 1  _gateway (192.168.1.1)  5.237 ms  5.264 ms  6.009 ms
+ 2  77-85-0-2.ip.btc-net.bg (77.85.0.2)  8.753 ms  7.112 ms  8.336 ms
+ 3  212-39-69-103.ip.btc-net.bg (212.39.69.103)  9.434 ms  9.268 ms  9.986 ms
  4  * * *
- 5  xe-1-2-0.mpr1.fra4.de.above.net (80.81.194.26)  39.952 ms  40.155 ms  40.139 ms
- 6  ae12.cs1.fra6.de.eth.zayo.com (64.125.26.172)  128.014 ms * *
+ 5  xe-1-2-0.mpr1.fra4.de.above.net (80.81.194.26)  39.812 ms  39.030 ms  39.772 ms
+ 6  * ae12.cs1.fra6.de.eth.zayo.com (64.125.26.172)  123.576 ms *
  7  * * *
  8  * * *
- 9  ae10.cs1.lhr15.uk.eth.zayo.com (64.125.29.17)  120.625 ms  121.117 ms  121.050 ms
-10  * * *
+ 9  ae10.cr1.lhr15.uk.eth.zayo.com (64.125.29.17)  119.097 ms  119.478 ms  120.767 ms
+10  ae2.cr1.lhr11.uk.zip.zayo.com (64.125.24.140)  120.398 ms  121.147 ms  120.948 ms
 11  * * *
-12  * * *
-13  ae5.mpr1.tor3.ca.zip.zayo.com (64.125.23.118)  192.605 ms  205.741 ms  203.607 ms
-14  64.124.217.237.IDIA-265104-ZYO.zip.zayo.com (64.124.217.237)  204.673 ms  134.674 ms  131.442 ms
+12  ae25.mpr1.yyz1.ca.zip.zayo.com (64.125.23.117)  145.072 ms *  181.773 ms
+13  ae5.mpr1.tor3.ca.zip.zayo.com (64.125.23.118)  168.239 ms  168.158 ms  168.137 ms
+14  64.124.217.237.IDIA-265104-ZYO.zip.zayo.com (64.124.217.237)  168.026 ms  167.999 ms  165.451 ms
 15  * * *
-16  67.223.96.90 (67.223.96.90)  128.245 ms  127.844 ms  127.843 ms
-17  bad.horse (162.252.205.130)  128.194 ms  122.854 ms  121.786 ms
-18  bad.horse (162.252.205.131)  128.831 ms  128.341 ms  186.559 ms
-19  bad.horse (162.252.205.132)  185.716 ms  180.121 ms  180.042 ms
-20  bad.horse (162.252.205.133)  203.170 ms  203.076 ms  203.168 ms
-21  he.rides.across.the.nation (162.252.205.134)  203.115 ms  141.830 ms  141.799 ms
-22  the.thoroughbred.of.sin (162.252.205.135)  147.965 ms  148.230 ms  170.478 ms
-23  he.got.the.application (162.252.205.136)  165.161 ms  164.939 ms  159.085 ms
-24  that.you.just.sent.in (162.252.205.137)  162.310 ms  158.569 ms  158.896 ms
-25  it.needs.evaluation (162.252.205.138)  162.927 ms  163.046 ms  163.085 ms
-26  so.let.the.games.begin (162.252.205.139)  233.363 ms  233.545 ms  233.317 ms
-27  a.heinous.crime (162.252.205.140)  237.745 ms  233.614 ms  233.740 ms
-28  a.show.of.force (162.252.205.141)  237.974 ms  176.085 ms  175.927 ms
-29  a.murder.would.be.nice.of.course (162.252.205.142)  181.838 ms  181.858 ms  182.059 ms
-30  bad.horse (162.252.205.143)  187.731 ms  187.416 ms  187.532 ms
+16  t00.toroc1.on.ca.sn11.net (162.252.204.2)  131.598 ms  131.308 ms  131.482 ms
+17  bad.horse (162.252.205.130)  131.430 ms  145.914 ms  130.514 ms
+18  bad.horse (162.252.205.131)  136.634 ms  145.295 ms  135.631 ms
+19  bad.horse (162.252.205.132)  139.158 ms  148.363 ms  138.934 ms
+20  bad.horse (162.252.205.133)  145.395 ms  148.054 ms  147.140 ms
+21  he.rides.across.the.nation (162.252.205.134)  149.687 ms  147.731 ms  150.135 ms
+22  the.thoroughbred.of.sin (162.252.205.135)  156.644 ms  155.155 ms  156.447 ms
+23  he.got.the.application (162.252.205.136)  161.187 ms  162.318 ms  162.674 ms
+24  that.you.just.sent.in (162.252.205.137)  166.763 ms  166.675 ms  164.243 ms
+25  it.needs.evaluation (162.252.205.138)  172.073 ms  171.919 ms  171.390 ms
+26  so.let.the.games.begin (162.252.205.139)  175.386 ms  174.180 ms  175.965 ms
+27  a.heinous.crime (162.252.205.140)  180.857 ms  180.766 ms  180.192 ms
+28  a.show.of.force (162.252.205.141)  187.942 ms  186.669 ms  186.986 ms
+29  a.murder.would.be.nice.of.course (162.252.205.142)  191.349 ms  191.939 ms  190.740 ms
+30  bad.horse (162.252.205.143)  195.425 ms  195.716 ms  196.186 ms
+31  bad.horse (162.252.205.144)  199.238 ms  200.620 ms  200.318 ms
+32  bad.horse (162.252.205.145)  207.554 ms  206.729 ms  205.201 ms
+33  he-s.bad (162.252.205.146)  211.087 ms  211.649 ms  211.712 ms
+34  the.evil.league.of.evil (162.252.205.147)  212.657 ms  216.777 ms  216.589 ms
+35  is.watching.so.beware (162.252.205.148)  220.911 ms  220.326 ms  221.961 ms
+36  the.grade.that.you.receive (162.252.205.149)  225.384 ms  225.696 ms  225.640 ms
+37  will.be.your.last.we.swear (162.252.205.150)  232.312 ms  230.989 ms  230.919 ms
+38  so.make.the.bad.horse.gleeful (162.252.205.151)  235.761 ms  235.291 ms  235.585 ms
+39  or.he-ll.make.you.his.mare (162.252.205.152)  241.350 ms  239.407 ms  238.394 ms
+40  o_o (162.252.205.153)  246.154 ms  247.650 ms  247.110 ms
+41  you-re.saddled.up (162.252.205.154)  250.925 ms  250.401 ms  250.619 ms
+42  there-s.no.recourse (162.252.205.155)  256.071 ms  251.154 ms  255.340 ms
+43  it-s.hi-ho.silver (162.252.205.156)  260.152 ms  261.775 ms  261.544 ms
+44  signed.bad.horse (162.252.205.157)  262.430 ms  261.410 ms  261.365 ms
 ```
 
 ## 2. ASCII cinema
