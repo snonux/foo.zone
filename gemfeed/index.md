@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-02-08 - Random Weird Things - Part Ⅱ](./2025-02-08-random-weird-things-ii.md)  
 [2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2025-01-15 - Working with an SRE Interview](./2025-01-15-working-with-an-sre-interview.md)  
 [2025-01-01 - Posts from October to December 2024](./2025-01-01-posts-from-october-to-december-2024.md)  
@@ -14,7 +15,7 @@
 [2024-09-07 - Projects I financially support](./2024-09-07-projects-i-support.md)  
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
-[2024-07-05 - Random Weird Things](./2024-07-05-random-weird-things.md)  
+[2024-07-05 - Random Weird Things - Part Ⅰ](./2024-07-05-random-weird-things.md)  
 [2024-06-23 - Terminal multiplexing with `tmux`](./2024-06-23-terminal-multiplexing-with-tmux.md)  
 [2024-05-03 - Projects I currently don't have time for](./2024-05-03-projects-i-currently-dont-have-time-for.md)  
 [2024-05-01 - 'Slow Productivity' book notes](./2024-05-01-slow-productivity-book-notes.md)  

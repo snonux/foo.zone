@@ -1,8 +1,11 @@
-# Random Weird Things
+# Random Weird Things - Part Ⅰ
 
 > Published at 2024-07-05T10:59:59+03:00
 
 Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.
+
+[2024-07-05 Random Weird Things - Part Ⅰ (You are currently reading this)](./2024-07-05-random-weird-things.md)  
+[2025-02-08 Random Weird Things - Part Ⅱ](./2025-02-08-random-weird-things-ii.md)  
 
 ```
 		       /\_/\
@@ -15,7 +18,7 @@ WHOA!! 	     ( o.o )
 
 ## Table of Contents
 
-* [⇢ Random Weird Things](#random-weird-things)
+* [⇢ Random Weird Things - Part Ⅰ](#random-weird-things---part-)
 * [⇢ ⇢ 1. `bad.horse` traceroute](#1-badhorse-traceroute)
 * [⇢ ⇢ 2. ASCII cinema](#2-ascii-cinema)
 * [⇢ ⇢ 3. Netflix's Hello World application](#3-netflix-s-hello-world-application)
