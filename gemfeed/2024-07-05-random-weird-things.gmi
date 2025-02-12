@@ -1,6 +1,6 @@
 # Random Weird Things - Part Ⅰ
 
-> Published at 2024-07-05T10:59:59+03:00
+> Published at 2024-07-05T10:59:59+03:00; Updated at 2025-02-08
 
 Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.
 
