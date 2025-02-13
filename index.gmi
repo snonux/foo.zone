@@ -1,6 +1,6 @@
 # foo.zone
 
-> This site was generated at 2025-02-13T10:22:31+02:00 by `Gemtexter`
+> This site was generated at 2025-02-13T21:23:36+02:00 by `Gemtexter`
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
 
@@ -101,5 +101,6 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 => ./gemfeed/2010-05-09-the-fype-programming-language.gmi 2010-05-09 - The Fype Programming Language
 => ./gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.gmi 2010-05-07 - Lazy Evaluation with Standard ML
 => ./gemfeed/2010-04-09-standard-ml-and-haskell.gmi 2010-04-09 - Standard ML and Haskell
+=> ./gemfeed/2009-02-13-sgi-onyx-3200.gmi 2009-02-13 - SGI Onyx 3200
 => ./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi 2008-12-29 - Using my Nokia N95 for fixing my MTA
 => ./gemfeed/2008-06-26-perl-poetry.gmi 2008-06-26 - Perl Poetry
