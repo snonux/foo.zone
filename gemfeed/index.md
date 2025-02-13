@@ -75,5 +75,6 @@
 [2010-05-09 - The Fype Programming Language](./2010-05-09-the-fype-programming-language.md)  
 [2010-05-07 - Lazy Evaluation with Standard ML](./2010-05-07-lazy-evaluation-with-standarn-ml.md)  
 [2010-04-09 - Standard ML and Haskell](./2010-04-09-standard-ml-and-haskell.md)  
+[2009-02-13 - SGI Onyx 3200](./2009-02-13-sgi-onyx-3200.md)  
 [2008-12-29 - Using my Nokia N95 for fixing my MTA](./2008-12-29-using-my-nokia-n95-for-fixing-my-mta.md)  
 [2008-06-26 - Perl Poetry](./2008-06-26-perl-poetry.md)  
