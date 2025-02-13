@@ -183,7 +183,7 @@ Revamping my home lab a little bit. `#freebsd` `#bhyve` `#rocky` `#linux` `#vm` 
 
 Wondering to which `#web` `#browser` I should switch now personally ...
 
-[www.osnews.com/story/141100/mozilla-fo...dvocacy-for-open-web-privacy-and-more/](https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/)  
+[www.osnews.com/story/141100/mozilla-fo..-..dvocacy-for-open-web-privacy-and-more/](https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/)  
 
 ### eks-node-viewer is a nifty tool, showing the ...
 
@@ -292,7 +292,7 @@ Quick trick to get Helix themes selected randomly `#HelixEditor`
 
 Example where complexity attacks you from behind `#k8s` `#kubernetes` `#OpenAI`
 
-[surfingcomplexity.blog/2024/12/14/quic...ecent-openai-public-incident-write-up/](https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/)  
+[surfingcomplexity.blog/2024/12/14/quic..-..ecent-openai-public-incident-write-up/](https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/)  
 
 ### LLMs for Ops? Summaries of logs, probabilities ...
 
@@ -304,7 +304,7 @@ LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generatin
 
 Excellent article about your dream Product Manager: Why every software team needs a product manager to thrive via @wallabagapp
 
-[testdouble.com/insights/why-product-ma...s-accelerate-improve-software-delivery](https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery)  
+[testdouble.com/insights/why-product-ma..-..s-accelerate-improve-software-delivery](https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery)  
 
 ### I just finished reading all chapters of CPU ...
 
@@ -316,7 +316,7 @@ I just finished reading all chapters of CPU land: ... not claiming to remember e
 
 Indeed, useful to know this stuff! `#sre`
 
-[biriukov.dev/docs/resolver-dual-stack-...resolvers-and-dual-stack-applications/](https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/)  
+[biriukov.dev/docs/resolver-dual-stack-..-..resolvers-and-dual-stack-applications/](https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/)  
 
 ### It's the small things, which make Unix like ...
 
@@ -326,7 +326,7 @@ It's the small things, which make Unix like systems, like GNU/Linux, interesting
 
 ### My New Year's resolution is not to start any ...
 
-My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.<nil>17483
+My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.<nil>17491
 
 Other related posts:
 
