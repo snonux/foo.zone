@@ -35,7 +35,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ So, `#Haskell` is better suited for general ...](#so-haskell-is-better-suited-for-general-)
 * [⇢ ⇢ ⇢ At first, functional options add a bit of ...](#at-first-functional-options-add-a-bit-of-)
 * [⇢ ⇢ ⇢ Revamping my home lab a little bit. `#freebsd` ...](#revamping-my-home-lab-a-little-bit-freebsd-)
-* [⇢ ⇢ ⇢ Revamping my home lab a little bit. `#freebsd` ...](#revamping-my-home-lab-a-little-bit-freebsd-)
 * [⇢ ⇢ ⇢ Wondering to which `#web` `#browser` I should ...](#wondering-to-which-web-browser-i-should-)
 * [⇢ ⇢ ⇢ eks-node-viewer is a nifty tool, showing the ...](#eks-node-viewer-is-a-nifty-tool-showing-the-)
 * [⇢ ⇢ ⇢ Have put more Photos on - On my static photo ...](#have-put-more-photos-on---on-my-static-photo-)
@@ -172,13 +171,6 @@ So, `#Haskell` is better suited for general purpose than `#Rust`? I thought depl
 At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. `#golang`
 
 [www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/](https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/)  
-
-### Revamping my home lab a little bit. `#freebsd` ...
-
-Revamping my home lab a little bit. `#freebsd` `#bhyve` `#rocky` `#linux` `#vm` `#k3s` `#kuberbetes` `#wireguard` `#zfs` `#nfs` `#ha` `#relayd` `#k8s` `#selfhosting` `#self`-hosting `#homelab` `#home`-lab
-
-[foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi (Gemini)](gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi)  
-[foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html](https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html)  
 
 ### Revamping my home lab a little bit. `#freebsd` ...
 
