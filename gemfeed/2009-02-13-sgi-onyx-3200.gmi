@@ -4,7 +4,7 @@
 
 For nostalgia, I've kept this output of the 'dmesg' around. It's from an SGI Onyx 3200 graphics supercomputer with the following specs:
 
-* 4 400 MHz IP35 MIPS CPUs
+* 4 x 400 MHz IP35 MIPS CPUs
 * 4GB of RAM
 
 => ./sgi-onyx-3200/desk.webp
