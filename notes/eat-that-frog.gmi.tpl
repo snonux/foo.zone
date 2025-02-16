@@ -84,6 +84,10 @@ The "Salami Slice" or "Swiss Cheese" method facilitates tackling daunting projec
 
 Improve specific key skills to increase productivity and enter "the zone."
 
+Other book notes of mine are:
+
+<< template::inline::rindex book-notes
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
