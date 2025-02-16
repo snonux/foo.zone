@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./when.gmi Book Notes: 'When: The Scientific Secrets of Perfect Timing'
 => ./the-stoic-challenge.gmi 'The Stoic Challenge' book notes
 => ./the-pragmatic-programmer.gmi 'The Pragmatic Programmer' book notes
 => ./the-power-of-neuroplasticity.gmi 'The Power of Neuroplasticity' book notes

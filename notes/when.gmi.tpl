@@ -32,9 +32,9 @@ Exercise in the morning to lose weight; you burn up to twenty percent more fat i
 
 ## Afternoon Challenges ("Bermuda Triangle")
 
-- Mistakes are more common in hospitals during this period, like incorrect antibiotic subscriptions or missed handwashing.
-- Traffic accidents and unfavorable judge decisions occur more frequently in the afternoon.
-- 2:55 pm is the least productive time of the day.
+* Mistakes are more common in hospitals during this period, like incorrect antibiotic subscriptions or missed handwashing.
+* Traffic accidents and unfavorable judge decisions occur more frequently in the afternoon.
+* 2:55 pm is the least productive time of the day.
 
 ## Breaks and Productivity
 
