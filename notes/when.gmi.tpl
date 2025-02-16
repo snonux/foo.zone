@@ -1,4 +1,4 @@
-# Book Notes: "When: The Scientific Secrets of Perfect Timing"
+# "When: The Scientific Secrets of Perfect Timing" book notes
 
 These are my personal book notes from Daniel Pink's "When: The Scientific Secrets of Perfect Timing." They are for myself, but I hope they might be useful to you too.
 
