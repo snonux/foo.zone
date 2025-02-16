@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+['When: The Scientific Secrets of Perfect Timing' book notes](./when.md)  
 ['The Stoic Challenge' book notes](./the-stoic-challenge.md)  
 ['The Pragmatic Programmer' book notes](./the-pragmatic-programmer.md)  
 ['The Power of Neuroplasticity' book notes](./the-power-of-neuroplasticity.md)  
@@ -14,6 +15,7 @@
 ['Mental Combat' book notes](./mental-combat.md)  
 ['Joy On Domand' book notes](./joy-on-demand.md)  
 ['Influence without Authority' book notes](./influence-wihout-authority.md)  
+['Eat That Frog' book notes](./eat-that-frog.md)  
 ['Software Developmers Career Guide and Soft Skills' book notes](./career-guide-and-soft-skills.md)  
 ['A Monk's Guide to Happiness' book notes](./a-monks-guide-to-happiness.md)  
 
