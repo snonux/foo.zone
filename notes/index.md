@@ -14,12 +14,10 @@
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mind Management' book notes](./mind-management.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
-<<<<<<< HEAD
-[Love People, Use Things](./love-people-use-things.md)  
-=======
->>>>>>> 25ccc92b78135a5e494b170b65329e2b88b10815
+['Love People, Use Things' book notes](./love-people-use-things.md)  
 ['Joy On Domand' book notes](./joy-on-demand.md)  
 ['Influence without Authority' book notes](./influence-wihout-authority.md)  
+['Fluent Forever' book notes](./fluent-forever.md)  
 ['Eat That Frog' book notes](./eat-that-frog.md)  
 ['Software Developmers Career Guide and Soft Skills' book notes](./career-guide-and-soft-skills.md)  
 ['A Monk's Guide to Happiness' book notes](./a-monks-guide-to-happiness.md)  

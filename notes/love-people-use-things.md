@@ -1,4 +1,4 @@
-# Love People, Use Things
+# "Love People, Use Things" book notes
 
 These are my personal book notes from "The Minimalist"'s "Love People, Use Things" They are for myself, but I hope they might be useful to you too.
 
