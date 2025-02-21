@@ -14,7 +14,10 @@
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mind Management' book notes](./mind-management.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
+<<<<<<< HEAD
 [Love People, Use Things](./love-people-use-things.md)  
+=======
+>>>>>>> 25ccc92b78135a5e494b170b65329e2b88b10815
 ['Joy On Domand' book notes](./joy-on-demand.md)  
 ['Influence without Authority' book notes](./influence-wihout-authority.md)  
 ['Eat That Frog' book notes](./eat-that-frog.md)  

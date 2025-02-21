@@ -1,6 +1,10 @@
 # foo.zone
 
+<<<<<<< HEAD
 > This site was generated at 2025-02-21T11:07:02+02:00 by `Gemtexter`
+=======
+> This site was generated at 2025-02-16T11:18:30+02:00 by `Gemtexter`
+>>>>>>> 25ccc92b78135a5e494b170b65329e2b88b10815
 
 Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
 

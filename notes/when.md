@@ -81,9 +81,12 @@ Life satisfaction tends to dip in midlife, around the forties, but increases aro
 
 These insights from "When" can guide actions to optimize performance, well-being, and satisfaction across various aspects of life.
 
+<<<<<<< HEAD
 Other book notes of mine are:
 
 
+=======
+>>>>>>> 25ccc92b78135a5e494b170b65329e2b88b10815
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
