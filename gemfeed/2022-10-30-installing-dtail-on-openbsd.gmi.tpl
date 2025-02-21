@@ -2,6 +2,18 @@
 
 > Published at 2022-10-30T11:03:19+02:00
 
+This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
+
+ In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
+
+=> https://dtail.dev
+
+I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:
+
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi Let's Encrypt with OpenBSD and Rex
+
+I will also mention some relevant `Rexfile` snippets in this post!
+
 ```
        ,_---~~~~~----._
  _,,_,*^____      _____``*g*\"*,
@@ -39,17 +51,7 @@
                                        '     '
 ```
 
-This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
-
- In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
-
-=> https://dtail.dev
-
-I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:
-
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi Let's Encrypt with OpenBSD and Rex
-
-I will also mention some relevant `Rexfile` snippets in this post!
+<< template::inline::toc
 
 ## Compile it
 
@@ -343,6 +345,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index dtail
+<< template::inline::rindex dtail
 
 => ../ Back to the main site

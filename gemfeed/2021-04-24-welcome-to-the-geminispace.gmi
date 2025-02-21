@@ -2,14 +2,6 @@
 
 > Published at 2021-04-24T19:28:41+01:00; Updated at 2021-06-18
 
-ASCII Art by Andy Hood!
-
-Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
-
-=> gemini://foo.zone
-
-However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
-
 ```
 
     /\
@@ -29,6 +21,26 @@ However, if you still use HTTP, you are just surfing the fallback HTML version o
 '.;.;' ;'.;' ..;;' AsH
 
 ```
+
+## Table of Contents
+
+* ⇢ Welcome to the Geminispace
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Motivation
+* ⇢ ⇢ ⇢ My urge to revamp my personal website
+* ⇢ ⇢ ⇢ My still great Laptop running hot
+* ⇢ ⇢ Discovering the Gemini internet protocol
+* ⇢ ⇢ My own Gemini capsule
+* ⇢ ⇢ Gemini advantages summarised
+* ⇢ ⇢ Dive into deep Gemini space
+
+## Introduction
+
+Have you reached this article already via Gemini? It requires a Gemini client; web browsers such as Firefox, Chrome, Safari, etc., don't support the Gemini protocol. The Gemini address of this site (or the address of this capsule as people say in Geminispace) is:
+
+=> gemini://foo.zone
+
+However, if you still use HTTP, you are just surfing the fallback HTML version of this capsule. In that case, I suggest reading on what this is all about :-).
 
 ## Motivation
 
@@ -82,10 +94,11 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace (You are currently reading this)
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again
-=> ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²
+=> ./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi 2024-10-02 Gemtexter 3.0.0 - Let's Gemtext again⁴
 => ./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi 2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³
+=> ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²
+=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace (You are currently reading this)
 
 => ../ Back to the main site

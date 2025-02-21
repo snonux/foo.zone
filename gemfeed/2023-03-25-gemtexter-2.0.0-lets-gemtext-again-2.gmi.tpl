@@ -2,6 +2,14 @@
 
 > Published at 2023-03-25T17:50:32+02:00
 
+I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
+
+=> https://codeberg.org/snonux/gemtexter
+
+This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").
+
+Let's list what's new!
+
 ```
 -=[ typewriters ]=-  1/98
 
@@ -15,13 +23,7 @@
   mod. by Paul Buetow  `"""""""""`
 ```
 
-I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
-
-=> https://codeberg.org/snonux/gemtexter
-
-This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").
-
-Let's list what's new!
+<< template::inline::toc
 
 ## Minimal template engine
 
@@ -71,7 +73,7 @@ Another thing you can do is insert an index with links to similar blog posts. E.
 ```
 See more entries about DTail and Golang:
 
-[[ template::inline::index dtail golang
+[[ template::inline::rindex dtail golang
 
 Blablabla...
 ```
@@ -140,6 +142,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index gemtext gemini
+<< template::inline::rindex gemtext gemini
 
 => ../ Back to the main site

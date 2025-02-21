@@ -19,7 +19,9 @@
 +-----+-----------------+-----------------------------+
 ```
 
-# Introduction
+<< template::inline::toc
+
+## Introduction
 
 For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.
 
@@ -151,6 +153,6 @@ E-Mail your comments to hi@foo.zone :-)
 
 Other related posts are:
 
-<< template::inline::index perl raku sweating-the-small-stuff
+<< template::inline::rindex perl raku sweating-the-small-stuff
 
 => ../ Back to the main site

@@ -2,6 +2,10 @@
 
 > Published at 2021-06-05T19:03:32+01:00
 
+You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.
+
+This comes with the benefit that I can write content in my favourite text editor (Vim). 
+
 ```
                                                                o .,<>., o
                                                                |\/\/\/\/|
@@ -43,9 +47,7 @@
                                                            `+a:f:......jrei'''
 ```
 
-You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.
-
-This comes with the benefit that I can write content in my favourite text editor (Vim). 
+<< template::inline::toc
 
 ## Motivation
 
@@ -167,6 +169,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index gemtext gemini bash
+<< template::inline::rindex gemtext gemini bash
 
 => ../ Back to the main site

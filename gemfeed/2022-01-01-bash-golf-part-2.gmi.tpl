@@ -2,6 +2,10 @@
 
 > Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05
 
+This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+
+<< template::inline::index bash-golf
+
 ```
 
     '\       '\                   .  .                |>18>>
@@ -14,9 +18,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
-This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
-
-<< template::inline::index bash-golf
+<< template::inline::toc
 
 ## Redirection
 
@@ -485,6 +487,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index bash
+<< template::inline::rindex bash
 
 => ../ Back to the main site

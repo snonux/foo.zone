@@ -2,6 +2,8 @@
 
 > Published at 2021-09-12T09:39:20+03:00; Updated at 2023-03-23
 
+A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
+
 ```
   _______________                        |*\_/*|_______
   |  ___________  |     .-.     .-.      ||_/-\_|______  |
@@ -17,25 +19,25 @@
 --------------------                    --------------------
 ```
 
-A robust computer system must be kept simple and stupid (KISS). The fancier the system is, the more can break. Unfortunately, most systems tend to become complex and challenging to maintain in today's world. In the early days, so I was told, engineers understood every part of the system, but nowadays, we see more of the "lasagna" stack. One layer or framework is built on top of another layer, and in the end, nobody has got a clue what's going on.
+<< template::inline::toc
 
-# Need faster hardware
+## Need faster hardware
 
 This not just makes the system much more complex, difficult to maintain and challenging to troubleshoot, but also slow. So more experts are needed to support it. Also, newer and faster hardware is required to make it run smoothly. Often, it's so much easier to buy speedier hardware than rewrite a whole system from scratch from the bottom-up. The latter would require much more resources in the short run, but in the long run, it should pay off. Unfortunately, many project owners scare away from it as they only want to get their project done and then move on.
 
-# Too complex to be replaced
+## Too complex to be replaced
 
-## On COBOL
+### On COBOL
 
 Have a look at COBOL, a prevalent programming language of the past. No one is learning COBOL in college or university anymore, but many legacy systems still require COBOL experts. Why is this? It's just too scary to write everything from scratch. There's too much COBOL code out there that can't be replaced from today to tomorrow. 
 
 => https://nymag.com/intelligencer/2020/04/what-is-cobol-what-does-it-have-to-do-with-the-coronavirus.html
 
-## On Kubernetes
+### On Kubernetes
 
 Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster -  it also applies to the software engineers, who now have to develop 'cloud native' applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.
 
-## The younger generation of IT professionals
+### The younger generation of IT professionals
 
 Maybe the younger generation knows all of this already after graduation, but then they are missing other critical parts of the system for sure. I have seen engineers who knew about containers and how to configure resource restrictions for a Docker container managed via k8s but have never heard the terms Linux control groups and Linux namespaces. So obviously, there is some knowledge gap of the underlying architecture. This can be a big problem when you have to troubleshoot such a system during a production incident and k8s adds a lot of abstraction to the mix which doesn't make it easier. 
 
@@ -51,7 +53,7 @@ And here is something to smile about:
 
 => https://christine.website/blog/theres-a-node-2021-10-02
 
-# The bloated web
+## The bloated web
 
 Another example is the modern web. Have you ever wondered why the internet becomes slower and slower nowadays? The modern web is so much like lasagna that I decided to use Gemini to be the primary protocol of my website. The HTML version of this website is just a fallback as many visitors don't know what Gemini is and don't have any compatible software installed for surfing the Geminispace:
 
@@ -59,7 +61,7 @@ Another example is the modern web. Have you ever wondered why the internet becom
 
 The Gemtext protocol is KISS. There's no way to do other formattings than headings, links, paragraphs, lists, quotes, and bare text blocks (e.g., ASCII art or code snippets). There's no way to create bloated Gemini sites, and due to its limited capabilities, there's also no way to commercialise it (e.g. there's no good way to track the site visitors as things like cookies don't exist). By design, the Gemini protocol can't be extended, so there is no chance to abuse it even in the future. Gemini sites will stay KISS forever, and there won't be any fancy HTML/JavaScript frameworks like we see on the modern web.
 
-# Fancy log-management solutions
+## Fancy log-management solutions
 
 Yet another example I want to bring up is DTail, the distributed log tail program I wrote. There are many great and fancy log-management solutions available to choose from, and they all seem complex to set up and maintain. The ELK stack, for example, requires you to operate an ElasticSearch cluster (or multiple, if you are geo-redundant), Logstash (different configurations and instances, depending on your infrastructure) and a Kibana web-frontend (which also needs to be highly available). I have operated ElasticSearch clusters on multiple occasions, and I must say that it is not an easy task to optimise it for the particular workload you might encounter. I also have seen many ES clusters operated by other people, and I have seen these clusters failing a lot (so it's not just me). The reduced complexity of DTail also makes it more robust against outages. You won't troubleshoot your distributed application very well if the log management infrastructure isn't working either.
 
@@ -67,23 +69,23 @@ Yet another example I want to bring up is DTail, the distributed log tail progra
 
 I don't say that the ELK stack doesn't work, but it requires experts and additional hardware resources to support it. But instead, if you keep your infrastructure simple (e.g. only use DTail), it will maintain pretty much by itself. 
 
-# More KISS
+## More KISS
 
-## The Adslowbe PDF Reader
+### The Adslowbe PDF Reader
 
 Another perfect example is the Adobe PDF reader. How can it be that the inventor of the PDF format creates such a terrible user experience with its official reader? The reader is awful bloated, and slow. There are much better alternatives around (especially for Linux and other UNIX like operating systems, look at Zathura for example). I believe the reason Adobe's reader is like this is featuritis, and 90% of the users don't use 90% of all available features. Less is more; keep it simple and stupid. 
 
-## The power of plain text files
+### The power of plain text files
 
 Speaking of file formats, never underestimate the power of plain text files.  Plain text files don't require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won't be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn't supported anymore and doesn't run anymore on modern computers.
 
-## KISS for programmers
+### KISS for programmers
 
 Not to mention, keeping things simple and stupid also reduces the potential malicious attack surface. It's not just about the software and services you use and operate. It's also about the software you write. Here is a nice article about the KISS principle in software development:
 
 => https://thevaluable.dev/kiss-principle-explained/
 
-# When KISS is not KISS anymore
+## When KISS is not KISS anymore
 
 There is, however, a trap. The more you spend time with things, the more these things feel natural to you and you become an expert. The more you become an expert, the more you introduce more abstractions and other clever ways of doing things. For you, things seem to be KISS still, but another person may not be an expert and might not understand what you do. One of the fundamental challenges is to keep things really KISS. You might add abstraction upon abstraction to a system and don't even notice it until it is too late.
 
@@ -98,7 +100,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other KISS-related posts are:
 
-<< template::inline::index kiss simple-and-stupid
+<< template::inline::rindex kiss simple-and-stupid
 
 > Controversially, a lack of features is a feature. Enjoy your peace an quiet. - Michael W Lucas 
 

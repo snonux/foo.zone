@@ -2,6 +2,10 @@
 
 > Published at 2021-05-16T14:51:57+01:00
 
+Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
+
+=> https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
+
 ```
    .---------------------------.
   /,--..---..---..---..---..--. `.
@@ -15,9 +19,7 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
-Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
-
-=> https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
+<< template::inline::toc
 
 ## My modifications
 
@@ -388,6 +390,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index bash
+<< template::inline::rindex bash
 
 => ../ Back to the main site

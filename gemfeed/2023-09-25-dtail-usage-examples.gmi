@@ -22,6 +22,22 @@ DTail is a distributed DevOps tool for tailing, grepping, catting logs and other
                          |                           |
 ```
 
+## Table of Contents
+
+* ⇢ DTail usage examples
+* ⇢ ⇢ Commands
+* ⇢ ⇢ Following logs
+* ⇢ ⇢ Aggregating logs
+* ⇢ ⇢ How to use `dcat`
+* ⇢ ⇢ How to use `dgrep`
+* ⇢ ⇢ How to use `dmap`
+* ⇢ ⇢ How to use the DTail serverless mode
+* ⇢ ⇢ ⇢ Serverless map-reduce query
+* ⇢ ⇢ ⇢ Aggregating CSV files
+* ⇢ ⇢ ⇢ Other serverless commands
+
+## Commands
+
 DTail consists out of a server and several client binaries. In this post, I am showcasing their use!
 
 * Use `dtail` to follow logs
@@ -232,10 +248,10 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
-=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
 => ./2023-09-25-dtail-usage-examples.gmi 2023-09-25 DTail usage examples (You are currently reading this)
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
 
 I hope you find the tools presented in this post useful!
 

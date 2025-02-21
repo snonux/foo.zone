@@ -2,6 +2,22 @@
 
 > Published at 2022-04-10T10:09:11+01:00; Updated at 2022-04-18
 
+I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:
+
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi DTail - The distributed log tail program
+=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi Realistic load testing with I/O Riot for linux
+
+Note that my latest silver prize project isn't open source software and because of that there is no public material I can refer to. Maybe the next one again?
+
+I want to point out that I never won the "gold" prize and it's the first time I won "silver", though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.
+
+I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓
+
+So why would I sign up myself for such side projects? Isn't it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:
+
+* I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don't win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It's good to have a hard deadline for a project. And the project will also benefit the company in some way. So it's a win-win.
+* I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn't exist as a Lego block before and could not be built by using only the already existing blocks.
+
 ```
  .              +   .                .   . .     .  .
                    .                    .       .     *
@@ -23,23 +39,18 @@
                                          - the universe
 ```
 
-## Prelude
+## Table of Contents
 
-I have been participating in an annual work-internal project contest (we call it Pet Project contest) since I moved to London and switched jobs to my current employer. I am very happy to say that I won a "silver" prize last week here 🎆. Over the last couple of years I have been a finalist in this contest six times and won some kind of prize five times. Some of my projects were also released as open source software. One had a magazine article published, and for another one I wrote an article on my employer's engineering blog. If you have followed all my posts on this blog (the one you are currently reading), then you have probably figured out what these projects were:
-
-=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi DTail - The distributed log tail program
-=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi Realistic load testing with I/O Riot for linux
-
-Note that my latest silver prize project isn't open source software and because of that there is no public material I can refer to. Maybe the next one again?
-
-I want to point out that I never won the "gold" prize and it's the first time I won "silver", though. I believe, looking at the company's contest history, I am the employee with the most consecutive successful project submissions (my streak broke as I didn't participate last year) and am also the one with the highest successful project count in total. Sorry if this all sounds a bit self-promotional, but I think it is something to be proud of. Consistency beats a one-off success.
-
-I often put endless hours and sometimes sleepless nights into such projects and all of that in my own time. I, an engineer whose native tongue is not English, also have to present such a project in front of the CEO, CTO and CPO, the Chief Scientist, the founders of the company, and, if it is not enough, to all other staff of the company too. I usually also demonstrate a working prototype live on a production grid during the presentation. 😓
-
-So why would I sign up myself for such side projects? Isn't it a lot of stress and extra work? Besides the prize in form of money (you can not count on that, you may win or you may not win something) and recognition, there are also other motivational points:
-
-* I want to learn new technologies or to deepen my knowledge of a given technology. I want to have a personal benefit from the project, even when I don't win any prize. So when the company is offering a contest, why not use it as a motivational trampoline? It's good to have a hard deadline for a project. And the project will also benefit the company in some way. So it's a win-win.
-* I love the idea of combining several old things into a new thing. You can call this creativity. At work, we call this sometimes Lego: Building new things from given blocks. But I also love to add something new and unique to the mix, something that didn't exist as a Lego block before and could not be built by using only the already existing blocks.
+* ⇢ Creative universe
+* ⇢ ⇢ How to be creative
+* ⇢ ⇢ ⇢ Know which problem you want to solve
+* ⇢ ⇢ ⇢ Immerse / deep dive
+* ⇢ ⇢ ⇢ Always have a notebook with you
+* ⇢ ⇢ ⇢ When you didn't sleep enough
+* ⇢ ⇢ ⇢ Have regular breaks and relax
+* ⇢ ⇢ ⇢ Upside-down approach
+* ⇢ ⇢ ⇢ Don't be busy all the time
+* ⇢ ⇢ Conclusion
 
 ## How to be creative
 
@@ -79,7 +90,7 @@ I am not saying that you should skip sleep. By all means, if you can sleep, then
 
 Have regular breaks. Don't skip your lunch break. Best, have a walk during lunchtime. And after work, do some kind of workout or visit a sports class. Do something completely unrelated to work before going to sleep (e.g. visit a parallel universe and read a Science Fiction novel). In short: Totally hit the off-switch after your work for the day is finished. You will be much more energised and motivated the next time you open your work laptop.
 
-=> ../other-resources.gmi I personally love to read Science Fiction novels
+=> ../about/novels.gmi I personally love to read Science Fiction novels
 
 I skip breakfast and lunch during the week. This means that on average, I intermittent fast on average 18-20 hours daily. It may sound odd to most people (who don't intermittent fast), but in a fasted state, I can be even more focused, thus helping me immerse myself in something even more. Not having breakfast and lunch also gives me back some time for other things (e.g. a nice walk, where I listen to podcasts or audiobooks or practise using my camera (street photography)). I relax my routine during the week ends, where I may enjoy a meal at any given time of the day.
 

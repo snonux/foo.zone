@@ -2,6 +2,12 @@
 
 > Published at 2022-08-27T18:25:57+01:00
 
+I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
+
+=> https://codeberg.org/snonux/gemtexter
+
+It has been around a year since I released the first version `1.0.0`. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.
+
 ```
 -=[ typewriter ]=-  1/98
 
@@ -14,11 +20,18 @@
  jgs  `"""""""""`
 ```
 
-I proudly announce that I've released Gemtexter version `1.1.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
+## Table of Contents
 
-=> https://codeberg.org/snonux/gemtexter
-
-It has been around a year since I released the first version `1.0.0`. Although, there aren't any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.
+* ⇢ Gemtexter 1.1.0 - Let's Gemtext again
+* ⇢ ⇢ What's new?
+* ⇢ ⇢ ⇢ Automatic check for GNU version requirements
+* ⇢ ⇢ ⇢ Backticks now produce `inline code blocks` in the HTML output
+* ⇢ ⇢ ⇢ Cache for Atom feed generation
+* ⇢ ⇢ ⇢ Input filter support
+* ⇢ ⇢ ⇢ Revamped `git` support
+* ⇢ ⇢ ⇢ Addition of `htmlextras` and web font support
+* ⇢ ⇢ ⇢ Sub-section support
+* ⇢ ⇢ ⇢ More
 
 ## What's new?
 
@@ -89,10 +102,11 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)
-=> ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²
+=> ./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi 2024-10-02 Gemtexter 3.0.0 - Let's Gemtext again⁴
 => ./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi 2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³
+=> ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²
+=> ./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi 2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again (You are currently reading this)
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-04-24-welcome-to-the-geminispace.gmi 2021-04-24 Welcome to the Geminispace
 
 => ../ Back to the main site

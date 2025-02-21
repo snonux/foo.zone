@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+
 ```
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -29,9 +31,23 @@
                                  ASCII Art by John Savard
 ```
 
-I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+## Table of Contents
 
-## What's Let's Encrypt?
+* ⇢ Let's Encrypt with OpenBSD and Rex
+* ⇢ ⇢ ⇢ What's Let's Encrypt?
+* ⇢ ⇢ Meet `acme-client`
+* ⇢ ⇢ Configuration
+* ⇢ ⇢ ⇢ acme-client.conf
+* ⇢ ⇢ ⇢ httpd.conf
+* ⇢ ⇢ ⇢ CRON job
+* ⇢ ⇢ relayd.conf and smtpd.conf
+* ⇢ ⇢ Rexification
+* ⇢ ⇢ ⇢ General ACME client configuration
+* ⇢ ⇢ ⇢ Service rexification 
+* ⇢ ⇢ All pieces together
+* ⇢ ⇢ Conclusion
+
+### What's Let's Encrypt?
 
 > Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.
 
@@ -660,10 +676,13 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex (You are currently reading this)
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex (You are currently reading this)
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 => ../ Back to the main site

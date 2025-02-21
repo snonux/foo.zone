@@ -2,6 +2,10 @@
 
 > Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05
 
+This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+
+<< template::inline::index bash-golf
+
 ```
 
      '\                   .  .                        |>18>>
@@ -14,9 +18,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
-This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
-
-<< template::inline::index bash-golf
+<< template::inline::toc
 
 ## TCP/IP networking
 
@@ -466,6 +468,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index bash
+<< template::inline::rindex bash
 
 => ../ Back to the main site

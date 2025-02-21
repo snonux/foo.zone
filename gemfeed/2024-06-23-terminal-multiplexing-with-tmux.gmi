@@ -2,6 +2,15 @@
 
 > Published at 2024-06-23T22:41:59+03:00
 
+Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
+
+* Session management
+* Window and Pane management
+* Persistent Workspace
+* Customization
+
+=> https://github.com/tmux/tmux/wiki
+
 ```
          _______
         |.-----.|
@@ -14,39 +23,27 @@ jgs   `-=========-`()
     mod. by Paul B.
 ```
 
-```
-Table of contents
-=================
+## Table of Contents
 
-Terminal multiplexing with `tmux`
-    Introduction
-    Shell aliases
-    The `tn` alias - Creating a new session
-        Cleaning up default sessions automatically
-        Renaming sessions
-    The `ta` alias - Attaching to a session
-    The `tr` alias - For a nested remote session
-        Change of the Tmux prefix for better nesting
-    The `ts` alias - Searching sessions with fuzzy finder
-    The `tssh` alias - Cluster SSH replacement
-        The `tmux::tssh_from_argument` helper
-        The `tmux::tssh_from_file` helper
-        `tssh` examples
-        Common Tmux commands I use in `tssh`
-    Copy and paste workflow
-    Tmux configurations
-```
+* ⇢ Terminal multiplexing with `tmux`
+* ⇢ ⇢ Before continuing...
+* ⇢ ⇢ Shell aliases
+* ⇢ ⇢ The `tn` alias - Creating a new session
+* ⇢ ⇢ ⇢ Cleaning up default sessions automatically
+* ⇢ ⇢ ⇢ Renaming sessions
+* ⇢ ⇢ The `ta` alias - Attaching to a session
+* ⇢ ⇢ The `tr` alias - For a nested remote session
+* ⇢ ⇢ ⇢ Change of the Tmux prefix for better nesting
+* ⇢ ⇢ The `ts` alias - Searching sessions with fuzzy finder
+* ⇢ ⇢ The `tssh` alias - Cluster SSH replacement
+* ⇢ ⇢ ⇢ The `tmux::tssh_from_argument` helper
+* ⇢ ⇢ ⇢ The `tmux::tssh_from_file` helper
+* ⇢ ⇢ ⇢ `tssh` examples
+* ⇢ ⇢ ⇢ Common Tmux commands I use in `tssh`
+* ⇢ ⇢ Copy and paste workflow
+* ⇢ ⇢ Tmux configurations
 
-## Introduction
-
-Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
-
-* Session management
-* Window and Pane management
-* Persistent Workspace
-* Customization
-
-=> https://github.com/tmux/tmux/wiki
+## Before continuing...
 
 Before continuing to read this post, I encourage you to get familiar with Tmux first (unless you already know the basics). You can go through the official getting started guide:
 

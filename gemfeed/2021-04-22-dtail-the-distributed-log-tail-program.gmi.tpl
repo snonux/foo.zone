@@ -2,8 +2,6 @@
 
 > Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26
 
-=> ./dtail-the-distributed-log-tail-program/title.png DTail logo image
-
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 => https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb Original Mimecast Engineering Blog post at Medium
@@ -15,6 +13,10 @@ At Mimecast, we run over 10 thousand server boxes. Most of them host multiple mi
 Every engineer familiar with UNIX or a UNIX-like platform (e.g., Linux) is well aware of tail, a command-line program for displaying a text file content on the terminal which is also especially useful for following application or system log files with tail -f logfile.
 
 Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis & statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.
+
+=> ./dtail-the-distributed-log-tail-program/title.png DTail logo image
+
+<< template::inline::toc
 
 ## A Mimecast Pet Project
 
@@ -107,6 +109,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index dtail
+<< template::inline::rindex dtail
 
 => ../ Back to the main site

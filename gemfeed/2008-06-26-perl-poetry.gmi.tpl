@@ -2,6 +2,12 @@
 
 > Published at 2008-06-26T21:43:51+01:00; Updated at 2021-05-04
 
+Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.
+
+Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."
+
+=> https://en.wikipedia.org/wiki/Perl
+
 ```
  '\|/'                                  *
 -- * -----
@@ -25,11 +31,7 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
                     (__)         (____)
 ```
 
-Here are some Perl Poems I wrote. They don't do anything useful when you run them, but they don't produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.
-
-Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."
-
-=> https://en.wikipedia.org/wiki/Perl
+<< template::inline::toc
 
 ## math.pl
 
@@ -165,6 +167,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index perl
+<< template::inline::rindex perl
 
 => ../ Back to the main site

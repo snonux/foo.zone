@@ -16,6 +16,8 @@ These are my personal takeaways after reading "Never split the difference" by Ch
                     '''
 ```
 
+<< template::inline::toc
+
 ## Tactical listening, spreading empathy
 
 Be a mirror, copy each other to be comfy with each other to build up trust. Mirroring is mainly body language. A mirror is to repeat the words the other just said. Simple but effective.
@@ -124,6 +126,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
 => ../ Back to the main site

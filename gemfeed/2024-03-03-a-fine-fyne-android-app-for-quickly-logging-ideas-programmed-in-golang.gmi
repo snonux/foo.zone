@@ -8,6 +8,14 @@ I have tried many note apps for my Android (I use GrapheneOS) phone. Most of the
 
 => a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/logo-small.png Quick logger Logo
 
+## Table of Contents
+
+* ⇢ A fine Fyne Android app for quickly logging ideas programmed in Go
+* ⇢ ⇢ Enter Quick logger
+* ⇢ ⇢ All easy-peasy?
+
+## Enter Quick logger
+
 Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I've crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app's whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!
 
 => https://codeberg.org/snonux/quicklogger
@@ -46,7 +54,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Go related posts are:
 
-=> ./2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi 2023-04-09 Algorithms and Data Structures in Go - Part 1
 => ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)
 
 => ../ Back to the main site

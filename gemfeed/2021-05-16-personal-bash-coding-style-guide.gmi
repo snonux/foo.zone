@@ -2,6 +2,10 @@
 
 > Published at 2021-05-16T14:51:57+01:00
 
+Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
+
+=> https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
+
 ```
    .---------------------------.
   /,--..---..---..---..---..--. `.
@@ -15,9 +19,26 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
-Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
+## Table of Contents
 
-=> https://google.github.io/styleguide/shellguide.html Google Shell Style Guide
+* ⇢ Personal Bash coding style guide
+* ⇢ ⇢ My modifications
+* ⇢ ⇢ ⇢ Shebang
+* ⇢ ⇢ ⇢ Two space soft-tabs indentation
+* ⇢ ⇢ ⇢ Breaking long pipes
+* ⇢ ⇢ ⇢ Quoting your variables
+* ⇢ ⇢ ⇢ Prefer built-in commands over external commands
+* ⇢ ⇢ My additions
+* ⇢ ⇢ ⇢ Use of 'yes' and 'no'
+* ⇢ ⇢ ⇢ Non-evil alternative to variable assignments via eval
+* ⇢ ⇢ ⇢ Prefer pipes over arrays for list processing
+* ⇢ ⇢ ⇢ Assign-then-shift
+* ⇢ ⇢ ⇢ Paranoid mode
+* ⇢ ⇢ Learned
+* ⇢ ⇢ ⇢ Unintended lexicographical comparison.
+* ⇢ ⇢ ⇢ PIPESTATUS
+* ⇢ ⇢ Use common sense and BE CONSISTENT.
+* ⇢ ⇢ Advanced Bash learning pro tip
 
 ## My modifications
 
@@ -388,10 +409,10 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide (You are currently reading this)
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
 => ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide (You are currently reading this)
 
 => ../ Back to the main site

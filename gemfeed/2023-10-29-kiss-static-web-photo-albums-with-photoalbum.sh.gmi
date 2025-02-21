@@ -2,6 +2,12 @@
 
 > Published at 2023-10-29T22:25:04+02:00
 
+Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
+
+I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
+
+I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+
 ```
          ___        .---------.._
   ______!fsc!_....-' .g8888888p. '-------....._
@@ -19,13 +25,16 @@
 '._____________________________________________.'   
 ```
 
-## Motivation
+## Table of Contents
 
-Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
-
-I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
-
-I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+* ⇢ KISS static web photo albums with `photoalbum.sh`
+* ⇢ ⇢ Introducing `photoalbum.sh`
+* ⇢ ⇢ Installation
+* ⇢ ⇢ Setting it up
+* ⇢ ⇢ Generating the static photo album
+* ⇢ ⇢ Cleaning it up
+* ⇢ ⇢ HTML templates
+* ⇢ ⇢ Conclusion
 
 ## Introducing `photoalbum.sh`
 
@@ -263,14 +272,14 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Bash and KISS-related posts are:
 
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 Keep it simple and stupid
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
-=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)
-=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3
+=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)
+=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 Keep it simple and stupid
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
 
 => ../ Back to the main site

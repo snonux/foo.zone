@@ -22,6 +22,10 @@ DTail is a distributed DevOps tool for tailing, grepping, catting logs and other
                          |                           |
 ```
 
+<< template::inline::toc
+
+## Commands
+
 DTail consists out of a server and several client binaries. In this post, I am showcasing their use!
 
 * Use `dtail` to follow logs
@@ -232,7 +236,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index dtail
+<< template::inline::rindex dtail
 
 I hope you find the tools presented in this post useful!
 

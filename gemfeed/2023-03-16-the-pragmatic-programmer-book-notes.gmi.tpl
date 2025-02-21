@@ -80,7 +80,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

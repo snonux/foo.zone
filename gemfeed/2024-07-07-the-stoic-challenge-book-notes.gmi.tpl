@@ -16,6 +16,10 @@ These are my personal takeaways after reading "The Stoic Challenge:  A Philosoph
                     '''
 ```
 
+<< template::inline::toc
+
+## God sets you up for a challenge
+
 Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.
 
 Put a positive spin on everything. What should you do if someone wrong you? Don't get angry, there is no point in that, it just makes you suffer. Do the best what you got now and keep calm and carry on. A resilient person will refuse to play the role of a victim. You can develop the setback response skills. Turn a setback. e.g. a handycap, into a personal triumph.
@@ -48,7 +52,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

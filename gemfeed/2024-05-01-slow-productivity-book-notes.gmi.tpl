@@ -20,6 +20,10 @@ These notes are mainly for my own use, but you may find them helpful.
                     '''
 ```
 
+<< template::inline::toc
+
+## It's not "slow productivity"
+
 "Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.
 
 ## Pseudo-productivity and Shallow work
@@ -126,7 +130,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

@@ -2,6 +2,8 @@
 
 > Published at 2016-04-09T18:29:47+01:00
 
+Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
+
 ```
             __     __
            (( \---/ ))
@@ -22,7 +24,13 @@
                \      `.
 ```
 
-Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
+## Table of Contents
+
+* ⇢ Jails and ZFS with Puppet on FreeBSD
+* ⇢ ⇢ ZFS
+* ⇢ ⇢ Jails
+* ⇢ ⇢ Inside-Jail Puppet
+* ⇢ ⇢ Managing multiple Jails
 
 ## ZFS
 
@@ -389,10 +397,13 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD (You are currently reading this)
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD (You are currently reading this)
 
 => ../ Back to the main site

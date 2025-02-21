@@ -2,6 +2,10 @@
 
 > Published at 2022-03-06T18:11:39+00:00
 
+I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+
+=> https://dtail.dev
+
 ```
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
@@ -16,9 +20,22 @@
                          |                           |
 ```
 
-I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+## Table of Contents
 
-=> https://dtail.dev
+* ⇢ The release of DTail 4.0.0
+* ⇢ ⇢ So, what's new in 4.0.0?
+* ⇢ ⇢ ⇢ Rewritten logging
+* ⇢ ⇢ ⇢ Configurable terminal color codes
+* ⇢ ⇢ ⇢ Serverless mode
+* ⇢ ⇢ ⇢ Shorthand flags
+* ⇢ ⇢ ⇢ Spartan (aka plain) mode
+* ⇢ ⇢ ⇢ Standard input pipe
+* ⇢ ⇢ ⇢ New command dtailhealth
+* ⇢ ⇢ ⇢ Improved documentation
+* ⇢ ⇢ ⇢ Integration testing suite
+* ⇢ ⇢ ⇢ Improved code
+* ⇢ ⇢ ⇢ Use of memory pools
+* ⇢ ⇢ What's next
 
 ## So, what's new in 4.0.0?
 
@@ -290,10 +307,10 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
-=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0 (You are currently reading this)
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
 => ./2023-09-25-dtail-usage-examples.gmi 2023-09-25 DTail usage examples
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0 (You are currently reading this)
+=> ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program
 
 Thanks!
 

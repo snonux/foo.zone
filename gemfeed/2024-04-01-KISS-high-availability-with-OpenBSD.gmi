@@ -2,6 +2,14 @@
 
 > Published at 2024-03-30T22:12:56+02:00
 
+I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
+
+But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.
+
+It would be fine if my personal website wasn't highly available, but the geek in me wants it anyway.
+
+> PS: ASCII-art below reflects an OpenBSD under-water world with all the tools available in the base system.
+
 ```
 Art by Michael J. Penick (mod. by Paul B.)
                                                ACME-sky
@@ -27,30 +35,19 @@ _____|_:_:_|  (o)-(o)  |_:_:_|--'`-.     ,--. ksh under-water (((\'/
 
 ```
 
-```
-Table of contents
-=================
+## Table of Contents
 
-KISS high-availability with OpenBSD
-    My auto-failover requirements
-    My HA solution
-        Only OpenBSD base installation required
-        Fairly cheap and geo-redundant
-        Failover time and split-brain
-        Failover support for multiple protocols
-        Let's encrypt TLS certificates
-        Monitoring
-        Rex automation
-    More HA
-```
-
-I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. 
-
-But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.
-
-It would be fine if my personal website wasn't highly available, but the geek in me wants it anyway.
-
-> PS: ASCII-art reflects an OpenBSD under-water world with all the tools available in the base system.
+* ⇢ KISS high-availability with OpenBSD
+* ⇢ ⇢ My auto-failover requirements
+* ⇢ ⇢ My HA solution
+* ⇢ ⇢ ⇢ Only OpenBSD base installation required
+* ⇢ ⇢ ⇢ Fairly cheap and geo-redundant
+* ⇢ ⇢ ⇢ Failover time and split-brain
+* ⇢ ⇢ ⇢ Failover support for multiple protocols
+* ⇢ ⇢ ⇢ Let's encrypt TLS certificates
+* ⇢ ⇢ ⇢ Monitoring
+* ⇢ ⇢ ⇢ Rex automation
+* ⇢ ⇢ More HA
 
 ## My auto-failover requirements
 
@@ -303,12 +300,15 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD and KISS related posts are:
 
-=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
-=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
-=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
-=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
-=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
+=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 => ../ Back to the main site

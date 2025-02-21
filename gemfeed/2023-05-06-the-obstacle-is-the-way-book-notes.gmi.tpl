@@ -4,7 +4,6 @@
 
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
 
-
 ```
          ,..........   ..........,
      ,..,'          '.'          ',..,
@@ -17,6 +16,8 @@ These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan 
                     '''
 ```
 
+<< template::inline::toc
+
 "The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.
 
 ## Reframe your perspective
@@ -26,7 +27,6 @@ The obstacle in your path can become your path to success. Instead of being para
 We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn't need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn't need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.
 
 Don't always try to use the front door; a backdoor could open. It's nonsense. Don't fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.
-
 
 ## Embrace rationality
 
@@ -86,7 +86,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

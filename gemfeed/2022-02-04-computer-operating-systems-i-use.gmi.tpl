@@ -1,0 +1,232 @@
+# Computer operating systems I use(d)
+
+> Published at 2022-02-04T09:58:22+00:00; Updated at 2022-02-18
+
+This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
+
+```
+              /(        )`
+              \ \___   / |
+              /- _  `-/  '
+             (/\/ \ \   /\
+             / /   | `    \
+             O O   ) /    |
+             `-^--'`<     '
+            (_.)  _  )   /
+             `.___/`    /
+               `-----' /
+  <----.     __ / __   \
+  <----|====O)))==) \) /====
+  <----'    `--' `.__,' \
+               |        |
+                \       /
+           ______( (_  / \______
+  (FL)   ,'  ,-----'   |        \
+         `--{__________)        \/   "Berkeley Unix Daemon"
+```
+
+<< template::inline::toc
+
+## Fedora Linux
+
+Fedora Linux is the operating system I use on my primary (personal) laptop. It's a ThinkPad X1 Carbon Gen. 9. Lenovo which comes along with official Lenovo Linux support. I already noticed hardware firmware updates being installed directly through Fedora from Lenovo. Fedora is a real powerhouse, cutting-edge and reasonably stable at the same time. It's baked by Red Hat.
+
+I also use Fedora on my Microsoft Surface Go 2 convertible tablet. Fedora works quite OK (and much better than Windows) on this device. It's also the perfect travel companion.
+
+I use the GNOME Desktop on my Fedora boxes. I have memorized and customized a bunch of keyboard shortcuts. But the fact that I mostly work in the terminal (with tmux) makes the Desktop environment I use only secondary.
+
+## EndeavourOS
+
+I installed EndeavourOS on my (older) ThinkPad X240 to try out an Arch based Linux distribution. I also could have installed plain Arch, but I don't see the point when there is EndeavourOS. EndeavourOS is as close as you can get to the plain Arch experience but with an easy installer. I am not saying that it's difficult to install plain Arch but it's, unless you are new to Linux and want to learn about the installation procedure, just waste of time in my humble opinion. Give Linux From Scratch a shot instead if you really want to learn about Linux.
+
+=> https://www.linuxfromscratch.org/
+
+On EndeavourOS, I use the Xfce desktop environment which feels very snappy and fast on the X240 (which I purchased back in 2014). Usually, I have my X240 standing right next to my work laptop and use it for playing music (mainly online radio streams), for personal note taking and occasional emailing and instant messaging.
+
+As this is a rolling Linux distribution there are a lot of software updates coming through every day. Sometimes, it only takes a minute until the next version of a package is available. Honestly, I find that a bit annoying to constantly catch up with all the updates. As for now I will live with it and/or automate it a bit more. It'll be OK if it breaks occasionally, as this is not my primary laptop anyway. 
+
+Arch Linux and EndeavourOS are community distributions. This means, that there is no big corporation in the backyard lurking around. They won't give you the firmware updates for cutting edge hardware out of the box, though, but they are still a very good choice for hobbyist and also for older hardware where future firmware updates are less likely to happen.
+
+I am very happy with the package availability through the official repository and AUR.
+
+=> https://endeavouros.com/
+
+## FreeBSD
+
+I have run FreeBSD in many occasions. Right after SuSE Linux, FreeBSD (around 4.x) was the second open source system I used in my life on regular basis. I didn't even go to university yet then I started using it :-). Also, a former employer of mine even allowed me to install FreeBSD on my main workstation (which I actually did and used it for a couple of years). 
+
+I remember it used to be a pain bootstrapping Java for FreeBSD due to the lack of pre-compiled binary packages. You had first to enable the Linux compatibility layer, then install Linux Java, and then compile FreeBSD Java with the bootstrapped Linux Java (yes, Java is mainly programmed in C++, but for some reason compiling Java for FreeBSD also required an installation of Java). Nowadays, there are ready OpenJDK binary packages you could install. So things have improved a lot since.
+
+FreeBSD always had a place somewhere in my life:
+
+* On a Desktop PC (personal and work)
+* On a Laptop
+* On a webserver, FTP server, DNS server, mail server
+* On a server offering FreeBSD jails to customers for rent
+* As an experiment running Debian GNU/kFreeBSD inside of jails
+
+Debian GNU/kFreeBSD is now dead (same is my experiment)...
+
+=> https://www.debian.org/ports/kfreebsd-gnu/
+
+...but I still have saved and old uname output :-):
+
+```
+[root@saturn /usr/jail/serv14/etc] # jexec 21 bash
+root@rhea:/ # uname -a
+GNU/kFreeBSD rhea.buetow.org 8.0-RELEASE-p5 FreeBSD 8.0-RELEASE-p5 #2: Sat Nov 27 13:10:09 CET
+  2010 root@saturn.buetow.org:/usr/obj/usr/srcs/freebsd.src8/src/sys/SERV10 x86 64 amd64 Intel(R)
+  Core(TM) i7 CPU 920 @ 2.67GHz GNU/kFreeBSD
+```
+
+Currently, I use FreeBSD on my personal NAS server. The server is a regular PC with a bunch of hard drives and a ZFS RAIDZ (with 4x2TB drives) + a couple of external backup drives.
+
+=> https://www.FreeBSD.org
+
+## CentOS 7
+
+While CentOS 8 is already out of support, I still use CentOS 7 (which will receive security updates until 2024). CentOS 7 runs in a cloud VM and is the home to my personal NextCloud and Wallabag installations. You probably know already NextCloud. About Wallabag: It is a great free and open source alternative to Pocket (for reading articles from the web offline later). Yes, you can pay for a Wallabag subscription, but you can also host it for free on your own server.
+
+=> https://nextcloud.com NextCloud
+=> https://www.wallabag.it/en Wallabag
+
+The reason I use Linux and not *BSD at the moment for these services is Docker. With Docker, it's so easy-peasy to get these up and running. I will have to switch to another OS before CentOS 7 runs out of support, though. It might be CentOS Stream, Rocky Linux, or, more likely, I will use FreeBSD. On FreeBSD there isn't Docker, but what can be done is to create a self-contained Jail for each of the web-apps. 
+
+I have been using FreeBSD Jails for LAMP stacks before I started using CentOS. The reason why I switched to CentOS (it was still CentOS 6 at that time) in the first place was, that I wanted to try out something new.
+
+=> https://www.centos.org
+
+## OpenBSD
+
+I use two small OpenBSD "cloud" boxes for my "public facing internet front-ends". The services I run here are:
+
+* HTTP server (serving this site via https://foo.zone)
+* Gemini server (serving this site via gemini://foo.zone)
+* MTA server (for receiving E-Mails to my hosts)
+* Authorative DNS server (for all of my "domains")
+* Some personal/private git repositories (accessible only via SSH)
+
+OpenBSD is a complete operating system. I love it due to it's "simplicity" and "correctness" and the good documentation (I love the manual pages in particular). OpenBSD is also known for its innovations in security. I must admin, though, that most Unix like operating system would be secure enough for my personal needs and that I don't really need to use OpenBSD here. But nevertheless, I think it's the ideal operating system for what I am using it for.
+
+The only softwares which were not part of the base system and I had to install additionally were the Gemini server (vger) and Git, which both were available as pre-compiled OpenBSD binary packages. So, besides of these two packages, it is indeed a pretty complete operating system for my use case.
+
+=> https://www.openbsd.org
+
+## macOS (proprietary)
+
+I have to use a MacBook Pro with macOS for work. What else can I say but that this would have never been my personal choice. At least macOS is a UNIX under the hood and comes with a decent terminal and there are plenty of terminal apps available via Brew. Some of the inner workings of macOS were actually forked from the FreeBSD project. 
+
+=> https://developer.apple.com/library/archive/documentation/Darwin/Conceptual/KernelProgramming/BSD/BSD.html developer.apple.com: BSD in macOS/Darwin
+
+I find the macOS UI rather confusing.
+
+## LineageOS (mobile)
+
+At some point I got fed up with big tech, like Google and Samsung (or Apple, but personally I don't use Apple), spying on me. So I purchased a Google phone (a midrange Pixel phone) and installed LineageOS, a free and open source distribution of Android, on it. I don't have anything from Google installed on it (not even the play store, I install my apps from F-Droid). It's my daily driver since mid 2021 now. 
+
+So far the experience is not great but good. The main culprits are not having Google Maps, Google Gboard and the camera app. The latter lacks some features on LineageOS (e.g. No wide angle lens support). Also, I can't use my banking apps anymore. Sometimes apps crash for no apparent reason(s) but I get around it so far. I shouldn't spend so much time on my smartphone anyway! And the whole point of switching to LineageOS was to get away of big tech and therefore I should not complain :-). What I do like is that 95% the things I used to do on a proprietary mobile phone also can be done with LineageOS.
+
+=> ./2021-08-01-on-being-pedantic-about-open-source.gmi Read also "The Midle Way" section of this blog post regarding smartphones.
+
+There's also the excellent Termux app in the F-Droid store, which transforms the phone into a small Linux handheld device. I am able to run all of my Linux/Unix terminal apps with it.
+
+=> https://lineageos.org/
+=> https://termux.com/ 
+
+## Samsung's Stock Android (mobile proprietary)
+
+Unfortunatley, I still have to keep my proprietary Android phone around. Sometimes, I really need to use some proprietary apps which are only available form the Google play store and also require the Google services installed on the phone. I don't carry this phone around all the time and I only use it intentionally for very specific use cases. I think this is the best compromise I can make.
+
+## iOS (mobile proprietary)
+
+I have to use an iPhone for work. I like the hardware but I hate the OS (you can also call it spyOS), but it's the necessarries evil, unfortunately. Apple is even worse than Google here (despite claiming for themselves to produce the most secure phone(s)). I don't have it with me all the time or switched off when I don't need it. I also find iOS quite unintuitive to use.
+
+Being on-call for work means to to be reachable 24/7. This implies that the phone is carried around all the time (in an switched-on state). 1984 is now.
+=> https://en.wikipedia.org/wiki/Nineteen_Eighty-Four
+
+## Other OSes
+
+### InfinyTime (smartwatch)
+
+I use it on my PineTime smartwatch. Other than checking the time and my step count, I really don't do anything else fancy with it (yet). 
+
+=> https://www.pine64.org/pinetime/
+=> https://infinitime.io/
+
+### motionEyeOS
+
+I usually install an army of RaspberryPi 3's in my house before I travel for a prolonged amount of time. All Pi's are equipped with an camera and have motionEyeOS (Linux based video surveillance system) installed. There's a neat Android app in the F-Droid store which let's me keep an eye on everything. I make the Pi's accessible from the internet via reverse SSH tunnels through one of my frontend servers.
+
+=> https://github.com/ccrisan/motioneyeos
+
+### Kobo OS (proprietary)
+
+I use a Kobo Forma as my e-reader device. I have started to switch off the Wifi and to only sideload DRM free ePubs on it. Even offline, it's a fully capable reader device. I wouldn't like the Kobo to call home to Rakuten. I would love to replace it one day with an open source e-reader alternative like the PineNote. There are also some interesting attempts installing postmarketOS Linux on Kobo devices. The latter boots already, but is far from being usable as a normal e-reader.
+
+=> https://www.pine64.org/pinenote/ The PineNote
+=> https://liliputing.com/2021/07/kobo-clara-hd-becomes-an-e-ink-linux-tablet-with-the-help-of-postmarketos.html Kobo Clara HD becomes an e-ink Linux tablet
+
+But as a fall-back, someone could still use the good old dead tree format!
+
+### Android TV (proprietary)
+
+An Android TV box is used for watching movies and series on Netflix and Amazon Prime video (yes, I am human too and rely once in a while on big tech streaming services). The Android TV box is currently in the process of being replaced by OSMC, though. Most services seem to work fine with OSMC, but didn't get around tinkering with Netflix and Amazon there yet.
+
+=> https://osmc.tv/
+
+## Other OSes..
+
+This section is just for the sake of having a complete list of all OSes I used for some significant amount of time. I might not use all of them any more...
+
+### NetBSD
+
+I have been using NetBSD on an old Sun Sparcstation 10 as a student. I also have run NetBSD on a very old ThinkPad with 96MB!!! of RAM (even with X/evilWM). I also installed (but never really used) NetBSD on an HP Jornada 680. But that's all more than 10 years ago. I haven't looked at NetBSD for long time. I want to revive it on an "old" ThinkPad T450 of mine which I currently don't use.
+
+=> https://netbsd.org
+
+### Other OSes in use...
+
+=> https://sailfish.org SailfishOS - Nice mobile OS, but unfortunately includes proprietary components
+=> https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux Red Hat Enterprise Linux - Only for some work stuff
+
+### Other OSes not used any more...
+
+=> https://en.opensuse.org/Archive:S.u.S.E._Linux_5.3 SuSE Linux 5.3 - The first Linux OS I used
+=> https://en.wikipedia.org/wiki/IRIX SGI's IRIX - On a SGI Onyx 3200
+=> https://en.wikipedia.org/wiki/MeeGo MeeGo - On a Nokia N9
+=> https://en.wikipedia.org/wiki/Microsoft_Windows Microsoft Windows
+=> https://en.wikipedia.org/wiki/MS-DOS Microsoft DOS - With and without Windows 3.x
+=> https://en.wikipedia.org/wiki/Symbian Symbian - The first smartphone OS I used 
+=> https://en.wikipedia.org/wiki/Wear_OS WearOS - On a Google smartwatch
+=> https://www.debian.org Debian GNU/Linux - Rock solid, but atm. I prefer Fedora/EndeavourOS
+=> https://www.ubuntu.com Ubuntu Linux (based on Debian)
+=> https://www.linuxfromscratch.org/ Linux from scratch - The best way to learn Linux
+=> https://www.suse.com/products/server/ SUSE Linux Enterprise - Only for some work stuff
+
+### Other OSes I only had a glance at...
+
+=> https://archiveos.org/opensolaris/ OpenSolaris - Continuation of the open source version of Solaris
+=> https://archlinuxarm.org/ Arch Linux ARM
+=> https://ecomstation.com/ eComStation - Continuation of IBM OS/2
+=> https://en.wikipedia.org/wiki/Minix MINIX
+=> https://en.wikipedia.org/wiki/OpenVMS OpenVMS
+=> https://en.wikipedia.org/wiki/OS/2 IBM OS/2 Warp
+=> https://freedos.org FreeDOS - Open source alternative to DOS
+=> https://plan9.io/plan9/ Plan9 
+=> https://reactos.org/ ReactOS - A Microsoft Windows open source clone
+=> https://www.debian.org/ports/hurd/ Debian GNU/Hurd - Debian on the GNU kernel
+=> https://www.debian.org/ports/kfreebsd-gnu/ Debian GNU/kFreeBSD - Debian on the FreeBSD kernel
+=> https://www.gentoo.org Gentoo Linux
+=> https://www.haiku-os.org/ Haiku - A BeOS open source clone
+=> https://www.oracle.com/solaris/solaris11/ Sun Solaris (now owned by Oracle)
+=> https://www.puredarwin.org/ OpenDarwin ("now" PureDarwin) - Open source operating system based on the open parts of macOS
+
+### Other OSes which seem interesting...
+
+=> https://asteroidos.org/ Asteroids OS - Open source smartphone OS
+=> https://www.dragonflybsd.org/ DragonFly BSD - Fork of FreeBSD 4
+=> http://wiki.postmarketos.org/wiki/Phosh Phosh (on postmarketOS) - A true Linux shell for the smartphone
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site

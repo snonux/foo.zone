@@ -16,6 +16,15 @@ These are my personal takeaways after reading "The Stoic Challenge:  A Philosoph
                     '''
 ```
 
+## Table of Contents
+
+* ⇢ "The Stoic Challenge" book notes
+* ⇢ ⇢ God sets you up for a challenge
+* ⇢ ⇢ Negative visualization
+* ⇢ ⇢ Oh, nice trick, you stoic "god"! ;-)
+
+## God sets you up for a challenge
+
 Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.
 
 Put a positive spin on everything. What should you do if someone wrong you? Don't get angry, there is no point in that, it just makes you suffer. Do the best what you got now and keep calm and carry on. A resilient person will refuse to play the role of a victim. You can develop the setback response skills. Turn a setback. e.g. a handycap, into a personal triumph.
@@ -48,13 +57,13 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-=> ./the-pragmatic-programmer.gmi 2023-03-16 "The Pragmatic Programmer" book notes
-=> ./never-split-the-difference.gmi 2023-04-01 "Never split the difference" book notes
-=> ./the-obstacle-is-the-way.gmi 2023-05-06 "The Obstacle is the Way" book notes
-=> ./career-guide-and-soft-skills.gmi 2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes
-=> ./mind-management.gmi 2023-11-11 "Mind Management" book notes
-=> ./slow-productivity.gmi 2024-05-01 "Slow Productivity" book notes
+=> ./staff-engineer.gmi 2024-10-24 "Staff Engineer" book notes
 => ./the-stoic-challenge.gmi 2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)
+=> ./slow-productivity.gmi 2024-05-01 "Slow Productivity" book notes
+=> ./mind-management.gmi 2023-11-11 "Mind Management" book notes
+=> ./career-guide-and-soft-skills.gmi 2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes
+=> ./the-obstacle-is-the-way.gmi 2023-05-06 "The Obstacle is the Way" book notes
+=> ./never-split-the-difference.gmi 2023-04-01 "Never split the difference" book notes
+=> ./the-pragmatic-programmer.gmi 2023-03-16 "The Pragmatic Programmer" book notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

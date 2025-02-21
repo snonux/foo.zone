@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+
 ```
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -29,9 +31,9 @@
                                  ASCII Art by John Savard
 ```
 
-I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+<< template::inline::toc
 
-## What's Let's Encrypt?
+### What's Let's Encrypt?
 
 > Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.
 
@@ -660,6 +662,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other *BSD related posts are:
 
-<< template::inline::index bsd
+<< template::inline::rindex bsd
 
 => ../ Back to the main site

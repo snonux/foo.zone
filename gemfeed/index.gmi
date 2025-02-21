@@ -2,9 +2,20 @@
 
 ## To be in the .zone!
 
+=> ./2025-02-08-random-weird-things-ii.gmi 2025-02-08 - Random Weird Things - Part Ⅱ
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2025-01-15-working-with-an-sre-interview.gmi 2025-01-15 - Working with an SRE Interview
+=> ./2025-01-01-posts-from-october-to-december-2024.gmi 2025-01-01 - Posts from October to December 2024
+=> ./2024-12-15-random-helix-themes.gmi 2024-12-15 - Random Helix Themes
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-10-24-staff-engineer-book-notes.gmi 2024-10-24 - 'Staff Engineer' book notes
+=> ./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi 2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴
+=> ./2024-09-07-site-reliability-engineering-part-4.gmi 2024-09-07 - Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers
+=> ./2024-09-07-projects-i-support.gmi 2024-09-07 - Projects I financially support
 => ./2024-08-05-typing-127.1-words-per-minute.gmi 2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)
 => ./2024-07-07-the-stoic-challenge-book-notes.gmi 2024-07-07 - 'The Stoic Challenge' book notes
-=> ./2024-07-05-random-weird-things.gmi 2024-07-05 - Random Weird Things
+=> ./2024-07-05-random-weird-things.gmi 2024-07-05 - Random Weird Things - Part Ⅰ
 => ./2024-06-23-terminal-multiplexing-with-tmux.gmi 2024-06-23 - Terminal multiplexing with `tmux`
 => ./2024-05-03-projects-i-currently-dont-have-time-for.gmi 2024-05-03 - Projects I currently don't have time for
 => ./2024-05-01-slow-productivity-book-notes.gmi 2024-05-01 - 'Slow Productivity' book notes
@@ -12,9 +23,9 @@
 => ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go
 => ./2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi 2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 - One reason why I love OpenBSD
-=> ./2024-01-09-site-reliability-engineering-part-3.gmi 2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect
+=> ./2024-01-09-site-reliability-engineering-part-3.gmi 2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture
 => ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 - Bash Golf Part 3
-=> ./2023-11-19-site-reliability-engineering-part-2.gmi 2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE
+=> ./2023-11-19-site-reliability-engineering-part-2.gmi 2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance
 => ./2023-11-11-mind-management-book-notes.gmi 2023-11-11 - 'Mind Management' book notes
 => ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 - KISS static web photo albums with `photoalbum.sh`
 => ./2023-09-25-dtail-usage-examples.gmi 2023-09-25 - DTail usage examples
@@ -24,7 +35,6 @@
 => ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 - KISS server monitoring with Gogios
 => ./2023-05-06-the-obstacle-is-the-way-book-notes.gmi 2023-05-06 - 'The Obstacle is the Way' book notes
 => ./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi 2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku
-=> ./2023-04-09-algorithms-and-data-structures-in-golang-part-1.gmi 2023-04-09 - Algorithms and Data Structures in Go - Part 1
 => ./2023-04-01-never-split-the-difference-book-notes.gmi 2023-04-01 - 'Never split the difference' book notes
 => ./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi 2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again²
 => ./2023-03-16-the-pragmatic-programmer-book-notes.gmi 2023-03-16 - 'The Pragmatic Programmer' book notes
@@ -65,5 +75,6 @@
 => ./2010-05-09-the-fype-programming-language.gmi 2010-05-09 - The Fype Programming Language
 => ./2010-05-07-lazy-evaluation-with-standarn-ml.gmi 2010-05-07 - Lazy Evaluation with Standard ML
 => ./2010-04-09-standard-ml-and-haskell.gmi 2010-04-09 - Standard ML and Haskell
+=> ./2009-02-13-sgi-onyx-3200.gmi 2009-02-13 - SGI Onyx 3200
 => ./2008-12-29-using-my-nokia-n95-for-fixing-my-mta.gmi 2008-12-29 - Using my Nokia N95 for fixing my MTA
 => ./2008-06-26-perl-poetry.gmi 2008-06-26 - Perl Poetry

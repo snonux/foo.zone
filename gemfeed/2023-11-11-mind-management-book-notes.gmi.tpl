@@ -16,6 +16,10 @@ These are my personal takeaways after reading "Mind Management" by David Kadavy.
                     '''
 ```
 
+<< template::inline::toc
+
+## It's not about time management
+
 Productivity isn't about time management - it's about mind management. When you put a lot of effort into something, there are:
 
 * The point of diminishing returns
@@ -95,7 +99,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

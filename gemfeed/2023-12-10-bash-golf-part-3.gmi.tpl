@@ -2,6 +2,10 @@
 
 > Published at 2023-12-10T11:35:54+02:00
 
+This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
+
+<< template::inline::index bash-golf
+
 ```
 
     '\       '\        '\                   .  .          |>18>>
@@ -14,9 +18,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
-This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
-
-<< template::inline::index bash-golf
+<< template::inline::toc
 
 ## `FUNCNAME`
 
@@ -357,6 +359,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-<< template::inline::index bash
+<< template::inline::rindex bash
 
 => ../ Back to the main site

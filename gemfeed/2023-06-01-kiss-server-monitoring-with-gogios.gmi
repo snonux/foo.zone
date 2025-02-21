@@ -2,15 +2,30 @@
 
 > Published at 2023-06-01T21:10:17+03:00
 
-=> ./kiss-server-monitoring-with-gogios/gogios-small.png Gogios logo
-
-## Introduction
-
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
 
 With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:
 
 => https://codeberg.org/snonux/gogios
+
+=> ./kiss-server-monitoring-with-gogios/gogios-small.png Gogios logo
+
+## Table of Contents
+
+* ⇢ KISS server monitoring with Gogios
+* ⇢ ⇢ Motivation
+* ⇢ ⇢ Features
+* ⇢ ⇢ Example alert
+* ⇢ ⇢ Installation
+* ⇢ ⇢ ⇢ Compiling and installing Gogios
+* ⇢ ⇢ ⇢ Setting up user, group and directories
+* ⇢ ⇢ ⇢ Installing monitoring plugins
+* ⇢ ⇢ Configuration
+* ⇢ ⇢ ⇢ MTA
+* ⇢ ⇢ ⇢ Configuring Gogios
+* ⇢ ⇢ Running Gogios
+* ⇢ ⇢ ⇢ High-availability
+* ⇢ ⇢ Conclusion:
 
 ```
     _____________________________    ____________________________
@@ -240,9 +255,9 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other KISS-related posts are:
 
-=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 Keep it simple and stupid
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios (You are currently reading this)
-=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi 2023-10-29 KISS static web photo albums with `photoalbum.sh`
+=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios (You are currently reading this)
+=> ./2021-09-12-keep-it-simple-and-stupid.gmi 2021-09-12 Keep it simple and stupid
 
 => ../ Back to the main site

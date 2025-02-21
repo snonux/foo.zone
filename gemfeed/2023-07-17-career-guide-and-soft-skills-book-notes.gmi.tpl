@@ -16,9 +16,11 @@ These notes are of two books by "John Sommez" I found helpful. I also added some
                     '''
 ```
 
-# Improve
+<< template::inline::toc
 
-## Always learn new things
+## Improve
+
+### Always learn new things
 
 When you learn something new, e.g. a programming language, first gather an overview, learn from multiple sources, play around and learn by doing and not consuming and form your own questions. Don't read too much upfront. A large amount of time is spent in learning technical skills which were never use. You want to have a practical set of skills you are actually using. You need to know 20 percent to get out 80 percent of the results.
 
@@ -35,18 +37,18 @@ Fake it until you make it. But be honest about your abilities or lack of. There 
 
 Boot camps: The advantage of a boot camp is to pragmatically learn things fast. We almost always overestimate what we can do in a day. Especially during boot camps. Connect to others during the boot camps
 
-## Set goals
+### Set goals
 
 Your own goals are important but the manager also looks at how the team performs and how someone can help the team perform better. Check whether you are on track with your goals every 2 weeks in order to avoid surprises for the annual review. Make concrete goals for next review. Track and document your progress. Invest in your education. Make your goals known. If you want something, then ask for it. Nobody but you knows what you want.
 
-## Ratings
+### Ratings
 
 That's a trap: If you have to rate yourself, that's a trap. That never works in an unbiased way. Rate yourself always the best way but rate your weakest part as high as possible minus one point. Rate yourself as good as you can otherwise. Nobody is putting for fun a gun on his own head. 
 
 * Don't do peer rating, it can fire back on you. What if the colleague becomes your new boss?
 * Cooperate rankings are unfortunately HR guidelines and politics and only mirror a little your actual performance.
 
-## Promotions
+### Promotions
 
 The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.
 
@@ -58,7 +60,7 @@ The most valuable employees are the ones who make themselves obsolete and automa
 * If you want a raise be specific how much and know to back your demands. Don't make a thread and no ultimatums.
 * Best way for a promotion is to switch jobs. You can even switch back with a better salary.
 
-## Finish things
+### Finish things
 
 Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.
 
@@ -276,7 +278,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-<< template::inline::index book-notes
+<< template::inline::rindex book-notes
 
-=> ../resources.gmi More books and other resources I found useful.
 => ../ Back to the main site

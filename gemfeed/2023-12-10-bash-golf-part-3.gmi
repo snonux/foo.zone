@@ -2,6 +2,12 @@
 
 > Published at 2023-12-10T11:35:54+02:00
 
+This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
+
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3 (You are currently reading this)
+
 ```
 
     '\       '\        '\                   .  .          |>18>>
@@ -14,11 +20,17 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
-This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. 
+## Table of Contents
 
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
-=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3 (You are currently reading this)
+* ⇢ Bash Golf Part 3
+* ⇢ ⇢ `FUNCNAME`
+* ⇢ ⇢ `:(){ :|:& };:`
+* ⇢ ⇢ Inner functions
+* ⇢ ⇢ Exporting functions
+* ⇢ ⇢ Dynamic variables with `local`
+* ⇢ ⇢ `if` conditionals
+* ⇢ ⇢ Multi-line comments
+* ⇢ ⇢ Don't change it while it's executed
 
 ## `FUNCNAME`
 
@@ -359,10 +371,10 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
-=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
 => ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3 (You are currently reading this)
+=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
+=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
+=> ./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi 2021-06-05 Gemtexter - One Bash script to rule it all
+=> ./2021-05-16-personal-bash-coding-style-guide.gmi 2021-05-16 Personal Bash coding style guide
 
 => ../ Back to the main site
