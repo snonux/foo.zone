@@ -4,6 +4,7 @@
 
 => ./when.gmi 'When: The Scientific Secrets of Perfect Timing' book notes
 => ./the-stoic-challenge.gmi 'The Stoic Challenge' book notes
+=> ./the-science-of-living.gmi 'Science of Living' book notes
 => ./the-pragmatic-programmer.gmi 'The Pragmatic Programmer' book notes
 => ./the-power-of-neuroplasticity.gmi 'The Power of Neuroplasticity' book notes
 => ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
@@ -13,6 +14,7 @@
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mind-management.gmi 'Mind Management' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
+=> ./love-people-use-things.gmi Love People, Use Things
 => ./joy-on-demand.gmi 'Joy On Domand' book notes
 => ./influence-wihout-authority.gmi 'Influence without Authority' book notes
 => ./eat-that-frog.gmi 'Eat That Frog' book notes
