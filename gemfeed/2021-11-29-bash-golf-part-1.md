@@ -2,6 +2,12 @@
 
 > Published at 2021-11-29T14:06:14+00:00; Updated at 2022-01-05
 
+This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+
+[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
+
 ```
 
      '\                   .  .                        |>18>>
@@ -14,10 +20,17 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                                             Art by Joan Stark
 ```
 
-This is the first blog post about my Bash Golf series. This series is about random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+## Table of Contents
 
-[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+* [⇢ Bash Golf Part 1](#bash-golf-part-1)
+* [⇢ ⇢ TCP/IP networking](#tcpip-networking)
+* [⇢ ⇢ Process substitution](#process-substitution)
+* [⇢ ⇢ Grouping](#grouping)
+* [⇢ ⇢ Expansions](#expansions)
+* [⇢ ⇢ - aka stdin and stdout placeholder](#--aka-stdin-and-stdout-placeholder)
+* [⇢ ⇢ Alternative argument passing](#alternative-argument-passing)
+* [⇢ ⇢ : aka the null command](#-aka-the-null-command)
+* [⇢ ⇢ (No) floating point support](#no-floating-point-support)
 
 ## TCP/IP networking
 
@@ -463,13 +476,14 @@ In the Bash you will have to fall back to an external command like "bc" (the arb
 
 See you later for the next post of this series.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2021-11-29 Bash Golf Part 1 (You are currently reading this)](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 [Back to the main site](../)  

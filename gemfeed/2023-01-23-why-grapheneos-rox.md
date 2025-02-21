@@ -2,6 +2,19 @@
 
 > Published at 2023-01-23T15:31:52+02:00
 
+In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. 
+
+[On Being Pedantic about Open-Source](./2021-08-01-on-being-pedantic-about-open-source.md)  
+
+What is GrapheneOS?
+
+> GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It's focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.
+
+GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.
+
+[https://GrapheneOS.org](https://GrapheneOS.org)  
+[https://LineageOS.org](https://LineageOS.org)  
+
 ```
 Art by Joan Stark
                _.===========================._
@@ -25,18 +38,17 @@ Art by Joan Stark
   '-'-'-'--'
 ```
 
-In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. 
+## Table of Contents
 
-[On Being Pedantic about Open-Source](./2021-08-01-on-being-pedantic-about-open-source.md)  
-
-What is GrapheneOS?
-
-> GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It's focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.
-
-GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.
-
-[https://GrapheneOS.org](https://GrapheneOS.org)  
-[https://LineageOS.org](https://LineageOS.org)  
+* [⇢ Why GrapheneOS rox](#why-grapheneos-rox)
+* [⇢ ⇢ User Profiles](#user-profiles)
+* [⇢ ⇢ Proxying some of the Google offerings ](#proxying-some-of-the-google-offerings-)
+* [⇢ ⇢ Google Play Sandboxing ](#google-play-sandboxing-)
+* [⇢ ⇢ The camera and the cloud ](#the-camera-and-the-cloud-)
+* [⇢ ⇢ Fine granular permissions](#fine-granular-permissions)
+* [⇢ ⇢ Termux](#termux)
+* [⇢ ⇢ So, why not use a pure Linux phone?](#so-why-not-use-a-pure-linux-phone)
+* [⇢ ⇢ Small GrapheneOS downsides ](#small-grapheneos-downsides-)
 
 ## User Profiles
 

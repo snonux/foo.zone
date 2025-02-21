@@ -16,6 +16,21 @@ These are my personal takeaways after reading "Mind Management" by David Kadavy.
                     '''
 ```
 
+## Table of Contents
+
+* [⇢ "Mind Management" book notes](#mind-management-book-notes)
+* [⇢ ⇢ It's not about time management](#it-s-not-about-time-management)
+* [⇢ ⇢ Empty slots in the calendar](#empty-slots-in-the-calendar)
+* [⇢ ⇢ When you safe time...](#when-you-safe-time)
+* [⇢ ⇢ Follow your mood](#follow-your-mood)
+* [⇢ ⇢ Boosting creativity](#boosting-creativity)
+* [⇢ ⇢ The right mood for the task at hand](#the-right-mood-for-the-task-at-hand)
+* [⇢ ⇢ Creativity hacks](#creativity-hacks)
+* [⇢ ⇢ Planning and strategizing](#planning-and-strategizing)
+* [⇢ ⇢ Fake it until you make it. ](#fake-it-until-you-make-it-)
+
+## It's not about time management
+
 Productivity isn't about time management - it's about mind management. When you put a lot of effort into something, there are:
 
 * The point of diminishing returns
@@ -91,15 +106,18 @@ You could schedule exploratory tasks when you are under grief. Sound systems sho
 * Talk slowly and deepen your voice a bit to appear more confident. You will also become more confident.
 * Also, use power positions for better confidence.
 
-Other book notes of mine are:
-
-[2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
-[2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
-[2023-05-06 "The Obstacle is the Way" book notes](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
-[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
-[2023-11-11 "Mind Management" book notes (You are currently reading this)](./2023-11-11-mind-management-book-notes.md)  
-
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
-[More books and other resources I found useful.](../resources.md)  
+Other book notes of mine are:
+
+[2024-10-24 "Staff Engineer" book notes](./staff-engineer.md)  
+[2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
+[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
+[2023-11-11 "Mind Management" book notes (You are currently reading this)](./mind-management.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
+[2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
+[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
+
 [Back to the main site](../)  
+

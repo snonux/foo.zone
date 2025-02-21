@@ -2,14 +2,6 @@
 
 > Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18
 
-```
-         _
-        /_/_      .'''.
-     =O(_)))) ...'     `.
- jgs    \_\              `.    .'''
-                           `..'
-```
-
 This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:
 
 [Tiny programs](https://jvns.ca/blog/2022/03/08/tiny-programs/)  
@@ -18,6 +10,39 @@ This blog post is a bit different from the others. It consists of multiple but s
 Working on tiny projects is a lot of fun as you don't need to worry about any standards or code reviews and you decide how and when you work on it. There aren't restrictions regarding technologies used. You are likely the only person working on these tiny projects and that means that there is no conflict with any other developers. This is complete freedom :-).
 
 But before going through the tiny projects let's take a paragraph for the `1y` anniversary retrospective.
+
+```
+         _
+        /_/_      .'''.
+     =O(_)))) ...'     `.
+ jgs    \_\              `.    .'''
+                           `..'
+```
+
+## Table of Contents
+
+* [⇢ Sweating the small stuff - Tiny projects of mine](#sweating-the-small-stuff---tiny-projects-of-mine)
+* [⇢ ⇢ `1y` anniversary](#1y-anniversary)
+* [⇢ ⇢ Static photo album generator](#static-photo-album-generator)
+* [⇢ ⇢ ⇢ The Irregular Ninja](#the-irregular-ninja)
+* [⇢ ⇢ Random journal page extractor](#random-journal-page-extractor)
+* [⇢ ⇢ Global uptime records statistic generator](#global-uptime-records-statistic-generator)
+* [⇢ ⇢ Server configuration management](#server-configuration-management)
+* [⇢ ⇢ Fancy SSH execution loop](#fancy-ssh-execution-loop)
+* [⇢ ⇢ A KISS dynamic DNS solution](#a-kiss-dynamic-dns-solution)
+* [⇢ ⇢ CPU information gatherer for Linux](#cpu-information-gatherer-for-linux)
+* [⇢ ⇢ Show differences of two files over the network](#show-differences-of-two-files-over-the-network)
+* [⇢ ⇢ Delay sending out E-Mails with Mutt](#delay-sending-out-e-mails-with-mutt)
+* [⇢ ⇢ Graphical UI for sending text messages](#graphical-ui-for-sending-text-messages)
+* [⇢ ⇢ IPv6 and IPv4 connectivity testing site](#ipv6-and-ipv4-connectivity-testing-site)
+* [⇢ ⇢ List open Jira tickets in the terminal](#list-open-jira-tickets-in-the-terminal)
+* [⇢ ⇢ Debian running on "your" Android phone](#debian-running-on-your-android-phone)
+* [⇢ ⇢ Perl service framework](#perl-service-framework)
+* [⇢ ⇢ More](#more)
+* [⇢ ⇢ ⇢ Work time tracker](#work-time-tracker)
+* [⇢ ⇢ ⇢ Password and document store](#password-and-document-store)
+* [⇢ ⇢ ⇢ Backup procedure](#backup-procedure)
+* [⇢ ⇢ konpeito.media](#konpeitomedia)
 
 ## `1y` anniversary
 
@@ -47,7 +72,7 @@ But now, let's continue with the small projects worth mentioning :-)
 
 Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.
 
-[![./2022-06-15-sweating-the-small-stuff/ninja.jpg](./2022-06-15-sweating-the-small-stuff/ninja.jpg)](./2022-06-15-sweating-the-small-stuff/ninja.jpg)  
+[![./sweating-the-small-stuff/ninja.jpg](./sweating-the-small-stuff/ninja.jpg)](./sweating-the-small-stuff/ninja.jpg)  
 
 More than 10 years ago I wrote the bespoke small static photo album generator in Bash `photoalbum.sh` which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name `irregular.ninja` has been registered.
 
@@ -229,7 +254,7 @@ This is a shell script for the Mutt email client for delaying sending out E-Mail
 
 `jsmstrade` is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.
 
-[![./2022-06-15-sweating-the-small-stuff/jsmstrade.png](./2022-06-15-sweating-the-small-stuff/jsmstrade.png)](./2022-06-15-sweating-the-small-stuff/jsmstrade.png)  
+[![./sweating-the-small-stuff/jsmstrade.png](./sweating-the-small-stuff/jsmstrade.png)](./sweating-the-small-stuff/jsmstrade.png)  
 
 [https://codeberg.org/snonux/jsmstrade](https://codeberg.org/snonux/jsmstrade)  
 [https://smstrade.de](https://smstrade.de)  

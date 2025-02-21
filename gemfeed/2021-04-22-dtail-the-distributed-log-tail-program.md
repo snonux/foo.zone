@@ -2,8 +2,6 @@
 
 > Published at 2021-04-22T19:28:41+01:00; Updated at 2021-04-26
 
-[![DTail logo image](./2021-04-22-dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./2021-04-22-dtail-the-distributed-log-tail-program/title.png)  
-
 This article first appeared at the Mimecast Engineering Blog but I made it available here in my personal internet site too.
 
 [Original Mimecast Engineering Blog post at Medium](https://medium.com/mimecast-engineering/dtail-the-distributed-log-tail-program-79b8087904bb)  
@@ -15,6 +13,21 @@ At Mimecast, we run over 10 thousand server boxes. Most of them host multiple mi
 Every engineer familiar with UNIX or a UNIX-like platform (e.g., Linux) is well aware of tail, a command-line program for displaying a text file content on the terminal which is also especially useful for following application or system log files with tail -f logfile.
 
 Think of DTail as a distributed version of the tail program which is very useful when you have a distributed application running on many servers. DTail is an Open-Source, cross-platform, fairly easy to use, support and maintain log file analysis & statistics gathering tool designed for Engineers and Systems Administrators. It is programmed in Google Go.
+
+[![DTail logo image](./dtail-the-distributed-log-tail-program/title.png "DTail logo image")](./dtail-the-distributed-log-tail-program/title.png)  
+
+## Table of Contents
+
+* [⇢ DTail - The distributed log tail program](#dtail---the-distributed-log-tail-program)
+* [⇢ ⇢ A Mimecast Pet Project](#a-mimecast-pet-project)
+* [⇢ ⇢ Differentiating from log management systems](#differentiating-from-log-management-systems)
+* [⇢ ⇢ Combining simplicity, security and efficiency](#combining-simplicity-security-and-efficiency)
+* [⇢ ⇢ The DTail family of commands](#the-dtail-family-of-commands)
+* [⇢ ⇢ Usage example](#usage-example)
+* [⇢ ⇢ Fitting it in](#fitting-it-in)
+* [⇢ ⇢ Advanced features](#advanced-features)
+* [⇢ ⇢ For the future](#for-the-future)
+* [⇢ ⇢ Open Source](#open-source)
 
 ## A Mimecast Pet Project
 
@@ -30,7 +43,7 @@ Why not just use a full-blown log management system? There are various Open-Sour
 
 DTail does not aim to replace any of the log management tools already available but is rather an additional tool crafted especially for ad-hoc debugging and troubleshooting purposes. DTail is cheap to operate as it does not require any dedicated hardware for log storage as it operates directly on the source of the logs. It means that there is a DTail server installed on all server boxes producing logs. This decentralized comes with the direct advantages that there is no introduced delay because the logs are not shipped to a central log storage device. The reduced complexity also makes it more robust against outages. You won’t be able to troubleshoot your distributed application very well if the log management infrastructure isn’t working either.
 
-[![DTail sample session animated gif](./2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif "DTail sample session animated gif")](./2021-04-22-dtail-the-distributed-log-tail-program/dtail.gif)  
+[![DTail sample session animated gif](./dtail-the-distributed-log-tail-program/dtail.gif "DTail sample session animated gif")](./dtail-the-distributed-log-tail-program/dtail.gif)  
 
 As a downside, you won’t be able to access any logs with DTail when the server is down. Furthermore, a server can store logs only up to a certain capacity as disks will fill up. For the purpose of ad-hoc debugging, these are not typically issues. Usually, it’s the application you want to debug and not the server. And disk space is rarely an issue for bare metal and VM-based systems these days, with sufficient space for several weeks’ worth of log storage being available. DTail also supports reading compressed logs. The currently supported compression algorithms are gzip and zstd.
 
@@ -54,7 +67,7 @@ Following the UNIX philosophy, DTail includes multiple command-line commands eac
 * dgrep: The distributed grep client for searching text files for a regular expression pattern.
 * dmap: The distributed map-reduce client for aggregating stats from log files.
 
-[![DGrep sample session animated gif](./2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif "DGrep sample session animated gif")](./2021-04-22-dtail-the-distributed-log-tail-program/dgrep.gif)  
+[![DGrep sample session animated gif](./dtail-the-distributed-log-tail-program/dgrep.gif "DGrep sample session animated gif")](./dtail-the-distributed-log-tail-program/dgrep.gif)  
 
 ## Usage example
 
@@ -103,13 +116,13 @@ Mimecast highly encourages you to have a look at DTail and submit an issue for a
 
 [https://dtail.dev](https://dtail.dev)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-04-22 DTail - The distributed log tail program (You are currently reading this)](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
-[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
-[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2023-09-25 DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program (You are currently reading this)](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 [Back to the main site](../)  

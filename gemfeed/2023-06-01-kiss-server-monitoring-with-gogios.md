@@ -2,15 +2,30 @@
 
 > Published at 2023-06-01T21:10:17+03:00
 
-[![Gogios logo](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png "Gogios logo")](./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png)  
-
-## Introduction
-
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
 
 With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:
 
 [https://codeberg.org/snonux/gogios](https://codeberg.org/snonux/gogios)  
+
+[![Gogios logo](./kiss-server-monitoring-with-gogios/gogios-small.png "Gogios logo")](./kiss-server-monitoring-with-gogios/gogios-small.png)  
+
+## Table of Contents
+
+* [⇢ KISS server monitoring with Gogios](#kiss-server-monitoring-with-gogios)
+* [⇢ ⇢ Motivation](#motivation)
+* [⇢ ⇢ Features](#features)
+* [⇢ ⇢ Example alert](#example-alert)
+* [⇢ ⇢ Installation](#installation)
+* [⇢ ⇢ ⇢ Compiling and installing Gogios](#compiling-and-installing-gogios)
+* [⇢ ⇢ ⇢ Setting up user, group and directories](#setting-up-user-group-and-directories)
+* [⇢ ⇢ ⇢ Installing monitoring plugins](#installing-monitoring-plugins)
+* [⇢ ⇢ Configuration](#configuration)
+* [⇢ ⇢ ⇢ MTA](#mta)
+* [⇢ ⇢ ⇢ Configuring Gogios](#configuring-gogios)
+* [⇢ ⇢ Running Gogios](#running-gogios)
+* [⇢ ⇢ ⇢ High-availability](#high-availability)
+* [⇢ ⇢ Conclusion:](#conclusion)
 
 ```
     _____________________________    ____________________________
@@ -236,12 +251,13 @@ There are plans to make it possible to execute certain checks only on certain no
 
 Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other KISS-related posts are:
 
-[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
-[2023-06-01 KISS server monitoring with Gogios (You are currently reading this)](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh`](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2023-06-01 KISS server monitoring with Gogios (You are currently reading this)](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
 
 [Back to the main site](../)  

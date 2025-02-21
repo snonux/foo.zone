@@ -2,6 +2,10 @@
 
 > Published at 2021-06-05T19:03:32+01:00
 
+You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.
+
+This comes with the benefit that I can write content in my favourite text editor (Vim). 
+
 ```
                                                                o .,<>., o
                                                                |\/\/\/\/|
@@ -43,15 +47,27 @@
                                                            `+a:f:......jrei'''
 ```
 
-You might have read my previous blog posts about entering the Geminispace, where I pointed out the benefits of having and maintaining an internet presence there. This whole site (the blog and all other pages) is composed in the Gemtext markup language.
+## Table of Contents
 
-This comes with the benefit that I can write content in my favourite text editor (Vim). 
+* [⇢ Gemtexter - One Bash script to rule it all](#gemtexter---one-bash-script-to-rule-it-all)
+* [⇢ ⇢ Motivation](#motivation)
+* [⇢ ⇢ Output formats](#output-formats)
+* [⇢ ⇢ Taking it as far as I should, but no farther](#taking-it-as-far-as-i-should-but-no-farther)
+* [⇢ ⇢ ⇢ Modularization ](#modularization-)
+* [⇢ ⇢ ⇢ Bash best practises and ShellCheck](#bash-best-practises-and-shellcheck)
+* [⇢ ⇢ ⇢ Unit testing](#unit-testing)
+* [⇢ ⇢ ⇢ HTML unit test example](#html-unit-test-example)
+* [⇢ ⇢ ⇢ Markdown unit test example](#markdown-unit-test-example)
+* [⇢ ⇢ Handcrafted HTML styles](#handcrafted-html-styles)
+* [⇢ ⇢ Configurability](#configurability)
+* [⇢ ⇢ Future features](#future-features)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 ## Motivation
 
 Another benefit of using Gemini is that the Gemtext markup language is easy to parse. As my site is dual-hosted (Gemini+HTTP), I could, in theory, just write a shell script to deal with the conversion from Gemtext to HTML; there is no need for a full-featured programming language here. I have done a lot of Bash in the past, but I am also often revisiting old tools and techniques for refreshing and keeping the knowledge up to date here.
 
-[![Motivational comic strip](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg "Motivational comic strip")](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg)  
+[![Motivational comic strip](./gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg "Motivational comic strip")](./gemtexter-one-bash-script-to-rule-it-all/blog-engine.jpg)  
 
 I have exactly done that - I wrote a Bash script, named Gemtexter, for that:
 
@@ -163,17 +179,19 @@ It was quite a lot of fun writing Gemtexter. It's a relatively small project, bu
 
 I finally revamped my personal internet site and started to blog again. I wanted the result to be exactly how it is now: A slightly retro-inspired internet site built for fun with unconventional tools. 
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
-[2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
+[2024-10-02 Gemtexter 3.0.0 - Let's Gemtext again⁴](./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2023-03-25 Gemtexter 2.0.0 - Let's Gemtext again²](./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
+[2022-08-27 Gemtexter 1.1.0 - Let's Gemtext again](./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all (You are currently reading this)](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
+[2021-04-24 Welcome to the Geminispace](./2021-04-24-welcome-to-the-geminispace.md)  
 
 [Back to the main site](../)  

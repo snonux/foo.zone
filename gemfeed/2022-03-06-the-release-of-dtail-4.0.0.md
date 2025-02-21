@@ -2,6 +2,10 @@
 
 > Published at 2022-03-06T18:11:39+00:00
 
+I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+
+[https://dtail.dev](https://dtail.dev)  
+
 ```
                               ,_---~~~~~----._
                         _,,_,*^____      _____``*g*\"*,
@@ -16,9 +20,22 @@
                          |                           |
 ```
 
-I have recently released DTail 4.0.0 and this blog post goes through all the new goodies. If you want to jump directly to DTail, do it here (there are nice animated gifs which demonstrates the usage pretty well):
+## Table of Contents
 
-[https://dtail.dev](https://dtail.dev)  
+* [⇢ The release of DTail 4.0.0](#the-release-of-dtail-400)
+* [⇢ ⇢ So, what's new in 4.0.0?](#so-what-s-new-in-400)
+* [⇢ ⇢ ⇢ Rewritten logging](#rewritten-logging)
+* [⇢ ⇢ ⇢ Configurable terminal color codes](#configurable-terminal-color-codes)
+* [⇢ ⇢ ⇢ Serverless mode](#serverless-mode)
+* [⇢ ⇢ ⇢ Shorthand flags](#shorthand-flags)
+* [⇢ ⇢ ⇢ Spartan (aka plain) mode](#spartan-aka-plain-mode)
+* [⇢ ⇢ ⇢ Standard input pipe](#standard-input-pipe)
+* [⇢ ⇢ ⇢ New command dtailhealth](#new-command-dtailhealth)
+* [⇢ ⇢ ⇢ Improved documentation](#improved-documentation)
+* [⇢ ⇢ ⇢ Integration testing suite](#integration-testing-suite)
+* [⇢ ⇢ ⇢ Improved code](#improved-code)
+* [⇢ ⇢ ⇢ Use of memory pools](#use-of-memory-pools)
+* [⇢ ⇢ What's next](#what-s-next)
 
 ## So, what's new in 4.0.0?
 
@@ -286,17 +303,17 @@ I use usually DTail at work, but I have recently installed it on my personal Ope
 
 I am a bit busy at the moment with two other pet projects of mine (one internal work-project, and one personal one, the latter you will read about in the next couple of months). If you have ideas (or even a patch), then please don't hesitate to contact me (either via E-Mail or a request at GitHub).
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
-[2022-03-06 The release of DTail 4.0.0 (You are currently reading this)](./2022-03-06-the-release-of-dtail-4.0.0.md)  
-[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2023-09-25 DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0 (You are currently reading this)](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 Thanks!
 
 Paul
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

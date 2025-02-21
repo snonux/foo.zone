@@ -2,6 +2,12 @@
 
 > Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16
 
+You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).
+
+[![./run-debian-on-your-phone-with-debroid/Deboroid.png](./run-debian-on-your-phone-with-debroid/Deboroid.png)](./run-debian-on-your-phone-with-debroid/Deboroid.png)  
+
+A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. 
+
 ```
  ____       _               _     _ 
 |  _ \  ___| |__  _ __ ___ (_) __| |
@@ -11,13 +17,16 @@
                                     
 ```
 
-You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).
+## Table of Contents
 
-[![./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png](./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png)](./2015-12-05-run-debian-on-your-phone-with-debroid/Deboroid.png)  
-
-## Foreword
-
-A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. 
+* [⇢ Run Debian on your phone with Debroid](#run-debian-on-your-phone-with-debroid)
+* [⇢ ⇢ Step by step guide](#step-by-step-guide)
+* [⇢ ⇢ ⇢ First debootstrap stage](#first-debootstrap-stage)
+* [⇢ ⇢ ⇢ Copy Debian image to the phone](#copy-debian-image-to-the-phone)
+* [⇢ ⇢ ⇢ Second debootstrap stage](#second-debootstrap-stage)
+* [⇢ ⇢ ⇢ Setup of various scripts](#setup-of-various-scripts)
+* [⇢ ⇢ ⇢ Entering Debroid and enable a service](#entering-debroid-and-enable-a-service)
+* [⇢ ⇢ ⇢ Include to Android startup:](#include-to-android-startup)
 
 ## Step by step guide
 

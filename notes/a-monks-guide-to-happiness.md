@@ -2,6 +2,17 @@
 
 > Last updated 21.5.2023
 
+## Table of Contents
+
+* [⇢ "A Monk's Guide to Happiness" book notes](#a-monk-s-guide-to-happiness-book-notes)
+* [⇢ ⇢ Understanding Happiness](#understanding-happiness)
+* [⇢ ⇢ The Role of Meditation](#the-role-of-meditation)
+* [⇢ ⇢ Managing Thoughts and Emotions](#managing-thoughts-and-emotions)
+* [⇢ ⇢ Practice and Discipline](#practice-and-discipline)
+* [⇢ ⇢ Perspectives on Relationships and Interactions](#perspectives-on-relationships-and-interactions)
+* [⇢ ⇢ Reflective Questions](#reflective-questions)
+* [⇢ ⇢ Miscellaneous Guidelines](#miscellaneous-guidelines)
+
 ## Understanding Happiness
 
 * Happiness is a skill we can train. 

@@ -1,6 +1,8 @@
 # foo.zone
 
-> This site was generated at 2023-11-11T22:22:24+02:00 by `Gemtexter`
+> This site was generated at 2025-02-21T11:07:02+02:00 by `Gemtexter`
+
+Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
 
 ```
    |\---/|
@@ -11,40 +13,54 @@
   (_,...'(_,.`__)/'.....+
 ```
 
-## Introduction
+## Some links
 
-Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here.
-
-[All I post here on `foo.zone` is really only just for fun!](https://justforfunnoreally.dev/)  
-[My contact information and resources (via HTTP)](https://paul.buetow.org)  
-[My contact information and resources (via Gemini)](gemini://paul.buetow.org)  
+[About me](./about/index.md)  
 [My machine uptime statistics](./uptime-stats.md)  
-
-If you reach this site via the modern web, please read this:
-
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 
-## Personal blog
+## Blog
 
-### Stay updated
+### Atom and Gemfeeds
 
 [Subscribe to this blog's Atom feed](./gemfeed/atom.xml)  
 [Subscribe to this blog's Gemfeed](./gemfeed/index.md)  
 
 ### Posts
 
+[2025-02-08 - Random Weird Things - Part Ⅱ](./gemfeed/2025-02-08-random-weird-things-ii.md)  
+[2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2025-01-15 - Working with an SRE Interview](./gemfeed/2025-01-15-working-with-an-sre-interview.md)  
+[2025-01-01 - Posts from October to December 2024](./gemfeed/2025-01-01-posts-from-october-to-december-2024.md)  
+[2024-12-15 - Random Helix Themes](./gemfeed/2024-12-15-random-helix-themes.md)  
+[2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
+[2024-10-24 - 'Staff Engineer' book notes](./gemfeed/2024-10-24-staff-engineer-book-notes.md)  
+[2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴](./gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
+[2024-09-07 - Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./gemfeed/2024-09-07-site-reliability-engineering-part-4.md)  
+[2024-09-07 - Projects I financially support](./gemfeed/2024-09-07-projects-i-support.md)  
+[2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./gemfeed/2024-08-05-typing-127.1-words-per-minute.md)  
+[2024-07-07 - 'The Stoic Challenge' book notes](./gemfeed/2024-07-07-the-stoic-challenge-book-notes.md)  
+[2024-07-05 - Random Weird Things - Part Ⅰ](./gemfeed/2024-07-05-random-weird-things.md)  
+[2024-06-23 - Terminal multiplexing with `tmux`](./gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md)  
+[2024-05-03 - Projects I currently don't have time for](./gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.md)  
+[2024-05-01 - 'Slow Productivity' book notes](./gemfeed/2024-05-01-slow-productivity-book-notes.md)  
+[2024-04-01 - KISS high-availability with OpenBSD](./gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2024-03-03 - A fine Fyne Android app for quickly logging ideas programmed in Go](./gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.md)  
+[2024-02-04 - From `babylon5.buetow.org` to `*.buetow.cloud`](./gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
+[2024-01-13 - One reason why I love OpenBSD](./gemfeed/2024-01-13-one-reason-why-i-love-openbsd.md)  
+[2024-01-09 - Site Reliability Engineering - Part 3: On-Call Culture](./gemfeed/2024-01-09-site-reliability-engineering-part-3.md)  
+[2023-12-10 - Bash Golf Part 3](./gemfeed/2023-12-10-bash-golf-part-3.md)  
+[2023-11-19 - Site Reliability Engineering - Part 2: Operational Balance](./gemfeed/2023-11-19-site-reliability-engineering-part-2.md)  
 [2023-11-11 - 'Mind Management' book notes](./gemfeed/2023-11-11-mind-management-book-notes.md)  
 [2023-10-29 - KISS static web photo albums with `photoalbum.sh`](./gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
 [2023-09-25 - DTail usage examples](./gemfeed/2023-09-25-dtail-usage-examples.md)  
-[2023-08-20 - Site Reliability Engineering - Part 3: On-Call Culture and the Human Aspect](./gemfeed/2023-08-20-site-reliability-engineering-part-3.md)  
-[2023-08-19 - Site Reliability Engineering - Part 2: Operational Balance in SRE](./gemfeed/2023-08-19-site-reliability-engineering-part-2.md)  
 [2023-08-18 - Site Reliability Engineering - Part 1: SRE and Organizational Culture](./gemfeed/2023-08-18-site-reliability-engineering-part-1.md)  
 [2023-07-21 - Gemtexter 2.1.0 - Let's Gemtext again³](./gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
 [2023-07-17 - 'Software Developmers Career Guide and Soft Skills' book notes](./gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-06-01 - KISS server monitoring with Gogios](./gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-05-06 - 'The Obstacle is the Way' book notes](./gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
-[2023-04-09 - Algorithms and Data Structures in Go - Part 1](./gemfeed/2023-04-09-algorithms-and-data-structures-in-golang-part-1.md)  
 [2023-04-01 - 'Never split the difference' book notes](./gemfeed/2023-04-01-never-split-the-difference-book-notes.md)  
 [2023-03-25 - Gemtexter 2.0.0 - Let's Gemtext again²](./gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md)  
 [2023-03-16 - 'The Pragmatic Programmer' book notes](./gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.md)  
@@ -85,5 +101,6 @@ If you reach this site via the modern web, please read this:
 [2010-05-09 - The Fype Programming Language](./gemfeed/2010-05-09-the-fype-programming-language.md)  
 [2010-05-07 - Lazy Evaluation with Standard ML](./gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.md)  
 [2010-04-09 - Standard ML and Haskell](./gemfeed/2010-04-09-standard-ml-and-haskell.md)  
+[2009-02-13 - SGI Onyx 3200](./gemfeed/2009-02-13-sgi-onyx-3200.md)  
 [2008-12-29 - Using my Nokia N95 for fixing my MTA](./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.md)  
 [2008-06-26 - Perl Poetry](./gemfeed/2008-06-26-perl-poetry.md)  

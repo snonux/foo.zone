@@ -4,7 +4,6 @@
 
 These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.
 
-
 ```
          ,..........   ..........,
      ,..,'          '.'          ',..,
@@ -17,6 +16,22 @@ These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan 
                     '''
 ```
 
+## Table of Contents
+
+* [⇢ "The Obstacle is the Way" book notes](#the-obstacle-is-the-way-book-notes)
+* [⇢ ⇢ Reframe your perspective](#reframe-your-perspective)
+* [⇢ ⇢ Embrace rationality](#embrace-rationality)
+* [⇢ ⇢ Control your response](#control-your-response)
+* [⇢ ⇢ Practice emotional and physical resilience](#practice-emotional-and-physical-resilience)
+* [⇢ ⇢ Persistence and patience](#persistence-and-patience)
+* [⇢ ⇢ Embrace failure](#embrace-failure)
+* [⇢ ⇢ Be adaptable](#be-adaptable)
+* [⇢ ⇢ Embrace non-action](#embrace-non-action)
+* [⇢ ⇢ Leverage crisis](#leverage-crisis)
+* [⇢ ⇢ Build your inner citadel](#build-your-inner-citadel)
+* [⇢ ⇢ Love everything that happens](#love-everything-that-happens)
+* [⇢ ⇢ Conclusion](#conclusion)
+
 "The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.
 
 ## Reframe your perspective
@@ -26,7 +41,6 @@ The obstacle in your path can become your path to success. Instead of being para
 We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn't need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn't need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.
 
 Don't always try to use the front door; a backdoor could open. It's nonsense. Don't fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.
-
 
 ## Embrace rationality
 
@@ -82,15 +96,17 @@ Should I hate people who hate me? That's their problem and not mine. Be always c
 
 Life is a marathon, not a sprint. Each obstacle we overcome prepares us for the next one. Remember, the obstacle is not just a barrier to be turned upside down; it can also be used as a catapult to propel us forward. By embracing challenges and using them as opportunities for growth, we become stronger, more adaptable, and, ultimately, more successful.
 
-Other book notes of mine are:
-
-[2023-03-16 "The Pragmatic Programmer" book notes](./2023-03-16-the-pragmatic-programmer-book-notes.md)  
-[2023-04-01 "Never split the difference" book notes](./2023-04-01-never-split-the-difference-book-notes.md)  
-[2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)](./2023-05-06-the-obstacle-is-the-way-book-notes.md)  
-[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
-[2023-11-11 "Mind Management" book notes](./2023-11-11-mind-management-book-notes.md)  
-
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
-[More books and other resources I found useful.](../resources.md)  
+Other book notes of mine are:
+
+[2024-10-24 "Staff Engineer" book notes](./staff-engineer.md)  
+[2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
+[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
+[2023-11-11 "Mind Management" book notes](./mind-management.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
+[2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)](./the-obstacle-is-the-way.md)  
+[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
+
 [Back to the main site](../)  

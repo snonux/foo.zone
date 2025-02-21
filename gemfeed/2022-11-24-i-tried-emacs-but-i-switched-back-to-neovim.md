@@ -2,6 +2,18 @@
 
 > Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26
 
+As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.
+
+[GNU Emacs](https://www.gnu.org/software/emacs/)  
+[Doom Emacs](https://github.com/doomemacs/)  
+
+I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don't have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).
+
+[Vim](https://www.vim.org)  
+[NeoVim](https://neovim.io)  
+
+So why did I switch back to the Vi-family?
+
 ```
              _/  \    _(\(o
              /     \  /  _  ^^^o
@@ -15,17 +27,16 @@ Art by      \ \_!  / __!
          ^^----^^    "^--v'
 ```
 
-As a long-lasting user of Vim (and NeoVim), I always wondered what GNU Emacs is really about, so I decided to try it. I didn't try vanilla GNU Emacs, but Doom Emacs. I chose Doom Emacs as it is a neat distribution of Emacs with Evil mode enabled by default. Evil mode allows Vi(m) key bindings (so to speak, it's emulating Vim within Emacs), and I am pretty sure I won't be ready to give up all the muscle memory I have built over more than a decade.
+## Table of Contents
 
-[GNU Emacs](https://www.gnu.org/software/emacs/)  
-[Doom Emacs](https://github.com/doomemacs/)  
-
-I used Doom Emacs for around two months. Still, ultimately I decided to switch back to NeoVim as my primary editor and IDE and Vim (usually pre-installed on Linux-based systems) and Nvi (usually pre-installed on *BSD systems) as my "always available editor" for quick edits. (It is worth mentioning that I don't have a high opinion on whether Vim or NeoVim is the better editor, I prefer NeoVim as it comes with better defaults out of the box, but there is no real blocker to use Vim instead).
-
-[Vim](https://www.vim.org)  
-[NeoVim](https://neovim.io)  
-
-So why did I switch back to the Vi-family?
+* [⇢ I tried (Doom) Emacs, but I switched back to (Neo)Vim](#i-tried-doom-emacs-but-i-switched-back-to-neovim)
+* [⇢ ⇢ Emacs is a giant dragon](#emacs-is-a-giant-dragon)
+* [⇢ ⇢ Magit love](#magit-love)
+* [⇢ ⇢ Graphical UI](#graphical-ui)
+* [⇢ ⇢ Scripting it](#scripting-it)
+* [⇢ ⇢ The famous Emacs Org mode](#the-famous-emacs-org-mode)
+* [⇢ ⇢ Seeking simplicity](#seeking-simplicity)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 ## Emacs is a giant dragon
 

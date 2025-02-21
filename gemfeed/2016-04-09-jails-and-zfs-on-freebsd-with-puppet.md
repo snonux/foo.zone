@@ -2,6 +2,8 @@
 
 > Published at 2016-04-09T18:29:47+01:00
 
+Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
+
 ```
             __     __
            (( \---/ ))
@@ -22,7 +24,13 @@
                \      `.
 ```
 
-Over the last couple of years I wrote quite a few Puppet modules in order to manage my personal server infrastructure. One of them manages FreeBSD Jails and another one ZFS file systems. I thought I would give a brief overview in how it looks and feels.
+## Table of Contents
+
+* [⇢ Jails and ZFS with Puppet on FreeBSD](#jails-and-zfs-with-puppet-on-freebsd)
+* [⇢ ⇢ ZFS](#zfs)
+* [⇢ ⇢ Jails](#jails)
+* [⇢ ⇢ Inside-Jail Puppet](#inside-jail-puppet)
+* [⇢ ⇢ Managing multiple Jails](#managing-multiple-jails)
 
 ## ZFS
 
@@ -386,5 +394,16 @@ Of course I am operating multiple Jails on the same host this way with Puppet:
 All done in a pretty automated manor. 
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other *BSD related posts are:
+
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
+[2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2024-01-13 One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-07-30 Let's Encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
+[2016-04-09 Jails and ZFS with Puppet on FreeBSD (You are currently reading this)](./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.md)  
 
 [Back to the main site](../)  

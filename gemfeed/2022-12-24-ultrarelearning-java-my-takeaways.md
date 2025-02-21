@@ -2,8 +2,6 @@
 
 > Published at 2022-12-24T23:18:40+02:00
 
-[![./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)](./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg)  
-
 As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:
 
 [Creative universe](./2022-04-10-creative-universe.md)  
@@ -16,6 +14,23 @@ However, after that, I became a Linux Sysadmin and mainly continued programming 
 
 At my workplace, as an SRE, I don't do Java a lot. I have been reading Java code to understand the software better so I can apply and suggest workarounds or fixes to existing issues and bugs. However, most of our stack is in Java, and our Software Engineers use Java as their primary programming language.
 
+[![./ultrarelearning-java-my-takeaways/learnjava.jpg](./ultrarelearning-java-my-takeaways/learnjava.jpg)](./ultrarelearning-java-my-takeaways/learnjava.jpg)  
+
+## Table of Contents
+
+* [⇢ (Re)learning Java - My takeaways](#relearning-java---my-takeaways)
+* [⇢ ⇢ Stuck at Java 1.4](#stuck-at-java-14)
+* [⇢ ⇢ (Re)learning & upskilling to Java 18](#relearning--upskilling-to-java-18)
+* [⇢ ⇢ ⇢ Effective Java](#effective-java)
+* [⇢ ⇢ ⇢ Java Pub House](#java-pub-house)
+* [⇢ ⇢ ⇢ Java Concurrency course](#java-concurrency-course)
+* [⇢ ⇢ ⇢ Read a lot of Java code](#read-a-lot-of-java-code)
+* [⇢ ⇢ ⇢ Observed Java code reviews](#observed-java-code-reviews)
+* [⇢ ⇢ ⇢ Took ownership of a roadmap-Java project](#took-ownership-of-a-roadmap-java-project)
+* [⇢ ⇢ The good](#the-good)
+* [⇢ ⇢ The bad and the ugly](#the-bad-and-the-ugly)
+* [⇢ ⇢ Conclusion](#conclusion)
+
 ## Stuck at Java 1.4
 
 Over time, I had been missing out on many new features that were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and learn every further aspect of the language as my main goal. Of course, I still liked the idea of winning a Pet Project Prize, but my main objective was to level up my Java skills.
@@ -26,7 +41,7 @@ Over time, I had been missing out on many new features that were added to the la
 
 This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself in it. I fully agree; this is a great book. Every Java developer or Java software engineer should read it!
 
-[![./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg](./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg)](./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg)  
+[![./ultrarelearning-java-my-takeaways/effective-java.jpg](./ultrarelearning-java-my-takeaways/effective-java.jpg)](./ultrarelearning-java-my-takeaways/effective-java.jpg)  
 
 I recommend reading the 90-part effective Java Series on `dev.to`. It's a perfect companion to the book as it explains all the chapters again but from a slightly different perspective and helps you to really understand the content.
 

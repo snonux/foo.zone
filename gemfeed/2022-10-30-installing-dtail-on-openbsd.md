@@ -2,6 +2,18 @@
 
 > Published at 2022-10-30T11:03:19+02:00
 
+This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
+
+ In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
+
+[https://dtail.dev](https://dtail.dev)  
+
+I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:
+
+[Let's Encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
+
+I will also mention some relevant `Rexfile` snippets in this post!
+
 ```
        ,_---~~~~~----._
  _,,_,*^____      _____``*g*\"*,
@@ -39,17 +51,19 @@
                                        '     '
 ```
 
-This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
+## Table of Contents
 
- In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!
-
-[https://dtail.dev](https://dtail.dev)  
-
-I am using Rexify for my OpenBSD automation. Check out the following article covering my Rex setup in a little bit more detail:
-
-[Let's Encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
-
-I will also mention some relevant `Rexfile` snippets in this post!
+* [⇢ Installing DTail on OpenBSD](#installing-dtail-on-openbsd)
+* [⇢ ⇢ Compile it](#compile-it)
+* [⇢ ⇢ Install it](#install-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Configure it](#configure-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Update the key cache for it](#update-the-key-cache-for-it)
+* [⇢ ⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ Start it](#start-it)
+* [⇢ ⇢ Use it](#use-it)
+* [⇢ ⇢ Conclusions](#conclusions)
 
 ## Compile it
 
@@ -339,13 +353,13 @@ Check out the following for more information:
 [https://github.com/mimecast/dtail](https://github.com/mimecast/dtail)  
 [https://www.rexify.org](https://www.rexify.org)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
-[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
-[2022-10-30 Installing DTail on OpenBSD (You are currently reading this)](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2023-09-25 DTail usage examples](./2023-09-25-dtail-usage-examples.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2022-10-30 Installing DTail on OpenBSD (You are currently reading this)](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 [Back to the main site](../)  

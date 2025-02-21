@@ -1,0 +1,110 @@
+# "The Power of Neuroplasticity" book notes
+
+These notes capture key points from "The Power of Neuroplasticity" by Shad Helmstetter. These are for my personal use, but you might find them useful, too.
+
+## Table of Contents
+
+* [⇢ "The Power of Neuroplasticity" book notes](#the-power-of-neuroplasticity-book-notes)
+* [⇢ ⇢ Your thoughts can influence changes in your brain](#your-thoughts-can-influence-changes-in-your-brain)
+* [⇢ ⇢ Wire on what we can do and not what we can't](#wire-on-what-we-can-do-and-not-what-we-can-t)
+* [⇢ ⇢ Choose the friends you spend time woth carefully](#choose-the-friends-you-spend-time-woth-carefully)
+* [⇢ ⇢ Beware of the brain's autopilot](#beware-of-the-brain-s-autopilot)
+* [⇢ ⇢ Cultiate a positive mindset](#cultiate-a-positive-mindset)
+* [⇢ ⇢ The monkey mind](#the-monkey-mind)
+* [⇢ ⇢ Wiring good attitudes](#wiring-good-attitudes)
+* [⇢ ⇢ Techniques to train the brain](#techniques-to-train-the-brain)
+* [⇢ ⇢ Meditation ](#meditation-)
+
+## Your thoughts can influence changes in your brain
+
+Your thoughts can influence changes in your brain, a concept derived from the field of neuroscience. It's observed that your brain can rewire itself based on your thoughts and it doesn't remain fixed once you reach adulthood. Its plasticity allows it to adapt even in old age - yes, you can teach an old dog new tricks. If you want to change your life, you need to rewire your brain. This rewiring is a continuous feedback loop. You can program your future self by focusing on your desired outcomes, and your brain will then unconsciously guide you toward them. For instance, if you ruminate negatively about an upcoming presentation, you're likely to perform poorly. You would perform significantly better if you had approached it with a positive mindset. Ultimately, you become what you think about most.
+
+## Wire on what we can do and not what we can't
+
+The direction you want to go is more critical than where you've been. Many people tend to focus on what they can't do. Instead, we should rewire our brains to think about what we can accomplish now. The more you repeat a thought, the stronger the pathways in your brain become. It's a case of 'use it or lose it'.
+
+Your environment also plays a role in rewiring your brain, but this can sometimes result in unfavorable outcomes. The world feeds information into your mental computer according to its whims. Mirror neurons fire when we observe another person's behaviors. This is why you yawn when someone else yawns. It's not just actions that get copied, but also feelings and attitudes. When other people influence your thoughts and actions, it's as though they're programming your brain. We have a 'copycat' brain that helps us learn and adapt to the world, forming the basis of empathy.
+
+## Choose the friends you spend time woth carefully
+
+Choose the friends you spend time with carefully because they can influence your thoughts. Others' opinions are based on their perspectives and not necessarily aligned with yours. While they may not affect your goals and values, they can provide different viewpoints that are worth consideration when you're open to new insights. It's about exercising independence and choosing your influences wisely. Be aware that even television, if left running in the background, can subtly shape your thoughts. Question its influence and consider if there are better ways to spend your time. Your environment can affect your mood, success, and psychological well-being. Choose hobbies that nourish your mind in desirable ways.
+
+## Beware of the brain's autopilot
+
+Be mindful of your brain's autopilot mode, which often makes decisions unconsciously, like craving a dessert. It's important to consciously override these automatic behaviors. We're often so preoccupied that we rely on autopilot mode without considering who we really want to be. We need to take charge of our attitudes and feelings. It's a matter of discerning between the mind and the brain.
+
+## Cultiate a positive mindset
+
+The seven crucial elements for cultivating a positive mindset are:
+
+* Mindfulness: The more aware you are of your thought processes, the stronger they become. Focused mindfulness can also improve your memory. Evaluate your current actions and question whether they align with your intentions.
+* Choices: Make deliberate decisions to avoid random influences and create the right thought patterns. This approach is key to forming habits. It's about conscious versus unconscious choices.
+* Intention: Your intentions and thoughts can influence the outcome. Instead of dwelling on the past, focus on your plans for the future. This mindset will manifest your desired future. For instance, if you mentally visualize lifting heavier weights, you will gain more strength. Intention is the engine of change, both physically and mentally.
+* Focus: Pay attention to the details of your goals. The more specific you are, the more likely you are to achieve them. For instance, saying "I'm going to Disneyland on July 16th" is more effective than saying "I'm going to Disneyland this summer". If you don't have a clear vision of your goal, your brain may create one that doesn't align with your aspirations. Visualization is key; your brain treats what you imagine as reality.
+* Repetition: Repeat your goals and intentions from various angles to embed them in your mind. This practice creates neuronal pathways and solidifies habits. 
+* Emotion: Strong emotions make thought patterns more robust. Incorporate feelings into your goals to strengthen your mental attachment to them. For example, if you associate a goal with joy and satisfaction, it becomes easier to achieve. On the other hand, negative emotions like anger can lower your effective IQ. Visualize the success and positive outcomes associated with your goals. Use elements like music and physical movements to help generate positive emotions. These make the rewiring process more effective, and the new neurological paths stronger and more long-lasting.
+* Belief: This is the spiritual component of success. People who confidently believe in their abilities and outcomes tend to achieve better results than those who don't.
+
+They all work together, so apply and practise of all of them. 
+
+## The monkey mind
+
+"Mental noise," also known as the "monkey mind," is an indication of our active brain; these voices are not your true self. By listening to them, you can choose what to accept and what to ignore. It's like your mind running on autopilot. These voices are the programs stored in your brain over the years. They critically influence over 90 percent of your decisions. The way you talk to yourself programs your brain. Negative self-talk can be self-detrimental, while positive self-talk can be constructive. Conscious positive self-talk is the source of success and is always effective. The way you talk to yourself can mean the difference between success and failure. Listening passively to positive self-talk in the background can be beneficial, as well as before a meeting or other significant events.
+
+## Wiring good attitudes
+
+Attitudes can form either good or bad habits, and altering these attitudes can be beneficial. Attitudes can be controlled by our will, a choice that we can actively make. Foster and practice positive neuronal pathways, as it's a case of "use it or lose it." For example, anger and jealousy are automatic attitudes that we can control by mindfully thinking about them. We are not born with these attitudes; we learn them. Make a conscious choice about your attitude for the next day on the night before.
+
+With this clear and mindful choice, you'll have a better day laying down the construction lines to be built with repetition. Ask yourself, "Who is directing my attitude now?" and recalibrate as needed. Music is a safe and accessible means of initiating positive attitudes. It can be used to help associate a particular action, such as writing or programming, with a positive attitude. The easiest way to change an attitude is through self-talk.
+
+Top attitudes to wire in (post them at the wall to remember them):
+
+* Love
+* Optimism
+* Peace and Serenity (tranquillity)
+* Kindness and harmony
+* Determination and focus
+* Intuition and awareness
+* Spiritual well-being
+* Service to others
+* Thankfulness, read the list
+* Forgiveness, all others and also myself
+* Healthiness
+* Patients, removing stress
+* Success
+
+## Techniques to train the brain
+
+To train your brain:
+
+* Remember grocery list
+* Learn a new language
+* Meditation
+* Read books about topics you don't know about yet
+* Exercise
+* Games which are challenging
+* Write a book or blog
+
+Each of these attitudes helps to wire and pattern your brain for growth. Actively participate in activities that reinforce these attitudes, repeat them, and keep doing them. Real focus is not a casual event. The activities should be fun but must also present a reasonable challenge. Think of it as growing a garden, but with your brain's neurons. The more emotional involvement you have, the stronger the rewiring will be. Love your activities and approach them with enthusiasm.
+
+## Meditation 
+
+Meditation changes the physical structure of your brain. It's a focusing tool for your mind.
+
+* Find time and place for meditation.
+* Sit in a comfortable position
+* Close your eyes and relax (Note: some recommend keeping eyes open during meditation).
+* Breathe deeply and slowly.
+* Repeat or focus on a word (e.g., "acceptance" or "this is it").
+* Ignore the past and future, focus on your central point (e.g., the task at hand).
+* Let other thoughts pass, but don't fight them
+* Reward yourself for not thinking about clutter; let your mind become free of distractions.
+* Listen to yourself, ask questions, you will receive short precise
+* Relax, breath
+* Reflect..
+
+Meditation is about letting go of expectations. Every practice is unique and personal.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  

@@ -1,0 +1,180 @@
+# From `babylon5.buetow.org` to `*.buetow.cloud`
+
+> Published at 2024-02-04T00:50:50+02:00
+
+Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.
+
+So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don't want to become the old man who yells at cloud :D
+
+[![Old man yells at cloud](./from-.org-to-.cloud/old-man-yells-at-cloud.jpg "Old man yells at cloud")](./from-.org-to-.cloud/old-man-yells-at-cloud.jpg)  
+
+## Table of Contents
+
+* [⇢ From `babylon5.buetow.org` to `*.buetow.cloud`](#from-babylon5buetoworg-to-buetowcloud)
+* [⇢ ⇢ The old `*.buetow.org` way](#the-old-buetoworg-way)
+* [⇢ ⇢ I kept my `buetow.org` OpenBSD boxes alive](#i-kept-my-buetoworg-openbsd-boxes-alive)
+* [⇢ ⇢ The new `*.buetow.cloud` way](#the-new-buetowcloud-way)
+* [⇢ ⇢ The container apps](#the-container-apps)
+* [⇢ ⇢ ⇢ `flux.buetow.cloud`](#fluxbuetowcloud)
+* [⇢ ⇢ ⇢ `audiobookshelf.buetow.cloud`](#audiobookshelfbuetowcloud)
+* [⇢ ⇢ ⇢ `syncthing.buetow.cloud`](#syncthingbuetowcloud)
+* [⇢ ⇢ ⇢ `radicale.buetow.cloud`](#radicalebuetowcloud)
+* [⇢ ⇢ ⇢ `bag.buetow.cloud`](#bagbuetowcloud)
+* [⇢ ⇢ ⇢ `anki.buetow.cloud`](#ankibuetowcloud)
+* [⇢ ⇢ ⇢ `vault.buetow.cloud`](#vaultbuetowcloud)
+* [⇢ ⇢ ⇢ `bastion.buetow.cloud`](#bastionbuetowcloud)
+* [⇢ ⇢ Conclusion](#conclusion)
+
+## The old `*.buetow.org` way
+
+Before the migration, all those services were reachable through `buetow.org`-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let's Encrypt certificates). The Rocky Linux 9's hostname was `babylon5.buetow.org` (based on the Science Fiction series). 
+
+[https://en.wikipedia.org/wiki/Babylon_5](https://en.wikipedia.org/wiki/Babylon_5)  
+
+The downsides of this setup were:
+
+* Not highly available. If the server goes down, no service is reachable until it's repaired. To be fair, the Hetzner cloud VM is redundant by itself and would have re-spawned on a different worker node, I suppose. 
+* Manual installation.
+
+About the manual installation part: I could have used a configuration management system like Rexify, Puppet, etc. But I decided against it back in time, as setting up Docker containers isn't so complicated through simple start scripts. And it's only a single Linux box where a manual installation is less painful. However, regular backups (which Hetzner can do automatically for you) were a must.
+
+The benefits of this setup were:
+
+* KISS (Keep it Simple Stupid)
+* Cheap
+
+## I kept my `buetow.org` OpenBSD boxes alive
+
+As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.
+
+My other two OpenBSD VMs (`blowfish.buetow.org`, hosted at Hetzner, and `fishfinger.buetow.org`, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:
+
+* HTTP server for my websites (e.g. `https://foo.zone`, ...)
+* ACME for Let's Encrypt TLS certificate auto-renewal.
+* Gemini server for my capsules (e.g. `gemini://foo.zone`)
+* Authoritative DNS servers for my domains (but `buetow.cloud`, which is on Route 53 now)
+* Mail transfer agent (MTA)
+* My Gogios monitoring system.
+* My IRC bouncer.
+
+It is all automated with Rex, aka Rexify. This OpenBSD setup is my "fun" or "for pleasure" setup. Whereas the Rocky Linux 9 one I always considered the "pratical means to the end"-setup to have 3rd party Docker containers up and running with as little work as possible.
+
+[(R)?ex, the friendly automation framework](https://www.rexify.org)  
+[KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[Let's encrypt with OpenBSD and Rex](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
+
+## The new `*.buetow.cloud` way
+
+With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.
+
+I decided to automate everything with Terraform, as I wanted to learn to use it as it appears standard now in the job market.
+
+All services are installed automatically to AWS ECS Fargate. ECS is AWS's Elastic Container Service, and Fargate automatically manages the underlying hardware infrastructure (e.g., how many CPUs, RAM, etc.) for me. So I don't have to bother about having enough EC2 instances to serve my demands, for example.
+
+The authoritative DNS for the `buetow.cloud` domain is AWS Route 53. TLS certificates are free here at AWS and offloaded through the AWS Application Load Balancer. The LB acts as a proxy to the ECS container instances of the services. A few services I run in ECS Fargate also require the AWS Network Load Balancer.
+
+All services require some persistent storage. For that, I use an encrypted EFS file system, automatically replicated across all AZs (availability zones) of my region of choice, `eu-central-1`.
+
+In case of an AZ outage, I could re-deploy all the failed containers in another AZ, and all the data would still be there.
+
+The EFS automatically gets backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days. 
+
+Domain registration, TLS certificate configuration and configuration of the EFS backup were quickly done through the AWS web interface. These were only one-off tasks, so they weren't fully automated through Terraform. 
+
+You can find all Terraform manifests here:
+
+[https://codeberg.org/snonux/terraform](https://codeberg.org/snonux/terraform)  
+
+Whereas:
+
+* `org-buetow-base` sets up the bare VPC (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It's the requirement for most other Terraform manifests in this repository.
+* `org-buetow-bastion` sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).
+* `org-buetow-elb` sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.
+* `org-buetow-ecs` finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the `variables.tf` file.
+
+## The container apps
+
+And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 & IPv6). 
+
+### `flux.buetow.cloud`
+
+Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.
+
+Miniflux requires two ECS containers. One is the Miniflux app, and the other is the PostgreSQL DB.
+
+[https://miniflux.app/](https://miniflux.app/)  
+
+
+### `audiobookshelf.buetow.cloud`
+
+Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.
+
+With Audiobookshelf, I replaced my former Audible subscription and my separate Podcast app. For Podcast synchronisation I used to use the Gpodder NextCloud sync app. But that one I retired now with Audiobookshelf as well :-)
+
+[https://www.audiobookshelf.org](https://www.audiobookshelf.org)  
+
+### `syncthing.buetow.cloud`
+
+Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it's transmitted over the internet.
+
+With Syncthing, I retired my old NextCloud Files and file sync client on all my devices. I also quit my NextCloud Notes setup. All my Notes are now plain Markdown files in a `Notes` directory. On Android, I can edit them with any text or Markdown editor (e.g. Obsidian), and they will be synchronised via Syncthing to my other computers, both forward and back.
+
+I use Syncthing to synchronise some of my Phone's data (e.g. Notes, Pictures and other documents). Initially, I synced all of my pictures, videos, etc., with AWS. But that was pretty expensive. So for now, I use it only whilst travelling. Otherwise, I will use my Syncthing instance here on my LAN (I have a cheap cloud backup in AWS S3 Glacier Deep Archive, but that's for another blog post).
+
+[https://syncthing.net/](https://syncthing.net/)  
+
+### `radicale.buetow.cloud`
+
+Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn't a ready-to-use Docker image. So, I created my own.
+
+On Android, it works great together with the DAVx5 client for synchronisation.
+
+[https://radicale.org/](https://radicale.org/)  
+[https://codeberg.org/snonux/docker-radicale-server](https://codeberg.org/snonux/docker-radicale-server)  
+[https://www.davx5.com/](https://www.davx5.com/)  
+
+### `bag.buetow.cloud`
+
+Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!
+
+[https://wallabag.org/](https://wallabag.org/)  
+[https://github.com/wallabag/wallabag](https://github.com/wallabag/wallabag)  
+
+### `anki.buetow.cloud`
+
+Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server `anki-sync-server`. For some reason (not going into the details here), I had to build my own Docker image for the server.
+
+[https://apps.ankiweb.net/](https://apps.ankiweb.net/)  
+[https://codeberg.org/snonux/docker-anki-sync-server](https://codeberg.org/snonux/docker-anki-sync-server)  
+
+### `vault.buetow.cloud`
+
+Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.
+
+I currently don't use it, but I may in the future. I made it available in my ECS Fargate setup anyway for now.
+
+[https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden)  
+
+I currently use `geheim`, a Ruby command line tool I wrote, as my current password manager. You can read a little bit about it here under "More":
+
+[Sweating the small stuff ](./2022-06-15-sweating-the-small-stuff.md)  
+
+### `bastion.buetow.cloud`
+
+This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.
+
+## Conclusion
+
+I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.
+
+All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don't think Terraform's HCL is a nice language. It get's it's job done, but it could be more elegant IMHO.
+
+Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! 
+
+Will I keep it in the cloud? I don't know yet. But maybe I won't renew the `buetow.cloud` domain and instead will use `*.cloud.buetow.org` or `*.aws.buetow.org` subdomains. 
+
+Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  

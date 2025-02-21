@@ -2,6 +2,16 @@
 
 > Published at 2021-10-22T10:02:46+03:00
 
+I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.
+
+Unfortunately, no system is 100% reliable, and you can never be prepared for a subset of the possible problem-space. IT infrastructures can be complex. Not even mentioning Kubernetes yet, a Microservice-based infrastructure can complicate things even further. You can take care of 99% of all potential problems by following all DevOps best practices. Those best practices are not the subject of this blog post; this post is about the sub 1% of the issues arising from nowhere you can't be prepared for. 
+
+Is there a software bug in a production, even though the software passed QA (after all, it is challenging to reproduce production behaviour in an artificial testing environment) and the software didn't show any issues running in production until a special case came up just now after it got deployed to production a week ago? Are there multiple hardware failure happening which causes loss of service redundancy or data inaccessibility? Is the automation of external customers connected to our infrastructure putting unexpectedly extra pressure on your grid, driving higher latencies and putting the SLAs at risk? You bet the solution is: Sysadmins, SREs and DevOps Engineers to the rescue. 
+
+You agree that fixing production issues this way is not proactive but rather reactive. I prefer to call it defensive, though, as you "defend" your system against a production issue. But, at the same time, you have to take a cautious (defensive) approach to fix it, as you don't want to make things worse. 
+
+Over time, I have compiled a list of fire-fighting automation strategies, which I would like to share here. 
+
 ```
                                                             c=====e
                                                                H
@@ -12,15 +22,17 @@
                            ASCII Art by Clyde Watson
 ```
 
-I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.
+## Table of Contents
 
-Unfortunately, no system is 100% reliable, and you can never be prepared for a subset of the possible problem-space. IT infrastructures can be complex. Not even mentioning Kubernetes yet, a Microservice-based infrastructure can complicate things even further. You can take care of 99% of all potential problems by following all DevOps best practices. Those best practices are not the subject of this blog post; this post is about the sub 1% of the issues arising from nowhere you can't be prepared for. 
-
-Is there a software bug in a production, even though the software passed QA (after all, it is challenging to reproduce production behaviour in an artificial testing environment) and the software didn't show any issues running in production until a special case came up just now after it got deployed to production a week ago? Are there multiple hardware failure happening which causes loss of service redundancy or data inaccessibility? Is the automation of external customers connected to our infrastructure putting unexpectedly extra pressure on your grid, driving higher latencies and putting the SLAs at risk? You bet the solution is: Sysadmins, SREs and DevOps Engineers to the rescue. 
-
-You agree that fixing production issues this way is not proactive but rather reactive. I prefer to call it defensive, though, as you "defend" your system against a production issue. But, at the same time, you have to take a cautious (defensive) approach to fix it, as you don't want to make things worse. 
-
-Over time, I have compiled a list of fire-fighting automation strategies, which I would like to share here. 
+* [⇢ Defensive DevOps](#defensive-devops)
+* [⇢ ⇢ Meet Defensive DevOps](#meet-defensive-devops)
+* [⇢ ⇢ Don't fully automate from the beginning](#don-t-fully-automate-from-the-beginning)
+* [⇢ ⇢ Develop code directly on production systems](#develop-code-directly-on-production-systems)
+* [⇢ ⇢ ⇢ Don't make it worse](#don-t-make-it-worse)
+* [⇢ ⇢ Test your code](#test-your-code)
+* [⇢ ⇢ Automation](#automation)
+* [⇢ ⇢ Out of office hours](#out-of-office-hours)
+* [⇢ ⇢ Retrospective](#retrospective)
 
 ## Meet Defensive DevOps
 

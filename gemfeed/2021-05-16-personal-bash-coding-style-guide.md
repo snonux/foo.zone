@@ -2,6 +2,10 @@
 
 > Published at 2021-05-16T14:51:57+01:00
 
+Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
+
+[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)  
+
 ```
    .---------------------------.
   /,--..---..---..---..---..--. `.
@@ -15,9 +19,26 @@
 "\__/"---------------"\__/"-+---+'
 ```                     
 
-Lately, I have been polishing and writing a lot of Bash code. Not that I never wrote a lot of Bash, but now as I also looked through the Google Shell Style Guide, I thought it is time also to write my thoughts on that. I agree with that guide in most, but not in all points. 
+## Table of Contents
 
-[Google Shell Style Guide](https://google.github.io/styleguide/shellguide.html)  
+* [⇢ Personal Bash coding style guide](#personal-bash-coding-style-guide)
+* [⇢ ⇢ My modifications](#my-modifications)
+* [⇢ ⇢ ⇢ Shebang](#shebang)
+* [⇢ ⇢ ⇢ Two space soft-tabs indentation](#two-space-soft-tabs-indentation)
+* [⇢ ⇢ ⇢ Breaking long pipes](#breaking-long-pipes)
+* [⇢ ⇢ ⇢ Quoting your variables](#quoting-your-variables)
+* [⇢ ⇢ ⇢ Prefer built-in commands over external commands](#prefer-built-in-commands-over-external-commands)
+* [⇢ ⇢ My additions](#my-additions)
+* [⇢ ⇢ ⇢ Use of 'yes' and 'no'](#use-of--yes--and--no-)
+* [⇢ ⇢ ⇢ Non-evil alternative to variable assignments via eval](#non-evil-alternative-to-variable-assignments-via-eval)
+* [⇢ ⇢ ⇢ Prefer pipes over arrays for list processing](#prefer-pipes-over-arrays-for-list-processing)
+* [⇢ ⇢ ⇢ Assign-then-shift](#assign-then-shift)
+* [⇢ ⇢ ⇢ Paranoid mode](#paranoid-mode)
+* [⇢ ⇢ Learned](#learned)
+* [⇢ ⇢ ⇢ Unintended lexicographical comparison.](#unintended-lexicographical-comparison)
+* [⇢ ⇢ ⇢ PIPESTATUS](#pipestatus)
+* [⇢ ⇢ Use common sense and BE CONSISTENT.](#use-common-sense-and-be-consistent)
+* [⇢ ⇢ Advanced Bash learning pro tip](#advanced-bash-learning-pro-tip)
 
 ## My modifications
 
@@ -27,13 +48,13 @@ These are my modifications to the Google Guide.
 
 Google recommends using always...
 
-```
+```bash
 #!/bin/bash 
 ```
 
 ... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don't have Bash installed to /bin/bash). Better is:
 
-```
+```bash
 #!/usr/bin/env bash
 ```
 
@@ -51,7 +72,7 @@ I hit the 80 character line length quicker with the four spaces than with two sp
 
 Google recommends breaking up long pipes like this:
 
-```
+```bash
 # All fits on one line
 command1 | command2
 
@@ -64,7 +85,7 @@ command1 \
 
 I think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:
 
-```
+```bash
 # Long commands
 command1 |
     command2 |
@@ -72,11 +93,13 @@ command1 |
     command4
 ```
 
+> Update: It's 2023 now, and I have changed my mind. I think Google's way is the better one. It may be a bit more to type, but the leading `|` are a nice eye catcher, so you know immediately what is going on!
+
 ### Quoting your variables
 
 Google recommends always quote your variables. Generally, it would be best if you did that only for variables where you are unsure about the content/values of the variables (e.g., content is from an external input source and may contain whitespace or other special characters). In my opinion, the code will become quite noisy when you always quote your variables like this:
 
-```
+```bash
 greet () {
     local -r greeting="${1}"
     local -r name="${2}"
@@ -86,7 +109,7 @@ greet () {
 
 In this particular example, I agree that you should quote them as you don't know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:
 
-```
+```bash
 say_hello_to_paul () {
     local -r greeting=Hello
     local -r name=Paul
@@ -96,7 +119,7 @@ say_hello_to_paul () {
 
 You see, I also omitted the curly braces { } around the variables. I only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:
 
-```
+```bash
 declare FOO=bar
 # Curly braces around FOO are necessary
 echo "foo${FOO}baz"
@@ -108,7 +131,7 @@ A few more words on always quoting the variables: For the sake of consistency (a
 
 Google recommends using the built-in commands over available external commands where possible:
 
-```
+```bash
 # Prefer this:
 addition=$(( X + Y ))
 substitution="${string/#foo/bar}"
@@ -132,7 +155,7 @@ I even didn't get started with what you can do with awk (especially GNU Awk), a 
 
 Bash does not support a boolean type. I tend just to use the strings 'yes' and 'no' here. I used 0 for false and 1 for true for some time, but I think that the yes/no strings are easier to read. Yes, the Bash script would need to perform string comparisons on every check, but if performance is crucial to you, you wouldn't want to use a Bash script anyway, correct?
 
-```
+```bash
 declare -r SUGAR_FREE=yes
 declare -r I_NEED_THE_BUZZ=no
 
@@ -153,14 +176,13 @@ buy_soda $I_NEED_THE_BUZZ
 
 Google is in the opinion that eval should be avoided. I think so too. They list these examples in their guide:
 
-```
+```bash
 # What does this set?
 # Did it succeed? In part or whole?
 eval $(set_my_variables)
 
 # What happens if one of the returned values has a space in it?
 variable="$(eval some_function)"
-
 ```
 
 However, if I want to read variables from another file, I don't have to use eval here. I only have to source the file:
@@ -195,7 +217,7 @@ The downside is that ShellCheck won't be able to follow the dynamic sourcing any
 
 When I do list processing in Bash, I prefer to use pipes. You can chain them through Bash functions as well, which is pretty neat. Usually, my list processing scripts are of a structure like this:
 
-```
+```bash
 filter_lines () {
     echo 'Start filtering lines in a fancy way!' >&2
     grep ... | sed ....
@@ -239,35 +261,38 @@ I often refactor existing Bash code. That leads me to add and removing function 
 
 The solution is to use of the "assign-then-shift"-method, which goes like this: "local -r var1=$1; shift; local -r var2=$1; shift". The idea is that you only use "$1" to assign function arguments to named (better readable) local function variables. You will never have to bother about "$2" or above. That is very useful when you constantly refactor your code and remove or add function arguments. It's something that I picked up from a colleague (a pure Bash wizard) some time ago:
 
-```
+```bash
 some_function () {
     local -r param_foo="$1"; shift
     local -r param_baz="$1"; shift
     local -r param_bay="$1"; shift
-    ...
+
+    # ...
 }
 ```
 
 Want to add a param_baz? Just do this:
 
-```
+```bash
 some_function () {
     local -r param_foo="$1"; shift
     local -r param_bar="$1"; shift
     local -r param_baz="$1"; shift
     local -r param_bay="$1"; shift
-    ...
+
+    # ...
 }
 ```
 
 Want to remove param_foo? Nothing easier than that:
 
-```
+```bash
 some_function () {
     local -r param_bar="$1"; shift
     local -r param_baz="$1"; shift
     local -r param_bay="$1"; shift
-    ...
+    
+    # ...
 }
 ```
 
@@ -277,7 +302,7 @@ As you can see, I didn't need to change any other assignments within the functio
 
 I call this the paranoid mode. The Bash will stop executing when a command exits with a status not equal to 0:
 
-```
+```bash
 set -e
 grep -q foo <<< bar
 echo Jo
@@ -285,14 +310,14 @@ echo Jo
 
 Here 'Jo' will never be printed out as the grep didn't find any match. It's unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:
 
-```
+```bash
 #!/usr/bin/env bash
 
 set -e
 
 some_function () {
-    .. some critical code
-    ...
+    # .. some critical code
+    # ...
 
     set +e
     # Grep might fail, but that's OK now
@@ -300,11 +325,11 @@ some_function () {
     local -i ec=$?
     set -e
 
-    .. critical code continues ...
+    # .. critical code continues ...
     if [[ $ec -ne 0 ]]; then
-        ...
+        : # ...
     fi
-    ...
+    # ...
 }
 ```
 
@@ -316,7 +341,7 @@ There are also a couple of things I've learned from Google's guide.
 
 The following looks like a valid Bash code:
 
-```
+```bash
 if [[ "${my_var}" > 3 ]]; then
     # True for 4, false for 22.
     do_something
@@ -325,7 +350,7 @@ fi
 
 ... but it is probably an unintended lexicographical comparison. A correct way would be:
 
-```
+```bash
 if (( my_var > 3 )); then
     do_something
 fi
@@ -333,7 +358,7 @@ fi
 
 or
 
-```
+```bash
 if [[ "${my_var}" -gt 3 ]]; then
     do_something
 fi
@@ -345,7 +370,7 @@ I have never used the PIPESTATUS variable before. I knew that it's there, but I 
 
 The PIPESTATUS variable in Bash allows checking of the return code from all parts of a pipe. If it's only necessary to check the success or failure of the whole pipe, then the following is acceptable:
 
-```
+```bash
 tar -cf - ./* | ( cd "${dir}" && tar -xf - )
 if (( PIPESTATUS[0] != 0 || PIPESTATUS[1] != 0 )); then
     echo "Unable to tar files to ${dir}" >&2
@@ -354,7 +379,7 @@ fi
 
 However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you'll need to assign PIPESTATUS to another variable immediately after running the command (don't forget that [ is a command and will wipe out PIPESTATUS).
 
-```
+```bash
 tar -cf - ./* | ( cd "${DIR}" && tar -xf - )
 return_codes=( "${PIPESTATUS[@]}" )
 if (( return_codes[0] != 0 )); then
@@ -380,13 +405,14 @@ I also highly recommend having a read through the "Advanced Bash-Scripting Guide
 
 [Advanced Bash-Scripting Guide](https://tldp.org/LDP/abs/html/)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-05-16 Personal Bash coding style guide (You are currently reading this)](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide (You are currently reading this)](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 [Back to the main site](../)  

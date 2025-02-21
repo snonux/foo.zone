@@ -2,13 +2,11 @@
 
 > Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28
 
-[![Comic source: XKCD](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png "Comic source: XKCD")](./2022-05-27-perl-is-still-a-great-choice/regular_expressions.png)  
-
 Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it's not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and `perl` the name of the interpreter or the interpreter command.
 
 Unfortunately (it makes me sad), Perl's popularity has been declining over the last years as Google trends shows:
 
-[![./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)](./2022-05-27-perl-is-still-a-great-choice/googletrendsperl.jpg)  
+[![./perl-is-still-a-great-choice/googletrendsperl.jpg](./perl-is-still-a-great-choice/googletrendsperl.jpg)](./perl-is-still-a-great-choice/googletrendsperl.jpg)  
 
 So why is that? Once the de-facto standard super-glue language for the web nowadays seems to have a bad reputation. Often, people state:
 
@@ -16,6 +14,17 @@ So why is that? Once the de-facto standard super-glue language for the web nowad
 * Perl? Isn't it abandoned? It's still at version 5!
 * Why use Perl as there are better alternatives?
 * Why all the sigils? It looks like an exploding ASCII factory!!
+
+[![Comic source: XKCD](./perl-is-still-a-great-choice/regular_expressions.png "Comic source: XKCD")](./perl-is-still-a-great-choice/regular_expressions.png)  
+
+## Table of Contents
+
+* [⇢ Perl is still a great choice](#perl-is-still-a-great-choice)
+* [⇢ ⇢ Write-only language](#write-only-language)
+* [⇢ ⇢ Is Perl abandoned?](#is-perl-abandoned)
+* [⇢ ⇢ Why use Perl as there are better alternatives?](#why-use-perl-as-there-are-better-alternatives)
+* [⇢ ⇢ Why all the sigils? It looks like an exploding ASCII factory!!](#why-all-the-sigils-it-looks-like-an-exploding-ascii-factory)
+* [⇢ ⇢ Where do I personally still use perl?](#where-do-i-personally-still-use-perl)
 
 ## Write-only language
 
@@ -134,13 +143,13 @@ Btw.: Did you know that the first version of PHP was a set of Perl snippets? Onl
 
 [Why Perl is still relevant in 2022](https://stackoverflow.blog/2022/07/06/why-perl-is-still-relevant-in-2022/)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2008-06-26 Perl Poetry](./2008-06-26-perl-poetry.md)  
-[2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
-[2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  
 [2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  
+[2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
+[2008-06-26 Perl Poetry](./2008-06-26-perl-poetry.md)  
 
 [Back to the main site](../)  

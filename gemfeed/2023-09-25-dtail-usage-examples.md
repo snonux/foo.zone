@@ -22,6 +22,22 @@ DTail is a distributed DevOps tool for tailing, grepping, catting logs and other
                          |                           |
 ```
 
+## Table of Contents
+
+* [⇢ DTail usage examples](#dtail-usage-examples)
+* [⇢ ⇢ Commands](#commands)
+* [⇢ ⇢ Following logs](#following-logs)
+* [⇢ ⇢ Aggregating logs](#aggregating-logs)
+* [⇢ ⇢ How to use `dcat`](#how-to-use-dcat)
+* [⇢ ⇢ How to use `dgrep`](#how-to-use-dgrep)
+* [⇢ ⇢ How to use `dmap`](#how-to-use-dmap)
+* [⇢ ⇢ How to use the DTail serverless mode](#how-to-use-the-dtail-serverless-mode)
+* [⇢ ⇢ ⇢ Serverless map-reduce query](#serverless-map-reduce-query)
+* [⇢ ⇢ ⇢ Aggregating CSV files](#aggregating-csv-files)
+* [⇢ ⇢ ⇢ Other serverless commands](#other-serverless-commands)
+
+## Commands
+
 DTail consists out of a server and several client binaries. In this post, I am showcasing their use!
 
 * Use `dtail` to follow logs
@@ -228,17 +244,17 @@ diff /etc/test /etc/passwd
 
 Use `--help` for more available options. Or go to the DTail page for more information! Hope you find DTail useful!
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
-[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
-[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
 [2023-09-25 DTail usage examples (You are currently reading this)](./2023-09-25-dtail-usage-examples.md)  
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-03-06 The release of DTail 4.0.0](./2022-03-06-the-release-of-dtail-4.0.0.md)  
+[2021-04-22 DTail - The distributed log tail program](./2021-04-22-dtail-the-distributed-log-tail-program.md)  
 
 I hope you find the tools presented in this post useful!
 
 Paul
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  

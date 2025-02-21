@@ -1,0 +1,50 @@
+# Site Reliability Engineering - Part 2: Operational Balance
+
+> Published at 2023-11-19T00:18:18+03:00
+
+This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.
+
+[2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture](./2023-08-18-site-reliability-engineering-part-1.md)  
+[2023-11-19 Site Reliability Engineering - Part 2: Operational Balance (You are currently reading this)](./2023-11-19-site-reliability-engineering-part-2.md)  
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture](./2024-01-09-site-reliability-engineering-part-3.md)  
+[2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./2024-09-07-site-reliability-engineering-part-4.md)  
+
+```
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⠿⠿⠿⠶⠾⠿⠿⣿⣿⣿⣿⣿⣿⠿⠿⠶⠶⠿⠿⠿⣷⠀⠀⠀⠀
+⠀⠀⠀⣸⢿⣆⠀⠀⠀⠀⠀⠀⠀⠙⢿⡿⠉⠀⠀⠀⠀⠀⠀⠀⣸⣿⡆⠀⠀⠀
+⠀⠀⢠⡟⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⣾⣧⠀⠀⠀⠀⠀⠀⠀⣰⡟⠀⢻⡄⠀⠀
+⠀⢀⣾⠃⠀⠀⢿⡄⠀⠀⠀⠀⠀⢠⣿⣿⡀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠘⣷⡀⠀
+⠀⣼⣏⣀⣀⣀⣈⣿⡀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⢀⣿⣃⣀⣀⣀⣸⣧⠀
+⠀⢻⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⡿⠀
+⠀⠀⠉⠛⠛⠛⠋⠁⠀⠀⠀⠀⢸⣿⣿⣿⣿⡆⠀⠀⠀⠀⠈⠙⠛⠛⠛⠉⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
+```
+
+## Striking the Right Balance Between Reliability and Speed
+
+Site Reliability Engineering is more than just a bunch of best practices or methods. It's a guiding light for engineering teams, helping them navigate the tricky waters of modern software development and system management.
+In the world of software production, there are two big forces that often clash: the push for fast feature releases (velocity) and the need for reliable systems. Traditionally, moving faster meant more risk. SRE helps balance these opposing goals with things like error budgets and SLIs/SLOs. These tools give teams a clear way to measure how much they can push changes without hurting system health. So, the error budget becomes a balancing act, helping teams trade off between innovation and reliability.
+
+Finding the right balance in SRE means juggling operations and coding. Ideally, engineers should split their time 50/50 between these tasks. This isn't just a random rule; it highlights how much SRE values both maintaining smooth operations and driving innovation. This way, SREs not only handle today's problems but also prepare for tomorrow's challenges.
+
+But not all operations tasks are the same. SRE makes a clear distinction between "ops work" and "toil." Ops work is essential for maintaining systems and adds value, while toil is the repetitive, boring stuff that doesn’t. It's super important to recognize and minimize toil because a culture that lets engineers get bogged down in it will kill innovation and growth. The way an organization handles toil says a lot about its operational health and commitment to balance.
+
+A key part of finding operational balance is the tools and processes that SREs use. Great monitoring and observability tools, especially those that can handle lots of complex data, are essential. This isn’t just about having the right tech—it shows that the organization values proactive problem-solving. With systems that can spot potential issues early, SREs can keep things stable while still pushing forward.
+
+Operational balance isn't just about tech or processes; it's also about people. The well-being of on-call engineers is just as important as the health of the services they manage. Doing postmortems after incidents, having continuous feedback loops, and identifying gaps in tools, skills, or resources all help make sure the human side of operations gets the attention it deserves.
+
+In the end, finding operational balance in SRE is an ongoing journey, not a one-time thing. Companies need to keep reassessing their practices, tools, and especially their culture. When they get this balance right, they can keep innovating without sacrificing the reliability of their systems, leading to long-term success.
+
+That all sounds pretty idealistic. The reality is that getting the perfect balance is really tough. No system is ever going to be perfect. But hey, we should still strive for it!
+
+Continue with the third part of this series:
+
+[2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture](./2024-01-09-site-reliability-engineering-part-3.md)  
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  

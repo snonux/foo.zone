@@ -1,6 +1,29 @@
 # "The Stoic Challenge" book notes
 
-> Last updated 29.5.2022
+> Published at 2024-07-07T12:46:55+03:00
+
+These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher's Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. 
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
+## Table of Contents
+
+* [⇢ "The Stoic Challenge" book notes](#the-stoic-challenge-book-notes)
+* [⇢ ⇢ God sets you up for a challenge](#god-sets-you-up-for-a-challenge)
+* [⇢ ⇢ Negative visualization](#negative-visualization)
+* [⇢ ⇢ Oh, nice trick, you stoic "god"! ;-)](#oh-nice-trick-you-stoic-god--)
+
+## God sets you up for a challenge
 
 Gods set you up for a challenge to see how resilient you are. Is getting angry worth the price? If you stay calm then you can find the optimal workaround for the obstacle. Stay calm even with big setbacks. Practice minimalism of negative emotions.
 
@@ -31,5 +54,16 @@ Take setbacks as a challenge. Also take it with some humor.
 What would the stoic god's do next? This is just a test strategy by them. Don't be frustrated at all but be astonished of what comes next. Thank the stoic gods of testing you. This is comfort zone extension of the stoics aka toughness Training.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other book notes of mine are:
+
+[2024-10-24 "Staff Engineer" book notes](./staff-engineer.md)  
+[2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)](./the-stoic-challenge.md)  
+[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
+[2023-11-11 "Mind Management" book notes](./mind-management.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
+[2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
+[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
 
 [Back to the main site](../)  

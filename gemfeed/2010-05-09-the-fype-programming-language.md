@@ -2,6 +2,12 @@
 
 > Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05
 
+Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.
+
+The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. 
+
+Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".
+
 ```
       ____                                      _        __       
      / / _|_   _ _ __   ___    _   _  ___  __ _| |__    / _|_   _ 
@@ -11,11 +17,33 @@
            |___/|_|            |___/                        |___/ 
 ```
 
-Fype is an interpreted programming language created by me for learning and fun. The interpreter is written in C. It has been tested on FreeBSD and NetBSD and may also work on other Unix like operating systems such as Linux based ones. Besides learning and fun, there is no other use case of why Fype exists as many other programming languages are much faster and more powerful.
+## Table of Contents
 
-The Fype syntax is straightforward and uses a maximum look ahead of 1 and an effortless top-down parsing mechanism. Fype is parsing and interpreting its code simultaneously. This means that syntax errors are only detected during program runtime. 
-
-Fype is a recursive acronym and means "Fype is For Your Program Execution" or "Fype is Free Yak Programmed for ELF". You could also say, "It's not a hype - it's Fype!".
+* [⇢ The Fype Programming Language](#the-fype-programming-language)
+* [⇢ ⇢ Object-oriented C style](#object-oriented-c-style)
+* [⇢ ⇢ Data types](#data-types)
+* [⇢ ⇢ Syntax](#syntax)
+* [⇢ ⇢ ⇢ Comments](#comments)
+* [⇢ ⇢ ⇢ Variables](#variables)
+* [⇢ ⇢ ⇢ Synonyms](#synonyms)
+* [⇢ ⇢ Statements and expressions](#statements-and-expressions)
+* [⇢ ⇢ ⇢ Parenthesis](#parenthesis)
+* [⇢ ⇢ ⇢ Basic expressions](#basic-expressions)
+* [⇢ ⇢ ⇢ Bitwise expressions](#bitwise-expressions)
+* [⇢ ⇢ ⇢ Numeric expressions](#numeric-expressions)
+* [⇢ ⇢ Control statements](#control-statements)
+* [⇢ ⇢ Scopes](#scopes)
+* [⇢ ⇢ Definedness ](#definedness-)
+* [⇢ ⇢ System ](#system-)
+* [⇢ ⇢ ⇢ I/O ](#io-)
+* [⇢ ⇢ Procedures and functions](#procedures-and-functions)
+* [⇢ ⇢ ⇢ Procedures](#procedures)
+* [⇢ ⇢ ⇢ Nested procedures](#nested-procedures)
+* [⇢ ⇢ ⇢ Functions](#functions)
+* [⇢ ⇢ ⇢ Nested functions](#nested-functions)
+* [⇢ ⇢ Arrays](#arrays)
+* [⇢ ⇢ Fancy stuff](#fancy-stuff)
+* [⇢ ⇢ May the source be with you](#may-the-source-be-with-you)
 
 ## Object-oriented C style
 

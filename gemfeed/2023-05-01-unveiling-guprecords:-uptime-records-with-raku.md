@@ -19,7 +19,15 @@
 +-----+-----------------+-----------------------------+
 ```
 
-# Introduction
+## Table of Contents
+
+* [⇢ Unveiling `guprecords.raku`: Global Uptime Records with Raku](#unveiling-guprecordsraku-global-uptime-records-with-raku)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ How Guprecords works](#how-guprecords-works)
+* [⇢ ⇢ Example](#example)
+* [⇢ ⇢ Conclusion](#conclusion)
+
+## Introduction
 
 For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.
 
@@ -147,14 +155,14 @@ So far, I have only scratched the surface of what Raku can do. I hope to find mo
 * A social media sharing scheduler a la `buffer.com`. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it's not really reliable.
 * Rewrite the static photo album generator of `irregular.ninja` in Raku (from Bash).
 
+E-Mail your comments to hi@foo.zone :-)
+
 Other related posts are:
 
-[2008-06-26 Perl Poetry](./2008-06-26-perl-poetry.md)  
-[2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
-[2022-05-27 Perl is still a great choice](./2022-05-27-perl-is-still-a-great-choice.md)  
-[2022-06-15 Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
 [2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku (You are currently reading this)](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
-
-E-Mail your comments to hi@foo.zone :-)
+[2022-06-15 Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  
+[2022-05-27 Perl is still a great choice](./2022-05-27-perl-is-still-a-great-choice.md)  
+[2011-05-07 Perl Daemon (Service Framework)](./2011-05-07-perl-daemon-service-framework.md)  
+[2008-06-26 Perl Poetry](./2008-06-26-perl-poetry.md)  
 
 [Back to the main site](../)  

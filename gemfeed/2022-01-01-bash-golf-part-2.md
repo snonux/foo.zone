@@ -2,6 +2,12 @@
 
 > Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05
 
+This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
+
 ```
 
     '\       '\                   .  .                |>18>>
@@ -14,10 +20,16 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 ```
 
-This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It's a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.
+## Table of Contents
 
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
+* [⇢ Bash Golf Part 2](#bash-golf-part-2)
+* [⇢ ⇢ Redirection](#redirection)
+* [⇢ ⇢ HERE](#here)
+* [⇢ ⇢ RANDOM](#random)
+* [⇢ ⇢ set -x and set -e and pipefile](#set--x-and-set--e-and-pipefile)
+* [⇢ ⇢ ⇢ -x](#-x)
+* [⇢ ⇢ ⇢ -e](#-e)
+* [⇢ ⇢ ⇢ pipefail](#pipefail)
 
 ## Redirection
 
@@ -46,6 +58,8 @@ Foo
 ❯ echo Foo > /proc/self/fd/0
 Foo
 ```
+
+> Update: A reader pointed out, that the redirection should actually go to `/proc/self/fd/1` and not `0`. But apparently, either way works for this particular example. Do you know why? 
 
 Other useful redirections are:
 
@@ -480,13 +494,14 @@ To change this behaviour, pipefile can be used. Now, the pipes exit status is 1 
 1
 ```
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other related posts are:
 
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2022-01-01 Bash Golf Part 2 (You are currently reading this)](./2022-01-01-bash-golf-part-2.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 [Back to the main site](../)  

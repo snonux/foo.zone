@@ -2,6 +2,12 @@
 
 > Published at 2023-10-29T22:25:04+02:00
 
+Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
+
+I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
+
+I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+
 ```
          ___        .---------.._
   ______!fsc!_....-' .g8888888p. '-------....._
@@ -19,13 +25,16 @@
 '._____________________________________________.'   
 ```
 
-## Motivation
+## Table of Contents
 
-Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
-
-I'm not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. 
-
-I value KISS (keep it simple and stupid) and simplicity. All that's required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. 
+* [⇢ KISS static web photo albums with `photoalbum.sh`](#kiss-static-web-photo-albums-with-photoalbumsh)
+* [⇢ ⇢ Introducing `photoalbum.sh`](#introducing-photoalbumsh)
+* [⇢ ⇢ Installation](#installation)
+* [⇢ ⇢ Setting it up](#setting-it-up)
+* [⇢ ⇢ Generating the static photo album](#generating-the-static-photo-album)
+* [⇢ ⇢ Cleaning it up](#cleaning-it-up)
+* [⇢ ⇢ HTML templates](#html-templates)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 ## Introducing `photoalbum.sh`
 
@@ -259,16 +268,18 @@ Also, I like the CSS effects which I recently added. In particular, for the Irre
 
 [`photoalbum.sh` source code on Codeberg.](https://codeberg.org/snonux/photoalbum)  
 
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 Other Bash and KISS-related posts are:
 
-[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
-[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
-[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
-[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
-[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
-[2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
-
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+[2023-06-01 KISS server monitoring with Gogios](./2023-06-01-kiss-server-monitoring-with-gogios.md)  
+[2022-01-01 Bash Golf Part 2](./2022-01-01-bash-golf-part-2.md)  
+[2021-11-29 Bash Golf Part 1](./2021-11-29-bash-golf-part-1.md)  
+[2021-09-12 Keep it simple and stupid](./2021-09-12-keep-it-simple-and-stupid.md)  
+[2021-06-05 Gemtexter - One Bash script to rule it all](./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md)  
+[2021-05-16 Personal Bash coding style guide](./2021-05-16-personal-bash-coding-style-guide.md)  
 
 [Back to the main site](../)  

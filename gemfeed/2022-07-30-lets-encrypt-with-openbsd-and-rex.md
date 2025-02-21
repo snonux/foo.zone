@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+
 ```
                                                /    _    \
   The Hebern Machine                            \ ." ". /
@@ -29,9 +31,23 @@
                                  ASCII Art by John Savard
 ```
 
-I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
+## Table of Contents
 
-## What's Let's Encrypt?
+* [⇢ Let's Encrypt with OpenBSD and Rex](#let-s-encrypt-with-openbsd-and-rex)
+* [⇢ ⇢ ⇢ What's Let's Encrypt?](#what-s-let-s-encrypt)
+* [⇢ ⇢ Meet `acme-client`](#meet-acme-client)
+* [⇢ ⇢ Configuration](#configuration)
+* [⇢ ⇢ ⇢ acme-client.conf](#acme-clientconf)
+* [⇢ ⇢ ⇢ httpd.conf](#httpdconf)
+* [⇢ ⇢ ⇢ CRON job](#cron-job)
+* [⇢ ⇢ relayd.conf and smtpd.conf](#relaydconf-and-smtpdconf)
+* [⇢ ⇢ Rexification](#rexification)
+* [⇢ ⇢ ⇢ General ACME client configuration](#general-acme-client-configuration)
+* [⇢ ⇢ ⇢ Service rexification ](#service-rexification-)
+* [⇢ ⇢ All pieces together](#all-pieces-together)
+* [⇢ ⇢ Conclusion](#conclusion)
+
+### What's Let's Encrypt?
 
 > Let's Encrypt is a non-profit certificate authority run by Internet Security Research Group that provides X.509 certificates for Transport Layer Security (TLS) encryption at no charge. It is the world's largest certificate authority, used by more than 265 million websites, with the goal of all websites being secure and using HTTPS.
 
@@ -657,5 +673,16 @@ OpenBSD suits perfectly here as all the tools are already part of the base insta
 Why re-inventing the wheel? I love that a `Rexfile` is just a Perl DSL. Also, OpenBSD comes with Perl in the base system. So no new programming language had to be added to my mix for the configuration management system. Also, the `acme.sh` shell script is not a Bash but a standard Bourne shell script, so I didn't have to install an additional shell as OpenBSD does not come with the Bash pre-installed.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other *BSD related posts are:
+
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
+[2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
+[2024-01-13 One reason why I love OpenBSD](./2024-01-13-one-reason-why-i-love-openbsd.md)  
+[2022-10-30 Installing DTail on OpenBSD](./2022-10-30-installing-dtail-on-openbsd.md)  
+[2022-07-30 Let's Encrypt with OpenBSD and Rex (You are currently reading this)](./2022-07-30-lets-encrypt-with-openbsd-and-rex.md)  
+[2016-04-09 Jails and ZFS with Puppet on FreeBSD](./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.md)  
 
 [Back to the main site](../)  
