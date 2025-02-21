@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <updated>2025-02-21T11:13:36+02:00</updated>
+    <title>foo.zone feed</title>
+    <subtitle>To be in the .zone!</subtitle>
+    <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
+    <link href="gemini://foo.zone/" />
+    <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Random Weird Things - Part Ⅱ</title>
+        <link href="gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi</id>
+        <updated>2025-02-08T11:06:16+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the second run.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅱ</h1><br />
+<br />
+<span class='quote'>Published at 2025-02-08T11:06:16+02:00</span><br />
+<br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the second run.</span><br />
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ (You are currently reading this)</a><br />
+<br />
+<pre>
+/\_/\           /\_/\
+( o.o ) WHOA!! ( o.o )
+&gt; ^ &lt;           &gt; ^ &lt;
+/   \    MOEEW! /   \
+/______\       /______\
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅱ</a></li>
+<li>⇢ <a href='#11-the-sqlite-codebase-is-a-gem'>11. The SQLite codebase is a gem</a></li>
+<li>⇢ <a href='#go-programming'>Go Programming</a></li>
+<li>⇢ ⇢ <a href='#12-official-go-font'>12. Official Go font</a></li>
+<li>⇢ ⇢ <a href='#13-go-functions-can-have-methods'>13. Go functions can have methods</a></li>
+<li>⇢ <a href='#macos'>macOS</a></li>
+<li>⇢ ⇢ <a href='#14--and-ss-are-treated-the-same'>14. ß and ss are treated the same</a></li>
+<li>⇢ ⇢ <a href='#15-colon-as-file-path-separator'>15. Colon as file path separator</a></li>
+<li>⇢ <a href='#16-polyglots---programs-written-in-multiple-languages'>16. Polyglots - programs written in multiple languages</a></li>
+<li>⇢ <a href='#17-languages-where-indices-start-at-1'>17. Languages, where indices start at 1</a></li>
+<li>⇢ <a href='#18-perl-poetry'>18. Perl Poetry</a></li>
+<li>⇢ <a href='#19-css3-is-turing-complete'>19. CSS3 is turing complete</a></li>
+<li>⇢ <a href='#20-the-biggest-shell-programs-'>20. The biggest shell programs </a></li>
+</ul><br />
+<h2 style='display: inline' id='11-the-sqlite-codebase-is-a-gem'>11. The SQLite codebase is a gem</h2><br />
+<br />
+<span>Check this out:</span><br />
+<br />
+<a href='./random-weird-things-ii/sqlite-gem.png'><img alt='SQLite Gem' title='SQLite Gem' src='./random-weird-things-ii/sqlite-gem.png' /></a><br />
+<br />
+<span>Source:</span><br />
+<br />
+<a class='textlink' href='https://wetdry.world/@memes/112717700557038278'>https://wetdry.world/@memes/112717700557038278</a><br />
+<br />
+<h2 style='display: inline' id='go-programming'>Go Programming</h2><br />
+<br />
+<h3 style='display: inline' id='12-official-go-font'>12. Official Go font</h3><br />
+<br />
+<span>The Go programming language has an official font called "Go Font." It was created to complement the aesthetic of the Go language, ensuring clear and legible rendering of code. The font includes a monospace version for code and a proportional version for general text, supporting consistent look and readability in Go-related materials and development environments. </span><br />
+<br />
+<span>Check out some Go code displayed using the Go font:</span><br />
+<br />
+<a href='./random-weird-things-ii/go-font-code.png'><img alt='Go font code' title='Go font code' src='./random-weird-things-ii/go-font-code.png' /></a><br />
+<br />
+<a class='textlink' href='https://go.dev/blog/go-fonts'>https://go.dev/blog/go-fonts</a><br />
+<br />
+<span>The design emphasizes simplicity and readability, reflecting Go&#39;s philosophy of clarity and efficiency.</span><br />
+<br />
+<span>I found it interesting and/or weird, as Go is a programming language. Why should it bother having its own font? I have never seen another open-source project like Go do this. But I also like it. Maybe I will use it in the future for this blog :-) </span><br />
+<br />
+<h3 style='display: inline' id='13-go-functions-can-have-methods'>13. Go functions can have methods</h3><br />
+<br />
+<span>Functions on struct types? Well, know. Functions on types like <span class='inlinecode'>int</span> and <span class='inlinecode'>string</span>? It&#39;s also known of, but a bit lesser. Functions on function types? That sounds a bit funky, but it&#39;s possible, too! For demonstration, have a look at this snippet:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> main
+
+<b><u><font color="#000000">import</font></u></b> <font color="#808080">"log"</font>
+
+<b><u><font color="#000000">type</font></u></b> fun <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b>
+
+<b><u><font color="#000000">func</font></u></b> (f fun) Bar() <b><font color="#000000">string</font></b> {
+        <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Bar"</font>
+}
+
+<b><u><font color="#000000">func</font></u></b> main() {
+        <b><u><font color="#000000">var</font></u></b> f fun = <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b> {
+                <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Foo"</font>
+        }
+        log.Println(<font color="#808080">"Example 1: "</font>, f())
+        log.Println(<font color="#808080">"Example 2: "</font>, f.Bar())
+        log.Println(<font color="#808080">"Example 3: "</font>, fun(f.Bar).Bar())
+        log.Println(<font color="#808080">"Example 4: "</font>, fun(fun(f.Bar).Bar).Bar())
+}
+</pre>
+<br />
+<span>It runs just fine:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ go run main.go
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">1</font>:  Foo
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">2</font>:  Bar
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">3</font>:  Bar
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">4</font>:  Bar
+</pre>
+<br />
+<h2 style='display: inline' id='macos'>macOS</h2><br />
+<br />
+<span>For personal computing, I don&#39;t use Apple, but I have to use it for work. </span><br />
+<br />
+<h3 style='display: inline' id='14--and-ss-are-treated-the-same'>14. ß and ss are treated the same</h3><br />
+<br />
+<span>Know German? In German, the letter "sarp s" is written as ß. ß is treated the same as ss on macOS.</span><br />
+<br />
+<span>On a case-insensitive file system like macOS, not only are uppercase and lowercase letters treated the same, but non-Latin characters like the German "ß" are also considered equivalent to their Latin counterparts (in this case, "ss").</span><br />
+<br />
+<span>So, even though "Maß" and "Mass" are not strictly equivalent, the macOS file system still treats them as the same filename due to its handling of Unicode characters. This can sometimes lead to unexpected behaviour. Check this out:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ touch Maß
+❯ ls -l
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
+❯ touch Mass
+❯ ls -l
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
+❯ rm Mass
+❯ ls -l
+
+❯ touch Mass
+❯ ls -ltr
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Mass
+❯ rm Maß
+❯ ls -l
+
+</pre>
+<br />
+<h3 style='display: inline' id='15-colon-as-file-path-separator'>15. Colon as file path separator</h3><br />
+<br />
+<span>MacOS can use the colon as a file path separator on its ADFS (file system). A typical ADFS file pathname on a hard disc might be:</span><br />
+<br />
+<pre>
+ADFS::4.$.Documents.Techwriter.Myfile
+</pre>
+<br />
+<span>I can&#39;t reproduce this on my (work) Mac, though, as it now uses the APFS file system. In essence, ADFS is an older file system, while APFS is a contemporary file system optimized for Apple&#39;s modern devices.</span><br />
+<br />
+<a class='textlink' href='https://social.jvns.ca/@b0rk/113041293527832730'>https://social.jvns.ca/@b0rk/113041293527832730</a><br />
+<br />
+<h2 style='display: inline' id='16-polyglots---programs-written-in-multiple-languages'>16. Polyglots - programs written in multiple languages</h2><br />
+<br />
+<span>A coding polyglot is a program or script written so that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting valid and meaningful code in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.</span><br />
+<br />
+<span>Check out my very own polyglot:</span><br />
+<br />
+<a class='textlink' href='./2014-03-24-the-fibonacci.pl.c-polyglot.html'>The <span class='inlinecode'>fibonatti.pl.c</span> Polyglot</a><br />
+<br />
+<h2 style='display: inline' id='17-languages-where-indices-start-at-1'>17. Languages, where indices start at 1</h2><br />
+<br />
+<span>Array indices start at 1 instead of 0 in some programming languages, known as one-based indexing. This can be controversial because zero-based indexing is more common in popular languages like C, C++, Java, and Python. One-based indexing can lead to off-by-one errors when developers switch between languages with different indexing schemes.</span><br />
+<br />
+<span>Languages with One-Based Indexing:</span><br />
+<br />
+<ul>
+<li>Fortran</li>
+<li>MATLAB</li>
+<li>Lua</li>
+<li>R (for vectors and lists)</li>
+<li>Smalltalk</li>
+<li>Julia (by default, although zero-based indexing is also possible)</li>
+</ul><br />
+<span><span class='inlinecode'>foo.lua</span> example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>arr = {<font color="#000000">10</font>, <font color="#000000">20</font>, <font color="#000000">30</font>, <font color="#000000">40</font>, <font color="#000000">50</font>}
+print(arr[<font color="#000000">1</font>]) <i><font color="silver">-- Accessing the first element</font></i>
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ lua foo.lua
+<font color="#000000">10</font>
+</pre>
+<br />
+<span>One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.</span><br />
+<br />
+<h2 style='display: inline' id='18-perl-poetry'>18. Perl Poetry</h2><br />
+<br />
+<span>Perl Poetry is a playful and creative practice within the programming community where Perl code is written as a poem. These poems are crafted to be syntactically valid Perl code and make sense as poetic text, often with whimsical or humorous intent. This showcases Perl&#39;s flexibility and expressiveness, as well as the creativity of its programmers.</span><br />
+<br />
+<span>See this Poetry of my own; the Perl interpreter does not yield any syntax error parsing that. But also, the Peom doesn&#39;t do anything useful then executed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># (C) 2006 by Paul C. Buetow</font></i>
+
+Christmas:{time;<i><font color="silver">#!!!</font></i>
+
+Children: <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">tell</font></u></b> $wishes;
+
+Santa: <b><u><font color="#000000">for</font></u></b> $each (@children) { 
+BEGIN { <b><u><font color="#000000">read</font></u></b> $each, $their, wishes <b><u><font color="#000000">and</font></u></b> study them; <b><u><font color="#000000">use</font></u></b> Memoize<i><font color="silver">#ing</font></i>
+
+} <b><u><font color="#000000">use</font></u></b> constant gift, <font color="#808080">'wrapping'</font>; 
+<b><u><font color="#000000">package</font></u></b> Gifts; <b><u><font color="#000000">pack</font></u></b> $each, gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">bless</font></u></b> $each <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">goto</font></u></b> deliver
+or <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">import</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">local</font></u></b> $available,!!! HO, HO, HO;
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+
+deliver: gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">require</font></u></b> diagnostics <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">our</font></u></b> $gifts ,not break;
+<b><u><font color="#000000">do</font></u></b>{ <b><u><font color="#000000">use</font></u></b> NEXT; time; <b><u><font color="#000000">tied</font></u></b> $gifts} <b><u><font color="#000000">if</font></u></b> broken <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">dump</font></u></b> the, broken, ones;
+The_children: <b><u><font color="#000000">sleep</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">for</font></u></b> (<b><u><font color="#000000">each</font></u></b> %gift) <b><u><font color="#000000">and</font></u></b> try { to =&gt; <b><u><font color="#000000">untie</font></u></b> $gifts };
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+
+The_christmas_tree: formline <b><u><font color="#000000">s</font></u></b><font color="#808080">/ /childrens/</font>, $gifts;
+<b><u><font color="#000000">alarm</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">warn</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">exists</font></u></b> $Christmas{ tree}, @t, $ENV{HOME};  
+<b><u><font color="#000000">write</font></u></b> &lt;&lt;EMail
+ to the parents to buy a new christmas tree!!!!<font color="#000000">111</font>
+ <b><u><font color="#000000">and</font></u></b> send the
+EMail
+;<b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">redo</font></u></b> deliver until <b><u><font color="#000000">defined</font></u></b> <b><u><font color="#000000">local</font></u></b> $tree;
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered ;}
+
+END {} <b><u><font color="#000000">our</font></u></b> $mission <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">sleep</font></u></b> until <b><u><font color="#000000">next</font></u></b> Christmas ;}
+
+__END__
+
+This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#000000">for</font></u></b> i386-freebsd-64int
+</pre>
+<br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>More Perl Poetry of mine</a><br />
+<br />
+<h2 style='display: inline' id='19-css3-is-turing-complete'>19. CSS3 is turing complete</h2><br />
+<br />
+<span>CSS3 is Turing complete because it can simulate a Turing machine using only CSS animations and styles without any JavaScript or external logic. This is achieved by using keyframe animations to change the styles of HTML elements in a way that encodes computation, performing calculations and state transitions. </span><br />
+<br />
+<a class='textlink' href='https://stackoverflow.com/questions/2497146/is-css-turing-complete'>Is CSS turing complete?</a><br />
+<br />
+<span>It is surprising because CSS is primarily a styling language intended for the presentation layer of web pages, not for computation or logic. Its capability to perform complex computations defies its typical use case and showcases the unintended computational power that can emerge from the creative use of seemingly straightforward technologies.</span><br />
+<br />
+<span>Check out this 100% CSS implementation of the Conways Game of Life:</span><br />
+<br />
+<a href='./random-weird-things-ii/css-conway.png'><img src='./random-weird-things-ii/css-conway.png' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/propjockey/css-conways-game-of-life'>CSS Conways Game of Life</a><br />
+<br />
+<span>Conway&#39;s Game of Life is Turing complete because it can simulate a universal Turing machine, meaning it can perform any computation that a computer can, given the right initial conditions and sufficient time and space. Suppose a language can implement Conway&#39;s Game of Life. In that case, it demonstrates the language&#39;s ability to handle complex state transitions and computations. It has the necessary constructs (like iteration, conditionals, and data manipulation) to simulate any algorithm, thus confirming its Turing completeness.</span><br />
+<br />
+<h2 style='display: inline' id='20-the-biggest-shell-programs-'>20. The biggest shell programs </h2><br />
+<br />
+<span>One would think that shell scripts are only suitable for small tasks. Well, I must be wrong, as there are huge shell programs out there (up to 87k LOC) which aren&#39;t auto-generated but hand-written!</span><br />
+<br />
+<a class='textlink' href='https://github.com/oils-for-unix/oils/wiki/The-Biggest-Shell-Programs-in-the-World'>The Biggest Sell Programs in the World</a><br />
+<br />
+<span>My Gemtexter (bash) is only 1329 LOC as of now. So it&#39;s tiny.</span><br />
+<br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>Gemtexter - One Bash script to rule it all</a><br />
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</title>
+        <link href="gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi</id>
+        <updated>2025-01-30T09:22:06+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</h1><br />
+<br />
+<span class='quote'>Published at 2025-01-30T09:22:06+02:00</span><br />
+<br />
+<span>This is the third blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#changes-since-last-time'>Changes since last time</a></li>
+<li>⇢ ⇢ <a href='#freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</a></li>
+<li>⇢ ⇢ <a href='#a-new-home-behind-the-tv'>A new home (behind the TV)</a></li>
+<li>⇢ <a href='#the-ups-hardware'>The UPS hardware</a></li>
+<li>⇢ <a href='#configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</a></li>
+<li>⇢ ⇢ <a href='#usb-device-detection'>USB Device Detection</a></li>
+<li>⇢ ⇢ <a href='#apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</a></li>
+<li>⇢ ⇢ <a href='#ups-connectivity-test'>UPS Connectivity Test</a></li>
+<li>⇢ <a href='#apc-info-on-partner-nodes'>APC Info on Partner Nodes:</a></li>
+<li>⇢ ⇢ <a href='#installation-on-partners'>Installation on partners</a></li>
+<li>⇢ <a href='#power-outage-simulation'>Power outage simulation</a></li>
+<li>⇢ ⇢ <a href='#pulling-the-plug'>Pulling the plug</a></li>
+<li>⇢ ⇢ <a href='#restoring-power'>Restoring power</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, safeguards my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out—especially useful in my area, where power cuts are frequent—allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important since I will also store some of my data on the f3s nodes.</span><br />
+<br />
+<h2 style='display: inline' id='changes-since-last-time'>Changes since last time</h2><br />
+<br />
+<h3 style='display: inline' id='freebsd-upgrade-from-141-to-142'>FreeBSD upgrade from 14.1 to 14.2</h3><br />
+<br />
+<span>There has been a new release since the last blog post in this series. The upgrade from 14.1 was as easy as:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update fetch
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
+paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after rebooting, I ran:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas freebsd-update install
+paul@f0: ~ % doas pkg update
+paul@f0: ~ % doas pkg upgrade
+paul@f0: ~ % doas shutdown -r now
+</pre>
+<br />
+<span>And after another reboot, I was on 14.2:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org <font color="#000000">14.2</font>-RELEASE FreeBSD <font color="#000000">14.2</font>-RELEASE 
+ releng/<font color="#000000">14.2</font>-n<font color="#000000">269506</font>-c8918d6c7412 GENERIC amd64
+</pre>
+<br />
+<span>And, of course, I ran this on all 3 nodes!</span><br />
+<br />
+<h3 style='display: inline' id='a-new-home-behind-the-tv'>A new home (behind the TV)</h3><br />
+<br />
+<span>I&#39;ve put all the infrastructure behind my TV, as plenty of space is available. The TV hides most of the setup, which drastically improved the SAF (spouse acceptance factor).</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg'><img alt='New hardware placement arrangement' title='New hardware placement arrangement' src='./f3s-kubernetes-with-freebsd-part-3/f3s-changes.jpg' /></a><br />
+<br />
+<span>I got rid of the mini-switch I mentioned in the previous blog post. I have the TP-Link EAP615-Wall mounted on the wall nearby, which is my OpenWrt-powered Wi-Fi hotspot. It also has 3 Ethernet ports, to which I connected the Beelink nodes. That&#39;s the device you see at the very top.</span><br />
+<br />
+<span>The Ethernet cables go downward through the cable boxes to the Beelink nodes. In addition to the Beelink f3s nodes, I connected the TP-Link to the UPS as well (not discussed further in this blog post, but the positive side effect is that my Wi-Fi will still work during a power loss for some time—and during a power cut, the Beelink nodes will still be able to communicate with each other).</span><br />
+<br />
+<span>On the very left (the black box) is the UPS, with four power outlets. Three go to the Beelink nodes, and one goes to the TP-Link. A USB output is also connected to the first Beelink node, <span class='inlinecode'>f0</span>. </span><br />
+<br />
+<span>On the very right (halfway hidden behind the TV) are the 3 Beelink nodes stacked on top of each other. The only downside (or upside?) is that my 14-month-old daughter is now chaos-testing the Beelink nodes, as the red power buttons (now reachable for her) are very attractive for her to press when passing by randomly. :-) Luckily, that will only cause graceful system shutdowns!</span><br />
+<br />
+<h2 style='display: inline' id='the-ups-hardware'>The UPS hardware</h2><br />
+<br />
+<span>I wanted a UPS that I could connect to via FreeBSD, and that would provide enough backup power to operate the cluster for a couple of minutes (it turned out to be around an hour, but this time will likely be shortened after future hardware upgrades, like additional drives and a backup enclosure) and to automatically initiate the shutdown of all the f3s nodes.</span><br />
+<br />
+<span>I decided on the APC Back-UPS BX750MI model because:</span><br />
+<br />
+<ul>
+<li>Zero noise level when there is no power cut (some light noise when the battery is in operation during a power cut).</li>
+<li>Cost: It is relatively affordable (not costing thousands).</li>
+<li>USB connectivity: Can be connected via USB to one of the FreeBSD hosts to read the UPS status.</li>
+<li>A power output of 750VA (or 410 watts), suitable for an hour of runtime for my f3s nodes (plus the Wi-Fi router).</li>
+<li>Multiple power outlets: Can connect all 3 f3s nodes directly.</li>
+<li>User-replaceable batteries: I can replace the batteries myself after two years or more (depending on usage).</li>
+<li>Its compact design. Overall, I like how it looks.</li>
+</ul><br />
+<a href='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg'><img alt='The APC Back-UPS BX750MI in operation.' title='The APC Back-UPS BX750MI in operation.' src='./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='configuring-freebsd-to-work-with-the-ups'>Configuring FreeBSD to Work with the UPS</h2><br />
+<br />
+<h3 style='display: inline' id='usb-device-detection'>USB Device Detection</h3><br />
+<br />
+<span>Once plugged in via USB on FreeBSD, I could see the following in the kernel messages:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas dmesg | grep UPS
+ugen0.<font color="#000000">2</font>: &lt;American Power Conversion Back-UPS BX750MI&gt; at usbus0
+</pre>
+<br />
+<h3 style='display: inline' id='apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</h3><br />
+<br />
+<span>To make use of the USB connection, the <span class='inlinecode'>apcupsd</span> package had to be installed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0: ~ % doas install apcupsd
+</pre>
+<br />
+<span>I have made the following modifications to the configuration file so that the UPS can be used via the USB interface:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample  apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2024</font>-<font color="#000000">12</font>-<font color="#000000">03</font> <font color="#000000">10</font>:<font color="#000000">58</font>:<font color="#000000">24.009501000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE usb
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">88</font>,<font color="#000000">10</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE usb
++DEVICE
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+</pre>
+<br />
+<span>I left the remaining settings as the default ones; for example, the following are of main interest:</span><br />
+<br />
+<pre>
+# If during a power failure, the remaining battery percentage
+# (as reported by the UPS) is below or equal to BATTERYLEVEL,
+# apcupsd will initiate a system shutdown.
+BATTERYLEVEL 5
+
+# If during a power failure, the remaining runtime in minutes
+# (as calculated internally by the UPS) is below or equal to MINUTES,
+# apcupsd, will initiate a system shutdown.
+MINUTES 3
+</pre>
+<br />
+<span>I then enabled and started the daemon:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f0:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<h3 style='display: inline' id='ups-connectivity-test'>UPS Connectivity Test</h3><br />
+<br />
+<span>And voila, I could now access the UPS information via the <span class='inlinecode'>apcaccess</span> command; how convenient :-) (I also read through the manual page, which provides a good understanding of what else can be done with it!).</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % apcaccess
+APC      : <font color="#000000">001</font>,<font color="#000000">035</font>,<font color="#000000">0857</font>
+DATE     : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">27</font> +<font color="#000000">0200</font>
+HOSTNAME : f0.lan.buetow.org
+VERSION  : <font color="#000000">3.14</font>.<font color="#000000">14</font> (<font color="#000000">31</font> May <font color="#000000">2016</font>) freebsd
+UPSNAME  : f0.lan.buetow.org
+CABLE    : USB Cable
+DRIVER   : USB UPS Driver
+UPSMODE  : Stand Alone
+STARTTIME: <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">43</font>:<font color="#000000">25</font> +<font color="#000000">0200</font>
+MODEL    : Back-UPS BX750MI
+STATUS   : ONLINE
+LINEV    : <font color="#000000">230.0</font> Volts
+LOADPCT  : <font color="#000000">4.0</font> Percent
+BCHARGE  : <font color="#000000">100.0</font> Percent
+TIMELEFT : <font color="#000000">65.3</font> Minutes
+MBATTCHG : <font color="#000000">5</font> Percent
+MINTIMEL : <font color="#000000">3</font> Minutes
+MAXTIME  : <font color="#000000">0</font> Seconds
+SENSE    : Medium
+LOTRANS  : <font color="#000000">145.0</font> Volts
+HITRANS  : <font color="#000000">295.0</font> Volts
+ALARMDEL : No alarm
+BATTV    : <font color="#000000">13.6</font> Volts
+LASTXFER : Automatic or explicit self <b><u><font color="#000000">test</font></u></b>
+NUMXFERS : <font color="#000000">0</font>
+TONBATT  : <font color="#000000">0</font> Seconds
+CUMONBATT: <font color="#000000">0</font> Seconds
+XOFFBATT : N/A
+SELFTEST : NG
+STATFLAG : <font color="#000000">0x05000008</font>
+SERIALNO : 9B2414A03599
+BATTDATE : <font color="#000000">2001</font>-<font color="#000000">01</font>-<font color="#000000">01</font>
+NOMINV   : <font color="#000000">230</font> Volts
+NOMBATTV : <font color="#000000">12.0</font> Volts
+NOMPOWER : <font color="#000000">410</font> Watts
+END APC  : <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">14</font>:<font color="#000000">44</font>:<font color="#000000">06</font> +<font color="#000000">0200</font>
+</pre>
+<br />
+<h2 style='display: inline' id='apc-info-on-partner-nodes'>APC Info on Partner Nodes:</h2><br />
+<br />
+<span>So far, so good. Host <span class='inlinecode'>f0</span> would shut down itself when short on power. But what about the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes? They aren&#39;t connected directly to the UPS and, therefore, wouldn&#39;t know that their power is about to be cut off. For this, <span class='inlinecode'>apcupsd</span> running on the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes can be configured to retrieve UPS information via the network from the <span class='inlinecode'>apcupsd</span> server running on the <span class='inlinecode'>f0</span> node, which is connected directly to the APC via USB.</span><br />
+<br />
+<span>Of course, this won&#39;t work when <span class='inlinecode'>f0</span> is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an <span class='inlinecode'>f0</span> system crash, sudden power outages on the two other nodes would occur at different times making real data loss (the main concern here) less likely.</span><br />
+<br />
+<span>And if <span class='inlinecode'>f0</span> is down and <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> receive new data and crash midway, it&#39;s likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data recoverable and data loss overall nearly impossible. I&#39;d receive an alert if any of the nodes go down (more on monitoring later in this blog series).</span><br />
+<br />
+<h3 style='display: inline' id='installation-on-partners'>Installation on partners</h3><br />
+<br />
+<span>To do this, I installed <span class='inlinecode'>apcupsd</span> via <span class='inlinecode'>doas pkg install apcupsd</span> on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, and then I could connect to it this way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % apcaccess -h f0.lan.buetow.org | grep Percent
+LOADPCT  : <font color="#000000">12.0</font> Percent
+BCHARGE  : <font color="#000000">94.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<span>But I want the daemon to be configured and enabled in such a way that it connects to the master UPS node (the one with the UPS connected via USB) so that it can also initiate a system shutdown when the UPS battery reaches low levels. For that, <span class='inlinecode'>apcupsd</span> itself needs to be aware of the UPS status.</span><br />
+<br />
+<span>On <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, I changed the configuration to use <span class='inlinecode'>f0</span> (where <span class='inlinecode'>apcupsd</span> is listening) as a remote device. I also changed the <span class='inlinecode'>MINUTES</span> setting from 3 to 6 and the <span class='inlinecode'>BATTERYLEVEL</span> setting from 5 to 10 to ensure that the <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> nodes could still connect to the <span class='inlinecode'>f0</span> node for UPS information before <span class='inlinecode'>f0</span> decides to shut down itself. So <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> must shut down earlier than <span class='inlinecode'>f0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f2:/usr/local/etc/apcupsd % diff -u apcupsd.conf.sample apcupsd.conf
+--- apcupsd.conf.sample <font color="#000000">2024</font>-<font color="#000000">11</font>-<font color="#000000">01</font> <font color="#000000">16</font>:<font color="#000000">40</font>:<font color="#000000">42.000000000</font> +<font color="#000000">0200</font>
++++ apcupsd.conf        <font color="#000000">2025</font>-<font color="#000000">01</font>-<font color="#000000">26</font> <font color="#000000">15</font>:<font color="#000000">52</font>:<font color="#000000">45.108469000</font> +<font color="#000000">0200</font>
+@@ -<font color="#000000">31</font>,<font color="#000000">7</font> +<font color="#000000">31</font>,<font color="#000000">7</font> @@
+ <i><font color="silver">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
+ <i><font color="silver">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
+ <i><font color="silver">#</font></i>
+-UPSCABLE smart
++UPSCABLE ether
+
+ <i><font color="silver"># To get apcupsd to work, in addition to defining the cable</font></i>
+ <i><font color="silver"># above, you must also define a UPSTYPE, which corresponds to</font></i>
+@@ -<font color="#000000">52</font>,<font color="#000000">7</font> +<font color="#000000">52</font>,<font color="#000000">6</font> @@
+ <i><font color="silver">#                            Network Information Server. This is used if the</font></i>
+ <i><font color="silver">#                            UPS powering your computer is connected to a</font></i>
+ <i><font color="silver">#                            different computer for monitoring.</font></i>
+-<i><font color="silver">#</font></i>
+ <i><font color="silver"># snmp      hostname:port:vendor:community</font></i>
+ <i><font color="silver">#                            SNMP network link to an SNMP-enabled UPS device.</font></i>
+ <i><font color="silver">#                            Hostname is the ip address or hostname of the UPS</font></i>
+@@ -<font color="#000000">88</font>,<font color="#000000">8</font> +<font color="#000000">87</font>,<font color="#000000">8</font> @@
+ <i><font color="silver">#                            that apcupsd binds to that particular unit</font></i>
+ <i><font color="silver">#                            (helpful if you have more than one USB UPS).</font></i>
+ <i><font color="silver">#</font></i>
+-UPSTYPE apcsmart
+-DEVICE /dev/usv
++UPSTYPE net
++DEVICE f0.lan.buetow.org:<font color="#000000">3551</font>
+
+ <i><font color="silver"># POLLTIME &lt;int&gt;</font></i>
+ <i><font color="silver">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+@@ -<font color="#000000">147</font>,<font color="#000000">12</font> +<font color="#000000">146</font>,<font color="#000000">12</font> @@
+ <i><font color="silver"># If during a power failure, the remaining battery percentage</font></i>
+ <i><font color="silver"># (as reported by the UPS) is below or equal to BATTERYLEVEL,</font></i>
+ <i><font color="silver"># apcupsd will initiate a system shutdown.</font></i>
+-BATTERYLEVEL <font color="#000000">5</font>
++BATTERYLEVEL <font color="#000000">10</font>
+
+ <i><font color="silver"># If during a power failure, the remaining runtime in minutes</font></i>
+ <i><font color="silver"># (as calculated internally by the UPS) is below or equal to MINUTES,</font></i>
+ <i><font color="silver"># apcupsd, will initiate a system shutdown.</font></i>
+-MINUTES <font color="#000000">3</font>
++MINUTES <font color="#000000">6</font>
+
+ <i><font color="silver"># If during a power failure, the UPS has run on batteries for TIMEOUT</font></i>
+ <i><font color="silver"># many seconds or longer, apcupsd will initiate a system shutdown.</font></i>
+
+</pre>
+<span>So I also ran the following commands on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:/usr/local/etc/apcupsd % doas sysrc apcupsd_enable=YES
+apcupsd_enable:  -&gt; YES
+paul@f1:/usr/local/etc/apcupsd % doas service apcupsd start
+Starting apcupsd.
+</pre>
+<br />
+<span>And then I was able to connect to localhost via the <span class='inlinecode'>apcaccess</span> command:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas apcaccess | grep Percent
+LOADPCT  : <font color="#000000">5.0</font> Percent
+BCHARGE  : <font color="#000000">95.0</font> Percent
+MBATTCHG : <font color="#000000">5</font> Percent
+</pre>
+<br />
+<h2 style='display: inline' id='power-outage-simulation'>Power outage simulation</h2><br />
+<br />
+<h3 style='display: inline' id='pulling-the-plug'>Pulling the plug</h3><br />
+<br />
+<span>I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
+
+Power failure. Running on UPS batteries.                                              
+</pre>
+<br />
+<span>I ran the following command to confirm the available battery time:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/usr/local/etc/apcupsd % apcaccess -p TIMELEFT
+<font color="#000000">63.9</font> Minutes
+</pre>
+<br />
+<span>And after around one hour (<span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> a bit earlier, <span class='inlinecode'>f0</span> a bit later due to the different <span class='inlinecode'>BATTERYLEVEL</span> and <span class='inlinecode'>MINUTES</span> settings outlined earlier), the following broadcast was sent out:</span><br />
+<br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:08 EET...
+
+        *** FINAL System shutdown message from root@f0.lan.buetow.org ***
+
+System going down IMMEDIATELY
+
+apcupsd initiated shutdown
+</pre>
+<br />
+<span>And all the nodes shut down safely before the UPS ran out of battery!</span><br />
+<br />
+<h3 style='display: inline' id='restoring-power'>Restoring power</h3><br />
+<br />
+<span>After restoring power, I checked the logs in <span class='inlinecode'>/var/log/daemon.log</span> and found the following on all 3 nodes:</span><br />
+<br />
+<pre>
+Jan 26 17:36:24 f2 apcupsd[2159]: Power failure.
+Jan 26 17:36:30 f2 apcupsd[2159]: Running on UPS batteries.
+Jan 26 17:36:30 f2 apcupsd[2159]: Battery charge below low limit.
+Jan 26 17:36:30 f2 apcupsd[2159]: Initiating system shutdown!
+Jan 26 17:36:30 f2 apcupsd[2159]: User logins prohibited
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
+Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
+</pre>
+<br />
+<span>All good :-) See you in the next post of this series!</span><br />
+<br />
+<span>Other BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Working with an SRE Interview</title>
+        <link href="gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi</id>
+        <updated>2025-01-15T00:16:04+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I have been interviewed by Florian Buetow on `cracking-ai-engineering.com`  about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='working-with-an-sre-interview'>Working with an SRE Interview</h1><br />
+<br />
+<span class='quote'>Published at 2025-01-15T00:16:04+02:00</span><br />
+<br />
+<span>I have been interviewed by Florian Buetow on <span class='inlinecode'>cracking-ai-engineering.com</span>  about what it&#39;s like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</span><br />
+<br />
+<a class='textlink' href='https://www.cracking-ai-engineering.com/writing/2025/01/12/working-with-an-sre-interview/'>See original interview here</a><br />
+<a class='textlink' href='https://www.cracking-ai-engineering.com'>Cracking AI Engineering</a><br />
+<br />
+<span>Below, I am posting the interview here on my blog as well.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#working-with-an-sre-interview'>Working with an SRE Interview</a></li>
+<li>⇢ <a href='#preamble-'>Preamble </a></li>
+<li>⇢ <a href='#introducing-paul'>Introducing Paul</a></li>
+<li>⇢ <a href='#how-did-you-get-started'>How did you get started?</a></li>
+<li>⇢ <a href='#roles-and-career-progression'>Roles and Career Progression</a></li>
+<li>⇢ <a href='#anecdotes-and-best-practices'>Anecdotes and Best Practices</a></li>
+<li>⇢ <a href='#working-with-different-teams'>Working with Different Teams</a></li>
+<li>⇢ <a href='#using-ai-tools'>Using AI Tools</a></li>
+<li>⇢ <a href='#sre-learning-resources'>SRE Learning Resources</a></li>
+<li>⇢ <a href='#blogging'>Blogging</a></li>
+<li>⇢ <a href='#wrap-up'>Wrap-up</a></li>
+<li>⇢ <a href='#closing-comments'>Closing comments</a></li>
+</ul><br />
+<h2 style='display: inline' id='preamble-'>Preamble </h2><br />
+<br />
+<span>In this insightful interview, Paul Bütow, a Principal Site Reliability Engineer at Mimecast, shares over a decade of experience in the field. Paul highlights the role of an Embedded SRE, emphasizing the importance of automation, observability, and effective incident management. We also focused on the key question of how you can work effectively with an SRE weather you are an individual contributor or a manager, a software engineer or data scientist. And how you can learn more about site reliability engineering.</span><br />
+<br />
+<h2 style='display: inline' id='introducing-paul'>Introducing Paul</h2><br />
+<br />
+<span>Hi Paul, please introduce yourself briefly to the audience. Who are you, what do you do for a living, and where do you work?</span><br />
+<br />
+<span class='quote'>My name is Paul Bütow, I work at Mimecast, and I’m a Principal Site Reliability Engineer there. I’ve been with Mimecast for almost ten years now. The company specializes in email security, including things like archiving, phishing detection, malware protection, and spam filtering.</span><br />
+<br />
+<span>You mentioned that you’re an ‘Embedded SRE.’ What does that mean exactly?</span><br />
+<br />
+<span class='quote'>It means that I’m directly part of the software engineering team, not in a separate Ops department. I ensure that nothing is deployed manually, and everything runs through automation. I also set up monitoring and observability. These are two distinct aspects: monitoring alerts us when something breaks, while observability helps us identify trends. I also create runbooks so we know what to do when specific incidents occur frequently.</span><br />
+<br />
+<span class='quote'>Infrastructure SREs on the other hand handle the foundational setup, like providing the Kubernetes cluster itself or ensuring the operating systems are installed. They don&#39;t work on the application directly but ensure the base infrastructure is there for others to use. This works well when a company has multiple teams that need shared infrastructure.</span><br />
+<br />
+<h2 style='display: inline' id='how-did-you-get-started'>How did you get started?</h2><br />
+<br />
+<span>How did your interest in Linux or FreeBSD start?</span><br />
+<br />
+<span class='quote'>It began during my school days. We had a PC with DOS at home, and I eventually bought Suse Linux 5.3. Shortly after, I discovered FreeBSD because I liked its handbook so much. I wanted to understand exactly how everything worked, so I also tried Linux from Scratch. That involves installing every package manually to gain a better understanding of operating systems.</span><br />
+<br />
+<a class='textlink' href='https://www.FreeBSD.org'>https://www.FreeBSD.org</a><br />
+<a class='textlink' href='https://linuxfromscratch.org/'>https://linuxfromscratch.org/</a><br />
+<br />
+<span>And after school, you pursued computer science, correct?</span><br />
+<br />
+<span class='quote'>Exactly. I wasn’t sure at first whether I wanted to be a software developer or a system administrator. I applied for both and eventually accepted an offer as a Linux system administrator. This was before &#39;SRE&#39; became a buzzword, but much of what I did back then-automation, infrastructure as code, monitoring-is now considered part of the typical SRE role.</span><br />
+<br />
+<h2 style='display: inline' id='roles-and-career-progression'>Roles and Career Progression</h2><br />
+<br />
+<span>Tell us about how you joined Mimecast. When did you fully embrace the SRE role?</span><br />
+<br />
+<span class='quote'>I started as a Linux sysadmin at 1&amp;1. I managed an ad server farm with hundreds of systems and later handled load balancers. Together with an architect, we managed F5 load balancers distributing around 2,000 services, including for portals like web.de and GMX. I also led the operations team technically for a while before moving to London to join Mimecast.</span><br />
+<br />
+<span class='quote'>At Mimecast, the job title was explicitly &#39;Site Reliability Engineer.&#39; The biggest difference was that I was no longer in a separate Ops department but embedded directly within the storage and search backend team. I loved that because we could plan features together-from automation to measurability and observability. Mimecast also operates thousands of physical servers for email archiving, which was fascinating since I already had experience with large distributed systems at 1&amp;1. It was the right step for me because it allowed me to work close to the code while remaining hands-on with infrastructure.</span><br />
+<br />
+<span>What are the differences between SRE, DevOps, SysAdmin, and Architects?</span><br />
+<br />
+<span class='quote'>SREs are like the next step after SysAdmins. A SysAdmin might manually install servers, replace disks, or use simple scripts for automation, while SREs use infrastructure as code and focus on reliability through SLIs, SLOs, and automation. DevOps isn’t really a job-it’s more of a way of working, where developers are involved in operations tasks like setting up CI/CD pipelines or on-call shifts. Architects focus on designing systems and infrastructures, such as load balancers or distributed systems, working alongside SREs to ensure the systems meet the reliability and scalability requirements. The specific responsibilities of each role depend on the company, and there is often overlap.  </span><br />
+<br />
+<span>What are the most important reliability lessons you’ve learned so far?</span><br />
+<br />
+<ul>
+<li>Don’t leave SRE aspects as an afterthought. It’s much better to discuss automation, monitoring, SLIs, and SLOs early on. Traditional sysadmins often installed systems manually, but today, we do everything via infrastructure as code-using tools like Terraform or Puppet.</li>
+<li>I also distinguish between monitoring and observability. Monitoring tells us, &#39;The server is down, alarm!&#39; Observability dives deeper, showing trends like increasing latency so we can act proactively.</li>
+<li>SLI, SLO, and SLA are core elements. We focus on what users actually experience-for example, how quickly an email is sent-and set our goals accordingly.</li>
+<li>Runbooks are also crucial. When something goes wrong at night, you don’t want to start from scratch. A runbook outlines how to debug and resolve specific problems, saving time and reducing downtime.</li>
+</ul><br />
+<h2 style='display: inline' id='anecdotes-and-best-practices'>Anecdotes and Best Practices</h2><br />
+<br />
+<span>Runbooks sound very practical. Can you explain how they’re used day-to-day?</span><br />
+<br />
+<span class='quote'>Runbooks are essentially guides for handling specific incidents. For instance, if a service won’t start, the runbook will specify where the logs are and which commands to use. Observability takes it a step further, helping us spot changes early-like rising error rates or latency-so we can address issues before they escalate.</span><br />
+<br />
+<span>When should you decide to put something into a runbook, and when is it unnecessary?</span><br />
+<br />
+<span class='quote'>If an issue happens frequently, it should be documented in a runbook so that anyone, even someone new, can follow the steps to fix it. The idea is that 90% of the common incidents should be covered. For example, if a service is down, the runbook would specify where to find logs, which commands to check, and what actions to take. On the other hand, rare or complex issues, where the resolution depends heavily on context or varies each time, don’t make sense to include in detail. For those, it’s better to focus on general troubleshooting steps.  </span><br />
+<br />
+<span>How do you search for and find the correct runbooks?</span><br />
+<br />
+<span class='quote'>Runbooks should be linked directly in the alert you receive. For example, if you get an alert about a service not running, the alert will have a link to the runbook that tells you what to check, like logs or commands to run. Runbooks are best stored in an internal wiki, so if you don’t find the link in the alert, you know where to search. The important thing is that runbooks are easy to find and up to date because that’s what makes them useful during incidents.  </span><br />
+<br />
+<span>Do you have an interesting war story you can share with us?</span><br />
+<br />
+<span class='quote'>Sure. At 1&amp;1, we had a proprietary ad server software that ran a SQL query during startup. The query got slower over time, eventually timing out and preventing the server from starting. Since we couldn’t access the source code, we searched the binary for the SQL and patched it. By pinpointing the issue, a developer was able to adjust the SQL. This collaboration between sysadmin and developer perspectives highlights the value of SRE work.</span><br />
+<br />
+<h2 style='display: inline' id='working-with-different-teams'>Working with Different Teams</h2><br />
+<br />
+<span>You’re embedded in a team-how does collaboration with developers work practically?</span><br />
+<br />
+<span class='quote'>We plan everything together from the start. If there’s a new feature, we discuss infrastructure, automated deployments, and monitoring right away. Developers are experts in the code, and I bring the infrastructure expertise. This avoids unpleasant surprises before going live.</span><br />
+<br />
+<span>How about working with data scientists or ML engineers? Are there differences?</span><br />
+<br />
+<span class='quote'>The principles are the same. ML models also need to be deployed and monitored. You deal with monitoring, resource allocation, and identifying performance drops. Whether it’s a microservice or an ML job, at the end of the day, it’s all running on servers or clusters that must remain stable.</span><br />
+<br />
+<span>What about working with managers or the FinOps team?</span><br />
+<br />
+<span class='quote'>We often discuss costs, especially in the cloud, where scaling up resources is easy. It’s crucial to know our metrics: do we have enough capacity? Do we need all instances? Or is the CPU only at 5% utilization? This data helps managers decide whether the budget is sufficient or if optimizations are needed.</span><br />
+<br />
+<span>Do you have practical tips for working with SREs?</span><br />
+<br />
+<span class='quote'>Yes, I have a few:</span><br />
+<br />
+<ul>
+<li>Early involvement: Include SREs from the beginning in your project.</li>
+<li>Runbooks &amp; documentation: Document recurring errors.</li>
+<li>Try first: Try to understand the issue yourself before immediately asking the SRE.</li>
+<li>Basic infra knowledge: Kubernetes and Terraform aren’t magic. Some basic understanding helps every developer.</li>
+</ul><br />
+<h2 style='display: inline' id='using-ai-tools'>Using AI Tools</h2><br />
+<br />
+<span>Let’s talk about AI. How do you use it in your daily work?</span><br />
+<br />
+<span class='quote'>For boilerplate code, like Terraform snippets, I often use ChatGPT. It saves time, although I always review and adjust the output. Log analysis is another exciting application. Instead of manually going through millions of lines, AI can summarize key outliers or errors.</span><br />
+<br />
+<span>Do you think AI could largely replace SREs or significantly change the role?</span><br />
+<br />
+<span class='quote'>I see AI as an additional tool. SRE requires a deep understanding of how distributed systems work internally. While AI can assist with routine tasks or quickly detect anomalies, human expertise is indispensable for complex issues.</span><br />
+<br />
+<h2 style='display: inline' id='sre-learning-resources'>SRE Learning Resources</h2><br />
+<br />
+<span>What resources would you recommend for learning about SRE?</span><br />
+<br />
+<span class='quote'>The Google SRE book is a classic, though a bit dry. I really like &#39;Seeking SRE,&#39; as it offers various perspectives on SRE, with many practical stories from different companies.</span><br />
+<br />
+<a class='textlink' href='https://sre.google/books/'>https://sre.google/books/</a><br />
+<a class='textlink' href='https://www.oreilly.com/library/view/seeking-sre/9781491978856'>Seeking SRE</a><br />
+<br />
+<span>Do you have a podcast recommendation?</span><br />
+<br />
+<span class='quote'>The Google SRE prodcast is quite interesting. It offers insights into how Google approaches SRE, along with perspectives from external guests.</span><br />
+<br />
+<a class='textlink' href='https://sre.google/prodcast/'>https://sre.google/prodcast/</a><br />
+<br />
+<h2 style='display: inline' id='blogging'>Blogging</h2><br />
+<br />
+<span>You also have a blog. What motivates you to write regularly?</span><br />
+<br />
+<span class='quote'>Writing helps me learn the most. It also serves as a personal reference. Sometimes I look up how I solved a problem a year ago. And of course, others tackling similar projects might find inspiration in my posts.</span><br />
+<br />
+<span>What do you blog about?</span><br />
+<br />
+<span class='quote'>Mostly technical topics I find exciting, like homelab projects, Kubernetes, or book summaries on IT and productivity. It’s a personal blog, so I write about what I enjoy.</span><br />
+<br />
+<h2 style='display: inline' id='wrap-up'>Wrap-up</h2><br />
+<br />
+<span>To wrap up, what are three things every team should keep in mind for stability?</span><br />
+<br />
+<span class='quote'>First, maintain runbooks and documentation to avoid chaos at night. Second, automate everything-manual installs in production are risky. Third, define SLIs, SLOs, and SLAs early so everyone knows what we’re monitoring and guaranteeing.</span><br />
+<br />
+<span>Is there a motto or mindset that particularly inspires you as an SRE?</span><br />
+<br />
+<span class='quote'>"Keep it simple and stupid"-KISS. Not everything has to be overly complex. And always stay curious. I’m still fascinated by how systems work under the hood.</span><br />
+<br />
+<span>Where can people find you online?</span><br />
+<br />
+<span class='quote'>You can find links to my socials on my website paul.buetow.org</span><br />
+<span class='quote'>I regularly post articles and link to everything else I’m working on outside of work.</span><br />
+<br />
+<a class='textlink' href='https://paul.buetow.org'>https://paul.buetow.org</a><br />
+<br />
+<span>Thank you very much for your time and this insightful interview into the world of site reliability engineering</span><br />
+<br />
+<span class='quote'>My pleasure, this was fun.</span><br />
+<br />
+<h2 style='display: inline' id='closing-comments'>Closing comments</h2><br />
+<br />
+<span>Dear reader, I hope this conversation with Paul Bütow provided an exciting peak into the world of Site Reliability Engineering. Whether you’re a software developer, data scientist, ML engineer, or manager, reliable systems are always a team effort. Hopefully, you’ve taken some insights or tips from Paul’s experiences for your own team or next project. Thanks for joining us, and best of luck refining your own SRE practices!</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> or contact Florian via the Cracking AI Engineering :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Posts from October to December 2024</title>
+        <link href="gemini://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.gmi</id>
+        <updated>2024-12-31T18:09:58+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Happy new year!</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='posts-from-october-to-december-2024'>Posts from October to December 2024</h1><br />
+<br />
+<span class='quote'>Published at 2024-12-31T18:09:58+02:00</span><br />
+<br />
+<span>Happy new year!</span><br />
+<br />
+<span>These are my social media posts from the last three months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </span><br />
+<br />
+<span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
+<br />
+<a class='textlink' href='../about/index.html'>My about page</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#posts-from-october-to-december-2024'>Posts from October to December 2024</a></li>
+<li><a href='#posts-for-202410-202411-202412'>Posts for 202410 202411 202412</a></li>
+<li>⇢ <a href='#october-2024'>October 2024</a></li>
+<li>⇢ ⇢ <a href='#first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</a></li>
+<li>⇢ ⇢ <a href='#reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</a></li>
+<li>⇢ ⇢ <a href='#fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</a></li>
+<li>⇢ ⇢ <a href='#i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</a></li>
+<li>⇢ ⇢ <a href='#little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</a></li>
+<li>⇢ ⇢ <a href='#reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</a></li>
+<li>⇢ ⇢ <a href='#the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</a></li>
+<li>⇢ <a href='#november-2024'>November 2024</a></li>
+<li>⇢ ⇢ <a href='#i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</a></li>
+<li>⇢ ⇢ <a href='#until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</a></li>
+<li>⇢ ⇢ <a href='#these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</a></li>
+<li>⇢ ⇢ <a href='#looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</a></li>
+<li>⇢ ⇢ <a href='#there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</a></li>
+<li>⇢ ⇢ <a href='#one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</a></li>
+<li>⇢ ⇢ <a href='#agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</a></li>
+<li>⇢ ⇢ <a href='#i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</a></li>
+<li>⇢ ⇢ <a href='#so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</a></li>
+<li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
+<li>⇢ ⇢ <a href='#revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</a></li>
+<li>⇢ ⇢ <a href='#wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</a></li>
+<li>⇢ ⇢ <a href='#eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</a></li>
+<li>⇢ ⇢ <a href='#have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</a></li>
+<li>⇢ ⇢ <a href='#in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</a></li>
+<li>⇢ ⇢ <a href='#myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</a></li>
+<li>⇢ ⇢ <a href='#feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</a></li>
+<li>⇢ <a href='#december-2024'>December 2024</a></li>
+<li>⇢ ⇢ <a href='#thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</a></li>
+<li>⇢ ⇢ <a href='#my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</a></li>
+<li>⇢ ⇢ <a href='#very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</a></li>
+<li>⇢ ⇢ <a href='#for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</a></li>
+<li>⇢ ⇢ <a href='#89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</a></li>
+<li>⇢ ⇢ <a href='#i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</a></li>
+<li>⇢ ⇢ <a href='#agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</a></li>
+<li>⇢ ⇢ <a href='#plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</a></li>
+<li>⇢ ⇢ <a href='#this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</a></li>
+<li>⇢ ⇢ <a href='#quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</a></li>
+<li>⇢ ⇢ <a href='#example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</a></li>
+<li>⇢ ⇢ <a href='#llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</a></li>
+<li>⇢ ⇢ <a href='#excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</a></li>
+<li>⇢ ⇢ <a href='#i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</a></li>
+<li>⇢ ⇢ <a href='#indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</a></li>
+<li>⇢ ⇢ <a href='#it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</a></li>
+<li>⇢ ⇢ <a href='#my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</a></li>
+</ul><br />
+<h1 style='display: inline' id='posts-for-202410-202411-202412'>Posts for 202410 202411 202412</h1><br />
+<br />
+<h2 style='display: inline' id='october-2024'>October 2024</h2><br />
+<br />
+<h3 style='display: inline' id='first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</h3><br />
+<br />
+<span>First on-call experience in a startup. Doesn&#39;t sound a lot of fun! But the lessons were learned! <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/lessons-from-my-first-on-call/'>ntietz.com/blog/lessons-from-my-first-on-call/</a><br />
+<br />
+<h3 style='display: inline' id='reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</h3><br />
+<br />
+<span>Reviewing your own PR or MR before asking others to review it makes a lot of sense. Have seen so many silly mistakes which would have been avoided. Saving time for the real reviewer.</span><br />
+<br />
+<a class='textlink' href='https://www.jvt.me/posts/2019/01/12/self-code-review/'>www.jvt.me/posts/2019/01/12/self-code-review/</a><br />
+<br />
+<h3 style='display: inline' id='fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</h3><br />
+<br />
+<span>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that a defer object can either be heap or stack allocated. And there are some rules for inlining, too.</span><br />
+<br />
+<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>victoriametrics.com/blog/defer-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</h3><br />
+<br />
+<span>I have been in incidents. Understandably, everyone wants the issue to be resolved as quickly and others want to know how long TTR will be. IMHO, providing no estimates at all is no solution either. So maybe give a rough estimate but clearly communicate that the estimate is rough and that X, Y, and Z can interfere, meaning there is a chance it will take longer to resolve the incident. Just my thought. What&#39;s yours?</span><br />
+<br />
+<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/</a><br />
+<br />
+<h3 style='display: inline' id='little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</h3><br />
+<br />
+<span>Little tips using strings in <span class='inlinecode'>#golang</span> and I personally think one must look more into the std lib (not just for strings, also for slices, maps,...), there are tons of useful helper functions.</span><br />
+<br />
+<a class='textlink' href='https://www.calhoun.io/6-tips-for-using-strings-in-go/'>www.calhoun.io/6-tips-for-using-strings-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</h3><br />
+<br />
+<span>Reading this post about <span class='inlinecode'>#rust</span> (especially the first part), I think I made a good choice in deciding to dive into <span class='inlinecode'>#golang</span> instead. There was a point where I wanted to learn a new programming language, and Rust was on my list of choices. I think the Go project does a much better job of deciding what goes into the language and how. What are your thoughts?</span><br />
+<br />
+<a class='textlink' href='https://josephg.com/blog/rewriting-rust/'>josephg.com/blog/rewriting-rust/</a><br />
+<br />
+<h3 style='display: inline' id='the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</h3><br />
+<br />
+<span>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... automatically repairing and healing services helping to reduce manual toil work. Runbooks and scripts are only the first step, followed by a fully blown service written in Go. Could be useful, but IMHO why not rather address the root causes of the manual toil work? <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/'>blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/</a><br />
+<br />
+<h2 style='display: inline' id='november-2024'>November 2024</h2><br />
+<br />
+<h3 style='display: inline' id='i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</h3><br />
+<br />
+<span>I just became a Silver Patreon for OSnews. What is OSnews? It is an independent news site about IT. It is slightly independent and, at times, alternative. I have enjoyed it since my early student days. This one and other projects I financially support are listed here:</span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-09-07-projects-i-support.gmi'>foo.zone/gemfeed/2024-09-07-projects-i-support.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-09-07-projects-i-support.html'>foo.zone/gemfeed/2024-09-07-projects-i-support.html</a><br />
+<br />
+<h3 style='display: inline' id='until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</h3><br />
+<br />
+<span>Until now, I wasn&#39;t aware, that Go is under a BSD-style license (3-clause as it seems). Neat. I don&#39;t know why, but I always was under the impression it would be MIT. <span class='inlinecode'>#bsd</span> <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://go.dev/LICENSE'>go.dev/LICENSE</a><br />
+<br />
+<h3 style='display: inline' id='these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</h3><br />
+<br />
+<span>These are some book notes from "Staff Engineer" – there is some really good insight into what is expected from a Staff Engineer and beyond in the industry. I wish I had read the book earlier.</span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi'>foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html'>foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html</a><br />
+<br />
+<h3 style='display: inline' id='looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</h3><br />
+<br />
+<span>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much following the Unix way of doing things. It has many tools, but each tool has its own single purpose: DNS, scheduling, container runtime, various controllers, networking, observability, alerting, and more services in the control plane. Everything is managed by different services or plugins, mostly running in their dedicated pods. They don&#39;t communicate through pipes, but network sockets, though. <span class='inlinecode'>#k8s</span></span><br />
+<br />
+<h3 style='display: inline' id='there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</h3><br />
+<br />
+<span>There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other <span class='inlinecode'>#OpenBSD</span> VM!</span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi'>foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html</a><br />
+<a class='textlink' href='https://openbsd.amsterdam/'>openbsd.amsterdam/</a><br />
+<br />
+<h3 style='display: inline' id='one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</h3><br />
+<br />
+<span>One of the more confusing parts in Go, nil values vs nil errors: <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html'>unexpected-go.com/nil-errors-that-are-non-nil-errors.html</a><br />
+<br />
+<h3 style='display: inline' id='agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</h3><br />
+<br />
+<span>Agreeably, writing down with Diagrams helps you to think things more through. And keeps others on the same page. Only worth for projects from a certain size, IMHO.</span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/reasons-to-write-design-docs/'>ntietz.com/blog/reasons-to-write-design-docs/</a><br />
+<br />
+<h3 style='display: inline' id='i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</h3><br />
+<br />
+<span>I like the idea of types in Ruby. Raku is supports that already, but in Ruby, you must specify the types in a separate .rbs file, which is, in my opinion, cumbersome and is a reason not to use it extensively for now. I believe there are efforts to embed the type information in the standard .rb files, and that the .rbs is just an experiment to see how types could work out without introducing changes into the core Ruby language itself right now? <span class='inlinecode'>#Ruby</span> <span class='inlinecode'>#RakuLang</span></span><br />
+<br />
+<a class='textlink' href='https://github.com/ruby/rbs'>github.com/ruby/rbs</a><br />
+<br />
+<h3 style='display: inline' id='so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</h3><br />
+<br />
+<span>So, <span class='inlinecode'>#Haskell</span> is better suited for general purpose than <span class='inlinecode'>#Rust</span>? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:</span><br />
+<br />
+<a class='textlink' href='https://chrisdone.com/posts/rust/'>chrisdone.com/posts/rust/</a><br />
+<br />
+<h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
+<br />
+<span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
+<br />
+<span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#homelab</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi'>foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html</a><br />
+<br />
+<h3 style='display: inline' id='wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</h3><br />
+<br />
+<span>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should switch now personally ...</span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/'>www.osnews.com/story/141100/mozilla-fo..-..dvocacy-for-open-web-privacy-and-more/</a><br />
+<br />
+<h3 style='display: inline' id='eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</h3><br />
+<br />
+<span>eks-node-viewer is a nifty tool, showing the compute nodes currently in use in the <span class='inlinecode'>#EKS</span> cluster. especially useful when dynamically allocating nodes with <span class='inlinecode'>#karpenter</span> or auto scaling groups.</span><br />
+<br />
+<a class='textlink' href='https://github.com/awslabs/eks-node-viewer'>github.com/awslabs/eks-node-viewer</a><br />
+<br />
+<h3 style='display: inline' id='have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</h3><br />
+<br />
+<span>Have put more Photos on - On my static photo sites - Generated with a <span class='inlinecode'>#bash</span> script</span><br />
+<br />
+<a class='textlink' href='https://irregular.ninja'>irregular.ninja</a><br />
+<br />
+<h3 style='display: inline' id='in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</h3><br />
+<br />
+<span>In Go, passing pointers are not automatically faster than values. Pointers often force the memory to be allocated on the heap, adding GC overhad. With values, Go can determine whether to put the memory on the stack instead. But with large structs/objects (how you want to call them) or if you want to modify state, then pointers are the semantic to use. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://blog.boot.dev/golang/pointers-faster-than-values/'>blog.boot.dev/golang/pointers-faster-than-values/</a><br />
+<br />
+<h3 style='display: inline' id='myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</h3><br />
+<br />
+<span>Myself being part of an on-call rotations over my whole professional life, just have learned this lesson "Tell people who are new to on-call: Just have fun" :-) This is a neat blog post to read:</span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/what-i-tell-people-new-to-oncall/'>ntietz.com/blog/what-i-tell-people-new-to-oncall/</a><br />
+<br />
+<h3 style='display: inline' id='feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</h3><br />
+<br />
+<span>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again after a while. I am implementing a log parser for generating site stats of my personal homepage! :-) @Perl</span><br />
+<br />
+<h3 style='display: inline' id='this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</h3><br />
+<br />
+<span>This is an interactive summary of the Go release, with a lot of examples utilising iterators in the slices and map packages. Love it! <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://antonz.org/go-1-23/'>antonz.org/go-1-23/</a><br />
+<br />
+<h2 style='display: inline' id='december-2024'>December 2024</h2><br />
+<br />
+<h3 style='display: inline' id='thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</h3><br />
+<br />
+<span>Thats unexpected, you cant remove a NaN key from a map without clearing it! <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html</a><br />
+<br />
+<h3 style='display: inline' id='my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</h3><br />
+<br />
+<span>My second blog post about revamping my home lab a little bit just hit the net. <span class='inlinecode'>#FreeBSD</span> <span class='inlinecode'>#ZFS</span> <span class='inlinecode'>#n100</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi'>foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html</a><br />
+<br />
+<h3 style='display: inline' id='very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</h3><br />
+<br />
+<span>Very insightful article about tech hiring in the age of LLMs. As an interviewer, I have experienced some of the scrnarios already first hand...</span><br />
+<br />
+<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring'>newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring</a><br />
+<br />
+<h3 style='display: inline' id='for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</h3><br />
+<br />
+<span>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the <span class='inlinecode'>#linux</span> kernel. Highly recommend!</span><br />
+<br />
+<a class='textlink' href='https://github.com/Netflix/bpftop'>github.com/Netflix/bpftop</a><br />
+<br />
+<h3 style='display: inline' id='89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</h3><br />
+<br />
+<span>89 things he/she knows about Git commits is a neat list of <span class='inlinecode'>#Git</span> wisdoms</span><br />
+<br />
+<a class='textlink' href='https://www.jvt.me/posts/2024/07/12/things-know-commits/'>www.jvt.me/posts/2024/07/12/things-know-commits/</a><br />
+<br />
+<h3 style='display: inline' id='i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</h3><br />
+<br />
+<span>I found that working on multiple side projects concurrently is better than concentrating on just one. This seems inefficient at first, but whenever you tend to lose motivation, you can temporarily switch to another one with full élan. However, remember to stop starting and start finishing. This doesn&#39;t mean you should be working on 10+ (and a growing list of) side projects concurrently! Select your projects and commit to finishing them before starting the next thing. For example, my current limit of concurrent side projects is around five.</span><br />
+<br />
+<h3 style='display: inline' id='agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</h3><br />
+<br />
+<span>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also add <span class='inlinecode'>#RakuLang</span> and <span class='inlinecode'>#Perl</span> @Perl to the list of languages that are great for shell scripts - "Making Easy Things Easy and Hard Things Possible"</span><br />
+<br />
+<a class='textlink' href='https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/'>lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/</a><br />
+<br />
+<h3 style='display: inline' id='plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</h3><br />
+<br />
+<span>Plan9 assembly format in Go, but wait, it&#39;s not the Operating System Plan9! <span class='inlinecode'>#golang</span> <span class='inlinecode'>#rabbithole</span></span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/'>www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/</a><br />
+<br />
+<h3 style='display: inline' id='this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</h3><br />
+<br />
+<span>This is a neat blog post about the Helix text editor, to which I personally switched around a year ago (from NeoVim). I should blog about my experience as well. To summarize: I am using it together with the terminal multiplexer <span class='inlinecode'>#tmux</span>. It doesn&#39;t bother me that Helix is purely terminal-based and therefore everything has to be in the same font. <span class='inlinecode'>#HelixEditor</span></span><br />
+<br />
+<a class='textlink' href='https://jonathan-frere.com/posts/helix/'>jonathan-frere.com/posts/helix/</a><br />
+<br />
+<h3 style='display: inline' id='this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</h3><br />
+<br />
+<span>This blog post is basically a rant against DataDog... Personally, I don&#39;t have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! <span class='inlinecode'>#dtail</span> <span class='inlinecode'>#logs</span> <span class='inlinecode'>#logmanagement</span></span><br />
+<br />
+<a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>crys.site/blog/2024/reinventint-the-weel/</a><br />
+<a class='textlink' href='https://dtail.dev'>dtail.dev</a><br />
+<br />
+<h3 style='display: inline' id='quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</h3><br />
+<br />
+<span>Quick trick to get Helix themes selected randomly <span class='inlinecode'>#HelixEditor</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi'>foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html'>foo.zone/gemfeed/2024-12-15-random-helix-themes.html</a><br />
+<br />
+<h3 style='display: inline' id='example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</h3><br />
+<br />
+<span>Example where complexity attacks you from behind <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#OpenAI</span></span><br />
+<br />
+<a class='textlink' href='https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/'>surfingcomplexity.blog/2024/12/14/quic..-..ecent-openai-public-incident-write-up/</a><br />
+<br />
+<h3 style='display: inline' id='llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</h3><br />
+<br />
+<span>LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generating Ansible, some uses cases are there. Wouldn&#39;t trust it fully, though.</span><br />
+<br />
+<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI</a><br />
+<br />
+<h3 style='display: inline' id='excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</h3><br />
+<br />
+<span>Excellent article about your dream Product Manager: Why every software team needs a product manager to thrive via @wallabagapp</span><br />
+<br />
+<a class='textlink' href='https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery'>testdouble.com/insights/why-product-ma..-..s-accelerate-improve-software-delivery</a><br />
+<br />
+<h3 style='display: inline' id='i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</h3><br />
+<br />
+<span>I just finished reading all chapters of CPU land: ... not claiming to remember every detail, but it is a great refresher how CPUs and operating systems actually work under the hood when you execute a program, which we tend to forget in our higher abstraction world. I liked the "story" and some of the jokes along the way! Size wise, it is pretty digestable (not talking about books, but only 7 web articles/chapters)! <span class='inlinecode'>#cpu</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#unix</span> <span class='inlinecode'>#kernel</span> <span class='inlinecode'>#macOS</span></span><br />
+<br />
+<a class='textlink' href='https://cpu.land/'>cpu.land/</a><br />
+<br />
+<h3 style='display: inline' id='indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</h3><br />
+<br />
+<span>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/'>biriukov.dev/docs/resolver-dual-stack-..-..resolvers-and-dual-stack-applications/</a><br />
+<br />
+<h3 style='display: inline' id='it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</h3><br />
+<br />
+<span>It&#39;s the small things, which make Unix like systems, like GNU/Linux, interesting. Didn&#39;t know about this <span class='inlinecode'>#GNU</span> <span class='inlinecode'>#Tar</span> behaviour yet:</span><br />
+<br />
+<a class='textlink' href='https://xeiaso.net/notes/2024/pop-quiz-tar/'>xeiaso.net/notes/2024/pop-quiz-tar/</a><br />
+<br />
+<h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
+<br />
+<span>My New Year&#39;s resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.&lt;nil&gt;17491</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024 (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
