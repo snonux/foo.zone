@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>'Implementing Service Level Objectives' book notes</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/notes/implementing-service-level-objectives.md">Markdown</a> | <a href="gemini://foo.zone/notes/implementing-service-level-objectives.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='implementing-service-level-objectives-book-notes'>"Implementing Service Level Objectives" book notes</h1><br />
+<br />
+<span>These are my personal book notes of Alex Hidalgo&#39;s "Implementing Service Level Objectives: A Pratical Guide to SLIs, SLOs, and Error Budgets" They are for myself, but I hope they might be useful to you too.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#implementing-service-level-objectives-book-notes'>"Implementing Service Level Objectives" book notes</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#importance-of-documentation'>Importance of Documentation</a></li>
+<li>⇢ <a href='#implementation-phases'>Implementation Phases</a></li>
+<li>⇢ ⇢ <a href='#the-three-phases-of-slo-implementation'>The Three Phases of SLO Implementation</a></li>
+<li>⇢ ⇢ <a href='#phase-1-defining-slos'>Phase 1: Defining SLOs</a></li>
+<li>⇢ ⇢ <a href='#phase-2-collecting-slis'>Phase 2: Collecting SLIs</a></li>
+<li>⇢ ⇢ <a href='#phase-3-utilizing-slos'>Phase 3: Utilizing SLOs</a></li>
+<li>⇢ <a href='#best-practices'>Best Practices</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>Service Level Objectives (SLOs) are a fundamental component in ensuring service reliability, enhancing engineering effectiveness, and aligning organizational goals. Below is a comprehensive guide to understanding and implementing SLOs, focusing on the critical documentation required and the three phases of SLO implementation.</span><br />
+<br />
+<h2 style='display: inline' id='importance-of-documentation'>Importance of Documentation</h2><br />
+<br />
+<span>Documentation Support: Strong documentation is essential in supporting both you and your organization throughout the SLO implementation process. It provides clarity and guidance, making the transition smoother and more efficient.</span><br />
+<br />
+<h2 style='display: inline' id='implementation-phases'>Implementation Phases</h2><br />
+<br />
+<h3 style='display: inline' id='the-three-phases-of-slo-implementation'>The Three Phases of SLO Implementation</h3><br />
+<br />
+<ul>
+<li>1. Define the SLO</li>
+<li>2. Collect the SLOs</li>
+<li>3. Use the SLO</li>
+</ul><br />
+<h3 style='display: inline' id='phase-1-defining-slos'>Phase 1: Defining SLOs</h3><br />
+<br />
+<span>Strategy Document:</span><br />
+<br />
+<span>Create a one-page strategy document. This document is vital in the initial &#39;crawl&#39; phase, outlining what you are trying to achieve, why, and how. It should be concise, allowing anyone to read it in less than ten minutes. It&#39;s crucial to get this document right, as it answers:</span><br />
+<br />
+<ul>
+<li>What will we get out of creating SLOs?</li>
+<li>How will SLOs improve service reliability?</li>
+<li>How will it help engineering teams?</li>
+<li>Ensure the document is reviewed and signed off by leadership to garner support.</li>
+</ul><br />
+<span>SLO Definition Document:</span><br />
+<br />
+<span>Draft a two-page document providing a high-level definition of SLOs, including examples of effective ones. This should guide engineers by making SLO implementation accessible and generate interest without overwhelming them with volumes of information.</span><br />
+<br />
+<span>FAQ Document:</span><br />
+<br />
+<span>Compile a FAQ document to address anticipated questions as teams begin their SLO journey. Example questions include:</span><br />
+<br />
+<ul>
+<li>What if my user is another service? Do I still need to care about SLOs?</li>
+<li>What if my service&#39;s dependencies don&#39;t have SLOs?</li>
+<li>How many SLOs should a service have? How many SLIs?</li>
+</ul><br />
+<h3 style='display: inline' id='phase-2-collecting-slis'>Phase 2: Collecting SLIs</h3><br />
+<br />
+<span>Instrumentation Guide:</span><br />
+<br />
+<span>Once the high-level SLO definition is clear, provide a detailed guide on how to instrument services to collect SLIs. Be specific and include examples from your organization&#39;s monitoring platforms. Address scenarios like collecting latency data, using percentiles, and instrumenting different types of services. Offer code snippets to facilitate the instrumentation process.</span><br />
+<br />
+<h3 style='display: inline' id='phase-3-utilizing-slos'>Phase 3: Utilizing SLOs</h3><br />
+<br />
+<span>Use Case Documentation:</span><br />
+<span> </span><br />
+<ul>
+<li>Document any existing SLO implementations to provide a concrete example for early adopters. </li>
+<li>Define where all related artifacts will be stored (e.g., a wiki paired with a code repository).</li>
+<li>Ensure these resources are easily discoverable and navigable by users.</li>
+</ul><br />
+<h2 style='display: inline' id='best-practices'>Best Practices</h2><br />
+<br />
+<span>Quality Documentation:</span><br />
+<br />
+<ul>
+<li>Ensure all documentation undergoes the same quality control process as code.</li>
+<li>Structured and discoverable documentation is critical for successful implementation across engineering organizations.</li>
+</ul><br />
+<span>This systematic approach to SLO implementation, supported by robust documentation, will help your organization effectively adopt SLOs and improve overall service reliability.</span><br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
