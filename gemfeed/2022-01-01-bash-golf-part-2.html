@@ -8,9 +8,18 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Bash Golf Part 2</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-01-01-bash-golf-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='bash-golf-part-2'>Bash Golf Part 2</h1><br />
 <br />
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
+<br />
+<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <br />
 <pre>
     &#39;\       &#39;\                   .  .                |&gt;18&gt;&gt;
@@ -23,12 +32,19 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
                         Art by Joan Stark, mod. by Paul Buetow
 </pre>
 <br />
-<span>This is the second blog post about my Bash Golf series. This series is random Bash tips, tricks and weirdnesses I came across. It&#39;s a collection of smaller articles I wrote in an older (in German language) blog, which I translated and refreshed with some new content.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<br />
-<h2 style='display: inline'>Redirection</h2><br />
+<ul>
+<li><a href='#bash-golf-part-2'>Bash Golf Part 2</a></li>
+<li>⇢ <a href='#redirection'>Redirection</a></li>
+<li>⇢ <a href='#here'>HERE</a></li>
+<li>⇢ <a href='#random'>RANDOM</a></li>
+<li>⇢ <a href='#set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</a></li>
+<li>⇢ ⇢ <a href='#-x'>-x</a></li>
+<li>⇢ ⇢ <a href='#-e'>-e</a></li>
+<li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
+</ul><br />
+<h2 style='display: inline' id='redirection'>Redirection</h2><br />
 <br />
 <span>Let&#39;s have a closer look at Bash redirection. As you might already know that there are 3 standard file descriptors:</span><br />
 <br />
@@ -56,6 +72,8 @@ Foo
 ❯ echo Foo &gt; /proc/self/fd/0
 Foo
 </pre>
+<br />
+<span class='quote'>Update: A reader pointed out, that the redirection should actually go to <span class='inlinecode'>/proc/self/fd/1</span> and not <span class='inlinecode'>0</span>. But apparently, either way works for this particular example. Do you know why? </span><br />
 <br />
 <span>Other useful redirections are:</span><br />
 <br />
@@ -158,7 +176,7 @@ First line: Learn You a Haskell
 Second line: for Great Good
 </pre>
 <br />
-<h2 style='display: inline'>HERE</h2><br />
+<h2 style='display: inline' id='here'>HERE</h2><br />
 <br />
 <span>I have mentioned HERE-documents and HERE-strings already in this post. Let&#39;s do some more examples. The following "cat" receives a multi line string from stdin. In this case, the input multi line string is a HERE-document. As you can see, it also interpolates variables (in this case the output of "date" running in a subshell).</span><br />
 <br />
@@ -241,7 +259,7 @@ Learn you a Golang for Great Good
 I like Perl too
 </pre>
 <br />
-<h2 style='display: inline'>RANDOM</h2><br />
+<h2 style='display: inline' id='random'>RANDOM</h2><br />
 <br />
 <span>Random is a special built-in variable containing a different pseudo random number each time it&#39;s used.</span><br />
 <br />
@@ -286,11 +304,11 @@ Delaying script execution for 42 seconds...
 Continuing script execution...
 </pre>
 <br />
-<h2 style='display: inline'>set -x and set -e and pipefile</h2><br />
+<h2 style='display: inline' id='set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</h2><br />
 <br />
 <span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
 <br />
-<h3 style='display: inline'>-x</h3><br />
+<h3 style='display: inline' id='-x'>-x</h3><br />
 <br />
 <span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
 <br />
@@ -332,7 +350,7 @@ Second line: for Great Good
 ❯
 </pre>
 <br />
-<h3 style='display: inline'>-e</h3><br />
+<h3 style='display: inline' id='-e'>-e</h3><br />
 <br />
 <span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
 <br />
@@ -451,7 +469,7 @@ Hello You!
 <br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>./2021-05-16-personal-bash-coding-style-guide.html</a><br />
 <br />
-<h3 style='display: inline'>pipefail</h3><br />
+<h3 style='display: inline' id='pipefail'>pipefail</h3><br />
 <br />
 <span>The pipefail option makes it so that not only the exit code of the last command of the pipe counts regards its exit code but any command of the pipe:</span><br />
 <br />
@@ -491,20 +509,21 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 1
 </pre>
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2 (You are currently reading this)</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

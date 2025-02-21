@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Site Reliability Engineering - Part 3: On-Call Culture</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-01-09-site-reliability-engineering-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='site-reliability-engineering---part-3-on-call-culture'>Site Reliability Engineering - Part 3: On-Call Culture</h1><br />
+<br />
+<span class='quote'>Published at 2024-01-09T18:35:48+02:00</span><br />
+<br />
+<span>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<br />
+<pre>
+                    ..--""""----..                 
+                 .-"   ..--""""--.j-.              
+              .-"   .-"        .--.""--..          
+           .-"   .-"       ..--"-. \/    ;         
+        .-"   .-"_.--..--""  ..--&#39;  "-.  :         
+      .&#39;    .&#39;  /  `. \..--"" __ _     \ ;         
+     :.__.-"    \  /        .&#39; ( )"-.   Y          
+     ;           ;:        ( )     ( ).  \         
+   .&#39;:          /::       :            \  \        
+ .&#39;.-"\._   _.-" ; ;      ( )    .-.  ( )  \       
+  "    `."""  .j"  :      :      \  ;    ;  \      
+    bug /"""""/     ;      ( )    "" :.( )   \     
+       /\    /      :       \         \`.:  _ \    
+      :  `. /        ;       `( )     (\/ :" \ \   
+       \   `.        :         "-.(_)_.&#39;   t-&#39;  ;  
+        \    `.       ;                    ..--":  
+         `.    `.     :              ..--""     :  
+           `.    "-.   ;       ..--""           ;  
+             `.     "-.:_..--""            ..--"   
+               `.      :             ..--""        
+                 "-.   :       ..--""              
+                    "-.;_..--""                    
+
+</pre>
+<br />
+<h2 style='display: inline' id='putting-well-being-first'>Putting Well-being First</h2><br />
+<br />
+<span>Site Reliability Engineering is all about keeping systems reliable, but we often forget how important the human side is. A healthy on-call culture is just as crucial as any technical fix. The well-being of the engineers really matters.</span><br />
+<br />
+<span>First off, a healthy on-call rotation is about more than just handling incidents. It&#39;s about creating a supportive ecosystem. This means cutting down on pain points, offering mentorship, quickly iterating on processes, and making sure engineers have the right tools. But there&#39;s a catch—engineers need to be willing to learn. Especially in on-call rotations where SREs work with Software Engineers or QA Engineers, it can be tough to get everyone motivated. QA Engineers want to test, Software Engineers want to build new features; they don’t want to deal with production issues. This can be really frustrating for the SREs trying to mentor them.</span><br />
+<br />
+<span>Plus, measuring a good on-call experience isn&#39;t always clear-cut. You might think fewer pages mean a better on-call setup—and yeah, no one wants to get paged after hours—but it&#39;s not just about the number of pages. Trust, ownership, accountability, and solid communication are what really matter.</span><br />
+<br />
+<span>A key part is giving feedback about the on-call experience to keep learning and improving. If alerts are mostly noise, they need to be tweaked or even ditched. If alerts are helpful, can we automate the repetitive tasks? If there are knowledge gaps, is the documentation lacking? Regular retrospectives ensure that the systems get better over time and the on-call experience improves for the engineers.</span><br />
+<br />
+<span>Getting new team members ready for on-call duties is super important for keeping systems reliable and efficient. This means giving them the knowledge, tools, and support they need to handle incidents with confidence. It starts with a rundown of the system architecture and common issues, then training on monitoring tools, alerting systems, and incident response protocols. Watching experienced on-call engineers in action can provide some hands-on learning. Too often, though, new engineers get thrown into the deep end without proper onboarding because the more experienced engineers are too busy dealing with ongoing production issues.</span><br />
+<br />
+<span>A culture where everyone&#39;s always on and alert can cause burnout. Engineers need to know their limits, take breaks, and ask for help when they need it. This isn&#39;t just about personal health; a burnt-out engineer can drag down the whole team and the systems they manage. A good on-call culture keeps systems running while making sure engineers are happy, healthy, and supported. Experienced engineers should take the time to mentor juniors, but junior engineers should also stay engaged, investigate issues, and learn new things on their own.</span><br />
+<br />
+<span>For junior engineers, it&#39;s tempting to always ask the experts for help whenever something goes wrong. While that might seem reasonable, constantly handing out solutions doesn&#39;t scale—there are endless ways for production systems to break. So, every engineer needs to learn how to debug, troubleshoot, and resolve incidents on their own. The experts should be there for guidance and can step in when a junior gets really stuck, but they also need to give space for less experienced engineers to grow and learn.</span><br />
+<br />
+<span>A blameless on-call culture is essential for creating a safe and collaborative environment where engineers can handle incidents without worrying about getting blamed. It recognizes that mistakes are just part of learning and innovating. When people know they won’t be punished for errors, they’re more likely to talk openly about what went wrong, which helps the whole team learn and improve. Plus, a blameless culture boosts psychological safety, job satisfaction, and reduces burnout, keeping everyone committed and engaged.</span><br />
+<br />
+<span>Mistakes are gonna happen, which is why having a blameless on-call culture is so important.</span><br />
+<br />
+<span>Continue with the fourth part of this series:</span><br />
+<br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

@@ -8,19 +8,12 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Defensive DevOps</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2021-10-22-defensive-devops.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2021-10-22-defensive-devops.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='defensive-devops'>Defensive DevOps</h1><br />
 <br />
 <span class='quote'>Published at 2021-10-22T10:02:46+03:00</span><br />
-<br />
-<pre>
-                                                            c=====e
-                                                               H
-      ____________                                         _,,_H__
-     (__((__((___()                                       //|     |
-    (__((__((___()()_____________________________________// |ACME |
-   (__((__((___()()()------------------------------------&#39;  |_____|
-                           ASCII Art by Clyde Watson
-</pre>
 <br />
 <span>I have seen many different setups and infrastructures during my carreer. My roles always included front-line ad-hoc fire fighting production issues. This often involves identifying and fixing these under time pressure, without the comfort of 2-week-long SCRUM sprints and without an exhaustive QA process. I also wrote a lot of code (Bash, Ruby, Perl, Go, and a little Java), and I followed the typical software development process, but that did not always apply to critical production issues.</span><br />
 <br />
@@ -32,7 +25,30 @@
 <br />
 <span>Over time, I have compiled a list of fire-fighting automation strategies, which I would like to share here. </span><br />
 <br />
-<h2 style='display: inline'>Meet Defensive DevOps</h2><br />
+<pre>
+                                                            c=====e
+                                                               H
+      ____________                                         _,,_H__
+     (__((__((___()                                       //|     |
+    (__((__((___()()_____________________________________// |ACME |
+   (__((__((___()()()------------------------------------&#39;  |_____|
+                           ASCII Art by Clyde Watson
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#defensive-devops'>Defensive DevOps</a></li>
+<li>⇢ <a href='#meet-defensive-devops'>Meet Defensive DevOps</a></li>
+<li>⇢ <a href='#don-t-fully-automate-from-the-beginning'>Don&#39;t fully automate from the beginning</a></li>
+<li>⇢ <a href='#develop-code-directly-on-production-systems'>Develop code directly on production systems</a></li>
+<li>⇢ ⇢ <a href='#don-t-make-it-worse'>Don&#39;t make it worse</a></li>
+<li>⇢ <a href='#test-your-code'>Test your code</a></li>
+<li>⇢ <a href='#automation'>Automation</a></li>
+<li>⇢ <a href='#out-of-office-hours'>Out of office hours</a></li>
+<li>⇢ <a href='#retrospective'>Retrospective</a></li>
+</ul><br />
+<h2 style='display: inline' id='meet-defensive-devops'>Meet Defensive DevOps</h2><br />
 <br />
 <span>Defensive DevOps is a term I invented by myself. I define it this way:</span><br />
 <br />
@@ -45,7 +61,7 @@
 </ul><br />
 <span>That sounds a bit crazy, but this is, unfortunately, in rare occasions the reality. As the question is not whether production issues will happen, the question is WHEN they will happen. Every large provider, such as Google, Netflix, and so on, suffered significant outages before, and I firmly believe that their engineers know what they are doing. But you can prepare for the unexpected only to a certain degree.</span><br />
 <br />
-<h2 style='display: inline'>Don&#39;t fully automate from the beginning</h2><br />
+<h2 style='display: inline' id='don-t-fully-automate-from-the-beginning'>Don&#39;t fully automate from the beginning</h2><br />
 <br />
 <span>Do you have to solve problem X? The best solution would be to fully automate it away, correct? No, the best way is to fix problem X manually first. Does the problem appear on one server or on thousand servers? The scale does not matter here. The point is that you should fix the problem at least once manually, so you understand the problem and how to solve it before implementing automation around it.</span><br />
 <br />
@@ -53,7 +69,7 @@
 <br />
 <span>Once you understand the problem, fix it on a different server again. This time maybe write a small program or script. Semi-automate the process, but don&#39;t fully automate it yet. Start the semi-automated solution manually on a couple of more servers and observe the result. You want to gain more confidence that this really solved the problem. This can take a couple of hours manually running it over and over again. During that process, you will improve your script iteratively.</span><br />
 <br />
-<h2 style='display: inline'>Develop code directly on production systems</h2><br />
+<h2 style='display: inline' id='develop-code-directly-on-production-systems'>Develop code directly on production systems</h2><br />
 <br />
 <span>You have to develop code directly on a production system. This sounds a bit controversial, but you want to get a working solution ASAP, and there is a very high chance that you can&#39;t reproduce problem X in a development or QA environment. Or at least it will consume significant effort and time to reproduce the problem, and by the time your code is ready, it&#39;s already too late. So the most practical solution is to directly develop your solution against a production system with the problem at hand. </span><br />
 <br />
@@ -61,7 +77,7 @@
 <br />
 <span>Unfortunately, it will be a bit more complicated when you rely on code reviews (e.g. in a FIPS environment). Pair-programming could be the solution here.</span><br />
 <br />
-<h3 style='display: inline'>Don&#39;t make it worse</h3><br />
+<h3 style='display: inline' id='don-t-make-it-worse'>Don&#39;t make it worse</h3><br />
 <br />
 <span>You want to triple-check that your script is not damaging your system even further. You might introduce a bug to the code, so there should always be a way to roll back any permanent change it causes. You have to program it in a defensive style:</span><br />
 <br />
@@ -75,7 +91,7 @@
 </ul><br />
 <span>Furthermore, when you write Bash script, always run the tool ShellSheck (https://shellshock.io/) on it. This helps to catch many potential issues before applying it in production. </span><br />
 <br />
-<h2 style='display: inline'>Test your code</h2><br />
+<h2 style='display: inline' id='test-your-code'>Test your code</h2><br />
 <br />
 <span>You probably won&#39;t have time for writing unit tests. But what you can do is to pedantically test your code manually. But you have to do the testing on a production machine. So how can you test your code in production without causing more damage? </span><br />
 <br />
@@ -85,7 +101,7 @@
 <br />
 <span>By following these principles, you test every line of code while you are developing on it. </span><br />
 <br />
-<h2 style='display: inline'>Automation</h2><br />
+<h2 style='display: inline' id='automation'>Automation</h2><br />
 <br />
 <span>At one point, you will be tired of manually running your script and also confident enough to automate it. You could deploy it with a configuration management system such as puppet Puppet and schedule a periodic execution via cron, a systemd timer or even a separate background daemon process. You have to be extremely careful here. The more you automate, the more damage you can cause. You don&#39;t want to automate it on all servers involved at once, but you want to slowly ramp up the automation. </span><br />
 <br />
@@ -99,13 +115,13 @@
 <br />
 <span>Remember, whenever something goes wrong, you will have plenty of logs and backup files available. The disaster recovery would involve extending your script to take care of that too or writing a new script for rolling back the backups. </span><br />
 <br />
-<h2 style='display: inline'>Out of office hours</h2><br />
+<h2 style='display: inline' id='out-of-office-hours'>Out of office hours</h2><br />
 <br />
 <span>If possible, don&#39;t deploy any automation shortly before out of office hours, such as in the evening, before holidays or weekends. The only exception would be that you, or someone else, will be available to monitor the automation out of office hours. If it is a critical issue, someone, for example, the on-call person, could take over. Or ask your boss to work now but to take off another day to compensate.</span><br />
 <br />
 <span>You should add an easy off-switch to your automation so that everyone from your team knows how to pause it if something goes wrong in order to adjust the automation accordingly. Of course, you should still follow all the principles mentioned in this blog post when making any changes. </span><br />
 <br />
-<h2 style='display: inline'>Retrospective</h2><br />
+<h2 style='display: inline' id='retrospective'>Retrospective</h2><br />
 <br />
 <span>For every major incident, you need to follow up with an incident retrospective. A blame-free, detailed description of exactly what went wrong to cause the incident, along with a list of steps to take to prevent a similar incident from occurring again in the future.</span><br />
 <br />
@@ -115,9 +131,9 @@
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

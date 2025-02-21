@@ -8,9 +8,18 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
 <br />
 <span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
+<br />
+<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
+<br />
+<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
+<br />
+<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
 <br />
 <pre>
          ___        .---------.._
@@ -29,19 +38,23 @@
 &#39;._____________________________________________.&#39;   
 </pre>
 <br />
-<h2 style='display: inline'>Motivation</h2><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
-<br />
-<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
-<br />
-<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
-<br />
-<h2 style='display: inline'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
+<ul>
+<li><a href='#kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a></li>
+<li>⇢ <a href='#introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#setting-it-up'>Setting it up</a></li>
+<li>⇢ <a href='#generating-the-static-photo-album'>Generating the static photo album</a></li>
+<li>⇢ <a href='#cleaning-it-up'>Cleaning it up</a></li>
+<li>⇢ <a href='#html-templates'>HTML templates</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
 <br />
-<h2 style='display: inline'>Installation</h2><br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
 <br />
 <span>Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:</span><br />
 <br />
@@ -84,7 +97,7 @@ cp ./src/photoalbum.default.conf /etc/default/photoalbum
 This is Photoalbum Version 0.5.1
 </pre>
 <br />
-<h2 style='display: inline'>Setting it up</h2><br />
+<h2 style='display: inline' id='setting-it-up'>Setting it up</h2><br />
 <br />
 <span>Now, it&#39;s time to set up the Irregular Ninja static web photo album (or any other web photo album you may be setting up!)! Create a directory (here: <span class='inlinecode'>irregular.ninja</span> for the Irregular Ninja Photo site - or any oter sub-directory reflecting your album&#39;s name), and inside of that directory, create an <span class='inlinecode'>incoming</span> directory. The <span class='inlinecode'>incoming</span> directory. Copy all photos to be part of the album there.</span><br />
 <br />
@@ -117,42 +130,42 @@ photoalbum makemake
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> photoalbum makemake
-You may now customize <font color="#990000">.</font>/photoalbumrc and run make
+<pre>% photoalbum makemake
+You may now customize ./photoalbumrc and run make
 
-<font color="#990000">%</font> cat Makefile
-all<font color="#990000">:</font>
+% cat Makefile
+all:
 	photoalbum generate photoalbumrc
-clean<font color="#990000">:</font>
+clean:
 	photoalbum clean photoalbumrc
 
-<font color="#990000">%</font> cat photoalbumrc
-<i><font color="#9A1900"># The title of the photoalbum</font></i>
-<font color="#009900">TITLE</font><font color="#990000">=</font><font color="#FF0000">'A simple Photoalbum'</font>
+% cat photoalbumrc
+<i><font color="silver"># The title of the photoalbum</font></i>
+TITLE=<font color="#808080">'A simple Photoalbum'</font>
 
-<i><font color="#9A1900"># Thumbnail height geometry</font></i>
-<font color="#009900">THUMBHEIGHT</font><font color="#990000">=</font><font color="#993399">300</font>
-<i><font color="#9A1900"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
-<font color="#009900">HEIGHT</font><font color="#990000">=</font><font color="#993399">1200</font>
-<i><font color="#9A1900"># Max previews per page.</font></i>
-<font color="#009900">MAXPREVIEWS</font><font color="#990000">=</font><font color="#993399">40</font>
-<i><font color="#9A1900"># Randomly shuffle all previews.</font></i>
-<i><font color="#9A1900"># SHUFFLE=yes</font></i>
+<i><font color="silver"># Thumbnail height geometry</font></i>
+THUMBHEIGHT=<font color="#000000">300</font>
+<i><font color="silver"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
+HEIGHT=<font color="#000000">1200</font>
+<i><font color="silver"># Max previews per page.</font></i>
+MAXPREVIEWS=<font color="#000000">40</font>
+<i><font color="silver"># Randomly shuffle all previews.</font></i>
+<i><font color="silver"># SHUFFLE=yes</font></i>
 
-<i><font color="#9A1900"># Diverse directories, need to be full paths, not relative!</font></i>
-<font color="#009900">INCOMING_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/incoming
-<font color="#009900">DIST_DIR</font><font color="#990000">=</font><font color="#009900">$(pwd)</font>/dist
-<font color="#009900">TEMPLATE_DIR</font><font color="#990000">=</font>/usr/share/photoalbum/templates/default
-<i><font color="#9A1900">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
+<i><font color="silver"># Diverse directories, need to be full paths, not relative!</font></i>
+INCOMING_DIR=$(pwd)/incoming
+DIST_DIR=$(pwd)/dist
+TEMPLATE_DIR=/usr/share/photoalbum/templates/default
+<i><font color="silver">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
 
-<i><font color="#9A1900"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
-<font color="#009900">TARBALL_INCLUDE</font><font color="#990000">=</font>yes
-<font color="#009900">TARBALL_SUFFIX</font><font color="#990000">=.</font>tar
-<font color="#009900">TAR_OPTS</font><font color="#990000">=</font><font color="#FF0000">'-c'</font>
+<i><font color="silver"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
+TARBALL_INCLUDE=yes
+TARBALL_SUFFIX=.tar
+TAR_OPTS=<font color="#808080">'-c'</font>
 
-<i><font color="#9A1900"># Some debugging options</font></i>
-<i><font color="#9A1900">#set -e</font></i>
-<i><font color="#9A1900">#set -x</font></i>
+<i><font color="silver"># Some debugging options</font></i>
+<i><font color="silver">#set -e</font></i>
+<i><font color="silver">#set -x</font></i>
 </pre>
 <br />
 <span>In the case for <span class='inlinecode'>irregular.ninja</span>, I changed the defaults to the following:</span><br />
@@ -161,43 +174,43 @@ clean<font color="#990000">:</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#FF6600">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</font>
-<font color="#009900">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</font>
-<font color="#0000FF">@@ -1,23 +1,24 @@</font>
+<pre>--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200
++++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300
+@@ -1,23 +1,24 @@
  # The title of the photoalbum
-<font color="#FF6600">-TITLE='A simple Photoalbum'</font>
-<font color="#009900">+TITLE='Irregular.Ninja'</font>
+-TITLE='A simple Photoalbum'
++TITLE='Irregular.Ninja'
 
  # Thumbnail height geometry
-<font color="#FF6600">-THUMBHEIGHT=300</font>
-<font color="#009900">+THUMBHEIGHT=400</font>
+-THUMBHEIGHT=300
++THUMBHEIGHT=400
  # Normal geometry height (when viewing photo). Uncomment, to keep original size.
-<font color="#FF6600">-HEIGHT=1200</font>
-<font color="#009900">+HEIGHT=1800</font>
+-HEIGHT=1200
++HEIGHT=1800
  # Max previews per page.
  MAXPREVIEWS=40
-<font color="#FF6600">-# Randomly shuffle all previews.</font>
-<font color="#FF6600">-# SHUFFLE=yes</font>
-<font color="#009900">+# Randomly shuffle</font>
-<font color="#009900">+SHUFFLE=yes</font>
+-# Randomly shuffle all previews.
+-# SHUFFLE=yes
++# Randomly shuffle
++SHUFFLE=yes
 
  # Diverse directories, need to be full paths, not relative!
-<font color="#FF6600">-INCOMING_DIR=$(pwd)/incoming</font>
-<font color="#009900">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</font>
+-INCOMING_DIR=$(pwd)/incoming
++INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja
  DIST_DIR=$(pwd)/dist
  TEMPLATE_DIR=/usr/share/photoalbum/templates/default
  #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
 
  # Includes a .tar of the incoming dir in the dist, can be yes or no
-<font color="#FF6600">-TARBALL_INCLUDE=yes</font>
-<font color="#009900">+TARBALL_INCLUDE=no</font>
+-TARBALL_INCLUDE=yes
++TARBALL_INCLUDE=no
  TARBALL_SUFFIX=.tar
  TAR_OPTS='-c'
 </pre>
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
 <br />
-<h2 style='display: inline'>Generating the static photo album</h2><br />
+<h2 style='display: inline' id='generating-the-static-photo-album'>Generating the static photo album</h2><br />
 <br />
 <span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
 <br />
@@ -260,15 +273,15 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span class='quote'>PS: There&#39;s also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).</span><br />
 <br />
-<h2 style='display: inline'>Cleaning it up</h2><br />
+<h2 style='display: inline' id='cleaning-it-up'>Cleaning it up</h2><br />
 <br />
 <span>A simple <span class='inlinecode'>make clean</span> will clean up the <span class='inlinecode'>./dist</span> directory and all other (if any) temp files created.</span><br />
 <br />
-<h2 style='display: inline'>HTML templates</h2><br />
+<h2 style='display: inline' id='html-templates'>HTML templates</h2><br />
 <br />
 <span>Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. </span><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
 <br />
@@ -276,23 +289,25 @@ blurs  html  index.html  photos  thumbs
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/photoalbum'><span class='inlinecode'>photoalbum.sh</span> source code on Codeberg.</a><br />
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other Bash and KISS-related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-4.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---rocky-linux-bhyve-vms---part-4'>f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</h1><br />
+<br />
+<span>This is the thourth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<br />
+<a href='./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---rocky-linux-bhyve-vms---part-4'>f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</a></li>
+<li>⇢ <a href='#basic-bhyve-setup'>Basic Bhyve setup</a></li>
+<li>⇢ <a href='#rocky-linux-vms'>Rocky Linux VMs</a></li>
+<li>⇢ ⇢ <a href='#iso-download'>ISO download</a></li>
+<li>⇢ ⇢ <a href='#vm-configuration'>VM configuration</a></li>
+<li>⇢ ⇢ <a href='#vm-installation'>VM installation</a></li>
+<li>⇢ ⇢ <a href='#increase-of-the-disk-image'>Increase of the disk image</a></li>
+<li>⇢ ⇢ <a href='#connect-to-vpn'>Connect to VPN</a></li>
+<li>⇢ <a href='#after-install'>After install</a></li>
+<li>⇢ ⇢ <a href='#vm-auto-start-after-host-reboot'>VM auto-start after host reboot</a></li>
+<li>⇢ ⇢ <a href='#static-ip-configuration'>Static IP configuration</a></li>
+<li>⇢ ⇢ <a href='#permitting-root-login'>Permitting root login</a></li>
+<li>⇢ ⇢ <a href='#install-latest-updates'>Install latest updates</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are going to install the Bhyve hypervisor.</span><br />
+<br />
+<span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
+<br />
+<span>Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.</span><br />
+<br />
+<h2 style='display: inline' id='check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</h2><br />
+<br />
+<span>POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. In terms of CPU virtualization and Bhyve support for the POPCNT instruction is important because  guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines to for better performance. Without POPCNT support, some applications might not run, or they might perform suboptimally in virtualized environments.</span><br />
+<br />
+<span>To check for <span class='inlinecode'>POPCNT</span> support, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % dmesg | grep <font color="#808080">'Features2=.*POPCNT'</font>
+  Features2=<font color="#000000">0x7ffafbbf</font>&lt;SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.<font color="#000000">1</font>,SSE4.<font color="#000000">2</font>,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND&gt;
+</pre>
+<br />
+<span>So it&#39;s there! All good.</span><br />
+<br />
+<h2 style='display: inline' id='basic-bhyve-setup'>Basic Bhyve setup</h2><br />
+<br />
+<span>For the management of the Bhyve VMs, we are using <span class='inlinecode'>vm-bhyve</span>, a tool not part of the FreeBSD operating system but available as a ready-to-use package. It eases VM management and reduces a lot of the overhead. We also install the required package to make Bhyve work with the UEFI firmware.</span><br />
+<br />
+<a class='textlink' href='https://github.com/churchers/vm-bhyve'>https://github.com/churchers/vm-bhyve</a><br />
+<br />
+<span>The following commands are executed on all three hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, and <span class='inlinecode'>f2</span>, where <span class='inlinecode'>re0</span> is the name of the Ethernet interface (which may need to be adjusted if your hardware is different):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install vm-bhyve bhyve-firmware
+paul@f0:~ % doas sysrc vm_enable=YES
+vm_enable:  -&gt; YES
+paul@f0:~ % doas sysrc vm_dir=zfs:zroot/bhyve
+vm_dir:  -&gt; zfs:zroot/bhyve
+paul@f0:~ % doas zfs create zroot/bhyve
+paul@f0:~ % doas vm init
+paul@f0:~ % doas vm switch create public
+paul@f0:~ % doas vm switch add public re0
+</pre>
+<br />
+<span>Bhyve stores all it&#39;s data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % zfs list | grep bhyve
+zroot/bhyve                                   <font color="#000000">1</font>.74M   453G  <font color="#000000">1</font>.74M  /zroot/bhyve
+</pre>
+<br />
+<span>For convenience, we also create this symlink:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas ln -s /zroot/bhyve/ /bhyve
+
+</pre>
+<br />
+<span>Now, Bhyve is ready to rumble, but no VMs are there yet:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm list
+NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
+</pre>
+<br />
+<h2 style='display: inline' id='rocky-linux-vms'>Rocky Linux VMs</h2><br />
+<br />
+<h3 style='display: inline' id='iso-download'>ISO download</h3><br />
+<br />
+<span>We&#39;re going to install the Rocky Linux from the latest minimal iso:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm iso \
+ https://download.rockylinux.org/pub/rocky/<font color="#000000">9</font>/isos/x86_64/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+/zroot/bhyve/.iso/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso        <font color="#000000">1808</font> MB <font color="#000000">4780</font> kBps 06m28s
+paul@f0:/bhyve % doas vm create rocky
+</pre>
+<h3 style='display: inline' id='vm-configuration'>VM configuration</h3><br />
+<br />
+<span>The default configuration looks like this now:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat rocky.conf
+loader=<font color="#808080">"bhyveload"</font>
+cpu=<font color="#000000">1</font>
+memory=256M
+network0_type=<font color="#808080">"virtio-net"</font>
+network0_switch=<font color="#808080">"public"</font>
+disk0_type=<font color="#808080">"virtio-blk"</font>
+disk0_name=<font color="#808080">"disk0.img"</font>
+uuid=<font color="#808080">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
+network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
+</pre>
+<br />
+<span>Whereas the <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ on each of the 3 hosts.</span><br />
+<br />
+<span>but in order to make Rocky Linux boot it (plus some other adjustments, e.g. as I am intending to run the majority of the workload in the k3s cluster running on those linux VMs, I give them beefy specs like 4 CPU cores and 14GB RAM), I run <span class='inlinecode'>doas vm configure rocky</span> and modified it to:</span><br />
+<br />
+<pre>
+guest="linux"
+loader="uefi"
+uefi_vars="yes"
+cpu=4
+memory=14G
+network0_type="virtio-net"
+network0_switch="public"
+disk0_type="virtio-blk"
+disk0_name="disk0.img"
+graphics="yes"
+graphics_vga=io
+uuid="1c45400b-c828-11ef-8871-e8ff1ed71cac"
+network0_mac="58:9c:fc:0d:13:3f"
+</pre>
+<br />
+<h3 style='display: inline' id='vm-installation'>VM installation</h3><br />
+<br />
+<span>To start the installer from the downloaded ISO, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+Starting rocky
+  * found guest <b><u><font color="#000000">in</font></u></b> /zroot/bhyve/rocky
+  * booting...
+
+paul@f0:/bhyve/rocky % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO  STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  No    Locked (f0.lan.buetow.org)
+
+paul@f0:/bhyve/rocky % doas sockstat -<font color="#000000">4</font> | grep <font color="#000000">5900</font>
+root     bhyve       <font color="#000000">6079</font> <font color="#000000">8</font>   tcp4   *:<font color="#000000">5900</font>                *:*
+</pre>
+<br />
+<span>Port 5900 now also opened for VNC connections, so I connected to it with a VNC client and run through the installation dialogs. I&#39;m sure this could be done unattended or more automated, there are only 3 VMs to install, and the automation doesn&#39;t seem worth it as we are doing it only once in a year or less often.</span><br />
+<br />
+<h3 style='display: inline' id='increase-of-the-disk-image'>Increase of the disk image</h3><br />
+<br />
+<span>By default the VMs disk image is only 20G, which is a bit small for my purposes, so I stopped the VMs again and run <span class='inlinecode'>truncate</span> on the image file to enlarge them to 100G, and re-started the installation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % doas vm stop rocky
+paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
+paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+</pre>
+<br />
+<h3 style='display: inline' id='connect-to-vpn'>Connect to VPN</h3><br />
+<br />
+<span>For the installation, I opened the VPN client on my Fedora laptop (GNOME comes with a simple VPN client) and ran through the base installation for each of the VMs manually. Again, I am sure this could have been automated a bit more, but there were just 3 VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were: <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f0:5900</span>.</span><br />
+<br />
+<span>I mostly selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.</span><br />
+<br />
+<h2 style='display: inline' id='after-install'>After install</h2><br />
+<br />
+<span>I performed the following steps for all 3 VMs. In the following, the examples are all executed on <span class='inlinecode'>f0</span> (bzw the VM <span class='inlinecode'>r0</span> running on <span class='inlinecode'>f0</span>):</span><br />
+<br />
+<h3 style='display: inline' id='vm-auto-start-after-host-reboot'>VM auto-start after host reboot</h3><br />
+<br />
+<span>To automatically start the VM on the servers I added the following to the <span class='inlinecode'>rc.conf</span> on the FreeBSD hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/rc.conf
+vm_list=<font color="#808080">"rocky"</font>
+vm_delay=<font color="#808080">"5"</font>
+</pre>
+<br />
+<span>The <span class='inlinecode'>vm_delay</span> isn&#39;t really required. It is used to wait 5 seconds before starting each VM, but as of now, there is only one VM per host. Maybe later, when there are more, this will be useful to have. After adding, there&#39;s now a <span class='inlinecode'>Yes</span> indicator in the <span class='inlinecode'>AUTO</span> column.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2063</font>)
+</pre>
+<br />
+<h3 style='display: inline' id='static-ip-configuration'>Static IP configuration</h3><br />
+<br />
+<span>After that, I changed the network configuration of the VMs to be static (from DHCP) here. As per previous post of this series, the 3 FreeBSD hosts were already in my <span class='inlinecode'>/etc/hosts</span> file:</span><br />
+<br />
+<pre>
+192.168.1.130 f0 f0.lan f0.lan.buetow.org
+192.168.1.131 f1 f1.lan f1.lan.buetow.org
+192.168.1.132 f2 f2.lan f2.lan.buetow.org
+</pre>
+<br />
+<span>For the Rocky VMs I added those to the FreeBSD hosts systems as well:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
+</pre>
+<br />
+<span>and configured the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.dns <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % dnmcli connection down enp0s5
+[root@r0 ~] % dnmcli connection up enp0s5
+[root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
+[root@r0 ~] % cat &lt;&lt;END &gt;&gt;/etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
+</pre>
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>192.168.1.120</span> is the IP of the VM itself (here: <span class='inlinecode'>r0.lan.buetow.org</span>)</li>
+<li><span class='inlinecode'>192.168.1.1</span> is the address of my home router, which also does DNS.</li>
+</ul><br />
+<h3 style='display: inline' id='permitting-root-login'>Permitting root login</h3><br />
+<br />
+<span>As these VMs arent directly reachable via SSH from the internet, I enabled <span class='inlinecode'>root</span> login by adding a line with <span class='inlinecode'>PermitRootLogin yes</span> to <span class='inlinecode'>/etc/sshd/sshd_config</span>.</span><br />
+<br />
+<span>Once done, I rebooted the VM by running <span class='inlinecode'>reboot</span> inside of the vm to test whether everything was configured and persisted correctly.</span><br />
+<br />
+<span>After reboot, I copied my public key from my Laptop to the 3 VMs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>% <b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> <font color="#000000">0</font> <font color="#000000">1</font> <font color="#000000">2</font>; <b><u><font color="#000000">do</font></u></b> ssh-copy-id root@r$i.lan.buetow.org; <b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>And then I edited the <span class='inlinecode'>/etc/ssh/sshd_config</span> file again on all 3 VMs and configured <span class='inlinecode'>PasswordAuthentication no</span>, to only allow SSH key authentication from now on.</span><br />
+<br />
+<h3 style='display: inline' id='install-latest-updates'>Install latest updates</h3><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] % dnf update
+[root@r0 ~] % dreboot
+</pre>
+<br />
+<span>CPU STRESS TESTER VM VS NOT VM</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

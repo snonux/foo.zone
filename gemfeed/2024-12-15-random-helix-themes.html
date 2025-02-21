@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Random Helix Themes</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='random-helix-themes'>Random Helix Themes</h1><br />
+<br />
+<span class='quote'>Published at 2024-12-15T13:55:05+02:00; Last updated 2024-12-18</span><br />
+<br />
+<span>I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.</span><br />
+<br />
+<a class='textlink' href='https://helix-editor.com/'>https://helix-editor.com/</a><br />
+<br />
+<span>So I put this into my <span class='inlinecode'>zsh</span> dotfiles (in some <span class='inlinecode'>editor.zsh.source</span> in my <span class='inlinecode'>~</span> directory):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
+<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
+<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
+<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::random_theme () {
+    <i><font color="silver"># May add more theme search paths based on OS. This one is</font></i>
+    <i><font color="silver"># for Fedora Linux, but there is also MacOS, etc.</font></i>
+    <b><u><font color="#000000">local</font></u></b> -r theme_dir=/usr/share/helix/runtime/themes
+    <b><u><font color="#000000">if</font></u></b> [ ! -d $theme_dir ]; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"Helix theme dir $theme_dir doesnt exist"</font>
+        <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
+    <b><u><font color="#000000">fi</font></u></b>
+
+    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
+    <b><u><font color="#000000">local</font></u></b> -r random_theme=<font color="#808080">"$(basename "</font>$(ls $theme_dir \
+        | grep -v random.toml | grep .toml | sort -R \
+        | head -n <font color="#000000">1</font>)<font color="#808080">" | cut -d. -f1)"</font>
+
+    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$random_theme</font>\"<font color="#808080">/; }"</font> \
+        $config_file &gt; $config_file.tmp &amp;&amp; 
+        mv $config_file.tmp $config_file
+}
+
+<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
+    editor::helix::random_theme
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"jellybeans"</font>
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"rose_pine"</font>
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"noctis"</font>
+[paul@earth] ~ %
+</pre>
+<br />
+<h2 style='display: inline' id='a-better-version'>A better version</h2><br />
+<br />
+<span class='quote'>Update 2024-12-18: This is an improved version, which works cross platform (e.g., also on MacOS) and multiple theme directories:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
+<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
+<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
+<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::theme::get_random () {
+    <b><u><font color="#000000">for</font></u></b> dir <b><u><font color="#000000">in</font></u></b> $(hx --health \
+        | awk <font color="#808080">'/^Runtime directories/ { print $3 }'</font> | tr <font color="#808080">';'</font> <font color="#808080">' '</font>); <b><u><font color="#000000">do</font></u></b>
+        <b><u><font color="#000000">if</font></u></b> [ -d $dir/themes ]; <b><u><font color="#000000">then</font></u></b>
+            ls $dir/themes
+        <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">done</font></u></b> | grep -F .toml | sort -R | head -n <font color="#000000">1</font> | cut -d. -f<font color="#000000">1</font>
+}
+
+editor::helix::theme::set () {
+    <b><u><font color="#000000">local</font></u></b> -r theme=<font color="#808080">"$1"</font>; <b><u><font color="#000000">shift</font></u></b>
+
+    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
+
+    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$theme</font>\"<font color="#808080">/; }"</font> \
+        $config_file &gt; $config_file.tmp &amp;&amp; 
+        mv $config_file.tmp $config_file
+}
+
+<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
+    editor::helix::theme::<b><u><font color="#000000">set</font></u></b> $(editor::helix::theme::get_random)
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

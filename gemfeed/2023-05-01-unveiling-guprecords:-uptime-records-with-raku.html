@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='unveiling-guprecordsraku-global-uptime-records-with-raku'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-30T13:10:26+03:00</span><br />
 <br />
@@ -29,7 +32,16 @@
 +-----+-----------------+-----------------------------+
 </pre>
 <br />
-<h1 style='display: inline'>Introduction</h1><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unveiling-guprecordsraku-global-uptime-records-with-raku'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#how-guprecords-works'>How Guprecords works</a></li>
+<li>⇢ <a href='#example'>Example</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.</span><br />
 <br />
@@ -52,7 +64,7 @@
 </ul><br />
 <span>And I have been following the Raku newsletter, and sometimes I have been lurking around in the IRC channels, too. Watching Raku coding challenges on YouTube was pretty fun, too. However, nothing beats actually using Raku to learn the language. After reading all of these resources, I may have a good idea about the features and paradigms, but I am by far not an expert.</span><br />
 <br />
-<h2 style='display: inline'>How Guprecords works</h2><br />
+<h2 style='display: inline' id='how-guprecords-works'>How Guprecords works</h2><br />
 <br />
 <span>Guprecords works in three stages:</span><br />
 <br />
@@ -65,7 +77,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ raku guprecords<font color="#990000">.</font>raku --stats<font color="#990000">=</font><font color="#009900">dir</font><font color="#990000">=</font><font color="#009900">$HOME</font>/git/uprecords/stats --all
+<pre>$ raku guprecords.raku --stats=dir=$HOME/git/uprecords/stats --all
 </pre>
 <br />
 <span>This command will generate a comprehensive uptime report from the collected statistics, making it easy to review and enjoy the data.</span><br />
@@ -78,7 +90,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Output formats available: Plaintext, Markdown, and Gemtext</li>
 <li>Provides top entries based on the specified limit</li>
 </ul><br />
-<h2 style='display: inline'>Example</h2><br />
+<h2 style='display: inline' id='example'>Example</h2><br />
 <br />
 <span>You have already seen an example at the very top of this post, where the hosts were grouped by their total lifespans (uptime+downtime). Here&#39;s an example of what the global uptime report (grouped by total host uptimes) might look like:</span><br />
 <br />
@@ -149,7 +161,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
    %up               99.997 | since                     Tue Dec 18 10:16:08 2018
 </pre>
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>Guprecords is a small, yet powerful tool for analyzing uptime statistics. While developing Guprecords, I have come to truly appreciate and love Raku&#39;s expressiveness. The language is designed to be both powerful and flexible, allowing developers to express their intentions and logic more clearly and concisely.</span><br />
 <br />
@@ -164,21 +176,21 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <li>A social media sharing scheduler a la <span class='inlinecode'>buffer.com</span>. I am using Buffer at the moment to share posts on Mastadon, Twitter, Telegram and LinkedIn, but it is proprietary and also it&#39;s not really reliable.</li>
 <li>Rewrite the static photo album generator of <span class='inlinecode'>irregular.ninja</span> in Raku (from Bash).</li>
 </ul><br />
+<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku (You are currently reading this)</a><br />
-<br />
-<span>E-Mail your comments to hi@foo.zone :-)</span><br />
+<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>2022-06-15 Sweating the small stuff - Tiny projects of mine</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

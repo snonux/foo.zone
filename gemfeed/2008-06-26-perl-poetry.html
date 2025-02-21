@@ -8,9 +8,18 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Perl Poetry</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2008-06-26-perl-poetry.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2008-06-26-perl-poetry.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='perl-poetry'>Perl Poetry</h1><br />
 <br />
 <span class='quote'>Published at 2008-06-26T21:43:51+01:00; Updated at 2021-05-04</span><br />
+<br />
+<span>Here are some Perl Poems I wrote. They don&#39;t do anything useful when you run them, but they don&#39;t produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.</span><br />
+<br />
+<span>Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."</span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Perl'>https://en.wikipedia.org/wiki/Perl</a><br />
 <br />
 <pre>
  &#39;\|/&#39;                                  *
@@ -35,164 +44,167 @@ _~~|~/_|_|__/|~~~~~~~ |  / ~~~~~ |   | ~~~~~~~~
                     (__)         (____)
 </pre>
 <br />
-<span>Here are some Perl Poems I wrote. They don&#39;t do anything useful when you run them, but they don&#39;t produce a compiler error either. They only exist for fun and demonstrate what you can do with Perl syntax.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span>Wikipedia: "Perl poetry is the practice of writing poems that can be compiled as legal Perl code, for example the piece known as Black Perl. Perl poetry is made possible by the large number of English words that are used in the Perl language. New poems are regularly submitted to the community at PerlMonks."</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Perl'>https://en.wikipedia.org/wiki/Perl</a><br />
-<br />
-<h2 style='display: inline'>math.pl</h2><br />
+<ul>
+<li><a href='#perl-poetry'>Perl Poetry</a></li>
+<li>⇢ <a href='#mathpl'>math.pl</a></li>
+<li>⇢ <a href='#christmaspl'>christmas.pl</a></li>
+<li>⇢ <a href='#shoppingpl'>shopping.pl</a></li>
+<li>⇢ <a href='#more'>More...</a></li>
+</ul><br />
+<h2 style='display: inline' id='mathpl'>math.pl</h2><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
+<pre><i><font color="silver">#!/usr/bin/perl</font></i>
 
-<i><font color="#9A1900"># (C) 2006 by Paul C. Buetow</font></i>
+<i><font color="silver"># (C) 2006 by Paul C. Buetow</font></i>
 
-<b><font color="#0000FF">goto</font></b> library <b><font color="#0000FF">for</font></b> study <font color="#009900">$math</font><font color="#990000">;</font>
-BEGIN <font color="#FF0000">{</font> <b><font color="#0000FF">s</font></b><font color="#FF0000">/earching/ books/</font> 
-<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">read</font></b> <font color="#009900">$them</font><font color="#990000">,</font> <font color="#009900">$at</font><font color="#990000">,</font> <font color="#009900">$the</font> <font color="#FF0000">}</font> library<font color="#990000">:</font>
+<b><u><font color="#000000">goto</font></u></b> library <b><u><font color="#000000">for</font></u></b> study $math;
+BEGIN { <b><u><font color="#000000">s</font></u></b><font color="#808080">/earching/ books/</font> 
+<b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">read</font></u></b> $them, $at, $the } library:
 
-<b><font color="#0000FF">our</font></b> <font color="#009900">$topics</font><font color="#990000">,</font> <b><font color="#0000FF">cos</font></b> <b><font color="#0000FF">and</font></b> tan<font color="#990000">,</font> 
-<b><font color="#0000FF">require</font></b> strict<font color="#990000">;</font> <b><font color="#000080">import</font></b> <font color="#FF0000">{</font> of<font color="#990000">,</font> <b><font color="#0000FF">tied</font></b> <font color="#009900">$patience</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><u><font color="#000000">our</font></u></b> $topics, <b><u><font color="#000000">cos</font></u></b> <b><u><font color="#000000">and</font></u></b> tan, 
+<b><u><font color="#000000">require</font></u></b> strict; <b><u><font color="#000000">import</font></u></b> { of, <b><u><font color="#000000">tied</font></u></b> $patience };
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study<font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">int</font></u></b><font color="#808080">'egrate'</font>; <b><u><font color="#000000">sub</font></u></b> trade; };
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">exp</font></u></b><font color="#808080">'onentize'</font> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">abs</font></u></b><font color="#808080">'olutize'</font> };
+study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">and</font></u></b> study;
 
-<b><font color="#0000FF">foreach</font></b> <font color="#009900">$topic</font> <font color="#990000">(</font><font color="#FF0000">{</font>of<font color="#990000">,</font> math<font color="#FF0000">}</font><font color="#990000">)</font> <font color="#FF0000">{</font>
-you<font color="#990000">,</font> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ay /</font>go<font color="#990000">,</font> to<font color="#990000">,</font> limits <font color="#FF0000">}</font>
+<b><u><font color="#000000">foreach</font></u></b> $topic ({of, math}) {
+you, <b><u><font color="#000000">m</font></u></b>/ay /go, to, limits }
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> not <b><font color="#0000FF">qw</font></b><font color="#FF0000">/erk /</font> <b><font color="#0000FF">unless</font></b> <font color="#009900">$success</font> 
-<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ove /</font>o<font color="#990000">;</font><font color="#009900">$n</font> <b><font color="#0000FF">and</font></b> study <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { not <b><u><font color="#000000">qw</font></u></b><font color="#808080">/erk /</font> <b><u><font color="#000000">unless</font></u></b> $success 
+<b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">m</font></u></b>/ove /o;$n <b><u><font color="#000000">and</font></u></b> study };
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study<font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">int</font></u></b><font color="#808080">'egrate'</font>; <b><u><font color="#000000">sub</font></u></b> trade; };
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">exp</font></u></b><font color="#808080">'onentize'</font> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">abs</font></u></b><font color="#808080">'olutize'</font> };
+study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">and</font></u></b> study;
 
-<b><font color="#0000FF">grep</font></b> <font color="#FF0000">/all/</font><font color="#990000">,</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onents'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">cos</font></b><font color="#FF0000">'inuses'</font><font color="#990000">;</font>
-<font color="#FF0000">/seek results/</font> <b><font color="#0000FF">for</font></b> <font color="#009900">@all</font><font color="#990000">,</font> <b><font color="#0000FF">log</font></b><font color="#FF0000">'4rithms'</font><font color="#990000">;</font>
+<b><u><font color="#000000">grep</font></u></b> <font color="#808080">/all/</font>, <b><u><font color="#000000">exp</font></u></b><font color="#808080">'onents'</font> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">cos</font></u></b><font color="#808080">'inuses'</font>;
+<font color="#808080">/seek results/</font> <b><u><font color="#000000">for</font></u></b> @all, <b><u><font color="#000000">log</font></u></b><font color="#808080">'4rithms'</font>;
 
-<font color="#FF0000">'you'</font> <font color="#990000">=~</font> <b><font color="#0000FF">m</font></b><font color="#FF6600">/ay /</font>go<font color="#990000">,</font> not home 
-<b><font color="#0000FF">unless</font></b> <b><font color="#0000FF">each</font></b> <font color="#009900">%book</font> ne<i><font color="#9A1900">#ars</font></i>
-<font color="#009900">$completion</font><font color="#990000">;</font>
+<font color="#808080">'you'</font> =~ <b><u><font color="#000000">m</font></u></b>/ay /go, not home 
+<b><u><font color="#000000">unless</font></u></b> <b><u><font color="#000000">each</font></u></b> %book ne<i><font color="silver">#ars</font></i>
+$completion;
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">int</font></b><font color="#FF0000">'egrate'</font><font color="#990000">;</font> <b><font color="#0000FF">sub</font></b> trade<font color="#990000">;</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">exp</font></b><font color="#FF0000">'onentize'</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">abs</font></b><font color="#FF0000">'olutize'</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">int</font></u></b><font color="#808080">'egrate'</font>; <b><u><font color="#000000">sub</font></u></b> trade; };
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">exp</font></u></b><font color="#808080">'onentize'</font> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">abs</font></u></b><font color="#808080">'olutize'</font> };
 
-<i><font color="#9A1900">#at</font></i>
-home<font color="#990000">:</font> <font color="#FF0000">//ig,'nore', time and sleep $very =~ s/tr/on/</font><b><font color="#0000FF">g</font></b><font color="#990000">;</font>
+<i><font color="silver">#at</font></i>
+home: <font color="#808080">//ig,'nore', time and sleep $very =~ s/tr/on/</font><b><u><font color="#000000">g</font></u></b>;
 __END__
 
 </pre>
 <br />
-<h2 style='display: inline'>christmas.pl</h2><br />
+<h2 style='display: inline' id='christmaspl'>christmas.pl</h2><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
+<pre><i><font color="silver">#!/usr/bin/perl</font></i>
 
-<i><font color="#9A1900"># (C) 2006 by Paul C. Buetow</font></i>
+<i><font color="silver"># (C) 2006 by Paul C. Buetow</font></i>
 
-Christmas<font color="#990000">:</font><font color="#FF0000">{</font>time<font color="#990000">;</font><i><font color="#9A1900">#!!!</font></i>
+Christmas:{time;<i><font color="silver">#!!!</font></i>
 
-Children<font color="#990000">:</font> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">tell</font></b> <font color="#009900">$wishes</font><font color="#990000">;</font>
+Children: <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">tell</font></u></b> $wishes;
 
-Santa<font color="#990000">:</font> <b><font color="#0000FF">for</font></b> <font color="#009900">$each</font> <font color="#990000">(</font><font color="#009900">@children</font><font color="#990000">)</font> <font color="#FF0000">{</font> 
-BEGIN <font color="#FF0000">{</font> <b><font color="#0000FF">read</font></b> <font color="#009900">$each</font><font color="#990000">,</font> <font color="#009900">$their</font><font color="#990000">,</font> wishes <b><font color="#0000FF">and</font></b> study them<font color="#990000">;</font> <b><font color="#0000FF">use</font></b> Memoize<i><font color="#9A1900">#ing</font></i>
+Santa: <b><u><font color="#000000">for</font></u></b> $each (@children) { 
+BEGIN { <b><u><font color="#000000">read</font></u></b> $each, $their, wishes <b><u><font color="#000000">and</font></u></b> study them; <b><u><font color="#000000">use</font></u></b> Memoize<i><font color="silver">#ing</font></i>
 
-<font color="#FF0000">}</font> <b><font color="#0000FF">use</font></b> constant gift<font color="#990000">,</font> <font color="#FF0000">'wrapping'</font><font color="#990000">;</font> 
-<b><font color="#0000FF">package</font></b> Gifts<font color="#990000">;</font> <b><font color="#0000FF">pack</font></b> <font color="#009900">$each</font><font color="#990000">,</font> gift <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">bless</font></b> <font color="#009900">$each</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">goto</font></b> deliver
-or <b><font color="#0000FF">do</font></b> <b><font color="#000080">import</font></b> <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">local</font></b> <font color="#009900">$available</font><font color="#990000">,!!!</font> HO<font color="#990000">,</font> HO<font color="#990000">,</font> HO<font color="#990000">;</font>
+} <b><u><font color="#000000">use</font></u></b> constant gift, <font color="#808080">'wrapping'</font>; 
+<b><u><font color="#000000">package</font></u></b> Gifts; <b><u><font color="#000000">pack</font></u></b> $each, gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">bless</font></u></b> $each <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">goto</font></u></b> deliver
+or <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">import</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">local</font></u></b> $available,!!! HO, HO, HO;
 
-<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
-<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered<font color="#990000">;</font> 
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
 
-deliver<font color="#990000">:</font> gift <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">require</font></b> diagnostics <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">our</font></b> <font color="#009900">$gifts</font> <font color="#990000">,</font>not break<font color="#990000">;</font>
-<b><font color="#0000FF">do</font></b><font color="#FF0000">{</font> <b><font color="#0000FF">use</font></b> NEXT<font color="#990000">;</font> time<font color="#990000">;</font> <b><font color="#0000FF">tied</font></b> <font color="#009900">$gifts</font><font color="#FF0000">}</font> <b><font color="#0000FF">if</font></b> broken <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">dump</font></b> the<font color="#990000">,</font> broken<font color="#990000">,</font> ones<font color="#990000">;</font>
-The_children<font color="#990000">:</font> <b><font color="#0000FF">sleep</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">wait</font></b> <b><font color="#0000FF">for</font></b> <font color="#990000">(</font><b><font color="#0000FF">each</font></b> <font color="#009900">%gift</font><font color="#990000">)</font> <b><font color="#0000FF">and</font></b> try <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <b><font color="#0000FF">untie</font></b> <font color="#009900">$gifts</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+deliver: gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">require</font></u></b> diagnostics <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">our</font></u></b> $gifts ,not break;
+<b><u><font color="#000000">do</font></u></b>{ <b><u><font color="#000000">use</font></u></b> NEXT; time; <b><u><font color="#000000">tied</font></u></b> $gifts} <b><u><font color="#000000">if</font></u></b> broken <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">dump</font></u></b> the, broken, ones;
+The_children: <b><u><font color="#000000">sleep</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">for</font></u></b> (<b><u><font color="#000000">each</font></u></b> %gift) <b><u><font color="#000000">and</font></u></b> try { to =&gt; <b><u><font color="#000000">untie</font></u></b> $gifts };
 
-<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
-<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered<font color="#990000">;</font> 
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
 
-The_christmas_tree<font color="#990000">:</font> formline <b><font color="#0000FF">s</font></b><font color="#FF0000">/ /childrens/</font><font color="#990000">,</font> <font color="#009900">$gifts</font><font color="#990000">;</font>
-<b><font color="#0000FF">alarm</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">warn</font></b> <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">exists</font></b> <font color="#009900">$Christmas</font><font color="#FF0000">{</font> tree<font color="#FF0000">}</font><font color="#990000">,</font> <font color="#009900">@t</font><font color="#990000">,</font> <font color="#009900">$ENV</font><font color="#FF0000">{</font>HOME<font color="#FF0000">}</font><font color="#990000">;</font>  
-<b><font color="#0000FF">write</font></b> <font color="#990000">&lt;&lt;</font>EMail
- to the parents to buy a new christmas tree<font color="#990000">!!!!</font><font color="#993399">111</font>
- <b><font color="#0000FF">and</font></b> send the
+The_christmas_tree: formline <b><u><font color="#000000">s</font></u></b><font color="#808080">/ /childrens/</font>, $gifts;
+<b><u><font color="#000000">alarm</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">warn</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">exists</font></u></b> $Christmas{ tree}, @t, $ENV{HOME};  
+<b><u><font color="#000000">write</font></u></b> &lt;&lt;EMail
+ to the parents to buy a new christmas tree!!!!<font color="#000000">111</font>
+ <b><u><font color="#000000">and</font></u></b> send the
 EMail
-<font color="#990000">;</font><b><font color="#0000FF">wait</font></b> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">redo</font></b> deliver until <b><font color="#0000FF">defined</font></b> <b><font color="#0000FF">local</font></b> <font color="#009900">$tree</font><font color="#990000">;</font>
+;<b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">redo</font></u></b> deliver until <b><u><font color="#000000">defined</font></u></b> <b><u><font color="#000000">local</font></u></b> $tree;
 
-<b><font color="#0000FF">redo</font></b> Santa<font color="#990000">,</font> <b><font color="#0000FF">pipe</font></b> <font color="#009900">$gifts</font><font color="#990000">,</font> to_childs<font color="#990000">;</font>
-<b><font color="#0000FF">redo</font></b> Santa <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">return</font></b> <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">last</font></b> one<font color="#990000">,</font> is<font color="#990000">,</font> delivered <font color="#990000">;</font><font color="#FF0000">}</font>
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered ;}
 
-END <font color="#FF0000">{}</font> <b><font color="#0000FF">our</font></b> <font color="#009900">$mission</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">sleep</font></b> until <b><font color="#0000FF">next</font></b> Christmas <font color="#990000">;</font><font color="#FF0000">}</font>
+END {} <b><u><font color="#000000">our</font></u></b> $mission <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">sleep</font></u></b> until <b><u><font color="#000000">next</font></u></b> Christmas ;}
 
 __END__
 
-This is perl<font color="#990000">,</font> v5<font color="#990000">.</font><font color="#993399">8.8</font> built <b><font color="#0000FF">for</font></b> i386<font color="#990000">-</font>freebsd<font color="#990000">-</font>64int
+This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#000000">for</font></u></b> i386-freebsd-64int
 </pre>
 <br />
-<h2 style='display: inline'>shopping.pl</h2><br />
+<h2 style='display: inline' id='shoppingpl'>shopping.pl</h2><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900">#!/usr/bin/perl</font></i>
+<pre><i><font color="silver">#!/usr/bin/perl</font></i>
 
-<i><font color="#9A1900"># (C) 2007 by Paul C. Buetow</font></i>
+<i><font color="silver"># (C) 2007 by Paul C. Buetow</font></i>
 
-BEGIN<font color="#FF0000">{}</font> <b><font color="#0000FF">goto</font></b> mall <b><font color="#0000FF">for</font></b> <font color="#009900">$shopping</font><font color="#990000">;</font> 
+BEGIN{} <b><u><font color="#000000">goto</font></u></b> mall <b><u><font color="#000000">for</font></u></b> $shopping; 
 
-<b><font color="#0000FF">m</font></b><font color="#FF6600">/y/</font><font color="#990000">;</font> mall<font color="#990000">:</font> <b><font color="#0000FF">seek</font></b><font color="#009900">$s</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">(),</font> <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <font color="#009900">$sell</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">for</font></b> <font color="#009900">$their</font> <font color="#990000">(</font><font color="#009900">@business</font><font color="#990000">)</font> <font color="#FF0000">{</font> to<font color="#990000">:;</font> earn<font color="#990000">:;</font> a<font color="#990000">:;</font> lot<font color="#990000">:;</font> of<font color="#990000">:;</font> money<font color="#990000">:</font> <font color="#FF0000">}</font>
+<b><u><font color="#000000">m</font></u></b>/y/; mall: <b><u><font color="#000000">seek</font></u></b>$s, cool products(), { to =&gt; $sell };
+<b><u><font color="#000000">for</font></u></b> $their (@business) { to:; earn:; a:; lot:; of:; money: }
 
-<b><font color="#0000FF">do</font></b> not <b><font color="#0000FF">goto</font></b> home <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">exit</font></b> mall <b><font color="#0000FF">if</font></b> <b><font color="#0000FF">exists</font></b> <font color="#009900">$new</font><font color="#FF0000">{</font>product<font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">foreach</font></b> <font color="#009900">$of</font> <font color="#990000">(</font><b><font color="#0000FF">q</font></b><font color="#FF0000">(uality rich products)</font><font color="#990000">)</font><font color="#FF0000">{}</font> <b><font color="#0000FF">package</font></b> products<font color="#990000">;</font> 
+<b><u><font color="#000000">do</font></u></b> not <b><u><font color="#000000">goto</font></u></b> home <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">exit</font></u></b> mall <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">exists</font></u></b> $new{product};
+<b><u><font color="#000000">foreach</font></u></b> $of (<b><u><font color="#000000">q</font></u></b><font color="#808080">(uality rich products)</font>){} <b><u><font color="#000000">package</font></u></b> products; 
 
-<b><font color="#0000FF">our</font></b> <font color="#009900">$news</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b> <b><font color="#0000FF">tell</font></b> cool <b><font color="#000000">products</font></b><font color="#990000">()</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b><font color="#FF0000">{</font> <b><font color="#0000FF">sub</font></b><i><font color="#9A1900">#tract</font></i>
-cool<font color="#FF0000">{</font> <font color="#009900">$products</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">shift</font></b> <font color="#009900">@the</font><font color="#990000">,</font> <font color="#009900">@bad</font><font color="#990000">,</font> <font color="#009900">@ones</font><font color="#990000">;</font>
+<b><u><font color="#000000">our</font></u></b> $news; <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">tell</font></u></b> cool products() <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b>{ <b><u><font color="#000000">sub</font></u></b><i><font color="silver">#tract</font></i>
+cool{ $products <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">shift</font></u></b> @the, @bad, @ones;
 
-<b><font color="#0000FF">do</font></b> <b><font color="#0000FF">bless</font></b> <font color="#990000">[</font><b><font color="#0000FF">q</font></b><font color="#FF0000">(uality)</font><font color="#990000">],</font> <font color="#009900">$products</font> 
-<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">return</font></b> not <b><font color="#0000FF">undef</font></b> <font color="#009900">$stuff</font> <b><font color="#0000FF">if</font></b> <b><font color="#000000">not</font></b> <font color="#990000">(</font><b><font color="#0000FF">local</font></b> <font color="#009900">$available</font><font color="#990000">)</font> <font color="#FF0000">}}</font><font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">bless</font></u></b> [<b><u><font color="#000000">q</font></u></b><font color="#808080">(uality)</font>], $products 
+<b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">return</font></u></b> not <b><u><font color="#000000">undef</font></u></b> $stuff <b><u><font color="#000000">if</font></u></b> not (<b><u><font color="#000000">local</font></u></b> $available) }};
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">and</font></b> study <b><font color="#0000FF">for</font></b> cool <b><font color="#000000">products</font></b><font color="#990000">()</font> <font color="#FF0000">}</font>
-<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">seek</font></b> <font color="#009900">$all</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">(),</font> <font color="#FF0000">{</font> to <font color="#990000">=&gt;</font> <font color="#009900">$buy</font> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">and</font></u></b> study <b><u><font color="#000000">for</font></u></b> cool products() }
+<b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">seek</font></u></b> $all, cool products(), { to =&gt; $buy } };
 
-<b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> <b><font color="#0000FF">write</font></b> <font color="#009900">$them</font><font color="#990000">,</font> <font color="#009900">$down</font> <font color="#FF0000">}</font> <b><font color="#0000FF">and</font></b> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> order<font color="#990000">:</font> <b><font color="#0000FF">foreach</font></b> <font color="#990000">(</font><font color="#009900">@case</font><font color="#990000">)</font> <font color="#FF0000">{</font> <b><font color="#0000FF">package</font></b> <b><font color="#0000FF">s</font></b> <font color="#FF0000">}</font> <font color="#FF0000">}</font><font color="#990000">;</font>
-<b><font color="#0000FF">goto</font></b> home <b><font color="#0000FF">if</font></b> not <b><font color="#0000FF">exists</font></b> <font color="#009900">$more</font><font color="#FF0000">{</font>money<font color="#FF0000">}</font> or <b><font color="#0000FF">die</font></b> <b><font color="#0000FF">q</font></b><font color="#FF0000">(uerying)</font> <font color="#990000">;</font><b><font color="#0000FF">for</font></b><font color="#990000">(</font> <font color="#009900">@money</font><font color="#990000">)</font><font color="#FF0000">{}</font><font color="#990000">;</font>
+<b><u><font color="#000000">do</font></u></b> { <b><u><font color="#000000">write</font></u></b> $them, $down } <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> { order: <b><u><font color="#000000">foreach</font></u></b> (@case) { <b><u><font color="#000000">package</font></u></b> <b><u><font color="#000000">s</font></u></b> } };
+<b><u><font color="#000000">goto</font></u></b> home <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">exists</font></u></b> $more{money} or <b><u><font color="#000000">die</font></u></b> <b><u><font color="#000000">q</font></u></b><font color="#808080">(uerying)</font> ;<b><u><font color="#000000">for</font></u></b>( @money){};
 
-at<font color="#990000">:;</font>home<font color="#990000">:</font> <b><font color="#0000FF">do</font></b> <font color="#FF0000">{</font> END<font color="#FF0000">{}</font> <b><font color="#0000FF">and</font></b><font color="#990000">:;</font> rest<font color="#990000">:;</font> a<font color="#990000">:;</font> bit<font color="#990000">:</font> <b><font color="#0000FF">exit</font></b> <font color="#009900">$shopping</font> <font color="#FF0000">}</font> 
-<b><font color="#0000FF">and</font></b> <b><font color="#0000FF">sleep</font></b> until <b><font color="#0000FF">unpack</font></b><font color="#009900">$ing</font><font color="#990000">,</font> cool <b><font color="#000000">products</font></b><font color="#990000">();</font>
+at:;home: <b><u><font color="#000000">do</font></u></b> { END{} <b><u><font color="#000000">and</font></u></b>:; rest:; a:; bit: <b><u><font color="#000000">exit</font></u></b> $shopping } 
+<b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">sleep</font></u></b> until <b><u><font color="#000000">unpack</font></u></b>$ing, cool products();
 
 __END__
-This is perl<font color="#990000">,</font> v5<font color="#990000">.</font><font color="#993399">8.8</font> built <b><font color="#0000FF">for</font></b> i386<font color="#990000">-</font>freebsd<font color="#990000">-</font>64int
+This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#000000">for</font></u></b> i386-freebsd-64int
 </pre>
 <br />
-<h2 style='display: inline'>More...</h2><br />
+<h2 style='display: inline' id='more'>More...</h2><br />
 <br />
 <span>Did you like what you saw? Have a look at Codeberg to see my other poems too:</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/perl-poetry'>https://codeberg.org/snonux/perl-poetry</a><br />
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry (You are currently reading this)</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry (You are currently reading this)</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

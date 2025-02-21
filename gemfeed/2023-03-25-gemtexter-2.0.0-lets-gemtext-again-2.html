@@ -8,9 +8,20 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
 <br />
 <span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
 <br />
 <pre>
 -=[ typewriters ]=-  1/98
@@ -25,15 +36,18 @@
   mod. by Paul Buetow  `"""""""""`
 </pre>
 <br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
-<br />
-<span>Let&#39;s list what&#39;s new!</span><br />
-<br />
-<h2 style='display: inline'>Minimal template engine</h2><br />
+<ul>
+<li><a href='#gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
+<li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
+<li>⇢ <a href='#added-hooks'>Added hooks</a></li>
+<li>⇢ <a href='#use-of-safer-bash-options'>Use of safer Bash options</a></li>
+<li>⇢ <a href='#meta-cache-made-obsolete'>Meta cache made obsolete</a></li>
+<li>⇢ <a href='#xmllint-support'>XMLLint support</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='minimal-template-engine'>Minimal template engine</h2><br />
 <br />
 <span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
 <br />
@@ -81,7 +95,7 @@ Multiline template line 10
 <pre>
 See more entries about DTail and Golang:
 
-&lt;&lt; template::inline::index dtail golang
+&lt;&lt; template::inline::rindex dtail golang
 
 Blablabla...
 </pre>
@@ -99,7 +113,7 @@ See more entries about DTail and Golang:
 Blablabla...
 </pre>
 <br />
-<h2 style='display: inline'>Added hooks</h2><br />
+<h2 style='display: inline' id='added-hooks'>Added hooks</h2><br />
 <br />
 <span>You can configure <span class='inlinecode'>PRE_GENERATE_HOOK</span> and <span class='inlinecode'>POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class='inlinecode'>--generate</span>, or after running <span class='inlinecode'>--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class='inlinecode'>--publish</span>.</span><br />
 <br />
@@ -109,15 +123,15 @@ Blablabla...
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">declare</font></b> -xr <font color="#009900">PRE_GENERATE_HOOK</font><font color="#990000">=.</font>/pre_generate_hook<font color="#990000">.</font>sh
-<b><font color="#0000FF">declare</font></b> -xr <font color="#009900">POST_PUBLISH_HOOK</font><font color="#990000">=.</font>/post_publish_hook<font color="#990000">.</font>sh
+<pre><b><u><font color="#000000">declare</font></u></b> -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
+<b><u><font color="#000000">declare</font></u></b> -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
 </pre>
 <br />
-<h2 style='display: inline'>Use of safer Bash options</h2><br />
+<h2 style='display: inline' id='use-of-safer-bash-options'>Use of safer Bash options</h2><br />
 <br />
 <span>Gemtexter now does <span class='inlinecode'>set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class='inlinecode'>set -e</span>.</span><br />
 <br />
-<h2 style='display: inline'>Meta cache made obsolete</h2><br />
+<h2 style='display: inline' id='meta-cache-made-obsolete'>Meta cache made obsolete</h2><br />
 <br />
 <span>Here is the breaking change to older versions of Gemtexter. The <span class='inlinecode'>$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class='inlinecode'>meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class='inlinecode'>.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</span><br />
 <br />
@@ -127,10 +141,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
-<i><font color="#9A1900"># Title here</font></i>
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
 
-The remaining content of the Gemtext file<font color="#990000">...</font>
+The remaining content of the Gemtext file...
 </pre>
 <br />
 <span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
@@ -139,37 +153,38 @@ The remaining content of the Gemtext file<font color="#990000">...</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">%</font> cat gemfeed<font color="#990000">/</font><font color="#993399">2023</font>-<font color="#993399">02</font>-<font color="#993399">26</font>-title-here<font color="#990000">.</font>gmi
-<i><font color="#9A1900"># Title here</font></i>
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
 
-<font color="#990000">&gt;</font> Published at <font color="#993399">2023</font>-<font color="#993399">02</font>-26T21<font color="#990000">:</font><font color="#993399">43</font><font color="#990000">:</font><font color="#993399">51</font><font color="#990000">+</font><font color="#993399">01</font><font color="#990000">:</font><font color="#993399">00</font>
+&gt; Published at <font color="#000000">2023</font>-<font color="#000000">02</font>-26T21:<font color="#000000">43</font>:<font color="#000000">51</font>+<font color="#000000">01</font>:<font color="#000000">00</font>
 
-The remaining content of the Gemtext file<font color="#990000">...</font>
+The remaining content of the Gemtext file...
 </pre>
 <br />
-<h2 style='display: inline'>XMLLint support</h2><br />
+<h2 style='display: inline' id='xmllint-support'>XMLLint support</h2><br />
 <br />
 <span>Optionally, when the <span class='inlinecode'>xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</span><br />
 <br />
-<h2 style='display: inline'>More</h2><br />
+<h2 style='display: inline' id='more'>More</h2><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

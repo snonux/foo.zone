@@ -8,16 +8,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>This is a <span class='inlinecode'>test</span> page!</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/testpage.md">Markdown</a> | <a href="gemini://foo.zone/testpage.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='this-is-a-test-page'>This is a <span class='inlinecode'>test</span> page!</h1><br />
 <br />
 <span class='quote'>A <span class='inlinecode'>test</span> page this is!</span><br />
 <br />
 <span> Gefallen <span class='inlinecode'>eigentum</span> schuppen so ei feinheit. Gegen er kinde kenne mu se. Im zu sauber labsal werden en heraus sterne mu. Trostlos der das streckte gefallts ins tag begierig. Gebrauch eleonora horchend gedanken als ich befehlen. Geschirr manchmal an spateren hinunter es sichtbar er ri einander. Herkommen betrubtes einfacher es so am kreiselnd verwegene schnupfen. </span><br />
 <br />
-<h2 style='display: inline'>Header 2 jo <span class='inlinecode'>yay</span> jo</h2><br />
+<h2 style='display: inline' id='header-2-jo-yay-jo'>Header 2 jo <span class='inlinecode'>yay</span> jo</h2><br />
 <span>So argerlich gewachsen lohgruben lieblinge schranken an. Reinlich richtete hinunter einander herunter sog fur bezahlen den. Du stimme kohlen besser du. Im fu kiste en steht sagst zu sitte. Sog igen trug das noch. Barbieren schnupfen gescheite wu en. Ubelnehmen kindlichen des sog hoffnungen vom und aufgespart. </span><br />
 <br />
-<h3 style='display: inline'>Header 3 jo <span class='inlinecode'>yay</span> jo</h3><br />
+<h3 style='display: inline' id='header-3-jo-yay-jo'>Header 3 jo <span class='inlinecode'>yay</span> jo</h3><br />
 <span>Dessen mag lehren lassig der leuten. Wu wangen du husten da schlie ku gebaut. Fingern stunden lauernd schonen sonntag sie auf. Am hell lust habs in wohl sein kerl. Mudigkeit schreibet gar einfacher ehe schonheit. Feierabend dazwischen pa wahrhaftig launischen im es in. Ri em im drechslers wohnzimmer so messingnen nachmittag verrichtet vergnugter. Nachmittag werkstatte tag scherzwort bin uns verrichtet frohlicher ihm bescheiden. </span><br />
 <br />
 <span> * Entry 1 jo <span class='inlinecode'>yay</span> jo</span><br />
@@ -46,31 +49,31 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">if</font></b> <font color="#990000">[</font> -f <font color="#FF0000">"foo"</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
+<pre><b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"foo"</font> ]; <b><u><font color="#000000">then</font></u></b>
     echo foo
-<b><font color="#0000FF">else</font></b>
+<b><u><font color="#000000">else</font></u></b>
     echo bar
-<b><font color="#0000FF">fi</font></b>
+<b><u><font color="#000000">fi</font></u></b>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#9A1900"># Jo</font></i>
-❯ <b><font color="#0000FF">exec</font></b> <font color="#993399">5</font><font color="#990000">&lt;&gt;</font>/dev/tcp/google<font color="#990000">.</font>de<font color="#990000">/</font><font color="#993399">80</font>
-❯ echo -e <font color="#FF0000">"GET / HTTP/1.1</font><font color="#CC33CC">\n</font><font color="#FF0000">host: google.de</font><font color="#CC33CC">\n\n</font><font color="#FF0000">"</font> <font color="#990000">&gt;&amp;</font><font color="#993399">5</font>
-❯ cat <font color="#990000">&lt;&amp;</font><font color="#993399">5</font> <font color="#990000">|</font> head
-HTTP<font color="#990000">/</font><font color="#993399">1.1</font> <font color="#993399">301</font> Moved Permanently
-Location<font color="#990000">:</font> http<font color="#990000">:</font>//www<font color="#990000">.</font>google<font color="#990000">.</font>de<font color="#990000">/</font>
-Content-Type<font color="#990000">:</font> text/html<font color="#990000">;</font> <font color="#009900">charset</font><font color="#990000">=</font>UTF-<font color="#993399">8</font>
-Date<font color="#990000">:</font> Thu<font color="#990000">,</font> <font color="#993399">18</font> Nov <font color="#993399">2021</font> <font color="#993399">08</font><font color="#990000">:</font><font color="#993399">27</font><font color="#990000">:</font><font color="#993399">18</font> GMT
-Expires<font color="#990000">:</font> Sat<font color="#990000">,</font> <font color="#993399">18</font> Dec <font color="#993399">2021</font> <font color="#993399">08</font><font color="#990000">:</font><font color="#993399">27</font><font color="#990000">:</font><font color="#993399">18</font> GMT
-Cache-Control<font color="#990000">:</font> public<font color="#990000">,</font> max-age<font color="#990000">=</font><font color="#993399">2592000</font>
-Server<font color="#990000">:</font> gws
-Content-Length<font color="#990000">:</font> <font color="#993399">218</font>
-X-XSS-Protection<font color="#990000">:</font> <font color="#993399">0</font>
-X-Frame-Options<font color="#990000">:</font> SAMEORIGIN
+<pre><i><font color="silver"># Jo</font></i>
+❯ <b><u><font color="#000000">exec</font></u></b> <font color="#000000">5</font>&lt;&gt;/dev/tcp/google.de/<font color="#000000">80</font>
+❯ echo -e <font color="#808080">"GET / HTTP/1.1</font>\n<font color="#808080">host: google.de</font>\n\n<font color="#808080">"</font> &gt;&amp;<font color="#000000">5</font>
+❯ cat &lt;&amp;<font color="#000000">5</font> | head
+HTTP/<font color="#000000">1.1</font> <font color="#000000">301</font> Moved Permanently
+Location: http://www.google.de/
+Content-Type: text/html; charset=UTF-<font color="#000000">8</font>
+Date: Thu, <font color="#000000">18</font> Nov <font color="#000000">2021</font> <font color="#000000">08</font>:<font color="#000000">27</font>:<font color="#000000">18</font> GMT
+Expires: Sat, <font color="#000000">18</font> Dec <font color="#000000">2021</font> <font color="#000000">08</font>:<font color="#000000">27</font>:<font color="#000000">18</font> GMT
+Cache-Control: public, max-age=<font color="#000000">2592000</font>
+Server: gws
+Content-Length: <font color="#000000">218</font>
+X-XSS-Protection: <font color="#000000">0</font>
+X-Frame-Options: SAMEORIGIN
 </pre>
 <br />
 <span>Foo0</span><br />
@@ -85,7 +88,7 @@ X-Frame-Options<font color="#990000">:</font> SAMEORIGIN
 <br />
 <span>Bar2</span><br />
 <br />
-<h3 style='display: inline'>OK</h3><br />
+<h3 style='display: inline' id='ok'>OK</h3><br />
 <br />
 <span>ok</span><br />
 <br />
@@ -94,9 +97,9 @@ X-Frame-Options<font color="#990000">:</font> SAMEORIGIN
 <a class='textlink' href='https://foo.zone'>https://foo.zone</a><br />
 <a class='textlink' href='https://foo.zone'>link</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

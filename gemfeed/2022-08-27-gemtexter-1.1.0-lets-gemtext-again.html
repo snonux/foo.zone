@@ -8,9 +8,18 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>1.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
 <br />
 <pre>
 -=[ typewriter ]=-  1/98
@@ -24,15 +33,23 @@
  jgs  `"""""""""`
 </pre>
 <br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>1.1.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<ul>
+<li><a href='#gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</a></li>
+<li>⇢ <a href='#what-s-new'>What&#39;s new?</a></li>
+<li>⇢ ⇢ <a href='#automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</a></li>
+<li>⇢ ⇢ <a href='#backticks-now-produce-inline-code-blocks-in-the-html-output'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</a></li>
+<li>⇢ ⇢ <a href='#cache-for-atom-feed-generation'>Cache for Atom feed generation</a></li>
+<li>⇢ ⇢ <a href='#input-filter-support'>Input filter support</a></li>
+<li>⇢ ⇢ <a href='#revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</a></li>
+<li>⇢ ⇢ <a href='#addition-of-htmlextras-and-web-font-support'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</a></li>
+<li>⇢ ⇢ <a href='#sub-section-support'>Sub-section support</a></li>
+<li>⇢ ⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-s-new'>What&#39;s new?</h2><br />
 <br />
-<span>It has been around a year since I released the first version <span class='inlinecode'>1.0.0</span>. Although, there aren&#39;t any groundbreaking changes, there have been a couple of smaller commits and adjustments. I was quite surprised that I received a bunch of feedback and requests about Gemtexter so it means that I am not the only person in the universe actually using it.</span><br />
-<br />
-<h2 style='display: inline'>What&#39;s new?</h2><br />
-<br />
-<h3 style='display: inline'>Automatic check for GNU version requirements</h3><br />
+<h3 style='display: inline' id='automatic-check-for-gnu-version-requirements'>Automatic check for GNU version requirements</h3><br />
 <br />
 <span>Gemtexter relies on the GNU versions of the tools <span class='inlinecode'>grep</span>, <span class='inlinecode'>sed</span> and <span class='inlinecode'>date</span> and it also requires the Bash shell in version 5 at least. That&#39;s now done in the <span class='inlinecode'>check_dependencies()</span> function:</span><br />
 <br />
@@ -40,36 +57,36 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#000000">check_dependencies ()</font></b> {
-    <i><font color="#9A1900"># At least, Bash 5 is required</font></i>
-    <b><font color="#0000FF">local</font></b> -i <font color="#009900">required_version</font><font color="#990000">=</font><font color="#993399">5</font>
-    <font color="#009900">IFS</font><font color="#990000">=.</font> <b><font color="#0000FF">read</font></b> -ra version <font color="#990000">&lt;&lt;&lt;</font> <font color="#FF0000">"$BASH_VERSION"</font>
-    <b><font color="#0000FF">if</font></b> <font color="#990000">[</font> <font color="#FF0000">"${version[0]}"</font> -lt <font color="#009900">$required_version</font> <font color="#990000">];</font> <b><font color="#0000FF">then</font></b>
-        log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">bash</font><font color="#CC33CC">\"</font><font color="#FF0000"> must be at least at major version $required_version!"</font>
-        <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
-    <b><font color="#0000FF">fi</font></b>
+<pre>check_dependencies () {
+    <i><font color="silver"># At least, Bash 5 is required</font></i>
+    <b><u><font color="#000000">local</font></u></b> -i required_version=<font color="#000000">5</font>
+    IFS=. <b><u><font color="#000000">read</font></u></b> -ra version &lt;&lt;&lt; <font color="#808080">"$BASH_VERSION"</font>
+    <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"${version[0]}"</font> -lt $required_version ]; <b><u><font color="#000000">then</font></u></b>
+        log ERROR <font color="#808080">"ERROR, </font>\"<font color="#808080">bash</font>\"<font color="#808080"> must be at least at major version $required_version!"</font>
+        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">2</font>
+    <b><u><font color="#000000">fi</font></u></b>
 
-    <i><font color="#9A1900"># These must be the GNU versions of the commands</font></i>
-    <b><font color="#0000FF">for</font></b> tool <b><font color="#0000FF">in</font></b> <font color="#009900">$DATE</font> <font color="#009900">$SED</font> <font color="#009900">$GREP</font><font color="#990000">;</font> <b><font color="#0000FF">do</font></b>
-        <b><font color="#0000FF">if</font></b> <font color="#990000">!</font> <font color="#009900">$tool</font> --version <font color="#990000">|</font> grep -q GNU<font color="#990000">;</font> <b><font color="#0000FF">then</font></b>
-            log ERROR <font color="#FF0000">"ERROR, </font><font color="#CC33CC">\"</font><font color="#FF0000">$tool</font><font color="#CC33CC">\"</font><font color="#FF0000"> command is not the GNU version, please install!"</font>
-            <b><font color="#0000FF">exit</font></b> <font color="#993399">2</font>
-        <b><font color="#0000FF">fi</font></b>
-    <b><font color="#0000FF">done</font></b>
+    <i><font color="silver"># These must be the GNU versions of the commands</font></i>
+    <b><u><font color="#000000">for</font></u></b> tool <b><u><font color="#000000">in</font></u></b> $DATE $SED $GREP; <b><u><font color="#000000">do</font></u></b>
+        <b><u><font color="#000000">if</font></u></b> ! $tool --version | grep -q GNU; <b><u><font color="#000000">then</font></u></b>
+            log ERROR <font color="#808080">"ERROR, </font>\"<font color="#808080">$tool</font>\"<font color="#808080"> command is not the GNU version, please install!"</font>
+            <b><u><font color="#000000">exit</font></u></b> <font color="#000000">2</font>
+        <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">done</font></u></b>
 }
 </pre>
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
 <br />
-<h3 style='display: inline'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</h3><br />
+<h3 style='display: inline' id='backticks-now-produce-inline-code-blocks-in-the-html-output'>Backticks now produce <span class='inlinecode'>inline code blocks</span> in the HTML output</h3><br />
 <br />
 <span>The Gemtext format doesn&#39;t support inline code blocks, but Gemtexter now produces <span class='inlinecode'>inline code blocks</span> (means, small code fragments can be placed in the middle of a paragraph) in the HTML output when the code block is enclosed with Backticks. There were no adjustments required for the Markdown output format, because Markdown supports it already out of the box.</span><br />
 <br />
-<h3 style='display: inline'>Cache for Atom feed generation</h3><br />
+<h3 style='display: inline' id='cache-for-atom-feed-generation'>Cache for Atom feed generation</h3><br />
 <br />
 <span>The Bash is not the most performant language. Gemtexter already takes a couple of seconds only to generate the Atom feed for around two hand full of articles on my slightly underpowered Surface Go 2 Linux tablet. Therefore, I introduced a cache, so that subsequent Atom feed generation runs finish much quicker. The cache uses a checksum of the Gemtext <span class='inlinecode'>.gmi</span> file to decide whether anything of the content has changed or not.</span><br />
 <br />
-<h3 style='display: inline'>Input filter support</h3><br />
+<h3 style='display: inline' id='input-filter-support'>Input filter support</h3><br />
 <br />
 <span>Once your capsule reaches a certain size, it can become annoying to re-generate everything if you only want to preview the HTML or Markdown output of one single content file. The following will add a filter to only generate the files matching a regular expression:</span><br />
 <br />
@@ -77,45 +94,46 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">.</font>/gemtexter --generate <font color="#FF0000">'.*hello.*'</font>
+<pre>./gemtexter --generate <font color="#808080">'.*hello.*'</font>
 </pre>
 <br />
-<h3 style='display: inline'>Revamped <span class='inlinecode'>git</span> support</h3><br />
+<h3 style='display: inline' id='revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</h3><br />
 <br />
 <span>The Git support has been completely rewritten. It&#39;s now more reliable and faster too. Have a look at the <span class='inlinecode'>README</span> for more information.</span><br />
 <br />
-<h3 style='display: inline'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</h3><br />
+<h3 style='display: inline' id='addition-of-htmlextras-and-web-font-support'>Addition of <span class='inlinecode'>htmlextras</span> and web font support</h3><br />
 <br />
 <span>The <span class='inlinecode'>htmlextras</span> folder now contains all extra files required for the HTML output format such as cascading style sheet (CSS) files and web fonts.</span><br />
 <br />
-<h3 style='display: inline'>Sub-section support</h3><br />
+<h3 style='display: inline' id='sub-section-support'>Sub-section support</h3><br />
 <br />
 <span>It&#39;s now possible to define sub-sections within a Gemtexter capsule. For the HTML output, each sub-section can use its own CSS and web font definitions. E.g.:</span><br />
 <br />
 <a class='textlink' href='https://foo.zone'>The foo.zone main site</a><br />
 <a class='textlink' href='https://foo.zone/notes'>The notes sub-section (with different fonts)</a><br />
 <br />
-<h3 style='display: inline'>More</h3><br />
+<h3 style='display: inline' id='more'>More</h3><br />
 <br />
 <span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
 <br />
 <span>Overall I think it&#39;s a pretty solid <span class='inlinecode'>1.1.0</span> release without anything groundbreaking (therefore no major version jump). But I am happy about it.</span><br />
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
 <a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

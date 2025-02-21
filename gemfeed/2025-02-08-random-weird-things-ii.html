@@ -1,0 +1,291 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Random Weird Things - Part Ⅱ</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-02-08-random-weird-things-ii.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅱ</h1><br />
+<br />
+<span class='quote'>Published at 2025-02-08T11:06:16+02:00</span><br />
+<br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the second run.</span><br />
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ (You are currently reading this)</a><br />
+<br />
+<pre>
+/\_/\           /\_/\
+( o.o ) WHOA!! ( o.o )
+&gt; ^ &lt;           &gt; ^ &lt;
+/   \    MOEEW! /   \
+/______\       /______\
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅱ</a></li>
+<li>⇢ <a href='#11-the-sqlite-codebase-is-a-gem'>11. The SQLite codebase is a gem</a></li>
+<li>⇢ <a href='#go-programming'>Go Programming</a></li>
+<li>⇢ ⇢ <a href='#12-official-go-font'>12. Official Go font</a></li>
+<li>⇢ ⇢ <a href='#13-go-functions-can-have-methods'>13. Go functions can have methods</a></li>
+<li>⇢ <a href='#macos'>macOS</a></li>
+<li>⇢ ⇢ <a href='#14--and-ss-are-treated-the-same'>14. ß and ss are treated the same</a></li>
+<li>⇢ ⇢ <a href='#15-colon-as-file-path-separator'>15. Colon as file path separator</a></li>
+<li>⇢ <a href='#16-polyglots---programs-written-in-multiple-languages'>16. Polyglots - programs written in multiple languages</a></li>
+<li>⇢ <a href='#17-languages-where-indices-start-at-1'>17. Languages, where indices start at 1</a></li>
+<li>⇢ <a href='#18-perl-poetry'>18. Perl Poetry</a></li>
+<li>⇢ <a href='#19-css3-is-turing-complete'>19. CSS3 is turing complete</a></li>
+<li>⇢ <a href='#20-the-biggest-shell-programs-'>20. The biggest shell programs </a></li>
+</ul><br />
+<h2 style='display: inline' id='11-the-sqlite-codebase-is-a-gem'>11. The SQLite codebase is a gem</h2><br />
+<br />
+<span>Check this out:</span><br />
+<br />
+<a href='./random-weird-things-ii/sqlite-gem.png'><img alt='SQLite Gem' title='SQLite Gem' src='./random-weird-things-ii/sqlite-gem.png' /></a><br />
+<br />
+<span>Source:</span><br />
+<br />
+<a class='textlink' href='https://wetdry.world/@memes/112717700557038278'>https://wetdry.world/@memes/112717700557038278</a><br />
+<br />
+<h2 style='display: inline' id='go-programming'>Go Programming</h2><br />
+<br />
+<h3 style='display: inline' id='12-official-go-font'>12. Official Go font</h3><br />
+<br />
+<span>The Go programming language has an official font called "Go Font." It was created to complement the aesthetic of the Go language, ensuring clear and legible rendering of code. The font includes a monospace version for code and a proportional version for general text, supporting consistent look and readability in Go-related materials and development environments. </span><br />
+<br />
+<span>Check out some Go code displayed using the Go font:</span><br />
+<br />
+<a href='./random-weird-things-ii/go-font-code.png'><img alt='Go font code' title='Go font code' src='./random-weird-things-ii/go-font-code.png' /></a><br />
+<br />
+<a class='textlink' href='https://go.dev/blog/go-fonts'>https://go.dev/blog/go-fonts</a><br />
+<br />
+<span>The design emphasizes simplicity and readability, reflecting Go&#39;s philosophy of clarity and efficiency.</span><br />
+<br />
+<span>I found it interesting and/or weird, as Go is a programming language. Why should it bother having its own font? I have never seen another open-source project like Go do this. But I also like it. Maybe I will use it in the future for this blog :-) </span><br />
+<br />
+<h3 style='display: inline' id='13-go-functions-can-have-methods'>13. Go functions can have methods</h3><br />
+<br />
+<span>Functions on struct types? Well, know. Functions on types like <span class='inlinecode'>int</span> and <span class='inlinecode'>string</span>? It&#39;s also known of, but a bit lesser. Functions on function types? That sounds a bit funky, but it&#39;s possible, too! For demonstration, have a look at this snippet:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> main
+
+<b><u><font color="#000000">import</font></u></b> <font color="#808080">"log"</font>
+
+<b><u><font color="#000000">type</font></u></b> fun <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b>
+
+<b><u><font color="#000000">func</font></u></b> (f fun) Bar() <b><font color="#000000">string</font></b> {
+        <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Bar"</font>
+}
+
+<b><u><font color="#000000">func</font></u></b> main() {
+        <b><u><font color="#000000">var</font></u></b> f fun = <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b> {
+                <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Foo"</font>
+        }
+        log.Println(<font color="#808080">"Example 1: "</font>, f())
+        log.Println(<font color="#808080">"Example 2: "</font>, f.Bar())
+        log.Println(<font color="#808080">"Example 3: "</font>, fun(f.Bar).Bar())
+        log.Println(<font color="#808080">"Example 4: "</font>, fun(fun(f.Bar).Bar).Bar())
+}
+</pre>
+<br />
+<span>It runs just fine:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ go run main.go
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">1</font>:  Foo
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">2</font>:  Bar
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">3</font>:  Bar
+<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">4</font>:  Bar
+</pre>
+<br />
+<h2 style='display: inline' id='macos'>macOS</h2><br />
+<br />
+<span>For personal computing, I don&#39;t use Apple, but I have to use it for work. </span><br />
+<br />
+<h3 style='display: inline' id='14--and-ss-are-treated-the-same'>14. ß and ss are treated the same</h3><br />
+<br />
+<span>Know German? In German, the letter "sarp s" is written as ß. ß is treated the same as ss on macOS.</span><br />
+<br />
+<span>On a case-insensitive file system like macOS, not only are uppercase and lowercase letters treated the same, but non-Latin characters like the German "ß" are also considered equivalent to their Latin counterparts (in this case, "ss").</span><br />
+<br />
+<span>So, even though "Maß" and "Mass" are not strictly equivalent, the macOS file system still treats them as the same filename due to its handling of Unicode characters. This can sometimes lead to unexpected behaviour. Check this out:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ touch Maß
+❯ ls -l
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
+❯ touch Mass
+❯ ls -l
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
+❯ rm Mass
+❯ ls -l
+
+❯ touch Mass
+❯ ls -ltr
+-rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Mass
+❯ rm Maß
+❯ ls -l
+
+</pre>
+<br />
+<h3 style='display: inline' id='15-colon-as-file-path-separator'>15. Colon as file path separator</h3><br />
+<br />
+<span>MacOS can use the colon as a file path separator on its ADFS (file system). A typical ADFS file pathname on a hard disc might be:</span><br />
+<br />
+<pre>
+ADFS::4.$.Documents.Techwriter.Myfile
+</pre>
+<br />
+<span>I can&#39;t reproduce this on my (work) Mac, though, as it now uses the APFS file system. In essence, ADFS is an older file system, while APFS is a contemporary file system optimized for Apple&#39;s modern devices.</span><br />
+<br />
+<a class='textlink' href='https://social.jvns.ca/@b0rk/113041293527832730'>https://social.jvns.ca/@b0rk/113041293527832730</a><br />
+<br />
+<h2 style='display: inline' id='16-polyglots---programs-written-in-multiple-languages'>16. Polyglots - programs written in multiple languages</h2><br />
+<br />
+<span>A coding polyglot is a program or script written so that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting valid and meaningful code in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.</span><br />
+<br />
+<span>Check out my very own polyglot:</span><br />
+<br />
+<a class='textlink' href='./2014-03-24-the-fibonacci.pl.c-polyglot.html'>The <span class='inlinecode'>fibonatti.pl.c</span> Polyglot</a><br />
+<br />
+<h2 style='display: inline' id='17-languages-where-indices-start-at-1'>17. Languages, where indices start at 1</h2><br />
+<br />
+<span>Array indices start at 1 instead of 0 in some programming languages, known as one-based indexing. This can be controversial because zero-based indexing is more common in popular languages like C, C++, Java, and Python. One-based indexing can lead to off-by-one errors when developers switch between languages with different indexing schemes.</span><br />
+<br />
+<span>Languages with One-Based Indexing:</span><br />
+<br />
+<ul>
+<li>Fortran</li>
+<li>MATLAB</li>
+<li>Lua</li>
+<li>R (for vectors and lists)</li>
+<li>Smalltalk</li>
+<li>Julia (by default, although zero-based indexing is also possible)</li>
+</ul><br />
+<span><span class='inlinecode'>foo.lua</span> example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>arr = {<font color="#000000">10</font>, <font color="#000000">20</font>, <font color="#000000">30</font>, <font color="#000000">40</font>, <font color="#000000">50</font>}
+print(arr[<font color="#000000">1</font>]) <i><font color="silver">-- Accessing the first element</font></i>
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ lua foo.lua
+<font color="#000000">10</font>
+</pre>
+<br />
+<span>One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.</span><br />
+<br />
+<h2 style='display: inline' id='18-perl-poetry'>18. Perl Poetry</h2><br />
+<br />
+<span>Perl Poetry is a playful and creative practice within the programming community where Perl code is written as a poem. These poems are crafted to be syntactically valid Perl code and make sense as poetic text, often with whimsical or humorous intent. This showcases Perl&#39;s flexibility and expressiveness, as well as the creativity of its programmers.</span><br />
+<br />
+<span>See this Poetry of my own; the Perl interpreter does not yield any syntax error parsing that. But also, the Peom doesn&#39;t do anything useful then executed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># (C) 2006 by Paul C. Buetow</font></i>
+
+Christmas:{time;<i><font color="silver">#!!!</font></i>
+
+Children: <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">tell</font></u></b> $wishes;
+
+Santa: <b><u><font color="#000000">for</font></u></b> $each (@children) { 
+BEGIN { <b><u><font color="#000000">read</font></u></b> $each, $their, wishes <b><u><font color="#000000">and</font></u></b> study them; <b><u><font color="#000000">use</font></u></b> Memoize<i><font color="silver">#ing</font></i>
+
+} <b><u><font color="#000000">use</font></u></b> constant gift, <font color="#808080">'wrapping'</font>; 
+<b><u><font color="#000000">package</font></u></b> Gifts; <b><u><font color="#000000">pack</font></u></b> $each, gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">bless</font></u></b> $each <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">goto</font></u></b> deliver
+or <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">import</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">local</font></u></b> $available,!!! HO, HO, HO;
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+
+deliver: gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">require</font></u></b> diagnostics <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">our</font></u></b> $gifts ,not break;
+<b><u><font color="#000000">do</font></u></b>{ <b><u><font color="#000000">use</font></u></b> NEXT; time; <b><u><font color="#000000">tied</font></u></b> $gifts} <b><u><font color="#000000">if</font></u></b> broken <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">dump</font></u></b> the, broken, ones;
+The_children: <b><u><font color="#000000">sleep</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">for</font></u></b> (<b><u><font color="#000000">each</font></u></b> %gift) <b><u><font color="#000000">and</font></u></b> try { to =&gt; <b><u><font color="#000000">untie</font></u></b> $gifts };
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+
+The_christmas_tree: formline <b><u><font color="#000000">s</font></u></b><font color="#808080">/ /childrens/</font>, $gifts;
+<b><u><font color="#000000">alarm</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">warn</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">exists</font></u></b> $Christmas{ tree}, @t, $ENV{HOME};  
+<b><u><font color="#000000">write</font></u></b> &lt;&lt;EMail
+ to the parents to buy a new christmas tree!!!!<font color="#000000">111</font>
+ <b><u><font color="#000000">and</font></u></b> send the
+EMail
+;<b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">redo</font></u></b> deliver until <b><u><font color="#000000">defined</font></u></b> <b><u><font color="#000000">local</font></u></b> $tree;
+
+<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
+<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered ;}
+
+END {} <b><u><font color="#000000">our</font></u></b> $mission <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">sleep</font></u></b> until <b><u><font color="#000000">next</font></u></b> Christmas ;}
+
+__END__
+
+This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#000000">for</font></u></b> i386-freebsd-64int
+</pre>
+<br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>More Perl Poetry of mine</a><br />
+<br />
+<h2 style='display: inline' id='19-css3-is-turing-complete'>19. CSS3 is turing complete</h2><br />
+<br />
+<span>CSS3 is Turing complete because it can simulate a Turing machine using only CSS animations and styles without any JavaScript or external logic. This is achieved by using keyframe animations to change the styles of HTML elements in a way that encodes computation, performing calculations and state transitions. </span><br />
+<br />
+<a class='textlink' href='https://stackoverflow.com/questions/2497146/is-css-turing-complete'>Is CSS turing complete?</a><br />
+<br />
+<span>It is surprising because CSS is primarily a styling language intended for the presentation layer of web pages, not for computation or logic. Its capability to perform complex computations defies its typical use case and showcases the unintended computational power that can emerge from the creative use of seemingly straightforward technologies.</span><br />
+<br />
+<span>Check out this 100% CSS implementation of the Conways Game of Life:</span><br />
+<br />
+<a href='./random-weird-things-ii/css-conway.png'><img src='./random-weird-things-ii/css-conway.png' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/propjockey/css-conways-game-of-life'>CSS Conways Game of Life</a><br />
+<br />
+<span>Conway&#39;s Game of Life is Turing complete because it can simulate a universal Turing machine, meaning it can perform any computation that a computer can, given the right initial conditions and sufficient time and space. Suppose a language can implement Conway&#39;s Game of Life. In that case, it demonstrates the language&#39;s ability to handle complex state transitions and computations. It has the necessary constructs (like iteration, conditionals, and data manipulation) to simulate any algorithm, thus confirming its Turing completeness.</span><br />
+<br />
+<h2 style='display: inline' id='20-the-biggest-shell-programs-'>20. The biggest shell programs </h2><br />
+<br />
+<span>One would think that shell scripts are only suitable for small tasks. Well, I must be wrong, as there are huge shell programs out there (up to 87k LOC) which aren&#39;t auto-generated but hand-written!</span><br />
+<br />
+<a class='textlink' href='https://github.com/oils-for-unix/oils/wiki/The-Biggest-Shell-Programs-in-the-World'>The Biggest Sell Programs in the World</a><br />
+<br />
+<span>My Gemtexter (bash) is only 1329 LOC as of now. So it&#39;s tiny.</span><br />
+<br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>Gemtexter - One Bash script to rule it all</a><br />
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

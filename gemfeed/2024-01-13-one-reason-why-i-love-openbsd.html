@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>One reason why I love OpenBSD</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='one-reason-why-i-love-openbsd'>One reason why I love OpenBSD</h1><br />
+<br />
+<span class='quote'>Published at 2024-01-13T22:55:33+02:00</span><br />
+<br />
+<pre>
+           FISHKISSFISHKIS               
+       SFISHKISSFISHKISSFISH            F
+    ISHK   ISSFISHKISSFISHKISS         FI
+  SHKISS   FISHKISSFISHKISSFISS       FIS
+HKISSFISHKISSFISHKISSFISHKISSFISH    KISS
+  FISHKISSFISHKISSFISHKISSFISHKISS  FISHK
+      SSFISHKISSFISHKISSFISHKISSFISHKISSF
+  ISHKISSFISHKISSFISHKISSFISHKISSF  ISHKI
+SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
+  HKISSFISHKISSFISHKISSFISHKISS       FIS
+    HKISSFISHKISSFISHKISSFISHK         IS
+       SFISHKISSFISHKISSFISH            K
+         ISSFISHKISSFISHK               
+</pre>
+<br />
+<span>I just upgraded my OpenBSD&#39;s from <span class='inlinecode'>7.3</span> to <span class='inlinecode'>7.4</span> by following the unattended upgrade guide:</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org/faq/upgrade74.html'>https://www.openbsd.org/faq/upgrade74.html</a><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ doas installboot sd0 <i><font color="silver"># Update the bootloader (not for every upgrade required)</font></i>
+$ doas sysupgrade <i><font color="silver"># Update all binaries (including Kernel)</font></i>
+</pre>
+<br />
+<span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ doas sysmerge <i><font color="silver"># Update system configuration files</font></i>
+$ doas pkg_add -u <i><font color="silver"># Update all packages</font></i>
+$ doas reboot <i><font color="silver"># Just in case, reboot one more time</font></i>
+</pre>
+<br />
+<span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
+<br />
+<span>I followed the same procedure the previous times and never encountered any difficulties with any OpenBSD upgrades.</span><br />
+<br />
+<span>I have seen upgrades of other Operating Systems either take a long time or break the system (which takes manual steps to repair). That&#39;s just one of many reasons why I love OpenBSD! There appear never to be any problems. It just gets its job done!</span><br />
+<br />
+<a class='textlink' href='https://www.openbsd.org'>The OpenBSD Project</a><br />
+<br />
+<span>BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may be for you. They rock (I am having a VM there, too)!</span><br />
+<br />
+<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other *BSD related posts are:</span><br />
+<br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

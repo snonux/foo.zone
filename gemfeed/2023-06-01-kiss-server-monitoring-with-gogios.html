@@ -8,13 +8,12 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>KISS server monitoring with Gogios</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</h1><br />
 <br />
 <span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
-<br />
-<a href='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./2023-06-01-kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
-<br />
-<h2 style='display: inline'>Introduction</h2><br />
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
@@ -22,6 +21,26 @@
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
 <br />
+<a href='./kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</a></li>
+<li>⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#features'>Features</a></li>
+<li>⇢ <a href='#example-alert'>Example alert</a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ ⇢ <a href='#compiling-and-installing-gogios'>Compiling and installing Gogios</a></li>
+<li>⇢ ⇢ <a href='#setting-up-user-group-and-directories'>Setting up user, group and directories</a></li>
+<li>⇢ ⇢ <a href='#installing-monitoring-plugins'>Installing monitoring plugins</a></li>
+<li>⇢ <a href='#configuration'>Configuration</a></li>
+<li>⇢ ⇢ <a href='#mta'>MTA</a></li>
+<li>⇢ ⇢ <a href='#configuring-gogios'>Configuring Gogios</a></li>
+<li>⇢ <a href='#running-gogios'>Running Gogios</a></li>
+<li>⇢ ⇢ <a href='#high-availability'>High-availability</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion:</a></li>
+</ul><br />
 <pre>
     _____________________________    ____________________________
    /                             \  /                            \
@@ -45,7 +64,7 @@ The original can be found at
 https://asciiart.website/index.php?art=objects/computers
 </pre>
 <br />
-<h2 style='display: inline'>Motivation</h2><br />
+<h2 style='display: inline' id='motivation'>Motivation</h2><br />
 <br />
 <span>With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn&#39;t necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
 <br />
@@ -53,7 +72,7 @@ https://asciiart.website/index.php?art=objects/computers
 <br />
 <span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance.</span><br />
 <br />
-<h2 style='display: inline'>Features</h2><br />
+<h2 style='display: inline' id='features'>Features</h2><br />
 <br />
 <ul>
 <li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing to use existing Nagios plugins.</li>
@@ -64,7 +83,7 @@ https://asciiart.website/index.php?art=objects/computers
 <li>Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.</li>
 <li>CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.</li>
 </ul><br />
-<h2 style='display: inline'>Example alert</h2><br />
+<h2 style='display: inline' id='example-alert'>Example alert</h2><br />
 <br />
 <span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we&#39;ve got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
 <br />
@@ -86,9 +105,9 @@ CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
 Have a nice day!
 </pre>
 <br />
-<h2 style='display: inline'>Installation</h2><br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
 <br />
-<h3 style='display: inline'>Compiling and installing Gogios</h3><br />
+<h3 style='display: inline' id='compiling-and-installing-gogios'>Compiling and installing Gogios</h3><br />
 <br />
 <span>This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace <span class='inlinecode'>does</span> with the <span class='inlinecode'>sudo</span> command and replace the <span class='inlinecode'>/usr/local/bin</span> path with <span class='inlinecode'>/usr/bin</span>.</span><br />
 <br />
@@ -98,11 +117,11 @@ Have a nice day!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>git clone https<font color="#990000">:</font>//codeberg<font color="#990000">.</font>org/snonux/gogios<font color="#990000">.</font>git
+<pre>git clone https://codeberg.org/snonux/gogios.git
 cd gogios
-go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
+go build -o gogios cmd/gogios/main.go
 doas cp gogios /usr/local/bin/gogios
-doas chmod <font color="#993399">755</font> /usr/local/bin/gogios
+doas chmod <font color="#000000">755</font> /usr/local/bin/gogios
 </pre>
 <br />
 <span>You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:</span><br />
@@ -111,16 +130,16 @@ doas chmod <font color="#993399">755</font> /usr/local/bin/gogios
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#0000FF">export</font></b> <font color="#009900">GOOS</font><font color="#990000">=</font>openbsd
-<b><font color="#0000FF">export</font></b> <font color="#009900">GOARCH</font><font color="#990000">=</font>amd64
-go build -o gogios cmd/gogios/main<font color="#990000">.</font>go
+<pre><b><u><font color="#000000">export</font></u></b> GOOS=openbsd
+<b><u><font color="#000000">export</font></u></b> GOARCH=amd64
+go build -o gogios cmd/gogios/main.go
 </pre>
 <br />
 <span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />
-<h3 style='display: inline'>Setting up user, group and directories</h3><br />
+<h3 style='display: inline' id='setting-up-user-group-and-directories'>Setting up user, group and directories</h3><br />
 <br />
 <span>It is best to create a dedicated system user and group for Gogios to ensure proper isolation and security. Here are the steps to create the <span class='inlinecode'>_gogios</span> user and group under OpenBSD:</span><br />
 <br />
@@ -131,13 +150,13 @@ http://www.gnu.org/software/src-highlite -->
 <pre>doas adduser -group _gogios -batch _gogios
 doas usermod -d /var/run/gogios _gogios
 doas mkdir -p /var/run/gogios
-doas chown _gogios<font color="#990000">:</font>_gogios /var/run/gogios
-doas chmod <font color="#993399">750</font> /var/run/gogios
+doas chown _gogios:_gogios /var/run/gogios
+doas chmod <font color="#000000">750</font> /var/run/gogios
 </pre>
 <br />
 <span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
 <br />
-<h3 style='display: inline'>Installing monitoring plugins</h3><br />
+<h3 style='display: inline' id='installing-monitoring-plugins'>Installing monitoring plugins</h3><br />
 <br />
 <span>Gogios relies on external Nagios or Icinga monitoring plugin scripts. On OpenBSD, you can install the <span class='inlinecode'>monitoring-plugins</span> package with Gogios. The monitoring-plugins package is a collection of monitoring plugins, similar to Nagios plugins, that can be used to monitor various services and resources:</span><br />
 <br />
@@ -146,14 +165,14 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>doas pkg_add monitoring-plugins
-doas pkg_add nrpe <i><font color="#9A1900"># If you want to execute checks remotely via NRPE.</font></i>
+doas pkg_add nrpe <i><font color="silver"># If you want to execute checks remotely via NRPE.</font></i>
 </pre>
 <br />
 <span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
 <br />
-<h2 style='display: inline'>Configuration</h2><br />
+<h2 style='display: inline' id='configuration'>Configuration</h2><br />
 <br />
-<h3 style='display: inline'>MTA</h3><br />
+<h3 style='display: inline' id='mta'>MTA</h3><br />
 <br />
 <span>Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.</span><br />
 <br />
@@ -165,7 +184,7 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 <br />
 <span>Check the recipient&#39;s inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
 <br />
-<h3 style='display: inline'>Configuring Gogios</h3><br />
+<h3 style='display: inline' id='configuring-gogios'>Configuring Gogios</h3><br />
 <br />
 <span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here&#39;s an example configuration:</span><br />
 <br />
@@ -173,41 +192,41 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#990000">{</font>
-  "EmailTo": "<font color="#FF0000">paul@dev.buetow.org</font>"<font color="#990000">,</font>
-  "EmailFrom": "<font color="#FF0000">gogios@buetow.org</font>"<font color="#990000">,</font>
-  "CheckTimeoutS": <font color="#993399">10</font><font color="#990000">,</font>
-  "CheckConcurrency": <font color="#993399">2</font><font color="#990000">,</font>
-  "StateDir": "<font color="#FF0000">/var/run/gogios</font>"<font color="#990000">,</font>
-  "Checks": <font color="#990000">{</font>
-    "Check ICMP4 www.foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_ping</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font> "-H"<font color="#990000">,</font> "www.foo.zone"<font color="#990000">,</font> "-4"<font color="#990000">,</font> "-w"<font color="#990000">,</font> "50,10%"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "100,15%" <font color="#990000">],</font>
-      "Retries": <font color="#993399">3</font><font color="#990000">,</font>
-      "RetryInterval": <font color="#993399">10</font>
-    <font color="#990000">},</font>
-    "Check ICMP6 www.foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_ping</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font> "-H"<font color="#990000">,</font> "www.foo.zone"<font color="#990000">,</font> "-6"<font color="#990000">,</font> "-w"<font color="#990000">,</font> "50,10%"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "100,15%" <font color="#990000">],</font>
-      "Retries": <font color="#993399">3</font><font color="#990000">,</font>
-      "RetryInterval": <font color="#993399">10</font>
-    <font color="#990000">},</font>
-    "www.foo.zone HTTP IPv4": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_http</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"www.foo.zone"<font color="#990000">,</font> "-4"<font color="#990000">],</font>
-      "DependsOn": <font color="#990000">[</font>"Check ICMP4 www.foo.zone"<font color="#990000">]</font>
-    <font color="#990000">},</font>
-    "www.foo.zone HTTP IPv6": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_http</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"www.foo.zone"<font color="#990000">,</font> "-6"<font color="#990000">],</font>
-      "DependsOn": <font color="#990000">[</font>"Check ICMP6 www.foo.zone"<font color="#990000">]</font>
-    <font color="#990000">}</font>
-    "Check NRPE Disk Usage foo.zone": <font color="#990000">{</font>
-      "Plugin": "<font color="#FF0000">/usr/local/libexec/nagios/check_nrpe</font>"<font color="#990000">,</font>
-      "Args": <font color="#990000">[</font>"-H"<font color="#990000">,</font> "foo.zone"<font color="#990000">,</font> "-c"<font color="#990000">,</font> "check_disk"<font color="#990000">,</font> "-p"<font color="#990000">,</font> "5666"<font color="#990000">,</font> "-4"<font color="#990000">]</font>
-    <font color="#990000">}</font>
-  <font color="#990000">}</font>
-<font color="#990000">}</font>
+<pre>{
+  "EmailTo": "<font color="#808080">paul@dev.buetow.org</font>",
+  "EmailFrom": "<font color="#808080">gogios@buetow.org</font>",
+  "CheckTimeoutS": <font color="#000000">10</font>,
+  "CheckConcurrency": <font color="#000000">2</font>,
+  "StateDir": "<font color="#808080">/var/run/gogios</font>",
+  "Checks": {
+    "Check ICMP4 www.foo.zone": {
+      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_ping</font>",
+      "Args": [ "-H", "www.foo.zone", "-4", "-w", "50,10%", "-c", "100,15%" ],
+      "Retries": <font color="#000000">3</font>,
+      "RetryInterval": <font color="#000000">10</font>
+    },
+    "Check ICMP6 www.foo.zone": {
+      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_ping</font>",
+      "Args": [ "-H", "www.foo.zone", "-6", "-w", "50,10%", "-c", "100,15%" ],
+      "Retries": <font color="#000000">3</font>,
+      "RetryInterval": <font color="#000000">10</font>
+    },
+    "www.foo.zone HTTP IPv4": {
+      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_http</font>",
+      "Args": ["www.foo.zone", "-4"],
+      "DependsOn": ["Check ICMP4 www.foo.zone"]
+    },
+    "www.foo.zone HTTP IPv6": {
+      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_http</font>",
+      "Args": ["www.foo.zone", "-6"],
+      "DependsOn": ["Check ICMP6 www.foo.zone"]
+    }
+    "Check NRPE Disk Usage foo.zone": {
+      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_nrpe</font>",
+      "Args": ["-H", "foo.zone", "-c", "check_disk", "-p", "5666", "-4"]
+    }
+  }
+}
 </pre>
 <br />
 <ul>
@@ -228,7 +247,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The <span class='inlinecode'>state.json</span> file mentioned above keeps track of the monitoring state and check results between Gogios runs, enabling Gogios only to send email notifications when there are changes in the check status.</span><br />
 <br />
-<h2 style='display: inline'>Running Gogios</h2><br />
+<h2 style='display: inline' id='running-gogios'>Running Gogios</h2><br />
 <br />
 <span>Now it is time to give it a first run. On OpenBSD, do:</span><br />
 <br />
@@ -236,7 +255,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios<font color="#990000">.</font>json
+<pre>doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios.json
 </pre>
 <br />
 <span>To run Gogios via CRON on OpenBSD as the <span class='inlinecode'>gogios</span> user and check all services once per minute, follow these steps:</span><br />
@@ -250,7 +269,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON as the <span class='inlinecode'>_gogios</span> user. It will execute the checks and send monitoring status whenever a check status changes via email according to your configuration. Also, Gogios will run once at 7 am every morning and re-notify all unhandled alerts as a reminder.</span><br />
 <br />
-<h3 style='display: inline'>High-availability</h3><br />
+<h3 style='display: inline' id='high-availability'>High-availability</h3><br />
 <br />
 <span>To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.</span><br />
 <br />
@@ -263,23 +282,24 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>There are plans to make it possible to execute certain checks only on certain nodes (e.g. on elected leader or master nodes). This is still in progress (check out my Gorum Git project).</span><br />
 <br />
-<h2 style='display: inline'>Conclusion:</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion:</h2><br />
 <br />
 <span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
 <br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
 <span>Other KISS-related posts are:</span><br />
 <br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
+<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

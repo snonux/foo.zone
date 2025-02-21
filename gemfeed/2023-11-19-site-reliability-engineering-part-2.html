@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Site Reliability Engineering - Part 2: Operational Balance</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-11-19-site-reliability-engineering-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-11-19-site-reliability-engineering-part-2.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='site-reliability-engineering---part-2-operational-balance'>Site Reliability Engineering - Part 2: Operational Balance</h1><br />
+<br />
+<span class='quote'>Published at 2023-11-19T00:18:18+03:00</span><br />
+<br />
+<span>This is the second part of my Site Reliability Engineering (SRE) series. I am currently employed as a Site Reliability Engineer and will try to share what SRE is about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<br />
+<pre>
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⣾⠿⠿⠿⠶⠾⠿⠿⣿⣿⣿⣿⣿⣿⠿⠿⠶⠶⠿⠿⠿⣷⠀⠀⠀⠀
+⠀⠀⠀⣸⢿⣆⠀⠀⠀⠀⠀⠀⠀⠙⢿⡿⠉⠀⠀⠀⠀⠀⠀⠀⣸⣿⡆⠀⠀⠀
+⠀⠀⢠⡟⠀⢻⣆⠀⠀⠀⠀⠀⠀⠀⣾⣧⠀⠀⠀⠀⠀⠀⠀⣰⡟⠀⢻⡄⠀⠀
+⠀⢀⣾⠃⠀⠀⢿⡄⠀⠀⠀⠀⠀⢠⣿⣿⡀⠀⠀⠀⠀⠀⢠⡿⠀⠀⠘⣷⡀⠀
+⠀⣼⣏⣀⣀⣀⣈⣿⡀⠀⠀⠀⠀⣸⣿⣿⡇⠀⠀⠀⠀⢀⣿⣃⣀⣀⣀⣸⣧⠀
+⠀⢻⣿⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⣿⣿⣿⣿⠀⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⡿⠀
+⠀⠀⠉⠛⠛⠛⠋⠁⠀⠀⠀⠀⢸⣿⣿⣿⣿⡆⠀⠀⠀⠀⠈⠙⠛⠛⠛⠉⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
+</pre>
+<br />
+<h2 style='display: inline' id='striking-the-right-balance-between-reliability-and-speed'>Striking the Right Balance Between Reliability and Speed</h2><br />
+<br />
+<span>Site Reliability Engineering is more than just a bunch of best practices or methods. It&#39;s a guiding light for engineering teams, helping them navigate the tricky waters of modern software development and system management.</span><br />
+<span>In the world of software production, there are two big forces that often clash: the push for fast feature releases (velocity) and the need for reliable systems. Traditionally, moving faster meant more risk. SRE helps balance these opposing goals with things like error budgets and SLIs/SLOs. These tools give teams a clear way to measure how much they can push changes without hurting system health. So, the error budget becomes a balancing act, helping teams trade off between innovation and reliability.</span><br />
+<br />
+<span>Finding the right balance in SRE means juggling operations and coding. Ideally, engineers should split their time 50/50 between these tasks. This isn&#39;t just a random rule; it highlights how much SRE values both maintaining smooth operations and driving innovation. This way, SREs not only handle today&#39;s problems but also prepare for tomorrow&#39;s challenges.</span><br />
+<br />
+<span>But not all operations tasks are the same. SRE makes a clear distinction between "ops work" and "toil." Ops work is essential for maintaining systems and adds value, while toil is the repetitive, boring stuff that doesn’t. It&#39;s super important to recognize and minimize toil because a culture that lets engineers get bogged down in it will kill innovation and growth. The way an organization handles toil says a lot about its operational health and commitment to balance.</span><br />
+<br />
+<span>A key part of finding operational balance is the tools and processes that SREs use. Great monitoring and observability tools, especially those that can handle lots of complex data, are essential. This isn’t just about having the right tech—it shows that the organization values proactive problem-solving. With systems that can spot potential issues early, SREs can keep things stable while still pushing forward.</span><br />
+<br />
+<span>Operational balance isn&#39;t just about tech or processes; it&#39;s also about people. The well-being of on-call engineers is just as important as the health of the services they manage. Doing postmortems after incidents, having continuous feedback loops, and identifying gaps in tools, skills, or resources all help make sure the human side of operations gets the attention it deserves.</span><br />
+<br />
+<span>In the end, finding operational balance in SRE is an ongoing journey, not a one-time thing. Companies need to keep reassessing their practices, tools, and especially their culture. When they get this balance right, they can keep innovating without sacrificing the reliability of their systems, leading to long-term success.</span><br />
+<br />
+<span>That all sounds pretty idealistic. The reality is that getting the perfect balance is really tough. No system is ever going to be perfect. But hey, we should still strive for it!</span><br />
+<br />
+<span>Continue with the third part of this series:</span><br />
+<br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

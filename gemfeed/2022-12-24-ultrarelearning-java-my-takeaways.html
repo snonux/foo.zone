@@ -8,11 +8,12 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<h1 style='display: inline'>(Re)learning Java - My takeaways</h1><br />
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='relearning-java---my-takeaways'>(Re)learning Java - My takeaways</h1><br />
 <br />
 <span class='quote'>Published at 2022-12-24T23:18:40+02:00</span><br />
-<br />
-<a href='./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg'><img src='./2022-12-24-ultrarelearning-java-my-takeaways/learnjava.jpg' /></a><br />
 <br />
 <span>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:</span><br />
 <br />
@@ -26,46 +27,64 @@
 <br />
 <span>At my workplace, as an SRE, I don&#39;t do Java a lot. I have been reading Java code to understand the software better so I can apply and suggest workarounds or fixes to existing issues and bugs. However, most of our stack is in Java, and our Software Engineers use Java as their primary programming language.</span><br />
 <br />
-<h2 style='display: inline'>Stuck at Java 1.4</h2><br />
+<a href='./ultrarelearning-java-my-takeaways/learnjava.jpg'><img src='./ultrarelearning-java-my-takeaways/learnjava.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#relearning-java---my-takeaways'>(Re)learning Java - My takeaways</a></li>
+<li>⇢ <a href='#stuck-at-java-14'>Stuck at Java 1.4</a></li>
+<li>⇢ <a href='#relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</a></li>
+<li>⇢ ⇢ <a href='#effective-java'>Effective Java</a></li>
+<li>⇢ ⇢ <a href='#java-pub-house'>Java Pub House</a></li>
+<li>⇢ ⇢ <a href='#java-concurrency-course'>Java Concurrency course</a></li>
+<li>⇢ ⇢ <a href='#read-a-lot-of-java-code'>Read a lot of Java code</a></li>
+<li>⇢ ⇢ <a href='#observed-java-code-reviews'>Observed Java code reviews</a></li>
+<li>⇢ ⇢ <a href='#took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</a></li>
+<li>⇢ <a href='#the-good'>The good</a></li>
+<li>⇢ <a href='#the-bad-and-the-ugly'>The bad and the ugly</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='stuck-at-java-14'>Stuck at Java 1.4</h2><br />
 <br />
 <span>Over time, I had been missing out on many new features that were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and learn every further aspect of the language as my main goal. Of course, I still liked the idea of winning a Pet Project Prize, but my main objective was to level up my Java skills.</span><br />
 <br />
-<h2 style='display: inline'>(Re)learning &amp; upskilling to Java 18</h2><br />
+<h2 style='display: inline' id='relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</h2><br />
 <br />
-<h3 style='display: inline'>Effective Java</h3><br />
+<h3 style='display: inline' id='effective-java'>Effective Java</h3><br />
 <br />
 <span>This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself in it. I fully agree; this is a great book. Every Java developer or Java software engineer should read it!</span><br />
 <br />
-<a href='./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg'><img src='./2022-12-24-ultrarelearning-java-my-takeaways/effective-java.jpg' /></a><br />
+<a href='./ultrarelearning-java-my-takeaways/effective-java.jpg'><img src='./ultrarelearning-java-my-takeaways/effective-java.jpg' /></a><br />
 <br />
 <span>I recommend reading the 90-part effective Java Series on <span class='inlinecode'>dev.to</span>. It&#39;s a perfect companion to the book as it explains all the chapters again but from a slightly different perspective and helps you to really understand the content.</span><br />
 <br />
 <a class='textlink' href='https://dev.to/kylec32/series/2292'>Kyle Carter&#39;s 90-part Effective Java Series </a><br />
 <br />
-<h3 style='display: inline'>Java Pub House</h3><br />
+<h3 style='display: inline' id='java-pub-house'>Java Pub House</h3><br />
 <br />
 <span>During my lunch breaks, I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast. Especially GraalVM, a high-performance JDK distribution written for Java and other JVM languages, captured my attention. GraalVM can compile Java code into native binaries, improving performance and easing the distribution of Java programs. Because of the latter, I should release a VS-Sim GraalVM edition one day through a Linux AppImage ;-).</span><br />
 <br />
 <a class='textlink' href='https://www.javapubhouse.com'>https://www.javapubhouse.com</a><br />
 <a class='textlink' href='https://www.graalvm.org'>https://www.graalvm.org</a><br />
 <br />
-<h3 style='display: inline'>Java Concurrency course</h3><br />
+<h3 style='display: inline' id='java-concurrency-course'>Java Concurrency course</h3><br />
 <br />
 <span>I also watched a course on O&#39;Reilly Safari Books online about Java Concurrency. That gave an excellent refresher on how the Java thread pools work and what were the concurrency primitives available in the standard library.</span><br />
 <br />
-<h3 style='display: inline'>Read a lot of Java code</h3><br />
+<h3 style='display: inline' id='read-a-lot-of-java-code'>Read a lot of Java code</h3><br />
 <br />
 <span>First, the source code is often the best documentation (if programmed nicely), and second, it helps to get the hang of the language and standard practices. I started to read more and more Java code at work. I did that whenever I had to understand how something, in particular, worked (e.g. while troubleshooting and debugging an issue). </span><br />
 <br />
-<h3 style='display: inline'>Observed Java code reviews</h3><br />
+<h3 style='display: inline' id='observed-java-code-reviews'>Observed Java code reviews</h3><br />
 <br />
 <span>Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. They are the expert on the matter and are a great source to copy knowledge. It&#39;s OK to stay passive and only follow the reviews. Sometimes, it&#39;s OK to step up and take ownership of the review. The developers will also always be happy to answer any naive questions which come up.</span><br />
 <br />
-<h3 style='display: inline'>Took ownership of a roadmap-Java project</h3><br />
+<h3 style='display: inline' id='took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</h3><br />
 <br />
 <span>Besides my Pet Project, I also took ownership of a regular roadmap Java project at work, making an internal Java service capable of running in  Kubernetes. This was a bunch of minor changes and adding a bunch of classes and unit tests dealing with the statelessness and a persistent job queue in Redis. The job also involved reading and understanding a lot of already existing Java code. It wasn&#39;t part of my job description, but it was fun, and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.</span><br />
 <br />
-<h2 style='display: inline'>The good</h2><br />
+<h2 style='display: inline' id='the-good'>The good</h2><br />
 <br />
 <span>From the new language features and syntaxes, there are many personal takeaways, and I can&#39;t possibly list them all, but here are some of my personal highlights:</span><br />
 <br />
@@ -86,7 +105,7 @@
 <li>Lambdas are much cleaner, shorter and easier to read than anonymous classes. Many Java libraries require passing instances of (anonymous) classes (e.g. in Swing) to other objects. Lambdas are so lovely because they are primarily compatible with the passing of anonymous classes, so they are a 1:1 replacement in many instances. Lambdas also play very nicely together with the Java functional interfaces, as each Lambda got a type, and the type can be an already existing functional interface (or, if you got a particular case, you could define your custom functional interface for your own set of Lambdas, of course).</li>
 <li>I love the concept of Java records. You can think of a record as an immutable object holding some data (as members). They are ideal for pipe and stream processing. They are much easier to define (with much less boilerplate) and come with write protection out of the box.</li>
 </ul><br />
-<h2 style='display: inline'>The bad and the ugly</h2><br />
+<h2 style='display: inline' id='the-bad-and-the-ugly'>The bad and the ugly</h2><br />
 <br />
 <span>There are also many ugly corners in Java. Many are doomed to stay there forever due to historical decisions and ensuring backward compatibility with older versions of the Java language and the Java standard library. </span><br />
 <br />
@@ -100,7 +119,7 @@
 <li>Being a bit spoiled by Golang&#39;s Goroutines, I was shocked about the limitations of the Java threads. They are resource hungry, and you can&#39;t just spin up millions of them as you would with Goroutines. I knew this limitation of threads already (as it&#39;s not a problem of the language but of how threads work in the OS), but still, I was pretty shocked when I got reminded of them again. Of course, there&#39;s a workaround: Use asynchronous sockets so that you don&#39;t waste a whole thread on a single I/O operation (in my case, waiting for a network response). Golang&#39;s runtime does that automatically for you: An OS thread will be re-used for other tasks until the network socket unblocks. Every modern programming language should support lightweight threads or Coroutines like Go&#39;s Goroutines. </li>
 </ul><br />
 <br />
-<h2 style='display: inline'>Conclusion</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>While (re)learning Java, I felt like a student again and was quite enthusiastic about it initially. I invested around half a year, immersing myself intensively in Java (again). The last time I did that was many years ago as a university student. I even won a Silver Prize at work, implementing a project this year (2022 as of writing this). I feel confident now with understanding, debugging and patching Java code at work, which boosted my debugging and troubleshooting skills. </span><br />
 <br />
@@ -118,9 +137,9 @@
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-Generated by <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 2.1.0-release</a> |
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-<a href="https://www.foo.zone/site-mirrors.html">Site Mirrors</a>
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
 </p>
 </body>
 </html>

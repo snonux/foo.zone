@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Random Weird Things - Part Ⅰ</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-07-05-random-weird-things.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-07-05-random-weird-things.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅰ</h1><br />
+<br />
+<span class='quote'>Published at 2024-07-05T10:59:59+03:00; Updated at 2025-02-08</span><br />
+<br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. I thought it would be neat to share them here from time to time. As a start, here are ten of them.</span><br />
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<br />
+<pre>
+		       /\_/\
+WHOA!! 	     ( o.o )
+		       &gt; ^ &lt;
+		      /  -  \
+		    /        \
+		   /______\  \
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅰ</a></li>
+<li>⇢ <a href='#1-badhorse-traceroute'>1. <span class='inlinecode'>bad.horse</span> traceroute</a></li>
+<li>⇢ <a href='#2-ascii-cinema'>2. ASCII cinema</a></li>
+<li>⇢ <a href='#3-netflix-s-hello-world-application'>3. Netflix&#39;s Hello World application</a></li>
+<li>⇢ <a href='#c-programming'>C programming</a></li>
+<li>⇢ ⇢ <a href='#4-indexing-an-array'>4. Indexing an array</a></li>
+<li>⇢ ⇢ <a href='#5-variables-with-prefix-'>5. Variables with prefix <span class='inlinecode'>$</span></a></li>
+<li>⇢ <a href='#6-object-oriented-shell-scripts-using-ksh'>6. Object oriented shell scripts using <span class='inlinecode'>ksh</span></a></li>
+<li>⇢ <a href='#7-this-works-in-go'>7. This works in Go</a></li>
+<li>⇢ <a href='#8-i-am-a-teapot-http-response-code'>8. "I am a Teapot" HTTP response code</a></li>
+<li>⇢ <a href='#9-jq-is-a-functional-programming-language'>9. <span class='inlinecode'>jq</span> is a functional programming language</a></li>
+<li>⇢ <a href='#10-regular-expression-to-verify-email-addresses'>10. Regular expression to verify email addresses</a></li>
+</ul><br />
+<h2 style='display: inline' id='1-badhorse-traceroute'>1. <span class='inlinecode'>bad.horse</span> traceroute</h2><br />
+<br />
+<span>Run traceroute to get the poem (or song).</span><br />
+<br />
+<span class='quote'>Update: A reader hinted that by specifying <span class='inlinecode'>-n 60</span>, there will be even more output!</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>❯ traceroute -m <font color="#000000">60</font> bad.horse
+traceroute to bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.157</font>), <font color="#000000">60</font> hops max, <font color="#000000">60</font> byte packets
+ <font color="#000000">1</font>  _gateway (<font color="#000000">192.168</font>.<font color="#000000">1.1</font>)  <font color="#000000">5.237</font> ms  <font color="#000000">5.264</font> ms  <font color="#000000">6.009</font> ms
+ <font color="#000000">2</font>  <font color="#000000">77</font>-<font color="#000000">85</font>-<font color="#000000">0</font>-<font color="#000000">2</font>.ip.btc-net.<b><u><font color="#000000">bg</font></u></b> (<font color="#000000">77.85</font>.<font color="#000000">0.2</font>)  <font color="#000000">8.753</font> ms  <font color="#000000">7.112</font> ms  <font color="#000000">8.336</font> ms
+ <font color="#000000">3</font>  <font color="#000000">212</font>-<font color="#000000">39</font>-<font color="#000000">69</font>-<font color="#000000">103</font>.ip.btc-net.<b><u><font color="#000000">bg</font></u></b> (<font color="#000000">212.39</font>.<font color="#000000">69.103</font>)  <font color="#000000">9.434</font> ms  <font color="#000000">9.268</font> ms  <font color="#000000">9.986</font> ms
+ <font color="#000000">4</font>  * * *
+ <font color="#000000">5</font>  xe-<font color="#000000">1</font>-<font color="#000000">2</font>-<font color="#000000">0</font>.mpr1.fra4.de.above.net (<font color="#000000">80.81</font>.<font color="#000000">194.26</font>)  <font color="#000000">39.812</font> ms  <font color="#000000">39.030</font> ms  <font color="#000000">39.772</font> ms
+ <font color="#000000">6</font>  * ae12.cs1.fra6.de.eth.zayo.com (<font color="#000000">64.125</font>.<font color="#000000">26.172</font>)  <font color="#000000">123.576</font> ms *
+ <font color="#000000">7</font>  * * *
+ <font color="#000000">8</font>  * * *
+ <font color="#000000">9</font>  ae10.cr1.lhr15.uk.eth.zayo.com (<font color="#000000">64.125</font>.<font color="#000000">29.17</font>)  <font color="#000000">119.097</font> ms  <font color="#000000">119.478</font> ms  <font color="#000000">120.767</font> ms
+<font color="#000000">10</font>  ae2.cr1.lhr11.uk.zip.zayo.com (<font color="#000000">64.125</font>.<font color="#000000">24.140</font>)  <font color="#000000">120.398</font> ms  <font color="#000000">121.147</font> ms  <font color="#000000">120.948</font> ms
+<font color="#000000">11</font>  * * *
+<font color="#000000">12</font>  ae25.mpr1.yyz1.ca.zip.zayo.com (<font color="#000000">64.125</font>.<font color="#000000">23.117</font>)  <font color="#000000">145.072</font> ms *  <font color="#000000">181.773</font> ms
+<font color="#000000">13</font>  ae5.mpr1.tor3.ca.zip.zayo.com (<font color="#000000">64.125</font>.<font color="#000000">23.118</font>)  <font color="#000000">168.239</font> ms  <font color="#000000">168.158</font> ms  <font color="#000000">168.137</font> ms
+<font color="#000000">14</font>  <font color="#000000">64.124</font>.<font color="#000000">217.237</font>.IDIA-<font color="#000000">265104</font>-ZYO.zip.zayo.com (<font color="#000000">64.124</font>.<font color="#000000">217.237</font>)  <font color="#000000">168.026</font> ms  <font color="#000000">167.999</font> ms  <font color="#000000">165.451</font> ms
+<font color="#000000">15</font>  * * *
+<font color="#000000">16</font>  t00.toroc1.on.ca.sn11.net (<font color="#000000">162.252</font>.<font color="#000000">204.2</font>)  <font color="#000000">131.598</font> ms  <font color="#000000">131.308</font> ms  <font color="#000000">131.482</font> ms
+<font color="#000000">17</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.130</font>)  <font color="#000000">131.430</font> ms  <font color="#000000">145.914</font> ms  <font color="#000000">130.514</font> ms
+<font color="#000000">18</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.131</font>)  <font color="#000000">136.634</font> ms  <font color="#000000">145.295</font> ms  <font color="#000000">135.631</font> ms
+<font color="#000000">19</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.132</font>)  <font color="#000000">139.158</font> ms  <font color="#000000">148.363</font> ms  <font color="#000000">138.934</font> ms
+<font color="#000000">20</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.133</font>)  <font color="#000000">145.395</font> ms  <font color="#000000">148.054</font> ms  <font color="#000000">147.140</font> ms
+<font color="#000000">21</font>  he.rides.across.the.nation (<font color="#000000">162.252</font>.<font color="#000000">205.134</font>)  <font color="#000000">149.687</font> ms  <font color="#000000">147.731</font> ms  <font color="#000000">150.135</font> ms
+<font color="#000000">22</font>  the.thoroughbred.of.sin (<font color="#000000">162.252</font>.<font color="#000000">205.135</font>)  <font color="#000000">156.644</font> ms  <font color="#000000">155.155</font> ms  <font color="#000000">156.447</font> ms
+<font color="#000000">23</font>  he.got.the.application (<font color="#000000">162.252</font>.<font color="#000000">205.136</font>)  <font color="#000000">161.187</font> ms  <font color="#000000">162.318</font> ms  <font color="#000000">162.674</font> ms
+<font color="#000000">24</font>  that.you.just.sent.<b><u><font color="#000000">in</font></u></b> (<font color="#000000">162.252</font>.<font color="#000000">205.137</font>)  <font color="#000000">166.763</font> ms  <font color="#000000">166.675</font> ms  <font color="#000000">164.243</font> ms
+<font color="#000000">25</font>  it.needs.evaluation (<font color="#000000">162.252</font>.<font color="#000000">205.138</font>)  <font color="#000000">172.073</font> ms  <font color="#000000">171.919</font> ms  <font color="#000000">171.390</font> ms
+<font color="#000000">26</font>  so.<b><u><font color="#000000">let</font></u></b>.the.games.begin (<font color="#000000">162.252</font>.<font color="#000000">205.139</font>)  <font color="#000000">175.386</font> ms  <font color="#000000">174.180</font> ms  <font color="#000000">175.965</font> ms
+<font color="#000000">27</font>  a.heinous.crime (<font color="#000000">162.252</font>.<font color="#000000">205.140</font>)  <font color="#000000">180.857</font> ms  <font color="#000000">180.766</font> ms  <font color="#000000">180.192</font> ms
+<font color="#000000">28</font>  a.show.of.force (<font color="#000000">162.252</font>.<font color="#000000">205.141</font>)  <font color="#000000">187.942</font> ms  <font color="#000000">186.669</font> ms  <font color="#000000">186.986</font> ms
+<font color="#000000">29</font>  a.murder.would.be.nice.of.course (<font color="#000000">162.252</font>.<font color="#000000">205.142</font>)  <font color="#000000">191.349</font> ms  <font color="#000000">191.939</font> ms  <font color="#000000">190.740</font> ms
+<font color="#000000">30</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.143</font>)  <font color="#000000">195.425</font> ms  <font color="#000000">195.716</font> ms  <font color="#000000">196.186</font> ms
+<font color="#000000">31</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.144</font>)  <font color="#000000">199.238</font> ms  <font color="#000000">200.620</font> ms  <font color="#000000">200.318</font> ms
+<font color="#000000">32</font>  bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.145</font>)  <font color="#000000">207.554</font> ms  <font color="#000000">206.729</font> ms  <font color="#000000">205.201</font> ms
+<font color="#000000">33</font>  he-s.bad (<font color="#000000">162.252</font>.<font color="#000000">205.146</font>)  <font color="#000000">211.087</font> ms  <font color="#000000">211.649</font> ms  <font color="#000000">211.712</font> ms
+<font color="#000000">34</font>  the.evil.league.of.evil (<font color="#000000">162.252</font>.<font color="#000000">205.147</font>)  <font color="#000000">212.657</font> ms  <font color="#000000">216.777</font> ms  <font color="#000000">216.589</font> ms
+<font color="#000000">35</font>  is.watching.so.beware (<font color="#000000">162.252</font>.<font color="#000000">205.148</font>)  <font color="#000000">220.911</font> ms  <font color="#000000">220.326</font> ms  <font color="#000000">221.961</font> ms
+<font color="#000000">36</font>  the.grade.that.you.receive (<font color="#000000">162.252</font>.<font color="#000000">205.149</font>)  <font color="#000000">225.384</font> ms  <font color="#000000">225.696</font> ms  <font color="#000000">225.640</font> ms
+<font color="#000000">37</font>  will.be.your.last.we.swear (<font color="#000000">162.252</font>.<font color="#000000">205.150</font>)  <font color="#000000">232.312</font> ms  <font color="#000000">230.989</font> ms  <font color="#000000">230.919</font> ms
+<font color="#000000">38</font>  so.make.the.bad.horse.gleeful (<font color="#000000">162.252</font>.<font color="#000000">205.151</font>)  <font color="#000000">235.761</font> ms  <font color="#000000">235.291</font> ms  <font color="#000000">235.585</font> ms
+<font color="#000000">39</font>  or.he-ll.make.you.his.mare (<font color="#000000">162.252</font>.<font color="#000000">205.152</font>)  <font color="#000000">241.350</font> ms  <font color="#000000">239.407</font> ms  <font color="#000000">238.394</font> ms
+<font color="#000000">40</font>  o_o (<font color="#000000">162.252</font>.<font color="#000000">205.153</font>)  <font color="#000000">246.154</font> ms  <font color="#000000">247.650</font> ms  <font color="#000000">247.110</font> ms
+<font color="#000000">41</font>  you-re.saddled.up (<font color="#000000">162.252</font>.<font color="#000000">205.154</font>)  <font color="#000000">250.925</font> ms  <font color="#000000">250.401</font> ms  <font color="#000000">250.619</font> ms
+<font color="#000000">42</font>  there-s.no.recourse (<font color="#000000">162.252</font>.<font color="#000000">205.155</font>)  <font color="#000000">256.071</font> ms  <font color="#000000">251.154</font> ms  <font color="#000000">255.340</font> ms
+<font color="#000000">43</font>  it-s.hi-ho.silver (<font color="#000000">162.252</font>.<font color="#000000">205.156</font>)  <font color="#000000">260.152</font> ms  <font color="#000000">261.775</font> ms  <font color="#000000">261.544</font> ms
+<font color="#000000">44</font>  signed.bad.horse (<font color="#000000">162.252</font>.<font color="#000000">205.157</font>)  <font color="#000000">262.430</font> ms  <font color="#000000">261.410</font> ms  <font color="#000000">261.365</font> ms
+</pre>
+<br />
+<h2 style='display: inline' id='2-ascii-cinema'>2. ASCII cinema</h2><br />
+<br />
+<span>Fancy watching Star Wars Episode IV in ASCII? Head to the ASCII cinema:</span><br />
+<br />
+<a class='textlink' href='https://asciinema.org/a/569727'>https://asciinema.org/a/569727</a><br />
+<br />
+<h2 style='display: inline' id='3-netflix-s-hello-world-application'>3. Netflix&#39;s Hello World application</h2><br />
+<br />
+<span>Netflix has got the Hello World application run in production 😱</span><br />
+<br />
+<ul>
+<li> https://www.Netflix.com/helloworld</li>
+</ul><br />
+<span class='quote'>By the time this is posted, it seems that Netflix has taken it offline... I should have created a screenshot!</span><br />
+<br />
+<h2 style='display: inline' id='c-programming'>C programming</h2><br />
+<br />
+<h3 style='display: inline' id='4-indexing-an-array'>4. Indexing an array</h3><br />
+<br />
+<span>In C, you can index an array like this: <span class='inlinecode'>array[i]</span> (not surprising). But this works as well and is valid C code: <span class='inlinecode'>i[array]</span>, 🤯 It&#39;s because after the spec <span class='inlinecode'>A[B]</span> is equivalent to <span class='inlinecode'>*(A + B)</span> and the ordering doesn&#39;t matter for the <span class='inlinecode'>+</span> operator. All 3 loops are producing the same output. Would be funny to use <span class='inlinecode'>i[array]</span> in a merge request of some code base on April Fool&#39;s day!</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;stdio.h&gt;</font>
+
+<b><font color="#000000">int</font></b> main(<b><font color="#000000">void</font></b>) {
+  <b><font color="#000000">int</font></b> array[<font color="#000000">5</font>] = { <font color="#000000">1</font>, <font color="#000000">2</font>, <font color="#000000">3</font>, <font color="#000000">4</font>, <font color="#000000">5</font> };
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; <font color="#000000">5</font>; i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, array[i]);
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; <font color="#000000">5</font>; i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, i[array]);
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> i = <font color="#000000">0</font>; i &lt; <font color="#000000">5</font>; i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, *(i + array));
+}
+</pre>
+<br />
+<h3 style='display: inline' id='5-variables-with-prefix-'>5. Variables with prefix <span class='inlinecode'>$</span></h3><br />
+<br />
+<span>In C you can prefix variables with <span class='inlinecode'>$</span>! E.g. the following is valid C code 🫠:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;stdio.h&gt;</font>
+
+<b><font color="#000000">int</font></b> main(<b><font color="#000000">void</font></b>) {
+  <b><font color="#000000">int</font></b> $array[<font color="#000000">5</font>] = { <font color="#000000">1</font>, <font color="#000000">2</font>, <font color="#000000">3</font>, <font color="#000000">4</font>, <font color="#000000">5</font> };
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> $i = <font color="#000000">0</font>; $i &lt; <font color="#000000">5</font>; $i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, $array[$i]);
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> $i = <font color="#000000">0</font>; $i &lt; <font color="#000000">5</font>; $i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, $i[$array]);
+
+  <b><u><font color="#000000">for</font></u></b> (<b><font color="#000000">int</font></b> $i = <font color="#000000">0</font>; $i &lt; <font color="#000000">5</font>; $i++)
+    printf(<font color="#808080">"%d</font>\n<font color="#808080">"</font>, *($i + $array));
+}
+</pre>
+<br />
+<h2 style='display: inline' id='6-object-oriented-shell-scripts-using-ksh'>6. Object oriented shell scripts using <span class='inlinecode'>ksh</span></h2><br />
+<br />
+<span>Experienced software developers are aware that scripting languages like Python, Perl, Ruby, and JavaScript support object-oriented programming (OOP) concepts such as classes and inheritance. However, many might be surprised to learn that the latest version of the Korn shell (Version 93t+) also supports OOP. In ksh93, OOP is implemented using user-defined types:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/usr/bin/ksh93</font></i>
+ 
+<b><u><font color="#000000">typeset</font></u></b> -T Point_t=(
+    integer -h <font color="#808080">'x coordinate'</font> x=<font color="#000000">0</font>
+    integer -h <font color="#808080">'y coordinate'</font> y=<font color="#000000">0</font>
+    <b><u><font color="#000000">typeset</font></u></b> -h <font color="#808080">'point color'</font>  color=<font color="#808080">"red"</font>
+
+    function getcolor {
+        print -r ${_.color}
+    }
+
+    function setcolor {
+        _.color=$1
+    }
+
+    setxy() {
+        _.x=$1; _.y=$2
+    }
+
+    getxy() {
+        print -r <font color="#808080">"(${_.x},${_.y})"</font>
+    }
+)
+ 
+Point_t point
+ 
+echo <font color="#808080">"Initial coordinates are (${point.x},${point.y}). Color is ${point.color}"</font>
+ 
+point.setxy <font color="#000000">5</font> <font color="#000000">6</font>
+point.setcolor blue
+ 
+echo <font color="#808080">"New coordinates are ${point.getxy}. Color is ${point.getcolor}"</font>
+ 
+<b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+</pre>
+<br />
+<a class='textlink' href='https://blog.fpmurphy.com/2010/05/ksh93-using-types-to-create-object-orientated-scripts.html'>Using types to create object oriented Korn shell 93 scripts</a><br />
+<br />
+<h2 style='display: inline' id='7-this-works-in-go'>7. This works in Go</h2><br />
+<br />
+<span>There is no pointer arithmetic in Go like in C, but it is still possible to do some brain teasers with pointers 😧:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> main
+
+<b><u><font color="#000000">import</font></u></b> <font color="#808080">"fmt"</font>
+
+<b><u><font color="#000000">func</font></u></b> main() {
+	<b><u><font color="#000000">var</font></u></b> i int
+	f := <b><u><font color="#000000">func</font></u></b>() *int {
+		<b><u><font color="#000000">return</font></u></b> &amp;i
+	}
+	*f()++
+	fmt.Println(i)
+}
+</pre>
+<br />
+<a class='textlink' href='https://go.dev/play/p/sPRdyDvXefK?__s=mk8u899owb9yurl256gw'>Go playground</a><br />
+<br />
+<h2 style='display: inline' id='8-i-am-a-teapot-http-response-code'>8. "I am a Teapot" HTTP response code</h2><br />
+<br />
+<span>Defined in 1998 as one of the IETF&#39;s traditional April Fools&#39; jokes (RFC 2324), the Hyper Text Coffee Pot Control Protocol specifies an HTTP status code that is not intended for actual HTTP server implementation. According to the RFC, this code should be returned by teapots when asked to brew coffee. This status code also serves as an Easter egg on some websites, such as Google.com&#39;s "I&#39;m a teapot" feature. Occasionally, it is used to respond to a blocked request, even though the more appropriate response would be the 403 Forbidden status code.</span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#418'>https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#418</a><br />
+<br />
+<h2 style='display: inline' id='9-jq-is-a-functional-programming-language'>9. <span class='inlinecode'>jq</span> is a functional programming language</h2><br />
+<br />
+<span>Many know of <span class='inlinecode'>jq</span>, the handy small tool and swiss army knife for JSON parsing. </span><br />
+<br />
+<a class='textlink' href='https://github.com/jqlang/jq'>https://github.com/jqlang/jq</a><br />
+<br />
+<span>What many don&#39;t know that <span class='inlinecode'>jq</span> is actually a full blown functional programming language <span class='inlinecode'>jqlang</span>, have a look at the language description: </span><br />
+<br />
+<a class='textlink' href='https://github.com/jqlang/jq/wiki/jq-Language-Description'>https://github.com/jqlang/jq/wiki/jq-Language-Description</a><br />
+<br />
+<span>As a matter of fact, the language is so powerful, that there exists an implementation of <span class='inlinecode'>jq</span> in <span class='inlinecode'>jq</span> itself:</span><br />
+<br />
+<a class='textlink' href='https://github.com/wader/jqjq'>https://github.com/wader/jqjq</a><br />
+<br />
+<span>Here some snipped from <span class='inlinecode'>jqjq</span>, to get a feel of <span class='inlinecode'>jqlang</span>:</span><br />
+<br />
+<pre>
+def _token:
+	def _re($re; f):
+	  ( . as {$remain, $string_stack}
+	  | $remain
+	  | match($re; "m").string
+	  | f as $token
+	  | { result: ($token | del(.string_stack))
+	    , remain: $remain[length:]
+	    , string_stack:
+	        ( if $token.string_stack == null then $string_stack
+	          else $token.string_stack
+	          end
+	        )
+	    }
+	  );
+	if .remain == "" then empty
+	else
+	  ( . as {$string_stack}
+	  | _re("^\\s+"; {whitespace: .})
+	  // _re("^#[^\n]*"; {comment: .})
+	  // _re("^\\.[_a-zA-Z][_a-zA-Z0-9]*"; {index: .[1:]})
+	  // _re("^[_a-zA-Z][_a-zA-Z0-9]*"; {ident: .})
+	  // _re("^@[_a-zA-Z][_a-zA-Z0-9]*"; {at_ident: .})
+	  // _re("^\\$[_a-zA-Z][_a-zA-Z0-9]*"; {binding: .})
+	  # 1.23, .123, 123e2, 1.23e2, 123E2, 1.23e+2, 1.23E-2 or 123
+	  // _re("^(?:[0-9]*\\.[0-9]+|[0-9]+)(?:[eE][-\\+]?[0-9]+)?"; {number: .})
+	  // _re("^\"(?:[^\"\\\\]|\\\\.)*?\\\\\\(";
+	      ( .[1:-2]
+	      | _unescape
+	      | {string_start: ., string_stack: ($string_stack+["\\("])}
+	      )
+	    )
+	 .
+	 .
+	 .
+</pre>
+<br />
+<h2 style='display: inline' id='10-regular-expression-to-verify-email-addresses'>10. Regular expression to verify email addresses</h2><br />
+<br />
+<span>This is a pretty old meme, but still worth posting here (as some may be unaware). The RFC822 Perl regex to validate email addresses is 😱:</span><br />
+<br />
+<pre>
+(?:(?:\r\n)?[ \t])*(?:(?:(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t]
+)+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:
+\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(
+?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ 
+\t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\0
+31]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\
+&gt;(?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+
+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:
+(?:\r\n)?[ \t])*))*|(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z
+|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)
+?[ \t])*)*\&lt;(?:(?:\r\n)?[ \t])*(?:@(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\
+r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[
+ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)
+?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t]
+)*))*(?:,@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[
+ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*
+)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t]
+)+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*)
+*:(?:(?:\r\n)?[ \t])*)?(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+
+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r
+\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:
+\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t
+&gt;))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031
+&gt;+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](
+?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?
+:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?
+:\r\n)?[ \t])*))*\&gt;(?:(?:\r\n)?[ \t])*)|(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?
+:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?
+[ \t]))*"(?:(?:\r\n)?[ \t])*)*:(?:(?:\r\n)?[ \t])*(?:(?:(?:[^()&lt;&gt;@,;:\\".\[\] 
+\000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|
+\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;
+@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"
+(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t]
+)*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\
+".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?
+:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[
+\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*|(?:[^()&lt;&gt;@,;:\\".\[\] \000-
+\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(
+?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)*\&lt;(?:(?:\r\n)?[ \t])*(?:@(?:[^()&lt;&gt;@,;
+:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([
+^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\"
+.\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\
+&gt;\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*(?:,@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
+[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\
+r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] 
+\000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]
+|\\.)*\](?:(?:\r\n)?[ \t])*))*)*:(?:(?:\r\n)?[ \t])*)?(?:[^()&lt;&gt;@,;:\\".\[\] \0
+00-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\
+.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,
+;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?
+:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*
+(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".
+\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[
+^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]
+&gt;))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*\&gt;(?:(?:\r\n)?[ \t])*)(?:,\s*(
+?:(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\
+".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)(?:\.(?:(
+?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[
+\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t
+&gt;)*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t
+&gt;)+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?
+:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|
+\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*|(?:
+[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\
+&gt;]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)*\&lt;(?:(?:\r\n)
+?[ \t])*(?:@(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["
+()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)
+?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;
+@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*(?:,@(?:(?:\r\n)?[
+ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,
+;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t]
+)*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\
+".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*)*:(?:(?:\r\n)?[ \t])*)?
+(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".
+\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)(?:\.(?:(?:
+\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\[
+"()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])
+*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])
++|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\
+.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z
+|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*\&gt;(?:(
+?:\r\n)?[ \t])*))*)?;\s*)
+</pre>
+<br />
+<a class='textlink' href='https://pdw.ex-parrot.com/Mail-RFC822-Address.html'>https://pdw.ex-parrot.com/Mail-RFC822-Address.html</a><br />
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>other related posts are:</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
