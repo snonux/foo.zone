@@ -1,6 +1,6 @@
 # Typing `127.1` words per minute (`>100wpm average`)
 
-> Published at 2024-08-05T17:39:30+03:00
+> Published at 2024-08-05T17:39:30+03:00; Updated at 2025-02-22
 
 ```
 ,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
@@ -185,6 +185,8 @@ Interested in the Glove80? I suggest also reading this review:
 ## Upcoming custom Kinesis build
 
 As I mentioned, keyboards will remain an expensive hobby of mine. I don't regret anything here, though. After all, I use keyboards at my day job. I've ordered a Kinesis custom build with the Gateron Kangaroo switches, and I'm excited to see how that compares to my current setup. I'm still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting or to sell it.
+
+> Update 2025-02-22: I've received my custom Kinesis Adv. 360 build with the Gateron Baby Kangaroo key switches. I am absolutely in love! I will keep my Gateron Brown versin around, though.
 
 ## Conclusion
 
