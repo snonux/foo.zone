@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>'Site Reliability Engineering' book notes</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/notes/site-reliability-engineering.md">Markdown</a> | <a href="gemini://foo.zone/notes/site-reliability-engineering.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='site-reliability-engineering-book-notes'>"Site Reliability Engineering" book notes</h1><br />
+<br />
+<span>These are my personal book notes of Niall Richard Murphy&#39;s "Site Reliability Engineering: How Google Runs Production systems". They are for myself, but I hope they might be useful to you too.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#site-reliability-engineering-book-notes'>"Site Reliability Engineering" book notes</a></li>
+<li>⇢ <a href='#key-concepts-in-sre'>Key Concepts in SRE</a></li>
+<li>⇢ ⇢ <a href='#role-of-an-sre'>Role of an SRE:</a></li>
+<li>⇢ ⇢ <a href='#error-budget'>Error Budget</a></li>
+<li>⇢ ⇢ <a href='#on-call-management'>On-call Management</a></li>
+<li>⇢ ⇢ <a href='#reliability-metrics'>Reliability Metrics</a></li>
+<li>⇢ ⇢ <a href='#service-indicators'>Service Indicators</a></li>
+<li>⇢ ⇢ <a href='#metrics-and-error-rates'>Metrics and Error Rates</a></li>
+<li>⇢ ⇢ <a href='#testing-and-monitoring'>Testing and Monitoring</a></li>
+<li>⇢ ⇢ <a href='#automation-and-human-involvement'>Automation and Human Involvement</a></li>
+<li>⇢ ⇢ <a href='#sre-work-distribution'>SRE Work Distribution</a></li>
+<li>⇢ ⇢ <a href='#post-mortem-practices'>Post-mortem Practices</a></li>
+<li>⇢ ⇢ <a href='#load-testing'>Load Testing</a></li>
+<li>⇢ ⇢ <a href='#criticality-and-throttling'>Criticality and Throttling</a></li>
+<li>⇢ ⇢ <a href='#toil-management'>Toil Management</a></li>
+<li>⇢ ⇢ <a href='#efficient-operations'>Efficient Operations</a></li>
+</ul><br />
+<h2 style='display: inline' id='key-concepts-in-sre'>Key Concepts in SRE</h2><br />
+<br />
+<h3 style='display: inline' id='role-of-an-sre'>Role of an SRE:</h3><br />
+<br />
+<span>Ideally, SREs should spend no more than 50% of their time on operational work. The focus should primarily be on development activities. Systems should self-heal automatically.</span><br />
+<br />
+<h3 style='display: inline' id='error-budget'>Error Budget</h3><br />
+<br />
+<span>No development work should occur when the error budget is exceeded for a whole quarter, requiring strong management support. Error budgets help resolve conflicts between development and operational work by creating a common incentive, allowing both product development and SRE teams to balance innovation with reliability. Removes need for negotiations on the number of feature changes allowed.</span><br />
+<br />
+<h3 style='display: inline' id='on-call-management'>On-call Management</h3><br />
+<br />
+<span>An on-call engineer should encounter a maximum of two events per eight hours to ensure sufficient time for cleanup and post-mortems. This allows thorough investigation and learning without overwhelming engineers. Monitoring should alert only when human interaction is required. Logs should be used for later forensics and not require immediate attention. Uptime is calculated with successful requests included, potentially by source, considering volume, partial writes, and HTTP response codes.</span><br />
+<br />
+<h3 style='display: inline' id='reliability-metrics'>Reliability Metrics</h3><br />
+<br />
+<ul>
+<li>Reliability is a function of Mean Time to Failure (MTTF) and Mean Time to Repair (MTTR).</li>
+<li>Playbooks can improve MTTR.</li>
+<li>Self-healing is optimal for operational efficiency.</li>
+<li>Capacity is a function of comprehensive capacity planning, critically viewed by SREs for performance improvements.</li>
+</ul><br />
+<h3 style='display: inline' id='service-indicators'>Service Indicators</h3><br />
+<br />
+<span>Choose an appropriate number of SLIs/KPIs to maintain focus without missing vital aspects of system performance. KPIs and SLIs are crucial for real-time metrics like uptime, latency, and throughput, often aggregated for analysis. Risk tolerance should be set in collaboration with product teams for user-facing services.</span><br />
+<br />
+<h3 style='display: inline' id='metrics-and-error-rates'>Metrics and Error Rates</h3><br />
+<br />
+<span>Accurate measurement involves considering all system components, including infrastructure error rates from networking, hardware, etc. High availability solutions (HA) and ISP background error rates can influence the impact of network outages on the error budget.</span><br />
+<br />
+<h3 style='display: inline' id='testing-and-monitoring'>Testing and Monitoring</h3><br />
+<br />
+<span>Regular DR/Chaos testing is essential to gauge the impact of outages (like DC outages) on availability. Comprehensive testing ensures systems can handle variable loads without catastrophic failure. Monitoring and alert systems should swiftly address concerns, measuring latency on errors to distinguish &#39;slow&#39; from &#39;fast&#39; failures.</span><br />
+<br />
+<h3 style='display: inline' id='automation-and-human-involvement'>Automation and Human Involvement</h3><br />
+<br />
+<span>While automation can replace manual error resolution, maintaining human expertise is vital to operate systems when automation fails or becomes opaque over time.</span><br />
+<br />
+<h3 style='display: inline' id='sre-work-distribution'>SRE Work Distribution</h3><br />
+<br />
+<span>Google SREs, for example, allocate their work as 25% on-call, 25% non-urgent operations, and 50% engineering tasks.</span><br />
+<br />
+<h3 style='display: inline' id='post-mortem-practices'>Post-mortem Practices</h3><br />
+<br />
+<span>Creating post-mortems is a learning opportunity, not a punishment. They must be deliberate and not merely procedural. Post-mortems should be comprehensive to ensure lessons are applied effectively.</span><br />
+<br />
+<h3 style='display: inline' id='load-testing'>Load Testing</h3><br />
+<br />
+<span> Proper load testing identifies when a system begins rejecting traffic and observes how it handles excess load. Systems should be tested at the subsystem level to identify different thresholds.</span><br />
+<br />
+<h3 style='display: inline' id='criticality-and-throttling'>Criticality and Throttling</h3><br />
+<br />
+<span>Client-side rate limiting can implement adaptive throttling based on error counts. Systems should be designed to prioritize requests of higher criticality.</span><br />
+<br />
+<h3 style='display: inline' id='toil-management'>Toil Management</h3><br />
+<br />
+<span>Toil should account for less than 50% of an SRE&#39;s work currently and must be minimized. Toil is repetitive, manual work that could be automated. A balance must be struck, as occasional toil can prove insightful, but excessive toil detrimentally affects morale and productivity. Different engineers have varied thresholds for tolerating toil, influencing job satisfaction and retention.</span><br />
+<br />
+<h3 style='display: inline' id='efficient-operations'>Efficient Operations</h3><br />
+<br />
+<span>Toil, overhead, and non-operational tasks should be distinguished from core operational activities, which do not relate to direct HR or interview processes. Monitoring alerts should inform the necessary actions with clear context ("the what and the why") to minimize unnecessary manual efforts.</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
