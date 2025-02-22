@@ -1,0 +1,51 @@
+# "Science of Living" book notes
+
+These notes capture key points from "The Science of Living" by Stuart Farrimond. These are for my personal use, but you might find them useful, too.
+
+## Morning Routine
+
+Don't check email or to-do lists in the first hour after awakening to avoid anxiety. Drink coffee 2 to 3 hours after waking when cortisol levels are waning. To wake up, try a cold splash shower in the morning to raise cortisol levels, similar to a caffeine kick. Light exercise in the morning can increase mood and mental performance.
+
+## Sleep Hygiene
+
+Take a warm bath 90 minutes before sleep to promote good sleep. Avoid washing for too long to retain the body's natural oils. Try to get at least 7 to 8 hours of sleep for optimum rest. Don't exercise after 8 PM to ensure good sleep.
+
+## Nutrition and Digestion
+
+Consume foods with lots of fiber, aiming for 30g per day. Avoid highly processed foods and prefer minimally processed grains like unrefined oats over highly refined cornflakes. Fiber slows down digestion and keeps you satiated. Juices are sugary and bad for your teeth.
+
+## Oral Health
+
+Bad breath can be related to microorganisms in your mouth. Fluoride helps prevent tooth decay rather than the frequency of brushing. Use toothpaste with 1450-1500 ppm fluoride and leave it in your mouth for optimal effect. Brush gently and avoid using mouthwash for 30 minutes after brushing to prevent washing away the fluoride. Use plaque-disclosing tablets to see missed parts while brushing.
+
+## Hydration
+
+* Only drink water as much as you feel thirsty, e.g., one and a half liters daily.
+* Avoid eating when stressed, as it can lead to overeating and increased hunger.
+
+## Exercise
+
+* 37 percent of the genes can influence eagerness to exercise.
+* Only light exercise is recommended in the morning.
+* Mood-enhancing jogging or cross-training releases more endorphins than aerobic exercise.
+* Exercise is best done near meal times.
+
+## Productivity
+
+Virtual commuting can help mark the start and end of the workday. Physical tasks are better done in the afternoon. Background music can improve productivity. Taking regular breaks can help you think outside the box. Incorporating plants can improve productivity by up to 15% and reduce CO2.
+
+## Emotional and Social Well-being
+
+Engage in weekly intimacy, which can increase happiness with a partner. Trans fats are harmful, but regular fats can make food taste better. The brain influences brown fat, acting like a body oven. Hugs, even with animals, have emotional benefits and can reduce stress.
+
+## Intuition and Decision-Making
+
+Trust professional intuition only if you are familiar with the situation. The more complex the problem, the better it is to rely on gut instinct rather than overanalyzing.
+
+## Miscellaneous
+
+Watching a scary movie can amplify your feelings for another person.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  
