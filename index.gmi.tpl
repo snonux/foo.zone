@@ -1,17 +1,22 @@
-# foo.zone
+# Hello!
 
 << echo "> This site was generated at $($DATE $DATE_FORMAT) by \`Gemtexter\`"
 
-Welcome to the foo.zone. Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
+Welcome to the ...
 
 ```
-   |\---/|
-   | ,_, |
-    \_`_/-..----.
- ___/ `   ' ,""+ \  sk
-(__...'   __\    |`.___.';
-  (_,...'(_,.`__)/'.....+
+    ██████                                                              
+   ███░░███                                                             
+  ░███ ░░░   ██████   ██████      █████████  ██████  ████████    ██████ 
+ ███████    ███░░███ ███░░███    ░█░░░░███  ███░░███░░███░░███  ███░░███
+░░░███░    ░███ ░███░███ ░███    ░   ███░  ░███ ░███ ░███ ░███ ░███████ 
+  ░███     ░███ ░███░███ ░███      ███░   █░███ ░███ ░███ ░███ ░███░░░  
+  █████    ░░██████ ░░██████  ██  █████████░░██████  ████ █████░░██████ 
+ ░░░░░      ░░░░░░   ░░░░░░  ░░  ░░░░░░░░░  ░░░░░░  ░░░░ ░░░░░  ░░░░░░  
+                                                                        
 ```
+
+Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
 
 ## Some links
 
@@ -25,6 +30,15 @@ Welcome to the foo.zone. Everything you read on this site is my personal opinion
 
 => ./gemfeed/atom.xml Subscribe to this blog's Atom feed
 => ./gemfeed/index.gmi Subscribe to this blog's Gemfeed
+
+```
+   |\---/|
+   | ,_, |
+    \_`_/-..----.
+ ___/ `   ' ,""+ \  sk
+(__...'   __\    |`.___.';
+  (_,...'(_,.`__)/'.....+
+```
 
 ### Posts
 
