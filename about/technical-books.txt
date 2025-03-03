@@ -25,6 +25,7 @@
 * Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
 * Perl New Features; Joshua McAdams, brian d foy; Perl School
 * Polished Ruby Programming; Jeremy Evans; Packt Publishing
+* Programming Ruby 3.3 (5th Edition); Noel Rappin, with Dave Thomas; The Pragmatic Bookshelf
 * Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
 * Pro Puppet; James Turnbull, Jeffrey McCune; Apress
 * Raku Fundamentals; Moritz Lenz; Apress
