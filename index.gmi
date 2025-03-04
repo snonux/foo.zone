@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-02-23T21:49:52+02:00 by `Gemtexter`
+> This site was generated at 2025-03-04T21:22:08+02:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+=> ./gemfeed/2025-03-05-sharing-on-social-media-with-gos.gmi 2025-03-05 - Sharing on Social Media with Gos v1.0.0
 => ./gemfeed/2025-02-08-random-weird-things-ii.gmi 2025-02-08 - Random Weird Things - Part Ⅱ
 => ./gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
 => ./gemfeed/2025-01-15-working-with-an-sre-interview.gmi 2025-01-15 - Working with an SRE Interview
