@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-03-04T21:22:08+02:00</updated>
+    <updated>2025-03-04T21:31:30+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='sharing-on-social-media-with-gos-v100'>Sharing on Social Media with Gos v1.0.0</h1><br />
+<br />
+<span class='quote'>Published at 2025-03-04T21:22:07+02:00</span><br />
 <br />
 <span>As you may have noticed, I like to share on Mastodon and LinkedIn all the technical things I find interesting, and this blog post is technically all about that.</span><br />
 <br />
@@ -347,7 +349,7 @@ Hello World :-)
 <br />
 <span>For my blog, I want to post a summary of all the social messages posted over the last couple of months. For an example, have a look here:</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html'>https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html</a><br />
+<a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>./2025-01-01-posts-from-october-to-december-2024.html</a><br />
 <br />
 <span>To accomplish this, run:</span><br />
 <br />
