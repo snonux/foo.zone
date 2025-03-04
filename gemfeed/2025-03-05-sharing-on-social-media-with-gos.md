@@ -301,7 +301,7 @@ The key factors in message selection are:
 
 For my blog, I want to post a summary of all the social messages posted over the last couple of months. For an example, have a look here:
 
-[https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html](https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html)  
+[./2025-01-01-posts-from-october-to-december-2024.md](./2025-01-01-posts-from-october-to-december-2024.md)  
 
 To accomplish this, run:
 
