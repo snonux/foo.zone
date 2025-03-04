@@ -1,0 +1,394 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Sharing on Social Media with Gos v1.0.0</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-03-05-sharing-on-social-media-with-gos.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='sharing-on-social-media-with-gos-v100'>Sharing on Social Media with Gos v1.0.0</h1><br />
+<br />
+<span class='quote'>Published at 2025-03-04T21:22:07+02:00</span><br />
+<br />
+<span>As you may have noticed, I like to share on Mastodon and LinkedIn all the technical things I find interesting, and this blog post is technically all about that.</span><br />
+<br />
+<a href='./sharing-on-social-media-with-gos/gos.png'><img alt='Gos logo' title='Gos logo' src='./sharing-on-social-media-with-gos/gos.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#sharing-on-social-media-with-gos-v100'>Sharing on Social Media with Gos v1.0.0</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#gos-features'>Gos features</a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ ⇢ <a href='#prequisites'>Prequisites</a></li>
+<li>⇢ ⇢ <a href='#build-and-install'>Build and install</a></li>
+<li>⇢ <a href='#configuration'>Configuration</a></li>
+<li>⇢ ⇢ <a href='#configuration-fields'>Configuration fields</a></li>
+<li>⇢ ⇢ <a href='#automatically-managed-fields'>Automatically managed fields</a></li>
+<li>⇢ <a href='#invoking-gos'>Invoking Gos</a></li>
+<li>⇢ ⇢ <a href='#common-flags'>Common flags</a></li>
+<li>⇢ ⇢ <a href='#examples'>Examples</a></li>
+<li>⇢ <a href='#composing-messages-to-be-posted'>Composing messages to be posted</a></li>
+<li>⇢ ⇢ <a href='#basic-structure-of-a-message-file'>Basic structure of a message file</a></li>
+<li>⇢ ⇢ <a href='#adding-share-tags-in-the-filename'>Adding share tags in the filename</a></li>
+<li>⇢ ⇢ <a href='#using-the-prio-tag'>Using the <span class='inlinecode'>prio</span> tag</a></li>
+<li>⇢ ⇢ <a href='#more-tags'>More tags</a></li>
+<li>⇢ ⇢ <a href='#the-gosc-binary'>The <span class='inlinecode'>gosc</span> binary</a></li>
+<li>⇢ <a href='#how-queueing-works-in-gos'>How queueing works in gos</a></li>
+<li>⇢ ⇢ <a href='#step-by-step-queueing-process'>Step-by-step queueing process</a></li>
+<li>⇢ ⇢ <a href='#how-message-selection-works-in-gos'>How message selection works in gos</a></li>
+<li>⇢ <a href='#post-summary-as-gemini-gemtext'>Post summary as gemini gemtext</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>Gos is a Go-based replacement (which I wrote) for Buffer.com, providing the ability to schedule and manage social media posts from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.</span><br />
+<br />
+<span>I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided I had to build my own social sharing tool—and Gos was born.</span><br />
+<br />
+<a class='textlink' href='https://buffer.com'>https://buffer.com</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<br />
+<h2 style='display: inline' id='gos-features'>Gos features</h2><br />
+<br />
+<ul>
+<li>Mastodon and LinkedIn support.</li>
+<li>Dry run mode for testing posts without actually publishing.</li>
+<li>Configurable via flags and environment variables.</li>
+<li>Easy to integrate into automated workflows.</li>
+<li>OAuth2 authentication for LinkedIn.</li>
+<li>Image previews for LinkedIn posts.</li>
+</ul><br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
+<br />
+<h3 style='display: inline' id='prequisites'>Prequisites</h3><br />
+<br />
+<span>The prerequisites are:</span><br />
+<br />
+<ul>
+<li>Go (version 1.24 or later)</li>
+<li>Supported browsers like Firefox, Chrome, etc for oauth2.</li>
+</ul><br />
+<h3 style='display: inline' id='build-and-install'>Build and install</h3><br />
+<br />
+<span>Clone the repository:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>git clone https://codeberg.org/snonux/gos.git
+cd gos
+</pre>
+<br />
+<span>Build the binaries:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go build -o gos ./cmd/gos
+go build -o gosc ./cmd/gosc
+sudo mv gos ~/go/bin
+sudo mv gosc ~/go/bin
+</pre>
+<br />
+<span>Or, if you want to use the <span class='inlinecode'>Taskfile</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go-task install
+</pre>
+<br />
+<h2 style='display: inline' id='configuration'>Configuration</h2><br />
+<br />
+<span>Gos requires a configuration file to store API secrets and OAuth2 credentials for each supported social media platform. The configuration is managed using a Secrets structure, which is stored as a JSON file in <span class='inlinecode'>~/.config/gos/gos.json</span>.</span><br />
+<br />
+<span>Example Configuration File (<span class='inlinecode'>~/.config/gos/gos.json</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>{
+  "MastodonURL": "<font color="#808080">https://mastodon.example.com</font>",
+  "MastodonAccessToken": "<font color="#808080">your-mastodon-access-token</font>",
+  "LinkedInClientID": "<font color="#808080">your-linkedin-client-id</font>",
+  "LinkedInSecret": "<font color="#808080">your-linkedin-client-secret</font>",
+  "LinkedInRedirectURL": "<font color="#808080">http://localhost:8080/callback</font>",
+}
+</pre>
+<br />
+<h3 style='display: inline' id='configuration-fields'>Configuration fields</h3><br />
+<br />
+<ul>
+<li><span class='inlinecode'>MastodonURL</span>: The base URL of the Mastodon instance you are using (e.g., https://mastodon.social).</li>
+<li><span class='inlinecode'>MastodonAccessToken</span>: Your access token for the Mastodon API, which is used to authenticate your posts.</li>
+<li><span class='inlinecode'>LinkedInClientID</span>: The client ID for your LinkedIn app, which is needed for OAuth2 authentication.</li>
+<li><span class='inlinecode'>LinkedInSecret</span>: The client secret for your LinkedIn app.</li>
+<li><span class='inlinecode'>LinkedInRedirectURL</span>: The redirect URL configured for handling OAuth2 responses.</li>
+<li><span class='inlinecode'>LinkedInAccessToken</span>: Gos will automatically update this after successful OAuth2 authentication with LinkedIn.</li>
+<li><span class='inlinecode'>LinkedInPersonID</span>: Gos will automatically update this after successful OAuth2 authentication with LinkedIn.</li>
+</ul><br />
+<h3 style='display: inline' id='automatically-managed-fields'>Automatically managed fields</h3><br />
+<br />
+<span>Once you finish the OAuth2 setup (after the initial run of <span class='inlinecode'>gos</span>), some fields—like <span class='inlinecode'>LinkedInAccessToken</span> and <span class='inlinecode'>LinkedInPersonID</span> will get filled in automatically. To check if everything&#39;s working without actually posting anything, you can run the app in dry run mode with the <span class='inlinecode'>--dry</span> option. After OAuth2 is successful, the file will be updated with <span class='inlinecode'>LinkedInClientID</span> and <span class='inlinecode'>LinkedInAccessToken</span>. If the access token expires, it will go through the OAuth2 process again.</span><br />
+<br />
+<h2 style='display: inline' id='invoking-gos'>Invoking Gos</h2><br />
+<br />
+<span>Gos is a command-line tool for posting updates to multiple social media platforms. You can run it with various flags to customize its behaviour, such as posting in dry run mode, limiting posts by size, or targeting specific platforms.</span><br />
+<br />
+<span>Flags control the tool&#39;s behavior. Below are several common ways to invoke Gos and descriptions of the available flags.</span><br />
+<br />
+<h3 style='display: inline' id='common-flags'>Common flags</h3><br />
+<br />
+<ul>
+<li><span class='inlinecode'>-dry</span>: Run the application in dry run mode, simulating operations without making any changes.</li>
+<li><span class='inlinecode'>-version</span>: Display the current version of the application.</li>
+<li><span class='inlinecode'>-compose</span>: Compose a new entry. Default is set by <span class='inlinecode'>composeEntryDefault</span>.</li>
+<li><span class='inlinecode'>-gosDir</span>: Specify the directory for Gos&#39; queue and database files. The default is <span class='inlinecode'>~/.gosdir</span>.</li>
+<li><span class='inlinecode'>—cacheDir</span>: Specify the directory for Gos&#39; cache. The default is based on the <span class='inlinecode'>gosDir</span> path.</li>
+<li><span class='inlinecode'>-browser</span>: Choose the browser for OAuth2 processes. The default is "firefox".</li>
+<li><span class='inlinecode'>-configPath</span>: Path to the configuration file. Default is <span class='inlinecode'>~/.config/gos/gos.json</span>.</li>
+<li><span class='inlinecode'>—platforms</span>: The enabled platforms and their post size limits. The default is "Mastodon:500,LinkedIn:1000."</li>
+<li><span class='inlinecode'>-target</span>: Target number of posts per week. The default is 2.</li>
+<li><span class='inlinecode'>-minQueued</span>: Minimum number of queued items before a warning message is printed. The default is 4.</li>
+<li><span class='inlinecode'>-maxDaysQueued</span>: Maximum number of days&#39; worth of queued posts before the target increases and pauseDays decreases. The default is 365.</li>
+<li><span class='inlinecode'>-pauseDays</span>: Number of days until the next post can be submitted. The default is 3.</li>
+<li><span class='inlinecode'>-runInterval</span>: Number of hours until the next post run. The default is 12.</li>
+<li><span class='inlinecode'>—lookback</span>: The number of days to look back in time to review posting history. The default is 30.</li>
+<li><span class='inlinecode'>-geminiSummaryFor</span>: Generate a Gemini Gemtext format summary specifying months as a comma-separated string.</li>
+<li><span class='inlinecode'>-geminiCapsules</span>: Comma-separated list of Gemini capsules. Used to detect Gemtext links.</li>
+<li><span class='inlinecode'>-gemtexterEnable</span>: Add special tags for Gemtexter, the static site generator, to the Gemini Gemtext summary.</li>
+<li><span class='inlinecode'>-dev</span>: For internal development purposes only.</li>
+</ul><br />
+<h3 style='display: inline' id='examples'>Examples</h3><br />
+<br />
+<span>*Dry run mode*</span><br />
+<br />
+<span>Dry run mode lets you simulate the entire posting process without actually sending the posts. This is useful for testing configurations or seeing what would happen before making real posts.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>./gos --dry
+</pre>
+<br />
+<span>*Normal run*</span><br />
+<br />
+<span>Sharing to all platforms is as simple as the following (assuming it is configured correctly):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>./gos 
+</pre>
+<br />
+<span>:-)</span><br />
+<br />
+<a href='./sharing-on-social-media-with-gos/gos-screenshot.png'><img alt='Gos Screenshot' title='Gos Screenshot' src='./sharing-on-social-media-with-gos/gos-screenshot.png' /></a><br />
+<br />
+<span>However, you will notice that no messages are queued to be posted yet (not like on the screenshot yet!). Relax and read on...</span><br />
+<br />
+<h2 style='display: inline' id='composing-messages-to-be-posted'>Composing messages to be posted</h2><br />
+<br />
+<span>To post messages using Gos, you need to create text files containing the posts&#39; content. These files are placed inside the directory specified by the <span class='inlinecode'>--gosDir</span> flag (the default directory is <span class='inlinecode'>~/.gosdir</span>). Each text file represents a single post and must have the .txt extension. You can also simply run <span class='inlinecode'>gos --compose</span> to compose a new entry. It will open simply a new text file in <span class='inlinecode'>gosDir</span>.</span><br />
+<br />
+<h3 style='display: inline' id='basic-structure-of-a-message-file'>Basic structure of a message file</h3><br />
+<br />
+<span>Each text file should contain the message you want to post on the specified platforms. That&#39;s it. Example of a Basic Post File <span class='inlinecode'>~/.gosdir/samplepost.txt</span>:</span><br />
+<br />
+<pre>
+This is a sample message to be posted on social media platforms.
+
+Maybe add a link here: https://foo.zone
+
+#foo #cool #gos #golang
+</pre>
+<br />
+<span>The message is just arbitrary text, and, besides inline share tags (see later in this document) at the beginning, Gos does not parse any of the content other than ensuring the overall allowed size for the social media platform isn&#39;t exceeded. If it exceeds the limit, Gos will prompt you to edit the post using your standard text editor (as specified by the <span class='inlinecode'>EDITOR</span> environment variable). When posting, all the hyperlinks, hashtags, etc., are interpreted by the social platforms themselves (e.g., Mastodon, LinkedIn).</span><br />
+<br />
+<h3 style='display: inline' id='adding-share-tags-in-the-filename'>Adding share tags in the filename</h3><br />
+<br />
+<span>You can control which platforms a post is shared to, and manage other behaviors using tags embedded in the filename. Add tags in the format <span class='inlinecode'>share:platform1.-platform2</span> to target specific platforms within the filename. This instructs Gos to share the message only to <span class='inlinecode'>platform1</span> (e.g., Mastodon) and explicitly exclude <span class='inlinecode'>platform2</span> (e.g., LinkedIn). You can include multiple platforms by listing them after <span class='inlinecode'>share:</span>, separated by a <span class='inlinecode'>.</span>. Use the <span class='inlinecode'>-</span> symbol to exclude a platform.</span><br />
+<br />
+<span>Currently, only <span class='inlinecode'>linkedin</span> and <span class='inlinecode'>mastodon</span> are supported, and the shortcuts <span class='inlinecode'>li</span> and <span class='inlinecode'>ma</span> also work.</span><br />
+<br />
+<span>**Examples:**</span><br />
+<br />
+<ul>
+<li>To share only on Mastodon: <span class='inlinecode'>~/.gosdir/foopost.share:mastodon.txt</span></li>
+<li>To exclude sharing on LinkedIn: <span class='inlinecode'>~/.gosdir/foopost.share:-linkedin.txt</span></li>
+<li>To explicitly share on both LinkedIn and Mastodon: <span class='inlinecode'>~/.gosdir/foopost.share:linkedin:mastodon.txt</span></li>
+<li>To explicitly share only on LinkedIn and exclude Mastodon: <span class='inlinecode'>~/.gosdir/foopost.share:linkedin:-mastodon.txt</span></li>
+</ul><br />
+<span>Besides encoding share tags in the filename, they can also be embedded within the <span class='inlinecode'>.txt</span> file content to be queued. For example, a file named <span class='inlinecode'>~/.gosdir/foopost.txt</span> with the following content:</span><br />
+<br />
+<pre>
+share:mastodon The content of the post here
+</pre>
+<br />
+<span>or</span><br />
+<br />
+<pre>
+share:mastodon
+
+The content of the post is here https://some.foo/link
+
+#some #hashtags
+</pre>
+<br />
+<span>Gos will parse this content, extract the tags, and queue it as <span class='inlinecode'>~/.gosdir/db/platforms/mastodon/foopost.share:mastodon.extracted.txt....</span> (see how post queueing works later in this document).</span><br />
+<br />
+<h3 style='display: inline' id='using-the-prio-tag'>Using the <span class='inlinecode'>prio</span> tag</h3><br />
+<br />
+<span>Gos randomly picks any queued message without any specific order or priority. However, you can assign a higher priority to a message. The priority determines the order in which posts are processed, with messages without a priority tag being posted last and those with priority tags being posted first. If multiple messages have the priority tag, then a random message will be selected from them.</span><br />
+<br />
+<span>*Examples using the Priority tag:* </span><br />
+<br />
+<ul>
+<li>To share only on Mastodon: <span class='inlinecode'>~/.gosdir/foopost.prio.share:mastodon.txt</span></li>
+<li>To not share on LinkedIn: <span class='inlinecode'>~/.gosdir/foopost.prio.share:-linkedin.txt</span></li>
+<li>To explicitly share on both: <span class='inlinecode'>~/.gosdir/foopost.prio.share:linkedin:mastodon.txt</span></li>
+<li>To explicitly share on only linkedin: <span class='inlinecode'>~/.gosdir/foopost.prio.share:linkedin:-mastodon.txt</span></li>
+</ul><br />
+<span>There is more: you can also use the <span class='inlinecode'>soon</span> tag. It is almost the same as the <span class='inlinecode'>prio</span> tag, just with one lower priority.</span><br />
+<br />
+<h3 style='display: inline' id='more-tags'>More tags</h3><br />
+<br />
+<ul>
+<li>A <span class='inlinecode'>.ask.</span> in the filename will prompt you to choose whether to queue, edit, or delete a file before queuing it.</li>
+<li>A <span class='inlinecode'>.now.</span> in the filename will schedule a post immediately, regardless of the target status.</li>
+</ul><br />
+<span>So you could also have filenames like those: </span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>~/.gosdir/foopost.ask.txt</span></li>
+<li><span class='inlinecode'>~/.gosdir/foopost.now.txt</span></li>
+<li><span class='inlinecode'>~/.gosdir/foopost.ask.share:mastodon.txt</span></li>
+<li><span class='inlinecode'>~/.gosdir/foopost.ask.prio.share:mastodon.txt</span></li>
+<li><span class='inlinecode'>~/.gosdir/foopost.ask.now.share:-mastodon.txt</span></li>
+<li><span class='inlinecode'>~/.gosdir/foopost.now.share:-linkedin.txt</span></li>
+</ul><br />
+<span>etc...</span><br />
+<br />
+<span>All of the above also works with embedded tags. E.g.:</span><br />
+<br />
+<pre>
+share:mastodon,ask,prio Hello wold :-)
+</pre>
+<br />
+<span>or </span><br />
+<br />
+<pre>
+share:mastodon,ask,prio
+
+Hello World :-)
+</pre>
+<br />
+<h3 style='display: inline' id='the-gosc-binary'>The <span class='inlinecode'>gosc</span> binary</h3><br />
+<br />
+<span><span class='inlinecode'>gosc</span> stands for Gos Composer and will simply launch your <span class='inlinecode'>$EDITOR</span> on a new text file in the <span class='inlinecode'>gosDir</span>. It&#39;s the same as running <span class='inlinecode'>gos --compose</span>, really. It is a quick way of composing new posts. Once composed, it will ask for your confirmation on whether the message should be queued or not.</span><br />
+<br />
+<h2 style='display: inline' id='how-queueing-works-in-gos'>How queueing works in gos</h2><br />
+<br />
+<span>When you place a message file in the <span class='inlinecode'>gosDir</span>, Gos processes it by moving the message through a queueing system before posting it to the target social media platforms. A message&#39;s lifecycle includes several key stages, from creation to posting, all managed through the <span class='inlinecode'>./db/platforms/PLATFORM</span> directories.</span><br />
+<br />
+<h3 style='display: inline' id='step-by-step-queueing-process'>Step-by-step queueing process</h3><br />
+<br />
+<span>1. Inserting a Message into <span class='inlinecode'>gosDir</span>: You start by creating a text file that represents your post (e.g., <span class='inlinecode'>foo.txt</span>) and placing it in the <span class='inlinecode'>gosDir</span>. When Gos runs, this file is processed. The easiest way is to use <span class='inlinecode'>gosc</span> here.</span><br />
+<br />
+<span>2. Moving to the Queue: Upon running Gos, the tool identifies the message in the <span class='inlinecode'>gosDir</span> and places it into the queue for the specified platform. The message is moved into the appropriate directory for each platform in <span class='inlinecode'>./db/platforms/PLATFORM</span>. During this stage, the message file is renamed to include a timestamp indicating when it was queued and given a <span class='inlinecode'>.queued</span> extension.</span><br />
+<br />
+<span>*Example: If a message is queued for LinkedIn, the filename might look like this:*</span><br />
+<br />
+<pre>
+~/.gosdir/db/platforms/linkedin/foo.share:-mastodon.txt.20241022-102343.queued
+</pre>
+<br />
+<span>3. Posting the Message: Once a message is placed in the queue, Gos posts it to the specified social media platforms. </span><br />
+<br />
+<span>4. Renaming to <span class='inlinecode'>.posted</span>: After a message is successfully posted to a platform, the corresponding <span class='inlinecode'>.queued</span> file is renamed to have a <span class='inlinecode'>.posted</span> extension, and the filename timestamp is also updated. This signals that the post has been processed and published.</span><br />
+<br />
+<span>*Example - After a successful post to LinkedIn, the message file might look like this:*</span><br />
+<br />
+<pre>
+./db/platforms/linkedin/foo.share:-mastodon.txt.20241112-121323.posted
+</pre>
+<br />
+<h3 style='display: inline' id='how-message-selection-works-in-gos'>How message selection works in gos</h3><br />
+<br />
+<span>Gos decides which messages to post using a combination of priority, platform-specific tags, and timing rules. The message selection process ensures that messages are posted according to your configured cadence and targets while respecting pauses between posts and previously met goals.</span><br />
+<br />
+<span>The key factors in message selection are:</span><br />
+<br />
+<ul>
+<li>Target Number of Posts Per Week: The <span class='inlinecode'>-target</span> flag defines how many posts per week should be made to a specific platform. This target helps Gos manage the posting rate, ensuring that the right number of posts are made without exceeding the desired frequency. </li>
+<li>Post History Lookback: The <span class='inlinecode'>-lookback</span> flag tells Gos how many days back to look in the post history to calculate whether the weekly post target has already been met. It ensures that previously posted content is considered before deciding to queue up another message.</li>
+<li>Message Priority: Messages with no priority value are processed after those with priority. If two messages have the same priority, one is selected randomly.</li>
+<li>Pause Between Posts: The <span class='inlinecode'>-pauseDays</span> flag allows you to specify a minimum number of days to wait between posts for the same platform. This prevents oversaturation of content and ensures that posts are spread out over time.</li>
+</ul><br />
+<h2 style='display: inline' id='post-summary-as-gemini-gemtext'>Post summary as gemini gemtext</h2><br />
+<br />
+<span>For my blog, I want to post a summary of all the social messages posted over the last couple of months. For an example, have a look here:</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html'>https://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.html</a><br />
+<br />
+<span>To accomplish this, run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gos --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font>
+</pre>
+<br />
+<span>This outputs the summary for the three specified months, as shown in the example. The summary includes posts from all social media networks but removes duplicates.</span><br />
+<br />
+<span>Also, add the <span class='inlinecode'>--gemtexterEnable</span> flag, if you are using Gemtexter:</span><br />
+<br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gos --gemtexterEnable --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font>
+</pre>
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>Gemtexter</a><br />
+<br />
+<span>In case there are HTTP links that translate directly to the Geminispace for certain capsules, specify the Gemini capsules as a comma-separated list as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gos --gemtexterEnable --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font> --geminiCapsules <font color="#808080">"foo.zone,paul.buetow.org"</font>
+</pre>
+<br />
+<span>It will then also generate Gemini Gemtext links in the summary page and flag them with <span class='inlinecode'>(Gemini)</span>.</span><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>Overall, this was a fun little Go project with practical use for me personally. I hope you also had fun reading this, and maybe you will use it as well.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
