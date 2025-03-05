@@ -43,6 +43,7 @@
 <li>⇢ <a href='#how-queueing-works-in-gos'>How queueing works in gos</a></li>
 <li>⇢ ⇢ <a href='#step-by-step-queueing-process'>Step-by-step queueing process</a></li>
 <li>⇢ ⇢ <a href='#how-message-selection-works-in-gos'>How message selection works in gos</a></li>
+<li>⇢ <a href='#database-replication'>Database replication</a></li>
 <li>⇢ <a href='#post-summary-as-gemini-gemtext'>Post summary as gemini gemtext</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
@@ -338,6 +339,12 @@ Hello World :-)
 <li>Message Priority: Messages with no priority value are processed after those with priority. If two messages have the same priority, one is selected randomly.</li>
 <li>Pause Between Posts: The <span class='inlinecode'>-pauseDays</span> flag allows you to specify a minimum number of days to wait between posts for the same platform. This prevents oversaturation of content and ensures that posts are spread out over time.</li>
 </ul><br />
+<h2 style='display: inline' id='database-replication'>Database replication</h2><br />
+<br />
+<span>I simply use Syncthing to backup/sync my <span class='inlinecode'>gosDir</span>.</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
+<br />
 <h2 style='display: inline' id='post-summary-as-gemini-gemtext'>Post summary as gemini gemtext</h2><br />
 <br />
 <span>For my blog, I want to post a summary of all the social messages posted over the last couple of months. For an example, have a look here:</span><br />
