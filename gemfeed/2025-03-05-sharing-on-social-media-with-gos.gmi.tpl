@@ -273,6 +273,12 @@ The key factors in message selection are:
 * Message Priority: Messages with no priority value are processed after those with priority. If two messages have the same priority, one is selected randomly.
 * Pause Between Posts: The `-pauseDays` flag allows you to specify a minimum number of days to wait between posts for the same platform. This prevents oversaturation of content and ensures that posts are spread out over time.
 
+## Database replication
+
+I simply use Syncthing to backup/sync my `gosDir`.
+
+=> https://syncthing.net 
+
 ## Post summary as gemini gemtext
 
 For my blog, I want to post a summary of all the social messages posted over the last couple of months. For an example, have a look here:
