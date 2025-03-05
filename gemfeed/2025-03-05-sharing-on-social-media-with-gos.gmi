@@ -300,7 +300,7 @@ The key factors in message selection are:
 
 ## Database replication
 
-I simply use Syncthing to backup/sync my `gosDir`.
+I simply use Syncthing to backup/sync my `gosDir`. Note, that I run Gos on my personal laptop. No need to run it from a server.
 
 => https://syncthing.net 
 
