@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-03-05T19:56:04+02:00</updated>
+    <updated>2025-03-05T19:58:06+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -348,7 +348,7 @@ Hello World :-)
 </ul><br />
 <h2 style='display: inline' id='database-replication'>Database replication</h2><br />
 <br />
-<span>I simply use Syncthing to backup/sync my <span class='inlinecode'>gosDir</span>.</span><br />
+<span>I simply use Syncthing to backup/sync my <span class='inlinecode'>gosDir</span>. Note, that I run Gos on my personal laptop. No need to run it from a server.</span><br />
 <br />
 <a class='textlink' href='https://syncthing.net'>https://syncthing.net</a><br />
 <br />
