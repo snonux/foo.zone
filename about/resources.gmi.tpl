@@ -71,6 +71,12 @@ This is a mix of tech and non-tech newsletters I am subscribed to. In random ord
 
 << sort -R newsletters.txt
 
+## Magazines I like(d)
+
+This is a mix of tech I like(d). I may not be a current subscriber, but now and then, I buy an issue. In random order:
+
+<< sort -R magazines.txt
+
 # Formal education
 
 I have met many self-taught IT professionals I highly respect. In my own opinion, a formal degree does not automatically qualify a person for a particular job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
