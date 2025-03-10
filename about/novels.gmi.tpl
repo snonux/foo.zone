@@ -74,6 +74,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
+* 2024 - Der Riss (german), Andreas Brandhorst
 
 ### David Reimer (german)
 
@@ -104,20 +105,13 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ## Currently reading
 
-### Andreas Brandhorst
-
-* 2023 - Oxygen: Welt ohne Sauerstoff, Audiobook (german)
-* 2024 - Der Riss (german)
+* 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german)
+* 2015 - The Three-Body Problem, Liu Cixin, Audiobook
+* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german)
 
 ## Unread books already in my shelf
 
-### Alastair Reynolds
-
-* 2004 - Träume von Unendlichkeit (german)
-
-### Andreas Brandhorst
-
-* 2021 - Die Tiefe der Zeit (german)
+* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german)
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
