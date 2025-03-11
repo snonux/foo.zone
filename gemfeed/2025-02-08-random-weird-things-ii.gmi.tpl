@@ -44,7 +44,7 @@ I found it interesting and/or weird, as Go is a programming language. Why should
 
 ### 13. Go functions can have methods
 
-Functions on struct types? Well, know. Functions on types like `int` and `string`? It's also known of, but a bit lesser. Functions on function types? That sounds a bit funky, but it's possible, too! For demonstration, have a look at this snippet:
+Functions on struct types? Well known. Functions on types like `int` and `string`? It's also known of, but a bit lesser. Functions on function types? That sounds a bit funky, but it's possible, too! For demonstration, have a look at this snippet:
 
 ```go
 package main
@@ -84,7 +84,7 @@ For personal computing, I don't use Apple, but I have to use it for work.
 
 ### 14. ß and ss are treated the same
 
-Know German? In German, the letter "sarp s" is written as ß. ß is treated the same as ss on macOS.
+Know German? In German, the letter "sharp s" is written as ß. ß is treated the same as ss on macOS.
 
 On a case-insensitive file system like macOS, not only are uppercase and lowercase letters treated the same, but non-Latin characters like the German "ß" are also considered equivalent to their Latin counterparts (in this case, "ss").
 
