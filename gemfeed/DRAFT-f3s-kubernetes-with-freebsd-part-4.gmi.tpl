@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4
 
-This is the thourth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution we will use on FreeBSD-based physical machines.
+This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
 
@@ -12,7 +12,7 @@ This is the thourth blog post about my f3s series for my self-hosting demands in
 
 In this blog post, we are going to install the Bhyve hypervisor.
 
-The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve's strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It is designed to be efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.
+The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve's strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It's efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.
 
 Bhyve supports running a variety of guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which later on in this series will be used to run k3s.
 
@@ -151,9 +151,9 @@ paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
 paul@f0:/bhyve/rocky % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
 ```
 
-### Connect to VPN
+### Connect to VNC
 
-For the installation, I opened the VPN client on my Fedora laptop (GNOME comes with a simple VPN client) and ran through the base installation for each of the VMs manually. Again, I am sure this could have been automated a bit more, but there were just 3 VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were: `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f0:5900`.
+For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and ran through the base installation for each of the VMs manually. Again, I am sure this could have been automated a bit more, but there were just 3 VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were: `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f0:5900`.
 
 I mostly selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.
 
@@ -240,15 +240,101 @@ And then I edited the `/etc/ssh/sshd_config` file again on all 3 VMs and configu
 
 ```sh
 [root@r0 ~] % dnf update
-[root@r0 ~] % dreboot
+[root@r0 ~] % reboot
 ```
 
-CPU STRESS TESTER VM VS NOT VM
+## Stress testing CPU
+
+The aim is to prove that bhyve VMs are CPU efficient. As I could not find an off-the-shelf benchmarking tool available in the same version for FreeBSD as well as for Rocky Linux 9, I wrote my own silly CPU benchmarking tool in Go:
+
+```go
+package main
+
+import "testing"
+
+func BenchmarkCPUSilly1(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		_ = i * i
+	}
+}
+
+func BenchmarkCPUSilly2(b *testing.B) {
+	var sillyResult float64
+	for i := 0; i < b.N; i++ {
+		sillyResult += float64(i)
+		sillyResult *= float64(i)
+		divisor := float64(i) + 1
+		if divisor > 0 {
+			sillyResult /= divisor
+		}
+	}
+	_ = sillyResult // to avoid compiler optimization
+}
+```
+
+You can find the repository here:
+
+=> https://codeberg.org/snonux/sillybench
+
+### FreeBSD benchmark
+
+To install it on FreeBSD, we run:
+
+```sh
+paul@f0:~ % doas pkg install git go
+paul@f0:~ % mkdir ~/git && cd ~/git && \
+  git clone https://codeberg.org/snonux/sillybench && \
+  cd sillybench
+```
+
+And to run it:
+
+```sh
+paul@f0:~/git/sillybench % go version
+go version go1.24.1 freebsd/amd64
+
+paul@f0:~/git/sillybench % go test -bench=.
+goos: freebsd
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-4    1000000000               0.4022 ns/op
+BenchmarkCPUSilly2-4    1000000000               0.4027 ns/op
+PASS
+ok      codeberg.org/snonux/sillybench 0.891s
+```
+
+### Rocky Linux VM @ Bhyve benchmark
+
+OK, let's compare this with the Rocky Linux VM running on Bhyve:
+
+```sh
+[root@r0 ~]# dnf install golang git
+[root@r0 ~]# mkdir ~/git && cd ~/git && \
+  git clone https://codeberg.org/snonux/sillybench && \
+  cd sillybench
+````
+
+And to run it:
+
+
+```sh
+[root@r0 sillybench]# go version
+go version go1.22.9 (Red Hat 1.22.9-2.el9_5) linux/amd64
+[root@r0 sillybench]# go test -bench=.
+goos: linux
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-4    1000000000               0.4347 ns/op
+BenchmarkCPUSilly2-4    1000000000               0.4345 ns/op
+```
+The Linux benchmark seems to be slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. It could be that there is a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that there is great performance in Bhyve nevertheless.
 
 Other *BSD-related posts:
 
 << template::inline::rindex bsd
 
-E-Mail your comments to `paul@nospam.buetow.org` :-)
+E-Mail your comments to `paul@nospam.buetow.org`
 
 => ../ Back to the main site
