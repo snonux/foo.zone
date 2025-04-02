@@ -74,6 +74,8 @@ NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 
 ## Rocky Linux VMs
 
+TODO: Why this Distro?
+
 ### ISO download
 
 We're going to install the Rocky Linux from the latest minimal iso:
