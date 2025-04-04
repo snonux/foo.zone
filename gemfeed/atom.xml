@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-04T23:27:14+03:00</updated>
+    <updated>2025-04-04T23:43:38+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -144,7 +144,9 @@ NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 <br />
 <span>As guest VMs I decided to use Rocky Linux.</span><br />
 <br />
-<span>Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades. Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.</span><br />
+<span>Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades.</span><br />
+<br />
+<span>Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.</span><br />
 <br />
 <a class='textlink' href='https://rockylinux.org/'>https://rockylinux.org/</a><br />
 <br />
@@ -161,6 +163,7 @@ http://www.gnu.org/software/src-highlite -->
 /zroot/bhyve/.iso/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso        <font color="#000000">1808</font> MB <font color="#000000">4780</font> kBps 06m28s
 paul@f0:/bhyve % doas vm create rocky
 </pre>
+<br />
 <h3 style='display: inline' id='vm-configuration'>VM configuration</h3><br />
 <br />
 <span>The default Bhyve VM configuration looks like this now:</span><br />
@@ -181,7 +184,7 @@ uuid=<font color="#808080">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
 network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
 </pre>
 <br />
-<span>The <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ for each of the three VMs.</span><br />
+<span>The <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ for each of the three VMs (the ones being installed on <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>).</span><br />
 <br />
 <span>But to make Rocky Linux boot it (plus some other adjustments, e.g. as we intend to run the majority of the workload in the k3s cluster running on those Linux VMs, we give them beefy specs like 4 CPU cores and 14GB RAM). So we run <span class='inlinecode'>doas vm configure rocky</span> and modified it to:</span><br />
 <br />
@@ -226,7 +229,7 @@ root     bhyve       <font color="#000000">6079</font> <font color="#000000">8</
 <br />
 <h3 style='display: inline' id='increase-of-the-disk-image'>Increase of the disk image</h3><br />
 <br />
-<span>By default, the VM disk image is only 20G, which is a bit small for our purposes, so I stopped the VMs again, ran <span class='inlinecode'>truncate</span> on the image file to enlarge them to 100G, and re-started the installation:</span><br />
+<span>By default, the VM disk image is only 20G, which is a bit small for our purposes, so we have to stop the VMs again, run <span class='inlinecode'>truncate</span> on the image file to enlarge them to 100G, and restart the installation:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -253,7 +256,7 @@ paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</fo
 <br />
 <h2 style='display: inline' id='after-install'>After install</h2><br />
 <br />
-<span>We perform the following steps for all 3 VMs. In the following, the examples are all executed on <span class='inlinecode'>f0</span> (the VM <span class='inlinecode'>r0</span> running on <span class='inlinecode'>f0</span>):</span><br />
+<span>We perform the following steps for all three VMs. In the following, the examples are all executed on <span class='inlinecode'>f0</span> (the VM <span class='inlinecode'>r0</span> running on <span class='inlinecode'>f0</span>):</span><br />
 <br />
 <h3 style='display: inline' id='vm-auto-start-after-host-reboot'>VM auto-start after host reboot</h3><br />
 <br />
@@ -281,7 +284,7 @@ rocky  default    uefi    <font color="#000000">4</font>    14G     <font color=
 <br />
 <h3 style='display: inline' id='static-ip-configuration'>Static IP configuration</h3><br />
 <br />
-<span>After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the 3 FreeBSD hosts were already in my <span class='inlinecode'>/etc/hosts</span> file:</span><br />
+<span>After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the three FreeBSD hosts were already in my <span class='inlinecode'>/etc/hosts</span> file:</span><br />
 <br />
 <pre>
 192.168.1.130 f0 f0.lan f0.lan.buetow.org
@@ -334,7 +337,7 @@ END
 <br />
 <span>Once done, we reboot the VM by running <span class='inlinecode'>reboot</span> inside the VM to test whether everything was configured and persisted correctly.</span><br />
 <br />
-<span>After reboot, I copied my public key from my Laptop to the 3 VMs:</span><br />
+<span>After reboot, we copy a public key over. E.g. I did this from my Laptop as follows:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -343,7 +346,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre>% <b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> <font color="#000000">0</font> <font color="#000000">1</font> <font color="#000000">2</font>; <b><u><font color="#000000">do</font></u></b> ssh-copy-id root@r$i.lan.buetow.org; <b><u><font color="#000000">done</font></u></b>
 </pre>
 <br />
-<span>Then, I edited the <span class='inlinecode'>/etc/ssh/sshd_config</span> file again on all 3 VMs and configured <span class='inlinecode'>PasswordAuthentication no</span> to only allow SSH key authentication from now on.</span><br />
+<span>Then, we edit the <span class='inlinecode'>/etc/ssh/sshd_config</span> file again on all three VMs and configure <span class='inlinecode'>PasswordAuthentication no</span> to only allow SSH key authentication from now on.</span><br />
 <br />
 <h3 style='display: inline' id='install-latest-updates'>Install latest updates</h3><br />
 <br />
@@ -455,13 +458,14 @@ cpu: Intel(R) N100
 BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4347</font> ns/op
 BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4345</font> ns/op
 </pre>
+<br />
 <span>The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.</span><br />
 <br />
 <h3 style='display: inline' id='silly-freebsd-vm--bhyve-benchmark'>Silly FreeBSD VM @ Bhyve benchmark</h3><br />
 <br />
 <span>But as I am curious and don&#39;t want to compare apples with bananas, I decided to install a FreeBSD Bhyve VM to run the same silly benchmark in it. I am not going through the details of how to install a FreeBSD Bhyve VM here; you can easily look it up in the documentation.</span><br />
 <br />
-<span>But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won&#39;t use as many CPUs anyway):</span><br />
+<span>But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won&#39;t use as many CPUs (and memory) anyway):</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -482,7 +486,7 @@ ok      codeberg.org/snonux/sillybench  <font color="#000000">0</font>.949s
 <br />
 <h2 style='display: inline' id='benchmarking-with-ubench'>Benchmarking with <span class='inlinecode'>ubench</span></h2><br />
 <br />
-<span>Let&#39;s run another, more sophisticated benchmark using <span class='inlinecode'>ubench</span>, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running <span class='inlinecode'>doas pkg install ubench</span>. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with <span class='inlinecode'>-s</span>, and then let it run at full speed in the second run.</span><br />
+<span>Let&#39;s run another, more sophisticated benchmark using <span class='inlinecode'>ubench</span>, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running <span class='inlinecode'>doas pkg install ubench</span>. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with <span class='inlinecode'>-s</span>, and then let it run at full speed (using all available CPUs in parallel) in the second run.</span><br />
 <br />
 <h3 style='display: inline' id='freebsd-host-ubench-benchmark'>FreeBSD host <span class='inlinecode'>ubench</span> benchmark</h3><br />
 <br />
@@ -543,6 +547,8 @@ Ubench Single MEM:   <font color="#000000">852757</font> (<font color="#000000">
 Ubench Single AVG:   <font color="#000000">762774</font>
 </pre>
 <br />
+<span>Wow, the CPU in the VM was a tiny bit faster than on the host! So this was probably just a glitch in the matrix. Memory seems slower, though.</span><br />
+<br />
 <span>All CPUs:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
@@ -578,7 +584,7 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
  7449 root         14  20    0    14G    78M kqread   2   2:12 399.81% bhyve
 </pre>
 <br />
-<span>Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I don&#39;t know whether to trust it. Do you have an idea?</span><br />
+<span>Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I&#39;m not sure whether to trust it, especially due to the swap errors. Does <span class='inlinecode'>ubench</span>&#39;s memory benchmark use swap space for the memory test? That wouldn&#39;t make sense and might explain the difference to some degree, though. Do you have any ideas?</span><br />
 <br />
 <h3 style='display: inline' id='rocky-linux-vm--bhyve-ubench-benchmark'>Rocky Linux VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</h3><br />
 <br />
@@ -586,7 +592,7 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Having Linux VMs running inside FreeBSD&#39;s Bhyve is a solid move for future F3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes) in the Linux world while keeping the steady reliability of FreeBSD.</span><br />
+<span>Having Linux VMs running inside FreeBSD&#39;s Bhyve is a solid move for future f3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes, eBPF, systemd) in the Linux world while keeping the steady reliability of FreeBSD.</span><br />
 <br />
 <span>Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows or NetBSD VM to tinker with?</span><br />
 <br />
