@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-04T23:23:08+03:00</updated>
+    <updated>2025-04-04T23:27:14+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -64,6 +64,8 @@
 <span>In this blog post, we are going to install the Bhyve hypervisor.</span><br />
 <br />
 <span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It&#39;s efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
+<br />
+<a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />
 <br />
 <span>Bhyve supports running various guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which will later in this series be used to run k3s.</span><br />
 <br />
