@@ -1,0 +1,609 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-4-rocky-linux-bhyve-vms'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</h1><br />
+<br />
+<span class='quote'>Published at 2025-04-04T23:21:01+03:00</span><br />
+<br />
+<span>This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-4-rocky-linux-bhyve-vms'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</a></li>
+<li>⇢ <a href='#basic-bhyve-setup'>Basic Bhyve setup</a></li>
+<li>⇢ <a href='#rocky-linux-vms'>Rocky Linux VMs</a></li>
+<li>⇢ ⇢ <a href='#iso-download'>ISO download</a></li>
+<li>⇢ ⇢ <a href='#vm-configuration'>VM configuration</a></li>
+<li>⇢ ⇢ <a href='#vm-installation'>VM installation</a></li>
+<li>⇢ ⇢ <a href='#increase-of-the-disk-image'>Increase of the disk image</a></li>
+<li>⇢ ⇢ <a href='#connect-to-vnc'>Connect to VNC</a></li>
+<li>⇢ <a href='#after-install'>After install</a></li>
+<li>⇢ ⇢ <a href='#vm-auto-start-after-host-reboot'>VM auto-start after host reboot</a></li>
+<li>⇢ ⇢ <a href='#static-ip-configuration'>Static IP configuration</a></li>
+<li>⇢ ⇢ <a href='#permitting-root-login'>Permitting root login</a></li>
+<li>⇢ ⇢ <a href='#install-latest-updates'>Install latest updates</a></li>
+<li>⇢ <a href='#stress-testing-cpu'>Stress testing CPU</a></li>
+<li>⇢ ⇢ <a href='#silly-freebsd-host-benchmark'>Silly FreeBSD host benchmark</a></li>
+<li>⇢ ⇢ <a href='#silly-rocky-linux-vm--bhyve-benchmark'>Silly Rocky Linux VM @ Bhyve benchmark</a></li>
+<li>⇢ ⇢ <a href='#silly-freebsd-vm--bhyve-benchmark'>Silly FreeBSD VM @ Bhyve benchmark</a></li>
+<li>⇢ <a href='#benchmarking-with-ubench'>Benchmarking with <span class='inlinecode'>ubench</span></a></li>
+<li>⇢ ⇢ <a href='#freebsd-host-ubench-benchmark'>FreeBSD host <span class='inlinecode'>ubench</span> benchmark</a></li>
+<li>⇢ ⇢ <a href='#freebsd-vm--bhyve-ubench-benchmark'>FreeBSD VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
+<li>⇢ ⇢ <a href='#rocky-linux-vm--bhyve-ubench-benchmark'>Rocky Linux VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are going to install the Bhyve hypervisor.</span><br />
+<br />
+<span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It&#39;s efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
+<br />
+<span>Bhyve supports running various guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which will later in this series be used to run k3s.</span><br />
+<br />
+<h2 style='display: inline' id='check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</h2><br />
+<br />
+<span>POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. CPU virtualization and Bhyve support for the POPCNT instruction are important because guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines for better performance. Without POPCNT support, some applications might not run or perform sub-optimally in virtualized environments.</span><br />
+<br />
+<span>To check for <span class='inlinecode'>POPCNT</span> support, run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % dmesg | grep <font color="#808080">'Features2=.*POPCNT'</font>
+  Features2=<font color="#000000">0x7ffafbbf</font>&lt;SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.<font color="#000000">1</font>,SSE4.<font color="#000000">2</font>,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND&gt;
+</pre>
+<br />
+<span>So it&#39;s there! All good.</span><br />
+<br />
+<h2 style='display: inline' id='basic-bhyve-setup'>Basic Bhyve setup</h2><br />
+<br />
+<span>For managing the Bhyve VMs, we are using <span class='inlinecode'>vm-bhyve</span>, a tool not part of the FreeBSD operating system but available as a ready-to-use package. It eases VM management and reduces a lot of overhead. We also install the required package to make Bhyve work with the UEFI firmware.</span><br />
+<br />
+<a class='textlink' href='https://github.com/churchers/vm-bhyve'>https://github.com/churchers/vm-bhyve</a><br />
+<br />
+<span>The following commands are executed on all three hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, and <span class='inlinecode'>f2</span>, where <span class='inlinecode'>re0</span> is the name of the Ethernet interface (which may need to be adjusted if your hardware is different):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install vm-bhyve bhyve-firmware
+paul@f0:~ % doas sysrc vm_enable=YES
+vm_enable:  -&gt; YES
+paul@f0:~ % doas sysrc vm_dir=zfs:zroot/bhyve
+vm_dir:  -&gt; zfs:zroot/bhyve
+paul@f0:~ % doas zfs create zroot/bhyve
+paul@f0:~ % doas vm init
+paul@f0:~ % doas vm switch create public
+paul@f0:~ % doas vm switch add public re0
+</pre>
+<br />
+<span>Bhyve stores all it&#39;s data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % zfs list | grep bhyve
+zroot/bhyve                                   <font color="#000000">1</font>.74M   453G  <font color="#000000">1</font>.74M  /zroot/bhyve
+</pre>
+<br />
+<span>For convenience, we also create this symlink:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas ln -s /zroot/bhyve/ /bhyve
+
+</pre>
+<br />
+<span>Now, Bhyve is ready to rumble, but no VMs are there yet:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm list
+NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
+</pre>
+<br />
+<h2 style='display: inline' id='rocky-linux-vms'>Rocky Linux VMs</h2><br />
+<br />
+<span>As guest VMs I decided to use Rocky Linux.</span><br />
+<br />
+<span>Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades. Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.</span><br />
+<br />
+<a class='textlink' href='https://rockylinux.org/'>https://rockylinux.org/</a><br />
+<br />
+<h3 style='display: inline' id='iso-download'>ISO download</h3><br />
+<br />
+<span>We&#39;re going to install the Rocky Linux from the latest minimal iso:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm iso \
+ https://download.rockylinux.org/pub/rocky/<font color="#000000">9</font>/isos/x86_64/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+/zroot/bhyve/.iso/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso        <font color="#000000">1808</font> MB <font color="#000000">4780</font> kBps 06m28s
+paul@f0:/bhyve % doas vm create rocky
+</pre>
+<h3 style='display: inline' id='vm-configuration'>VM configuration</h3><br />
+<br />
+<span>The default Bhyve VM configuration looks like this now:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat rocky.conf
+loader=<font color="#808080">"bhyveload"</font>
+cpu=<font color="#000000">1</font>
+memory=256M
+network0_type=<font color="#808080">"virtio-net"</font>
+network0_switch=<font color="#808080">"public"</font>
+disk0_type=<font color="#808080">"virtio-blk"</font>
+disk0_name=<font color="#808080">"disk0.img"</font>
+uuid=<font color="#808080">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
+network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
+</pre>
+<br />
+<span>The <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ for each of the three VMs.</span><br />
+<br />
+<span>But to make Rocky Linux boot it (plus some other adjustments, e.g. as we intend to run the majority of the workload in the k3s cluster running on those Linux VMs, we give them beefy specs like 4 CPU cores and 14GB RAM). So we run <span class='inlinecode'>doas vm configure rocky</span> and modified it to:</span><br />
+<br />
+<pre>
+guest="linux"
+loader="uefi"
+uefi_vars="yes"
+cpu=4
+memory=14G
+network0_type="virtio-net"
+network0_switch="public"
+disk0_type="virtio-blk"
+disk0_name="disk0.img"
+graphics="yes"
+graphics_vga=io
+uuid="1c45400b-c828-11ef-8871-e8ff1ed71cac"
+network0_mac="58:9c:fc:0d:13:3f"
+</pre>
+<br />
+<h3 style='display: inline' id='vm-installation'>VM installation</h3><br />
+<br />
+<span>To start the installer from the downloaded ISO, we run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+Starting rocky
+  * found guest <b><u><font color="#000000">in</font></u></b> /zroot/bhyve/rocky
+  * booting...
+
+paul@f0:/bhyve/rocky % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO  STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  No    Locked (f0.lan.buetow.org)
+
+paul@f0:/bhyve/rocky % doas sockstat -<font color="#000000">4</font> | grep <font color="#000000">5900</font>
+root     bhyve       <font color="#000000">6079</font> <font color="#000000">8</font>   tcp4   *:<font color="#000000">5900</font>                *:*
+</pre>
+<br />
+<span>Port 5900 now also opens for VNC connections, so I connected it with a VNC client and ran through the installation dialogues. This could be done unattended or more automated, but there are only three VMs to install, and the automation doesn&#39;t seem worth it as we do it only once a year or less often.</span><br />
+<br />
+<h3 style='display: inline' id='increase-of-the-disk-image'>Increase of the disk image</h3><br />
+<br />
+<span>By default, the VM disk image is only 20G, which is a bit small for our purposes, so I stopped the VMs again, ran <span class='inlinecode'>truncate</span> on the image file to enlarge them to 100G, and re-started the installation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % doas vm stop rocky
+paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
+paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+</pre>
+<br />
+<h3 style='display: inline' id='connect-to-vnc'>Connect to VNC</h3><br />
+<br />
+<span>For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f0:5900</span>.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-4/1.png'><img src='./f3s-kubernetes-with-freebsd-part-4/1.png' /></a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-4/2.png'><img src='./f3s-kubernetes-with-freebsd-part-4/2.png' /></a><br />
+<br />
+<span>I primarily selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-4/3.png'><img src='./f3s-kubernetes-with-freebsd-part-4/3.png' /></a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-4/4.png'><img src='./f3s-kubernetes-with-freebsd-part-4/4.png' /></a><br />
+<br />
+<h2 style='display: inline' id='after-install'>After install</h2><br />
+<br />
+<span>We perform the following steps for all 3 VMs. In the following, the examples are all executed on <span class='inlinecode'>f0</span> (the VM <span class='inlinecode'>r0</span> running on <span class='inlinecode'>f0</span>):</span><br />
+<br />
+<h3 style='display: inline' id='vm-auto-start-after-host-reboot'>VM auto-start after host reboot</h3><br />
+<br />
+<span>To automatically start the VM on the servers, we add the following to the <span class='inlinecode'>rc.conf</span> on the FreeBSD hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/rc.conf
+vm_list=<font color="#808080">"rocky"</font>
+vm_delay=<font color="#808080">"5"</font>
+</pre>
+<br />
+<span>The <span class='inlinecode'>vm_delay</span> isn&#39;t really required. It is used to wait 5 seconds before starting each VM, but there is currently only one VM per host. Maybe later, when there are more, this will be useful. After adding, there&#39;s now a <span class='inlinecode'>Yes</span> indicator in the <span class='inlinecode'>AUTO</span> column.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2063</font>)
+</pre>
+<br />
+<h3 style='display: inline' id='static-ip-configuration'>Static IP configuration</h3><br />
+<br />
+<span>After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the 3 FreeBSD hosts were already in my <span class='inlinecode'>/etc/hosts</span> file:</span><br />
+<br />
+<pre>
+192.168.1.130 f0 f0.lan f0.lan.buetow.org
+192.168.1.131 f1 f1.lan f1.lan.buetow.org
+192.168.1.132 f2 f2.lan f2.lan.buetow.org
+</pre>
+<br />
+<span>For the Rocky VMs, we add those to the FreeBSD host systems as well:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
+</pre>
+<br />
+<span>And we configure the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % dnmcli connection down enp0s5
+[root@r0 ~] % dnmcli connection up enp0s5
+[root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
+[root@r0 ~] % cat &lt;&lt;END &gt;&gt;/etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
+</pre>
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>192.168.1.120</span> is the IP of the VM itself (here: <span class='inlinecode'>r0.lan.buetow.org</span>)</li>
+<li><span class='inlinecode'>192.168.1.1</span> is the address of my home router, which also does DNS.</li>
+</ul><br />
+<h3 style='display: inline' id='permitting-root-login'>Permitting root login</h3><br />
+<br />
+<span>As these VMs aren&#39;t directly reachable via SSH from the internet, we enable  <span class='inlinecode'>root</span> login by adding a line with <span class='inlinecode'>PermitRootLogin yes</span> to <span class='inlinecode'>/etc/sshd/sshd_config</span>.</span><br />
+<br />
+<span>Once done, we reboot the VM by running <span class='inlinecode'>reboot</span> inside the VM to test whether everything was configured and persisted correctly.</span><br />
+<br />
+<span>After reboot, I copied my public key from my Laptop to the 3 VMs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>% <b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> <font color="#000000">0</font> <font color="#000000">1</font> <font color="#000000">2</font>; <b><u><font color="#000000">do</font></u></b> ssh-copy-id root@r$i.lan.buetow.org; <b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>Then, I edited the <span class='inlinecode'>/etc/ssh/sshd_config</span> file again on all 3 VMs and configured <span class='inlinecode'>PasswordAuthentication no</span> to only allow SSH key authentication from now on.</span><br />
+<br />
+<h3 style='display: inline' id='install-latest-updates'>Install latest updates</h3><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] % dnf update
+[root@r0 ~] % reboot
+</pre>
+<br />
+<h2 style='display: inline' id='stress-testing-cpu'>Stress testing CPU</h2><br />
+<br />
+<span>The aim is to prove that bhyve VMs are CPU efficient. As I could not find an off-the-shelf benchmarking tool available in the same version for FreeBSD as well as for Rocky Linux 9, I wrote my own silly CPU benchmarking tool in Go:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> main
+
+<b><u><font color="#000000">import</font></u></b> <font color="#808080">"testing"</font>
+
+<b><u><font color="#000000">func</font></u></b> BenchmarkCPUSilly1(b *testing.B) {
+	<b><u><font color="#000000">for</font></u></b> i := <font color="#000000">0</font>; i &lt; b.N; i++ {
+		_ = i * i
+	}
+}
+
+<b><u><font color="#000000">func</font></u></b> BenchmarkCPUSilly2(b *testing.B) {
+	<b><u><font color="#000000">var</font></u></b> sillyResult <b><font color="#000000">float64</font></b>
+	<b><u><font color="#000000">for</font></u></b> i := <font color="#000000">0</font>; i &lt; b.N; i++ {
+		sillyResult += <b><font color="#000000">float64</font></b>(i)
+		sillyResult *= <b><font color="#000000">float64</font></b>(i)
+		divisor := <b><font color="#000000">float64</font></b>(i) + <font color="#000000">1</font>
+		<b><u><font color="#000000">if</font></u></b> divisor &gt; <font color="#000000">0</font> {
+			sillyResult /= divisor
+		}
+	}
+	_ = sillyResult <i><font color="silver">// to avoid compiler optimization</font></i>
+}
+</pre>
+<br />
+<span>You can find the repository here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/sillybench'>https://codeberg.org/snonux/sillybench</a><br />
+<br />
+<h3 style='display: inline' id='silly-freebsd-host-benchmark'>Silly FreeBSD host benchmark</h3><br />
+<br />
+<span>To install it on FreeBSD, we run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install git go
+paul@f0:~ % mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \
+  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  cd sillybench
+</pre>
+<br />
+<span>And to run it:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~/git/sillybench % go version
+go version go1.<font color="#000000">24.1</font> freebsd/amd<font color="#000000">64</font>
+
+paul@f0:~/git/sillybench % go <b><u><font color="#000000">test</font></u></b> -bench=.
+goos: freebsd
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4022</font> ns/op
+BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4027</font> ns/op
+PASS
+ok      codeberg.org/snonux/sillybench <font color="#000000">0</font>.891s
+</pre>
+<br />
+<h3 style='display: inline' id='silly-rocky-linux-vm--bhyve-benchmark'>Silly Rocky Linux VM @ Bhyve benchmark</h3><br />
+<br />
+<span>OK, let&#39;s compare this with the Rocky Linux VM running on Bhyve:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># dnf install golang git</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \</font></i>
+  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  cd sillybench
+</pre>
+<br />
+<span>And to run it:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 sillybench]<i><font color="silver"># go version</font></i>
+go version go1.<font color="#000000">22.9</font> (Red Hat <font color="#000000">1.22</font>.<font color="#000000">9</font>-<font color="#000000">2</font>.el9_5) linux/amd<font color="#000000">64</font>
+[root@r0 sillybench]<i><font color="silver"># go test -bench=.</font></i>
+goos: linux
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4347</font> ns/op
+BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4345</font> ns/op
+</pre>
+<span>The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.</span><br />
+<br />
+<h3 style='display: inline' id='silly-freebsd-vm--bhyve-benchmark'>Silly FreeBSD VM @ Bhyve benchmark</h3><br />
+<br />
+<span>But as I am curious and don&#39;t want to compare apples with bananas, I decided to install a FreeBSD Bhyve VM to run the same silly benchmark in it. I am not going through the details of how to install a FreeBSD Bhyve VM here; you can easily look it up in the documentation.</span><br />
+<br />
+<span>But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won&#39;t use as many CPUs anyway):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>root@freebsd:~/git/sillybench <i><font color="silver"># go test -bench=.</font></i>
+goos: freebsd
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1      <font color="#000000">1000000000</font>               <font color="#000000">0.4273</font> ns/op
+BenchmarkCPUSilly2      <font color="#000000">1000000000</font>               <font color="#000000">0.4286</font> ns/op
+PASS
+ok      codeberg.org/snonux/sillybench  <font color="#000000">0</font>.949s
+</pre>
+<br />
+<span>It&#39;s a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!</span><br />
+<br />
+<h2 style='display: inline' id='benchmarking-with-ubench'>Benchmarking with <span class='inlinecode'>ubench</span></h2><br />
+<br />
+<span>Let&#39;s run another, more sophisticated benchmark using <span class='inlinecode'>ubench</span>, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running <span class='inlinecode'>doas pkg install ubench</span>. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with <span class='inlinecode'>-s</span>, and then let it run at full speed in the second run.</span><br />
+<br />
+<h3 style='display: inline' id='freebsd-host-ubench-benchmark'>FreeBSD host <span class='inlinecode'>ubench</span> benchmark</h3><br />
+<br />
+<span>Single CPU:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas ubench -s <font color="#000000">1</font>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench Single CPU:   <font color="#000000">671010</font> (<font color="#000000">0</font>.40s)
+Ubench Single MEM:  <font color="#000000">1705237</font> (<font color="#000000">0</font>.48s)
+-----------------------------------
+Ubench Single AVG:  <font color="#000000">1188123</font>
+
+</pre>
+<br />
+<span>All CPUs (with all Bhyve VMs stopped):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas ubench
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench CPU:  <font color="#000000">2660220</font>
+Ubench MEM:  <font color="#000000">3095182</font>
+--------------------
+Ubench AVG:  <font color="#000000">2877701</font>
+</pre>
+<br />
+<h3 style='display: inline' id='freebsd-vm--bhyve-ubench-benchmark'>FreeBSD VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</h3><br />
+<br />
+<span>Single CPU:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>root@freebsd:~ <i><font color="silver"># ubench -s 1</font></i>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench Single CPU:   <font color="#000000">672792</font> (<font color="#000000">0</font>.40s)
+Ubench Single MEM:   <font color="#000000">852757</font> (<font color="#000000">0</font>.48s)
+-----------------------------------
+Ubench Single AVG:   <font color="#000000">762774</font>
+</pre>
+<br />
+<span>All CPUs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>root@freebsd:~ <i><font color="silver"># ubench</font></i>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench CPU:  <font color="#000000">2652857</font>
+swap_pager: out of swap space
+swp_pager_getswapspace(<font color="#000000">27</font>): failed
+swap_pager: out of swap space
+swp_pager_getswapspace(<font color="#000000">18</font>): failed
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">43</font> freebsd kernel: pid <font color="#000000">862</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+swp_pager_getswapspace(<font color="#000000">6</font>): failed
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">46</font> freebsd kernel: pid <font color="#000000">863</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">47</font> freebsd kernel: pid <font color="#000000">864</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">48</font> freebsd kernel: pid <font color="#000000">865</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">49</font> freebsd kernel: pid <font color="#000000">861</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">51</font> freebsd kernel: pid <font color="#000000">839</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+</pre>
+<br />
+<span>The multi-CPU benchmark in the Bhyve VM ran with almost identical results to the FreeBSD host system. However, the memory benchmark failed with out-of-swap space errors. I am unsure why, as the VM has 14GB RAM, but I am not investigating further.</span><br />
+<br />
+<span>Also, during the benchmark, I noticed the <span class='inlinecode'>bhyve</span> process on the host was constantly using 399% of the CPU (all 4 CPUs).</span><br />
+<br />
+<pre>
+  PID USERNAME    THR PRI NICE   SIZE    RES STATE    C   TIME    WCPU COMMAND
+ 7449 root         14  20    0    14G    78M kqread   2   2:12 399.81% bhyve
+</pre>
+<br />
+<span>Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I don&#39;t know whether to trust it. Do you have an idea?</span><br />
+<br />
+<h3 style='display: inline' id='rocky-linux-vm--bhyve-ubench-benchmark'>Rocky Linux VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</h3><br />
+<br />
+<span>Unfortunately, I wasn&#39;t able to find <span class='inlinecode'>ubench</span> in any of the Rocky Linux repositories. So, I skipped this test.</span><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>Having Linux VMs running inside FreeBSD&#39;s Bhyve is a solid move for future F3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes) in the Linux world while keeping the steady reliability of FreeBSD.</span><br />
+<br />
+<span>Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows or NetBSD VM to tinker with?</span><br />
+<br />
+<span>This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it&#39;s a nice setup for getting the most out of my hardware and keeping things running smoothly.</span><br />
+<br />
+<span>See you in the next blog post of this series. Maybe we will be installing highly available storage with HAST or we start setting up k3s on the Rocky Linux VMs.</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
