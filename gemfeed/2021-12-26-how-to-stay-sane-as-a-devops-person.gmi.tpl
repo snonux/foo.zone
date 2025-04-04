@@ -2,7 +2,7 @@
 
 > Published at 2021-12-26T12:02:02+00:00; Updated at 2022-01-12
 
-Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you to relax.
+Log4shell (CVE-2021-44228) made it clear, once again, that working in information technology is not an easy job (especially when you are a DevOps person). I thought it would be interesting to summarize a few techniques to help you relax.
 
 (PS: When I mean DevOps, I also mean Site Reliability Engineers and Sysadmins. I believe SRE, DevOps Engineer and Sysadmin are just synonym titles for the same job).
 
@@ -42,7 +42,7 @@ Due to politeness, many people are not setting clear expectations. I personally 
 
 ## Always respond to requests but set expectations and boundaries
 
-There are many temptations to get side-tracked by other projects and/or issues. It is important to set boundaries here. But always answer to all requests as nothing is more frustrating than asking a person and never getting any answer back. This is especially the case when everyone is working form home where people are using tools such as Slack and E-Mail for most of their communications.
+There are many temptations to get side-tracked by other projects and/or issues. It is important to set boundaries here. But always answer to all requests as nothing is more frustrating than asking a person and never getting any answer back. This is especially the case when everyone is working from home where people are using tools such as Slack and E-Mail for most of their communications.
 
 ### Dealing with requests
 
@@ -75,7 +75,7 @@ So even if you think that you can do everything faster by your own, can you real
 
 ### Don't rush
 
-Slowing down also helps to prevent errors. Don't rush your tasks, even if they are urgent. Try to be quick, but don't rush them. Maybe you are writing a script to mitigate a production issue. You could others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.
+Slowing down also helps to prevent errors. Don't rush your tasks, even if they are urgent. Try to be quick, but don't rush them. Maybe you are writing a script to mitigate a production issue. You could let others peer review that script, for example. Their primary programming language may not be the same (e.g. Golang vs Perl), but they would understand the logic. Or ask another DevOps person from your company with good scripting skills review your mitigation, but he then may lack the domain knowledge of the software you are patching. So in either case, the review will take a bit longer as the reviewer might not be an expert in everything.
 
 So relax, don't always expect immediate results. Set clear and reasonable timelines for the management about the mitigations. You are not a superhero who has to do everything by yourself. Sometimes, you will miss a deadline. But that will have good reasons. Don't rush to complete just to meet a deadline. 
 
@@ -93,7 +93,7 @@ This doesn't mean, that you shouldn't try your best. But you don't need to try t
 
 If you are a superhero, try to give away some of your superpowers, so that you can relax in the evening knowing that others (e.g. the current on-call engineers) know how to tackle things. Every member of the team needs to do DevOps (even the team managers, in my humble opinion). Some may be less experienced than others or have other expertises, but to counteract this you could document the recurring tasks so that they are easy to follow (which then later could be either automated away or, even better, fully fixed).
 
-On the other side, if you are a DevOps person, try to sneak into other people's shoes too. For example, you might not be an expert in Java programming, but a lot of the infrastructure is programmed in Java. This is where usually the Software Developers and Engineers shine. But if you know how to read, debug and even extend Java code too (by learning from the Software Developer superheroes), then your will only benefit from it. 
+On the other side, if you are a DevOps person, try to sneak into other people's shoes too. For example, you might not be an expert in Java programming, but a lot of the infrastructure is programmed in Java. This is where usually the Software Developers and Engineers shine. But if you know how to read, debug and even extend Java code too (by learning from the Software Developer superheroes), then you will only benefit from it. 
 
 So you are not a superhero. Or, if you are a superhero, then all colleagues should be superheroes too.
 
@@ -105,7 +105,7 @@ In order to distribute the troubleshooting skills across the team, you should no
 
 The whole paragraph changes when there is an issue you don't know how to resolve. Jump on it, so you can learn from it. But also ask for advice if you are unsure about it.
 
-If the issue is a very critical one, then you might better off trying to resolve it as fast as possible with your full powers in order to avoid any major damage to the company. This, of course, only works if you know how to resolve it quickly. So, don't leave others with not much experience yet looking at it. If possible, work with the team to resolve the issue. Unfortunately, solving it with the team is not always the fastest way. So in this particular circumstance, the company may be better off being saved by a single superhero. Make sure that the problem will not occur again or, at least, that others can fix it the next time without Superman flying by.
+If the issue is a very critical one, then you might be better off trying to resolve it as fast as possible with your full powers in order to avoid any major damage to the company. This, of course, only works if you know how to resolve it quickly. So, don't leave others with not much experience yet looking at it. If possible, work with the team to resolve the issue. Unfortunately, solving it with the team is not always the fastest way. So in this particular circumstance, the company may be better off being saved by a single superhero. Make sure that the problem will not occur again or, at least, that others can fix it the next time without Superman flying by.
 
 ## Force breaks; and shutdown now
 
