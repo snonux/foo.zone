@@ -80,7 +80,9 @@ NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 
 As guest VMs I decided to use Rocky Linux.
 
-Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades. Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.
+Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades.
+
+Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.
 
 => https://rockylinux.org/
 
@@ -94,6 +96,7 @@ paul@f0:~ % doas vm iso \
 /zroot/bhyve/.iso/Rocky-9.5-x86_64-minimal.iso        1808 MB 4780 kBps 06m28s
 paul@f0:/bhyve % doas vm create rocky
 ```
+
 ### VM configuration
 
 The default Bhyve VM configuration looks like this now:
@@ -111,7 +114,7 @@ uuid="1c4655ac-c828-11ef-a920-e8ff1ed71ca0"
 network0_mac="58:9c:fc:0d:13:3f"
 ```
 
-The `uuid` and the `network0_mac` differ for each of the three VMs.
+The `uuid` and the `network0_mac` differ for each of the three VMs (the ones being installed on `f0`, `f1` and `f2`).
 
 But to make Rocky Linux boot it (plus some other adjustments, e.g. as we intend to run the majority of the workload in the k3s cluster running on those Linux VMs, we give them beefy specs like 4 CPU cores and 14GB RAM). So we run `doas vm configure rocky` and modified it to:
 
@@ -153,7 +156,7 @@ Port 5900 now also opens for VNC connections, so I connected it with a VNC clien
 
 ### Increase of the disk image
 
-By default, the VM disk image is only 20G, which is a bit small for our purposes, so I stopped the VMs again, ran `truncate` on the image file to enlarge them to 100G, and re-started the installation:
+By default, the VM disk image is only 20G, which is a bit small for our purposes, so we have to stop the VMs again, run `truncate` on the image file to enlarge them to 100G, and restart the installation:
 
 ```sh
 paul@f0:/bhyve/rocky % doas vm stop rocky
@@ -177,7 +180,7 @@ I primarily selected the default settings (auto partitioning on the 100GB drive 
 
 ## After install
 
-We perform the following steps for all 3 VMs. In the following, the examples are all executed on `f0` (the VM `r0` running on `f0`):
+We perform the following steps for all three VMs. In the following, the examples are all executed on `f0` (the VM `r0` running on `f0`):
 
 ### VM auto-start after host reboot
 
@@ -200,7 +203,7 @@ rocky  default    uefi    4    14G     0.0.0.0:5900  Yes [1]  Running (2063)
 
 ### Static IP configuration
 
-After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
+After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the three FreeBSD hosts were already in my `/etc/hosts` file:
 
 ```
 192.168.1.130 f0 f0.lan f0.lan.buetow.org
@@ -246,13 +249,13 @@ As these VMs aren't directly reachable via SSH from the internet, we enable  `ro
 
 Once done, we reboot the VM by running `reboot` inside the VM to test whether everything was configured and persisted correctly.
 
-After reboot, I copied my public key from my Laptop to the 3 VMs:
+After reboot, we copy a public key over. E.g. I did this from my Laptop as follows:
 
 ```sh
 % for i in 0 1 2; do ssh-copy-id root@r$i.lan.buetow.org; done
 ```
 
-Then, I edited the `/etc/ssh/sshd_config` file again on all 3 VMs and configured `PasswordAuthentication no` to only allow SSH key authentication from now on.
+Then, we edit the `/etc/ssh/sshd_config` file again on all three VMs and configure `PasswordAuthentication no` to only allow SSH key authentication from now on.
 
 ### Install latest updates
 
@@ -346,13 +349,14 @@ cpu: Intel(R) N100
 BenchmarkCPUSilly1-4    1000000000               0.4347 ns/op
 BenchmarkCPUSilly2-4    1000000000               0.4345 ns/op
 ```
+
 The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.
 
 ### Silly FreeBSD VM @ Bhyve benchmark
 
 But as I am curious and don't want to compare apples with bananas, I decided to install a FreeBSD Bhyve VM to run the same silly benchmark in it. I am not going through the details of how to install a FreeBSD Bhyve VM here; you can easily look it up in the documentation.
 
-But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won't use as many CPUs anyway):
+But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won't use as many CPUs (and memory) anyway):
 
 ```sh
 root@freebsd:~/git/sillybench # go test -bench=.
@@ -370,7 +374,7 @@ It's a bit better than Linux! I am sure that this is not really a scientific ben
 
 ## Benchmarking with `ubench`
 
-Let's run another, more sophisticated benchmark using `ubench`, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running `doas pkg install ubench`. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with `-s`, and then let it run at full speed in the second run.
+Let's run another, more sophisticated benchmark using `ubench`, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running `doas pkg install ubench`. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with `-s`, and then let it run at full speed (using all available CPUs in parallel) in the second run.
 
 ### FreeBSD host `ubench` benchmark
 
@@ -422,6 +426,8 @@ Ubench Single MEM:   852757 (0.48s)
 Ubench Single AVG:   762774
 ```
 
+Wow, the CPU in the VM was a tiny bit faster than on the host! So this was probably just a glitch in the matrix. Memory seems slower, though.
+
 All CPUs:
 
 ```sh
@@ -454,7 +460,7 @@ Also, during the benchmark, I noticed the `bhyve` process on the host was consta
  7449 root         14  20    0    14G    78M kqread   2   2:12 399.81% bhyve
 ```
 
-Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I don't know whether to trust it. Do you have an idea?
+Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I'm not sure whether to trust it, especially due to the swap errors. Does `ubench`'s memory benchmark use swap space for the memory test? That wouldn't make sense and might explain the difference to some degree, though. Do you have any ideas?
 
 ### Rocky Linux VM @ Bhyve `ubench` benchmark
 
@@ -462,7 +468,7 @@ Unfortunately, I wasn't able to find `ubench` in any of the Rocky Linux reposito
 
 ## Conclusion
 
-Having Linux VMs running inside FreeBSD's Bhyve is a solid move for future F3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes) in the Linux world while keeping the steady reliability of FreeBSD.
+Having Linux VMs running inside FreeBSD's Bhyve is a solid move for future f3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes, eBPF, systemd) in the Linux world while keeping the steady reliability of FreeBSD.
 
 Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows or NetBSD VM to tinker with?
 
