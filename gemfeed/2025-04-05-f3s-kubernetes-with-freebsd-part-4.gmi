@@ -1,12 +1,42 @@
-# f3s: Kubernetes with FreeBSD - Rocky Linux Bhyve VMs - Part 4
+# f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+
+> Published at 2025-04-04T23:21:01+03:00
 
 This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
-<< template::inline::index f3s-kubernetes-with-freebsd-part
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)
 
-=> ./f3s-kubernetes-with-frhyveeebsd-part-1/f3slogo.png f3s logo
+=> ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
-<< template::inline::toc
+## Table of Contents
+
+* ⇢ f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Check for `POPCNT` CPU support
+* ⇢ ⇢ Basic Bhyve setup
+* ⇢ ⇢ Rocky Linux VMs
+* ⇢ ⇢ ⇢ ISO download
+* ⇢ ⇢ ⇢ VM configuration
+* ⇢ ⇢ ⇢ VM installation
+* ⇢ ⇢ ⇢ Increase of the disk image
+* ⇢ ⇢ ⇢ Connect to VNC
+* ⇢ ⇢ After install
+* ⇢ ⇢ ⇢ VM auto-start after host reboot
+* ⇢ ⇢ ⇢ Static IP configuration
+* ⇢ ⇢ ⇢ Permitting root login
+* ⇢ ⇢ ⇢ Install latest updates
+* ⇢ ⇢ Stress testing CPU
+* ⇢ ⇢ ⇢ Silly FreeBSD host benchmark
+* ⇢ ⇢ ⇢ Silly Rocky Linux VM @ Bhyve benchmark
+* ⇢ ⇢ ⇢ Silly FreeBSD VM @ Bhyve benchmark
+* ⇢ ⇢ Benchmarking with `ubench`
+* ⇢ ⇢ ⇢ FreeBSD host `ubench` benchmark
+* ⇢ ⇢ ⇢ FreeBSD VM @ Bhyve `ubench` benchmark
+* ⇢ ⇢ ⇢ Rocky Linux VM @ Bhyve `ubench` benchmark
+* ⇢ ⇢ Conclusion
 
 ## Introduction
 
@@ -74,7 +104,11 @@ NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 
 ## Rocky Linux VMs
 
-TODO: Why this Distro?
+As guest VMs I decided to use Rocky Linux.
+
+Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades. Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.
+
+=> https://rockylinux.org/
 
 ### ISO download
 
@@ -88,7 +122,7 @@ paul@f0:/bhyve % doas vm create rocky
 ```
 ### VM configuration
 
-The default configuration looks like this now:
+The default Bhyve VM configuration looks like this now:
 
 ```sh
 paul@f0:/bhyve/rocky % cat rocky.conf
@@ -103,7 +137,7 @@ uuid="1c4655ac-c828-11ef-a920-e8ff1ed71ca0"
 network0_mac="58:9c:fc:0d:13:3f"
 ```
 
-The `uuid` and the `network0_mac` differ on each host.
+The `uuid` and the `network0_mac` differ for each of the three VMs.
 
 But to make Rocky Linux boot it (plus some other adjustments, e.g. as we intend to run the majority of the workload in the k3s cluster running on those Linux VMs, we give them beefy specs like 4 CPU cores and 14GB RAM). So we run `doas vm configure rocky` and modified it to:
 
@@ -125,7 +159,7 @@ network0_mac="58:9c:fc:0d:13:3f"
 
 ### VM installation
 
-To start the installer from the downloaded ISO, I run:
+To start the installer from the downloaded ISO, we run:
 
 ```sh
 paul@f0:~ % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
@@ -141,11 +175,11 @@ paul@f0:/bhyve/rocky % doas sockstat -4 | grep 5900
 root     bhyve       6079 8   tcp4   *:5900                *:*
 ```
 
-Port 5900 now also opens for VNC connections, so I connected it with a VNC client and ran through the installation dialogues. This could be done unattended or more automated, but there are only 3 VMs to install, and the automation doesn't seem worth it as we do it only once a year or less often.
+Port 5900 now also opens for VNC connections, so I connected it with a VNC client and ran through the installation dialogues. This could be done unattended or more automated, but there are only three VMs to install, and the automation doesn't seem worth it as we do it only once a year or less often.
 
 ### Increase of the disk image
 
-By default, the VM disk image is only 20G, which is a bit small for my purposes, so I stopped the VMs again, ran `truncate` on the image file to enlarge them to 100G, and re-started the installation:
+By default, the VM disk image is only 20G, which is a bit small for our purposes, so I stopped the VMs again, ran `truncate` on the image file to enlarge them to 100G, and re-started the installation:
 
 ```sh
 paul@f0:/bhyve/rocky % doas vm stop rocky
@@ -157,15 +191,23 @@ paul@f0:/bhyve/rocky % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
 
 For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f0:5900`.
 
+=> ./f3s-kubernetes-with-freebsd-part-4/1.png
+
+=> ./f3s-kubernetes-with-freebsd-part-4/2.png
+
 I primarily selected the default settings (auto partitioning on the 100GB drive and a root user password). After the installation, the VMs were rebooted.
+
+=> ./f3s-kubernetes-with-freebsd-part-4/3.png
+
+=> ./f3s-kubernetes-with-freebsd-part-4/4.png
 
 ## After install
 
-I performed the following steps for all 3 VMs. In the following, the examples are all executed on `f0` (the VM `r0` running on `f0`):
+We perform the following steps for all 3 VMs. In the following, the examples are all executed on `f0` (the VM `r0` running on `f0`):
 
 ### VM auto-start after host reboot
 
-To automatically start the VM on the servers, I added the following to the `rc.conf` on the FreeBSD hosts:
+To automatically start the VM on the servers, we add the following to the `rc.conf` on the FreeBSD hosts:
 
 ```sh
 
@@ -184,7 +226,7 @@ rocky  default    uefi    4    14G     0.0.0.0:5900  Yes [1]  Running (2063)
 
 ### Static IP configuration
 
-After that, I changed the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
+After that, we change the network configuration of the VMs to be static (from DHCP) here. As per the previous post of this series, the 3 FreeBSD hosts were already in my `/etc/hosts` file:
 
 ```
 192.168.1.130 f0 f0.lan f0.lan.buetow.org
@@ -192,7 +234,7 @@ After that, I changed the network configuration of the VMs to be static (from DH
 192.168.1.132 f2 f2.lan f2.lan.buetow.org
 ```
 
-For the Rocky VMs, I added those to the FreeBSD host systems as well:
+For the Rocky VMs, we add those to the FreeBSD host systems as well:
 
 ```sh
 paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/hosts
@@ -202,7 +244,7 @@ paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/hosts
 END
 ```
 
-And configured the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:
+And we configure the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:
 
 ```sh
 [root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
@@ -226,9 +268,9 @@ Whereas:
 
 ### Permitting root login
 
-As these VMs aren't directly reachable via SSH from the internet, I enabled `root` login by adding a line with `PermitRootLogin yes` to `/etc/sshd/sshd_config`.
+As these VMs aren't directly reachable via SSH from the internet, we enable  `root` login by adding a line with `PermitRootLogin yes` to `/etc/sshd/sshd_config`.
 
-Once done, I rebooted the VM by running `reboot` inside the VM to test whether everything was configured and persisted correctly.
+Once done, we reboot the VM by running `reboot` inside the VM to test whether everything was configured and persisted correctly.
 
 After reboot, I copied my public key from my Laptop to the 3 VMs:
 
@@ -278,7 +320,7 @@ You can find the repository here:
 
 => https://codeberg.org/snonux/sillybench
 
-### FreeBSD benchmark
+### Silly FreeBSD host benchmark
 
 To install it on FreeBSD, we run:
 
@@ -306,7 +348,7 @@ PASS
 ok      codeberg.org/snonux/sillybench 0.891s
 ```
 
-### Rocky Linux VM @ Bhyve benchmark
+### Silly Rocky Linux VM @ Bhyve benchmark
 
 OK, let's compare this with the Rocky Linux VM running on Bhyve:
 
@@ -318,7 +360,6 @@ OK, let's compare this with the Rocky Linux VM running on Bhyve:
 ````
 
 And to run it:
-
 
 ```sh
 [root@r0 sillybench]# go version
@@ -333,9 +374,11 @@ BenchmarkCPUSilly2-4    1000000000               0.4345 ns/op
 ```
 The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.
 
+### Silly FreeBSD VM @ Bhyve benchmark
+
 But as I am curious and don't want to compare apples with bananas, I decided to install a FreeBSD Bhyve VM to run the same silly benchmark in it. I am not going through the details of how to install a FreeBSD Bhyve VM here; you can easily look it up in the documentation.
 
-But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 12GB of RAM; the benchmark won't use as many CPUs anyway):
+But here are the results running the same silly benchmark in a FreeBSD Bhyve VM with the same FreeBSD and Go versions as the host system (I have the VM 4 vCPUs and 14GB of RAM; the benchmark won't use as many CPUs anyway):
 
 ```sh
 root@freebsd:~/git/sillybench # go test -bench=.
@@ -350,18 +393,120 @@ ok      codeberg.org/snonux/sillybench  0.949s
 ```
 
 It's a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!
+
+## Benchmarking with `ubench`
+
+Let's run another, more sophisticated benchmark using `ubench`, the Unix Benchmark Utility available for FreeBSD. It was installed by simply running `doas pkg install ubench`. It can benchmark CPU and memory performance. Here, we limit it to one CPU for the first run with `-s`, and then let it run at full speed in the second run.
+
+### FreeBSD host `ubench` benchmark
+
+Single CPU:
+
+```sh
+paul@f0:~ % doas ubench -s 1
+Unix Benchmark Utility v.0.3
+Copyright (C) July, 1999 PhysTech, Inc.
+Author: Sergei Viznyuk <sv@phystech.com>
+http://www.phystech.com/download/ubench.html
+FreeBSD 14.2-RELEASE-p1 FreeBSD 14.2-RELEASE-p1 GENERIC amd64
+Ubench Single CPU:   671010 (0.40s)
+Ubench Single MEM:  1705237 (0.48s)
+-----------------------------------
+Ubench Single AVG:  1188123
+
+```
+
+All CPUs (with all Bhyve VMs stopped):
+
+```sh
+paul@f0:~ % doas ubench
+Unix Benchmark Utility v.0.3
+Copyright (C) July, 1999 PhysTech, Inc.
+Author: Sergei Viznyuk <sv@phystech.com>
+http://www.phystech.com/download/ubench.html
+FreeBSD 14.2-RELEASE-p1 FreeBSD 14.2-RELEASE-p1 GENERIC amd64
+Ubench CPU:  2660220
+Ubench MEM:  3095182
+--------------------
+Ubench AVG:  2877701
+```
+
+### FreeBSD VM @ Bhyve `ubench` benchmark
+
+Single CPU:
+
+```sh
+root@freebsd:~ # ubench -s 1
+Unix Benchmark Utility v.0.3
+Copyright (C) July, 1999 PhysTech, Inc.
+Author: Sergei Viznyuk <sv@phystech.com>
+http://www.phystech.com/download/ubench.html
+FreeBSD 14.2-RELEASE-p1 FreeBSD 14.2-RELEASE-p1 GENERIC amd64
+Ubench Single CPU:   672792 (0.40s)
+Ubench Single MEM:   852757 (0.48s)
+-----------------------------------
+Ubench Single AVG:   762774
+```
+
+All CPUs:
+
+```sh
+root@freebsd:~ # ubench
+Unix Benchmark Utility v.0.3
+Copyright (C) July, 1999 PhysTech, Inc.
+Author: Sergei Viznyuk <sv@phystech.com>
+http://www.phystech.com/download/ubench.html
+FreeBSD 14.2-RELEASE-p1 FreeBSD 14.2-RELEASE-p1 GENERIC amd64
+Ubench CPU:  2652857
+swap_pager: out of swap space
+swp_pager_getswapspace(27): failed
+swap_pager: out of swap space
+swp_pager_getswapspace(18): failed
+Apr  4 23:02:43 freebsd kernel: pid 862 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+swp_pager_getswapspace(6): failed
+Apr  4 23:02:46 freebsd kernel: pid 863 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+Apr  4 23:02:47 freebsd kernel: pid 864 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+Apr  4 23:02:48 freebsd kernel: pid 865 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+Apr  4 23:02:49 freebsd kernel: pid 861 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+Apr  4 23:02:51 freebsd kernel: pid 839 (ubench), jid 0, uid 0, was killed: failed to reclaim memory
+```
+
+The multi-CPU benchmark in the Bhyve VM ran with almost identical results to the FreeBSD host system. However, the memory benchmark failed with out-of-swap space errors. I am unsure why, as the VM has 14GB RAM, but I am not investigating further.
+
+Also, during the benchmark, I noticed the `bhyve` process on the host was constantly using 399% of the CPU (all 4 CPUs).
+
+```
+  PID USERNAME    THR PRI NICE   SIZE    RES STATE    C   TIME    WCPU COMMAND
+ 7449 root         14  20    0    14G    78M kqread   2   2:12 399.81% bhyve
+```
+
+Overall, Bhyve has a small overhead, but the CPU performance difference is negligible. The FreeBSD host is slightly faster than the FreeBSD VM running on Bhyve, but the difference is small enough for our use cases. The memory benchmark seems slightly off, but I don't know whether to trust it. Do you have an idea?
+
+### Rocky Linux VM @ Bhyve `ubench` benchmark
+
+Unfortunately, I wasn't able to find `ubench` in any of the Rocky Linux repositories. So, I skipped this test.
+
 ## Conclusion
 
 Having Linux VMs running inside FreeBSD's Bhyve is a solid move for future F3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes) in the Linux world while keeping the steady reliability of FreeBSD.
 
-Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows VM or a NetBSD VM to tinker with?
+Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows or NetBSD VM to tinker with?
 
-This flexibility is great for keeping options open and managing different kinds of workloads without overcomplicating things. Overall, it's a nice setup for getting the most out of my hardware and keeping things running smoothly.
+This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it's a nice setup for getting the most out of my hardware and keeping things running smoothly.
 
+See you in the next blog post of this series. Maybe we will be installing highly available storage with HAST or we start setting up k3s on the Rocky Linux VMs.
 
 Other *BSD-related posts:
 
-<< template::inline::rindex bsd
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 E-Mail your comments to `paul@nospam.buetow.org`
 

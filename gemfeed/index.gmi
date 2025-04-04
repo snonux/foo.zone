@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 - f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 => ./2025-03-05-sharing-on-social-media-with-gos.gmi 2025-03-05 - Sharing on Social Media with Gos v1.0.0
 => ./2025-02-08-random-weird-things-ii.gmi 2025-02-08 - Random Weird Things - Part Ⅱ
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts

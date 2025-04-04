@@ -330,7 +330,13 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
 Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 ```
 
-All good :-) See you in the next post of this series!
+All good :-)
+
+## Conclusion
+
+I have the same UPS (but with a bit more capacity) for my main work setup, which powers my 28" screen, music equipment, etc. It has already been helpful a couple of times during power outages here, so I am sure that the smaller UPS for the F3s setup will be of great use.
+
+See you in the next post of this series!
 
 Other BSD related posts are:
 
