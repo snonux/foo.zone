@@ -7,6 +7,7 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -27,6 +28,7 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 * [⇢ ⇢ Power outage simulation](#power-outage-simulation)
 * [⇢ ⇢ ⇢ Pulling the plug](#pulling-the-plug)
 * [⇢ ⇢ ⇢ Restoring power](#restoring-power)
+* [⇢ ⇢ Conclusion](#conclusion)
 
 ## Introduction
 
@@ -348,10 +350,17 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd exiting, signal 15
 Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 ```
 
-All good :-) See you in the next post of this series!
+All good :-)
+
+## Conclusion
+
+I have the same UPS (but with a bit more capacity) for my main work setup, which powers my 28" screen, music equipment, etc. It has already been helpful a couple of times during power outages here, so I am sure that the smaller UPS for the F3s setup will be of great use.
+
+See you in the next post of this series!
 
 Other BSD related posts are:
 
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  

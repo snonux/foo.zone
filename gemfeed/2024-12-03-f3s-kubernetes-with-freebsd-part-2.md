@@ -8,6 +8,7 @@ We set the stage last time; this time, we will set up the hardware for this proj
 
 These are all the posts so far:
 
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
@@ -298,6 +299,7 @@ Read the next post of this series:
 
 Other *BSD-related posts:
 
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
