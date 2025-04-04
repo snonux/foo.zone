@@ -44,6 +44,8 @@ In this blog post, we are going to install the Bhyve hypervisor.
 
 The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve's strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It's efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.
 
+[https://wiki.freebsd.org/bhyve](https://wiki.freebsd.org/bhyve)  
+
 Bhyve supports running various guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which will later in this series be used to run k3s.
 
 ## Check for `POPCNT` CPU support
