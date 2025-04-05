@@ -221,7 +221,7 @@ paul@f0:/bhyve/rocky % cat <<END | doas tee -a /etc/hosts
 END
 ```
 
-And we configure the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:
+And we configure the IPs accordingly on the VMs themselves by opening a root shell via SSH to the VMs and entering the following commands on each of the VMs:
 
 ```sh
 [root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
