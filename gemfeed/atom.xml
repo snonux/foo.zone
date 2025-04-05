@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-05T10:06:30+03:00</updated>
+    <updated>2025-04-05T11:33:13+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -9312,7 +9312,7 @@ Art by      \ \_!  / __!
 </ul><br />
 <h2 style='display: inline' id='emacs-is-a-giant-dragon'>Emacs is a giant dragon</h2><br />
 <br />
-<span>Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There&#39;s an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class='inlinecode'>init 1</span> process (if you don&#39;t know what the <span class='inlinecode'>init 1</span> process is: Under UNIX and similar operating systems, it&#39;s the very first userland processed launched. That&#39;s usually <span class='inlinecode'>systemd</span> on Linux-based systems, <span class='inlinecode'>launchd</span> on macOS, or any other init script or init system used by the OS)!</span><br />
+<span>Emacs feels like a giant dragon as it is much more than an editor or an integrated development environment. Emacs is a whole platform on its own. There&#39;s an E-Mail client, an IRC client, or even games you can run within Emacs. And you can also change Emacs within Emacs using its own Lisp dialect, Emacs Lisp (Emacs is programmed in Emacs Lisp). Therefore, Emacs is also its own programming language. You can change every aspect of Emacs within Emacs itself. People jokingly state Emacs is an operating system and that you should directly use it as the <span class='inlinecode'>init 1</span> process (if you don&#39;t know what the <span class='inlinecode'>init 1</span> process is: Under UNIX and similar operating systems, it&#39;s the very first userland process launched. That&#39;s usually <span class='inlinecode'>systemd</span> on Linux-based systems, <span class='inlinecode'>launchd</span> on macOS, or any other init script or init system used by the OS)!</span><br />
 <br />
 <span>In many aspects, Emacs is like shooting at everything with a bazooka! However, I prefer it simple. I only wanted Emacs to be a good editor (which it is, too), but there&#39;s too much other stuff in Emacs that I don&#39;t need to care about! Vim and NeoVim do one thing excellent: Being great text editors and, when loaded with plugins, decent IDEs, too. </span><br />
 <br />
