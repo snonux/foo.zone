@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-04T23:43:38+03:00</updated>
+    <updated>2025-04-05T10:06:30+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -305,7 +305,7 @@ http://www.gnu.org/software/src-highlite -->
 END
 </pre>
 <br />
-<span>And we configure the IPs accordingly on the VMs themselves by opening a root shell via RDP to the VMs and entering the following commands on each of the VMs:</span><br />
+<span>And we configure the IPs accordingly on the VMs themselves by opening a root shell via SSH to the VMs and entering the following commands on each of the VMs:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
