@@ -13,8 +13,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 
 << template::inline::toc
 
-# Posts for 202410 202411 202412
-
 ## October 2024
 
 ### First on-call experience in a startup. Doesn't ...
