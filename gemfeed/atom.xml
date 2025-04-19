@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-19T10:29:07+03:00</updated>
+    <updated>2025-04-19T10:32:39+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -15,14 +15,14 @@
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>These are my personal book notes from Daniel Pink's 'When: The Scientific Secrets of Perfect Timing.' They are for myself, but I hope they might be useful to you too.</summary>
+        <summary>These are my personal book notes from Daniel Pink's 'When: The Scientific Secrets of Perfect Timing.' They are for me, but I hope they might be useful to you too.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='when-the-scientific-secrets-of-perfect-timing-book-notes'>"When: The Scientific Secrets of Perfect Timing" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2025-04-19T10:26:05+03:00</span><br />
 <br />
-<span>These are my personal book notes from Daniel Pink&#39;s "When: The Scientific Secrets of Perfect Timing." They are for myself, but I hope they might be useful to you too.</span><br />
+<span>These are my personal book notes from Daniel Pink&#39;s "When: The Scientific Secrets of Perfect Timing." They are for me, but I hope they might be useful to you too.</span><br />
 <br />
 <pre>
 	  __
