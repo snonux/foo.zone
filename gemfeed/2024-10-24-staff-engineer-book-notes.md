@@ -121,6 +121,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
+[2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes](./2025-04-19-when-book-notes.md)  
 [2024-10-24 "Staff Engineer" book notes (You are currently reading this)](./2024-10-24-staff-engineer-book-notes.md)  
 [2024-07-07 "The Stoic Challenge" book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  
 [2024-05-01 "Slow Productivity" book notes](./2024-05-01-slow-productivity-book-notes.md)  

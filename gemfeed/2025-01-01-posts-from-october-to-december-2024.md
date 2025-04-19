@@ -14,7 +14,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 ## Table of Contents
 
 * [⇢ Posts from October to December 2024](#posts-from-october-to-december-2024)
-* [⇢ Posts for 202410 202411 202412](#posts-for-202410-202411-202412)
 * [⇢ ⇢ October 2024](#october-2024)
 * [⇢ ⇢ ⇢ First on-call experience in a startup. Doesn't ...](#first-on-call-experience-in-a-startup-doesn-t-)
 * [⇢ ⇢ ⇢ Reviewing your own PR or MR before asking ...](#reviewing-your-own-pr-or-mr-before-asking-)
@@ -61,8 +60,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ Indeed, useful to know this stuff! `#sre` ...](#indeed-useful-to-know-this-stuff-sre-)
 * [⇢ ⇢ ⇢ It's the small things, which make Unix like ...](#it-s-the-small-things-which-make-unix-like-)
 * [⇢ ⇢ ⇢ My New Year's resolution is not to start any ...](#my-new-year-s-resolution-is-not-to-start-any-)
-
-# Posts for 202410 202411 202412
 
 ## October 2024
 
