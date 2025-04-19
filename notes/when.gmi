@@ -2,7 +2,7 @@
 
 > Published at 2025-04-19T10:26:05+03:00
 
-These are my personal book notes from Daniel Pink's "When: The Scientific Secrets of Perfect Timing." They are for myself, but I hope they might be useful to you too.
+These are my personal book notes from Daniel Pink's "When: The Scientific Secrets of Perfect Timing." They are for me, but I hope they might be useful to you too.
 
 ```
 	  __
