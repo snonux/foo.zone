@@ -16,20 +16,7 @@ These are my personal book notes from Daniel Pink's "When: The Scientific Secret
 __ejm\___/________dwb`---`______________________
 ```
 
-## Table of Contents
-
-* ⇢ "When: The Scientific Secrets of Perfect Timing" book notes
-* ⇢ ⇢ Daily Rhythms
-* ⇢ ⇢ Optimal Task Timing
-* ⇢ ⇢ Exercise Timing
-* ⇢ ⇢ Drinking Habits
-* ⇢ ⇢ Afternoon Challenges ("Bermuda Triangle")
-* ⇢ ⇢ Breaks and Productivity
-* ⇢ ⇢ Napping
-* ⇢ ⇢ Scheduling Breaks
-* ⇢ ⇢ Final Impressions
-* ⇢ ⇢ The Midlife U Curve
-* ⇢ ⇢ Project Management Tips
+<< template::inline::toc
 
 You are a different kind of organism based on the time of day. For example, school tests show worse results later in the day, especially if there are fewer computers than students available. Every person has a chronotype, such as a late or early peaker, or somewhere in the middle (like most people). You can assess your chronotype here:
 
@@ -99,14 +86,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
-=> ./when.gmi 2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes (You are currently reading this)
-=> ./staff-engineer.gmi 2024-10-24 "Staff Engineer" book notes
-=> ./the-stoic-challenge.gmi 2024-07-07 "The Stoic Challenge" book notes
-=> ./slow-productivity.gmi 2024-05-01 "Slow Productivity" book notes
-=> ./mind-management.gmi 2023-11-11 "Mind Management" book notes
-=> ./career-guide-and-soft-skills.gmi 2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes
-=> ./the-obstacle-is-the-way.gmi 2023-05-06 "The Obstacle is the Way" book notes
-=> ./never-split-the-difference.gmi 2023-04-01 "Never split the difference" book notes
-=> ./the-pragmatic-programmer.gmi 2023-03-16 "The Pragmatic Programmer" book notes
+<< template::inline::rindex book-notes
 
 => ../ Back to the main site
