@@ -1,7 +1,7 @@
 # About
 
 * Name: Paul Buetow
-* Father, Husband, Computer tinkerer, Yogi, Science fiction lover, cat owner
+* Father, Husband, Computer tinkerer, Yogi, Science fiction lover, cat owner, G-Shock collector
 * Born in: Germany, currently living in: Sofia, Bulgaria
 * Profession: Computerist -  Solving problems with computers that we wouldn't have without them
 * Current job: Site Reliability Engineer
@@ -14,8 +14,8 @@
 
 [My blog here at foo.zone](../)  
 [codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
-[dtail.dev - DTail at Mimecast](https://dtail.dev)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
+[- DTail](./dtail.md)  
 [Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
 
