@@ -15,7 +15,7 @@
 => ../ My blog here at foo.zone
 => https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page
 => https://irregular.ninja irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)
-=> ./dtail.gmi - DTail
+=> ./dtail.gmi DTail - the distributed log tailing program
 => ./resources.gmi Books, Podcasts, Courses and Guides I recommend
 => ./novels.gmi Novels I've read
 
