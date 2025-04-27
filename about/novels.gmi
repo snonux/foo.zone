@@ -63,31 +63,31 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Andreas Brandhorst (german)
 
-* 2004 - Diamant (german) - Diamant-Trilogie
-* 2004 - Der Metamorph (german) - Diamant-Trilogie
-* 2005 - Der Zeitkrieg (german) - Diamant-Trilogie
-* 2006 - Feuervögel (german) - Graken-Trilogie
-* 2007 - Feuerstürme (german) - Graken-Trilogie
-* 2008 - Feuerträume (german) - Graken-Trilogie
-* 2010 - Kinder der Ewigkeit (german)
-* 2012 - Das Artefakt (german)
-* 2013 - Der letzte Regent (german)
-* 2014 - Das Kosmotop (german)
-* 2015 - Ikarus (german)
-* 2015 - Das Schiff (german)
-* 2016 - Omni (german) - Omniversum
-* 2017 - Das Arkonadia-Rätsel (german) - Omniversum
-* 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie
-* 2018 - Ewiges Leben (german), Andreas Brandhorst
+* 2004 - Diamant (german) - Diamant-Trilogie, Paperback
+* 2004 - Der Metamorph (german) - Diamant-Trilogie, Paperback
+* 2005 - Der Zeitkrieg (german) - Diamant-Trilogie, Paperback
+* 2006 - Feuervögel (german) - Graken-Trilogie, Paperback
+* 2007 - Feuerstürme (german) - Graken-Trilogie, Paperback
+* 2008 - Feuerträume (german) - Graken-Trilogie, Paperback
+* 2010 - Kinder der Ewigkeit (german), Paperback
+* 2012 - Das Artefakt (german), Paperback
+* 2013 - Der letzte Regent (german), Paperback
+* 2014 - Das Kosmotop (german), Paperback
+* 2015 - Ikarus (german), Paperback
+* 2015 - Das Schiff (german), Paperback
+* 2016 - Omni (german) - Omniversum, Paperback
+* 2017 - Das Arkonadia-Rätsel (german) - Omniversum, Paperback
+* 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie, Paperback
+* 2018 - Ewiges Leben (german), Andreas Brandhorst, Paperback
 * 2019 - Das Netz der Sterne (german), Audiobook
 * 2019 - Seelenfänger (german), Andreas Brandhorst, Audiobook
-* 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie
-* 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie
-* 2022 - Eklipse (german)
+* 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie, Paperback
+* 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie, Paperback
+* 2022 - Eklipse (german), Paperback
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
-* 2024 - Der Riss (german), Andreas Brandhorst
+* 2024 - Der Riss (german), Andreas Brandhorst, Paperback
 
 ### David Reimer (german)
 
@@ -98,7 +98,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Ian Banks
 
-* 1987 - Consider Pheblas (english) / Bedenke Pheblas (german) - Culture Book 1
+* 1987 - Consider Pheblas (english) / Bedenke Pheblas (german) - Culture Book 1, Audiobook
 * 1988 - The Player of Games (english) - Culture Book 2, Audiobook
 
 ### Dan Simmons
@@ -109,22 +109,22 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 ### Other authors
 
 * 1949 - 1984, George Orwell, Audiobook
-* 1979 - The Hitchhikers Guide to the Galaxy (english) / Per Anhalter durch die Galaxis (german), Adam Douglas - All books of the series
-* 2009 - Quest, Andreas Eschbach
-* 2010 - The Icarus Hunt (english) / Jagt auf Ikarus (german), Timothy Zahn
+* 1979 - The Hitchhikers Guide to the Galaxy (english) / Per Anhalter durch die Galaxis (german), Adam Douglas - All books of the series, Paperback
+* 2009 - Quest, Andreas Eschbach, Paperback
+* 2010 - The Icarus Hunt (english) / Jagt auf Ikarus (german), Timothy Zahn, Paperback
 * 2010 - Der Astronaut (german), Andy Weir, Audiobook
 * 2019 - Die Unvollkommenen (german), Theresa Hannig, Audiobook
 * 2022 - Mickey 7 - Der letzte Klon (german), Edward Ashton, Audiobook
 
 ## Currently reading
 
-* 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german)
+* 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german), Paperback
 * 2015 - The Three-Body Problem, Liu Cixin, Audiobook
-* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german)
+* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Paperback
 
 ## Unread books already in my shelf
 
-* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german)
+* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
