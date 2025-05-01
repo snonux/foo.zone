@@ -110,6 +110,118 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
+# "Mind Management" book notes
+
+> Published at 2023-11-11T22:21:47+02:00
+
+These are my personal takeaways after reading "Mind Management" by David Kadavy. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
+## Table of Contents
+
+* [⇢ "Mind Management" book notes](#mind-management-book-notes)
+* [⇢ ⇢ It's not about time management](#it-s-not-about-time-management)
+* [⇢ ⇢ Empty slots in the calendar](#empty-slots-in-the-calendar)
+* [⇢ ⇢ When you safe time...](#when-you-safe-time)
+* [⇢ ⇢ Follow your mood](#follow-your-mood)
+* [⇢ ⇢ Boosting creativity](#boosting-creativity)
+* [⇢ ⇢ The right mood for the task at hand](#the-right-mood-for-the-task-at-hand)
+* [⇢ ⇢ Creativity hacks](#creativity-hacks)
+* [⇢ ⇢ Planning and strategizing](#planning-and-strategizing)
+* [⇢ ⇢ Fake it until you make it. ](#fake-it-until-you-make-it-)
+
+## It's not about time management
+
+Productivity isn't about time management - it's about mind management. When you put a lot of effort into something, there are:
+
+* The point of diminishing returns
+* The point of negative return
+
+## Empty slots in the calendar
+
+If we do more things in less time and use all possible slots, speed read, etc., we are more productive. But in reality, that's not the entire truth. You also exchange one thing against everything else.... You cut out too much from your actual life.
+
+## When you safe time...
+
+...keep it.
+
+* stare out of the window; that's good for you.
+* Creative thinking needs space. It will pay dividends tomorrow.
+* You will be rewarded with the "Eureka effect" - a sudden new insight.
+
+## Follow your mood
+
+Ask yourself: what is my mood now? We never have the energy to do anything, so the better strategy is to follow your current mode and energy. E.g.:
+
+* Didn't sleep enough today? Then, do simple, non-demanding tasks at work
+* Had a great sleep, and there is even time before work starts? Pull in a workout...
+
+## Boosting creativity
+
+The morning without coffee is a gift for creativity, but you often get distracted. Minimize distractions, too. I have no window to stare out but a plain blank wall.
+
+* The busier you are, the less creative you will be.
+* Event time (divergent thinking) vs clock time (convergent thinking)
+* Don't race with time but walk alongside it as rough time lines.
+* Don't judge every day after the harvest, but the seed you lay
+
+## The right mood for the task at hand
+
+We need to try many different combinations. Limiting ourselves and trying too hard makes us frustrated and burn out. Creativity requires many iterations.
+
+I can only work according to my available brain power. 
+
+I can also change my mood according to what needs improvement. Just imagine the last time you were in that mood and then try to get into it. It can take several tries to hit a working mood. Try to replicate that mental state. This can also be by location or by another habit, e.g. by a beer.
+
+Once you are in a mental state, don't try to change it. It will take a while for your brain to switch to a completely different state.
+
+Week of want. For a week, only do what you want and not what you must do. Your ideas will get much more expansive.
+
+It gives you pleasure and is in a good mood. This increases creativity if you do what you want to do.
+
+## Creativity hacks
+
+* Coffee can cause anxiety.
+* Take phentermine with coffee to take off the edge and have a relaxed focus
+* Green tea, which tastes sweet plus supplement boost.
+* Also wine. But be careful with alcohol. Don't drink a whole bottle.
+* Have a machine without distractions and internet access for writing.
+* Go to open spaces for creativity.
+* Go to closed spaces for polishing.
+
+## Planning and strategizing
+
+Minds work better in sprints and not in marathons. Have a weekly plan, not a daily one.
+
+* Alternating incubation to avoid blocks.
+* Build on systems that use chaos for growth, e.g. unplanned disasters.
+* Things don't go after the plan is the plan. Be anti-fragile.
+
+Organize by mental state. In the time management context, the mental state doesn't exist. You schedule as many things as possible by project. In the mind management context, mental state is everything. You could prepare by mental state and not by assignment.
+
+You could schedule exploratory tasks when you are under grief. Sound systems should create slack for creativity. Plan only for a few minutes.
+
+## Fake it until you make it. 
+
+* E.g. act calm if you want to be calm.
+* Talk slowly and deepen your voice a bit to appear more confident. You will also become more confident.
+* Also, use power positions for better confidence.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other book notes of mine are:
+
 [2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes](./2025-04-19-when-book-notes.md)  
 [2024-10-24 "Staff Engineer" book notes](./2024-10-24-staff-engineer-book-notes.md)  
 [2024-07-07 "The Stoic Challenge" book notes](./2024-07-07-the-stoic-challenge-book-notes.md)  

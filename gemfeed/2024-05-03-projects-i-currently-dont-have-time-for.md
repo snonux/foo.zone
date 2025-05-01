@@ -23,6 +23,31 @@ Art by Laura Brown
 * [⇢ ⇢ Hardware projects I don't have time for](#hardware-projects-i-don-t-have-time-for)
 * [⇢ ⇢ ⇢ I use Arch, btw!](#i-use-arch-btw)
 * [⇢ ⇢ ⇢ OpenBSD home router](#openbsd-home-router)
+* # Projects I currently don't have time for
+
+> Published at 2024-05-03T16:23:03+03:00
+
+Over the years, I have collected many ideas for my personal projects and noted them down. I am currently in the process of cleaning up all my notes and reviewing those ideas. I don’t have time for the ones listed here and won’t have any soon due to other commitments and personal projects. So, in order to "get rid of them" from my notes folder, I decided to simply put them in this blog post so that those ideas don't get lost. Maybe I will pick up one or another idea someday in the future, but for now, they are all put on ice in favor of other personal projects or family time.
+
+```
+Art by Laura Brown
+
+.'`~~~~~~~~~~~`'.
+(  .'11 12 1'.  )
+|  :10 \    2:  |
+|  :9   @-> 3:  |
+|  :8       4;  |
+'. '..7 6 5..' .'
+ ~-------------~  ldb
+
+```
+
+## Table of Contents
+
+* [⇢ Projects I currently don't have time for](#projects-i-currently-don-t-have-time-for)
+* [⇢ ⇢ Hardware projects I don't have time for](#hardware-projects-i-don-t-have-time-for)
+* [⇢ ⇢ ⇢ I use Arch, btw!](#i-use-arch-btw)
+* [⇢ ⇢ ⇢ OpenBSD home router](#openbsd-home-router)
 * [⇢ ⇢ ⇢ Pi-Hole server](#pi-hole-server)
 * [⇢ ⇢ ⇢ Infodash](#infodash)
 * [⇢ ⇢ ⇢ Reading station](#reading-station)

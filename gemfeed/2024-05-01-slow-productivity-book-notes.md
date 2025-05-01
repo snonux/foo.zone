@@ -28,6 +28,36 @@ These notes are mainly for my own use, but you may find them helpful.
 * [⇢ ⇢ Accomplishments without burnout](#accomplishments-without-burnout)
 * [⇢ ⇢ Do fewer things](#do-fewer-things)
 * [⇢ ⇢ Work at a natural pace](#work-at-a-natural-pace)
+* # "Slow Productivity" book notes
+
+> Published at 2024-04-27T14:18:51+03:00
+
+These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.
+
+The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.
+
+These notes are mainly for my own use, but you may find them helpful.
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
+## Table of Contents
+
+* [⇢ "Slow Productivity" book notes](#slow-productivity-book-notes)
+* [⇢ ⇢ It's not "slow productivity"](#it-s-not-slow-productivity)
+* [⇢ ⇢ Pseudo-productivity and Shallow work](#pseudo-productivity-and-shallow-work)
+* [⇢ ⇢ Accomplishments without burnout](#accomplishments-without-burnout)
+* [⇢ ⇢ Do fewer things](#do-fewer-things)
+* [⇢ ⇢ Work at a natural pace](#work-at-a-natural-pace)
 * [⇢ ⇢ Obsess over quality ](#obsess-over-quality-)
 
 ## It's not "slow productivity"
