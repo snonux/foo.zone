@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-05-02T00:21:37+03:00</updated>
+    <updated>2025-05-02T00:26:00+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -87,7 +87,7 @@
 <br />
 <h2 style='display: inline' id='shell-aliases'>Shell aliases</h2><br />
 <br />
-<span>Since last week, I switched to the Fish shell. As a result, I also had to convert all my tmux helper scripts (mentioned in this blog post) to Fish.</span><br />
+<span>Since last week, I am playing a bit with the Fish shell. As a result, I also converted all my tmux helper scripts (mentioned in this blog post) from Z-Shell to Fish.</span><br />
 <br />
 <a class='textlink' href='https://fishshell.com'>https://fishshell.com</a><br />
 <br />
