@@ -16,15 +16,15 @@ Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages mult
 => https://github.com/tmux/tmux/wiki
 
 ```
-         _______
-        |.-----.|
-        || Tmux||
-        ||_.-._||
-        `--)-(--`
-       __[=== o]___
-      |:::::::::::|\
-jgs   `-=========-`()
-    mod. by Paul B.
+            _______                           s
+           |.-----.|                           s
+           || Tmux||                          s
+           ||_.-._||       |\   \\\\__     o          s
+           `--)-(--`       | \_/    o \    o          s
+          __[=== o]__      > _   (( <_  oo            s
+         |:::::::::::|\    | / \__+___/               s
+   jgs   `-=========-`()   |/     |/                  s
+       mod. by Paul B.
 ```
 
 ## Table of Contents

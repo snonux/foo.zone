@@ -2,7 +2,7 @@
 
 > Published at 2025-05-02T00:09:23+03:00
 
-This is the Fish shell edition of the same post of mine from last year:
+This is the Fish shell edition of the same post (but for Z-Shell) of mine from last year:
 
 => ./2024-06-23-terminal-multiplexing-with-tmux.gmi
 
@@ -16,15 +16,15 @@ Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages mult
 => https://github.com/tmux/tmux/wiki
 
 ```
-         _______
-        |.-----.|
-        || Tmux||
-        ||_.-._||
-        `--)-(--`
-       __[=== o]___
-      |:::::::::::|\
-jgs   `-=========-`()
-    mod. by Paul B.
+            _______                           s
+           |.-----.|                           s
+           || Tmux||                          s
+           ||_.-._||       |\   \\\\__     o          s
+           `--)-(--`       | \_/    o \    o          s
+          __[=== o]__      > _   (( <_  oo            s
+         |:::::::::::|\    | / \__+___/               s
+   jgs   `-=========-`()   |/     |/                  s
+       mod. by Paul B.
 ```
 
 << template::inline::toc
