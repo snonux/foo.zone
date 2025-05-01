@@ -65,7 +65,7 @@ Tmux is highly configurable, and I think I am only scratching the surface of wha
 
 ## Shell aliases
 
-Since last week, I switched to the Fish shell. As a result, I also had to convert all my tmux helper scripts (mentioned in this blog post) to Fish.
+Since last week, I am playing a bit with the Fish shell. As a result, I also converted all my tmux helper scripts (mentioned in this blog post) from Z-Shell to Fish.
 
 [https://fishshell.com](https://fishshell.com)  
 

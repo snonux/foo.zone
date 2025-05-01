@@ -26,34 +26,6 @@ This is the list of projects and initiatives I support/sponsor.
 ## Table of Contents
 
 * [⇢ Projects I financially support](#projects-i-financially-support)
-* # Projects I financially support
-
-> Published at 2024-09-07T16:04:19+03:00
-
-This is the list of projects and initiatives I support/sponsor. 
-
-```
-||====================================================================||
-||//$\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//$\\||
-||(100)==================| FEDERAL SPONSOR NOTE |================(100)||
-||\\$//        ~         '------========--------'                \\$//||
-||<< /        /$\              // ____ \\                         \ >>||
-||>>|  12    //L\\            // ///..) \\         L38036133B   12 |<<||
-||<<|        \\ //           || <||  >\  ||                        |>>||
-||>>|         \$/            ||  $$ --/  ||        One Hundred     |<<||
-||<<|      L38036133B        *\\  |\_/  //* series                 |>>||
-||>>|  12                     *\\/___\_//*   1989                  |<<||
-||<<\      Open Source   ______/Franklin\________     Supporting   />>||
-||//$\                 ~| SPONSORING AND FUNDING |~               /$\\||
-||(100)===================  AWESOME OPEN SOURCE =================(100)||
-||\\$//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\$//||
-||====================================================================||
- 
-```
-
-## Table of Contents
-
-* [⇢ Projects I financially support](#projects-i-financially-support)
 * [⇢ ⇢ Motivation](#motivation)
 * [⇢ ⇢ OSnews](#osnews)
 * [⇢ ⇢ Cup o' Go Podcast](#cup-o--go-podcast)

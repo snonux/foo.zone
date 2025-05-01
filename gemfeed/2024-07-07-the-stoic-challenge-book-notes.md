@@ -20,28 +20,6 @@ These are my personal takeaways after reading "The Stoic Challenge:  A Philosoph
 
 * [⇢ "The Stoic Challenge" book notes](#the-stoic-challenge-book-notes)
 * [⇢ ⇢ God sets you up for a challenge](#god-sets-you-up-for-a-challenge)
-* # "The Stoic Challenge" book notes
-
-> Published at 2024-07-07T12:46:55+03:00
-
-These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher's Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. 
-
-```
-         ,..........   ..........,
-     ,..,'          '.'          ',..,
-    ,' ,'            :            ', ',
-   ,' ,'             :             ', ',
-  ,' ,'              :              ', ',
- ,' ,'............., : ,.............', ',
-,'  '............   '.'   ............'  ',
- '''''''''''''''''';''';''''''''''''''''''
-                    '''
-```
-
-## Table of Contents
-
-* [⇢ "The Stoic Challenge" book notes](#the-stoic-challenge-book-notes)
-* [⇢ ⇢ God sets you up for a challenge](#god-sets-you-up-for-a-challenge)
 * [⇢ ⇢ Negative visualization](#negative-visualization)
 * [⇢ ⇢ Oh, nice trick, you stoic "god"! ;-)](#oh-nice-trick-you-stoic-god--)
 
