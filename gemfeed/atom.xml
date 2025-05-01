@@ -1,11 +1,414 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-04-19T10:32:39+03:00</updated>
+    <updated>2025-05-02T00:09:24+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Terminal multiplexing with `tmux` - Fish edition</title>
+        <link href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi</id>
+        <updated>2025-05-02T00:09:23+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the Fish shell edition of the same post of mine from last year:</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</h1><br />
+<br />
+<span>This is the Fish shell edition of the same post of mine from last year:</span><br />
+<br />
+<a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>./2024-06-23-terminal-multiplexing-with-tmux.html</a><br />
+<br />
+<span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
+<br />
+<ul>
+<li>Session management</li>
+<li>Window and Pane management</li>
+<li>Persistent Workspace</li>
+<li>Customization</li>
+</ul><br />
+<a class='textlink' href='https://github.com/tmux/tmux/wiki'>https://github.com/tmux/tmux/wiki</a><br />
+<br />
+<pre>
+         _______
+        |.-----.|
+        || Tmux||
+        ||_.-._||
+        `--)-(--`
+       __[=== o]___
+      |:::::::::::|\
+jgs   `-=========-`()
+    mod. by Paul B.
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</a></li>
+<li>⇢ <a href='#before-continuing'>Before continuing...</a></li>
+<li>⇢ <a href='#shell-aliases'>Shell aliases</a></li>
+<li>⇢ <a href='#the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</a></li>
+<li>⇢ ⇢ <a href='#cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</a></li>
+<li>⇢ ⇢ <a href='#renaming-sessions'>Renaming sessions</a></li>
+<li>⇢ <a href='#the-ta-alias---attaching-to-a-session'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</a></li>
+<li>⇢ <a href='#the-tr-alias---for-a-nested-remote-session'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</a></li>
+<li>⇢ ⇢ <a href='#change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</a></li>
+<li>⇢ <a href='#the-ts-alias---searching-sessions-with-fuzzy-finder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</a></li>
+<li>⇢ <a href='#the-tssh-alias---cluster-ssh-replacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</a></li>
+<li>⇢ ⇢ <a href='#the-tmuxtsshfromargument-helper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</a></li>
+<li>⇢ ⇢ <a href='#the-tmuxtsshfromfile-helper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</a></li>
+<li>⇢ ⇢ <a href='#tssh-examples'><span class='inlinecode'>tssh</span> examples</a></li>
+<li>⇢ ⇢ <a href='#common-tmux-commands-i-use-in-tssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></a></li>
+<li>⇢ <a href='#copy-and-paste-workflow'>Copy and paste workflow</a></li>
+<li>⇢ <a href='#tmux-configurations'>Tmux configurations</a></li>
+</ul><br />
+<h2 style='display: inline' id='before-continuing'>Before continuing...</h2><br />
+<br />
+<span>Before continuing to read this post, I encourage you to get familiar with Tmux first (unless you already know the basics). You can go through the official getting started guide:</span><br />
+<br />
+<a class='textlink' href='https://github.com/tmux/tmux/wiki/Getting-Started'>https://github.com/tmux/tmux/wiki/Getting-Started</a><br />
+<br />
+<span>I can also recommend this book (this is the book I got started with with Tmux):</span><br />
+<br />
+<a class='textlink' href='https://pragprog.com/titles/bhtmux2/tmux-2/'>https://pragprog.com/titles/bhtmux2/tmux-2/</a><br />
+<br />
+<span>Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
+<br />
+<span>The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren&#39;t really useful outside of work due to the way servers and clusters are structured there).</span><br />
+<br />
+<span>Tmux is highly configurable, and I think I am only scratching the surface of what is possible with it. Nevertheless, it may still be useful for you. I also love that Tmux is part of the OpenBSD base system!</span><br />
+<br />
+<h2 style='display: inline' id='shell-aliases'>Shell aliases</h2><br />
+<br />
+<span>Since last week, I switched to the Fish shell. As a result, I also had to convert all my tmux helper scripts (mentioned in this blog post) to Fish.</span><br />
+<br />
+<a class='textlink' href='https://fishshell.com'>https://fishshell.com</a><br />
+<br />
+<span>For the most common Tmux commands I use, I have created the following shell aliases:</span><br />
+<br />
+<pre>
+alias tn &#39;tmux::new&#39;
+alias ta &#39;tmux::attach&#39;
+alias tx &#39;tmux::remote&#39;
+alias ts &#39;tmux::search&#39;
+alias tssh &#39;tmux::cluster_ssh&#39;
+alias tm tmux
+alias tl &#39;tmux list-sessions&#39;
+alias foo &#39;tmux::new foo&#39;
+alias bar &#39;tmux::new bar&#39;
+alias baz &#39;tmux::new baz&#39;
+</pre>
+<br />
+<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
+<br />
+<span>The first two are pretty straightforward. <span class='inlinecode'>tm</span> is simply a shorthand for <span class='inlinecode'>tmux</span>, so I have to type less, and <span class='inlinecode'>tl</span> lists all Tmux sessions that are currently open. No magic here.</span><br />
+<br />
+<h2 style='display: inline' id='the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</h2><br />
+<br />
+<span>The <span class='inlinecode'>tn</span> alias is referencing this function:</span><br />
+<br />
+<pre>
+# Create new session and if alread exists attach to it
+function tmux::new
+    set -l session $argv[1]
+    _tmux::cleanup_default
+    if test -z "$session"
+        tmux::new (string join "" T (date +%s))
+    else
+        tmux new-session -d -s $session
+        tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+    end
+end
+</pre>
+<br />
+<span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. </span><br />
+<br />
+<span>First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named <span class='inlinecode'>(string join "" T (date +%s))</span> as a default. Which is T followed by the UNIX epoch, e.g. <span class='inlinecode'>T1717133796</span>.</span><br />
+<br />
+<h3 style='display: inline' id='cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</h3><br />
+<br />
+<span>Note also the call to <span class='inlinecode'>_tmux::cleanup_default</span>; it would clean up all already opened default sessions if they aren&#39;t attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren&#39;t attached. If I want to keep sessions around, I will rename them with the Tmux command <span class='inlinecode'>prefix-key $</span>. This is the cleanup function:</span><br />
+<br />
+<pre>
+function _tmux::cleanup_default
+    tmux list-sessions | string match -r &#39;^T.*: &#39; | string match -v -r attached | string split &#39;:&#39; | while read -l s
+        echo "Killing $s"
+        tmux kill-session -t "$s"
+    end
+end
+</pre>
+<br />
+<span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
+<br />
+<h3 style='display: inline' id='renaming-sessions'>Renaming sessions</h3><br />
+<br />
+<span>Whenever I am in a temporary session (named <span class='inlinecode'>T....</span>), I may decide that I want to keep this session around. I have to rename the session to prevent the cleanup function from doing its thing. That&#39;s, as mentioned already, easily accomplished with the standard <span class='inlinecode'>prefix-key $</span> Tmux command.</span><br />
+<br />
+<h2 style='display: inline' id='the-ta-alias---attaching-to-a-session'>The <span class='inlinecode'>ta</span> alias - Attaching to a session</h2><br />
+<br />
+<span>This alias refers to the following function, which tries to attach to an already-running Tmux session.</span><br />
+<br />
+<pre>
+function tmux::attach
+    set -l session $argv[1]
+    if test -z "$session"
+        tmux attach-session || tmux::new
+    else
+        tmux attach-session -t $session || tmux::new $session
+    end
+end
+</pre>
+<br />
+<span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
+<br />
+<h2 style='display: inline' id='the-tr-alias---for-a-nested-remote-session'>The <span class='inlinecode'>tr</span> alias - For a nested remote session</h2><br />
+<br />
+<span>This SSHs into the remote server specified and then, remotely on the server itself, starts a nested Tmux session. So we have one Tmux session on the local computer and, inside of it, an SSH connection to a remote server with a Tmux session running again. The benefit of this is that, in case my network connection breaks down, the next time I connect, I can continue my work on the remote server exactly where I left off. The session name is the name of the server being SSHed into. If a session like this already exists, it simply attaches to it.</span><br />
+<br />
+<pre>
+function tmux::remote
+    set -l server $argv[1]
+    tmux new -s $server "ssh -A -t $server &#39;tmux attach-session || tmux&#39;" || tmux attach-session -d -t $server
+end
+</pre>
+<br />
+<h3 style='display: inline' id='change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</h3><br />
+<br />
+<span>To make nested Tmux sessions work smoothly, one must change the Tmux prefix key locally or remotely. By default, the Tmux prefix key is <span class='inlinecode'>Ctrl-b</span>, so <span class='inlinecode'>Ctrl-b $</span>, for example, renames the current session. To change the prefix key from the standard <span class='inlinecode'>Ctrl-b</span> to, for example, <span class='inlinecode'>Ctrl-g</span>, you must add this to the <span class='inlinecode'>tmux.conf</span>:</span><br />
+<br />
+<pre>
+set-option -g prefix C-g
+</pre>
+<br />
+<span>This way, when I want to rename the remote Tmux session, I have to use <span class='inlinecode'>Ctrl-g $</span>, and when I want to rename the local Tmux session, I still have to use <span class='inlinecode'>Ctrl-b $</span>. In my case, I have this deployed to all remote servers through a configuration management system (out of scope for this blog post).</span><br />
+<br />
+<span>There might also be another way around this (without reconfiguring the prefix key), but that is cumbersome to use, as far as I remember. </span><br />
+<br />
+<h2 style='display: inline' id='the-ts-alias---searching-sessions-with-fuzzy-finder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</h2><br />
+<br />
+<span>Despite the fact that with <span class='inlinecode'>_tmux::cleanup_default</span>, I don&#39;t leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don&#39;t remember the exact session names.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>function tmux::search
+    <b><u><font color="#000000">set</font></u></b> -l session (tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
+    <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> -z <font color="#808080">"$TMUX"</font>
+        tmux attach-session -t $session
+    <b><u><font color="#000000">else</font></u></b>
+        tmux switch -t $session
+    end
+end
+</pre>
+<br />
+<span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
+<br />
+<span>You must install the <span class='inlinecode'>fzf</span> command on your computer for this to work. This is how it looks like:</span><br />
+<br />
+<a href='./terminal-multiplexing-with-tmux/tmux-session-fzf.png'><img alt='Tmux session fuzzy finder' title='Tmux session fuzzy finder' src='./terminal-multiplexing-with-tmux/tmux-session-fzf.png' /></a><br />
+<br />
+<h2 style='display: inline' id='the-tssh-alias---cluster-ssh-replacement'>The <span class='inlinecode'>tssh</span> alias - Cluster SSH replacement</h2><br />
+<br />
+<span>Before I used Tmux, I was a heavy user of ClusterSSH, which allowed me to log in to multiple servers at once in a single terminal window and type and run commands on all of them in parallel.</span><br />
+<br />
+<a class='textlink' href='https://github.com/duncs/clusterssh'>https://github.com/duncs/clusterssh</a><br />
+<br />
+<span>However, since I started using Tmux, I retired ClusterSSH, as it came with the benefit that Tmux only needs to be run in the terminal, whereas ClusterSSH spawned terminal windows, which aren&#39;t easily portable (e.g., from a Linux desktop to macOS). The <span class='inlinecode'>tmux::cluster_ssh</span> function can have N arguments, where:</span><br />
+<br />
+<ul>
+<li>...the first argument will be the session name (see <span class='inlinecode'>tmux::tssh_from_argument</span> helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.</li>
+<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
+</ul><br />
+<span>This is the function definition behind the <span class='inlinecode'>tssh</span> alias:</span><br />
+<span> </span><br />
+<pre>
+function tmux::cluster_ssh
+    if test -f "$argv[1]"
+        tmux::tssh_from_file $argv[1]
+        return
+    end
+    tmux::tssh_from_argument $argv
+end
+</pre>
+<br />
+<span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
+<br />
+<h3 style='display: inline' id='the-tmuxtsshfromargument-helper'>The <span class='inlinecode'>tmux::tssh_from_argument</span> helper</h3><br />
+<br />
+<span>This is the most magic helper function we will cover in this post. It looks like this:</span><br />
+<br />
+<pre>
+function tmux::tssh_from_argument
+    set -l session $argv[1]
+    set first_server_or_container $argv[2]
+    set remaining_servers $argv[3..-1]
+    if test -z "$first_server_or_container"
+        set first_server_or_container $session
+    end
+
+    tmux new-session -d -s $session (_tmux::connect_command "$first_server_or_container")
+    if not tmux list-session | grep "^$session:"
+        echo "Could not create session $session"
+        return 2
+    end
+    for server_or_container in $remaining_servers
+        tmux split-window -t $session "tmux select-layout tiled; $(_tmux::connect_command "$server_or_container")"
+    end
+    tmux setw -t $session synchronize-panes on
+    tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+end
+</pre>
+<br />
+<span>It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with <span class='inlinecode'>tmux split-window -t $session...</span>. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.</span><br />
+<br />
+<span>Sometimes, I don&#39;t want the synchronized panes behavior and want to switch it off temporarily. I can do that with <span class='inlinecode'>prefix-key p</span> and <span class='inlinecode'>prefix-key P</span> after adding the following to my local <span class='inlinecode'>tmux.conf</span>:</span><br />
+<br />
+<pre>
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+</pre>
+<br />
+<h3 style='display: inline' id='the-tmuxtsshfromfile-helper'>The <span class='inlinecode'>tmux::tssh_from_file</span> helper</h3><br />
+<br />
+<span>This one sets the session name to the file name and then reads a list of servers from that file, passing the list of servers to <span class='inlinecode'>tmux::tssh_from_argument</span> as the arguments. So, this is a neat little wrapper that also enables me to open clustered SSH sessions from an input file.</span><br />
+<br />
+<pre>
+function tmux::tssh_from_file
+    set -l serverlist $argv[1]
+    set -l session (basename $serverlist | cut -d. -f1)
+    tmux::tssh_from_argument $session (awk &#39;{ print $1 }&#39; $serverlist | sed &#39;s/.lan./.lan/g&#39;)
+end
+</pre>
+<br />
+<h3 style='display: inline' id='tssh-examples'><span class='inlinecode'>tssh</span> examples</h3><br />
+<br />
+<span>To open a new session named <span class='inlinecode'>fish</span> and log in to 4 remote hosts, run this command (Note that it is also possible to specify the remote user):</span><br />
+<br />
+<pre>
+$ tssh fish blowfish.buetow.org fishfinger.buetow.org \
+    fishbone.buetow.org user@octopus.buetow.org
+</pre>
+<br />
+<span>To open a new session named <span class='inlinecode'>manyservers</span>, put many servers (one FQDN per line) into a file called <span class='inlinecode'>manyservers.txt</span> and simply run:</span><br />
+<br />
+<pre>
+$ tssh manyservers.txt
+</pre>
+<br />
+<h3 style='display: inline' id='common-tmux-commands-i-use-in-tssh'>Common Tmux commands I use in <span class='inlinecode'>tssh</span></h3><br />
+<br />
+<span>These are default Tmux commands that I make heavy use of in a <span class='inlinecode'>tssh</span> session:</span><br />
+<br />
+<ul>
+<li>Press <span class='inlinecode'>prefix-key DIRECTION</span> to switch panes. DIRECTION is by default any of the arrow keys, but I also configured Vi keybindings.</li>
+<li>Press <span class='inlinecode'>prefix-key &lt;space&gt;</span> to change the pane layout (can be pressed multiple times to cycle through them).</li>
+<li>Press <span class='inlinecode'>prefix-key z</span> to zoom in and out of the current active pane.</li>
+</ul><br />
+<h2 style='display: inline' id='copy-and-paste-workflow'>Copy and paste workflow</h2><br />
+<br />
+<span>As you will see later in this blog post, I have configured a history limit of 1 million items in Tmux so that I can scroll back quite far. One main workflow of mine is to search for text in the Tmux history, select and copy it, and then switch to another window or session and paste it there (e.g., into my text editor to do something with it).</span><br />
+<br />
+<span>This works by pressing <span class='inlinecode'>prefix-key [</span> to enter Tmux copy mode. From there, I can browse the Tmux history of the current window using either the arrow keys or vi-like navigation (see vi configuration later in this blog post) and the Pg-Dn and Pg-Up keys.</span><br />
+<br />
+<span>I often search the history backwards with <span class='inlinecode'>prefix-key [</span> followed by a <span class='inlinecode'>?</span>, which opens the Tmux history search prompt.</span><br />
+<br />
+<span>Once I have identified the terminal text to be copied, I enter visual select mode with <span class='inlinecode'>v</span>, highlight all the text to be copied (using arrow keys or Vi motions), and press <span class='inlinecode'>y</span> to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).</span><br />
+<br />
+<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file:  </span><br />
+<br />
+<pre>
+bind-key -T copy-mode-vi &#39;v&#39; send -X begin-selection
+bind-key -T copy-mode-vi &#39;y&#39; send -X copy-selection-and-cancel
+</pre>
+<br />
+<span>Once the text is yanked, I switch to another Tmux window or session where, for example, a text editor is running and paste the yanked text from Tmux into the editor with <span class='inlinecode'>prefix-key ]</span>. Note that when pasting into a modal text editor like Vi or Helix, you would first need to enter insert mode before <span class='inlinecode'>prefix-key ]</span> would paste anything.</span><br />
+<br />
+<h2 style='display: inline' id='tmux-configurations'>Tmux configurations</h2><br />
+<br />
+<span>Some features I have configured directly in Tmux don&#39;t require an external shell alias to function correctly. Let&#39;s walk line by line through my local <span class='inlinecode'>~/.config/tmux/tmux.conf</span>:</span><br />
+<br />
+<pre>
+source ~/.config/tmux/tmux.local.conf
+
+set-option -g allow-rename off
+set-option -g history-limit 100000
+set-option -g status-bg &#39;#444444&#39;
+set-option -g status-fg &#39;#ffa500&#39;
+set-option -s escape-time 0
+</pre>
+<br />
+<span>There&#39;s yet to be much magic happening here. I source a <span class='inlinecode'>tmux.local.conf</span>, which I sometimes use to override the default configuration that comes from the configuration management system. But it is mostly just an empty file, so it doesn&#39;t throw any errors on Tmux startup when I don&#39;t use it.</span><br />
+<br />
+<span>I work with many terminal outputs, which I also like to search within Tmux. So, I added a large enough <span class='inlinecode'>history-limit</span>, enabling me to search backwards in Tmux for any output up to a million lines of text.</span><br />
+<br />
+<span>Besides changing some colours (personal taste), I also set <span class='inlinecode'>escape-time</span> to <span class='inlinecode'>0</span>, which is just a workaround. Otherwise, my Helix text editor&#39;s <span class='inlinecode'>ESC</span> key would take ages to trigger within Tmux. I am trying to remember the gory details. You can leave it out; if everything works fine for you, leave it out.</span><br />
+<br />
+<span>The next lines in the configuration file are:</span><br />
+<br />
+<pre>
+set-window-option -g mode-keys vi
+bind-key -T copy-mode-vi &#39;v&#39; send -X begin-selection
+bind-key -T copy-mode-vi &#39;y&#39; send -X copy-selection-and-cancel
+</pre>
+<br />
+<span>I navigate within Tmux using Vi keybindings, so the <span class='inlinecode'>mode-keys</span> is set to <span class='inlinecode'>vi</span>. I use the Helix modal text editor, which is close enough to Vi bindings for simple navigation to feel "native" to me. (By the way, I have been a long-time Vim and NeoVim user, but I eventually switched to Helix. It&#39;s off-topic here, but it may be worth another blog post once.)</span><br />
+<br />
+<span>The two <span class='inlinecode'>bind-key</span> commands make it so that I can use <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> in copy mode, which feels more Vi-like (as already discussed earlier in this post).</span><br />
+<br />
+<span>The next set of lines in the configuration file are:</span><br />
+<br />
+<pre>
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
+
+bind-key H resize-pane -L 5
+bind-key J resize-pane -D 5
+bind-key K resize-pane -U 5
+bind-key L resize-pane -R 5
+</pre>
+<br />
+<span>These allow me to use <span class='inlinecode'>prefix-key h</span>, <span class='inlinecode'>prefix-key j</span>, <span class='inlinecode'>prefix-key k</span>, and <span class='inlinecode'>prefix-key l</span> for switching panes and <span class='inlinecode'>prefix-key H</span>, <span class='inlinecode'>prefix-key J</span>, <span class='inlinecode'>prefix-key K</span>, and <span class='inlinecode'>prefix-key L</span> for resizing the panes. If you don&#39;t know Vi/Vim/NeoVim, the letters <span class='inlinecode'>hjkl</span> are commonly used there for left, down, up, and right, which is also the same for Helix, by the way.</span><br />
+<br />
+<span>The next set of lines in the configuration file are:</span><br />
+<br />
+<pre>
+bind-key c new-window -c &#39;#{pane_current_path}&#39;
+bind-key F new-window -n "session-switcher" "tmux list-sessions | fzf | cut -d: -f1 | xargs tmux switch-client -t"
+bind-key T choose-tree
+</pre>
+<br />
+<span>The first one is that any new window starts in the current directory. The second one is more interesting. I list all open sessions in the fuzzy finder. I rely heavily on this during my daily workflow to switch between various sessions depending on the task. E.g. from a remote cluster SSH session to a local code editor. </span><br />
+<br />
+<span>The third one, <span class='inlinecode'>choose-tree</span>, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):</span><br />
+<br />
+<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux sessiont tree view' title='Tmux sessiont tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
+<br />
+<span>The last remaining lines in my configuration file are:</span><br />
+<span>  </span><br />
+<pre>
+bind-key p setw synchronize-panes off
+bind-key P setw synchronize-panes on
+bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
+</pre>
+<br />
+<span>We discussed <span class='inlinecode'>synchronized panes</span> earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like <span class='inlinecode'>htop</span> to quickly monitor system resources.</span><br />
+<br />
+<span>The last one reloads my Tmux configuration on the fly.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'When: The Scientific Secrets of Perfect Timing' book notes</title>
         <link href="gemini://foo.zone/gemfeed/2025-04-19-when-book-notes.gmi" />
@@ -4297,7 +4700,7 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
         </content>
     </entry>
     <entry>
-        <title>Terminal multiplexing with `tmux`</title>
+        <title>Terminal multiplexing with `tmux` - Z-Shell edition</title>
         <link href="gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi" />
         <id>gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi</id>
         <updated>2024-06-23T22:41:59+03:00</updated>
@@ -4305,12 +4708,16 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</summary>
+        <summary>This is the Z-Shell version. There is also a Fish version:</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='terminal-multiplexing-with-tmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></h1><br />
+                <h1 style='display: inline' id='terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</h1><br />
 <br />
-<span class='quote'>Published at 2024-06-23T22:41:59+03:00</span><br />
+<span class='quote'>Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02</span><br />
+<br />
+<span>This is the Z-Shell version. There is also a Fish version:</span><br />
+<br />
+<a class='textlink' href='./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html</a><br />
 <br />
 <span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
 <br />
@@ -4337,7 +4744,7 @@ jgs   `-=========-`()
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#terminal-multiplexing-with-tmux'>Terminal multiplexing with <span class='inlinecode'>tmux</span></a></li>
+<li><a href='#terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</a></li>
 <li>⇢ <a href='#before-continuing'>Before continuing...</a></li>
 <li>⇢ <a href='#shell-aliases'>Shell aliases</a></li>
 <li>⇢ <a href='#the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</a></li>
@@ -9248,146 +9655,6 @@ Art by Joan Stark
 <span>Another thing is that GrapheneOS can only run on Google Pixel phones, whereas LineageOS can be installed on a much larger variety of hardware. But on the other hand, GrapheneOS works very well on Pixel phones. The GrapheneOS team can concentrate their development efforts on a smaller set of hardware which then improves the software&#39;s quality (best example: The camera app).</span><br />
 <br />
 <span>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>(Re)learning Java - My takeaways</title>
-        <link href="gemini://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi" />
-        <id>gemini://foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways.gmi</id>
-        <updated>2022-12-24T23:18:40+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my 'Creative universe' post:</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='relearning-java---my-takeaways'>(Re)learning Java - My takeaways</h1><br />
-<br />
-<span class='quote'>Published at 2022-12-24T23:18:40+02:00</span><br />
-<br />
-<span>As a regular participant in the annual Pet Project competition at work, I always try to find a project where I can learn something new. In this post, I would like to share my takeaways after revisiting Java. You can read about my motivations in my "Creative universe" post:</span><br />
-<br />
-<a class='textlink' href='./2022-04-10-creative-universe.html'>Creative universe</a><br />
-<br />
-<span>I have been programming in Java back in the days as a university student, and even my Diploma Thesis I implemented in Java (it would require some overhaul so that it is fully compatible with a recent version of Java, though - It still compiles and runs, but with a lot of warnings, though!):</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/vs-sim'>VS-Sim: Distributed systems simulator</a><br />
-<br />
-<span>However, after that, I became a Linux Sysadmin and mainly continued programming in Perl, Puppet, bash, and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role, I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash, Puppet and Golang and a little bit of C. </span><br />
-<br />
-<span>At my workplace, as an SRE, I don&#39;t do Java a lot. I have been reading Java code to understand the software better so I can apply and suggest workarounds or fixes to existing issues and bugs. However, most of our stack is in Java, and our Software Engineers use Java as their primary programming language.</span><br />
-<br />
-<a href='./ultrarelearning-java-my-takeaways/learnjava.jpg'><img src='./ultrarelearning-java-my-takeaways/learnjava.jpg' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#relearning-java---my-takeaways'>(Re)learning Java - My takeaways</a></li>
-<li>⇢ <a href='#stuck-at-java-14'>Stuck at Java 1.4</a></li>
-<li>⇢ <a href='#relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</a></li>
-<li>⇢ ⇢ <a href='#effective-java'>Effective Java</a></li>
-<li>⇢ ⇢ <a href='#java-pub-house'>Java Pub House</a></li>
-<li>⇢ ⇢ <a href='#java-concurrency-course'>Java Concurrency course</a></li>
-<li>⇢ ⇢ <a href='#read-a-lot-of-java-code'>Read a lot of Java code</a></li>
-<li>⇢ ⇢ <a href='#observed-java-code-reviews'>Observed Java code reviews</a></li>
-<li>⇢ ⇢ <a href='#took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</a></li>
-<li>⇢ <a href='#the-good'>The good</a></li>
-<li>⇢ <a href='#the-bad-and-the-ugly'>The bad and the ugly</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='stuck-at-java-14'>Stuck at Java 1.4</h2><br />
-<br />
-<span>Over time, I had been missing out on many new features that were added to the language since Java 1.4, so I decided to implement my next Pet Project in Java and learn every further aspect of the language as my main goal. Of course, I still liked the idea of winning a Pet Project Prize, but my main objective was to level up my Java skills.</span><br />
-<br />
-<h2 style='display: inline' id='relearning--upskilling-to-java-18'>(Re)learning &amp; upskilling to Java 18</h2><br />
-<br />
-<h3 style='display: inline' id='effective-java'>Effective Java</h3><br />
-<br />
-<span>This book was recommended by my brother and also by at least another colleague at work to be one of the best, if not the best, book about Java programming. I read the whole book from the beginning to the end and immersed myself in it. I fully agree; this is a great book. Every Java developer or Java software engineer should read it!</span><br />
-<br />
-<a href='./ultrarelearning-java-my-takeaways/effective-java.jpg'><img src='./ultrarelearning-java-my-takeaways/effective-java.jpg' /></a><br />
-<br />
-<span>I recommend reading the 90-part effective Java Series on <span class='inlinecode'>dev.to</span>. It&#39;s a perfect companion to the book as it explains all the chapters again but from a slightly different perspective and helps you to really understand the content.</span><br />
-<br />
-<a class='textlink' href='https://dev.to/kylec32/series/2292'>Kyle Carter&#39;s 90-part Effective Java Series </a><br />
-<br />
-<h3 style='display: inline' id='java-pub-house'>Java Pub House</h3><br />
-<br />
-<span>During my lunch breaks, I usually have a walk around the block or in a nearby park. I used that time to listen to the Java Pub House podcast. I listened to *every* episode and learned tons of new stuff. I can highly recommend this podcast. Especially GraalVM, a high-performance JDK distribution written for Java and other JVM languages, captured my attention. GraalVM can compile Java code into native binaries, improving performance and easing the distribution of Java programs. Because of the latter, I should release a VS-Sim GraalVM edition one day through a Linux AppImage ;-).</span><br />
-<br />
-<a class='textlink' href='https://www.javapubhouse.com'>https://www.javapubhouse.com</a><br />
-<a class='textlink' href='https://www.graalvm.org'>https://www.graalvm.org</a><br />
-<br />
-<h3 style='display: inline' id='java-concurrency-course'>Java Concurrency course</h3><br />
-<br />
-<span>I also watched a course on O&#39;Reilly Safari Books online about Java Concurrency. That gave an excellent refresher on how the Java thread pools work and what were the concurrency primitives available in the standard library.</span><br />
-<br />
-<h3 style='display: inline' id='read-a-lot-of-java-code'>Read a lot of Java code</h3><br />
-<br />
-<span>First, the source code is often the best documentation (if programmed nicely), and second, it helps to get the hang of the language and standard practices. I started to read more and more Java code at work. I did that whenever I had to understand how something, in particular, worked (e.g. while troubleshooting and debugging an issue). </span><br />
-<br />
-<h3 style='display: inline' id='observed-java-code-reviews'>Observed Java code reviews</h3><br />
-<br />
-<span>Another great way to get the hang of Java again was to sneak into the code reviews of the Software Engineer colleagues. They are the expert on the matter and are a great source to copy knowledge. It&#39;s OK to stay passive and only follow the reviews. Sometimes, it&#39;s OK to step up and take ownership of the review. The developers will also always be happy to answer any naive questions which come up.</span><br />
-<br />
-<h3 style='display: inline' id='took-ownership-of-a-roadmap-java-project'>Took ownership of a roadmap-Java project</h3><br />
-<br />
-<span>Besides my Pet Project, I also took ownership of a regular roadmap Java project at work, making an internal Java service capable of running in  Kubernetes. This was a bunch of minor changes and adding a bunch of classes and unit tests dealing with the statelessness and a persistent job queue in Redis. The job also involved reading and understanding a lot of already existing Java code. It wasn&#39;t part of my job description, but it was fun, and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.</span><br />
-<br />
-<h2 style='display: inline' id='the-good'>The good</h2><br />
-<br />
-<span>From the new language features and syntaxes, there are many personal takeaways, and I can&#39;t possibly list them all, but here are some of my personal highlights:</span><br />
-<br />
-<ul>
-<li>Static factory methods and public constructors both have their uses, and it pays to understand their relative merits. Often static factories are preferable (cleaner and easier to read), so avoid the reflex to provide public constructors without first considering static factories.</li>
-<li>Java streams were utterly new to me. I love how they can help to produce more compact code. But it&#39;s challenging to set the line of when enough is enough. Overusing streams can have the opposite effect: Code becomes more complex and challenging to understand. And it is so easy to parallelize the computation of streams by "just" marking the stream as <span class='inlinecode'>.parallel()</span> (more on that later in this post).</li>
-<li>Overall, object-oriented languages tend to include more and more functional paradigms. The functional interfaces, which Java provides now, are fantastic. Their full powers shine in combination with the use of streams. An entire book can be written about Java functional interfaces, so I leave it to you to do any further digging.</li>
-<li>Local type inference help to reduce even more boilerplate code. E.g. instead of <span class='inlinecode'>Hash&lt;String,Hash&lt;String,String&gt;&gt; foo = new Hash&lt;String,Hash&lt;String,String&gt;&gt;();</span> it&#39;s possible to just write <span class='inlinecode'>var foo = new Hash&lt;String,Hash&lt;String,String&gt;&gt;();</span></li>
-<li>Class inheritance isn&#39;t the preferred way anymore to structure reusable code. Now, it&#39;s composition over inheritance. E.g. use dependency injection (inject one object to another object through its constructor) or prefer interfaces (which now also support default implementations of methods) over class inheritance. This makes sense to me as I do that already when I program in Ruby. </li>
-<li>I learned the <span class='inlinecode'>try-with-resources</span> pattern. Very useful in ensuring closing resources again correctly. No need anymore for complicated and nested <span class='inlinecode'>finally</span>-blocks, which used to be almost impossible to get right previously in case of an error condition (e.g. I/O error somewhere deeply nested in an input or output stream).</li>
-<li>Optimize only when required. It&#39;s considered to be cleaner to prefer immutable variables (declaring them as <span class='inlinecode'>final</span>). I knew that already, but for Java, it always seemed to be a waste of resources (creating entirely new objects whenever states change), but apparently, it&#39;s okay. Java also does many internal tricks for performance optimization here, e.g. interning strings.</li>
-<li>I learned about the concept of static member classes and the difference between non-static member classes (also sometimes known as inner classes). Non-static member classes have full access to all members of their outer class (think of closure). In contrast, static member classes act like completely separate classes without such access but provide the benefit of a nested name that can help group functionality in the code.</li>
-<li>I learned about the existence of thread-local variables. These are only available to the current thread and aren&#39;t shared with other threads.</li>
-<li>I learned about the concept of Java modules, which help to structure larger code bases better. The traditional Java packages are different. </li>
-<li>I learned to love the new <span class='inlinecode'>Optional</span> type. I already knew the concept from Haskell, where <span class='inlinecode'>Maybe</span> would be the corresponding type. <span class='inlinecode'>Optional</span> helps to avoid <span class='inlinecode'>null</span>-pointers but comes with some (minimal) performance penalty. So, in the end, you end up with both <span class='inlinecode'>Optional</span> types and <span class='inlinecode'>null</span>-pointers in your code (depending on the requirements). But I like to prefer <span class='inlinecode'>Optional</span> over <span class='inlinecode'>null</span>-pointer when "no result" is a valid return value from a method.</li>
-<li>The <span class='inlinecode'>enum</span> type is way more powerful than I thought. Initially, I felt an <span class='inlinecode'>enum</span> could only be used to define a list of constants and then to compare an instance to another instance of the same. An <span class='inlinecode'>enum</span> is still there to define a list of constants, but it&#39;s also almost like a <span class='inlinecode'>class</span> (you can implement constructors, and methods, inherit from other enums). There are quite a lot of possible use cases.</li>
-<li>A small but almost the most helpful thing I learned is always to use the <span class='inlinecode'>@Override</span> annotation when overriding a method from a parent class. If done, Java helps to detect any typos or type errors when overriding methods. That&#39;s useful and spares a lot of time debugging where a method was mistakenly overloaded but not overridden.</li>
-<li>Lambdas are much cleaner, shorter and easier to read than anonymous classes. Many Java libraries require passing instances of (anonymous) classes (e.g. in Swing) to other objects. Lambdas are so lovely because they are primarily compatible with the passing of anonymous classes, so they are a 1:1 replacement in many instances. Lambdas also play very nicely together with the Java functional interfaces, as each Lambda got a type, and the type can be an already existing functional interface (or, if you got a particular case, you could define your custom functional interface for your own set of Lambdas, of course).</li>
-<li>I love the concept of Java records. You can think of a record as an immutable object holding some data (as members). They are ideal for pipe and stream processing. They are much easier to define (with much less boilerplate) and come with write protection out of the box.</li>
-</ul><br />
-<h2 style='display: inline' id='the-bad-and-the-ugly'>The bad and the ugly</h2><br />
-<br />
-<span>There are also many ugly corners in Java. Many are doomed to stay there forever due to historical decisions and ensuring backward compatibility with older versions of the Java language and the Java standard library. </span><br />
-<br />
-<ul>
-<li>Finalizers and cleaners seem obsolete, fragile and still, you can use them.</li>
-<li>In many cases, extreme caution needs to be taken to minimize the accessibility of class members. You might think that Java provides the best "out-of-the-box" solution for proper encapsulation, but the language has many loopholes.</li>
-<li>In the early days, Java didn&#39;t support generics yet. So what you would use is to cast everything to <span class='inlinecode'>Object</span>. Java now fully supports generics (for a while already), but you can still cast everything to <span class='inlinecode'>Object</span> and back to whatever type you want. That can lead to nasty runtime errors. Also, there&#39;s a particular case to convert between an Array of Object to an Array of String or from an Array of String to a List of String. Java can&#39;t convert between these types automatically, and extreme caution needs to be taken when enforcing so (e.g. through explicit type casts). In many of these cases, Java would print out warnings that need to be manually suppressed via annotations. Programming that way, converting data between old and new best practices, is clunky.</li>
-<li>If you don&#39;t know what you do, Java streams can be all wrong. Side effects in functions used in streams can be nasty to debug. Also, don&#39;t just blindly add a <span class='inlinecode'>.parallel()</span> to your stream. You need to understand what the stream does and how it exactly works; otherwise, parallelizing a stream can impact the performance drastically (in a negative way). There need to be language constructs preventing you from doing the wrong things. That&#39;s so much easier to do it right in a purely functional programming language like Haskell.</li>
-<li>Java is a pretty old language (already), so there are many obstacles to consider. There are too many exceptions and different outcomes of how Java code can behave. In most cases, when you write an API, every method you program needs to be documented so the user won&#39;t encounter any surprises using your code. Writing and reading a lot of documentation seems to be quite the overhead when the method name is already descriptive.</li>
-<li>Java serialization is broken. It works, and the language still supports it, but you better not use Java&#39;s native way of object serialization and deserialization. Unbelievable how much can get wrong here, especially regarding security (injecting arbitrary code).</li>
-<li>Being a bit spoiled by Golang&#39;s Goroutines, I was shocked about the limitations of the Java threads. They are resource hungry, and you can&#39;t just spin up millions of them as you would with Goroutines. I knew this limitation of threads already (as it&#39;s not a problem of the language but of how threads work in the OS), but still, I was pretty shocked when I got reminded of them again. Of course, there&#39;s a workaround: Use asynchronous sockets so that you don&#39;t waste a whole thread on a single I/O operation (in my case, waiting for a network response). Golang&#39;s runtime does that automatically for you: An OS thread will be re-used for other tasks until the network socket unblocks. Every modern programming language should support lightweight threads or Coroutines like Go&#39;s Goroutines. </li>
-</ul><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>While (re)learning Java, I felt like a student again and was quite enthusiastic about it initially. I invested around half a year, immersing myself intensively in Java (again). The last time I did that was many years ago as a university student. I even won a Silver Prize at work, implementing a project this year (2022 as of writing this). I feel confident now with understanding, debugging and patching Java code at work, which boosted my debugging and troubleshooting skills. </span><br />
-<br />
-<span>I don&#39;t hate Java, but I don&#39;t love programming in it, either. I will, I guess, always see Java as the necessary to get stuff done (reading code to understand how the service works, adding a tiny feature to make my life easier, adding a quick bug fix to overcome an obstacle...).</span><br />
-<br />
-<span>Although Java has significantly improved since 1.4, its code still tends to be more boilerplate. Not mainly because due to lines of code (Golang code tends to be quite repetitive, primarily when no generics are used), but due to the levels of abstractions it uses. Class hierarchies can be ten classes or deeper, and it is challenging to understand what the code is doing. Good test coverage and much documentation can mitigate the problem partially. Big enterprises use Java, and that also reflects to the language. There are too many libraries and too many abstractions that are bundled with too many legacy abstractions and interfaces and too many exceptions in the library APIs. There&#39;s even an external library named Lombok, which aims to reduce Java boilerplate code. Why is there a need for an external library? It should be all part of Java itself.</span><br />
-<br />
-<a class='textlink' href='https://projectlombok.org/'>https://projectlombok.org/</a><br />
-<br />
-<span>Java needs a clean cut. The clean cut shall be incompatible with previous versions of Java and only promote modern best practices without all the legacy burden carried around. The same can be said for other languages, e.g. Perl, but in Perl, they already attack the problem with the use of flags which change the behaviour of the language to more modern standards. Or do it like Python, where they had a hard (incompatible) cut from version 2 to version 3. It will be painful, for sure. But that would be the only way I would enjoy using that language as one of my primary languages to code new stuff regularly. Currently, my Java will stay limited to very few projects and the more minor things already mentioned in this post. </span><br />
-<br />
-<span>Am I a Java expert now? No, by far not. But I am better now than before :-).</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

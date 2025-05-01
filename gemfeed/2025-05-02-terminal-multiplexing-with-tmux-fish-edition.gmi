@@ -1,10 +1,10 @@
-# Terminal multiplexing with `tmux` - Z-Shell edition
+# Terminal multiplexing with `tmux` - Fish edition
 
-> Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02
+> Published at 2025-05-02T00:09:23+03:00
 
-This is the Z-Shell version. There is also a Fish version:
+This is the Fish shell edition of the same post of mine from last year:
 
-=> ./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi
+=> ./2024-06-23-terminal-multiplexing-with-tmux.gmi
 
 Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
 
@@ -29,7 +29,7 @@ jgs   `-=========-`()
 
 ## Table of Contents
 
-* ⇢ Terminal multiplexing with `tmux` - Z-Shell edition
+* ⇢ Terminal multiplexing with `tmux` - Fish edition
 * ⇢ ⇢ Before continuing...
 * ⇢ ⇢ Shell aliases
 * ⇢ ⇢ The `tn` alias - Creating a new session
@@ -65,20 +65,23 @@ Tmux is highly configurable, and I think I am only scratching the surface of wha
 
 ## Shell aliases
 
-I am a user of the Z-Shell (`zsh`), but I believe all the snippets mentioned in this blog post also work with Bash. 
+Since last week, I switched to the Fish shell. As a result, I also had to convert all my tmux helper scripts (mentioned in this blog post) to Fish.
 
-=> https://www.zsh.org
+=> https://fishshell.com
 
 For the most common Tmux commands I use, I have created the following shell aliases:
 
-```bash
-alias tm=tmux
-alias tl='tmux list-sessions'
-alias tn=tmux::new
-alias ta=tmux::attach
-alias tx=tmux::remote
-alias ts=tmux::search
-alias tssh=tmux::cluster_ssh
+```
+alias tn 'tmux::new'
+alias ta 'tmux::attach'
+alias tx 'tmux::remote'
+alias ts 'tmux::search'
+alias tssh 'tmux::cluster_ssh'
+alias tm tmux
+alias tl 'tmux list-sessions'
+alias foo 'tmux::new foo'
+alias bar 'tmux::new bar'
+alias baz 'tmux::new baz'
 ```
 
 Note all `tmux::...`; those are custom shell functions doing certain things, and they aren't part of the Tmux distribution. But let's run through every aliases one by one. 
@@ -89,43 +92,35 @@ The first two are pretty straightforward. `tm` is simply a shorthand for `tmux`,
 
 The `tn` alias is referencing this function:
 
-```bash
+```
 # Create new session and if alread exists attach to it
-tmux::new () {
-    readonly session=$1
-    local date=date
-    if where gdate &>/dev/null; then
-        date=gdate
-    fi
-
-    tmux::cleanup_default
-    if [ -z "$session" ]; then
-        tmux::new T$($date +%s)
+function tmux::new
+    set -l session $argv[1]
+    _tmux::cleanup_default
+    if test -z "$session"
+        tmux::new (string join "" T (date +%s))
     else
         tmux new-session -d -s $session
         tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
-    fi
-}
-alias tn=tmux::new
+    end
+end
 ```
 
-There is a lot going on here. Let's have a detailed look at what it is doing. As a note, the function relies on GNU Date, so MacOS is looking for the `gdate` commands to be available. Otherwise, it will fall back to `date`. You need to install GNU Date for Mac, as it isn't installed by default there. As I use Fedora Linux on my personal Laptop and a MacBook for work, I have to make it work for both.
+There is a lot going on here. Let's have a detailed look at what it is doing. 
 
-First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named `T$($date +%s)` as a default. Which is T followed by the UNIX epoch, e.g. `T1717133796`.
+First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named `(string join "" T (date +%s))` as a default. Which is T followed by the UNIX epoch, e.g. `T1717133796`.
 
 ### Cleaning up default sessions automatically
 
-Note also the call to `tmux::cleanup_default`; it would clean up all already opened default sessions if they aren't attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren't attached. If I want to keep sessions around, I will rename them with the Tmux command `prefix-key $`. This is the cleanup function:
+Note also the call to `_tmux::cleanup_default`; it would clean up all already opened default sessions if they aren't attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren't attached. If I want to keep sessions around, I will rename them with the Tmux command `prefix-key $`. This is the cleanup function:
 
-```bash
-tmux::cleanup_default () {
-    local s
-    tmux list-sessions | grep '^T.*: ' | grep -F -v attached |
-    cut -d: -f1 | while read -r s; do
+```
+function _tmux::cleanup_default
+    tmux list-sessions | string match -r '^T.*: ' | string match -v -r attached | string split ':' | while read -l s
         echo "Killing $s"
         tmux kill-session -t "$s"
-    done
-}
+    end
+end
 ```
 
 The cleanup function kills all open Tmux sessions that haven't been renamed properly yet—but only if they aren't attached (e.g., don't run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. 
@@ -138,17 +133,15 @@ Whenever I am in a temporary session (named `T....`), I may decide that I want t
 
 This alias refers to the following function, which tries to attach to an already-running Tmux session.
 
-```bash
-tmux::attach () {
-    readonly session=$1
-
-    if [ -z "$session" ]; then
+```
+function tmux::attach
+    set -l session $argv[1]
+    if test -z "$session"
         tmux attach-session || tmux::new
     else
         tmux attach-session -t $session || tmux::new $session
-    fi
-}
-alias ta=tmux::attach
+    end
+end
 ```
 
 If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with `tmux::new`. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn't exist), it will be created and attached to.
@@ -157,13 +150,11 @@ If no session is specified (as the argument of the function), it will try to att
 
 This SSHs into the remote server specified and then, remotely on the server itself, starts a nested Tmux session. So we have one Tmux session on the local computer and, inside of it, an SSH connection to a remote server with a Tmux session running again. The benefit of this is that, in case my network connection breaks down, the next time I connect, I can continue my work on the remote server exactly where I left off. The session name is the name of the server being SSHed into. If a session like this already exists, it simply attaches to it.
 
-```bash
-tmux::remote () {
-    readonly server=$1
-    tmux new -s $server "ssh -t $server 'tmux attach-session || tmux'" || \
-        tmux attach-session -d -t $server
-}
-alias tr=tmux::remote
+```
+function tmux::remote
+    set -l server $argv[1]
+    tmux new -s $server "ssh -A -t $server 'tmux attach-session || tmux'" || tmux attach-session -d -t $server
+end
 ```
 
 ### Change of the Tmux prefix for better nesting
@@ -180,18 +171,17 @@ There might also be another way around this (without reconfiguring the prefix ke
 
 ## The `ts` alias - Searching sessions with fuzzy finder
 
-Despite the fact that with `tmux::cleanup_default`, I don't leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don't remember the exact session names.
+Despite the fact that with `_tmux::cleanup_default`, I don't leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don't remember the exact session names.
 
 ```bash
-tmux::search () {
-    local -r session=$(tmux list-sessions | fzf | cut -d: -f1)
-    if [ -z "$TMUX" ]; then
+function tmux::search
+    set -l session (tmux list-sessions | fzf | cut -d: -f1)
+    if test -z "$TMUX"
         tmux attach-session -t $session
     else
         tmux switch -t $session
-    fi
-}
-alias ts=tmux::search
+    end
+end
 ```
 
 All it does is list all currently open sessions in `fzf`, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).
@@ -213,16 +203,14 @@ However, since I started using Tmux, I retired ClusterSSH, as it came with the b
 
 This is the function definition behind the `tssh` alias:
  
-```bash
-tmux::cluster_ssh () {
-    if [ -f "$1" ]; then
-        tmux::tssh_from_file $1
+```
+function tmux::cluster_ssh
+    if test -f "$argv[1]"
+        tmux::tssh_from_file $argv[1]
         return
-    fi
-
-    tmux::tssh_from_argument $@
-}
-alias tssh=tmux::cluster_ssh
+    end
+    tmux::tssh_from_argument $argv
+end
 ```
 
 This function is just a wrapper around the more complex `tmux::tssh_from_file` and `tmux::tssh_from_argument` functions, as you have learned already. Most of the magic happens there.
@@ -231,24 +219,26 @@ This function is just a wrapper around the more complex `tmux::tssh_from_file` a
 
 This is the most magic helper function we will cover in this post. It looks like this:
 
-```bash
-tmux::tssh_from_argument () {
-    local -r session=$1; shift
-    local first_server=$1; shift
+```
+function tmux::tssh_from_argument
+    set -l session $argv[1]
+    set first_server_or_container $argv[2]
+    set remaining_servers $argv[3..-1]
+    if test -z "$first_server_or_container"
+        set first_server_or_container $session
+    end
 
-    tmux new-session -d -s $session "ssh -t $first_server"
-    if ! tmux list-session | grep "^$session:"; then
+    tmux new-session -d -s $session (_tmux::connect_command "$first_server_or_container")
+    if not tmux list-session | grep "^$session:"
         echo "Could not create session $session"
         return 2
-    fi
-
-    for server in "${@[@]}"; do
-        tmux split-window -t $session "tmux select-layout tiled; ssh -t $server"
-    done
-
+    end
+    for server_or_container in $remaining_servers
+        tmux split-window -t $session "tmux select-layout tiled; $(_tmux::connect_command "$server_or_container")"
+    end
     tmux setw -t $session synchronize-panes on
-    tmux -2 attach-session -t $session | tmux -2 switch-client -t $session
-}
+    tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+end
 ```
 
 It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with `tmux split-window -t $session...`. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.
@@ -264,13 +254,12 @@ bind-key P setw synchronize-panes on
 
 This one sets the session name to the file name and then reads a list of servers from that file, passing the list of servers to `tmux::tssh_from_argument` as the arguments. So, this is a neat little wrapper that also enables me to open clustered SSH sessions from an input file.
 
-```bash
-tmux::tssh_from_file () {
-    local -r serverlist=$1; shift
-    local -r session=$(basename $serverlist | cut -d. -f1)
-
-    tmux::tssh_from_argument $session $(awk '{ print $1} ' $serverlist | sed 's/.lan./.lan/g')
-}
+```
+function tmux::tssh_from_file
+    set -l serverlist $argv[1]
+    set -l session (basename $serverlist | cut -d. -f1)
+    tmux::tssh_from_argument $session (awk '{ print $1 }' $serverlist | sed 's/.lan./.lan/g')
+end
 ```
 
 ### `tssh` examples
@@ -376,7 +365,6 @@ The first one is that any new window starts in the current directory. The second
 The third one, `choose-tree`, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):
 
 => ./terminal-multiplexing-with-tmux/tmux-tree-view.png Tmux sessiont tree view
-
 
 The last remaining lines in my configuration file are:
   

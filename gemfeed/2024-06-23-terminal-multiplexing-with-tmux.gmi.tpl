@@ -1,6 +1,10 @@
-# Terminal multiplexing with `tmux`
+# Terminal multiplexing with `tmux` - Z-Shell edition
 
-> Published at 2024-06-23T22:41:59+03:00
+> Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02
+
+This is the Z-Shell version. There is also a Fish version:
+
+=> ./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi
 
 Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
 
