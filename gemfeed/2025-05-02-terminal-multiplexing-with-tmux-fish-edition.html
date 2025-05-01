@@ -2,22 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Terminal multiplexing with `tmux` - Z-Shell edition</title>
+<title>Terminal multiplexing with `tmux` - Fish edition</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi">Gemini</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a>
 </p>
-<h1 style='display: inline' id='terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</h1><br />
+<h1 style='display: inline' id='terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</h1><br />
 <br />
-<span class='quote'>Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02</span><br />
+<span class='quote'>Published at 2025-05-02T00:09:23+03:00</span><br />
 <br />
-<span>This is the Z-Shell version. There is also a Fish version:</span><br />
+<span>This is the Fish shell edition of the same post of mine from last year:</span><br />
 <br />
-<a class='textlink' href='./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html</a><br />
+<a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>./2024-06-23-terminal-multiplexing-with-tmux.html</a><br />
 <br />
 <span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
 <br />
@@ -44,7 +44,7 @@ jgs   `-=========-`()
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</a></li>
+<li><a href='#terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</a></li>
 <li>⇢ <a href='#before-continuing'>Before continuing...</a></li>
 <li>⇢ <a href='#shell-aliases'>Shell aliases</a></li>
 <li>⇢ <a href='#the-tn-alias---creating-a-new-session'>The <span class='inlinecode'>tn</span> alias - Creating a new session</a></li>
@@ -80,23 +80,23 @@ jgs   `-=========-`()
 <br />
 <h2 style='display: inline' id='shell-aliases'>Shell aliases</h2><br />
 <br />
-<span>I am a user of the Z-Shell (<span class='inlinecode'>zsh</span>), but I believe all the snippets mentioned in this blog post also work with Bash. </span><br />
+<span>Since last week, I switched to the Fish shell. As a result, I also had to convert all my tmux helper scripts (mentioned in this blog post) to Fish.</span><br />
 <br />
-<a class='textlink' href='https://www.zsh.org'>https://www.zsh.org</a><br />
+<a class='textlink' href='https://fishshell.com'>https://fishshell.com</a><br />
 <br />
 <span>For the most common Tmux commands I use, I have created the following shell aliases:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">alias</font></u></b> tm=tmux
-<b><u><font color="#000000">alias</font></u></b> tl=<font color="#808080">'tmux list-sessions'</font>
-<b><u><font color="#000000">alias</font></u></b> tn=tmux::new
-<b><u><font color="#000000">alias</font></u></b> ta=tmux::attach
-<b><u><font color="#000000">alias</font></u></b> tx=tmux::remote
-<b><u><font color="#000000">alias</font></u></b> ts=tmux::search
-<b><u><font color="#000000">alias</font></u></b> tssh=tmux::cluster_ssh
+<pre>
+alias tn &#39;tmux::new&#39;
+alias ta &#39;tmux::attach&#39;
+alias tx &#39;tmux::remote&#39;
+alias ts &#39;tmux::search&#39;
+alias tssh &#39;tmux::cluster_ssh&#39;
+alias tm tmux
+alias tl &#39;tmux list-sessions&#39;
+alias foo &#39;tmux::new foo&#39;
+alias bar &#39;tmux::new bar&#39;
+alias baz &#39;tmux::new baz&#39;
 </pre>
 <br />
 <span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
@@ -107,49 +107,35 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The <span class='inlinecode'>tn</span> alias is referencing this function:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Create new session and if alread exists attach to it</font></i>
-tmux::new () {
-    <b><u><font color="#000000">readonly</font></u></b> session=$1
-    <b><u><font color="#000000">local</font></u></b> date=date
-    <b><u><font color="#000000">if</font></u></b> where gdate &amp;&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
-        date=gdate
-    <b><u><font color="#000000">fi</font></u></b>
-
-    tmux::cleanup_default
-    <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$session"</font> ]; <b><u><font color="#000000">then</font></u></b>
-        tmux::new T$($date +%s)
-    <b><u><font color="#000000">else</font></u></b>
+<pre>
+# Create new session and if alread exists attach to it
+function tmux::new
+    set -l session $argv[1]
+    _tmux::cleanup_default
+    if test -z "$session"
+        tmux::new (string join "" T (date +%s))
+    else
         tmux new-session -d -s $session
-        tmux -<font color="#000000">2</font> attach-session -t $session || tmux -<font color="#000000">2</font> switch-client -t $session
-    <b><u><font color="#000000">fi</font></u></b>
-}
-<b><u><font color="#000000">alias</font></u></b> tn=tmux::new
+        tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+    end
+end
 </pre>
 <br />
-<span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. As a note, the function relies on GNU Date, so MacOS is looking for the <span class='inlinecode'>gdate</span> commands to be available. Otherwise, it will fall back to <span class='inlinecode'>date</span>. You need to install GNU Date for Mac, as it isn&#39;t installed by default there. As I use Fedora Linux on my personal Laptop and a MacBook for work, I have to make it work for both.</span><br />
+<span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. </span><br />
 <br />
-<span>First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named <span class='inlinecode'>T$($date +%s)</span> as a default. Which is T followed by the UNIX epoch, e.g. <span class='inlinecode'>T1717133796</span>.</span><br />
+<span>First, a Tmux session name can be passed to the function as a first argument. That session name is only optional. Without it, Tmux will select a session named <span class='inlinecode'>(string join "" T (date +%s))</span> as a default. Which is T followed by the UNIX epoch, e.g. <span class='inlinecode'>T1717133796</span>.</span><br />
 <br />
 <h3 style='display: inline' id='cleaning-up-default-sessions-automatically'>Cleaning up default sessions automatically</h3><br />
 <br />
-<span>Note also the call to <span class='inlinecode'>tmux::cleanup_default</span>; it would clean up all already opened default sessions if they aren&#39;t attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren&#39;t attached. If I want to keep sessions around, I will rename them with the Tmux command <span class='inlinecode'>prefix-key $</span>. This is the cleanup function:</span><br />
+<span>Note also the call to <span class='inlinecode'>_tmux::cleanup_default</span>; it would clean up all already opened default sessions if they aren&#39;t attached. Those sessions were only temporary, and I had too many flying around after a while. So, I decided to auto-delete the sessions if they weren&#39;t attached. If I want to keep sessions around, I will rename them with the Tmux command <span class='inlinecode'>prefix-key $</span>. This is the cleanup function:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::cleanup_default () {
-    <b><u><font color="#000000">local</font></u></b> s
-    tmux list-sessions | grep <font color="#808080">'^T.*: '</font> | grep -F -v attached |
-    cut -d: -f<font color="#000000">1</font> | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> -r s; <b><u><font color="#000000">do</font></u></b>
-        echo <font color="#808080">"Killing $s"</font>
-        tmux kill-session -t <font color="#808080">"$s"</font>
-    <b><u><font color="#000000">done</font></u></b>
-}
+<pre>
+function _tmux::cleanup_default
+    tmux list-sessions | string match -r &#39;^T.*: &#39; | string match -v -r attached | string split &#39;:&#39; | while read -l s
+        echo "Killing $s"
+        tmux kill-session -t "$s"
+    end
+end
 </pre>
 <br />
 <span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
@@ -162,20 +148,15 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This alias refers to the following function, which tries to attach to an already-running Tmux session.</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::attach () {
-    <b><u><font color="#000000">readonly</font></u></b> session=$1
-
-    <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$session"</font> ]; <b><u><font color="#000000">then</font></u></b>
+<pre>
+function tmux::attach
+    set -l session $argv[1]
+    if test -z "$session"
         tmux attach-session || tmux::new
-    <b><u><font color="#000000">else</font></u></b>
+    else
         tmux attach-session -t $session || tmux::new $session
-    <b><u><font color="#000000">fi</font></u></b>
-}
-<b><u><font color="#000000">alias</font></u></b> ta=tmux::attach
+    end
+end
 </pre>
 <br />
 <span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
@@ -184,16 +165,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This SSHs into the remote server specified and then, remotely on the server itself, starts a nested Tmux session. So we have one Tmux session on the local computer and, inside of it, an SSH connection to a remote server with a Tmux session running again. The benefit of this is that, in case my network connection breaks down, the next time I connect, I can continue my work on the remote server exactly where I left off. The session name is the name of the server being SSHed into. If a session like this already exists, it simply attaches to it.</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::remote () {
-    <b><u><font color="#000000">readonly</font></u></b> server=$1
-    tmux new -s $server <font color="#808080">"ssh -t $server 'tmux attach-session || tmux'"</font> || \
-        tmux attach-session -d -t $server
-}
-<b><u><font color="#000000">alias</font></u></b> tr=tmux::remote
+<pre>
+function tmux::remote
+    set -l server $argv[1]
+    tmux new -s $server "ssh -A -t $server &#39;tmux attach-session || tmux&#39;" || tmux attach-session -d -t $server
+end
 </pre>
 <br />
 <h3 style='display: inline' id='change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</h3><br />
@@ -210,21 +186,20 @@ set-option -g prefix C-g
 <br />
 <h2 style='display: inline' id='the-ts-alias---searching-sessions-with-fuzzy-finder'>The <span class='inlinecode'>ts</span> alias - Searching sessions with fuzzy finder</h2><br />
 <br />
-<span>Despite the fact that with <span class='inlinecode'>tmux::cleanup_default</span>, I don&#39;t leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don&#39;t remember the exact session names.</span><br />
+<span>Despite the fact that with <span class='inlinecode'>_tmux::cleanup_default</span>, I don&#39;t leave a huge mess with trillions of Tmux sessions flying around all the time, at times, it can become challenging to find exactly the session I am currently interested in. After a busy workday, I often end up with around twenty sessions on my laptop. This is where fuzzy searching for session names comes in handy, as I often don&#39;t remember the exact session names.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>tmux::search () {
-    <b><u><font color="#000000">local</font></u></b> -r session=$(tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
-    <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$TMUX"</font> ]; <b><u><font color="#000000">then</font></u></b>
+<pre>function tmux::search
+    <b><u><font color="#000000">set</font></u></b> -l session (tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
+    <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> -z <font color="#808080">"$TMUX"</font>
         tmux attach-session -t $session
     <b><u><font color="#000000">else</font></u></b>
         tmux switch -t $session
-    <b><u><font color="#000000">fi</font></u></b>
-}
-<b><u><font color="#000000">alias</font></u></b> ts=tmux::search
+    end
+end
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -247,19 +222,14 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>This is the function definition behind the <span class='inlinecode'>tssh</span> alias:</span><br />
 <span> </span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::cluster_ssh () {
-    <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$1"</font> ]; <b><u><font color="#000000">then</font></u></b>
-        tmux::tssh_from_file $1
-        <b><u><font color="#000000">return</font></u></b>
-    <b><u><font color="#000000">fi</font></u></b>
-
-    tmux::tssh_from_argument $@
-}
-<b><u><font color="#000000">alias</font></u></b> tssh=tmux::cluster_ssh
+<pre>
+function tmux::cluster_ssh
+    if test -f "$argv[1]"
+        tmux::tssh_from_file $argv[1]
+        return
+    end
+    tmux::tssh_from_argument $argv
+end
 </pre>
 <br />
 <span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
@@ -268,27 +238,26 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This is the most magic helper function we will cover in this post. It looks like this:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::tssh_from_argument () {
-    <b><u><font color="#000000">local</font></u></b> -r session=$1; <b><u><font color="#000000">shift</font></u></b>
-    <b><u><font color="#000000">local</font></u></b> first_server=$1; <b><u><font color="#000000">shift</font></u></b>
+<pre>
+function tmux::tssh_from_argument
+    set -l session $argv[1]
+    set first_server_or_container $argv[2]
+    set remaining_servers $argv[3..-1]
+    if test -z "$first_server_or_container"
+        set first_server_or_container $session
+    end
 
-    tmux new-session -d -s $session <font color="#808080">"ssh -t $first_server"</font>
-    <b><u><font color="#000000">if</font></u></b> ! tmux list-session | grep <font color="#808080">"^$session:"</font>; <b><u><font color="#000000">then</font></u></b>
-        echo <font color="#808080">"Could not create session $session"</font>
-        <b><u><font color="#000000">return</font></u></b> <font color="#000000">2</font>
-    <b><u><font color="#000000">fi</font></u></b>
-
-    <b><u><font color="#000000">for</font></u></b> server <b><u><font color="#000000">in</font></u></b> <font color="#808080">"${@[@]}"</font>; <b><u><font color="#000000">do</font></u></b>
-        tmux split-window -t $session <font color="#808080">"tmux select-layout tiled; ssh -t $server"</font>
-    <b><u><font color="#000000">done</font></u></b>
-
+    tmux new-session -d -s $session (_tmux::connect_command "$first_server_or_container")
+    if not tmux list-session | grep "^$session:"
+        echo "Could not create session $session"
+        return 2
+    end
+    for server_or_container in $remaining_servers
+        tmux split-window -t $session "tmux select-layout tiled; $(_tmux::connect_command "$server_or_container")"
+    end
     tmux setw -t $session synchronize-panes on
-    tmux -<font color="#000000">2</font> attach-session -t $session | tmux -<font color="#000000">2</font> switch-client -t $session
-}
+    tmux -2 attach-session -t $session || tmux -2 switch-client -t $session
+end
 </pre>
 <br />
 <span>It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with <span class='inlinecode'>tmux split-window -t $session...</span>. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.</span><br />
@@ -304,16 +273,12 @@ bind-key P setw synchronize-panes on
 <br />
 <span>This one sets the session name to the file name and then reads a list of servers from that file, passing the list of servers to <span class='inlinecode'>tmux::tssh_from_argument</span> as the arguments. So, this is a neat little wrapper that also enables me to open clustered SSH sessions from an input file.</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>tmux::tssh_from_file () {
-    <b><u><font color="#000000">local</font></u></b> -r serverlist=$1; <b><u><font color="#000000">shift</font></u></b>
-    <b><u><font color="#000000">local</font></u></b> -r session=$(basename $serverlist | cut -d. -f<font color="#000000">1</font>)
-
-    tmux::tssh_from_argument $session $(awk <font color="#808080">'{ print $1} '</font> $serverlist | sed <font color="#808080">'s/.lan./.lan/g'</font>)
-}
+<pre>
+function tmux::tssh_from_file
+    set -l serverlist $argv[1]
+    set -l session (basename $serverlist | cut -d. -f1)
+    tmux::tssh_from_argument $session (awk &#39;{ print $1 }&#39; $serverlist | sed &#39;s/.lan./.lan/g&#39;)
+end
 </pre>
 <br />
 <h3 style='display: inline' id='tssh-examples'><span class='inlinecode'>tssh</span> examples</h3><br />
@@ -420,7 +385,6 @@ bind-key T choose-tree
 <span>The third one, <span class='inlinecode'>choose-tree</span>, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):</span><br />
 <br />
 <a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux sessiont tree view' title='Tmux sessiont tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
-<br />
 <br />
 <span>The last remaining lines in my configuration file are:</span><br />
 <span>  </span><br />
