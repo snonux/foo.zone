@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-04-27T23:03:31+03:00 by `Gemtexter`
+> This site was generated at 2025-05-02T00:09:24+03:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2025-05-02 - Terminal multiplexing with `tmux` - Fish edition](./gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
 [2025-04-19 - 'When: The Scientific Secrets of Perfect Timing' book notes](./gemfeed/2025-04-19-when-book-notes.md)  
 [2025-04-05 - f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-03-05 - Sharing on Social Media with Gos v1.0.0](./gemfeed/2025-03-05-sharing-on-social-media-with-gos.md)  
@@ -55,7 +56,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [2024-08-05 - Typing `127.1` words per minute (`>100wpm average`)](./gemfeed/2024-08-05-typing-127.1-words-per-minute.md)  
 [2024-07-07 - 'The Stoic Challenge' book notes](./gemfeed/2024-07-07-the-stoic-challenge-book-notes.md)  
 [2024-07-05 - Random Weird Things - Part Ⅰ](./gemfeed/2024-07-05-random-weird-things.md)  
-[2024-06-23 - Terminal multiplexing with `tmux`](./gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md)  
+[2024-06-23 - Terminal multiplexing with `tmux` - Z-Shell edition](./gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md)  
 [2024-05-03 - Projects I currently don't have time for](./gemfeed/2024-05-03-projects-i-currently-dont-have-time-for.md)  
 [2024-05-01 - 'Slow Productivity' book notes](./gemfeed/2024-05-01-slow-productivity-book-notes.md)  
 [2024-04-01 - KISS high-availability with OpenBSD](./gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.md)  
