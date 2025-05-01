@@ -2,7 +2,7 @@
 
 > Published at 2025-05-02T00:09:23+03:00
 
-This is the Fish shell edition of the same post of mine from last year:
+This is the Fish shell edition of the same post (but for Z-Shell) of mine from last year:
 
 => ./2024-06-23-terminal-multiplexing-with-tmux.gmi
 
