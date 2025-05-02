@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-05-02T00:26:00+03:00 by `Gemtexter`
+> This site was generated at 2025-05-02T11:57:02+03:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -12,7 +12,7 @@ Welcome to the ...
 
 ```
 
-Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, programming and sometimes also about self-improvement here. And I also like coding.
+Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming and sometimes also about self-improvement here.
 
 ## Some links
 
