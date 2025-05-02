@@ -5,3 +5,4 @@
 * The Linux Programming Interface; Michael Kerrisk; No Starch Press 
 * Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
 * Groovy Kurz & Gut; Joerg Staudemeier; O'Reilly
+* Go: Design Patterns for Real-World Projects; Mat Ryer; Packt
