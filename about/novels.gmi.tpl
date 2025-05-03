@@ -72,6 +72,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie, Paperback
 * 2022 - Eklipse (german), Paperback
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
+* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Paperback
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 * 2024 - Der Riss (german), Andreas Brandhorst, Paperback
@@ -107,7 +108,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 * 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german), Paperback
 * 2015 - The Three-Body Problem, Liu Cixin, Audiobook
-* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Paperback
 
 ## Unread books already in my shelf
 
