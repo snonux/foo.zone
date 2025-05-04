@@ -8,7 +8,7 @@ I will post a new entry every month or so (there are too many other side project
 
 These are all the posts so far:
 
-<< template::inline::rindex f3s
+<< template::inline::index f3s
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
