@@ -2,14 +2,14 @@
 
 This is the fith blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
-I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).
+I will post a new entry every month or so (there are too many other side projects for more frequent updates — I bet you can understand).
 
 These are all the posts so far:
 
-[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
-[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
-[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
+[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -20,11 +20,37 @@ Let's begin...
 ## Table of Contents
 
 * [⇢ f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](#f3s-kubernetes-with-freebsd---part-5-wireguard-mesh-network)
-* [⇢ ⇢ TODO](#todo)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Deciding on WireGuard](#deciding-on-wireguard)
 
-## TODO
+## Introduction
 
-* what is wireguard...
+By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts as shown in this graph:
+
+[![Full Mesh network](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg "Full Mesh network")](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg)  
+
+Whereas `f0`, `f1`, and `f2` are the FreeBSD base hosts, `r0`, `r1`, and `r2` are the Rocky Linux Bhyve VMs, and `blowfish` and `fishfinger` are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems).
+
+As we can see from the graph, it is a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.
+
+For simplicity, we also establish VPN tunnels between `f0 <-> r0`, `f1 <-> r1`, and `f2 <-> r2`. Technically, this wouldn't be strictly required since the VMs `rN` are running on the hosts `fN`, and there is no network traffic leaving the box. However, it simplifies the configuration as we don't have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).
+
+## Deciding on WireGuard
+
+I have decided on using WireGuard as the VPN technology for this purpose.
+
+WireGuard is a lightweight, modern, and secure VPN protocol designed for simplicity, speed, and strong cryptography. It is an excellent choice due to its minimal codebase, ease of configuration, high performance, and robust security, utilizing state-of-the-art encryption standards. WireGuard is supported on various operating systems, and its implementations are compatible with each other. Therefore, establishing WireGuard VPN tunnels between FreeBSD, Linux, and OpenBSD is seamless. This cross-platform availability makes it suitable for setups like the one described in this blog series.
+
+We could have used Tailscale for an easy to setup and manage a WireGuard network, but the benefits of creating our own mesh network are:
+
+* Learning about WireGuard configurationd details
+* Have full control over the setup
+* Don't rely on an external provider like Tailscale (even if some of the components are open-source)
+* Have even more fun along the way
+
+[https://en.wikipedia.org/wiki/WireGuard](https://en.wikipedia.org/wiki/WireGuard)  
+[https://www.wireguard.com/](https://www.wireguard.com/)  
+[https://tailscale.com/](https://tailscale.com/)  
 
 * k3s by default traffic not encrypted
 

@@ -8,10 +8,10 @@ I will post a new entry every month or so (there are too many other side project
 
 These are all the posts so far:
 
-[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
-[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
-[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
+[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
+[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -38,7 +38,7 @@ Let's begin...
 
 ## Why this setup?
 
-My previous setup was great for learning Terraform and AWS, but it is too expensive. Costs are under control there, but only because I am shutting down all containers after use (so they are offline ninety percent of the time and still cost around $20 monthly). With the new setup, I could run all containers 24/7 at home, which would still be cheaper in terms of electricity consumption. I have a 50 MBit/s uplink (I could have more if I wanted, but it is plenty for my use case already).
+My previous setup was great for learning Terraform and AWS, but it is too expensive. Costs are under control there, but only because I am shutting down all containers after use (so they are offline ninety percent of the time and still cost around $20 monthly). With the new setup, I could run all containers 24/7 at home, which would still be cheaper in terms of electricity consumption. I have a 400 MBit/s uplink (I could have more if I wanted, but it is more than plenty for my use case already).
 
 [From `babylon5.buetow.org` to `.cloud`](./2024-02-04-from-babylon5.buetow.org-to-.cloud.md)  
 
