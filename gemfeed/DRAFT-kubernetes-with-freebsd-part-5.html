@@ -15,14 +15,14 @@
 <br />
 <span>This is the fith blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
-<span>I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).</span><br />
+<span>I will post a new entry every month or so (there are too many other side projects for more frequent updates — I bet you can understand).</span><br />
 <br />
 <span>These are all the posts so far:</span><br />
 <br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -34,13 +34,39 @@
 <br />
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-5-wireguard-mesh-network'>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a></li>
-<li>⇢ <a href='#todo'>TODO</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#deciding-on-wireguard'>Deciding on WireGuard</a></li>
 </ul><br />
-<h2 style='display: inline' id='todo'>TODO</h2><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts as shown in this graph:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg'><img alt='Full Mesh network' title='Full Mesh network' src='./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg' /></a><br />
+<br />
+<span>Whereas <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, and <span class='inlinecode'>f2</span> are the FreeBSD base hosts, <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span> are the Rocky Linux Bhyve VMs, and <span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span> are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems).</span><br />
+<br />
+<span>As we can see from the graph, it is a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.</span><br />
+<br />
+<span>For simplicity, we also establish VPN tunnels between <span class='inlinecode'>f0 &lt;-&gt; r0</span>, <span class='inlinecode'>f1 &lt;-&gt; r1</span>, and <span class='inlinecode'>f2 &lt;-&gt; r2</span>. Technically, this wouldn&#39;t be strictly required since the VMs <span class='inlinecode'>rN</span> are running on the hosts <span class='inlinecode'>fN</span>, and there is no network traffic leaving the box. However, it simplifies the configuration as we don&#39;t have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).</span><br />
+<br />
+<h2 style='display: inline' id='deciding-on-wireguard'>Deciding on WireGuard</h2><br />
+<br />
+<span>I have decided on using WireGuard as the VPN technology for this purpose.</span><br />
+<br />
+<span>WireGuard is a lightweight, modern, and secure VPN protocol designed for simplicity, speed, and strong cryptography. It is an excellent choice due to its minimal codebase, ease of configuration, high performance, and robust security, utilizing state-of-the-art encryption standards. WireGuard is supported on various operating systems, and its implementations are compatible with each other. Therefore, establishing WireGuard VPN tunnels between FreeBSD, Linux, and OpenBSD is seamless. This cross-platform availability makes it suitable for setups like the one described in this blog series.</span><br />
+<br />
+<span>We could have used Tailscale for an easy to setup and manage a WireGuard network, but the benefits of creating our own mesh network are:</span><br />
 <br />
 <ul>
-<li>what is wireguard...</li>
+<li>Learning about WireGuard configurationd details</li>
+<li>Have full control over the setup</li>
+<li>Don&#39;t rely on an external provider like Tailscale (even if some of the components are open-source)</li>
+<li>Have even more fun along the way</li>
 </ul><br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/WireGuard'>https://en.wikipedia.org/wiki/WireGuard</a><br />
+<a class='textlink' href='https://www.wireguard.com/'>https://www.wireguard.com/</a><br />
+<a class='textlink' href='https://tailscale.com/'>https://tailscale.com/</a><br />
+<br />
 <ul>
 <li>k3s by default traffic not encrypted</li>
 </ul><br />
