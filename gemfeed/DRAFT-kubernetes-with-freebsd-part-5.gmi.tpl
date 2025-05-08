@@ -18,7 +18,7 @@ Let's begin...
 
 ## Introduction
 
-By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts as shown in this graph:
+By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts.
 
 => ./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg Full Mesh network
 
@@ -28,6 +28,19 @@ As we can see from the graph, it is a true full-mesh network, where every host h
 
 For simplicity, we also establish VPN tunnels between `f0 <-> r0`, `f1 <-> r1`, and `f2 <-> r2`. Technically, this wouldn't be strictly required since the VMs `rN` are running on the hosts `fN`, and there is no network traffic leaving the box. However, it simplifies the configuration as we don't have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).
 
+### Expected traffic flow
+
+The traffic is expected to flow as follows between the host groups through the mesh network. 
+
+* `fN <-> rN`: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will be setting up a NFS server on the `fN` hosts. 
+* `fN <-> blowfish,fishfinger`: The traffic between the FreeBSD hosts and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for management. I may want to login via the internet to the setup to remotely manage it. It will also be used for monitoring purposes.
+* `rN <-> blowfish,fishfinger`: The traffic between the Rocky Linux VMs and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for usage traffic. Since `k3s` will be running on the `rN` hosts, the OpenBSD servers will route the traffic through `relayd` to the services running in Kubernetes.
+* `fN <-> fM`: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.
+* `rN <-> rM`: The traffic between the Rocky Linux VMs will later be used by the `k3s` cluster itself, as every `rN` will be a Kubernetes worker node.
+* `blowfish <-> fishfinger`: The traffic between the OpenBSD hosts isn't strictly required for this setup, but I set it up anyway for future use cases.
+
+We won't cover all the details in this blog post, as in this blog post we only focus on setting up the Mesh network. The details will be covered in subsequent posts of this series.
+
 ## Deciding on WireGuard
 
 I have decided on using WireGuard as the VPN technology for this purpose.
@@ -36,24 +49,165 @@ WireGuard is a lightweight, modern, and secure VPN protocol designed for simplic
 
 We could have used Tailscale for an easy to setup and manage a WireGuard network, but the benefits of creating our own mesh network are:
 
-* Learning about WireGuard configurationd details
+* Learning about WireGuard configuration details
 * Have full control over the setup
 * Don't rely on an external provider like Tailscale (even if some of the components are open-source)
 * Have even more fun along the way
+* WireGuard is easy to configure on my target operating systems, and therefore easier to maintain in the longer run.
 
 => https://en.wikipedia.org/wiki/WireGuard
 => https://www.wireguard.com/
 => https://tailscale.com/
 
-* k3s by default traffic not encrypted
+## Base configuration
 
-* maybe connect other boxes off-site via wireguard vpn tunnel
+In the following, we prepare the base configuration for the WireGuard mesh network. We will use a similar configuration on all participating hosts, with the exception of the host IP addresses and the private keys.
 
-* Why not Tailscale
-	* I Like magic, but only when I understand it
-	* Learning / Curiosity (this is the 2nd whole point why I am doing this series, besides of self-hosting privacy)
-	* Part of OS packages
-	* Easier to maintain in the longer run as there are no ready to use packages for the BSDs..?
+### FreeBSD
+
+On the FreeBSD hosts `f0`, `f1` and `f2`, similar as last time, first, we bring the system up to date:
+
+```sh
+paul@f0:~ % doas freebsd-update fetch
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas freebsd-update -r 14.2-RELEASE upgrade
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas shutdown -r now
+..
+..
+paul@f0:~ % doas pkg update
+paul@f0:~ % doas pkg upgrade
+paul@f0:~ % reboot
+```
+
+Next, we install `wireguard-tools` and configure the WireGuard service:
+
+```sh
+paul@f0:~ % doas pkg install wireguard-tools
+paul@f0:~ % doas sysrc wireguard_interfaces=wg0
+wireguard_interfaces:  -> wg0
+paul@f0:~ % doas sysrc wireguard_enable=YES
+wireguard_enable:  -> YES
+paul@f0:~ % doas mkdir -p /usr/local/etc/wireguard
+paul@f0:~ % doas touch /usr/local/etc/wireguard/wg0.conf
+paul@f0:~ % doas service wireguard start
+```
+
+For now, we have wireguard up and running, but without any useful configuration yet. We will come back to that later.
+
+Next, we add all the participating WireGuard IPs to the `hosts` file. This is only convenience, so we don't have to manage an external DNS server for this:
+
+```sh
+paul@f0:~ % cat <<END | doas tee -a /etc/hosts
+
+192.168.1.120 r0 r0.lan r0.lan.buetow.org
+192.168.1.121 r1 r1.lan r1.lan.buetow.org
+192.168.1.122 r2 r2.lan r2.lan.buetow.org
+
+192.168.2.130 f0.wg0 f0.wg0.wan.buetow.org
+192.168.2.131 f1.wg0 f1.wg0.wan.buetow.org
+192.168.2.132 f2.wg0 f2.wg0.wan.buetow.org
+
+192.168.2.120 r0.wg0 r0.wg0.wan.buetow.org
+192.168.2.121 r1.wg0 r1.wg0.wan.buetow.org
+192.168.2.122 r2.wg0 r2.wg0.wan.buetow.org
+
+192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+```
+
+As you can see, `192.168.1.0/24` is the network used in my LAN (with the `fN` and `rN` hosts) and `192.168.2.0/24` the network used for the WireGuard mesh network. The `wg0` interface will be used for all WireGuard traffic.
+
+### Rocky Linux
+
+We bring the Rocky Linux VMs up to date as well as following:
+
+```sh
+[root@r0 ~] dnf update -y
+[root@r0 ~] reboot
+```
+
+Next, we prepare WireGuard on them. Same as on the FreeBSD hosts, we will only prepare WireGuard without any useful configuration yet:
+	
+```sh
+[root@r0 ~] dnf install -y wireguard-tools
+[root@r0 ~] mkdir -p /etc/wireguard
+[root@r0 ~] touch /etc/wireguard/wg0.conf
+[root@r0 ~] systemctl enable wg-quick@wg0.service
+[root@r0 ~] systemctl start wg-quick@wg0.service
+[root@r0 ~] systemctl disable firewalld
+```
+
+We also update the `hosts` file accordingly:
+
+```sh
+[root@r0 ~] cat <<END >>/etc/hosts
+
+192.168.1.130 f0 f0.lan f0.lan.buetow.org
+192.168.1.131 f1 f1.lan f1.lan.buetow.org
+192.168.1.132 f2 f2.lan f2.lan.buetow.org
+
+192.168.2.130 f0.wg0 f0.wg0.wan.buetow.org
+192.168.2.131 f1.wg0 f1.wg0.wan.buetow.org
+192.168.2.132 f2.wg0 f2.wg0.wan.buetow.org
+
+192.168.2.120 r0.wg0 r0.wg0.wan.buetow.org
+192.168.2.121 r1.wg0 r1.wg0.wan.buetow.org
+192.168.2.122 r2.wg0 r2.wg0.wan.buetow.org
+
+192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+```
+
+Unfortunately, the SELinux policy on Rocky Linux blocks WireGuard's operation. By making the `wireguard_t` domain permissive using `semanage permissive -a wireguard_t`, SELinux will no longer enforce restrictions for WireGuard, allowing it to work as intended:
+
+```sh
+[root@r0 ~] dnf install -y policycoreutils-python-utils
+[root@r0 ~] semanage permissive -a wireguard_t
+[root@r0 ~] reboot
+```
+
+=> https://github.com/angristan/wireguard-install/discussions/499
+
+### OpenBSD
+
+Other than the FreeBSD and Rocky Linux hosts involved, my OpenBSD hosts (`blowfish` and `fishfinger`, which are running at OpenBSD Amsterdam and Hetzner in the internet) exist already for longer, so I can't provide you with the "from scratch" installation details here. In the following, we will only focus on the additional configuration needed to set up WireGuard:
+
+```sh
+blowfish$ doas pkg_add wireguard-tools
+blowfish$ doas mkdir /etc/wireguard
+blowfish$ doas touch /etc/wireguard/wg0.conf
+blowsish$ cat <<END | doas tee /etc/hostname.wg0
+inet 192.168.2.110 255.255.255.0 NONE
+up
+!/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
+END
+```
+
+Note, that on `blowfish` we configure `192.168.2.110` here in the `hostname.wg`, on `fishfinger` we configure `192.168.2.111`. Those are the IP addresses of the WireGuard interfaces on those hosts.
+
+And here, we also update the `hosts` file accordingly:
+
+```sh
+blowfish$ cat <<END | doas tee -a /etc/hosts
+
+192.168.2.130 f0.wg0 f0.wg0.wan.buetow.org
+192.168.2.131 f1.wg0 f1.wg0.wan.buetow.org
+192.168.2.132 f2.wg0 f2.wg0.wan.buetow.org
+
+192.168.2.120 r0.wg0 r0.wg0.wan.buetow.org
+192.168.2.121 r1.wg0 r1.wg0.wan.buetow.org
+192.168.2.122 r2.wg0 r2.wg0.wan.buetow.org
+
+192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+```
+
+TODO: Explain for what the mesh network is used exactly by use case
+TODO: Show wg status outputs
 
 Other *BSD-related posts:
 
