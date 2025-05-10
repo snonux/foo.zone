@@ -863,6 +863,7 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   allowed ips: 192.168.2.131/32
 ```
 
+TODO: Add steps to install wireguard-tools on Fedora Linux as well
 TODO: Describe the PSK
 TODO: Add WireGuard logo somewhere, under happy WiregGuarding?
 
