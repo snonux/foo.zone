@@ -20,7 +20,7 @@ Let's begin...
 
 By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts.
 
-=> ./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg Full Mesh network
+=> ./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg Full mesh network
 
 Whereas `f0`, `f1`, and `f2` are the FreeBSD base hosts, `r0`, `r1`, and `r2` are the Rocky Linux Bhyve VMs, and `blowfish` and `fishfinger` are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems).
 
@@ -211,7 +211,7 @@ blowfish$ cat <<END | doas tee -a /etc/hosts
 END
 ```
 
-## Generating the Mesh configuration
+## WireGuard configuration
 
 So far, we only started WireGuard on all participating hosts but without any useful configuration. Means, there aren't any VPN connetion established yet between any of the hosts.
 
@@ -307,7 +307,7 @@ That's why you see `PersistentKeepAlive = 25` in the `blowfish` and `fishfinger`
 
 Without this configuration, we might never have a VPN connection open, as the systems in the LAN may not actively attempt to contact `blowfish` and `fishfinger` on their own. In fact, the opposite would likely occur, with the traffic flowing inward instead of outward (this is beyond the scope of this blog post but will be covered in a later post in this series!).
 
-### Mesh network generation: Overview and config file
+## Mesh network generator
 
 Manually generating `wg0.conf` files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN connection (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as `AllowedIPs`, `Endpoint`, and optional settings like `PersistentKeepalive`. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.
 
@@ -317,7 +317,12 @@ I have written `wireguardmeshgenerator.rb` (a Ruby script) to do this for our pu
 
 => https://codeberg.org/snonux/wireguardmeshgenerator
 
-I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux, but should also work on other Linux and Unix-like systems. It's configured via `wireguardmesgenerator.yaml`:
+I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux, but should also work on other Linux and Unix-like systems.
+
+
+### `wireguardmeshgenerator.yaml`
+
+The file `wireguardmeshgenerator.yaml` configures the Mesh Generator script.
 
 ```
 ---
@@ -430,7 +435,7 @@ hosts:
 
 The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (`wg0`) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.
 
-###  Mesh network generation: The script
+### `wireguardmeshgenerator.rb` overview
 
 The `wireguardmeshgenerator.rb` script consists of the following base classes:
 
@@ -496,9 +501,11 @@ task default: :generate
 ```
 
 
-### Mesh network generation: Let's do it
+## Invoking the mesh network generator
 
-To generate everything, we simply run:
+### Generating the `wg0.conf` files and keys
+
+To generate everything (the `wg0.conf` of all participating hosts including all keys involved), we simply run:
 
 ```sh
 > rake generate
@@ -563,7 +570,11 @@ keys/fishfinger/priv.key
 keys/fishfinger/pub.key
 ```
 
-Uploading the `wg0.conf` files and reloading WireGuard on them then is just a matter of executing (this expects, that all participating hosts are up and running):
+Those keys are embedded in the resulting `wg0.conf`, so later, we only need to install the `wg0.conf` files instead of the keys individually.
+
+### Installing the `wg0.conf` files
+
+Uploading the `wg0.conf` files to the participating hosts and reloading WireGuard on them then is just a matter of executing (this expects, that all participating hosts are up and running):
 
 ```sh
 > rake install
@@ -851,6 +862,9 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   endpoint: 192.168.1.131:56709
   allowed ips: 192.168.2.131/32
 ```
+
+TODO: Describe the PSK
+TODO: Add WireGuard logo somewhere, under happy WiregGuarding?
 
 Other *BSD-related posts:
 
