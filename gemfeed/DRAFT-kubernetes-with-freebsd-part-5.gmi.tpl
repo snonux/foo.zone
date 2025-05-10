@@ -91,7 +91,12 @@ wireguard_enable:  -> YES
 paul@f0:~ % doas mkdir -p /usr/local/etc/wireguard
 paul@f0:~ % doas touch /usr/local/etc/wireguard/wg0.conf
 paul@f0:~ % doas service wireguard start
-```
+paul@f0:~ % doas wg show
+interface: wg0
+  public key: L+V9o0fNYkMVKNqsX7spBzD/9oSvxM/C7ZCZX1jLO3Q=
+  private key: (hidden)
+  listening port: 20246
+``` 
 
 For now, we have wireguard up and running, but without any useful configuration yet. We will come back to that later.
 
@@ -206,8 +211,646 @@ blowfish$ cat <<END | doas tee -a /etc/hosts
 END
 ```
 
-TODO: Explain for what the mesh network is used exactly by use case
-TODO: Show wg status outputs
+## Generating the Mesh configuration
+
+So far, we only started WireGuard on all participating hosts but without any useful configuration. Means, there aren't any VPN connetion established yet between any of the hosts.
+
+### Example `wg0.conf`
+
+Generally speaking, a `wg0.conf` looks like this (example from `f0` host):
+
+```
+[Interface]
+# f0.wg0.wan.buetow.org
+Address = 192.168.2.130
+PrivateKey = **************************
+ListenPort = 56709
+
+[Peer]
+# f1.lan.buetow.org as f1.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.131/32
+Endpoint = 192.168.1.131:56709
+# No KeepAlive configured
+
+[Peer]
+# f2.lan.buetow.org as f2.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.132/32
+Endpoint = 192.168.1.132:56709
+# No KeepAlive configured
+
+[Peer]
+# r0.lan.buetow.org as r0.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.120/32
+Endpoint = 192.168.1.120:56709
+# No KeepAlive configured
+
+[Peer]
+# r1.lan.buetow.org as r1.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.121/32
+Endpoint = 192.168.1.121:56709
+# No KeepAlive configured
+
+[Peer]
+# r2.lan.buetow.org as r2.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.122/32
+Endpoint = 192.168.1.122:56709
+# No KeepAlive configured
+
+[Peer]
+# blowfish.buetow.org as blowfish.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.110/32
+Endpoint = 23.88.35.144:56709
+PersistentKeepalive = 25
+
+[Peer]
+# fishfinger.buetow.org as fishfinger.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.111/32
+Endpoint = 46.23.94.99:56709
+PersistentKeepalive = 25
+```
+
+Whereas there are two main sections. One is `[Interface]`, which configures the current host (here: `f0`):
+
+* Address: Local virtual IP address on the WireGuard interface.
+* PrivateKey: Private key for this node.
+* ListenPort: Port on which this WireGuard interface listens for incoming connections.
+
+And in the following there is one `[Peer]` section for every peer node on the mesh network:
+
+* PublicKey: Public key of the remote peer to authenticate their identity.
+* PresharedKey: Optional symmetric key to enhance security (used in addition to PublicKey).
+* AllowedIPs: IPs or subnets routed through this peer (traffic is allowed to/from these IPs).
+* Endpoint: The public IP:port combination of the remote peer for connection.
+* PersistentKeepalive: Keeps the connection alive by sending periodic packets; used for NAT traversal.
+
+### NAT traversal
+
+As all participating hosts, except for `blowfish` and `fishfinger` (which are on the internet), are behind a NAT gateway (my home router), we need to use `PersistentKeepalive` to establish and maintain the VPN connection from the LAN to the internet because:
+
+> By default, WireGuard tries to be as silent as possible when not being used; it is not a chatty protocol. For the most part, it only transmits data when a peer wishes to send packets. When it's not being asked to send packets, it stops sending packets until it is asked again. In the majority of configurations, this works well. However, when a peer is behind NAT or a firewall, it might wish to be able to receive incoming packets even when it is not sending any packets. Because NAT and stateful firewalls keep track of "connections", if a peer behind NAT or a firewall wishes to receive incoming packets, he must keep the NAT/firewall mapping valid, by periodically sending keepalive packets. This is called persistent keepalives. When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is 25 seconds. Setting it to 0 turns the feature off, which is the default, since most users will not need this, and it makes WireGuard slightly more chatty. This feature may be specified by adding the PersistentKeepalive = field to a peer in the configuration file, or setting persistent-keepalive at the command line. If you don't need this feature, don't enable it. But if you're behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.
+
+That's why you see `PersistentKeepAlive = 25` in the `blowfish` and `fishfinger` peer configurations. This means that every 25 seconds, a keep-alive signal is sent over the tunnel to maintain its connection. Additionally, if the tunnel is not yet established, it will be created within 25 seconds at most.
+
+Without this configuration, we might never have a VPN connection open, as the systems in the LAN may not actively attempt to contact `blowfish` and `fishfinger` on their own. In fact, the opposite would likely occur, with the traffic flowing inward instead of outward (this is beyond the scope of this blog post but will be covered in a later post in this series!).
+
+### Mesh network generation: Overview and config file
+
+Manually generating `wg0.conf` files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN connection (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as `AllowedIPs`, `Endpoint`, and optional settings like `PersistentKeepalive`. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.
+
+Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.
+
+I have written `wireguardmeshgenerator.rb` (a Ruby script) to do this for our purposes:
+
+=> https://codeberg.org/snonux/wireguardmeshgenerator
+
+I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux, but should also work on other Linux and Unix-like systems. It's configured via `wireguardmesgenerator.yaml`:
+
+```
+---
+hosts:
+  f0:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.130'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.130'
+  f1:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.131'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.131'
+  f2:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.132'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.132'
+  r0:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.120'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.120'
+  r1:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.121'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.121'
+  r2:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.122'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.122'
+  blowfish:
+    os: OpenBSD
+    ssh:
+      user: rex
+      conf_dir: /etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: sh /etc/netstart wg0
+    internet:
+      domain: 'buetow.org'
+      ip: '23.88.35.144'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.110'
+  fishfinger:
+    os: OpenBSD
+    ssh:
+      user: rex
+      conf_dir: /etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: sh /etc/netstart wg0
+    internet:
+      domain: 'buetow.org'
+      ip: '46.23.94.99'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.111'
+```
+
+The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (`wg0`) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.
+
+###  Mesh network generation: The script
+
+The `wireguardmeshgenerator.rb` script consists of the following base classes:
+
+* `KeyTool`: Manages WireGuard key generation and retrieval. It ensures the presence of public/private key pairs and preshared keys (PSKs). If keys are missing, it generates them using the `wg` tool. It provides methods to read the public/private keys and to retrieve or generate a PSK for communication with a peer. The keys are stored in a temp directory on the system from where the generator is run from.
+* `PeerSnippet`: A `Struct` that represents the configuration for a single WireGuard peer in the mesh. It generates the peer's WireGuard configuration, including public key, PSK, allowed IPs, endpoint, and keepalive settings, based on the provided attributes and configuration.
+* `WireguardConfig`: Generates WireGuard configuration files for the specified host in the mesh network. It includes the `[Interface]` section for the host itself and the `[Peer]` sections for all other peers. It can also clean up generated files and directories and create the required directory structure for storing configuration files locally on the server from where the script is run from.
+* `InstallConfig`: Handles uploading, installing, and restarting the WireGuard service on remote hosts using SSH and SCP. It ensures that the configuration file is uploaded to the remote machine, the necessary directories are present and correctly configured, and the WireGuard service is reloaded with the new configuration.
+
+At the end (if you want to see the code for the stuff listed above, go to the Git repo and have a look), we just glue all together in this block:
+
+```ruby
+begin
+  options = { hosts: [] }
+  OptionParser.new do |opts|
+    opts.banner = 'Usage: wireguardmeshgenerator.rb [options]'
+    opts.on('--generate', 'Generate Wireguard configs') do
+      options[:generate] = true
+    end
+    opts.on('--install', 'Install Wireguard configs') do
+      options[:install] = true
+    end
+    opts.on('--clean', 'Clean Wireguard configs') do
+      options[:clean] = true
+    end
+    opts.on('--hosts=HOSTS', 'Comma separated hosts to configure') do |hosts|
+      options[:hosts] = hosts.split(',')
+    end
+  end.parse!
+
+  conf = YAML.load_file('wireguardmeshgenerator.yaml').freeze
+  conf['hosts'].keys.select { options[:hosts].empty? || options[:hosts].include?(_1) }
+               .each do |host|
+    # Generate Wireguard configuration for the hostreload!
+    WireguardConfig.new(host, conf['hosts']).generate! if options[:generate]
+    # Install Wireguard configuration for the host.
+    InstallConfig.new(host, conf['hosts']).upload!.install!.reload! if options[:install]
+    # Clean Wireguard configuration for the host.
+    WireguardConfig.new(host, conf['hosts']).clean! if options[:clean]
+  end
+rescue StandardError => e
+  puts "Error: #{e.message}"
+  puts e.backtrace.join("\n")
+  exit 2
+end
+```
+
+And we also have a `Rakefile`:
+
+```ruby
+task :generate do
+  ruby 'wireguardmeshgenerator.rb', '--generate'
+end
+
+task :clean do
+  ruby 'wireguardmeshgenerator.rb', '--clean'
+end
+
+task :install do
+  ruby 'wireguardmeshgenerator.rb', '--install'
+end
+
+task default: :generate
+```
+
+
+### Mesh network generation: Let's do it
+
+To generate everything, we simply run:
+
+```sh
+> rake generate
+/usr/bin/ruby wireguardmeshgenerator.rb --generate
+Generating dist/f0/etc/wireguard/wg0.conf
+Generating dist/f1/etc/wireguard/wg0.conf
+Generating dist/f2/etc/wireguard/wg0.conf
+Generating dist/r0/etc/wireguard/wg0.conf
+Generating dist/r1/etc/wireguard/wg0.conf
+Generating dist/r2/etc/wireguard/wg0.conf
+Generating dist/blowfish/etc/wireguard/wg0.conf
+Generating dist/fishfinger/etc/wireguard/wg0.conf
+```
+
+It generated all the `wg0.conf` files listed in the output, plus those keys:
+
+```sh
+> find keys/ -type f
+keys/f0/priv.key
+keys/f0/pub.key
+keys/psk/f0_f1.key
+keys/psk/f0_f2.key
+keys/psk/f0_r0.key
+keys/psk/f0_r1.key
+keys/psk/f0_r2.key
+keys/psk/blowfish_f0.key
+keys/psk/f0_fishfinger.key
+keys/psk/f1_f2.key
+keys/psk/f1_r0.key
+keys/psk/f1_r1.key
+keys/psk/f1_r2.key
+keys/psk/blowfish_f1.key
+keys/psk/f1_fishfinger.key
+keys/psk/f2_r0.key
+keys/psk/f2_r1.key
+keys/psk/f2_r2.key
+keys/psk/blowfish_f2.key
+keys/psk/f2_fishfinger.key
+keys/psk/r0_r1.key
+keys/psk/r0_r2.key
+keys/psk/blowfish_r0.key
+keys/psk/fishfinger_r0.key
+keys/psk/r1_r2.key
+keys/psk/blowfish_r1.key
+keys/psk/fishfinger_r1.key
+keys/psk/blowfish_r2.key
+keys/psk/fishfinger_r2.key
+keys/psk/blowfish_fishfinger.key
+keys/f1/priv.key
+keys/f1/pub.key
+keys/f2/priv.key
+keys/f2/pub.key
+keys/r0/priv.key
+keys/r0/pub.key
+keys/r1/priv.key
+keys/r1/pub.key
+keys/r2/priv.key
+keys/r2/pub.key
+keys/blowfish/priv.key
+keys/blowfish/pub.key
+keys/fishfinger/priv.key
+keys/fishfinger/pub.key
+```
+
+Uploading the `wg0.conf` files and reloading WireGuard on them then is just a matter of executing (this expects, that all participating hosts are up and running):
+
+```sh
+> rake install
+/usr/bin/ruby wireguardmeshgenerator.rb --install
+Uploading dist/f0/etc/wireguard/wg0.conf to f0.lan.buetow.org:.
+Installing Wireguard config on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod 700 /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -> /usr/local/etc/wireguard/wg0.conf
++ doas chmod 644 /usr/local/etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f1/etc/wireguard/wg0.conf to f1.lan.buetow.org:.
+Installing Wireguard config on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod 700 /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -> /usr/local/etc/wireguard/wg0.conf
++ doas chmod 644 /usr/local/etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f2/etc/wireguard/wg0.conf to f2.lan.buetow.org:.
+Installing Wireguard config on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod 700 /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -> /usr/local/etc/wireguard/wg0.conf
++ doas chmod 644 /usr/local/etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/r0/etc/wireguard/wg0.conf to r0.lan.buetow.org:.
+Installing Wireguard config on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ '[' '!' -d /etc/wireguard ']'
++ chmod 700 /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed 'wg0.conf' -> '/etc/wireguard/wg0.conf'
++ chmod 644 /etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r1/etc/wireguard/wg0.conf to r1.lan.buetow.org:.
+Installing Wireguard config on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ '[' '!' -d /etc/wireguard ']'
++ chmod 700 /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed 'wg0.conf' -> '/etc/wireguard/wg0.conf'
++ chmod 644 /etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r2/etc/wireguard/wg0.conf to r2.lan.buetow.org:.
+Installing Wireguard config on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ '[' '!' -d /etc/wireguard ']'
++ chmod 700 /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed 'wg0.conf' -> '/etc/wireguard/wg0.conf'
++ chmod 644 /etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/blowfish/etc/wireguard/wg0.conf to blowfish.buetow.org:.
+Installing Wireguard config on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod 700 /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -> /etc/wireguard/wg0.conf
++ doas chmod 644 /etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
+Uploading dist/fishfinger/etc/wireguard/wg0.conf to fishfinger.buetow.org:.
+Installing Wireguard config on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod 700 /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -> /etc/wireguard/wg0.conf
++ doas chmod 644 /etc/wireguard/wg0.conf
++ rm cmd.sh
+Reloading Wireguard on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
+```
+
+## Happy WireGuarding
+
+All is set up now. E.g. on `f0`:
+
+```sh
+paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: 56709
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: 46.23.94.99:56709
+  allowed ips: 192.168.2.111/32
+  latest handshake: 1 minute, 46 seconds ago
+  transfer: 124 B received, 1.75 KiB sent
+  persistent keepalive: every 25 seconds
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: 23.88.35.144:56709
+  allowed ips: 192.168.2.110/32
+  latest handshake: 1 minute, 52 seconds ago
+  transfer: 124 B received, 1.60 KiB sent
+  persistent keepalive: every 25 seconds
+
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP7+zwgehI=
+  preshared key: (hidden)
+  endpoint: 192.168.1.120:56709
+  allowed ips: 192.168.2.120/32
+
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: 192.168.1.131:56709
+  allowed ips: 192.168.2.131/32
+
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+1/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: 192.168.1.122:56709
+  allowed ips: 192.168.2.122/32
+
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: 192.168.1.121:56709
+  allowed ips: 192.168.2.121/32
+
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: 192.168.1.132:56709
+  allowed ips: 192.168.2.132/32
+```
+
+And all the hosts are pingable as well, e.g.:
+
+```sh
+paul@f0:~ % foreach peer ( f1 f2 r0 r1 r2 blowfish fishfinger )
+foreach? ping -c2 $peer.wg0
+foreach? echo
+foreach? end
+PING f1.wg0 (192.168.2.131): 56 data bytes
+64 bytes from 192.168.2.131: icmp_seq=0 ttl=64 time=0.334 ms
+64 bytes from 192.168.2.131: icmp_seq=1 ttl=64 time=0.260 ms
+
+--- f1.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.260/0.297/0.334/0.037 ms
+
+PING f2.wg0 (192.168.2.132): 56 data bytes
+64 bytes from 192.168.2.132: icmp_seq=0 ttl=64 time=0.323 ms
+64 bytes from 192.168.2.132: icmp_seq=1 ttl=64 time=0.303 ms
+
+--- f2.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.303/0.313/0.323/0.010 ms
+
+PING r0.wg0 (192.168.2.120): 56 data bytes
+64 bytes from 192.168.2.120: icmp_seq=0 ttl=64 time=0.716 ms
+64 bytes from 192.168.2.120: icmp_seq=1 ttl=64 time=0.406 ms
+
+--- r0.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.406/0.561/0.716/0.155 ms
+
+PING r1.wg0 (192.168.2.121): 56 data bytes
+64 bytes from 192.168.2.121: icmp_seq=0 ttl=64 time=0.639 ms
+64 bytes from 192.168.2.121: icmp_seq=1 ttl=64 time=0.629 ms
+
+--- r1.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.629/0.634/0.639/0.005 ms
+
+PING r2.wg0 (192.168.2.122): 56 data bytes
+64 bytes from 192.168.2.122: icmp_seq=0 ttl=64 time=0.569 ms
+64 bytes from 192.168.2.122: icmp_seq=1 ttl=64 time=0.479 ms
+
+--- r2.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 0.479/0.524/0.569/0.045 ms
+
+PING blowfish.wg0 (192.168.2.110): 56 data bytes
+64 bytes from 192.168.2.110: icmp_seq=0 ttl=255 time=35.745 ms
+64 bytes from 192.168.2.110: icmp_seq=1 ttl=255 time=35.481 ms
+
+--- blowfish.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 35.481/35.613/35.745/0.132 ms
+
+PING fishfinger.wg0 (192.168.2.111): 56 data bytes
+64 bytes from 192.168.2.111: icmp_seq=0 ttl=255 time=33.992 ms
+64 bytes from 192.168.2.111: icmp_seq=1 ttl=255 time=33.751 ms
+
+--- fishfinger.wg0 ping statistics ---
+2 packets transmitted, 2 packets received, 0.0% packet loss
+round-trip min/avg/max/stddev = 33.751/33.872/33.992/0.120 ms
+```
+
+Note, that the loop above is a `tcsh` loop, the default shell used in FreeBSD. Of course, all other peers can ping their peers as well!
+
+After the first ping, VPN connections now also show handshakes and amount of data transferred through them:
+
+```sh
+paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: 56709
+
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+1/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: 192.168.1.122:56709
+  allowed ips: 192.168.2.122/32
+  latest handshake: 10 seconds ago
+  transfer: 440 B received, 532 B sent
+
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: 192.168.1.121:56709
+  allowed ips: 192.168.2.121/32
+  latest handshake: 12 seconds ago
+  transfer: 440 B received, 564 B sent
+
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP7+zwgehI=
+  preshared key: (hidden)
+  endpoint: 192.168.1.120:56709
+  allowed ips: 192.168.2.120/32
+  latest handshake: 14 seconds ago
+  transfer: 440 B received, 564 B sent
+
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: 192.168.1.132:56709
+  allowed ips: 192.168.2.132/32
+  latest handshake: 17 seconds ago
+  transfer: 472 B received, 564 B sent
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: 23.88.35.144:56709
+  allowed ips: 192.168.2.110/32
+  latest handshake: 55 seconds ago
+  transfer: 472 B received, 596 B sent
+  persistent keepalive: every 25 seconds
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: 46.23.94.99:56709
+  allowed ips: 192.168.2.111/32
+  latest handshake: 55 seconds ago
+  transfer: 472 B received, 596 B sent
+  persistent keepalive: every 25 seconds
+
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: 192.168.1.131:56709
+  allowed ips: 192.168.2.131/32
+```
 
 Other *BSD-related posts:
 
