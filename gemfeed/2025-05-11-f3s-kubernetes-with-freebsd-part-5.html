@@ -77,9 +77,9 @@
 <ul>
 <li><span class='inlinecode'>fN &lt;-&gt; rN</span>: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the <span class='inlinecode'>fN</span> hosts. </li>
 <li><span class='inlinecode'>fN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the FreeBSD hosts and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.</li>
-<li><span class='inlinecode'>rN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the Rocky Linux VMs and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for usage traffic. Since <span class='inlinecode'>k3s</span> will be running on the <span class='inlinecode'>rN</span> hosts, the OpenBSD servers will route the traffic through <span class='inlinecode'>relayd</span> to the services running in Kubernetes.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the Rocky Linux VMs and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for usage traffic. Since k3s will be running on the <span class='inlinecode'>rN</span> hosts, the OpenBSD servers will route the traffic through <span class='inlinecode'>relayd</span> to the services running in Kubernetes.</li>
 <li><span class='inlinecode'>fN &lt;-&gt; fM</span>: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.</li>
-<li><span class='inlinecode'>rN &lt;-&gt; rM</span>: The traffic between the Rocky Linux VMs will later be used by the <span class='inlinecode'>k3s</span> cluster itself, as every <span class='inlinecode'>rN</span> will be a Kubernetes worker node.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; rM</span>: The traffic between the Rocky Linux VMs will later be used by the k3s cluster itself, as every <span class='inlinecode'>rN</span> will be a Kubernetes worker node.</li>
 <li><span class='inlinecode'>blowfish &lt;-&gt; fishfinger</span>: The traffic between the OpenBSD hosts isn&#39;t strictly required for this setup, but I set it up anyway for future use cases.</li>
 </ul><br />
 <span>We won&#39;t cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.</span><br />
@@ -119,8 +119,6 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas freebsd-update fetch
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
 paul@f0:~ % doas freebsd-update install
 paul@f0:~ % doas shutdown -r now
 ..
@@ -1000,9 +998,9 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Having a mesh network on our hosts is great for securing all the traffic between them for our future <span class='inlinecode'>k3s</span> setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.</span><br />
+<span>Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.</span><br />
 <br />
-<span>I look forward to the next blog post in this series. We may start setting up <span class='inlinecode'>k3s</span> or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.</span><br />
+<span>I look forward to the next blog post in this series. We may start setting up k3s or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
