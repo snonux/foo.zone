@@ -62,9 +62,9 @@ The traffic is expected to flow between the host groups through the mesh network
 
 * `fN <-> rN`: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the `fN` hosts. 
 * `fN <-> blowfish,fishfinger`: The traffic between the FreeBSD hosts and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.
-* `rN <-> blowfish,fishfinger`: The traffic between the Rocky Linux VMs and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for usage traffic. Since `k3s` will be running on the `rN` hosts, the OpenBSD servers will route the traffic through `relayd` to the services running in Kubernetes.
+* `rN <-> blowfish,fishfinger`: The traffic between the Rocky Linux VMs and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for usage traffic. Since k3s will be running on the `rN` hosts, the OpenBSD servers will route the traffic through `relayd` to the services running in Kubernetes.
 * `fN <-> fM`: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.
-* `rN <-> rM`: The traffic between the Rocky Linux VMs will later be used by the `k3s` cluster itself, as every `rN` will be a Kubernetes worker node.
+* `rN <-> rM`: The traffic between the Rocky Linux VMs will later be used by the k3s cluster itself, as every `rN` will be a Kubernetes worker node.
 * `blowfish <-> fishfinger`: The traffic between the OpenBSD hosts isn't strictly required for this setup, but I set it up anyway for future use cases.
 
 We won't cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.
@@ -100,8 +100,6 @@ On the FreeBSD hosts `f0`, `f1` and `f2`, similar as last time, first, we bring 
 
 ```sh
 paul@f0:~ % doas freebsd-update fetch
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas freebsd-update -r 14.2-RELEASE upgrade
 paul@f0:~ % doas freebsd-update install
 paul@f0:~ % doas shutdown -r now
 ..
@@ -924,9 +922,9 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 
 ## Conclusion
 
-Having a mesh network on our hosts is great for securing all the traffic between them for our future `k3s` setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.
+Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.
 
-I look forward to the next blog post in this series. We may start setting up `k3s` or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.
+I look forward to the next blog post in this series. We may start setting up k3s or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.
 
 Other *BSD-related posts:
 
