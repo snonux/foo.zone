@@ -474,7 +474,7 @@ Future uses (out of scope for this blog series) would be additional VMs for diff
 
 This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it's a nice setup for getting the most out of my hardware and keeping things running smoothly.
 
-See you in the next blog post of this series. Maybe we will be installing highly available storage with HAST or we start setting up k3s on the Rocky Linux VMs.
+See you in the next post of this series!
 
 Other *BSD-related posts:
 
