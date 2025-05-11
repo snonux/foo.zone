@@ -503,7 +503,9 @@ Future uses (out of scope for this blog series) would be additional VMs for diff
 
 This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it's a nice setup for getting the most out of my hardware and keeping things running smoothly.
 
-See you in the next post of this series!
+Read the next post of this series:
+
+[f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 
 Other *BSD-related posts:
 

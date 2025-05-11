@@ -357,7 +357,9 @@ All good :-)
 
 I have the same UPS (but with a bit more capacity) for my main work setup, which powers my 28" screen, music equipment, etc. It has already been helpful a couple of times during power outages here, so I am sure that the smaller UPS for the F3s setup will be of great use.
 
-See you in the next post of this series!
+Read the next post of this series:
+
+[f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 
 Other BSD related posts are:
 
