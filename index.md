@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-05-05T22:21:05+03:00 by `Gemtexter`
+> This site was generated at 2025-05-11T11:35:57+03:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-05-02 - Terminal multiplexing with `tmux` - Fish edition](./gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
 [2025-04-19 - 'When: The Scientific Secrets of Perfect Timing' book notes](./gemfeed/2025-04-19-when-book-notes.md)  
 [2025-04-05 - f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
