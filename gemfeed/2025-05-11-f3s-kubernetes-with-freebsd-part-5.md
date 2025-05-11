@@ -346,7 +346,7 @@ So, because it's better, we are using it.
 
 ## Mesh network generator
 
-Manually generating `wg0.conf` files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as `AllowedIPs` and `Endpoint` and optional settings like `PersistentKeepalive`. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.
+Manually generating `wg0.conf` files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales almost exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as `AllowedIPs` and `Endpoint` and optional settings like `PersistentKeepalive`. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.
 
 Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.
 
