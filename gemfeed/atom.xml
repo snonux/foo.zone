@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-05-11T11:38:56+03:00</updated>
+    <updated>2025-05-11T12:12:02+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -84,9 +84,9 @@
 <ul>
 <li><span class='inlinecode'>fN &lt;-&gt; rN</span>: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the <span class='inlinecode'>fN</span> hosts. </li>
 <li><span class='inlinecode'>fN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the FreeBSD hosts and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.</li>
-<li><span class='inlinecode'>rN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the Rocky Linux VMs and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for usage traffic. Since <span class='inlinecode'>k3s</span> will be running on the <span class='inlinecode'>rN</span> hosts, the OpenBSD servers will route the traffic through <span class='inlinecode'>relayd</span> to the services running in Kubernetes.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the Rocky Linux VMs and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for usage traffic. Since k3s will be running on the <span class='inlinecode'>rN</span> hosts, the OpenBSD servers will route the traffic through <span class='inlinecode'>relayd</span> to the services running in Kubernetes.</li>
 <li><span class='inlinecode'>fN &lt;-&gt; fM</span>: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.</li>
-<li><span class='inlinecode'>rN &lt;-&gt; rM</span>: The traffic between the Rocky Linux VMs will later be used by the <span class='inlinecode'>k3s</span> cluster itself, as every <span class='inlinecode'>rN</span> will be a Kubernetes worker node.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; rM</span>: The traffic between the Rocky Linux VMs will later be used by the k3s cluster itself, as every <span class='inlinecode'>rN</span> will be a Kubernetes worker node.</li>
 <li><span class='inlinecode'>blowfish &lt;-&gt; fishfinger</span>: The traffic between the OpenBSD hosts isn&#39;t strictly required for this setup, but I set it up anyway for future use cases.</li>
 </ul><br />
 <span>We won&#39;t cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.</span><br />
@@ -126,8 +126,6 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas freebsd-update fetch
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
 paul@f0:~ % doas freebsd-update install
 paul@f0:~ % doas shutdown -r now
 ..
@@ -398,7 +396,7 @@ PersistentKeepalive = 25
 <br />
 <h2 style='display: inline' id='mesh-network-generator'>Mesh network generator</h2><br />
 <br />
-<span>Manually generating <span class='inlinecode'>wg0.conf</span> files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as <span class='inlinecode'>AllowedIPs</span> and <span class='inlinecode'>Endpoint</span> and optional settings like <span class='inlinecode'>PersistentKeepalive</span>. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.</span><br />
+<span>Manually generating <span class='inlinecode'>wg0.conf</span> files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales almost exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as <span class='inlinecode'>AllowedIPs</span> and <span class='inlinecode'>Endpoint</span> and optional settings like <span class='inlinecode'>PersistentKeepalive</span>. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.</span><br />
 <br />
 <span>Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.</span><br />
 <br />
@@ -1007,9 +1005,9 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Having a mesh network on our hosts is great for securing all the traffic between them for our future <span class='inlinecode'>k3s</span> setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.</span><br />
+<span>Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.</span><br />
 <br />
-<span>I look forward to the next blog post in this series. We may start setting up <span class='inlinecode'>k3s</span> or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.</span><br />
+<span>I look forward to the next blog post in this series. We may start setting up k3s or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -2161,7 +2159,9 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <span>This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it&#39;s a nice setup for getting the most out of my hardware and keeping things running smoothly.</span><br />
 <br />
-<span>See you in the next post of this series!</span><br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -3276,7 +3276,9 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>I have the same UPS (but with a bit more capacity) for my main work setup, which powers my 28" screen, music equipment, etc. It has already been helpful a couple of times during power outages here, so I am sure that the smaller UPS for the F3s setup will be of great use.</span><br />
 <br />
-<span>See you in the next post of this series!</span><br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <br />
 <span>Other BSD related posts are:</span><br />
 <br />
