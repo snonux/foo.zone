@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-05-11T11:38:56+03:00</updated>
+    <updated>2025-05-11T12:01:01+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -398,7 +398,7 @@ PersistentKeepalive = 25
 <br />
 <h2 style='display: inline' id='mesh-network-generator'>Mesh network generator</h2><br />
 <br />
-<span>Manually generating <span class='inlinecode'>wg0.conf</span> files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as <span class='inlinecode'>AllowedIPs</span> and <span class='inlinecode'>Endpoint</span> and optional settings like <span class='inlinecode'>PersistentKeepalive</span>. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.</span><br />
+<span>Manually generating <span class='inlinecode'>wg0.conf</span> files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales almost exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as <span class='inlinecode'>AllowedIPs</span> and <span class='inlinecode'>Endpoint</span> and optional settings like <span class='inlinecode'>PersistentKeepalive</span>. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.</span><br />
 <br />
 <span>Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.</span><br />
 <br />
