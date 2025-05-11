@@ -1,11 +1,1033 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-05-05T22:21:05+03:00</updated>
+    <updated>2025-05-11T11:35:57+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</title>
+        <link href="https://foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.html" />
+        <id>https://foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.html</id>
+        <updated>2025-05-11T11:35:57+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the fifth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-5-wireguard-mesh-network'>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</h1><br />
+<br />
+<span>This is the fifth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
+<br />
+<span>I will post a new entry every month or so (there are too many other side projects for more frequent updates — I bet you can understand).</span><br />
+<br />
+<span>These are all the posts so far:</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<span class='quote'>ChatGPT generated logo.</span><br />
+<br />
+<span>Let&#39;s begin...</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-5-wireguard-mesh-network'>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#expected-traffic-flow'>Expected traffic flow</a></li>
+<li>⇢ <a href='#deciding-on-wireguard'>Deciding on WireGuard</a></li>
+<li>⇢ <a href='#base-configuration'>Base configuration</a></li>
+<li>⇢ ⇢ <a href='#freebsd'>FreeBSD</a></li>
+<li>⇢ ⇢ <a href='#rocky-linux'>Rocky Linux</a></li>
+<li>⇢ ⇢ <a href='#openbsd'>OpenBSD</a></li>
+<li>⇢ <a href='#wireguard-configuration'>WireGuard configuration</a></li>
+<li>⇢ ⇢ <a href='#example-wg0conf'>Example <span class='inlinecode'>wg0.conf</span></a></li>
+<li>⇢ ⇢ <a href='#nat-traversal-and-keepalive'>NAT traversal and keepalive</a></li>
+<li>⇢ ⇢ <a href='#preshared-key'>Preshared key</a></li>
+<li>⇢ <a href='#mesh-network-generator'>Mesh network generator</a></li>
+<li>⇢ ⇢ <a href='#wireguardmeshgeneratoryaml'><span class='inlinecode'>wireguardmeshgenerator.yaml</span></a></li>
+<li>⇢ ⇢ <a href='#wireguardmeshgeneratorrb-overview'><span class='inlinecode'>wireguardmeshgenerator.rb</span> overview</a></li>
+<li>⇢ <a href='#invoking-the-mesh-network-generator'>Invoking the mesh network generator</a></li>
+<li>⇢ ⇢ <a href='#generating-the-wg0conf-files-and-keys'>Generating the <span class='inlinecode'>wg0.conf</span> files and keys</a></li>
+<li>⇢ ⇢ <a href='#installing-the-wg0conf-files'>Installing the <span class='inlinecode'>wg0.conf</span> files</a></li>
+<li>⇢ ⇢ <a href='#re-generating-mesh-and-installing-the-wg0conf-files-again'>Re-generating mesh and installing the <span class='inlinecode'>wg0.conf</span> files again</a></li>
+<li>⇢ <a href='#happy-wireguard-ing'>Happy WireGuard-ing</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg'><img alt='Full mesh network' title='Full mesh network' src='./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg' /></a><br />
+<br />
+<span>Whereas <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, and <span class='inlinecode'>f2</span> are the FreeBSD base hosts, <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span> are the Rocky Linux Bhyve VMs, and <span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span> are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems).</span><br />
+<br />
+<span>As we can see from the graph, it is a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.</span><br />
+<br />
+<span>For simplicity, we also establish VPN tunnels between <span class='inlinecode'>f0 &lt;-&gt; r0</span>, <span class='inlinecode'>f1 &lt;-&gt; r1</span>, and <span class='inlinecode'>f2 &lt;-&gt; r2</span>. Technically, this wouldn&#39;t be strictly required since the VMs <span class='inlinecode'>rN</span> are running on the hosts <span class='inlinecode'>fN</span>, and no network traffic is leaving the box. However, it simplifies the configuration as we don&#39;t have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).</span><br />
+<br />
+<h3 style='display: inline' id='expected-traffic-flow'>Expected traffic flow</h3><br />
+<br />
+<span>The traffic is expected to flow between the host groups through the mesh network as follows: </span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>fN &lt;-&gt; rN</span>: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the <span class='inlinecode'>fN</span> hosts. </li>
+<li><span class='inlinecode'>fN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the FreeBSD hosts and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; blowfish,fishfinger</span>: The traffic between the Rocky Linux VMs and the OpenBSD host <span class='inlinecode'>blowfish,fishfinger</span> will be routed through the VPN tunnels for usage traffic. Since <span class='inlinecode'>k3s</span> will be running on the <span class='inlinecode'>rN</span> hosts, the OpenBSD servers will route the traffic through <span class='inlinecode'>relayd</span> to the services running in Kubernetes.</li>
+<li><span class='inlinecode'>fN &lt;-&gt; fM</span>: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.</li>
+<li><span class='inlinecode'>rN &lt;-&gt; rM</span>: The traffic between the Rocky Linux VMs will later be used by the <span class='inlinecode'>k3s</span> cluster itself, as every <span class='inlinecode'>rN</span> will be a Kubernetes worker node.</li>
+<li><span class='inlinecode'>blowfish &lt;-&gt; fishfinger</span>: The traffic between the OpenBSD hosts isn&#39;t strictly required for this setup, but I set it up anyway for future use cases.</li>
+</ul><br />
+<span>We won&#39;t cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.</span><br />
+<br />
+<h2 style='display: inline' id='deciding-on-wireguard'>Deciding on WireGuard</h2><br />
+<br />
+<span>I have decided to use WireGuard as the VPN technology for this purpose.</span><br />
+<br />
+<span>WireGuard is a lightweight, modern, and secure VPN protocol designed for simplicity, speed, and strong cryptography. It is an excellent choice due to its minimal codebase, ease of configuration, high performance, and robust security, utilizing state-of-the-art encryption standards. WireGuard is supported on various operating systems, and its implementations are compatible with each other. Therefore, establishing WireGuard VPN tunnels between FreeBSD, Linux, and OpenBSD is seamless. This cross-platform availability makes it suitable for setups like the one described in this blog series.</span><br />
+<br />
+<span>We could have used Tailscale for an easy to set up and manage the WireGuard network, but the benefits of creating our own mesh network are:</span><br />
+<br />
+<ul>
+<li>Learning about WireGuard configuration details</li>
+<li>Have full control over the setup</li>
+<li>Don&#39;t rely on an external provider like Tailscale (even if some of the components are open-source)</li>
+<li>Have even more fun along the way</li>
+<li>WireGuard is easy to configure on my target operating systems and, therefore, easier to maintain in the long run.</li>
+<li>There are no official Tailscale packages available for OpenBSD and FreeBSD. However, getting Tailscale running on these systems is still possible, though some tinkering would be required. Instead, we use that tinkering time to set up WireGuard tunnels ourselves.</li>
+</ul><br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/WireGuard'>https://en.wikipedia.org/wiki/WireGuard</a><br />
+<a class='textlink' href='https://www.wireguard.com/'>https://www.wireguard.com/</a><br />
+<a class='textlink' href='https://tailscale.com/'>https://tailscale.com/</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-5/wireguard.svg'><img alt='WireGuard Logo' title='WireGuard Logo' src='./f3s-kubernetes-with-freebsd-part-5/wireguard.svg' /></a><br />
+<br />
+<h2 style='display: inline' id='base-configuration'>Base configuration</h2><br />
+<br />
+<span>In the following, we prepare the base configuration for the WireGuard mesh network. We will use a similar configuration on all participating hosts, with the exception of the host IP addresses and the private keys.</span><br />
+<br />
+<h3 style='display: inline' id='freebsd'>FreeBSD</h3><br />
+<br />
+<span>On the FreeBSD hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, similar as last time, first, we bring the system up to date:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas freebsd-update fetch
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas freebsd-update -r <font color="#000000">14.2</font>-RELEASE upgrade
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas shutdown -r now
+..
+..
+paul@f0:~ % doas pkg update
+paul@f0:~ % doas pkg upgrade
+paul@f0:~ % reboot
+</pre>
+<br />
+<span>Next, we install <span class='inlinecode'>wireguard-tools</span> and configure the WireGuard service:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install wireguard-tools
+paul@f0:~ % doas sysrc wireguard_interfaces=wg0
+wireguard_interfaces:  -&gt; wg0
+paul@f0:~ % doas sysrc wireguard_enable=YES
+wireguard_enable:  -&gt; YES
+paul@f0:~ % doas mkdir -p /usr/local/etc/wireguard
+paul@f0:~ % doas touch /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
+paul@f0:~ % doas service wireguard start
+paul@f0:~ % doas wg show
+interface: wg0
+  public key: L+V9o0fNYkMVKNqsX7spBzD/9oSvxM/C7ZCZX1jLO3Q=
+  private key: (hidden)
+  listening port: <font color="#000000">20246</font>
+</pre>
+<br />
+<span>We now have the WireGuard up and running, but it is not yet in any functional configuration. We will come back to that later.</span><br />
+<br />
+<span>Next, we add all the participating WireGuard IPs to the <span class='inlinecode'>hosts</span> file. This is only convenience, so we don&#39;t have to manage an external DNS server for this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % cat &lt;&lt;END | doas tee -a /etc/hosts
+
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+</pre>
+<br />
+<span>As you can see, <span class='inlinecode'>192.168.1.0/24</span> is the network used in my LAN (with the <span class='inlinecode'>fN</span> and <span class='inlinecode'>rN</span> hosts) and <span class='inlinecode'>192.168.2.0/24</span> is the network used for the WireGuard mesh network. The <span class='inlinecode'>wg0</span> interface will be used for all WireGuard traffic.</span><br />
+<br />
+<h3 style='display: inline' id='rocky-linux'>Rocky Linux</h3><br />
+<br />
+<span>We bring the Rocky Linux VMs up to date as well with the following:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] dnf update -y
+[root@r0 ~] reboot
+</pre>
+<br />
+<span>Next, we prepare WireGuard on them. Same as on the FreeBSD hosts, we will only prepare WireGuard without any useful configuration yet:</span><br />
+<span>	</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] dnf install -y wireguard-tools
+[root@r0 ~] mkdir -p /etc/wireguard
+[root@r0 ~] touch /etc/wireguard/wg<font color="#000000">0</font>.conf
+[root@r0 ~] systemctl <b><u><font color="#000000">enable</font></u></b> wg-quick@wg0.service
+[root@r0 ~] systemctl start wg-quick@wg0.service
+[root@r0 ~] systemctl disable firewalld
+</pre>
+<br />
+<span>We also update the <span class='inlinecode'>hosts</span> file accordingly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] cat &lt;&lt;END &gt;&gt;/etc/hosts
+
+<font color="#000000">192.168</font>.<font color="#000000">1.130</font> f0 f0.lan f0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.131</font> f1 f1.lan f1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.132</font> f2 f2.lan f2.lan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+</pre>
+<br />
+<span>Unfortunately, the SELinux policy on Rocky Linux blocks WireGuard&#39;s operation. By making the <span class='inlinecode'>wireguard_t</span> domain permissive using <span class='inlinecode'>semanage permissive -a wireguard_t</span>, SELinux will no longer enforce restrictions for WireGuard, allowing it to work as intended:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~] dnf install -y policycoreutils-python-utils
+[root@r0 ~] semanage permissive -a wireguard_t
+[root@r0 ~] reboot
+</pre>
+<br />
+<a class='textlink' href='https://github.com/angristan/wireguard-install/discussions/499'>https://github.com/angristan/wireguard-install/discussions/499</a><br />
+<br />
+<h3 style='display: inline' id='openbsd'>OpenBSD</h3><br />
+<br />
+<span>Other than the FreeBSD and Rocky Linux hosts involved, my OpenBSD hosts (<span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span>, which are running at OpenBSD Amsterdam and Hetzner on the internet) have been running already for longer, so I can&#39;t provide you with the "from scratch" installation details here. In the following, we will only focus on the additional configuration needed to set up WireGuard:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish$ doas pkg_add wireguard-tools
+blowfish$ doas mkdir /etc/wireguard
+blowfish$ doas touch /etc/wireguard/wg<font color="#000000">0</font>.conf
+blowsish$ cat &lt;&lt;END | doas tee /etc/hostname.wg0
+inet <font color="#000000">192.168</font>.<font color="#000000">2.110</font> <font color="#000000">255.255</font>.<font color="#000000">255.0</font> NONE
+up
+!/usr/local/bin/wg setconf wg0 /etc/wireguard/wg<font color="#000000">0</font>.conf
+END
+</pre>
+<br />
+<span>Note that on <span class='inlinecode'>blowfish</span>, we configure <span class='inlinecode'>192.168.2.110</span> here in the <span class='inlinecode'>hostname.wg</span>, and on <span class='inlinecode'>fishfinger</span>, we configure <span class='inlinecode'>192.168.2.111</span>. Those are the IP addresses of the WireGuard interfaces on those hosts.</span><br />
+<br />
+<span>And here, we also update the <span class='inlinecode'>hosts</span> file accordingly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish$ cat &lt;&lt;END | doas tee -a /etc/hosts
+
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
+</pre>
+<br />
+<h2 style='display: inline' id='wireguard-configuration'>WireGuard configuration</h2><br />
+<br />
+<span>So far, we have only started WireGuard on all participating hosts without any useful configuration. This means that no VPN tunnel has been established yet between any of the hosts.</span><br />
+<br />
+<h3 style='display: inline' id='example-wg0conf'>Example <span class='inlinecode'>wg0.conf</span></h3><br />
+<br />
+<span>Generally speaking, a <span class='inlinecode'>wg0.conf</span> looks like this (example from <span class='inlinecode'>f0</span> host):</span><br />
+<br />
+<pre>
+[Interface]
+# f0.wg0.wan.buetow.org
+Address = 192.168.2.130
+PrivateKey = **************************
+ListenPort = 56709
+
+[Peer]
+# f1.lan.buetow.org as f1.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.131/32
+Endpoint = 192.168.1.131:56709
+# No KeepAlive configured
+
+[Peer]
+# f2.lan.buetow.org as f2.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.132/32
+Endpoint = 192.168.1.132:56709
+# No KeepAlive configured
+
+[Peer]
+# r0.lan.buetow.org as r0.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.120/32
+Endpoint = 192.168.1.120:56709
+# No KeepAlive configured
+
+[Peer]
+# r1.lan.buetow.org as r1.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.121/32
+Endpoint = 192.168.1.121:56709
+# No KeepAlive configured
+
+[Peer]
+# r2.lan.buetow.org as r2.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.122/32
+Endpoint = 192.168.1.122:56709
+# No KeepAlive configured
+
+[Peer]
+# blowfish.buetow.org as blowfish.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.110/32
+Endpoint = 23.88.35.144:56709
+PersistentKeepalive = 25
+
+[Peer]
+# fishfinger.buetow.org as fishfinger.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 192.168.2.111/32
+Endpoint = 46.23.94.99:56709
+PersistentKeepalive = 25
+</pre>
+<br />
+<span>Whereas there are two main sections. One is <span class='inlinecode'>[Interface]</span>, which configures the current host (here: <span class='inlinecode'>f0</span>):</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>Address</span>: Local virtual IP address on the WireGuard interface.</li>
+<li><span class='inlinecode'>PrivateKey</span>: Private key for this node.</li>
+<li><span class='inlinecode'>ListenPort</span>: Port on which this WireGuard interface listens for incoming connections.</li>
+</ul><br />
+<span>And in the following, there is one <span class='inlinecode'>[Peer]</span> section for every peer node on the mesh network:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>PublicKey</span>: The public key of the remote peer is used to authenticate their identity.</li>
+<li><span class='inlinecode'>PresharedKey</span>: An optional symmetric key is used to enhance security (used in addition to PublicKey).</li>
+<li><span class='inlinecode'>AllowedIPs</span>: IPs or subnets routed through this peer (traffic is allowed to/from these IPs).</li>
+<li><span class='inlinecode'>Endpoint</span>: The public IP:port combination of the remote peer for connection.</li>
+<li><span class='inlinecode'>PersistentKeepalive</span>: Keeps the tunnel alive by sending periodic packets; used for NAT traversal.</li>
+</ul><br />
+<h3 style='display: inline' id='nat-traversal-and-keepalive'>NAT traversal and keepalive</h3><br />
+<br />
+<span>As all participating hosts, except for <span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span> (which are on the internet), are behind a NAT gateway (my home router), we need to use <span class='inlinecode'>PersistentKeepalive</span> to establish and maintain the VPN tunnel from the LAN to the internet because:</span><br />
+<br />
+<span class='quote'>By default, WireGuard tries to be as silent as possible when not being used; it is not a chatty protocol. For the most part, it only transmits data when a peer wishes to send packets. When it&#39;s not being asked to send packets, it stops sending packets until it is asked again. In the majority of configurations, this works well. However, when a peer is behind NAT or a firewall, it might wish to be able to receive incoming packets even when it is not sending any packets. Because NAT and stateful firewalls keep track of "connections", if a peer behind NAT or a firewall wishes to receive incoming packets, he must keep the NAT/firewall mapping valid, by periodically sending keepalive packets. This is called persistent keepalives. When this option is enabled, a keepalive packet is sent to the server endpoint once every interval seconds. A sensible interval that works with a wide variety of firewalls is 25 seconds. Setting it to 0 turns the feature off, which is the default, since most users will not need this, and it makes WireGuard slightly more chatty. This feature may be specified by adding the PersistentKeepalive = field to a peer in the configuration file, or setting persistent-keepalive at the command line. If you don&#39;t need this feature, don&#39;t enable it. But if you&#39;re behind NAT or a firewall and you want to receive incoming connections long after network traffic has gone silent, this option will keep the "connection" open in the eyes of NAT.</span><br />
+<br />
+<span>That&#39;s why you see <span class='inlinecode'>PersistentKeepAlive = 25</span> in the <span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span> peer configurations. This means that every 25 seconds, a keep-alive signal is sent over the tunnel to maintain its connection. If the tunnel is not yet established, it will be created within 25 seconds latest.</span><br />
+<br />
+<span>Without this, we might never have a VPN tunnel open, as the systems in the LAN may not actively attempt to contact <span class='inlinecode'>blowfish</span> and <span class='inlinecode'>fishfinger</span> on their own. In fact, the opposite would likely occur, with the traffic flowing inward instead of outward (this is beyond the scope of this blog post but will be covered in a later post in this series!).</span><br />
+<br />
+<h3 style='display: inline' id='preshared-key'>Preshared key</h3><br />
+<br />
+<span>In a WireGuard configuration, the PSK (preshared key) is an optional additional layer of symmetric encryption used alongside the standard public key cryptography. It is a shared secret known to both peers that enhances security by requiring an attacker to compromise both the private keys and the PSK to decrypt communication. While optional, using a PSK is better as it strengthens the cryptographic security, mitigating risks of potential vulnerabilities in the key exchange process.</span><br />
+<br />
+<span>So, because it&#39;s better, we are using it.</span><br />
+<br />
+<h2 style='display: inline' id='mesh-network-generator'>Mesh network generator</h2><br />
+<br />
+<span>Manually generating <span class='inlinecode'>wg0.conf</span> files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as <span class='inlinecode'>AllowedIPs</span> and <span class='inlinecode'>Endpoint</span> and optional settings like <span class='inlinecode'>PersistentKeepalive</span>. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.</span><br />
+<br />
+<span>Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.</span><br />
+<br />
+<span>I have written a Ruby script <span class='inlinecode'>wireguardmeshgenerator.rb</span> to do this for our purposes:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/wireguardmeshgenerator'>https://codeberg.org/snonux/wireguardmeshgenerator</a><br />
+<br />
+<span>I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux. However, it should also work on other Linux and Unix-like systems.</span><br />
+<br />
+<span>To set up the mesh generator on Fedora Linux, we run the following:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; git clone https://codeberg.org/snonux/wireguardmeshgenerator
+&gt; cd ./wireguardmeshgenerator
+&gt; bundle install
+&gt; sudo dnf install -y wireguard-tools
+</pre>
+<br />
+<span>This assumes that Ruby and the <span class='inlinecode'>bundler</span> gem are already installed. If not, refer to the docs of your distribution.</span><br />
+<br />
+<h3 style='display: inline' id='wireguardmeshgeneratoryaml'><span class='inlinecode'>wireguardmeshgenerator.yaml</span></h3><br />
+<br />
+<span>The file <span class='inlinecode'>wireguardmeshgenerator.yaml</span> configures the mesh generator script.</span><br />
+<br />
+<pre>
+---
+hosts:
+  f0:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.130&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.130&#39;
+  f1:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.131&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.131&#39;
+  f2:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.132&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.132&#39;
+  r0:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.120&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.120&#39;
+  r1:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.121&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.121&#39;
+  r2:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.122&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.122&#39;
+  blowfish:
+    os: OpenBSD
+    ssh:
+      user: rex
+      conf_dir: /etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: sh /etc/netstart wg0
+    internet:
+      domain: &#39;buetow.org&#39;
+      ip: &#39;23.88.35.144&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.110&#39;
+  fishfinger:
+    os: OpenBSD
+    ssh:
+      user: rex
+      conf_dir: /etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: sh /etc/netstart wg0
+    internet:
+      domain: &#39;buetow.org&#39;
+      ip: &#39;46.23.94.99&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.111&#39;
+</pre>
+<br />
+<span>The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (<span class='inlinecode'>wg0</span>) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.</span><br />
+<br />
+<h3 style='display: inline' id='wireguardmeshgeneratorrb-overview'><span class='inlinecode'>wireguardmeshgenerator.rb</span> overview</h3><br />
+<br />
+<span>The <span class='inlinecode'>wireguardmeshgenerator.rb</span> script consists of the following base classes:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>KeyTool</span>: Manages WireGuard key generation and retrieval. It ensures the presence of public/private key pairs and preshared keys (PSKs). If keys are missing, it generates them using the <span class='inlinecode'>wg</span> tool. It provides methods to read the public/private keys and retrieve or generate a PSK for communication with a peer. The keys are stored in a temp directory on the system from where the generator is run.</li>
+<li><span class='inlinecode'>PeerSnippet</span>: A <span class='inlinecode'>Struct</span> representing the configuration for a single WireGuard peer in the mesh. Based on the provided attributes and configuration, it generates the peer&#39;s WireGuard configuration, including public key, PSK, allowed IPs, endpoint, and keepalive settings.</li>
+<li><span class='inlinecode'>WireguardConfig</span>: This function generates WireGuard configuration files for the specified host in the mesh network. It includes the <span class='inlinecode'>[Interface]</span> section for the host itself and the <span class='inlinecode'>[Peer]</span> sections for all other peers. It can also clean up generated files and directories and create the required directory structure for storing configuration files locally on the system from which the script is run.</li>
+<li><span class='inlinecode'>InstallConfig</span>: Handles uploading, installing, and restarting the WireGuard service on remote hosts using SSH and SCP. It ensures the configuration file is uploaded to the remote machine, the necessary directories are present and correctly configured, and the WireGuard service reloads with the new configuration.</li>
+</ul><br />
+<span>At the end (if you want to see the code for the stuff listed above, go to the Git repo and have a look), we glue it all together in this block:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">begin</font></u></b>
+  options = { hosts: [] }
+  OptionParser.new <b><u><font color="#000000">do</font></u></b> |opts|
+    opts.banner = <font color="#808080">'Usage: wireguardmeshgenerator.rb [options]'</font>
+    opts.on(<font color="#808080">'--generate'</font>, <font color="#808080">'Generate Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:generate] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--install'</font>, <font color="#808080">'Install Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:install] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--clean'</font>, <font color="#808080">'Clean Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:clean] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--hosts=HOSTS'</font>, <font color="#808080">'Comma separated hosts to configure'</font>) <b><u><font color="#000000">do</font></u></b> |hosts|
+      options[:hosts] = hosts.split(<font color="#808080">','</font>)
+    <b><u><font color="#000000">end</font></u></b>
+  <b><u><font color="#000000">end</font></u></b>.parse!
+
+  conf = YAML.load_file(<font color="#808080">'wireguardmeshgenerator.yaml'</font>).freeze
+  conf[<font color="#808080">'hosts'</font>].keys.select { options[:hosts].empty? || options[:hosts].<b><u><font color="#000000">include</font></u></b>?(_1) }
+               .each <b><u><font color="#000000">do</font></u></b> |host|
+    <i><font color="silver"># Generate Wireguard configuration for the host reload!</font></i>
+    WireguardConfig.new(host, conf[<font color="#808080">'hosts'</font>]).generate! <b><u><font color="#000000">if</font></u></b> options[:generate]
+    <i><font color="silver"># Install Wireguard configuration for the host.</font></i>
+    InstallConfig.new(host, conf[<font color="#808080">'hosts'</font>]).upload!.install!.reload! <b><u><font color="#000000">if</font></u></b> options[:install]
+    <i><font color="silver"># Clean Wireguard configuration for the host.</font></i>
+    WireguardConfig.new(host, conf[<font color="#808080">'hosts'</font>]).clean! <b><u><font color="#000000">if</font></u></b> options[:clean]
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">rescue</font></u></b> StandardError =&gt; e
+  puts <font color="#808080">"Error: #{e.message}"</font>
+  puts e.backtrace.join(<font color="#808080">"\n"</font>)
+  exit <font color="#000000">2</font>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>And we also have a <span class='inlinecode'>Rakefile</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>task :generate <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--generate'</font>
+<b><u><font color="#000000">end</font></u></b>
+
+task :clean <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--clean'</font>
+<b><u><font color="#000000">end</font></u></b>
+
+task :install <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--install'</font>
+<b><u><font color="#000000">end</font></u></b>
+
+task default: :generate
+</pre>
+<br />
+<br />
+<h2 style='display: inline' id='invoking-the-mesh-network-generator'>Invoking the mesh network generator</h2><br />
+<br />
+<h3 style='display: inline' id='generating-the-wg0conf-files-and-keys'>Generating the <span class='inlinecode'>wg0.conf</span> files and keys</h3><br />
+<br />
+<span>To generate everything (the <span class='inlinecode'>wg0.conf</span> of all participating hosts, including all keys involved), we run the following:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; rake generate
+/usr/bin/ruby wireguardmeshgenerator.rb --generate
+Generating dist/f<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/f<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/f<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/blowfish/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/fishfinger/etc/wireguard/wg<font color="#000000">0</font>.conf
+</pre>
+<br />
+<span>It generated all the <span class='inlinecode'>wg0.conf</span> files listed in the output, plus those keys:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; find keys/ -type f
+keys/f<font color="#000000">0</font>/priv.key
+keys/f<font color="#000000">0</font>/pub.key
+keys/psk/f0_f1.key
+keys/psk/f0_f2.key
+keys/psk/f0_r0.key
+keys/psk/f0_r1.key
+keys/psk/f0_r2.key
+keys/psk/blowfish_f0.key
+keys/psk/f0_fishfinger.key
+keys/psk/f1_f2.key
+keys/psk/f1_r0.key
+keys/psk/f1_r1.key
+keys/psk/f1_r2.key
+keys/psk/blowfish_f1.key
+keys/psk/f1_fishfinger.key
+keys/psk/f2_r0.key
+keys/psk/f2_r1.key
+keys/psk/f2_r2.key
+keys/psk/blowfish_f2.key
+keys/psk/f2_fishfinger.key
+keys/psk/r0_r1.key
+keys/psk/r0_r2.key
+keys/psk/blowfish_r0.key
+keys/psk/fishfinger_r0.key
+keys/psk/r1_r2.key
+keys/psk/blowfish_r1.key
+keys/psk/fishfinger_r1.key
+keys/psk/blowfish_r2.key
+keys/psk/fishfinger_r2.key
+keys/psk/blowfish_fishfinger.key
+keys/f<font color="#000000">1</font>/priv.key
+keys/f<font color="#000000">1</font>/pub.key
+keys/f<font color="#000000">2</font>/priv.key
+keys/f<font color="#000000">2</font>/pub.key
+keys/r<font color="#000000">0</font>/priv.key
+keys/r<font color="#000000">0</font>/pub.key
+keys/r<font color="#000000">1</font>/priv.key
+keys/r<font color="#000000">1</font>/pub.key
+keys/r<font color="#000000">2</font>/priv.key
+keys/r<font color="#000000">2</font>/pub.key
+keys/blowfish/priv.key
+keys/blowfish/pub.key
+keys/fishfinger/priv.key
+keys/fishfinger/pub.key
+</pre>
+<br />
+<span>Those keys are embedded in the resulting <span class='inlinecode'>wg0.conf</span>, so later, we only need to install the <span class='inlinecode'>wg0.conf</span> files and not all the keys individually.</span><br />
+<br />
+<h3 style='display: inline' id='installing-the-wg0conf-files'>Installing the <span class='inlinecode'>wg0.conf</span> files</h3><br />
+<br />
+<span>Uploading the <span class='inlinecode'>wg0.conf</span> files to the participating hosts and reloading WireGuard on them is then just a matter of executing (this expects, that all participating hosts are up and running):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; rake install
+/usr/bin/ruby wireguardmeshgenerator.rb --install
+Uploading dist/f<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f0.lan.buetow.org:.
+Installing Wireguard config on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f1.lan.buetow.org:.
+Installing Wireguard config on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f2.lan.buetow.org:.
+Installing Wireguard config on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/r<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r0.lan.buetow.org:.
+Installing Wireguard config on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r1.lan.buetow.org:.
+Installing Wireguard config on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r2.lan.buetow.org:.
+Installing Wireguard config on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/blowfish/etc/wireguard/wg<font color="#000000">0</font>.conf to blowfish.buetow.org:.
+Installing Wireguard config on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -&gt; /etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
+Uploading dist/fishfinger/etc/wireguard/wg<font color="#000000">0</font>.conf to fishfinger.buetow.org:.
+Installing Wireguard config on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -&gt; /etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
+</pre>
+<br />
+<h3 style='display: inline' id='re-generating-mesh-and-installing-the-wg0conf-files-again'>Re-generating mesh and installing the <span class='inlinecode'>wg0.conf</span> files again</h3><br />
+<br />
+<span>The mesh network can be re-generated and re-installed as follows:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; rake clean
+&gt; rake generate
+&gt; rake install
+</pre>
+<br />
+<span>That would also delete and re-generate all the keys involved.</span><br />
+<br />
+<h2 style='display: inline' id='happy-wireguard-ing'>Happy WireGuard-ing</h2><br />
+<br />
+<span>All is set up now. E.g. on <span class='inlinecode'>f0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: <font color="#000000">56709</font>
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">1</font> minute, <font color="#000000">46</font> seconds ago
+  transfer: <font color="#000000">124</font> B received, <font color="#000000">1.75</font> KiB sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">1</font> minute, <font color="#000000">52</font> seconds ago
+  transfer: <font color="#000000">124</font> B received, <font color="#000000">1.60</font> KiB sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
+
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
+
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
+
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
+
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
+
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
+</pre>
+<br />
+<span>All the hosts are pingable as well, e.g.:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % foreach peer ( f1 f2 r0 r1 r2 blowfish fishfinger )
+foreach? ping -c<font color="#000000">2</font> $peer.wg0
+foreach? echo
+foreach? end
+PING f1.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.131</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.131</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.334</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.131</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.260</font> ms
+
+--- f1.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.260</font>/<font color="#000000">0.297</font>/<font color="#000000">0.334</font>/<font color="#000000">0.037</font> ms
+
+PING f2.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.132</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.132</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.323</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.132</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.303</font> ms
+
+--- f2.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.303</font>/<font color="#000000">0.313</font>/<font color="#000000">0.323</font>/<font color="#000000">0.010</font> ms
+
+PING r0.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.120</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.120</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.716</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.120</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.406</font> ms
+
+--- r0.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.406</font>/<font color="#000000">0.561</font>/<font color="#000000">0.716</font>/<font color="#000000">0.155</font> ms
+
+PING r1.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.121</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.121</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.639</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.121</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.629</font> ms
+
+--- r1.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.629</font>/<font color="#000000">0.634</font>/<font color="#000000">0.639</font>/<font color="#000000">0.005</font> ms
+
+PING r2.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.122</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.122</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.569</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.122</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.479</font> ms
+
+--- r2.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.479</font>/<font color="#000000">0.524</font>/<font color="#000000">0.569</font>/<font color="#000000">0.045</font> ms
+
+PING blowfish.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.110</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.110</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">255</font> time=<font color="#000000">35.745</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.110</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">255</font> time=<font color="#000000">35.481</font> ms
+
+--- blowfish.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">35.481</font>/<font color="#000000">35.613</font>/<font color="#000000">35.745</font>/<font color="#000000">0.132</font> ms
+
+PING fishfinger.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.111</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.111</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">255</font> time=<font color="#000000">33.992</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.111</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">255</font> time=<font color="#000000">33.751</font> ms
+
+--- fishfinger.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">33.751</font>/<font color="#000000">33.872</font>/<font color="#000000">33.992</font>/<font color="#000000">0.120</font> ms
+</pre>
+<br />
+<span>Note that the loop above is a <span class='inlinecode'>tcsh</span> loop, the default shell used in FreeBSD. Of course, all other peers can ping their peers as well!</span><br />
+<br />
+<span>After the first ping, VPN tunnels now also show handshakes and the amount of data transferred through them:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: <font color="#000000">56709</font>
+
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">10</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">532</font> B sent
+
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">12</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
+
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">14</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
+
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">17</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">564</font> B sent
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">55</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">55</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
+
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
+</pre>
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>Having a mesh network on our hosts is great for securing all the traffic between them for our future <span class='inlinecode'>k3s</span> setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.</span><br />
+<br />
+<span>I look forward to the next blog post in this series. We may start setting up <span class='inlinecode'>k3s</span> or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Terminal multiplexing with `tmux` - Fish edition</title>
         <link href="https://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html" />
@@ -566,6 +1588,7 @@ __ejm\___/________dwb`---`______________________
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1136,10 +2159,11 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <span>This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it&#39;s a nice setup for getting the most out of my hardware and keeping things running smoothly.</span><br />
 <br />
-<span>See you in the next blog post of this series. Maybe we will be installing highly available storage with HAST or we start setting up k3s on the Rocky Linux VMs.</span><br />
+<span>See you in the next post of this series!</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -1860,6 +2884,7 @@ This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#0000
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -2253,6 +3278,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>Other BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -2957,10 +3983,11 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
-<span class='quote'>Logo was generated by ChatGPT.</span><br />
+<span class='quote'>ChatGPT generated logo..</span><br />
 <br />
 <span>Let&#39;s continue...</span><br />
 <br />
@@ -3287,6 +4314,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
@@ -3329,10 +4357,11 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
-<span class='quote'>Logo was generated by ChatGPT.</span><br />
+<span class='quote'>ChatGPT generated logo..</span><br />
 <br />
 <span>Let&#39;s begin...</span><br />
 <br />
@@ -3480,6 +4509,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -5976,6 +7006,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other *BSD and KISS related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -6338,6 +7369,7 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>Other *BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -9488,176 +10520,6 @@ The remaining content of the Gemtext file...
 <br />
 <span>There are some days at work you feel drained afterwards and think you didn&#39;t progress towards your goals at all. It&#39;s more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.</span><br />
 <span> </span><br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Why GrapheneOS rox</title>
-        <link href="https://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html" />
-        <id>https://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html</id>
-        <updated>2023-01-23T15:31:52+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>In 2021 I wrote 'On Being Pedantic about Open-Source', and there was a section 'What about mobile?' where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='why-grapheneos-rox'>Why GrapheneOS rox</h1><br />
-<br />
-<span class='quote'>Published at 2023-01-23T15:31:52+02:00</span><br />
-<br />
-<span>In 2021 I wrote "On Being Pedantic about Open-Source", and there was a section "What about mobile?" where I expressed the dilemma about the necessity of using proprietary mobile operating systems. With GrapheneOS, I found my perfect solution for personal mobile phone use. </span><br />
-<br />
-<a class='textlink' href='./2021-08-01-on-being-pedantic-about-open-source.html'>On Being Pedantic about Open-Source</a><br />
-<br />
-<span>What is GrapheneOS?</span><br />
-<br />
-<span class='quote'>GrapheneOS is a privacy and security-focused mobile OS with Android app compatibility developed as a non-profit open-source project. It&#39;s focused on the research and development of privacy and security technologies, including substantial improvements to sandboxing, exploits mitigations and the permission model.</span><br />
-<br />
-<span>GrapheneOS is an independent Android distribution based on the Android Open Source Project (AOSP) but hardened in multiple ways. Other independent Android distributions, like LineageOS, are also based on AOSP, but GrapheneOS takes it further so that it can be my daily driver on my phone.</span><br />
-<br />
-<a class='textlink' href='https://GrapheneOS.org'>https://GrapheneOS.org</a><br />
-<a class='textlink' href='https://LineageOS.org'>https://LineageOS.org</a><br />
-<br />
-<pre>
-Art by Joan Stark
-               _.===========================._
-            .&#39;`  .-  - __- - - -- --__--- -.  `&#39;.
-        __ / ,&#39;`     _|--|_________|--|_     `&#39;. \
-      /&#39;--| ;    _.&#39;\ |  &#39;         &#39;  | /&#39;._    ; |
-     //   | |_.-&#39; .-&#39;.&#39;      ___      &#39;.&#39;-. &#39;-._| |
-    (\)   \"` _.-` /     .-&#39;`_ `&#39;-.     \ `-._ `"/
-    (\)    `-&#39;    |    .&#39; .-&#39;" "&#39;-. &#39;.    |    `-`
-   (\)            |   / .&#39;(3)(2)(1)&#39;. \   |
-   (\)            |  / / (4) .-.     \ \  |
-   (\)            |  | |(5) (   )&#39;==,J |  |
-  (\)             |  \ \ (6) &#39;-&#39; (0) / /  |
- (\)              |   \ &#39;.(7)(8)(9).&#39; /   |
- (\)           ___|    &#39;. &#39;-.._..-&#39; .&#39;    |
- (\)          /.--|      &#39;-._____.-&#39;      |
-  (\)        (\)  |\_  _  __   _   __  __/|
- (\)        (\)   |                       |
-(\)_._._.__(\)    |                       |
- (\\\\jgs\\\)      &#39;.___________________.&#39;
-  &#39;-&#39;-&#39;-&#39;--&#39;
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#why-grapheneos-rox'>Why GrapheneOS rox</a></li>
-<li>⇢ <a href='#user-profiles'>User Profiles</a></li>
-<li>⇢ <a href='#proxying-some-of-the-google-offerings-'>Proxying some of the Google offerings </a></li>
-<li>⇢ <a href='#google-play-sandboxing-'>Google Play Sandboxing </a></li>
-<li>⇢ <a href='#the-camera-and-the-cloud-'>The camera and the cloud </a></li>
-<li>⇢ <a href='#fine-granular-permissions'>Fine granular permissions</a></li>
-<li>⇢ <a href='#termux'>Termux</a></li>
-<li>⇢ <a href='#so-why-not-use-a-pure-linux-phone'>So, why not use a pure Linux phone?</a></li>
-<li>⇢ <a href='#small-grapheneos-downsides-'>Small GrapheneOS downsides </a></li>
-</ul><br />
-<h2 style='display: inline' id='user-profiles'>User Profiles</h2><br />
-<br />
-<span>GrapheneOS allows configuring up to 32 user profiles (including a guest profile) on a single phone. A profile is a completely different environment within the phone, and it is possible to switch between them instantly. Sessions of a profile can continue running in the background or be fully terminated. Each profile can have completely different settings and different applications installed.</span><br />
-<br />
-<span>I use my default profile with primarily open-source applications installed, which I trust. I use another profile for banking (PayPal, various proprietary bank apps, Amazon store app, etc.) and another profile for various Google services (which I try to avoid, but I have to use once in a while). Furthermore, I have configured a profile for Social Media use (that one isn&#39;t in my default profile, as otherwise I am tempted to scroll social media all the time, which I try to avoid and only want to do intentionally when switching to the corresponding profile!).</span><br />
-<br />
-<span>The neat thing about the profiles is that some can run a sandboxed version of Google Play (see later in this post), while others don&#39;t. So some profiles can entirely operate without any Google Play, and only some profiles (to which I rarely switch) have Google Play enabled. </span><br />
-<br />
-<span>You notice how much longer (multiple days) your phone can be on a single charge when Google Play Services isn&#39;t running in the background. This tells a lot about the background activities and indicates that using Google Play shouldn&#39;t be the norm.</span><br />
-<br />
-<h2 style='display: inline' id='proxying-some-of-the-google-offerings-'>Proxying some of the Google offerings </h2><br />
-<br />
-<span>There&#39;s also the case that I am using an app from the Google Play store (as the app isn&#39;t available from F-Droid), which doesn&#39;t require Google Play Services to run in the background. Here&#39;s where I use the Aurora Android store. The Aurora store can be installed through F-Droid. Aurora acts as an anonymous proxy from your phone to the Google Play Store and lets you install apps from there. No Google credentials are required for that!</span><br />
-<br />
-<a class='textlink' href='https://f-droid.org'>https://f-droid.org</a><br />
-<br />
-<span>There&#39;s a similar solution for watching videos on YouTube. You can use the NewPipe app (also from F-Droid), which acts as an anonymous proxy for watching videos from YouTube. So there isn&#39;t any need to install the official YouTube app, and there isn&#39;t any need to login to your Google account. What&#39;s so bad about the official app? You don&#39;t know which data it is sending about you to Google, so it is a privacy concern. </span><br />
-<br />
-<h2 style='display: inline' id='google-play-sandboxing-'>Google Play Sandboxing </h2><br />
-<br />
-<span>Before switching to GrapheneOS, I had been using LineageOS on one of my phones for a couple of years. Still, I always had to have a secondary personal phone with all of these proprietary apps which (partially) only work with Google Play on the phone (e.g. Banking, Navigation, various travel apps from various Airlines, etc.) somewhere around as I didn&#39;t install Google Play on my LineageOS phone due to privacy concerns and only installed apps from the F-Droid store on it. When travelling, I always had to carry around a second phone with Google Play on it, as without it; life would become inconvenient pretty soon. </span><br />
-<br />
-<span>With GrapheneOS, it is different. Here, I do not just have a separate user profile, "Google", for various Google apps where Google Play runs, but Google Play also runs in a sandbox!!!</span><br />
-<br />
-<span class='quote'>GrapheneOS has a compatibility layer providing the option to install and use the official releases of Google Play in the standard app sandbox. Google Play receives no special access or privileges on GrapheneOS instead of bypassing the app sandbox and receiving a massive amount of highly privileged access. Instead, the compatibility layer teaches it how to work within the full app sandbox. It also isn&#39;t used as a backend for the OS services as it would be elsewhere since GrapheneOS doesn&#39;t use Google Play even when it&#39;s installed.</span><br />
-<br />
-<span>When I need to access Google Play, I can switch to the "Google" profile. Even there, Google is sandboxed to the absolute minimum permissions required to be operational, which gives additional privacy protection.</span><br />
-<br />
-<span>The sad truth is that Google Maps is still the best navigation app. When driving unknown routes, I can switch to my Google profile to use Google Maps. I don&#39;t need to do that when going streets I know about, but it is crucial (for me) to have Google Maps around when driving to a new destination.</span><br />
-<br />
-<span>Also, Google Translate and Google Lens are still the best translation apps I know. I just recently relocated to another country, where I am still learning the language, so Google Lens has been proven very helpful on various occasions by ad-hoc translating text into English or German for me.</span><br />
-<br />
-<span>The same applies to banking. Many banking apps require Google Play to be available (It might be even more secure to only use banking apps from the Google Play store due to official support and security updates). I rarely need to access my mobile banking app, but once in a while, I need to. As you have guessed by now, I can switch to my banking profile (with Google Play enabled), do what I need to do, and then terminate the session and go back to my default profile, and then my life can go on :-). </span><br />
-<br />
-<span>It is great to have the flexibility to use any proprietary Android app when needed. That only applies to around 1% of my phone usage time, but you often don&#39;t always know when you need "that one app now". So it&#39;s perfect that it&#39;s covered with the phone you always have with you. </span><br />
-<br />
-<h2 style='display: inline' id='the-camera-and-the-cloud-'>The camera and the cloud </h2><br />
-<br />
-<span>I really want my phone to shoot good looking pictures, so that I can later upload them to the Irregular Ninja:</span><br />
-<br />
-<a class='textlink' href='https://irregular.ninja'>https://irregular.ninja</a><br />
-<br />
-<span>The stock camera app of the OASP could be better. Photos usually look washed out, and the app lacks features. With GrapheneOS, there are two options:</span><br />
-<br />
-<ul>
-<li>Use the official Google camera app with sandboxed Google Play Services running. You will get the full Google experience here.</li>
-<li>Or, just use the default GrapheneOS camera app.</li>
-</ul><br />
-<span>The GrapheneOS camera app is much better than the stock OASP camera app. I have been comparing the photo quality of my Pixel phone under LineageOS and GrapheneOS, and the differences are pronounced. I didn&#39;t compare the quality with the official Google camera app, but I have seen some comparison videos and the differences seem like they aren&#39;t groundbreaking. </span><br />
-<br />
-<span>For automatic backups of my photos, I am relying on a self-hosted instance of NextCloud (with a client app available via F-Droid). So there isn&#39;t any need to rely on any Google apps and services (Google Play Photos or Google Camera app) anymore, and that&#39;s great!</span><br />
-<br />
-<a class='textlink' href='https://nextcloud.com'>https://nextcloud.com</a><br />
-<br />
-<span>I also use NextCloud to synchronize my notes (NextCloud Notes), my RSS news feeds (NextCloud News) and contacts (DAVx5). All apps required are available in the F-Droid store.</span><br />
-<br />
-<h2 style='display: inline' id='fine-granular-permissions'>Fine granular permissions</h2><br />
-<br />
-<span>Another great thing about GrapheneOS is that, besides putting your apps into different profiles, you can also restrict network access and configure storage scopes per app individually.</span><br />
-<br />
-<span>For example, let&#39;s say you are installing that one proprietary app from the Google Play Store through the Aurora store, and then you want to ensure that the app doesn&#39;t send data "home" through the internet. Nothing is easier to do than that. Just remove network access permissions from that only app.</span><br />
-<br />
-<span>The app also wants to store and read some data from your phone (e.g. it could be a proprietary app for enhancing photos, and therefore storage access to a photo folder would be required). In GrapheneOS, you can configure a storage scope for that particular app, e.g. only read and write from one folder but still forbid access to all other folders on your phone.</span><br />
-<br />
-<h2 style='display: inline' id='termux'>Termux</h2><br />
-<br />
-<span>Termux can be installed on any Android phone through F-Droid, so it doesn&#39;t need to be a GrapheneOS phone. But I have to mention Termux here as it significantly adds value to my phone experience. </span><br />
-<br />
-<span class='quote'>Termux is an Android terminal emulator and Linux environment app that works directly with no rooting or setup required. A minimal base system is installed automatically - additional packages are available using the APT package manager.</span><br />
-<br />
-<a class='textlink' href='https://termux.dev'>https://termux.dev</a><br />
-<br />
-<span>In short, Termux is an entire Linux environment running on your Android phone. Just pair your phone with a Bluetooth keyboard, and you will have the whole Linux experience. I am only using terminal Linux applications with Termux, though. What makes it especially great is that I could write on a new blog post (in Neovim through Termux on my phone) or do some coding whilst travelling (e.g. during a flight), or look up my passwords or some other personal documents (through my terminal-based password manager). All changes I commit to Git can be synced to the server with a simple <span class='inlinecode'>git push</span> once online (e.g. after the plane landed) again.</span><br />
-<br />
-<span>There are Pixel phones with a screen size of 6", and that&#39;s decent enough for occasional use like that, and everything (the phone, the BT keyboard, maybe an external battery pack) all fit nicely in a small travel pocket.</span><br />
-<br />
-<h2 style='display: inline' id='so-why-not-use-a-pure-linux-phone'>So, why not use a pure Linux phone?</h2><br />
-<br />
-<span>Strictly speaking, an Android phone is a Linux phone, but it&#39;s heavily modified and customized. For me, a "pure" Linux phone is a more streamlined Linux kernel running in a distribution like Ubuntu Touch or Mobian. </span><br />
-<br />
-<span>A pure Linux phone, e.g. with Ubuntu Touch installed, e.g. on a PinePhone, Fairphone, the Librem 5 or the Volla phone, is very appealing to me. And they would also provide an even better Linux experience than Termux does. Some support running LineageOS within an Anbox, enabling you to run various proprietary Android apps occasionally within Linux.</span><br />
-<br />
-<a class='textlink' href='https://ubuntu-touch.io/'>Ubuntu Touch</a><br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Linux_for_mobile_devices'>More Linux distributions for mobile devices </a><br />
-<br />
-<span>But here, Google Play would not be sandboxed; you could not configure individual network permissions and storage scopes like in GrapheneOS. Pure Linux-compatible phones usually come with a crappy camera, and the battery life is generally pretty bad (only a few hours). Also, no big tech company pushes the development of Linux phones. Everything relies on hobbyists, whereas multiple big tech companies put a lot of effort into the Android project, and a lot of code also goes into the Android Open-Source project.  </span><br />
-<br />
-<span>Currently, pure Linux phones are only a nice toy to tinker with but are still not ready (will they ever?) to be the daily driver. SailfishOS may be an exception; I played around with it in the past. It is pretty usable, but it&#39;s not an option for me as it is partial a proprietary operating system.</span><br />
-<br />
-<a class='textlink' href='https://sailfishos.org'>SailfishOS</a><br />
-<br />
-<h2 style='display: inline' id='small-grapheneos-downsides-'>Small GrapheneOS downsides </h2><br />
-<br />
-<span>Sometimes, switching a profile to use a different app is annoying, and you can&#39;t copy and paste from the system clipboard from one profile to another. But that&#39;s a small price I am willing to pay!</span><br />
-<br />
-<span>Another thing is that GrapheneOS can only run on Google Pixel phones, whereas LineageOS can be installed on a much larger variety of hardware. But on the other hand, GrapheneOS works very well on Pixel phones. The GrapheneOS team can concentrate their development efforts on a smaller set of hardware which then improves the software&#39;s quality (best example: The camera app).</span><br />
-<br />
-<span>And, of course, GrapheneOS is an open-source project. This is a good thing; however, on the other side, nobody can guarantee that the OS will not break or will not damage your phone. You have to trust the GrapheneOS project and donate to the project so they can keep up with the great work. But I rather trust the GrapheneOS team than big tech. </span><br />
-<br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
