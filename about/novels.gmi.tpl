@@ -107,6 +107,7 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 ## Currently reading
 
 * 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german), Paperback
+* 2012 - Zwta, Andreas Brandhorst (german), Paperback
 * 2015 - The Three-Body Problem, Liu Cixin, Audiobook
 
 ## Unread books already in my shelf
