@@ -36,10 +36,11 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Alastair Reynolds
 
-* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe
-* 2001 - Chasm City - Revelation Space Universe
-* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe
-* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe
+* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe, Paperback
+* 2001 - Chasm City - Revelation Space Universe, Paperback
+* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe, Paperback
+* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe, Paperback
+* 2005 - Diamond Dogs, Turquoise Days (english ) / Träume von Unendlichkeit (german) - Revelation Space Universe, Paperback
 
 ### Arthur C. Clarke
 
@@ -78,10 +79,10 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### David Reimer (german)
 
-* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), (Audiobook)
-* 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), (Audiobook)
-* 2022 - Das Signal der Schöpfer - Die Wächter des Wissens - Band 3 (german), (Audiobook)
-* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), (Audiobook)
+* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), Audiobook
+* 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), Audiobook
+* 2022 - Das Signal der Schöpfer - Die Wächter des Wissens - Band 3 (german), Audiobook
+* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), Audiobook
 
 ### Ian Banks
 
@@ -105,7 +106,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ## Currently reading
 
-* 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german), Paperback
 * 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 * 2015 - The Three-Body Problem, Liu Cixin, Audiobook
 
