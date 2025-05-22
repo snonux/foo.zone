@@ -16,14 +16,28 @@
 => https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page
 => https://irregular.ninja irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)
 => ./dtail.gmi DTail - the distributed log tailing program
-=> ./resources.gmi Books, Podcasts, Courses and Guides I recommend
-=> ./novels.gmi Novels I've read
 
 ## Social Media and Communities
 
 => https://fosstodon.org/@snonux @snonux@fosstodon.org - Me at Mastodon
 => https://www.linkedin.com/in/paul-buetow-b4857270/ My LinkedIn profile
 => https://gophers.slack.com Gophers Slack - Under my real name
+
+## Books
+
+=> ./resources.gmi Books, Podcasts, Courses and Guides I recommend
+=> ./novels.gmi Novels I've read
+
+### Books I am currently reading
+
+* Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al.
+* Meditation for Mortal, Oliver Burkeman
+* 2024 - Zeta (german), Andreas Brandhorst
+* 2015 - The Three-Body Problem, Liu Cixin
+
+### Unread books already in my shelf
+
+* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 
 That's all for now...
 

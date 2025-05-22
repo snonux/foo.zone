@@ -1,4 +1,4 @@
-# Resources
+ Resources
 
 This site contains a list of resources I find and found helpful. I am not an expert in all of these topics, but all the resources listed here impacted me. I read some of the books quite a long time ago, so there might be newer editions out there already, and I might need to refresh some of the knowledge.
 

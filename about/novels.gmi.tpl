@@ -104,15 +104,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2019 - Die Unvollkommenen (german), Theresa Hannig, Audiobook
 * 2022 - Mickey 7 - Der letzte Klon (german), Edward Ashton, Audiobook
 
-## Currently reading
-
-* 2024 - Zeta (german), Andreas Brandhorst, Audiobook
-* 2015 - The Three-Body Problem, Liu Cixin, Audiobook
-
-## Unread books already in my shelf
-
-* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
-
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
 => ./ Go back
