@@ -12,8 +12,6 @@
 * [⇢ ⇢ ⇢ Ian Banks](#ian-banks)
 * [⇢ ⇢ ⇢ Dan Simmons](#dan-simmons)
 * [⇢ ⇢ ⇢ Other authors](#other-authors)
-* [⇢ ⇢ Currently reading](#currently-reading)
-* [⇢ ⇢ Unread books already in my shelf](#unread-books-already-in-my-shelf)
 
 ## Introduction
 
@@ -49,10 +47,11 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Alastair Reynolds
 
-* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe
-* 2001 - Chasm City - Revelation Space Universe
-* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe
-* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe
+* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe, Paperback
+* 2001 - Chasm City - Revelation Space Universe, Paperback
+* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe, Paperback
+* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe, Paperback
+* 2005 - Diamond Dogs, Turquoise Days (english ) / Träume von Unendlichkeit (german) - Revelation Space Universe, Paperback
 
 ### Arthur C. Clarke
 
@@ -87,15 +86,14 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
 * 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Paperback
 * 2024 - Infinitia (german), Audiobook
-* 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 * 2024 - Der Riss (german), Andreas Brandhorst, Paperback
 
 ### David Reimer (german)
 
-* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), (Audiobook)
-* 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), (Audiobook)
-* 2022 - Das Signal der Schöpfer - Die Wächter des Wissens - Band 3 (german), (Audiobook)
-* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), (Audiobook)
+* 2022 - Die Anomalie in der Finsternis - Die Wächter des Wissens - Band 1 (german), Audiobook
+* 2022 - Der dunkle Reisende - Die Wächter des Wissens - Band 2 (german), Audiobook
+* 2022 - Das Signal der Schöpfer - Die Wächter des Wissens - Band 3 (german), Audiobook
+* 2022 - Das Ende des Universums - Die Wächter des Wissens - Band 4 (german), Audiobook
 
 ### Ian Banks
 
@@ -116,15 +114,6 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2010 - Der Astronaut (german), Andy Weir, Audiobook
 * 2019 - Die Unvollkommenen (german), Theresa Hannig, Audiobook
 * 2022 - Mickey 7 - Der letzte Klon (german), Edward Ashton, Audiobook
-
-## Currently reading
-
-* 2005 - Diamond Dogs, Turquoise Days / Träume von Unendlichkeit, Alastair Reyonlds (german), Paperback
-* 2015 - The Three-Body Problem, Liu Cixin, Audiobook
-
-## Unread books already in my shelf
-
-* 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 
 Do you recommend a good Science Fiction Novel? E-Mail at paul at buetow dot org! :-)
 
