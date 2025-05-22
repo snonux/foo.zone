@@ -65,17 +65,17 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2015 - Das Schiff (german), Paperback
 * 2016 - Omni (german) - Omniversum, Paperback
 * 2017 - Das Arkonadia-Rätsel (german) - Omniversum, Paperback
-* 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie, Paperback
+* 2017 - Das Erwachen (german) - Maschinenintelligenz-Trilogie, eBook
 * 2018 - Ewiges Leben (german), Andreas Brandhorst, Paperback
 * 2019 - Das Netz der Sterne (german), Audiobook
 * 2019 - Seelenfänger (german), Andreas Brandhorst, Audiobook
-* 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie, Paperback
-* 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie, Paperback
-* 2022 - Eklipse (german), Paperback
+* 2020 - Die Eskalation (german) - Maschinenintelligenz-Trilogie, eBook
+* 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie, eBook
+* 2022 - Eklipse (german), eBook
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
-* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Paperback
+* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
-* 2024 - Der Riss (german), Andreas Brandhorst, Paperback
+* 2024 - Der Riss (german), Andreas Brandhorst, eBook
 
 ### David Reimer (german)
 
