@@ -28,7 +28,7 @@
 ### Books I am currently reading
 
 * Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al.
-* Meditation for Mortal, Oliver Burkeman
+* Meditation for Mortals, Oliver Burkeman
 * 2024 - Zeta (german), Andreas Brandhorst
 * 2015 - The Three-Body Problem, Liu Cixin
 
