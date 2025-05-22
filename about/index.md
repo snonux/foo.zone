@@ -25,9 +25,6 @@
 
 ## Books
 
-[Books, Podcasts, Courses and Guides I recommend](./resources.md)  
-[Novels I've read](./novels.md)  
-
 ### Books I am currently reading
 
 * Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al.
@@ -38,6 +35,11 @@
 ### Unread books already in my shelf
 
 * 2021 - Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
+
+### Books I've read
+
+[Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
+[Novels I've read](./novels.md)  
 
 That's all for now...
 
