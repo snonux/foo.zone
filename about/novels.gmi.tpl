@@ -73,7 +73,8 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2021 - Mars Discovery (german) - Maschinenintelligenz-Trilogie, eBook
 * 2022 - Eklipse (german), eBook
 * 2022 - Ruf der Unendlichkeit (german), Audiobook
-* 2023 - Oxygen: Welt ohne Sauerstoff, Andreas Brandhorst, Audiobook (german), Audiobook
+* 2023 - Oxygen: Welt ohne Sauerstoff (german), Andreas Brandhorst, Audiobook
+* 2024 - Zeta (german), Andreas Brandhorst, Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Der Riss (german), Andreas Brandhorst, eBook
 
