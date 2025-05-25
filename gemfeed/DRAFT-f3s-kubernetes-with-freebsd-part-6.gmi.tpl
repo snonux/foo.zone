@@ -153,6 +153,30 @@ zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
 zroot/bhyve/rocky  keystatus             available              -
 ```
 
+```
+	paul@f0:~ % zpool status
+  pool: zdata
+ state: ONLINE
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        zdata       ONLINE       0     0     0
+          ada1      ONLINE       0     0     0
+
+errors: No known data errors
+
+  pool: zroot
+ state: ONLINE
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        zroot       ONLINE       0     0     0
+          ada0p4    ONLINE       0     0     0
+
+errors: No known data errors
+```
+
+ZFS auto scrubbing....~?
 
 Backup of the keys on the key locations (all keys on all 3 USB keys)
 
