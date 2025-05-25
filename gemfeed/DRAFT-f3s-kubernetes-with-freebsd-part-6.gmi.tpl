@@ -98,6 +98,9 @@ paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
+
+paul@f0:/keys % doas sysrc zfskeys_enable=YES
+zfskeys_enable:  -> YES
 ```
 
 Copied over all tkeys from the partner node to each node, so ther aer:
@@ -116,6 +119,39 @@ total 24
 
 ```
 
+```sh
+paul@f0:/keys % doas reboot
+.
+.
+.
+paul@f0:~ % doas vm list
+paul@f0:~ % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
+rocky    default    uefi       4    14G     0.0.0.0:5900  Yes [1]  Running (2265)
+```
+
+```sh
+paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
+
+paul@f0:~ % zfs get all zdata/enc | grep -E '(encryption|key)'
+zdata/enc  encryption            aes-256-gcm                               -
+zdata/enc  keylocation           file:///keys/f0.lan.buetow.org:zdata.key  local
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
+paul@f0:~ % zfs get all zroot/bhyve | grep -E '(encryption|key)'
+zroot/bhyve  encryption            aes-256-gcm                               -
+zroot/bhyve  keylocation           file:///keys/f0.lan.buetow.org:bhyve.key  local
+zroot/bhyve  keyformat             raw                                       -
+zroot/bhyve  encryptionroot        zroot/bhyve                               -
+zroot/bhyve  keystatus             available                                 -
+paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E '(encryption|key)'
+zroot/bhyve/rocky  encryption            aes-256-gcm            -
+zroot/bhyve/rocky  keylocation           none                   default
+zroot/bhyve/rocky  keyformat             raw                    -
+zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
+zroot/bhyve/rocky  keystatus             available              -
+```
 
 
 Backup of the keys on the key locations (all keys on all 3 USB keys)
