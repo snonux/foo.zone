@@ -103,7 +103,7 @@ paul@f0:/keys % doas sysrc zfskeys_enable=YES
 zfskeys_enable:  -> YES
 ```
 
-Copied over all tkeys from the partner node to each node, so ther aer:
+Copied over all the keys from the partner node to each node, so they backup each other:
 
 ```sh
 paul@f0:/keys % doas chown root *
@@ -116,10 +116,10 @@ total 24
 -r--------  1 root paul 16 May 25 11:56 f1.lan.buetow.org:bhyve.key
 -r--------  1 root paul 16 May 25 11:57 f2.lan.buetow.org:zdata.key
 -r--------  1 root paul 16 May 25 11:57 f2.lan.buetow.org:bhyve.key
-
 ```
 
 ```sh
+paul@f0:/keys % doas vm init
 paul@f0:/keys % doas reboot
 .
 .
