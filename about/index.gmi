@@ -31,7 +31,7 @@
 * Meditation for Mortals, Oliver Burkeman
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones
 * Yoga Nidra Made Easy, Uma Dinsmore-Tuli
-* 2015 - The Three-Body Problem, Liu Cixin
+* Okular, Alastair Reynolds
 
 ### Unread books already in my shelf
 
