@@ -1,7 +1,7 @@
 # About
 
 * Name: Paul Buetow
-* Father, Husband, Computer tinkerer, Yogi, Science fiction lover, cat owner, G-Shock collector
+* Father, Husband, Computer tinkerer, Yogi, Science fiction lover, cat owner
 * Born in: Germany, currently living in: Sofia, Bulgaria
 * Profession: Computerist -  Solving problems with computers that we wouldn't have without them
 * Current job: Site Reliability Engineer
@@ -29,7 +29,8 @@
 
 * Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al.
 * Meditation for Mortals, Oliver Burkeman
-* 2024 - Zeta (german), Andreas Brandhorst
+* Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones
+* Yoga Nidra Made Easy, Uma Dinsmore-Tuli
 * 2015 - The Three-Body Problem, Liu Cixin
 
 ### Unread books already in my shelf
@@ -38,7 +39,7 @@
 
 ### Books I've read
 
-[Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
+[Resources, Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
 
 That's all for now...
