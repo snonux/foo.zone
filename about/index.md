@@ -37,6 +37,7 @@
 ### Unread books already in my shelf
 
 * Okular, Alastair Reynolds, eBook
+* 97 Things Every Engineering Manager Should Know, Camille Fournier, Audiobook
 
 ### Books I've read
 
