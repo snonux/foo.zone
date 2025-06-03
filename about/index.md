@@ -28,7 +28,6 @@
 ### Books I am currently reading
 
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones, eBook
-* Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al., Audiobook
 * Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 * Inhibitor Phase, Alastair Reynolds, Audiobook
 * Meditation for Mortals, Oliver Burkeman, Audiobook
