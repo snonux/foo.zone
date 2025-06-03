@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-6.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-6.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
+<br />
+<span class='quote'>Published at 2025-04-04T23:21:01+03:00</span><br />
+<br />
+<span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#ufs-setup'>UFS Setup</a></li>
+<li>⇢ <a href='#zfs-setup'>ZFS Setup</a></li>
+<li>⇢ ⇢ <a href='#encryption'>Encryption</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, we are going to extend the Beelinks with some additional storage.</span><br />
+<br />
+<span>Some photos here, describe why there are 2 different models of SSD drives (replication etc)</span><br />
+<br />
+<pre>
+paul@f0:/ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target 0 lun 0 (pass0,ada0)
+&lt;Samsung SSD 870 EVO 1TB SVT03B6Q&gt;  at scbus1 target 0 lun 0 (pass1,ada1)
+&lt;Generic Flash Disk 8.07&gt;          at scbus2 target 0 lun 0 (da0,pass2)
+paul@f0:/ %
+</pre>
+<br />
+<pre>
+paul@f1:/ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target 0 lun 0 (pass0,ada0)
+&lt;CT1000BX500SSD1 M6CR072&gt;          at scbus1 target 0 lun 0 (pass1,ada1)
+&lt;Generic Flash Disk 8.07&gt;          at scbus2 target 0 lun 0 (da0,pass2)
+paul@f1:/ %
+</pre>
+<br />
+<h2 style='display: inline' id='ufs-setup'>UFS Setup</h2><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/ % doas newfs /dev/da<font color="#000000">0</font>
+/dev/da<font color="#000000">0</font>: <font color="#000000">15000</font>.0MB (<font color="#000000">30720000</font> sectors) block size <font color="#000000">32768</font>, fragment size <font color="#000000">4096</font>
+        using <font color="#000000">24</font> cylinder groups of <font color="#000000">625</font>.22MB, <font color="#000000">20007</font> blks, <font color="#000000">80128</font> inodes.
+        with soft updates
+super-block backups (<b><u><font color="#000000">for</font></u></b> fsck_ffs -b <i><font color="silver">#) at:</font></i>
+ <font color="#000000">192</font>, <font color="#000000">1280640</font>, <font color="#000000">2561088</font>, <font color="#000000">3841536</font>, <font color="#000000">5121984</font>, <font color="#000000">6402432</font>, <font color="#000000">7682880</font>, <font color="#000000">8963328</font>, <font color="#000000">10243776</font>,
+<font color="#000000">11524224</font>, <font color="#000000">12804672</font>, <font color="#000000">14085120</font>, <font color="#000000">15365568</font>, <font color="#000000">16646016</font>, <font color="#000000">17926464</font>, <font color="#000000">19206912</font>,k <font color="#000000">20487360</font>,
+...
+
+paul@f0:/ % echo <font color="#808080">'/dev/da0 /keys ufs rw 0 2'</font> | doas tee -a /etc/fstab
+/dev/da<font color="#000000">0</font> /keys ufs rw <font color="#000000">0</font> <font color="#000000">2</font>
+paul@f0:/ % doas mkdir /keys
+paul@f0:/ % doas mount /keys
+paul@f0:/ % df | grep keys
+/dev/da<font color="#000000">0</font>             <font color="#000000">14877596</font>       <font color="#000000">8</font>  <font color="#000000">13687384</font>     <font color="#000000">0</font>%    /keys
+</pre>
+<br />
+<h2 style='display: inline' id='zfs-setup'>ZFS Setup</h2><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/dev % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
+paul@f0:/dev % zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G   432K   928G        -         -     <font color="#000000">0</font>%     <font color="#000000">0</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+zroot   472G  <font color="#000000">19</font>.8G   452G        -         -     <font color="#000000">0</font>%     <font color="#000000">4</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+
+</pre>
+<br />
+<h3 style='display: inline' id='encryption'>Encryption</h3><br />
+<br />
+<span>USB key for key location</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/keys % doas vm stop rocky
+Sending ACPI shutdown to rocky
+
+paul@f0:/keys % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE
+rocky    default    uefi       <font color="#000000">4</font>    14G     -    Yes [<font color="#000000">1</font>]  Stopped
+
+
+paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/mnt zroot/bhyve_old
+paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
+
+
+paul@f0:/keys % doas openssl rand -out /keys/`hostname`:bhyve.key <font color="#000000">32</font>
+paul@f0:/keys % doas openssl rand -out /keys/`hostname`:zdata.key <font color="#000000">32</font>
+paul@f0:/keys % ls -ltr
+total <font color="#000000">8</font>
+-rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">54</font> f0.lan.buetow.org:bhyve.key
+-rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">54</font> f0.lan.buetow.org:zdata.key
+
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve zroot/bhyve
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
+
+paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | doas zfs recv zroot/bhyve/rocky
+paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
+
+paul@f0:/keys % doas sysrc zfskeys_enable=YES
+zfskeys_enable:  -&gt; YES
+</pre>
+<br />
+<span>Copied over all the keys from the partner node to each node, so they backup each other:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/keys % doas chown root *
+paul@f0:/keys % doas chmod <font color="#000000">400</font> *
+paul@f0:/keys % ls -ltr
+total <font color="#000000">24</font>
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f0.lan.buetow.org:zdata.key
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f0.lan.buetow.org:bhyve.key
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f1.lan.buetow.org:zdata.key
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f1.lan.buetow.org:bhyve.key
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">57</font> f2.lan.buetow.org:zdata.key
+-r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">57</font> f2.lan.buetow.org:bhyve.key
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/keys % doas vm init
+paul@f0:/keys % doas reboot
+.
+.
+.
+paul@f0:~ % doas vm list
+paul@f0:~ % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
+rocky    default    uefi       <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2265</font>)
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
+
+paul@f0:~ % zfs get all zdata/enc | grep -E <font color="#808080">'(encryption|key)'</font>
+zdata/enc  encryption            aes-<font color="#000000">256</font>-gcm                               -
+zdata/enc  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key  <b><u><font color="#000000">local</font></u></b>
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
+paul@f0:~ % zfs get all zroot/bhyve | grep -E <font color="#808080">'(encryption|key)'</font>
+zroot/bhyve  encryption            aes-<font color="#000000">256</font>-gcm                               -
+zroot/bhyve  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:bhyve.key  <b><u><font color="#000000">local</font></u></b>
+zroot/bhyve  keyformat             raw                                       -
+zroot/bhyve  encryptionroot        zroot/bhyve                               -
+zroot/bhyve  keystatus             available                                 -
+paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E <font color="#808080">'(encryption|key)'</font>
+zroot/bhyve/rocky  encryption            aes-<font color="#000000">256</font>-gcm            -
+zroot/bhyve/rocky  keylocation           none                   default
+zroot/bhyve/rocky  keyformat             raw                    -
+zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
+zroot/bhyve/rocky  keystatus             available              -
+</pre>
+<br />
+<pre>
+	paul@f0:~ % zpool status
+  pool: zdata
+ state: ONLINE
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        zdata       ONLINE       0     0     0
+          ada1      ONLINE       0     0     0
+
+errors: No known data errors
+
+  pool: zroot
+ state: ONLINE
+config:
+
+        NAME        STATE     READ WRITE CKSUM
+        zroot       ONLINE       0     0     0
+          ada0p4    ONLINE       0     0     0
+
+errors: No known data errors
+</pre>
+<br />
+<span>ZFS auto scrubbing....~?</span><br />
+<br />
+<span>Backup of the keys on the key locations (all keys on all 3 USB keys)</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
