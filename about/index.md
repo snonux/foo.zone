@@ -34,6 +34,7 @@
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones, eBook
 * Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 * Inhibitor Phase, Alastair Reynolds, Audiobook
+* Seeking SRE: Conversations About Running Production Systems at Scale, David N. Blank-Edelman, eBook
 * Yoga Nidra Made Easy, Uma Dinsmore-Tuli, eBook
 
 ### Unread books already in my shelf
