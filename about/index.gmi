@@ -25,12 +25,15 @@
 
 ## Books
 
+### Books I am currently re-reading
+
+* Fluent Forever, Gabriel Wyner, Audiobook
+
 ### Books I am currently reading
 
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones, eBook
 * Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 * Inhibitor Phase, Alastair Reynolds, Audiobook
-* Meditation for Mortals, Oliver Burkeman, Audiobook
 * Yoga Nidra Made Easy, Uma Dinsmore-Tuli, eBook
 
 ### Unread books already in my shelf
