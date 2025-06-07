@@ -1,5 +1,7 @@
 # "A Monk's Guide to Happiness" book notes
 
+> Published at 2025-06-07T10:30:11+03:00
+
 These are my personal book notes from Gelong Thubten's "A Monk's Guide to Happiness: Meditation in the 21st century." They are for my own reference, but I hope they might be useful to you as well.
 
 ## Table of Contents
@@ -74,5 +76,18 @@ These are my personal book notes from Gelong Thubten's "A Monk's Guide to Happin
 If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don't always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other book notes of mine are:
+
+[2025-06-07 "A Monk's Guide to Happiness" book notes (You are currently reading this)](./a-monks-guide-to-happiness.md)  
+[2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes](./when.md)  
+[2024-10-24 "Staff Engineer" book notes](./staff-engineer.md)  
+[2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
+[2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
+[2023-11-11 "Mind Management" book notes](./mind-management.md)  
+[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes](./career-guide-and-soft-skills.md)  
+[2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
+[2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
+[2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  
 
 [Back to the main site](../)  
