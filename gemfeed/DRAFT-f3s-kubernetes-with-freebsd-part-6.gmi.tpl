@@ -16,6 +16,10 @@ In this blog post, we are going to extend the Beelinks with some additional stor
 
 Some photos here, describe why there are 2 different models of SSD drives (replication etc)
 
+## ZFS encryption keys
+
+### UFS on USB keys
+
 ```
 paul@f0:/ % doas camcontrol devlist
 <512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
@@ -31,8 +35,6 @@ paul@f1:/ % doas camcontrol devlist
 <Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
 paul@f1:/ %
 ```
-
-## UFS Setup
 
 ```sh
 paul@f0:/ % doas newfs /dev/da0
@@ -52,20 +54,30 @@ paul@f0:/ % df | grep keys
 /dev/da0             14877596       8  13687384     0%    /keys
 ```
 
-## ZFS Setup
+### Generating encryption keys
 
-```sh
-paul@f0:/dev % doas zpool create -m /data zdata /dev/ada1
-paul@f0:/dev % zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zdata   928G   432K   928G        -         -     0%     0%  1.00x    ONLINE  -
-zroot   472G  19.8G   452G        -         -     0%     4%  1.00x    ONLINE  -
 
-```
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/zhast.key 32
+paul@f0:/keys % doas openssl rand -out /keys/zbackup.key 32
+paul@f0:/keys % doas chown root *
+paul@f0:/keys % doas chmod 400 *
 
-### Encryption
+paul@f0:/keys % ls -l
+total 20
+-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key
+-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key
+-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key
+-r--------  1 root wheel 32 May 25 13:07 zbackup.key
+-r--------  1 root wheel 32 Jun  6 00:20 zhast.key
 
-USB key for key location
+Copy those to all 3 nodes to /keys
+
+### Migrating Bhyve VMs to encrypted ZFS volumes
+
+Run on all 3 nodes
 
 ```sh
 paul@f0:/keys % doas vm stop rocky
@@ -81,15 +93,7 @@ paul@f0:/keys % doas zfs set mountpoint=/mnt zroot/bhyve_old
 paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
 
 
-paul@f0:/keys % doas openssl rand -out /keys/`hostname`:bhyve.key 32
-paul@f0:/keys % doas openssl rand -out /keys/`hostname`:zdata.key 32
-paul@f0:/keys % ls -ltr
-total 8
--rw-r--r--  1 root wheel 16 May 25 11:54 f0.lan.buetow.org:bhyve.key
--rw-r--r--  1 root wheel 16 May 25 11:54 f0.lan.buetow.org:zdata.key
-
 paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
-paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
 paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve zroot/bhyve
 paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
 
@@ -101,24 +105,6 @@ paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
 
 paul@f0:/keys % doas sysrc zfskeys_enable=YES
 zfskeys_enable:  -> YES
-```
-
-Copied over all the keys from the partner node to each node, so they backup each other:
-
-```sh
-paul@f0:/keys % doas chown root *
-paul@f0:/keys % doas chmod 400 *
-paul@f0:/keys % ls -ltr
-total 24
--r--------  1 root paul 16 May 25 11:56 f0.lan.buetow.org:zdata.key
--r--------  1 root paul 16 May 25 11:56 f0.lan.buetow.org:bhyve.key
--r--------  1 root paul 16 May 25 11:56 f1.lan.buetow.org:zdata.key
--r--------  1 root paul 16 May 25 11:56 f1.lan.buetow.org:bhyve.key
--r--------  1 root paul 16 May 25 11:57 f2.lan.buetow.org:zdata.key
--r--------  1 root paul 16 May 25 11:57 f2.lan.buetow.org:bhyve.key
-```
-
-```sh
 paul@f0:/keys % doas vm init
 paul@f0:/keys % doas reboot
 .
@@ -133,12 +119,6 @@ rocky    default    uefi       4    14G     0.0.0.0:5900  Yes [1]  Running (2265
 ```sh
 paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
 
-paul@f0:~ % zfs get all zdata/enc | grep -E '(encryption|key)'
-zdata/enc  encryption            aes-256-gcm                               -
-zdata/enc  keylocation           file:///keys/f0.lan.buetow.org:zdata.key  local
-zdata/enc  keyformat             raw                                       -
-zdata/enc  encryptionroot        zdata/enc                                 -
-zdata/enc  keystatus             available                                 -
 paul@f0:~ % zfs get all zroot/bhyve | grep -E '(encryption|key)'
 zroot/bhyve  encryption            aes-256-gcm                               -
 zroot/bhyve  keylocation           file:///keys/f0.lan.buetow.org:bhyve.key  local
@@ -153,49 +133,35 @@ zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
 zroot/bhyve/rocky  keystatus             available              -
 ```
 
-```
-	paul@f0:~ % zpool status
-  pool: zdata
- state: ONLINE
-config:
-
-        NAME        STATE     READ WRITE CKSUM
-        zdata       ONLINE       0     0     0
-          ada1      ONLINE       0     0     0
-
-errors: No known data errors
-
-  pool: zroot
- state: ONLINE
-config:
-
-        NAME        STATE     READ WRITE CKSUM
-        zroot       ONLINE       0     0     0
-          ada0p4    ONLINE       0     0     0
-
-errors: No known data errors
-```
 ## HAST
 
-```
-doas zpool export zdata
+### General config
 
-paul@f0:/etc/rc.d % cat /etc/hast.conf
+On both, f0 and f1:
+
+```
+paul@f0:/etc/rc.d % cat <<END | doas tee -a /etc/hast.conf
 resource storage {
         on f0 {
                 local /dev/ada1
-                remote 192.168.1.130
+                remote f1
         }
         on f1 {
                 local /dev/ada1
-                remote 192.168.1.131
+                remote f2
         }
 }
+END
+
+
+On f0:
 
 paul@f0:/etc/rc.d % doas hastctl create storage
 paul@f0:/etc/rc.d % doas hastctl role primary storage
 paul@f0:/etc/rc.d % doas service hastd onestart
 Starting hastd.
+
+On f1:
 
 paul@f1:/etc/rc.d % doas hastctl create storage
 paul@f1:/etc/rc.d % doas hastctl role secondary storage
@@ -215,32 +181,6 @@ storage complete secondary      /dev/ada1       192.168.1.130
 
 paul@f0:/dev/hast % ls -l /dev/hast/storage
 crw-r-----  1 root operator 0x83 Jun  6 00:08 /dev/hast/storage
-
-paul@f0:/dev/hast % doas zpool create -m /zhast zhast /dev/hast/storage
-paul@f0:/dev/hast % doas zpool status zhast
-  pool: zhast
- state: ONLINE
-config:
-
-        NAME            STATE     READ WRITE CKSUM
-        zhast           ONLINE       0     0     0
-          hast/storage  ONLINE       0     0     0
-
-errors: No known data errors
-paul@f0:/dev/hast % doas zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zhast   928G   420K   928G        -         -     0%     0%  1.00x    ONLINE  -
-zroot   472G  21.0G   451G        -         -     0%     4%  1.00x    ONLINE  -```
-
-
-paul@f0:/dev/hast % doas openssl rand -out /keys/zhast.key 32
-paul@f0:/dev/hast % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/zhast.key zhast/enc
-paul@f0:/data/enc % zfs list | grep hast
-zhast                                          764K   899G    96K  /zhast
-zhast/enc                                      200K   899G   200K  /zhast/enc
-
-... copying the key to f1
-
 
 paul@f1:/var/log % doas hastctl list
 storage:
@@ -263,9 +203,29 @@ storage:
     local errors: read: 0, write: 0, delete: 0, flush: 0
     queues: local: 0, send: 0, recv: 0, done: 0, idle: 255
 
+### ZFS on HAST
+
+paul@f0:/dev/hast % doas zpool create -m /zhast zhast /dev/hast/storage
+paul@f0:/dev/hast % doas zpool status zhast
+  pool: zhast
+ state: ONLINE
+config:
+
+        NAME            STATE     READ WRITE CKSUM
+        zhast           ONLINE       0     0     0
+          hast/storage  ONLINE       0     0     0
+
+errors: No known data errors
+paul@f0:/dev/hast % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zhast   928G   420K   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  21.0G   451G        -         -     0%     4%  1.00x    ONLINE  -```
 
 
-
+paul@f0:/dev/hast % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/zhast.key zhast/enc
+paul@f0:/data/enc % zfs list | grep hast
+zhast                                          764K   899G    96K  /zhast
+zhast/enc                                      200K   899G   200K  /zhast/enc
 
 paul@f1:/var/log % zfs get all zhast/enc | grep -E '(encryption|key)'
 zhast/enc  encryption            aes-256-gcm             -
@@ -276,6 +236,41 @@ zhast/enc  keystatus             unavailable             -
 
 root@f0:/zhast/enc # sysrc hastd_enable=YES
 hastd_enable: NO -> YES
+
+## CARP
+adding to /etc/rc.conf on f0 and f1:
+ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"
+
+adding to /etc/hosts:
+
+192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+
+Adding on f0 and f1:
+
+paul@f0:~ % cat <<END | doas tee -a /etc/devd.conf
+notify 0 {
+        match "system"          "CARP";
+        match "subsystem"       "[0-9]+@[0-9a-z.]+";
+        match "type"            "(MASTER|BACKUP)";
+        action "/usr/local/bin/carpcontrol.sh $subsystem $type";
+};
+END
+
+next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to storage
+
+/boot/loader.conf add carp_load="YES"
+reboot or run doas kldload carp0 
+
+
+## Backup ZFS Setup
+
+```sh
+paul@f3:/dev % doas zpool create -m /data zdata /dev/ada1
+paul@f3:/dev % zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G   432K   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  19.8G   452G        -         -     0%     4%  1.00x    ONLINE  -
+```
 
 
 ZFS auto scrubbing....~?
