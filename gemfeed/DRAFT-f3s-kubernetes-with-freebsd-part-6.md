@@ -19,6 +19,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * [⇢ ⇢ UFS Setup](#ufs-setup)
 * [⇢ ⇢ ZFS Setup](#zfs-setup)
 * [⇢ ⇢ ⇢ Encryption](#encryption)
+* [⇢ ⇢ HAST](#hast)
 
 ## Introduction
 
@@ -185,6 +186,108 @@ config:
 
 errors: No known data errors
 ```
+## HAST
+
+```
+doas zpool export zdata
+
+paul@f0:/etc/rc.d % cat /etc/hast.conf
+resource storage {
+        on f0 {
+                local /dev/ada1
+                remote 192.168.1.130
+        }
+        on f1 {
+                local /dev/ada1
+                remote 192.168.1.131
+        }
+}
+
+paul@f0:/etc/rc.d % doas hastctl create storage
+paul@f0:/etc/rc.d % doas hastctl role primary storage
+paul@f0:/etc/rc.d % doas service hastd onestart
+Starting hastd.
+
+paul@f1:/etc/rc.d % doas hastctl create storage
+paul@f1:/etc/rc.d % doas hastctl role secondary storage
+paul@f1:/etc/rc.d % doas service hastd onestart
+Starting hastd.
+
+
+paul@f0:/var/log % doas hastctl status
+Name    Status   Role           Components
+storage complete primary        /dev/ada1       192.168.1.131
+
+paul@f1:/var/log % doas hastctl status
+Name    Status   Role           Components
+storage complete secondary      /dev/ada1       192.168.1.130
+
+
+
+paul@f0:/dev/hast % ls -l /dev/hast/storage
+crw-r-----  1 root operator 0x83 Jun  6 00:08 /dev/hast/storage
+
+paul@f0:/dev/hast % doas zpool create -m /zhast zhast /dev/hast/storage
+paul@f0:/dev/hast % doas zpool status zhast
+  pool: zhast
+ state: ONLINE
+config:
+
+        NAME            STATE     READ WRITE CKSUM
+        zhast           ONLINE       0     0     0
+          hast/storage  ONLINE       0     0     0
+
+errors: No known data errors
+paul@f0:/dev/hast % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zhast   928G   420K   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  21.0G   451G        -         -     0%     4%  1.00x    ONLINE  -```
+
+
+paul@f0:/dev/hast % doas openssl rand -out /keys/zhast.key 32
+paul@f0:/dev/hast % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/zhast.key zhast/enc
+paul@f0:/data/enc % zfs list | grep hast
+zhast                                          764K   899G    96K  /zhast
+zhast/enc                                      200K   899G   200K  /zhast/enc
+
+... copying the key to f1
+
+
+paul@f1:/var/log % doas hastctl list
+storage:
+  role: secondary
+  provname: storage
+  localpath: /dev/ada1
+  extentsize: 2097152 (2.0MB)
+  keepdirty: 0
+  remoteaddr: 192.168.1.130
+  replication: memsync
+  status: complete
+  workerpid: 2546
+  dirty: 0 (0B)
+  statistics:
+    reads: 0
+    writes: 26
+    deletes: 0
+    flushes: 0
+    activemap updates: 0
+    local errors: read: 0, write: 0, delete: 0, flush: 0
+    queues: local: 0, send: 0, recv: 0, done: 0, idle: 255
+
+
+
+
+
+paul@f1:/var/log % zfs get all zhast/enc | grep -E '(encryption|key)'
+zhast/enc  encryption            aes-256-gcm             -
+zhast/enc  keylocation           file:///keys/zhast.key  local
+zhast/enc  keyformat             raw                     -
+zhast/enc  encryptionroot        zhast/enc               -
+zhast/enc  keystatus             unavailable             -
+
+root@f0:/zhast/enc # sysrc hastd_enable=YES
+hastd_enable: NO -> YES
+
 
 ZFS auto scrubbing....~?
 
@@ -206,3 +309,5 @@ Other *BSD-related posts:
 E-Mail your comments to `paul@nospam.buetow.org`
 
 [Back to the main site](../)  
+
+https://forums.freebsd.org/threads/hast-and-zfs-with-carp-failover.29639/

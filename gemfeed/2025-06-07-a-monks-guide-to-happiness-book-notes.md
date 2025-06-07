@@ -1,5 +1,7 @@
 # "A Monk's Guide to Happiness" book notes
 
+> Published at 2025-06-07T10:30:11+03:00
+
 These are my personal book notes from Gelong Thubten's "A Monk's Guide to Happiness: Meditation in the 21st century." They are for my own reference, but I hope they might be useful to you as well.
 
 ## Table of Contents
