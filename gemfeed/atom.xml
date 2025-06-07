@@ -1,11 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-03T10:27:49+03:00</updated>
+    <updated>2025-06-07T10:30:12+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>'A Monk's Guide to Happiness' book notes</title>
+        <link href="https://foo.zone/gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.html" />
+        <id>https://foo.zone/gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.html</id>
+        <updated>2025-06-07T10:30:11+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These are my personal book notes from Gelong Thubten's 'A Monk's Guide to Happiness: Meditation in the 21st century.' They are for my own reference, but I hope they might be useful to you as well.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='a-monk-s-guide-to-happiness-book-notes'>"A Monk&#39;s Guide to Happiness" book notes</h1><br />
+<br />
+<span>These are my personal book notes from Gelong Thubten&#39;s "A Monk&#39;s Guide to Happiness: Meditation in the 21st century." They are for my own reference, but I hope they might be useful to you as well.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#a-monk-s-guide-to-happiness-book-notes'>"A Monk&#39;s Guide to Happiness" book notes</a></li>
+<li>⇢ <a href='#understanding-happiness'>Understanding Happiness</a></li>
+<li>⇢ <a href='#the-role-of-meditation'>The Role of Meditation</a></li>
+<li>⇢ <a href='#managing-thoughts-and-emotions'>Managing Thoughts and Emotions</a></li>
+<li>⇢ <a href='#practice-and-discipline'>Practice and Discipline</a></li>
+<li>⇢ <a href='#perspectives-on-relationships-and-interactions'>Perspectives on Relationships and Interactions</a></li>
+<li>⇢ <a href='#reflective-questions'>Reflective Questions</a></li>
+<li>⇢ <a href='#miscellaneous-guidelines'>Miscellaneous Guidelines</a></li>
+</ul><br />
+<h2 style='display: inline' id='understanding-happiness'>Understanding Happiness</h2><br />
+<br />
+<ul>
+<li>Happiness is a skill we can train. </li>
+<li>Happiness is not about accomplishing goals, as that would be in the future. </li>
+<li>Feel free now. No urge about past and future. </li>
+<li>We can learn to produce our own happiness independently of physical needs. When we walk in a park, how do we feel? We can train to reproduce that feeling independently. </li>
+</ul><br />
+<h2 style='display: inline' id='the-role-of-meditation'>The Role of Meditation</h2><br />
+<br />
+<ul>
+<li>Meditation is not about clearing your mind. A busy mind has nothing to do with interfering with your meditation.</li>
+<li>Our problem is that we need to detect that awareness. Meditation connects us with awareness. Awareness is freedom.</li>
+<li>We can let the mind be and don&#39;t care about the thoughts. It will have benefits for your life. It will protect you from all kinds of stress.</li>
+<li>Better meditate with open eyes so you don&#39;t associate it with the dark. You will also be able to be in a meditation state of mind outside of the meditation session.</li>
+<li>Have a baseline for time to build up discipline.</li>
+<li>We don&#39;t need to do anything about stress, just take a step back.</li>
+</ul><br />
+<h2 style='display: inline' id='managing-thoughts-and-emotions'>Managing Thoughts and Emotions</h2><br />
+<br />
+<ul>
+<li>Our flow of emotions is really just habits. That can be changed through training, e.g., meditation training.</li>
+<li>A part of the mind recognises that we are sad or angry. That part is not sad or angry by itself, obviously. So we can escape to that part of the mind, be the observer, and not draw in the constant flow of emotions and thoughts. </li>
+<li>Let the front and back doors of your house open, and let the thoughts come in and leave. Just don&#39;t serve them tea. This once said, a great Zen master.</li>
+<li>Thoughts are friends and not enemies. </li>
+<li>Thoughts help the meditation as they make us notice that we wandered off, and therefore, we strengthen the reflection.</li>
+</ul><br />
+<h2 style='display: inline' id='practice-and-discipline'>Practice and Discipline</h2><br />
+<br />
+<ul>
+<li>The importance of habits to practice mindfulness. Bring mindfulness into the daily practice.</li>
+<li>Integrating short moments of mindfulness during the day is the fast track to happiness. Start off with small tasks, e.g. while washing your hands.</li>
+<li>Have many small doses of mindfulness and don&#39;t prolong as otherwise, your mind will revolt.</li>
+<li>Have a small moment of mindfulness when you wake up and go to sleep.</li>
+<li>Practice staying fully present in an uncomfortable situation and without judgement.</li>
+<li>Don&#39;t become two persons who never meet: the meditator and the not meditator. So integrate mindfulness during the day too.</li>
+</ul><br />
+<h2 style='display: inline' id='perspectives-on-relationships-and-interactions'>Perspectives on Relationships and Interactions</h2><br />
+<br />
+<ul>
+<li>Who is the opponent? The other person. The things he said or our reactions to things? Forgiveness is a high form of compassion.</li>
+<li>Understand the suffering of the person who "hurt" us. Where is the aggressor really coming from?</li>
+<li>People who are stressed or unhappy do and say things they wouldn&#39;t have said have done otherwise. Acting under anger is like being influenced by alcohol.</li>
+<li>People don&#39;t have a masterplan to destroy others, even if it seems so. They are under strong bad influence by themselves. Something terrible happened to them. Revenge makes no sense.</li>
+<li>Be grateful for people "trying" to hurt you as they help you to practice your path.</li>
+</ul><br />
+<h2 style='display: inline' id='reflective-questions'>Reflective Questions</h2><br />
+<br />
+<ul>
+<li> Why do I do all the things I do? What do I try to achieve?</li>
+<li> What am I doing about that? </li>
+<li> Is it working?</li>
+<li> What are the real causes of happiness and suffering?</li>
+<li> What about meditation? How does that address the situation?</li>
+</ul><br />
+<h2 style='display: inline' id='miscellaneous-guidelines'>Miscellaneous Guidelines</h2><br />
+<br />
+<ul>
+<li> Posture is important as the mind and body are connected.</li>
+<li> Don&#39;t use music, so you don&#39;t rely on music to change your state of mind. Similar regular guided meditation. Guided meditation is good for learning a technique, but you should not rely on another voice.</li>
+<li> You are not trying to relax. Relaxing and trying are two different things.</li>
+<li> When you love everything, even the bad things happening to you, then you are invincible.</li>
+<li> Happiness is all in your mind. As if you flip a switch there.</li>
+<li> Digging for answers will never end. It will always cause more material to dig.</li>
+</ul><br />
+<span>If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don&#39;t always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</title>
         <link href="https://foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.html" />
@@ -1552,6 +1653,7 @@ __ejm\___/________dwb`---`______________________
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -4669,6 +4771,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -5323,6 +5426,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
@@ -6664,6 +6768,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -8096,6 +8201,7 @@ echo baz
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -9318,6 +9424,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -9747,6 +9854,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -10114,6 +10222,7 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -10412,6 +10521,7 @@ The remaining content of the Gemtext file...
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
@@ -10421,112 +10531,6 @@ The remaining content of the Gemtext file...
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>How to shut down after work</title>
-        <link href="https://foo.zone/gemfeed/2023-02-26-how-to-shut-down-after-work.html" />
-        <id>https://foo.zone/gemfeed/2023-02-26-how-to-shut-down-after-work.html</id>
-        <updated>2023-02-26T23:48:01+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won't just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers' interest that you fully relax and shut down after work. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='how-to-shut-down-after-work'>How to shut down after work</h1><br />
-<br />
-<span class='quote'>Published at 2023-02-26T23:48:01+02:00</span><br />
-<br />
-<span>Do you need help fully discharging from work in the evenings or for the weekend? Shutting down from work won&#39;t just improve your work-life balance; it will also significantly improve the quality of your personal life and work. After a restful weekend, you will be much more energized and productive the next working day. So it should not just be in your own, but also your employers&#39; interest that you fully relax and shut down after work. </span><br />
-<br />
-<pre>
-    |\   "Music should be heard not only with the ears, but also the soul."
-|---|--\-----------------------|-----------------------------------------|  
-|   |   |\                     |                   |@     |\             |
-|---|---|--\-------------------|-------------/|----|------|--\----|------|     
-|  @|   |   |\          |O     |        3  /  |    |@     |       |      | 
-|---|--@|---|--\--------|------|---------/----|----|------|-------|------|      
-|  @|      @|    \      |O     |       / |    |    |@    @|      @|.     | 
-|-----------|-----|-----|------|-----/---|---@|----|--------------|------|     
-|          @|     |     |O     |    |    |         |             @|.     | 
-|-----------|----@|-----|------|----|---@|------------------------|------|  
-           @|           |           |        Larry Komro         @|.     
-                                  -@-        [kom...@uwec.edu]
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#how-to-shut-down-after-work'>How to shut down after work</a></li>
-<li>⇢ <a href='#have-a-shutdown-routine'>Have a shutdown routine</a></li>
-<li>⇢ <a href='#don-t-work-when-you-officially-don-t-work'>Don&#39;t work when you officially don&#39;t work</a></li>
-<li>⇢ <a href='#distract-your-mind'>Distract your mind</a></li>
-<li>⇢ <a href='#get-a-pet'>Get a pet</a></li>
-<li>⇢ <a href='#journal-your-day'>Journal your day</a></li>
-<li>⇢ <a href='#don-t-stress-about-what-your-employer-expects-from-you'>Don&#39;t stress about what your employer expects from you</a></li>
-<li>⇢ <a href='#call-it-a-day'>Call it a day</a></li>
-</ul><br />
-<h2 style='display: inline' id='have-a-shutdown-routine'>Have a shutdown routine</h2><br />
-<br />
-<span>Have a routine. Try to finish work around the same time every day. Write any outstanding tasks down for the next day, so you are sure you will remember them. Writing them down brings wonders as you can remove them from your mind for the remainder of the day (or the upcoming weekend) as you know you will surely pick them up the next working day. Tidying up your workplace could also count toward your daily shutdown routine. </span><br />
-<br />
-<span>A commute home from the office also greatly helps, as it disconnects your work from your personal life. Don&#39;t work on your commute home, though! If you don&#39;t commute but work from home, then it helps to walk around the block or in a nearby park to disconnect from work. </span><br />
-<br />
-<h2 style='display: inline' id='don-t-work-when-you-officially-don-t-work'>Don&#39;t work when you officially don&#39;t work</h2><br />
-<br />
-<span>Unless you are self-employed, you have likely signed an N-hour per week contract with your employer, and your regular working times are from X o&#39;clock in the morning to Y o&#39;clock in the evening (with M minutes lunch break in the middle). And there might be some flexibility in your working times, too. But that kind of flexibility (e.g. extending the lunch break so that there is time to pick up a family member from the airport) will be agreed upon, and you will counteract it, for example, by starting working earlier the next day or working late, that one exception. But overall, your weekly working time will stay N hours. </span><br />
-<br />
-<span>Another exception would be when you are on an on-call schedule and are expected to watch your work notifications out-of-office times. But that is usually only a few days per month and, therefore, not the norm. And it should also be compensated accordingly. </span><br />
-<br />
-<span>There might be some maintenance work you must carry out, which can only be done over the weekend, but it should be explicitly agreed upon and compensated for. Also, there might be a scenario that a production incident comes up shortly before the end of the work day, requiring you (and your colleagues) to stay a bit longer. But this should be an exceptional case.</span><br />
-<br />
-<span>Other than that, there is no reason why you should work out-of-office hours. I know many people who suffer "the fear of missing out", so slack messages and E-Mails are checked until late in the evening, during weekends or holidays. I have been improving here personally a lot over the last couple of months, but still, I fall into this trap occasionally. </span><br />
-<br />
-<span>Also, when you respond to slack messages and E-Mails, your colleagues can think that you have nothing better to do. They also will take it for granted and keep slacking and messaging you out of regular office times. </span><br />
-<br />
-<span>Checking for your messages constantly outside of regular office times makes it impossible to shut down and relax from work altogether. </span><br />
-<br />
-<h2 style='display: inline' id='distract-your-mind'>Distract your mind</h2><br />
-<br />
-<span>Often, your mind goes back to work-related stuff even after work. That&#39;s normal as you concentrated highly on your work throughout the day. The brain unconsciously continues to work and will automatically present you with random work-related thoughts. You can counteract this by focusing on non-work stuff, which may include:</span><br />
-<br />
-<ul>
-<li>Exercise. A half an hour workout or yoga session, followed by some stretching, helps to calm your mind after work. </li>
-<li>Play (with your family, pets, friends, or video game)</li>
-<li>Mindfully listen to music. When have you ever "really" listened to music? I mean, not just as a background stimulation but really paid attention to the melody, rhythm, voice and lyrics? That requires focused attention and distracts you from other thoughts. </li>
-<li>Think of or work on that fun passion project. I currently, for example, like to learn and code a bit in Rakulang. </li>
-<li>Read. Nothing beats reading a good Science Fiction Novel (or whatever you prefer) before falling asleep.</li>
-</ul><br />
-<span>Some of these can be habit-stacked: Exercise could be combined with watching videos about your passion project (e.g. watching lectures about that new programming language you are currently learning for fun). With walking, for example, you could combine listening to an Audiobook or music, or you could also think about your passion project during that walk.  </span><br />
-<br />
-<h2 style='display: inline' id='get-a-pet'>Get a pet</h2><br />
-<br />
-<span>Even if you have children, it helps wonders to get a pet. My cat, for example, will remind me a few times daily to take a few minute&#39;s breaks to pet, play or give food. So my cat not only helps me after work but throughout the day.</span><br />
-<br />
-<span>My neighbour also works from home, and he has dogs, which he regularly has to take out to the park.</span><br />
-<br />
-<h2 style='display: inline' id='journal-your-day'>Journal your day</h2><br />
-<br />
-<span>If you are upset about something, making it impossible to shut down from work, write down everything (e.g., with a pen in a paper journal). Writing things down helps you to "get rid" of the negative. Especially after conflicts with colleagues or company decisions, you don&#39;t agree on. This kind of self-therapy is excellent. Brainstorm all your emotions and (even if opinionated) opinions so you have everything on paper. Once done, you don&#39;t think about it so much anymore, as you know you can access that information if required. But stopping ruminating about it will be much easier now. You will likely never access that information again, though. But at least writing the thoughts down saved your day. </span><br />
-<br />
-<span>Write down three things which went well for the day. This helps you to appreciate the day. </span><br />
-<br />
-<h2 style='display: inline' id='don-t-stress-about-what-your-employer-expects-from-you'>Don&#39;t stress about what your employer expects from you</h2><br />
-<br />
-<span>Think about what&#39;s fun and motivates you. Maybe the next promotion to Principal or a Manager role isn&#39;t for you. Many fall into the trap of stressing themselves out to satisfy the employer so that the next upgrade will happen and think about it constantly, even after work. But it is more important that you enjoy your craftsmanship. Work on what you expect from yourself. Ideally, your goals should be aligned with your employer. I am not saying you should abandon everything what your manager is asking you to do, but it is, after all, your life. And you have to decide where and on what you want to work. But don&#39;t sell yourself short. Keep track of your accomplishments.</span><br />
-<br />
-<h2 style='display: inline' id='call-it-a-day'>Call it a day</h2><br />
-<br />
-<span>Every day you gave your best was good; the day&#39;s outcome doesn&#39;t matter. What matters is that you know you gave your best and are closer to your goals than the previous day. This gives you a sense of progress and accomplishment.</span><br />
-<br />
-<span>There are some days at work you feel drained afterwards and think you didn&#39;t progress towards your goals at all. It&#39;s more challenging to shut down from work after such a day. A quick hack is to work on a quick win before the end of the day, giving you a sense of accomplishment after all. Another way is to make progress on your fun passion project after work. It must not be work-related, but a sense of accomplishment will still be there.</span><br />
-<span> </span><br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
