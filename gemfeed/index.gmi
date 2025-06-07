@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2025-06-07-a-monks-guide-to-happiness-book-notes.gmi 2025-06-07 - 'A Monk's Guide to Happiness' book notes
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 => ./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi 2025-05-02 - Terminal multiplexing with `tmux` - Fish edition
 => ./2025-04-19-when-book-notes.gmi 2025-04-19 - 'When: The Scientific Secrets of Perfect Timing' book notes
