@@ -56,12 +56,12 @@ paul@f0:/ % df | grep keys
 
 ### Generating encryption keys
 
-
 paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
 paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32
 paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32
-paul@f0:/keys % doas openssl rand -out /keys/zhast.key 32
-paul@f0:/keys % doas openssl rand -out /keys/zbackup.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:zdata.key 32
 paul@f0:/keys % doas chown root *
 paul@f0:/keys % doas chmod 400 *
 
@@ -70,12 +70,29 @@ total 20
 -r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key
 -r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key
 -r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key
--r--------  1 root wheel 32 May 25 13:07 zbackup.key
--r--------  1 root wheel 32 Jun  6 00:20 zhast.key
+-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:zdata.key
+-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:zdata.key
+-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key
 
 Copy those to all 3 nodes to /keys
 
-### Migrating Bhyve VMs to encrypted ZFS volumes
+### Configuring `zdata` ZFS pool and encryption
+
+```sh
+paul@f0:/keys % doas zpool create -m /data zdata /dev/ada1
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+paul@f0:/ % zfs list | grep zdata
+zdata                                          836K   899G    96K  /data
+zdata/enc                                      200K   899G   200K  /data/enc
+paul@f0:/keys % zfs get all zdata/enc | grep -E -i '(encryption|key)'
+zdata/enc  encryption            aes-256-gcm                               -
+zdata/enc  keylocation           file:///keys/f0.lan.buetow.org:zdata.key  local
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
+````
+
+### Migrating Bhyve VMs to encrypted `bhyve` ZFS volume
 
 Run on all 3 nodes
 
@@ -133,111 +150,8 @@ zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
 zroot/bhyve/rocky  keystatus             available              -
 ```
 
-## HAST
-
-### General config
-
-On both, f0 and f1:
-
-```
-paul@f0:/etc/rc.d % cat <<END | doas tee -a /etc/hast.conf
-resource storage {
-        on f0 {
-                local /dev/ada1
-                remote f1
-        }
-        on f1 {
-                local /dev/ada1
-                remote f2
-        }
-}
-END
-
-
-On f0:
-
-paul@f0:/etc/rc.d % doas hastctl create storage
-paul@f0:/etc/rc.d % doas hastctl role primary storage
-paul@f0:/etc/rc.d % doas service hastd onestart
-Starting hastd.
-
-On f1:
-
-paul@f1:/etc/rc.d % doas hastctl create storage
-paul@f1:/etc/rc.d % doas hastctl role secondary storage
-paul@f1:/etc/rc.d % doas service hastd onestart
-Starting hastd.
-
-
-paul@f0:/var/log % doas hastctl status
-Name    Status   Role           Components
-storage complete primary        /dev/ada1       192.168.1.131
-
-paul@f1:/var/log % doas hastctl status
-Name    Status   Role           Components
-storage complete secondary      /dev/ada1       192.168.1.130
-
-
-
-paul@f0:/dev/hast % ls -l /dev/hast/storage
-crw-r-----  1 root operator 0x83 Jun  6 00:08 /dev/hast/storage
-
-paul@f1:/var/log % doas hastctl list
-storage:
-  role: secondary
-  provname: storage
-  localpath: /dev/ada1
-  extentsize: 2097152 (2.0MB)
-  keepdirty: 0
-  remoteaddr: 192.168.1.130
-  replication: memsync
-  status: complete
-  workerpid: 2546
-  dirty: 0 (0B)
-  statistics:
-    reads: 0
-    writes: 26
-    deletes: 0
-    flushes: 0
-    activemap updates: 0
-    local errors: read: 0, write: 0, delete: 0, flush: 0
-    queues: local: 0, send: 0, recv: 0, done: 0, idle: 255
-
-### ZFS on HAST
-
-paul@f0:/dev/hast % doas zpool create -m /zhast zhast /dev/hast/storage
-paul@f0:/dev/hast % doas zpool status zhast
-  pool: zhast
- state: ONLINE
-config:
-
-        NAME            STATE     READ WRITE CKSUM
-        zhast           ONLINE       0     0     0
-          hast/storage  ONLINE       0     0     0
-
-errors: No known data errors
-paul@f0:/dev/hast % doas zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zhast   928G   420K   928G        -         -     0%     0%  1.00x    ONLINE  -
-zroot   472G  21.0G   451G        -         -     0%     4%  1.00x    ONLINE  -```
-
-
-paul@f0:/dev/hast % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/zhast.key zhast/enc
-paul@f0:/data/enc % zfs list | grep hast
-zhast                                          764K   899G    96K  /zhast
-zhast/enc                                      200K   899G   200K  /zhast/enc
-
-paul@f1:/var/log % zfs get all zhast/enc | grep -E '(encryption|key)'
-zhast/enc  encryption            aes-256-gcm             -
-zhast/enc  keylocation           file:///keys/zhast.key  local
-zhast/enc  keyformat             raw                     -
-zhast/enc  encryptionroot        zhast/enc               -
-zhast/enc  keystatus             unavailable             -
-
-root@f0:/zhast/enc # sysrc hastd_enable=YES
-hastd_enable: NO -> YES
-
 ## CARP
+
 adding to /etc/rc.conf on f0 and f1:
 ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"
 
@@ -260,17 +174,6 @@ next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to 
 
 /boot/loader.conf add carp_load="YES"
 reboot or run doas kldload carp0 
-
-
-## Backup ZFS Setup
-
-```sh
-paul@f3:/dev % doas zpool create -m /data zdata /dev/ada1
-paul@f3:/dev % zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zdata   928G   432K   928G        -         -     0%     0%  1.00x    ONLINE  -
-zroot   472G  19.8G   452G        -         -     0%     4%  1.00x    ONLINE  -
-```
 
 
 ZFS auto scrubbing....~?
