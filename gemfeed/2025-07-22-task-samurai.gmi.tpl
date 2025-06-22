@@ -88,8 +88,8 @@ Here's the million-dollar (or many hours saved) question: Did it buy me speed?
 
 Let's do some back-of-the-envelope math:
 
-* Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.
-* If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.
+* Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about _6 hours of active development_.
+* If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend _10–20 hours_.
 * That's a couple of days potential savings.
 
 ## Conclusion
