@@ -24,7 +24,7 @@ Given the current industry trend and the rapid advancements in technology, it ha
 
 ### How it works
 
-Task Samurai invokes the `task` command to read and modify tasks. The tasks are displayed in a Bubble Tea table, where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action, so the table is always up to date.
+Task Samurai invokes the `task` command (that's the original Taskwarrior CLI command) to read and modify tasks. The tasks are displayed in a Bubble Tea table, where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action, so the table is always up to date.
 
 => ./task-samurai/screenshot.png Task Samurai Screenshot
 
@@ -88,7 +88,9 @@ Let's do some back-of-the-envelope math:
 
 ## Wrapping Up
 
-Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I'd expected. The big lessons? Keep the iterations short, keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.
+Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I'd expected. The big lessons? Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.
+
+Am I an agentic coding expert now? I don't think so. There are still many things to learn, and the landscape is constantly evolving.
 
 While working on Task Samuray, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don't use AI, your next performance review may be awkward.
 
