@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T19:12:10+03:00</updated>
+    <updated>2025-06-22T19:29:25+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -33,12 +33,12 @@
 <li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
 <li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
 <li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
-<li>⇢ ⇢ <a href='#how-it-went-down'>How It Went Down</a></li>
-<li>⇢ ⇢ <a href='#what-went-wrong'>What Went Wrong</a></li>
-<li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns That Helped</a></li>
-<li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</a></li>
-<li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How Much Time Did I Save?</a></li>
-<li>⇢ <a href='#wrapping-up'>Wrapping Up</a></li>
+<li>⇢ ⇢ <a href='#how-it-went-down'>How it went down</a></li>
+<li>⇢ ⇢ <a href='#what-went-wrong'>What went wrong</a></li>
+<li>⇢ ⇢ <a href='#patterns-hhat-helped'>Patterns hhat helped</a></li>
+<li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I learned using agentic coding</a></li>
+<li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How much time did I save?</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
@@ -77,7 +77,7 @@
 <br />
 <span>As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.</span><br />
 <br />
-<h3 style='display: inline' id='how-it-went-down'>How It Went Down</h3><br />
+<h3 style='display: inline' id='how-it-went-down'>How it went down</h3><br />
 <br />
 <span>Task Samurai&#39;s codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:</span><br />
 <br />
@@ -89,7 +89,7 @@
 </ul><br />
 <span>Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.</span><br />
 <br />
-<h3 style='display: inline' id='what-went-wrong'>What Went Wrong</h3><br />
+<h3 style='display: inline' id='what-went-wrong'>What went wrong</h3><br />
 <br />
 <span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
 <br />
@@ -97,7 +97,7 @@
 <li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI&#39;s Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)</li>
 <li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
 </ul><br />
-<h3 style='display: inline' id='patterns-that-helped'>Patterns That Helped</h3><br />
+<h3 style='display: inline' id='patterns-hhat-helped'>Patterns hhat helped</h3><br />
 <br />
 <span>Despite the chaos, a few strategies kept things moving:</span><br />
 <br />
@@ -108,13 +108,13 @@
 <li>Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.</li>
 </ul><br />
 <br />
-<h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</h3><br />
+<h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I learned using agentic coding</h3><br />
 <br />
 <span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied. </span><br />
 <br />
 <span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps. I now see agentic coding not just as a productivity tool but also as a learning accelerator.</span><br />
 <br />
-<h3 style='display: inline' id='how-much-time-did-i-save'>How Much Time Did I Save?</h3><br />
+<h3 style='display: inline' id='how-much-time-did-i-save'>How much time did I save?</h3><br />
 <br />
 <span>Here&#39;s the million-dollar (or many hours saved) question: Did it buy me speed?</span><br />
 <br />
@@ -123,15 +123,15 @@
 <ul>
 <li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.</li>
 <li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.</li>
-<li>That&#39;s a potential savings, so what&#39;s usually weeks of work got compressed into just a few frantic days.</li>
+<li>That&#39;s a couple of days potential savings.</li>
 </ul><br />
-<h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
 <br />
 <span>Am I an agentic coding expert now? I don&#39;t think so. There are still many things to learn, and the landscape is constantly evolving.</span><br />
 <br />
-<span>While working on Task Samuray, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
+<span>While working on Task Samurai, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
 <br />
 <span>If you&#39;re considering going agentic, be prepared for a sprint, keep your toolkit sharp, and be ready to learn a lot along the way.</span><br />
 <br />
