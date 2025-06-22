@@ -1,4 +1,4 @@
-# Task Samurai
+# Task Samurai: An agentic coding learning experiment
 
 > Published at 2025-06-22T18:49:11+03:00
 
@@ -6,17 +6,17 @@
 
 ## Table of Contents
 
-* ⇢ Task Samurai
+* ⇢ Task Samurai: An agentic coding learning experiment
 * ⇢ ⇢ Introduction
 * ⇢ ⇢ ⇢ Why does this exist?
 * ⇢ ⇢ ⇢ How it works
+* ⇢ ⇢ Where and how to get it
 * ⇢ ⇢ Lessons Learned from Building Task Samurai with Agentic Coding
 * ⇢ ⇢ ⇢ How It Went Down
 * ⇢ ⇢ ⇢ What Went Wrong
 * ⇢ ⇢ ⇢ Patterns That Helped
 * ⇢ ⇢ ⇢ What I Learned Using Agentic Coding
 * ⇢ ⇢ ⇢ How Much Time Did I Save?
-* ⇢ ⇢ Where and how to get it
 * ⇢ ⇢ Wrapping Up
 
 ## Introduction
@@ -41,6 +41,14 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 
 => ./task-samurai/screenshot.png Task Samurai Screenshot
 
+## Where and how to get it
+
+Go to:
+
+=> https://codeberg.org/snonux/tasksamurai
+
+And follow the `README.md`!
+
 ## Lessons Learned from Building Task Samurai with Agentic Coding
 
 If you've ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here's a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.
@@ -62,7 +70,7 @@ Most big breakthroughs (and bug introductions) came during that middle day of in
 
 Going agentic isn't all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:
 
-* Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict.
+* Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI's Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)
 * Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.
 
 ### Patterns That Helped
@@ -73,6 +81,7 @@ Despite the chaos, a few strategies kept things moving:
 * Tiny PRs: Small, atomic merges meant feedback came fast (and so did fixes).
 * Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.
 * Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.
+Maybe a better approach would have been to design the whole application from scratch before letting Codix do any of the coding. I will try that with my next toy project.
 
 ### What I Learned Using Agentic Coding
 
@@ -89,14 +98,6 @@ Let's do some back-of-the-envelope math:
 * Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.
 * If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.
 * That's a potential savings, so what's usually weeks of work got compressed into just a few frantic days.
-
-## Where and how to get it
-
-Go to:
-
-=> https://codeberg.org/snonux/tasksamurai
-
-And follow the `README.md`!
 
 ## Wrapping Up
 
