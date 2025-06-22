@@ -2,7 +2,6 @@
 
 ## To be in the .zone!
 
-=> ./2025-07-22-task-samurai.gmi 2025-07-22 - Task Samurai: An agentic coding learning experiment
 => ./2025-06-22-task-samurai.gmi 2025-06-22 - Task Samurai: An agentic coding learning experiment
 => ./2025-06-07-a-monks-guide-to-happiness-book-notes.gmi 2025-06-07 - 'A Monk's Guide to Happiness' book notes
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network

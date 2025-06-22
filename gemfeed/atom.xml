@@ -1,156 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T20:00:52+03:00</updated>
+    <updated>2025-06-22T20:03:04+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
-    <entry>
-        <title>Task Samurai: An agentic coding learning experiment</title>
-        <link href="gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi" />
-        <id>gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi</id>
-        <updated>2025-06-22T18:49:11+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Task Samurai is a fast terminal interface for Taskwarrior written in Go using the Bubble Tea framework. It displays your tasks in a table and allows you to manage them without leaving your keyboard.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='task-samurai-an-agentic-coding-learning-experiment'>Task Samurai: An agentic coding learning experiment</h1><br />
-<br />
-<span class='quote'>Published at 2025-06-22T18:49:11+03:00</span><br />
-<br />
-<a href='./task-samurai/logo.png'><img alt='Task Samurai Logo' title='Task Samurai Logo' src='./task-samurai/logo.png' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#task-samurai-an-agentic-coding-learning-experiment'>Task Samurai: An agentic coding learning experiment</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ ⇢ <a href='#why-does-this-exist'>Why does this exist?</a></li>
-<li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
-<li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
-<li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
-<li>⇢ ⇢ <a href='#how-it-went-down'>How it went down</a></li>
-<li>⇢ ⇢ <a href='#what-went-wrong'>What went wrong</a></li>
-<li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns that helped</a></li>
-<li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I learned using agentic coding</a></li>
-<li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How much time did I save?</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>Task Samurai is a fast terminal interface for Taskwarrior written in Go using the Bubble Tea framework. It displays your tasks in a table and allows you to manage them without leaving your keyboard.</span><br />
-<br />
-<a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
-<a class='textlink' href='https://github.com/charmbracelet/bubbletea'>https://github.com/charmbracelet/bubbletea</a><br />
-<br />
-<h3 style='display: inline' id='why-does-this-exist'>Why does this exist?</h3><br />
-<br />
-<ul>
-<li>I wanted to tinker with agentic coding. This project was entirely implemented using OpenAI Codex.</li>
-<li>I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.</li>
-<li>I wanted something built with Bubble Tea, but I never had time to dive deep into it.</li>
-<li>I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.</li>
-</ul><br />
-<span>Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn&#39;t mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.</span><br />
-<br />
-<h3 style='display: inline' id='how-it-works'>How it works</h3><br />
-<br />
-<span>Task Samurai invokes the <span class='inlinecode'>task</span> command (that&#39;s the original Taskwarrior CLI command) to read and modify tasks. The tasks are displayed in a Bubble Tea table, where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action, so the table is always up to date.</span><br />
-<br />
-<a href='./task-samurai/screenshot.png'><img alt='Task Samurai Screenshot' title='Task Samurai Screenshot' src='./task-samurai/screenshot.png' /></a><br />
-<br />
-<h2 style='display: inline' id='where-and-how-to-get-it'>Where and how to get it</h2><br />
-<br />
-<span>Go to:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
-<br />
-<span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
-<br />
-<h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</h2><br />
-<br />
-<span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
-<br />
-<span>As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.</span><br />
-<br />
-<span>I didn&#39;t really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I&#39;d give it a try regardless. The web UI is simple and pretty straightforward. There&#39;s also a Codex CLI one could use directly in the terminal, but I didn&#39;t get it working. I will try again soon.</span><br />
-<br />
-<span>For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.</span><br />
-<br />
-<h3 style='display: inline' id='how-it-went-down'>How it went down</h3><br />
-<br />
-<span>Task Samurai&#39;s codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:</span><br />
-<br />
-<ul>
-<li>June 19: Scaffolded the Go boilerplate, set up tests, integrated the Bubble Tea UI framework, and got the first table views showing up.</li>
-<li>June 20: (The big one—120 commits!) Added hotkeys, colourized tasks, annotation support, undo/redo, and, for fun, fireworks on quit (which never worked and got removed at a later point). This is where most of the bugs, merges, and fast-paced changes happen.</li>
-<li>June 21: Refined searching, theming, and column sizing and documented all those hotkeys. Numerous tweaks to make the UI cleaner and more user-friendly.</li>
-<li>June 22: Final touches—added screenshots, polished the logo, fixed module paths… and then it was a wrap.</li>
-</ul><br />
-<span>Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.</span><br />
-<br />
-<span>It&#39;s worth noting that I worked on it in the evenings when I had some free time, as I also had to fit in my regular work and family commitments during the day. So, I didn&#39;t spend full working days on this project.</span><br />
-<br />
-<h3 style='display: inline' id='what-went-wrong'>What went wrong</h3><br />
-<br />
-<span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
-<br />
-<ul>
-<li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI&#39;s Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)</li>
-<li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
-</ul><br />
-<h3 style='display: inline' id='patterns-that-helped'>Patterns that helped</h3><br />
-<br />
-<span>Despite the chaos, a few strategies kept things moving:</span><br />
-<br />
-<ul>
-<li>Scaffolding First: I started with the basic table UI and command wrappers, then layered on features—never the other way around.</li>
-<li>Tiny PRs: Small, atomic merges meant feedback came fast (and so did fixes).</li>
-<li>Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.</li>
-<li>Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.</li>
-</ul><br />
-<br />
-<h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I learned using agentic coding</h3><br />
-<br />
-<span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied. </span><br />
-<br />
-<span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps. I now see agentic coding not just as a productivity tool but also as a learning accelerator.</span><br />
-<br />
-<h3 style='display: inline' id='how-much-time-did-i-save'>How much time did I save?</h3><br />
-<br />
-<span>Here&#39;s the million-dollar (or many hours saved) question: Did it buy me speed?</span><br />
-<br />
-<span>Let&#39;s do some back-of-the-envelope math:</span><br />
-<br />
-<ul>
-<li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about _6 hours of active development_.</li>
-<li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend _10–20 hours_.</li>
-<li>That&#39;s a couple of days potential savings.</li>
-</ul><br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
-<br />
-<span>Am I an agentic coding expert now? I don&#39;t think so. There are still many things to learn, and the landscape is constantly evolving.</span><br />
-<br />
-<span>While working on Task Samurai, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
-<br />
-<span>If you&#39;re considering going agentic, be prepared for a sprint, keep your toolkit sharp, and be ready to learn a lot along the way.</span><br />
-<br />
-<span>Personally, I am not sure whether I like where the industry is going with agentic coding. I love "traditional" coding, and with agentic coding you operate at a higher level and don&#39;t interact directly with code as often, which I would miss. I think that in the future, designing, reviewing, and being able to read and understand code will be more important than writing code by hand.</span><br />
-<br />
-<span>Do you have any thoughts on that? I hope, I am partially wrong at least.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
     <entry>
         <title>Task Samurai: An agentic coding learning experiment</title>
         <link href="gemini://foo.zone/gemfeed/2025-06-22-task-samurai.gmi" />
@@ -164,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='task-samurai-an-agentic-coding-learning-experiment'>Task Samurai: An agentic coding learning experiment</h1><br />
+<br />
+<span class='quote'>Published at 2025-06-22T20:00:51+03:00</span><br />
 <br />
 <a href='./task-samurai/logo.png'><img alt='Task Samurai Logo' title='Task Samurai Logo' src='./task-samurai/logo.png' /></a><br />
 <br />
@@ -10456,6 +10313,191 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Gemtexter 2.0.0 - Let's Gemtext again²</title>
+        <link href="gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi</id>
+        <updated>2023-03-25T17:50:32+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
+<br />
+<span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
+<br />
+<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
+<br />
+<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
+<br />
+<span>Let&#39;s list what&#39;s new!</span><br />
+<br />
+<pre>
+-=[ typewriters ]=-  1/98
+
+       .-------.
+      _|~~ ~~  |_       .-------.
+    =(_|_______|_)=    _|~~ ~~  |_
+      |:::::::::|    =(_|_______|_)
+      |:::::::[]|      |:::::::::|
+      |o=======.|      |:::::::[]|
+ jgs  `"""""""""`      |o=======.|
+  mod. by Paul Buetow  `"""""""""`
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
+<li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
+<li>⇢ <a href='#added-hooks'>Added hooks</a></li>
+<li>⇢ <a href='#use-of-safer-bash-options'>Use of safer Bash options</a></li>
+<li>⇢ <a href='#meta-cache-made-obsolete'>Meta cache made obsolete</a></li>
+<li>⇢ <a href='#xmllint-support'>XMLLint support</a></li>
+<li>⇢ <a href='#more'>More</a></li>
+</ul><br />
+<h2 style='display: inline' id='minimal-template-engine'>Minimal template engine</h2><br />
+<br />
+<span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
+<br />
+<span>A template file name must have the suffix <span class='inlinecode'>gmi.tpl</span>. A template must be put into the same directory as the Gemtext <span class='inlinecode'>.gmi</span> file to be generated. Gemtexter will generate a Gemtext file <span class='inlinecode'>index.gmi</span> from a given template <span class='inlinecode'>index.gmi.tpl</span>. A <span class='inlinecode'>&lt;&lt;&lt;</span> and <span class='inlinecode'>&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class='inlinecode'>&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</span><br />
+<br />
+<span>For example, the template <span class='inlinecode'>index.gmi.tpl</span>:</span><br />
+<br />
+<pre>
+# Hello world
+
+&lt;&lt; echo "&gt; This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
+
+Welcome to this capsule!
+
+&lt;&lt;&lt;
+  for i in {1..10}; do
+    echo Multiline template line $i
+  done
+&gt;&gt;&gt;
+</pre>
+<br />
+<span>... results into the following <span class='inlinecode'>index.gmi</span> after running <span class='inlinecode'>./gemtexter --generate</span> (or <span class='inlinecode'>./gemtexter --template</span>, which instructs to do only template processing and nothing else):</span><br />
+<br />
+<pre>
+# Hello world
+
+&gt; This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
+
+Welcome to this capsule!
+
+Multiline template line 1
+Multiline template line 2
+Multiline template line 3
+Multiline template line 4
+Multiline template line 5
+Multiline template line 6
+Multiline template line 7
+Multiline template line 8
+Multiline template line 9
+Multiline template line 10
+</pre>
+<br />
+<span>Another thing you can do is insert an index with links to similar blog posts. E.g.:</span><br />
+<br />
+<pre>
+See more entries about DTail and Golang:
+
+&lt;&lt; template::inline::rindex dtail golang
+
+Blablabla...
+</pre>
+<br />
+<span>... scans all other post entries with <span class='inlinecode'>dtail</span> and <span class='inlinecode'>golang</span> in the file name and generates a link list like this:</span><br />
+<br />
+<pre>
+See more entries about DTail and Golang:
+
+=&gt; ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=&gt; ./2022-04-22-programming-golang.gmi 2022-04-22 The Golang Programming language
+=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
+=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
+
+Blablabla...
+</pre>
+<br />
+<h2 style='display: inline' id='added-hooks'>Added hooks</h2><br />
+<br />
+<span>You can configure <span class='inlinecode'>PRE_GENERATE_HOOK</span> and <span class='inlinecode'>POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class='inlinecode'>--generate</span>, or after running <span class='inlinecode'>--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class='inlinecode'>--publish</span>.</span><br />
+<br />
+<span>The sample config file <span class='inlinecode'>gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">declare</font></u></b> -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
+<b><u><font color="#000000">declare</font></u></b> -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
+</pre>
+<br />
+<h2 style='display: inline' id='use-of-safer-bash-options'>Use of safer Bash options</h2><br />
+<br />
+<span>Gemtexter now does <span class='inlinecode'>set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class='inlinecode'>set -e</span>.</span><br />
+<br />
+<h2 style='display: inline' id='meta-cache-made-obsolete'>Meta cache made obsolete</h2><br />
+<br />
+<span>Here is the breaking change to older versions of Gemtexter. The <span class='inlinecode'>$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class='inlinecode'>meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class='inlinecode'>.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</span><br />
+<br />
+<span>An example blog post without any publishing date looks like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
+
+The remaining content of the Gemtext file...
+</pre>
+<br />
+<span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
+<i><font color="silver"># Title here</font></i>
+
+&gt; Published at <font color="#000000">2023</font>-<font color="#000000">02</font>-26T21:<font color="#000000">43</font>:<font color="#000000">51</font>+<font color="#000000">01</font>:<font color="#000000">00</font>
+
+The remaining content of the Gemtext file...
+</pre>
+<br />
+<h2 style='display: inline' id='xmllint-support'>XMLLint support</h2><br />
+<br />
+<span>Optionally, when the <span class='inlinecode'>xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</span><br />
+<br />
+<h2 style='display: inline' id='more'>More</h2><br />
+<br />
+<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
+<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
+<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
+<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
