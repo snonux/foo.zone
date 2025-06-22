@@ -189,3 +189,8 @@ E-Mail your comments to `paul@nospam.buetow.org`
 => ../ Back to the main site
 
 https://forums.freebsd.org/threads/hast-and-zfs-with-carp-failover.29639/
+
+
+E-Mail your comments to `paul@nospam.buetow.org`
+
+=> ../ Back to the main site
