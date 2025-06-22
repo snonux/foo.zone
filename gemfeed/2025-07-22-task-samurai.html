@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Task Samurai</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-07-22-task-samurai.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='task-samurai'>Task Samurai</h1><br />
+<br />
+<span class='quote'>Published at 2025-06-22T18:49:11+03:00</span><br />
+<br />
+<a href='./task-samurai/logo.png'><img alt='Task Samurai Logo' title='Task Samurai Logo' src='./task-samurai/logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#task-samurai'>Task Samurai</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#why-does-this-exist'>Why does this exist?</a></li>
+<li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
+<li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
+<li>⇢ ⇢ <a href='#how-it-went-down'>How It Went Down</a></li>
+<li>⇢ ⇢ <a href='#what-went-wrong'>What Went Wrong</a></li>
+<li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns That Helped</a></li>
+<li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</a></li>
+<li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How Much Time Did I Save?</a></li>
+<li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping Up</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>Task Samurai is a fast terminal interface for Taskwarrior written in Go using the Bubble Tea framework. It displays your tasks in a table and allows you to manage them without leaving your keyboard.</span><br />
+<br />
+<a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
+<a class='textlink' href='https://github.com/charmbracelet/bubbletea'>https://github.com/charmbracelet/bubbletea</a><br />
+<br />
+<h3 style='display: inline' id='why-does-this-exist'>Why does this exist?</h3><br />
+<br />
+<ul>
+<li>I wanted to tinker with agentic coding. This project was entirely implemented using OpenAI Codex.</li>
+<li>I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.</li>
+<li>I wanted something built with Bubble Tea, but I never had time to dive deep into it.</li>
+<li>I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.</li>
+</ul><br />
+<span>Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn&#39;t mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.</span><br />
+<br />
+<h3 style='display: inline' id='how-it-works'>How it works</h3><br />
+<br />
+<span>Task Samurai invokes the <span class='inlinecode'>task</span> command to read and modify tasks. The tasks are displayed in a Bubble Tea table, where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action, so the table is always up to date.</span><br />
+<br />
+<a href='./task-samurai/screenshot.png'><img alt='Task Samurai Screenshot' title='Task Samurai Screenshot' src='./task-samurai/screenshot.png' /></a><br />
+<br />
+<h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</h2><br />
+<br />
+<span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
+<br />
+<span>As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.</span><br />
+<br />
+<h3 style='display: inline' id='how-it-went-down'>How It Went Down</h3><br />
+<br />
+<span>Task Samurai&#39;s codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:</span><br />
+<br />
+<ul>
+<li>June 19: Scaffolded the Go boilerplate, set up tests, integrated the Bubble Tea UI framework, and got the first table views showing up.</li>
+<li>June 20: (The big one—120 commits!) Added hotkeys, colourized tasks, annotation support, undo/redo, and, for fun, fireworks on quit (which never worked and got removed at a later point). This is where most of the bugs, merges, and fast-paced changes happen.</li>
+<li>June 21: Refined searching, theming, and column sizing and documented all those hotkeys. Numerous tweaks to make the UI cleaner and more user-friendly.</li>
+<li>June 22: Final touches—added screenshots, polished the logo, fixed module paths… and then it was a wrap.</li>
+</ul><br />
+<span>Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.</span><br />
+<br />
+<h3 style='display: inline' id='what-went-wrong'>What Went Wrong</h3><br />
+<br />
+<span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
+<br />
+<ul>
+<li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict.</li>
+<li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
+</ul><br />
+<h3 style='display: inline' id='patterns-that-helped'>Patterns That Helped</h3><br />
+<br />
+<span>Despite the chaos, a few strategies kept things moving:</span><br />
+<br />
+<ul>
+<li>Scaffolding First: I started with the basic table UI and command wrappers, then layered on features—never the other way around.</li>
+<li>Tiny PRs: Small, atomic merges meant feedback came fast (and so did fixes).</li>
+<li>Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.</li>
+<li>Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.</li>
+</ul><br />
+<h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</h3><br />
+<br />
+<span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied.</span><br />
+<br />
+<span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps. I now see agentic coding not just as a productivity tool but also as a learning accelerator.</span><br />
+<br />
+<h3 style='display: inline' id='how-much-time-did-i-save'>How Much Time Did I Save?</h3><br />
+<br />
+<span>Here&#39;s the million-dollar (or many hours saved) question: Did it buy me speed?</span><br />
+<br />
+<span>Let&#39;s do some back-of-the-envelope math:</span><br />
+<br />
+<ul>
+<li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.</li>
+<li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.</li>
+<li>That&#39;s a potential savings, so what&#39;s usually weeks of work got compressed into just a few frantic days.</li>
+</ul><br />
+<h2 style='display: inline' id='where-and-how-to-get-it'>Where and how to get it</h2><br />
+<br />
+<span>Go to:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
+<br />
+<span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
+<br />
+<span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short, keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
+<br />
+<span>While working on Task Samuray, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
+<br />
+<span>If you&#39;re considering going agentic, be prepared for a sprint, keep your toolkit sharp, and be ready to learn a lot along the way.</span><br />
+<br />
+<span>Personally, I am not sure whether I like where the industry is going with agentic coding. I love "traditional" coding, and with agentic coding you operate at a higher level and don&#39;t interact directly with code as often, which I would miss. I think that in the future, designing, reviewing, and being able to read and understand code will be more important than writing code by hand.</span><br />
+<br />
+<span>Do you have any thoughts on that? I hope, I am partially wrong at least.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>

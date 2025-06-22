@@ -30,16 +30,22 @@
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#ufs-setup'>UFS Setup</a></li>
-<li>⇢ <a href='#zfs-setup'>ZFS Setup</a></li>
-<li>⇢ ⇢ <a href='#encryption'>Encryption</a></li>
-<li>⇢ <a href='#hast'>HAST</a></li>
+<li>⇢ <a href='#zfs-encryption-keys'>ZFS encryption keys</a></li>
+<li>⇢ ⇢ <a href='#ufs-on-usb-keys'>UFS on USB keys</a></li>
+<li>⇢ ⇢ <a href='#generating-encryption-keys'>Generating encryption keys</a></li>
+<li>⇢ ⇢ <a href='#configuring-zdata-zfs-pool-and-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool and encryption</a></li>
+<li>⇢ ⇢ <a href='#migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</a></li>
+<li>⇢ <a href='#carp'>CARP</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>In this blog post, we are going to extend the Beelinks with some additional storage.</span><br />
 <br />
 <span>Some photos here, describe why there are 2 different models of SSD drives (replication etc)</span><br />
+<br />
+<h2 style='display: inline' id='zfs-encryption-keys'>ZFS encryption keys</h2><br />
+<br />
+<h3 style='display: inline' id='ufs-on-usb-keys'>UFS on USB keys</h3><br />
 <br />
 <pre>
 paul@f0:/ % doas camcontrol devlist
@@ -56,8 +62,6 @@ paul@f1:/ % doas camcontrol devlist
 &lt;Generic Flash Disk 8.07&gt;          at scbus2 target 0 lun 0 (da0,pass2)
 paul@f1:/ %
 </pre>
-<br />
-<h2 style='display: inline' id='ufs-setup'>UFS Setup</h2><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -80,23 +84,50 @@ paul@f0:/ % df | grep keys
 /dev/da<font color="#000000">0</font>             <font color="#000000">14877596</font>       <font color="#000000">8</font>  <font color="#000000">13687384</font>     <font color="#000000">0</font>%    /keys
 </pre>
 <br />
-<h2 style='display: inline' id='zfs-setup'>ZFS Setup</h2><br />
+<h3 style='display: inline' id='generating-encryption-keys'>Generating encryption keys</h3><br />
+<br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32</span><br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32</span><br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32</span><br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:zdata.key 32</span><br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:zdata.key 32</span><br />
+<span>paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:zdata.key 32</span><br />
+<span>paul@f0:/keys % doas chown root *</span><br />
+<span>paul@f0:/keys % doas chmod 400 *</span><br />
+<br />
+<span>paul@f0:/keys % ls -l</span><br />
+<span>total 20</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:zdata.key</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:zdata.key</span><br />
+<span>-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key</span><br />
+<br />
+<span>Copy those to all 3 nodes to /keys</span><br />
+<br />
+<h3 style='display: inline' id='configuring-zdata-zfs-pool-and-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool and encryption</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:/dev % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
-paul@f0:/dev % zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zdata   928G   432K   928G        -         -     <font color="#000000">0</font>%     <font color="#000000">0</font>%  <font color="#000000">1</font>.00x    ONLINE  -
-zroot   472G  <font color="#000000">19</font>.8G   452G        -         -     <font color="#000000">0</font>%     <font color="#000000">4</font>%  <font color="#000000">1</font>.00x    ONLINE  -
-
+<pre>paul@f0:/keys % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+paul@f0:/ % zfs list | grep zdata
+zdata                                          836K   899G    96K  /data
+zdata/enc                                      200K   899G   200K  /data/enc
+paul@f0:/keys % zfs get all zdata/enc | grep -E -i <font color="#808080">'(encryption|key)'</font>
+zdata/enc  encryption            aes-<font color="#000000">256</font>-gcm                               -
+zdata/enc  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key  <b><u><font color="#000000">local</font></u></b>
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
 </pre>
 <br />
-<h3 style='display: inline' id='encryption'>Encryption</h3><br />
+<h3 style='display: inline' id='migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</h3><br />
 <br />
-<span>USB key for key location</span><br />
+<span>Run on all 3 nodes</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -115,15 +146,7 @@ paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoi
 paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
 
 
-paul@f0:/keys % doas openssl rand -out /keys/`hostname`:bhyve.key <font color="#000000">32</font>
-paul@f0:/keys % doas openssl rand -out /keys/`hostname`:zdata.key <font color="#000000">32</font>
-paul@f0:/keys % ls -ltr
-total <font color="#000000">8</font>
--rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">54</font> f0.lan.buetow.org:bhyve.key
--rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">54</font> f0.lan.buetow.org:zdata.key
-
 paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
-paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
 paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve zroot/bhyve
 paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
 
@@ -135,31 +158,7 @@ paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
 
 paul@f0:/keys % doas sysrc zfskeys_enable=YES
 zfskeys_enable:  -&gt; YES
-</pre>
-<br />
-<span>Copied over all the keys from the partner node to each node, so they backup each other:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:/keys % doas chown root *
-paul@f0:/keys % doas chmod <font color="#000000">400</font> *
-paul@f0:/keys % ls -ltr
-total <font color="#000000">24</font>
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f0.lan.buetow.org:zdata.key
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f0.lan.buetow.org:bhyve.key
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f1.lan.buetow.org:zdata.key
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">56</font> f1.lan.buetow.org:bhyve.key
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">57</font> f2.lan.buetow.org:zdata.key
--r--------  <font color="#000000">1</font> root paul <font color="#000000">16</font> May <font color="#000000">25</font> <font color="#000000">11</font>:<font color="#000000">57</font> f2.lan.buetow.org:bhyve.key
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:/keys % doas vm init
+paul@f0:/keys % doas vm init
 paul@f0:/keys % doas reboot
 .
 .
@@ -176,12 +175,6 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
 
-paul@f0:~ % zfs get all zdata/enc | grep -E <font color="#808080">'(encryption|key)'</font>
-zdata/enc  encryption            aes-<font color="#000000">256</font>-gcm                               -
-zdata/enc  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key  <b><u><font color="#000000">local</font></u></b>
-zdata/enc  keyformat             raw                                       -
-zdata/enc  encryptionroot        zdata/enc                                 -
-zdata/enc  keystatus             available                                 -
 paul@f0:~ % zfs get all zroot/bhyve | grep -E <font color="#808080">'(encryption|key)'</font>
 zroot/bhyve  encryption            aes-<font color="#000000">256</font>-gcm                               -
 zroot/bhyve  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:bhyve.key  <b><u><font color="#000000">local</font></u></b>
@@ -196,30 +189,59 @@ zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
 zroot/bhyve/rocky  keystatus             available              -
 </pre>
 <br />
-<pre>
-	paul@f0:~ % zpool status
-  pool: zdata
- state: ONLINE
-config:
-
-        NAME        STATE     READ WRITE CKSUM
-        zdata       ONLINE       0     0     0
-          ada1      ONLINE       0     0     0
-
-errors: No known data errors
-
-  pool: zroot
- state: ONLINE
-config:
-
-        NAME        STATE     READ WRITE CKSUM
-        zroot       ONLINE       0     0     0
-          ada0p4    ONLINE       0     0     0
-
-errors: No known data errors
-</pre>
-<h2 style='display: inline' id='hast'>HAST</h2><br />
+<h2 style='display: inline' id='carp'>CARP</h2><br />
 <br />
+<span>adding to /etc/rc.conf on f0 and f1:</span><br />
+<span>ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"</span><br />
+<br />
+<span>adding to /etc/hosts:</span><br />
+<br />
+<span>192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org</span><br />
+<br />
+<span>Adding on f0 and f1:</span><br />
+<br />
+<span>paul@f0:~ % cat &lt;&lt;END | doas tee -a /etc/devd.conf</span><br />
+<span>notify 0 {</span><br />
+<span>        match "system"          "CARP";</span><br />
+<span>        match "subsystem"       "[0-9]+@[0-9a-z.]+";</span><br />
+<span>        match "type"            "(MASTER|BACKUP)";</span><br />
+<span>        action "/usr/local/bin/carpcontrol.sh $subsystem $type";</span><br />
+<span>};</span><br />
+<span>END</span><br />
+<br />
+<span>next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to storage</span><br />
+<br />
+<span>/boot/loader.conf add carp_load="YES"</span><br />
+<span>reboot or run doas kldload carp0 </span><br />
+<br />
+<br />
+<span>ZFS auto scrubbing....~?</span><br />
+<br />
+<span>Backup of the keys on the key locations (all keys on all 3 USB keys)</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<br />
+<span>https://forums.freebsd.org/threads/hast-and-zfs-with-carp-failover.29639/</span><br />
+<br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
