@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-06-07T10:30:12+03:00 by `Gemtexter`
+> This site was generated at 2025-06-22T18:57:24+03:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+=> ./gemfeed/2025-07-22-task-samurai.gmi 2025-07-22 - Task Samurai
 => ./gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.gmi 2025-06-07 - 'A Monk's Guide to Happiness' book notes
 => ./gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 => ./gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi 2025-05-02 - Terminal multiplexing with `tmux` - Fish edition

@@ -1,11 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-07T10:30:12+03:00</updated>
+    <updated>2025-06-22T18:57:24+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Task Samurai</title>
+        <link href="gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi</id>
+        <updated>2025-06-22T18:49:11+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Task Samurai is a fast terminal interface for Taskwarrior written in Go using the Bubble Tea framework. It displays your tasks in a table and allows you to manage them without leaving your keyboard.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='task-samurai'>Task Samurai</h1><br />
+<br />
+<span class='quote'>Published at 2025-06-22T18:49:11+03:00</span><br />
+<br />
+<a href='./task-samurai/logo.png'><img alt='Task Samurai Logo' title='Task Samurai Logo' src='./task-samurai/logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#task-samurai'>Task Samurai</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ ⇢ <a href='#why-does-this-exist'>Why does this exist?</a></li>
+<li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
+<li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
+<li>⇢ ⇢ <a href='#how-it-went-down'>How It Went Down</a></li>
+<li>⇢ ⇢ <a href='#what-went-wrong'>What Went Wrong</a></li>
+<li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns That Helped</a></li>
+<li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</a></li>
+<li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How Much Time Did I Save?</a></li>
+<li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping Up</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>Task Samurai is a fast terminal interface for Taskwarrior written in Go using the Bubble Tea framework. It displays your tasks in a table and allows you to manage them without leaving your keyboard.</span><br />
+<br />
+<a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
+<a class='textlink' href='https://github.com/charmbracelet/bubbletea'>https://github.com/charmbracelet/bubbletea</a><br />
+<br />
+<h3 style='display: inline' id='why-does-this-exist'>Why does this exist?</h3><br />
+<br />
+<ul>
+<li>I wanted to tinker with agentic coding. This project was entirely implemented using OpenAI Codex.</li>
+<li>I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.</li>
+<li>I wanted something built with Bubble Tea, but I never had time to dive deep into it.</li>
+<li>I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.</li>
+</ul><br />
+<span>Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn&#39;t mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.</span><br />
+<br />
+<h3 style='display: inline' id='how-it-works'>How it works</h3><br />
+<br />
+<span>Task Samurai invokes the <span class='inlinecode'>task</span> command to read and modify tasks. The tasks are displayed in a Bubble Tea table, where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action, so the table is always up to date.</span><br />
+<br />
+<a href='./task-samurai/screenshot.png'><img alt='Task Samurai Screenshot' title='Task Samurai Screenshot' src='./task-samurai/screenshot.png' /></a><br />
+<br />
+<h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</h2><br />
+<br />
+<span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
+<br />
+<span>As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.</span><br />
+<br />
+<h3 style='display: inline' id='how-it-went-down'>How It Went Down</h3><br />
+<br />
+<span>Task Samurai&#39;s codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:</span><br />
+<br />
+<ul>
+<li>June 19: Scaffolded the Go boilerplate, set up tests, integrated the Bubble Tea UI framework, and got the first table views showing up.</li>
+<li>June 20: (The big one—120 commits!) Added hotkeys, colourized tasks, annotation support, undo/redo, and, for fun, fireworks on quit (which never worked and got removed at a later point). This is where most of the bugs, merges, and fast-paced changes happen.</li>
+<li>June 21: Refined searching, theming, and column sizing and documented all those hotkeys. Numerous tweaks to make the UI cleaner and more user-friendly.</li>
+<li>June 22: Final touches—added screenshots, polished the logo, fixed module paths… and then it was a wrap.</li>
+</ul><br />
+<span>Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.</span><br />
+<br />
+<h3 style='display: inline' id='what-went-wrong'>What Went Wrong</h3><br />
+<br />
+<span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
+<br />
+<ul>
+<li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict.</li>
+<li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
+</ul><br />
+<h3 style='display: inline' id='patterns-that-helped'>Patterns That Helped</h3><br />
+<br />
+<span>Despite the chaos, a few strategies kept things moving:</span><br />
+<br />
+<ul>
+<li>Scaffolding First: I started with the basic table UI and command wrappers, then layered on features—never the other way around.</li>
+<li>Tiny PRs: Small, atomic merges meant feedback came fast (and so did fixes).</li>
+<li>Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.</li>
+<li>Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.</li>
+</ul><br />
+<h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</h3><br />
+<br />
+<span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied.</span><br />
+<br />
+<span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps. I now see agentic coding not just as a productivity tool but also as a learning accelerator.</span><br />
+<br />
+<h3 style='display: inline' id='how-much-time-did-i-save'>How Much Time Did I Save?</h3><br />
+<br />
+<span>Here&#39;s the million-dollar (or many hours saved) question: Did it buy me speed?</span><br />
+<br />
+<span>Let&#39;s do some back-of-the-envelope math:</span><br />
+<br />
+<ul>
+<li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.</li>
+<li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.</li>
+<li>That&#39;s a potential savings, so what&#39;s usually weeks of work got compressed into just a few frantic days.</li>
+</ul><br />
+<h2 style='display: inline' id='where-and-how-to-get-it'>Where and how to get it</h2><br />
+<br />
+<span>Go to:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
+<br />
+<span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
+<br />
+<span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short, keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
+<br />
+<span>While working on Task Samuray, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
+<br />
+<span>If you&#39;re considering going agentic, be prepared for a sprint, keep your toolkit sharp, and be ready to learn a lot along the way.</span><br />
+<br />
+<span>Personally, I am not sure whether I like where the industry is going with agentic coding. I love "traditional" coding, and with agentic coding you operate at a higher level and don&#39;t interact directly with code as often, which I would miss. I think that in the future, designing, reviewing, and being able to read and understand code will be more important than writing code by hand.</span><br />
+<br />
+<span>Do you have any thoughts on that? I hope, I am partially wrong at least.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'A Monk's Guide to Happiness' book notes</title>
         <link href="gemini://foo.zone/gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.gmi" />
@@ -19,6 +155,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='a-monk-s-guide-to-happiness-book-notes'>"A Monk&#39;s Guide to Happiness" book notes</h1><br />
+<br />
+<span class='quote'>Published at 2025-06-07T10:30:11+03:00</span><br />
 <br />
 <span>These are my personal book notes from Gelong Thubten&#39;s "A Monk&#39;s Guide to Happiness: Meditation in the 21st century." They are for my own reference, but I hope they might be useful to you as well.</span><br />
 <br />
@@ -102,6 +240,19 @@
 <span>If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don&#39;t always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -3969,93 +4120,14 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>So I put this into my <span class='inlinecode'>zsh</span> dotfiles (in some <span class='inlinecode'>editor.zsh.source</span> in my <span class='inlinecode'>~</span> directory):</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">EDITOR</font><font color="#F3E651">=</font><font color="#ff0000">hx</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">VISUAL</font><font color="#F3E651">=</font><font color="#ff0000">$EDITOR</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GIT_EDITOR</font><font color="#F3E651">=</font><font color="#ff0000">$EDITOR</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">HELIX_CONFIG_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$HOME</font><font color="#F3E651">/.</font><font color="#ff0000">config/helix</font>
-
-<font color="#ff0000">editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#7bc710">random_theme ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># May add more theme search paths based on OS. This one is</font></i>
-<font color="#ff0000">    </font><i><font color="#ababab"># for Fedora Linux, but there is also MacOS, etc.</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">theme_dir</font><font color="#F3E651">=</font><font color="#ff0000">/usr/share/helix/runtime/themes</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> -d </font><font color="#ff0000">$theme_dir</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        echo </font><font color="#bb00ff">"Helix theme dir $theme_dir doesnt exist"</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">config_file</font><font color="#F3E651">=</font><font color="#ff0000">$HELIX_CONFIG_DIR</font><font color="#ff0000">/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">random_theme</font><font color="#F3E651">=</font><font color="#bb00ff">"$(basename "</font><font color="#ff0000">$(</font><font color="#ff0000">ls </font><font color="#ff0000">$theme_dir</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">        </font><font color="#F3E651">|</font><font color="#ff0000"> grep -v random</font><font color="#F3E651">.</font><font color="#ff0000">toml </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#F3E651">.</font><font color="#ff0000">toml </font><font color="#F3E651">|</font><font color="#ff0000"> sort -R </font><font color="#F3E651">\</font>
-<font color="#ff0000">        </font><font color="#F3E651">|</font><font color="#ff0000"> head -n </font><font color="#bb00ff">1</font><font color="#F3E651">)</font><font color="#bb00ff">" | cut -d. -f1)"</font>
-
-<font color="#ff0000">    sed </font><font color="#bb00ff">"/^theme =/ { s/.*/theme = </font><font color="#ffffff">\"</font><font color="#bb00ff">$random_theme</font><font color="#ffffff">\"</font><font color="#bb00ff">/; }"</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">        </font><font color="#ff0000">$config_file</font><font color="#ff0000"> </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$config_file</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font>
-<font color="#ff0000">        mv </font><font color="#ff0000">$config_file</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$config_file</font>
-<font color="#ff0000">}</font>
-
-<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$HELIX_CONFIG_DIR</font><font color="#ff0000">/config</font><font color="#F3E651">.</font><font color="#ff0000">toml </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">random_theme</font>
-<b><font color="#ffffff">fi</font></b>
-</pre>
 <br />
 <span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">random_theme</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> head -n </font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">~/.</font><font color="#ff0000">config/helix/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
-<font color="#ff0000">theme </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"jellybeans"</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">random_theme</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> head -n </font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">~/.</font><font color="#ff0000">config/helix/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
-<font color="#ff0000">theme </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"rose_pine"</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">random_theme</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> head -n </font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">~/.</font><font color="#ff0000">config/helix/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
-<font color="#ff0000">theme </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"noctis"</font>
-<font color="#F3E651">[</font><font color="#ff0000">paul@earth</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> </font><font color="#F3E651">%</font>
-</pre>
 <br />
 <h2 style='display: inline' id='a-better-version'>A better version</h2><br />
 <br />
 <span class='quote'>Update 2024-12-18: This is an improved version, which works cross platform (e.g., also on MacOS) and multiple theme directories:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">EDITOR</font><font color="#F3E651">=</font><font color="#ff0000">hx</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">VISUAL</font><font color="#F3E651">=</font><font color="#ff0000">$EDITOR</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GIT_EDITOR</font><font color="#F3E651">=</font><font color="#ff0000">$EDITOR</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">HELIX_CONFIG_DIR</font><font color="#F3E651">=</font><font color="#ff0000">$HOME</font><font color="#F3E651">/.</font><font color="#ff0000">config/helix</font>
-
-<font color="#ff0000">editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">theme</font><font color="#F3E651">::</font><font color="#7bc710">get_random ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> dir </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#ff0000">$(</font><font color="#ff0000">hx --health </font><font color="#F3E651">\</font>
-<font color="#ff0000">        </font><font color="#F3E651">|</font><font color="#ff0000"> awk </font><font color="#bb00ff">'/^Runtime directories/ { print $3 }'</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> tr </font><font color="#bb00ff">';'</font><font color="#ff0000"> </font><font color="#bb00ff">' '</font><font color="#F3E651">);</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -d </font><font color="#ff0000">$dir</font><font color="#ff0000">/themes </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">            ls </font><font color="#ff0000">$dir</font><font color="#ff0000">/themes</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> grep -F </font><font color="#F3E651">.</font><font color="#ff0000">toml </font><font color="#F3E651">|</font><font color="#ff0000"> sort -R </font><font color="#F3E651">|</font><font color="#ff0000"> head -n </font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">.</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font>
-<font color="#ff0000">}</font>
-
-<font color="#ff0000">editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">theme</font><font color="#F3E651">::</font><font color="#7bc710">set ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">theme</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">config_file</font><font color="#F3E651">=</font><font color="#ff0000">$HELIX_CONFIG_DIR</font><font color="#ff0000">/config</font><font color="#F3E651">.</font><font color="#ff0000">toml</font>
-
-<font color="#ff0000">    sed </font><font color="#bb00ff">"/^theme =/ { s/.*/theme = </font><font color="#ffffff">\"</font><font color="#bb00ff">$theme</font><font color="#ffffff">\"</font><font color="#bb00ff">/; }"</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">        </font><font color="#ff0000">$config_file</font><font color="#ff0000"> </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#ff0000">$config_file</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font>
-<font color="#ff0000">        mv </font><font color="#ff0000">$config_file</font><font color="#F3E651">.</font><font color="#ff0000">tmp </font><font color="#ff0000">$config_file</font>
-<font color="#ff0000">}</font>
-
-<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#ff0000">$HELIX_CONFIG_DIR</font><font color="#ff0000">/config</font><font color="#F3E651">.</font><font color="#ff0000">toml </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    editor</font><font color="#F3E651">::</font><font color="#ff0000">helix</font><font color="#F3E651">::</font><font color="#ff0000">theme</font><font color="#F3E651">::</font><b><font color="#ffffff">set</font></b><font color="#ff0000"> </font><font color="#ff0000">$(editor::helix::theme::get_random)</font>
-<b><font color="#ffffff">fi</font></b>
-</pre>
 <br />
 <span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -10417,120 +10489,6 @@ The remaining content of the Gemtext file...
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>'The Pragmatic Programmer' book notes</title>
-        <link href="gemini://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi" />
-        <id>gemini://foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes.gmi</id>
-        <updated>2023-03-16T00:55:20+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>These are my personal takeaways after reading 'The Pragmatic Programmer' by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='the-pragmatic-programmer-book-notes'>"The Pragmatic Programmer" book notes</h1><br />
-<br />
-<span class='quote'>Published at 2023-03-16T00:55:20+02:00</span><br />
-<br />
-<span>These are my personal takeaways after reading "The Pragmatic Programmer" by David Thomas and Andrew Hunt. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.</span><br />
-<br />
-<pre>
-         ,..........   ..........,
-     ,..,&#39;          &#39;.&#39;          &#39;,..,
-    ,&#39; ,&#39;            :            &#39;, &#39;,
-   ,&#39; ,&#39;             :             &#39;, &#39;,
-  ,&#39; ,&#39;              :              &#39;, &#39;,
- ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
-,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
- &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-                    &#39;&#39;&#39;
-</pre>
-<br />
-<span>Think about your work while doing it - every day on every project. Have a feeling of continuous improvement. </span><br />
-<br />
-<ul>
-<li>Be a realist.</li>
-<li>Smell challenges.</li>
-<li>Care about your craft.</li>
-<li>Code can always be flawed, but it can meet the requirements.</li>
-<li>You should be proud of your code, though.</li>
-</ul><br />
-<span>No one writes perfect code, including you. However:</span><br />
-<br />
-<ul>
-<li>Paranoia is good thinking.</li>
-<li>Practice defensive programming and crash early.</li>
-<li>Crashing is often the best thing you can do. </li>
-<li>Changes should be reversible.</li>
-</ul><br />
-<span>Erlang: Defensive programming is a waste of time. Let it crash. "This can never happen" - don&#39;t practise that kind of self-deception when programming. </span><br />
-<br />
-<span>Leave assertions in the code, even in production. Only leave out the assertions causing the performance issues.</span><br />
-<br />
-<span>Take small steps, always. Get feedback, too, for each of the steps the code does. Avoid fortune telling. If you have to involve in it, then the step is too large.</span><br />
-<br />
-<span>Decouple the code (e.g. OOP or functional programming). Prefer interfaces for types and mixins for a class extension over class inheritance.</span><br />
-<br />
-<ul>
-<li>Refactor now and not later.</li>
-<li>Later, it will be even more painful.</li>
-</ul><br />
-<span>Don&#39;t think outside the box. Find the box. The box is more extensive than you think. Think about the hard problem at hand. Do you have to do it a certain way, or do you have to do it at all?</span><br />
-<br />
-<span>Do what works and not what&#39;s fashionable. E.g. does SCRUM make sense? The goal is to deliver deliverables and not to "become" agile.</span><br />
-<br />
-<h2 style='display: inline' id='continuous-learning'>Continuous learning</h2><br />
-<br />
-<span>Add new tools to your repertoire every day and keep the momentum up. Learning new things is your most crucial aspect. Invest regularly in your knowledge portfolio. The learning process extends your thinking. It does not matter if you will never use it.</span><br />
-<br />
-<ul>
-<li>Learn a new programming language every year.</li>
-<li>Read a technical book every month.</li>
-<li>Take courses.</li>
-</ul><br />
-<span>Think critically about everything you learn. Use paper for your notes. There is something special about it.</span><br />
-<br />
-<h2 style='display: inline' id='stay-connected'>Stay connected</h2><br />
-<br />
-<span>It&#39;s your life, and you own it. Bruce Lee once said: </span><br />
-<br />
-<span class='quote'>"I am not on the world to life after your expectations, neither are you to life after mine."</span><br />
-<br />
-<ul>
-<li>Go to meet-ups and actively engage.</li>
-<li>Stay current.</li>
-<li>Dealing with computers is hard. Dealing with people is harder. </li>
-</ul><br />
-<span>It&#39;s your life. Share it, celebrate it, be proud and have fun.</span><br />
-<br />
-<h2 style='display: inline' id='the-story-of-stone-soup'>The story of stone soup</h2><br />
-<br />
-<span>How to motivate others to contribute something (e.g. ideas to a startup):</span><br />
-<br />
-<span class='quote'>A kindly, old stranger was walking through the land when he came upon a village. As he entered, the villagers moved towards their homes, locking doors and windows. The stranger smiled and asked, why are you all so frightened. I am a simple traveler, looking for a soft place to stay for the night and a warm place for a meal. "There&#39;s not a bite to eat in the whole province," he was told. "We are weak and our children are starving. Better keep moving on." "Oh, I have everything I need," he said. "In fact, I was thinking of making some stone soup to share with all of you." He pulled an iron cauldron from his cloak, filled it with water, and began to build a fire under it. Then, with great ceremony, he drew an ordinary-looking stone from a silken bag and dropped it into the water. By now, hearing the rumor of food, most of the villagers had come out of their homes or watched from their windows. As the stranger sniffed the "broth" and licked his lips in anticipation, hunger began to overcome their fear. "Ahh," the stranger said to himself rather loudly, "I do like a tasty stone soup. Of course, stone soup with cabbage -- that&#39;s hard to beat." Soon a villager approached hesitantly, holding a small cabbage he&#39;d retrieved from its hiding place, and added it to the pot. "Wonderful!!" cried the stranger. "You know, I once had stone soup with cabbage and a bit of salt beef as well, and it was fit for a king." The village butcher managed to find some salt beef . . .  And so it went, through potatoes, onions, carrots, mushrooms, and so on, until there was indeed a delicious meal for everyone in the village to share. The village elder offered the stranger a great deal of money for the magic stone, but he refused to sell it and traveled on the next day. As he left, the stranger came upon a group of village children standing near the road. He gave the silken bag containing the stone to the youngest child, whispering to a group, "It was not the stone, but the villagers that had performed the magic." </span><br />
-<br />
-<span>By working together, everyone contributes what they can, achieving a greater good together.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other book notes of mine are:</span><br />
-<br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes (You are currently reading this)</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
