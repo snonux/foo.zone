@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T19:47:58+03:00</updated>
+    <updated>2025-06-22T19:53:43+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -127,8 +127,8 @@
 <span>Let&#39;s do some back-of-the-envelope math:</span><br />
 <br />
 <ul>
-<li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about *6 hours of active development*.</li>
-<li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.</li>
+<li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about _6 hours of active development_.</li>
+<li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend _10–20 hours_.</li>
 <li>That&#39;s a couple of days potential savings.</li>
 </ul><br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
