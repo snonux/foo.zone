@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Task Samurai</title>
+<title>Task Samurai: An agentic coding learning experiment</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
@@ -11,7 +11,7 @@
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-07-22-task-samurai.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-07-22-task-samurai.gmi">Gemini</a>
 </p>
-<h1 style='display: inline' id='task-samurai'>Task Samurai</h1><br />
+<h1 style='display: inline' id='task-samurai-an-agentic-coding-learning-experiment'>Task Samurai: An agentic coding learning experiment</h1><br />
 <br />
 <span class='quote'>Published at 2025-06-22T18:49:11+03:00</span><br />
 <br />
@@ -20,17 +20,17 @@
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#task-samurai'>Task Samurai</a></li>
+<li><a href='#task-samurai-an-agentic-coding-learning-experiment'>Task Samurai: An agentic coding learning experiment</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
 <li>⇢ ⇢ <a href='#why-does-this-exist'>Why does this exist?</a></li>
 <li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
+<li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
 <li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
 <li>⇢ ⇢ <a href='#how-it-went-down'>How It Went Down</a></li>
 <li>⇢ ⇢ <a href='#what-went-wrong'>What Went Wrong</a></li>
 <li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns That Helped</a></li>
 <li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</a></li>
 <li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How Much Time Did I Save?</a></li>
-<li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
 <li>⇢ <a href='#wrapping-up'>Wrapping Up</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
@@ -56,6 +56,14 @@
 <br />
 <a href='./task-samurai/screenshot.png'><img alt='Task Samurai Screenshot' title='Task Samurai Screenshot' src='./task-samurai/screenshot.png' /></a><br />
 <br />
+<h2 style='display: inline' id='where-and-how-to-get-it'>Where and how to get it</h2><br />
+<br />
+<span>Go to:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
+<br />
+<span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
+<br />
 <h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</h2><br />
 <br />
 <span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
@@ -79,7 +87,7 @@
 <span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
 <br />
 <ul>
-<li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict.</li>
+<li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI&#39;s Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)</li>
 <li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
 </ul><br />
 <h3 style='display: inline' id='patterns-that-helped'>Patterns That Helped</h3><br />
@@ -92,6 +100,7 @@
 <li>Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.</li>
 <li>Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.</li>
 </ul><br />
+<br />
 <h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I Learned Using Agentic Coding</h3><br />
 <br />
 <span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied.</span><br />
@@ -109,14 +118,6 @@
 <li>If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend *10–20 hours*.</li>
 <li>That&#39;s a potential savings, so what&#39;s usually weeks of work got compressed into just a few frantic days.</li>
 </ul><br />
-<h2 style='display: inline' id='where-and-how-to-get-it'>Where and how to get it</h2><br />
-<br />
-<span>Go to:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
-<br />
-<span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
-<br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
 <br />
 <span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short, keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
