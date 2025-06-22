@@ -66,7 +66,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab">#!/bin/bash </font></i>
+<pre><i><font color="#00ff00">#!/bin/bash </font></i>
 </pre>
 <br />
 <span>... as the shebang line, but that does not work on all Unix and Unix-like operating systems (e.g., the *BSDs don&#39;t have Bash installed to /bin/bash). Better is:</span><br />
@@ -75,7 +75,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#00ff00">#!/usr/bin/env bash</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='two-space-soft-tabs-indentation'>Two space soft-tabs indentation</h3><br />
@@ -96,14 +96,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># All fits on one line</font></i>
-<font color="#ff0000">command1 </font><font color="#F3E651">|</font><font color="#ff0000"> command2</font>
+<pre><i><font color="#00ff00"># All fits on one line</font></i>
+<font color="#ffffff">command1 </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> command2</font>
 
-<i><font color="#ababab"># Long commands</font></i>
-<font color="#ff0000">command1 </font><font color="#F3E651">\</font>
-<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> command2 </font><font color="#F3E651">\</font>
-<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> command3 </font><font color="#F3E651">\</font>
-<font color="#ff0000">  </font><font color="#F3E651">|</font><font color="#ff0000"> command4</font>
+<i><font color="#00ff00"># Long commands</font></i>
+<font color="#ffffff">command1 </font><b><font color="#ee5896">\</font></b>
+<font color="#ffffff">  </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> command2 </font><b><font color="#ee5896">\</font></b>
+<font color="#ffffff">  </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> command3 </font><b><font color="#ee5896">\</font></b>
+<font color="#ffffff">  </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> command4</font>
 </pre>
 <br />
 <span>I think there is a better way like the following, which is less noisy. The pipe | already indicates the Bash that another command is expected, thus making the explicit line breaks with \ obsolete:</span><br />
@@ -112,11 +112,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Long commands</font></i>
-<font color="#ff0000">command1 </font><font color="#F3E651">|</font>
-<font color="#ff0000">    command2 </font><font color="#F3E651">|</font>
-<font color="#ff0000">    command3 </font><font color="#F3E651">|</font>
-<font color="#ff0000">    command4</font>
+<pre><i><font color="#00ff00"># Long commands</font></i>
+<font color="#ffffff">command1 </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">    command2 </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">    command3 </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">    command4</font>
 </pre>
 <br />
 <span class='quote'>Update: It&#39;s 2023 now, and I have changed my mind. I think Google&#39;s way is the better one. It may be a bit more to type, but the leading <span class='inlinecode'>|</span> are a nice eye catcher, so you know immediately what is going on!</span><br />
@@ -129,11 +129,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">greet ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">greeting</font><font color="#F3E651">=</font><font color="#bb00ff">"${1}"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">name</font><font color="#F3E651">=</font><font color="#bb00ff">"${2}"</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">"${greeting} ${name}!"</font>
-<font color="#ff0000">}</font>
+<pre><b><font color="#ffffff">greet ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">greeting</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"${1}"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">name</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"${2}"</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">"${greeting} ${name}!"</font>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>In this particular example, I agree that you should quote them as you don&#39;t know the input (are there, for example, whitespace characters?). But if you are sure that you are only using simple bare words, then I think that the code looks much cleaner when you do this instead:</span><br />
@@ -142,11 +142,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">say_hello_to_paul ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">greeting</font><font color="#F3E651">=</font><font color="#ff0000">Hello</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">name</font><font color="#F3E651">=</font><font color="#ff0000">Paul</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">"$greeting $name!"</font>
-<font color="#ff0000">}</font>
+<pre><b><font color="#ffffff">say_hello_to_paul ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">greeting</font><b><font color="#ee5896">=</font></b><font color="#ffffff">Hello</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">name</font><b><font color="#ee5896">=</font></b><font color="#ffffff">Paul</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">"$greeting $name!"</font>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>You see, I also omitted the curly braces { } around the variables. I only use the curly braces around variables when it makes the code either easier/clearer to read or if it is necessary to use them:</span><br />
@@ -155,9 +155,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> </font><font color="#ff0000">FOO</font><font color="#F3E651">=</font><font color="#ff0000">bar</font>
-<i><font color="#ababab"># Curly braces around FOO are necessary</font></i>
-<font color="#ff0000">echo </font><font color="#bb00ff">"foo${FOO}baz"</font>
+<pre><b><font color="#00ffff">declare</font></b><font color="#ffffff"> </font><font color="#ffffff">FOO</font><b><font color="#ee5896">=</font></b><font color="#ffffff">bar</font>
+<i><font color="#00ff00"># Curly braces around FOO are necessary</font></i>
+<font color="#ffffff">echo </font><font color="#cd00ff">"foo${FOO}baz"</font>
 </pre>
 <br />
 <span>A few more words on always quoting the variables: For the sake of consistency (and for making ShellCheck happy), I am not against quoting everything I encounter. I also think that the larger the Bash script becomes, the more critical it becomes always to quote variables. That&#39;s because it will be more likely that you might not remember that some of the functions don&#39;t work on values with spaces in them, for example. It&#39;s just that I won&#39;t quote everything in every small script I write. </span><br />
@@ -170,13 +170,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Prefer this:</font></i>
-<font color="#ff0000">addition</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#F3E651">(</font><font color="#ff0000"> X </font><font color="#F3E651">+</font><font color="#ff0000"> Y </font><font color="#F3E651">))</font>
-<font color="#ff0000">substitution</font><font color="#F3E651">=</font><font color="#bb00ff">"${string/#foo/bar}"</font>
+<pre><i><font color="#00ff00"># Prefer this:</font></i>
+<font color="#ffffff">addition</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$(</font><b><font color="#ee5896">(</font></b><font color="#ffffff"> X </font><b><font color="#ee5896">+</font></b><font color="#ffffff"> Y </font><b><font color="#ee5896">))</font></b>
+<font color="#ffffff">substitution</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"${string/#foo/bar}"</font>
 
-<i><font color="#ababab"># Instead of this:</font></i>
-<font color="#ff0000">addition</font><font color="#F3E651">=</font><font color="#bb00ff">"$(expr "</font><font color="#ff0000">${X}</font><font color="#bb00ff">" + "</font><font color="#ff0000">${Y}</font><font color="#bb00ff">")"</font>
-<font color="#ff0000">substitution</font><font color="#F3E651">=</font><font color="#bb00ff">"$(echo "</font><font color="#ff0000">${string}</font><font color="#bb00ff">" | sed -e 's/^foo/bar/')"</font>
+<i><font color="#00ff00"># Instead of this:</font></i>
+<font color="#ffffff">addition</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$(expr "</font><font color="#ffffff">${X}</font><font color="#cd00ff">" + "</font><font color="#ffffff">${Y}</font><font color="#cd00ff">")"</font>
+<font color="#ffffff">substitution</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$(echo "</font><font color="#ffffff">${string}</font><font color="#cd00ff">" | sed -e 's/^foo/bar/')"</font>
 </pre>
 <br />
 <span>I can&#39;t entirely agree here. The external commands (especially sed) are much more sophisticated and powerful than the built-in Bash versions. Sed can do much more than the Bash can ever do by itself when it comes to text manipulation (the name "sed" stands for streaming editor, after all).</span><br />
@@ -197,20 +197,20 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">declare</font></b><font color="#ff0000"> -r </font><font color="#ff0000">SUGAR_FREE</font><font color="#F3E651">=</font><font color="#ff0000">yes</font>
-<b><font color="#ffffff">declare</font></b><font color="#ff0000"> -r </font><font color="#ff0000">I_NEED_THE_BUZZ</font><font color="#F3E651">=</font><font color="#ff0000">no</font>
+<pre><b><font color="#00ffff">declare</font></b><font color="#ffffff"> -r </font><font color="#ffffff">SUGAR_FREE</font><b><font color="#ee5896">=</font></b><font color="#ffffff">yes</font>
+<b><font color="#00ffff">declare</font></b><font color="#ffffff"> -r </font><font color="#ffffff">I_NEED_THE_BUZZ</font><b><font color="#ee5896">=</font></b><font color="#ffffff">no</font>
 
-<font color="#7bc710">buy_soda ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">sugar_free</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
+<b><font color="#ffffff">buy_soda ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">sugar_free</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font>
 
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#ff0000">$sugar_free</font><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> yes </font><font color="#F3E651">]];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        echo </font><font color="#bb00ff">'Diet Dr. Pepper'</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">        echo </font><font color="#bb00ff">'Pepsi Coke'</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[[</font></b><font color="#ffffff"> </font><font color="#ffffff">$sugar_free</font><font color="#ffffff"> </font><b><font color="#ee5896">==</font></b><font color="#ffffff"> yes </font><b><font color="#ee5896">]];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        echo </font><font color="#cd00ff">'Diet Dr. Pepper'</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">else</font></b>
+<font color="#ffffff">        echo </font><font color="#cd00ff">'Pepsi Coke'</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">}</font>
 
-<font color="#ff0000">buy_soda </font><font color="#ff0000">$I_NEED_THE_BUZZ</font>
+<font color="#ffffff">buy_soda </font><font color="#ffffff">$I_NEED_THE_BUZZ</font>
 </pre>
 <br />
 <h3 style='display: inline' id='non-evil-alternative-to-variable-assignments-via-eval'>Non-evil alternative to variable assignments via eval</h3><br />
@@ -221,12 +221,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># What does this set?</font></i>
-<i><font color="#ababab"># Did it succeed? In part or whole?</font></i>
-<b><font color="#ffffff">eval</font></b><font color="#ff0000"> </font><font color="#ff0000">$(set_my_variables)</font>
+<pre><i><font color="#00ff00"># What does this set?</font></i>
+<i><font color="#00ff00"># Did it succeed? In part or whole?</font></i>
+<b><font color="#00ffff">eval</font></b><font color="#ffffff"> </font><font color="#ffffff">$(set_my_variables)</font>
 
-<i><font color="#ababab"># What happens if one of the returned values has a space in it?</font></i>
-<font color="#ff0000">variable</font><font color="#F3E651">=</font><font color="#bb00ff">"$(eval some_function)"</font>
+<i><font color="#00ff00"># What happens if one of the returned values has a space in it?</font></i>
+<font color="#ffffff">variable</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$(eval some_function)"</font>
 </pre>
 <br />
 <span>However, if I want to read variables from another file, I don&#39;t have to use eval here. I only have to source the file:</span><br />
@@ -265,39 +265,39 @@ Hello paul, it is Sat 15 May 19:21:12 BST 2021
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">filter_lines ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">'Start filtering lines in a fancy way!'</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
-<font color="#ff0000">    grep </font><font color="#F3E651">...</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> sed </font><font color="#F3E651">....</font>
-<font color="#ff0000">}</font>
+<pre><b><font color="#ffffff">filter_lines ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">'Start filtering lines in a fancy way!'</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;&amp;</font></b><font color="#ff00ff">2</font>
+<font color="#ffffff">    grep </font><b><font color="#ee5896">...</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> sed </font><b><font color="#ee5896">....</font></b>
+<font color="#ffffff">}</font>
 
-<font color="#7bc710">process_lines ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">'Start processing line by line!'</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">while</font></b><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -r line</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        </font><font color="#F3E651">...</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> something and produce a result</font><font color="#F3E651">...</font>
-<font color="#ff0000">        echo </font><font color="#bb00ff">"$result"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b><font color="#ff0000"> </font>
-<font color="#ff0000">}</font>
+<b><font color="#ffffff">process_lines ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">'Start processing line by line!'</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;&amp;</font></b><font color="#ff00ff">2</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">while</font></b><font color="#ffffff"> </font><b><font color="#00ffff">read</font></b><font color="#ffffff"> -r line</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
+<font color="#ffffff">        </font><b><font color="#ee5896">...</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b><font color="#ffffff"> something and produce a result</font><b><font color="#ee5896">...</font></b>
+<font color="#ffffff">        echo </font><font color="#cd00ff">"$result"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">done</font></b><font color="#ffffff"> </font>
+<font color="#ffffff">}</font>
 
-<i><font color="#ababab"># Do some post-processing of the data</font></i>
-<font color="#7bc710">postprocess_lines ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">'Start removing duplicates!'</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
-<font color="#ff0000">    sort -u</font>
-<font color="#ff0000">}</font>
+<i><font color="#00ff00"># Do some post-processing of the data</font></i>
+<b><font color="#ffffff">postprocess_lines ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">'Start removing duplicates!'</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;&amp;</font></b><font color="#ff00ff">2</font>
+<font color="#ffffff">    sort -u</font>
+<font color="#ffffff">}</font>
 
-<font color="#7bc710">genreate_report ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    echo </font><font color="#bb00ff">'My boss wants to have a report!'</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
-<font color="#ff0000">    tee outfile</font><font color="#F3E651">.</font><font color="#ff0000">txt</font>
-<font color="#ff0000">    wc -l outfile</font><font color="#F3E651">.</font><font color="#ff0000">txt</font>
-<font color="#ff0000">}</font>
+<b><font color="#ffffff">genreate_report ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    echo </font><font color="#cd00ff">'My boss wants to have a report!'</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;&amp;</font></b><font color="#ff00ff">2</font>
+<font color="#ffffff">    tee outfile</font><b><font color="#ee5896">.</font></b><font color="#ffffff">txt</font>
+<font color="#ffffff">    wc -l outfile</font><b><font color="#ee5896">.</font></b><font color="#ffffff">txt</font>
+<font color="#ffffff">}</font>
 
-<font color="#7bc710">main ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    filter_lines </font><font color="#F3E651">|</font>
-<font color="#ff0000">        process_lines </font><font color="#F3E651">|</font>
-<font color="#ff0000">        postprocess_lines </font><font color="#F3E651">|</font>
-<font color="#ff0000">        generate_report</font>
-<font color="#ff0000">}</font>
+<b><font color="#ffffff">main ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    filter_lines </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">        process_lines </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">        postprocess_lines </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">        generate_report</font>
+<font color="#ffffff">}</font>
 
-<font color="#ff0000">main</font>
+<font color="#ffffff">main</font>
 </pre>
 <br />
 <span>The stdout is always passed as a pipe to the next following stage. The stderr is used for info logging.</span><br />
@@ -312,13 +312,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">some_function ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_foo</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_baz</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_bay</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<pre><b><font color="#ffffff">some_function ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_foo</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_baz</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_bay</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
 
-<font color="#ff0000">    </font><i><font color="#ababab"># ...</font></i>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># ...</font></i>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>Want to add a param_baz? Just do this:</span><br />
@@ -327,14 +327,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">some_function ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_foo</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_bar</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_baz</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_bay</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<pre><b><font color="#ffffff">some_function ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_foo</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_bar</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_baz</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_bay</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
 
-<font color="#ff0000">    </font><i><font color="#ababab"># ...</font></i>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># ...</font></i>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>Want to remove param_foo? Nothing easier than that:</span><br />
@@ -343,13 +343,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">some_function ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_bar</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_baz</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">param_bay</font><font color="#F3E651">=</font><font color="#bb00ff">"$1"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font>
-<font color="#ff0000">    </font><i><font color="#ababab"># ...</font></i>
-<font color="#ff0000">}</font>
+<pre><b><font color="#ffffff">some_function ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_bar</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_baz</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">param_bay</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"$1"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># ...</font></i>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>As you can see, I didn&#39;t need to change any other assignments within the function. Of course, you would also need to change the function argument lists at every occasion where the function is invoked - you would do that within the same refactoring session.</span><br />
@@ -362,9 +362,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">set</font></b><font color="#ff0000"> -e</font>
-<font color="#ff0000">grep -q foo </font><font color="#F3E651">&lt;&lt;&lt;</font><font color="#ff0000"> bar</font>
-<font color="#ff0000">echo Jo</font>
+<pre><b><font color="#00ffff">set</font></b><font color="#ffffff"> -e</font>
+<font color="#ffffff">grep -q foo </font><b><font color="#ee5896">&lt;&lt;&lt;</font></b><font color="#ffffff"> bar</font>
+<font color="#ffffff">echo Jo</font>
 </pre>
 <br />
 <span>Here &#39;Jo&#39; will never be printed out as the grep didn&#39;t find any match. It&#39;s unrealistic for most scripts to run in paranoid mode purely, so there must be a way to add exceptions. Critical Bash scripts of mine tend to look like this:</span><br />
@@ -373,26 +373,26 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#00ff00">#!/usr/bin/env bash</font></i>
 
-<b><font color="#ffffff">set</font></b><font color="#ff0000"> -e</font>
+<b><font color="#00ffff">set</font></b><font color="#ffffff"> -e</font>
 
-<font color="#7bc710">some_function ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># .. some critical code</font></i>
-<font color="#ff0000">    </font><i><font color="#ababab"># ...</font></i>
+<b><font color="#ffffff">some_function ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># .. some critical code</font></i>
+<font color="#ffffff">    </font><i><font color="#00ff00"># ...</font></i>
 
-<font color="#ff0000">    </font><b><font color="#ffffff">set</font></b><font color="#ff0000"> </font><font color="#F3E651">+</font><font color="#ff0000">e</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># Grep might fail, but that's OK now</font></i>
-<font color="#ff0000">    grep </font><font color="#F3E651">....</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">ec</font><font color="#F3E651">=</font><font color="#ff0000">$?</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">set</font></b><font color="#ff0000"> -e</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> </font><b><font color="#ee5896">+</font></b><font color="#ffffff">e</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># Grep might fail, but that's OK now</font></i>
+<font color="#ffffff">    grep </font><b><font color="#ee5896">....</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -i </font><font color="#ffffff">ec</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$?</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> -e</font>
 
-<font color="#ff0000">    </font><i><font color="#ababab"># .. critical code continues ...</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#ff0000">$ec</font><font color="#ff0000"> -ne </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">]];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        </font><font color="#F3E651">:</font><font color="#ff0000"> </font><i><font color="#ababab"># ...</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">    </font><i><font color="#ababab"># ...</font></i>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># .. critical code continues ...</font></i>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[[</font></b><font color="#ffffff"> </font><font color="#ffffff">$ec</font><font color="#ffffff"> -ne </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><b><font color="#ee5896">]];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        </font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># ...</font></i>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">    </font><i><font color="#00ff00"># ...</font></i>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <h2 style='display: inline' id='learned'>Learned</h2><br />
@@ -407,10 +407,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#bb00ff">"${my_var}"</font><font color="#ff0000"> </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">3</font><font color="#ff0000"> </font><font color="#F3E651">]];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    </font><i><font color="#ababab"># True for 4, false for 22.</font></i>
-<font color="#ff0000">    do_something</font>
-<b><font color="#ffffff">fi</font></b>
+<pre><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[[</font></b><font color="#ffffff"> </font><font color="#cd00ff">"${my_var}"</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> </font><font color="#ff00ff">3</font><font color="#ffffff"> </font><b><font color="#ee5896">]];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    </font><i><font color="#00ff00"># True for 4, false for 22.</font></i>
+<font color="#ffffff">    do_something</font>
+<b><font color="#00ffff">fi</font></b>
 </pre>
 <br />
 <span>... but it is probably an unintended lexicographical comparison. A correct way would be:</span><br />
@@ -419,9 +419,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">((</font><font color="#ff0000"> my_var </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">3</font><font color="#ff0000"> </font><font color="#F3E651">));</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    do_something</font>
-<b><font color="#ffffff">fi</font></b>
+<pre><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">((</font></b><font color="#ffffff"> my_var </font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> </font><font color="#ff00ff">3</font><font color="#ffffff"> </font><b><font color="#ee5896">));</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    do_something</font>
+<b><font color="#00ffff">fi</font></b>
 </pre>
 <br />
 <span>or</span><br />
@@ -430,9 +430,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[[</font><font color="#ff0000"> </font><font color="#bb00ff">"${my_var}"</font><font color="#ff0000"> -gt </font><font color="#bb00ff">3</font><font color="#ff0000"> </font><font color="#F3E651">]];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    do_something</font>
-<b><font color="#ffffff">fi</font></b>
+<pre><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[[</font></b><font color="#ffffff"> </font><font color="#cd00ff">"${my_var}"</font><font color="#ffffff"> -gt </font><font color="#ff00ff">3</font><font color="#ffffff"> </font><b><font color="#ee5896">]];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    do_something</font>
+<b><font color="#00ffff">fi</font></b>
 </pre>
 <br />
 <h3 style='display: inline' id='pipestatus'>PIPESTATUS</h3><br />
@@ -445,10 +445,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tar -cf - </font><font color="#F3E651">./*</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000"> cd </font><font color="#bb00ff">"${dir}"</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> tar -xf - </font><font color="#F3E651">)</font>
-<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">((</font><font color="#ff0000"> PIPESTATUS</font><font color="#F3E651">[</font><font color="#bb00ff">0</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">!=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> PIPESTATUS</font><font color="#F3E651">[</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">!=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">));</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    echo </font><font color="#bb00ff">"Unable to tar files to ${dir}"</font><font color="#ff0000"> </font><font color="#F3E651">&gt;&amp;</font><font color="#bb00ff">2</font>
-<b><font color="#ffffff">fi</font></b>
+<pre><font color="#ffffff">tar -cf - </font><b><font color="#ee5896">./*</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff"> cd </font><font color="#cd00ff">"${dir}"</font><font color="#ffffff"> </font><b><font color="#ee5896">&amp;&amp;</font></b><font color="#ffffff"> tar -xf - </font><b><font color="#ee5896">)</font></b>
+<b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">((</font></b><font color="#ffffff"> PIPESTATUS</font><b><font color="#ee5896">[</font></b><font color="#ff00ff">0</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> PIPESTATUS</font><b><font color="#ee5896">[</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><b><font color="#ee5896">));</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    echo </font><font color="#cd00ff">"Unable to tar files to ${dir}"</font><font color="#ffffff"> </font><b><font color="#ee5896">&gt;&amp;</font></b><font color="#ff00ff">2</font>
+<b><font color="#00ffff">fi</font></b>
 </pre>
 <br />
 <span>However, as PIPESTATUS will be overwritten as soon as you do any other command, if you need to act differently on errors based on where it happened in the pipe, you&#39;ll need to assign PIPESTATUS to another variable immediately after running the command (don&#39;t forget that [ is a command and will wipe out PIPESTATUS).</span><br />
@@ -457,14 +457,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tar -cf - </font><font color="#F3E651">./*</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000"> cd </font><font color="#bb00ff">"${DIR}"</font><font color="#ff0000"> </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> tar -xf - </font><font color="#F3E651">)</font>
-<font color="#ff0000">return_codes</font><font color="#F3E651">=(</font><font color="#ff0000"> </font><font color="#bb00ff">"${PIPESTATUS[@]}"</font><font color="#ff0000"> </font><font color="#F3E651">)</font>
-<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">((</font><font color="#ff0000"> return_codes</font><font color="#F3E651">[</font><font color="#bb00ff">0</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">!=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">));</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    do_something</font>
-<b><font color="#ffffff">fi</font></b>
-<b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">((</font><font color="#ff0000"> return_codes</font><font color="#F3E651">[</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000"> </font><font color="#F3E651">!=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">));</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">    do_something_else</font>
-<b><font color="#ffffff">fi</font></b>
+<pre><font color="#ffffff">tar -cf - </font><b><font color="#ee5896">./*</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff"> cd </font><font color="#cd00ff">"${DIR}"</font><font color="#ffffff"> </font><b><font color="#ee5896">&amp;&amp;</font></b><font color="#ffffff"> tar -xf - </font><b><font color="#ee5896">)</font></b>
+<font color="#ffffff">return_codes</font><b><font color="#ee5896">=(</font></b><font color="#ffffff"> </font><font color="#cd00ff">"${PIPESTATUS[@]}"</font><font color="#ffffff"> </font><b><font color="#ee5896">)</font></b>
+<b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">((</font></b><font color="#ffffff"> return_codes</font><b><font color="#ee5896">[</font></b><font color="#ff00ff">0</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><b><font color="#ee5896">));</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    do_something</font>
+<b><font color="#00ffff">fi</font></b>
+<b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">((</font></b><font color="#ffffff"> return_codes</font><b><font color="#ee5896">[</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><b><font color="#ee5896">));</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">    do_something_else</font>
+<b><font color="#00ffff">fi</font></b>
 </pre>
 <br />
 <h2 style='display: inline' id='use-common-sense-and-be-consistent'>Use common sense and BE CONSISTENT.</h2><br />

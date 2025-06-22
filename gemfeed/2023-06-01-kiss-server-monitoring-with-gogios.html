@@ -117,11 +117,11 @@ Have a nice day!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/gogios</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
-<font color="#ff0000">cd gogios</font>
-<font color="#ff0000">go build -o gogios cmd/gogios/main</font><font color="#F3E651">.</font><font color="#ff0000">go</font>
-<font color="#ff0000">doas cp gogios /usr/local/bin/gogios</font>
-<font color="#ff0000">doas chmod </font><font color="#bb00ff">755</font><font color="#ff0000"> /usr/local/bin/gogios</font>
+<pre><font color="#ffffff">git clone https</font><b><font color="#ee5896">:</font></b><font color="#ffffff">//codeberg</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org/snonux/gogios</font><b><font color="#ee5896">.</font></b><font color="#ffffff">git</font>
+<font color="#ffffff">cd gogios</font>
+<font color="#ffffff">go build -o gogios cmd/gogios/main</font><b><font color="#ee5896">.</font></b><font color="#ffffff">go</font>
+<font color="#ffffff">doas cp gogios /usr/local/bin/gogios</font>
+<font color="#ffffff">doas chmod </font><font color="#ff00ff">755</font><font color="#ffffff"> /usr/local/bin/gogios</font>
 </pre>
 <br />
 <span>You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:</span><br />
@@ -130,9 +130,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GOOS</font><font color="#F3E651">=</font><font color="#ff0000">openbsd</font>
-<b><font color="#ffffff">export</font></b><font color="#ff0000"> </font><font color="#ff0000">GOARCH</font><font color="#F3E651">=</font><font color="#ff0000">amd64</font>
-<font color="#ff0000">go build -o gogios cmd/gogios/main</font><font color="#F3E651">.</font><font color="#ff0000">go</font>
+<pre><b><font color="#00ffff">export</font></b><font color="#ffffff"> </font><font color="#ffffff">GOOS</font><b><font color="#ee5896">=</font></b><font color="#ffffff">openbsd</font>
+<b><font color="#00ffff">export</font></b><font color="#ffffff"> </font><font color="#ffffff">GOARCH</font><b><font color="#ee5896">=</font></b><font color="#ffffff">amd64</font>
+<font color="#ffffff">go build -o gogios cmd/gogios/main</font><b><font color="#ee5896">.</font></b><font color="#ffffff">go</font>
 </pre>
 <br />
 <span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
@@ -147,11 +147,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">doas adduser -group _gogios -batch _gogios</font>
-<font color="#ff0000">doas usermod -d /var/run/gogios _gogios</font>
-<font color="#ff0000">doas mkdir -p /var/run/gogios</font>
-<font color="#ff0000">doas chown _gogios</font><font color="#F3E651">:</font><font color="#ff0000">_gogios /var/run/gogios</font>
-<font color="#ff0000">doas chmod </font><font color="#bb00ff">750</font><font color="#ff0000"> /var/run/gogios</font>
+<pre><font color="#ffffff">doas adduser -group _gogios -batch _gogios</font>
+<font color="#ffffff">doas usermod -d /var/run/gogios _gogios</font>
+<font color="#ffffff">doas mkdir -p /var/run/gogios</font>
+<font color="#ffffff">doas chown _gogios</font><b><font color="#ee5896">:</font></b><font color="#ffffff">_gogios /var/run/gogios</font>
+<font color="#ffffff">doas chmod </font><font color="#ff00ff">750</font><font color="#ffffff"> /var/run/gogios</font>
 </pre>
 <br />
 <span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
@@ -164,8 +164,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">doas pkg_add monitoring-plugins</font>
-<font color="#ff0000">doas pkg_add nrpe </font><i><font color="#ababab"># If you want to execute checks remotely via NRPE.</font></i>
+<pre><font color="#ffffff">doas pkg_add monitoring-plugins</font>
+<font color="#ffffff">doas pkg_add nrpe </font><i><font color="#00ff00"># If you want to execute checks remotely via NRPE.</font></i>
 </pre>
 <br />
 <span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
@@ -192,41 +192,41 @@ echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39;
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">{</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">EmailTo</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">paul@dev.buetow.org</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">EmailFrom</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">gogios@buetow.org</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">CheckTimeoutS</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">CheckConcurrency</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">2</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">StateDir</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/var/run/gogios</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">Checks</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP4 www.foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-w</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">50,10%</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">100,15%</font><font color="#ff0000">"</font><font color="#ff0000"> </font><font color="#F3E651">],</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Retries</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">3</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">RetryInterval</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font>
-<font color="#ff0000">    </font><font color="#F3E651">},</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP6 www.foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-6</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-w</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">50,10%</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">100,15%</font><font color="#ff0000">"</font><font color="#ff0000"> </font><font color="#F3E651">],</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Retries</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">3</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">RetryInterval</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">10</font>
-<font color="#ff0000">    </font><font color="#F3E651">},</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone HTTP IPv4</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_http</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">],</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">DependsOn</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP4 www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    </font><font color="#F3E651">},</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone HTTP IPv6</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_http</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-6</font><font color="#ff0000">"</font><font color="#F3E651">],</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">DependsOn</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">Check ICMP6 www.foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">Check NRPE Disk Usage foo.zone</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Plugin</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">/usr/local/libexec/nagios/check_nrpe</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">Args</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">[</font><font color="#ff0000">"</font><font color="#ff0000">-H</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">foo.zone</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-c</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">check_disk</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-p</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">5666</font><font color="#ff0000">"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">"</font><font color="#ff0000">-4</font><font color="#ff0000">"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#ff0000">  </font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
+<pre><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">EmailTo</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">paul@dev.buetow.org</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">EmailFrom</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">gogios@buetow.org</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">CheckTimeoutS</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">10</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">CheckConcurrency</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">2</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">StateDir</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/var/run/gogios</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">  </font><font color="#ffffff">"</font><font color="#ffffff">Checks</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">    </font><font color="#ffffff">"</font><font color="#ffffff">Check ICMP4 www.foo.zone</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Plugin</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Args</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-H</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-4</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-w</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">50,10%</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-c</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">100,15%</font><font color="#ffffff">"</font><font color="#ffffff"> </font><b><font color="#ee5896">],</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Retries</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">3</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">RetryInterval</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">10</font>
+<font color="#ffffff">    </font><b><font color="#ee5896">},</font></b>
+<font color="#ffffff">    </font><font color="#ffffff">"</font><font color="#ffffff">Check ICMP6 www.foo.zone</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Plugin</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/usr/local/libexec/nagios/check_ping</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Args</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-H</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-6</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-w</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">50,10%</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-c</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">100,15%</font><font color="#ffffff">"</font><font color="#ffffff"> </font><b><font color="#ee5896">],</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Retries</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">3</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">RetryInterval</font><font color="#ffffff">"</font><font color="#ffffff">: </font><font color="#ff00ff">10</font>
+<font color="#ffffff">    </font><b><font color="#ee5896">},</font></b>
+<font color="#ffffff">    </font><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone HTTP IPv4</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Plugin</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/usr/local/libexec/nagios/check_http</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Args</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-4</font><font color="#ffffff">"</font><b><font color="#ee5896">],</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">DependsOn</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff">"</font><font color="#ffffff">Check ICMP4 www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">]</font></b>
+<font color="#ffffff">    </font><b><font color="#ee5896">},</font></b>
+<font color="#ffffff">    </font><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone HTTP IPv6</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Plugin</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/usr/local/libexec/nagios/check_http</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Args</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff">"</font><font color="#ffffff">www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-6</font><font color="#ffffff">"</font><b><font color="#ee5896">],</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">DependsOn</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff">"</font><font color="#ffffff">Check ICMP6 www.foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">]</font></b>
+<font color="#ffffff">    </font><b><font color="#ee5896">}</font></b>
+<font color="#ffffff">    </font><font color="#ffffff">"</font><font color="#ffffff">Check NRPE Disk Usage foo.zone</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">{</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Plugin</font><font color="#ffffff">"</font><font color="#ffffff">:</font><font color="#ffffff"> "</font><font color="#cd00ff">/usr/local/libexec/nagios/check_nrpe</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b>
+<font color="#ffffff">      </font><font color="#ffffff">"</font><font color="#ffffff">Args</font><font color="#ffffff">"</font><font color="#ffffff">: </font><b><font color="#ee5896">[</font></b><font color="#ffffff">"</font><font color="#ffffff">-H</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">foo.zone</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-c</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">check_disk</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-p</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">5666</font><font color="#ffffff">"</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ffffff">"</font><font color="#ffffff">-4</font><font color="#ffffff">"</font><b><font color="#ee5896">]</font></b>
+<font color="#ffffff">    </font><b><font color="#ee5896">}</font></b>
+<font color="#ffffff">  </font><b><font color="#ee5896">}</font></b>
+<b><font color="#ee5896">}</font></b>
 </pre>
 <br />
 <ul>
@@ -255,7 +255,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios</font><font color="#F3E651">.</font><font color="#ff0000">json</font>
+<pre><font color="#ffffff">doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios</font><b><font color="#ee5896">.</font></b><font color="#ffffff">json</font>
 </pre>
 <br />
 <span>To run Gogios via CRON on OpenBSD as the <span class='inlinecode'>gogios</span> user and check all services once per minute, follow these steps:</span><br />

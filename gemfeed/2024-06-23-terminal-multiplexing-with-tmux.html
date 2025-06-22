@@ -90,13 +90,13 @@ jgs   `-=========-`()
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tm</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tl</font><font color="#F3E651">=</font><font color="#bb00ff">'tmux list-sessions'</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tn</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ta</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">attach</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tx</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">remote</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ts</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">search</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tssh</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">cluster_ssh</font>
+<pre><b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tm</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tl</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">'tmux list-sessions'</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tn</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">new</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">ta</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">attach</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tx</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">remote</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">ts</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">search</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tssh</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">cluster_ssh</font>
 </pre>
 <br />
 <span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
@@ -111,23 +111,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Create new session and if alread exists attach to it</font></i>
-<font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">new ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">date</font><font color="#F3E651">=</font><font color="#ff0000">date</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> where gdate </font><font color="#F3E651">&amp;&gt;</font><font color="#ff0000">/dev/null</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        </font><font color="#ff0000">date</font><font color="#F3E651">=</font><font color="#ff0000">gdate</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<pre><i><font color="#00ff00"># Create new session and if alread exists attach to it</font></i>
+<font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">new ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">readonly</font></b><font color="#ffffff"> </font><font color="#ffffff">session</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> </font><font color="#ffffff">date</font><b><font color="#ee5896">=</font></b><font color="#ffffff">date</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> where gdate </font><b><font color="#ee5896">&amp;&gt;</font></b><font color="#ffffff">/dev/null</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        </font><font color="#ffffff">date</font><b><font color="#ee5896">=</font></b><font color="#ffffff">gdate</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
 
-<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">cleanup_default</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$session"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        tmux</font><font color="#F3E651">::</font><font color="#ff0000">new T</font><font color="#ff0000">$($date</font><font color="#ff0000"> </font><font color="#F3E651">+%</font><font color="#ff0000">s</font><font color="#F3E651">)</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">        tmux new-session -d -s </font><font color="#ff0000">$session</font>
-<font color="#ff0000">        tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> switch-client -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">}</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tn</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
+<font color="#ffffff">    tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">cleanup_default</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> -z </font><font color="#cd00ff">"$session"</font><font color="#ffffff"> </font><b><font color="#ee5896">];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">new T</font><font color="#ffffff">$($date</font><font color="#ffffff"> </font><b><font color="#ee5896">+%</font></b><font color="#ffffff">s</font><b><font color="#ee5896">)</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">else</font></b>
+<font color="#ffffff">        tmux new-session -d -s </font><font color="#ffffff">$session</font>
+<font color="#ffffff">        tmux -</font><font color="#ff00ff">2</font><font color="#ffffff"> attach-session -t </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> tmux -</font><font color="#ff00ff">2</font><font color="#ffffff"> switch-client -t </font><font color="#ffffff">$session</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">}</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tn</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">new</font>
 </pre>
 <br />
 <span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. As a note, the function relies on GNU Date, so MacOS is looking for the <span class='inlinecode'>gdate</span> commands to be available. Otherwise, it will fall back to <span class='inlinecode'>date</span>. You need to install GNU Date for Mac, as it isn&#39;t installed by default there. As I use Fedora Linux on my personal Laptop and a MacBook for work, I have to make it work for both.</span><br />
@@ -142,14 +142,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">cleanup_default ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> s</font>
-<font color="#ff0000">    tmux list-sessions </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">'^T.*: '</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> grep -F -v attached </font><font color="#F3E651">|</font>
-<font color="#ff0000">    cut -d</font><font color="#F3E651">:</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><b><font color="#ffffff">while</font></b><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -r s</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        echo </font><font color="#bb00ff">"Killing $s"</font>
-<font color="#ff0000">        tmux kill-session -t </font><font color="#bb00ff">"$s"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
-<font color="#ff0000">}</font>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">cleanup_default ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> s</font>
+<font color="#ffffff">    tmux list-sessions </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep </font><font color="#cd00ff">'^T.*: '</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep -F -v attached </font><b><font color="#ee5896">|</font></b>
+<font color="#ffffff">    cut -d</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> -f</font><font color="#ff00ff">1</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> </font><b><font color="#00ffff">while</font></b><font color="#ffffff"> </font><b><font color="#00ffff">read</font></b><font color="#ffffff"> -r s</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
+<font color="#ffffff">        echo </font><font color="#cd00ff">"Killing $s"</font>
+<font color="#ffffff">        tmux kill-session -t </font><font color="#cd00ff">"$s"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">done</font></b>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
@@ -166,16 +166,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">attach ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">attach ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">readonly</font></b><font color="#ffffff"> </font><font color="#ffffff">session</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font>
 
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$session"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        tmux attach-session </font><font color="#F3E651">||</font><font color="#ff0000"> tmux</font><font color="#F3E651">::</font><font color="#ff0000">new</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">        tmux attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> tmux</font><font color="#F3E651">::</font><font color="#ff0000">new </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">}</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ta</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">attach</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> -z </font><font color="#cd00ff">"$session"</font><font color="#ffffff"> </font><b><font color="#ee5896">];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        tmux attach-session </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">new</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">else</font></b>
+<font color="#ffffff">        tmux attach-session -t </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">new </font><font color="#ffffff">$session</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">}</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">ta</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">attach</font>
 </pre>
 <br />
 <span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
@@ -188,12 +188,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">remote ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">readonly</font></b><font color="#ff0000"> </font><font color="#ff0000">server</font><font color="#F3E651">=</font><font color="#ff0000">$1</font>
-<font color="#ff0000">    tmux new -s </font><font color="#ff0000">$server</font><font color="#ff0000"> </font><font color="#bb00ff">"ssh -t $server 'tmux attach-session || tmux'"</font><font color="#ff0000"> </font><font color="#F3E651">||</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">        tmux attach-session -d -t </font><font color="#ff0000">$server</font>
-<font color="#ff0000">}</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tr</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">remote</font>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">remote ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">readonly</font></b><font color="#ffffff"> </font><font color="#ffffff">server</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font>
+<font color="#ffffff">    tmux new -s </font><font color="#ffffff">$server</font><font color="#ffffff"> </font><font color="#cd00ff">"ssh -t $server 'tmux attach-session || tmux'"</font><font color="#ffffff"> </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> </font><b><font color="#ee5896">\</font></b>
+<font color="#ffffff">        tmux attach-session -d -t </font><font color="#ffffff">$server</font>
+<font color="#ffffff">}</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tr</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">remote</font>
 </pre>
 <br />
 <h3 style='display: inline' id='change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</h3><br />
@@ -216,15 +216,15 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">search ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">tmux list-sessions </font><font color="#F3E651">|</font><font color="#ff0000"> fzf </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">:</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#F3E651">)</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -z </font><font color="#bb00ff">"$TMUX"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        tmux attach-session -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">        tmux switch -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">}</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">ts</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">search</font>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">search ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">session</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$(</font><font color="#ffffff">tmux list-sessions </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> fzf </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> cut -d</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> -f</font><font color="#ff00ff">1</font><b><font color="#ee5896">)</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> -z </font><font color="#cd00ff">"$TMUX"</font><font color="#ffffff"> </font><b><font color="#ee5896">];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        tmux attach-session -t </font><font color="#ffffff">$session</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">else</font></b>
+<font color="#ffffff">        tmux switch -t </font><font color="#ffffff">$session</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">}</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">ts</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">search</font>
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -251,15 +251,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">cluster_ssh ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> -f </font><font color="#bb00ff">"$1"</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_file </font><font color="#ff0000">$1</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">cluster_ssh ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> -f </font><font color="#cd00ff">"$1"</font><font color="#ffffff"> </font><b><font color="#ee5896">];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">tssh_from_file </font><font color="#ffffff">$1</font>
+<font color="#ffffff">        </font><b><font color="#00ffff">return</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
 
-<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_argument </font><font color="#ff0000">$@</font>
-<font color="#ff0000">}</font>
-<b><font color="#ffffff">alias</font></b><font color="#ff0000"> </font><font color="#ff0000">tssh</font><font color="#F3E651">=</font><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#ff0000">cluster_ssh</font>
+<font color="#ffffff">    tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">tssh_from_argument </font><font color="#ffffff">$@</font>
+<font color="#ffffff">}</font>
+<b><font color="#00ffff">alias</font></b><font color="#ffffff"> </font><font color="#ffffff">tssh</font><b><font color="#ee5896">=</font></b><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">cluster_ssh</font>
 </pre>
 <br />
 <span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
@@ -272,23 +272,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">tssh_from_argument ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> </font><font color="#ff0000">first_server</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">tssh_from_argument ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">session</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> </font><font color="#ffffff">first_server</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
 
-<font color="#ff0000">    tmux new-session -d -s </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#bb00ff">"ssh -t $first_server"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> tmux list-session </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">"^$session:"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        echo </font><font color="#bb00ff">"Could not create session $session"</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<font color="#ffffff">    tmux new-session -d -s </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><font color="#cd00ff">"ssh -t $first_server"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> tmux list-session </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep </font><font color="#cd00ff">"^$session:"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        echo </font><font color="#cd00ff">"Could not create session $session"</font>
+<font color="#ffffff">        </font><b><font color="#00ffff">return</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
 
-<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> server </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#bb00ff">"${@[@]}"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        tmux split-window -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#bb00ff">"tmux select-layout tiled; ssh -t $server"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">for</font></b><font color="#ffffff"> server </font><b><font color="#00ffff">in</font></b><font color="#ffffff"> </font><font color="#cd00ff">"${@[@]}"</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
+<font color="#ffffff">        tmux split-window -t </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><font color="#cd00ff">"tmux select-layout tiled; ssh -t $server"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">done</font></b>
 
-<font color="#ff0000">    tmux setw -t </font><font color="#ff0000">$session</font><font color="#ff0000"> synchronize-panes on</font>
-<font color="#ff0000">    tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> attach-session -t </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> tmux -</font><font color="#bb00ff">2</font><font color="#ff0000"> switch-client -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    tmux setw -t </font><font color="#ffffff">$session</font><font color="#ffffff"> synchronize-panes on</font>
+<font color="#ffffff">    tmux -</font><font color="#ff00ff">2</font><font color="#ffffff"> attach-session -t </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> tmux -</font><font color="#ff00ff">2</font><font color="#ffffff"> switch-client -t </font><font color="#ffffff">$session</font>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with <span class='inlinecode'>tmux split-window -t $session...</span>. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.</span><br />
@@ -308,12 +308,12 @@ bind-key P setw synchronize-panes on
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">tmux</font><font color="#F3E651">::</font><font color="#7bc710">tssh_from_file ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">serverlist</font><font color="#F3E651">=</font><font color="#ff0000">$1</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -r </font><font color="#ff0000">session</font><font color="#F3E651">=</font><font color="#ff0000">$(</font><font color="#ff0000">basename </font><font color="#ff0000">$serverlist</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">.</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#F3E651">)</font>
+<pre><font color="#ffffff">tmux</font><b><font color="#ee5896">::</font></b><b><font color="#ffffff">tssh_from_file ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">serverlist</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$1</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">shift</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -r </font><font color="#ffffff">session</font><b><font color="#ee5896">=</font></b><font color="#ffffff">$(</font><font color="#ffffff">basename </font><font color="#ffffff">$serverlist</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> cut -d</font><b><font color="#ee5896">.</font></b><font color="#ffffff"> -f</font><font color="#ff00ff">1</font><b><font color="#ee5896">)</font></b>
 
-<font color="#ff0000">    tmux</font><font color="#F3E651">::</font><font color="#ff0000">tssh_from_argument </font><font color="#ff0000">$session</font><font color="#ff0000"> </font><font color="#ff0000">$(</font><font color="#ff0000">awk </font><font color="#bb00ff">'{ print $1} '</font><font color="#ff0000"> </font><font color="#ff0000">$serverlist</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> sed </font><font color="#bb00ff">'s/.lan./.lan/g'</font><font color="#F3E651">)</font>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    tmux</font><b><font color="#ee5896">::</font></b><font color="#ffffff">tssh_from_argument </font><font color="#ffffff">$session</font><font color="#ffffff"> </font><font color="#ffffff">$(</font><font color="#ffffff">awk </font><font color="#cd00ff">'{ print $1} '</font><font color="#ffffff"> </font><font color="#ffffff">$serverlist</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> sed </font><font color="#cd00ff">'s/.lan./.lan/g'</font><b><font color="#ee5896">)</font></b>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <h3 style='display: inline' id='tssh-examples'><span class='inlinecode'>tssh</span> examples</h3><br />

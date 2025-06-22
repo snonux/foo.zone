@@ -57,23 +57,23 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">check_dependencies ()</font><font color="#ff0000"> {</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># At least, Bash 5 is required</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">local</font></b><font color="#ff0000"> -i </font><font color="#ff0000">required_version</font><font color="#F3E651">=</font><font color="#bb00ff">5</font>
-<font color="#ff0000">    </font><font color="#ff0000">IFS</font><font color="#F3E651">=.</font><font color="#ff0000"> </font><b><font color="#ffffff">read</font></b><font color="#ff0000"> -ra version </font><font color="#F3E651">&lt;&lt;&lt;</font><font color="#ff0000"> </font><font color="#bb00ff">"$BASH_VERSION"</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><font color="#bb00ff">"${version[0]}"</font><font color="#ff0000"> -lt </font><font color="#ff0000">$required_version</font><font color="#ff0000"> </font><font color="#F3E651">];</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">        log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">bash</font><font color="#ffffff">\"</font><font color="#bb00ff"> must be at least at major version $required_version!"</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">fi</font></b>
+<pre><b><font color="#ffffff">check_dependencies ()</font></b><font color="#ffffff"> {</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># At least, Bash 5 is required</font></i>
+<font color="#ffffff">    </font><b><font color="#00ffff">local</font></b><font color="#ffffff"> -i </font><font color="#ffffff">required_version</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">5</font>
+<font color="#ffffff">    </font><font color="#ffffff">IFS</font><b><font color="#ee5896">=.</font></b><font color="#ffffff"> </font><b><font color="#00ffff">read</font></b><font color="#ffffff"> -ra version </font><b><font color="#ee5896">&lt;&lt;&lt;</font></b><font color="#ffffff"> </font><font color="#cd00ff">"$BASH_VERSION"</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><font color="#cd00ff">"${version[0]}"</font><font color="#ffffff"> -lt </font><font color="#ffffff">$required_version</font><font color="#ffffff"> </font><b><font color="#ee5896">];</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">        log ERROR </font><font color="#cd00ff">"ERROR, </font><font color="#cd00ff">\"</font><font color="#cd00ff">bash</font><font color="#cd00ff">\"</font><font color="#cd00ff"> must be at least at major version $required_version!"</font>
+<font color="#ffffff">        </font><b><font color="#00ffff">exit</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font>
+<font color="#ffffff">    </font><b><font color="#00ffff">fi</font></b>
 
-<font color="#ff0000">    </font><i><font color="#ababab"># These must be the GNU versions of the commands</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> tool </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#ff0000">$DATE</font><font color="#ff0000"> </font><font color="#ff0000">$SED</font><font color="#ff0000"> </font><font color="#ff0000">$GREP</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">        </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">!</font><font color="#ff0000"> </font><font color="#ff0000">$tool</font><font color="#ff0000"> --version </font><font color="#F3E651">|</font><font color="#ff0000"> grep -q GNU</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">then</font></b>
-<font color="#ff0000">            log ERROR </font><font color="#bb00ff">"ERROR, </font><font color="#ffffff">\"</font><font color="#bb00ff">$tool</font><font color="#ffffff">\"</font><font color="#bb00ff"> command is not the GNU version, please install!"</font>
-<font color="#ff0000">            </font><b><font color="#ffffff">exit</font></b><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">fi</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">done</font></b>
-<font color="#ff0000">}</font>
+<font color="#ffffff">    </font><i><font color="#00ff00"># These must be the GNU versions of the commands</font></i>
+<font color="#ffffff">    </font><b><font color="#00ffff">for</font></b><font color="#ffffff"> tool </font><b><font color="#00ffff">in</font></b><font color="#ffffff"> </font><font color="#ffffff">$DATE</font><font color="#ffffff"> </font><font color="#ffffff">$SED</font><font color="#ffffff"> </font><font color="#ffffff">$GREP</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
+<font color="#ffffff">        </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> </font><font color="#ffffff">$tool</font><font color="#ffffff"> --version </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep -q GNU</font><b><font color="#ee5896">;</font></b><font color="#ffffff"> </font><b><font color="#00ffff">then</font></b>
+<font color="#ffffff">            log ERROR </font><font color="#cd00ff">"ERROR, </font><font color="#cd00ff">\"</font><font color="#cd00ff">$tool</font><font color="#cd00ff">\"</font><font color="#cd00ff"> command is not the GNU version, please install!"</font>
+<font color="#ffffff">            </font><b><font color="#00ffff">exit</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font>
+<font color="#ffffff">        </font><b><font color="#00ffff">fi</font></b>
+<font color="#ffffff">    </font><b><font color="#00ffff">done</font></b>
+<font color="#ffffff">}</font>
 </pre>
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
@@ -94,7 +94,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">.</font><font color="#ff0000">/gemtexter --generate </font><font color="#bb00ff">'.*hello.*'</font>
+<pre><b><font color="#ee5896">.</font></b><font color="#ffffff">/gemtexter --generate </font><font color="#cd00ff">'.*hello.*'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</h3><br />
