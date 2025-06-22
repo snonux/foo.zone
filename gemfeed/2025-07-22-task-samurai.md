@@ -55,6 +55,10 @@ If you've ever wanted to supercharge your dev speed—or just throw a fireworks 
 
 As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.
 
+I didn't really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I'd give it a try regardless. The web UI is simple and pretty straightforward. There's also a Codex CLI one could use directly in the terminal, but I didn't get it working. I will try again soon.
+
+For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.
+
 ### How it went down
 
 Task Samurai's codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:
