@@ -85,7 +85,8 @@ Maybe a better approach would have been to design the whole application from scr
 Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a lot—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied—which is a bit concerning. Imagine if I approved a PR for a production-grade deployment without fully understanding what it was doing (and not a toy project like in this post).
 
 Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps.
-### How much time did I save?
+
+### how much time did I save?
 
 Did it buy me speed? Let's do some back-of-the-envelope math:
 
