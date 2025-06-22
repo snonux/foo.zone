@@ -1,16 +1,10 @@
 # Hello!
 
-> This site was generated at 2025-06-22T22:39:21+03:00 by `Gemtexter`
+> This site was generated at 2025-06-22T23:02:51+03:00 by `Gemtexter`
 
 Welcome to the ...
 
-```
- ____  __    __     ____  __   __ _  ____ 
-(  __)/  \  /  \   (__  )/  \ (  ( \(  __)
- ) _)(  O )(  O )_  / _/(  O )/    / ) _) 
-(__)  \__/  \__/(_)(____)\__/ \_)__)(____)
-
-```
+[![foo.zone logo](./foozone.webp "foo.zone logo")](./foozone.webp)  
 
 Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming and sometimes also about self-improvement here.
 
