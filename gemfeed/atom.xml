@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T23:02:51+03:00</updated>
+    <updated>2025-06-23T00:56:54+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -33,6 +33,7 @@
 <li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
 <li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
 <li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons learned from building Task Samurai with agentic coding</a></li>
+<li>⇢ ⇢ <a href='#developer-workflow'>Developer workflow</a></li>
 <li>⇢ ⇢ <a href='#how-it-went-down'>How it went down</a></li>
 <li>⇢ ⇢ <a href='#what-went-wrong'>What went wrong</a></li>
 <li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns that helped</a></li>
@@ -75,13 +76,13 @@
 <br />
 <h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons learned from building Task Samurai with agentic coding</h2><br />
 <br />
-<span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
+<h3 style='display: inline' id='developer-workflow'>Developer workflow</h3><br />
 <br />
-<span>As a side note, I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more.</span><br />
+<span>I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more using another platform.</span><br />
 <br />
 <span>I didn&#39;t really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I&#39;d give it a try regardless. The web UI is simple and pretty straightforward. There&#39;s also a Codex CLI one could use directly in the terminal, but I didn&#39;t get it working. I will try again soon.</span><br />
 <br />
-<span>For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. What I found inconvenient is that for every additional change, there&#39;s an overhead because Codex has to spin up a container again, which adds extra delay. That could be eliminated by setting up predefined custom containers, but that feature still seems to be somewhat limited.</span><br />
+<span>For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. What I found inconvenient is that for every additional change, there&#39;s an overhead because Codex has to spin up a container and bootstrap the entire development environment again, which adds extra delay. That could be eliminated by setting up predefined custom containers, but that feature still seems somewhat limited.</span><br />
 <br />
 <span>Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.</span><br />
 <br />
@@ -105,7 +106,7 @@
 <br />
 <ul>
 <li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI&#39;s Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)</li>
-<li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
+<li>Fixes on fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
 </ul><br />
 <h3 style='display: inline' id='patterns-that-helped'>Patterns that helped</h3><br />
 <br />
@@ -120,15 +121,12 @@
 <br />
 <h3 style='display: inline' id='what-i-learned-using-agentic-coding'>What I learned using agentic coding</h3><br />
 <br />
-<span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a ton—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied. </span><br />
+<span>Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a lot—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied—which is a bit concerning. Imagine if I approved a PR for a production-grade deployment without fully understanding what it was doing (and not a toy project like in this post).</span><br />
 <br />
-<span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps. I now see agentic coding not just as a productivity tool but also as a learning accelerator.</span><br />
-<br />
+<span>Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps.</span><br />
 <h3 style='display: inline' id='how-much-time-did-i-save'>How much time did I save?</h3><br />
 <br />
-<span>Here&#39;s the million-dollar (or many hours saved) question: Did it buy me speed?</span><br />
-<br />
-<span>Let&#39;s do some back-of-the-envelope math:</span><br />
+<span>Did it buy me speed? Let&#39;s do some back-of-the-envelope math:</span><br />
 <br />
 <ul>
 <li>Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about _6 hours of active development_.</li>
@@ -137,13 +135,11 @@
 </ul><br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. The big lessons? Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
+<span>Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I&#39;d expected. Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.</span><br />
 <br />
 <span>Am I an agentic coding expert now? I don&#39;t think so. There are still many things to learn, and the landscape is constantly evolving.</span><br />
 <br />
-<span>While working on Task Samurai, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues through sheer logic, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
-<br />
-<span>If you&#39;re considering going agentic, be prepared for a sprint, keep your toolkit sharp, and be ready to learn a lot along the way.</span><br />
+<span>While working on Task Samurai, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues manually, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don&#39;t use AI, your next performance review may be awkward.</span><br />
 <br />
 <span>Personally, I am not sure whether I like where the industry is going with agentic coding. I love "traditional" coding, and with agentic coding you operate at a higher level and don&#39;t interact directly with code as often, which I would miss. I think that in the future, designing, reviewing, and being able to read and understand code will be more important than writing code by hand.</span><br />
 <br />
