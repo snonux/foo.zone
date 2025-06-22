@@ -4,13 +4,7 @@
 
 Welcome to the ...
 
-```
- ____  __    __     ____  __   __ _  ____ 
-(  __)/  \  /  \   (__  )/  \ (  ( \(  __)
- ) _)(  O )(  O )_  / _/(  O )/    / ) _) 
-(__)  \__/  \__/(_)(____)\__/ \_)__)(____)
-
-```
+=> ./foozone.webp foo.zone logo
 
 Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming and sometimes also about self-improvement here.
 
