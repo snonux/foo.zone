@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-06-22T19:53:43+03:00 by `Gemtexter`
+> This site was generated at 2025-06-22T20:03:04+03:00 by `Gemtexter`
 
 Welcome to the ...
 
@@ -38,7 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
-[2025-07-22 - Task Samurai: An agentic coding learning experiment](./gemfeed/2025-07-22-task-samurai.md)  
+[2025-06-22 - Task Samurai: An agentic coding learning experiment](./gemfeed/2025-06-22-task-samurai.md)  
 [2025-06-07 - 'A Monk's Guide to Happiness' book notes](./gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.md)  
 [2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-05-02 - Terminal multiplexing with `tmux` - Fish edition](./gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
