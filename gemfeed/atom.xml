@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T19:29:25+03:00</updated>
+    <updated>2025-06-22T19:42:04+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -35,7 +35,7 @@
 <li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
 <li>⇢ ⇢ <a href='#how-it-went-down'>How it went down</a></li>
 <li>⇢ ⇢ <a href='#what-went-wrong'>What went wrong</a></li>
-<li>⇢ ⇢ <a href='#patterns-hhat-helped'>Patterns hhat helped</a></li>
+<li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns that helped</a></li>
 <li>⇢ ⇢ <a href='#what-i-learned-using-agentic-coding'>What I learned using agentic coding</a></li>
 <li>⇢ ⇢ <a href='#how-much-time-did-i-save'>How much time did I save?</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
@@ -89,6 +89,8 @@
 </ul><br />
 <span>Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.</span><br />
 <br />
+<span>It&#39;s worth noting that I worked on it in the evenings when I had some free time, as I also had to fit in my regular work and family commitments during the day. So, I didn&#39;t spend full working days on this project.</span><br />
+<br />
 <h3 style='display: inline' id='what-went-wrong'>What went wrong</h3><br />
 <br />
 <span>Going agentic isn&#39;t all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:</span><br />
@@ -97,7 +99,7 @@
 <li>Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI&#39;s Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)</li>
 <li>Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.</li>
 </ul><br />
-<h3 style='display: inline' id='patterns-hhat-helped'>Patterns hhat helped</h3><br />
+<h3 style='display: inline' id='patterns-that-helped'>Patterns that helped</h3><br />
 <br />
 <span>Despite the chaos, a few strategies kept things moving:</span><br />
 <br />

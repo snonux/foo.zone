@@ -14,7 +14,7 @@
 * ⇢ ⇢ Lessons Learned from Building Task Samurai with Agentic Coding
 * ⇢ ⇢ ⇢ How it went down
 * ⇢ ⇢ ⇢ What went wrong
-* ⇢ ⇢ ⇢ Patterns hhat helped
+* ⇢ ⇢ ⇢ Patterns that helped
 * ⇢ ⇢ ⇢ What I learned using agentic coding
 * ⇢ ⇢ ⇢ How much time did I save?
 * ⇢ ⇢ Conclusion
@@ -66,6 +66,8 @@ Task Samurai's codebase came together quickly: the entire Git history spans from
 
 Most big breakthroughs (and bug introductions) came during that middle day of intense iteration. The latter stages were all about smoothing out the rough edges.
 
+It's worth noting that I worked on it in the evenings when I had some free time, as I also had to fit in my regular work and family commitments during the day. So, I didn't spend full working days on this project.
+
 ### What went wrong
 
 Going agentic isn't all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:
@@ -73,7 +75,7 @@ Going agentic isn't all smooth sailing. Here are the hiccups I ran into, plus a 
 * Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI's Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)
 * Fixes on Fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.
 
-### Patterns hhat helped
+### Patterns that helped
 
 Despite the chaos, a few strategies kept things moving:
 
