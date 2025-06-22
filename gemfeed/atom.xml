@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T20:03:04+03:00</updated>
+    <updated>2025-06-22T20:25:46+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -32,7 +32,7 @@
 <li>⇢ ⇢ <a href='#why-does-this-exist'>Why does this exist?</a></li>
 <li>⇢ ⇢ <a href='#how-it-works'>How it works</a></li>
 <li>⇢ <a href='#where-and-how-to-get-it'>Where and how to get it</a></li>
-<li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</a></li>
+<li>⇢ <a href='#lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons learned from building Task Samurai with agentic coding</a></li>
 <li>⇢ ⇢ <a href='#how-it-went-down'>How it went down</a></li>
 <li>⇢ ⇢ <a href='#what-went-wrong'>What went wrong</a></li>
 <li>⇢ ⇢ <a href='#patterns-that-helped'>Patterns that helped</a></li>
@@ -71,7 +71,7 @@
 <br />
 <span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
 <br />
-<h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons Learned from Building Task Samurai with Agentic Coding</h2><br />
+<h2 style='display: inline' id='lessons-learned-from-building-task-samurai-with-agentic-coding'>Lessons learned from building Task Samurai with agentic coding</h2><br />
 <br />
 <span>If you&#39;ve ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here&#39;s a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.</span><br />
 <br />

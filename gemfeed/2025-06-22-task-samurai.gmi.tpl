@@ -36,7 +36,7 @@ Go to:
 
 And follow the `README.md`!
 
-## Lessons Learned from Building Task Samurai with Agentic Coding
+## Lessons learned from building Task Samurai with agentic coding
 
 If you've ever wanted to supercharge your dev speed—or just throw a fireworks display in your terminal—here's a peek behind the scenes of building Task Samurai. This terminal interface for Taskwarrior was developed entirely through agentic coding by me, leveraging OpenAI Codex to do all the heavy lifting (and sometimes some cleanup afterwards). The project name might be snappy, but it was the iterative, semi-automated workflow that made the impact.
 
