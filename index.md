@@ -1,60 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-06-22T19:11:07+03:00 by `Gemtexter`
-
-Welcome to the ...
-
-```
- ____  __    __     ____  __   __ _  ____ 
-(  __)/  \  /  \   (__  )/  \ (  ( \(  __)
- ) _)(  O )(  O )_  / _/(  O )/    / ) _) 
-(__)  \__/  \__/(_)(____)\__/ \_)__)(____)
-
-```
-
-Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming and sometimes also about self-improvement here.
-
-## Some links
-
-[About me](./about/index.md)  
-[My machine uptime statistics](./uptime-stats.md)  
-[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
-
-## Blog
-
-### Atom and Gemfeeds
-
-[Subscribe to this blog's Atom feed](./gemfeed/atom.xml)  
-[Subscribe to this blog's Gemfeed](./gemfeed/index.md)  
-
-```
-   |\---/|
-   | ,_, |
-    \_`_/-..----.
- ___/ `   ' ,""+ \  sk
-(__...'   __\    |`.___.';
-  (_,...'(_,.`__)/'.....+
-```
-
-### Posts
-
-[2025-07-22 - Task Samurai: An agentic coding learning experiment](./gemfeed/2025-07-22-task-samurai.md)  
-[2025-06-07 - 'A Monk's Guide to Happiness' book notes](./gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.md)  
-[2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
-[2025-05-02 - Terminal multiplexing with `tmux` - Fish edition](./gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
-[2025-04-19 - 'When: The Scientific Secrets of Perfect Timing' book notes](./gemfeed/2025-04-19-when-book-notes.md)  
-[2025-04-05 - f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
-[2025-03-05 - Sharing on Social Media with Gos v1.0.0](./gemfeed/2025-03-05-sharing-on-social-media-with-gos.md)  
-[2025-02-08 - Random Weird Things - Part Ⅱ](./gemfeed/2025-02-08-random-weird-things-ii.md)  
-[2025-02-01 - f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
-[2025-01-15 - Working with an SRE Interview](./gemfeed/2025-01-15-working-with-an-sre-interview.md)  
-[2025-01-01 - Posts from October to December 2024](./gemfeed/2025-01-01-posts-from-october-to-december-2024.md)  
-[2024-12-15 - Random Helix Themes](./gemfeed/2024-12-15-random-helix-themes.md)  
-[2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
-# Hello!
-
-> This site was generated at 2025-06-22T19:12:10+03:00 by `Gemtexter`
+> This site was generated at 2025-06-22T19:24:30+03:00 by `Gemtexter`
 
 Welcome to the ...
 
