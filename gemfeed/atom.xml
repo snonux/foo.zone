@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-22T20:25:46+03:00</updated>
+    <updated>2025-06-22T21:25:58+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -55,6 +55,8 @@
 <li>I wanted something built with Bubble Tea, but I never had time to dive deep into it.</li>
 <li>I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.</li>
 </ul><br />
+<a class='textlink' href='https://openai.com/codex/'>https://openai.com/codex/</a><br />
+<br />
 <span>Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn&#39;t mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.</span><br />
 <br />
 <h3 style='display: inline' id='how-it-works'>How it works</h3><br />
@@ -79,7 +81,9 @@
 <br />
 <span>I didn&#39;t really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I&#39;d give it a try regardless. The web UI is simple and pretty straightforward. There&#39;s also a Codex CLI one could use directly in the terminal, but I didn&#39;t get it working. I will try again soon.</span><br />
 <br />
-<span>For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.</span><br />
+<span>For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. What I found inconvenient is that for every additional change, there&#39;s an overhead because Codex has to spin up a container again, which adds extra delay. That could be eliminated by setting up predefined custom containers, but that feature still seems to be somewhat limited.</span><br />
+<br />
+<span>Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.</span><br />
 <br />
 <h3 style='display: inline' id='how-it-went-down'>How it went down</h3><br />
 <br />

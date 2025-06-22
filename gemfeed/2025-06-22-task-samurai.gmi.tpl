@@ -20,6 +20,8 @@ Task Samurai is a fast terminal interface for Taskwarrior written in Go using th
 * I wanted something built with Bubble Tea, but I never had time to dive deep into it.
 * I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.
 
+=> https://openai.com/codex/
+
 Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn't mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.
 
 ### How it works
@@ -44,7 +46,9 @@ As a side note, I was trying out OpenAI Codex because I regularly run out of Cla
 
 I didn't really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I'd give it a try regardless. The web UI is simple and pretty straightforward. There's also a Codex CLI one could use directly in the terminal, but I didn't get it working. I will try again soon.
 
-For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.
+For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. What I found inconvenient is that for every additional change, there's an overhead because Codex has to spin up a container again, which adds extra delay. That could be eliminated by setting up predefined custom containers, but that feature still seems to be somewhat limited.
+
+Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.
 
 ### How it went down
 
