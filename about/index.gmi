@@ -14,6 +14,7 @@
 
 => ../ My blog here at foo.zone
 => https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page
+=> https://github.com/snonux github.com/snonux - My GitHub page (it's just aa mirror of Codeberg, really)
 => https://irregular.ninja irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)
 => ./dtail.gmi DTail - the distributed log tailing program
 
