@@ -192,14 +192,14 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">function tmux</font></b><b><font color="#ee5896">::</font></b><font color="#ffffff">search</font>
-<font color="#ffffff">    </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> -l session </font><b><font color="#ee5896">(</font></b><font color="#ffffff">tmux list-sessions </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> fzf </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> cut -d</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> -f</font><font color="#ff00ff">1</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">    </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> </font><b><font color="#00ffff">test</font></b><font color="#ffffff"> -z </font><font color="#cd00ff">"$TMUX"</font>
-<font color="#ffffff">        tmux attach-session -t </font><font color="#ffffff">$session</font>
-<font color="#ffffff">    </font><b><font color="#00ffff">else</font></b>
-<font color="#ffffff">        tmux switch -t </font><font color="#ffffff">$session</font>
-<font color="#ffffff">    end</font>
-<font color="#ffffff">end</font>
+<pre>function tmux::search
+    <b><u><font color="#000000">set</font></u></b> -l session (tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
+    <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> -z <font color="#808080">"$TMUX"</font>
+        tmux attach-session -t $session
+    <b><u><font color="#000000">else</font></u></b>
+        tmux switch -t $session
+    end
+end
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />

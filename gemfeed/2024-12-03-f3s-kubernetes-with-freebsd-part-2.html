@@ -123,9 +123,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">[</font></b><font color="#ffffff">paul@earth</font><b><font color="#ee5896">]~</font></b><font color="#ffffff">/Downloads</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> sudo dd </font><b><font color="#ee5896">\</font></b>
-<font color="#ffffff">  </font><b><font color="#00ffff">if</font></b><b><font color="#ee5896">=</font></b><font color="#ffffff">FreeBSD-</font><font color="#ff00ff">14.1</font><font color="#ffffff">-RELEASE-amd</font><font color="#ff00ff">64</font><font color="#ffffff">-bootonly</font><b><font color="#ee5896">.</font></b><font color="#ffffff">iso </font><b><font color="#ee5896">\</font></b>
-<font color="#ffffff">  </font><font color="#ffffff">of</font><b><font color="#ee5896">=</font></b><font color="#ffffff">/dev/sda </font><font color="#ffffff">conv</font><b><font color="#ee5896">=</font></b><font color="#ffffff">sync</font>
+<pre>[paul@earth]~/Downloads% sudo dd \
+  <b><u><font color="#000000">if</font></u></b>=FreeBSD-<font color="#000000">14.1</font>-RELEASE-amd<font color="#000000">64</font>-bootonly.iso \
+  of=/dev/sda conv=sync
 </pre>
 <br />
 <span>Next, I plugged the Beelinks (one after another) into my monitor via HDMI (the resolution of the FreeBSD text console seems strangely stretched, as I am using the LG Dual Up monitor), connected Ethernet, an external USB keyboard, and the FreeBSD USB stick, and booted the devices up. With F7, I entered the boot menu and selected the USB stick for the FreeBSD installation.</span><br />
@@ -151,9 +151,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># freebsd-update fetch</font></i>
-<font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># freebsd-update install</font></i>
-<font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># freebsd-update reboot</font></i>
+<pre>root@f0:~ <i><font color="silver"># freebsd-update fetch</font></i>
+root@f0:~ <i><font color="silver"># freebsd-update install</font></i>
+root@f0:~ <i><font color="silver"># freebsd-update reboot</font></i>
 </pre>
 <br />
 <span>I also added the following entries for the three FreeBSD boxes to the <span class='inlinecode'>/etc/hosts</span> file:</span><br />
@@ -162,11 +162,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># cat &lt;&lt;END &gt;&gt;/etc/hosts</font></i>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.130</font><font color="#ffffff"> f0 f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.131</font><font color="#ffffff"> f1 f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.132</font><font color="#ffffff"> f2 f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ffffff">END</font>
+<pre>root@f0:~ <i><font color="silver"># cat &lt;&lt;END &gt;&gt;/etc/hosts</font></i>
+<font color="#000000">192.168</font>.<font color="#000000">1.130</font> f0 f0.lan f0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.131</font> f1 f1.lan f1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.132</font> f2 f2.lan f2.lan.buetow.org
+END
 </pre>
 <br />
 <span>You might wonder why bother using the hosts file? Why not use DNS properly? The reason is simplicity. I don&#39;t manage 100 hosts, only a few here and there. Having an OpenWRT router in my home, I could also configure everything there, but maybe I&#39;ll do that later. For now, keep it simple and straightforward.</span><br />
@@ -179,7 +179,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># pkg install helix doas zfs-periodic uptimed</font></i>
+<pre>root@f0:~ <i><font color="silver"># pkg install helix doas zfs-periodic uptimed</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='helix-editor'>Helix editor</h3><br />
@@ -196,7 +196,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</font></i>
+<pre>root@f0:~ <i><font color="silver"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</font></i>
 </pre>
 <br />
 <a class='textlink' href='https://man.openbsd.org/doas'>https://man.openbsd.org/doas</a><br />
@@ -209,17 +209,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</font></i>
-<font color="#ffffff">daily_zfs_snapshot_enable</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"YES"</font>
-<font color="#ffffff">daily_zfs_snapshot_pools</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"zroot"</font>
-<font color="#ffffff">daily_zfs_snapshot_keep</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"7"</font>
-<font color="#ffffff">weekly_zfs_snapshot_enable</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"YES"</font>
-<font color="#ffffff">weekly_zfs_snapshot_pools</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"zroot"</font>
-<font color="#ffffff">weekly_zfs_snapshot_keep</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"5"</font>
-<font color="#ffffff">monthly_zfs_snapshot_enable</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"YES"</font>
-<font color="#ffffff">monthly_zfs_snapshot_pools</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"zroot"</font>
-<font color="#ffffff">monthly_zfs_snapshot_keep</font><b><font color="#ee5896">=</font></b><font color="#cd00ff">"6"</font>
-<font color="#ffffff">END</font>
+<pre>root@f0:~ <i><font color="silver"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</font></i>
+daily_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+daily_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+daily_zfs_snapshot_keep=<font color="#808080">"7"</font>
+weekly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+weekly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+weekly_zfs_snapshot_keep=<font color="#808080">"5"</font>
+monthly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
+monthly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+monthly_zfs_snapshot_keep=<font color="#808080">"6"</font>
+END
 </pre>
 <br />
 <a class='textlink' href='https://github.com/ross/zfs-periodic'>https://github.com/ross/zfs-periodic</a><br />
@@ -232,9 +232,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># cp /usr/local/mimecast/etc/uptimed.conf-dist \</font></i>
-<font color="#ffffff">  /usr/local/mimecast/etc/uptimed</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf </font>
-<font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># hx /usr/local/mimecast/etc/uptimed.conf</font></i>
+<pre>root@f0:~ <i><font color="silver"># cp /usr/local/mimecast/etc/uptimed.conf-dist \</font></i>
+  /usr/local/mimecast/etc/uptimed.conf 
+root@f0:~ <i><font color="silver"># hx /usr/local/mimecast/etc/uptimed.conf</font></i>
 </pre>
 <br />
 <span>In the Helix editor session, I changed <span class='inlinecode'>LOG_MAXIMUM_ENTRIES</span> to <span class='inlinecode'>0</span> to keep all uptime entries forever and not cut off at 50 (the default config). After that, I enabled and started <span class='inlinecode'>uptimed</span>:</span><br />
@@ -243,8 +243,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># service uptimed enable</font></i>
-<font color="#ffffff">root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># service uptimed start</font></i>
+<pre>root@f0:~ <i><font color="silver"># service uptimed enable</font></i>
+root@f0:~ <i><font color="silver"># service uptimed start</font></i>
 </pre>
 <br />
 <span>To check the current uptime stats, I can now run <span class='inlinecode'>uprecords</span>:</span><br />
@@ -253,15 +253,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff"> root@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><i><font color="#00ff00"># uprecords</font></i>
-<font color="#ffffff">     </font><i><font color="#00ff00">#               Uptime | System                                     Boot up</font></i>
-<font color="#ffffff">----------------------------</font><b><font color="#ee5896">+</font></b><font color="#ffffff">---------------------------------------------------</font>
-<font color="#ffffff">-</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff">   </font><font color="#ff00ff">1</font><font color="#ffffff">     </font><font color="#ff00ff">0</font><font color="#ffffff"> days</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">00</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">07</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">34</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> FreeBSD </font><font color="#ff00ff">14.1</font><font color="#ffffff">-RELEASE      Mon Dec  </font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ff00ff">12</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">21</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">44</font><font color="#ffffff"> </font><font color="#ff00ff">2024</font>
-<font color="#ffffff">----------------------------</font><b><font color="#ee5896">+</font></b><font color="#ffffff">---------------------------------------------------</font>
-<font color="#ffffff">NewRec     </font><font color="#ff00ff">0</font><font color="#ffffff"> days</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">00</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">07</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">33</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> since                     Mon Dec  </font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ff00ff">12</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">21</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">44</font><font color="#ffffff"> </font><font color="#ff00ff">2024</font>
-<font color="#ffffff">    up     </font><font color="#ff00ff">0</font><font color="#ffffff"> days</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">00</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">07</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">34</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> since                     Mon Dec  </font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ff00ff">12</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">21</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">44</font><font color="#ffffff"> </font><font color="#ff00ff">2024</font>
-<font color="#ffffff">  down     </font><font color="#ff00ff">0</font><font color="#ffffff"> days</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">00</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">00</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">00</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> since                     Mon Dec  </font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ff00ff">12</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">21</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">44</font><font color="#ffffff"> </font><font color="#ff00ff">2024</font>
-<font color="#ffffff">   </font><b><font color="#ee5896">%</font></b><font color="#ffffff">up              </font><font color="#ff00ff">100.000</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> since                     Mon Dec  </font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ff00ff">12</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">21</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">44</font><font color="#ffffff"> </font><font color="#ff00ff">2024</font>
+<pre> root@f0:~ <i><font color="silver"># uprecords</font></i>
+     <i><font color="silver">#               Uptime | System                                     Boot up</font></i>
+----------------------------+---------------------------------------------------
+-&gt;   <font color="#000000">1</font>     <font color="#000000">0</font> days, <font color="#000000">00</font>:<font color="#000000">07</font>:<font color="#000000">34</font> | FreeBSD <font color="#000000">14.1</font>-RELEASE      Mon Dec  <font color="#000000">2</font> <font color="#000000">12</font>:<font color="#000000">21</font>:<font color="#000000">44</font> <font color="#000000">2024</font>
+----------------------------+---------------------------------------------------
+NewRec     <font color="#000000">0</font> days, <font color="#000000">00</font>:<font color="#000000">07</font>:<font color="#000000">33</font> | since                     Mon Dec  <font color="#000000">2</font> <font color="#000000">12</font>:<font color="#000000">21</font>:<font color="#000000">44</font> <font color="#000000">2024</font>
+    up     <font color="#000000">0</font> days, <font color="#000000">00</font>:<font color="#000000">07</font>:<font color="#000000">34</font> | since                     Mon Dec  <font color="#000000">2</font> <font color="#000000">12</font>:<font color="#000000">21</font>:<font color="#000000">44</font> <font color="#000000">2024</font>
+  down     <font color="#000000">0</font> days, <font color="#000000">00</font>:<font color="#000000">00</font>:<font color="#000000">00</font> | since                     Mon Dec  <font color="#000000">2</font> <font color="#000000">12</font>:<font color="#000000">21</font>:<font color="#000000">44</font> <font color="#000000">2024</font>
+   %up              <font color="#000000">100.000</font> | since                     Mon Dec  <font color="#000000">2</font> <font color="#000000">12</font>:<font color="#000000">21</font>:<font color="#000000">44</font> <font color="#000000">2024</font>
 </pre>
 <br />
 <span>This is how I track the uptimes for all of my host:</span><br />
@@ -279,17 +279,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> ifconfig re0</font>
-<font color="#ffffff">re0</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">flags</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1008843</font><b><font color="#ee5896">&lt;</font></b><font color="#ffffff">UP</font><b><font color="#ee5896">,</font></b><font color="#ffffff">BROADCAST</font><b><font color="#ee5896">,</font></b><font color="#ffffff">RUNNING</font><b><font color="#ee5896">,</font></b><font color="#ffffff">SIMPLEX</font><b><font color="#ee5896">,</font></b><font color="#ffffff">MULTICAST</font><b><font color="#ee5896">,</font></b><font color="#ffffff">LOWER_UP</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> metric </font><font color="#ff00ff">0</font><font color="#ffffff"> mtu </font><font color="#ff00ff">1500</font>
-<font color="#ffffff">        </font><font color="#ffffff">options</font><b><font color="#ee5896">=</font></b><font color="#ffffff">8209b</font><b><font color="#ee5896">&lt;</font></b><font color="#ffffff">RXCSUM</font><b><font color="#ee5896">,</font></b><font color="#ffffff">TXCSUM</font><b><font color="#ee5896">,</font></b><font color="#ffffff">VLAN_MTU</font><b><font color="#ee5896">,</font></b><font color="#ffffff">VLAN_HWTAGGING</font><b><font color="#ee5896">,</font></b><font color="#ffffff">VLAN_HWCSUM</font><b><font color="#ee5896">,</font></b><font color="#ffffff">WOL_MAGIC</font><b><font color="#ee5896">,</font></b><font color="#ffffff">LINKSTATE</font><b><font color="#ee5896">&gt;</font></b>
-<font color="#ffffff">        ether e8</font><b><font color="#ee5896">:</font></b><font color="#ffffff">ff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1e</font><b><font color="#ee5896">:</font></b><font color="#ffffff">d7</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1c</font><b><font color="#ee5896">:</font></b><font color="#ffffff">ac</font>
-<font color="#ffffff">        inet </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.130</font><font color="#ffffff"> netmask </font><font color="#ff00ff">0xffffff00</font><font color="#ffffff"> broadcast </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.255</font>
-<font color="#ffffff">        inet6 fe80</font><b><font color="#ee5896">::</font></b><font color="#ffffff">eaff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1eff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">fed7</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1cac</font><b><font color="#ee5896">%</font></b><font color="#ffffff">re0 prefixlen </font><font color="#ff00ff">64</font><font color="#ffffff"> scopeid </font><font color="#ff00ff">0x1</font>
-<font color="#ffffff">        inet6 fd22</font><b><font color="#ee5896">:</font></b><font color="#ffffff">c702</font><b><font color="#ee5896">:</font></b><font color="#ffffff">acb7</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">eaff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1eff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">fed7</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1cac prefixlen </font><font color="#ff00ff">64</font><font color="#ffffff"> detached autoconf</font>
-<font color="#ffffff">        inet6 2a01</font><b><font color="#ee5896">:</font></b><font color="#ffffff">5a8</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">304</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1d5c</font><b><font color="#ee5896">:</font></b><font color="#ffffff">eaff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1eff</font><b><font color="#ee5896">:</font></b><font color="#ffffff">fed7</font><b><font color="#ee5896">:</font></b><font color="#ffffff">1cac prefixlen </font><font color="#ff00ff">64</font><font color="#ffffff"> autoconf pltime </font><font color="#ff00ff">10800</font><font color="#ffffff"> vltime </font><font color="#ff00ff">14400</font>
-<font color="#ffffff">        media</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Ethernet autoselect </font><b><font color="#ee5896">(</font></b><font color="#ffffff">1000baseT </font><b><font color="#ee5896">&lt;</font></b><font color="#ffffff">full-duplex</font><b><font color="#ee5896">&gt;)</font></b>
-<font color="#ffffff">        status</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> active</font>
-<font color="#ffffff">        nd6 </font><font color="#ffffff">options</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">23</font><b><font color="#ee5896">&lt;</font></b><font color="#ffffff">PERFORMNUD</font><b><font color="#ee5896">,</font></b><font color="#ffffff">ACCEPT_RTADV</font><b><font color="#ee5896">,</font></b><font color="#ffffff">AUTO_LINKLOCAL</font><b><font color="#ee5896">&gt;</font></b>
+<pre>paul@f0:~ % ifconfig re0
+re0: flags=<font color="#000000">1008843</font>&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST,LOWER_UP&gt; metric <font color="#000000">0</font> mtu <font color="#000000">1500</font>
+        options=8209b&lt;RXCSUM,TXCSUM,VLAN_MTU,VLAN_HWTAGGING,VLAN_HWCSUM,WOL_MAGIC,LINKSTATE&gt;
+        ether e8:ff:1e:d7:1c:ac
+        inet <font color="#000000">192.168</font>.<font color="#000000">1.130</font> netmask <font color="#000000">0xffffff00</font> broadcast <font color="#000000">192.168</font>.<font color="#000000">1.255</font>
+        inet6 fe80::eaff:1eff:fed7:1cac%re0 prefixlen <font color="#000000">64</font> scopeid <font color="#000000">0x1</font>
+        inet6 fd22:c702:acb7:<font color="#000000">0</font>:eaff:1eff:fed7:1cac prefixlen <font color="#000000">64</font> detached autoconf
+        inet6 2a01:5a8:<font color="#000000">304</font>:1d5c:eaff:1eff:fed7:1cac prefixlen <font color="#000000">64</font> autoconf pltime <font color="#000000">10800</font> vltime <font color="#000000">14400</font>
+        media: Ethernet autoselect (1000baseT &lt;full-duplex&gt;)
+        status: active
+        nd6 options=<font color="#000000">23</font>&lt;PERFORMNUD,ACCEPT_RTADV,AUTO_LINKLOCAL&gt;
 </pre>
 <br />
 <h2 style='display: inline' id='ram'>RAM</h2><br />
@@ -300,8 +300,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> sysctl hw</font><b><font color="#ee5896">.</font></b><font color="#ffffff">physmem</font>
-<font color="#ffffff">hw</font><b><font color="#ee5896">.</font></b><font color="#ffffff">physmem</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">16902905856</font>
+<pre>paul@f0:~ % sysctl hw.physmem
+hw.physmem: <font color="#000000">16902905856</font>
 
 </pre>
 <br />
@@ -313,11 +313,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> sysctl dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep freq</font><b><font color="#ee5896">:</font></b>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">3</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">705</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">705</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">604</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">604</font>
+<pre>paul@f0:~ % sysctl dev.cpu | grep freq:
+dev.cpu.<font color="#000000">3</font>.freq: <font color="#000000">705</font>
+dev.cpu.<font color="#000000">2</font>.freq: <font color="#000000">705</font>
+dev.cpu.<font color="#000000">1</font>.freq: <font color="#000000">604</font>
+dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">604</font>
 </pre>
 <br />
 <h2 style='display: inline' id='cpu-throttling'>CPU throttling</h2><br />
@@ -328,14 +328,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas pkg install ubench</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> rehash </font><i><font color="#00ff00"># For tcsh to find the newly installed command</font></i>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> ubench </font><b><font color="#ee5896">&amp;</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> sysctl dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep freq</font><b><font color="#ee5896">:</font></b>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">3</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">2922</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">2922</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">2923</font>
-<font color="#ffffff">dev</font><b><font color="#ee5896">.</font></b><font color="#ffffff">cpu</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">freq</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">2922</font>
+<pre>paul@f0:~ % doas pkg install ubench
+paul@f0:~ % rehash <i><font color="silver"># For tcsh to find the newly installed command</font></i>
+paul@f0:~ % ubench &amp;
+paul@f0:~ % sysctl dev.cpu | grep freq:
+dev.cpu.<font color="#000000">3</font>.freq: <font color="#000000">2922</font>
+dev.cpu.<font color="#000000">2</font>.freq: <font color="#000000">2922</font>
+dev.cpu.<font color="#000000">1</font>.freq: <font color="#000000">2923</font>
+dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 </pre>
 <br />
 <span>Idle, all three Beelinks plus the switch consumed 26.2W. But with <span class='inlinecode'>ubench</span> stressing all the CPUs, it went up to 38.8W.</span><br />

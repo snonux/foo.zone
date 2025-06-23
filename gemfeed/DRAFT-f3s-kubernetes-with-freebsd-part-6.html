@@ -67,21 +67,21 @@ paul@f1:/ %
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas newfs /dev/da</font><font color="#ff00ff">0</font>
-<font color="#ffffff">/dev/da</font><font color="#ff00ff">0</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">15000</font><b><font color="#ee5896">.</font></b><font color="#ffffff">0MB </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">30720000</font><font color="#ffffff"> sectors</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> block size </font><font color="#ff00ff">32768</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> fragment size </font><font color="#ff00ff">4096</font>
-<font color="#ffffff">        using </font><font color="#ff00ff">24</font><font color="#ffffff"> cylinder groups of </font><font color="#ff00ff">625</font><b><font color="#ee5896">.</font></b><font color="#ffffff">22MB</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">20007</font><font color="#ffffff"> blks</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">80128</font><font color="#ffffff"> inodes</font><b><font color="#ee5896">.</font></b>
-<font color="#ffffff">        with soft updates</font>
-<font color="#ffffff">super-block backups </font><b><font color="#ee5896">(</font></b><b><font color="#00ffff">for</font></b><font color="#ffffff"> fsck_ffs -b </font><i><font color="#00ff00">#) at:</font></i>
-<font color="#ffffff"> </font><font color="#ff00ff">192</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">1280640</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2561088</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">3841536</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">5121984</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">6402432</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">7682880</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">8963328</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">10243776</font><b><font color="#ee5896">,</font></b>
-<font color="#ff00ff">11524224</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">12804672</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">14085120</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">15365568</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">16646016</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">17926464</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">19206912</font><b><font color="#ee5896">,</font></b><font color="#ffffff">k </font><font color="#ff00ff">20487360</font><b><font color="#ee5896">,</font></b>
-<b><font color="#ee5896">...</font></b>
+<pre>paul@f0:/ % doas newfs /dev/da<font color="#000000">0</font>
+/dev/da<font color="#000000">0</font>: <font color="#000000">15000</font>.0MB (<font color="#000000">30720000</font> sectors) block size <font color="#000000">32768</font>, fragment size <font color="#000000">4096</font>
+        using <font color="#000000">24</font> cylinder groups of <font color="#000000">625</font>.22MB, <font color="#000000">20007</font> blks, <font color="#000000">80128</font> inodes.
+        with soft updates
+super-block backups (<b><u><font color="#000000">for</font></u></b> fsck_ffs -b <i><font color="silver">#) at:</font></i>
+ <font color="#000000">192</font>, <font color="#000000">1280640</font>, <font color="#000000">2561088</font>, <font color="#000000">3841536</font>, <font color="#000000">5121984</font>, <font color="#000000">6402432</font>, <font color="#000000">7682880</font>, <font color="#000000">8963328</font>, <font color="#000000">10243776</font>,
+<font color="#000000">11524224</font>, <font color="#000000">12804672</font>, <font color="#000000">14085120</font>, <font color="#000000">15365568</font>, <font color="#000000">16646016</font>, <font color="#000000">17926464</font>, <font color="#000000">19206912</font>,k <font color="#000000">20487360</font>,
+...
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> echo </font><font color="#cd00ff">'/dev/da0 /keys ufs rw 0 2'</font><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> doas tee -a /etc/fstab</font>
-<font color="#ffffff">/dev/da</font><font color="#ff00ff">0</font><font color="#ffffff"> /keys ufs rw </font><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ff00ff">2</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas mkdir /keys</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas mount /keys</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> df </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep keys</font>
-<font color="#ffffff">/dev/da</font><font color="#ff00ff">0</font><font color="#ffffff">             </font><font color="#ff00ff">14877596</font><font color="#ffffff">       </font><font color="#ff00ff">8</font><font color="#ffffff">  </font><font color="#ff00ff">13687384</font><font color="#ffffff">     </font><font color="#ff00ff">0</font><b><font color="#ee5896">%</font></b><font color="#ffffff">    /keys</font>
+paul@f0:/ % echo <font color="#808080">'/dev/da0 /keys ufs rw 0 2'</font> | doas tee -a /etc/fstab
+/dev/da<font color="#000000">0</font> /keys ufs rw <font color="#000000">0</font> <font color="#000000">2</font>
+paul@f0:/ % doas mkdir /keys
+paul@f0:/ % doas mount /keys
+paul@f0:/ % df | grep keys
+/dev/da<font color="#000000">0</font>             <font color="#000000">14877596</font>       <font color="#000000">8</font>  <font color="#000000">13687384</font>     <font color="#000000">0</font>%    /keys
 </pre>
 <br />
 <h3 style='display: inline' id='generating-encryption-keys'>Generating encryption keys</h3><br />
@@ -112,17 +112,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zpool create -m /data zdata /dev/ada</font><font color="#ff00ff">1</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs create -o </font><font color="#ffffff">encryption</font><b><font color="#ee5896">=</font></b><font color="#ffffff">on -o </font><font color="#ffffff">keyformat</font><b><font color="#ee5896">=</font></b><font color="#ffffff">raw -o </font><font color="#ffffff">keylocation</font><b><font color="#ee5896">=</font></b><font color="#ffffff">file</font><b><font color="#ee5896">:</font></b><font color="#ffffff">///keys</font><b><font color="#ee5896">/</font></b><font color="#ffffff">`hostname`</font><b><font color="#ee5896">:</font></b><font color="#ffffff">zdata</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key zdata/enc</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:/</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> zfs list </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep zdata</font>
-<font color="#ffffff">zdata                                          836K   899G    96K  /data</font>
-<font color="#ffffff">zdata/enc                                      200K   899G   200K  /data/enc</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> zfs get all zdata/enc </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep -E -i </font><font color="#cd00ff">'(encryption|key)'</font>
-<font color="#ffffff">zdata/enc  encryption            aes-</font><font color="#ff00ff">256</font><font color="#ffffff">-gcm                               -</font>
-<font color="#ffffff">zdata/enc  keylocation           file</font><b><font color="#ee5896">:</font></b><font color="#ffffff">///keys/f</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:</font></b><font color="#ffffff">zdata</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key  </font><b><font color="#00ffff">local</font></b>
-<font color="#ffffff">zdata/enc  keyformat             raw                                       -</font>
-<font color="#ffffff">zdata/enc  encryptionroot        zdata/enc                                 -</font>
-<font color="#ffffff">zdata/enc  keystatus             available                                 -</font>
+<pre>paul@f0:/keys % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+paul@f0:/ % zfs list | grep zdata
+zdata                                          836K   899G    96K  /data
+zdata/enc                                      200K   899G   200K  /data/enc
+paul@f0:/keys % zfs get all zdata/enc | grep -E -i <font color="#808080">'(encryption|key)'</font>
+zdata/enc  encryption            aes-<font color="#000000">256</font>-gcm                               -
+zdata/enc  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key  <b><u><font color="#000000">local</font></u></b>
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
 </pre>
 <br />
 <h3 style='display: inline' id='migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</h3><br />
@@ -133,60 +133,60 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas vm stop rocky</font>
-<font color="#ffffff">Sending ACPI shutdown to rocky</font>
+<pre>paul@f0:/keys % doas vm stop rocky
+Sending ACPI shutdown to rocky
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas vm list</font>
-<font color="#ffffff">NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE</font>
-<font color="#ffffff">rocky    default    uefi       </font><font color="#ff00ff">4</font><font color="#ffffff">    14G     -    Yes </font><b><font color="#ee5896">[</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">]</font></b><font color="#ffffff">  Stopped</font>
-
-
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs rename zroot/bhyve zroot/bhyve_old</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> </font><font color="#ffffff">mountpoint</font><b><font color="#ee5896">=</font></b><font color="#ffffff">/mnt zroot/bhyve_old</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs snapshot zroot/bhyve_old/rocky@hamburger</font>
+paul@f0:/keys % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE
+rocky    default    uefi       <font color="#000000">4</font>    14G     -    Yes [<font color="#000000">1</font>]  Stopped
 
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs create -o </font><font color="#ffffff">encryption</font><b><font color="#ee5896">=</font></b><font color="#ffffff">on -o </font><font color="#ffffff">keyformat</font><b><font color="#ee5896">=</font></b><font color="#ffffff">raw -o </font><font color="#ffffff">keylocation</font><b><font color="#ee5896">=</font></b><font color="#ffffff">file</font><b><font color="#ee5896">:</font></b><font color="#ffffff">///keys</font><b><font color="#ee5896">/</font></b><font color="#ffffff">`hostname`</font><b><font color="#ee5896">:</font></b><font color="#ffffff">bhyve</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key zroot/bhyve</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> </font><font color="#ffffff">mountpoint</font><b><font color="#ee5896">=</font></b><font color="#ffffff">/zroot/bhyve zroot/bhyve</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs </font><b><font color="#00ffff">set</font></b><font color="#ffffff"> </font><font color="#ffffff">mountpoint</font><b><font color="#ee5896">=</font></b><font color="#ffffff">/zroot/bhyve/rocky zroot/bhyve/rocky</font>
+paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/mnt zroot/bhyve_old
+paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs send zroot/bhyve_old/rocky@hamburger </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> doas zfs recv zroot/bhyve/rocky</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas cp -Rp /mnt</font><b><font color="#ee5896">/.</font></b><font color="#ffffff">config /zroot/bhyve</font><b><font color="#ee5896">/</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas cp -Rp /mnt</font><b><font color="#ee5896">/.</font></b><font color="#ffffff">img /zroot/bhyve</font><b><font color="#ee5896">/</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas cp -Rp /mnt</font><b><font color="#ee5896">/.</font></b><font color="#ffffff">templates /zroot/bhyve</font><b><font color="#ee5896">/</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas cp -Rp /mnt</font><b><font color="#ee5896">/.</font></b><font color="#ffffff">iso /zroot/bhyve</font><b><font color="#ee5896">/</font></b>
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas sysrc </font><font color="#ffffff">zfskeys_enable</font><b><font color="#ee5896">=</font></b><font color="#ffffff">YES</font>
-<font color="#ffffff">zfskeys_enable</font><b><font color="#ee5896">:</font></b><font color="#ffffff">  -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> YES</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas vm init</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:</font></b><font color="#ffffff">/keys </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas reboot</font>
-<b><font color="#ee5896">.</font></b>
-<b><font color="#ee5896">.</font></b>
-<b><font color="#ee5896">.</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas vm list</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas vm list</font>
-<font color="#ffffff">NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE</font>
-<font color="#ffffff">rocky    default    uefi       </font><font color="#ff00ff">4</font><font color="#ffffff">    14G     </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">0.0</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">5900</font><font color="#ffffff">  Yes </font><b><font color="#ee5896">[</font></b><font color="#ff00ff">1</font><b><font color="#ee5896">]</font></b><font color="#ffffff">  Running </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">2265</font><b><font color="#ee5896">)</font></b>
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve zroot/bhyve
+paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
+
+paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | doas zfs recv zroot/bhyve/rocky
+paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
+
+paul@f0:/keys % doas sysrc zfskeys_enable=YES
+zfskeys_enable:  -&gt; YES
+paul@f0:/keys % doas vm init
+paul@f0:/keys % doas reboot
+.
+.
+.
+paul@f0:~ % doas vm list
+paul@f0:~ % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
+rocky    default    uefi       <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2265</font>)
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas zfs destroy -R zroot/bhyve_old</font>
+<pre>paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
 
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> zfs get all zroot/bhyve </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep -E </font><font color="#cd00ff">'(encryption|key)'</font>
-<font color="#ffffff">zroot/bhyve  encryption            aes-</font><font color="#ff00ff">256</font><font color="#ffffff">-gcm                               -</font>
-<font color="#ffffff">zroot/bhyve  keylocation           file</font><b><font color="#ee5896">:</font></b><font color="#ffffff">///keys/f</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:</font></b><font color="#ffffff">bhyve</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key  </font><b><font color="#00ffff">local</font></b>
-<font color="#ffffff">zroot/bhyve  keyformat             raw                                       -</font>
-<font color="#ffffff">zroot/bhyve  encryptionroot        zroot/bhyve                               -</font>
-<font color="#ffffff">zroot/bhyve  keystatus             available                                 -</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> zfs get all zroot/bhyve/rocky </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> grep -E </font><font color="#cd00ff">'(encryption|key)'</font>
-<font color="#ffffff">zroot/bhyve/rocky  encryption            aes-</font><font color="#ff00ff">256</font><font color="#ffffff">-gcm            -</font>
-<font color="#ffffff">zroot/bhyve/rocky  keylocation           none                   default</font>
-<font color="#ffffff">zroot/bhyve/rocky  keyformat             raw                    -</font>
-<font color="#ffffff">zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -</font>
-<font color="#ffffff">zroot/bhyve/rocky  keystatus             available              -</font>
+paul@f0:~ % zfs get all zroot/bhyve | grep -E <font color="#808080">'(encryption|key)'</font>
+zroot/bhyve  encryption            aes-<font color="#000000">256</font>-gcm                               -
+zroot/bhyve  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:bhyve.key  <b><u><font color="#000000">local</font></u></b>
+zroot/bhyve  keyformat             raw                                       -
+zroot/bhyve  encryptionroot        zroot/bhyve                               -
+zroot/bhyve  keystatus             available                                 -
+paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E <font color="#808080">'(encryption|key)'</font>
+zroot/bhyve/rocky  encryption            aes-<font color="#000000">256</font>-gcm            -
+zroot/bhyve/rocky  keylocation           none                   default
+zroot/bhyve/rocky  keyformat             raw                    -
+zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
+zroot/bhyve/rocky  keystatus             available              -
 </pre>
 <br />
 <h2 style='display: inline' id='carp'>CARP</h2><br />

@@ -118,14 +118,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas freebsd-update fetch</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas freebsd-update install</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas shutdown -r now</font>
-<b><font color="#ee5896">..</font></b>
-<b><font color="#ee5896">..</font></b>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas pkg update</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas pkg upgrade</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> reboot</font>
+<pre>paul@f0:~ % doas freebsd-update fetch
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas shutdown -r now
+..
+..
+paul@f0:~ % doas pkg update
+paul@f0:~ % doas pkg upgrade
+paul@f0:~ % reboot
 </pre>
 <br />
 <span>Next, we install <span class='inlinecode'>wireguard-tools</span> and configure the WireGuard service:</span><br />
@@ -134,19 +134,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas pkg install wireguard-tools</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas sysrc </font><font color="#ffffff">wireguard_interfaces</font><b><font color="#ee5896">=</font></b><font color="#ffffff">wg0</font>
-<font color="#ffffff">wireguard_interfaces</font><b><font color="#ee5896">:</font></b><font color="#ffffff">  -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> wg0</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas sysrc </font><font color="#ffffff">wireguard_enable</font><b><font color="#ee5896">=</font></b><font color="#ffffff">YES</font>
-<font color="#ffffff">wireguard_enable</font><b><font color="#ee5896">:</font></b><font color="#ffffff">  -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> YES</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas mkdir -p /usr/local/etc/wireguard</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas touch /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas service wireguard start</font>
-<font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas wg show</font>
-<font color="#ffffff">interface</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> wg0</font>
-<font color="#ffffff">  public key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> L</font><b><font color="#ee5896">+</font></b><font color="#ffffff">V9o0fNYkMVKNqsX7spBzD</font><b><font color="#ee5896">/</font></b><font color="#ffffff">9oSvxM/C7</font><font color="#ffffff">ZCZX1jLO3Q</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  private key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  listening port</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">20246</font>
+<pre>paul@f0:~ % doas pkg install wireguard-tools
+paul@f0:~ % doas sysrc wireguard_interfaces=wg0
+wireguard_interfaces:  -&gt; wg0
+paul@f0:~ % doas sysrc wireguard_enable=YES
+wireguard_enable:  -&gt; YES
+paul@f0:~ % doas mkdir -p /usr/local/etc/wireguard
+paul@f0:~ % doas touch /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
+paul@f0:~ % doas service wireguard start
+paul@f0:~ % doas wg show
+interface: wg0
+  public key: L+V9o0fNYkMVKNqsX7spBzD/9oSvxM/C7ZCZX1jLO3Q=
+  private key: (hidden)
+  listening port: <font color="#000000">20246</font>
 </pre>
 <br />
 <span>We now have the WireGuard up and running, but it is not yet in any functional configuration. We will come back to that later.</span><br />
@@ -157,23 +157,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> cat </font><b><font color="#ee5896">&lt;&lt;</font></b><font color="#ffffff">END </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> doas tee -a /etc/hosts</font>
+<pre>paul@f0:~ % cat &lt;&lt;END | doas tee -a /etc/hosts
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.120</font><font color="#ffffff"> r0 r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.121</font><font color="#ffffff"> r1 r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.122</font><font color="#ffffff"> r2 r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.130</font><font color="#ffffff"> f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><font color="#ffffff"> f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><font color="#ffffff"> f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><font color="#ffffff"> r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><font color="#ffffff"> r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><font color="#ffffff"> r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><font color="#ffffff"> blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><font color="#ffffff"> fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ffffff">END</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
 </pre>
 <br />
 <span>As you can see, <span class='inlinecode'>192.168.1.0/24</span> is the network used in my LAN (with the <span class='inlinecode'>fN</span> and <span class='inlinecode'>rN</span> hosts) and <span class='inlinecode'>192.168.2.0/24</span> is the network used for the WireGuard mesh network. The <span class='inlinecode'>wg0</span> interface will be used for all WireGuard traffic.</span><br />
@@ -186,8 +186,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> dnf update -y</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> reboot</font>
+<pre>[root@r0 ~] dnf update -y
+[root@r0 ~] reboot
 </pre>
 <br />
 <span>Next, we prepare WireGuard on them. Same as on the FreeBSD hosts, we will only prepare WireGuard without any useful configuration yet:</span><br />
@@ -196,12 +196,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> dnf install -y wireguard-tools</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> mkdir -p /etc/wireguard</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> touch /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> systemctl </font><b><font color="#00ffff">enable</font></b><font color="#ffffff"> wg-quick@wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">service</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> systemctl start wg-quick@wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">service</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> systemctl disable firewalld</font>
+<pre>[root@r0 ~] dnf install -y wireguard-tools
+[root@r0 ~] mkdir -p /etc/wireguard
+[root@r0 ~] touch /etc/wireguard/wg<font color="#000000">0</font>.conf
+[root@r0 ~] systemctl <b><u><font color="#000000">enable</font></u></b> wg-quick@wg0.service
+[root@r0 ~] systemctl start wg-quick@wg0.service
+[root@r0 ~] systemctl disable firewalld
 </pre>
 <br />
 <span>We also update the <span class='inlinecode'>hosts</span> file accordingly:</span><br />
@@ -210,23 +210,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> cat </font><b><font color="#ee5896">&lt;&lt;</font></b><font color="#ffffff">END </font><b><font color="#ee5896">&gt;&gt;</font></b><font color="#ffffff">/etc/hosts</font>
+<pre>[root@r0 ~] cat &lt;&lt;END &gt;&gt;/etc/hosts
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.130</font><font color="#ffffff"> f0 f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.131</font><font color="#ffffff"> f1 f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.132</font><font color="#ffffff"> f2 f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">1.130</font> f0 f0.lan f0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.131</font> f1 f1.lan f1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.132</font> f2 f2.lan f2.lan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.130</font><font color="#ffffff"> f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><font color="#ffffff"> f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><font color="#ffffff"> f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><font color="#ffffff"> r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><font color="#ffffff"> r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><font color="#ffffff"> r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><font color="#ffffff"> blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><font color="#ffffff"> fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ffffff">END</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
 </pre>
 <br />
 <span>Unfortunately, the SELinux policy on Rocky Linux blocks WireGuard&#39;s operation. By making the <span class='inlinecode'>wireguard_t</span> domain permissive using <span class='inlinecode'>semanage permissive -a wireguard_t</span>, SELinux will no longer enforce restrictions for WireGuard, allowing it to work as intended:</span><br />
@@ -235,9 +235,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> dnf install -y policycoreutils-python-utils</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> semanage permissive -a wireguard_t</font>
-<b><font color="#ee5896">[</font></b><font color="#ffffff">root@r0 </font><b><font color="#ee5896">~]</font></b><font color="#ffffff"> reboot</font>
+<pre>[root@r0 ~] dnf install -y policycoreutils-python-utils
+[root@r0 ~] semanage permissive -a wireguard_t
+[root@r0 ~] reboot
 </pre>
 <br />
 <a class='textlink' href='https://github.com/angristan/wireguard-install/discussions/499'>https://github.com/angristan/wireguard-install/discussions/499</a><br />
@@ -250,14 +250,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">blowfish$ doas pkg_add wireguard-tools</font>
-<font color="#ffffff">blowfish$ doas mkdir /etc/wireguard</font>
-<font color="#ffffff">blowfish$ doas touch /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">blowsish$ cat </font><b><font color="#ee5896">&lt;&lt;</font></b><font color="#ffffff">END </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> doas tee /etc/hostname</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font>
-<font color="#ffffff">inet </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><font color="#ffffff"> </font><font color="#ff00ff">255.255</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">255.0</font><font color="#ffffff"> NONE</font>
-<font color="#ffffff">up</font>
-<b><font color="#ee5896">!</font></b><font color="#ffffff">/usr/local/bin/wg setconf wg0 /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">END</font>
+<pre>blowfish$ doas pkg_add wireguard-tools
+blowfish$ doas mkdir /etc/wireguard
+blowfish$ doas touch /etc/wireguard/wg<font color="#000000">0</font>.conf
+blowsish$ cat &lt;&lt;END | doas tee /etc/hostname.wg0
+inet <font color="#000000">192.168</font>.<font color="#000000">2.110</font> <font color="#000000">255.255</font>.<font color="#000000">255.0</font> NONE
+up
+!/usr/local/bin/wg setconf wg0 /etc/wireguard/wg<font color="#000000">0</font>.conf
+END
 </pre>
 <br />
 <span>Note that on <span class='inlinecode'>blowfish</span>, we configure <span class='inlinecode'>192.168.2.110</span> here in the <span class='inlinecode'>hostname.wg</span>, and on <span class='inlinecode'>fishfinger</span>, we configure <span class='inlinecode'>192.168.2.111</span>. Those are the IP addresses of the WireGuard interfaces on those hosts.</span><br />
@@ -268,19 +268,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">blowfish$ cat </font><b><font color="#ee5896">&lt;&lt;</font></b><font color="#ffffff">END </font><b><font color="#ee5896">|</font></b><font color="#ffffff"> doas tee -a /etc/hosts</font>
+<pre>blowfish$ cat &lt;&lt;END | doas tee -a /etc/hosts
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.130</font><font color="#ffffff"> f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><font color="#ffffff"> f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><font color="#ffffff"> f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.130</font> f0.wg0 f0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.131</font> f1.wg0 f1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.132</font> f2.wg0 f2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><font color="#ffffff"> r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><font color="#ffffff"> r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><font color="#ffffff"> r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.120</font> r0.wg0 r0.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.121</font> r1.wg0 r1.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.122</font> r2.wg0 r2.wg0.wan.buetow.org
 
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><font color="#ffffff"> blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><font color="#ffffff"> fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font>
-<font color="#ffffff">END</font>
+<font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+END
 </pre>
 <br />
 <h2 style='display: inline' id='wireguard-configuration'>WireGuard configuration</h2><br />
@@ -405,10 +405,10 @@ PersistentKeepalive = 25
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> git clone https</font><b><font color="#ee5896">:</font></b><font color="#ffffff">//codeberg</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org/snonux/wireguardmeshgenerator</font>
-<b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> cd </font><b><font color="#ee5896">.</font></b><font color="#ffffff">/wireguardmeshgenerator</font>
-<b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> bundle install</font>
-<b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> sudo dnf install -y wireguard-tools</font>
+<pre>&gt; git clone https://codeberg.org/snonux/wireguardmeshgenerator
+&gt; cd ./wireguardmeshgenerator
+&gt; bundle install
+&gt; sudo dnf install -y wireguard-tools
 </pre>
 <br />
 <span>This assumes that Ruby and the <span class='inlinecode'>bundler</span> gem are already installed. If not, refer to the docs of your distribution.</span><br />
@@ -544,39 +544,39 @@ hosts:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#00ffff">begin</font></b>
-<font color="#ffffff">  options </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><b><font color="#ee5896">{</font></b><font color="#ffffff"> hosts</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">}</font></b>
-<font color="#ffffff">  OptionParser</font><b><font color="#ee5896">.</font></b><font color="#ffffff">new </font><b><font color="#00ffff">do</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff">opts</font><b><font color="#ee5896">|</font></b>
-<font color="#ffffff">    opts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">banner </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#cd00ff">'Usage: wireguardmeshgenerator.rb [options]'</font>
-<font color="#ffffff">    opts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">on</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">'--generate'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'Generate Wireguard configs'</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">      options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">generate</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><b><font color="#00ffff">true</font></b>
-<font color="#ffffff">    </font><b><font color="#00ffff">end</font></b>
-<font color="#ffffff">    opts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">on</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">'--install'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'Install Wireguard configs'</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">      options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">install</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><b><font color="#00ffff">true</font></b>
-<font color="#ffffff">    </font><b><font color="#00ffff">end</font></b>
-<font color="#ffffff">    opts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">on</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">'--clean'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'Clean Wireguard configs'</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">      options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">clean</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><b><font color="#00ffff">true</font></b>
-<font color="#ffffff">    </font><b><font color="#00ffff">end</font></b>
-<font color="#ffffff">    opts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">on</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">'--hosts=HOSTS'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'Comma separated hosts to configure'</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> </font><b><font color="#00ffff">do</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff">hosts</font><b><font color="#ee5896">|</font></b>
-<font color="#ffffff">      options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">hosts</font><b><font color="#ee5896">]</font></b><font color="#ffffff"> </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> hosts</font><b><font color="#ee5896">.</font></b><font color="#ffffff">split</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">','</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">    </font><b><font color="#00ffff">end</font></b>
-<font color="#ffffff">  </font><b><font color="#00ffff">end</font></b><b><font color="#ee5896">.</font></b><font color="#ffffff">parse!</font>
+<pre><b><u><font color="#000000">begin</font></u></b>
+  options = { hosts: [] }
+  OptionParser.new <b><u><font color="#000000">do</font></u></b> |opts|
+    opts.banner = <font color="#808080">'Usage: wireguardmeshgenerator.rb [options]'</font>
+    opts.on(<font color="#808080">'--generate'</font>, <font color="#808080">'Generate Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:generate] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--install'</font>, <font color="#808080">'Install Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:install] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--clean'</font>, <font color="#808080">'Clean Wireguard configs'</font>) <b><u><font color="#000000">do</font></u></b>
+      options[:clean] = <b><u><font color="#000000">true</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+    opts.on(<font color="#808080">'--hosts=HOSTS'</font>, <font color="#808080">'Comma separated hosts to configure'</font>) <b><u><font color="#000000">do</font></u></b> |hosts|
+      options[:hosts] = hosts.split(<font color="#808080">','</font>)
+    <b><u><font color="#000000">end</font></u></b>
+  <b><u><font color="#000000">end</font></u></b>.parse!
 
-<font color="#ffffff">  conf </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> YAML</font><b><font color="#ee5896">.</font></b><font color="#ffffff">load_file</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">'wireguardmeshgenerator.yaml'</font><b><font color="#ee5896">).</font></b><font color="#ffffff">freeze</font>
-<font color="#ffffff">  conf</font><b><font color="#ee5896">[</font></b><font color="#cd00ff">'hosts'</font><b><font color="#ee5896">].</font></b><font color="#ffffff">keys</font><b><font color="#ee5896">.</font></b><font color="#ffffff">select </font><b><font color="#ee5896">{</font></b><font color="#ffffff"> options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">hosts</font><b><font color="#ee5896">].</font></b><font color="#ffffff">empty? </font><b><font color="#ee5896">||</font></b><font color="#ffffff"> options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">hosts</font><b><font color="#ee5896">].</font></b><b><font color="#00ffff">include</font></b><b><font color="#ee5896">?(</font></b><font color="#ffffff">_1</font><b><font color="#ee5896">)</font></b><font color="#ffffff"> </font><b><font color="#ee5896">}</font></b>
-<font color="#ffffff">               </font><b><font color="#ee5896">.</font></b><font color="#ffffff">each </font><b><font color="#00ffff">do</font></b><font color="#ffffff"> </font><b><font color="#ee5896">|</font></b><font color="#ffffff">host</font><b><font color="#ee5896">|</font></b>
-<font color="#ffffff">    </font><i><font color="#00ff00"># Generate Wireguard configuration for the host reload!</font></i>
-<font color="#ffffff">    WireguardConfig</font><b><font color="#ee5896">.</font></b><font color="#ffffff">new</font><b><font color="#ee5896">(</font></b><font color="#ffffff">host</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> conf</font><b><font color="#ee5896">[</font></b><font color="#cd00ff">'hosts'</font><b><font color="#ee5896">]).</font></b><font color="#ffffff">generate! </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">generate</font><b><font color="#ee5896">]</font></b>
-<font color="#ffffff">    </font><i><font color="#00ff00"># Install Wireguard configuration for the host.</font></i>
-<font color="#ffffff">    InstallConfig</font><b><font color="#ee5896">.</font></b><font color="#ffffff">new</font><b><font color="#ee5896">(</font></b><font color="#ffffff">host</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> conf</font><b><font color="#ee5896">[</font></b><font color="#cd00ff">'hosts'</font><b><font color="#ee5896">]).</font></b><font color="#ffffff">upload!</font><b><font color="#ee5896">.</font></b><font color="#ffffff">install!</font><b><font color="#ee5896">.</font></b><font color="#ffffff">reload! </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">install</font><b><font color="#ee5896">]</font></b>
-<font color="#ffffff">    </font><i><font color="#00ff00"># Clean Wireguard configuration for the host.</font></i>
-<font color="#ffffff">    WireguardConfig</font><b><font color="#ee5896">.</font></b><font color="#ffffff">new</font><b><font color="#ee5896">(</font></b><font color="#ffffff">host</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> conf</font><b><font color="#ee5896">[</font></b><font color="#cd00ff">'hosts'</font><b><font color="#ee5896">]).</font></b><font color="#ffffff">clean! </font><b><font color="#00ffff">if</font></b><font color="#ffffff"> options</font><b><font color="#ee5896">[:</font></b><font color="#ffffff">clean</font><b><font color="#ee5896">]</font></b>
-<font color="#ffffff">  </font><b><font color="#00ffff">end</font></b>
-<b><font color="#00ffff">rescue</font></b><font color="#ffffff"> StandardError </font><b><font color="#ee5896">=&gt;</font></b><font color="#ffffff"> e</font>
-<font color="#ffffff">  puts </font><font color="#cd00ff">"Error: #{e.message}"</font>
-<font color="#ffffff">  puts e</font><b><font color="#ee5896">.</font></b><font color="#ffffff">backtrace</font><b><font color="#ee5896">.</font></b><font color="#ffffff">join</font><b><font color="#ee5896">(</font></b><font color="#cd00ff">"\n"</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  exit </font><font color="#ff00ff">2</font>
-<b><font color="#00ffff">end</font></b>
+  conf = YAML.load_file(<font color="#808080">'wireguardmeshgenerator.yaml'</font>).freeze
+  conf[<font color="#808080">'hosts'</font>].keys.select { options[:hosts].empty? || options[:hosts].<b><u><font color="#000000">include</font></u></b>?(_1) }
+               .each <b><u><font color="#000000">do</font></u></b> |host|
+    <i><font color="silver"># Generate Wireguard configuration for the host reload!</font></i>
+    WireguardConfig.new(host, conf[<font color="#808080">'hosts'</font>]).generate! <b><u><font color="#000000">if</font></u></b> options[:generate]
+    <i><font color="silver"># Install Wireguard configuration for the host.</font></i>
+    InstallConfig.new(host, conf[<font color="#808080">'hosts'</font>]).upload!.install!.reload! <b><u><font color="#000000">if</font></u></b> options[:install]
+    <i><font color="silver"># Clean Wireguard configuration for the host.</font></i>
+    WireguardConfig.new(host, conf[<font color="#808080">'hosts'</font>]).clean! <b><u><font color="#000000">if</font></u></b> options[:clean]
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">rescue</font></u></b> StandardError =&gt; e
+  puts <font color="#808080">"Error: #{e.message}"</font>
+  puts e.backtrace.join(<font color="#808080">"\n"</font>)
+  exit <font color="#000000">2</font>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <span>And we also have a <span class='inlinecode'>Rakefile</span>:</span><br />
@@ -585,19 +585,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">task </font><b><font color="#ee5896">:</font></b><font color="#ffffff">generate </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">  ruby </font><font color="#cd00ff">'wireguardmeshgenerator.rb'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'--generate'</font>
-<b><font color="#00ffff">end</font></b>
+<pre>task :generate <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--generate'</font>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ffffff">task </font><b><font color="#ee5896">:</font></b><font color="#ffffff">clean </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">  ruby </font><font color="#cd00ff">'wireguardmeshgenerator.rb'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'--clean'</font>
-<b><font color="#00ffff">end</font></b>
+task :clean <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--clean'</font>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ffffff">task </font><b><font color="#ee5896">:</font></b><font color="#ffffff">install </font><b><font color="#00ffff">do</font></b>
-<font color="#ffffff">  ruby </font><font color="#cd00ff">'wireguardmeshgenerator.rb'</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#cd00ff">'--install'</font>
-<b><font color="#00ffff">end</font></b>
+task :install <b><u><font color="#000000">do</font></u></b>
+  ruby <font color="#808080">'wireguardmeshgenerator.rb'</font>, <font color="#808080">'--install'</font>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ffffff">task default</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">:</font></b><font color="#ffffff">generate</font>
+task default: :generate
 </pre>
 <br />
 <br />
@@ -611,16 +611,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> rake generate</font>
-<font color="#ffffff">/usr/bin/ruby wireguardmeshgenerator</font><b><font color="#ee5896">.</font></b><font color="#ffffff">rb --generate</font>
-<font color="#ffffff">Generating dist/f</font><font color="#ff00ff">0</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/f</font><font color="#ff00ff">1</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/f</font><font color="#ff00ff">2</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/r</font><font color="#ff00ff">0</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/r</font><font color="#ff00ff">1</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/r</font><font color="#ff00ff">2</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/blowfish/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<font color="#ffffff">Generating dist/fishfinger/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
+<pre>&gt; rake generate
+/usr/bin/ruby wireguardmeshgenerator.rb --generate
+Generating dist/f<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/f<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/f<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/r<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/blowfish/etc/wireguard/wg<font color="#000000">0</font>.conf
+Generating dist/fishfinger/etc/wireguard/wg<font color="#000000">0</font>.conf
 </pre>
 <br />
 <span>It generated all the <span class='inlinecode'>wg0.conf</span> files listed in the output, plus those keys:</span><br />
@@ -629,51 +629,51 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> find keys</font><b><font color="#ee5896">/</font></b><font color="#ffffff"> -type f</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">0</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">0</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f0_fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f1_f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f1_r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f1_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f1_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f1_fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f2_r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f2_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f2_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/f2_fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/r0_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/r0_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/fishfinger_r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/r1_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/fishfinger_r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/fishfinger_r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/psk/blowfish_fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">1</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">1</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">2</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/f</font><font color="#ff00ff">2</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">0</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">0</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">1</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">1</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">2</font><font color="#ffffff">/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/r</font><font color="#ff00ff">2</font><font color="#ffffff">/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/blowfish/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/blowfish/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/fishfinger/priv</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
-<font color="#ffffff">keys/fishfinger/pub</font><b><font color="#ee5896">.</font></b><font color="#ffffff">key</font>
+<pre>&gt; find keys/ -type f
+keys/f<font color="#000000">0</font>/priv.key
+keys/f<font color="#000000">0</font>/pub.key
+keys/psk/f0_f1.key
+keys/psk/f0_f2.key
+keys/psk/f0_r0.key
+keys/psk/f0_r1.key
+keys/psk/f0_r2.key
+keys/psk/blowfish_f0.key
+keys/psk/f0_fishfinger.key
+keys/psk/f1_f2.key
+keys/psk/f1_r0.key
+keys/psk/f1_r1.key
+keys/psk/f1_r2.key
+keys/psk/blowfish_f1.key
+keys/psk/f1_fishfinger.key
+keys/psk/f2_r0.key
+keys/psk/f2_r1.key
+keys/psk/f2_r2.key
+keys/psk/blowfish_f2.key
+keys/psk/f2_fishfinger.key
+keys/psk/r0_r1.key
+keys/psk/r0_r2.key
+keys/psk/blowfish_r0.key
+keys/psk/fishfinger_r0.key
+keys/psk/r1_r2.key
+keys/psk/blowfish_r1.key
+keys/psk/fishfinger_r1.key
+keys/psk/blowfish_r2.key
+keys/psk/fishfinger_r2.key
+keys/psk/blowfish_fishfinger.key
+keys/f<font color="#000000">1</font>/priv.key
+keys/f<font color="#000000">1</font>/pub.key
+keys/f<font color="#000000">2</font>/priv.key
+keys/f<font color="#000000">2</font>/pub.key
+keys/r<font color="#000000">0</font>/priv.key
+keys/r<font color="#000000">0</font>/pub.key
+keys/r<font color="#000000">1</font>/priv.key
+keys/r<font color="#000000">1</font>/pub.key
+keys/r<font color="#000000">2</font>/priv.key
+keys/r<font color="#000000">2</font>/pub.key
+keys/blowfish/priv.key
+keys/blowfish/pub.key
+keys/fishfinger/priv.key
+keys/fishfinger/pub.key
 </pre>
 <br />
 <span>Those keys are embedded in the resulting <span class='inlinecode'>wg0.conf</span>, so later, we only need to install the <span class='inlinecode'>wg0.conf</span> files and not all the keys individually.</span><br />
@@ -686,112 +686,112 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> rake install</font>
-<font color="#ffffff">/usr/bin/ruby wireguardmeshgenerator</font><b><font color="#ee5896">.</font></b><font color="#ffffff">rb --install</font>
-<font color="#ffffff">Uploading dist/f</font><font color="#ff00ff">0</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on f0</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> -d /usr/local/etc/wireguard </font><b><font color="#ee5896">]</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /usr/local/etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /usr/local/etc/wireguard</font>
-<font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on f0</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas service wireguard reload</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/f</font><font color="#ff00ff">1</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on f1</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> -d /usr/local/etc/wireguard </font><b><font color="#ee5896">]</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /usr/local/etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /usr/local/etc/wireguard</font>
-<font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on f1</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas service wireguard reload</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/f</font><font color="#ff00ff">2</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on f2</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> -d /usr/local/etc/wireguard </font><b><font color="#ee5896">]</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /usr/local/etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /usr/local/etc/wireguard</font>
-<font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /usr/local/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on f2</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas service wireguard reload</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/r</font><font color="#ff00ff">0</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on r0</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><font color="#cd00ff">'['</font><font color="#ffffff"> </font><font color="#cd00ff">'!'</font><font color="#ffffff"> -d /etc/wireguard </font><font color="#cd00ff">']'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /etc/wireguard</font>
-<font color="#ffffff">renamed </font><font color="#cd00ff">'wg0.conf'</font><font color="#ffffff"> -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> </font><font color="#cd00ff">'/etc/wireguard/wg0.conf'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on r0</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> systemctl reload wg-quick@wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">service</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/r</font><font color="#ff00ff">1</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on r1</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><font color="#cd00ff">'['</font><font color="#ffffff"> </font><font color="#cd00ff">'!'</font><font color="#ffffff"> -d /etc/wireguard </font><font color="#cd00ff">']'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /etc/wireguard</font>
-<font color="#ffffff">renamed </font><font color="#cd00ff">'wg0.conf'</font><font color="#ffffff"> -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> </font><font color="#cd00ff">'/etc/wireguard/wg0.conf'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on r1</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> systemctl reload wg-quick@wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">service</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/r</font><font color="#ff00ff">2</font><font color="#ffffff">/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on r2</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><font color="#cd00ff">'['</font><font color="#ffffff"> </font><font color="#cd00ff">'!'</font><font color="#ffffff"> -d /etc/wireguard </font><font color="#cd00ff">']'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /etc/wireguard</font>
-<font color="#ffffff">renamed </font><font color="#cd00ff">'wg0.conf'</font><font color="#ffffff"> -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> </font><font color="#cd00ff">'/etc/wireguard/wg0.conf'</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on r2</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">lan</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> systemctl reload wg-quick@wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">service</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/blowfish/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on blowfish</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> -d /etc/wireguard </font><b><font color="#ee5896">]</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /etc/wireguard</font>
-<font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on blowfish</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas sh /etc/netstart wg0</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Uploading dist/fishfinger/etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf to fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<font color="#ffffff">Installing Wireguard config on fishfinger</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> </font><b><font color="#ee5896">[</font></b><font color="#ffffff"> </font><b><font color="#ee5896">!</font></b><font color="#ffffff"> -d /etc/wireguard </font><b><font color="#ee5896">]</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">700</font><font color="#ffffff"> /etc/wireguard</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas mv -v wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf /etc/wireguard</font>
-<font color="#ffffff">wg0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf -</font><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas chmod </font><font color="#ff00ff">644</font><font color="#ffffff"> /etc/wireguard/wg</font><font color="#ff00ff">0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">conf</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
-<font color="#ffffff">Reloading Wireguard on fishfinger</font>
-<font color="#ffffff">Uploading cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh to fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">buetow</font><b><font color="#ee5896">.</font></b><font color="#ffffff">org</font><b><font color="#ee5896">:.</font></b>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> doas sh /etc/netstart wg0</font>
-<b><font color="#ee5896">+</font></b><font color="#ffffff"> rm cmd</font><b><font color="#ee5896">.</font></b><font color="#ffffff">sh</font>
+<pre>&gt; rake install
+/usr/bin/ruby wireguardmeshgenerator.rb --install
+Uploading dist/f<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f0.lan.buetow.org:.
+Installing Wireguard config on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f0
+Uploading cmd.sh to f0.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f1.lan.buetow.org:.
+Installing Wireguard config on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f1
+Uploading cmd.sh to f1.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/f<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to f2.lan.buetow.org:.
+Installing Wireguard config on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ [ ! -d /usr/local/etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /usr/local/etc/wireguard
++ doas mv -v wg0.conf /usr/local/etc/wireguard
+wg0.conf -&gt; /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /usr/local/etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on f2
+Uploading cmd.sh to f2.lan.buetow.org:.
++ doas service wireguard reload
++ rm cmd.sh
+Uploading dist/r<font color="#000000">0</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r0.lan.buetow.org:.
+Installing Wireguard config on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r0
+Uploading cmd.sh to r0.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r<font color="#000000">1</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r1.lan.buetow.org:.
+Installing Wireguard config on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r1
+Uploading cmd.sh to r1.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/r<font color="#000000">2</font>/etc/wireguard/wg<font color="#000000">0</font>.conf to r2.lan.buetow.org:.
+Installing Wireguard config on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ <font color="#808080">'['</font> <font color="#808080">'!'</font> -d /etc/wireguard <font color="#808080">']'</font>
++ chmod <font color="#000000">700</font> /etc/wireguard
++ mv -v wg0.conf /etc/wireguard
+renamed <font color="#808080">'wg0.conf'</font> -&gt; <font color="#808080">'/etc/wireguard/wg0.conf'</font>
++ chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on r2
+Uploading cmd.sh to r2.lan.buetow.org:.
++ systemctl reload wg-quick@wg0.service
++ rm cmd.sh
+Uploading dist/blowfish/etc/wireguard/wg<font color="#000000">0</font>.conf to blowfish.buetow.org:.
+Installing Wireguard config on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -&gt; /etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on blowfish
+Uploading cmd.sh to blowfish.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
+Uploading dist/fishfinger/etc/wireguard/wg<font color="#000000">0</font>.conf to fishfinger.buetow.org:.
+Installing Wireguard config on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ [ ! -d /etc/wireguard ]
++ doas chmod <font color="#000000">700</font> /etc/wireguard
++ doas mv -v wg0.conf /etc/wireguard
+wg0.conf -&gt; /etc/wireguard/wg<font color="#000000">0</font>.conf
++ doas chmod <font color="#000000">644</font> /etc/wireguard/wg<font color="#000000">0</font>.conf
++ rm cmd.sh
+Reloading Wireguard on fishfinger
+Uploading cmd.sh to fishfinger.buetow.org:.
++ doas sh /etc/netstart wg0
++ rm cmd.sh
 </pre>
 <br />
 <h3 style='display: inline' id='re-generating-mesh-and-installing-the-wg0conf-files-again'>Re-generating mesh and installing the <span class='inlinecode'>wg0.conf</span> files again</h3><br />
@@ -802,9 +802,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> rake clean</font>
-<b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> rake generate</font>
-<b><font color="#ee5896">&gt;</font></b><font color="#ffffff"> rake install</font>
+<pre>&gt; rake clean
+&gt; rake generate
+&gt; rake install
 </pre>
 <br />
 <span>That would also delete and re-generate all the keys involved.</span><br />
@@ -817,52 +817,52 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas wg show</font>
-<font color="#ffffff">interface</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> wg0</font>
-<font color="#ffffff">  public key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Jm6YItMt94</font><b><font color="#ee5896">++</font></b><font color="#ffffff">dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  private key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  listening port</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">56709</font>
+<pre>paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: <font color="#000000">56709</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 8</font><font color="#ffffff">PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">46.23</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">94.99</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">1</font><font color="#ffffff"> minute</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">46</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">124</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">1.75</font><font color="#ffffff"> KiB sent</font>
-<font color="#ffffff">  persistent keepalive</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> every </font><font color="#ff00ff">25</font><font color="#ffffff"> seconds</font>
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">1</font> minute, <font color="#000000">46</font> seconds ago
+  transfer: <font color="#000000">124</font> B received, <font color="#000000">1.75</font> KiB sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Xow</font><b><font color="#ee5896">+</font></b><font color="#ffffff">d3qVXgUMk4pcRSQ6Fe</font><b><font color="#ee5896">+</font></b><font color="#ffffff">vhYBa3VDyHX</font><b><font color="#ee5896">/</font></b><font color="#ffffff">4</font><font color="#ffffff">jrGoKns</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">23.88</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">35.144</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">1</font><font color="#ffffff"> minute</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">52</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">124</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">1.60</font><font color="#ffffff"> KiB sent</font>
-<font color="#ffffff">  persistent keepalive</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> every </font><font color="#ff00ff">25</font><font color="#ffffff"> seconds</font>
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">1</font> minute, <font color="#000000">52</font> seconds ago
+  transfer: <font color="#000000">124</font> B received, <font color="#000000">1.60</font> KiB sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> s3e93XoY7dPUQgLiVO4d8x/SRCFgEew</font><b><font color="#ee5896">+</font></b><font color="#ffffff">/wP</font><font color="#ff00ff">7</font><b><font color="#ee5896">+</font></b><font color="#ffffff">zwgehI</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.120</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 2</font><font color="#ffffff">htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.131</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG</font><b><font color="#ee5896">+</font></b><font color="#ff00ff">1</font><font color="#ffffff">/QO7</font><font color="#ffffff">m2oyllg</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.122</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Hhy9kMPOOjChXV2RA5WeCGs</font><b><font color="#ee5896">+</font></b><font color="#ffffff">J0FE3rcNPDw/TLSn7</font><font color="#ffffff">i8</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.121</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> SlGVsACE1wiaRoGvCR3f7AuHfRS</font><b><font color="#ee5896">+</font></b><font color="#ffffff">1jjhS</font><b><font color="#ee5896">+</font></b><font color="#ffffff">YwEJ2HvF0</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.132</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
 </pre>
 <br />
 <span>All the hosts are pingable as well, e.g.:</span><br />
@@ -871,65 +871,65 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> foreach peer </font><b><font color="#ee5896">(</font></b><font color="#ffffff"> f1 f2 r0 r1 r2 blowfish fishfinger </font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">foreach</font><b><font color="#ee5896">?</font></b><font color="#ffffff"> ping -c</font><font color="#ff00ff">2</font><font color="#ffffff"> </font><font color="#ffffff">$peer</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0</font>
-<font color="#ffffff">foreach</font><b><font color="#ee5896">?</font></b><font color="#ffffff"> echo</font>
-<font color="#ffffff">foreach</font><b><font color="#ee5896">?</font></b><font color="#ffffff"> end</font>
-<font color="#ffffff">PING f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.334</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.260</font><font color="#ffffff"> ms</font>
+<pre>paul@f0:~ % foreach peer ( f1 f2 r0 r1 r2 blowfish fishfinger )
+foreach? ping -c<font color="#000000">2</font> $peer.wg0
+foreach? echo
+foreach? end
+PING f1.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.131</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.131</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.334</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.131</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.260</font> ms
 
-<font color="#ffffff">--- f1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.260</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.297</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.334</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.037</font><font color="#ffffff"> ms</font>
+--- f1.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.260</font>/<font color="#000000">0.297</font>/<font color="#000000">0.334</font>/<font color="#000000">0.037</font> ms
 
-<font color="#ffffff">PING f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.323</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.303</font><font color="#ffffff"> ms</font>
+PING f2.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.132</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.132</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.323</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.132</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.303</font> ms
 
-<font color="#ffffff">--- f2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.303</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.313</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.323</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.010</font><font color="#ffffff"> ms</font>
+--- f2.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.303</font>/<font color="#000000">0.313</font>/<font color="#000000">0.323</font>/<font color="#000000">0.010</font> ms
 
-<font color="#ffffff">PING r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.716</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.406</font><font color="#ffffff"> ms</font>
+PING r0.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.120</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.120</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.716</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.120</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.406</font> ms
 
-<font color="#ffffff">--- r0</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.406</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.561</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.716</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.155</font><font color="#ffffff"> ms</font>
+--- r0.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.406</font>/<font color="#000000">0.561</font>/<font color="#000000">0.716</font>/<font color="#000000">0.155</font> ms
 
-<font color="#ffffff">PING r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.639</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.629</font><font color="#ffffff"> ms</font>
+PING r1.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.121</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.121</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.639</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.121</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.629</font> ms
 
-<font color="#ffffff">--- r1</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.629</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.634</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.639</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.005</font><font color="#ffffff"> ms</font>
+--- r1.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.629</font>/<font color="#000000">0.634</font>/<font color="#000000">0.639</font>/<font color="#000000">0.005</font> ms
 
-<font color="#ffffff">PING r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.569</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">64</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0.479</font><font color="#ffffff"> ms</font>
+PING r2.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.122</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.122</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.569</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.122</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.479</font> ms
 
-<font color="#ffffff">--- r2</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.479</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.524</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.569</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.045</font><font color="#ffffff"> ms</font>
+--- r2.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">0.479</font>/<font color="#000000">0.524</font>/<font color="#000000">0.569</font>/<font color="#000000">0.045</font> ms
 
-<font color="#ffffff">PING blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">255</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">35.745</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">255</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">35.481</font><font color="#ffffff"> ms</font>
+PING blowfish.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.110</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.110</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">255</font> time=<font color="#000000">35.745</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.110</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">255</font> time=<font color="#000000">35.481</font> ms
 
-<font color="#ffffff">--- blowfish</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">35.481</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">35.613</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">35.745</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.132</font><font color="#ffffff"> ms</font>
+--- blowfish.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">35.481</font>/<font color="#000000">35.613</font>/<font color="#000000">35.745</font>/<font color="#000000">0.132</font> ms
 
-<font color="#ffffff">PING fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 </font><b><font color="#ee5896">(</font></b><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><b><font color="#ee5896">):</font></b><font color="#ffffff"> </font><font color="#ff00ff">56</font><font color="#ffffff"> data bytes</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">0</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">255</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">33.992</font><font color="#ffffff"> ms</font>
-<font color="#ff00ff">64</font><font color="#ffffff"> bytes from </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ffffff">icmp_seq</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">1</font><font color="#ffffff"> </font><font color="#ffffff">ttl</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">255</font><font color="#ffffff"> </font><font color="#ffffff">time</font><b><font color="#ee5896">=</font></b><font color="#ff00ff">33.751</font><font color="#ffffff"> ms</font>
+PING fishfinger.wg0 (<font color="#000000">192.168</font>.<font color="#000000">2.111</font>): <font color="#000000">56</font> data bytes
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.111</font>: icmp_seq=<font color="#000000">0</font> ttl=<font color="#000000">255</font> time=<font color="#000000">33.992</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.111</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">255</font> time=<font color="#000000">33.751</font> ms
 
-<font color="#ffffff">--- fishfinger</font><b><font color="#ee5896">.</font></b><font color="#ffffff">wg0 ping statistics ---</font>
-<font color="#ff00ff">2</font><font color="#ffffff"> packets transmitted</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">2</font><font color="#ffffff"> packets received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">0.0</font><b><font color="#ee5896">%</font></b><font color="#ffffff"> packet loss</font>
-<font color="#ffffff">round-trip min/avg/max/stddev </font><b><font color="#ee5896">=</font></b><font color="#ffffff"> </font><font color="#ff00ff">33.751</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">33.872</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">33.992</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">0.120</font><font color="#ffffff"> ms</font>
+--- fishfinger.wg0 ping statistics ---
+<font color="#000000">2</font> packets transmitted, <font color="#000000">2</font> packets received, <font color="#000000">0.0</font>% packet loss
+round-trip min/avg/max/stddev = <font color="#000000">33.751</font>/<font color="#000000">33.872</font>/<font color="#000000">33.992</font>/<font color="#000000">0.120</font> ms
 </pre>
 <br />
 <span>Note that the loop above is a <span class='inlinecode'>tcsh</span> loop, the default shell used in FreeBSD. Of course, all other peers can ping their peers as well!</span><br />
@@ -940,60 +940,60 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ffffff">paul@f0</font><b><font color="#ee5896">:~</font></b><font color="#ffffff"> </font><b><font color="#ee5896">%</font></b><font color="#ffffff"> doas wg show</font>
-<font color="#ffffff">interface</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> wg0</font>
-<font color="#ffffff">  public key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Jm6YItMt94</font><b><font color="#ee5896">++</font></b><font color="#ffffff">dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  private key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  listening port</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">56709</font>
+<pre>paul@f0:~ % doas wg show
+interface: wg0
+  public key: Jm6YItMt94++dIeOyVi1I9AhNt2qQcryxCZezoX7X2Y=
+  private key: (hidden)
+  listening port: <font color="#000000">56709</font>
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG</font><b><font color="#ee5896">+</font></b><font color="#ff00ff">1</font><font color="#ffffff">/QO7</font><font color="#ffffff">m2oyllg</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.122</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.122</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">10</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">440</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">532</font><font color="#ffffff"> B sent</font>
+peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">10</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">532</font> B sent
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Hhy9kMPOOjChXV2RA5WeCGs</font><b><font color="#ee5896">+</font></b><font color="#ffffff">J0FE3rcNPDw/TLSn7</font><font color="#ffffff">i8</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.121</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.121</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">12</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">440</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">564</font><font color="#ffffff"> B sent</font>
+peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">12</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> s3e93XoY7dPUQgLiVO4d8x/SRCFgEew</font><b><font color="#ee5896">+</font></b><font color="#ffffff">/wP</font><font color="#ff00ff">7</font><b><font color="#ee5896">+</font></b><font color="#ffffff">zwgehI</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.120</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.120</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">14</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">440</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">564</font><font color="#ffffff"> B sent</font>
+peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">14</font> seconds ago
+  transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> SlGVsACE1wiaRoGvCR3f7AuHfRS</font><b><font color="#ee5896">+</font></b><font color="#ffffff">1jjhS</font><b><font color="#ee5896">+</font></b><font color="#ffffff">YwEJ2HvF0</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.132</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.132</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">17</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">472</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">564</font><font color="#ffffff"> B sent</font>
+peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">17</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">564</font> B sent
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> Xow</font><b><font color="#ee5896">+</font></b><font color="#ffffff">d3qVXgUMk4pcRSQ6Fe</font><b><font color="#ee5896">+</font></b><font color="#ffffff">vhYBa3VDyHX</font><b><font color="#ee5896">/</font></b><font color="#ffffff">4</font><font color="#ffffff">jrGoKns</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">23.88</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">35.144</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.110</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">55</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">472</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">596</font><font color="#ffffff"> B sent</font>
-<font color="#ffffff">  persistent keepalive</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> every </font><font color="#ff00ff">25</font><font color="#ffffff"> seconds</font>
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">55</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 8</font><font color="#ffffff">PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">46.23</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">94.99</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.111</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
-<font color="#ffffff">  latest handshake</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">55</font><font color="#ffffff"> seconds ago</font>
-<font color="#ffffff">  transfer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">472</font><font color="#ffffff"> B received</font><b><font color="#ee5896">,</font></b><font color="#ffffff"> </font><font color="#ff00ff">596</font><font color="#ffffff"> B sent</font>
-<font color="#ffffff">  persistent keepalive</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> every </font><font color="#ff00ff">25</font><font color="#ffffff"> seconds</font>
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  latest handshake: <font color="#000000">55</font> seconds ago
+  transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
+  persistent keepalive: every <font color="#000000">25</font> seconds
 
-<font color="#ffffff">peer</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> 2</font><font color="#ffffff">htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8</font><b><font color="#ee5896">=</font></b>
-<font color="#ffffff">  preshared key</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><b><font color="#ee5896">(</font></b><font color="#ffffff">hidden</font><b><font color="#ee5896">)</font></b>
-<font color="#ffffff">  endpoint</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">1.131</font><b><font color="#ee5896">:</font></b><font color="#ff00ff">56709</font>
-<font color="#ffffff">  allowed ips</font><b><font color="#ee5896">:</font></b><font color="#ffffff"> </font><font color="#ff00ff">192.168</font><b><font color="#ee5896">.</font></b><font color="#ff00ff">2.131</font><b><font color="#ee5896">/</font></b><font color="#ff00ff">32</font>
+peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
+  preshared key: (hidden)
+  endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
 </pre>
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
