@@ -15,6 +15,7 @@
 => ./never-split-the-difference.gmi 'Never split the difference' book notes
 => ./mind-management.gmi 'Mind Management' book notes
 => ./mental-combat.gmi 'Mental Combat' book notes
+=> ./meditation-for-mortals.gmi 'Meditation for Mortals' book notes
 => ./love-people-use-things.gmi 'Love People, Use Things' book notes
 => ./joy-on-demand.gmi 'Joy On Domand' book notes
 => ./influence-wihout-authority.gmi 'Influence without Authority' book notes
