@@ -15,7 +15,7 @@ Task Samurai is a fast terminal interface for Taskwarrior written in Go using th
 
 ### Why does this exist?
 
-* I wanted to tinker with agentic coding. This project was entirely implemented using OpenAI Codex.
+I wanted to tinker with agentic coding. This project was implemented entirely using OpenAI Codex. (After this blog post was published, I also used the Claude Code CLI.)
 * I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.
 * I wanted something built with Bubble Tea, but I never had time to dive deep into it.
 * I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.
