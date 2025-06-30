@@ -1,0 +1,112 @@
+## Stats for 2025-06-17
+
+### Summary
+
+* Total requests: 4319
+* Filtered requests: 45254
+* Gemini requests: 50
+* Web requests: 4269
+* IPv4 requests: 3309
+* IPv6 requests: 1010
+
+### Feed Statistics
+
+```
+| Feed Type      | Count |
+|----------------|-------|
+| Total          | 52    |
+| Gemini Gemfeed | 4     |
+| Gemini Atom    | 2     |
+| Web Gemfeed    | 1     |
+| Web Atom       | 46    |
+```
+
+### Page Statistics (by Host)
+
+```
+| Host                        | Unique Visitors |
+|-----------------------------|-----------------|
+| foo.zone                    | 156             |
+| standby.foo.zone            | 67              |
+| irregular.ninja             | 30              |
+| www.foo.zone                | 9               |
+| dory.buetow.org             | 3               |
+| standby.irregular.ninja     | 3               |
+| www.irregular.ninja         | 3               |
+| foo.zone:1965               | 2               |
+| standby.alt.irregular.ninja | 2               |
+| standby.paul.buetow.org     | 2               |
+| paul.buetow.org             | 1               |
+| buetow.org                  | 1               |
+| www.foo.zone:1965           | 1               |
+| fishfinger.buetow.org       | 1               |
+| www.buetow.org              | 1               |
+| standby.dory.buetow.org     | 1               |
+| alt.irregular.ninja         | 1               |
+| www.dory.buetow.org         | 1               |
+| dtail.dev                   | 1               |
+```
+
+### Page Statistics (by URL)
+
+```
+| URL                                                                                                   | Unique Visitors |
+|-------------------------------------------------------------------------------------------------------|-----------------|
+| foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1...                                     | 21              |
+| foo.zone/gemfeed/2025-02-08-random-weird-things-ii...                                                 | 16              |
+| foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim...                            | 13              |
+| foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang... | 9               |
+| foo.zone/gemfeed/2024-07-07-the-stoic-challenge-book-notes...                                         | 9               |
+| foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition...                           | 8               |
+| foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes...                                           | 8               |
+| foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5...                                     | 8               |
+| standby.foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4...                             | 7               |
+| foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell...                                                | 6               |
+| foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes...                                  | 6               |
+| standby.foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition...                   | 6               |
+| foo.zone/gemfeed/index...                                                                             | 6               |
+| standby.foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5...                             | 6               |
+| foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide...                                       | 6               |
+| standby.foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos...                               | 6               |
+| foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid...                                              | 6               |
+| foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4...                                     | 5               |
+| foo.zone/gemfeed/2024-12-15-random-helix-themes...                                                    | 5               |
+| standby.foo.zone/gemfeed/2010-04-09-standard-ml-and-haskell...                                        | 5               |
+| foo.zone/gemfeed/2025-04-19-when-book-notes...                                                        | 5               |
+| foo.zone/gemfeed/2023-01-23-why-grapheneos-rox...                                                     | 4               |
+| foo.zone/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person...                                    | 4               |
+| foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again...                                     | 4               |
+| foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD...                                    | 4               |
+| foo.zone/gemfeed/2023-12-10-bash-golf-part-3...                                                       | 4               |
+| foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program...                                 | 4               |
+| foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview...                                          | 4               |
+| foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist...                                              | 4               |
+| foo.zone/gemfeed/2024-07-05-random-weird-things...                                                    | 4               |
+| foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute...                                          | 4               |
+| foo.zone/gemfeed/2021-11-29-bash-golf-part-1...                                                       | 4               |
+| foo.zone/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml...                                       | 4               |
+| foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice...                                           | 4               |
+| foo.zone/gemfeed/2022-04-10-creative-universe...                                                      | 4               |
+| foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2...                                     | 4               |
+| foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios...                                     | 3               |
+| foo.zone/gemfeed/2008-06-26-perl-poetry...                                                            | 3               |
+| foo.zone/gemfeed/2024-05-03-projects-i-currently-dont-have-time-for...                                | 3               |
+| foo.zone/gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta...                                   | 3               |
+| foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace...                                             | 3               |
+| foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux...                                        | 3               |
+| foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0...                                             | 3               |
+| irregular.ninja/html/page-1...                                                                        | 3               |
+| foo.zone/gemfeed/2022-01-23-welcome-to-the-foo.zone...                                                | 3               |
+| foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4...                                   | 3               |
+| foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3...                                    | 3               |
+| foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024...                                    | 3               |
+| foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes...                                     | 3               |
+| foo.zone/gemfeed/2016-04-16-offsite-backup-with-zfs-part2...                                          | 3               |
+```
+
+... and more (truncated to 50 entries).
+
+## Related Reports
+
+=> ./30day_summary_20250630.gmi 30-Day Summary Report
+

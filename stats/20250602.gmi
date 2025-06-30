@@ -1,0 +1,103 @@
+## Stats for 2025-06-02
+
+### Summary
+
+* Total requests: 4108
+* Filtered requests: 39561
+* Gemini requests: 18
+* Web requests: 4090
+* IPv4 requests: 3050
+* IPv6 requests: 1058
+
+### Feed Statistics
+
+```
+| Feed Type      | Count |
+|----------------|-------|
+| Total          | 44    |
+| Gemini Gemfeed | 1     |
+| Gemini Atom    | 1     |
+| Web Gemfeed    | 0     |
+| Web Atom       | 42    |
+```
+
+### Page Statistics (by Host)
+
+```
+| Host                    | Unique Visitors |
+|-------------------------|-----------------|
+| foo.zone                | 142             |
+| standby.foo.zone        | 52              |
+| irregular.ninja         | 27              |
+| standby.dory.buetow.org | 3               |
+| www.foo.zone            | 2               |
+| buetow.org              | 2               |
+| www.irregular.ninja     | 1               |
+| www.dtail.dev           | 1               |
+| paul.buetow.org         | 1               |
+| www.buetow.org          | 1               |
+```
+
+### Page Statistics (by URL)
+
+```
+| URL                                                                                 | Unique Visitors |
+|-------------------------------------------------------------------------------------|-----------------|
+| foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1...                   | 12              |
+| foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5...                   | 11              |
+| foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid...                            | 10              |
+| foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios...                   | 10              |
+| foo.zone/about/resources...                                                         | 9               |
+| standby.foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program...       | 9               |
+| foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim...          | 9               |
+| foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff...                             | 7               |
+| foo.zone/gemfeed/2023-11-11-mind-management-book-notes...                           | 7               |
+| standby.foo.zone/gemfeed/2022-12-24-ultrarelearning-java-my-takeaways...            | 6               |
+| standby.foo.zone/gemfeed/2023-09-25-dtail-usage-examples...                         | 5               |
+| foo.zone/gemfeed/2024-09-07-site-reliability-engineering-part-4...                  | 5               |
+| foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD...                  | 5               |
+| foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024...                  | 5               |
+| foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes...                         | 4               |
+| foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice...                         | 4               |
+| standby.foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex...            | 4               |
+| foo.zone/gemfeed/2023-09-25-dtail-usage-examples...                                 | 4               |
+| irregular.ninja/html/page-1...                                                      | 4               |
+| foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute...                        | 4               |
+| foo.zone/gemfeed/2022-10-30-installing-dtail-on-openbsd...                          | 4               |
+| foo.zone/gemfeed/2023-08-18-site-reliability-engineering-part-1...                  | 4               |
+| foo.zone/gemfeed/2023-03-16-the-pragmatic-programmer-book-notes...                  | 4               |
+| foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0...                           | 3               |
+| foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3...                   | 3               |
+| foo.zone/gemfeed/2024-12-15-random-helix-themes...                                  | 3               |
+| foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program...               | 3               |
+| foo.zone/gemfeed/2025-04-19-when-book-notes...                                      | 3               |
+| foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2...                   | 3               |
+| foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist...                            | 3               |
+| foo.zone/gemfeed/index...                                                           | 3               |
+| foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3...                  | 3               |
+| foo.zone/gemfeed/2021-05-16-personal-bash-coding-style-guide...                     | 3               |
+| foo.zone/about/index...                                                             | 3               |
+| foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd...                        | 3               |
+| foo.zone/gemfeed/2022-09-30-after-a-bad-nights-sleep...                             | 2               |
+| standby.foo.zone/gemfeed/2016-04-09-jails-and-zfs-on-freebsd-with-puppet...         | 2               |
+| standby.foo.zone/gemfeed/2024-12-15-random-helix-themes...                          | 2               |
+| foo.zone/gemfeed/2023-11-19-site-reliability-engineering-part-2...                  | 2               |
+| foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux...                      | 2               |
+| foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace...                           | 2               |
+| irregular.ninja/html/4-17...                                                        | 2               |
+| foo.zone/gemfeed/2023-12-10-bash-golf-part-3...                                     | 2               |
+| irregular.ninja/html/2-39...                                                        | 2               |
+| standby.foo.zone/gemfeed/2018-06-01-realistic-load-testing-with-ioriot-for-linux... | 2               |
+| standby.foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim...  | 2               |
+| foo.zone/gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml...                     | 2               |
+| irregular.ninja/html/6-20...                                                        | 2               |
+| foo.zone/gemfeed/2024-05-03-projects-i-currently-dont-have-time-for...              | 2               |
+| irregular.ninja/html/9-1...                                                         | 2               |
+```
+
+... and more (truncated to 50 entries).
+
+## Related Reports
+
+=> ./30day_summary_20250630.gmi 30-Day Summary Report
+

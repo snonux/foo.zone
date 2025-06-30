@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-23T07:54:22+03:00</updated>
+    <updated>2025-06-29T13:29:59+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -50,8 +50,8 @@
 <br />
 <h3 style='display: inline' id='why-does-this-exist'>Why does this exist?</h3><br />
 <br />
+<span>I wanted to tinker with agentic coding. This project was implemented entirely using OpenAI Codex. (After this blog post was published, I also used the Claude Code CLI.)</span><br />
 <ul>
-<li>I wanted to tinker with agentic coding. This project was entirely implemented using OpenAI Codex.</li>
 <li>I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.</li>
 <li>I wanted something built with Bubble Tea, but I never had time to dive deep into it.</li>
 <li>I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.</li>

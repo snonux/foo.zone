@@ -1,0 +1,104 @@
+## Stats for 2025-06-19
+
+### Summary
+
+* Total requests: 4117
+* Filtered requests: 44894
+* Gemini requests: 170
+* Web requests: 3947
+* IPv4 requests: 2716
+* IPv6 requests: 1401
+
+### Feed Statistics
+
+```
+| Feed Type      | Count |
+|----------------|-------|
+| Total          | 40    |
+| Gemini Gemfeed | 2     |
+| Gemini Atom    | 1     |
+| Web Gemfeed    | 0     |
+| Web Atom       | 37    |
+```
+
+### Page Statistics (by Host)
+
+```
+| Host                    | Unique Visitors |
+|-------------------------|-----------------|
+| foo.zone                | 170             |
+| standby.foo.zone        | 109             |
+| irregular.ninja         | 24              |
+| www.foo.zone            | 12              |
+| buetow.org              | 4               |
+| paul.buetow.org         | 4               |
+| dory.buetow.org         | 2               |
+| www.irregular.ninja     | 2               |
+| fishfinger.buetow.org   | 1               |
+| standby.irregular.ninja | 1               |
+| standby.foo.zone:1965   | 1               |
+```
+
+### Page Statistics (by URL)
+
+```
+| URL                                                                                                   | Unique Visitors |
+|-------------------------------------------------------------------------------------------------------|-----------------|
+| foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute...                                          | 15              |
+| foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim...                            | 10              |
+| foo.zone/gemfeed/2021-09-12-keep-it-simple-and-stupid...                                              | 9               |
+| standby.foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD...                            | 9               |
+| standby.foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2...                             | 8               |
+| foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD...                                    | 7               |
+| standby.foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1...                             | 6               |
+| foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition...                           | 6               |
+| standby.foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4...                             | 6               |
+| foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1...                                     | 6               |
+| foo.zone/gemfeed/index...                                                                             | 5               |
+| standby.foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition...                   | 5               |
+| foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes...                                           | 5               |
+| foo.zone/gemfeed/2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang... | 5               |
+| foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5...                                     | 5               |
+| standby.foo.zone/gemfeed/2021-12-26-how-to-stay-sane-as-a-devops-person...                            | 5               |
+| foo.zone/gemfeed/2025-04-19-when-book-notes...                                                        | 4               |
+| foo.zone/site-mirrors...                                                                              | 4               |
+| standby.foo.zone/gemfeed/2022-09-30-after-a-bad-nights-sleep...                                       | 4               |
+| standby.foo.zone/about/index...                                                                       | 4               |
+| foo.zone/gemfeed/2024-09-07-projects-i-support...                                                     | 4               |
+| standby.foo.zone/gemfeed/2022-03-06-the-release-of-dtail-4.0.0...                                     | 4               |
+| foo.zone/gemfeed/2021-04-22-dtail-the-distributed-log-tail-program...                                 | 4               |
+| foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice...                                           | 4               |
+| foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd...                                          | 4               |
+| standby.foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes...                             | 4               |
+| foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all...                               | 4               |
+| standby.foo.zone/gemfeed/2024-09-07-projects-i-support...                                             | 4               |
+| foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3...                                    | 4               |
+| foo.zone/gemfeed/2023-01-23-why-grapheneos-rox...                                                     | 4               |
+| foo.zone/notes/a-monks-guide-to-happiness...                                                          | 3               |
+| foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4...                                     | 3               |
+| foo.zone/index...                                                                                     | 3               |
+| foo.zone/gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes...                                | 3               |
+| foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2...                                     | 3               |
+| standby.foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5...                             | 3               |
+| foo.zone/gemfeed/2021-07-04-the-well-grounded-rubyist...                                              | 3               |
+| foo.zone/gemfeed/2022-07-30-lets-encrypt-with-openbsd-and-rex...                                      | 3               |
+| foo.zone/gemfeed/2022-04-10-creative-universe...                                                      | 3               |
+| irregular.ninja/html/page-1...                                                                        | 3               |
+| foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework...                                          | 3               |
+| foo.zone/gemfeed/2022-02-04-computer-operating-systems-i-use...                                       | 3               |
+| standby.foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes...                                   | 3               |
+| foo.zone/gemfeed/2021-04-24-welcome-to-the-geminispace...                                             | 3               |
+| foo.zone/gemfeed/2010-05-09-the-fype-programming-language...                                          | 3               |
+| foo.zone/about/dtail...                                                                               | 3               |
+| foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid...                                  | 3               |
+| standby.foo.zone/gemfeed/2023-04-01-never-split-the-difference-book-notes...                          | 3               |
+| foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot...                                            | 3               |
+| foo.zone/uptime-stats...                                                                              | 3               |
+```
+
+... and more (truncated to 50 entries).
+
+## Related Reports
+
+=> ./30day_summary_20250630.gmi 30-Day Summary Report
+
