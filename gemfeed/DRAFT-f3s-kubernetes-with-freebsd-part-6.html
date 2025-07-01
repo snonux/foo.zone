@@ -36,6 +36,15 @@
 <li>⇢ ⇢ <a href='#configuring-zdata-zfs-pool-and-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool and encryption</a></li>
 <li>⇢ ⇢ <a href='#migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</a></li>
 <li>⇢ <a href='#carp'>CARP</a></li>
+<li>⇢ <a href='#zfs-replication-with-zrepl'>ZFS Replication with zrepl</a></li>
+<li>⇢ ⇢ <a href='#installing-zrepl'>Installing zrepl</a></li>
+<li>⇢ ⇢ <a href='#checking-zfs-pools'>Checking ZFS pools</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-with-wireguard-tunnel'>Configuring zrepl with WireGuard tunnel</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-on-f0-source'>Configuring zrepl on f0 (source)</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-on-f1-sink'>Configuring zrepl on f1 (sink)</a></li>
+<li>⇢ ⇢ <a href='#enabling-and-starting-zrepl-services'>Enabling and starting zrepl services</a></li>
+<li>⇢ ⇢ <a href='#verifying-replication'>Verifying replication</a></li>
+<li>⇢ ⇢ <a href='#monitoring-replication'>Monitoring replication</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
@@ -214,6 +223,203 @@ zroot/bhyve/rocky  keystatus             available              -
 <span>/boot/loader.conf add carp_load="YES"</span><br />
 <span>reboot or run doas kldload carp0 </span><br />
 <br />
+<br />
+<h2 style='display: inline' id='zfs-replication-with-zrepl'>ZFS Replication with zrepl</h2><br />
+<br />
+<span>In this section, we&#39;ll set up automatic ZFS replication from f0 to f1 using zrepl. This ensures our data is replicated across nodes for redundancy.</span><br />
+<br />
+<h3 style='display: inline' id='installing-zrepl'>Installing zrepl</h3><br />
+<br />
+<span>First, install zrepl on both hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0</font></i>
+paul@f0:~ % doas pkg install -y zrepl
+
+<i><font color="silver"># On f1</font></i>
+paul@f1:~ % doas pkg install -y zrepl
+</pre>
+<br />
+<h3 style='display: inline' id='checking-zfs-pools'>Checking ZFS pools</h3><br />
+<br />
+<span>Verify the pools and datasets on both hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0</font></i>
+paul@f0:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  <font color="#000000">1</font>.03M   928G        -         -     <font color="#000000">0</font>%     <font color="#000000">0</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+zroot   472G  <font color="#000000">26</font>.7G   445G        -         -     <font color="#000000">0</font>%     <font color="#000000">5</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+
+paul@f0:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+
+<i><font color="silver"># On f1</font></i>
+paul@f1:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G   956K   928G        -         -     <font color="#000000">0</font>%     <font color="#000000">0</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+zroot   472G  <font color="#000000">11</font>.7G   460G        -         -     <font color="#000000">0</font>%     <font color="#000000">2</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+
+paul@f1:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+</pre>
+<br />
+<h3 style='display: inline' id='configuring-zrepl-with-wireguard-tunnel'>Configuring zrepl with WireGuard tunnel</h3><br />
+<br />
+<span>Since we have a WireGuard tunnel between f0 and f1, we&#39;ll use TCP transport over the secure tunnel instead of SSH. First, check the WireGuard IP addresses:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check WireGuard interface IPs</font></i>
+paul@f0:~ % ifconfig wg0 | grep inet
+	inet <font color="#000000">192.168</font>.<font color="#000000">2.130</font> netmask <font color="#000000">0xffffff00</font>
+
+paul@f1:~ % ifconfig wg0 | grep inet
+	inet <font color="#000000">192.168</font>.<font color="#000000">2.131</font> netmask <font color="#000000">0xffffff00</font>
+</pre>
+<br />
+<h3 style='display: inline' id='configuring-zrepl-on-f0-source'>Configuring zrepl on f0 (source)</h3><br />
+<br />
+<span>Create the zrepl configuration on f0:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas tee /usr/local/etc/zrepl/zrepl.yml &lt;&lt;<font color="#808080">'EOF'</font>
+global:
+  logging:
+    - <b><u><font color="#000000">type</font></u></b>: stdout
+      level: info
+      format: human
+
+<b><u><font color="#000000">jobs</font></u></b>:
+  - name: <font color="#808080">"f0_to_f1"</font>
+    <b><u><font color="#000000">type</font></u></b>: push
+    connect:
+      <b><u><font color="#000000">type</font></u></b>: tcp
+      address: <font color="#808080">"192.168.2.131:8888"</font>
+    filesystems: {
+      <font color="#808080">"zdata/enc"</font>: <b><u><font color="#000000">true</font></u></b>
+    }
+    send:
+      encrypted: <b><u><font color="#000000">true</font></u></b>
+    snapshotting:
+      <b><u><font color="#000000">type</font></u></b>: periodic
+      prefix: zrepl_
+      interval: 10m
+    pruning:
+      keep_sender:
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 1x1h(keep=all) | 24x1h | 7x1d | 4x7d | 6x30d
+          regex: <font color="#808080">"^zrepl_.*"</font>
+      keep_receiver:
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 1x1h(keep=all) | 24x1h | 7x1d | 4x7d | 6x30d
+          regex: <font color="#808080">"^zrepl_.*"</font>
+EOF
+</pre>
+<br />
+<h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring zrepl on f1 (sink)</h3><br />
+<br />
+<span>Create the zrepl configuration on f1:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas tee /usr/local/etc/zrepl/zrepl.yml &lt;&lt;<font color="#808080">'EOF'</font>
+global:
+  logging:
+    - <b><u><font color="#000000">type</font></u></b>: stdout
+      level: info
+      format: human
+
+<b><u><font color="#000000">jobs</font></u></b>:
+  - name: <font color="#808080">"sink"</font>
+    <b><u><font color="#000000">type</font></u></b>: sink
+    serve:
+      <b><u><font color="#000000">type</font></u></b>: tcp
+      listen: <font color="#808080">"192.168.2.131:8888"</font>
+      clients:
+        <font color="#808080">"192.168.2.130"</font>: <font color="#808080">"f0"</font>
+    recv:
+      placeholder:
+        encryption: inherit
+    root_fs: <font color="#808080">"zdata/enc"</font>
+EOF
+</pre>
+<br />
+<h3 style='display: inline' id='enabling-and-starting-zrepl-services'>Enabling and starting zrepl services</h3><br />
+<br />
+<span>Enable and start zrepl on both hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0</font></i>
+paul@f0:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -&gt; YES
+paul@f0:~ % doas service zrepl start
+Starting zrepl.
+
+<i><font color="silver"># On f1</font></i>
+paul@f1:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -&gt; YES
+paul@f1:~ % doas service zrepl start
+Starting zrepl.
+</pre>
+<br />
+<h3 style='display: inline' id='verifying-replication'>Verifying replication</h3><br />
+<br />
+<span>Check the replication status:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0, check zrepl status</font></i>
+paul@f0:~ % doas zrepl status
+
+<i><font color="silver"># Check for zrepl snapshots</font></i>
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
+
+<i><font color="silver"># On f1, verify the replicated datasets</font></i>
+paul@f1:~ % doas zfs list -r zdata/enc
+
+<i><font color="silver"># Check zrepl logs for any errors</font></i>
+paul@f0:~ % doas tail -f /var/log/zrepl.log
+</pre>
+<br />
+<h3 style='display: inline' id='monitoring-replication'>Monitoring replication</h3><br />
+<br />
+<span>You can monitor the replication progress with:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Real-time status</font></i>
+paul@f0:~ % doas zrepl status --mode interactive
+
+<i><font color="silver"># Check specific job details</font></i>
+paul@f0:~ % doas zrepl status --job f0_to_f1
+</pre>
+<br />
+<span>With this setup, zdata/enc on f0 will be automatically replicated to f1 every 10 minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep recent snapshots while managing disk space efficiently.</span><br />
 <br />
 <span>ZFS auto scrubbing....~?</span><br />
 <br />
