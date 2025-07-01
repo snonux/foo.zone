@@ -176,6 +176,236 @@ next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to 
 reboot or run doas kldload carp0 
 
 
+## ZFS Replication with zrepl
+
+In this section, we'll set up automatic ZFS replication from f0 to f1 using zrepl. This ensures our data is replicated across nodes for redundancy.
+
+### Installing zrepl
+
+First, install zrepl on both hosts:
+
+```sh
+# On f0
+paul@f0:~ % doas pkg install -y zrepl
+
+# On f1
+paul@f1:~ % doas pkg install -y zrepl
+```
+
+### Checking ZFS pools
+
+Verify the pools and datasets on both hosts:
+
+```sh
+# On f0
+paul@f0:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  1.03M   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  26.7G   445G        -         -     0%     5%  1.00x    ONLINE  -
+
+paul@f0:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+
+# On f1
+paul@f1:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G   956K   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  11.7G   460G        -         -     0%     2%  1.00x    ONLINE  -
+
+paul@f1:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+```
+
+### Configuring zrepl with WireGuard tunnel
+
+Since we have a WireGuard tunnel between f0 and f1, we'll use TCP transport over the secure tunnel instead of SSH. First, check the WireGuard IP addresses:
+
+```sh
+# Check WireGuard interface IPs
+paul@f0:~ % ifconfig wg0 | grep inet
+	inet 192.168.2.130 netmask 0xffffff00
+
+paul@f1:~ % ifconfig wg0 | grep inet
+	inet 192.168.2.131 netmask 0xffffff00
+```
+
+### Configuring zrepl on f0 (source)
+
+Create the zrepl configuration on f0:
+
+```sh
+paul@f0:~ % doas tee /usr/local/etc/zrepl/zrepl.yml <<'EOF'
+global:
+  logging:
+    - type: stdout
+      level: info
+      format: human
+
+jobs:
+  - name: f0_to_f1
+    type: push
+    connect:
+      type: tcp
+      address: "192.168.2.131:8888"
+    filesystems:
+      "zdata/enc": true
+    send:
+      encrypted: true
+    snapshotting:
+      type: periodic
+      prefix: zrepl_
+      interval: 10m
+    pruning:
+      keep_sender:
+        - type: last_n
+          count: 10
+      keep_receiver:
+        - type: last_n
+          count: 10
+EOF
+```
+
+### Configuring zrepl on f1 (sink)
+
+Create the zrepl configuration on f1:
+
+```sh
+paul@f1:~ % doas tee /usr/local/etc/zrepl/zrepl.yml <<'EOF'
+global:
+  logging:
+    - type: stdout
+      level: info
+      format: human
+
+jobs:
+  - name: "sink"
+    type: sink
+    serve:
+      type: tcp
+      listen: "192.168.2.131:8888"
+      clients:
+        "192.168.2.130": "f0"
+    recv:
+      placeholder:
+        encryption: inherit
+    root_fs: "zdata/enc"
+EOF
+```
+
+### Enabling and starting zrepl services
+
+Enable and start zrepl on both hosts:
+
+```sh
+# On f0
+paul@f0:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -> YES
+paul@f0:~ % doas service zrepl start
+Starting zrepl.
+
+# On f1
+paul@f1:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -> YES
+paul@f1:~ % doas service zrepl start
+Starting zrepl.
+```
+
+### Verifying replication
+
+Check the replication status:
+
+```sh
+# On f0, check zrepl status (use raw mode for non-tty)
+paul@f0:~ % doas zrepl status --mode raw | grep -A2 "Replication"
+"Replication":{"StartAt":"2025-07-01T22:31:48.712143123+03:00"...
+
+# Check if services are running
+paul@f0:~ % doas service zrepl status
+zrepl is running as pid 2649.
+
+paul@f1:~ % doas service zrepl status
+zrepl is running as pid 2574.
+
+# Check for zrepl snapshots on source
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
+zdata/enc@zrepl_20250701_193148_000    0B      -   176K  -
+
+# On f1, verify the replicated datasets
+paul@f1:~ % doas zfs list -r zdata/enc
+NAME                     USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc                776K   899G   200K  /data/enc
+zdata/enc/f0             576K   899G   200K  none
+zdata/enc/f0/zdata       376K   899G   200K  none
+zdata/enc/f0/zdata/enc   176K   899G   176K  none
+
+# Check replicated snapshots on f1
+paul@f1:~ % doas zfs list -t snapshot -r zdata/enc
+NAME                                               USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc/f0/zdata/enc@zrepl_20250701_193148_000     0B      -   176K  -
+```
+
+### Monitoring replication
+
+You can monitor the replication progress with:
+
+```sh
+# Real-time status
+paul@f0:~ % doas zrepl status --mode interactive
+
+# Check specific job details
+paul@f0:~ % doas zrepl status --job f0_to_f1
+```
+
+With this setup, zdata/enc on f0 will be automatically replicated to f1 every 10 minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.
+
+The replicated data appears on f1 under `zdata/enc/f0/zdata/enc` to maintain the source dataset hierarchy. The replication uses the WireGuard tunnel for secure, encrypted transport between nodes.
+
+### Quick status check commands
+
+Here are the essential commands to monitor replication status:
+
+```sh
+# On the source node (f0) - check if replication is active
+paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -E '(State|Last)'
+State: done
+LastError: 
+
+# List all zrepl snapshots on source
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
+zdata/enc@zrepl_20250701_193148_000    0B      -   176K  -
+zdata/enc@zrepl_20250701_194148_000    0B      -   176K  -
+
+# On the sink node (f1) - verify received datasets
+paul@f1:~ % doas zfs list -r zdata/enc/f0
+NAME                     USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc/f0             576K   899G   200K  none
+zdata/enc/f0/zdata       376K   899G   200K  none
+zdata/enc/f0/zdata/enc   176K   899G   176K  none
+
+# Check received snapshots on sink
+paul@f1:~ % doas zfs list -t snapshot -r zdata/enc | wc -l
+       2
+
+# Monitor replication progress in real-time (on source)
+paul@f0:~ % doas zrepl status --mode interactive
+
+# Check last replication time (on source)
+paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -A1 "Replication"
+Replication:
+  Status: Idle (last run: 2025-07-01T22:41:48)
+
+# View zrepl logs for troubleshooting
+paul@f0:~ % doas tail -20 /var/log/zrepl.log | grep -E '(error|warn|replication)'
+```
+
+These commands provide a quick way to verify that:
+- Replication jobs are running without errors
+- Snapshots are being created on the source
+- Data is being received on the sink
+- The replication schedule is being followed
+
 ZFS auto scrubbing....~?
 
 Backup of the keys on the key locations (all keys on all 3 USB keys)

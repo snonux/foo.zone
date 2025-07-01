@@ -1,11 +1,764 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-06-29T13:29:59+03:00</updated>
+    <updated>2025-07-01T22:39:30+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Posts from January to June 2025</title>
+        <link href="gemini://foo.zone/gemfeed/2025-07-01-posts-from-january-to-june-2025.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-07-01-posts-from-january-to-june-2025.gmi</id>
+        <updated>2025-07-01T22:39:29+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These are my social media posts from the last six months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='posts-from-january-to-june-2025'>Posts from January to June 2025</h1><br />
+<br />
+<span>These are my social media posts from the last six months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </span><br />
+<br />
+<span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
+<br />
+<a class='textlink' href='../about/index.html'>My about page</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#posts-from-january-to-june-2025'>Posts from January to June 2025</a></li>
+<li>⇢ <a href='#january-2025'>January 2025</a></li>
+<li>⇢ ⇢ <a href='#i-am-currently-binge-listening-to-the-google-'>I am currently binge-listening to the Google ...</a></li>
+<li>⇢ ⇢ <a href='#recently-there-was-a-5000-loc-bash-'>Recently, there was a &gt;5000 LOC <span class='inlinecode'>#bash</span> ...</a></li>
+<li>⇢ ⇢ <a href='#ghostty-is-a-terminal-emulator-that-was-'>Ghostty is a terminal emulator that was ...</a></li>
+<li>⇢ ⇢ <a href='#go-is-not-an-easy-programming-language-don-t-'>Go is not an easy programming language. Don&#39;t ...</a></li>
+<li>⇢ ⇢ <a href='#how-will-ai-change-software-engineering-or-has-'>How will AI change software engineering (or has ...</a></li>
+<li>⇢ ⇢ <a href='#eliminating-toil---toil-is-not-always-a-bad-'>Eliminating toil - Toil is not always a bad ...</a></li>
+<li>⇢ ⇢ <a href='#fun-read-how-about-using-the-character-'>Fun read. How about using the character ...</a></li>
+<li>⇢ ⇢ <a href='#thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</a></li>
+<li>⇢ ⇢ <a href='#nice-refresher-for-shell-bash-zsh-'>Nice refresher for <span class='inlinecode'>#shell</span> <span class='inlinecode'>#bash</span> <span class='inlinecode'>#zsh</span> ...</a></li>
+<li>⇢ ⇢ <a href='#i-think-discussing-action-items-in-incident-'>I think discussing action items in incident ...</a></li>
+<li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
+<li>⇢ ⇢ <a href='#in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</a></li>
+<li>⇢ ⇢ <a href='#in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</a></li>
+<li>⇢ ⇢ <a href='#small-introduction-to-the-android-'>Small introduction to the <span class='inlinecode'>#Android</span> ...</a></li>
+<li>⇢ ⇢ <a href='#helix-202501-has-been-released-the-completion-'>Helix 2025.01 has been released. The completion ...</a></li>
+<li>⇢ ⇢ <a href='#i-found-these-are-excellent-examples-of-how-'>I found these are excellent examples of how ...</a></li>
+<li>⇢ ⇢ <a href='#llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</a></li>
+<li>⇢ ⇢ <a href='#enjoying-an-apc-power-ups-bx750mi-in-my-'>Enjoying an APC Power-UPS BX750MI in my ...</a></li>
+<li>⇢ ⇢ <a href='#even-in-the-projects-where-i-m-the-only-'>"Even in the projects where I&#39;m the only ...</a></li>
+<li>⇢ ⇢ <a href='#connecting-an-ups-to-my-freebsd-cluster-'>Connecting an <span class='inlinecode'>#UPS</span> to my <span class='inlinecode'>#FreeBSD</span> cluster ...</a></li>
+<li>⇢ ⇢ <a href='#so-the-co-founder-and-cto-of-honeycombio-and-'>So, the Co-founder and CTO of honeycomb.io and ...</a></li>
+<li>⇢ <a href='#february-2025'>February 2025</a></li>
+<li>⇢ ⇢ <a href='#i-don-t-know-about-you-but-at-work-i-usually-'>I don&#39;t know about you, but at work, I usually ...</a></li>
+<li>⇢ ⇢ <a href='#great-proposal-got-accepted-by-the-goteam-for-'>Great proposal (got accepted by the Goteam) for ...</a></li>
+<li>⇢ ⇢ <a href='#my-gemtexter-has-only-1320-loc-the-biggest-'>My Gemtexter has only 1320 LOC.... The Biggest ...</a></li>
+<li>⇢ ⇢ <a href='#against-tmp---he-is-making-a-point-unix-'>Against /tmp - He is making a point <span class='inlinecode'>#unix</span> ...</a></li>
+<li>⇢ ⇢ <a href='#random-weird-things-part-2-blog-'>Random Weird Things Part 2: <span class='inlinecode'>#blog</span> ...</a></li>
+<li>⇢ ⇢ <a href='#as-a-former-pebble-user-and-fan-thats-'>As a former <span class='inlinecode'>#Pebble</span> user and fan, thats ...</a></li>
+<li>⇢ ⇢ <a href='#i-think-i-am-slowly-getting-the-point-of-cue-'>I think I am slowly getting the point of Cue. ...</a></li>
+<li>⇢ ⇢ <a href='#jonathan-s-reflection-of-10-years-of-'>Jonathan&#39;s reflection of 10 years of ...</a></li>
+<li>⇢ ⇢ <a href='#really-enjoyed-reading-this-easily-digestible-'>Really enjoyed reading this. Easily digestible ...</a></li>
+<li>⇢ ⇢ <a href='#some-great-advice-from-40-years-of-experience-'>Some great advice from 40 years of experience ...</a></li>
+<li>⇢ ⇢ <a href='#i-enjoyed-this-talk-some-recipes-i-knew-'>I enjoyed this talk, some recipes I knew ...</a></li>
+<li>⇢ ⇢ <a href='#a-way-of-how-to-add-the-version-info-to-the-go-'>A way of how to add the version info to the Go ...</a></li>
+<li>⇢ ⇢ <a href='#in-other-words-using-tparallel-for-'>In other words, using t.Parallel() for ...</a></li>
+<li>⇢ ⇢ <a href='#neat-little-blog-post-showcasing-various-'>Neat little blog post, showcasing various ...</a></li>
+<li>⇢ ⇢ <a href='#the-smallest-thing-in-go-golang-'>The smallest thing in Go <span class='inlinecode'>#golang</span> ...</a></li>
+<li>⇢ ⇢ <a href='#fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</a></li>
+<li>⇢ ⇢ <a href='#what-i-like-about-go-is-that-it-is-still-'>What I like about Go is that it is still ...</a></li>
+<li>⇢ <a href='#march-2025'>March 2025</a></li>
+<li>⇢ ⇢ <a href='#television-has-somewhat-transformed-how-i-work-'>Television has somewhat transformed how I work ...</a></li>
+<li>⇢ ⇢ <a href='#once-in-a-while-i-like-to-read-a-book-about-a-'>Once in a while, I like to read a book about a ...</a></li>
+<li>⇢ ⇢ <a href='#as-you-may-have-noticed-i-like-to-share-on-'>As you may have noticed, I like to share on ...</a></li>
+<li>⇢ ⇢ <a href='#personally-i-think-ai-llms-are-pretty-'>Personally, I think AI (LLMs) are pretty ...</a></li>
+<li>⇢ ⇢ <a href='#type-aliases-in-golang-soon-also-work-with-'>Type aliases in <span class='inlinecode'>#golang</span>, soon also work with ...</a></li>
+<li>⇢ ⇢ <a href='#perl-my-first-love-of-programming-'><span class='inlinecode'>#Perl</span>, my "first love" of programming ...</a></li>
+<li>⇢ ⇢ <a href='#i-guess-there-are-valid-reasons-for-phttpdget-'>I guess there are valid reasons for phttpdget, ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-one-of-the-reasons-why-i-like-'>This is one of the reasons why I like ...</a></li>
+<li>⇢ ⇢ <a href='#advanced-concurrency-patterns-with-golang-'>Advanced Concurrency Patterns with <span class='inlinecode'>#Golang</span> ...</a></li>
+<li>⇢ ⇢ <a href='#sqlite-was-designed-as-an-tcl-extension-'><span class='inlinecode'>#SQLite</span> was designed as an <span class='inlinecode'>#TCL</span> extension. ...</a></li>
+<li>⇢ ⇢ <a href='#git-provides-automatic-rendering-of-markdown-'>Git provides automatic rendering of Markdown ...</a></li>
+<li>⇢ ⇢ <a href='#these-are-some-neat-little-go-tips-linters-'>These are some neat little Go tips. Linters ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-a-great-introductory-blog-post-about-'>This is a great introductory blog post about ...</a></li>
+<li>⇢ ⇢ <a href='#maps-in-go-under-the-hood-golang-'>Maps in Go under the hood <span class='inlinecode'>#golang</span> ...</a></li>
+<li>⇢ ⇢ <a href='#i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</a></li>
+<li>⇢ ⇢ <a href='#i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</a></li>
+<li>⇢ ⇢ <a href='#i-dont-understand-what-it-is-certificates-are-'>I dont understand what it is. Certificates are ...</a></li>
+<li>⇢ ⇢ <a href='#don-t-just-blindly-trust-llms-i-recently-'>Don&#39;t just blindly trust LLMs. I recently ...</a></li>
+<li>⇢ <a href='#april-2025'>April 2025</a></li>
+<li>⇢ ⇢ <a href='#i-knew-about-any-being-equivalent-to-'>I knew about any being equivalent to ...</a></li>
+<li>⇢ ⇢ <a href='#neat-summary-of-new-perl-features-per-'>Neat summary of new <span class='inlinecode'>#Perl</span> features per ...</a></li>
+<li>⇢ ⇢ <a href='#errorsas-checks-for-the-error-type-whereas-'>errors.As() checks for the error type, whereas ...</a></li>
+<li>⇢ ⇢ <a href='#good-stuff-10-years-of-functional-options-and-'>Good stuff: 10 years of functional options and ...</a></li>
+<li>⇢ ⇢ <a href='#i-had-some-fun-with-freebsd-bhyve-and-'>I had some fun with <span class='inlinecode'>#FreeBSD</span>, <span class='inlinecode'>#Bhyve</span> and ...</a></li>
+<li>⇢ ⇢ <a href='#the-moment-your-blog-receives-prs-for-typo-'>The moment your blog receives PRs for typo ...</a></li>
+<li>⇢ ⇢ <a href='#one-thing-not-mentioned-is-that-openrsync-s-'>One thing not mentioned is that <span class='inlinecode'>#OpenRsync</span>&#39;s ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-an-interesting-elixir-pipes-operator-'>This is an interesting <span class='inlinecode'>#Elixir</span> pipes operator ...</a></li>
+<li>⇢ ⇢ <a href='#the-story-of-how-my-favorite-golang-book-was-'>The story of how my favorite <span class='inlinecode'>#Golang</span> book was ...</a></li>
+<li>⇢ ⇢ <a href='#these-are-my-personal-book-notes-from-daniel-'>These are my personal book notes from Daniel ...</a></li>
+<li>⇢ ⇢ <a href='#i-certainly-learned-a-lot-reading-this-llm-'>I certainly learned a lot reading this <span class='inlinecode'>#llm</span> ...</a></li>
+<li>⇢ ⇢ <a href='#writing-indempotent-bash-scripts-'>Writing indempotent <span class='inlinecode'>#Bash</span> scripts ...</a></li>
+<li>⇢ ⇢ <a href='#regarding-ai-for-code-generation-you-should-'>Regarding <span class='inlinecode'>#AI</span> for code generation. You should ...</a></li>
+<li>⇢ ⇢ <a href='#i-like-the-rocky-metaphor-and-this-post-also-'>I like the Rocky metaphor. And this post also ...</a></li>
+<li>⇢ <a href='#may-2025'>May 2025</a></li>
+<li>⇢ ⇢ <a href='#there-s-now-also-a-fish-shell-edition-of-my-'>There&#39;s now also a <span class='inlinecode'>#Fish</span> shell edition of my ...</a></li>
+<li>⇢ ⇢ <a href='#i-loved-this-talk-it-s-about-how-you-can-'>I loved this talk. It&#39;s about how you can ...</a></li>
+<li>⇢ ⇢ <a href='#some-unexpected-golang-stuff-ppl-say-that-'>Some unexpected <span class='inlinecode'>#golang</span> stuff, ppl say, that ...</a></li>
+<li>⇢ ⇢ <a href='#with-the-advent-of-ai-and-llms-i-have-observed-'>With the advent of AI and LLMs, I have observed ...</a></li>
+<li>⇢ ⇢ <a href='#for-science-fun-and-profit-i-set-up-a-'>For science, fun and profit, I set up a ...</a></li>
+<li>⇢ ⇢ <a href='#ever-wondered-about-the-hung-task-linux-'>Ever wondered about the hung task Linux ...</a></li>
+<li>⇢ ⇢ <a href='#a-bit-of-fun-the-fortran-hating-gateway--'>A bit of <span class='inlinecode'>#fun</span>: The FORTRAN hating gateway ― ...</a></li>
+<li>⇢ ⇢ <a href='#so-golang-was-invented-while-engineers-at-'>So, Golang was invented while engineers at ...</a></li>
+<li>⇢ ⇢ <a href='#i-couldn-t-do-without-here-docs-if-they-did-'>I couldn&#39;t do without here-docs. If they did ...</a></li>
+<li>⇢ ⇢ <a href='#i-started-using-computers-as-a-kid-on-ms-dos-'>I started using computers as a kid on MS-DOS ...</a></li>
+<li>⇢ ⇢ <a href='#thats-interesting-running-android-in-'>Thats interesting, running <span class='inlinecode'>#Android</span> in ...</a></li>
+<li>⇢ ⇢ <a href='#before-wiping-the-pre-installed-windows-11-'>Before wiping the pre-installed <span class='inlinecode'>#Windows</span> 11 ...</a></li>
+<li>⇢ ⇢ <a href='#some-might-hate-me-saying-this-but-didnt-'>Some might hate me saying this, but didnt ...</a></li>
+<li>⇢ ⇢ <a href='#wouldn-t-still-do-that-even-with-100-test-'>Wouldn&#39;t still do that, even with 100% test ...</a></li>
+<li>⇢ ⇢ <a href='#some-neat-slice-tricks-for-go-golang-'>Some neat slice tricks for Go: <span class='inlinecode'>#golang</span> ...</a></li>
+<li>⇢ ⇢ <a href='#i-understand-that-kubernetes-is-not-for-'>I understand that Kubernetes is not for ...</a></li>
+<li>⇢ <a href='#june-2025'>June 2025</a></li>
+<li>⇢ ⇢ <a href='#some-great-advices-will-try-out-some-of-them-'>Some great advices, will try out some of them! ...</a></li>
+<li>⇢ ⇢ <a href='#in-golang-values-are-actually-copied-when-'>In <span class='inlinecode'>#Golang</span>, values are actually copied when ...</a></li>
+<li>⇢ ⇢ <a href='#this-is-a-great-little-tutorial-for-searching-'>This is a great little tutorial for searching ...</a></li>
+<li>⇢ ⇢ <a href='#the-mov-instruction-of-a-cpu-is-turing-'>The mov instruction of a CPU is turing ...</a></li>
+<li>⇢ ⇢ <a href='#i-removed-the-social-media-profile-from-my-'>I removed the social media profile from my ...</a></li>
+<li>⇢ ⇢ <a href='#so-want-a-real-recent-unix-use-aix-macos-'>So want a "real" recent UNIX? Use AIX! <span class='inlinecode'>#macos</span> ...</a></li>
+<li>⇢ ⇢ <a href='#this-episode-i-think-is-kind-of-an-eye-opener-'>This episode, I think, is kind of an eye-opener ...</a></li>
+<li>⇢ ⇢ <a href='#my-openbsd-blog-setup-got-mentioned-in-the-'>My <span class='inlinecode'>#OpenBSD</span> blog setup got mentioned in the ...</a></li>
+<li>⇢ ⇢ <a href='#golang-is-the-best-when-it-comes-to-agentic-'><span class='inlinecode'>#Golang</span> is the best when it comes to agentic ...</a></li>
+<li>⇢ ⇢ <a href='#where-zsh-is-better-than-bash-'>Where <span class='inlinecode'>#zsh</span> is better than <span class='inlinecode'>#bash</span> ...</a></li>
+<li>⇢ ⇢ <a href='#i-really-enjoyed-this-talk-about-obscure-go-'>I really enjoyed this talk about obscure Go ...</a></li>
+<li>⇢ ⇢ <a href='#commenting-your-regular-expression-is-generally-'>Commenting your regular expression is generally ...</a></li>
+<li>⇢ ⇢ <a href='#you-have-to-make-a-decision-for-yourself-but-'>You have to make a decision for yourself, but ...</a></li>
+<li>⇢ ⇢ <a href='#100-go-mistakes-and-how-to-avoid-them-is-one-'>"100 Go Mistakes and How to Avoid Them" is one ...</a></li>
+<li>⇢ ⇢ <a href='#the-ruby-data-class-seems-quite-helpful-'>The <span class='inlinecode'>#Ruby</span> Data class seems quite helpful ...</a></li>
+</ul><br />
+<h2 style='display: inline' id='january-2025'>January 2025</h2><br />
+<br />
+<h3 style='display: inline' id='i-am-currently-binge-listening-to-the-google-'>I am currently binge-listening to the Google ...</h3><br />
+<br />
+<span>I am currently binge-listening to the Google <span class='inlinecode'>#SRE</span> ProdCast. It&#39;s really great to learn about the stories of individual SREs and their journeys. It is not just about SREs at Google; there are also external guests.</span><br />
+<br />
+<a class='textlink' href='https://sre.google/prodcast/'>sre.google/prodcast/</a><br />
+<br />
+<h3 style='display: inline' id='recently-there-was-a-5000-loc-bash-'>Recently, there was a &gt;5000 LOC <span class='inlinecode'>#bash</span> ...</h3><br />
+<br />
+<span>Recently, there was a &gt;5000 LOC <span class='inlinecode'>#bash</span> codebase at work that reported the progress of a migration, nobody understood it and it was wonky (sometimes it would not return the desired results). On top of that, the coding style was very bad as well (I could rant forever here). The engineer who wrote it left the company. I rewrote it in <span class='inlinecode'>#Perl</span> in about 300 LOC. Colleagues asked why not Python. Perl is the perfect choice here—it&#39;s even in its name: Practical Extraction and Report Language!</span><br />
+<br />
+<h3 style='display: inline' id='ghostty-is-a-terminal-emulator-that-was-'>Ghostty is a terminal emulator that was ...</h3><br />
+<br />
+<span>Ghostty is a terminal emulator that was recently released publicly as open-source. I love that it works natively on both Linux and macOS; it looks great (font rendering) and is fast and customizable via a config file (which I manage with a config mng system). Ghostty is a passion project written in Zig, the author loved the community so much while working on it that he donated $300k to the Zig Foundation. <span class='inlinecode'>#terminal</span> <span class='inlinecode'>#emulator</span></span><br />
+<br />
+<a class='textlink' href='https://ghostty.org'>ghostty.org</a><br />
+<br />
+<h3 style='display: inline' id='go-is-not-an-easy-programming-language-don-t-'>Go is not an easy programming language. Don&#39;t ...</h3><br />
+<br />
+<span>Go is not an easy programming language. Don&#39;t confuse easy with simple syntax. I&#39;d agree to this. With the recent addition of Generics to the language I also feel that even the syntax stops being simple.. Also, simplicity is complex (especially under the hood how the language works - there are many mechanics you need to know if you really want to master the language). <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.arp242.net/go-easy.html'>www.arp242.net/go-easy.html</a><br />
+<br />
+<h3 style='display: inline' id='how-will-ai-change-software-engineering-or-has-'>How will AI change software engineering (or has ...</h3><br />
+<br />
+<span>How will AI change software engineering (or has it already)? The bottom line is that less experienced engineers may have problems (accepting incomplete or incorrect programs, only reaching 70 percent solutions), while experienced engineers can leverage AI to boost their performance as they know how to fix the remaining 30 percent of the generated code. <span class='inlinecode'>#ai</span> <span class='inlinecode'>#engineering</span> <span class='inlinecode'>#software</span></span><br />
+<br />
+<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-ai-will-change-software-engineering'>newsletter.pragmaticengineer.com/p/how-ai-will-change-software-engineering</a><br />
+<br />
+<h3 style='display: inline' id='eliminating-toil---toil-is-not-always-a-bad-'>Eliminating toil - Toil is not always a bad ...</h3><br />
+<br />
+<span>Eliminating toil - Toil is not always a bad thing - some even enjoy toil - it is calming in small amounts - but it becomes toxic in large amounts - <span class='inlinecode'>#SRE</span></span><br />
+<br />
+<a class='textlink' href='https://sre.google/sre-book/eliminating-toil/'>sre.google/sre-book/eliminating-toil/</a><br />
+<br />
+<h3 style='display: inline' id='fun-read-how-about-using-the-character-'>Fun read. How about using the character ...</h3><br />
+<br />
+<span>Fun read. How about using the character sequence :-) as a statement separator in a programming language?</span><br />
+<br />
+<a class='textlink' href='https://ntietz.com/blog/researching-why-we-use-semicolons-as-statement-terminators/'>ntietz.com/blog/researching-why-we-use-semicolons-as-statement-terminators/</a><br />
+<br />
+<h3 style='display: inline' id='thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</h3><br />
+<br />
+<span>Thats unexpected, you cant remove a NaN key from a map without clearing it! <span class='inlinecode'>#golang</span> via @wallabagapp</span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html</a><br />
+<br />
+<h3 style='display: inline' id='nice-refresher-for-shell-bash-zsh-'>Nice refresher for <span class='inlinecode'>#shell</span> <span class='inlinecode'>#bash</span> <span class='inlinecode'>#zsh</span> ...</h3><br />
+<br />
+<span>Nice refresher for <span class='inlinecode'>#shell</span> <span class='inlinecode'>#bash</span> <span class='inlinecode'>#zsh</span> redirection rules</span><br />
+<br />
+<a class='textlink' href='https://rednafi.com/misc/shell_redirection/'>rednafi.com/misc/shell_redirection/</a><br />
+<br />
+<h3 style='display: inline' id='i-think-discussing-action-items-in-incident-'>I think discussing action items in incident ...</h3><br />
+<br />
+<span>I think discussing action items in incident reviews is important. At least the obvious should be captured and noted down. It does not mean that the action items need to be fully refined in the review meeting; that would be out of scope, in my opinion.</span><br />
+<br />
+<a class='textlink' href='https://surfingcomplexity.blog/2024/09/28/why-i-dont-like-discussing-action-items-during-incident-reviews/'>surfingcomplexity.blog/2024/09/28/why-..-..-action-items-during-incident-reviews/</a><br />
+<br />
+<h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
+<br />
+<span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</h3><br />
+<br />
+<span>In the "Working with an SRE Interview" I have been askd about what it&#39;s like working with an SRE! We&#39;d covered much more in depth, but we decided not to make it too long in the final version! <span class='inlinecode'>#sre</span> <span class='inlinecode'>#interview</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html</a><br />
+<br />
+<h3 style='display: inline' id='in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</h3><br />
+<br />
+<span>In the "Working with an SRE Interview" I have been askd about what it&#39;s like working with an SRE! We&#39;d covered much more in depth, but we decided not to make it too long in the final version! <span class='inlinecode'>#sre</span> <span class='inlinecode'>#interview</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html</a><br />
+<br />
+<h3 style='display: inline' id='small-introduction-to-the-android-'>Small introduction to the <span class='inlinecode'>#Android</span> ...</h3><br />
+<br />
+<span>Small introduction to the <span class='inlinecode'>#Android</span> distribution called <span class='inlinecode'>#GrapheneOS</span> For myself, I am using a Pixel 7 Pro, which comes with "only" 5 years of support (not yet 7 years like the Pixel 8 and 9 series). I also wrote about GrapheneOS here once:</span><br />
+<br />
+<a class='textlink' href='https://dataswamp.org/~solene/2025-01-12-intro-to-grapheneos.html'>dataswamp.org/~solene/2025-01-12-intro-to-grapheneos.html</a><br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.gmi'>foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html'>foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html</a><br />
+<br />
+<h3 style='display: inline' id='helix-202501-has-been-released-the-completion-'>Helix 2025.01 has been released. The completion ...</h3><br />
+<br />
+<span>Helix 2025.01 has been released. The completion of path names and the snippet functionality will be particularly useful for me. Overall, it&#39;s a great release. The release notes cover only some highlights, but there are many more changes in this version so also have a look at the Changelog! <span class='inlinecode'>#HelixEditor</span></span><br />
+<br />
+<a class='textlink' href='https://helix-editor.com/news/release-25-01-highlights/'>helix-editor.com/news/release-25-01-highlights/</a><br />
+<br />
+<h3 style='display: inline' id='i-found-these-are-excellent-examples-of-how-'>I found these are excellent examples of how ...</h3><br />
+<br />
+<span>I found these are excellent examples of how <span class='inlinecode'>#OpenBSD</span>&#39;s <span class='inlinecode'>#relayd</span> can be used.</span><br />
+<br />
+<a class='textlink' href='https://www.tumfatig.net/2023/using-openbsd-relayd8-as-an-application-layer-gateway/'>www.tumfatig.net/2023/using-openbsd-relayd8-as-an-application-layer-gateway/</a><br />
+<br />
+<h3 style='display: inline' id='llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</h3><br />
+<br />
+<span>LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generating Ansible, some uses cases are there. Wouldn&#39;t trust it fully, though.</span><br />
+<br />
+<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI</a><br />
+<br />
+<h3 style='display: inline' id='enjoying-an-apc-power-ups-bx750mi-in-my-'>Enjoying an APC Power-UPS BX750MI in my ...</h3><br />
+<br />
+<span>Enjoying an APC Power-UPS BX750MI in my <span class='inlinecode'>#homelab</span> with <span class='inlinecode'>#FreeBSD</span> and apcupsd. I can easily use the UPS status to auto-shutdown a cluster of FreeBSD machines on a power cut. One FreeBSD machine acts as the apcupsd master, connected via USB to the APC, while the remaining machines read the status remotely via the apcupsd network port from the master. However, it won&#39;t work when the master is down. <span class='inlinecode'>#APC</span> <span class='inlinecode'>#UPS</span></span><br />
+<br />
+<h3 style='display: inline' id='even-in-the-projects-where-i-m-the-only-'>"Even in the projects where I&#39;m the only ...</h3><br />
+<br />
+<span>"Even in the projects where I&#39;m the only person, there are at least three people involved: past me, present me, and future me." - Quote from <span class='inlinecode'>#software</span> <span class='inlinecode'>#programming</span></span><br />
+<br />
+<a class='textlink' href='https://liw.fi/40/#index1h1'>liw.fi/40/#index1h1</a><br />
+<br />
+<h3 style='display: inline' id='connecting-an-ups-to-my-freebsd-cluster-'>Connecting an <span class='inlinecode'>#UPS</span> to my <span class='inlinecode'>#FreeBSD</span> cluster ...</h3><br />
+<br />
+<span>Connecting an <span class='inlinecode'>#UPS</span> to my <span class='inlinecode'>#FreeBSD</span> cluster in my <span class='inlinecode'>#homelab</span>, protecting it from power cuts!</span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi'>foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html</a><br />
+<br />
+<h3 style='display: inline' id='so-the-co-founder-and-cto-of-honeycombio-and-'>So, the Co-founder and CTO of honeycomb.io and ...</h3><br />
+<br />
+<span>So, the Co-founder and CTO of honeycomb.io and author of the book Observability Engineering always hated observability. And Distinguished Software Engineer and The Pragmatic Engineer host can&#39;t pronounce the word Observability. :-) No, jokes aside, I liked this podcast episode of The Pragmatic Engineer: Observability: the present and future, with Charity Majors <span class='inlinecode'>#sre</span> <span class='inlinecode'>#observability</span></span><br />
+<br />
+<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/observability-the-present-and-future'>newsletter.pragmaticengineer.com/p/observability-the-present-and-future</a><br />
+<br />
+<h2 style='display: inline' id='february-2025'>February 2025</h2><br />
+<br />
+<h3 style='display: inline' id='i-don-t-know-about-you-but-at-work-i-usually-'>I don&#39;t know about you, but at work, I usually ...</h3><br />
+<br />
+<span>I don&#39;t know about you, but at work, I usually deal with complex setups involving thousands of servers and work in a complex hybrid microservices-based environment (cloud and on-prem), where homelabbing (as simple as described in my blog post) is really relaxing and recreative. So, I was homelabbing a bit again, securing my <span class='inlinecode'>#FreeBSD</span> cluster from power cuts. <span class='inlinecode'>#UPS</span> <span class='inlinecode'>#recreative</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi'>foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.html</a><br />
+<br />
+<h3 style='display: inline' id='great-proposal-got-accepted-by-the-goteam-for-'>Great proposal (got accepted by the Goteam) for ...</h3><br />
+<br />
+<span>Great proposal (got accepted by the Goteam) for safer file system open functions <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://github.com/golang/go/issues/67002'>github.com/golang/go/issues/67002</a><br />
+<br />
+<h3 style='display: inline' id='my-gemtexter-has-only-1320-loc-the-biggest-'>My Gemtexter has only 1320 LOC.... The Biggest ...</h3><br />
+<br />
+<span>My Gemtexter has only 1320 LOC.... The Biggest Shell Programs in the World are huuuge... <span class='inlinecode'>#shell</span> <span class='inlinecode'>#sh</span></span><br />
+<br />
+<a class='textlink' href='https://github.com/oils-for-unix/oils/wiki/The-Biggest-Shell-Programs-in-the-World'>github.com/oils-for-unix/oils/wiki/The-Biggest-Shell-Programs-in-the-World</a><br />
+<br />
+<h3 style='display: inline' id='against-tmp---he-is-making-a-point-unix-'>Against /tmp - He is making a point <span class='inlinecode'>#unix</span> ...</h3><br />
+<br />
+<span>Against /tmp - He is making a point <span class='inlinecode'>#unix</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#bsd</span> <span class='inlinecode'>#filesystem</span> via @wallabagapp</span><br />
+<br />
+<a class='textlink' href='https://dotat.at/@/2024-10-22-tmp.html'>dotat.at/@/2024-10-22-tmp.html</a><br />
+<br />
+<h3 style='display: inline' id='random-weird-things-part-2-blog-'>Random Weird Things Part 2: <span class='inlinecode'>#blog</span> ...</h3><br />
+<br />
+<span>Random Weird Things Part 2: <span class='inlinecode'>#blog</span> <span class='inlinecode'>#computing</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi'>foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.html'>foo.zone/gemfeed/2025-02-08-random-weird-things-ii.html</a><br />
+<br />
+<h3 style='display: inline' id='as-a-former-pebble-user-and-fan-thats-'>As a former <span class='inlinecode'>#Pebble</span> user and fan, thats ...</h3><br />
+<br />
+<span>As a former <span class='inlinecode'>#Pebble</span> user and fan, thats aweaome news. PebbleOS is now open source and there will aoon be a new watch. I don&#39;t know about you, but I will be the first getting one :-) <span class='inlinecode'>#foss</span></span><br />
+<br />
+<a class='textlink' href='https://ericmigi.com/blog/why-were-bringing-pebble-back'>ericmigi.com/blog/why-were-bringing-pebble-back</a><br />
+<br />
+<h3 style='display: inline' id='i-think-i-am-slowly-getting-the-point-of-cue-'>I think I am slowly getting the point of Cue. ...</h3><br />
+<br />
+<span>I think I am slowly getting the point of Cue. For example, it can replace both a JSON file and a JSON Schema. Furthermore, you can convert it from and into different formats (Cue, JSON, YAML, Go data types, ...), and you can nicely embed this into a Go project as well. <span class='inlinecode'>#cue</span> <span class='inlinecode'>#cuelang</span> <span class='inlinecode'>#golang</span> <span class='inlinecode'>#configuration</span></span><br />
+<br />
+<a class='textlink' href='https://cuelang.org'>cuelang.org</a><br />
+<br />
+<h3 style='display: inline' id='jonathan-s-reflection-of-10-years-of-'>Jonathan&#39;s reflection of 10 years of ...</h3><br />
+<br />
+<span>Jonathan&#39;s reflection of 10 years of programming!</span><br />
+<br />
+<a class='textlink' href='https://jonathan-frere.com/posts/10-years-of-programming/'>jonathan-frere.com/posts/10-years-of-programming/</a><br />
+<br />
+<h3 style='display: inline' id='really-enjoyed-reading-this-easily-digestible-'>Really enjoyed reading this. Easily digestible ...</h3><br />
+<br />
+<span>Really enjoyed reading this. Easily digestible summary of what&#39;s new in Go 1.24. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://antonz.org/go-1-24/'>antonz.org/go-1-24/</a><br />
+<br />
+<h3 style='display: inline' id='some-great-advice-from-40-years-of-experience-'>Some great advice from 40 years of experience ...</h3><br />
+<br />
+<span>Some great advice from 40 years of experience as a software developer. <span class='inlinecode'>#software</span> <span class='inlinecode'>#development</span></span><br />
+<br />
+<a class='textlink' href='https://liw.fi/40/#index1h1'>liw.fi/40/#index1h1</a><br />
+<br />
+<h3 style='display: inline' id='i-enjoyed-this-talk-some-recipes-i-knew-'>I enjoyed this talk, some recipes I knew ...</h3><br />
+<br />
+<span>I enjoyed this talk, some recipes I knew already, others were new to me. The "line of sight" is my favourite, which I always tend to follow. I also liked the example where the speaker simplified a "complex" nested functions into two not-nested-if-statements. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=zdKHq9Xo4OY&amp;list=WL&amp;index=5'>www.youtube.com/watch?v=zdKHq9Xo4OY&amp;list=WL&amp;index=5</a><br />
+<br />
+<h3 style='display: inline' id='a-way-of-how-to-add-the-version-info-to-the-go-'>A way of how to add the version info to the Go ...</h3><br />
+<br />
+<span>A way of how to add the version info to the Go binary. ... I personally just hardcode the version number in version.go and update it there manually for each release. But with Go 1.24, I will try embedding it! <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://jerrynsh.com/3-easy-ways-to-add-version-flag-in-go/'>jerrynsh.com/3-easy-ways-to-add-version-flag-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='in-other-words-using-tparallel-for-'>In other words, using t.Parallel() for ...</h3><br />
+<br />
+<span>In other words, using t.Parallel() for lightweight unit tests will likely make them slower.... <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://threedots.tech/post/go-test-parallelism/'>threedots.tech/post/go-test-parallelism/</a><br />
+<br />
+<h3 style='display: inline' id='neat-little-blog-post-showcasing-various-'>Neat little blog post, showcasing various ...</h3><br />
+<br />
+<span>Neat little blog post, showcasing various methods unsed for generic programming before of the introduction of generics. Only reflection wasn&#39;t listed. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://bitfieldconsulting.com/posts/generics'>bitfieldconsulting.com/posts/generics</a><br />
+<br />
+<h3 style='display: inline' id='the-smallest-thing-in-go-golang-'>The smallest thing in Go <span class='inlinecode'>#golang</span> ...</h3><br />
+<br />
+<span>The smallest thing in Go <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://bitfieldconsulting.com/posts/iota'>bitfieldconsulting.com/posts/iota</a><br />
+<br />
+<h3 style='display: inline' id='fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</h3><br />
+<br />
+<span>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that a defer object can either be heap or stack allocated. And there are some rules for inlining, too.</span><br />
+<br />
+<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>victoriametrics.com/blog/defer-in-go/</a><br />
+<br />
+<h3 style='display: inline' id='what-i-like-about-go-is-that-it-is-still-'>What I like about Go is that it is still ...</h3><br />
+<br />
+<span>What I like about Go is that it is still possible to understand what&#39;s going on under the hood, whereas in JVM-based languages (for example) or dynamic languages, there are too many optimizations and abstractions. However, you don&#39;t need to know too much about how it works under the hood in Go (like memory management in C). It&#39;s just the fact that you can—you have a choice. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://blog.devtrovert.com/p/goroutine-scheduler-revealed-youll'>blog.devtrovert.com/p/goroutine-scheduler-revealed-youll</a><br />
+<br />
+<h2 style='display: inline' id='march-2025'>March 2025</h2><br />
+<br />
+<h3 style='display: inline' id='television-has-somewhat-transformed-how-i-work-'>Television has somewhat transformed how I work ...</h3><br />
+<br />
+<span>Television has somewhat transformed how I work in the shell on a day-to-day basis. It is especially useful for me in navigating all the local Git repositories on my laptop. I have bound Ctrl+G in my shell for that now. <span class='inlinecode'>#television</span> <span class='inlinecode'>#tv</span> <span class='inlinecode'>#tool</span> <span class='inlinecode'>#shell</span></span><br />
+<br />
+<a class='textlink' href='https://github.com/alexpasmantier/television'>github.com/alexpasmantier/television</a><br />
+<br />
+<h3 style='display: inline' id='once-in-a-while-i-like-to-read-a-book-about-a-'>Once in a while, I like to read a book about a ...</h3><br />
+<br />
+<span>Once in a while, I like to read a book about a programming language I have been using for a while to find new tricks or to refresh and sharpen my knowledge about it. I just finished reading "Programming Ruby 3.3," and I must say this is my favorite Ruby book now. What makes this one so special is that it is quite recent and covers all the new features. <span class='inlinecode'>#ruby</span> <span class='inlinecode'>#programming</span> <span class='inlinecode'>#coding</span></span><br />
+<br />
+<a class='textlink' href='https://pragprog.com/titles/ruby5/programming-ruby-3-3-5th-edition/'>pragprog.com/titles/ruby5/programming-ruby-3-3-5th-edition/</a><br />
+<br />
+<h3 style='display: inline' id='as-you-may-have-noticed-i-like-to-share-on-'>As you may have noticed, I like to share on ...</h3><br />
+<br />
+<span>As you may have noticed, I like to share on Mastodon and LinkedIn all the technical things I find interesting, and this blog post is technically all about that. Having said that, I love these tiny side projects. They are so relaxing to work on! <span class='inlinecode'>#gos</span> <span class='inlinecode'>#golang</span> <span class='inlinecode'>#tool</span> <span class='inlinecode'>#programming</span> <span class='inlinecode'>#fun</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.gmi'>foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.html'>foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.html</a><br />
+<br />
+<h3 style='display: inline' id='personally-i-think-ai-llms-are-pretty-'>Personally, I think AI (LLMs) are pretty ...</h3><br />
+<br />
+<span>Personally, I think AI (LLMs) are pretty useful. But there&#39;s really some Hype around that. However, AI is about to stay - its not all hype</span><br />
+<br />
+<a class='textlink' href='https://unixdigest.com/articles/i-passionately-hate-hype-especially-the-ai-hype.html'>unixdigest.com/articles/i-passionately-hate-hype-especially-the-ai-hype.html</a><br />
+<br />
+<h3 style='display: inline' id='type-aliases-in-golang-soon-also-work-with-'>Type aliases in <span class='inlinecode'>#golang</span>, soon also work with ...</h3><br />
+<br />
+<span>Type aliases in <span class='inlinecode'>#golang</span>, soon also work with generics. It&#39;s an interesting feature, useful for refactorings and simplifications</span><br />
+<br />
+<a class='textlink' href='https://go.dev/blog/alias-names'>go.dev/blog/alias-names</a><br />
+<br />
+<h3 style='display: inline' id='perl-my-first-love-of-programming-'><span class='inlinecode'>#Perl</span>, my "first love" of programming ...</h3><br />
+<br />
+<span><span class='inlinecode'>#Perl</span>, my "first love" of programming languages. Still there, still use it here and then (but not as my primary language at the moment). And others do so as well, apparently. Which makes me happy! :-)</span><br />
+<br />
+<a class='textlink' href='https://dev.to/fa5tworm/why-perl-remains-indispensable-in-the-age-of-modern-programming-languages-2io0'>dev.to/fa5tworm/why-perl-remains-indis..-..e-of-modern-programming-languages-2io0</a><br />
+<br />
+<h3 style='display: inline' id='i-guess-there-are-valid-reasons-for-phttpdget-'>I guess there are valid reasons for phttpdget, ...</h3><br />
+<br />
+<span>I guess there are valid reasons for phttpdget, which I also don&#39;t know about? Maybe complexity and/or licensing of other tools. <span class='inlinecode'>#FreeBSD</span></span><br />
+<br />
+<a class='textlink' href='https://l33t.codes/2024/12/05/Updating-FreeBSD-and-Re-Inventing-the-Wheel/'>l33t.codes/2024/12/05/Updating-FreeBSD-and-Re-Inventing-the-Wheel/</a><br />
+<br />
+<h3 style='display: inline' id='this-is-one-of-the-reasons-why-i-like-'>This is one of the reasons why I like ...</h3><br />
+<br />
+<span>This is one of the reasons why I like terminal-based applications so much—they are usually more lightweight than GUI-based ones (and also more flexible).</span><br />
+<br />
+<a class='textlink' href='https://www.arp242.net/stupid-light.html'>www.arp242.net/stupid-light.html</a><br />
+<br />
+<h3 style='display: inline' id='advanced-concurrency-patterns-with-golang-'>Advanced Concurrency Patterns with <span class='inlinecode'>#Golang</span> ...</h3><br />
+<br />
+<span>Advanced Concurrency Patterns with <span class='inlinecode'>#Golang</span></span><br />
+<br />
+<a class='textlink' href='https://blogtitle.github.io/go-advanced-concurrency-patterns-part-1/'>blogtitle.github.io/go-advanced-concurrency-patterns-part-1/</a><br />
+<br />
+<h3 style='display: inline' id='sqlite-was-designed-as-an-tcl-extension-'><span class='inlinecode'>#SQLite</span> was designed as an <span class='inlinecode'>#TCL</span> extension. ...</h3><br />
+<br />
+<span><span class='inlinecode'>#SQLite</span> was designed as an <span class='inlinecode'>#TCL</span> extension. There are ~trillion SQLite databases in active use. SQLite heavily relies on <span class='inlinecode'>#TCL</span>: C code generation via mksqlite3c.tcl, C code isn&#39;t edited directly by the SQLite developers, and for testing , and for doc generation). The devs use a custom editor written in Tcl/Tk called "e" to edit the source! There&#39;s a custom versioning system Fossil, a custom chat-room written in Tcl/Tk!</span><br />
+<br />
+<a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html</a><br />
+<br />
+<h3 style='display: inline' id='git-provides-automatic-rendering-of-markdown-'>Git provides automatic rendering of Markdown ...</h3><br />
+<br />
+<span>Git provides automatic rendering of Markdown files, including README.md, in a repository’s root directory" .... so much junk now in LLM powered search engines.... <span class='inlinecode'>#llm</span> <span class='inlinecode'>#ai</span></span><br />
+<br />
+<h3 style='display: inline' id='these-are-some-neat-little-go-tips-linters-'>These are some neat little Go tips. Linters ...</h3><br />
+<br />
+<span>These are some neat little Go tips. Linters already tell you when you silently omit a function return value, though. The slice filter without allocation trick is nice and simple. And I agree that switch statements are preferable to if-else statements. <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://blog.devtrovert.com/p/go-ep5-avoid-contextbackground-make'>blog.devtrovert.com/p/go-ep5-avoid-contextbackground-make</a><br />
+<br />
+<h3 style='display: inline' id='this-is-a-great-introductory-blog-post-about-'>This is a great introductory blog post about ...</h3><br />
+<br />
+<span>This is a great introductory blog post about the Helix modal editor. It&#39;s also been my first choice for over a year now. I am really looking forward to the Steel plugin system, though. I don&#39;t think I need a lot of plugins, but one or two would certainly be on my wish list. <span class='inlinecode'>#HelixEditor</span> <span class='inlinecode'>#Helix</span></span><br />
+<br />
+<a class='textlink' href='https://felix-knorr.net/posts/2025-03-16-helix-review.html'>felix-knorr.net/posts/2025-03-16-helix-review.html</a><br />
+<br />
+<h3 style='display: inline' id='maps-in-go-under-the-hood-golang-'>Maps in Go under the hood <span class='inlinecode'>#golang</span> ...</h3><br />
+<br />
+<span>Maps in Go under the hood <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://victoriametrics.com/blog/go-map/'>victoriametrics.com/blog/go-map/</a><br />
+<br />
+<h3 style='display: inline' id='i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</h3><br />
+<br />
+<span>I found that working on multiple side projects concurrently is better than concentrating on just one. This seems inefficient, but if you to lose motivation, you can temporarily switch to another one with full élan. Remember to stop starting and start finishing. This doesn&#39;t mean you should be working on 10+ side projects concurrently! Select your projects and commit to finishing them before starting the next thing. For example, my current limit of concurrent side projects is around five.</span><br />
+<br />
+<h3 style='display: inline' id='i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</h3><br />
+<br />
+<span>I have been in incidents. Understandably, everyone wants the issue to be resolved as quickly and others want to know how long TTR will be. IMHO, providing no estimates at all is no solution either. So maybe give a rough estimate but clearly communicate that the estimate is rough and that X, Y, and Z can interfere, meaning there is a chance it will take longer to resolve the incident. Just my thought. What&#39;s yours?</span><br />
+<br />
+<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/</a><br />
+<br />
+<h3 style='display: inline' id='i-dont-understand-what-it-is-certificates-are-'>I dont understand what it is. Certificates are ...</h3><br />
+<br />
+<span>I dont understand what it is. Certificates are so easy to monitor but still, expirations cause so many incidents. <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://securityboulevard.com/2024/10/dont-let-an-expired-certificate-cause-critical-downtime-prevent-outages-with-a-smart-clm/'>securityboulevard.com/2024/10/dont-let..-..time-prevent-outages-with-a-smart-clm/</a><br />
+<br />
+<h3 style='display: inline' id='don-t-just-blindly-trust-llms-i-recently-'>Don&#39;t just blindly trust LLMs. I recently ...</h3><br />
+<br />
+<span>Don&#39;t just blindly trust LLMs. I recently trusted an LLM, spent 1 hour debugging, and ultimately had to verify my assumption about <span class='inlinecode'>fcntl</span> behavior regarding inherited file descriptors in child processes manually with a C program, as the manual page wasn&#39;t clear to me. I could have done that immediately and I would have been done within 10 minutes. <span class='inlinecode'>#productivity</span> <span class='inlinecode'>#loss</span> <span class='inlinecode'>#llm</span> <span class='inlinecode'>#programming</span> <span class='inlinecode'>#C</span></span><br />
+<br />
+<h2 style='display: inline' id='april-2025'>April 2025</h2><br />
+<br />
+<h3 style='display: inline' id='i-knew-about-any-being-equivalent-to-'>I knew about any being equivalent to ...</h3><br />
+<br />
+<span>I knew about any being equivalent to interface{} in <span class='inlinecode'>#Golang</span>, but wasn&#39;t aware, that it was introduced to Go because of the generics.</span><br />
+<br />
+<h3 style='display: inline' id='neat-summary-of-new-perl-features-per-'>Neat summary of new <span class='inlinecode'>#Perl</span> features per ...</h3><br />
+<br />
+<span>Neat summary of new <span class='inlinecode'>#Perl</span> features per release</span><br />
+<br />
+<a class='textlink' href='https://sheet.shiar.nl/perl'>sheet.shiar.nl/perl</a><br />
+<br />
+<h3 style='display: inline' id='errorsas-checks-for-the-error-type-whereas-'>errors.As() checks for the error type, whereas ...</h3><br />
+<br />
+<span>errors.As() checks for the error type, whereas errors.Is() checks for the exact error value. Interesting read about Errors in <span class='inlinecode'>#golang</span> - and there is also a cat meme in the middle of the blog post! And then, it continues with pointers to pointers to error values or how about a pointer to an empty interface?</span><br />
+<br />
+<a class='textlink' href='https://adrianlarion.com/golang-error-handling-demystified-errors-is-errors-as-errors-unwrap-custom-errors-and-more/'>adrianlarion.com/golang-error-handling..-..-errors-unwrap-custom-errors-and-more/</a><br />
+<br />
+<h3 style='display: inline' id='good-stuff-10-years-of-functional-options-and-'>Good stuff: 10 years of functional options and ...</h3><br />
+<br />
+<span>Good stuff: 10 years of functional options and key lessons Learned along the way <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://www.bytesizego.com/blog/10-years-functional-options-golang'>www.bytesizego.com/blog/10-years-functional-options-golang</a><br />
+<br />
+<h3 style='display: inline' id='i-had-some-fun-with-freebsd-bhyve-and-'>I had some fun with <span class='inlinecode'>#FreeBSD</span>, <span class='inlinecode'>#Bhyve</span> and ...</h3><br />
+<br />
+<span>I had some fun with <span class='inlinecode'>#FreeBSD</span>, <span class='inlinecode'>#Bhyve</span> and <span class='inlinecode'>#Rocky</span> <span class='inlinecode'>#Linux</span>. Not just for fun, also for science and profit! <span class='inlinecode'>#homelab</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#self</span>-hosting</span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi'>foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.html</a><br />
+<br />
+<h3 style='display: inline' id='the-moment-your-blog-receives-prs-for-typo-'>The moment your blog receives PRs for typo ...</h3><br />
+<br />
+<span>The moment your blog receives PRs for typo corrections, you notice, that people are actually reading and care about your stuff :-) <span class='inlinecode'>#blog</span> <span class='inlinecode'>#personal</span> <span class='inlinecode'>#tech</span></span><br />
+<br />
+<h3 style='display: inline' id='one-thing-not-mentioned-is-that-openrsync-s-'>One thing not mentioned is that <span class='inlinecode'>#OpenRsync</span>&#39;s ...</h3><br />
+<br />
+<span>One thing not mentioned is that <span class='inlinecode'>#OpenRsync</span>&#39;s origin is the <span class='inlinecode'>#OpenBSD</span> project (at least as far as I am aware! Correct me if I am wrong :-) )! <span class='inlinecode'>#openbsd</span> <span class='inlinecode'>#rsync</span> <span class='inlinecode'>#macos</span> <span class='inlinecode'>#openrsync</span></span><br />
+<br />
+<a class='textlink' href='https://derflounder.wordpress.com/2025/04/06/rsync-replaced-with-openrsync-on-macos-sequoia/'>derflounder.wordpress.com/2025/04/06/r..-..laced-with-openrsync-on-macos-sequoia/</a><br />
+<br />
+<h3 style='display: inline' id='this-is-an-interesting-elixir-pipes-operator-'>This is an interesting <span class='inlinecode'>#Elixir</span> pipes operator ...</h3><br />
+<br />
+<span>This is an interesting <span class='inlinecode'>#Elixir</span> pipes operator experiment in <span class='inlinecode'>#Ruby</span>. <span class='inlinecode'>#Python</span> has also been experimenting with such an operator. Raku (not mentioned in the linked article) already has the <span class='inlinecode'>==&gt;</span> sequence operator, of course (which can also can be used backwards <span class='inlinecode'>&lt;==</span> - who has doubted? :-) ). <span class='inlinecode'>#syntax</span> <span class='inlinecode'>#codegolf</span> <span class='inlinecode'>#fun</span> <span class='inlinecode'>#coding</span> <span class='inlinecode'>#RakuLang</span></span><br />
+<br />
+<a class='textlink' href='https://zverok.space/blog/2024-11-16-elixir-pipes.html'>zverok.space/blog/2024-11-16-elixir-pipes.html</a><br />
+<br />
+<h3 style='display: inline' id='the-story-of-how-my-favorite-golang-book-was-'>The story of how my favorite <span class='inlinecode'>#Golang</span> book was ...</h3><br />
+<br />
+<span>The story of how my favorite <span class='inlinecode'>#Golang</span> book was written:</span><br />
+<br />
+<a class='textlink' href='https://www.thecoder.cafe/p/100-go-mistakes'>www.thecoder.cafe/p/100-go-mistakes</a><br />
+<br />
+<h3 style='display: inline' id='these-are-my-personal-book-notes-from-daniel-'>These are my personal book notes from Daniel ...</h3><br />
+<br />
+<span>These are my personal book notes from Daniel Pink&#39;s "When: The Scientific Secrets of Perfect Timing." The notes are for me (to improve happiness and productivity). You still need to read the whole book to get your own insights, but maybe the notes will be useful for you as well. <span class='inlinecode'>#blog</span> <span class='inlinecode'>#book</span> <span class='inlinecode'>#booknotes</span> <span class='inlinecode'>#productivity</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-04-19-when-book-notes.gmi'>foo.zone/gemfeed/2025-04-19-when-book-notes.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-04-19-when-book-notes.html'>foo.zone/gemfeed/2025-04-19-when-book-notes.html</a><br />
+<br />
+<h3 style='display: inline' id='i-certainly-learned-a-lot-reading-this-llm-'>I certainly learned a lot reading this <span class='inlinecode'>#llm</span> ...</h3><br />
+<br />
+<span>I certainly learned a lot reading this <span class='inlinecode'>#llm</span> <span class='inlinecode'>#coding</span> <span class='inlinecode'>#programming</span></span><br />
+<br />
+<a class='textlink' href='https://simonwillison.net/2025/Mar/11/using-llms-for-code/'>simonwillison.net/2025/Mar/11/using-llms-for-code/</a><br />
+<br />
+<h3 style='display: inline' id='writing-indempotent-bash-scripts-'>Writing indempotent <span class='inlinecode'>#Bash</span> scripts ...</h3><br />
+<br />
+<span>Writing indempotent <span class='inlinecode'>#Bash</span> scripts</span><br />
+<br />
+<a class='textlink' href='https://arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts/'>arslan.io/2019/07/03/how-to-write-idempotent-bash-scripts/</a><br />
+<br />
+<h3 style='display: inline' id='regarding-ai-for-code-generation-you-should-'>Regarding <span class='inlinecode'>#AI</span> for code generation. You should ...</h3><br />
+<br />
+<span>Regarding <span class='inlinecode'>#AI</span> for code generation. You should be at least a bit curious and exleriement a bit. You don&#39;t have to use it if you don&#39;t see fit purpose.</span><br />
+<br />
+<a class='textlink' href='https://registerspill.thorstenball.com/p/they-all-use-it?publication_id=1543843&amp;post_id=151910861&amp;isFreemail=true&amp;r=2n9ive&amp;triedRedirect=true'>registerspill.thorstenball.com/p/they-..-..email=true&amp;r=2n9ive&amp;triedRedirect=true</a><br />
+<br />
+<h3 style='display: inline' id='i-like-the-rocky-metaphor-and-this-post-also-'>I like the Rocky metaphor. And this post also ...</h3><br />
+<br />
+<span>I like the Rocky metaphor. And this post also reflects my thoughts on coding. <span class='inlinecode'>#llm</span> <span class='inlinecode'>#ai</span> <span class='inlinecode'>#software</span></span><br />
+<br />
+<a class='textlink' href='https://cekrem.github.io/posts/coding-as-craft-going-back-to-the-old-gym/'>cekrem.github.io/posts/coding-as-craft-going-back-to-the-old-gym/</a><br />
+<br />
+<h2 style='display: inline' id='may-2025'>May 2025</h2><br />
+<br />
+<h3 style='display: inline' id='there-s-now-also-a-fish-shell-edition-of-my-'>There&#39;s now also a <span class='inlinecode'>#Fish</span> shell edition of my ...</h3><br />
+<br />
+<span>There&#39;s now also a <span class='inlinecode'>#Fish</span> shell edition of my <span class='inlinecode'>#tmux</span> helper scripts: <span class='inlinecode'>#fishshell</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi'>foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html</a><br />
+<br />
+<h3 style='display: inline' id='i-loved-this-talk-it-s-about-how-you-can-'>I loved this talk. It&#39;s about how you can ...</h3><br />
+<br />
+<span>I loved this talk. It&#39;s about how you can create your own <span class='inlinecode'>#Linux</span> <span class='inlinecode'>#container</span> without Docker, using less than 100 lines of shell code without Docker or Podman and co. - Why is this talk useful? If you understand how <span class='inlinecode'>#containers</span> work "under the hood," it becomes easier to make design decisions, write your own tools, or debug production systems. I also recommend his training courses, of which I visited one once.</span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=4RUiVAlJE2w'>www.youtube.com/watch?v=4RUiVAlJE2w</a><br />
+<br />
+<h3 style='display: inline' id='some-unexpected-golang-stuff-ppl-say-that-'>Some unexpected <span class='inlinecode'>#golang</span> stuff, ppl say, that ...</h3><br />
+<br />
+<span>Some unexpected <span class='inlinecode'>#golang</span> stuff, ppl say, that Go is a simple language. IMHO the devil is in the details.</span><br />
+<br />
+<a class='textlink' href='https://unexpected-go.com/'>unexpected-go.com/</a><br />
+<br />
+<h3 style='display: inline' id='with-the-advent-of-ai-and-llms-i-have-observed-'>With the advent of AI and LLMs, I have observed ...</h3><br />
+<br />
+<span>With the advent of AI and LLMs, I have observed that being able to type quickly has become even more important for engineers. Previously, fast typing wasn&#39;t as crucial when coding, as most of the time was spent thinking or navigating through the code. However, with LLMs, you find yourself typing much more frequently. That&#39;s an unexpected personal win for me, as I recently learned fast touch typing: <span class='inlinecode'>#llm</span> <span class='inlinecode'>#coding</span> <span class='inlinecode'>#programming</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi'>foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.html'>foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.html</a><br />
+<br />
+<h3 style='display: inline' id='for-science-fun-and-profit-i-set-up-a-'>For science, fun and profit, I set up a ...</h3><br />
+<br />
+<span>For science, fun and profit, I set up a <span class='inlinecode'>#WireGuard</span> mesh network for my <span class='inlinecode'>#FreeBSD</span>, <span class='inlinecode'>#OpenBSD</span>, <span class='inlinecode'>#RockyLinux</span> and <span class='inlinecode'>#Kubernetes</span> <span class='inlinecode'>#homelab</span>: There&#39;s also a mesh generator, which I wrote in <span class='inlinecode'>#Ruby</span>. <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#k3s</span></span><br />
+<br />
+<a class='textlink' href='gemini://foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi'>foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi (Gemini)</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>foo.zone/gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.html</a><br />
+<br />
+<h3 style='display: inline' id='ever-wondered-about-the-hung-task-linux-'>Ever wondered about the hung task Linux ...</h3><br />
+<br />
+<span>Ever wondered about the hung task Linux messages on a busy server? Every case is unique, and there is no standard approach to debug them, but here it gets a bit demystified: <span class='inlinecode'>#linux</span> <span class='inlinecode'>#kernel</span></span><br />
+<br />
+<a class='textlink' href='https://blog.cloudflare.com/searching-for-the-cause-of-hung-tasks-in-the-linux-kernel/'>blog.cloudflare.com/searching-for-the-cause-of-hung-tasks-in-the-linux-kernel/</a><br />
+<br />
+<h3 style='display: inline' id='a-bit-of-fun-the-fortran-hating-gateway--'>A bit of <span class='inlinecode'>#fun</span>: The FORTRAN hating gateway ― ...</h3><br />
+<br />
+<span>A bit of <span class='inlinecode'>#fun</span>: The FORTRAN hating gateway ― Andreas Zwinkau</span><br />
+<br />
+<a class='textlink' href='https://beza1e1.tuxen.de/lore/fortran_hating_gateway.html'>beza1e1.tuxen.de/lore/fortran_hating_gateway.html</a><br />
+<br />
+<h3 style='display: inline' id='so-golang-was-invented-while-engineers-at-'>So, Golang was invented while engineers at ...</h3><br />
+<br />
+<span>So, Golang was invented while engineers at Google waited for C++ to compile. Here I am, waiting a long time for Java to compile...</span><br />
+<br />
+<h3 style='display: inline' id='i-couldn-t-do-without-here-docs-if-they-did-'>I couldn&#39;t do without here-docs. If they did ...</h3><br />
+<br />
+<span>I couldn&#39;t do without here-docs. If they did not exist, I would need to find another field and pursue a career there. <span class='inlinecode'>#bash</span> <span class='inlinecode'>#sh</span> <span class='inlinecode'>#shell</span></span><br />
+<br />
+<a class='textlink' href='https://rednafi.com/misc/heredoc_headache/'>rednafi.com/misc/heredoc_headache/</a><br />
+<br />
+<h3 style='display: inline' id='i-started-using-computers-as-a-kid-on-ms-dos-'>I started using computers as a kid on MS-DOS ...</h3><br />
+<br />
+<span>I started using computers as a kid on MS-DOS and mainly used Norton Commander to navigate the file system in order to start games. Later, I became more interested in computing in general and switched to Linux, but there was no NC. However, there was GNU Midnight Commander, which I still use regularly to this day. It&#39;s absolutely worth checking out, even in the modern day. <span class='inlinecode'>#tools</span> <span class='inlinecode'>#opensource</span></span><br />
+<br />
+<a class='textlink' href='https://en.wikipedia.org/wiki/Midnight_Commander'>en.wikipedia.org/wiki/Midnight_Commander</a><br />
+<br />
+<h3 style='display: inline' id='thats-interesting-running-android-in-'>Thats interesting, running <span class='inlinecode'>#Android</span> in ...</h3><br />
+<br />
+<span>Thats interesting, running <span class='inlinecode'>#Android</span> in <span class='inlinecode'>#Kubernetes</span></span><br />
+<br />
+<a class='textlink' href='https://ku.bz/Gs4-wpK5h'>ku.bz/Gs4-wpK5h</a><br />
+<br />
+<h3 style='display: inline' id='before-wiping-the-pre-installed-windows-11-'>Before wiping the pre-installed <span class='inlinecode'>#Windows</span> 11 ...</h3><br />
+<br />
+<span>Before wiping the pre-installed <span class='inlinecode'>#Windows</span> 11 Pro on my new Beelink mini PC, I tested <span class='inlinecode'>#WSL2</span> with <span class='inlinecode'>#Fedora</span> <span class='inlinecode'>#Linux</span>. I compiled my pet project, I/O Riot NG (ior), which requires many system libraries, including <span class='inlinecode'>#BPF</span>. I’m impressed—everything works just like on native Fedora, and my tool runs and traces I/O syscalls with BPF out of the box. I might would prefer now Windows over MacOS if I had to chose between those two for work.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>codeberg.org/snonux/ior</a><br />
+<br />
+<h3 style='display: inline' id='some-might-hate-me-saying-this-but-didnt-'>Some might hate me saying this, but didnt ...</h3><br />
+<br />
+<span>Some might hate me saying this, but didnt <span class='inlinecode'>#systemd</span> solve the problem of a shared /tmp directory by introducing PrivateTmp?? but yes why did it have to go that way...</span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/140968/tmp-should-not-exist/'>www.osnews.com/story/140968/tmp-should-not-exist/</a><br />
+<br />
+<h3 style='display: inline' id='wouldn-t-still-do-that-even-with-100-test-'>Wouldn&#39;t still do that, even with 100% test ...</h3><br />
+<br />
+<span>Wouldn&#39;t still do that, even with 100% test coverage, LT and integration tests, unless theres an exception the business relies on <span class='inlinecode'>#sre</span></span><br />
+<br />
+<a class='textlink' href='https://medium.com/openclassrooms-product-design-and-engineering/do-not-deploy-on-friday-92b1b46ebfe6'>medium.com/openclassrooms-product-desi..-..g/do-not-deploy-on-friday-92b1b46ebfe6</a><br />
+<br />
+<h3 style='display: inline' id='some-neat-slice-tricks-for-go-golang-'>Some neat slice tricks for Go: <span class='inlinecode'>#golang</span> ...</h3><br />
+<br />
+<span>Some neat slice tricks for Go: <span class='inlinecode'>#golang</span></span><br />
+<br />
+<a class='textlink' href='https://blog.devtrovert.com/p/12-slice-tricks-to-enhance-your-go'>blog.devtrovert.com/p/12-slice-tricks-to-enhance-your-go</a><br />
+<br />
+<h3 style='display: inline' id='i-understand-that-kubernetes-is-not-for-'>I understand that Kubernetes is not for ...</h3><br />
+<br />
+<span>I understand that Kubernetes is not for everyone, but it still seems to be the new default for everything newly built. Despite the fact that Kubernetes is complex to maintain and use, there is still a lot of SRE/DevOps talent out there who have it on their CVs, which contributes significantly to the supportability of the infrastructure and the applications running on it. This way, you don&#39;t have to teach every new engineer your "own way" infrastructure. It&#39;s like a standard language of infrastructure that many people speak. However, Kubernetes should not be the default solution for everything, in my opinion. <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#k8s</span></span><br />
+<br />
+<a class='textlink' href='https://www.gitpod.io/blog/we-are-leaving-kubernetes'>www.gitpod.io/blog/we-are-leaving-kubernetes</a><br />
+<br />
+<h2 style='display: inline' id='june-2025'>June 2025</h2><br />
+<br />
+<h3 style='display: inline' id='some-great-advices-will-try-out-some-of-them-'>Some great advices, will try out some of them! ...</h3><br />
+<br />
+<span>Some great advices, will try out some of them! <span class='inlinecode'>#programming</span></span><br />
+<br />
+<a class='textlink' href='https://endler.dev/2025/best-programmers/'>endler.dev/2025/best-programmers/</a><br />
+<br />
+<h3 style='display: inline' id='in-golang-values-are-actually-copied-when-'>In <span class='inlinecode'>#Golang</span>, values are actually copied when ...</h3><br />
+<br />
+<span>In <span class='inlinecode'>#Golang</span>, values are actually copied when assigned (boxed) into an interface. That can have performance impact.</span><br />
+<br />
+<a class='textlink' href='https://goperf.dev/01-common-patterns/interface-boxing/'>goperf.dev/01-common-patterns/interface-boxing/</a><br />
+<br />
+<h3 style='display: inline' id='this-is-a-great-little-tutorial-for-searching-'>This is a great little tutorial for searching ...</h3><br />
+<br />
+<span>This is a great little tutorial for searching in the <span class='inlinecode'>#HelixEditor</span> <span class='inlinecode'>#editor</span> <span class='inlinecode'>#coding</span></span><br />
+<br />
+<a class='textlink' href='https://helix-editor-tutorials.com/tutorials/using-helix-global-search/'>helix-editor-tutorials.com/tutorials/using-helix-global-search/</a><br />
+<br />
+<h3 style='display: inline' id='the-mov-instruction-of-a-cpu-is-turing-'>The mov instruction of a CPU is turing ...</h3><br />
+<br />
+<span>The mov instruction of a CPU is turing complete. And theres an implementation of <span class='inlinecode'>#Doom</span> only using mov, it renders one frame per 7 hours! <span class='inlinecode'>#fun</span></span><br />
+<br />
+<a class='textlink' href='https://beza1e1.tuxen.de/articles/accidentally_turing_complete.html'>beza1e1.tuxen.de/articles/accidentally_turing_complete.html</a><br />
+<br />
+<h3 style='display: inline' id='i-removed-the-social-media-profile-from-my-'>I removed the social media profile from my ...</h3><br />
+<br />
+<span>I removed the social media profile from my GrapheneOS phone. Originally, I created a separate profile just for social media to avoid using it too often. But I noticed that I switched to it too frequently. Not having social media within reach is probably the best option. <span class='inlinecode'>#socialmedia</span> <span class='inlinecode'>#sm</span> <span class='inlinecode'>#distractions</span></span><br />
+<br />
+<h3 style='display: inline' id='so-want-a-real-recent-unix-use-aix-macos-'>So want a "real" recent UNIX? Use AIX! <span class='inlinecode'>#macos</span> ...</h3><br />
+<br />
+<span>So want a "real" recent UNIX? Use AIX! <span class='inlinecode'>#macos</span> <span class='inlinecode'>#unix</span> <span class='inlinecode'>#aix</span></span><br />
+<br />
+<a class='textlink' href='https://www.osnews.com/story/141633/apples-macos-unix-certification-is-a-lie/'>www.osnews.com/story/141633/apples-macos-unix-certification-is-a-lie/</a><br />
+<br />
+<h3 style='display: inline' id='this-episode-i-think-is-kind-of-an-eye-opener-'>This episode, I think, is kind of an eye-opener ...</h3><br />
+<br />
+<span>This episode, I think, is kind of an eye-opener for me personally. I knew, that AI is there to stay, but you better should now start playing with your pet projects, otherwise your performance reviews will be awkward in a year or two from now, when you are expected to use AI for your daily work. <span class='inlinecode'>#ai</span> <span class='inlinecode'>#llm</span> <span class='inlinecode'>#coding</span> <span class='inlinecode'>#programming</span></span><br />
+<br />
+<a class='textlink' href='https://changelog.com/friends/96'>changelog.com/friends/96</a><br />
+<br />
+<h3 style='display: inline' id='my-openbsd-blog-setup-got-mentioned-in-the-'>My <span class='inlinecode'>#OpenBSD</span> blog setup got mentioned in the ...</h3><br />
+<br />
+<span>My <span class='inlinecode'>#OpenBSD</span> blog setup got mentioned in the BSDNow.tv Podcast (In the Feedback section) :-) <span class='inlinecode'>#BSD</span> <span class='inlinecode'>#podcast</span> <span class='inlinecode'>#runbsd</span></span><br />
+<br />
+<a class='textlink' href='https://www.bsdnow.tv/614'>www.bsdnow.tv/614</a><br />
+<br />
+<h3 style='display: inline' id='golang-is-the-best-when-it-comes-to-agentic-'><span class='inlinecode'>#Golang</span> is the best when it comes to agentic ...</h3><br />
+<br />
+<span><span class='inlinecode'>#Golang</span> is the best when it comes to agentic coding: <span class='inlinecode'>#llm</span></span><br />
+<br />
+<a class='textlink' href='https://lucumr.pocoo.org/2025/6/12/agentic-coding/'>lucumr.pocoo.org/2025/6/12/agentic-coding/</a><br />
+<br />
+<h3 style='display: inline' id='where-zsh-is-better-than-bash-'>Where <span class='inlinecode'>#zsh</span> is better than <span class='inlinecode'>#bash</span> ...</h3><br />
+<br />
+<span>Where <span class='inlinecode'>#zsh</span> is better than <span class='inlinecode'>#bash</span></span><br />
+<br />
+<a class='textlink' href='https://www.arp242.net/why-zsh.html'>www.arp242.net/why-zsh.html</a><br />
+<br />
+<h3 style='display: inline' id='i-really-enjoyed-this-talk-about-obscure-go-'>I really enjoyed this talk about obscure Go ...</h3><br />
+<br />
+<span>I really enjoyed this talk about obscure Go optimizations. None of it is really standard and can change from one version of Go to another, though. <span class='inlinecode'>#golang</span> <span class='inlinecode'>#talk</span></span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=rRtihWOcaLI'>www.youtube.com/watch?v=rRtihWOcaLI</a><br />
+<br />
+<h3 style='display: inline' id='commenting-your-regular-expression-is-generally-'>Commenting your regular expression is generally ...</h3><br />
+<br />
+<span>Commenting your regular expression is generally a good advice! Works pretty well as described in the article not just in <span class='inlinecode'>#Ruby</span>, but also in <span class='inlinecode'>#Perl</span> (@Perl), <span class='inlinecode'>#RakuLang</span>, ...</span><br />
+<br />
+<a class='textlink' href='https://thoughtbot.com/blog/comment-your-regular-expressions'>thoughtbot.com/blog/comment-your-regular-expressions</a><br />
+<br />
+<h3 style='display: inline' id='you-have-to-make-a-decision-for-yourself-but-'>You have to make a decision for yourself, but ...</h3><br />
+<br />
+<span>You have to make a decision for yourself, but generally, work smarter (and faster—but keep the quality)! About 40 hours <span class='inlinecode'>#productivity</span> <span class='inlinecode'>#work</span> <span class='inlinecode'>#workload</span></span><br />
+<br />
+<a class='textlink' href='https://thesquareplanet.com/blog/about-40-hours/'>thesquareplanet.com/blog/about-40-hours/</a><br />
+<br />
+<h3 style='display: inline' id='100-go-mistakes-and-how-to-avoid-them-is-one-'>"100 Go Mistakes and How to Avoid Them" is one ...</h3><br />
+<br />
+<span>"100 Go Mistakes and How to Avoid Them" is one of my favorite <span class='inlinecode'>#Golang</span> books. Julia Evans also stumbled across some issues she&#39;d learned from this book. The book itself is an absolute must for every Gopher (or someone who wants to become one!)</span><br />
+<br />
+<a class='textlink' href='https://jvns.ca/blog/2024/08/06/go-structs-copied-on-assignment/'>jvns.ca/blog/2024/08/06/go-structs-copied-on-assignment/</a><br />
+<br />
+<h3 style='display: inline' id='the-ruby-data-class-seems-quite-helpful-'>The <span class='inlinecode'>#Ruby</span> Data class seems quite helpful ...</h3><br />
+<br />
+<span>The <span class='inlinecode'>#Ruby</span> Data class seems quite helpful</span><br />
+<br />
+<a class='textlink' href='https://allaboutcoding.ghinda.com/example-of-value-objects-using-rubys-data-class'>allaboutcoding.ghinda.com/example-of-value-objects-using-rubys-data-class</a><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024</a><br />
+<a class='textlink' href='./2025-07-01-posts-from-january-to-june-2025.html'>2025-07-01 Posts from January to June 2025 (You are currently reading this)</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Task Samurai: An agentic coding learning experiment</title>
         <link href="gemini://foo.zone/gemfeed/2025-06-22-task-samurai.gmi" />
@@ -4100,6 +4853,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>Other related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-07-01-posts-from-january-to-june-2025.html'>2025-07-01 Posts from January to June 2025</a><br />
 <a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024 (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
@@ -10314,191 +11068,6 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Gemtexter 2.0.0 - Let's Gemtext again²</title>
-        <link href="gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi" />
-        <id>gemini://foo.zone/gemfeed/2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.gmi</id>
-        <updated>2023-03-25T17:50:32+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</h1><br />
-<br />
-<span class='quote'>Published at 2023-03-25T17:50:32+02:00</span><br />
-<br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>2.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<span>This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").</span><br />
-<br />
-<span>Let&#39;s list what&#39;s new!</span><br />
-<br />
-<pre>
--=[ typewriters ]=-  1/98
-
-       .-------.
-      _|~~ ~~  |_       .-------.
-    =(_|_______|_)=    _|~~ ~~  |_
-      |:::::::::|    =(_|_______|_)
-      |:::::::[]|      |:::::::::|
-      |o=======.|      |:::::::[]|
- jgs  `"""""""""`      |o=======.|
-  mod. by Paul Buetow  `"""""""""`
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#gemtexter-200---let-s-gemtext-again'>Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a></li>
-<li>⇢ <a href='#minimal-template-engine'>Minimal template engine</a></li>
-<li>⇢ <a href='#added-hooks'>Added hooks</a></li>
-<li>⇢ <a href='#use-of-safer-bash-options'>Use of safer Bash options</a></li>
-<li>⇢ <a href='#meta-cache-made-obsolete'>Meta cache made obsolete</a></li>
-<li>⇢ <a href='#xmllint-support'>XMLLint support</a></li>
-<li>⇢ <a href='#more'>More</a></li>
-</ul><br />
-<h2 style='display: inline' id='minimal-template-engine'>Minimal template engine</h2><br />
-<br />
-<span>Gemtexter now supports templating, enabling dynamically generated content to <span class='inlinecode'>.gmi</span> files before converting anything to any output format like HTML and Markdown.</span><br />
-<br />
-<span>A template file name must have the suffix <span class='inlinecode'>gmi.tpl</span>. A template must be put into the same directory as the Gemtext <span class='inlinecode'>.gmi</span> file to be generated. Gemtexter will generate a Gemtext file <span class='inlinecode'>index.gmi</span> from a given template <span class='inlinecode'>index.gmi.tpl</span>. A <span class='inlinecode'>&lt;&lt;&lt;</span> and <span class='inlinecode'>&gt;&gt;&gt;</span> encloses a multiline template. All lines starting with <span class='inlinecode'>&lt;&lt; </span> will be evaluated as a single line of Bash code and the output will be written into the resulting Gemtext file.</span><br />
-<br />
-<span>For example, the template <span class='inlinecode'>index.gmi.tpl</span>:</span><br />
-<br />
-<pre>
-# Hello world
-
-&lt;&lt; echo "&gt; This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
-
-Welcome to this capsule!
-
-&lt;&lt;&lt;
-  for i in {1..10}; do
-    echo Multiline template line $i
-  done
-&gt;&gt;&gt;
-</pre>
-<br />
-<span>... results into the following <span class='inlinecode'>index.gmi</span> after running <span class='inlinecode'>./gemtexter --generate</span> (or <span class='inlinecode'>./gemtexter --template</span>, which instructs to do only template processing and nothing else):</span><br />
-<br />
-<pre>
-# Hello world
-
-&gt; This site was generated at 2023-03-15T19:07:59+02:00 by `Gemtexter`
-
-Welcome to this capsule!
-
-Multiline template line 1
-Multiline template line 2
-Multiline template line 3
-Multiline template line 4
-Multiline template line 5
-Multiline template line 6
-Multiline template line 7
-Multiline template line 8
-Multiline template line 9
-Multiline template line 10
-</pre>
-<br />
-<span>Another thing you can do is insert an index with links to similar blog posts. E.g.:</span><br />
-<br />
-<pre>
-See more entries about DTail and Golang:
-
-&lt;&lt; template::inline::rindex dtail golang
-
-Blablabla...
-</pre>
-<br />
-<span>... scans all other post entries with <span class='inlinecode'>dtail</span> and <span class='inlinecode'>golang</span> in the file name and generates a link list like this:</span><br />
-<br />
-<pre>
-See more entries about DTail and Golang:
-
-=&gt; ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
-=&gt; ./2022-04-22-programming-golang.gmi 2022-04-22 The Golang Programming language
-=&gt; ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
-=&gt; ./2021-04-22-dtail-the-distributed-log-tail-program.gmi 2021-04-22 DTail - The distributed log tail program (You are currently reading this)
-
-Blablabla...
-</pre>
-<br />
-<h2 style='display: inline' id='added-hooks'>Added hooks</h2><br />
-<br />
-<span>You can configure <span class='inlinecode'>PRE_GENERATE_HOOK</span> and <span class='inlinecode'>POST_PUBLISH_HOOK</span> to point to scripts to be executed before running <span class='inlinecode'>--generate</span>, or after running <span class='inlinecode'>--publish</span>. E.g. you could populate some of the content by an external script before letting Gemtexter do its thing or you could automatically deploy the site after running <span class='inlinecode'>--publish</span>.</span><br />
-<br />
-<span>The sample config file <span class='inlinecode'>gemtexter.conf</span> includes this as an example now; these scripts will only be executed when they actually exist:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">declare</font></u></b> -xr PRE_GENERATE_HOOK=./pre_generate_hook.sh
-<b><u><font color="#000000">declare</font></u></b> -xr POST_PUBLISH_HOOK=./post_publish_hook.sh
-</pre>
-<br />
-<h2 style='display: inline' id='use-of-safer-bash-options'>Use of safer Bash options</h2><br />
-<br />
-<span>Gemtexter now does <span class='inlinecode'>set -euf -o pipefile</span>, which helps to eliminate bugs and to catch scripting errors sooner. Previous versions only <span class='inlinecode'>set -e</span>.</span><br />
-<br />
-<h2 style='display: inline' id='meta-cache-made-obsolete'>Meta cache made obsolete</h2><br />
-<br />
-<span>Here is the breaking change to older versions of Gemtexter. The <span class='inlinecode'>$BASE_CONTENT_DIR/meta</span> directory was made obsolete. <span class='inlinecode'>meta</span> was used to store various information about all the blog post entries to make generating an Atom feed in Bash easier. Especially the publishing dates of each post were stored there. Instead, the publishing date is now encoded in the <span class='inlinecode'>.gmi</span> file. And if it is missing, Gemtexter will set it to the current date and time at first run.</span><br />
-<br />
-<span>An example blog post without any publishing date looks like this:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
-<i><font color="silver"># Title here</font></i>
-
-The remaining content of the Gemtext file...
-</pre>
-<br />
-<span>Gemtexter will add a line starting with  <span class='inlinecode'>&gt; Published at ...</span> now. Any subsequent Atom feed generation will then use that date.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% cat gemfeed/<font color="#000000">2023</font>-<font color="#000000">02</font>-<font color="#000000">26</font>-title-here.gmi
-<i><font color="silver"># Title here</font></i>
-
-&gt; Published at <font color="#000000">2023</font>-<font color="#000000">02</font>-26T21:<font color="#000000">43</font>:<font color="#000000">51</font>+<font color="#000000">01</font>:<font color="#000000">00</font>
-
-The remaining content of the Gemtext file...
-</pre>
-<br />
-<h2 style='display: inline' id='xmllint-support'>XMLLint support</h2><br />
-<br />
-<span>Optionally, when the <span class='inlinecode'>xmllint</span> binary is installed, Gemtexter will perform a simple XML lint check against the Atom feed generated. This is a double-check of whether the Atom feed is a valid XML.</span><br />
-<br />
-<h2 style='display: inline' id='more'>More</h2><br />
-<br />
-<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again² (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
