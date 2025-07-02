@@ -84,13 +84,6 @@ In the "Working with an SRE Interview" I have been askd about what it's like wor
 => gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi (Gemini)
 => https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html
 
-### In the "Working with an SRE Interview" I have ...
-
-In the "Working with an SRE Interview" I have been askd about what it's like working with an SRE! We'd covered much more in depth, but we decided not to make it too long in the final version! `#sre` `#interview`
-
-=> gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi (Gemini)
-=> https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html
-
 ### Small introduction to the `#Android` ...
 
 Small introduction to the `#Android` distribution called `#GrapheneOS` For myself, I am using a Pixel 7 Pro, which comes with "only" 5 years of support (not yet 7 years like the Pixel 8 and 9 series). I also wrote about GrapheneOS here once:

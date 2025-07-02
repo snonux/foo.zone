@@ -715,6 +715,29 @@ ZFS auto scrubbing....~?
 
 Backup of the keys on the key locations (all keys on all 3 USB keys)
 
+## Future Storage Explorations
+
+While zrepl provides excellent snapshot-based replication for disaster recovery, there are other storage technologies worth exploring for the f3s project:
+
+### MinIO for S3-Compatible Object Storage
+
+MinIO is a high-performance, S3-compatible object storage system that could complement our ZFS-based storage. Some potential use cases:
+
+* **S3 API compatibility**: Many modern applications expect S3-style object storage APIs. MinIO could provide this interface while using our ZFS storage as the backend.
+* **Multi-site replication**: MinIO supports active-active replication across multiple sites, which could work well with our f0/f1/f2 node setup.
+* **Kubernetes native**: MinIO has excellent Kubernetes integration with operators and CSI drivers, making it ideal for the f3s k3s environment.
+
+### MooseFS for Distributed High Availability
+
+MooseFS is a fault-tolerant, distributed file system that could provide true high-availability storage:
+
+* **True HA**: Unlike our current setup which requires manual failover, MooseFS provides automatic failover with no single point of failure.
+* **POSIX compliance**: Applications can use MooseFS like any regular filesystem, no code changes needed.
+* **Flexible redundancy**: Configure different replication levels per directory or file, optimizing storage efficiency.
+* **FreeBSD support**: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.
+
+Both technologies could potentially run on top of our encrypted ZFS volumes, combining ZFS's data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS).
+
 Other *BSD-related posts:
 
 << template::inline::rindex bsd

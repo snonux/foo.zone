@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-07-01T22:39:30+03:00</updated>
+    <updated>2025-07-02T00:37:08+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='posts-from-january-to-june-2025'>Posts from January to June 2025</h1><br />
+<br />
+<span class='quote'>Published at 2025-07-01T22:39:29+03:00</span><br />
 <br />
 <span>These are my social media posts from the last six months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </span><br />
 <br />
@@ -43,7 +45,6 @@
 <li>⇢ ⇢ <a href='#nice-refresher-for-shell-bash-zsh-'>Nice refresher for <span class='inlinecode'>#shell</span> <span class='inlinecode'>#bash</span> <span class='inlinecode'>#zsh</span> ...</a></li>
 <li>⇢ ⇢ <a href='#i-think-discussing-action-items-in-incident-'>I think discussing action items in incident ...</a></li>
 <li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
-<li>⇢ ⇢ <a href='#in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</a></li>
 <li>⇢ ⇢ <a href='#in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</a></li>
 <li>⇢ ⇢ <a href='#small-introduction-to-the-android-'>Small introduction to the <span class='inlinecode'>#Android</span> ...</a></li>
 <li>⇢ ⇢ <a href='#helix-202501-has-been-released-the-completion-'>Helix 2025.01 has been released. The completion ...</a></li>
@@ -204,13 +205,6 @@
 <span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
 <br />
 <a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/</a><br />
-<br />
-<h3 style='display: inline' id='in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</h3><br />
-<br />
-<span>In the "Working with an SRE Interview" I have been askd about what it&#39;s like working with an SRE! We&#39;d covered much more in depth, but we decided not to make it too long in the final version! <span class='inlinecode'>#sre</span> <span class='inlinecode'>#interview</span></span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html'>foo.zone/gemfeed/2025-01-15-working-with-an-sre-interview.html</a><br />
 <br />
 <h3 style='display: inline' id='in-the-working-with-an-sre-interview-i-have-'>In the "Working with an SRE Interview" I have ...</h3><br />
 <br />
