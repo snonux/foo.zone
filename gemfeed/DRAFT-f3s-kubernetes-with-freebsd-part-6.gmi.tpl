@@ -155,9 +155,12 @@ zroot/bhyve/rocky  keystatus             available              -
 adding to /etc/rc.conf on f0 and f1:
 ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"
 
-adding to /etc/hosts:
+adding to /etc/hosts (on n0, n1, n2, r0, r1, r2):
 
+```
 192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+192.168.2.138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
+```
 
 Adding on f0 and f1:
 
@@ -170,10 +173,50 @@ notify 0 {
 };
 END
 
-next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to storage
+Next, create the CARP control script that will restart stunnel when CARP state changes:
 
-/boot/loader.conf add carp_load="YES"
-reboot or run doas kldload carp0 
+```sh
+paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
+#!/bin/sh
+# CARP state change handler for storage failover
+
+subsystem=$1
+state=$2
+
+logger "CARP state change: $subsystem is now $state"
+
+case "$state" in
+    MASTER)
+        # Restart stunnel to bind to the VIP
+        service stunnel restart
+        logger "Restarted stunnel for MASTER state"
+        ;;
+    BACKUP)
+        # Stop stunnel since we can't bind to VIP as BACKUP
+        service stunnel stop
+        logger "Stopped stunnel for BACKUP state"
+        ;;
+esac
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+
+# Copy the same script to f1
+paul@f0:~ % scp /usr/local/bin/carpcontrol.sh f1:/tmp/
+paul@f1:~ % doas mv /tmp/carpcontrol.sh /usr/local/bin/
+paul@f1:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+```
+
+Enable CARP in /boot/loader.conf:
+
+```sh
+paul@f0:~ % echo 'carp_load="YES"' | doas tee -a /boot/loader.conf
+carp_load="YES"
+paul@f1:~ % echo 'carp_load="YES"' | doas tee -a /boot/loader.conf  
+carp_load="YES"
+```
+
+Then reboot both hosts or run `doas kldload carp` to load the module immediately. 
 
 
 ## ZFS Replication with zrepl
@@ -564,11 +607,6 @@ paul@f1:~ % doas zfs rollback zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_204
 paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
 ```
 
-To ensure the encryption key is loaded automatically after reboot on f1:
-```sh
-paul@f1:~ % doas sysrc zfskeys_datasets="zdata/sink/f0/zdata/enc/nfsdata"
-```
-
 ### Failback scenario: Syncing changes from f1 back to f0
 
 In a disaster recovery scenario where f0 has failed and f1 has taken over, you'll need to sync changes back when f0 returns. Here's how to failback:
@@ -711,6 +749,98 @@ Success! The failover data from f1 is now on f0. To resume normal replication, y
 * The encryption key must be loaded after receiving the dataset
 * Always verify data integrity before resuming normal operations
 
+### Troubleshooting: Files not appearing in replication
+
+If you write files to `/data/nfs/` on f0 but they don't appear on f1, check:
+
+```sh
+# 1. Is the dataset actually mounted on f0?
+paul@f0:~ % doas zfs list -o name,mountpoint,mounted | grep nfsdata
+zdata/enc/nfsdata                             /data/nfs             yes
+
+# If it shows "no", the dataset isn't mounted!
+# This means files are being written to the root filesystem, not ZFS
+
+# 2. Check if encryption key is loaded
+paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
+NAME               PROPERTY   VALUE        SOURCE
+zdata/enc/nfsdata  keystatus  available    -
+
+# If "unavailable", load the key:
+paul@f0:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs mount zdata/enc/nfsdata
+
+# 3. Verify files are in the snapshot (not just the directory)
+paul@f0:~ % ls -la /data/nfs/.zfs/snapshot/zrepl_*/
+```
+
+This issue commonly occurs after reboot if the encryption keys aren't configured to load automatically.
+
+### Configuring automatic key loading on boot
+
+To ensure all encrypted datasets are mounted automatically after reboot:
+
+```sh
+# On f0 - configure all encrypted datasets
+paul@f0:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: NO -> YES
+paul@f0:~ % doas sysrc zfskeys_datasets="zdata/enc zdata/enc/nfsdata zroot/bhyve"
+zfskeys_datasets:  -> zdata/enc zdata/enc/nfsdata zroot/bhyve
+
+# Set correct key locations for all datasets
+paul@f0:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+
+# On f1 - include the replicated dataset
+paul@f1:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: NO -> YES
+paul@f1:~ % doas sysrc zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
+zfskeys_datasets:  -> zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata
+
+# Set key location for replicated dataset
+paul@f1:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
+```
+
+Important notes:
+* Each encryption root needs its own key load entry - child datasets don't inherit key loading
+* The replicated dataset on f1 uses the same encryption key as the source on f0
+* Always verify datasets are mounted after reboot with `zfs list -o name,mounted`
+
+### Forcing a full resync
+
+If replication gets out of sync and incremental updates fail:
+
+```sh
+# Stop services
+paul@f0:~ % doas service zrepl stop
+paul@f1:~ % doas service zrepl stop
+
+# On f1: Release holds and destroy the dataset
+paul@f1:~ % doas zfs holds -r zdata/sink/f0/zdata/enc/nfsdata | \
+    grep -v NAME | awk '{print $2, $1}' | \
+    while read tag snap; do doas zfs release "$tag" "$snap"; done
+paul@f1:~ % doas zfs destroy -rf zdata/sink/f0/zdata/enc/nfsdata
+
+# On f0: Create fresh snapshot
+paul@f0:~ % doas zfs snapshot zdata/enc/nfsdata@resync
+
+# Send full dataset
+paul@f0:~ % doas zfs send -Rw zdata/enc/nfsdata@resync | \
+    ssh f1 "doas zfs recv zdata/sink/f0/zdata/enc/nfsdata"
+
+# Configure f1
+paul@f1:~ % doas zfs set mountpoint=/data/nfs zdata/sink/f0/zdata/enc/nfsdata
+paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
+paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
+    zdata/sink/f0/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
+
+# Clean up and restart
+paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@resync
+paul@f1:~ % doas zfs destroy zdata/sink/f0/zdata/enc/nfsdata@resync
+paul@f0:~ % doas service zrepl start
+paul@f1:~ % doas service zrepl start
+```
+
 ZFS auto scrubbing....~?
 
 Backup of the keys on the key locations (all keys on all 3 USB keys)
@@ -737,6 +867,809 @@ MooseFS is a fault-tolerant, distributed file system that could provide true hig
 * **FreeBSD support**: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.
 
 Both technologies could potentially run on top of our encrypted ZFS volumes, combining ZFS's data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS).
+
+## NFS Server Configuration
+
+With ZFS replication in place, we can now set up NFS servers on both f0 and f1 to export the replicated data. Since native NFS over TLS (RFC 9289) has compatibility issues between Linux and FreeBSD, we'll use stunnel to provide encryption.
+
+### Setting up NFS on f0 (Primary)
+
+First, enable the NFS services in rc.conf:
+
+```sh
+paul@f0:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: YES -> YES
+paul@f0:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: YES -> YES
+paul@f0:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: YES -> YES
+paul@f0:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -> YES
+paul@f0:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -> YES
+```
+
+Create a dedicated directory for Kubernetes volumes:
+
+```sh
+# First ensure the dataset is mounted
+paul@f0:~ % doas zfs get mounted zdata/enc/nfsdata
+NAME               PROPERTY  VALUE    SOURCE
+zdata/enc/nfsdata  mounted   yes      -
+
+# Create the k3svolumes directory
+paul@f0:~ % doas mkdir -p /data/nfs/k3svolumes
+paul@f0:~ % doas chmod 755 /data/nfs/k3svolumes
+
+# This directory will be replicated to f1 automatically
+```
+
+Create the /etc/exports file to restrict Kubernetes nodes to only mount the k3svolumes subdirectory, while allowing the laptop full access. Since we're using stunnel, connections appear to come from localhost, so we must allow 127.0.0.1:
+
+```sh
+paul@f0:~ % doas tee /etc/exports <<'EOF'
+V4: /data/nfs -sec=sys
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.120 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.121 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.122 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+/data/nfs -alldirs -maproot=root -network 192.168.1.4 -mask 255.255.255.255
+/data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+EOF
+```
+
+The exports configuration:
+
+* `V4: /data/nfs -sec=sys`: Sets the NFSv4 root directory to /data/nfs
+* `/data/nfs/k3svolumes`: Specific subdirectory for Kubernetes volumes only
+* `/data/nfs -alldirs`: Full access to all directories for the laptop and localhost
+* `-maproot=root`: Map root user from client to root on server (needed for Kubernetes)
+* `-network` and `-mask`: Restrict access to specific IPs:
+  * 192.168.1.120 (r0.lan) - k3svolumes only
+  * 192.168.1.121 (r1.lan) - k3svolumes only
+  * 192.168.1.122 (r2.lan) - k3svolumes only
+  * 127.0.0.1 (localhost) - needed for stunnel connections
+  * 192.168.1.4 (laptop) - full access to /data/nfs
+
+Note: 
+* **Critical**: 127.0.0.1 must be allowed because stunnel proxies connections through localhost
+* With NFSv4, clients mount using relative paths (e.g., `/k3svolumes` instead of `/data/nfs/k3svolumes`)
+* The CARP virtual IP (192.168.1.138) is not included - it's the server's IP, not a client
+
+Start the NFS services:
+
+```sh
+paul@f0:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f0:~ % doas service mountd start
+Starting mountd.
+paul@f0:~ % doas service nfsd start
+Starting nfsd.
+paul@f0:~ % doas service nfsuserd start
+Starting nfsuserd.
+```
+
+### Configuring Stunnel for NFS Encryption with CARP Failover
+
+Since native NFS over TLS has compatibility issues between Linux and FreeBSD, we'll use stunnel to encrypt NFS traffic. Stunnel provides a transparent SSL/TLS tunnel for any TCP service. We'll configure stunnel to bind to the CARP virtual IP, ensuring automatic failover alongside NFS.
+
+#### Creating a Certificate Authority for Client Authentication
+
+First, create a CA to sign both server and client certificates:
+
+```sh
+# On f0 - Create CA
+paul@f0:~ % doas mkdir -p /usr/local/etc/stunnel/ca
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas openssl genrsa -out ca-key.pem 4096
+paul@f0:~ % doas openssl req -new -x509 -days 3650 -key ca-key.pem -out ca-cert.pem \
+  -subj '/C=US/ST=State/L=City/O=F3S Storage/CN=F3S Stunnel CA'
+
+# Create server certificate
+paul@f0:~ % cd /usr/local/etc/stunnel
+paul@f0:~ % doas openssl genrsa -out server-key.pem 4096
+paul@f0:~ % doas openssl req -new -key server-key.pem -out server.csr \
+  -subj '/C=US/ST=State/L=City/O=F3S Storage/CN=f3s-storage-ha.lan'
+paul@f0:~ % doas openssl x509 -req -days 3650 -in server.csr -CA ca/ca-cert.pem \
+  -CAkey ca/ca-key.pem -CAcreateserial -out server-cert.pem
+
+# Create client certificates for authorized clients
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas sh -c 'for client in r0 r1 r2 earth; do 
+  openssl genrsa -out ${client}-key.pem 4096
+  openssl req -new -key ${client}-key.pem -out ${client}.csr \
+    -subj "/C=US/ST=State/L=City/O=F3S Storage/CN=${client}.lan.buetow.org"
+  openssl x509 -req -days 3650 -in ${client}.csr -CA ca-cert.pem \
+    -CAkey ca-key.pem -CAcreateserial -out ${client}-cert.pem
+done'
+```
+
+#### Install and Configure Stunnel on f0
+
+```sh
+# Install stunnel
+paul@f0:~ % doas pkg install -y stunnel
+
+# Configure stunnel server with client certificate authentication
+paul@f0:~ % doas tee /usr/local/etc/stunnel/stunnel.conf <<'EOF'
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = 192.168.1.138:2323
+connect = 127.0.0.1:2049
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = 2
+requireCert = yes
+EOF
+
+# Enable and start stunnel
+paul@f0:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -> YES
+paul@f0:~ % doas service stunnel start
+Starting stunnel.
+
+# Restart stunnel to apply the CARP VIP binding
+paul@f0:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+```
+
+The configuration includes:
+* `verify = 2`: Verify client certificate and fail if not provided
+* `requireCert = yes`: Client must present a valid certificate
+* `CAfile`: Path to the CA certificate that signed the client certificates
+
+### Setting up NFS on f1 (Standby)
+
+Repeat the same configuration on f1:
+
+```sh
+paul@f1:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: NO -> YES
+paul@f1:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: NO -> YES
+paul@f1:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: NO -> YES
+paul@f1:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -> YES
+paul@f1:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -> YES
+
+paul@f1:~ % doas tee /etc/exports <<'EOF'
+V4: /data/nfs -sec=sys
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.120 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.121 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 192.168.1.122 -mask 255.255.255.255
+/data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+/data/nfs -alldirs -maproot=root -network 192.168.1.4 -mask 255.255.255.255
+/data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+EOF
+
+paul@f1:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f1:~ % doas service mountd start
+Starting mountd.
+paul@f1:~ % doas service nfsd start
+Starting nfsd.
+paul@f1:~ % doas service nfsuserd start
+Starting nfsuserd.
+```
+
+Configure stunnel on f1:
+
+```sh
+# Install stunnel
+paul@f1:~ % doas pkg install -y stunnel
+
+# Copy certificates from f0
+paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
+paul@f0:~ % scp /tmp/stunnel-certs.tar f1:/tmp/
+paul@f1:~ % cd /usr/local/etc/stunnel && doas tar -xf /tmp/stunnel-certs.tar
+
+# Configure stunnel server on f1 with client certificate authentication
+paul@f1:~ % doas tee /usr/local/etc/stunnel/stunnel.conf <<'EOF'
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = 192.168.1.138:2323
+connect = 127.0.0.1:2049
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = 2
+requireCert = yes
+EOF
+
+# Enable and start stunnel
+paul@f1:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -> YES
+paul@f1:~ % doas service stunnel start
+Starting stunnel.
+
+# Restart stunnel to apply the CARP VIP binding
+paul@f1:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+```
+
+### How Stunnel Works with CARP
+
+With stunnel configured to bind to the CARP VIP (192.168.1.138), only the server that is currently the CARP MASTER will accept stunnel connections. This provides automatic failover for encrypted NFS:
+
+* When f0 is CARP MASTER: stunnel on f0 accepts connections on 192.168.1.138:2323
+* When f1 becomes CARP MASTER: stunnel on f1 starts accepting connections on 192.168.1.138:2323
+* The backup server's stunnel process will fail to bind to the VIP and won't accept connections
+
+This ensures that clients always connect to the active NFS server through the CARP VIP.
+
+### CARP Control Script for Stunnel
+
+To ensure stunnel properly starts and stops based on CARP state changes, create a control script:
+
+```sh
+# Create CARP control script on both f0 and f1
+paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
+#!/bin/sh
+# CARP control script for stunnel
+
+case "$1" in
+    MASTER)
+        # Restart stunnel when becoming MASTER to bind to VIP
+        /usr/local/etc/rc.d/stunnel restart
+        logger "CARP state changed to MASTER, restarted stunnel"
+        ;;
+    BACKUP)
+        # Stop stunnel when becoming BACKUP
+        /usr/local/etc/rc.d/stunnel stop
+        logger "CARP state changed to BACKUP, stopped stunnel"
+        ;;
+esac
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+
+# Add to devd configuration
+paul@f0:~ % doas tee -a /etc/devd.conf <<'EOF'
+
+# CARP state change notifications
+notify 0 {
+    match "system" "CARP";
+    match "subsystem" "[0-9]+@[a-z]+[0-9]+";
+    match "type" "(MASTER|BACKUP)";
+    action "/usr/local/bin/carpcontrol.sh $type";
+};
+EOF
+
+# Restart devd to apply changes
+paul@f0:~ % doas service devd restart
+```
+
+This script ensures that stunnel automatically starts when a host becomes CARP MASTER and stops when it becomes BACKUP, preventing binding conflicts and ensuring smooth failover.
+
+### Verifying Stunnel and CARP Status
+
+First, check which host is currently CARP MASTER:
+
+```sh
+# On f0 - check CARP status
+paul@f0:~ % ifconfig re0 | grep carp
+	inet 192.168.1.130 netmask 0xffffff00 broadcast 192.168.1.255
+	inet 192.168.1.138 netmask 0xffffffff broadcast 192.168.1.138 vhid 1
+
+# If f0 is MASTER, verify stunnel is listening on the VIP
+paul@f0:~ % doas sockstat -l | grep 2323
+stunnel  stunnel    1234  3  tcp4   192.168.1.138:2323    *:*
+
+# On f1 - check CARP status  
+paul@f1:~ % ifconfig re0 | grep carp
+	inet 192.168.1.131 netmask 0xffffff00 broadcast 192.168.1.255
+
+# If f1 is BACKUP, stunnel won't be able to bind to the VIP
+paul@f1:~ % doas tail /var/log/messages | grep stunnel
+Jul  4 12:34:56 f1 stunnel: [!] bind: 192.168.1.138:2323: Can't assign requested address (49)
+```
+
+### Verifying NFS Exports
+
+Check that the exports are active on both servers:
+
+```sh
+# On f0
+paul@f0:~ % doas showmount -e localhost
+Exports list on localhost:
+/data/nfs/k3svolumes               192.168.1.120 192.168.1.121 192.168.1.122
+/data/nfs                          192.168.1.4
+
+# On f1
+paul@f1:~ % doas showmount -e localhost
+Exports list on localhost:
+/data/nfs/k3svolumes               192.168.1.120 192.168.1.121 192.168.1.122
+/data/nfs                          192.168.1.4
+```
+
+### Client Configuration for Stunnel
+
+To mount NFS shares with stunnel encryption, clients need to install and configure stunnel with their client certificates.
+
+#### Preparing Client Certificates
+
+On f0, prepare the client certificate packages:
+
+```sh
+# Create combined certificate/key files for each client
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas sh -c 'for client in r0 r1 r2 earth; do
+  cat ${client}-cert.pem ${client}-key.pem > /tmp/${client}-stunnel.pem
+done'
+```
+
+#### Configuring Rocky Linux Clients (r0, r1, r2)
+
+```sh
+# Install stunnel on client (example for r0)
+[root@r0 ~]# dnf install -y stunnel
+
+# Copy client certificate and CA certificate from f0
+[root@r0 ~]# scp f0:/tmp/r0-stunnel.pem /etc/stunnel/
+[root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/ca-cert.pem /etc/stunnel/
+
+# Configure stunnel client with certificate authentication
+[root@r0 ~]# tee /etc/stunnel/stunnel.conf <<'EOF'
+cert = /etc/stunnel/r0-stunnel.pem
+CAfile = /etc/stunnel/ca-cert.pem
+client = yes
+verify = 2
+
+[nfs-ha]
+accept = 127.0.0.1:2323
+connect = 192.168.1.138:2323
+EOF
+
+# Enable and start stunnel
+[root@r0 ~]# systemctl enable --now stunnel
+
+# Repeat for r1 and r2 with their respective certificates
+```
+
+Note: Each client must use its own certificate file (r0-stunnel.pem, r1-stunnel.pem, r2-stunnel.pem, or earth-stunnel.pem).
+
+### Testing NFS Mount with Stunnel
+
+Mount NFS through the stunnel encrypted tunnel:
+
+```sh
+# Create mount point
+[root@r0 ~]# mkdir -p /data/nfs/k3svolumes
+
+# Mount through stunnel (using localhost and NFSv4)
+[root@r0 ~]# mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes
+
+# Verify mount
+[root@r0 ~]# mount | grep k3svolumes
+127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+
+# For persistent mount, add to /etc/fstab:
+127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0
+```
+
+Note: The mount uses localhost (127.0.0.1) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.
+
+Verify the file was written and replicated:
+
+```sh
+# Check on f0
+paul@f0:~ % cat /data/nfs/test-r0.txt
+Test from r0
+
+# After replication interval (5 minutes), check on f1
+paul@f1:~ % cat /data/nfs/test-r0.txt
+Test from r0
+```
+
+### Important: Encryption Keys for Replicated Datasets
+
+When using encrypted ZFS datasets with raw sends (send -w), the replicated datasets on f1 need the encryption keys loaded to access the data:
+
+```sh
+# Check encryption status on f1
+paul@f1:~ % doas zfs get keystatus zdata/sink/f0/zdata/enc/nfsdata
+NAME                             PROPERTY   VALUE        SOURCE
+zdata/sink/f0/zdata/enc/nfsdata  keystatus  unavailable  -
+
+# Load the encryption key (uses the same key as f0)
+paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
+
+# Mount the dataset
+paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
+
+# Configure automatic key loading on boot
+paul@f1:~ % doas sysrc zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
+zfskeys_datasets:  -> zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata
+```
+
+This ensures that after a reboot, f1 will automatically load the encryption keys and mount all encrypted datasets, including the replicated ones.
+
+### NFS Failover with CARP and Stunnel
+
+With NFS servers running on both f0 and f1 and stunnel bound to the CARP VIP:
+
+* **Automatic failover**: When f0 fails, CARP automatically promotes f1 to MASTER
+* **Stunnel failover**: The carpcontrol.sh script automatically starts stunnel on the new MASTER
+* **Client transparency**: Clients always connect to 192.168.1.138:2323, which routes to the active server
+* **No connection disruption**: Existing NFS mounts continue working through the same VIP
+* **Data consistency**: ZFS replication ensures f1 has recent data (within 5-minute window)
+* **Manual intervention required**: When f1 becomes MASTER, you must:
+  1. Make the replicated dataset writable: `doas zfs set readonly=off zdata/sink/f0/zdata/enc/nfsdata`
+  2. Ensure encryption keys are loaded (should be automatic with zfskeys_enable)
+  3. NFS will automatically start serving requests through the VIP
+
+### Testing CARP Failover
+
+To test the failover process:
+
+```sh
+# On f0 (current MASTER) - trigger failover
+paul@f0:~ % doas ifconfig re0 vhid 1 state backup
+
+# On f1 - verify it becomes MASTER
+paul@f1:~ % ifconfig re0 | grep carp
+    inet 192.168.1.138 netmask 0xffffffff broadcast 192.168.1.138 vhid 1
+
+# Check stunnel is now listening on f1
+paul@f1:~ % doas sockstat -l | grep 2323
+stunnel  stunnel    4567  3  tcp4   192.168.1.138:2323    *:*
+
+# On client - verify NFS mount still works
+[root@r0 ~]# ls /data/nfs/k3svolumes/
+[root@r0 ~]# echo "Test after failover" > /data/nfs/k3svolumes/failover-test.txt
+```
+
+### Integration with Kubernetes
+
+In your Kubernetes manifests, you can now create PersistentVolumes using the NFS servers:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.138  # f3s-storage-ha.lan (CARP virtual IP)
+    path: /data/nfs/k3svolumes
+  mountOptions:
+    - nfsvers=4
+    - tcp
+    - hard
+    - intr
+```
+
+Using the CARP virtual IP (192.168.1.138) instead of direct server IPs ensures that Kubernetes workloads continue to access storage even if the primary NFS server fails. For encryption, configure stunnel on the Kubernetes nodes.
+
+### Security Benefits of Stunnel with Client Certificates
+
+Using stunnel with client certificate authentication for NFS encryption provides several advantages:
+
+* **Compatibility**: Works with any NFS version and between different operating systems
+* **Strong encryption**: Uses TLS/SSL with configurable cipher suites
+* **Transparent**: Applications don't need modification, encryption happens at transport layer
+* **Performance**: Minimal overhead (~2% in benchmarks)
+* **Flexibility**: Can encrypt any TCP-based protocol, not just NFS
+* **Strong Authentication**: Client certificates provide cryptographic proof of identity
+* **Access Control**: Only clients with valid certificates signed by your CA can connect
+* **Certificate Revocation**: You can revoke access by removing certificates from the CA
+
+The client certificate requirement ensures that:
+- Only authorized clients (r0, r1, r2, and earth) can establish stunnel connections
+- Each client has a unique identity that can be individually managed
+- Stolen IP addresses alone cannot grant access without the corresponding certificate
+- Access can be revoked without changing the server configuration
+
+The combination of ZFS encryption at rest and stunnel in transit ensures data is protected throughout its lifecycle.
+
+This configuration provides a solid foundation for shared storage in the f3s Kubernetes cluster, with automatic replication and encrypted transport.
+
+## Mounting NFS on Rocky Linux 9
+
+### Installing and Configuring NFS Clients on r0, r1, and r2
+
+First, install the necessary packages on all three Rocky Linux nodes:
+
+```sh
+# On r0, r1, and r2
+dnf install -y nfs-utils stunnel
+```
+
+### Configuring Stunnel Client on All Nodes
+
+Copy the certificate and configure stunnel on each Rocky Linux node:
+
+```sh
+# On r0
+scp f0:/usr/local/etc/stunnel/stunnel.pem /etc/stunnel/
+tee /etc/stunnel/stunnel.conf <<'EOF'
+cert = /etc/stunnel/stunnel.pem
+client = yes
+
+[nfs-ha]
+accept = 127.0.0.1:2323
+connect = 192.168.1.138:2323
+EOF
+
+systemctl enable --now stunnel
+
+# Repeat the same configuration on r1 and r2
+```
+
+### Setting Up NFS Mounts
+
+Create mount points and configure persistent mounts on all nodes:
+
+```sh
+# On r0, r1, and r2
+mkdir -p /data/nfs/k3svolumes
+
+# Add to /etc/fstab for persistent mount (note the NFSv4 relative path)
+echo '127.0.0.1:/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,hard,intr,_netdev 0 0' >> /etc/fstab
+
+# Mount the share
+mount /data/nfs/k3svolumes
+```
+
+### Comprehensive NFS Mount Testing
+
+Here's a detailed test plan to verify NFS mounts are working correctly on all nodes:
+
+#### Test 1: Verify Mount Status on All Nodes
+
+```sh
+# On r0
+[root@r0 ~]# mount | grep k3svolumes
+# Expected output:
+# 127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+
+# On r1
+[root@r1 ~]# mount | grep k3svolumes
+# Should show similar output
+
+# On r2
+[root@r2 ~]# mount | grep k3svolumes
+# Should show similar output
+```
+
+#### Test 2: Verify Stunnel Connectivity
+
+```sh
+# On r0
+[root@r0 ~]# systemctl status stunnel
+# Should show: Active: active (running)
+
+[root@r0 ~]# ss -tnl | grep 2323
+# Should show: LISTEN 0 128 127.0.0.1:2323 0.0.0.0:*
+
+# Test connection to CARP VIP
+[root@r0 ~]# nc -zv 192.168.1.138 2323
+# Should show: Connection to 192.168.1.138 2323 port [tcp/*] succeeded!
+
+# Repeat on r1 and r2
+```
+
+#### Test 3: File Creation and Visibility Test
+
+```sh
+# On r0 - Create test file
+[root@r0 ~]# echo "Test from r0 - $(date)" > /data/nfs/k3svolumes/test-r0.txt
+[root@r0 ~]# ls -la /data/nfs/k3svolumes/test-r0.txt
+# Should show the file with timestamp
+
+# On r1 - Create test file and check r0's file
+[root@r1 ~]# echo "Test from r1 - $(date)" > /data/nfs/k3svolumes/test-r1.txt
+[root@r1 ~]# ls -la /data/nfs/k3svolumes/
+# Should show both test-r0.txt and test-r1.txt
+
+# On r2 - Create test file and check all files
+[root@r2 ~]# echo "Test from r2 - $(date)" > /data/nfs/k3svolumes/test-r2.txt
+[root@r2 ~]# ls -la /data/nfs/k3svolumes/
+# Should show all three files: test-r0.txt, test-r1.txt, test-r2.txt
+```
+
+#### Test 4: Verify Files on Storage Servers
+
+```sh
+# On f0 (primary storage)
+paul@f0:~ % ls -la /data/nfs/k3svolumes/
+# Should show all three test files
+
+# Wait 5 minutes for replication, then check on f1
+paul@f1:~ % ls -la /data/nfs/k3svolumes/
+# Should show all three test files (after replication)
+```
+
+#### Test 5: Performance and Concurrent Access Test
+
+```sh
+# On r0 - Write large file
+[root@r0 ~]# dd if=/dev/zero of=/data/nfs/k3svolumes/test-large-r0.dat bs=1M count=100
+# Should complete without errors
+
+# On r1 - Read the file while r2 writes
+[root@r1 ~]# dd if=/data/nfs/k3svolumes/test-large-r0.dat of=/dev/null bs=1M &
+# Simultaneously on r2
+[root@r2 ~]# dd if=/dev/zero of=/data/nfs/k3svolumes/test-large-r2.dat bs=1M count=100
+
+# Check for any errors or performance issues
+```
+
+#### Test 6: Directory Operations Test
+
+```sh
+# On r0 - Create directory structure
+[root@r0 ~]# mkdir -p /data/nfs/k3svolumes/test-dir/subdir1/subdir2
+[root@r0 ~]# echo "Deep file" > /data/nfs/k3svolumes/test-dir/subdir1/subdir2/deep.txt
+
+# On r1 - Verify and add files
+[root@r1 ~]# ls -la /data/nfs/k3svolumes/test-dir/subdir1/subdir2/
+[root@r1 ~]# echo "Another file from r1" > /data/nfs/k3svolumes/test-dir/subdir1/file-r1.txt
+
+# On r2 - Verify complete structure
+[root@r2 ~]# find /data/nfs/k3svolumes/test-dir -type f
+# Should show both files
+```
+
+#### Test 7: Permission and Ownership Test
+
+```sh
+# On r0 - Create files with different permissions
+[root@r0 ~]# touch /data/nfs/k3svolumes/test-perms-644.txt
+[root@r0 ~]# chmod 644 /data/nfs/k3svolumes/test-perms-644.txt
+[root@r0 ~]# touch /data/nfs/k3svolumes/test-perms-755.txt
+[root@r0 ~]# chmod 755 /data/nfs/k3svolumes/test-perms-755.txt
+
+# On r1 and r2 - Verify permissions are preserved
+[root@r1 ~]# ls -l /data/nfs/k3svolumes/test-perms-*.txt
+[root@r2 ~]# ls -l /data/nfs/k3svolumes/test-perms-*.txt
+# Permissions should match what was set on r0
+```
+
+#### Test 8: Failover Test (Optional but Recommended)
+
+```sh
+# On f0 - Trigger CARP failover
+paul@f0:~ % doas ifconfig re0 vhid 1 state backup
+
+# On all Rocky nodes - Verify mounts still work
+[root@r0 ~]# echo "Test during failover from r0 - $(date)" > /data/nfs/k3svolumes/failover-test-r0.txt
+[root@r1 ~]# echo "Test during failover from r1 - $(date)" > /data/nfs/k3svolumes/failover-test-r1.txt
+[root@r2 ~]# echo "Test during failover from r2 - $(date)" > /data/nfs/k3svolumes/failover-test-r2.txt
+
+# Verify all files are accessible
+[root@r0 ~]# ls -la /data/nfs/k3svolumes/failover-test-*.txt
+
+# On f1 - Verify it's now MASTER
+paul@f1:~ % ifconfig re0 | grep carp
+# Should show the VIP 192.168.1.138
+
+# Restore f0 as MASTER
+paul@f0:~ % doas ifconfig re0 vhid 1 state master
+```
+
+### Troubleshooting Common Issues
+
+#### Mount Hangs or Times Out
+
+```sh
+# Check stunnel connectivity
+systemctl status stunnel
+ss -tnl | grep 2323
+telnet 127.0.0.1 2323
+
+# Check if you can reach the CARP VIP
+ping 192.168.1.138
+nc -zv 192.168.1.138 2323
+
+# Check for firewall issues
+iptables -L -n | grep 2323
+```
+
+#### Permission Denied Errors
+
+```sh
+# Verify the export allows your IP
+# On f0 or f1
+doas showmount -e localhost
+
+# Check if SELinux is blocking (on Rocky Linux)
+getenforce
+# If enforcing, try:
+setenforce 0  # Temporary for testing
+# Or add proper SELinux context:
+setsebool -P use_nfs_home_dirs 1
+```
+
+#### Files Not Visible Across Nodes
+
+```sh
+# Force NFS cache refresh
+# On the affected node
+umount /data/nfs/k3svolumes
+mount /data/nfs/k3svolumes
+
+# Check NFS version
+nfsstat -m
+# Should show NFSv4
+```
+
+#### I/O Errors When Accessing NFS Mount
+
+I/O errors can have several causes:
+
+1. **Missing localhost in exports** (most common with stunnel):
+   - Since stunnel proxies connections, the NFS server sees requests from 127.0.0.1
+   - Ensure your exports include localhost access:
+   ```
+   /data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+   ```
+
+2. **Stunnel connection issues or CARP failover**:
+
+```sh
+# On the affected node (e.g., r0)
+# Check stunnel is running
+systemctl status stunnel
+
+# Restart stunnel to re-establish connection
+systemctl restart stunnel
+
+# Force remount
+umount -f -l /data/nfs/k3svolumes
+mount -t nfs4 -o port=2323,hard,intr 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes
+
+# Check which FreeBSD host is CARP MASTER
+# On f0
+ssh f0 "ifconfig re0 | grep carp"
+# On f1
+ssh f1 "ifconfig re0 | grep carp"
+
+# Verify stunnel on MASTER is bound to VIP
+# On the MASTER host
+ssh <master-host> "sockstat -l | grep 2323"
+
+# Debug stunnel connection
+openssl s_client -connect 192.168.1.138:2323 </dev/null
+
+# If persistent I/O errors, check logs
+journalctl -u stunnel -n 50
+dmesg | tail -20 | grep -i nfs
+```
+
+### Cleanup After Testing
+
+```sh
+# Remove test files (run on any node)
+rm -f /data/nfs/k3svolumes/test-*.txt
+rm -f /data/nfs/k3svolumes/test-large-*.dat
+rm -f /data/nfs/k3svolumes/failover-test-*.txt
+rm -f /data/nfs/k3svolumes/test-perms-*.txt
+rm -rf /data/nfs/k3svolumes/test-dir
+```
+
+This comprehensive testing ensures that:
+- All nodes can mount the NFS share
+- Files created on one node are visible on all others
+- The encrypted stunnel connection is working
+- Permissions and ownership are preserved
+- The setup can handle concurrent access
+- Failover works correctly (if tested)
 
 Other *BSD-related posts:
 
