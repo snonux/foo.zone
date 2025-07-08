@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-06-23T07:57:21+03:00 by `Gemtexter`
+> This site was generated at 2025-07-09T00:53:51+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -30,6 +30,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2025-07-01 - Posts from January to June 2025](./gemfeed/2025-07-01-posts-from-january-to-june-2025.md)  
 [2025-06-22 - Task Samurai: An agentic coding learning experiment](./gemfeed/2025-06-22-task-samurai.md)  
 [2025-06-07 - 'A Monk's Guide to Happiness' book notes](./gemfeed/2025-06-07-a-monks-guide-to-happiness-book-notes.md)  
 [2025-05-11 - f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./gemfeed/2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  

@@ -15,6 +15,7 @@
 ['Never split the difference' book notes](./never-split-the-difference.md)  
 ['Mind Management' book notes](./mind-management.md)  
 ['Mental Combat' book notes](./mental-combat.md)  
+['Meditation for Mortals' book notes](./meditation-for-mortals.md)  
 ['Love People, Use Things' book notes](./love-people-use-things.md)  
 ['Joy On Domand' book notes](./joy-on-demand.md)  
 ['Influence without Authority' book notes](./influence-wihout-authority.md)  

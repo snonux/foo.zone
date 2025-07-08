@@ -327,6 +327,7 @@ My New Year's resolution is not to start any new non-fiction books (or only very
 
 Other related posts:
 
+[2025-07-01 Posts from January to June 2025](./2025-07-01-posts-from-january-to-june-2025.md)  
 [2025-01-01 Posts from October to December 2024 (You are currently reading this)](./2025-01-01-posts-from-october-to-december-2024.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)

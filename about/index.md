@@ -13,9 +13,14 @@
 ## My sites
 
 [My blog here at foo.zone](../)  
-[codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
 [DTail - the distributed log tailing program](./dtail.md)  
+
+## Show me the code
+
+[Project showcase](./showcase.md)  
+[codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
+[github.com/snonux - My GitHub page (it's just a mirror of Codeberg, really)](https://github.com/snonux)  
 
 ## Social Media and Communities
 
