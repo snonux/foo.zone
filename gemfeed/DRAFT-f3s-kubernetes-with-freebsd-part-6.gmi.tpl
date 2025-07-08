@@ -1041,17 +1041,11 @@ paul@f0:~ % doas chmod 755 /data/nfs/k3svolumes
 # This directory will be replicated to f1 automatically
 ```
 
-Create the /etc/exports file to restrict Kubernetes nodes to only mount the k3svolumes subdirectory, while allowing the laptop full access. Since we're using stunnel, connections appear to come from localhost, so we must allow 127.0.0.1:
+Create the /etc/exports file. Since we're using stunnel for encryption, ALL clients must connect through stunnel, which appears as localhost (127.0.0.1) to the NFS server:
 
 ```sh
 paul@f0:~ % doas tee /etc/exports <<'EOF'
 V4: /data/nfs -sec=sys
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.120 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.121 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.122 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255
-/data/nfs -alldirs -maproot=root -network 192.168.1.4 -mask 255.255.255.255
-/data/nfs -alldirs -maproot=root -network 192.168.1.22 -mask 255.255.255.255
 /data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
 EOF
 ```
@@ -1059,21 +1053,14 @@ EOF
 The exports configuration:
 
 * `V4: /data/nfs -sec=sys`: Sets the NFSv4 root directory to /data/nfs
-* `/data/nfs/k3svolumes`: Specific subdirectory for Kubernetes volumes only
-* `/data/nfs -alldirs`: Full access to all directories for the laptop and localhost
-* `-maproot=root`: Map root user from client to root on server (needed for Kubernetes)
-* `-network` and `-mask`: Restrict access to specific IPs:
-  * 192.168.1.120 (r0.lan) - k3svolumes only
-  * 192.168.1.121 (r1.lan) - k3svolumes only
-  * 192.168.1.122 (r2.lan) - k3svolumes only
-  * 127.0.0.1 (localhost) - needed for stunnel connections
-  * 192.168.1.4 (laptop WiFi) - full access to /data/nfs
-  * 192.168.1.22 (laptop Ethernet) - full access to /data/nfs
+* `/data/nfs -alldirs`: Allows mounting any subdirectory under /data/nfs
+* `-maproot=root`: Maps root user from client to root on server (needed for Kubernetes and ownership changes)
+* `-network 127.0.0.1`: Only accepts connections from localhost (stunnel)
 
 Note: 
-* Critical: 127.0.0.1 must be allowed because stunnel proxies connections through localhost
+* ALL clients (r0, r1, r2, laptop) must connect through stunnel for encryption
+* Stunnel proxies connections through localhost, so only 127.0.0.1 needs access
 * With NFSv4, clients mount using relative paths (e.g., `/k3svolumes` instead of `/data/nfs/k3svolumes`)
-* The CARP virtual IP (192.168.1.138) is not included - it's the server's IP, not a client
 
 Start the NFS services:
 
@@ -1204,11 +1191,6 @@ rpcbind_enable: NO -> YES
 
 paul@f1:~ % doas tee /etc/exports <<'EOF'
 V4: /data/nfs -sec=sys
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.120 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.121 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 192.168.1.122 -mask 255.255.255.255
-/data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255
-/data/nfs -alldirs -maproot=root -network 192.168.1.4 -mask 255.255.255.255
 /data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
 EOF
 
@@ -1647,14 +1629,12 @@ Check that the exports are active on both servers:
 # On f0
 paul@f0:~ % doas showmount -e localhost
 Exports list on localhost:
-/data/nfs/k3svolumes               192.168.1.120 192.168.1.121 192.168.1.122
-/data/nfs                          192.168.1.4
+/data/nfs                          127.0.0.1
 
 # On f1
 paul@f1:~ % doas showmount -e localhost
 Exports list on localhost:
-/data/nfs/k3svolumes               192.168.1.120 192.168.1.121 192.168.1.122
-/data/nfs                          192.168.1.4
+/data/nfs                          127.0.0.1
 ```
 
 ### Client Configuration for Stunnel
