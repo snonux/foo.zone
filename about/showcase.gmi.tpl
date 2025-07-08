@@ -1,53 +1,70 @@
 # Project Showcase
 
-This page showcases my open source projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing.
+Generated on: 2025-07-09
+
+This page showcases my open source projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
 << template::inline::toc
 
 ## Overall Statistics
 
-* Total Projects: 55
-* Total Commits: 10,358
-* Total Lines of Code: 225,423
-* Total Lines of Documentation: 24,618
-* Languages: Java (25.1%), Go (19.3%), HTML (15.7%), C++ (10.0%), C (8.2%), C/C++ (6.5%), XML (5.4%), Shell (2.1%), Perl (1.9%), Config (1.7%), Ruby (1.3%), CSS (0.8%), Make (0.8%), JSON (0.3%), Python (0.3%), Haskell (0.3%), YAML (0.2%), TOML (0.1%)
-* Documentation: Text (46.9%), Markdown (39.2%), LaTeX (13.9%)
-
-Generated on: 2025-07-08
+* 📦 Total Projects: 55
+* 📊 Total Commits: 10,373
+* 📈 Total Lines of Code: 252,766
+* 📄 Total Lines of Documentation: 24,100
+* 💻 Languages: Java (22.4%), Go (17.5%), HTML (14.0%), C++ (8.9%), C (7.3%), Perl (6.3%), Shell (6.3%), C/C++ (5.8%), XML (4.7%), Config (1.5%), Ruby (1.1%), HCL (1.1%), Make (0.7%), Python (0.6%), CSS (0.6%), JSON (0.3%), Raku (0.3%), Haskell (0.2%), YAML (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (47.5%), Markdown (38.3%), LaTeX (14.2%)
+* 🤖 AI-Assisted Projects: 8 out of 55 (14.5% AI-assisted, 85.5% human-only)
+* 🚀 Release Status: 31 released, 24 experimental (56.4% with releases, 43.6% experimental)
 
 ## Projects
 
 ### gitsyncer
 
-* Languages: Go (83.6%), Shell (14.0%), YAML (1.8%), JSON (0.6%)
-* Documentation: Markdown (100.0%)
-* Commits: 35
-* Lines of Code: 5314
-* Lines of Documentation: 2239
-* Development Period: 2025-06-23 to 2025-07-08
-* Recent Activity: 11.0 days (avg. age of last 42 commits)
-* License: BSD-2-Clause
+* 💻 Languages: Go (85.6%), Shell (12.3%), YAML (1.6%), JSON (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 50
+* 📈 Lines of Code: 6038
+* 📄 Lines of Documentation: 2239
+* 📅 Development Period: 2025-06-23 to 2025-07-08
+* 🔥 Recent Activity: 6.4 days (avg. age of last 42 commits)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.3.0 (2025-07-07)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
-GitSyncer is a comprehensive Git repository synchronization tool that automatically keeps repositories in sync across multiple hosting platforms like GitHub and Codeberg. It's particularly useful for developers who maintain the same repository on multiple platforms or want to create resilient backups of their code. The tool supports both individual repository sync and bulk operations to sync all public repositories from one platform to another, with intelligent branch management that never deletes branches but creates them as needed.
+GitSyncer is a cross-platform repository synchronization tool that automatically keeps Git repositories in sync across multiple hosting platforms like GitHub, Codeberg, and private SSH servers. It solves the common problem of maintaining consistent code across different Git hosting services by cloning repositories, adding all configured platforms as remotes, and continuously merging and pushing changes bidirectionally while handling branch creation and conflict detection.
 
-The architecture follows a clean Go project structure with the core implementation handling repository cloning, remote management, and branch synchronization. It uses a JSON configuration file to define organizations and repositories, supports SSH backup locations with automatic bare repository creation, and includes features like branch exclusion patterns, dry-run mode, and merge conflict detection. The tool is designed to be resilient, with opt-in backup functionality that allows it to work normally even when backup servers are offline.
+The tool is implemented in Go with a clean architecture that supports both individual repository syncing and bulk operations for public repositories. Key features include automatic repository creation, SSH backup locations for private servers, branch exclusion patterns, and an opt-in backup mode for resilient offline backups. It uses a JSON configuration file to define organizations and repositories, employs safe merge strategies that never delete branches, and provides comprehensive error handling for merge conflicts and missing repositories.
 
 => https://codeberg.org/snonux/gitsyncer View on Codeberg
 => https://github.com/snonux/gitsyncer View on GitHub
+
+Go from `internal/version/version.go`:
+
+```AUTO
+var (
+	Version = "0.4.0"
+
+	GitCommit = "unknown"
+
+	BuildDate = "unknown"
+```
 
 ---
 
 ### timr
 
-* Languages: Go (98.3%), YAML (1.7%)
-* Documentation: Markdown (100.0%)
-* Commits: 19
-* Lines of Code: 873
-* Lines of Documentation: 135
-* Development Period: 2025-06-25 to 2025-06-29
-* Recent Activity: 12.2 days (avg. age of last 42 commits)
-* License: BSD-2-Clause
+* 💻 Languages: Go (98.3%), YAML (1.7%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 19
+* 📈 Lines of Code: 873
+* 📄 Lines of Documentation: 135
+* 📅 Development Period: 2025-06-25 to 2025-06-29
+* 🔥 Recent Activity: 12.3 days (avg. age of last 42 commits)
+* ⚖️ License: BSD-2-Clause
+* 🧪 Status: Experimental (no releases yet)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 `timr` is a minimalist command-line time tracking tool written in Go that provides a simple stopwatch-style timer for tracking work sessions. It offers commands to start, stop, reset, and check the status of the timer, with all state persisted across sessions in `~/.config/timr/.timr_state`. The tool is particularly useful for developers and professionals who need to track time spent on tasks without the overhead of complex time-tracking applications.
@@ -57,18 +74,35 @@ The project is implemented using a clean modular architecture with the CLI entry
 => https://codeberg.org/snonux/timr View on Codeberg
 => https://github.com/snonux/timr View on GitHub
 
+Go from `internal/timer/timer.go`:
+
+```AUTO
+func GetStateFile() (string, error) {
+	if stateFilePathOverride != "" {
+		return stateFilePathOverride, nil
+	}
+	configDir, err := os.UserConfigDir()
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(configDir, "timr", stateFile), nil
+}
+```
+
 ---
 
 ### tasksamurai
 
-* Languages: Go (99.8%), YAML (0.2%)
-* Documentation: Markdown (100.0%)
-* Commits: 215
-* Lines of Code: 6160
-* Lines of Documentation: 162
-* Development Period: 2025-06-19 to 2025-07-08
-* Recent Activity: 12.6 days (avg. age of last 42 commits)
-* License: BSD-2-Clause
+* 💻 Languages: Go (99.8%), YAML (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 215
+* 📈 Lines of Code: 6160
+* 📄 Lines of Documentation: 162
+* 📅 Development Period: 2025-06-19 to 2025-07-08
+* 🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.9.2 (2025-07-02)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 => showcase/tasksamurai/image-1.png tasksamurai screenshot
@@ -82,18 +116,51 @@ The implementation follows a clean architecture with clear separation of concern
 => https://codeberg.org/snonux/tasksamurai View on Codeberg
 => https://github.com/snonux/tasksamurai View on GitHub
 
+Go from `cmd/tasksamurai/main.go`:
+
+```AUTO
+func main() {
+	debugLog := flag.String("debug-log", "", "path to debug log file")
+	browserCmd := flag.String("browser-cmd", "firefox", "command used to open URLs")
+	disco := flag.Bool("disco", false, "enable disco mode")
+	flag.Parse()
+
+	if err := task.SetDebugLog(*debugLog); err != nil {
+		fmt.Fprintln(os.Stderr, "failed to enable debug log:", err)
+		os.Exit(1)
+	}
+
+	m, err := ui.New(flag.Args(), *browserCmd)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "failed to load tasks:", err)
+		os.Exit(1)
+	}
+
+	m.SetDisco(*disco)
+
+	fmt.Print("\033[H\033[2J")
+
+	p := tea.NewProgram(&m, tea.WithAltScreen())
+	if _, err := p.Run(); err != nil {
+		fmt.Fprintln(os.Stderr, "error running ui:", err)
+		os.Exit(1)
+	}
+}
+```
+
 ---
 
 ### rexfiles
 
-* Languages: Perl (34.8%), Shell (31.0%), Config (8.9%), CSS (8.7%), TOML (7.7%), Ruby (6.3%), Lua (1.9%), JSON (0.5%), INI (0.2%)
-* Documentation: Text (97.3%), Markdown (2.7%)
-* Commits: 871
-* Lines of Code: 3734
-* Lines of Documentation: 854
-* Development Period: 2021-12-28 to 2025-07-07
-* Recent Activity: 19.9 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (34.8%), Perl (32.9%), Config (8.4%), CSS (8.3%), TOML (7.3%), Ruby (6.0%), Lua (1.8%), JSON (0.5%), INI (0.2%)
+* 📚 Documentation: Text (97.3%), Markdown (2.7%)
+* 📊 Commits: 871
+* 📈 Lines of Code: 3947
+* 📄 Lines of Documentation: 854
+* 📅 Development Period: 2021-12-28 to 2025-07-07
+* 🔥 Recent Activity: 20.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
 Based on my analysis of the codebase, **rexfiles** is a comprehensive infrastructure automation and configuration management project built with the Rex framework (a Perl-based alternative to Ansible, Puppet, or Chef). The project provides structured automation for managing multiple aspects of a personal infrastructure, including dotfiles, server configurations, and application deployments.
@@ -103,18 +170,28 @@ The project consists of three main components: **dotfiles** management for perso
 => https://codeberg.org/snonux/rexfiles View on Codeberg
 => https://github.com/snonux/rexfiles View on GitHub
 
+Shell from `frontends/scripts/sitestats.sh`:
+
+```AUTO
+STATSFILE=/tmp/sitestats.csv
+BOTSFILE=/tmp/sitebots.txt
+TOP=20
+```
+
 ---
 
 ### foo.zone
 
-* Languages: HTML (73.9%), XML (25.9%), CSS (0.2%)
-* Documentation: Text (91.8%), Markdown (8.2%)
-* Commits: 2892
-* Lines of Code: 42772
-* Lines of Documentation: 159
-* Development Period: 2021-04-29 to 2025-07-01
-* Recent Activity: 26.3 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: HTML (73.9%), XML (25.9%), CSS (0.2%)
+* 📚 Documentation: Text (91.8%), Markdown (8.2%)
+* 📊 Commits: 2892
+* 📈 Lines of Code: 42772
+* 📄 Lines of Documentation: 159
+* 📅 Development Period: 2021-04-29 to 2025-07-01
+* 🔥 Recent Activity: 26.3 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 This is **foo.zone**, a personal blog and technical website belonging to Paul Buetow, a Site Reliability Engineer based in Sofia, Bulgaria. The project is a static website that serves as a comprehensive platform for sharing technical knowledge, book notes, and personal experiences in the fields of system administration, DevOps, and programming.
@@ -124,18 +201,35 @@ The site is built using **Gemtexter**, a static site generator that creates both
 => https://codeberg.org/snonux/foo.zone View on Codeberg
 => https://github.com/snonux/foo.zone View on GitHub
 
+HTML from `gemfeed/2024-08-05-typing-127.1-words-per-minute.html`:
+
+```AUTO
+<span>Sometimes, there were brain farts, and I couldn&#39;t type at all. The trick was not to freak out about it, but to move on. If your average goes down a bit for a day, it doesn&#39;t matter; the long-term trend over several days and weeks matters, not the one-off wpm high score.</span><br />
+<br />
+<span>Although my wrist pain seemed to go away aftre the first week of using the Kinesis, my fingers became tired of adjusting to the new way of typing. My hands were stiff, as if I had been training for the Olympics. Only after three weeks did I start to feel comfortable with it. If it weren&#39;t for the comments I read online, I would have sent it back after week 2.</span><br />
+<br />
+<span>I also had a problem with the left pinky finger, where I could not comfortably reach the <span class='inlinecode'>p</span> key. This involved moving the whole hand. An easy fix was to swap <span class='inlinecode'>p</span> with <span class='inlinecode'>;</span> on the keyboard layout.</span><br />
+<br />
+<h2 style='display: inline' id='considering-alternate-layouts'>Considering alternate layouts</h2><br />
+<br />
+<span>As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the Qwerty to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: </span><br />
+<br />
+```
+
 ---
 
 ### dtail
 
-* Languages: Go (94.0%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.1%), Docker (0.1%)
-* Documentation: Text (79.4%), Markdown (20.6%)
-* Commits: 1049
-* Lines of Code: 20088
-* Lines of Documentation: 5674
-* Development Period: 2020-01-09 to 2025-06-20
-* Recent Activity: 51.7 days (avg. age of last 42 commits)
-* License: Apache-2.0
+* 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
+* 📚 Documentation: Text (79.4%), Markdown (20.6%)
+* 📊 Commits: 1049
+* 📈 Lines of Code: 20091
+* 📄 Lines of Documentation: 5674
+* 📅 Development Period: 2020-01-09 to 2025-06-20
+* 🔥 Recent Activity: 51.8 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.2.0 (2023-06-21)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 => showcase/dtail/image-1.png dtail screenshot
@@ -149,18 +243,40 @@ The system uses a client-server architecture where dtail servers run on target m
 => https://codeberg.org/snonux/dtail View on Codeberg
 => https://github.com/snonux/dtail View on GitHub
 
+Go from `internal/server/filldates.go`:
+
+```AUTO
+func fillDates(str string) string {
+	yyyesterday := time.Now().Add(-3 * constants.DayDuration).Format("20060102")
+	str = strings.ReplaceAll(str, "$yyyesterday", yyyesterday)
+
+	yyesterday := time.Now().Add(-2 * constants.DayDuration).Format("20060102")
+	str = strings.ReplaceAll(str, "$yyesterday", yyesterday)
+
+	yesterday := time.Now().Add(-1 * constants.DayDuration).Format("20060102")
+	str = strings.ReplaceAll(str, "$yesterday", yesterday)
+
+	today := time.Now().Format("20060102")
+	str = strings.ReplaceAll(str, "$today", today)
+
+	tomorrow := time.Now().Add(1 * constants.DayDuration).Format("20060102")
+	return strings.ReplaceAll(str, "$tomorrow", tomorrow)
+}
+```
+
 ---
 
 ### wireguardmeshgenerator
 
-* Languages: Ruby (73.5%), YAML (26.5%)
-* Documentation: Markdown (100.0%)
-* Commits: 33
-* Lines of Code: 396
-* Lines of Documentation: 24
-* Development Period: 2025-04-18 to 2025-05-11
-* Recent Activity: 71.0 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Ruby (73.5%), YAML (26.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 33
+* 📈 Lines of Code: 396
+* 📄 Lines of Documentation: 24
+* 📅 Development Period: 2025-04-18 to 2025-05-11
+* 🔥 Recent Activity: 71.1 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
 
 WireGuard Mesh Generator is a Ruby-based automation tool that simplifies the creation and management of WireGuard mesh VPN networks across multiple hosts. It automatically generates WireGuard configuration files for each node in the mesh, handles cryptographic key generation and management (including public/private keys and preshared keys), and provides automated deployment to remote machines via SSH/SCP. The tool is particularly useful for setting up secure, encrypted mesh networks between multiple servers or devices, eliminating the manual overhead of configuring WireGuard connections between every pair of nodes.
@@ -170,39 +286,66 @@ The implementation uses a YAML configuration file to define the network topology
 => https://codeberg.org/snonux/wireguardmeshgenerator View on Codeberg
 => https://github.com/snonux/wireguardmeshgenerator View on GitHub
 
+Ruby from `wireguardmeshgenerator.rb`:
+
+```AUTO
+def priv = File.read(@privkey_path).strip
+
+def psk(peer)
+  psk_path = "#{@psk_dir}/#{[@myself, peer].sort.join('_')}.key"
+```
+
 ---
 
 ### ior
 
-* Languages: C (57.8%), Go (39.6%), Make (1.5%), C/C++ (1.2%)
-* Documentation: Text (84.1%), Markdown (15.9%)
-* Commits: 316
-* Lines of Code: 9307
-* Lines of Documentation: 559
-* Development Period: 2024-01-18 to 2025-06-14
-* Recent Activity: 83.1 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: C (54.7%), Go (37.4%), Raku (5.4%), Make (1.4%), C/C++ (1.1%)
+* 📚 Documentation: Text (84.1%), Markdown (15.9%)
+* 📊 Commits: 316
+* 📈 Lines of Code: 9835
+* 📄 Lines of Documentation: 559
+* 📅 Development Period: 2024-01-18 to 2025-06-14
+* 🔥 Recent Activity: 83.2 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
-**I/O Riot NG (ior)** is a Linux-only system performance analysis tool that uses eBPF (Extended Berkeley Packet Filter) to trace and analyze synchronous I/O system calls in real-time. The tool captures detailed timing information for I/O operations and generates flamegraphs to visualize performance bottlenecks, making it particularly useful for identifying slow I/O patterns and understanding where applications spend time waiting for disk operations. This is a spiritual successor to the original I/O Riot project, reimplemented using modern Go and eBPF technology instead of the older SystemTap approach.
+=> showcase/ior/image-1.png ior screenshot
 
-The implementation follows a hybrid architecture combining Go for the userspace application logic and C for the eBPF kernel programs. The tool attaches to kernel tracepoints for various syscalls (like `sys_enter_read`, `sys_exit_write`, etc.), collects timing data through eBPF ring buffers, and processes this data in userspace to generate collapsed stack traces suitable for flamegraph visualization using the Inferno flamegraph tool. The codebase is well-structured with separate packages for event handling, flamegraph generation, file operations, and BPF program management, making it a comprehensive solution for I/O performance analysis.
+Based on my analysis of the codebase, here's a comprehensive summary of the I/O Riot NG (ior) project:
+
+=> showcase/ior/image-2.svg ior screenshot
+
+**I/O Riot NG** is a Linux-based performance monitoring tool that uses eBPF (extended Berkeley Packet Filter) to trace synchronous I/O system calls and analyze their execution times. This tool is particularly valuable for system performance analysis, allowing developers and system administrators to visualize I/O bottlenecks through detailed flamegraphs. It serves as a modern successor to the original I/O Riot project, migrating from SystemTap/C to a Go/C/BPF implementation for better performance and maintainability.
+
+The architecture combines kernel-level tracing with user-space analysis: eBPF programs (`internal/c/ior.bpf.c`) attach to kernel tracepoints to capture syscall entry/exit events, which are then processed by a Go-based event loop (`internal/eventloop.go`) that correlates enter/exit pairs, tracks file descriptors, and measures timing. The tool can operate in real-time mode for live monitoring or post-processing mode to generate flamegraphs from previously collected data using the Inferno flamegraph library. Key features include filtering capabilities for specific processes or file patterns, comprehensive statistics collection, and support for various I/O syscalls like open, read, write, close, and dup operations.
 
 => https://codeberg.org/snonux/ior View on Codeberg
 => https://github.com/snonux/ior View on GitHub
+
+C from `internal/c/maps.h`:
+
+```AUTO
+struct {
+    __uint(type, BPF_MAP_TYPE_RINGBUF);
+    __uint(max_entries, 1 << 24);
+} event_map SEC(".maps");
+```
 
 ---
 
 ### ds-sim
 
-* Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
-* Documentation: Markdown (98.7%), Text (1.3%)
-* Commits: 438
-* Lines of Code: 25762
-* Lines of Documentation: 3101
-* Development Period: 2008-05-15 to 2025-06-27
-* Recent Activity: 84.4 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
+* 📚 Documentation: Markdown (98.7%), Text (1.3%)
+* 📊 Commits: 438
+* 📈 Lines of Code: 25762
+* 📄 Lines of Documentation: 3101
+* 📅 Development Period: 2008-05-15 to 2025-06-27
+* 🔥 Recent Activity: 84.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 => showcase/ds-sim/image-1.png ds-sim screenshot
@@ -214,18 +357,31 @@ The project is built on an event-driven architecture with clear component separa
 => https://codeberg.org/snonux/ds-sim View on Codeberg
 => https://github.com/snonux/ds-sim View on GitHub
 
+Java from `src/main/java/testing/LogType.java`:
+
+```AUTO
+public enum LogType {
+    GLOBAL,
+    
+    PROCESS,
+    
+    SYSTEM
+}
+```
+
 ---
 
 ### sillybench
 
-* Languages: Go (90.9%), Shell (9.1%)
-* Documentation: Markdown (100.0%)
-* Commits: 5
-* Lines of Code: 33
-* Lines of Documentation: 3
-* Development Period: 2025-04-03 to 2025-04-03
-* Recent Activity: 96.9 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Go (90.9%), Shell (9.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 33
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2025-04-03 to 2025-04-03
+* 🔥 Recent Activity: 97.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
 **SillyBench** is a simple Go benchmarking project designed to compare CPU performance between FreeBSD and Linux Bhyve VM environments. The project implements basic mathematical operations (integer multiplication and floating-point arithmetic) to measure computational performance differences across different operating systems and virtualization setups.
@@ -235,18 +391,28 @@ The implementation is minimal and focused, consisting of a basic Go module with 
 => https://codeberg.org/snonux/sillybench View on Codeberg
 => https://github.com/snonux/sillybench View on GitHub
 
+Go from `main.go`:
+
+```AUTO
+func main() {
+	println("Hello world")
+}
+```
+
 ---
 
 ### gos
 
-* Languages: Go (98.6%), YAML (1.1%), JSON (0.2%)
-* Documentation: Markdown (100.0%)
-* Commits: 381
-* Lines of Code: 3967
-* Lines of Documentation: 411
-* Development Period: 2024-05-04 to 2025-06-12
-* Recent Activity: 113.9 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Go (98.6%), YAML (1.1%), JSON (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 381
+* 📈 Lines of Code: 3967
+* 📄 Lines of Documentation: 411
+* 📅 Development Period: 2024-05-04 to 2025-06-12
+* 🔥 Recent Activity: 113.9 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0.0 (2025-03-04)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 => showcase/gos/image-1.png gos screenshot
@@ -260,18 +426,29 @@ The tool is architected around a file-based queueing system where posts progress
 => https://codeberg.org/snonux/gos View on Codeberg
 => https://github.com/snonux/gos View on GitHub
 
+Go from `internal/table/table.go`:
+
+```AUTO
+func (t *Table) MustRender() {
+	if err := t.Render(); err != nil {
+		panic(err)
+	}
+}
+```
+
 ---
 
 ### foostats
 
-* Languages: Perl (100.0%)
-* Documentation: Markdown (85.1%), Text (14.9%)
-* Commits: 67
-* Lines of Code: 1299
-* Lines of Documentation: 154
-* Development Period: 2023-01-02 to 2025-07-07
-* Recent Activity: 133.4 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Perl (100.0%)
+* 📚 Documentation: Markdown (85.1%), Text (14.9%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 1299
+* 📄 Lines of Documentation: 154
+* 📅 Development Period: 2023-01-02 to 2025-07-07
+* 🔥 Recent Activity: 133.5 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 
 Based on the README and project structure, **foostats** is a privacy-respecting web analytics tool written in Perl specifically designed for OpenBSD systems. It processes both traditional HTTP/HTTPS logs and Gemini protocol logs to generate comprehensive traffic statistics while maintaining visitor privacy through SHA3-512 IP hashing. The tool is built for the foo.zone ecosystem and similar sites that need analytics without compromising user privacy.
@@ -281,18 +458,29 @@ The project implements a modular architecture with seven core components: FileHe
 => https://codeberg.org/snonux/foostats View on Codeberg
 => https://github.com/snonux/foostats View on GitHub
 
+Perl from `foostats.pl`:
+
+```AUTO
+my sub parse_date ( $year, @line ) {
+    my $timestr = "$line[0] $line[1]";
+    return Time::Piece->strptime( $timestr, '%b %d' )
+      ->strftime("$year%m%d");
+}
+```
+
 ---
 
 ### rcm
 
-* Languages: Ruby (99.8%), TOML (0.2%)
-* Documentation: Markdown (100.0%)
-* Commits: 76
-* Lines of Code: 1373
-* Lines of Documentation: 48
-* Development Period: 2024-12-05 to 2025-02-28
-* Recent Activity: 137.6 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Ruby (99.8%), TOML (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 76
+* 📈 Lines of Code: 1373
+* 📄 Lines of Documentation: 48
+* 📅 Development Period: 2024-12-05 to 2025-02-28
+* 🔥 Recent Activity: 137.7 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 
 RCM (Ruby Configuration Management) is a lightweight, KISS (Keep It Simple, Stupid) configuration management system written in Ruby and designed for personal use. The project provides a domain-specific language (DSL) for declaratively managing system configuration, including files, directories, symlinks, and packages. It serves as an alternative to more complex configuration management tools like Ansible or Puppet, focusing on simplicity and ease of use for individual system administration tasks.
@@ -302,18 +490,31 @@ The system is implemented with a modular architecture centered around a DSL clas
 => https://codeberg.org/snonux/rcm View on Codeberg
 => https://github.com/snonux/rcm View on GitHub
 
+Ruby from `lib/dslkeywords/given.rb`:
+
+```AUTO
+def respond_to_missing? = true
+
+def met?
+  return false if @conds.key?(:hostname) && Socket.gethostname != @conds[:hostname].to_s
+
+  true
+end
+```
+
 ---
 
 ### gemtexter
 
-* Languages: Shell (64.6%), CSS (31.8%), Config (2.1%), HTML (1.5%)
-* Documentation: Text (76.8%), Markdown (23.2%)
-* Commits: 461
-* Lines of Code: 2047
-* Lines of Documentation: 1170
-* Development Period: 2021-05-21 to 2025-06-11
-* Recent Activity: 230.4 days (avg. age of last 42 commits)
-* License: GPL-3.0
+* 💻 Languages: Shell (67.9%), CSS (28.9%), Config (2.0%), HTML (1.3%)
+* 📚 Documentation: Text (76.8%), Markdown (23.2%)
+* 📊 Commits: 461
+* 📈 Lines of Code: 2253
+* 📄 Lines of Documentation: 1170
+* 📅 Development Period: 2021-05-21 to 2025-06-11
+* 🔥 Recent Activity: 230.5 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-3.0
+* 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
 
 **Gemtexter** is a static site generator and blog engine that transforms content written in Gemini Gemtext format into multiple output formats. It's a comprehensive Bash-based tool designed to support the Gemini protocol (a simpler alternative to HTTP) while maintaining compatibility with traditional web technologies. The project converts a single source of Gemtext content into HTML (XHTML 1.0 Transitional), Markdown, and native Gemtext formats, enabling authors to write once and publish across multiple platforms including Gemini capsules, traditional websites, and GitHub/Codeberg pages.
@@ -323,18 +524,34 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 => https://codeberg.org/snonux/gemtexter View on Codeberg
 => https://github.com/snonux/gemtexter View on GitHub
 
+Shell from `lib/git.source.sh`:
+
+```AUTO
+    find "$CONTENT_BASE_DIR" -maxdepth 1 -mindepth 1 -type d |
+    while read -r content_dir; do
+        if [ -d "$content_dir/.git" ]; then
+            echo "$content_dir"
+        fi
+    done
+}
+
+git::add_all () {
+    local message="$1"; shift
+```
+
 ---
 
 ### quicklogger
 
-* Languages: Go (97.6%), Shell (1.5%), TOML (0.9%)
-* Documentation: Markdown (100.0%)
-* Commits: 32
-* Lines of Code: 917
-* Lines of Documentation: 33
-* Development Period: 2024-01-20 to 2025-07-06
-* Recent Activity: 447.6 days (avg. age of last 42 commits)
-* License: MIT
+* 💻 Languages: Go (97.6%), Shell (1.5%), TOML (0.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 32
+* 📈 Lines of Code: 917
+* 📄 Lines of Documentation: 33
+* 📅 Development Period: 2024-01-20 to 2025-07-06
+* 🔥 Recent Activity: 447.7 days (avg. age of last 42 commits)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
 
 => showcase/quicklogger/image-1.png quicklogger screenshot
@@ -348,18 +565,61 @@ The project follows a clean, single-file architecture with all functionality con
 => https://codeberg.org/snonux/quicklogger View on Codeberg
 => https://github.com/snonux/quicklogger View on GitHub
 
+Go from `main.go`:
+
+```AUTO
+func createPreferenceWindow(a fyne.App) fyne.Window {
+	window := a.NewWindow("Preferences")
+	directoryPreference := widget.NewEntry()
+	directoryPreference.SetText(a.Preferences().StringWithFallback("Directory", defaultDirectory))
+
+	tagDropdownPreference := widget.NewEntry()
+	tagDropdownPreference.SetText(a.Preferences().StringWithFallback("Tags", strings.Join(defaultTagItems, ",")))
+
+	whatDropdownPreference := widget.NewEntry()
+	whatDropdownPreference.SetText(a.Preferences().StringWithFallback("Whats", strings.Join(defaultWhatItems, ",")))
+
+	window.SetContent(container.NewVBox(
+		container.NewVBox(
+			widget.NewLabel("Directory:"),
+			directoryPreference,
+			widget.NewLabel("Tags:"),
+			tagDropdownPreference,
+			widget.NewLabel("Whats:"),
+			whatDropdownPreference,
+		),
+		container.NewHBox(
+			widget.NewButton("Save", func() {
+				a.Preferences().SetString("Directory", directoryPreference.Text)
+				a.Preferences().SetString("Tags", tagDropdownPreference.Text)
+				a.Preferences().SetString("Whats", whatDropdownPreference.Text)
+				window.Hide()
+			}),
+			widget.NewButton("Reset dropdowns", func() {
+				tagDropdownPreference.SetText(strings.Join(defaultTagItems, ","))
+				whatDropdownPreference.SetText(strings.Join(defaultWhatItems, ","))
+			},
+			),
+		)))
+	window.Resize(windowSize)
+
+	return window
+}
+```
+
 ---
 
 ### docker-gpodder-sync-server
 
-* Languages: Make (100.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 3
-* Lines of Code: 12
-* Lines of Documentation: 3
-* Development Period: 2024-03-24 to 2024-03-24
-* Recent Activity: 471.4 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Make (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 12
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2024-03-24 to 2024-03-24
+* 🔥 Recent Activity: 471.5 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 
 This project is a **Docker containerization wrapper for a GPodder sync server**, specifically built around the micro-gpodder-server implementation from https://github.com/bohwaz/micro-gpodder-server. GPodder is a podcast client that allows users to synchronize their podcast subscriptions and episode states across multiple devices. The sync server enables this synchronization by providing a centralized service that podcast clients can connect to for managing subscriptions, episode progress, and playback history.
@@ -369,18 +629,34 @@ The project is implemented as a simple Docker build system with a Makefile that 
 => https://codeberg.org/snonux/docker-gpodder-sync-server View on Codeberg
 => https://github.com/snonux/docker-gpodder-sync-server View on GitHub
 
+Make from `Makefile`:
+
+```AUTO
+build:
+	docker build -t micro-gpodder-server ./micro-gpodder-server
+run: build
+	if [ ! -d ./data ]; then mkdir ./data; fi
+	docker run \
+		--name micro-gpodder-server \
+		-v ./data:/var/www/server/data \
+		--hostname gpodder.example.org \
+		-p 8080:8080 micro-gpodder-server
+aws: build
+```
+
 ---
 
 ### terraform
 
-* Languages: Make (56.1%), YAML (43.9%)
-* Documentation: Markdown (100.0%)
-* Commits: 123
-* Lines of Code: 98
-* Lines of Documentation: 52
-* Development Period: 2023-08-27 to 2025-04-05
-* Recent Activity: 501.5 days (avg. age of last 42 commits)
-* License: MIT
+* 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 123
+* 📈 Lines of Code: 2850
+* 📄 Lines of Documentation: 52
+* 📅 Development Period: 2023-08-27 to 2025-04-05
+* 🔥 Recent Activity: 501.5 days (avg. age of last 42 commits)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
 
 
 This is a comprehensive personal cloud infrastructure project built with Terraform that deploys a multi-tier AWS architecture for hosting self-hosted services. The infrastructure is organized into modular components: `org-buetow-base` provides the foundation (VPC, subnets, EFS storage, ECR), `org-buetow-bastion` creates a bastion host for secure access, `org-buetow-elb` sets up application load balancing, and `org-buetow-ecs` runs containerized services on AWS Fargate. The project also includes an EKS cluster option with EFS CSI driver integration for Kubernetes workloads.
@@ -390,18 +666,35 @@ The system is designed to host multiple personal services including Anki sync se
 => https://codeberg.org/snonux/terraform View on Codeberg
 => https://github.com/snonux/terraform View on GitHub
 
+HCL from `org-buetow-eks/remotestates.tf`:
+
+```AUTO
+data "terraform_remote_state" "base" {
+  backend = "s3"
+  config = {
+    bucket = "org-buetow-tfstate"
+    key    = "org-buetow-base/terraform.tfstate"
+    region = "eu-central-1"
+  }
+}
+
+data "terraform_remote_state" "elb" {
+```
+
 ---
 
 ### gogios
 
-* Languages: Go (94.4%), YAML (3.4%), JSON (2.2%)
-* Documentation: Markdown (100.0%)
-* Commits: 77
-* Lines of Code: 1096
-* Lines of Documentation: 287
-* Development Period: 2023-04-17 to 2025-06-12
-* Recent Activity: 514.3 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Go (94.4%), YAML (3.4%), JSON (2.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 77
+* 📈 Lines of Code: 1096
+* 📄 Lines of Documentation: 287
+* 📅 Development Period: 2023-04-17 to 2025-06-12
+* 🔥 Recent Activity: 514.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.1.0 (2024-05-03)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 => showcase/gogios/image-1.png gogios screenshot
@@ -413,18 +706,29 @@ The implementation follows a clean architecture with concurrent check execution,
 => https://codeberg.org/snonux/gogios View on Codeberg
 => https://github.com/snonux/gogios View on GitHub
 
+Go from `internal/state.go`:
+
+```AUTO
+func (s state) reportStaleAlerts(sb *strings.Builder) int {
+	return s.reportBy(sb, false, true, func(cs checkState) bool {
+		return cs.Epoch < s.staleEpoch
+	})
+}
+```
+
 ---
 
 ### docker-radicale-server
 
-* Languages: Docker (53.1%), Make (46.9%)
-* Documentation: Markdown (100.0%)
-* Commits: 4
-* Lines of Code: 32
-* Lines of Documentation: 3
-* Development Period: 2023-12-31 to 2023-12-31
-* Recent Activity: 555.0 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Docker (53.1%), Make (46.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 4
+* 📈 Lines of Code: 32
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2023-12-31 to 2023-12-31
+* 🔥 Recent Activity: 555.1 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
 This project is a **Docker containerization setup for Radicale**, a CalDAV and CardDAV server written in Python. Radicale is a lightweight, standards-compliant calendar and contacts server that allows users to synchronize their calendars and address books across multiple devices and applications. The project provides a complete Docker image and deployment configuration that makes it easy to run a personal or small-team calendar/contacts server.
@@ -434,18 +738,34 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 => https://codeberg.org/snonux/docker-radicale-server View on Codeberg
 => https://github.com/snonux/docker-radicale-server View on GitHub
 
+Make from `Makefile`:
+
+```AUTO
+build:
+	docker build -t radicale .
+run: build
+	if [ ! -d collections ]; then mkdir collections; fi
+	if [ ! -d auth ]; then mkdir auth; fi
+	cp -v htpasswd-test auth/htpasswd
+	sh -c 'docker rm radicale; exit 0'
+	docker run \
+		-v collections:/collections \
+		-v auth:/auth \
+```
+
 ---
 
 ### docker-anki-sync-server
 
-* Languages: Docker (62.1%), Make (37.9%)
-* Documentation: Markdown (100.0%)
-* Commits: 3
-* Lines of Code: 29
-* Lines of Documentation: 3
-* Development Period: 2023-08-13 to 2024-01-01
-* Recent Activity: 648.2 days (avg. age of last 42 commits)
-* License: MIT
+* 💻 Languages: Docker (62.1%), Make (37.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 29
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2023-08-13 to 2024-01-01
+* 🔥 Recent Activity: 648.3 days (avg. age of last 42 commits)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
 
 
 This project is a Docker containerization of the Anki sync server, designed to provide a self-hosted synchronization service for Anki flashcard applications. Anki is a popular spaced repetition learning tool, and this project allows users to run their own sync server instead of relying on AnkiWeb's hosted service, giving them full control over their data privacy and synchronization infrastructure.
@@ -455,18 +775,34 @@ The implementation is built using a Rocky Linux base image with Python 3.9, and 
 => https://codeberg.org/snonux/docker-anki-sync-server View on Codeberg
 => https://github.com/snonux/docker-anki-sync-server View on GitHub
 
+Make from `Makefile`:
+
+```AUTO
+all:
+	if [ ! -d anki-sync-server ]; then \
+		git clone https://github.com/ankicommunity/anki-sync-server; \
+	else \
+		cd anki-sync-server && git pull && cd ..; \
+  fi
+	docker build -t anki-sync-server:latest . 
+aws:
+	docker build -t anki-sync-server:latest . 
+	docker tag anki-sync-server:latest 634617747016.dkr.ecr.eu-central-1.amazonaws.com/anki-sync-server:latest
+```
+
 ---
 
 ### gorum
 
-* Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
-* Documentation: Markdown (100.0%)
-* Commits: 82
-* Lines of Code: 1525
-* Lines of Documentation: 15
-* Development Period: 2023-04-17 to 2023-11-19
-* Recent Activity: 700.4 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 82
+* 📈 Lines of Code: 1525
+* 📄 Lines of Documentation: 15
+* 📅 Development Period: 2023-04-17 to 2023-11-19
+* 🔥 Recent Activity: 700.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 
 Gorum is a minimalistic distributed quorum manager written in Go that implements a leader election and consensus mechanism across multiple nodes in a network. The system enables nodes to continuously vote for which node should be the leader based on priority scores, with automatic failover when nodes become unavailable. It's particularly useful for distributed systems that need to maintain a single authoritative node while providing high availability and fault tolerance.
@@ -476,38 +812,55 @@ The architecture consists of several key components: a quorum manager that handl
 => https://codeberg.org/snonux/gorum View on Codeberg
 => https://github.com/snonux/gorum View on GitHub
 
----
+Go from `internal/client/tcpclient.go`:
 
-### guprecords
+```AUTO
+func tcpClientRun(ctx context.Context, address string, ch <-chan vote.Vote) error {
+	conn, err := net.Dial("tcp", address)
+	if err != nil {
+		return err
+	}
+	defer conn.Close()
 
-* Documentation: Markdown (100.0%)
-* Commits: 95
-* Lines of Code: 0
-* Lines of Documentation: 416
-* Development Period: 2013-03-22 to 2025-05-18
-* Recent Activity: 750.4 days (avg. age of last 42 commits)
-* License: No license found
+	for {
+		votes, ok := <-ch
+		if !ok {
+			return fmt.Errorf("channel closed - breaking tcpClientRun loop")
+		}
 
+		message, err := votes.ToJSON()
+		if err != nil {
+			return err
+		}
 
-`guprecords` is a Raku-based command-line tool that analyzes and reports on system uptime statistics across multiple hosts. It reads uptime records from the `uptimed` daemon and generates comprehensive reports that help system administrators track host reliability and performance across their infrastructure.
+		log.Println("tcpclient: sending", message, "to address", address)
+		if err := iorw.WriteStr(conn, message); err != nil {
+			return err
+		}
 
-The tool is particularly useful for organizations managing multiple servers, as it provides a unified view of system uptime patterns. It parses raw uptime records (containing uptime duration, boot time, and OS information) from files collected from the `uptimed` daemon running on various hosts. The implementation uses an object-oriented design with classes for data aggregation (`Aggregator`, `Aggregate`, `HostAggregate`) and report generation (`Reporter`, `HostReporter`). It supports multiple analysis categories (Host, Kernel versions, OS families) and metrics (boot count, uptime, downtime, lifespan, and a composite score), with output in plaintext, Markdown, or Gemtext formats. The tool includes comprehensive testing with fixture files and can generate individual reports or complete analysis suites, making it valuable for infrastructure monitoring and capacity planning.
+		response, err := iorw.ReadStr(conn)
+		if err != nil {
+			return err
+		}
 
-=> https://codeberg.org/snonux/guprecords View on Codeberg
-=> https://github.com/snonux/guprecords View on GitHub
+		log.Println("tcpclient: received", response, "from address", address)
+	}
+}
+```
 
 ---
 
 ### randomjournalpage
 
-* Languages: Shell (94.1%), Make (5.9%)
-* Documentation: Markdown (100.0%)
-* Commits: 8
-* Lines of Code: 51
-* Lines of Documentation: 26
-* Development Period: 2022-06-02 to 2024-04-20
-* Recent Activity: 765.1 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (94.1%), Make (5.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 8
+* 📈 Lines of Code: 51
+* 📄 Lines of Documentation: 26
+* 📅 Development Period: 2022-06-02 to 2024-04-20
+* 🔥 Recent Activity: 765.2 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -518,18 +871,29 @@ The implementation is straightforward - a bash script that uses `find` to locate
 => https://codeberg.org/snonux/randomjournalpage View on Codeberg
 => https://github.com/snonux/randomjournalpage View on GitHub
 
+Shell from `randomjournalpage.sh`:
+
+```AUTO
+declare -r ARG="$1"
+
+declare -r JOURNAL_DIR="$HOME/Journals/"
+declare -r OUT_PDF=$JOURNAL_DIR/random_journal_extract.pdf
+declare -i NUM_PAGES_TO_EXTRACT=42 # This is the answear!
+```
+
 ---
 
 ### sway-autorotate
 
-* Languages: Shell (100.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 8
-* Lines of Code: 41
-* Lines of Documentation: 17
-* Development Period: 2020-01-30 to 2025-04-30
-* Recent Activity: 1058.6 days (avg. age of last 42 commits)
-* License: GPL-3.0
+* 💻 Languages: Shell (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 8
+* 📈 Lines of Code: 41
+* 📄 Lines of Documentation: 17
+* 📅 Development Period: 2020-01-30 to 2025-04-30
+* 🔥 Recent Activity: 1058.7 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-3.0
+* 🧪 Status: Experimental (no releases yet)
 
 
 **sway-autorotate** is a bash script for automatic screen rotation on tablets running the Sway window manager. It's specifically designed for touch-enabled devices like the Microsoft Surface Go 2 tablet, addressing the common need for automatic screen orientation changes when the device is physically rotated. The project is particularly useful for tablet users who frequently switch between portrait and landscape orientations, as it eliminates the need to manually rotate the display through system settings.
@@ -539,18 +903,31 @@ The implementation consists of two main components: `autorotate.sh` monitors the
 => https://codeberg.org/snonux/sway-autorotate View on Codeberg
 => https://github.com/snonux/sway-autorotate View on GitHub
 
+Shell from `autorotate.sh`:
+
+```AUTO
+set -euf -o pipefail
+
+declare -r WAYLANDINPUT=(
+    '1118:2485:Microsoft_Surface_Keyboard_Touchpad'
+    '1267:10780:ELAN9038:00_04F3:2A1C'
+)
+declare -r SCREEN=eDP-1
+```
+
 ---
 
 ### photoalbum
 
-* Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
-* Documentation: Markdown (100.0%)
-* Commits: 153
-* Lines of Code: 342
-* Lines of Documentation: 39
-* Development Period: 2011-11-19 to 2022-04-02
-* Recent Activity: 1278.2 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 153
+* 📈 Lines of Code: 342
+* 📄 Lines of Documentation: 39
+* 📅 Development Period: 2011-11-19 to 2022-04-02
+* 🔥 Recent Activity: 1278.3 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -561,40 +938,72 @@ The implementation centers around a single Bash script (`photoalbum.sh`) that us
 => https://codeberg.org/snonux/photoalbum View on Codeberg
 => https://github.com/snonux/photoalbum View on GitHub
 
+Shell from `src/photoalbum.sh`:
+
+```AUTO
+        for sub in thumbs blurs photos; do
+            if [ -f "$DIST_DIR/$sub/$basename" ]; then
+                rm -v "$DIST_DIR/$sub/$basename"
+            fi
+        done
+    done
+}
+
+scalephotos () {
+    cd "$INCOMING_DIR" && find ./ -maxdepth 1 -type f | sort |
+    while read -r photo; do
+        declare photo="$(sed 's#^\./##' <<< "$photo")"
+        declare destphoto="$DIST_DIR/photos/$photo"
+        declare destphoto_nospace="${destphoto// /_}"
+```
+
 ---
 
 ### algorithms
 
-* Languages: Go (99.2%), Make (0.8%)
-* Documentation: Markdown (100.0%)
-* Commits: 82
-* Lines of Code: 1728
-* Lines of Documentation: 18
-* Development Period: 2020-07-12 to 2023-04-09
-* Recent Activity: 1429.4 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Go (99.2%), Make (0.8%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 82
+* 📈 Lines of Code: 1728
+* 📄 Lines of Documentation: 18
+* 📅 Development Period: 2020-07-12 to 2023-04-09
+* 🔥 Recent Activity: 1429.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-This is a comprehensive algorithms and data structures library implemented in Go that serves as a refresher exercise for computer science fundamentals. The project implements classic algorithms across three main categories: **sorting** (including quicksort, mergesort, insertion sort, and parallel variants), **searching** (featuring binary search trees, red-black trees, hash tables, and sets), and **data structures** (priority queues, array lists, and basic types).
+This is a comprehensive Go-based algorithms and data structures educational project that implements fundamental computer science concepts for learning and practice. The codebase is organized into four main packages: data structures (`ds`), sorting algorithms (`sort`), search algorithms (`search`), and priority queues (`queue`), with extensive test coverage and benchmarking capabilities.
 
-The implementation leverages Go's generics system with custom type constraints for numbers and integers, making the algorithms type-safe and reusable across different numeric types. The project is well-structured with separate packages for each algorithm category, includes comprehensive unit tests and benchmarking capabilities via Make targets, and demonstrates both sequential and parallel algorithm implementations. This makes it particularly useful for learning algorithm performance characteristics and comparing different approaches to classic computer science problems.
+The project leverages Go's generics system to provide type-safe implementations of classic algorithms like quicksort, mergesort, binary search trees, red-black trees, and hash tables. It includes both elementary and advanced implementations (parallel sorting, various priority queue implementations) and appears to be designed as educational material for an algorithms course. The architecture emphasizes clean separation of concerns with shared type definitions, comprehensive testing via `make test`, and performance analysis through `make bench`, making it a valuable resource for understanding algorithmic complexity and implementation patterns in Go.
 
 => https://codeberg.org/snonux/algorithms View on Codeberg
 => https://github.com/snonux/algorithms View on GitHub
+
+Go from `queue/heappriority.go`:
+
+```AUTO
+func (q *HeapPriority[T]) swim(k int) {
+	for k > 1 && q.a[k/2] < q.a[k] {
+		q.a.Swap(k/2, k)
+		k = k / 2
+	}
+}
+```
 
 ---
 
 ### geheim
 
-* Languages: Ruby (100.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 66
-* Lines of Code: 671
-* Lines of Documentation: 19
-* Development Period: 2018-05-26 to 2025-01-21
-* Recent Activity: 1431.2 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Ruby (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 66
+* 📈 Lines of Code: 671
+* 📄 Lines of Documentation: 19
+* 📅 Development Period: 2018-05-26 to 2025-01-21
+* 🔥 Recent Activity: 1431.2 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
 Based on my analysis of the project, here's a concise summary:
@@ -606,42 +1015,29 @@ The system is architected around several key components: a configuration system 
 => https://codeberg.org/snonux/geheim View on Codeberg
 => https://github.com/snonux/geheim View on GitHub
 
----
+Ruby from `geheim.rb`:
 
-### xerl
-
-* Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
-* Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
-* Commits: 670
-* Lines of Code: 815
-* Lines of Documentation: 102
-* Development Period: 2011-03-06 to 2021-11-02
-* Recent Activity: 1847.8 days (avg. age of last 42 commits)
-* License: Custom License
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Based on my analysis of the project files, here's a summary of Xerl:
-
-**Xerl** is an open-source website template engine with Content Management System (CMS) features, written in object-oriented Perl and powered by FastCGI. It uses XML-based configuration and content files to generate static websites with multiple output formats (HTML5, XHTML, RSS feeds, and plain text).
-
-The system works through a template-driven architecture where content is written in XML files with semantic tags (like `<pagetitle>`, `<text>`, `<enumeration>`) that get transformed into HTML using configurable transformation rules. The `config.xml` file defines how these semantic tags map to HTML elements, supporting variables and dynamic content insertion. Each website can have its own template configuration, content files, and static assets (CSS, images, fonts), making it useful for maintaining multiple related websites with consistent styling and structure while allowing customization per site. The project includes several example sites (paul.buetow.org, xerl.buetow.org) and redirect configurations, demonstrating its practical use for personal or organizational web presence management.
-
-=> https://codeberg.org/snonux/xerl View on Codeberg
-=> https://github.com/snonux/xerl View on GitHub
+```AUTO
+def out(message, prefix, flag = :none)
+  message = message.to_s unless message.instance_of?(String)
+  message.split("\n").each do |line|
+    if flag == :nonl
+      print "#{prefix} #{line}"
+```
 
 ---
 
 ### perl-c-fibonacci
 
-* Languages: C (80.4%), Make (19.6%)
-* Documentation: Text (100.0%)
-* Commits: 4
-* Lines of Code: 51
-* Lines of Documentation: 69
-* Development Period: 2014-03-24 to 2022-04-23
-* Recent Activity: 1910.3 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: C (80.4%), Make (19.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 4
+* 📈 Lines of Code: 51
+* 📄 Lines of Documentation: 69
+* 📅 Development Period: 2014-03-24 to 2022-04-23
+* 🔥 Recent Activity: 1910.4 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -652,20 +1048,66 @@ The project is useful as an educational tool for understanding language syntax s
 => https://codeberg.org/snonux/perl-c-fibonacci View on Codeberg
 => https://github.com/snonux/perl-c-fibonacci View on GitHub
 
+C from `fibonacci.pl.raku.c`:
+
+```AUTO
+sub hello() {
+    printf("Hello, welcome to the Fibonacci Numbers!\n");
+    printf("This program is all, valid C and C++ and Perl and Raku code!\n");
+    printf("It calculates all fibonacci numbers from 0 to 9!\n\n");
+    return 0;
+}
+```
+
+---
+
+### guprecords
+
+* 💻 Languages: Raku (100.0%)
+* 📊 Commits: 95
+* 📈 Lines of Code: 195
+* 📅 Development Period: 2013-03-22 to 2023-03-09
+* 🔥 Recent Activity: 2125.5 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0.0 (2023-04-29)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+GupRecords is a Raku-based system administration tool that analyzes and reports on system uptime statistics across multiple hosts. It processes raw uptime records from various systems and generates formatted reports showing the top-performing hosts or operating systems based on metrics like uptime, boot count, downtime, and calculated meta-scores.
+
+The tool is implemented with a clean object-oriented architecture featuring an Aggregator class that parses record files, Host and OS Aggregate classes that store statistics, and Reporter classes that generate formatted tables. It supports multiple analysis categories (host, OS, OS-major, uname) and various sorting criteria including uptime duration, boot frequency, system lifespan, and downtime. The formatted output includes visual indicators for active systems and provides both duration-based and numerical metrics in a structured table format, making it useful for system administrators to quickly identify the most reliable systems in their infrastructure.
+
+=> https://codeberg.org/snonux/guprecords View on Codeberg
+=> https://github.com/snonux/guprecords View on GitHub
+
+Raku from `guprecords.raku`:
+
+```AUTO
+sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
+  my Aggregator \aggregator .= new;
+  aggregator.add-file($_) for dir(stats-dir, test => { /.records$/ });
+  reporter.aggregates = aggregator.aggregates;
+  reporter.report;
+}
+```
+
 ---
 
 ### ioriot
 
-* Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 50
-* Lines of Code: 12420
-* Lines of Documentation: 610
-* Development Period: 2018-03-01 to 2020-01-22
-* Recent Activity: 2451.8 days (avg. age of last 42 commits)
-* License: Apache-2.0
+* 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 50
+* 📈 Lines of Code: 12420
+* 📄 Lines of Documentation: 610
+* 📅 Development Period: 2018-03-01 to 2020-01-22
+* 🔥 Recent Activity: 2451.9 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+=> showcase/ioriot/image-1.png ioriot screenshot
 
 **I/O Riot** is a Linux I/O benchmarking tool designed to capture real production I/O operations and replay them on load test machines for performance analysis. Unlike traditional benchmarking tools that use artificial I/O patterns, I/O Riot records actual file system operations from production servers and reproduces them exactly on test hardware. This approach enables accurate performance testing, hardware evaluation, and I/O bottleneck identification without the complexity of distributed test environments.
 
@@ -674,18 +1116,33 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 => https://codeberg.org/snonux/ioriot View on Codeberg
 => https://github.com/snonux/ioriot View on GitHub
 
+C from `ioriot/src/datas/list.c`:
+
+```AUTO
+int list_key_insert_l(list_s *l, const long key, void *data)
+{
+    list_elem_s *current = l->first;
+
+    while (current) {
+        if (current->key_l == key)
+            return 0;
+        current = current->next;
+    }
+```
+
 ---
 
 ### staticfarm-apache-handlers
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 3
-* Lines of Code: 33
-* Lines of Documentation: 12
-* Development Period: 2015-01-02 to 2021-11-04
-* Recent Activity: 2960.6 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (96.4%), Make (3.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 919
+* 📄 Lines of Documentation: 12
+* 📅 Development Period: 2015-01-02 to 2021-11-04
+* 🔥 Recent Activity: 2960.6 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -696,17 +1153,29 @@ The system is particularly useful for distributed static content delivery where 
 => https://codeberg.org/snonux/staticfarm-apache-handlers View on Codeberg
 => https://github.com/snonux/staticfarm-apache-handlers View on GitHub
 
+Perl from `debian/staticfarm-apache-handlers/usr/share/staticfarm/apache/handlers/StaticFarm/CacheControl.pm`:
+
+```AUTO
+sub my_warn {
+  my $msg = shift;
+
+  Apache2::ServerRec::warn("CacheControl: $msg");
+}
+```
+
 ---
 
 ### dyndns
 
-* Documentation: Text (100.0%)
-* Commits: 3
-* Lines of Code: 0
-* Lines of Documentation: 49
-* Development Period: 2014-03-24 to 2021-11-05
-* Recent Activity: 3196.4 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (100.0%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 18
+* 📄 Lines of Documentation: 49
+* 📅 Development Period: 2014-03-24 to 2021-11-05
+* 🔥 Recent Activity: 3196.5 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -721,14 +1190,15 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 
 ### mon
 
-* Languages: Shell (51.4%), Make (35.8%), Config (12.8%)
-* Documentation: Text (100.0%)
-* Commits: 7
-* Lines of Code: 179
-* Lines of Documentation: 789
-* Development Period: 2015-01-02 to 2021-11-05
-* Recent Activity: 3463.1 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 7
+* 📈 Lines of Code: 5360
+* 📄 Lines of Documentation: 789
+* 📅 Development Period: 2015-01-02 to 2021-11-05
+* 🔥 Recent Activity: 3463.2 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -739,18 +1209,29 @@ The tool is particularly useful for system administrators and DevOps engineers w
 => https://codeberg.org/snonux/mon View on Codeberg
 => https://github.com/snonux/mon View on GitHub
 
+Perl from `debian/mon/usr/share/mon/lib/MAPI/JSON.pm`:
+
+```AUTO
+sub init {
+  my ($self) = @_;
+
+  return undef;
+}
+```
+
 ---
 
 ### rubyfy
 
-* Languages: Ruby (98.5%), JSON (1.5%)
-* Documentation: Markdown (100.0%)
-* Commits: 34
-* Lines of Code: 273
-* Lines of Documentation: 32
-* Development Period: 2015-09-29 to 2021-11-05
-* Recent Activity: 3467.3 days (avg. age of last 42 commits)
-* License: Apache-2.0
+* 💻 Languages: Ruby (98.5%), JSON (1.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 34
+* 📈 Lines of Code: 273
+* 📄 Lines of Documentation: 32
+* 📅 Development Period: 2015-09-29 to 2021-11-05
+* 🔥 Recent Activity: 3467.4 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: 0 (2015-10-26)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -761,18 +1242,29 @@ The tool is implemented as a single Ruby script that leverages threading for par
 => https://codeberg.org/snonux/rubyfy View on Codeberg
 => https://github.com/snonux/rubyfy View on GitHub
 
+Ruby from `rubyfy.rb`:
+
+```AUTO
+def log(severity, message)
+  return if severity == :VERBOSE and not $opts["verbose"]
+  return if severity == :DEBUG and not $opts["debug"]
+
+  timestamp = $opts["timestamp"] ? "#{Time.now}|" : ""
+```
+
 ---
 
 ### pingdomfetch
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 9
-* Lines of Code: 49
-* Lines of Documentation: 412
-* Development Period: 2015-01-02 to 2021-11-05
-* Recent Activity: 3546.9 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (97.3%), Make (2.7%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 9
+* 📈 Lines of Code: 1839
+* 📄 Lines of Documentation: 412
+* 📅 Development Period: 2015-01-02 to 2021-11-05
+* 🔥 Recent Activity: 3547.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -783,18 +1275,32 @@ The project is implemented as a modular Perl application with a clean architectu
 => https://codeberg.org/snonux/pingdomfetch View on Codeberg
 => https://github.com/snonux/pingdomfetch View on GitHub
 
+Perl from `lib/PINGDOMFETCH/TLS.pm`:
+
+```AUTO
+sub new {
+    my ( $class, %vals ) = @_;
+
+    my $self = bless \%vals, $class;
+    $self->{is_critical} = 0;
+
+    return $self;
+}
+```
+
 ---
 
 ### gotop
 
-* Languages: Go (98.0%), Make (2.0%)
-* Documentation: Markdown (50.0%), Text (50.0%)
-* Commits: 57
-* Lines of Code: 499
-* Lines of Documentation: 8
-* Development Period: 2015-05-24 to 2021-11-03
-* Recent Activity: 3557.6 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Go (98.0%), Make (2.0%)
+* 📚 Documentation: Markdown (50.0%), Text (50.0%)
+* 📊 Commits: 57
+* 📈 Lines of Code: 499
+* 📄 Lines of Documentation: 8
+* 📅 Development Period: 2015-05-24 to 2021-11-03
+* 🔥 Recent Activity: 3557.7 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.1 (2015-06-01)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -805,42 +1311,113 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 => https://codeberg.org/snonux/gotop View on Codeberg
 => https://github.com/snonux/gotop View on GitHub
 
+Go from `gotop/main.go`:
+
+```AUTO
+func receiveD(dRxChan <-chan diskstats.Diskstats) {
+	for d := range dRxChan {
+		_ = d
+	}
+}
+```
+
+---
+
+### xerl
+
+* 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
+* 📊 Commits: 670
+* 📈 Lines of Code: 1675
+* 📅 Development Period: 2011-03-06 to 2018-12-22
+* 🔥 Recent Activity: 3613.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0.0 (2018-12-22)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+Based on my analysis of the project files, here's a summary of Xerl:
+
+**Xerl** is an open-source website template engine with Content Management System (CMS) features, written in object-oriented Perl and powered by FastCGI. It uses XML-based configuration and content files to generate static websites with multiple output formats (HTML5, XHTML, RSS feeds, and plain text).
+
+The system works through a template-driven architecture where content is written in XML files with semantic tags (like `<pagetitle>`, `<text>`, `<enumeration>`) that get transformed into HTML using configurable transformation rules. The `config.xml` file defines how these semantic tags map to HTML elements, supporting variables and dynamic content insertion. Each website can have its own template configuration, content files, and static assets (CSS, images, fonts), making it useful for maintaining multiple related websites with consistent styling and structure while allowing customization per site. The project includes several example sites (paul.buetow.org, xerl.buetow.org) and redirect configurations, demonstrating its practical use for personal or organizational web presence management.
+
+=> https://codeberg.org/snonux/xerl View on Codeberg
+=> https://github.com/snonux/xerl View on GitHub
+
+Perl from `Xerl/Page/Content.pm`:
+
+```AUTO
+sub _insert_special_vars {
+  my $self    = $_[0];
+  my $rules   = $_[1];
+  my $element = $_[2];
+  my $rtext   = $_[3];
+  my $config  = $self->get_config();
+
+  $$rtext =~ s/@\@text\@\@/$_=$element->get_text();chomp;$_/geo;
+  $$rtext =~ s/@\@ln\@\@//go;
+
+  if ( $$rtext =~ /@\@(.*?)\@\@/ ) {
+    my $params = $element->get_params();
+    return unless ref $params eq 'HASH';
+    $$rtext =~ s/@\@(.*?)\@\@/$params->{$1}||''/geo;
+  }
+
+  return undef;
+}
+```
+
 ---
 
 ### debroid
 
-* Languages: Shell (92.0%), Make (8.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 16
-* Lines of Code: 88
-* Lines of Documentation: 148
-* Development Period: 2015-06-18 to 2015-12-05
-* Recent Activity: 3661.4 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (92.0%), Make (8.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 16
+* 📈 Lines of Code: 88
+* 📄 Lines of Documentation: 148
+* 📅 Development Period: 2015-06-18 to 2015-12-05
+* 🔥 Recent Activity: 3661.5 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
 => showcase/debroid/image-1.png debroid screenshot
 
-**Debroid** is a project that enables running a full Debian GNU/Linux chroot environment on rooted Android devices, specifically targeting the LG G3 D855 running CyanogenMod 13 (Android 6). The project allows users to run a complete Linux distribution alongside Android, providing access to the full Debian package ecosystem and command-line tools while maintaining the Android user interface and functionality.
+**Debroid** is a project that enables running a full Debian GNU/Linux environment on Android devices using a chroot container. Specifically designed for the LG G3 D855 running CyanogenMod 13 (Android 6), it allows users to install and run a complete Debian Jessie system alongside Android. This is particularly useful for developers and power users who want access to a full Linux command-line environment, package management system, and GNU/Linux tools directly on their Android device without dual-booting or replacing the Android system.
 
-The implementation uses a two-stage debootstrap process: first creating a Debian Jessie base image on a Linux host machine, then completing the installation inside the Android chroot environment. The system leverages loop devices to mount the Debian filesystem image stored on the SD card, bind-mounts essential Android directories (/proc, /dev, /sys) into the chroot, and includes startup scripts (jessie.sh:1, userinit.sh:1) for automatic service initialization and chroot management. This approach provides a powerful Linux development environment on Android without requiring a full dual-boot setup, making it useful for developers who need Linux tools and services on their mobile devices.
+The implementation works by creating a Debian filesystem image using debootstrap on a Linux host machine, then transferring it to the Android device's SD card. The core architecture uses loop devices to mount the Debian image file and bind mounts to share Android's `/proc`, `/dev`, and `/sys` filesystems with the chroot environment. The `jessie.sh` script handles mounting/unmounting the chroot and provides commands to enter the Debian environment or start services, while `userinit.sh` automatically starts Debian services at Android boot time. The project includes automation scripts and a Makefile for easy deployment via ADB.
 
 => https://codeberg.org/snonux/debroid View on Codeberg
 => https://github.com/snonux/debroid View on GitHub
+
+Shell from `data/local/userinit.sh`:
+
+```AUTO
+while : ; do
+  if [ -d /storage/sdcard1/Linux/jessie ]; then
+    cd /storage/sdcard1/Linux && /system/bin/sh jessie.sh start_services
+    /system/bin/date
+    exit 0
+  fi
+  /system/bin/sleep 1
+done
+```
 
 ---
 
 ### fapi
 
-* Languages: Python (92.0%), Make (7.3%), Config (0.7%)
-* Documentation: Text (98.3%), Markdown (1.7%)
-* Commits: 219
-* Lines of Code: 710
-* Lines of Documentation: 539
-* Development Period: 2014-03-10 to 2021-11-03
-* Recent Activity: 3939.4 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
+* 📚 Documentation: Text (98.3%), Markdown (1.7%)
+* 📊 Commits: 219
+* 📈 Lines of Code: 1681
+* 📄 Lines of Documentation: 539
+* 📅 Development Period: 2014-03-10 to 2021-11-03
+* 🔥 Recent Activity: 3939.5 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -851,18 +1428,27 @@ The implementation is written in Python and built on top of the bigsuds library,
 => https://codeberg.org/snonux/fapi View on Codeberg
 => https://github.com/snonux/fapi View on GitHub
 
+Python from `contrib/bigsuds-1.0/bigsuds.py`:
+
+```AUTO
+def _create_client_wrapper(self, client, wsdl_name):
+    client.set_options(headers=self._headers)
+    return super(_BIGIPSession, self)._create_client_wrapper(client, wsdl_name)
+```
+
 ---
 
 ### template
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 22
-* Lines of Code: 58
-* Lines of Documentation: 228
-* Development Period: 2013-03-22 to 2021-11-04
-* Recent Activity: 3993.8 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Make (89.2%), Shell (10.8%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 22
+* 📈 Lines of Code: 65
+* 📄 Lines of Documentation: 228
+* 📅 Development Period: 2013-03-22 to 2021-11-04
+* 🔥 Recent Activity: 3993.9 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -873,18 +1459,31 @@ The project implements a clean, Make-based build system with automatic versionin
 => https://codeberg.org/snonux/template View on Codeberg
 => https://github.com/snonux/template View on GitHub
 
+Make from `Makefile`:
+
+```AUTO
+NAME=template
+all: version documentation build
+
+
+build:
+	cp -p ./src/$(NAME) bin/$(NAME)
+	sed -i "s/VERSION_DEVEL/$$(cat .version)/" bin/$(NAME)
+```
+
 ---
 
 ### muttdelay
 
-* Languages: Make (87.7%), Vim Script (11.0%), Config (1.4%)
-* Documentation: Text (100.0%)
-* Commits: 41
-* Lines of Code: 73
-* Lines of Documentation: 96
-* Development Period: 2013-03-22 to 2021-11-05
-* Recent Activity: 4006.8 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 41
+* 📈 Lines of Code: 136
+* 📄 Lines of Documentation: 96
+* 📅 Development Period: 2013-03-22 to 2021-11-05
+* 🔥 Recent Activity: 4006.9 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -895,18 +1494,31 @@ The implementation is elegantly simple, consisting of a bash script that operate
 => https://codeberg.org/snonux/muttdelay View on Codeberg
 => https://github.com/snonux/muttdelay View on GitHub
 
+Make from `Makefile`:
+
+```AUTO
+NAME=muttdelay
+all: version documentation build
+
+
+build:
+	cp -p ./src/$(NAME) bin/$(NAME)
+	sed -i "s/VERSION_DEVEL/$$(cat .version)/" bin/$(NAME)
+```
+
 ---
 
 ### netdiff
 
-* Languages: Make (96.9%), Config (3.1%)
-* Documentation: Text (100.0%)
-* Commits: 42
-* Lines of Code: 64
-* Lines of Documentation: 106
-* Development Period: 2013-03-22 to 2021-11-05
-* Recent Activity: 4014.3 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 42
+* 📈 Lines of Code: 134
+* 📄 Lines of Documentation: 106
+* 📅 Development Period: 2013-03-22 to 2021-11-05
+* 🔥 Recent Activity: 4014.4 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -921,14 +1533,15 @@ The tool works by having both hosts run the same command simultaneously - one ac
 
 ### pwgrep
 
-* Languages: Shell (85.0%), Make (15.0%)
-* Documentation: Text (80.8%), Markdown (19.2%)
-* Commits: 142
-* Lines of Code: 493
-* Lines of Documentation: 26
-* Development Period: 2009-09-27 to 2021-11-02
-* Recent Activity: 4057.6 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (85.0%), Make (15.0%)
+* 📚 Documentation: Text (80.8%), Markdown (19.2%)
+* 📊 Commits: 142
+* 📈 Lines of Code: 493
+* 📄 Lines of Documentation: 26
+* 📅 Development Period: 2009-09-27 to 2021-11-02
+* 🔥 Recent Activity: 4057.7 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -939,18 +1552,29 @@ The implementation leverages GPG for strong encryption, ensuring passwords are n
 => https://codeberg.org/snonux/pwgrep View on Codeberg
 => https://github.com/snonux/pwgrep View on GitHub
 
+Shell from `bin/pwgrep.sh`:
+
+```AUTO
+function pwdbls () {
+  echo Available Databases:
+  _pwdbls
+  echo Current database: $DB
+}
+```
+
 ---
 
 ### japi
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 41
-* Lines of Code: 62
-* Lines of Documentation: 144
-* Development Period: 2013-03-22 to 2021-11-05
-* Recent Activity: 4062.6 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (78.3%), Make (21.7%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 41
+* 📈 Lines of Code: 286
+* 📄 Lines of Documentation: 144
+* 📅 Development Period: 2013-03-22 to 2021-11-05
+* 🔥 Recent Activity: 4062.7 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -965,14 +1589,15 @@ The implementation uses modern Perl with the Moo object system and consists of t
 
 ### perl-poetry
 
-* Languages: Perl (100.0%)
-* Documentation: Markdown (100.0%)
-* Commits: 2
-* Lines of Code: 191
-* Lines of Documentation: 8
-* Development Period: 2014-03-24 to 2014-03-24
-* Recent Activity: 4123.9 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 2
+* 📈 Lines of Code: 191
+* 📄 Lines of Documentation: 8
+* 📅 Development Period: 2014-03-24 to 2014-03-24
+* 🔥 Recent Activity: 4124.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -983,16 +1608,32 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 => https://codeberg.org/snonux/perl-poetry View on Codeberg
 => https://github.com/snonux/perl-poetry View on GitHub
 
+Perl from `php.pl`:
+
+```AUTO
+require abs Perl and not undef$ined; sub knowledges {};
+
+hell: warn if PHP and not Perl;
+
+heaven: do index all, knowledges unless not Perl
+  	and not try { require PHP if defined };
+
+require Switch and delete $evil{PHP};
+
+Oh_Yes: do { PHP => Perl } for all, time;
+```
+
 ---
 
 ### ipv6test
 
-* Languages: Perl (100.0%)
-* Commits: 7
-* Lines of Code: 80
-* Development Period: 2011-07-09 to 2015-01-13
-* Recent Activity: 4203.9 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Perl (100.0%)
+* 📊 Commits: 7
+* 📈 Lines of Code: 80
+* 📅 Development Period: 2011-07-09 to 2015-01-13
+* 🔥 Recent Activity: 4204.0 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1003,24 +1644,42 @@ The implementation uses a straightforward approach with three test endpoints: on
 => https://codeberg.org/snonux/ipv6test View on Codeberg
 => https://github.com/snonux/ipv6test View on GitHub
 
+Perl from `index.pl`:
+
+```AUTO
+Congratulations, you have connected to a server that will display your method of connection, either IPv6 (preferred) or IPv4 (old and crusty). Well IPv6 is already ~15 years old either but not as old as IPv4 ;)
+<br /><br />
+Nevertheless, please choose your destiny:
+<ul>
+	<li><a href="http://ipv6.buetow.org">ipv6.buetow.org</a> for IPv6 & IPv4 Test</li>
+	<li><a href="http://test4.ipv6.buetow.org">test4.ipv6.buetow.org</a> for IPv4 Only Test</li>
+	<li><a href="http://test6.ipv6.buetow.org">test6.ipv6.buetow.org</a> for IPv6 Only Test</li>
+</ul>
+If your browser times-out when trying to connect to this server then you do not have an IPv6 or IPv4 path (depends on which test you are running) to the server. If your browser returns an error that the host cannot be found then the DNS servers you are using are unable to resolve the AAAA or A DNS record (depends on which test you are running again) for the server. If your browser is able to connect to the "IPv6 Only Test", yet using the "IPv6 & IPv4 Test" returns a page stating you are using IPv4, then your browser and/or IP stack in your machine are preferring IPv4 over IPv6. It also might be that your operating system supports IPv6 but your web-browser doesn't.
+END
+
+if ($ENV{SERVER_NAME} eq 'ipv6.buetow.org') {
+```
+
 ---
 
 ### cpuinfo
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 28
-* Lines of Code: 58
-* Lines of Documentation: 75
-* Development Period: 2010-11-05 to 2021-11-05
-* Recent Activity: 4244.6 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Shell (53.2%), Make (46.8%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 28
+* 📈 Lines of Code: 124
+* 📄 Lines of Documentation: 75
+* 📅 Development Period: 2010-11-05 to 2021-11-05
+* 🔥 Recent Activity: 4244.7 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-**cpuinfo** is a small system utility that provides human-readable CPU information by parsing `/proc/cpuinfo` on Linux systems. It extracts and displays key processor details including the CPU model, physical processors, cores, hyper-threading status, clock speeds, and bogomips in a clean, organized format. The tool is particularly useful for system administrators and developers who need to quickly understand the CPU architecture and capabilities of a system without parsing the raw `/proc/cpuinfo` output manually.
+**cpuinfo** is a small command-line utility that provides a human-readable summary of CPU information on Linux systems. It parses `/proc/cpuinfo` using AWK to extract and display key processor details including the CPU model, cache size, number of physical processors, cores, and whether hyper-threading is enabled. The tool calculates total CPU frequency and bogomips across all cores, making it easier to understand complex multi-core and multi-processor configurations at a glance.
 
-The implementation is elegantly simple, consisting of a single shell script that uses GNU AWK (gawk) to parse the `/proc/cpuinfo` file. The AWK script intelligently counts physical processors, cores, and logical CPUs, calculates total and per-core frequencies, detects hyper-threading status, and formats the output in a readable way. The project includes proper packaging for Debian systems, comprehensive documentation, and example outputs from different system configurations, making it a well-rounded utility for Linux system analysis.
+The implementation is remarkably simple - a single shell script that uses GNU AWK to parse the kernel's CPU information and format it into a clear, structured output. It's particularly useful for system administrators and developers who need to quickly understand CPU topology, especially on servers with multiple processors or complex threading configurations where the raw `/proc/cpuinfo` output can be overwhelming.
 
 => https://codeberg.org/snonux/cpuinfo View on Codeberg
 => https://github.com/snonux/cpuinfo View on GitHub
@@ -1029,14 +1688,15 @@ The implementation is elegantly simple, consisting of a single shell script that
 
 ### loadbars
 
-* Languages: Make (100.0%)
-* Documentation: Text (100.0%)
-* Commits: 527
-* Lines of Code: 48
-* Lines of Documentation: 100
-* Development Period: 2010-11-05 to 2015-05-23
-* Recent Activity: 4274.7 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: Perl (97.4%), Make (2.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 527
+* 📈 Lines of Code: 1828
+* 📄 Lines of Documentation: 100
+* 📅 Development Period: 2010-11-05 to 2015-05-23
+* 🔥 Recent Activity: 4274.8 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1047,16 +1707,38 @@ The application is implemented using a multi-threaded architecture where each mo
 => https://codeberg.org/snonux/loadbars View on Codeberg
 => https://github.com/snonux/loadbars View on GitHub
 
+Perl from `lib/Loadbars/Config.pm`:
+
+```AUTO
+sub write () {
+    display_warn( "Overwriting config file " . Loadbars::Constants->CONFFILE )
+      if -f Loadbars::Constants->CONFFILE;
+
+    open my $conffile, '>', Loadbars::Constants->CONFFILE or do {
+        display_warn( "$!: " . Loadbars::Constants->CONFFILE );
+
+        return undef;
+    };
+
+    for ( grep !/title/, keys %C ) {
+        print $conffile "$_=$C{$_}\n";
+    }
+
+    close $conffile;
+}
+```
+
 ---
 
 ### perldaemon
 
-* Languages: Perl (90.1%), Config (9.9%)
-* Commits: 110
-* Lines of Code: 242
-* Development Period: 2011-02-05 to 2022-04-21
-* Recent Activity: 4324.2 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
+* 📊 Commits: 110
+* 📈 Lines of Code: 614
+* 📅 Development Period: 2011-02-05 to 2022-04-21
+* 🔥 Recent Activity: 4324.2 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.4 (2022-04-29)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1067,40 +1749,63 @@ The architecture centers around a modular plugin system where custom functionali
 => https://codeberg.org/snonux/perldaemon View on Codeberg
 => https://github.com/snonux/perldaemon View on GitHub
 
+Perl from `lib/PerlDaemon/PerlDaemon.pl`:
+
+```AUTO
+sub trunc ($) {
+  my $file = shift;
+  open my $fh, ">$file" or die "Can't write $file: $!\n";
+  print $fh '';
+  close $fh;
+}
+```
+
 ---
 
 ### awksite
 
-* Languages: HTML (58.8%), Config (41.2%)
-* Documentation: Text (60.0%), Markdown (40.0%)
-* Commits: 3
-* Lines of Code: 34
-* Lines of Documentation: 10
-* Development Period: 2011-01-27 to 2014-06-22
-* Recent Activity: 4655.2 days (avg. age of last 42 commits)
-* License: No license found
+* 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
+* 📚 Documentation: Text (60.0%), Markdown (40.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 122
+* 📄 Lines of Documentation: 10
+* 📅 Development Period: 2011-01-27 to 2014-06-22
+* 🔥 Recent Activity: 4655.2 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.2 (2011-01-27)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-**Awksite** is a lightweight CGI application written in GNU AWK that generates dynamic HTML websites. It's designed to be minimal and portable, running on any *NIX system with GNU AWK installed without requiring additional dependencies or complex web frameworks. The application uses a simple templating system where placeholders in HTML templates (marked with `%%key%%`) are replaced with values from a configuration file, making it easy to create dynamic content like server uptime, current date, or sorted file contents.
+**AWKsite** is a lightweight CGI application written in GNU AWK that generates dynamic HTML websites. It's designed to run on Unix-like systems and provides a simple templating system for creating dynamic web content. The application is particularly useful for creating basic dynamic websites without requiring complex web frameworks or databases - it's ideal for simple status pages, basic content management, or educational purposes where you want to demonstrate CGI concepts with minimal dependencies.
 
-The architecture is elegantly simple: the main CGI script (`index.cgi`) reads configuration values from `awksite.conf`, processes an HTML template file line by line, and replaces template variables with their corresponding values. Configuration values can be static text or dynamic content generated by shell commands (prefixed with `!`). Special template variables like `%%!sort filename%%` can execute operations like sorting file contents. This approach makes it useful for creating simple dynamic websites, system status pages, or basic content management without the overhead of larger web frameworks, particularly appealing for embedded systems or minimalist web setups.
+The implementation consists of a main AWK script (`index.cgi`) that reads configuration from `awksite.conf` and processes an HTML template (`template.html`) by replacing template variables (marked with `%%variable%%`) with values from the configuration file. The system supports both static values and dynamic content generated by executing shell commands (prefixed with `!`). For example, `%%date%%` gets replaced with the output of the `date` command, and `%%uptime%%` shows server uptime. The template engine also supports sorting file contents with a special `!sort filename` syntax, making it easy to display sorted lists of data.
 
 => https://codeberg.org/snonux/awksite View on Codeberg
 => https://github.com/snonux/awksite View on GitHub
+
+AWK from `index.cgi`:
+
+```AUTO
+function process_line(line) {
+  if (line ~ /%%.+%%/)
+    return insert_template_value(line) 
+  return line
+}
+```
 
 ---
 
 ### jsmstrade
 
-* Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
-* Documentation: Markdown (100.0%)
-* Commits: 20
-* Lines of Code: 720
-* Lines of Documentation: 6
-* Development Period: 2008-06-21 to 2021-11-03
-* Recent Activity: 4717.8 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 20
+* 📈 Lines of Code: 720
+* 📄 Lines of Documentation: 6
+* 📅 Development Period: 2008-06-21 to 2021-11-03
+* 🔥 Recent Activity: 4717.9 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.3 (2009-02-08)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1113,18 +1818,35 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 => https://codeberg.org/snonux/jsmstrade View on Codeberg
 => https://github.com/snonux/jsmstrade View on GitHub
 
+Java from `sources/smstrade/SFrame.java`:
+
+```AUTO
+public void disposeWithParent() {
+    if (!dispose && parent != null && parent instanceof Window) {
+        Window window = (Window) parent;
+        window.addWindowListener(new WindowAdapter() {
+            public void windowClosed(WindowEvent we) {
+                SFrame.this.dispose();
+            }
+        });
+    }
+    dispose = true;
+}
+```
+
 ---
 
 ### netcalendar
 
-* Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
-* Documentation: Text (89.7%), Markdown (10.3%)
-* Commits: 50
-* Lines of Code: 17380
-* Lines of Documentation: 947
-* Development Period: 2009-02-07 to 2021-05-01
-* Recent Activity: 5348.5 days (avg. age of last 42 commits)
-* License: GPL-2.0
+* 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
+* 📚 Documentation: Text (89.7%), Markdown (10.3%)
+* 📊 Commits: 50
+* 📈 Lines of Code: 17380
+* 📄 Lines of Documentation: 947
+* 📅 Development Period: 2009-02-07 to 2021-05-01
+* 🔥 Recent Activity: 5348.6 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: v0.1 (2009-02-08)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1139,16 +1861,27 @@ The implementation uses a clean separation of concerns with dedicated packages f
 => https://codeberg.org/snonux/netcalendar View on Codeberg
 => https://github.com/snonux/netcalendar View on GitHub
 
+Java from `sources/shared/MyVector.java`:
+
+```AUTO
+public void appendVector(Vector vecAppend) {
+    Enumeration enumAppend = vecAppend.elements();
+    while (enumAppend.hasMoreElements())
+        this.add(enumAppend.nextElement());
+}
+```
+
 ---
 
 ### hsbot
 
-* Languages: Haskell (98.5%), Make (1.5%)
-* Commits: 80
-* Lines of Code: 601
-* Development Period: 2009-11-22 to 2011-10-17
-* Recent Activity: 5444.2 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Haskell (98.5%), Make (1.5%)
+* 📊 Commits: 80
+* 📈 Lines of Code: 601
+* 📅 Development Period: 2009-11-22 to 2011-10-17
+* 🔥 Recent Activity: 5444.2 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1159,18 +1892,34 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 => https://codeberg.org/snonux/hsbot View on Codeberg
 => https://github.com/snonux/hsbot View on GitHub
 
+Haskell from `HsBot/Plugins/StoreMessages.hs`:
+
+```AUTO
+module HsBot.Plugins.StoreMessages (makeStoreMessages) where
+
+import Control.Exception
+
+import HsBot.Plugins.Base
+
+import HsBot.Base.Env
+import HsBot.Base.State
+
+storeMessages :: CallbackFunction
+```
+
 ---
 
 ### ychat
 
-* Languages: C++ (63.2%), C/C++ (26.7%), Perl (3.0%), HTML (2.7%), Config (2.5%), Make (1.2%), Shell (0.5%), CSS (0.3%)
-* Documentation: Text (100.0%)
-* Commits: 67
-* Lines of Code: 35610
-* Lines of Documentation: 101
-* Development Period: 2008-05-15 to 2014-06-30
-* Recent Activity: 5554.7 days (avg. age of last 42 commits)
-* License: GPL-2.0
+* 💻 Languages: C++ (48.9%), Shell (22.7%), C/C++ (20.7%), Perl (2.5%), HTML (2.1%), Config (1.9%), Make (0.9%), CSS (0.2%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 45956
+* 📄 Lines of Documentation: 101
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🔥 Recent Activity: 5554.8 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1183,18 +1932,34 @@ The architecture is built around several key managers: a socket manager for hand
 => https://codeberg.org/snonux/ychat View on Codeberg
 => https://github.com/snonux/ychat View on GitHub
 
+C++ from `logd.cpp`:
+
+```AUTO
+struct tm *t_m;
+time_t t_cur=time(NULL);
+t_m=gmtime(&t_cur);
+
+char buffer[100];
+strftime(buffer, 100, "[%d/%b/%Y:%H:%M:%S %z]", t_m);
+string s_time=buffer;
+string s_logstr = request["REMOTE_ADDR"] + " - - "+s_time+" \"" + request["QUERY_STRING"]+"\" 200 0 \""+request["request"]+"\" \""+request["User-Agent"]+"\"\n";
+
+s_queue.push(s_logstr);	
+```
+
 ---
 
 ### vs-sim
 
-* Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
-* Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
-* Commits: 411
-* Lines of Code: 16303
-* Lines of Documentation: 2903
-* Development Period: 2008-05-15 to 2021-05-01
-* Recent Activity: 5740.6 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
+* 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
+* 📊 Commits: 411
+* 📈 Lines of Code: 16303
+* 📄 Lines of Documentation: 2903
+* 📅 Development Period: 2008-05-15 to 2021-05-01
+* 🔥 Recent Activity: 5740.7 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0 (2008-08-24)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1207,18 +1972,31 @@ The implementation features a modular architecture with separate packages for co
 => https://codeberg.org/snonux/vs-sim View on Codeberg
 => https://github.com/snonux/vs-sim View on GitHub
 
+Java from `sources/prefs/editors/VSSimulatorEditor.java`:
+
+```AUTO
+public VSSimulatorEditor(VSPrefs prefs, VSSimulatorFrame simulatorFrame,
+                         boolean openedNewWindow) {
+    super(prefs, prefs, prefs.getString("lang.en.name")
+          + " - " + prefs.getString("lang.en.prefs"));
+    this.simulatorFrame = simulatorFrame;
+    this.openedNewWindow = openedNewWindow;
+}
+```
+
 ---
 
 ### fype
 
-* Languages: C (67.9%), C/C++ (23.6%), HTML (6.9%), Make (1.6%)
-* Documentation: Text (61.4%), LaTeX (38.6%)
-* Commits: 99
-* Lines of Code: 8622
-* Lines of Documentation: 1474
-* Development Period: 2008-05-15 to 2014-06-30
-* Recent Activity: 5768.2 days (avg. age of last 42 commits)
-* License: Custom License
+* 💻 Languages: C (67.9%), C/C++ (23.6%), HTML (6.9%), Make (1.6%)
+* 📚 Documentation: Text (61.4%), LaTeX (38.6%)
+* 📊 Commits: 99
+* 📈 Lines of Code: 8622
+* 📄 Lines of Documentation: 1474
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🔥 Recent Activity: 5768.3 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
