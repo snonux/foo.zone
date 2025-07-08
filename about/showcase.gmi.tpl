@@ -9,11 +9,11 @@ This page showcases my open source projects, providing an overview of what each 
 ## Overall Statistics
 
 * 📦 Total Projects: 55
-* 📊 Total Commits: 10,373
-* 📈 Total Lines of Code: 252,766
-* 📄 Total Lines of Documentation: 24,100
-* 💻 Languages: Java (22.4%), Go (17.5%), HTML (14.0%), C++ (8.9%), C (7.3%), Perl (6.3%), Shell (6.3%), C/C++ (5.8%), XML (4.7%), Config (1.5%), Ruby (1.1%), HCL (1.1%), Make (0.7%), Python (0.6%), CSS (0.6%), JSON (0.3%), Raku (0.3%), Haskell (0.2%), YAML (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (47.5%), Markdown (38.3%), LaTeX (14.2%)
+* 📊 Total Commits: 10,379
+* 📈 Total Lines of Code: 252,969
+* 📄 Total Lines of Documentation: 24,167
+* 💻 Languages: Java (22.4%), Go (17.6%), HTML (14.0%), C++ (8.9%), C (7.3%), Perl (6.3%), Shell (6.3%), C/C++ (5.8%), XML (4.6%), Config (1.5%), Ruby (1.1%), HCL (1.1%), Make (0.7%), Python (0.6%), CSS (0.6%), JSON (0.3%), Raku (0.3%), Haskell (0.2%), YAML (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (47.4%), Markdown (38.4%), LaTeX (14.2%)
 * 🤖 AI-Assisted Projects: 8 out of 55 (14.5% AI-assisted, 85.5% human-only)
 * 🚀 Release Status: 31 released, 24 experimental (56.4% with releases, 43.6% experimental)
 
@@ -21,15 +21,15 @@ This page showcases my open source projects, providing an overview of what each 
 
 ### gitsyncer
 
-* 💻 Languages: Go (85.6%), Shell (12.3%), YAML (1.6%), JSON (0.5%)
+* 💻 Languages: Go (86.0%), Shell (11.9%), YAML (1.5%), JSON (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 50
-* 📈 Lines of Code: 6038
-* 📄 Lines of Documentation: 2239
-* 📅 Development Period: 2025-06-23 to 2025-07-08
-* 🔥 Recent Activity: 6.4 days (avg. age of last 42 commits)
+* 📊 Commits: 56
+* 📈 Lines of Code: 6241
+* 📄 Lines of Documentation: 2306
+* 📅 Development Period: 2025-06-23 to 2025-07-09
+* 🔥 Recent Activity: 4.2 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.3.0 (2025-07-07)
+* 🏷️ Latest Release: v0.4.0 (2025-07-09)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
@@ -74,18 +74,21 @@ The project is implemented using a clean modular architecture with the CLI entry
 => https://codeberg.org/snonux/timr View on Codeberg
 => https://github.com/snonux/timr View on GitHub
 
-Go from `internal/timer/timer.go`:
+Go from `internal/timer/operations.go`:
 
 ```AUTO
-func GetStateFile() (string, error) {
-	if stateFilePathOverride != "" {
-		return stateFilePathOverride, nil
-	}
-	configDir, err := os.UserConfigDir()
+func GetRawStatus() (string, error) {
+	state, err := LoadState()
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("error loading state: %w", err)
 	}
-	return filepath.Join(configDir, "timr", stateFile), nil
+
+	elapsed := state.ElapsedTime
+	if state.Running {
+		elapsed += time.Since(state.StartTime)
+	}
+
+	return fmt.Sprintf("%d", int(elapsed.Seconds())), nil
 }
 ```
 
@@ -116,35 +119,15 @@ The implementation follows a clean architecture with clear separation of concern
 => https://codeberg.org/snonux/tasksamurai View on Codeberg
 => https://github.com/snonux/tasksamurai View on GitHub
 
-Go from `cmd/tasksamurai/main.go`:
+Go from `internal/ui/handlers.go`:
 
 ```AUTO
-func main() {
-	debugLog := flag.String("debug-log", "", "path to debug log file")
-	browserCmd := flag.String("browser-cmd", "firefox", "command used to open URLs")
-	disco := flag.Bool("disco", false, "enable disco mode")
-	flag.Parse()
-
-	if err := task.SetDebugLog(*debugLog); err != nil {
-		fmt.Fprintln(os.Stderr, "failed to enable debug log:", err)
-		os.Exit(1)
+func (m *Model) getTaskAtCursor() *task.Task {
+	cursor := m.tbl.Cursor()
+	if cursor < 0 || cursor >= len(m.tasks) {
+		return nil
 	}
-
-	m, err := ui.New(flag.Args(), *browserCmd)
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "failed to load tasks:", err)
-		os.Exit(1)
-	}
-
-	m.SetDisco(*disco)
-
-	fmt.Print("\033[H\033[2J")
-
-	p := tea.NewProgram(&m, tea.WithAltScreen())
-	if _, err := p.Run(); err != nil {
-		fmt.Fprintln(os.Stderr, "error running ui:", err)
-		os.Exit(1)
-	}
+	return &m.tasks[cursor]
 }
 ```
 
@@ -201,19 +184,19 @@ The site is built using **Gemtexter**, a static site generator that creates both
 => https://codeberg.org/snonux/foo.zone View on Codeberg
 => https://github.com/snonux/foo.zone View on GitHub
 
-HTML from `gemfeed/2024-08-05-typing-127.1-words-per-minute.html`:
+HTML from `gemfeed/2022-01-23-welcome-to-the-foo.zone.html`:
 
 ```AUTO
-<span>Sometimes, there were brain farts, and I couldn&#39;t type at all. The trick was not to freak out about it, but to move on. If your average goes down a bit for a day, it doesn&#39;t matter; the long-term trend over several days and weeks matters, not the one-off wpm high score.</span><br />
-<br />
-<span>Although my wrist pain seemed to go away aftre the first week of using the Kinesis, my fingers became tired of adjusting to the new way of typing. My hands were stiff, as if I had been training for the Olympics. Only after three weeks did I start to feel comfortable with it. If it weren&#39;t for the comments I read online, I would have sent it back after week 2.</span><br />
-<br />
-<span>I also had a problem with the left pinky finger, where I could not comfortably reach the <span class='inlinecode'>p</span> key. This involved moving the whole hand. An easy fix was to swap <span class='inlinecode'>p</span> with <span class='inlinecode'>;</span> on the keyboard layout.</span><br />
-<br />
-<h2 style='display: inline' id='considering-alternate-layouts'>Considering alternate layouts</h2><br />
-<br />
-<span>As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the Qwerty to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: </span><br />
-<br />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Welcome to the foo.zone</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
 ```
 
 ---
@@ -243,24 +226,17 @@ The system uses a client-server architecture where dtail servers run on target m
 => https://codeberg.org/snonux/dtail View on Codeberg
 => https://github.com/snonux/dtail View on GitHub
 
-Go from `internal/server/filldates.go`:
+Go from `internal/clients/baseclient.go`:
 
 ```AUTO
-func fillDates(str string) string {
-	yyyesterday := time.Now().Add(-3 * constants.DayDuration).Format("20060102")
-	str = strings.ReplaceAll(str, "$yyyesterday", yyyesterday)
-
-	yyesterday := time.Now().Add(-2 * constants.DayDuration).Format("20060102")
-	str = strings.ReplaceAll(str, "$yyesterday", yyesterday)
-
-	yesterday := time.Now().Add(-1 * constants.DayDuration).Format("20060102")
-	str = strings.ReplaceAll(str, "$yesterday", yesterday)
-
-	today := time.Now().Format("20060102")
-	str = strings.ReplaceAll(str, "$today", today)
-
-	tomorrow := time.Now().Add(1 * constants.DayDuration).Format("20060102")
-	return strings.ReplaceAll(str, "$tomorrow", tomorrow)
+func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMethod,
+	hostKeyCallback client.HostKeyCallback) connectors.Connector {
+	if c.Args.Serverless {
+		return connectors.NewServerless(c.UserName, c.maker.makeHandler(server),
+			c.maker.makeCommands())
+	}
+	return connectors.NewServerConnection(server, c.UserName, sshAuthMethods,
+		hostKeyCallback, c.maker.makeHandler(server), c.maker.makeCommands())
 }
 ```
 
@@ -323,13 +299,19 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 => https://codeberg.org/snonux/ior View on Codeberg
 => https://github.com/snonux/ior View on GitHub
 
-C from `internal/c/maps.h`:
+C from `internal/c/types.h`:
 
 ```AUTO
-struct {
-    __uint(type, BPF_MAP_TYPE_RINGBUF);
-    __uint(max_entries, 1 << 24);
-} event_map SEC(".maps");
+struct open_event {
+    __u32 event_type;
+    __u32 trace_id; 
+    __u64 time;
+    __u32 pid;
+    __u32 tid;
+    __s32 flags;
+    char filename[MAX_FILENAME_LENGTH];
+    char comm[MAX_PROGNAME_LENGTH];
+};
 ```
 
 ---
@@ -357,15 +339,14 @@ The project is built on an event-driven architecture with clear component separa
 => https://codeberg.org/snonux/ds-sim View on Codeberg
 => https://github.com/snonux/ds-sim View on GitHub
 
-Java from `src/main/java/testing/LogType.java`:
+Java from `src/main/java/events/VSAbstractEvent.java`:
 
 ```AUTO
-public enum LogType {
-    GLOBAL,
-    
-    PROCESS,
-    
-    SYSTEM
+public final void setClassname(String eventClassname) {
+    if (eventClassname.startsWith(CLASS_PREFIX))
+        eventClassname = eventClassname.substring(CLASS_PREFIX_LENGTH);
+
+    this.eventClassname = eventClassname;
 }
 ```
 
@@ -426,13 +407,16 @@ The tool is architected around a file-based queueing system where posts progress
 => https://codeberg.org/snonux/gos View on Codeberg
 => https://github.com/snonux/gos View on GitHub
 
-Go from `internal/table/table.go`:
+Go from `internal/summary/summary.go`:
 
 ```AUTO
-func (t *Table) MustRender() {
-	if err := t.Render(); err != nil {
-		panic(err)
-	}
+func prepare(content string) string {
+	content = newlineRegex.ReplaceAllString(content, " ")
+	content = urlRegex.ReplaceAllString(content, "")
+	content = multiSpaceRegex.ReplaceAllString(content, " ")
+	content = strings.TrimSpace(content)
+	content = tagRegex.ReplaceAllString(content, "`$0`")
+	return content
 }
 ```
 
@@ -490,16 +474,14 @@ The system is implemented with a modular architecture centered around a DSL clas
 => https://codeberg.org/snonux/rcm View on Codeberg
 => https://github.com/snonux/rcm View on GitHub
 
-Ruby from `lib/dslkeywords/given.rb`:
+Ruby from `lib/dsl.rb`:
 
 ```AUTO
-def respond_to_missing? = true
+def to_s = @id
+def evaluate! = @scheduled.each(&:evaluate!)
 
-def met?
-  return false if @conds.key?(:hostname) && Socket.gethostname != @conds[:hostname].to_s
-
-  true
-end
+def <<(obj)
+  raise DuplicateResource, "#{obj.id} already declared!" if @@objs.key?(obj.id)
 ```
 
 ---
@@ -524,19 +506,18 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 => https://codeberg.org/snonux/gemtexter View on Codeberg
 => https://github.com/snonux/gemtexter View on GitHub
 
-Shell from `lib/git.source.sh`:
+Shell from `lib/md.source.sh`:
 
 ```AUTO
-    find "$CONTENT_BASE_DIR" -maxdepth 1 -mindepth 1 -type d |
-    while read -r content_dir; do
-        if [ -d "$content_dir/.git" ]; then
-            echo "$content_dir"
-        fi
-    done
-}
+md::make_img () {
+    local link="$1"; shift
+    local descr="$1"; shift
 
-git::add_all () {
-    local message="$1"; shift
+    if [ -z "$descr" ]; then
+        echo "[![$link]($link)]($link)  "
+    else
+        echo "[![$descr]($link \"$descr\")]($link)  "
+    fi
 ```
 
 ---
@@ -666,19 +647,18 @@ The system is designed to host multiple personal services including Anki sync se
 => https://codeberg.org/snonux/terraform View on Codeberg
 => https://github.com/snonux/terraform View on GitHub
 
-HCL from `org-buetow-eks/remotestates.tf`:
+HCL from `org-buetow-ecs/variables.tf`:
 
 ```AUTO
-data "terraform_remote_state" "base" {
-  backend = "s3"
-  config = {
-    bucket = "org-buetow-tfstate"
-    key    = "org-buetow-base/terraform.tfstate"
-    region = "eu-central-1"
-  }
+  type        = bool
+  default     = false
 }
 
-data "terraform_remote_state" "elb" {
+variable "deploy_audiobookshelf" {
+  description = "Deploy Audio Bool Shelf Server?"
+  type        = bool
+  default     = true
+}
 ```
 
 ---
@@ -706,13 +686,26 @@ The implementation follows a clean architecture with concurrent check execution,
 => https://codeberg.org/snonux/gogios View on Codeberg
 => https://github.com/snonux/gogios View on GitHub
 
-Go from `internal/state.go`:
+Go from `internal/run.go`:
 
 ```AUTO
-func (s state) reportStaleAlerts(sb *strings.Builder) int {
-	return s.reportBy(sb, false, true, func(cs checkState) bool {
-		return cs.Epoch < s.staleEpoch
-	})
+func persistReport(subject, body string, conf config) error {
+	reportFile := fmt.Sprintf("%s/report.txt", conf.StateDir)
+	tmpFile := fmt.Sprintf("%s.tmp", reportFile)
+
+	f, err := os.Create(tmpFile)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	if _, err = f.WriteString(fmt.Sprintf("%s\n\n", subject)); err != nil {
+		return err
+	}
+	if _, err = f.WriteString(body); err != nil {
+		return err
+	}
+	return os.Rename(tmpFile, reportFile)
 }
 ```
 
@@ -812,39 +805,33 @@ The architecture consists of several key components: a quorum manager that handl
 => https://codeberg.org/snonux/gorum View on Codeberg
 => https://github.com/snonux/gorum View on GitHub
 
-Go from `internal/client/tcpclient.go`:
+Go from `internal/notifier/email.go`:
 
 ```AUTO
-func tcpClientRun(ctx context.Context, address string, ch <-chan vote.Vote) error {
-	conn, err := net.Dial("tcp", address)
-	if err != nil {
-		return err
+func (em email) send(conf config.Config) error {
+	if !conf.EmailNotifycationEnabled() {
+		return nil
 	}
-	defer conn.Close()
+	log.Println("notify:", em.subject, em.body)
 
-	for {
-		votes, ok := <-ch
-		if !ok {
-			return fmt.Errorf("channel closed - breaking tcpClientRun loop")
-		}
-
-		message, err := votes.ToJSON()
-		if err != nil {
-			return err
-		}
-
-		log.Println("tcpclient: sending", message, "to address", address)
-		if err := iorw.WriteStr(conn, message); err != nil {
-			return err
-		}
-
-		response, err := iorw.ReadStr(conn)
-		if err != nil {
-			return err
-		}
-
-		log.Println("tcpclient: received", response, "from address", address)
+	headers := map[string]string{
+		"From":         conf.EmailFrom,
+		"To":           conf.EmailTo,
+		"Subject":      em.subject,
+		"MIME-Version": "1.0",
+		"Content-Type": "text/plain; charset=\"utf-8\"",
 	}
+
+	header := ""
+	for k, v := range headers {
+		header += fmt.Sprintf("%s: %s\r\n", k, v)
+	}
+
+	message := header + "\r\n" + em.body
+	log.Println("Using SMTP server", conf.SMTPServer)
+
+	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
+		[]string{conf.EmailTo}, []byte(message))
 }
 ```
 
@@ -967,7 +954,7 @@ scalephotos () {
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1429.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1429.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -980,14 +967,12 @@ The project leverages Go's generics system to provide type-safe implementations 
 => https://codeberg.org/snonux/algorithms View on Codeberg
 => https://github.com/snonux/algorithms View on GitHub
 
-Go from `queue/heappriority.go`:
+Go from `sort/parallelquick.go`:
 
 ```AUTO
-func (q *HeapPriority[T]) swim(k int) {
-	for k > 1 && q.a[k/2] < q.a[k] {
-		q.a.Swap(k/2, k)
-		k = k / 2
-	}
+func ParallelQuick[V ds.Number](a ds.ArrayList[V]) ds.ArrayList[V] {
+	parallelQuick(a)
+	return a
 }
 ```
 
@@ -1116,20 +1101,6 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 => https://codeberg.org/snonux/ioriot View on Codeberg
 => https://github.com/snonux/ioriot View on GitHub
 
-C from `ioriot/src/datas/list.c`:
-
-```AUTO
-int list_key_insert_l(list_s *l, const long key, void *data)
-{
-    list_elem_s *current = l->first;
-
-    while (current) {
-        if (current->key_l == key)
-            return 0;
-        current = current->next;
-    }
-```
-
 ---
 
 ### staticfarm-apache-handlers
@@ -1153,13 +1124,13 @@ The system is particularly useful for distributed static content delivery where 
 => https://codeberg.org/snonux/staticfarm-apache-handlers View on Codeberg
 => https://github.com/snonux/staticfarm-apache-handlers View on GitHub
 
-Perl from `debian/staticfarm-apache-handlers/usr/share/staticfarm/apache/handlers/StaticFarm/CacheControl.pm`:
+Perl from `src/StaticFarm/API.pm`:
 
 ```AUTO
-sub my_warn {
-  my $msg = shift;
+sub path_ls {
+  my $f = shift;
 
-  Apache2::ServerRec::warn("CacheControl: $msg");
+  return [ map { s#.*/##; $_ } glob("$f/*") ];
 }
 ```
 
@@ -1209,7 +1180,7 @@ The tool is particularly useful for system administrators and DevOps engineers w
 => https://codeberg.org/snonux/mon View on Codeberg
 => https://github.com/snonux/mon View on GitHub
 
-Perl from `debian/mon/usr/share/mon/lib/MAPI/JSON.pm`:
+Perl from `lib/MON/JSON.pm`:
 
 ```AUTO
 sub init {
@@ -1275,16 +1246,22 @@ The project is implemented as a modular Perl application with a clean architectu
 => https://codeberg.org/snonux/pingdomfetch View on Codeberg
 => https://github.com/snonux/pingdomfetch View on GitHub
 
-Perl from `lib/PINGDOMFETCH/TLS.pm`:
+Perl from `lib/PINGDOMFETCH/Pingdom.pm`:
 
 ```AUTO
-sub new {
-    my ( $class, %vals ) = @_;
+sub fetch_all_checks_json {
+    my ($self) = @_;
 
-    my $self = bless \%vals, $class;
-    $self->{is_critical} = 0;
+    my $config = $self->{config};
 
-    return $self;
+    my $url_base = $self->{url_base};
+    my $action   = $config->get('pingdom.api.all.checks.action');
+
+    my $url = "$url_base/$action";
+
+    $self->verbose("Fetching all checks from Pingdom");
+
+    return $self->fetch($url);
 }
 ```
 
@@ -1311,13 +1288,17 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 => https://codeberg.org/snonux/gotop View on Codeberg
 => https://github.com/snonux/gotop View on GitHub
 
-Go from `gotop/main.go`:
+Go from `process/process.go`:
 
 ```AUTO
-func receiveD(dRxChan <-chan diskstats.Diskstats) {
-	for d := range dRxChan {
-		_ = d
+func (self *Process) gatherRaw(what *string, pathf string) error {
+	bytes, err := ioutil.ReadFile(fmt.Sprintf(pathf, self.Pid))
+	if err != nil {
+		return err
+	} else {
+		*what = string(bytes)
 	}
+	return nil
 }
 ```
 
@@ -1344,26 +1325,16 @@ The system works through a template-driven architecture where content is written
 => https://codeberg.org/snonux/xerl View on Codeberg
 => https://github.com/snonux/xerl View on GitHub
 
-Perl from `Xerl/Page/Content.pm`:
+Perl from `Xerl.pm`:
 
 ```AUTO
-sub _insert_special_vars {
-  my $self    = $_[0];
-  my $rules   = $_[1];
-  my $element = $_[2];
-  my $rtext   = $_[3];
-  my $config  = $self->get_config();
+return undef if $config->finish_request_exists();
 
-  $$rtext =~ s/@\@text\@\@/$_=$element->get_text();chomp;$_/geo;
-  $$rtext =~ s/@\@ln\@\@//go;
+if ( $config->document_exists() ) {
+  my $document = Xerl::Page::Document->new( config => $config );
+  $document->parse();
+  return undef if $config->finish_request_exists();
 
-  if ( $$rtext =~ /@\@(.*?)\@\@/ ) {
-    my $params = $element->get_params();
-    return unless ref $params eq 'HASH';
-    $$rtext =~ s/@\@(.*?)\@\@/$params->{$1}||''/geo;
-  }
-
-  return undef;
 }
 ```
 
@@ -1392,17 +1363,17 @@ The implementation works by creating a Debian filesystem image using debootstrap
 => https://codeberg.org/snonux/debroid View on Codeberg
 => https://github.com/snonux/debroid View on GitHub
 
-Shell from `data/local/userinit.sh`:
+Shell from `storage/sdcard1/Linux/jessie.sh`:
 
 ```AUTO
-while : ; do
-  if [ -d /storage/sdcard1/Linux/jessie ]; then
-    cd /storage/sdcard1/Linux && /system/bin/sh jessie.sh start_services
-    /system/bin/date
-    exit 0
-  fi
-  /system/bin/sleep 1
-done
+function umount_chroot {
+  busybox umount -f $ROOT/storage/sdcard1
+  for mountpoint in dev/pts proc dev sys; do
+    busybox umount -f $ROOT/$mountpoint
+  done
+  busybox umount -f $ROOT
+  losetup -d $LOOP_DEVICE
+}
 ```
 
 ---
@@ -1608,19 +1579,18 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 => https://codeberg.org/snonux/perl-poetry View on Codeberg
 => https://github.com/snonux/perl-poetry View on GitHub
 
-Perl from `php.pl`:
+Perl from `math.pl`:
 
 ```AUTO
-require abs Perl and not undef$ined; sub knowledges {};
+do { int'egrate'; sub trade; };
+do { exp'onentize' and abs'olutize' };
+study and study and study and study;
 
-hell: warn if PHP and not Perl;
+foreach $topic ({of, math}) {
+you, m/ay /go, to, limits }
 
-heaven: do index all, knowledges unless not Perl
-  	and not try { require PHP if defined };
-
-require Switch and delete $evil{PHP};
-
-Oh_Yes: do { PHP => Perl } for all, time;
+do { not qw/erk / unless $success 
+and m/ove /o;$n and study };
 ```
 
 ---
@@ -1707,25 +1677,19 @@ The application is implemented using a multi-threaded architecture where each mo
 => https://codeberg.org/snonux/loadbars View on Codeberg
 => https://github.com/snonux/loadbars View on GitHub
 
-Perl from `lib/Loadbars/Config.pm`:
+Perl from `lib/Loadbars/Shared.pm`:
 
 ```AUTO
-sub write () {
-    display_warn( "Overwriting config file " . Loadbars::Constants->CONFFILE )
-      if -f Loadbars::Constants->CONFFILE;
+use Exporter;
 
-    open my $conffile, '>', Loadbars::Constants->CONFFILE or do {
-        display_warn( "$!: " . Loadbars::Constants->CONFFILE );
+use base 'Exporter';
 
-        return undef;
-    };
-
-    for ( grep !/title/, keys %C ) {
-        print $conffile "$_=$C{$_}\n";
-    }
-
-    close $conffile;
-}
+our @EXPORT = qw(
+  %PIDS
+  %CPUSTATS
+  %NETSTATS_LASTUPDATE
+  %AVGSTATS
+  %AVGSTATS_HAS
 ```
 
 ---
@@ -1749,14 +1713,16 @@ The architecture centers around a modular plugin system where custom functionali
 => https://codeberg.org/snonux/perldaemon View on Codeberg
 => https://github.com/snonux/perldaemon View on GitHub
 
-Perl from `lib/PerlDaemon/PerlDaemon.pl`:
+Perl from `lib/PerlDaemonModules/ExampleModule.pm`:
 
 ```AUTO
-sub trunc ($) {
-  my $file = shift;
-  open my $fh, ">$file" or die "Can't write $file: $!\n";
-  print $fh '';
-  close $fh;
+sub new ($$$) {
+  my ($class, $conf) = @_;
+
+  my $self = bless { conf => $conf }, $class;
+  $self->{counter} = 0;
+
+  return $self;
 }
 ```
 
@@ -1770,7 +1736,7 @@ sub trunc ($) {
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4655.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4655.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1818,19 +1784,20 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 => https://codeberg.org/snonux/jsmstrade View on Codeberg
 => https://github.com/snonux/jsmstrade View on GitHub
 
-Java from `sources/smstrade/SFrame.java`:
+Java from `sources/smstrade/SPrefs.java`:
 
 ```AUTO
-public void disposeWithParent() {
-    if (!dispose && parent != null && parent instanceof Window) {
-        Window window = (Window) parent;
-        window.addWindowListener(new WindowAdapter() {
-            public void windowClosed(WindowEvent we) {
-                SFrame.this.dispose();
-            }
-        });
-    }
-    dispose = true;
+public SPrefs(Component parent, HashMap<String,String> options) {
+    super("Preferences", parent);
+    this.options = options;
+
+    disposeWithParent();
+    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    setSize(300, 150);
+    setResizable(false);
+
+    fillContentPane();
+    setVisible(true);
 }
 ```
 
@@ -1861,13 +1828,17 @@ The implementation uses a clean separation of concerns with dedicated packages f
 => https://codeberg.org/snonux/netcalendar View on Codeberg
 => https://github.com/snonux/netcalendar View on GitHub
 
-Java from `sources/shared/MyVector.java`:
+Java from `sources/client/helper/DateSpinner.java`:
 
 ```AUTO
-public void appendVector(Vector vecAppend) {
-    Enumeration enumAppend = vecAppend.elements();
-    while (enumAppend.hasMoreElements())
-        this.add(enumAppend.nextElement());
+private void initComponents() {
+    setLayout(new FlowLayout(FlowLayout.LEFT, 4, 4));
+
+    spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.MONTH);
+    JSpinner jSpinner = new JSpinner(spinnerDateModel);
+    new JSpinner.DateEditor(jSpinner, "MM/yy");
+
+    add(jSpinner);
 }
 ```
 
@@ -1892,19 +1863,19 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 => https://codeberg.org/snonux/hsbot View on Codeberg
 => https://github.com/snonux/hsbot View on GitHub
 
-Haskell from `HsBot/Plugins/StoreMessages.hs`:
+Haskell from `HsBot/IRC.hs`:
 
 ```AUTO
-module HsBot.Plugins.StoreMessages (makeStoreMessages) where
+module HsBot.IRC (ircStart) where
 
-import Control.Exception
+import IO
+import List
+import Network
+import System
+import System.IO
+import Text.Printf
 
-import HsBot.Plugins.Base
-
-import HsBot.Base.Env
-import HsBot.Base.State
-
-storeMessages :: CallbackFunction
+import HsBot.Base.Conf
 ```
 
 ---
@@ -1932,19 +1903,17 @@ The architecture is built around several key managers: a socket manager for hand
 => https://codeberg.org/snonux/ychat View on Codeberg
 => https://github.com/snonux/ychat View on GitHub
 
-C++ from `logd.cpp`:
+C++ from `ycurses/src/curses/attributes.cpp`:
 
 ```AUTO
-struct tm *t_m;
-time_t t_cur=time(NULL);
-t_m=gmtime(&t_cur);
+#define ATTRIBUTES_CPP
 
-char buffer[100];
-strftime(buffer, 100, "[%d/%b/%Y:%H:%M:%S %z]", t_m);
-string s_time=buffer;
-string s_logstr = request["REMOTE_ADDR"] + " - - "+s_time+" \"" + request["QUERY_STRING"]+"\" 200 0 \""+request["request"]+"\" \""+request["User-Agent"]+"\"\n";
+#include "attributes.h"
 
-s_queue.push(s_logstr);	
+attributes::attributes()
+{
+  init();
+}
 ```
 
 ---
@@ -1972,15 +1941,13 @@ The implementation features a modular architecture with separate packages for co
 => https://codeberg.org/snonux/vs-sim View on Codeberg
 => https://github.com/snonux/vs-sim View on GitHub
 
-Java from `sources/prefs/editors/VSSimulatorEditor.java`:
+Java from `sources/serialize/VSSerialize.java`:
 
 ```AUTO
-public VSSimulatorEditor(VSPrefs prefs, VSSimulatorFrame simulatorFrame,
-                         boolean openedNewWindow) {
-    super(prefs, prefs, prefs.getString("lang.en.name")
-          + " - " + prefs.getString("lang.en.prefs"));
-    this.simulatorFrame = simulatorFrame;
-    this.openedNewWindow = openedNewWindow;
+public boolean accept(File file) {
+    if (file.isDirectory())
+        return true;
+    return file.getName().toLowerCase().endsWith(".dat");
 }
 ```
 
