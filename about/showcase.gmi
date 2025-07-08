@@ -2,7 +2,7 @@
 
 Generated on: 2025-07-09
 
-This page showcases my open source projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
+This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
 ## Table of Contents
 
