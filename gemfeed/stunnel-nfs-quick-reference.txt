@@ -1,0 +1,78 @@
+STUNNEL + NFS QUICK REFERENCE FOR r1 AND r2
+===========================================
+
+COMPLETE SETUP (run as root on r1 and r2):
+------------------------------------------
+
+# 1. Install stunnel
+dnf install -y stunnel
+
+# 2. Copy certificate from f0 (run on f0)
+scp /usr/local/etc/stunnel/stunnel.pem root@r1:/etc/stunnel/
+scp /usr/local/etc/stunnel/stunnel.pem root@r2:/etc/stunnel/
+
+# 3. Create stunnel config on r1/r2
+mkdir -p /etc/stunnel
+cat > /etc/stunnel/stunnel.conf <<'EOF'
+cert = /etc/stunnel/stunnel.pem
+client = yes
+
+[nfs-ha]
+accept = 127.0.0.1:2323
+connect = 192.168.1.138:2323
+EOF
+
+# 4. Create systemd service
+cat > /etc/systemd/system/stunnel.service <<'EOF'
+[Unit]
+Description=SSL tunnel for network daemons
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/stunnel /etc/stunnel/stunnel.conf
+ExecStop=/usr/bin/killall stunnel
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# 5. Enable and start stunnel
+systemctl daemon-reload
+systemctl enable --now stunnel
+
+# 6. Create mount point
+mkdir -p /data/nfs/k3svolumes
+
+# 7. Test mount
+mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes
+
+# 8. Verify mount works
+ls -la /data/nfs/k3svolumes/
+
+# 9. Add to fstab for persistence
+echo "127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0" >> /etc/fstab
+
+# 10. Test fstab mount
+umount /data/nfs/k3svolumes
+mount /data/nfs/k3svolumes
+
+VERIFICATION COMMANDS:
+----------------------
+systemctl status stunnel
+mount | grep k3svolumes
+df -h /data/nfs/k3svolumes
+echo "test" > /data/nfs/k3svolumes/test-$(hostname).txt
+
+TROUBLESHOOTING:
+----------------
+# Check stunnel logs
+journalctl -u stunnel -f
+
+# Test connectivity
+telnet 127.0.0.1 2323
+
+# Restart services
+systemctl restart stunnel
+umount /data/nfs/k3svolumes && mount /data/nfs/k3svolumes

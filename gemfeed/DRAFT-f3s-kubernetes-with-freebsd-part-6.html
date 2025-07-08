@@ -37,6 +37,7 @@
 <li>⇢ ⇢ <a href='#migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</a></li>
 <li>⇢ <a href='#carp'>CARP</a></li>
 <li>⇢ <a href='#zfs-replication-with-zrepl'>ZFS Replication with zrepl</a></li>
+<li>⇢ ⇢ <a href='#why-zrepl-instead-of-hast'>Why zrepl instead of HAST?</a></li>
 <li>⇢ ⇢ <a href='#installing-zrepl'>Installing zrepl</a></li>
 <li>⇢ ⇢ <a href='#checking-zfs-pools'>Checking ZFS pools</a></li>
 <li>⇢ ⇢ <a href='#configuring-zrepl-with-wireguard-tunnel'>Configuring zrepl with WireGuard tunnel</a></li>
@@ -45,6 +46,13 @@
 <li>⇢ ⇢ <a href='#enabling-and-starting-zrepl-services'>Enabling and starting zrepl services</a></li>
 <li>⇢ ⇢ <a href='#verifying-replication'>Verifying replication</a></li>
 <li>⇢ ⇢ <a href='#monitoring-replication'>Monitoring replication</a></li>
+<li>⇢ ⇢ <a href='#a-note-about-the-bhyve-vm-replication'>A note about the Bhyve VM replication</a></li>
+<li>⇢ ⇢ <a href='#quick-status-check-commands'>Quick status check commands</a></li>
+<li>⇢ ⇢ <a href='#verifying-replication-after-reboot'>Verifying replication after reboot</a></li>
+<li>⇢ ⇢ <a href='#important-note-about-failover-limitations'>Important note about failover limitations</a></li>
+<li>⇢ ⇢ <a href='#mounting-the-nfs-datasets'>Mounting the NFS datasets</a></li>
+<li>⇢ ⇢ <a href='#failback-scenario-syncing-changes-from-f1-back-to-f0'>Failback scenario: Syncing changes from f1 back to f0</a></li>
+<li>⇢ ⇢ <a href='#testing-the-failback-scenario'>Testing the failback scenario</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
@@ -228,18 +236,31 @@ zroot/bhyve/rocky  keystatus             available              -
 <br />
 <span>In this section, we&#39;ll set up automatic ZFS replication from f0 to f1 using zrepl. This ensures our data is replicated across nodes for redundancy.</span><br />
 <br />
+<h3 style='display: inline' id='why-zrepl-instead-of-hast'>Why zrepl instead of HAST?</h3><br />
+<br />
+<span>While HAST (Highly Available Storage) is FreeBSD&#39;s native solution for high-availability storage, I&#39;ve chosen zrepl for several important reasons:</span><br />
+<br />
+<span>1. **HAST can cause ZFS corruption**: HAST operates at the block level and doesn&#39;t understand ZFS&#39;s transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I&#39;ve experienced this firsthand - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.</span><br />
+<br />
+<span>2. **ZFS-aware replication**: zrepl understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.</span><br />
+<br />
+<span>3. **Snapshot history**: With zrepl, you get multiple recovery points (every 5 minutes in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.</span><br />
+<br />
+<span>4. **Easier recovery**: When something goes wrong with zrepl, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary too.</span><br />
+<br />
+<span>5. **Network flexibility**: zrepl works over any TCP connection (in our case, WireGuard), while HAST requires dedicated network configuration.</span><br />
+<br />
+<span>The 5-minute replication window is perfectly acceptable for my personal use cases. This isn&#39;t a high-frequency trading system or a real-time database - it&#39;s storage for personal projects, development work, and home lab experiments. Losing at most 5 minutes of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication.</span><br />
+<br />
 <h3 style='display: inline' id='installing-zrepl'>Installing zrepl</h3><br />
 <br />
 <span>First, install zrepl on both hosts:</span><br />
 <br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># On f0</font></i>
+<pre>
+# On f0
 paul@f0:~ % doas pkg install -y zrepl
 
-<i><font color="silver"># On f1</font></i>
+# On f1
 paul@f1:~ % doas pkg install -y zrepl
 </pre>
 <br />
@@ -290,6 +311,16 @@ paul@f1:~ % ifconfig wg0 | grep inet
 <br />
 <h3 style='display: inline' id='configuring-zrepl-on-f0-source'>Configuring zrepl on f0 (source)</h3><br />
 <br />
+<span>First, create a dedicated dataset for NFS data that will be replicated:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Create the nfsdata dataset that will hold all data exposed via NFS</font></i>
+paul@f0:~ % doas zfs create zdata/enc/nfsdata
+</pre>
+<br />
 <span>Create the zrepl configuration on f0:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
@@ -304,33 +335,31 @@ global:
       format: human
 
 <b><u><font color="#000000">jobs</font></u></b>:
-  - name: <font color="#808080">"f0_to_f1"</font>
+  - name: f0_to_f1
     <b><u><font color="#000000">type</font></u></b>: push
     connect:
       <b><u><font color="#000000">type</font></u></b>: tcp
       address: <font color="#808080">"192.168.2.131:8888"</font>
-    filesystems: {
-      <font color="#808080">"zdata/enc"</font>: <b><u><font color="#000000">true</font></u></b>
-    }
+    filesystems:
+      <font color="#808080">"zdata/enc/nfsdata"</font>: <b><u><font color="#000000">true</font></u></b>
+      <font color="#808080">"zroot/bhyve/fedora"</font>: <b><u><font color="#000000">true</font></u></b>
     send:
       encrypted: <b><u><font color="#000000">true</font></u></b>
     snapshotting:
       <b><u><font color="#000000">type</font></u></b>: periodic
       prefix: zrepl_
-      interval: 10m
+      interval: 5m
     pruning:
       keep_sender:
         - <b><u><font color="#000000">type</font></u></b>: last_n
           count: <font color="#000000">10</font>
-        - <b><u><font color="#000000">type</font></u></b>: grid
-          grid: 1x1h(keep=all) | 24x1h | 7x1d | 4x7d | 6x30d
-          regex: <font color="#808080">"^zrepl_.*"</font>
       keep_receiver:
-        - <b><u><font color="#000000">type</font></u></b>: grid
-          grid: 1x1h(keep=all) | 24x1h | 7x1d | 4x7d | 6x30d
-          regex: <font color="#808080">"^zrepl_.*"</font>
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
 EOF
 </pre>
+<br />
+<span>Note: We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</span><br />
 <br />
 <h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring zrepl on f1 (sink)</h3><br />
 <br />
@@ -340,7 +369,10 @@ EOF
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f1:~ % doas tee /usr/local/etc/zrepl/zrepl.yml &lt;&lt;<font color="#808080">'EOF'</font>
+<pre><i><font color="silver"># First create a dedicated sink dataset</font></i>
+paul@f1:~ % doas zfs create zdata/sink
+
+paul@f1:~ % doas tee /usr/local/etc/zrepl/zrepl.yml &lt;&lt;<font color="#808080">'EOF'</font>
 global:
   logging:
     - <b><u><font color="#000000">type</font></u></b>: stdout
@@ -358,7 +390,7 @@ global:
     recv:
       placeholder:
         encryption: inherit
-    root_fs: <font color="#808080">"zdata/enc"</font>
+    root_fs: <font color="#808080">"zdata/sink"</font>
 EOF
 </pre>
 <br />
@@ -391,17 +423,31 @@ Starting zrepl.
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># On f0, check zrepl status</font></i>
-paul@f0:~ % doas zrepl status
+<pre><i><font color="silver"># On f0, check zrepl status (use raw mode for non-tty)</font></i>
+paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">2</font> <font color="#808080">"Replication"</font>
+<font color="#808080">"Replication"</font>:{<font color="#808080">"StartAt"</font>:<font color="#808080">"2025-07-01T22:31:48.712143123+03:00"</font>...
 
-<i><font color="silver"># Check for zrepl snapshots</font></i>
+<i><font color="silver"># Check if services are running</font></i>
+paul@f0:~ % doas service zrepl status
+zrepl is running as pid <font color="#000000">2649</font>.
+
+paul@f1:~ % doas service zrepl status
+zrepl is running as pid <font color="#000000">2574</font>.
+
+<i><font color="silver"># Check for zrepl snapshots on source</font></i>
 paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
+zdata/enc@zrepl_20250701_193148_000    0B      -   176K  -
 
-<i><font color="silver"># On f1, verify the replicated datasets</font></i>
-paul@f1:~ % doas zfs list -r zdata/enc
+<i><font color="silver"># On f1, verify the replicated datasets  </font></i>
+paul@f1:~ % doas zfs list -r zdata | grep f0
+zdata/f<font color="#000000">0</font>             576K   899G   200K  none
+zdata/f<font color="#000000">0</font>/zdata       376K   899G   200K  none
+zdata/f<font color="#000000">0</font>/zdata/enc   176K   899G   176K  none
 
-<i><font color="silver"># Check zrepl logs for any errors</font></i>
-paul@f0:~ % doas tail -f /var/log/zrepl.log
+<i><font color="silver"># Check replicated snapshots on f1</font></i>
+paul@f1:~ % doas zfs list -t snapshot -r zdata | grep zrepl
+zdata/f<font color="#000000">0</font>/zdata/enc@zrepl_20250701_193148_000     0B      -   176K  -
+zdata/f<font color="#000000">0</font>/zdata/enc@zrepl_20250701_194148_000     0B      -   176K  -
 </pre>
 <br />
 <h3 style='display: inline' id='monitoring-replication'>Monitoring replication</h3><br />
@@ -419,8 +465,365 @@ paul@f0:~ % doas zrepl status --mode interactive
 paul@f0:~ % doas zrepl status --job f0_to_f1
 </pre>
 <br />
-<span>With this setup, zdata/enc on f0 will be automatically replicated to f1 every 10 minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep recent snapshots while managing disk space efficiently.</span><br />
+<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/fedora</span> on f0 will be automatically replicated to f1 every 5 minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
 <br />
+<span>The replicated data appears on f1 under <span class='inlinecode'>zdata/sink/</span> with the source host and dataset hierarchy preserved:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>zdata/enc/nfsdata</span> → <span class='inlinecode'>zdata/sink/f0/zdata/enc/nfsdata</span></li>
+<li><span class='inlinecode'>zroot/bhyve/fedora</span> → <span class='inlinecode'>zdata/sink/f0/zroot/bhyve/fedora</span></li>
+</ul><br />
+<span>This is by design - zrepl preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources. The replication uses the WireGuard tunnel for secure, encrypted transport between nodes.</span><br />
+<br />
+<h3 style='display: inline' id='a-note-about-the-bhyve-vm-replication'>A note about the Bhyve VM replication</h3><br />
+<br />
+<span>While replicating a Bhyve VM (Fedora in this case) is slightly off-topic for the f3s series, I&#39;ve included it here as it demonstrates zrepl&#39;s flexibility. This is a development VM I use occasionally to log in remotely for certain development tasks. Having it replicated ensures I have a backup copy available on f1 if needed.</span><br />
+<br />
+<h3 style='display: inline' id='quick-status-check-commands'>Quick status check commands</h3><br />
+<br />
+<span>Here are the essential commands to monitor replication status:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On the source node (f0) - check if replication is active</font></i>
+paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -E <font color="#808080">'(State|Last)'</font>
+State: <b><u><font color="#000000">done</font></u></b>
+LastError: 
+
+<i><font color="silver"># List all zrepl snapshots on source</font></i>
+paul@f0:~ % doas zfs list -t snapshot | grep zrepl
+zdata/enc/nfsdata@zrepl_20250701_202530_000             0B      -   200K  -
+zroot/bhyve/fedora@zrepl_20250701_202530_000            0B      -  <font color="#000000">2</font>.97G  -
+
+<i><font color="silver"># On the sink node (f1) - verify received datasets</font></i>
+paul@f1:~ % doas zfs list -r zdata/sink
+NAME                                   USED  AVAIL  REFER  MOUNTPOINT
+zdata/sink                             <font color="#000000">3</font>.0G   896G   200K  /data/sink
+zdata/sink/f<font color="#000000">0</font>                          <font color="#000000">3</font>.0G   896G   200K  none
+zdata/sink/f<font color="#000000">0</font>/zdata                    472K   896G   200K  none
+zdata/sink/f<font color="#000000">0</font>/zdata/enc                272K   896G   200K  none
+zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata        176K   896G   176K  none
+zdata/sink/f<font color="#000000">0</font>/zroot                    <font color="#000000">2</font>.9G   896G   200K  none
+zdata/sink/f<font color="#000000">0</font>/zroot/bhyve              <font color="#000000">2</font>.9G   896G   200K  none
+zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora       <font color="#000000">2</font>.9G   896G  <font color="#000000">2</font>.97G  none
+
+<i><font color="silver"># Check received snapshots on sink</font></i>
+paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | wc -l
+       <font color="#000000">3</font>
+
+<i><font color="silver"># Monitor replication progress in real-time (on source)</font></i>
+paul@f0:~ % doas zrepl status --mode interactive
+
+<i><font color="silver"># Check last replication time (on source)</font></i>
+paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -A<font color="#000000">1</font> <font color="#808080">"Replication"</font>
+Replication:
+  Status: Idle (last run: <font color="#000000">2025</font>-<font color="#000000">07</font>-01T22:<font color="#000000">41</font>:<font color="#000000">48</font>)
+
+<i><font color="silver"># View zrepl logs for troubleshooting</font></i>
+paul@f0:~ % doas tail -<font color="#000000">20</font> /var/log/zrepl.log | grep -E <font color="#808080">'(error|warn|replication)'</font>
+</pre>
+<br />
+<span>These commands provide a quick way to verify that:</span><br />
+<br />
+<ul>
+<li>Replication jobs are running without errors</li>
+<li>Snapshots are being created on the source</li>
+<li>Data is being received on the sink</li>
+<li>The replication schedule is being followed</li>
+</ul><br />
+<h3 style='display: inline' id='verifying-replication-after-reboot'>Verifying replication after reboot</h3><br />
+<br />
+<span>The zrepl service is configured to start automatically at boot. After rebooting both hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % uptime
+<font color="#000000">11</font>:17PM  up <font color="#000000">1</font> min, <font color="#000000">0</font> users, load averages: <font color="#000000">0.16</font>, <font color="#000000">0.06</font>, <font color="#000000">0.02</font>
+
+paul@f0:~ % doas service zrepl status
+zrepl is running as pid <font color="#000000">2366</font>.
+
+paul@f1:~ % doas service zrepl status
+zrepl is running as pid <font color="#000000">2309</font>.
+
+<i><font color="silver"># Check that new snapshots are being created and replicated</font></i>
+paul@f0:~ % doas zfs list -t snapshot | grep zrepl | tail -<font color="#000000">2</font>
+zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
+zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  <font color="#000000">2</font>.97G  -
+
+paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep <font color="#000000">202530</font>
+zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@zrepl_20250701_202530_000      0B      -   176K  -
+zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora@zrepl_20250701_202530_000     0B      -  <font color="#000000">2</font>.97G  -
+</pre>
+<br />
+<span>The timestamps confirm that replication resumed automatically after the reboot, ensuring continuous data protection.</span><br />
+<br />
+<h3 style='display: inline' id='important-note-about-failover-limitations'>Important note about failover limitations</h3><br />
+<br />
+<span>The current zrepl setup provides **backup/disaster recovery** but not automatic failover. The replicated datasets on f1 are not mounted by default (<span class='inlinecode'>mountpoint=none</span>). In case f0 fails:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Manual steps needed on f1 to activate the replicated data:</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfsdata zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+</pre>
+<br />
+<span>However, this creates a **split-brain problem**: when f0 comes back online, both systems would have diverged data. Resolving this requires careful manual intervention to:</span><br />
+<br />
+<span>1. Stop the original replication</span><br />
+<span>2. Sync changes from f1 back to f0</span><br />
+<span>3. Re-establish normal replication</span><br />
+<br />
+<span>For true high-availability NFS, you might consider:</span><br />
+<br />
+<ul>
+<li>**Shared storage** (like iSCSI) with proper clustering</li>
+<li>**GlusterFS** or similar distributed filesystems</li>
+<li>**Manual failover with ZFS replication** (as we have here)</li>
+</ul><br />
+<span>Note: While HAST+CARP is often suggested for HA storage, it can cause filesystem corruption in practice, especially with ZFS. The block-level replication of HAST doesn&#39;t understand ZFS&#39;s transactional model, leading to inconsistent states during failover. </span><br />
+<br />
+<span>The current zrepl setup, despite requiring manual intervention, is actually safer because:</span><br />
+<br />
+<ul>
+<li>ZFS snapshots are always consistent</li>
+<li>Replication is ZFS-aware (not just block-level)</li>
+<li>You have full control over the failover process</li>
+<li>No risk of split-brain corruption</li>
+</ul><br />
+<h3 style='display: inline' id='mounting-the-nfs-datasets'>Mounting the NFS datasets</h3><br />
+<br />
+<span>To make the nfsdata accessible on both nodes, we need to mount them. On f0, this is straightforward:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 - set mountpoint for the primary nfsdata</font></i>
+paul@f0:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/enc/nfsdata
+paul@f0:~ % doas mkdir -p /data/nfs
+
+<i><font color="silver"># Verify it's mounted</font></i>
+paul@f0:~ % df -h /data/nfs
+Filesystem           Size    Used   Avail Capacity  Mounted on
+zdata/enc/nfsdata    899G    204K    899G     <font color="#000000">0</font>%    /data/nfs
+</pre>
+<br />
+<span>On f1, we need to handle the encryption key and mount the standby copy:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f1 - first check encryption status</font></i>
+paul@f1:~ % doas zfs get keystatus zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+NAME                             PROPERTY   VALUE        SOURCE
+zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata  keystatus  unavailable  -
+
+<i><font color="silver"># Load the encryption key (using f0's key stored on the USB)</font></i>
+paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key \
+    zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Set mountpoint and mount (same path as f0 for easier failover)</font></i>
+paul@f1:~ % doas mkdir -p /data/nfs
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Make it read-only to prevent accidental writes that would break replication</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Verify</font></i>
+paul@f1:~ % df -h /data/nfs
+Filesystem                         Size    Used   Avail Capacity  Mounted on
+zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata    896G    204K    896G     <font color="#000000">0</font>%    /data/nfs
+</pre>
+<br />
+<span>Note: The dataset is mounted at the same path (<span class='inlinecode'>/data/nfs</span>) on both hosts to simplify failover procedures. The dataset on f1 is set to <span class='inlinecode'>readonly=on</span> to prevent accidental modifications that would break replication.</span><br />
+<br />
+<span>**CRITICAL WARNING**: Do NOT write to <span class='inlinecode'>/data/nfs/</span> on f1! Any modifications will break the replication. If you accidentally write to it, you&#39;ll see this error:</span><br />
+<br />
+<pre>
+cannot receive incremental stream: destination zdata/sink/f0/zdata/enc/nfsdata has been modified
+since most recent snapshot
+</pre>
+<br />
+<span>To fix a broken replication after accidental writes:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Option 1: Rollback to the last common snapshot (loses local changes)</font></i>
+paul@f1:~ % doas zfs rollback zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@zrepl_20250701_204054_000
+
+<i><font color="silver"># Option 2: Make it read-only to prevent accidents</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+</pre>
+<br />
+<span>To ensure the encryption key is loaded automatically after reboot on f1:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/sink/f0/zdata/enc/nfsdata"</font>
+</pre>
+<br />
+<h3 style='display: inline' id='failback-scenario-syncing-changes-from-f1-back-to-f0'>Failback scenario: Syncing changes from f1 back to f0</h3><br />
+<br />
+<span>In a disaster recovery scenario where f0 has failed and f1 has taken over, you&#39;ll need to sync changes back when f0 returns. Here&#39;s how to failback:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f1: First, make the dataset writable (if it was readonly)</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=off zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Create a snapshot of the current state</font></i>
+paul@f1:~ % doas zfs snapshot zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback
+
+<i><font color="silver"># On f0: Stop any services using the dataset</font></i>
+paul@f0:~ % doas service nfsd stop  <i><font color="silver"># If NFS is running</font></i>
+
+<i><font color="silver"># Send the snapshot from f1 to f0, forcing a rollback</font></i>
+<i><font color="silver"># This WILL DESTROY any data on f0 that's not on f1!</font></i>
+paul@f1:~ % doas zfs send -R zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback | \
+    ssh f0 <font color="#808080">"doas zfs recv -F zdata/enc/nfsdata"</font>
+
+<i><font color="silver"># Alternative: If you want to see what would be received first</font></i>
+paul@f1:~ % doas zfs send -R zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback | \
+    ssh f0 <font color="#808080">"doas zfs recv -nv -F zdata/enc/nfsdata"</font>
+
+<i><font color="silver"># After successful sync, on f0:</font></i>
+paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@failback
+
+<i><font color="silver"># On f1: Make it readonly again and destroy the failback snapshot</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs destroy zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback
+
+<i><font color="silver"># Stop zrepl services first - CRITICAL!</font></i>
+paul@f0:~ % doas service zrepl stop
+paul@f1:~ % doas service zrepl stop
+
+<i><font color="silver"># Clean up any zrepl snapshots on f0</font></i>
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc/nfsdata | grep zrepl | \
+    awk <font color="#808080">'{print $1}'</font> | xargs -I {} doas zfs destroy {}
+
+<i><font color="silver"># Clean up and destroy the entire replicated structure on f1</font></i>
+<i><font color="silver"># First release any holds</font></i>
+paul@f1:~ % doas zfs holds -r zdata/sink/f<font color="#000000">0</font> | grep -v NAME | \
+    awk <font color="#808080">'{print $2, $1}'</font> | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> tag snap; <b><u><font color="#000000">do</font></u></b> 
+        doas zfs release <font color="#808080">"$tag"</font> <font color="#808080">"$snap"</font>
+    <b><u><font color="#000000">done</font></u></b>
+
+<i><font color="silver"># Then destroy the entire f0 tree</font></i>
+paul@f1:~ % doas zfs destroy -rf zdata/sink/f<font color="#000000">0</font>
+
+<i><font color="silver"># Create parent dataset structure on f1</font></i>
+paul@f1:~ % doas zfs create -p zdata/sink/f<font color="#000000">0</font>/zdata/enc
+
+<i><font color="silver"># Create a fresh manual snapshot to establish baseline</font></i>
+paul@f0:~ % doas zfs snapshot zdata/enc/nfsdata@manual_baseline
+
+<i><font color="silver"># Send this snapshot to f1</font></i>
+paul@f0:~ % doas zfs send -w zdata/enc/nfsdata@manual_baseline | \
+    ssh f1 <font color="#808080">"doas zfs recv zdata/sink/f0/zdata/enc/nfsdata"</font>
+
+<i><font color="silver"># Clean up the manual snapshot</font></i>
+paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@manual_baseline
+paul@f1:~ % doas zfs destroy zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@manual_baseline
+
+<i><font color="silver"># Set mountpoint and make readonly on f1</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Load encryption key and mount on f1</font></i>
+paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key \
+    zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Now restart zrepl services</font></i>
+paul@f0:~ % doas service zrepl start
+paul@f1:~ % doas service zrepl start
+
+<i><font color="silver"># Verify replication is working</font></i>
+paul@f0:~ % doas zrepl status --job f0_to_f1
+</pre>
+<br />
+<span>**Important notes about failback**:</span><br />
+<br />
+<ul>
+<li>The <span class='inlinecode'>-F</span> flag forces a rollback on f0, destroying any local changes</li>
+<li>Replication often won&#39;t resume automatically after a forced receive</li>
+<li>You must clean up old zrepl snapshots on both sides</li>
+<li>Creating a manual snapshot helps re-establish the replication relationship</li>
+<li>Always verify replication status after the failback procedure</li>
+<li>The first replication after failback will be a full send of the current state</li>
+</ul><br />
+<h3 style='display: inline' id='testing-the-failback-scenario'>Testing the failback scenario</h3><br />
+<br />
+<span>Here&#39;s a real test of the failback procedure:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Simulate failure: Stop replication on f0</font></i>
+paul@f0:~ % doas service zrepl stop
+
+<i><font color="silver"># On f1: Take over by making the dataset writable</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=off zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Write some data on f1 during the "outage"</font></i>
+paul@f1:~ % echo <font color="#808080">'Data written on f1 during failover'</font> | doas tee /data/nfs/failover-data.txt
+Data written on f1 during failover
+
+<i><font color="silver"># Now perform failback when f0 comes back online</font></i>
+<i><font color="silver"># Create snapshot on f1</font></i>
+paul@f1:~ % doas zfs snapshot zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback
+
+<i><font color="silver"># Send data back to f0 (note: we had to send to a temporary dataset due to holds)</font></i>
+paul@f1:~ % doas zfs send -Rw zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback | \
+    ssh f0 <font color="#808080">"doas zfs recv -F zdata/enc/nfsdata_temp"</font>
+
+<i><font color="silver"># On f0: Rename datasets to complete failback</font></i>
+paul@f0:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=none zdata/enc/nfsdata
+paul@f0:~ % doas zfs rename zdata/enc/nfsdata zdata/enc/nfsdata_old
+paul@f0:~ % doas zfs rename zdata/enc/nfsdata_temp zdata/enc/nfsdata
+
+<i><font color="silver"># Load encryption key and mount</font></i>
+paul@f0:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs mount zdata/enc/nfsdata
+
+<i><font color="silver"># Verify the data from f1 is now on f0</font></i>
+paul@f0:~ % ls -la /data/nfs/
+total <font color="#000000">18</font>
+drwxr-xr-x  <font color="#000000">2</font> root wheel  <font color="#000000">4</font> Jul  <font color="#000000">2</font> <font color="#000000">00</font>:<font color="#000000">01</font> .
+drwxr-xr-x  <font color="#000000">4</font> root wheel  <font color="#000000">4</font> Jul  <font color="#000000">1</font> <font color="#000000">23</font>:<font color="#000000">41</font> ..
+-rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">35</font> Jul  <font color="#000000">2</font> <font color="#000000">00</font>:<font color="#000000">01</font> failover-data.txt
+-rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">12</font> Jul  <font color="#000000">1</font> <font color="#000000">23</font>:<font color="#000000">34</font> hello.txt
+</pre>
+<br />
+<span>Success! The failover data from f1 is now on f0. To resume normal replication, you would need to:</span><br />
+<br />
+<span>1. Clean up old snapshots on both sides</span><br />
+<span>2. Create a new manual baseline snapshot</span><br />
+<span>3. Restart zrepl services</span><br />
+<br />
+<span>**Key learnings from the test**:</span><br />
+<br />
+<ul>
+<li>The <span class='inlinecode'>-w</span> flag is essential for encrypted datasets</li>
+<li>Dataset holds can complicate the process (consider sending to a temporary dataset)</li>
+<li>The encryption key must be loaded after receiving the dataset</li>
+<li>Always verify data integrity before resuming normal operations</li>
+</ul><br />
 <span>ZFS auto scrubbing....~?</span><br />
 <br />
 <span>Backup of the keys on the key locations (all keys on all 3 USB keys)</span><br />
