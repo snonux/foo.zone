@@ -86,7 +86,7 @@ This page showcases my side projects, providing an overview of what each project
 * 📈 Lines of Code: 6241
 * 📄 Lines of Documentation: 2306
 * 📅 Development Period: 2025-06-23 to 2025-07-09
-* 🔥 Recent Activity: 4.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4.7 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.4.0 (2025-07-09)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -99,15 +99,45 @@ The tool is implemented in Go with a clean architecture that supports both indiv
 [View on Codeberg](https://codeberg.org/snonux/gitsyncer)  
 [View on GitHub](https://github.com/snonux/gitsyncer)  
 
-Go from `internal/version/version.go`:
+Go from `internal/github/github.go`:
 
 ```AUTO
-var (
-	Version = "0.4.0"
+func (c *Client) RepoExists(repoName string) (bool, error) {
+	if c.token == "" {
+		return false, fmt.Errorf("GitHub token required")
+	}
 
-	GitCommit = "unknown"
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s", c.org, repoName)
+	fmt.Printf("  Checking URL: %s\n", url)
+	fmt.Printf("  Token present: %v (length: %d)\n", c.token != "", len(c.token))
 
-	BuildDate = "unknown"
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return false, err
+	}
+
+	req.Header.Set("Authorization", "Bearer "+c.token)
+	req.Header.Set("Accept", "application/vnd.github.v3+json")
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == 200 {
+		return true, nil
+	} else if resp.StatusCode == 404 {
+		return false, nil
+	} else if resp.StatusCode == 401 {
+		body, _ := io.ReadAll(resp.Body)
+		fmt.Printf("  401 Unauthorized - Response: %s\n", string(body))
+		fmt.Printf("  Authorization header: %s\n", req.Header.Get("Authorization"))
+		return false, fmt.Errorf("authentication failed (401): %s", string(body))
+	}
+
+	return false, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+}
 ```
 
 ---
@@ -120,7 +150,7 @@ var (
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 135
 * 📅 Development Period: 2025-06-25 to 2025-06-29
-* 🔥 Recent Activity: 12.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -133,22 +163,19 @@ The project is implemented using a clean modular architecture with the CLI entry
 [View on Codeberg](https://codeberg.org/snonux/timr)  
 [View on GitHub](https://github.com/snonux/timr)  
 
-Go from `internal/timer/operations.go`:
+Go from `cmd/timr/main.go`:
 
 ```AUTO
-func GetRawStatus() (string, error) {
-	state, err := LoadState()
-	if err != nil {
-		return "", fmt.Errorf("error loading state: %w", err)
+func main() {
+	if len(os.Args) < 2 {
+		printUsage()
+		os.Exit(1)
 	}
 
-	elapsed := state.ElapsedTime
-	if state.Running {
-		elapsed += time.Since(state.StartTime)
-	}
+	var err error
+	var output string
 
-	return fmt.Sprintf("%d", int(elapsed.Seconds())), nil
-}
+	switch os.Args[1] {
 ```
 
 ---
@@ -161,7 +188,7 @@ func GetRawStatus() (string, error) {
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-08
-* 🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 13.1 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -181,12 +208,36 @@ The implementation follows a clean architecture with clear separation of concern
 Go from `internal/ui/handlers.go`:
 
 ```AUTO
-func (m *Model) getTaskAtCursor() *task.Task {
-	cursor := m.tbl.Cursor()
-	if cursor < 0 || cursor >= len(m.tasks) {
+func (m *Model) handleAnnotationMode(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	onEnter := func(value string) error {
+		if !m.replaceAnnotations && strings.TrimSpace(value) == "" {
+			return fmt.Errorf("annotation cannot be empty")
+		}
+		
+		if m.replaceAnnotations {
+			if err := task.ReplaceAnnotations(m.annotateID, value); err != nil {
+				return err
+			}
+			m.replaceAnnotations = false
+		} else {
+			if err := task.Annotate(m.annotateID, value); err != nil {
+				return err
+			}
+		}
+		m.reload()
 		return nil
 	}
-	return &m.tasks[cursor]
+	
+	onExit := func() {
+		m.annotating = false
+		m.replaceAnnotations = false
+	}
+	
+	model, cmd := m.handleTextInput(msg, &m.annotateInput, onEnter, onExit)
+	if msg.Type == tea.KeyEnter && m.annotateInput.Value() != "" {
+		return model, m.startBlink(m.annotateID, false)
+	}
+	return model, cmd
 }
 ```
 
@@ -200,7 +251,7 @@ func (m *Model) getTaskAtCursor() *task.Task {
 * 📈 Lines of Code: 3947
 * 📄 Lines of Documentation: 854
 * 📅 Development Period: 2021-12-28 to 2025-07-07
-* 🔥 Recent Activity: 20.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 20.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -230,7 +281,7 @@ TOP=20
 * 📈 Lines of Code: 42772
 * 📄 Lines of Documentation: 159
 * 📅 Development Period: 2021-04-29 to 2025-07-01
-* 🔥 Recent Activity: 26.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 26.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -243,14 +294,15 @@ The site is built using **Gemtexter**, a static site generator that creates both
 [View on Codeberg](https://codeberg.org/snonux/foo.zone)  
 [View on GitHub](https://github.com/snonux/foo.zone)  
 
-HTML from `gemfeed/2022-01-23-welcome-to-the-foo.zone.html`:
+HTML from `notes/index.html`:
 
 ```AUTO
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome to the foo.zone</title>
+<title>Notes on foo.zone</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
@@ -268,7 +320,7 @@ HTML from `gemfeed/2022-01-23-welcome-to-the-foo.zone.html`:
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 51.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 52.2 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.2.0 (2023-06-21)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -285,17 +337,18 @@ The system uses a client-server architecture where dtail servers run on target m
 [View on Codeberg](https://codeberg.org/snonux/dtail)  
 [View on GitHub](https://github.com/snonux/dtail)  
 
-Go from `internal/clients/baseclient.go`:
+Go from `internal/io/fs/directprocessor.go`:
 
 ```AUTO
-func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMethod,
-	hostKeyCallback client.HostKeyCallback) connectors.Connector {
-	if c.Args.Serverless {
-		return connectors.NewServerless(c.UserName, c.maker.makeHandler(server),
-			c.maker.makeCommands())
+func NewDirectProcessor(processor LineProcessor, output io.Writer, globID
+  string, ltx lcontext.LContext) *DirectProcessor {
+	return &DirectProcessor{
+		processor: processor,
+		output:    output,
+		stats:     &stats{},
+		ltx:       ltx,
+		sourceID:  globID,
 	}
-	return connectors.NewServerConnection(server, c.UserName, sshAuthMethods,
-		hostKeyCallback, c.maker.makeHandler(server), c.maker.makeCommands())
 }
 ```
 
@@ -309,7 +362,7 @@ func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMe
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 71.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 71.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -324,10 +377,12 @@ The implementation uses a YAML configuration file to define the network topology
 Ruby from `wireguardmeshgenerator.rb`:
 
 ```AUTO
-def priv = File.read(@privkey_path).strip
+def initialize(myself)
+  raise 'Wireguard tool not found' unless system('which wg > /dev/null 2>&1')
 
-def psk(peer)
-  psk_path = "#{@psk_dir}/#{[@myself, peer].sort.join('_')}.key"
+  @myself = myself
+  @psk_dir = 'keys/psk'
+  mykeys_dir = "keys/#{myself}"
 ```
 
 ---
@@ -340,7 +395,7 @@ def psk(peer)
 * 📈 Lines of Code: 9835
 * 📄 Lines of Documentation: 559
 * 📅 Development Period: 2024-01-18 to 2025-06-14
-* 🔥 Recent Activity: 83.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 83.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -358,19 +413,13 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 [View on Codeberg](https://codeberg.org/snonux/ior)  
 [View on GitHub](https://github.com/snonux/ior)  
 
-C from `internal/c/types.h`:
+C from `internal/c/maps.h`:
 
 ```AUTO
-struct open_event {
-    __u32 event_type;
-    __u32 trace_id; 
-    __u64 time;
-    __u32 pid;
-    __u32 tid;
-    __s32 flags;
-    char filename[MAX_FILENAME_LENGTH];
-    char comm[MAX_PROGNAME_LENGTH];
-};
+struct {
+    __uint(type, BPF_MAP_TYPE_RINGBUF);
+    __uint(max_entries, 1 << 24);
+} event_map SEC(".maps");
 ```
 
 ---
@@ -383,7 +432,7 @@ struct open_event {
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 84.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 84.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -398,14 +447,24 @@ The project is built on an event-driven architecture with clear component separa
 [View on Codeberg](https://codeberg.org/snonux/ds-sim)  
 [View on GitHub](https://github.com/snonux/ds-sim)  
 
-Java from `src/main/java/events/VSAbstractEvent.java`:
+Java from `src/main/java/core/VSTaskManager.java`:
 
 ```AUTO
-public final void setClassname(String eventClassname) {
-    if (eventClassname.startsWith(CLASS_PREFIX))
-        eventClassname = eventClassname.substring(CLASS_PREFIX_LENGTH);
+private VSSimulatorVisualization simulatorVisualization;
 
-    this.eventClassname = eventClassname;
+private PriorityQueue<VSTask> globalTasks;
+
+private LinkedList<VSTask> fullfilledProgrammedTasks;
+
+public final static boolean PROGRAMMED = true;
+
+public final static boolean ONLY_ONCE = false;
+
+private VSPrefs prefs;
+
+public VSTaskManager(VSPrefs prefs,
+                     VSSimulatorVisualization simulatorVisualization) {
+    init(prefs, simulatorVisualization);
 }
 ```
 
@@ -419,7 +478,7 @@ public final void setClassname(String eventClassname) {
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 97.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 97.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -449,7 +508,7 @@ func main() {
 * 📈 Lines of Code: 3967
 * 📄 Lines of Documentation: 411
 * 📅 Development Period: 2024-05-04 to 2025-06-12
-* 🔥 Recent Activity: 113.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 114.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-03-04)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -466,16 +525,29 @@ The tool is architected around a file-based queueing system where posts progress
 [View on Codeberg](https://codeberg.org/snonux/gos)  
 [View on GitHub](https://github.com/snonux/gos)  
 
-Go from `internal/summary/summary.go`:
+Go from `internal/config/args.go`:
 
 ```AUTO
-func prepare(content string) string {
-	content = newlineRegex.ReplaceAllString(content, " ")
-	content = urlRegex.ReplaceAllString(content, "")
-	content = multiSpaceRegex.ReplaceAllString(content, " ")
-	content = strings.TrimSpace(content)
-	content = tagRegex.ReplaceAllString(content, "`$0`")
-	return content
+func (a *Args) ParsePlatforms(platformStrs string) error {
+	a.Platforms = make(map[string]int)
+
+	for _, platformInfo := range strings.Split(platformStrs, ",") {
+		parts := strings.Split(platformInfo, ":")
+		platformStr := parts[0]
+
+		if len(parts) > 1 {
+			var err error
+			a.Platforms[platformStr], err = strconv.Atoi(parts[1])
+			if err != nil {
+				return err
+			}
+		} else {
+			colour.Infoln("No message length specified for", platformStr, "so assuming
+			  500")
+			a.Platforms[platformStr] = 500
+		}
+	}
+	return nil
 }
 ```
 
@@ -489,7 +561,7 @@ func prepare(content string) string {
 * 📈 Lines of Code: 1299
 * 📄 Lines of Documentation: 154
 * 📅 Development Period: 2023-01-02 to 2025-07-07
-* 🔥 Recent Activity: 133.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 133.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -504,10 +576,15 @@ The project implements a modular architecture with seven core components: FileHe
 Perl from `foostats.pl`:
 
 ```AUTO
-my sub parse_date ( $year, @line ) {
-    my $timestr = "$line[0] $line[1]";
-    return Time::Piece->strptime( $timestr, '%b %d' )
-      ->strftime("$year%m%d");
+sub write ( $path, $content ) {
+    open my $fh, '>', "$path.tmp"
+      or die "\nCannot open file: $!";
+    print $fh $content;
+    close $fh;
+
+    rename
+      "$path.tmp",
+      $path;
 }
 ```
 
@@ -521,7 +598,7 @@ my sub parse_date ( $year, @line ) {
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 137.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 138.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -533,14 +610,16 @@ The system is implemented with a modular architecture centered around a DSL clas
 [View on Codeberg](https://codeberg.org/snonux/rcm)  
 [View on GitHub](https://github.com/snonux/rcm)  
 
-Ruby from `lib/dsl.rb`:
+Ruby from `lib/dslkeywords/notify.rb`:
 
 ```AUTO
-def to_s = @id
-def evaluate! = @scheduled.each(&:evaluate!)
+def notify(message = nil, &block)
+  return unless @conds_met
 
-def <<(obj)
-  raise DuplicateResource, "#{obj.id} already declared!" if @@objs.key?(obj.id)
+  n = Notify.new(message.nil? ? '' : message)
+  n.message(n.instance_eval(&block)) if block
+  self << n
+  n
 ```
 
 ---
@@ -553,7 +632,7 @@ def <<(obj)
 * 📈 Lines of Code: 2253
 * 📄 Lines of Documentation: 1170
 * 📅 Development Period: 2021-05-21 to 2025-06-11
-* 🔥 Recent Activity: 230.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 230.9 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -565,18 +644,17 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 [View on Codeberg](https://codeberg.org/snonux/gemtexter)  
 [View on GitHub](https://github.com/snonux/gemtexter)  
 
-Shell from `lib/md.source.sh`:
+Shell from `lib/log.source.sh`:
 
 ```AUTO
-md::make_img () {
-    local link="$1"; shift
-    local descr="$1"; shift
+log () {
+    local -r level="$1"; shift
+    local message
 
-    if [ -z "$descr" ]; then
-        echo "[![$link]($link)]($link)  "
-    else
-        echo "[![$descr]($link \"$descr\")]($link)  "
-    fi
+    for message in "$@"; do
+        echo "$message"
+    done | log::_pipe "$level" $$
+}
 ```
 
 ---
@@ -589,7 +667,7 @@ md::make_img () {
 * 📈 Lines of Code: 917
 * 📄 Lines of Documentation: 33
 * 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 447.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 448.1 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
@@ -611,13 +689,16 @@ Go from `main.go`:
 func createPreferenceWindow(a fyne.App) fyne.Window {
 	window := a.NewWindow("Preferences")
 	directoryPreference := widget.NewEntry()
-	directoryPreference.SetText(a.Preferences().StringWithFallback("Directory", defaultDirectory))
+	directoryPreference.SetText(a.Preferences().StringWithFallback("Directory",
+	  defaultDirectory))
 
 	tagDropdownPreference := widget.NewEntry()
-	tagDropdownPreference.SetText(a.Preferences().StringWithFallback("Tags", strings.Join(defaultTagItems, ",")))
+	tagDropdownPreference.SetText(a.Preferences().StringWithFallback("Tags",
+	  strings.Join(defaultTagItems, ",")))
 
 	whatDropdownPreference := widget.NewEntry()
-	whatDropdownPreference.SetText(a.Preferences().StringWithFallback("Whats", strings.Join(defaultWhatItems, ",")))
+	whatDropdownPreference.SetText(a.Preferences().StringWithFallback("Whats",
+	  strings.Join(defaultWhatItems, ",")))
 
 	window.SetContent(container.NewVBox(
 		container.NewVBox(
@@ -657,7 +738,7 @@ func createPreferenceWindow(a fyne.App) fyne.Window {
 * 📈 Lines of Code: 12
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2024-03-24 to 2024-03-24
-* 🔥 Recent Activity: 471.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 471.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -694,7 +775,7 @@ aws: build
 * 📈 Lines of Code: 2850
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-04-05
-* 🔥 Recent Activity: 501.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 502.0 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -706,17 +787,16 @@ The system is designed to host multiple personal services including Anki sync se
 [View on Codeberg](https://codeberg.org/snonux/terraform)  
 [View on GitHub](https://github.com/snonux/terraform)  
 
-HCL from `org-buetow-ecs/variables.tf`:
+HCL from `org-buetow-elb/remotestates.tf`:
 
 ```AUTO
-  type        = bool
-  default     = false
-}
-
-variable "deploy_audiobookshelf" {
-  description = "Deploy Audio Bool Shelf Server?"
-  type        = bool
-  default     = true
+data "terraform_remote_state" "base" {
+  backend = "s3"
+  config = {
+    bucket = "org-buetow-tfstate"
+    key    = "org-buetow-base/terraform.tfstate"
+    region = "eu-central-1"
+  }
 }
 ```
 
@@ -730,7 +810,7 @@ variable "deploy_audiobookshelf" {
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 514.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 514.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -745,26 +825,34 @@ The implementation follows a clean architecture with concurrent check execution,
 [View on Codeberg](https://codeberg.org/snonux/gogios)  
 [View on GitHub](https://github.com/snonux/gogios)  
 
-Go from `internal/run.go`:
+Go from `internal/notify.go`:
 
 ```AUTO
-func persistReport(subject, body string, conf config) error {
-	reportFile := fmt.Sprintf("%s/report.txt", conf.StateDir)
-	tmpFile := fmt.Sprintf("%s.tmp", reportFile)
+func notify(conf config, subject, body string) error {
+	if conf.SMTPDisable {
+		log.Println("Notification disabled")
+		return nil
+	}
+	log.Println("notify", subject, body)
 
-	f, err := os.Create(tmpFile)
-	if err != nil {
-		return err
+	headers := map[string]string{
+		"From":         conf.EmailFrom,
+		"To":           conf.EmailTo,
+		"Subject":      subject,
+		"MIME-Version": "1.0",
+		"Content-Type": "text/plain; charset=\"utf-8\"",
 	}
-	defer f.Close()
 
-	if _, err = f.WriteString(fmt.Sprintf("%s\n\n", subject)); err != nil {
-		return err
+	header := ""
+	for k, v := range headers {
+		header += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
-	if _, err = f.WriteString(body); err != nil {
-		return err
-	}
-	return os.Rename(tmpFile, reportFile)
+
+	message := header + "\r\n" + body
+	log.Println("Using SMTP server", conf.SMTPServer)
+
+	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
+		[]string{conf.EmailTo}, []byte(message))
 }
 ```
 
@@ -778,7 +866,7 @@ func persistReport(subject, body string, conf config) error {
 * 📈 Lines of Code: 32
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2023-12-31
-* 🔥 Recent Activity: 555.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 555.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -815,7 +903,7 @@ run: build
 * 📈 Lines of Code: 29
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-08-13 to 2024-01-01
-* 🔥 Recent Activity: 648.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 648.7 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -839,7 +927,8 @@ all:
 	docker build -t anki-sync-server:latest . 
 aws:
 	docker build -t anki-sync-server:latest . 
-	docker tag anki-sync-server:latest 634617747016.dkr.ecr.eu-central-1.amazonaws.com/anki-sync-server:latest
+	docker tag anki-sync-server:latest
+	  634617747016.dkr.ecr.eu-central-1.amazonaws.com/anki-sync-server:latest
 ```
 
 ---
@@ -852,7 +941,7 @@ aws:
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 700.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 700.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -864,33 +953,24 @@ The architecture consists of several key components: a quorum manager that handl
 [View on Codeberg](https://codeberg.org/snonux/gorum)  
 [View on GitHub](https://github.com/snonux/gorum)  
 
-Go from `internal/notifier/email.go`:
+Go from `internal/server/server.go`:
 
 ```AUTO
-func (em email) send(conf config.Config) error {
-	if !conf.EmailNotifycationEnabled() {
-		return nil
-	}
-	log.Println("notify:", em.subject, em.body)
+func Start(ctx context.Context, conf config.Config, quo quorum.Quorum) {
+	go func() {
+		for {
+			log.Println("server: starting")
+			if err := runServer(ctx, conf, quo); err != nil {
+				log.Println("server:", err)
+			}
 
-	headers := map[string]string{
-		"From":         conf.EmailFrom,
-		"To":           conf.EmailTo,
-		"Subject":      em.subject,
-		"MIME-Version": "1.0",
-		"Content-Type": "text/plain; charset=\"utf-8\"",
-	}
-
-	header := ""
-	for k, v := range headers {
-		header += fmt.Sprintf("%s: %s\r\n", k, v)
-	}
-
-	message := header + "\r\n" + em.body
-	log.Println("Using SMTP server", conf.SMTPServer)
-
-	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
-		[]string{conf.EmailTo}, []byte(message))
+			select {
+			case <-time.After(time.Second):
+			case <-ctx.Done():
+				return
+			}
+		}
+	}()
 }
 ```
 
@@ -904,7 +984,7 @@ func (em email) send(conf config.Config) error {
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 765.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 765.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -937,7 +1017,7 @@ declare -i NUM_PAGES_TO_EXTRACT=42 # This is the answear!
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1058.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1059.1 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -971,7 +1051,7 @@ declare -r SCREEN=eDP-1
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1278.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1278.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -1013,7 +1093,7 @@ scalephotos () {
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1429.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1429.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1026,12 +1106,21 @@ The project leverages Go's generics system to provide type-safe implementations 
 [View on Codeberg](https://codeberg.org/snonux/algorithms)  
 [View on GitHub](https://github.com/snonux/algorithms)  
 
-Go from `sort/parallelquick.go`:
+Go from `queue/elementarypriority.go`:
 
 ```AUTO
-func ParallelQuick[V ds.Number](a ds.ArrayList[V]) ds.ArrayList[V] {
-	parallelQuick(a)
-	return a
+func (q *ElementaryPriority[T]) DeleteMax() T {
+	if q.Empty() {
+		return 0
+	}
+
+	ind, max := q.max()
+	for i := ind + 1; i < q.Size(); i++ {
+		q.a[i-1] = q.a[i]
+	}
+	q.a = q.a[0 : len(q.a)-1]
+
+	return max
 }
 ```
 
@@ -1045,7 +1134,7 @@ func ParallelQuick[V ds.Number](a ds.ArrayList[V]) ds.ArrayList[V] {
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 19
 * 📅 Development Period: 2018-05-26 to 2025-01-21
-* 🔥 Recent Activity: 1431.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1431.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1079,7 +1168,7 @@ def out(message, prefix, flag = :none)
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1910.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1910.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1111,7 +1200,7 @@ sub hello() {
 * 📊 Commits: 95
 * 📈 Lines of Code: 195
 * 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🔥 Recent Activity: 2125.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2125.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -1127,11 +1216,14 @@ The tool is implemented with a clean object-oriented architecture featuring an A
 Raku from `guprecords.raku`:
 
 ```AUTO
-sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
-  my Aggregator \aggregator .= new;
-  aggregator.add-file($_) for dir(stats-dir, test => { /.records$/ });
-  reporter.aggregates = aggregator.aggregates;
-  reporter.report;
+method add-file(IO::Path:D $file is readonly) {
+  my Str $host = $file.IO.basename.split('.').first;
+
+  die "Record file for {$host} already processed - duplicate inputs?"
+    if %!aggregates<host>{$host}:exists;
+  %!aggregates<host>{$host} = HostAggregate.new($host);
+
+  for $file.IO.lines -> Str $line { self!add-line(:$line, :$host) }
 }
 ```
 
@@ -1145,7 +1237,7 @@ sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2451.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2452.3 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -1160,6 +1252,20 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 [View on Codeberg](https://codeberg.org/snonux/ioriot)  
 [View on GitHub](https://github.com/snonux/ioriot)  
 
+C from `ioriot/src/opcodes.h`:
+
+```AUTO
+typedef enum {
+    FSTAT = 0,
+    FSTAT_AT,
+    FSTATFS,
+    FSTATFS64,
+    LSTAT,
+    STAT,
+    STATFS,
+    STATFS64,
+```
+
 ---
 
 ### staticfarm-apache-handlers
@@ -1170,7 +1276,7 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 2960.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2961.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -1183,13 +1289,13 @@ The system is particularly useful for distributed static content delivery where 
 [View on Codeberg](https://codeberg.org/snonux/staticfarm-apache-handlers)  
 [View on GitHub](https://github.com/snonux/staticfarm-apache-handlers)  
 
-Perl from `src/StaticFarm/API.pm`:
+Perl from `debian/staticfarm-apache-handlers/usr/share/staticfarm/apache/handlers/StaticFarm/CacheControl.pm`:
 
 ```AUTO
-sub path_ls {
-  my $f = shift;
+sub my_warn {
+  my $msg = shift;
 
-  return [ map { s#.*/##; $_ } glob("$f/*") ];
+  Apache2::ServerRec::warn("CacheControl: $msg");
 }
 ```
 
@@ -1203,7 +1309,7 @@ sub path_ls {
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3196.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3196.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1226,7 +1332,7 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3463.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3463.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -1239,13 +1345,17 @@ The tool is particularly useful for system administrators and DevOps engineers w
 [View on Codeberg](https://codeberg.org/snonux/mon)  
 [View on GitHub](https://github.com/snonux/mon)  
 
-Perl from `lib/MON/JSON.pm`:
+Perl from `debian/mon/usr/share/mon/lib/MAPI/Query.pm`:
 
 ```AUTO
-sub init {
-  my ($self) = @_;
+sub new {
+  my ( $class, %opts ) = @_;
 
-  return undef;
+  my $self = bless \%opts, $class;
+
+  $self->init();
+
+  return $self;
 }
 ```
 
@@ -1259,7 +1369,7 @@ sub init {
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3467.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3467.8 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -1275,11 +1385,14 @@ The tool is implemented as a single Ruby script that leverages threading for par
 Ruby from `rubyfy.rb`:
 
 ```AUTO
-def log(severity, message)
-  return if severity == :VERBOSE and not $opts["verbose"]
-  return if severity == :DEBUG and not $opts["debug"]
+def initialize
+  @log_mutex = Mutex.new
+  @outfile = nil
+  @outfile_mode = "w"
 
-  timestamp = $opts["timestamp"] ? "#{Time.now}|" : ""
+  $opts["verbose"] = true if $opts["debug"]
+
+  ["#{ENV["HOME"]}/.rubyfy.json", "rubyfy.json"].each do |conf_path|
 ```
 
 ---
@@ -1292,7 +1405,7 @@ def log(severity, message)
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3547.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3547.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -1305,22 +1418,15 @@ The project is implemented as a modular Perl application with a clean architectu
 [View on Codeberg](https://codeberg.org/snonux/pingdomfetch)  
 [View on GitHub](https://github.com/snonux/pingdomfetch)  
 
-Perl from `lib/PINGDOMFETCH/Pingdom.pm`:
+Perl from `lib/PINGDOMFETCH/Display.pm`:
 
 ```AUTO
-sub fetch_all_checks_json {
+sub init {
     my ($self) = @_;
 
-    my $config = $self->{config};
+    $VERBOSE = $self->{'arg.verbose'} == 1;
 
-    my $url_base = $self->{url_base};
-    my $action   = $config->get('pingdom.api.all.checks.action');
-
-    my $url = "$url_base/$action";
-
-    $self->verbose("Fetching all checks from Pingdom");
-
-    return $self->fetch($url);
+    return undef;
 }
 ```
 
@@ -1334,7 +1440,7 @@ sub fetch_all_checks_json {
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3557.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3558.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -1347,15 +1453,21 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 [View on Codeberg](https://codeberg.org/snonux/gotop)  
 [View on GitHub](https://github.com/snonux/gotop)  
 
-Go from `process/process.go`:
+Go from `utils/utils.go`:
 
 ```AUTO
-func (self *Process) gatherRaw(what *string, pathf string) error {
-	bytes, err := ioutil.ReadFile(fmt.Sprintf(pathf, self.Pid))
+func Slurp(what *string, path string) error {
+	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
 	} else {
-		*what = string(bytes)
+		for _, byte := range bytes {
+			if byte == 0 {
+				*what += " "
+			} else {
+				*what += string(byte)
+			}
+		}
 	}
 	return nil
 }
@@ -1369,7 +1481,7 @@ func (self *Process) gatherRaw(what *string, pathf string) error {
 * 📊 Commits: 670
 * 📈 Lines of Code: 1675
 * 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3613.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3613.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -1384,16 +1496,33 @@ The system works through a template-driven architecture where content is written
 [View on Codeberg](https://codeberg.org/snonux/xerl)  
 [View on GitHub](https://github.com/snonux/xerl)  
 
-Perl from `Xerl.pm`:
+Perl from `Xerl/Page/Content.pm`:
 
 ```AUTO
-return undef if $config->finish_request_exists();
+sub parse {
+  my $self   = $_[0];
+  my $config = $self->get_config();
 
-if ( $config->document_exists() ) {
-  my $document = Xerl::Page::Document->new( config => $config );
-  $document->parse();
-  return undef if $config->finish_request_exists();
+  my $xmlcontent = Xerl::XML::Reader->new(
+    path   => $config->get_templatepath(),
+    config => $config
+  );
 
+  if ( -1 == $xmlcontent->open() ) {
+    $config->set_finish_request(1);
+    return undef;
+  }
+
+  $xmlcontent->parse();
+
+  my $rules = Xerl::Page::Rules->new( config => $config );
+  $rules->parse( $config->get_xmlconfigrootobj() )
+    unless $config->exists('noparse');
+
+  $config->insertxmlvars( $config->get_xmlconfigrootobj() );
+  $self->insertrules( $rules, $xmlcontent->get_root() );
+
+  return undef;
 }
 ```
 
@@ -1407,7 +1536,7 @@ if ( $config->document_exists() ) {
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3661.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3661.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1425,13 +1554,22 @@ The implementation works by creating a Debian filesystem image using debootstrap
 Shell from `storage/sdcard1/Linux/jessie.sh`:
 
 ```AUTO
-function umount_chroot {
-  busybox umount -f $ROOT/storage/sdcard1
-  for mountpoint in dev/pts proc dev sys; do
-    busybox umount -f $ROOT/$mountpoint
+function mount_chroot {
+  mountpoint $ROOT
+  if [ $? -ne 0 ]; then 
+    losetup $LOOP_DEVICE $ROOT.img
+    busybox mount -t ext4 $LOOP_DEVICE $ROOT
+  fi
+  for mountpoint in proc dev sys dev/pts; do
+    mountpoint $ROOT/$mountpoint
+    if [ $? -ne 0 ]; then
+      busybox mount --bind /$mountpoint $ROOT/$mountpoint
+    fi
   done
-  busybox umount -f $ROOT
-  losetup -d $LOOP_DEVICE
+  mountpoint $ROOT/storage/sdcard1
+  if [ $? -ne 0 ]; then
+    busybox mount --bind /storage/sdcard1 $ROOT/storage/sdcard1
+  fi
 }
 ```
 
@@ -1445,7 +1583,7 @@ function umount_chroot {
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 3939.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3939.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -1458,12 +1596,15 @@ The implementation is written in Python and built on top of the bigsuds library,
 [View on Codeberg](https://codeberg.org/snonux/fapi)  
 [View on GitHub](https://github.com/snonux/fapi)  
 
-Python from `contrib/bigsuds-1.0/bigsuds.py`:
+Python from `contrib/bigsuds-1.0/setup.py`:
 
 ```AUTO
-def _create_client_wrapper(self, client, wsdl_name):
-    client.set_options(headers=self._headers)
-    return super(_BIGIPSession, self)._create_client_wrapper(client, wsdl_name)
+def extract_version(filename):
+    contents = open(filename).read()
+    match = re.search('^__version__\s+=\s+[\'"](.*)[\'"]\s*$', contents,
+      re.MULTILINE)
+    if match is not None:
+        return match.group(1)
 ```
 
 ---
@@ -1476,7 +1617,7 @@ def _create_client_wrapper(self, client, wsdl_name):
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 3993.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3994.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -1511,7 +1652,7 @@ build:
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4006.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4007.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1546,7 +1687,7 @@ build:
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4014.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4014.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1569,7 +1710,7 @@ The tool works by having both hosts run the same command simultaneously - one ac
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4057.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4058.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1585,10 +1726,17 @@ The implementation leverages GPG for strong encryption, ensuring passwords are n
 Shell from `bin/pwgrep.sh`:
 
 ```AUTO
-function pwdbls () {
-  echo Available Databases:
-  _pwdbls
-  echo Current database: $DB
+function findbin () {
+  local -r trylist=$1
+  found=""
+  for bin in $trylist; do
+    if [ -z $found ]; then
+      which=$(which $bin)
+      [ ! -z $which ] && found=$bin  
+    fi
+  done
+
+  echo $found
 }
 ```
 
@@ -1602,7 +1750,7 @@ function pwdbls () {
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4062.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4063.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1625,7 +1773,7 @@ The implementation uses modern Perl with the Moo object system and consists of t
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4124.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4124.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1638,18 +1786,18 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 [View on Codeberg](https://codeberg.org/snonux/perl-poetry)  
 [View on GitHub](https://github.com/snonux/perl-poetry)  
 
-Perl from `math.pl`:
+Perl from `perllove.pl`:
 
 ```AUTO
-do { int'egrate'; sub trade; };
-do { exp'onentize' and abs'olutize' };
-study and study and study and study;
-
-foreach $topic ({of, math}) {
-you, m/ay /go, to, limits }
-
-do { not qw/erk / unless $success 
-and m/ove /o;$n and study };
+no strict;
+no warnings;
+we: do { print 'love'
+or warn and die 'slow'
+unless not defined true #respect
+} for reverse'd', qw/mind of you/
+and map { 'me' } 'into', undef $mourning;
+__END__ 
+v2 Copyright (2005, 2006) by Paul C. Buetow, http://paul.buetow.org
 ```
 
 ---
@@ -1660,7 +1808,7 @@ and m/ove /o;$n and study };
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4204.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4204.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1676,15 +1824,28 @@ The implementation uses a straightforward approach with three test endpoints: on
 Perl from `index.pl`:
 
 ```AUTO
-Congratulations, you have connected to a server that will display your method of connection, either IPv6 (preferred) or IPv4 (old and crusty). Well IPv6 is already ~15 years old either but not as old as IPv4 ;)
+Congratulations, you have connected to a server that will display your method
+  of connection, either IPv6 (preferred) or IPv4 (old and crusty). Well IPv6 is
+  already ~15 years old either but not as old as IPv4 ;)
 <br /><br />
 Nevertheless, please choose your destiny:
 <ul>
-	<li><a href="http://ipv6.buetow.org">ipv6.buetow.org</a> for IPv6 & IPv4 Test</li>
-	<li><a href="http://test4.ipv6.buetow.org">test4.ipv6.buetow.org</a> for IPv4 Only Test</li>
-	<li><a href="http://test6.ipv6.buetow.org">test6.ipv6.buetow.org</a> for IPv6 Only Test</li>
+	<li><a href="http://ipv6.buetow.org">ipv6.buetow.org</a> for IPv6 & IPv4
+	  Test</li>
+	<li><a href="http://test4.ipv6.buetow.org">test4.ipv6.buetow.org</a> for IPv4
+	  Only Test</li>
+	<li><a href="http://test6.ipv6.buetow.org">test6.ipv6.buetow.org</a> for IPv6
+	  Only Test</li>
 </ul>
-If your browser times-out when trying to connect to this server then you do not have an IPv6 or IPv4 path (depends on which test you are running) to the server. If your browser returns an error that the host cannot be found then the DNS servers you are using are unable to resolve the AAAA or A DNS record (depends on which test you are running again) for the server. If your browser is able to connect to the "IPv6 Only Test", yet using the "IPv6 & IPv4 Test" returns a page stating you are using IPv4, then your browser and/or IP stack in your machine are preferring IPv4 over IPv6. It also might be that your operating system supports IPv6 but your web-browser doesn't.
+If your browser times-out when trying to connect to this server then you do not
+  have an IPv6 or IPv4 path (depends on which test you are running) to the
+  server. If your browser returns an error that the host cannot be found then the
+  DNS servers you are using are unable to resolve the AAAA or A DNS record (
+  depends on which test you are running again) for the server. If your browser is
+  able to connect to the "IPv6 Only Test", yet using the "IPv6 & IPv4 Test"
+  returns a page stating you are using IPv4, then your browser and/or IP stack in
+  your machine are preferring IPv4 over IPv6. It also might be that your
+  operating system supports IPv6 but your web-browser doesn't.
 END
 
 if ($ENV{SERVER_NAME} eq 'ipv6.buetow.org') {
@@ -1700,7 +1861,7 @@ if ($ENV{SERVER_NAME} eq 'ipv6.buetow.org') {
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4244.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4245.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1723,7 +1884,7 @@ The implementation is remarkably simple - a single shell script that uses GNU AW
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4274.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4275.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1759,7 +1920,7 @@ our @EXPORT = qw(
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4324.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4324.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1772,16 +1933,20 @@ The architecture centers around a modular plugin system where custom functionali
 [View on Codeberg](https://codeberg.org/snonux/perldaemon)  
 [View on GitHub](https://github.com/snonux/perldaemon)  
 
-Perl from `lib/PerlDaemonModules/ExampleModule.pm`:
+Perl from `lib/PerlDaemon/PerlDaemon.pl`:
 
 ```AUTO
-sub new ($$$) {
-  my ($class, $conf) = @_;
+sub trimstr (@) {
+  my @str = 
+  @_;
 
-  my $self = bless { conf => $conf }, $class;
-  $self->{counter} = 0;
+  for (@str) {
+    chomp;
+    s/^[\t\s]+//;
+    s/[\t\s]+$//;
+  }
 
-  return $self;
+  return @str;
 }
 ```
 
@@ -1795,7 +1960,7 @@ sub new ($$$) {
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4655.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4655.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1811,10 +1976,22 @@ The implementation consists of a main AWK script (`index.cgi`) that reads config
 AWK from `index.cgi`:
 
 ```AUTO
-function process_line(line) {
-  if (line ~ /%%.+%%/)
-    return insert_template_value(line) 
-  return line
+function read_config_values(config_file) {
+  while ((getline < config_file) > 0) {
+    position = index($0,"=")
+    if (position == 0 || /^#/)
+      continue
+
+    key = substr($0, 0, position)
+    val = substr($0, position+1, 100)
+
+    if (val ~ /^!/) 
+       substr(val, 2, 100) | getline val	
+
+    values[key] = val
+  }
+
+  close(config_file)
 }
 ```
 
@@ -1828,7 +2005,7 @@ function process_line(line) {
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4717.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4718.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1843,18 +2020,41 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 [View on Codeberg](https://codeberg.org/snonux/jsmstrade)  
 [View on GitHub](https://github.com/snonux/jsmstrade)  
 
-Java from `sources/smstrade/SPrefs.java`:
+Java from `sources/smstrade/SMain.java`:
 
 ```AUTO
-public SPrefs(Component parent, HashMap<String,String> options) {
-    super("Preferences", parent);
+public static final String SAVE_FILE = "jsmstrade.dat";
+
+public static final String DEFAULT_URL =
+    "https://gateway.smstrade.de?key=KEY&to=TO&route=basic&message=";
+
+private HashMap<String,String> options = null;
+
+private JTextArea textArea = new JTextArea();
+
+private JButton sendButton = new JButton("Send it");
+
+private JButton clearButton = new JButton("Delete");
+
+private JLabel counterLabel = new JLabel(" 160");
+
+private JLabel counterTextLabel = new JLabel("Chars");
+
+private JPanel buttonPanel = new JPanel();
+
+private JMenuBar menuBar = new JMenuBar();
+
+private JMenu fileMenu = new JMenu("File");
+
+public SMain(HashMap<String,String> options) {
+    super("JSMSTrade v" + VERSION);
     this.options = options;
 
-    disposeWithParent();
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setSize(300, 150);
     setResizable(false);
 
+    fillMenuBar();
     fillContentPane();
     setVisible(true);
 }
@@ -1870,7 +2070,7 @@ public SPrefs(Component parent, HashMap<String,String> options) {
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5348.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5349.0 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1887,18 +2087,39 @@ The implementation uses a clean separation of concerns with dedicated packages f
 [View on Codeberg](https://codeberg.org/snonux/netcalendar)  
 [View on GitHub](https://github.com/snonux/netcalendar)  
 
-Java from `sources/client/helper/DateSpinner.java`:
+Java from `sources/client/SplashScreen.java`:
 
 ```AUTO
-private void initComponents() {
-    setLayout(new FlowLayout(FlowLayout.LEFT, 4, 4));
+public class SplashScreen extends JWindow implements Runnable {
+    private static final long serialVersionUID = 1L;
 
-    spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.MONTH);
-    JSpinner jSpinner = new JSpinner(spinnerDateModel);
-    new JSpinner.DateEditor(jSpinner, "MM/yy");
+    public void run() {
+        JPanel jPanel = (JPanel)getContentPane();
+        jPanel.setBackground(Color.BLACK);
+        jPanel.setForeground(Color.WHITE);
 
-    add(jSpinner);
-}
+        int iWidth = 411;
+        int iHeight = 261;
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int x = (dimension.width-iWidth)/2;
+        int y = (dimension.height-iHeight)/2;
+        setBounds(x,y,iWidth,iHeight);
+
+        JLabel jLabel = new JLabel(new ImageIcon("images/netcal.png"));
+        jPanel.add(jLabel, BorderLayout.CENTER);
+        jPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        setVisible(true);
+
+        try {
+            Thread.sleep(3000);
+
+        } catch (Exception e) {
+            Main.infoMessage(e.getMessage());
+        }
+
+        dispose();
+    }
 ```
 
 ---
@@ -1909,7 +2130,7 @@ private void initComponents() {
 * 📊 Commits: 80
 * 📈 Lines of Code: 601
 * 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5444.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5444.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1922,19 +2143,19 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 [View on Codeberg](https://codeberg.org/snonux/hsbot)  
 [View on GitHub](https://github.com/snonux/hsbot)  
 
-Haskell from `HsBot/IRC.hs`:
+Haskell from `HsBot/Base/State.hs`:
 
 ```AUTO
-module HsBot.IRC (ircStart) where
+-- {-# LANGUAGE MultiParamTypeClasses #-}
+-- {-# LANGUAGE FunctionalDependencies #-}
+-- {-# LANGUAGE FlexibleInstances #-}
+-- {-# LANGUAGE NoMonomorphismRestriction #-}
 
-import IO
-import List
-import Network
-import System
-import System.IO
-import Text.Printf
+module HsBot.Base.State where
 
-import HsBot.Base.Conf
+import HsBot.Base.Database
+
+import qualified Data.Map as M
 ```
 
 ---
@@ -1947,7 +2168,7 @@ import HsBot.Base.Conf
 * 📈 Lines of Code: 45956
 * 📄 Lines of Documentation: 101
 * 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5554.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5555.2 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
 
@@ -1962,17 +2183,19 @@ The architecture is built around several key managers: a socket manager for hand
 [View on Codeberg](https://codeberg.org/snonux/ychat)  
 [View on GitHub](https://github.com/snonux/ychat)  
 
-C++ from `ycurses/src/curses/attributes.cpp`:
+C++ from `ychat/src/mods/commands/yc_set.cpp`:
 
 ```AUTO
-#define ATTRIBUTES_CPP
-
-#include "attributes.h"
-
-attributes::attributes()
+const char* c_newval = s_newval.c_str();
+if ( isdigit( c_newval[0] ) )
 {
-  init();
-}
+  int i_newval = c_newval[0] - '0';
+
+  s_msg = p_timr->get_time()
+          + " "
+          + p_user->get_colored_bold_name()
+          + " "
+          + p_conf->get_elem("chat.msgs.setcommandstatus")
 ```
 
 ---
@@ -1985,7 +2208,7 @@ attributes::attributes()
 * 📈 Lines of Code: 16303
 * 📄 Lines of Documentation: 2903
 * 📅 Development Period: 2008-05-15 to 2021-05-01
-* 🔥 Recent Activity: 5740.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5741.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0 (2008-08-24)
 
@@ -2000,13 +2223,25 @@ The implementation features a modular architecture with separate packages for co
 [View on Codeberg](https://codeberg.org/snonux/vs-sim)  
 [View on GitHub](https://github.com/snonux/vs-sim)  
 
-Java from `sources/serialize/VSSerialize.java`:
+Java from `sources/simulator/VSMenuItemStates.java`:
 
 ```AUTO
-public boolean accept(File file) {
-    if (file.isDirectory())
-        return true;
-    return file.getName().toLowerCase().endsWith(".dat");
+private static final long serialVersionUID = 1L;
+
+private volatile boolean pause;
+
+private volatile boolean replay;
+
+private volatile boolean reset;
+
+private volatile boolean start;
+
+public VSMenuItemStates(boolean pause, boolean replay, boolean reset,
+                        boolean start) {
+    this.pause = pause;
+    this.replay = replay;
+    this.reset = reset;
+    this.start = start;
 }
 ```
 
@@ -2020,7 +2255,7 @@ public boolean accept(File file) {
 * 📈 Lines of Code: 8622
 * 📄 Lines of Documentation: 1474
 * 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5768.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5768.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -2032,3 +2267,17 @@ The implementation is built using a straightforward top-down parser with a maxim
 
 [View on Codeberg](https://codeberg.org/snonux/fype)  
 [View on GitHub](https://github.com/snonux/fype)  
+
+C from `src/data/dat.c`:
+
+```AUTO
+   p_elem->type = type;
+
+   return (p_elem);
+}
+
+_Bool
+dat_empty(Dat *p_dat) {
+   if (p_dat == NULL)
+      return (false);
+```

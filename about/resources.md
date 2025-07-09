@@ -35,105 +35,105 @@ You won't find any links on this site because, over time, the links will break. 
 
 In random order:
 
+* Leanring eBPF; Liz Rice; O'Reilly
+* 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
 * Clusterbau mit Linux-HA; Michael Schwartzkopff; O'Reilly
-* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
-* Data Science at the Command Line; Jeroen Janssens; O'Reilly
-* Effective Java; Joshua Bloch; Addison-Wesley Professional
-* Kubernetes Cookbook; Sameer Naik, Sébastien Goasguen, Jonathan Michaux; O'Reilly
-* Modern Perl; Chromatic ; Onyx Neon Press
 * Amazon Web Services in Action; Michael Wittig and Andreas Wittig; Manning Publications
-* Higher Order Perl; Mark Dominus; Morgan Kaufmann
-* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
-* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
-* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
-* Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
-* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
-* The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
-* Developing Games in Java; David Brackeen and others...; New Riders
-* DNS and BIND; Cricket Liu; O'Reilly
 * The Docker Book; James Turnbull; Kindle
-* Go Brain Teasers - Exercise Your Mind; Miki Tebeka; The Pragmatic Programmers
+* Modern Perl; Chromatic ; Onyx Neon Press
+* Programming Perl aka "The Camel Book"; Tom Christiansen, brian d foy, Larry Wall & Jon Orwant; O'Reilly
+* Raku Recipes; J.J. Merelo; Apress
+* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
 * Terraform Cookbook; Mikael Krief; Packt Publishing
 * The Go Programming Language; Alan A. A. Donovan; Addison-Wesley Professional
-* Funktionale Programmierung; Peter Pepper; Springer
-* 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
-* Leanring eBPF; Liz Rice; O'Reilly
-* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
-* Polished Ruby Programming; Jeremy Evans; Packt Publishing
-* Ultimate Go Notebook; Bill Kennedy
-* Perl New Features; Joshua McAdams, brian d foy; Perl School
-* Programming Ruby 3.3 (5th Edition); Noel Rappin, with Dave Thomas; The Pragmatic Bookshelf
-* Raku Recipes; J.J. Merelo; Apress
-* The Kubernetes Book; Nigel Poulton; Unabridged Audiobook
-* Effective awk programming; Arnold Robbins; O'Reilly
-* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
-* Tmux 2: Productive Mouse-free Development; Brain P. Hogan; The Pragmatic Programmers 
-* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
-* Java ist auch eine Insel; Christian Ullenboom; 
-* Concurrency in Go; Katherine Cox-Buday; O'Reilly
-* Systemprogrammierung in Go; Frank Müller; dpunkt
-* The KCNA (Kubernetes and Cloud Native Associate) Book; Nigel Poulton
-* Think Raku (aka Think Perl 6); Laurent Rosenfeld, Allen B. Downey; O'Reilly
-* 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
-* The Pragmatic Programmer; David Thomas; Addison-Wesley
 * 21st Century C: C Tips from the New School; Ben Klemens; O'Reilly
-* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Learn You a Haskell for Great Good!; Miran Lipovaca; No Starch Press
+* Effective awk programming; Arnold Robbins; O'Reilly
+* Polished Ruby Programming; Jeremy Evans; Packt Publishing
+* Learn You Some Erlang for Great Good; Fred Herbert; No Starch Press
+* Concurrency in Go; Katherine Cox-Buday; O'Reilly
+* The Pragmatic Programmer; David Thomas; Addison-Wesley
+* Object-Oriented Programming with ANSI-C; Axel-Tobias Schreiner
+* Tmux 2: Productive Mouse-free Development; Brain P. Hogan; The Pragmatic Programmers 
+* Effective Java; Joshua Bloch; Addison-Wesley Professional
+* Perl New Features; Joshua McAdams, brian d foy; Perl School
+* The DevOps Handbook; Gene Kim, Jez Humble, Patrick Debois, John Willis; Audible
+* Java ist auch eine Insel; Christian Ullenboom; 
 * C++ Programming Language; Bjarne Stroustrup;
+* The KCNA (Kubernetes and Cloud Native Associate) Book; Nigel Poulton
+* 97 things every SRE should know; Emil Stolarsky, Jaime Woo; O'Reilly
+* Systems Performance Tuning; Gian-Paolo D. Musumeci and others...; O'Reilly
+* Distributed Systems: Principles and Paradigms; Andrew S. Tanenbaum; Pearson
+* Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
+* Data Science at the Command Line; Jeroen Janssens; O'Reilly
+* Site Reliability Engineering; How Google runs production systems; O'Reilly
+* Go Brain Teasers - Exercise Your Mind; Miki Tebeka; The Pragmatic Programmers
+* The Kubernetes Book; Nigel Poulton; Unabridged Audiobook
+* Ultimate Go Notebook; Bill Kennedy
+* Programming Ruby 3.3 (5th Edition); Noel Rappin, with Dave Thomas; The Pragmatic Bookshelf
 * The Practise of System and Network Administration; Thomas A. Limoncelli, Christina J. Hogan, Strata R. Chalup; Addison-Wesley Professional Pro Git; Scott Chacon, Ben Straub; Apress
+* Developing Games in Java; David Brackeen and others...; New Riders
 * Raku Fundamentals; Moritz Lenz; Apress
+* Pro Puppet; James Turnbull, Jeffrey McCune; Apress
+* Systemprogrammierung in Go; Frank Müller; dpunkt
+* DNS and BIND; Cricket Liu; O'Reilly
+* Funktionale Programmierung; Peter Pepper; Springer
+* DevOps And Site Reliability Engineering Handbook; Stephen Fleming; Audible
+* Kubernetes Cookbook; Sameer Naik, Sébastien Goasguen, Jonathan Michaux; O'Reilly
+* Higher Order Perl; Mark Dominus; Morgan Kaufmann
 
 ## Technical references
 
 I didn't read them from the beginning to the end, but I am using them to look up things. The books are in random order:
 
-* Relayd and Httpd Mastery; Michael W Lucas
 * Groovy Kurz & Gut; Joerg Staudemeier; O'Reilly
-* Implementing Service Level Objectives; Alex Hidalgo; O'Reilly
-* Go: Design Patterns for Real-World Projects; Mat Ryer; Packt
 * Algorithms; Robert Sedgewick, Kevin Wayne; Addison Wesley
-* BPF Performance Tools - Linux System and Application Observability, Brendan Gregg; Addison Wesley
-* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
 * The Linux Programming Interface; Michael Kerrisk; No Starch Press 
+* BPF Performance Tools - Linux System and Application Observability, Brendan Gregg; Addison Wesley
+* Implementing Service Level Objectives; Alex Hidalgo; O'Reilly
+* Understanding the Linux Kernel; Daniel P. Bovet, Marco Cesati; O'Reilly
+* Go: Design Patterns for Real-World Projects; Mat Ryer; Packt
+* Relayd and Httpd Mastery; Michael W Lucas
 
 ## Self-development and soft-skills books
 
 In random order:
 
-* Search Inside Yourself - The Unexpected path to Achieving Success, Happiness (and World Peace); Chade-Meng Tan, Daniel Goleman, Jon Kabat-Zinn; HarperOne
-* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
-* Stop starting, start finishing; Arne Roock; Lean-Kanban University  
-* Influence without Authority; A. Cohen, D. Bradford; Wiley
-* Eat That Frog!; Brian Tracy; Hodder Paperbacks
-* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
-* Slow Productivity; Cal Newport; Penguin Random House
-* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
-* Ultralearning; Scott Young; Thorsons
-* Digital Minimalism; Cal Newport; Portofolio Penguin
-* Buddah and Einstein walk into a Bar; Guy Joseph Ale, Claire Bloom; Blackstone Publishing
-* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
-* 101 Essays that change the way you think; Brianna Wiest; Audiobook
-* Soft Skills; John Sommez; Manning Publications
-* The Joy of Missing Out; Christina Crook; New Society Publishers
-* The Off Switch; Mark Cropley; Virgin Books (RE-READ 1ST TIME)
-* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
-* Staff Engineer: Leadership beyond the management track; Will Larson; Audiobook
 * Ultralearning; Anna Laurent; Self-published via Amazon
-* Atomic Habits; James Clear; Random House Business
-* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
-* The Good Enough Job; Simone Stolzoff; Ebury Edge
-* The Bullet Journal Method; Ryder Carroll; Fourth Estate
-* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
-* Eat That Frog; Brian Tracy
-* Getting Things Done; David Allen
-* Meditation for Mortals, Oliver Burkeman, Audiobook
-* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
-* Deep Work; Cal Newport; Piatkus
 * Never Split the Difference; Chris Voss, Tahl Raz; Random House Business
-* So Good They Can't Ignore You; Cal Newport; Business Plus
-* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
-* Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al., Audiobook
+* Deep Work; Cal Newport; Piatkus
+* Psycho-Cybernetics; Maxwell Maltz; Perigee Books
+* Getting Things Done; David Allen
+* The Joy of Missing Out; Christina Crook; New Society Publishers
+* The Good Enough Job; Simone Stolzoff; Ebury Edge
+* Atomic Habits; James Clear; Random House Business
 * The Power of Now; Eckhard Tolle; Yellow Kite
+* The 7 Habits Of Highly Effective People; Stephen R. Covey; Simon & Schuster UK
+* 101 Essays that change the way you think; Brianna Wiest; Audiobook
+* Digital Minimalism; Cal Newport; Portofolio Penguin
+* Soft Skills; John Sommez; Manning Publications
+* Eat That Frog!; Brian Tracy; Hodder Paperbacks
+* Meditation for Mortals, Oliver Burkeman, Audiobook
+* Influence without Authority; A. Cohen, D. Bradford; Wiley
+* Who Moved My Cheese?; Dr. Spencer Johnson; Vermilion
+* The Bullet Journal Method; Ryder Carroll; Fourth Estate
+* Stop starting, start finishing; Arne Roock; Lean-Kanban University  
+* Slow Productivity; Cal Newport; Penguin Random House
+* Time Management for System Administrators; Thomas A. Limoncelli; O'Reilly
+* So Good They Can't Ignore You; Cal Newport; Business Plus
+* Consciousness: A Very Short Introduction; Susan Blackmore; Oxford Uiversity Press
+* Coders at Work - Reflections on the craft of programming, Peter Seibel and Mitchell Dorian et al., Audiobook
+* The Daily Stoic; Ryan Holiday, Stephen Hanselman; Profile Books
 * Solve for Happy; Mo Gawdat (RE-READ 1ST TIME)
+* The Off Switch; Mark Cropley; Virgin Books (RE-READ 1ST TIME)
+* Staff Engineer: Leadership beyond the management track; Will Larson; Audiobook
+* Eat That Frog; Brian Tracy
+* Search Inside Yourself - The Unexpected path to Achieving Success, Happiness (and World Peace); Chade-Meng Tan, Daniel Goleman, Jon Kabat-Zinn; HarperOne
+* The Complete Software Developer's Career Guide; John Sonmez; Unabridged Audiobook
+* Buddah and Einstein walk into a Bar; Guy Joseph Ale, Claire Bloom; Blackstone Publishing
+* Ultralearning; Scott Young; Thorsons
+* The Obstacle Is The Way; Ryan Holiday; Profile Books Ltd
+* The Phoenix Project - A Novel About IT, DevOps, and Helping your Business Win; Gene Kim and Kevin Behr; Trade Select
 
 [Here are notes of mine for some of the books](../notes/index.md)  
 
@@ -141,21 +141,21 @@ In random order:
 
 Some of these were in-person with exams; others were online learning lectures only. In random order:
 
-* Apache Tomcat Best Practises; 3-day on-site training
-* F5 Loadbalancers Training; 2-day on-site training; F5, Inc. 
+* MySQL Deep Dive Workshop; 2-day on-site training
+* Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
+* The Well-Grounded Rubyist Video Edition; David. A. Black; O'Reilly Online
+* Scripting Vim; Damian Conway; O'Reilly Online
+* Cloud Operations on AWS - Learn how to configure, deploy, maintain, and troubleshoot your AWS environments; 3-day online live training with labs; Amazon
 * Red Hat Certified System Administrator; Course + certification (Although I had the option, I decided not to take the next course as it is more effective to self learn what I need)
+* Apache Tomcat Best Practises; 3-day on-site training
+* Linux Security and Isolation APIs Training; Michael Kerrisk; 3-day on-site training
+* Structure and Interpretation of Computer Programs; Harold Abelson and more...; 
+* Developing IaC with Terraform (with Live Lessons); O'Reilly Online
+* F5 Loadbalancers Training; 2-day on-site training; F5, Inc. 
 * AWS Immersion Day; Amazon; 1-day interactive online training 
 * The Ultimate Kubernetes Bootcamp; School of Devops; O'Reilly Online
-* MySQL Deep Dive Workshop; 2-day on-site training
-* Developing IaC with Terraform (with Live Lessons); O'Reilly Online
-* The Well-Grounded Rubyist Video Edition; David. A. Black; O'Reilly Online
 * Protocol buffers; O'Reilly Online
-* Cloud Operations on AWS - Learn how to configure, deploy, maintain, and troubleshoot your AWS environments; 3-day online live training with labs; Amazon
-* Structure and Interpretation of Computer Programs; Harold Abelson and more...; 
 * Functional programming lecture; Remote University of Hagen
-* Scripting Vim; Damian Conway; O'Reilly Online
-* Linux Security and Isolation APIs Training; Michael Kerrisk; 3-day on-site training
-* Algorithms Video Lectures; Robert Sedgewick; O'Reilly Online
 * Ultimate Go Programming; Bill Kennedy; O'Reilly Online
 
 ## Technical guides
@@ -163,8 +163,8 @@ Some of these were in-person with exams; others were online learning lectures on
 These are not whole books, but guides (smaller or larger) which I found very useful. in random order:
 
 * Advanced Bash-Scripting Guide 
-* How CPUs work at https://cpu.land
 * Raku Guide at https://raku.guide  
+* How CPUs work at https://cpu.land
 
 ## Podcasts
 
@@ -172,19 +172,19 @@ These are not whole books, but guides (smaller or larger) which I found very use
 
 In random order:
 
-* The Pragmatic Engineer Podcast
-* Fallthrough [Golang]
-* The Changelog Podcast(s)
-* Backend Banter
+* Pratical AI
+* The ProdCast (Google SRE Podcast)
 * Maintainable
 * Modern Mentor
 * Dev Interrupted
-* BSD Now [BSD]
+* The Pragmatic Engineer Podcast
+* The Changelog Podcast(s)
 * Hidden Brain
+* Fallthrough [Golang]
+* Backend Banter
 * Deep Questions with Cal Newport
-* The ProdCast (Google SRE Podcast)
-* Pratical AI
 * Cup o' Go [Golang]
+* BSD Now [BSD]
 * Fork Around And Find Out
 
 ### Podcasts I liked
@@ -195,34 +195,34 @@ I liked them but am not listening to them anymore. The podcasts have either "fin
 * CRE: Chaosradio Express [german]
 * FLOSS weekly
 * Java Pub House
-* Modern Mentor
 * Ship It (predecessor of Fork Around And Find Out)
+* Modern Mentor
 
 ## Newsletters I like
 
 This is a mix of tech and non-tech newsletters I am subscribed to. In random order:
 
-* The Valuable Dev
-* VK Newsletter
 * Monospace Mentor
-* byteSizeGo
-* The Pragmatic Engineer
 * The Imperfectionist
 * Changelog News
-* Andreas Brandhorst Newsletter (Sci-Fi author)
+* VK Newsletter
+* The Pragmatic Engineer
+* byteSizeGo
 * Register Spill
 * Ruby Weekly
-* Applied Go Weekly Newsletter
 * Golang Weekly
+* The Valuable Dev
+* Andreas Brandhorst Newsletter (Sci-Fi author)
+* Applied Go Weekly Newsletter
 
 ## Magazines I like(d)
 
 This is a mix of tech I like(d). I may not be a current subscriber, but now and then, I buy an issue. In random order:
 
-* LWN (online only)
-* freeX (not published anymore)
 * Linux Magazine
+* freeX (not published anymore)
 * Linux User
+* LWN (online only)
 
 # Formal education
 
