@@ -102,7 +102,7 @@
 <li>📈 Lines of Code: 6241</li>
 <li>📄 Lines of Documentation: 2306</li>
 <li>📅 Development Period: 2025-06-23 to 2025-07-09</li>
-<li>🔥 Recent Activity: 4.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: BSD-2-Clause</li>
 <li>🏷️ Latest Release: v0.4.0 (2025-07-09)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -115,15 +115,45 @@
 <a class='textlink' href='https://codeberg.org/snonux/gitsyncer'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gitsyncer'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/version/version.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>internal/github/github.go</span>:</span><br />
 <br />
 <pre>
-var (
-	Version = "0.4.0"
+func (c *Client) RepoExists(repoName string) (bool, error) {
+	if c.token == "" {
+		return false, fmt.Errorf("GitHub token required")
+	}
 
-	GitCommit = "unknown"
+	url := fmt.Sprintf("https://api.github.com/repos/%s/%s", c.org, repoName)
+	fmt.Printf("  Checking URL: %s\n", url)
+	fmt.Printf("  Token present: %v (length: %d)\n", c.token != "", len(c.token))
 
-	BuildDate = "unknown"
+	req, err := http.NewRequest("GET", url, nil)
+	if err != nil {
+		return false, err
+	}
+
+	req.Header.Set("Authorization", "Bearer "+c.token)
+	req.Header.Set("Accept", "application/vnd.github.v3+json")
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode == 200 {
+		return true, nil
+	} else if resp.StatusCode == 404 {
+		return false, nil
+	} else if resp.StatusCode == 401 {
+		body, _ := io.ReadAll(resp.Body)
+		fmt.Printf("  401 Unauthorized - Response: %s\n", string(body))
+		fmt.Printf("  Authorization header: %s\n", req.Header.Get("Authorization"))
+		return false, fmt.Errorf("authentication failed (401): %s", string(body))
+	}
+
+	return false, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+}
 </pre>
 <br />
 <span>---</span><br />
@@ -137,7 +167,7 @@ var (
 <li>📈 Lines of Code: 873</li>
 <li>📄 Lines of Documentation: 135</li>
 <li>📅 Development Period: 2025-06-25 to 2025-06-29</li>
-<li>🔥 Recent Activity: 12.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: BSD-2-Clause</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -150,22 +180,19 @@ var (
 <a class='textlink' href='https://codeberg.org/snonux/timr'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/timr'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/timer/operations.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>cmd/timr/main.go</span>:</span><br />
 <br />
 <pre>
-func GetRawStatus() (string, error) {
-	state, err := LoadState()
-	if err != nil {
-		return "", fmt.Errorf("error loading state: %w", err)
+func main() {
+	if len(os.Args) &lt; 2 {
+		printUsage()
+		os.Exit(1)
 	}
 
-	elapsed := state.ElapsedTime
-	if state.Running {
-		elapsed += time.Since(state.StartTime)
-	}
+	var err error
+	var output string
 
-	return fmt.Sprintf("%d", int(elapsed.Seconds())), nil
-}
+	switch os.Args[1] {
 </pre>
 <br />
 <span>---</span><br />
@@ -179,7 +206,7 @@ func GetRawStatus() (string, error) {
 <li>📈 Lines of Code: 6160</li>
 <li>📄 Lines of Documentation: 162</li>
 <li>📅 Development Period: 2025-06-19 to 2025-07-08</li>
-<li>🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 13.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: BSD-2-Clause</li>
 <li>🏷️ Latest Release: v0.9.2 (2025-07-02)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -199,12 +226,36 @@ func GetRawStatus() (string, error) {
 <span>Go from <span class='inlinecode'>internal/ui/handlers.go</span>:</span><br />
 <br />
 <pre>
-func (m *Model) getTaskAtCursor() *task.Task {
-	cursor := m.tbl.Cursor()
-	if cursor &lt; 0 || cursor &gt;= len(m.tasks) {
+func (m *Model) handleAnnotationMode(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
+	onEnter := func(value string) error {
+		if !m.replaceAnnotations &amp;&amp; strings.TrimSpace(value) == "" {
+			return fmt.Errorf("annotation cannot be empty")
+		}
+		
+		if m.replaceAnnotations {
+			if err := task.ReplaceAnnotations(m.annotateID, value); err != nil {
+				return err
+			}
+			m.replaceAnnotations = false
+		} else {
+			if err := task.Annotate(m.annotateID, value); err != nil {
+				return err
+			}
+		}
+		m.reload()
 		return nil
 	}
-	return &amp;m.tasks[cursor]
+	
+	onExit := func() {
+		m.annotating = false
+		m.replaceAnnotations = false
+	}
+	
+	model, cmd := m.handleTextInput(msg, &amp;m.annotateInput, onEnter, onExit)
+	if msg.Type == tea.KeyEnter &amp;&amp; m.annotateInput.Value() != "" {
+		return model, m.startBlink(m.annotateID, false)
+	}
+	return model, cmd
 }
 </pre>
 <br />
@@ -219,7 +270,7 @@ func (m *Model) getTaskAtCursor() *task.Task {
 <li>📈 Lines of Code: 3947</li>
 <li>📄 Lines of Documentation: 854</li>
 <li>📅 Development Period: 2021-12-28 to 2025-07-07</li>
-<li>🔥 Recent Activity: 20.0 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 20.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -250,7 +301,7 @@ TOP=20
 <li>📈 Lines of Code: 42772</li>
 <li>📄 Lines of Documentation: 159</li>
 <li>📅 Development Period: 2021-04-29 to 2025-07-01</li>
-<li>🔥 Recent Activity: 26.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 26.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -263,14 +314,15 @@ TOP=20
 <a class='textlink' href='https://codeberg.org/snonux/foo.zone'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/foo.zone'>View on GitHub</a><br />
 <br />
-<span>HTML from <span class='inlinecode'>gemfeed/2022-01-23-welcome-to-the-foo.zone.html</span>:</span><br />
+<span>HTML from <span class='inlinecode'>notes/index.html</span>:</span><br />
 <br />
 <pre>
-&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;
 &lt;html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"&gt;
 &lt;head&gt;
 &lt;meta http-equiv="Content-Type" content="text/html; charset=utf-8" /&gt;
-&lt;title&gt;Welcome to the foo.zone&lt;/title&gt;
+&lt;title&gt;Notes on foo.zone&lt;/title&gt;
 &lt;link rel="shortcut icon" type="image/gif" href="/favicon.ico" /&gt;
 &lt;link rel="stylesheet" href="../style.css" /&gt;
 &lt;link rel="stylesheet" href="style-override.css" /&gt;
@@ -289,7 +341,7 @@ TOP=20
 <li>📈 Lines of Code: 20091</li>
 <li>📄 Lines of Documentation: 5674</li>
 <li>📅 Development Period: 2020-01-09 to 2025-06-20</li>
-<li>🔥 Recent Activity: 51.8 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 52.2 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Apache-2.0</li>
 <li>🏷️ Latest Release: v4.2.0 (2023-06-21)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -306,17 +358,18 @@ TOP=20
 <a class='textlink' href='https://codeberg.org/snonux/dtail'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/dtail'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/clients/baseclient.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>internal/io/fs/directprocessor.go</span>:</span><br />
 <br />
 <pre>
-func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMethod,
-	hostKeyCallback client.HostKeyCallback) connectors.Connector {
-	if c.Args.Serverless {
-		return connectors.NewServerless(c.UserName, c.maker.makeHandler(server),
-			c.maker.makeCommands())
+func NewDirectProcessor(processor LineProcessor, output io.Writer, globID
+  string, ltx lcontext.LContext) *DirectProcessor {
+	return &amp;DirectProcessor{
+		processor: processor,
+		output:    output,
+		stats:     &amp;stats{},
+		ltx:       ltx,
+		sourceID:  globID,
 	}
-	return connectors.NewServerConnection(server, c.UserName, sshAuthMethods,
-		hostKeyCallback, c.maker.makeHandler(server), c.maker.makeCommands())
 }
 </pre>
 <br />
@@ -331,7 +384,7 @@ func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMe
 <li>📈 Lines of Code: 396</li>
 <li>📄 Lines of Documentation: 24</li>
 <li>📅 Development Period: 2025-04-18 to 2025-05-11</li>
-<li>🔥 Recent Activity: 71.1 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 71.5 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.0.0 (2025-05-11)</li>
 </ul><br />
@@ -346,10 +399,12 @@ func (c *baseClient) makeConnection(server string, sshAuthMethods []gossh.AuthMe
 <span>Ruby from <span class='inlinecode'>wireguardmeshgenerator.rb</span>:</span><br />
 <br />
 <pre>
-def priv = File.read(@privkey_path).strip
+def initialize(myself)
+  raise &#39;Wireguard tool not found&#39; unless system(&#39;which wg &gt; /dev/null 2&gt;&amp;1&#39;)
 
-def psk(peer)
-  psk_path = "#{@psk_dir}/#{[@myself, peer].sort.join(&#39;_&#39;)}.key"
+  @myself = myself
+  @psk_dir = &#39;keys/psk&#39;
+  mykeys_dir = "keys/#{myself}"
 </pre>
 <br />
 <span>---</span><br />
@@ -363,7 +418,7 @@ def psk(peer)
 <li>📈 Lines of Code: 9835</li>
 <li>📄 Lines of Documentation: 559</li>
 <li>📅 Development Period: 2024-01-18 to 2025-06-14</li>
-<li>🔥 Recent Activity: 83.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 83.6 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -381,19 +436,13 @@ def psk(peer)
 <a class='textlink' href='https://codeberg.org/snonux/ior'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/ior'>View on GitHub</a><br />
 <br />
-<span>C from <span class='inlinecode'>internal/c/types.h</span>:</span><br />
+<span>C from <span class='inlinecode'>internal/c/maps.h</span>:</span><br />
 <br />
 <pre>
-struct open_event {
-    __u32 event_type;
-    __u32 trace_id; 
-    __u64 time;
-    __u32 pid;
-    __u32 tid;
-    __s32 flags;
-    char filename[MAX_FILENAME_LENGTH];
-    char comm[MAX_PROGNAME_LENGTH];
-};
+struct {
+    __uint(type, BPF_MAP_TYPE_RINGBUF);
+    __uint(max_entries, 1 &lt;&lt; 24);
+} event_map SEC(".maps");
 </pre>
 <br />
 <span>---</span><br />
@@ -407,7 +456,7 @@ struct open_event {
 <li>📈 Lines of Code: 25762</li>
 <li>📄 Lines of Documentation: 3101</li>
 <li>📅 Development Period: 2008-05-15 to 2025-06-27</li>
-<li>🔥 Recent Activity: 84.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 84.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -422,14 +471,24 @@ struct open_event {
 <a class='textlink' href='https://codeberg.org/snonux/ds-sim'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/ds-sim'>View on GitHub</a><br />
 <br />
-<span>Java from <span class='inlinecode'>src/main/java/events/VSAbstractEvent.java</span>:</span><br />
+<span>Java from <span class='inlinecode'>src/main/java/core/VSTaskManager.java</span>:</span><br />
 <br />
 <pre>
-public final void setClassname(String eventClassname) {
-    if (eventClassname.startsWith(CLASS_PREFIX))
-        eventClassname = eventClassname.substring(CLASS_PREFIX_LENGTH);
+private VSSimulatorVisualization simulatorVisualization;
 
-    this.eventClassname = eventClassname;
+private PriorityQueue&lt;VSTask&gt; globalTasks;
+
+private LinkedList&lt;VSTask&gt; fullfilledProgrammedTasks;
+
+public final static boolean PROGRAMMED = true;
+
+public final static boolean ONLY_ONCE = false;
+
+private VSPrefs prefs;
+
+public VSTaskManager(VSPrefs prefs,
+                     VSSimulatorVisualization simulatorVisualization) {
+    init(prefs, simulatorVisualization);
 }
 </pre>
 <br />
@@ -444,7 +503,7 @@ public final void setClassname(String eventClassname) {
 <li>📈 Lines of Code: 33</li>
 <li>📄 Lines of Documentation: 3</li>
 <li>📅 Development Period: 2025-04-03 to 2025-04-03</li>
-<li>🔥 Recent Activity: 97.0 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 97.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -475,7 +534,7 @@ func main() {
 <li>📈 Lines of Code: 3967</li>
 <li>📄 Lines of Documentation: 411</li>
 <li>📅 Development Period: 2024-05-04 to 2025-06-12</li>
-<li>🔥 Recent Activity: 113.9 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 114.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.0.0 (2025-03-04)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -492,16 +551,29 @@ func main() {
 <a class='textlink' href='https://codeberg.org/snonux/gos'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gos'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/summary/summary.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>internal/config/args.go</span>:</span><br />
 <br />
 <pre>
-func prepare(content string) string {
-	content = newlineRegex.ReplaceAllString(content, " ")
-	content = urlRegex.ReplaceAllString(content, "")
-	content = multiSpaceRegex.ReplaceAllString(content, " ")
-	content = strings.TrimSpace(content)
-	content = tagRegex.ReplaceAllString(content, "`$0`")
-	return content
+func (a *Args) ParsePlatforms(platformStrs string) error {
+	a.Platforms = make(map[string]int)
+
+	for _, platformInfo := range strings.Split(platformStrs, ",") {
+		parts := strings.Split(platformInfo, ":")
+		platformStr := parts[0]
+
+		if len(parts) &gt; 1 {
+			var err error
+			a.Platforms[platformStr], err = strconv.Atoi(parts[1])
+			if err != nil {
+				return err
+			}
+		} else {
+			colour.Infoln("No message length specified for", platformStr, "so assuming
+			  500")
+			a.Platforms[platformStr] = 500
+		}
+	}
+	return nil
 }
 </pre>
 <br />
@@ -516,7 +588,7 @@ func prepare(content string) string {
 <li>📈 Lines of Code: 1299</li>
 <li>📄 Lines of Documentation: 154</li>
 <li>📅 Development Period: 2023-01-02 to 2025-07-07</li>
-<li>🔥 Recent Activity: 133.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 133.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -531,10 +603,15 @@ func prepare(content string) string {
 <span>Perl from <span class='inlinecode'>foostats.pl</span>:</span><br />
 <br />
 <pre>
-my sub parse_date ( $year, @line ) {
-    my $timestr = "$line[0] $line[1]";
-    return Time::Piece-&gt;strptime( $timestr, &#39;%b %d&#39; )
-      -&gt;strftime("$year%m%d");
+sub write ( $path, $content ) {
+    open my $fh, &#39;&gt;&#39;, "$path.tmp"
+      or die "\nCannot open file: $!";
+    print $fh $content;
+    close $fh;
+
+    rename
+      "$path.tmp",
+      $path;
 }
 </pre>
 <br />
@@ -549,7 +626,7 @@ my sub parse_date ( $year, @line ) {
 <li>📈 Lines of Code: 1373</li>
 <li>📄 Lines of Documentation: 48</li>
 <li>📅 Development Period: 2024-12-05 to 2025-02-28</li>
-<li>🔥 Recent Activity: 137.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 138.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -561,14 +638,16 @@ my sub parse_date ( $year, @line ) {
 <a class='textlink' href='https://codeberg.org/snonux/rcm'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/rcm'>View on GitHub</a><br />
 <br />
-<span>Ruby from <span class='inlinecode'>lib/dsl.rb</span>:</span><br />
+<span>Ruby from <span class='inlinecode'>lib/dslkeywords/notify.rb</span>:</span><br />
 <br />
 <pre>
-def to_s = @id
-def evaluate! = @scheduled.each(&amp;:evaluate!)
+def notify(message = nil, &amp;block)
+  return unless @conds_met
 
-def &lt;&lt;(obj)
-  raise DuplicateResource, "#{obj.id} already declared!" if @@objs.key?(obj.id)
+  n = Notify.new(message.nil? ? &#39;&#39; : message)
+  n.message(n.instance_eval(&amp;block)) if block
+  self &lt;&lt; n
+  n
 </pre>
 <br />
 <span>---</span><br />
@@ -582,7 +661,7 @@ def &lt;&lt;(obj)
 <li>📈 Lines of Code: 2253</li>
 <li>📄 Lines of Documentation: 1170</li>
 <li>📅 Development Period: 2021-05-21 to 2025-06-11</li>
-<li>🔥 Recent Activity: 230.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 230.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: GPL-3.0</li>
 <li>🏷️ Latest Release: 3.0.0 (2024-10-01)</li>
 </ul><br />
@@ -594,18 +673,17 @@ def &lt;&lt;(obj)
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gemtexter'>View on GitHub</a><br />
 <br />
-<span>Shell from <span class='inlinecode'>lib/md.source.sh</span>:</span><br />
+<span>Shell from <span class='inlinecode'>lib/log.source.sh</span>:</span><br />
 <br />
 <pre>
-md::make_img () {
-    local link="$1"; shift
-    local descr="$1"; shift
+log () {
+    local -r level="$1"; shift
+    local message
 
-    if [ -z "$descr" ]; then
-        echo "[![$link]($link)]($link)  "
-    else
-        echo "[![$descr]($link \"$descr\")]($link)  "
-    fi
+    for message in "$@"; do
+        echo "$message"
+    done | log::_pipe "$level" $$
+}
 </pre>
 <br />
 <span>---</span><br />
@@ -619,7 +697,7 @@ md::make_img () {
 <li>📈 Lines of Code: 917</li>
 <li>📄 Lines of Documentation: 33</li>
 <li>📅 Development Period: 2024-01-20 to 2025-07-06</li>
-<li>🔥 Recent Activity: 447.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 448.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: MIT</li>
 <li>🏷️ Latest Release: v0.0.3 (2025-07-06)</li>
 </ul><br />
@@ -641,13 +719,16 @@ md::make_img () {
 func createPreferenceWindow(a fyne.App) fyne.Window {
 	window := a.NewWindow("Preferences")
 	directoryPreference := widget.NewEntry()
-	directoryPreference.SetText(a.Preferences().StringWithFallback("Directory", defaultDirectory))
+	directoryPreference.SetText(a.Preferences().StringWithFallback("Directory",
+	  defaultDirectory))
 
 	tagDropdownPreference := widget.NewEntry()
-	tagDropdownPreference.SetText(a.Preferences().StringWithFallback("Tags", strings.Join(defaultTagItems, ",")))
+	tagDropdownPreference.SetText(a.Preferences().StringWithFallback("Tags",
+	  strings.Join(defaultTagItems, ",")))
 
 	whatDropdownPreference := widget.NewEntry()
-	whatDropdownPreference.SetText(a.Preferences().StringWithFallback("Whats", strings.Join(defaultWhatItems, ",")))
+	whatDropdownPreference.SetText(a.Preferences().StringWithFallback("Whats",
+	  strings.Join(defaultWhatItems, ",")))
 
 	window.SetContent(container.NewVBox(
 		container.NewVBox(
@@ -688,7 +769,7 @@ func createPreferenceWindow(a fyne.App) fyne.Window {
 <li>📈 Lines of Code: 12</li>
 <li>📄 Lines of Documentation: 3</li>
 <li>📅 Development Period: 2024-03-24 to 2024-03-24</li>
-<li>🔥 Recent Activity: 471.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 471.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -726,7 +807,7 @@ aws: build
 <li>📈 Lines of Code: 2850</li>
 <li>📄 Lines of Documentation: 52</li>
 <li>📅 Development Period: 2023-08-27 to 2025-04-05</li>
-<li>🔥 Recent Activity: 501.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 502.0 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: MIT</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -738,17 +819,16 @@ aws: build
 <a class='textlink' href='https://codeberg.org/snonux/terraform'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/terraform'>View on GitHub</a><br />
 <br />
-<span>HCL from <span class='inlinecode'>org-buetow-ecs/variables.tf</span>:</span><br />
+<span>HCL from <span class='inlinecode'>org-buetow-elb/remotestates.tf</span>:</span><br />
 <br />
 <pre>
-  type        = bool
-  default     = false
-}
-
-variable "deploy_audiobookshelf" {
-  description = "Deploy Audio Bool Shelf Server?"
-  type        = bool
-  default     = true
+data "terraform_remote_state" "base" {
+  backend = "s3"
+  config = {
+    bucket = "org-buetow-tfstate"
+    key    = "org-buetow-base/terraform.tfstate"
+    region = "eu-central-1"
+  }
 }
 </pre>
 <br />
@@ -763,7 +843,7 @@ variable "deploy_audiobookshelf" {
 <li>📈 Lines of Code: 1096</li>
 <li>📄 Lines of Documentation: 287</li>
 <li>📅 Development Period: 2023-04-17 to 2025-06-12</li>
-<li>🔥 Recent Activity: 514.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 514.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.1.0 (2024-05-03)</li>
 <li>🤖 AI-Assisted: This project was partially created with the help of generative AI</li>
@@ -778,26 +858,34 @@ variable "deploy_audiobookshelf" {
 <a class='textlink' href='https://codeberg.org/snonux/gogios'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gogios'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/run.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>internal/notify.go</span>:</span><br />
 <br />
 <pre>
-func persistReport(subject, body string, conf config) error {
-	reportFile := fmt.Sprintf("%s/report.txt", conf.StateDir)
-	tmpFile := fmt.Sprintf("%s.tmp", reportFile)
+func notify(conf config, subject, body string) error {
+	if conf.SMTPDisable {
+		log.Println("Notification disabled")
+		return nil
+	}
+	log.Println("notify", subject, body)
 
-	f, err := os.Create(tmpFile)
-	if err != nil {
-		return err
+	headers := map[string]string{
+		"From":         conf.EmailFrom,
+		"To":           conf.EmailTo,
+		"Subject":      subject,
+		"MIME-Version": "1.0",
+		"Content-Type": "text/plain; charset=\"utf-8\"",
 	}
-	defer f.Close()
 
-	if _, err = f.WriteString(fmt.Sprintf("%s\n\n", subject)); err != nil {
-		return err
+	header := ""
+	for k, v := range headers {
+		header += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
-	if _, err = f.WriteString(body); err != nil {
-		return err
-	}
-	return os.Rename(tmpFile, reportFile)
+
+	message := header + "\r\n" + body
+	log.Println("Using SMTP server", conf.SMTPServer)
+
+	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
+		[]string{conf.EmailTo}, []byte(message))
 }
 </pre>
 <br />
@@ -812,7 +900,7 @@ func persistReport(subject, body string, conf config) error {
 <li>📈 Lines of Code: 32</li>
 <li>📄 Lines of Documentation: 3</li>
 <li>📅 Development Period: 2023-12-31 to 2023-12-31</li>
-<li>🔥 Recent Activity: 555.1 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 555.5 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -850,7 +938,7 @@ run: build
 <li>📈 Lines of Code: 29</li>
 <li>📄 Lines of Documentation: 3</li>
 <li>📅 Development Period: 2023-08-13 to 2024-01-01</li>
-<li>🔥 Recent Activity: 648.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 648.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: MIT</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -874,7 +962,8 @@ all:
 	docker build -t anki-sync-server:latest . 
 aws:
 	docker build -t anki-sync-server:latest . 
-	docker tag anki-sync-server:latest 634617747016.dkr.ecr.eu-central-1.amazonaws.com/anki-sync-server:latest
+	docker tag anki-sync-server:latest
+	  634617747016.dkr.ecr.eu-central-1.amazonaws.com/anki-sync-server:latest
 </pre>
 <br />
 <span>---</span><br />
@@ -888,7 +977,7 @@ aws:
 <li>📈 Lines of Code: 1525</li>
 <li>📄 Lines of Documentation: 15</li>
 <li>📅 Development Period: 2023-04-17 to 2023-11-19</li>
-<li>🔥 Recent Activity: 700.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 700.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -900,33 +989,24 @@ aws:
 <a class='textlink' href='https://codeberg.org/snonux/gorum'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gorum'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>internal/notifier/email.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>internal/server/server.go</span>:</span><br />
 <br />
 <pre>
-func (em email) send(conf config.Config) error {
-	if !conf.EmailNotifycationEnabled() {
-		return nil
-	}
-	log.Println("notify:", em.subject, em.body)
+func Start(ctx context.Context, conf config.Config, quo quorum.Quorum) {
+	go func() {
+		for {
+			log.Println("server: starting")
+			if err := runServer(ctx, conf, quo); err != nil {
+				log.Println("server:", err)
+			}
 
-	headers := map[string]string{
-		"From":         conf.EmailFrom,
-		"To":           conf.EmailTo,
-		"Subject":      em.subject,
-		"MIME-Version": "1.0",
-		"Content-Type": "text/plain; charset=\"utf-8\"",
-	}
-
-	header := ""
-	for k, v := range headers {
-		header += fmt.Sprintf("%s: %s\r\n", k, v)
-	}
-
-	message := header + "\r\n" + em.body
-	log.Println("Using SMTP server", conf.SMTPServer)
-
-	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
-		[]string{conf.EmailTo}, []byte(message))
+			select {
+			case &lt;-time.After(time.Second):
+			case &lt;-ctx.Done():
+				return
+			}
+		}
+	}()
 }
 </pre>
 <br />
@@ -941,7 +1021,7 @@ func (em email) send(conf config.Config) error {
 <li>📈 Lines of Code: 51</li>
 <li>📄 Lines of Documentation: 26</li>
 <li>📅 Development Period: 2022-06-02 to 2024-04-20</li>
-<li>🔥 Recent Activity: 765.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 765.6 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -975,7 +1055,7 @@ declare -i NUM_PAGES_TO_EXTRACT=42 # This is the answear!
 <li>📈 Lines of Code: 41</li>
 <li>📄 Lines of Documentation: 17</li>
 <li>📅 Development Period: 2020-01-30 to 2025-04-30</li>
-<li>🔥 Recent Activity: 1058.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 1059.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: GPL-3.0</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1010,7 +1090,7 @@ declare -r SCREEN=eDP-1
 <li>📈 Lines of Code: 342</li>
 <li>📄 Lines of Documentation: 39</li>
 <li>📅 Development Period: 2011-11-19 to 2022-04-02</li>
-<li>🔥 Recent Activity: 1278.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 1278.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.5.0 (2022-02-21)</li>
 </ul><br />
@@ -1053,7 +1133,7 @@ scalephotos () {
 <li>📈 Lines of Code: 1728</li>
 <li>📄 Lines of Documentation: 18</li>
 <li>📅 Development Period: 2020-07-12 to 2023-04-09</li>
-<li>🔥 Recent Activity: 1429.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 1429.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1066,12 +1146,21 @@ scalephotos () {
 <a class='textlink' href='https://codeberg.org/snonux/algorithms'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/algorithms'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>sort/parallelquick.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>queue/elementarypriority.go</span>:</span><br />
 <br />
 <pre>
-func ParallelQuick[V ds.Number](a ds.ArrayList[V]) ds.ArrayList[V] {
-	parallelQuick(a)
-	return a
+func (q *ElementaryPriority[T]) DeleteMax() T {
+	if q.Empty() {
+		return 0
+	}
+
+	ind, max := q.max()
+	for i := ind + 1; i &lt; q.Size(); i++ {
+		q.a[i-1] = q.a[i]
+	}
+	q.a = q.a[0 : len(q.a)-1]
+
+	return max
 }
 </pre>
 <br />
@@ -1086,7 +1175,7 @@ func ParallelQuick[V ds.Number](a ds.ArrayList[V]) ds.ArrayList[V] {
 <li>📈 Lines of Code: 671</li>
 <li>📄 Lines of Documentation: 19</li>
 <li>📅 Development Period: 2018-05-26 to 2025-01-21</li>
-<li>🔥 Recent Activity: 1431.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 1431.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1121,7 +1210,7 @@ def out(message, prefix, flag = :none)
 <li>📈 Lines of Code: 51</li>
 <li>📄 Lines of Documentation: 69</li>
 <li>📅 Development Period: 2014-03-24 to 2022-04-23</li>
-<li>🔥 Recent Activity: 1910.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 1910.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1154,7 +1243,7 @@ sub hello() {
 <li>📊 Commits: 95</li>
 <li>📈 Lines of Code: 195</li>
 <li>📅 Development Period: 2013-03-22 to 2023-03-09</li>
-<li>🔥 Recent Activity: 2125.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 2125.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: v1.0.0 (2023-04-29)</li>
 </ul><br />
@@ -1170,11 +1259,14 @@ sub hello() {
 <span>Raku from <span class='inlinecode'>guprecords.raku</span>:</span><br />
 <br />
 <pre>
-sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
-  my Aggregator \aggregator .= new;
-  aggregator.add-file($_) for dir(stats-dir, test =&gt; { /.records$/ });
-  reporter.aggregates = aggregator.aggregates;
-  reporter.report;
+method add-file(IO::Path:D $file is readonly) {
+  my Str $host = $file.IO.basename.split(&#39;.&#39;).first;
+
+  die "Record file for {$host} already processed - duplicate inputs?"
+    if %!aggregates&lt;host&gt;{$host}:exists;
+  %!aggregates&lt;host&gt;{$host} = HostAggregate.new($host);
+
+  for $file.IO.lines -&gt; Str $line { self!add-line(:$line, :$host) }
 }
 </pre>
 <br />
@@ -1189,7 +1281,7 @@ sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
 <li>📈 Lines of Code: 12420</li>
 <li>📄 Lines of Documentation: 610</li>
 <li>📅 Development Period: 2018-03-01 to 2020-01-22</li>
-<li>🔥 Recent Activity: 2451.9 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 2452.3 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Apache-2.0</li>
 <li>🏷️ Latest Release: 0.5.1 (2019-01-04)</li>
 </ul><br />
@@ -1204,6 +1296,20 @@ sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
 <a class='textlink' href='https://codeberg.org/snonux/ioriot'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/ioriot'>View on GitHub</a><br />
 <br />
+<span>C from <span class='inlinecode'>ioriot/src/opcodes.h</span>:</span><br />
+<br />
+<pre>
+typedef enum {
+    FSTAT = 0,
+    FSTAT_AT,
+    FSTATFS,
+    FSTATFS64,
+    LSTAT,
+    STAT,
+    STATFS,
+    STATFS64,
+</pre>
+<br />
 <span>---</span><br />
 <br />
 <h3 style='display: inline' id='staticfarm-apache-handlers'>staticfarm-apache-handlers</h3><br />
@@ -1215,7 +1321,7 @@ sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
 <li>📈 Lines of Code: 919</li>
 <li>📄 Lines of Documentation: 12</li>
 <li>📅 Development Period: 2015-01-02 to 2021-11-04</li>
-<li>🔥 Recent Activity: 2960.6 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 2961.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 1.1.3 (2015-01-02)</li>
 </ul><br />
@@ -1228,13 +1334,13 @@ sub do-it(Str:D \stats-dir, Reporter:D \reporter) {
 <a class='textlink' href='https://codeberg.org/snonux/staticfarm-apache-handlers'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/staticfarm-apache-handlers'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>src/StaticFarm/API.pm</span>:</span><br />
+<span>Perl from <span class='inlinecode'>debian/staticfarm-apache-handlers/usr/share/staticfarm/apache/handlers/StaticFarm/CacheControl.pm</span>:</span><br />
 <br />
 <pre>
-sub path_ls {
-  my $f = shift;
+sub my_warn {
+  my $msg = shift;
 
-  return [ map { s#.*/##; $_ } glob("$f/*") ];
+  Apache2::ServerRec::warn("CacheControl: $msg");
 }
 </pre>
 <br />
@@ -1249,7 +1355,7 @@ sub path_ls {
 <li>📈 Lines of Code: 18</li>
 <li>📄 Lines of Documentation: 49</li>
 <li>📅 Development Period: 2014-03-24 to 2021-11-05</li>
-<li>🔥 Recent Activity: 3196.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3196.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1273,7 +1379,7 @@ sub path_ls {
 <li>📈 Lines of Code: 5360</li>
 <li>📄 Lines of Documentation: 789</li>
 <li>📅 Development Period: 2015-01-02 to 2021-11-05</li>
-<li>🔥 Recent Activity: 3463.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3463.6 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 1.0.1 (2015-01-02)</li>
 </ul><br />
@@ -1286,13 +1392,17 @@ sub path_ls {
 <a class='textlink' href='https://codeberg.org/snonux/mon'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/mon'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>lib/MON/JSON.pm</span>:</span><br />
+<span>Perl from <span class='inlinecode'>debian/mon/usr/share/mon/lib/MAPI/Query.pm</span>:</span><br />
 <br />
 <pre>
-sub init {
-  my ($self) = @_;
+sub new {
+  my ( $class, %opts ) = @_;
 
-  return undef;
+  my $self = bless \%opts, $class;
+
+  $self-&gt;init();
+
+  return $self;
 }
 </pre>
 <br />
@@ -1307,7 +1417,7 @@ sub init {
 <li>📈 Lines of Code: 273</li>
 <li>📄 Lines of Documentation: 32</li>
 <li>📅 Development Period: 2015-09-29 to 2021-11-05</li>
-<li>🔥 Recent Activity: 3467.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3467.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Apache-2.0</li>
 <li>🏷️ Latest Release: 0 (2015-10-26)</li>
 </ul><br />
@@ -1323,11 +1433,14 @@ sub init {
 <span>Ruby from <span class='inlinecode'>rubyfy.rb</span>:</span><br />
 <br />
 <pre>
-def log(severity, message)
-  return if severity == :VERBOSE and not $opts["verbose"]
-  return if severity == :DEBUG and not $opts["debug"]
+def initialize
+  @log_mutex = Mutex.new
+  @outfile = nil
+  @outfile_mode = "w"
 
-  timestamp = $opts["timestamp"] ? "#{Time.now}|" : ""
+  $opts["verbose"] = true if $opts["debug"]
+
+  ["#{ENV["HOME"]}/.rubyfy.json", "rubyfy.json"].each do |conf_path|
 </pre>
 <br />
 <span>---</span><br />
@@ -1341,7 +1454,7 @@ def log(severity, message)
 <li>📈 Lines of Code: 1839</li>
 <li>📄 Lines of Documentation: 412</li>
 <li>📅 Development Period: 2015-01-02 to 2021-11-05</li>
-<li>🔥 Recent Activity: 3547.0 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3547.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 1.0.2 (2015-01-02)</li>
 </ul><br />
@@ -1354,22 +1467,15 @@ def log(severity, message)
 <a class='textlink' href='https://codeberg.org/snonux/pingdomfetch'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/pingdomfetch'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>lib/PINGDOMFETCH/Pingdom.pm</span>:</span><br />
+<span>Perl from <span class='inlinecode'>lib/PINGDOMFETCH/Display.pm</span>:</span><br />
 <br />
 <pre>
-sub fetch_all_checks_json {
+sub init {
     my ($self) = @_;
 
-    my $config = $self-&gt;{config};
+    $VERBOSE = $self-&gt;{&#39;arg.verbose&#39;} == 1;
 
-    my $url_base = $self-&gt;{url_base};
-    my $action   = $config-&gt;get(&#39;pingdom.api.all.checks.action&#39;);
-
-    my $url = "$url_base/$action";
-
-    $self-&gt;verbose("Fetching all checks from Pingdom");
-
-    return $self-&gt;fetch($url);
+    return undef;
 }
 </pre>
 <br />
@@ -1384,7 +1490,7 @@ sub fetch_all_checks_json {
 <li>📈 Lines of Code: 499</li>
 <li>📄 Lines of Documentation: 8</li>
 <li>📅 Development Period: 2015-05-24 to 2021-11-03</li>
-<li>🔥 Recent Activity: 3557.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3558.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.1 (2015-06-01)</li>
 </ul><br />
@@ -1397,15 +1503,21 @@ sub fetch_all_checks_json {
 <a class='textlink' href='https://codeberg.org/snonux/gotop'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/gotop'>View on GitHub</a><br />
 <br />
-<span>Go from <span class='inlinecode'>process/process.go</span>:</span><br />
+<span>Go from <span class='inlinecode'>utils/utils.go</span>:</span><br />
 <br />
 <pre>
-func (self *Process) gatherRaw(what *string, pathf string) error {
-	bytes, err := ioutil.ReadFile(fmt.Sprintf(pathf, self.Pid))
+func Slurp(what *string, path string) error {
+	bytes, err := ioutil.ReadFile(path)
 	if err != nil {
 		return err
 	} else {
-		*what = string(bytes)
+		for _, byte := range bytes {
+			if byte == 0 {
+				*what += " "
+			} else {
+				*what += string(byte)
+			}
+		}
 	}
 	return nil
 }
@@ -1420,7 +1532,7 @@ func (self *Process) gatherRaw(what *string, pathf string) error {
 <li>📊 Commits: 670</li>
 <li>📈 Lines of Code: 1675</li>
 <li>📅 Development Period: 2011-03-06 to 2018-12-22</li>
-<li>🔥 Recent Activity: 3613.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3613.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.0.0 (2018-12-22)</li>
 </ul><br />
@@ -1435,16 +1547,33 @@ func (self *Process) gatherRaw(what *string, pathf string) error {
 <a class='textlink' href='https://codeberg.org/snonux/xerl'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/xerl'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>Xerl.pm</span>:</span><br />
+<span>Perl from <span class='inlinecode'>Xerl/Page/Content.pm</span>:</span><br />
 <br />
 <pre>
-return undef if $config-&gt;finish_request_exists();
+sub parse {
+  my $self   = $_[0];
+  my $config = $self-&gt;get_config();
 
-if ( $config-&gt;document_exists() ) {
-  my $document = Xerl::Page::Document-&gt;new( config =&gt; $config );
-  $document-&gt;parse();
-  return undef if $config-&gt;finish_request_exists();
+  my $xmlcontent = Xerl::XML::Reader-&gt;new(
+    path   =&gt; $config-&gt;get_templatepath(),
+    config =&gt; $config
+  );
 
+  if ( -1 == $xmlcontent-&gt;open() ) {
+    $config-&gt;set_finish_request(1);
+    return undef;
+  }
+
+  $xmlcontent-&gt;parse();
+
+  my $rules = Xerl::Page::Rules-&gt;new( config =&gt; $config );
+  $rules-&gt;parse( $config-&gt;get_xmlconfigrootobj() )
+    unless $config-&gt;exists(&#39;noparse&#39;);
+
+  $config-&gt;insertxmlvars( $config-&gt;get_xmlconfigrootobj() );
+  $self-&gt;insertrules( $rules, $xmlcontent-&gt;get_root() );
+
+  return undef;
 }
 </pre>
 <br />
@@ -1459,7 +1588,7 @@ if ( $config-&gt;document_exists() ) {
 <li>📈 Lines of Code: 88</li>
 <li>📄 Lines of Documentation: 148</li>
 <li>📅 Development Period: 2015-06-18 to 2015-12-05</li>
-<li>🔥 Recent Activity: 3661.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3661.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1477,13 +1606,22 @@ if ( $config-&gt;document_exists() ) {
 <span>Shell from <span class='inlinecode'>storage/sdcard1/Linux/jessie.sh</span>:</span><br />
 <br />
 <pre>
-function umount_chroot {
-  busybox umount -f $ROOT/storage/sdcard1
-  for mountpoint in dev/pts proc dev sys; do
-    busybox umount -f $ROOT/$mountpoint
+function mount_chroot {
+  mountpoint $ROOT
+  if [ $? -ne 0 ]; then 
+    losetup $LOOP_DEVICE $ROOT.img
+    busybox mount -t ext4 $LOOP_DEVICE $ROOT
+  fi
+  for mountpoint in proc dev sys dev/pts; do
+    mountpoint $ROOT/$mountpoint
+    if [ $? -ne 0 ]; then
+      busybox mount --bind /$mountpoint $ROOT/$mountpoint
+    fi
   done
-  busybox umount -f $ROOT
-  losetup -d $LOOP_DEVICE
+  mountpoint $ROOT/storage/sdcard1
+  if [ $? -ne 0 ]; then
+    busybox mount --bind /storage/sdcard1 $ROOT/storage/sdcard1
+  fi
 }
 </pre>
 <br />
@@ -1498,7 +1636,7 @@ function umount_chroot {
 <li>📈 Lines of Code: 1681</li>
 <li>📄 Lines of Documentation: 539</li>
 <li>📅 Development Period: 2014-03-10 to 2021-11-03</li>
-<li>🔥 Recent Activity: 3939.5 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3939.9 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 1.0.2 (2014-11-17)</li>
 </ul><br />
@@ -1511,12 +1649,15 @@ function umount_chroot {
 <a class='textlink' href='https://codeberg.org/snonux/fapi'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/fapi'>View on GitHub</a><br />
 <br />
-<span>Python from <span class='inlinecode'>contrib/bigsuds-1.0/bigsuds.py</span>:</span><br />
+<span>Python from <span class='inlinecode'>contrib/bigsuds-1.0/setup.py</span>:</span><br />
 <br />
 <pre>
-def _create_client_wrapper(self, client, wsdl_name):
-    client.set_options(headers=self._headers)
-    return super(_BIGIPSession, self)._create_client_wrapper(client, wsdl_name)
+def extract_version(filename):
+    contents = open(filename).read()
+    match = re.search(&#39;^__version__\s+=\s+[\&#39;"](.*)[\&#39;"]\s*$&#39;, contents,
+      re.MULTILINE)
+    if match is not None:
+        return match.group(1)
 </pre>
 <br />
 <span>---</span><br />
@@ -1530,7 +1671,7 @@ def _create_client_wrapper(self, client, wsdl_name):
 <li>📈 Lines of Code: 65</li>
 <li>📄 Lines of Documentation: 228</li>
 <li>📅 Development Period: 2013-03-22 to 2021-11-04</li>
-<li>🔥 Recent Activity: 3993.9 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 3994.3 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.0.0.0 (2013-03-22)</li>
 </ul><br />
@@ -1566,7 +1707,7 @@ build:
 <li>📈 Lines of Code: 136</li>
 <li>📄 Lines of Documentation: 96</li>
 <li>📅 Development Period: 2013-03-22 to 2021-11-05</li>
-<li>🔥 Recent Activity: 4006.9 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4007.3 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.2.0 (2014-07-05)</li>
 </ul><br />
@@ -1602,7 +1743,7 @@ build:
 <li>📈 Lines of Code: 134</li>
 <li>📄 Lines of Documentation: 106</li>
 <li>📅 Development Period: 2013-03-22 to 2021-11-05</li>
-<li>🔥 Recent Activity: 4014.4 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4014.8 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.1.5 (2014-06-22)</li>
 </ul><br />
@@ -1626,7 +1767,7 @@ build:
 <li>📈 Lines of Code: 493</li>
 <li>📄 Lines of Documentation: 26</li>
 <li>📅 Development Period: 2009-09-27 to 2021-11-02</li>
-<li>🔥 Recent Activity: 4057.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4058.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.9.3 (2014-06-14)</li>
 </ul><br />
@@ -1642,10 +1783,17 @@ build:
 <span>Shell from <span class='inlinecode'>bin/pwgrep.sh</span>:</span><br />
 <br />
 <pre>
-function pwdbls () {
-  echo Available Databases:
-  _pwdbls
-  echo Current database: $DB
+function findbin () {
+  local -r trylist=$1
+  found=""
+  for bin in $trylist; do
+    if [ -z $found ]; then
+      which=$(which $bin)
+      [ ! -z $which ] &amp;&amp; found=$bin  
+    fi
+  done
+
+  echo $found
 }
 </pre>
 <br />
@@ -1660,7 +1808,7 @@ function pwdbls () {
 <li>📈 Lines of Code: 286</li>
 <li>📄 Lines of Documentation: 144</li>
 <li>📅 Development Period: 2013-03-22 to 2021-11-05</li>
-<li>🔥 Recent Activity: 4062.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4063.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.4.3 (2014-06-16)</li>
 </ul><br />
@@ -1684,7 +1832,7 @@ function pwdbls () {
 <li>📈 Lines of Code: 191</li>
 <li>📄 Lines of Documentation: 8</li>
 <li>📅 Development Period: 2014-03-24 to 2014-03-24</li>
-<li>🔥 Recent Activity: 4124.0 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4124.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1697,18 +1845,18 @@ function pwdbls () {
 <a class='textlink' href='https://codeberg.org/snonux/perl-poetry'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/perl-poetry'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>math.pl</span>:</span><br />
+<span>Perl from <span class='inlinecode'>perllove.pl</span>:</span><br />
 <br />
 <pre>
-do { int&#39;egrate&#39;; sub trade; };
-do { exp&#39;onentize&#39; and abs&#39;olutize&#39; };
-study and study and study and study;
-
-foreach $topic ({of, math}) {
-you, m/ay /go, to, limits }
-
-do { not qw/erk / unless $success 
-and m/ove /o;$n and study };
+no strict;
+no warnings;
+we: do { print &#39;love&#39;
+or warn and die &#39;slow&#39;
+unless not defined true #respect
+} for reverse&#39;d&#39;, qw/mind of you/
+and map { &#39;me&#39; } &#39;into&#39;, undef $mourning;
+__END__ 
+v2 Copyright (2005, 2006) by Paul C. Buetow, http://paul.buetow.org
 </pre>
 <br />
 <span>---</span><br />
@@ -1720,7 +1868,7 @@ and m/ove /o;$n and study };
 <li>📊 Commits: 7</li>
 <li>📈 Lines of Code: 80</li>
 <li>📅 Development Period: 2011-07-09 to 2015-01-13</li>
-<li>🔥 Recent Activity: 4204.0 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4204.4 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1736,15 +1884,28 @@ and m/ove /o;$n and study };
 <span>Perl from <span class='inlinecode'>index.pl</span>:</span><br />
 <br />
 <pre>
-Congratulations, you have connected to a server that will display your method of connection, either IPv6 (preferred) or IPv4 (old and crusty). Well IPv6 is already ~15 years old either but not as old as IPv4 ;)
+Congratulations, you have connected to a server that will display your method
+  of connection, either IPv6 (preferred) or IPv4 (old and crusty). Well IPv6 is
+  already ~15 years old either but not as old as IPv4 ;)
 &lt;br /&gt;&lt;br /&gt;
 Nevertheless, please choose your destiny:
 &lt;ul&gt;
-	&lt;li&gt;&lt;a href="http://ipv6.buetow.org"&gt;ipv6.buetow.org&lt;/a&gt; for IPv6 &amp; IPv4 Test&lt;/li&gt;
-	&lt;li&gt;&lt;a href="http://test4.ipv6.buetow.org"&gt;test4.ipv6.buetow.org&lt;/a&gt; for IPv4 Only Test&lt;/li&gt;
-	&lt;li&gt;&lt;a href="http://test6.ipv6.buetow.org"&gt;test6.ipv6.buetow.org&lt;/a&gt; for IPv6 Only Test&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://ipv6.buetow.org"&gt;ipv6.buetow.org&lt;/a&gt; for IPv6 &amp; IPv4
+	  Test&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://test4.ipv6.buetow.org"&gt;test4.ipv6.buetow.org&lt;/a&gt; for IPv4
+	  Only Test&lt;/li&gt;
+	&lt;li&gt;&lt;a href="http://test6.ipv6.buetow.org"&gt;test6.ipv6.buetow.org&lt;/a&gt; for IPv6
+	  Only Test&lt;/li&gt;
 &lt;/ul&gt;
-If your browser times-out when trying to connect to this server then you do not have an IPv6 or IPv4 path (depends on which test you are running) to the server. If your browser returns an error that the host cannot be found then the DNS servers you are using are unable to resolve the AAAA or A DNS record (depends on which test you are running again) for the server. If your browser is able to connect to the "IPv6 Only Test", yet using the "IPv6 &amp; IPv4 Test" returns a page stating you are using IPv4, then your browser and/or IP stack in your machine are preferring IPv4 over IPv6. It also might be that your operating system supports IPv6 but your web-browser doesn&#39;t.
+If your browser times-out when trying to connect to this server then you do not
+  have an IPv6 or IPv4 path (depends on which test you are running) to the
+  server. If your browser returns an error that the host cannot be found then the
+  DNS servers you are using are unable to resolve the AAAA or A DNS record (
+  depends on which test you are running again) for the server. If your browser is
+  able to connect to the "IPv6 Only Test", yet using the "IPv6 &amp; IPv4 Test"
+  returns a page stating you are using IPv4, then your browser and/or IP stack in
+  your machine are preferring IPv4 over IPv6. It also might be that your
+  operating system supports IPv6 but your web-browser doesn&#39;t.
 END
 
 if ($ENV{SERVER_NAME} eq &#39;ipv6.buetow.org&#39;) {
@@ -1761,7 +1922,7 @@ if ($ENV{SERVER_NAME} eq &#39;ipv6.buetow.org&#39;) {
 <li>📈 Lines of Code: 124</li>
 <li>📄 Lines of Documentation: 75</li>
 <li>📅 Development Period: 2010-11-05 to 2021-11-05</li>
-<li>🔥 Recent Activity: 4244.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4245.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 1.0.2 (2014-06-22)</li>
 </ul><br />
@@ -1785,7 +1946,7 @@ if ($ENV{SERVER_NAME} eq &#39;ipv6.buetow.org&#39;) {
 <li>📈 Lines of Code: 1828</li>
 <li>📄 Lines of Documentation: 100</li>
 <li>📅 Development Period: 2010-11-05 to 2015-05-23</li>
-<li>🔥 Recent Activity: 4274.8 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4275.2 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: 0.7.5 (2014-06-22)</li>
 </ul><br />
@@ -1822,7 +1983,7 @@ our @EXPORT = qw(
 <li>📊 Commits: 110</li>
 <li>📈 Lines of Code: 614</li>
 <li>📅 Development Period: 2011-02-05 to 2022-04-21</li>
-<li>🔥 Recent Activity: 4324.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4324.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.4 (2022-04-29)</li>
 </ul><br />
@@ -1835,16 +1996,20 @@ our @EXPORT = qw(
 <a class='textlink' href='https://codeberg.org/snonux/perldaemon'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/perldaemon'>View on GitHub</a><br />
 <br />
-<span>Perl from <span class='inlinecode'>lib/PerlDaemonModules/ExampleModule.pm</span>:</span><br />
+<span>Perl from <span class='inlinecode'>lib/PerlDaemon/PerlDaemon.pl</span>:</span><br />
 <br />
 <pre>
-sub new ($$$) {
-  my ($class, $conf) = @_;
+sub trimstr (@) {
+  my @str = 
+  @_;
 
-  my $self = bless { conf =&gt; $conf }, $class;
-  $self-&gt;{counter} = 0;
+  for (@str) {
+    chomp;
+    s/^[\t\s]+//;
+    s/[\t\s]+$//;
+  }
 
-  return $self;
+  return @str;
 }
 </pre>
 <br />
@@ -1859,7 +2024,7 @@ sub new ($$$) {
 <li>📈 Lines of Code: 122</li>
 <li>📄 Lines of Documentation: 10</li>
 <li>📅 Development Period: 2011-01-27 to 2014-06-22</li>
-<li>🔥 Recent Activity: 4655.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4655.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: No license found</li>
 <li>🏷️ Latest Release: v0.2 (2011-01-27)</li>
 </ul><br />
@@ -1875,10 +2040,22 @@ sub new ($$$) {
 <span>AWK from <span class='inlinecode'>index.cgi</span>:</span><br />
 <br />
 <pre>
-function process_line(line) {
-  if (line ~ /%%.+%%/)
-    return insert_template_value(line) 
-  return line
+function read_config_values(config_file) {
+  while ((getline &lt; config_file) &gt; 0) {
+    position = index($0,"=")
+    if (position == 0 || /^#/)
+      continue
+
+    key = substr($0, 0, position)
+    val = substr($0, position+1, 100)
+
+    if (val ~ /^!/) 
+       substr(val, 2, 100) | getline val	
+
+    values[key] = val
+  }
+
+  close(config_file)
 }
 </pre>
 <br />
@@ -1893,7 +2070,7 @@ function process_line(line) {
 <li>📈 Lines of Code: 720</li>
 <li>📄 Lines of Documentation: 6</li>
 <li>📅 Development Period: 2008-06-21 to 2021-11-03</li>
-<li>🔥 Recent Activity: 4717.9 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 4718.3 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v0.3 (2009-02-08)</li>
 </ul><br />
@@ -1908,18 +2085,41 @@ function process_line(line) {
 <a class='textlink' href='https://codeberg.org/snonux/jsmstrade'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/jsmstrade'>View on GitHub</a><br />
 <br />
-<span>Java from <span class='inlinecode'>sources/smstrade/SPrefs.java</span>:</span><br />
+<span>Java from <span class='inlinecode'>sources/smstrade/SMain.java</span>:</span><br />
 <br />
 <pre>
-public SPrefs(Component parent, HashMap&lt;String,String&gt; options) {
-    super("Preferences", parent);
+public static final String SAVE_FILE = "jsmstrade.dat";
+
+public static final String DEFAULT_URL =
+    "https://gateway.smstrade.de?key=KEY&amp;to=TO&amp;route=basic&amp;message=";
+
+private HashMap&lt;String,String&gt; options = null;
+
+private JTextArea textArea = new JTextArea();
+
+private JButton sendButton = new JButton("Send it");
+
+private JButton clearButton = new JButton("Delete");
+
+private JLabel counterLabel = new JLabel(" 160");
+
+private JLabel counterTextLabel = new JLabel("Chars");
+
+private JPanel buttonPanel = new JPanel();
+
+private JMenuBar menuBar = new JMenuBar();
+
+private JMenu fileMenu = new JMenu("File");
+
+public SMain(HashMap&lt;String,String&gt; options) {
+    super("JSMSTrade v" + VERSION);
     this.options = options;
 
-    disposeWithParent();
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setSize(300, 150);
     setResizable(false);
 
+    fillMenuBar();
     fillContentPane();
     setVisible(true);
 }
@@ -1936,7 +2136,7 @@ public SPrefs(Component parent, HashMap&lt;String,String&gt; options) {
 <li>📈 Lines of Code: 17380</li>
 <li>📄 Lines of Documentation: 947</li>
 <li>📅 Development Period: 2009-02-07 to 2021-05-01</li>
-<li>🔥 Recent Activity: 5348.6 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 5349.0 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: GPL-2.0</li>
 <li>🏷️ Latest Release: v0.1 (2009-02-08)</li>
 </ul><br />
@@ -1953,18 +2153,39 @@ public SPrefs(Component parent, HashMap&lt;String,String&gt; options) {
 <a class='textlink' href='https://codeberg.org/snonux/netcalendar'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/netcalendar'>View on GitHub</a><br />
 <br />
-<span>Java from <span class='inlinecode'>sources/client/helper/DateSpinner.java</span>:</span><br />
+<span>Java from <span class='inlinecode'>sources/client/SplashScreen.java</span>:</span><br />
 <br />
 <pre>
-private void initComponents() {
-    setLayout(new FlowLayout(FlowLayout.LEFT, 4, 4));
+public class SplashScreen extends JWindow implements Runnable {
+    private static final long serialVersionUID = 1L;
 
-    spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.MONTH);
-    JSpinner jSpinner = new JSpinner(spinnerDateModel);
-    new JSpinner.DateEditor(jSpinner, "MM/yy");
+    public void run() {
+        JPanel jPanel = (JPanel)getContentPane();
+        jPanel.setBackground(Color.BLACK);
+        jPanel.setForeground(Color.WHITE);
 
-    add(jSpinner);
-}
+        int iWidth = 411;
+        int iHeight = 261;
+        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+
+        int x = (dimension.width-iWidth)/2;
+        int y = (dimension.height-iHeight)/2;
+        setBounds(x,y,iWidth,iHeight);
+
+        JLabel jLabel = new JLabel(new ImageIcon("images/netcal.png"));
+        jPanel.add(jLabel, BorderLayout.CENTER);
+        jPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+        setVisible(true);
+
+        try {
+            Thread.sleep(3000);
+
+        } catch (Exception e) {
+            Main.infoMessage(e.getMessage());
+        }
+
+        dispose();
+    }
 </pre>
 <br />
 <span>---</span><br />
@@ -1976,7 +2197,7 @@ private void initComponents() {
 <li>📊 Commits: 80</li>
 <li>📈 Lines of Code: 601</li>
 <li>📅 Development Period: 2009-11-22 to 2011-10-17</li>
-<li>🔥 Recent Activity: 5444.2 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 5444.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -1989,19 +2210,19 @@ private void initComponents() {
 <a class='textlink' href='https://codeberg.org/snonux/hsbot'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/hsbot'>View on GitHub</a><br />
 <br />
-<span>Haskell from <span class='inlinecode'>HsBot/IRC.hs</span>:</span><br />
+<span>Haskell from <span class='inlinecode'>HsBot/Base/State.hs</span>:</span><br />
 <br />
 <pre>
-module HsBot.IRC (ircStart) where
+-- {-# LANGUAGE MultiParamTypeClasses #-}
+-- {-# LANGUAGE FunctionalDependencies #-}
+-- {-# LANGUAGE FlexibleInstances #-}
+-- {-# LANGUAGE NoMonomorphismRestriction #-}
 
-import IO
-import List
-import Network
-import System
-import System.IO
-import Text.Printf
+module HsBot.Base.State where
 
-import HsBot.Base.Conf
+import HsBot.Base.Database
+
+import qualified Data.Map as M
 </pre>
 <br />
 <span>---</span><br />
@@ -2015,7 +2236,7 @@ import HsBot.Base.Conf
 <li>📈 Lines of Code: 45956</li>
 <li>📄 Lines of Documentation: 101</li>
 <li>📅 Development Period: 2008-05-15 to 2014-06-30</li>
-<li>🔥 Recent Activity: 5554.8 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 5555.2 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: GPL-2.0</li>
 <li>🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)</li>
 </ul><br />
@@ -2030,17 +2251,19 @@ import HsBot.Base.Conf
 <a class='textlink' href='https://codeberg.org/snonux/ychat'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/ychat'>View on GitHub</a><br />
 <br />
-<span>C++ from <span class='inlinecode'>ycurses/src/curses/attributes.cpp</span>:</span><br />
+<span>C++ from <span class='inlinecode'>ychat/src/mods/commands/yc_set.cpp</span>:</span><br />
 <br />
 <pre>
-#define ATTRIBUTES_CPP
-
-#include "attributes.h"
-
-attributes::attributes()
+const char* c_newval = s_newval.c_str();
+if ( isdigit( c_newval[0] ) )
 {
-  init();
-}
+  int i_newval = c_newval[0] - &#39;0&#39;;
+
+  s_msg = p_timr-&gt;get_time()
+          + " "
+          + p_user-&gt;get_colored_bold_name()
+          + " "
+          + p_conf-&gt;get_elem("chat.msgs.setcommandstatus")
 </pre>
 <br />
 <span>---</span><br />
@@ -2054,7 +2277,7 @@ attributes::attributes()
 <li>📈 Lines of Code: 16303</li>
 <li>📄 Lines of Documentation: 2903</li>
 <li>📅 Development Period: 2008-05-15 to 2021-05-01</li>
-<li>🔥 Recent Activity: 5740.7 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 5741.1 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🏷️ Latest Release: v1.0 (2008-08-24)</li>
 </ul><br />
@@ -2069,13 +2292,25 @@ attributes::attributes()
 <a class='textlink' href='https://codeberg.org/snonux/vs-sim'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/vs-sim'>View on GitHub</a><br />
 <br />
-<span>Java from <span class='inlinecode'>sources/serialize/VSSerialize.java</span>:</span><br />
+<span>Java from <span class='inlinecode'>sources/simulator/VSMenuItemStates.java</span>:</span><br />
 <br />
 <pre>
-public boolean accept(File file) {
-    if (file.isDirectory())
-        return true;
-    return file.getName().toLowerCase().endsWith(".dat");
+private static final long serialVersionUID = 1L;
+
+private volatile boolean pause;
+
+private volatile boolean replay;
+
+private volatile boolean reset;
+
+private volatile boolean start;
+
+public VSMenuItemStates(boolean pause, boolean replay, boolean reset,
+                        boolean start) {
+    this.pause = pause;
+    this.replay = replay;
+    this.reset = reset;
+    this.start = start;
 }
 </pre>
 <br />
@@ -2090,7 +2325,7 @@ public boolean accept(File file) {
 <li>📈 Lines of Code: 8622</li>
 <li>📄 Lines of Documentation: 1474</li>
 <li>📅 Development Period: 2008-05-15 to 2014-06-30</li>
-<li>🔥 Recent Activity: 5768.3 days (avg. age of last 42 commits)</li>
+<li>🔥 Recent Activity: 5768.7 days (avg. age of last 42 commits)</li>
 <li>⚖️ License: Custom License</li>
 <li>🧪 Status: Experimental (no releases yet)</li>
 </ul><br />
@@ -2102,6 +2337,20 @@ public boolean accept(File file) {
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/fype'>View on Codeberg</a><br />
 <a class='textlink' href='https://github.com/snonux/fype'>View on GitHub</a><br />
+<br />
+<span>C from <span class='inlinecode'>src/data/dat.c</span>:</span><br />
+<br />
+<pre>
+   p_elem-&gt;type = type;
+
+   return (p_elem);
+}
+
+_Bool
+dat_empty(Dat *p_dat) {
+   if (p_dat == NULL)
+      return (false);
+</pre>
 <p class="footer">
 Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
