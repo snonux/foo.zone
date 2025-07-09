@@ -13,7 +13,6 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ timr](#timr)
 * [⇢ ⇢ ⇢ tasksamurai](#tasksamurai)
 * [⇢ ⇢ ⇢ rexfiles](#rexfiles)
-* [⇢ ⇢ ⇢ foo.zone](#foozone)
 * [⇢ ⇢ ⇢ dtail](#dtail)
 * [⇢ ⇢ ⇢ wireguardmeshgenerator](#wireguardmeshgenerator)
 * [⇢ ⇢ ⇢ ior](#ior)
@@ -26,17 +25,18 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ quicklogger](#quicklogger)
 * [⇢ ⇢ ⇢ docker-gpodder-sync-server](#docker-gpodder-sync-server)
 * [⇢ ⇢ ⇢ terraform](#terraform)
-* [⇢ ⇢ ⇢ gogios](#gogios)
 * [⇢ ⇢ ⇢ docker-radicale-server](#docker-radicale-server)
 * [⇢ ⇢ ⇢ docker-anki-sync-server](#docker-anki-sync-server)
 * [⇢ ⇢ ⇢ gorum](#gorum)
+* [⇢ ⇢ ⇢ guprecords](#guprecords)
+* [⇢ ⇢ ⇢ gogios](#gogios)
 * [⇢ ⇢ ⇢ randomjournalpage](#randomjournalpage)
 * [⇢ ⇢ ⇢ sway-autorotate](#sway-autorotate)
 * [⇢ ⇢ ⇢ photoalbum](#photoalbum)
 * [⇢ ⇢ ⇢ algorithms](#algorithms)
 * [⇢ ⇢ ⇢ geheim](#geheim)
+* [⇢ ⇢ ⇢ foo.zone](#foozone)
 * [⇢ ⇢ ⇢ perl-c-fibonacci](#perl-c-fibonacci)
-* [⇢ ⇢ ⇢ guprecords](#guprecords)
 * [⇢ ⇢ ⇢ ioriot](#ioriot)
 * [⇢ ⇢ ⇢ staticfarm-apache-handlers](#staticfarm-apache-handlers)
 * [⇢ ⇢ ⇢ dyndns](#dyndns)
@@ -60,35 +60,35 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ awksite](#awksite)
 * [⇢ ⇢ ⇢ jsmstrade](#jsmstrade)
 * [⇢ ⇢ ⇢ netcalendar](#netcalendar)
-* [⇢ ⇢ ⇢ hsbot](#hsbot)
 * [⇢ ⇢ ⇢ ychat](#ychat)
 * [⇢ ⇢ ⇢ vs-sim](#vs-sim)
+* [⇢ ⇢ ⇢ hsbot](#hsbot)
 * [⇢ ⇢ ⇢ fype](#fype)
 
 ## Overall Statistics
 
 * 📦 Total Projects: 55
-* 📊 Total Commits: 10,379
-* 📈 Total Lines of Code: 252,969
-* 📄 Total Lines of Documentation: 24,167
-* 💻 Languages: Java (22.4%), Go (17.6%), HTML (14.0%), C++ (8.9%), C (7.3%), Perl (6.3%), Shell (6.3%), C/C++ (5.8%), XML (4.6%), Config (1.5%), Ruby (1.1%), HCL (1.1%), Make (0.7%), Python (0.6%), CSS (0.6%), JSON (0.3%), Raku (0.3%), Haskell (0.2%), YAML (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (47.4%), Markdown (38.4%), LaTeX (14.2%)
-* 🤖 AI-Assisted Projects: 8 out of 55 (14.5% AI-assisted, 85.5% human-only)
+* 📊 Total Commits: 10,405
+* 📈 Total Lines of Code: 231,007
+* 📄 Total Lines of Documentation: 24,381
+* 💻 Languages: Java (23.7%), Go (19.2%), C++ (16.1%), C/C++ (8.9%), C (8.3%), Perl (7.3%), Shell (6.4%), Config (2.0%), HTML (2.0%), Ruby (1.2%), HCL (1.2%), Make (0.8%), Python (0.7%), CSS (0.6%), Raku (0.4%), JSON (0.3%), XML (0.3%), Haskell (0.3%), YAML (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (46.3%), Markdown (39.6%), LaTeX (14.1%)
+* 🤖 AI-Assisted Projects: 6 out of 55 (10.9% AI-assisted, 89.1% human-only)
 * 🚀 Release Status: 31 released, 24 experimental (56.4% with releases, 43.6% experimental)
 
 ## Projects
 
 ### gitsyncer
 
-* 💻 Languages: Go (86.0%), Shell (11.9%), YAML (1.5%), JSON (0.5%)
+* 💻 Languages: Go (86.7%), Shell (11.4%), YAML (1.4%), JSON (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 56
-* 📈 Lines of Code: 6241
-* 📄 Lines of Documentation: 2306
+* 📊 Commits: 60
+* 📈 Lines of Code: 6548
+* 📄 Lines of Documentation: 2338
 * 📅 Development Period: 2025-06-23 to 2025-07-09
-* 🔥 Recent Activity: 4.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3.4 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.4.0 (2025-07-09)
+* 🏷️ Latest Release: v0.5.0 (2025-07-09)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
@@ -99,44 +99,19 @@ The tool is implemented in Go with a clean architecture that supports both indiv
 [View on Codeberg](https://codeberg.org/snonux/gitsyncer)  
 [View on GitHub](https://github.com/snonux/gitsyncer)  
 
-Go from `internal/github/github.go`:
+Go from `internal/cli/handlers.go`:
 
 ```AUTO
-func (c *Client) RepoExists(repoName string) (bool, error) {
-	if c.token == "" {
-		return false, fmt.Errorf("GitHub token required")
+func LoadConfig(configPath string) (*config.Config, error) {
+	if configPath == "" {
+		configPath = findDefaultConfigPath()
+		if configPath == "" {
+			return nil, fmt.Errorf("no configuration file found")
+		}
 	}
-
-	url := fmt.Sprintf("https://api.github.com/repos/%s/%s", c.org, repoName)
-	fmt.Printf("  Checking URL: %s\n", url)
-	fmt.Printf("  Token present: %v (length: %d)\n", c.token != "", len(c.token))
-
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return false, err
-	}
-
-	req.Header.Set("Authorization", "Bearer "+c.token)
-	req.Header.Set("Accept", "application/vnd.github.v3+json")
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return false, err
-	}
-	defer resp.Body.Close()
-
-	if resp.StatusCode == 200 {
-		return true, nil
-	} else if resp.StatusCode == 404 {
-		return false, nil
-	} else if resp.StatusCode == 401 {
-		body, _ := io.ReadAll(resp.Body)
-		fmt.Printf("  401 Unauthorized - Response: %s\n", string(body))
-		fmt.Printf("  Authorization header: %s\n", req.Header.Get("Authorization"))
-		return false, fmt.Errorf("authentication failed (401): %s", string(body))
-	}
-
-	return false, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+	
+	fmt.Printf("Loaded configuration from: %s\n", configPath)
+	return config.Load(configPath)
 }
 ```
 
@@ -150,7 +125,7 @@ func (c *Client) RepoExists(repoName string) (bool, error) {
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 135
 * 📅 Development Period: 2025-06-25 to 2025-06-29
-* 🔥 Recent Activity: 12.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 12.9 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -163,19 +138,10 @@ The project is implemented using a clean modular architecture with the CLI entry
 [View on Codeberg](https://codeberg.org/snonux/timr)  
 [View on GitHub](https://github.com/snonux/timr)  
 
-Go from `cmd/timr/main.go`:
+Go from `internal/version.go`:
 
 ```AUTO
-func main() {
-	if len(os.Args) < 2 {
-		printUsage()
-		os.Exit(1)
-	}
-
-	var err error
-	var output string
-
-	switch os.Args[1] {
+const Version = "v0.0.0"
 ```
 
 ---
@@ -188,7 +154,7 @@ func main() {
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-08
-* 🔥 Recent Activity: 13.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 13.3 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -205,39 +171,38 @@ The implementation follows a clean architecture with clear separation of concern
 [View on Codeberg](https://codeberg.org/snonux/tasksamurai)  
 [View on GitHub](https://github.com/snonux/tasksamurai)  
 
-Go from `internal/ui/handlers.go`:
+Go from `internal/ui/table.go`:
 
 ```AUTO
-func (m *Model) handleAnnotationMode(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
-	onEnter := func(value string) error {
-		if !m.replaceAnnotations && strings.TrimSpace(value) == "" {
-			return fmt.Errorf("annotation cannot be empty")
+func editDescriptionCmd(description string) tea.Cmd {
+	return func() tea.Msg {
+		tmpFile, err := os.CreateTemp("", "tasksamurai-desc-*.txt")
+		if err != nil {
+			return descEditDoneMsg{err: err, tempFile: ""}
+		}
+		tmpPath := tmpFile.Name()
+		
+		_, err = tmpFile.WriteString(description)
+		tmpFile.Close()
+		if err != nil {
+			os.Remove(tmpPath)
+			return descEditDoneMsg{err: err, tempFile: ""}
 		}
 		
-		if m.replaceAnnotations {
-			if err := task.ReplaceAnnotations(m.annotateID, value); err != nil {
-				return err
-			}
-			m.replaceAnnotations = false
-		} else {
-			if err := task.Annotate(m.annotateID, value); err != nil {
-				return err
-			}
+		editor := os.Getenv("EDITOR")
+		if editor == "" {
+			editor = "vi"
 		}
-		m.reload()
-		return nil
+		
+		c := exec.Command(editor, tmpPath)
+		c.Stdin = os.Stdin
+		c.Stdout = os.Stdout
+		c.Stderr = os.Stderr
+		
+		return tea.ExecProcess(c, func(err error) tea.Msg {
+			return descEditDoneMsg{err: err, tempFile: tmpPath}
+		})()
 	}
-	
-	onExit := func() {
-		m.annotating = false
-		m.replaceAnnotations = false
-	}
-	
-	model, cmd := m.handleTextInput(msg, &m.annotateInput, onEnter, onExit)
-	if msg.Type == tea.KeyEnter && m.annotateInput.Value() != "" {
-		return model, m.startBlink(m.annotateID, false)
-	}
-	return model, cmd
 }
 ```
 
@@ -245,13 +210,13 @@ func (m *Model) handleAnnotationMode(msg tea.KeyMsg) (tea.Model, tea.Cmd) {
 
 ### rexfiles
 
-* 💻 Languages: Shell (34.8%), Perl (32.9%), Config (8.4%), CSS (8.3%), TOML (7.3%), Ruby (6.0%), Lua (1.8%), JSON (0.5%), INI (0.2%)
+* 💻 Languages: Shell (34.7%), Perl (32.8%), Config (8.4%), CSS (8.2%), TOML (7.3%), Ruby (6.0%), Lua (1.8%), JSON (0.7%), INI (0.2%)
 * 📚 Documentation: Text (97.3%), Markdown (2.7%)
-* 📊 Commits: 871
-* 📈 Lines of Code: 3947
+* 📊 Commits: 875
+* 📈 Lines of Code: 3956
 * 📄 Lines of Documentation: 854
-* 📅 Development Period: 2021-12-28 to 2025-07-07
-* 🔥 Recent Activity: 20.4 days (avg. age of last 42 commits)
+* 📅 Development Period: 2021-12-28 to 2025-07-09
+* 🔥 Recent Activity: 16.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -273,45 +238,6 @@ TOP=20
 
 ---
 
-### foo.zone
-
-* 💻 Languages: HTML (73.9%), XML (25.9%), CSS (0.2%)
-* 📚 Documentation: Text (91.8%), Markdown (8.2%)
-* 📊 Commits: 2892
-* 📈 Lines of Code: 42772
-* 📄 Lines of Documentation: 159
-* 📅 Development Period: 2021-04-29 to 2025-07-01
-* 🔥 Recent Activity: 26.8 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-This is **foo.zone**, a personal blog and technical website belonging to Paul Buetow, a Site Reliability Engineer based in Sofia, Bulgaria. The project is a static website that serves as a comprehensive platform for sharing technical knowledge, book notes, and personal experiences in the fields of system administration, DevOps, and programming.
-
-The site is built using **Gemtexter**, a static site generator that creates both HTML and Gemini protocol content from markdown sources. The architecture is refreshingly simple and follows KISS principles, with content organized into several key sections: a main blog feed (gemfeed) with over 100 technical posts dating back to 2008, detailed book notes and summaries, project documentation (including tools like DTail for distributed log tailing), and personal resources. The website is served by OpenBSD using relayd and httpd, demonstrating the author's preference for robust, security-focused Unix systems. The project emphasizes clean, semantic HTML, custom CSS styling, and accessibility, while maintaining both web and Gemini protocol compatibility for broader reach across different internet communities.
-
-[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
-[View on GitHub](https://github.com/snonux/foo.zone)  
-
-HTML from `notes/index.html`:
-
-```AUTO
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Notes on foo.zone</title>
-<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
-<link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
-</head>
-<body>
-```
-
----
-
 ### dtail
 
 * 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
@@ -320,7 +246,7 @@ HTML from `notes/index.html`:
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 52.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 52.4 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.2.0 (2023-06-21)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -337,18 +263,37 @@ The system uses a client-server architecture where dtail servers run on target m
 [View on Codeberg](https://codeberg.org/snonux/dtail)  
 [View on GitHub](https://github.com/snonux/dtail)  
 
-Go from `internal/io/fs/directprocessor.go`:
+Go from `internal/io/signal/signal.go`:
 
 ```AUTO
-func NewDirectProcessor(processor LineProcessor, output io.Writer, globID
-  string, ltx lcontext.LContext) *DirectProcessor {
-	return &DirectProcessor{
-		processor: processor,
-		output:    output,
-		stats:     &stats{},
-		ltx:       ltx,
-		sourceID:  globID,
-	}
+func InterruptCh(ctx context.Context) <-chan string {
+	sigIntCh := make(chan os.Signal, 10)
+	gosignal.Notify(sigIntCh, os.Interrupt)
+	sigOtherCh := make(chan os.Signal, 10)
+	gosignal.Notify(sigOtherCh, syscall.SIGHUP, syscall.SIGTERM, syscall.SIGQUIT)
+	statsCh := make(chan string)
+
+	go func() {
+		for {
+			select {
+			case <-sigIntCh:
+				select {
+				case statsCh <- "Hint: Hit Ctrl+C again to exit":
+					select {
+					case <-sigIntCh:
+						os.Exit(0)
+					case <-time.After(time.Second * time.Duration(config.InterruptTimeoutS)):
+					}
+				default:
+				}
+			case <-sigOtherCh:
+				os.Exit(0)
+			case <-ctx.Done():
+				return
+			}
+		}
+	}()
+	return statsCh
 }
 ```
 
@@ -362,7 +307,7 @@ func NewDirectProcessor(processor LineProcessor, output io.Writer, globID
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 71.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 71.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -395,7 +340,7 @@ def initialize(myself)
 * 📈 Lines of Code: 9835
 * 📄 Lines of Documentation: 559
 * 📅 Development Period: 2024-01-18 to 2025-06-14
-* 🔥 Recent Activity: 83.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 83.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -413,13 +358,20 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 [View on Codeberg](https://codeberg.org/snonux/ior)  
 [View on GitHub](https://github.com/snonux/ior)  
 
-C from `internal/c/maps.h`:
+C from `tools/forktest.c`:
 
 ```AUTO
-struct {
-    __uint(type, BPF_MAP_TYPE_RINGBUF);
-    __uint(max_entries, 1 << 24);
-} event_map SEC(".maps");
+int main() {
+    int fd = open("testfile", O_WRONLY| O_CREAT, 0644);
+    if (fd < 0) {
+        perror("open");
+        return 1;
+    }
+    int flags = fcntl(fd, F_GETFL);
+    printf("Parent: File access mode is O_RDWR|O_CREAT (%d %d %d)\n", flags,
+      O_RDWR|O_CREAT, O_WRONLY|O_CREAT);
+
+    pid_t pid = fork();
 ```
 
 ---
@@ -432,7 +384,7 @@ struct {
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 84.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 85.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -447,24 +399,28 @@ The project is built on an event-driven architecture with clear component separa
 [View on Codeberg](https://codeberg.org/snonux/ds-sim)  
 [View on GitHub](https://github.com/snonux/ds-sim)  
 
-Java from `src/main/java/core/VSTaskManager.java`:
+Java from `src/main/java/simulator/VSCreateTask.java`:
 
 ```AUTO
-private VSSimulatorVisualization simulatorVisualization;
+private String eventClassname;
 
-private PriorityQueue<VSTask> globalTasks;
+private String menuText;
 
-private LinkedList<VSTask> fullfilledProgrammedTasks;
+private String protocolClassname;
 
-public final static boolean PROGRAMMED = true;
+private String shortname;
 
-public final static boolean ONLY_ONCE = false;
+private boolean isProtocolActivation;
 
-private VSPrefs prefs;
+private boolean isProtocolDeactivation;
 
-public VSTaskManager(VSPrefs prefs,
-                     VSSimulatorVisualization simulatorVisualization) {
-    init(prefs, simulatorVisualization);
+private boolean isClientProtocol;
+
+private boolean isRequest;
+
+public VSCreateTask(String menuText, String eventClassname) {
+    this.menuText = menuText;
+    this.eventClassname = eventClassname;
 }
 ```
 
@@ -478,7 +434,7 @@ public VSTaskManager(VSPrefs prefs,
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 97.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 97.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -508,7 +464,7 @@ func main() {
 * 📈 Lines of Code: 3967
 * 📄 Lines of Documentation: 411
 * 📅 Development Period: 2024-05-04 to 2025-06-12
-* 🔥 Recent Activity: 114.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 114.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-03-04)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -525,29 +481,16 @@ The tool is architected around a file-based queueing system where posts progress
 [View on Codeberg](https://codeberg.org/snonux/gos)  
 [View on GitHub](https://github.com/snonux/gos)  
 
-Go from `internal/config/args.go`:
+Go from `internal/platforms/linkedin/linkedin.go`:
 
 ```AUTO
-func (a *Args) ParsePlatforms(platformStrs string) error {
-	a.Platforms = make(map[string]int)
-
-	for _, platformInfo := range strings.Split(platformStrs, ",") {
-		parts := strings.Split(platformInfo, ":")
-		platformStr := parts[0]
-
-		if len(parts) > 1 {
-			var err error
-			a.Platforms[platformStr], err = strconv.Atoi(parts[1])
-			if err != nil {
-				return err
-			}
-		} else {
-			colour.Infoln("No message length specified for", platformStr, "so assuming
-			  500")
-			a.Platforms[platformStr] = 500
-		}
+func postImageToLinkedInAPI(ctx context.Context, personURN, accessToken,
+  imagePath string) (string, error) {
+	uploadURL, imageURN, err := initializeImageUpload(ctx, personURN, accessToken)
+	if err != nil {
+		return imageURN, err
 	}
-	return nil
+	return imageURN, performImageUpload(ctx, imagePath, uploadURL, accessToken)
 }
 ```
 
@@ -557,11 +500,11 @@ func (a *Args) ParsePlatforms(platformStrs string) error {
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (85.1%), Text (14.9%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 1299
+* 📊 Commits: 68
+* 📈 Lines of Code: 1556
 * 📄 Lines of Documentation: 154
-* 📅 Development Period: 2023-01-02 to 2025-07-07
-* 🔥 Recent Activity: 133.9 days (avg. age of last 42 commits)
+* 📅 Development Period: 2023-01-02 to 2025-07-09
+* 🔥 Recent Activity: 128.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -598,7 +541,7 @@ sub write ( $path, $content ) {
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 138.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 138.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -610,29 +553,29 @@ The system is implemented with a modular architecture centered around a DSL clas
 [View on Codeberg](https://codeberg.org/snonux/rcm)  
 [View on GitHub](https://github.com/snonux/rcm)  
 
-Ruby from `lib/dslkeywords/notify.rb`:
+Ruby from `lib/dslkeywords/package.rb`:
 
 ```AUTO
-def notify(message = nil, &block)
+def package(name, &block)
   return unless @conds_met
 
-  n = Notify.new(message.nil? ? '' : message)
-  n.message(n.instance_eval(&block)) if block
-  self << n
-  n
+  f = Package.new(name)
+  f.packages(f.instance_eval(&block))
+  self << f
+  f
 ```
 
 ---
 
 ### gemtexter
 
-* 💻 Languages: Shell (67.9%), CSS (28.9%), Config (2.0%), HTML (1.3%)
-* 📚 Documentation: Text (76.8%), Markdown (23.2%)
-* 📊 Commits: 461
-* 📈 Lines of Code: 2253
-* 📄 Lines of Documentation: 1170
-* 📅 Development Period: 2021-05-21 to 2025-06-11
-* 🔥 Recent Activity: 230.9 days (avg. age of last 42 commits)
+* 💻 Languages: Shell (68.1%), CSS (28.7%), Config (1.9%), HTML (1.3%)
+* 📚 Documentation: Text (76.1%), Markdown (23.9%)
+* 📊 Commits: 465
+* 📈 Lines of Code: 2268
+* 📄 Lines of Documentation: 1180
+* 📅 Development Period: 2021-05-21 to 2025-07-09
+* 🔥 Recent Activity: 200.7 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -644,17 +587,18 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 [View on Codeberg](https://codeberg.org/snonux/gemtexter)  
 [View on GitHub](https://github.com/snonux/gemtexter)  
 
-Shell from `lib/log.source.sh`:
+Shell from `lib/generate.source.sh`:
 
 ```AUTO
-log () {
-    local -r level="$1"; shift
-    local message
+done < <(find "$CONTENT_BASE_DIR/gemtext" -type f -name \*.gmi)
 
-    for message in "$@"; do
-        echo "$message"
-    done | log::_pipe "$level" $$
-}
+wait
+log INFO "Converted $num_gmi_files Gemtext files"
+
+log VERBOSE "Adding other docs to $*"
+
+while read -r src; do
+    num_doc_files=$(( num_doc_files + 1 ))
 ```
 
 ---
@@ -667,7 +611,7 @@ log () {
 * 📈 Lines of Code: 917
 * 📄 Lines of Documentation: 33
 * 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 448.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 448.3 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
@@ -738,7 +682,7 @@ func createPreferenceWindow(a fyne.App) fyne.Window {
 * 📈 Lines of Code: 12
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2024-03-24 to 2024-03-24
-* 🔥 Recent Activity: 471.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 472.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -775,7 +719,7 @@ aws: build
 * 📈 Lines of Code: 2850
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-04-05
-* 🔥 Recent Activity: 502.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 502.1 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -787,72 +731,16 @@ The system is designed to host multiple personal services including Anki sync se
 [View on Codeberg](https://codeberg.org/snonux/terraform)  
 [View on GitHub](https://github.com/snonux/terraform)  
 
-HCL from `org-buetow-elb/remotestates.tf`:
+HCL from `s3-org-buetow-tfstate/main.tf`:
 
 ```AUTO
-data "terraform_remote_state" "base" {
-  backend = "s3"
-  config = {
+terraform {
+  backend "s3" {
     bucket = "org-buetow-tfstate"
-    key    = "org-buetow-base/terraform.tfstate"
+    key    = "s3-org-buetow-tfstate/terraform.tfstate"
     region = "eu-central-1"
+    encrypt = true
   }
-}
-```
-
----
-
-### gogios
-
-* 💻 Languages: Go (94.4%), YAML (3.4%), JSON (2.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 77
-* 📈 Lines of Code: 1096
-* 📄 Lines of Documentation: 287
-* 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 514.8 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.1.0 (2024-05-03)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-[![gogios screenshot](showcase/gogios/image-1.png "gogios screenshot")](showcase/gogios/image-1.png)  
-
-Gogios is a lightweight, minimalistic monitoring tool written in Go designed for small-scale server monitoring. It executes standard Nagios-compatible check plugins and sends email notifications only when service states change, making it ideal for personal infrastructure or small environments with limited resources. The tool emphasizes simplicity over complexity, avoiding the bloat of enterprise monitoring solutions like Nagios, Icinga, or Prometheus by eliminating features like web UIs, databases, contact groups, and clustering.
-
-The implementation follows a clean architecture with concurrent check execution, dependency management, and persistent state tracking. Key features include state-based notifications (only alerts on status changes), configurable retry logic, federation support for distributed monitoring, and stale detection for checks that haven't run recently. The tool is configured via JSON and requires only a local mail transfer agent for notifications. It's designed to run via cron jobs and supports high-availability setups through simple dual-server configurations, making it perfect for users who want effective monitoring without operational overhead.
-
-[View on Codeberg](https://codeberg.org/snonux/gogios)  
-[View on GitHub](https://github.com/snonux/gogios)  
-
-Go from `internal/notify.go`:
-
-```AUTO
-func notify(conf config, subject, body string) error {
-	if conf.SMTPDisable {
-		log.Println("Notification disabled")
-		return nil
-	}
-	log.Println("notify", subject, body)
-
-	headers := map[string]string{
-		"From":         conf.EmailFrom,
-		"To":           conf.EmailTo,
-		"Subject":      subject,
-		"MIME-Version": "1.0",
-		"Content-Type": "text/plain; charset=\"utf-8\"",
-	}
-
-	header := ""
-	for k, v := range headers {
-		header += fmt.Sprintf("%s: %s\r\n", k, v)
-	}
-
-	message := header + "\r\n" + body
-	log.Println("Using SMTP server", conf.SMTPServer)
-
-	return smtp.SendMail(conf.SMTPServer, nil, conf.EmailFrom,
-		[]string{conf.EmailTo}, []byte(message))
 }
 ```
 
@@ -866,7 +754,7 @@ func notify(conf config, subject, body string) error {
 * 📈 Lines of Code: 32
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2023-12-31
-* 🔥 Recent Activity: 555.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 555.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -903,7 +791,7 @@ run: build
 * 📈 Lines of Code: 29
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-08-13 to 2024-01-01
-* 🔥 Recent Activity: 648.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 648.9 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -941,7 +829,7 @@ aws:
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 700.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 701.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -953,24 +841,127 @@ The architecture consists of several key components: a quorum manager that handl
 [View on Codeberg](https://codeberg.org/snonux/gorum)  
 [View on GitHub](https://github.com/snonux/gorum)  
 
-Go from `internal/server/server.go`:
+Go from `internal/utils/string.go`:
 
 ```AUTO
-func Start(ctx context.Context, conf config.Config, quo quorum.Quorum) {
-	go func() {
-		for {
-			log.Println("server: starting")
-			if err := runServer(ctx, conf, quo); err != nil {
-				log.Println("server:", err)
-			}
+	"strings"
+)
 
-			select {
-			case <-time.After(time.Second):
-			case <-ctx.Done():
-				return
-			}
+func StripPort(addr string) string {
+	parts := strings.Split(addr, ":")
+	return parts[0]
+}
+```
+
+---
+
+### guprecords
+
+* 💻 Languages: Raku (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 95
+* 📈 Lines of Code: 312
+* 📄 Lines of Documentation: 416
+* 📅 Development Period: 2013-03-22 to 2025-05-18
+* 🔥 Recent Activity: 751.1 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0.0 (2023-04-29)
+
+
+GupRecords is a Raku-based system administration tool that analyzes and reports on system uptime statistics across multiple hosts. It processes raw uptime records from various systems and generates formatted reports showing the top-performing hosts or operating systems based on metrics like uptime, boot count, downtime, and calculated meta-scores.
+
+The tool is implemented with a clean object-oriented architecture featuring an Aggregator class that parses record files, Host and OS Aggregate classes that store statistics, and Reporter classes that generate formatted tables. It supports multiple analysis categories (host, OS, OS-major, uname) and various sorting criteria including uptime duration, boot frequency, system lifespan, and downtime. The formatted output includes visual indicators for active systems and provides both duration-based and numerical metrics in a structured table format, making it useful for system administrators to quickly identify the most reliable systems in their infrastructure.
+
+[View on Codeberg](https://codeberg.org/snonux/guprecords)  
+[View on GitHub](https://github.com/snonux/guprecords)  
+
+Raku from `guprecords.raku`:
+
+```AUTO
+method output-trim(Str \str, UInt \line-limit --> Str) {
+  if $.output-format ~~ Plaintext and str.chars > line-limit {
+    return join '', gather {
+      my $chars = 0;
+      for str.split(' ') -> \word {
+        if ($chars += word.chars + 1) > line-limit {
+          take "\n" ~ word;
+          $chars = word.chars;
+        } else {
+          take ' ' ~ word;
+        }
+      }
+    }
+  }
+  return str;
+}
+```
+
+---
+
+### gogios
+
+* 💻 Languages: Go (90.8%), YAML (5.6%), JSON (3.6%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 77
+* 📈 Lines of Code: 662
+* 📄 Lines of Documentation: 195
+* 📅 Development Period: 2023-04-17 to 2024-05-03
+* 🔥 Recent Activity: 762.0 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.1.0 (2024-05-03)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+[![gogios screenshot](showcase/gogios/image-1.png "gogios screenshot")](showcase/gogios/image-1.png)  
+
+Gogios is a lightweight, minimalistic monitoring tool written in Go designed for small-scale server monitoring. It executes standard Nagios-compatible check plugins and sends email notifications only when service states change, making it ideal for personal infrastructure or small environments with limited resources. The tool emphasizes simplicity over complexity, avoiding the bloat of enterprise monitoring solutions like Nagios, Icinga, or Prometheus by eliminating features like web UIs, databases, contact groups, and clustering.
+
+The implementation follows a clean architecture with concurrent check execution, dependency management, and persistent state tracking. Key features include state-based notifications (only alerts on status changes), configurable retry logic, federation support for distributed monitoring, and stale detection for checks that haven't run recently. The tool is configured via JSON and requires only a local mail transfer agent for notifications. It's designed to run via cron jobs and supports high-availability setups through simple dual-server configurations, making it perfect for users who want effective monitoring without operational overhead.
+
+[View on Codeberg](https://codeberg.org/snonux/gogios)  
+[View on GitHub](https://github.com/snonux/gogios)  
+
+Go from `internal/state.go`:
+
+```AUTO
+func readState(conf config) (state, error) {
+	s := state{
+		stateFile: fmt.Sprintf("%s/state.json", conf.StateDir),
+		checks:    make(map[string]checkState),
+	}
+
+	if _, err := os.Stat(s.stateFile); err != nil {
+		return s, nil
+	}
+
+	file, err := os.Open(s.stateFile)
+	if err != nil {
+		return s, err
+	}
+	defer file.Close()
+
+	bytes, err := io.ReadAll(file)
+	if err != nil {
+		return s, err
+	}
+
+	if err := json.Unmarshal(bytes, &s.checks); err != nil {
+		return s, err
+	}
+
+	var obsolete []string
+	for name := range s.checks {
+		if _, ok := conf.Checks[name]; !ok {
+			obsolete = append(obsolete, name)
 		}
-	}()
+	}
+
+	for _, name := range obsolete {
+		delete(s.checks, name)
+		log.Printf("State of %s is obsolete (removed)", name)
+	}
+
+	return s, nil
 }
 ```
 
@@ -984,7 +975,7 @@ func Start(ctx context.Context, conf config.Config, quo quorum.Quorum) {
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 765.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 765.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1017,7 +1008,7 @@ declare -i NUM_PAGES_TO_EXTRACT=42 # This is the answear!
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1059.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1059.3 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1051,7 +1042,7 @@ declare -r SCREEN=eDP-1
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1278.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1278.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -1093,7 +1084,7 @@ scalephotos () {
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1429.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1430.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1134,7 +1125,7 @@ func (q *ElementaryPriority[T]) DeleteMax() T {
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 19
 * 📅 Development Period: 2018-05-26 to 2025-01-21
-* 🔥 Recent Activity: 1431.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1431.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1160,6 +1151,28 @@ def out(message, prefix, flag = :none)
 
 ---
 
+### foo.zone
+
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 2905
+* 📈 Lines of Code: 0
+* 📄 Lines of Documentation: 23
+* 📅 Development Period: 2021-05-21 to 2022-04-02
+* 🔥 Recent Activity: 1445.6 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+This is **foo.zone**, a personal blog and technical website belonging to Paul Buetow, a Site Reliability Engineer based in Sofia, Bulgaria. The project is a static website that serves as a comprehensive platform for sharing technical knowledge, book notes, and personal experiences in the fields of system administration, DevOps, and programming.
+
+The site is built using **Gemtexter**, a static site generator that creates both HTML and Gemini protocol content from markdown sources. The architecture is refreshingly simple and follows KISS principles, with content organized into several key sections: a main blog feed (gemfeed) with over 100 technical posts dating back to 2008, detailed book notes and summaries, project documentation (including tools like DTail for distributed log tailing), and personal resources. The website is served by OpenBSD using relayd and httpd, demonstrating the author's preference for robust, security-focused Unix systems. The project emphasizes clean, semantic HTML, custom CSS styling, and accessibility, while maintaining both web and Gemini protocol compatibility for broader reach across different internet communities.
+
+[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
+[View on GitHub](https://github.com/snonux/foo.zone)  
+
+---
+
 ### perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
@@ -1168,7 +1181,7 @@ def out(message, prefix, flag = :none)
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1910.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1911.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1194,41 +1207,6 @@ sub hello() {
 
 ---
 
-### guprecords
-
-* 💻 Languages: Raku (100.0%)
-* 📊 Commits: 95
-* 📈 Lines of Code: 195
-* 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🔥 Recent Activity: 2125.9 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v1.0.0 (2023-04-29)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-GupRecords is a Raku-based system administration tool that analyzes and reports on system uptime statistics across multiple hosts. It processes raw uptime records from various systems and generates formatted reports showing the top-performing hosts or operating systems based on metrics like uptime, boot count, downtime, and calculated meta-scores.
-
-The tool is implemented with a clean object-oriented architecture featuring an Aggregator class that parses record files, Host and OS Aggregate classes that store statistics, and Reporter classes that generate formatted tables. It supports multiple analysis categories (host, OS, OS-major, uname) and various sorting criteria including uptime duration, boot frequency, system lifespan, and downtime. The formatted output includes visual indicators for active systems and provides both duration-based and numerical metrics in a structured table format, making it useful for system administrators to quickly identify the most reliable systems in their infrastructure.
-
-[View on Codeberg](https://codeberg.org/snonux/guprecords)  
-[View on GitHub](https://github.com/snonux/guprecords)  
-
-Raku from `guprecords.raku`:
-
-```AUTO
-method add-file(IO::Path:D $file is readonly) {
-  my Str $host = $file.IO.basename.split('.').first;
-
-  die "Record file for {$host} already processed - duplicate inputs?"
-    if %!aggregates<host>{$host}:exists;
-  %!aggregates<host>{$host} = HostAggregate.new($host);
-
-  for $file.IO.lines -> Str $line { self!add-line(:$line, :$host) }
-}
-```
-
----
-
 ### ioriot
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
@@ -1237,7 +1215,7 @@ method add-file(IO::Path:D $file is readonly) {
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2452.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2452.5 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -1252,20 +1230,6 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 [View on Codeberg](https://codeberg.org/snonux/ioriot)  
 [View on GitHub](https://github.com/snonux/ioriot)  
 
-C from `ioriot/src/opcodes.h`:
-
-```AUTO
-typedef enum {
-    FSTAT = 0,
-    FSTAT_AT,
-    FSTATFS,
-    FSTATFS64,
-    LSTAT,
-    STAT,
-    STATFS,
-    STATFS64,
-```
-
 ---
 
 ### staticfarm-apache-handlers
@@ -1276,7 +1240,7 @@ typedef enum {
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 2961.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2961.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -1289,13 +1253,51 @@ The system is particularly useful for distributed static content delivery where 
 [View on Codeberg](https://codeberg.org/snonux/staticfarm-apache-handlers)  
 [View on GitHub](https://github.com/snonux/staticfarm-apache-handlers)  
 
-Perl from `debian/staticfarm-apache-handlers/usr/share/staticfarm/apache/handlers/StaticFarm/CacheControl.pm`:
+Perl from `src/StaticFarm/API.pm`:
 
 ```AUTO
-sub my_warn {
-  my $msg = shift;
+sub handler {
+  my $r = shift;
+  $r->content_type('application/json');
 
-  Apache2::ServerRec::warn("CacheControl: $msg");
+  my $method = $r->method();
+
+  my $d = {
+    method => $method,
+    uri => $r->uri(),
+    args => $r->args(),
+    out => { message => "" },
+  };
+
+  ($d->{path}) = $r->uri() =~ /^$URI_PREFIX(.*)/;
+  $d->{fullpath} = "$CONTENT_DIR$d->{path}";
+
+  my %params = map { 
+  s/\.\.//g; 
+  my ($k, $v) = split '=', $_;
+  $v
+  $k => $v;
+  } split '&', $r->args();
+
+  $d->{params} = \%params;
+
+  if ($method eq 'GET') {
+    handler_get($r, $d);
+
+  } elsif ($method eq 'DELETE') {
+    handler_delete($r, $d);
+
+  } elsif ($method eq 'POST') {
+    handler_post($r, $d);
+
+  } elsif ($method eq 'PUT') {
+    handler_put($r, $d);
+
+  } else {
+    handler_unknown($r, $d);
+  }
+
+  return Apache2::Const::DONE;
 }
 ```
 
@@ -1309,7 +1311,7 @@ sub my_warn {
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3196.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3197.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1332,7 +1334,7 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3463.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3463.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -1345,7 +1347,7 @@ The tool is particularly useful for system administrators and DevOps engineers w
 [View on Codeberg](https://codeberg.org/snonux/mon)  
 [View on GitHub](https://github.com/snonux/mon)  
 
-Perl from `debian/mon/usr/share/mon/lib/MAPI/Query.pm`:
+Perl from `debian/mon/usr/share/mon/lib/MAPI/RESTlos.pm`:
 
 ```AUTO
 sub new {
@@ -1369,7 +1371,7 @@ sub new {
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3467.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3468.0 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -1405,7 +1407,7 @@ def initialize
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3547.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3547.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -1418,15 +1420,35 @@ The project is implemented as a modular Perl application with a clean architectu
 [View on Codeberg](https://codeberg.org/snonux/pingdomfetch)  
 [View on GitHub](https://github.com/snonux/pingdomfetch)  
 
-Perl from `lib/PINGDOMFETCH/Display.pm`:
+Perl from `lib/PINGDOMFETCH/Pingdom.pm`:
 
 ```AUTO
-sub init {
-    my ($self) = @_;
+sub new {
+    my ( $class, $config ) = @_;
 
-    $VERBOSE = $self->{'arg.verbose'} == 1;
+    my $app_key  = $config->get('pingdom.api.app.key');
+    my $host     = $config->get('pingdom.api.host');
+    my $port     = $config->get('pingdom.api.port');
+    my $protocol = $config->get('pingdom.api.protocol');
 
-    return undef;
+    my $json = JSON->new()->allow_nonref();
+
+
+    my $headers = {
+        'App-key'    => $app_key,
+        'User-Agent' => 'pingdomfetch',
+    };
+
+    my $url_base = "$protocol://$host:$port";
+
+    my $self = bless {
+        config   => $config,
+        json     => $json,
+        url_base => $url_base,
+        headers  => $headers,
+    }, $class;
+
+    return $self;
 }
 ```
 
@@ -1440,7 +1462,7 @@ sub init {
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3558.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3558.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -1481,7 +1503,7 @@ func Slurp(what *string, path string) error {
 * 📊 Commits: 670
 * 📈 Lines of Code: 1675
 * 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3613.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3614.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -1496,31 +1518,20 @@ The system works through a template-driven architecture where content is written
 [View on Codeberg](https://codeberg.org/snonux/xerl)  
 [View on GitHub](https://github.com/snonux/xerl)  
 
-Perl from `Xerl/Page/Content.pm`:
+Perl from `Xerl/XML/Element.pm`:
 
 ```AUTO
-sub parse {
-  my $self   = $_[0];
-  my $config = $self->get_config();
+sub starttag {
+  my $self = $_[0];
+  my ( $name, $temp ) = ( $_[1], undef );
 
-  my $xmlcontent = Xerl::XML::Reader->new(
-    path   => $config->get_templatepath(),
-    config => $config
-  );
+  return $self if $self->get_name() eq $name;
+  return undef if ref $self->get_array() ne 'ARRAY';
 
-  if ( -1 == $xmlcontent->open() ) {
-    $config->set_finish_request(1);
-    return undef;
+  for ( @{ $self->get_array() } ) {
+    $temp = $_->starttag($name);
+    return $temp if defined $temp;
   }
-
-  $xmlcontent->parse();
-
-  my $rules = Xerl::Page::Rules->new( config => $config );
-  $rules->parse( $config->get_xmlconfigrootobj() )
-    unless $config->exists('noparse');
-
-  $config->insertxmlvars( $config->get_xmlconfigrootobj() );
-  $self->insertrules( $rules, $xmlcontent->get_root() );
 
   return undef;
 }
@@ -1536,7 +1547,7 @@ sub parse {
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3661.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3662.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1583,7 +1594,7 @@ function mount_chroot {
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 3939.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3940.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -1596,15 +1607,21 @@ The implementation is written in Python and built on top of the bigsuds library,
 [View on Codeberg](https://codeberg.org/snonux/fapi)  
 [View on GitHub](https://github.com/snonux/fapi)  
 
-Python from `contrib/bigsuds-1.0/setup.py`:
+Python from `contrib/bigsuds-1.0/bigsuds.py`:
 
 ```AUTO
-def extract_version(filename):
-    contents = open(filename).read()
-    match = re.search('^__version__\s+=\s+[\'"](.*)[\'"]\s*$', contents,
-      re.MULTILINE)
-    if match is not None:
-        return match.group(1)
+class ArgumentError(OperationFailed):
+    are passed to an iControl method."""
+
+
+class BIGIP(object):
+
+    Example usage:
+        >>> b = BIGIP('bigip-hostname')
+        >>> print b.LocalLB.Pool.get_list()
+        ['/Common/test_pool']
+        >>> b.LocalLB.Pool.add_member(['/Common/test_pool'], \
+                [[{'address': '10.10.10.10', 'port': 20030}]])
 ```
 
 ---
@@ -1617,7 +1634,7 @@ def extract_version(filename):
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 3994.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3994.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -1652,7 +1669,7 @@ build:
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4007.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4007.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1687,7 +1704,7 @@ build:
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4014.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4015.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1710,7 +1727,7 @@ The tool works by having both hosts run the same command simultaneously - one ac
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4058.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4058.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1750,7 +1767,7 @@ function findbin () {
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4063.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4063.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1773,7 +1790,7 @@ The implementation uses modern Perl with the Moo object system and consists of t
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4124.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4124.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1786,18 +1803,18 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 [View on Codeberg](https://codeberg.org/snonux/perl-poetry)  
 [View on GitHub](https://github.com/snonux/perl-poetry)  
 
-Perl from `perllove.pl`:
+Perl from `math.pl`:
 
 ```AUTO
-no strict;
-no warnings;
-we: do { print 'love'
-or warn and die 'slow'
-unless not defined true #respect
-} for reverse'd', qw/mind of you/
-and map { 'me' } 'into', undef $mourning;
-__END__ 
-v2 Copyright (2005, 2006) by Paul C. Buetow, http://paul.buetow.org
+do { int'egrate'; sub trade; };
+do { exp'onentize' and abs'olutize' };
+study and study and study and study;
+
+foreach $topic ({of, math}) {
+you, m/ay /go, to, limits }
+
+do { not qw/erk / unless $success 
+and m/ove /o;$n and study };
 ```
 
 ---
@@ -1808,7 +1825,7 @@ v2 Copyright (2005, 2006) by Paul C. Buetow, http://paul.buetow.org
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4204.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4204.6 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1861,7 +1878,7 @@ if ($ENV{SERVER_NAME} eq 'ipv6.buetow.org') {
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4245.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4245.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1884,7 +1901,7 @@ The implementation is remarkably simple - a single shell script that uses GNU AW
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4275.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4275.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1897,19 +1914,16 @@ The application is implemented using a multi-threaded architecture where each mo
 [View on Codeberg](https://codeberg.org/snonux/loadbars)  
 [View on GitHub](https://github.com/snonux/loadbars)  
 
-Perl from `lib/Loadbars/Shared.pm`:
+Perl from `lib/Loadbars/HelpDispatch.pm`:
 
 ```AUTO
-use Exporter;
+sub create () {
+    my $hosts = '';
 
-use base 'Exporter';
-
-our @EXPORT = qw(
-  %PIDS
-  %CPUSTATS
-  %NETSTATS_LASTUPDATE
-  %AVGSTATS
-  %AVGSTATS_HAS
+    my $textdesc = <<END;
+For more help please consult the manual page or press the 'h' hotkey during
+  program execution and watch this terminal window. 
+END
 ```
 
 ---
@@ -1920,7 +1934,7 @@ our @EXPORT = qw(
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4324.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4324.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1933,21 +1947,21 @@ The architecture centers around a modular plugin system where custom functionali
 [View on Codeberg](https://codeberg.org/snonux/perldaemon)  
 [View on GitHub](https://github.com/snonux/perldaemon)  
 
-Perl from `lib/PerlDaemon/PerlDaemon.pl`:
+Perl from `lib/PerlDaemon/RunModules.pm`:
 
 ```AUTO
-sub trimstr (@) {
-  my @str = 
-  @_;
+sub new ($$) {
+  my ($class, $conf) = @_;
 
-  for (@str) {
-    chomp;
-    s/^[\t\s]+//;
-    s/[\t\s]+$//;
-  }
+  my $self = bless { conf => $conf }, $class;
 
-  return @str;
-}
+  my $modulesdir = $conf->{'daemon.modules.dir'};
+  my $logger = $conf->{logger};
+  my %loadedmodules;
+  my %scheduler;
+
+  if (-d $modulesdir) {
+    $logger->logmsg("Loading modules from $modulesdir");
 ```
 
 ---
@@ -1960,7 +1974,7 @@ sub trimstr (@) {
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4655.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4655.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -2005,7 +2019,7 @@ function read_config_values(config_file) {
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4718.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4718.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -2020,41 +2034,30 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 [View on Codeberg](https://codeberg.org/snonux/jsmstrade)  
 [View on GitHub](https://github.com/snonux/jsmstrade)  
 
-Java from `sources/smstrade/SMain.java`:
+Java from `sources/smstrade/SPrefs.java`:
 
 ```AUTO
-public static final String SAVE_FILE = "jsmstrade.dat";
-
-public static final String DEFAULT_URL =
-    "https://gateway.smstrade.de?key=KEY&to=TO&route=basic&message=";
+private static final long serialVersionUID = 1L;
 
 private HashMap<String,String> options = null;
 
 private JTextArea textArea = new JTextArea();
 
-private JButton sendButton = new JButton("Send it");
-
-private JButton clearButton = new JButton("Delete");
-
-private JLabel counterLabel = new JLabel(" 160");
-
-private JLabel counterTextLabel = new JLabel("Chars");
-
 private JPanel buttonPanel = new JPanel();
 
-private JMenuBar menuBar = new JMenuBar();
+private JButton okButton = new JButton("OK");
 
-private JMenu fileMenu = new JMenu("File");
+private JButton saveButton = new JButton("Save");
 
-public SMain(HashMap<String,String> options) {
-    super("JSMSTrade v" + VERSION);
+public SPrefs(Component parent, HashMap<String,String> options) {
+    super("Preferences", parent);
     this.options = options;
 
+    disposeWithParent();
     setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     setSize(300, 150);
     setResizable(false);
 
-    fillMenuBar();
     fillContentPane();
     setVisible(true);
 }
@@ -2070,7 +2073,7 @@ public SMain(HashMap<String,String> options) {
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5349.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5349.2 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -2087,88 +2090,31 @@ The implementation uses a clean separation of concerns with dedicated packages f
 [View on Codeberg](https://codeberg.org/snonux/netcalendar)  
 [View on GitHub](https://github.com/snonux/netcalendar)  
 
-Java from `sources/client/SplashScreen.java`:
+Java from `sources/client/helper/DateSpinner.java`:
 
 ```AUTO
-public class SplashScreen extends JWindow implements Runnable {
-    private static final long serialVersionUID = 1L;
+private void initComponents() {
+    setLayout(new FlowLayout(FlowLayout.LEFT, 4, 4));
 
-    public void run() {
-        JPanel jPanel = (JPanel)getContentPane();
-        jPanel.setBackground(Color.BLACK);
-        jPanel.setForeground(Color.WHITE);
+    spinnerDateModel = new SpinnerDateModel(date, null, null, Calendar.MONTH);
+    JSpinner jSpinner = new JSpinner(spinnerDateModel);
+    new JSpinner.DateEditor(jSpinner, "MM/yy");
 
-        int iWidth = 411;
-        int iHeight = 261;
-        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-
-        int x = (dimension.width-iWidth)/2;
-        int y = (dimension.height-iHeight)/2;
-        setBounds(x,y,iWidth,iHeight);
-
-        JLabel jLabel = new JLabel(new ImageIcon("images/netcal.png"));
-        jPanel.add(jLabel, BorderLayout.CENTER);
-        jPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        setVisible(true);
-
-        try {
-            Thread.sleep(3000);
-
-        } catch (Exception e) {
-            Main.infoMessage(e.getMessage());
-        }
-
-        dispose();
-    }
-```
-
----
-
-### hsbot
-
-* 💻 Languages: Haskell (98.5%), Make (1.5%)
-* 📊 Commits: 80
-* 📈 Lines of Code: 601
-* 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5444.7 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-**HSBot** is a modular IRC bot written in Haskell that provides a plugin-based architecture for handling IRC messages and commands. The bot connects to IRC servers, joins channels, and responds to both direct commands (prefixed with `!`) and general messages through its plugin system. It includes built-in commands for help, info, state management, and graceful shutdown, while supporting extensible functionality through plugins like message counting, printing, and storage capabilities.
-
-The implementation uses a clean separation of concerns with modules for IRC connectivity, command handling, state management, and plugin orchestration. The bot maintains persistent state through a database file and provides a dispatch system that routes messages to appropriate handlers based on whether they're commands or general messages. Its plugin architecture allows for easy extension with new functionality, making it a flexible foundation for IRC automation tasks.
-
-[View on Codeberg](https://codeberg.org/snonux/hsbot)  
-[View on GitHub](https://github.com/snonux/hsbot)  
-
-Haskell from `HsBot/Base/State.hs`:
-
-```AUTO
--- {-# LANGUAGE MultiParamTypeClasses #-}
--- {-# LANGUAGE FunctionalDependencies #-}
--- {-# LANGUAGE FlexibleInstances #-}
--- {-# LANGUAGE NoMonomorphismRestriction #-}
-
-module HsBot.Base.State where
-
-import HsBot.Base.Database
-
-import qualified Data.Map as M
+    add(jSpinner);
+}
 ```
 
 ---
 
 ### ychat
 
-* 💻 Languages: C++ (48.9%), Shell (22.7%), C/C++ (20.7%), Perl (2.5%), HTML (2.1%), Config (1.9%), Make (0.9%), CSS (0.2%)
+* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
 * 📊 Commits: 67
-* 📈 Lines of Code: 45956
-* 📄 Lines of Documentation: 101
+* 📈 Lines of Code: 67884
+* 📄 Lines of Documentation: 127
 * 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5555.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5369.5 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
 
@@ -2183,32 +2129,17 @@ The architecture is built around several key managers: a socket manager for hand
 [View on Codeberg](https://codeberg.org/snonux/ychat)  
 [View on GitHub](https://github.com/snonux/ychat)  
 
-C++ from `ychat/src/mods/commands/yc_set.cpp`:
-
-```AUTO
-const char* c_newval = s_newval.c_str();
-if ( isdigit( c_newval[0] ) )
-{
-  int i_newval = c_newval[0] - '0';
-
-  s_msg = p_timr->get_time()
-          + " "
-          + p_user->get_colored_bold_name()
-          + " "
-          + p_conf->get_elem("chat.msgs.setcommandstatus")
-```
-
 ---
 
 ### vs-sim
 
-* 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
+* 💻 Languages: Java (98.6%), Shell (0.8%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
 * 📊 Commits: 411
-* 📈 Lines of Code: 16303
+* 📈 Lines of Code: 14582
 * 📄 Lines of Documentation: 2903
-* 📅 Development Period: 2008-05-15 to 2021-05-01
-* 🔥 Recent Activity: 5741.1 days (avg. age of last 42 commits)
+* 📅 Development Period: 2008-05-15 to 2022-04-03
+* 🔥 Recent Activity: 5385.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0 (2008-08-24)
 
@@ -2223,39 +2154,61 @@ The implementation features a modular architecture with separate packages for co
 [View on Codeberg](https://codeberg.org/snonux/vs-sim)  
 [View on GitHub](https://github.com/snonux/vs-sim)  
 
-Java from `sources/simulator/VSMenuItemStates.java`:
+Java from `sources/exceptions/VSNegativeNumberException.java`:
 
 ```AUTO
-private static final long serialVersionUID = 1L;
-
-private volatile boolean pause;
-
-private volatile boolean replay;
-
-private volatile boolean reset;
-
-private volatile boolean start;
-
-public VSMenuItemStates(boolean pause, boolean replay, boolean reset,
-                        boolean start) {
-    this.pause = pause;
-    this.replay = replay;
-    this.reset = reset;
-    this.start = start;
+public class VSNegativeNumberException extends Exception {
+    private static final long serialVersionUID = 1L;
 }
+```
+
+---
+
+### hsbot
+
+* 💻 Languages: Haskell (98.5%), Make (1.5%)
+* 📊 Commits: 80
+* 📈 Lines of Code: 601
+* 📅 Development Period: 2009-11-22 to 2011-10-17
+* 🔥 Recent Activity: 5444.8 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**HSBot** is a modular IRC bot written in Haskell that provides a plugin-based architecture for handling IRC messages and commands. The bot connects to IRC servers, joins channels, and responds to both direct commands (prefixed with `!`) and general messages through its plugin system. It includes built-in commands for help, info, state management, and graceful shutdown, while supporting extensible functionality through plugins like message counting, printing, and storage capabilities.
+
+The implementation uses a clean separation of concerns with modules for IRC connectivity, command handling, state management, and plugin orchestration. The bot maintains persistent state through a database file and provides a dispatch system that routes messages to appropriate handlers based on whether they're commands or general messages. Its plugin architecture allows for easy extension with new functionality, making it a flexible foundation for IRC automation tasks.
+
+[View on Codeberg](https://codeberg.org/snonux/hsbot)  
+[View on GitHub](https://github.com/snonux/hsbot)  
+
+Haskell from `HsBot/Plugins/MessageCounter.hs`:
+
+```AUTO
+module HsBot.Plugins.MessageCounter (makeMessageCounter) where
+
+import HsBot.Plugins.Base
+
+import HsBot.Base.Env
+import HsBot.Base.State
+
+import HsBot.IRC.User
+
+update user = user { userMessages = 1 + userMessages user }
 ```
 
 ---
 
 ### fype
 
-* 💻 Languages: C (67.9%), C/C++ (23.6%), HTML (6.9%), Make (1.6%)
-* 📚 Documentation: Text (61.4%), LaTeX (38.6%)
+* 💻 Languages: C (71.2%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (60.3%), LaTeX (39.7%)
 * 📊 Commits: 99
-* 📈 Lines of Code: 8622
-* 📄 Lines of Documentation: 1474
+* 📈 Lines of Code: 8954
+* 📄 Lines of Documentation: 1432
 * 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5768.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5831.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -2268,16 +2221,16 @@ The implementation is built using a straightforward top-down parser with a maxim
 [View on Codeberg](https://codeberg.org/snonux/fype)  
 [View on GitHub](https://github.com/snonux/fype)  
 
-C from `src/data/dat.c`:
+C from `src/core/scanner.h`:
 
 ```AUTO
-   p_elem->type = type;
-
-   return (p_elem);
-}
-
-_Bool
-dat_empty(Dat *p_dat) {
-   if (p_dat == NULL)
-      return (false);
+typedef struct {
+   int i_current_line_nr;
+   int i_current_pos_nr;
+   int i_num_tokenends;
+   char *c_filename;
+   char *c_codestring;
+   FILE *fp;
+   List *p_list_token;
+   TokenType tt_last;
 ```
