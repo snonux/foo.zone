@@ -16,6 +16,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 
 * ⇢ f3s: Kubernetes with FreeBSD - Part 6: Storage
 * ⇢ ⇢ Introduction
+* ⇢ ⇢ Additional storage capacity
 * ⇢ ⇢ ZFS encryption keys
 * ⇢ ⇢ ⇢ UFS on USB keys
 * ⇢ ⇢ ⇢ Generating encryption keys
@@ -129,16 +130,33 @@ In the previous posts, we set up a FreeBSD-based Kubernetes cluster using k3s. W
 * No data sharing: Pods on different nodes can't access the same data
 * Pod mobility: If a pod moves to another node, it loses access to its data
 * No redundancy: Hardware failure means data loss
-* Limited capacity: Individual nodes have finite storage
 
 This post implements a robust storage solution using:
 
-* ZFS: For data integrity, encryption, and efficient snapshots
 * CARP: For high availability with automatic IP failover
 * NFS over stunnel: For secure, encrypted network storage
- zrepl: For continuous replication between nodes
+* ZFS: For data integrity, encryption, and efficient snapshots
+* zrepl: For continuous ZFS replication between nodes
 
-The end result is a highly available, encrypted storage system that survives node failures while providing shared storage to all Kubernetes pods. We're using two different SSD models (Samsung 870 EVO and Crucial BX500) to avoid simultaneous failures from the same manufacturing batch.
+The end result is a highly available, encrypted storage system that survives node failures while providing shared storage to all Kubernetes pods.
+
+## Additional storage capacity
+
+We add to each of the nodes (`f0`, `f1`, `f2`) additional 1TB storage in form of an SSD drive. The Beelink mini PCs have enough space in the chassis for the additional space.
+
+=> ./f3s-kubernetes-with-freebsd-part-6/drives.jpg
+
+Upgrading the storage was as easy as unscrewing, plugging the drive in, and then screwing it together again. So the procedure was pretty uneventful! We're using two different SSD models (Samsung 870 EVO and Crucial BX500) to avoid simultaneous failures from the same manufacturing batch.
+
+We then create the `zdata` ZFS pool on all three nodes:
+
+```sh
+paul@f0:~ % doas zpool create -m /data zdata /dev/ada1
+paul@f0:~ % zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  12.1M   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  29.0G   443G        -         -     0%     6%  1.00x    ONLINE  -
+```
 
 ## ZFS encryption keys
 
@@ -152,6 +170,7 @@ Using USB flash drives as hardware key storage provides an elegant solution. The
 
 ### UFS on USB keys
 
+
 We'll format the USB drives with UFS (Unix File System) rather than ZFS for several reasons:
 
 * Simplicity: UFS has less overhead for small, removable media
@@ -159,7 +178,7 @@ We'll format the USB drives with UFS (Unix File System) rather than ZFS for seve
 
 Let's see the USB keys:
 
-TODO: Insert photos here
+=> ./f3s-kubernetes-with-freebsd-part-6/usbkeys1.jpg USB keys
 
 ```
 paul@f0:/ % doas camcontrol devlist
@@ -197,9 +216,11 @@ paul@f0:/ % df | grep keys
 /dev/da0             14877596       8  13687384     0%    /keys
 ```
 
+=> ./f3s-kubernetes-with-freebsd-part-6/usbkeys2.jpg USB keys sticked in
+
 ### Generating encryption keys
 
-The following keys will later be used to encrypt the ZFS file systems:
+The following keys will later be used to encrypt the ZFS file systems. They will be stored on all three nodes (so they will also serve as a backup in case one of the keys is lost, and when we later replicate encrypted ZFS volumes from one node to another, they must be available on the destination node as well):
 
 ```
 paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
@@ -221,12 +242,11 @@ total 20
 *r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key
 ````
 
-After creation, those are copied to the other two nodes `f1` and `f2` to the `/keys` partition.
+After creation, these are copied to the other two nodes, `f1` and `f2`, into the `/keys` partition (I won't provide the commands here; just create a tarball, copy it over, and extract it on the destination nodes).
 
 ### Configuring `zdata` ZFS pool and encryption
 
 ```sh
-paul@f0:/keys % doas zpool create -m /data zdata /dev/ada1
 paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
 paul@f0:/ % zfs list | grep zdata
 zdata                                          836K   899G    96K  /data
@@ -2114,7 +2134,7 @@ paul@f1:~ % doas service zrepl status
 
 In your Kubernetes manifests, you can now create PersistentVolumes using the NFS servers:
 
-```yaml
+```
 apiVersion: v1
 kind: PersistentVolume
 metadata:
