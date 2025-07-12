@@ -20,7 +20,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * ⇢ ⇢ ZFS encryption keys
 * ⇢ ⇢ ⇢ UFS on USB keys
 * ⇢ ⇢ ⇢ Generating encryption keys
-* ⇢ ⇢ ⇢ Configuring `zdata` ZFS pool and encryption
+* ⇢ ⇢ ⇢ Configuring `zdata` ZFS pool encryption
 * ⇢ ⇢ ⇢ Migrating Bhyve VMs to encrypted `bhyve` ZFS volume
 * ⇢ ⇢ CARP (Common Address Redundancy Protocol)
 * ⇢ ⇢ ⇢ How CARP Works
@@ -156,6 +156,19 @@ paul@f0:~ % zpool list
 NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
 zdata   928G  12.1M   928G        -         -     0%     0%  1.00x    ONLINE  -
 zroot   472G  29.0G   443G        -         -     0%     6%  1.00x    ONLINE  -
+
+paul@f0:/ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<Samsung SSD 870 EVO 1TB SVT03B6Q>  at scbus1 target 0 lun 0 (pass1,ada1)
+paul@f0:/ %
+```
+
+To verify that we have a different SSD on the second node (the third node has the same drive as the first):
+
+```sh
+paul@f1:/ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<CT1000BX500SSD1 M6CR072>          at scbus1 target 0 lun 0 (pass1,ada1)
 ```
 
 ## ZFS encryption keys
@@ -180,20 +193,14 @@ Let's see the USB keys:
 
 => ./f3s-kubernetes-with-freebsd-part-6/usbkeys1.jpg USB keys
 
+To verify, that the USB key (flash disk) is there:
+
 ```
 paul@f0:/ % doas camcontrol devlist
 <512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
 <Samsung SSD 870 EVO 1TB SVT03B6Q>  at scbus1 target 0 lun 0 (pass1,ada1)
 <Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
 paul@f0:/ %
-```
-
-```
-paul@f1:/ % doas camcontrol devlist
-<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
-<CT1000BX500SSD1 M6CR072>          at scbus1 target 0 lun 0 (pass1,ada1)
-<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
-paul@f1:/ %
 ```
 
 Let's create the UFS file system and mount it (done on all 3 nodes `f0`, `f1` and `f2`):
@@ -220,7 +227,7 @@ paul@f0:/ % df | grep keys
 
 ### Generating encryption keys
 
-The following keys will later be used to encrypt the ZFS file systems. They will be stored on all three nodes (so they will also serve as a backup in case one of the keys is lost, and when we later replicate encrypted ZFS volumes from one node to another, they must be available on the destination node as well):
+The following keys will later be used to encrypt the ZFS file systems. They will be stored on all three nodes, serving as a backup in case one of the keys is lost. When we later replicate encrypted ZFS volumes from one node to another, the keys must also be available on the destination node.
 
 ```
 paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
@@ -244,13 +251,16 @@ total 20
 
 After creation, these are copied to the other two nodes, `f1` and `f2`, into the `/keys` partition (I won't provide the commands here; just create a tarball, copy it over, and extract it on the destination nodes).
 
-### Configuring `zdata` ZFS pool and encryption
+### Configuring `zdata` ZFS pool encryption
+
+Let's encrypt our `zdata` ZFS pool. Actually, we are not encrypting the whole pool, but everythig within the `zdata/enc` data set:
 
 ```sh
 paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
 paul@f0:/ % zfs list | grep zdata
 zdata                                          836K   899G    96K  /data
 zdata/enc                                      200K   899G   200K  /data/enc
+
 paul@f0:/keys % zfs get all zdata/enc | grep -E -i '(encryption|key)'
 zdata/enc  encryption            aes-256-gcm                               -
 zdata/enc  keylocation           file:///keys/f0.lan.buetow.org:zdata.key  local
@@ -259,9 +269,11 @@ zdata/enc  encryptionroot        zdata/enc                                 -
 zdata/enc  keystatus             available                                 -
 ````
 
+All future data sets within `zdata/enc` will inherit the same encription key.
+
 ### Migrating Bhyve VMs to encrypted `bhyve` ZFS volume
 
-Run on all 3 nodes
+We set up Bhyve VMs in one of the previous blog posts. Their ZFS data sets rely on `zroot`, which is the default ZFS pool on the internal 512GB NVME drive. They aren't encrypted yet, so we encrypt the VM data sets as well now. To do so, we first shut down the VMs on all 3 nodes:
 
 ```sh
 paul@f0:/keys % doas vm stop rocky
@@ -270,23 +282,35 @@ Sending ACPI shutdown to rocky
 paul@f0:/keys % doas vm list
 NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE
 rocky    default    uefi       4    14G     -    Yes [1]  Stopped
+```
 
-
+After this, we rename the unencrypted data set to `_old` and create a new encrypted data set and we also snapshot it as `@hamburger`!
+  
+```sh
 paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
 paul@f0:/keys % doas zfs set mountpoint=/mnt zroot/bhyve_old
 paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
 
-
-paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o \
+  keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
 paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve zroot/bhyve
 paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
+```
 
-paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | doas zfs recv zroot/bhyve/rocky
+Once done, we import the snapshot into the encrypted dataset and also copy some other metadata files from `vm-bhyve` back over.
+
+```
+paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | \
+  doas zfs recv zroot/bhyve/rocky
 paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
+```
 
+We also have to make encrypted ZFS data sets mount automatically on boot:
+
+```sh
 paul@f0:/keys % doas sysrc zfskeys_enable=YES
 zfskeys_enable:  -> YES
 paul@f0:/keys % doas vm init
@@ -300,15 +324,22 @@ NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
 rocky    default    uefi       4    14G     0.0.0.0:5900  Yes [1]  Running (2265)
 ```
 
+As you can see, the VM is running. This means the encrypted `zroot/bhyve` was mounted successfully after the reboot! Now we can destroy the old, unencrypted, and now unused bhyve dataset:
+
 ```sh
 paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
+```
 
+To verify once again that `zroot/bhyve` and `zroot/bhyve/rocky` are now both encrypted, we run:
+  
+```sh
 paul@f0:~ % zfs get all zroot/bhyve | grep -E '(encryption|key)'
 zroot/bhyve  encryption            aes-256-gcm                               -
 zroot/bhyve  keylocation           file:///keys/f0.lan.buetow.org:bhyve.key  local
 zroot/bhyve  keyformat             raw                                       -
 zroot/bhyve  encryptionroot        zroot/bhyve                               -
 zroot/bhyve  keystatus             available                                 -
+
 paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E '(encryption|key)'
 zroot/bhyve/rocky  encryption            aes-256-gcm            -
 zroot/bhyve/rocky  keylocation           none                   default
