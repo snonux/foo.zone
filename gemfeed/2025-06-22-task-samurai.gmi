@@ -13,7 +13,7 @@
 * ⇢ ⇢ Where and how to get it
 * ⇢ ⇢ Lessons learned from building Task Samurai with agentic coding
 * ⇢ ⇢ ⇢ Developer workflow
-* ⇢ ⇢ ⇢ How it went down
+* ⇢ ⇢ ⇢ How it went
 * ⇢ ⇢ ⇢ What went wrong
 * ⇢ ⇢ ⇢ Patterns that helped
 * ⇢ ⇢ ⇢ What I learned using agentic coding
@@ -30,6 +30,7 @@ Task Samurai is a fast terminal interface for Taskwarrior written in Go using th
 ### Why does this exist?
 
 I wanted to tinker with agentic coding. This project was implemented entirely using OpenAI Codex. (After this blog post was published, I also used the Claude Code CLI.)
+
 * I wanted a faster UI for Taskwarrior than other options, like Vit, which is Python-based.
 * I wanted something built with Bubble Tea, but I never had time to dive deep into it.
 * I wanted to build a toy project (like Task Samurai) first, before tackling the big ones, to get started with agentic coding.
@@ -56,17 +57,19 @@ And follow the `README.md`!
 
 ### Developer workflow
 
-I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am trying out currently) credits (it still happens!), but Codex was still available to me. So, I seized the opportunity to push agentic coding a bit more using another platform.
+I was trying out OpenAI Codex because I regularly run out of Claude Code CLI (another agentic coding tool I am currently trying out) credits (it still happens!), but Codex was still available to me. So, I took the opportunity to push agentic coding a bit further with another platform.
 
 I didn't really love the web UI you have to use for Codex, as I usually live in the terminal. But this is all I have for Codex for now, and I thought I'd give it a try regardless. The web UI is simple and pretty straightforward. There's also a Codex CLI one could use directly in the terminal, but I didn't get it working. I will try again soon.
 
+> Update: Codex CLI now works for me, after OpenAI released a new version!
+
 For every task given to Codex, it spins up its own container. From there, you can drill down and watch what it is doing. At the end, the result (in the form of a code diff) will be presented. From there, you can make suggestions about what else to change in the codebase. What I found inconvenient is that for every additional change, there's an overhead because Codex has to spin up a container and bootstrap the entire development environment again, which adds extra delay. That could be eliminated by setting up predefined custom containers, but that feature still seems somewhat limited.
 
-Once satisfied, you can ask Codex to create a GitHub PR; from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts.
+Once satisfied, you can ask Codex to create a GitHub PR (too bad only GitHub is supported and no other Git hosters); from there, you can merge it and then pull it to your local laptop or workstation to test the changes again. I found myself looping a lot around the Codex UI, GitHub PRs, and local checkouts. 
 
-### How it went down
+### How it went
 
-Task Samurai's codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits. Here are the broad strokes:
+Task Samurai's codebase came together quickly: the entire Git history spans from June 19 to 22, 2025, culminating in 179 commits:
 
 * June 19: Scaffolded the Go boilerplate, set up tests, integrated the Bubble Tea UI framework, and got the first table views showing up.
 * June 20: (The big one—120 commits!) Added hotkeys, colourized tasks, annotation support, undo/redo, and, for fun, fireworks on quit (which never worked and got removed at a later point). This is where most of the bugs, merges, and fast-paced changes happen.
@@ -79,7 +82,7 @@ It's worth noting that I worked on it in the evenings when I had some free time,
 
 ### What went wrong
 
-Going agentic isn't all smooth sailing. Here are the hiccups I ran into, plus a few hard-earned lessons:
+Going agentic isn't all smooth. Here are the hiccups I ran into, plus a few lessons:
 
 * Merge Floods: Every minor feature or fix existed on its branch, so merging was a constant process. It kept progress flowing but also drowned the committed history in noise and the occasional conflict. I found this to be an issue with OpenAI's Codex in particular. Not so much with other agentic coding tools like Claude Code CLI (not covered in this blog post.)
 * Fixes on fixes: Features like "fireworks on exit" had chains of "fix exit," "fix cell selection," etc. Sometimes, new additions introduced bugs that needed rapid patching.
@@ -92,29 +95,28 @@ Despite the chaos, a few strategies kept things moving:
 * Tiny PRs: Small, atomic merges meant feedback came fast (and so did fixes).
 * Tests Matter: A solid base of unit tests for task manipulations kept things from breaking entirely when experimenting.
 * Live Documentation: Documentation, such as the README, is updated regularly to reflect all the hotkey and feature changes.
+
 Maybe a better approach would have been to design the whole application from scratch before letting Codix do any of the coding. I will try that with my next toy project.
 
 ### What I learned using agentic coding
 
-Stepping into agentic coding with Codex as my "pair programmer" was a genuine shift. I learned a lot—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at breakneck speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied—which is a bit concerning. Imagine if I approved a PR for a production-grade deployment without fully understanding what it was doing (and not a toy project like in this post).
-
-Discussing requirements with Codex forced me to clarify features and spot logical pitfalls earlier. All those fast iterations meant I was constantly coaxing more helpful, less ambiguous code out of the model—making me rethink how to break features into clear, testable steps.
+Stepping into agentic coding with Codex as my "pair programmer" was a big shift. I learned a lot—not just about automating code generation, but also about how you have to tightly steer, guide, and audit every line as things move at high speed. I must admit, I sometimes lost track of what all the generated code was actually doing. But as the features seemed to work after a few iterations, I was satisfied—which is a bit concerning. Imagine if I approved a PR for a production-grade deployment without fully understanding what it was doing (and not a toy project like in this post).
 
 ### how much time did I save?
 
-Did it buy me speed? Let's do some back-of-the-envelope math:
+Did it buy me speed? 
 
 * Say each commit takes Codex 5 minutes to generate, and you need to review/guide 179 commits = about _6 hours of active development_.
 * If you coded it all yourself, including all the bug fixes, features, design, and documentation, you might spend _10–20 hours_.
-* That's a couple of days potential savings.
+* That's a couple of days of potential savings—and I am by no means an expert in agentic coding, since this was my first completed agentic coding project.
 
 ## Conclusion
 
-Building Task Samurai with agentic coding was a wild ride—rapid feature growth, plenty of churns, countless fast fixes, and more merge commits I'd expected. Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the raw power (and some hazards) of agentic development.
+Building Task Samurai with agentic coding was a wild ride—rapid feature growth, countless fast fixes, and more merge commits I'd expected. Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the power of agentic development.
 
 Am I an agentic coding expert now? I don't think so. There are still many things to learn, and the landscape is constantly evolving.
 
-While working on Task Samurai, there were times I genuinely missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues manually, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don't use AI, your next performance review may be awkward.
+While working on Task Samurai, there were times I missed manual coding and the satisfaction that comes from writing every line yourself, debugging issues manually, and crafting solutions from scratch. However, this is the direction in which the industry seems to be shifting, unfortunately. If applied correctly, AI will boost performance, and if you don't use AI, your next performance review may be awkward.
 
 Personally, I am not sure whether I like where the industry is going with agentic coding. I love "traditional" coding, and with agentic coding you operate at a higher level and don't interact directly with code as often, which I would miss. I think that in the future, designing, reviewing, and being able to read and understand code will be more important than writing code by hand.
 
