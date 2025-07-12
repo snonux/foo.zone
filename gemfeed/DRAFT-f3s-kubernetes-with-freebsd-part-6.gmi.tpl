@@ -248,7 +248,7 @@ The replication frequency determines your Recovery Point Objective (RPO) - the m
 
 While HAST (Highly Available Storage) is FreeBSD's native solution for high-availability storage, I've chosen `zrepl` for several important reasons:
 
-* HAST can cause ZFS corruption: HAST operates at the block level and doesn't understand ZFS's transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I've experienced this firsthand - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.
+* HAST can cause ZFS corruption: HAST operates at the block level and doesn't understand ZFS's transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I've experienced this firsthand (I am sure I might have configured something wrong) - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.
 * ZFS-aware replication: `zrepl` understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.
 * Snapshot history: With zrepl, you get multiple recovery points (every minute for NFS data in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.
 * Easier recovery: When something goes wrong with zrepl, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary too.
@@ -311,7 +311,7 @@ First, create a dedicated dataset for NFS data that will be replicated:
 paul@f0:~ % doas zfs create zdata/enc/nfsdata
 ```
 
-Create the `zrepl` configuration on f0:
+Afterwards, we create the `zrepl` configuration on f0:
 
 ```sh
 paul@f0:~ % doas tee /usr/local/etc/zrepl/zrepl.yml <<'EOF'
@@ -369,14 +369,14 @@ EOF
  We're using two separate replication jobs with different intervals:
 
 * `f0_to_f1_nfsdata`: Replicates NFS data every minute for faster failover recovery
-* `f0_to_f1_fedora`: Replicates Fedora VM every 10 minutes (less critical for NFS operations)
+* `f0_to_f1_fedora`: Replicates Fedora VM every ten minutes (less critical)
 
-The Fedora is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows zrepl's flexibility in handling different datasets with varying replication needs.
+The Fedora VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows zrepl's flexibility in handling different datasets with varying replication needs.
 
 Furthermore:
 
 * We're specifically replicating `zdata/enc/nfsdata` instead of the entire `zdata/enc` dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.
-* The `send: encrypted: false` option disables ZFS native encryption for the replication stream. Since we're using a WireGuard tunnel between f0 and f1, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.
+* The `send: encrypted: false` option disables ZFS native encryption for the replication stream. Since we're using a WireGuard tunnel between `f0` and `f1`, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.
 
 ### Configuring `zrepl` on `f1` (sink)
 
@@ -432,14 +432,15 @@ To check the replication status, we run:
 
 ```sh
 # On f0, check `zrepl` status (use raw mode for non-tty)
-paul@f0:~ % doas `zrepl` status --mode raw | grep -A2 "Replication"
+paul@f0:~ % doas pkg install jq
+paul@f0:~ % doas zrepl status --mode raw | grep -A2 "Replication" | jq .
 "Replication":{"StartAt":"2025-07-01T22:31:48.712143123+03:00"...
 
 # Check if services are running
-paul@f0:~ % doas service `zrepl` status
+paul@f0:~ % doas service zrepl status
 zrepl is running as pid 2649.
 
-paul@f1:~ % doas service `zrepl` status
+paul@f1:~ % doas service zrepl status
 zrepl is running as pid 2574.
 
 # Check for `zrepl` snapshots on source
@@ -456,6 +457,9 @@ zdata/f0/zdata/enc   176K   899G   176K  none
 paul@f1:~ % doas zfs list -t snapshot -r zdata | grep zrepl
 zdata/f0/zdata/enc@zrepl_20250701_193148_000     0B      -   176K  -
 zdata/f0/zdata/enc@zrepl_20250701_194148_000     0B      -   176K  -
+.
+.
+.
 ```
 
 ### Monitoring replication
@@ -463,12 +467,10 @@ zdata/f0/zdata/enc@zrepl_20250701_194148_000     0B      -   176K  -
 You can monitor the replication progress with:
 
 ```sh
-# Real-time status
-paul@f0:~ % doas `zrepl` status --mode interactive
-
-# Check specific job details
-paul@f0:~ % doas `zrepl` status --job f0_to_f1
+paul@f0:~ % doas zrepl status
 ```
+
+TODO: Add screenshot of the above..
 
 With this setup, both `zdata/enc/nfsdata` and `zroot/bhyve/fedora` on f0 will be automatically replicated to f1 every 1 (or 10 in case of the Fedora VM) minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.
 
@@ -497,60 +499,33 @@ zrepl is running as pid 2309.
 paul@f0:~ % doas zfs list -t snapshot | grep `zrepl` | tail -2
 zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
 zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  2.97G  -
+.
+.
+.
 
 paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep 202530
 zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_202530_000      0B      -   176K  -
 zdata/sink/f0/zroot/bhyve/fedora@zrepl_20250701_202530_000     0B      -  2.97G  -
+.
+.
+.
 ```
 
 The timestamps confirm that replication resumed automatically after the reboot, ensuring continuous data protection.
 
 ### Understanding Failover Limitations and Design Decisions
 
+#### Automatic failover only to a read-only
 
+This storage system intentionally failovers to a read-only copy of the replica in case the primary goes down. This is due to the nature that zrepl only replicates the data in one direction and if we mounted the data set on the sink node read-write, it would make the ZFS data-set diverge from the original and the replication would break. It can still be mounted read-write on the sink node in case of a real issue on the primary node, but that step is left intentional manualy. So we don't need to manually fix the replication later on.
 
-#### Why Manual Failover?
+So in summary:
 
-This storage system intentionally uses manual failover rather than automatic failover. This might seem counterintuitive for a "high availability" system, but it's a deliberate design choice based on real-world experience:
+* Split-brain prevention: Automatic failover can cause both nodes to become active simultaneously if network communication fails. This leads to data divergence that's extremely difficult to resolve.
+* False positive protection: Temporary network issues or high load can trigger unwanted failovers. Manual intervention ensures failovers only occur when truly necessary.
+* Data integrity over availability: For storage systems, data consistency is paramount. A few minutes of downtime is preferable to data corruption or loss.
+* Simplified recovery: With manual failover, you always know which dataset is authoritative, making recovery straightforward.
 
-1. Split-brain prevention: Automatic failover can cause both nodes to become active simultaneously if network communication fails. This leads to data divergence that's extremely difficult to resolve.
-
-2. False positive protection: Temporary network issues or high load can trigger unwanted failovers. Manual intervention ensures failovers only occur when truly necessary.
-
-3. Data integrity over availability: For storage systems, data consistency is paramount. A few minutes of downtime is preferable to data corruption or loss.
-
-4. Simplified recovery: With manual failover, you always know which dataset is authoritative, making recovery straightforward.
-
-#### Current Failover Process
-
-The replicated datasets on f1 are intentionally not mounted (`mountpoint=none`). In case f0 fails:
-
-```sh
-# Manual steps needed on f1 to activate the replicated data:
-paul@f1:~ % doas zfs set mountpoint=/data/nfsdata zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
-```
-
-However, this creates a split-brain problem: when f0 comes back online, both systems would have diverged data. Resolving this requires careful manual intervention to:
-
-1. Stop the original replication
-2. Sync changes from f1 back to f0
-3. Re-establish normal replication
-
-For true high-availability NFS, you might consider:
-
-* Shared storage (like iSCSI) with proper clustering
-* GlusterFS or similar distributed filesystems
-* Manual failover with ZFS replication (as we have here)
-
-Note: While HAST+CARP is often suggested for HA storage, it can cause filesystem corruption in practice, especially with ZFS. The block-level replication of HAST doesn't understand ZFS's transactional model, leading to inconsistent states during failover. 
-
-The current `zrepl` setup, despite requiring manual intervention, is actually safer because:
-
-* ZFS snapshots are always consistent
-* Replication is ZFS-aware (not just block-level)
-* You have full control over the failover process
-* No risk of split-brain corruption
 
 ### Mounting the NFS datasets
 
@@ -595,7 +570,7 @@ zdata/sink/f0/zdata/enc/nfsdata    896G    204K    896G     0%    /data/nfs
 
 Note: The dataset is mounted at the same path (`/data/nfs`) on both hosts to simplify failover procedures. The dataset on f1 is set to `readonly=on` to prevent accidental modifications that would break replication.
 
-CRITICAL WARNING: Do NOT write to `/data/nfs/` on f1! Any modifications will break the replication. If you accidentally write to it, you'll see this error:
+CRITICAL WARNING: Do NOT write to `/data/nfs/` on f1! Any modifications will break the replication. That's why it is mounted as read-only there (I have the feeloing I mentioned this in this blog post already!)! If you accidentally write to it, you'll see this error:
 
 ```
 cannot receive incremental stream: destination zdata/sink/f0/zdata/enc/nfsdata has been modified
@@ -611,170 +586,33 @@ paul@f1:~ % doas zfs rollback zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_204
 paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
 ```
 
-### Failback scenario: Syncing changes from f1 back to f0
-
-In a disaster recovery scenario where f0 has failed and f1 has taken over, you'll need to sync changes back when f0 returns. Here's how to failback:
-
-```sh
-# On f1: First, make the dataset writable (if it was readonly)
-paul@f1:~ % doas zfs set readonly=off zdata/sink/f0/zdata/enc/nfsdata
-
-# Create a snapshot of the current state
-paul@f1:~ % doas zfs snapshot zdata/sink/f0/zdata/enc/nfsdata@failback
-
-# On f0: Stop any services using the dataset
-paul@f0:~ % doas service nfsd stop  # If NFS is running
-
-# Send the snapshot from f1 to f0, forcing a rollback
-# This WILL DESTROY any data on f0 that's not on f1!
-paul@f1:~ % doas zfs send -R zdata/sink/f0/zdata/enc/nfsdata@failback | \
-    ssh f0 "doas zfs recv -F zdata/enc/nfsdata"
-
-# Alternative: If you want to see what would be received first
-paul@f1:~ % doas zfs send -R zdata/sink/f0/zdata/enc/nfsdata@failback | \
-    ssh f0 "doas zfs recv -nv -F zdata/enc/nfsdata"
-
-# After successful sync, on f0:
-paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@failback
-
-# On f1: Make it readonly again and destroy the failback snapshot
-paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs destroy zdata/sink/f0/zdata/enc/nfsdata@failback
-
-# Stop `zrepl` services first - CRITICAL!
-paul@f0:~ % doas service `zrepl` stop
-paul@f1:~ % doas service `zrepl` stop
-
-# Clean up any `zrepl` snapshots on f0
-paul@f0:~ % doas zfs list -t snapshot -r zdata/enc/nfsdata | grep `zrepl` | \
-    awk '{print $1}' | xargs -I {} doas zfs destroy {}
-
-# Clean up and destroy the entire replicated structure on f1
-# First release any holds
-paul@f1:~ % doas zfs holds -r zdata/sink/f0 | grep -v NAME | \
-    awk '{print $2, $1}' | while read tag snap; do 
-        doas zfs release "$tag" "$snap"
-    done
-
-# Then destroy the entire f0 tree
-paul@f1:~ % doas zfs destroy -rf zdata/sink/f0
-
-# Create parent dataset structure on f1
-paul@f1:~ % doas zfs create -p zdata/sink/f0/zdata/enc
-
-# Create a fresh manual snapshot to establish baseline
-paul@f0:~ % doas zfs snapshot zdata/enc/nfsdata@manual_baseline
-
-# Send this snapshot to f1
-paul@f0:~ % doas zfs send -w zdata/enc/nfsdata@manual_baseline | \
-    ssh f1 "doas zfs recv zdata/sink/f0/zdata/enc/nfsdata"
-
-# Clean up the manual snapshot
-paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@manual_baseline
-paul@f1:~ % doas zfs destroy zdata/sink/f0/zdata/enc/nfsdata@manual_baseline
-
-# Set mountpoint and make readonly on f1
-paul@f1:~ % doas zfs set mountpoint=/data/nfs zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
-
-# Load encryption key and mount on f1
-paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
-    zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
-
-# Now restart `zrepl` services
-paul@f0:~ % doas service `zrepl` start
-paul@f1:~ % doas service `zrepl` start
-
-# Verify replication is working
-paul@f0:~ % doas `zrepl` status --job f0_to_f1
-```
-
-Important notes about failback:
-
-* The `-F` flag forces a rollback on f0, destroying any local changes
-* Replication often won't resume automatically after a forced receive
-* You must clean up old `zrepl` snapshots on both sides
-* Creating a manual snapshot helps re-establish the replication relationship
-* Always verify replication status after the failback procedure
-* The first replication after failback will be a full send of the current state
-
-### Testing the failback scenario
-
-Here's a real test of the failback procedure:
-
-```sh
-# Simulate failure: Stop replication on f0
-paul@f0:~ % doas service `zrepl` stop
-
-# On f1: Take over by making the dataset writable
-paul@f1:~ % doas zfs set readonly=off zdata/sink/f0/zdata/enc/nfsdata
-
-# Write some data on f1 during the "outage"
-paul@f1:~ % echo 'Data written on f1 during failover' | doas tee /data/nfs/failover-data.txt
-Data written on f1 during failover
-
-# Now perform failback when f0 comes back online
-# Create snapshot on f1
-paul@f1:~ % doas zfs snapshot zdata/sink/f0/zdata/enc/nfsdata@failback
-
-# Send data back to f0 (note: we had to send to a temporary dataset due to holds)
-paul@f1:~ % doas zfs send -Rw zdata/sink/f0/zdata/enc/nfsdata@failback | \
-    ssh f0 "doas zfs recv -F zdata/enc/nfsdata_temp"
-
-# On f0: Rename datasets to complete failback
-paul@f0:~ % doas zfs set mountpoint=none zdata/enc/nfsdata
-paul@f0:~ % doas zfs rename zdata/enc/nfsdata zdata/enc/nfsdata_old
-paul@f0:~ % doas zfs rename zdata/enc/nfsdata_temp zdata/enc/nfsdata
-
-# Load encryption key and mount
-paul@f0:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
-paul@f0:~ % doas zfs mount zdata/enc/nfsdata
-
-# Verify the data from f1 is now on f0
-paul@f0:~ % ls -la /data/nfs/
-total 18
-drwxr-xr-x  2 root wheel  4 Jul  2 00:01 .
-drwxr-xr-x  4 root wheel  4 Jul  1 23:41 ..
-*rw-r--r--  1 root wheel 35 Jul  2 00:01 failover-data.txt
-*rw-r--r--  1 root wheel 12 Jul  1 23:34 hello.txt
-```
-
-Success! The failover data from f1 is now on f0. To resume normal replication, you would need to:
-
-1. Clean up old snapshots on both sides
-2. Create a new manual baseline snapshot
-3. Restart `zrepl` services
-
-Key learnings from the test:
-
-* The `-w` flag is essential for encrypted datasets
-* Dataset holds can complicate the process (consider sending to a temporary dataset)
-* The encryption key must be loaded after receiving the dataset
-* Always verify data integrity before resuming normal operations
-
 ### Troubleshooting: Files not appearing in replication
 
 If you write files to `/data/nfs/` on f0 but they don't appear on f1, check:
 
+Is the dataset actually mounted on f0?
+
 ```sh
-# 1. Is the dataset actually mounted on f0?
 paul@f0:~ % doas zfs list -o name,mountpoint,mounted | grep nfsdata
 zdata/enc/nfsdata                             /data/nfs             yes
+```
 
-# If it shows "no", the dataset isn't mounted!
-# This means files are being written to the root filesystem, not ZFS
+If it shows `no`, the dataset isn't mounted! This means files are being written to the root filesystem, not ZFS.
 
-# 2. Check if encryption key is loaded
+Check if encryption key is loaded:
+
+```sh
 paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
 NAME               PROPERTY   VALUE        SOURCE
 zdata/enc/nfsdata  keystatus  available    -
-
 # If "unavailable", load the key:
 paul@f0:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
 paul@f0:~ % doas zfs mount zdata/enc/nfsdata
+```
 
-# 3. Verify files are in the snapshot (not just the directory)
+Verify files are in the snapshot (not just the directory):
+
+```sh
 paul@f0:~ % ls -la /data/nfs/.zfs/snapshot/zrepl_*/
 ```
 
@@ -782,12 +620,12 @@ This issue commonly occurs after reboot if the encryption keys aren't configured
 
 ### Configuring automatic key loading on boot
 
-To ensure all encrypted datasets are mounted automatically after reboot:
+To ensure all additional encrypted datasets are mounted automatically after reboot as well, we do:
 
 ```sh
 # On f0 - configure all encrypted datasets
 paul@f0:~ % doas sysrc zfskeys_enable=YES
-zfskeys_enable: NO -> YES
+zfskeys_enable: YES -> YES
 paul@f0:~ % doas sysrc zfskeys_datasets="zdata/enc zdata/enc/nfsdata zroot/bhyve"
 zfskeys_datasets:  -> zdata/enc zdata/enc/nfsdata zroot/bhyve
 
@@ -796,7 +634,7 @@ paul@f0:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zd
 
 # On f1 - include the replicated dataset
 paul@f1:~ % doas sysrc zfskeys_enable=YES
-zfskeys_enable: NO -> YES
+zfskeys_enable: YES -> YES
 paul@f1:~ % doas sysrc zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
 zfskeys_datasets:  -> zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata
 
@@ -805,6 +643,7 @@ paul@f1:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zd
 ```
 
 Important notes:
+
 * Each encryption root needs its own key load entry - child datasets don't inherit key loading
 * The replicated dataset on f1 uses the same encryption key as the source on f0
 * Always verify datasets are mounted after reboot with `zfs list -o name,mounted`
@@ -833,46 +672,6 @@ paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
 paul@f0:~ % doas service `zrepl` start
 paul@f1:~ % doas service `zrepl` start
 ```
-
-### Forcing a full resync
-
-If replication gets out of sync and incremental updates fail:
-
-```sh
-# Stop services
-paul@f0:~ % doas service `zrepl` stop
-paul@f1:~ % doas service `zrepl` stop
-
-# On f1: Release holds and destroy the dataset
-paul@f1:~ % doas zfs holds -r zdata/sink/f0/zdata/enc/nfsdata | \
-    grep -v NAME | awk '{print $2, $1}' | \
-    while read tag snap; do doas zfs release "$tag" "$snap"; done
-paul@f1:~ % doas zfs destroy -rf zdata/sink/f0/zdata/enc/nfsdata
-
-# On f0: Create fresh snapshot
-paul@f0:~ % doas zfs snapshot zdata/enc/nfsdata@resync
-
-# Send full dataset
-paul@f0:~ % doas zfs send -Rw zdata/enc/nfsdata@resync | \
-    ssh f1 "doas zfs recv zdata/sink/f0/zdata/enc/nfsdata"
-
-# Configure f1
-paul@f1:~ % doas zfs set mountpoint=/data/nfs zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
-    zdata/sink/f0/zdata/enc/nfsdata
-paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
-
-# Clean up and restart
-paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@resync
-paul@f1:~ % doas zfs destroy zdata/sink/f0/zdata/enc/nfsdata@resync
-paul@f0:~ % doas service `zrepl` start
-paul@f1:~ % doas service `zrepl` start
-```
-
-ZFS auto scrubbing....~?
-
-Backup of the keys on the key locations (all keys on all 3 USB keys)
 
 ## CARP (Common Address Redundancy Protocol)
 
