@@ -30,39 +30,187 @@
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#additional-storage-capacity'>Additional storage capacity</a></li>
 <li>⇢ <a href='#zfs-encryption-keys'>ZFS encryption keys</a></li>
 <li>⇢ ⇢ <a href='#ufs-on-usb-keys'>UFS on USB keys</a></li>
 <li>⇢ ⇢ <a href='#generating-encryption-keys'>Generating encryption keys</a></li>
-<li>⇢ ⇢ <a href='#configuring-zdata-zfs-pool-and-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool and encryption</a></li>
+<li>⇢ ⇢ <a href='#configuring-zdata-zfs-pool-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool encryption</a></li>
 <li>⇢ ⇢ <a href='#migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</a></li>
-<li>⇢ <a href='#carp'>CARP</a></li>
 <li>⇢ <a href='#zfs-replication-with-zrepl'>ZFS Replication with zrepl</a></li>
-<li>⇢ ⇢ <a href='#why-zrepl-instead-of-hast'>Why zrepl instead of HAST?</a></li>
+<li>⇢ ⇢ <a href='#understanding-replication-requirements'>Understanding Replication Requirements</a></li>
+<li>⇢ ⇢ <a href='#why-zrepl-instead-of-hast'>Why <span class='inlinecode'>zrepl</span> instead of HAST?</a></li>
 <li>⇢ ⇢ <a href='#installing-zrepl'>Installing zrepl</a></li>
 <li>⇢ ⇢ <a href='#checking-zfs-pools'>Checking ZFS pools</a></li>
-<li>⇢ ⇢ <a href='#configuring-zrepl-with-wireguard-tunnel'>Configuring zrepl with WireGuard tunnel</a></li>
-<li>⇢ ⇢ <a href='#configuring-zrepl-on-f0-source'>Configuring zrepl on f0 (source)</a></li>
-<li>⇢ ⇢ <a href='#configuring-zrepl-on-f1-sink'>Configuring zrepl on f1 (sink)</a></li>
-<li>⇢ ⇢ <a href='#enabling-and-starting-zrepl-services'>Enabling and starting zrepl services</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-with-wireguard-tunnel'>Configuring <span class='inlinecode'>zrepl</span> with WireGuard tunnel</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-on-f0-source'>Configuring <span class='inlinecode'>zrepl</span> on f0 (source)</a></li>
+<li>⇢ ⇢ <a href='#configuring-zrepl-on-f1-sink'>Configuring <span class='inlinecode'>zrepl</span> on <span class='inlinecode'>f1</span> (sink)</a></li>
+<li>⇢ ⇢ <a href='#enabling-and-starting-zrepl-services'>Enabling and starting <span class='inlinecode'>zrepl</span> services</a></li>
 <li>⇢ ⇢ <a href='#verifying-replication'>Verifying replication</a></li>
 <li>⇢ ⇢ <a href='#monitoring-replication'>Monitoring replication</a></li>
-<li>⇢ ⇢ <a href='#a-note-about-the-bhyve-vm-replication'>A note about the Bhyve VM replication</a></li>
-<li>⇢ ⇢ <a href='#quick-status-check-commands'>Quick status check commands</a></li>
 <li>⇢ ⇢ <a href='#verifying-replication-after-reboot'>Verifying replication after reboot</a></li>
-<li>⇢ ⇢ <a href='#important-note-about-failover-limitations'>Important note about failover limitations</a></li>
+<li>⇢ ⇢ <a href='#understanding-failover-limitations-and-design-decisions'>Understanding Failover Limitations and Design Decisions</a></li>
+<li>⇢ <a href='#-why-manual-failover'>⇢# Why Manual Failover?</a></li>
+<li>⇢ <a href='#-current-failover-process'>⇢# Current Failover Process</a></li>
 <li>⇢ ⇢ <a href='#mounting-the-nfs-datasets'>Mounting the NFS datasets</a></li>
 <li>⇢ ⇢ <a href='#failback-scenario-syncing-changes-from-f1-back-to-f0'>Failback scenario: Syncing changes from f1 back to f0</a></li>
 <li>⇢ ⇢ <a href='#testing-the-failback-scenario'>Testing the failback scenario</a></li>
+<li>⇢ ⇢ <a href='#troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</a></li>
+<li>⇢ ⇢ <a href='#configuring-automatic-key-loading-on-boot'>Configuring automatic key loading on boot</a></li>
+<li>⇢ ⇢ <a href='#troubleshooting-replication-broken-due-to-modified-destination'>Troubleshooting: Replication broken due to modified destination</a></li>
+<li>⇢ ⇢ <a href='#forcing-a-full-resync'>Forcing a full resync</a></li>
+<li>⇢ <a href='#carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</a></li>
+<li>⇢ ⇢ <a href='#how-carp-works'>How CARP Works</a></li>
+<li>⇢ ⇢ <a href='#configuring-carp'>Configuring CARP</a></li>
+<li>⇢ ⇢ <a href='#carp-state-change-notifications'>CARP State Change Notifications</a></li>
+<li>⇢ <a href='#future-storage-explorations'>Future Storage Explorations</a></li>
+<li>⇢ ⇢ <a href='#minio-for-s3-compatible-object-storage'>MinIO for S3-Compatible Object Storage</a></li>
+<li>⇢ ⇢ <a href='#moosefs-for-distributed-high-availability'>MooseFS for Distributed High Availability</a></li>
+<li>⇢ <a href='#nfs-server-configuration'>NFS Server Configuration</a></li>
+<li>⇢ ⇢ <a href='#setting-up-nfs-on-f0-primary'>Setting up NFS on f0 (Primary)</a></li>
+<li>⇢ ⇢ <a href='#configuring-stunnel-for-nfs-encryption-with-carp-failover'>Configuring Stunnel for NFS Encryption with CARP Failover</a></li>
+<li>⇢ <a href='#-why-not-native-nfs-over-tls'>⇢# Why Not Native NFS over TLS?</a></li>
+<li>⇢ <a href='#-stunnel-architecture-with-carp'>⇢# Stunnel Architecture with CARP</a></li>
+<li>⇢ <a href='#-creating-a-certificate-authority-for-client-authentication'>⇢# Creating a Certificate Authority for Client Authentication</a></li>
+<li>⇢ <a href='#-install-and-configure-stunnel-on-f0'>⇢# Install and Configure Stunnel on f0</a></li>
+<li>⇢ ⇢ <a href='#setting-up-nfs-on-f1-standby'>Setting up NFS on f1 (Standby)</a></li>
+<li>⇢ ⇢ <a href='#how-stunnel-works-with-carp'>How Stunnel Works with CARP</a></li>
+<li>⇢ ⇢ <a href='#carp-control-script-for-clean-failover'>CARP Control Script for Clean Failover</a></li>
+<li>⇢ ⇢ <a href='#carp-management-script'>CARP Management Script</a></li>
+<li>⇢ ⇢ <a href='#automatic-failback-after-reboot'>Automatic Failback After Reboot</a></li>
+<li>⇢ <a href='#-why-automatic-failback'>⇢# Why Automatic Failback?</a></li>
+<li>⇢ <a href='#-the-auto-failback-script'>⇢# The Auto-Failback Script</a></li>
+<li>⇢ <a href='#-setting-up-the-marker-file'>⇢# Setting Up the Marker File</a></li>
+<li>⇢ <a href='#-configuring-cron'>⇢# Configuring Cron</a></li>
+<li>⇢ <a href='#-managing-automatic-failback'>⇢# Managing Automatic Failback</a></li>
+<li>⇢ <a href='#-how-it-works'>⇢# How It Works</a></li>
+<li>⇢ ⇢ <a href='#verifying-stunnel-and-carp-status'>Verifying Stunnel and CARP Status</a></li>
+<li>⇢ ⇢ <a href='#verifying-nfs-exports'>Verifying NFS Exports</a></li>
+<li>⇢ ⇢ <a href='#client-configuration-for-stunnel'>Client Configuration for Stunnel</a></li>
+<li>⇢ <a href='#-preparing-client-certificates'>⇢# Preparing Client Certificates</a></li>
+<li>⇢ <a href='#-configuring-rocky-linux-clients-r0-r1-r2'>⇢# Configuring Rocky Linux Clients (r0, r1, r2)</a></li>
+<li>⇢ ⇢ <a href='#testing-nfs-mount-with-stunnel'>Testing NFS Mount with Stunnel</a></li>
+<li>⇢ ⇢ <a href='#important-encryption-keys-for-replicated-datasets'>Important: Encryption Keys for Replicated Datasets</a></li>
+<li>⇢ ⇢ <a href='#nfs-failover-with-carp-and-stunnel'>NFS Failover with CARP and Stunnel</a></li>
+<li>⇢ ⇢ <a href='#testing-carp-failover'>Testing CARP Failover</a></li>
+<li>⇢ ⇢ <a href='#handling-stale-file-handles-after-failover'>Handling Stale File Handles After Failover</a></li>
+<li>⇢ ⇢ <a href='#complete-failover-test'>Complete Failover Test</a></li>
+<li>⇢ ⇢ <a href='#verifying-replication-status'>Verifying Replication Status</a></li>
+<li>⇢ ⇢ <a href='#post-reboot-verification'>Post-Reboot Verification</a></li>
+<li>⇢ ⇢ <a href='#integration-with-kubernetes'>Integration with Kubernetes</a></li>
+<li>⇢ ⇢ <a href='#security-benefits-of-stunnel-with-client-certificates'>Security Benefits of Stunnel with Client Certificates</a></li>
+<li>⇢ ⇢ <a href='#laptopworkstation-access'>Laptop/Workstation Access</a></li>
+<li>⇢ <a href='#-important-nfsv4-and-stunnel-on-newer-linux-clients'>⇢# Important: NFSv4 and Stunnel on Newer Linux Clients</a></li>
+<li>⇢ <a href='#mounting-nfs-on-rocky-linux-9'>Mounting NFS on Rocky Linux 9</a></li>
+<li>⇢ ⇢ <a href='#installing-and-configuring-nfs-clients-on-r0-r1-and-r2'>Installing and Configuring NFS Clients on r0, r1, and r2</a></li>
+<li>⇢ ⇢ <a href='#configuring-stunnel-client-on-all-nodes'>Configuring Stunnel Client on All Nodes</a></li>
+<li>⇢ ⇢ <a href='#setting-up-nfs-mounts'>Setting Up NFS Mounts</a></li>
+<li>⇢ ⇢ <a href='#comprehensive-nfs-mount-testing'>Comprehensive NFS Mount Testing</a></li>
+<li>⇢ <a href='#-test-1-verify-mount-status-on-all-nodes'>⇢# Test 1: Verify Mount Status on All Nodes</a></li>
+<li>⇢ <a href='#-test-2-verify-stunnel-connectivity'>⇢# Test 2: Verify Stunnel Connectivity</a></li>
+<li>⇢ <a href='#-test-3-file-creation-and-visibility-test'>⇢# Test 3: File Creation and Visibility Test</a></li>
+<li>⇢ <a href='#-test-4-verify-files-on-storage-servers'>⇢# Test 4: Verify Files on Storage Servers</a></li>
+<li>⇢ <a href='#-test-5-performance-and-concurrent-access-test'>⇢# Test 5: Performance and Concurrent Access Test</a></li>
+<li>⇢ <a href='#-test-6-directory-operations-test'>⇢# Test 6: Directory Operations Test</a></li>
+<li>⇢ <a href='#-test-7-permission-and-ownership-test'>⇢# Test 7: Permission and Ownership Test</a></li>
+<li>⇢ <a href='#-test-8-failover-test-optional-but-recommended'>⇢# Test 8: Failover Test (Optional but Recommended)</a></li>
+<li>⇢ ⇢ <a href='#troubleshooting-common-issues'>Troubleshooting Common Issues</a></li>
+<li>⇢ <a href='#-mount-hangs-or-times-out'>⇢# Mount Hangs or Times Out</a></li>
+<li>⇢ <a href='#-permission-denied-errors'>⇢# Permission Denied Errors</a></li>
+<li>⇢ <a href='#-files-not-visible-across-nodes'>⇢# Files Not Visible Across Nodes</a></li>
+<li>⇢ <a href='#-io-errors-when-accessing-nfs-mount'>⇢# I/O Errors When Accessing NFS Mount</a></li>
+<li>⇢ ⇢ <a href='#comprehensive-production-test-results'>Comprehensive Production Test Results</a></li>
+<li>⇢ <a href='#-test-scenario-full-system-reboot-and-failover'>⇢# Test Scenario: Full System Reboot and Failover</a></li>
+<li>⇢ <a href='#-key-findings'>⇢# Key Findings</a></li>
+<li>⇢ <a href='#performance-considerations'>Performance Considerations</a></li>
+<li>⇢ ⇢ <a href='#encryption-overhead'>Encryption Overhead</a></li>
+<li>⇢ ⇢ <a href='#replication-bandwidth'>Replication Bandwidth</a></li>
+<li>⇢ ⇢ <a href='#nfs-tuning'>NFS Tuning</a></li>
+<li>⇢ ⇢ <a href='#zfs-tuning'>ZFS Tuning</a></li>
+<li>⇢ ⇢ <a href='#monitoring'>Monitoring</a></li>
+<li>⇢ ⇢ <a href='#cleanup-after-testing'>Cleanup After Testing</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+<li>⇢ ⇢ <a href='#what-we-achieved'>What We Achieved</a></li>
+<li>⇢ ⇢ <a href='#architecture-benefits'>Architecture Benefits</a></li>
+<li>⇢ ⇢ <a href='#lessons-learned'>Lessons Learned</a></li>
+<li>⇢ ⇢ <a href='#next-steps'>Next Steps</a></li>
+<li>⇢ ⇢ <a href='#references'>References</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In this blog post, we are going to extend the Beelinks with some additional storage.</span><br />
+<span>In the previous posts, we set up a FreeBSD-based Kubernetes cluster using k3s. While the base system works well, Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:</span><br />
 <br />
-<span>Some photos here, describe why there are 2 different models of SSD drives (replication etc)</span><br />
+<ul>
+<li>No data sharing: Pods on different nodes can&#39;t access the same data</li>
+<li>Pod mobility: If a pod moves to another node, it loses access to its data</li>
+<li>No redundancy: Hardware failure means data loss</li>
+</ul><br />
+<span>This post implements a robust storage solution using:</span><br />
+<br />
+<ul>
+<li>CARP: For high availability with automatic IP failover</li>
+<li>NFS over stunnel: For secure, encrypted network storage</li>
+<li>ZFS: For data integrity, encryption, and efficient snapshots</li>
+<li>zrepl: For continuous ZFS replication between nodes</li>
+</ul><br />
+<span>The end result is a highly available, encrypted storage system that survives node failures while providing shared storage to all Kubernetes pods.</span><br />
+<br />
+<h2 style='display: inline' id='additional-storage-capacity'>Additional storage capacity</h2><br />
+<br />
+<span>We add to each of the nodes (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) additional 1TB storage in form of an SSD drive. The Beelink mini PCs have enough space in the chassis for the additional space.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-6/drives.jpg'><img src='./f3s-kubernetes-with-freebsd-part-6/drives.jpg' /></a><br />
+<br />
+<span>Upgrading the storage was as easy as unscrewing, plugging the drive in, and then screwing it together again. So the procedure was pretty uneventful! We&#39;re using two different SSD models (Samsung 870 EVO and Crucial BX500) to avoid simultaneous failures from the same manufacturing batch.</span><br />
+<br />
+<span>We then create the <span class='inlinecode'>zdata</span> ZFS pool on all three nodes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
+paul@f0:~ % zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  <font color="#000000">12</font>.1M   928G        -         -     <font color="#000000">0</font>%     <font color="#000000">0</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+zroot   472G  <font color="#000000">29</font>.0G   443G        -         -     <font color="#000000">0</font>%     <font color="#000000">6</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+
+paul@f0:/ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass0,ada0)
+&lt;Samsung SSD <font color="#000000">870</font> EVO 1TB SVT03B6Q&gt;  at scbus1 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass1,ada1)
+paul@f0:/ %
+</pre>
+<br />
+<span>To verify that we have a different SSD on the second node (the third node has the same drive as the first):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:/ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass0,ada0)
+&lt;CT1000BX500SSD1 M6CR072&gt;          at scbus1 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass1,ada1)
+</pre>
 <br />
 <h2 style='display: inline' id='zfs-encryption-keys'>ZFS encryption keys</h2><br />
 <br />
+<span>ZFS native encryption requires encryption keys to unlock datasets. We need a secure method to store these keys that balances security with operational needs:</span><br />
+<br />
+<ul>
+<li>Security: Keys must not be stored on the same disks they encrypt</li>
+<li>Availability: Keys must be available at boot for automatic mounting</li>
+<li>Portability: Keys should be easily moved between systems for recovery</li>
+</ul><br />
+<span>Using USB flash drives as hardware key storage provides an elegant solution. The encrypted data is unreadable without physical access to the USB key, protecting against disk theft or improper disposal. In production environments, you might use enterprise key management systems, but for a home lab, USB keys offer good security with minimal complexity.</span><br />
+<br />
 <h3 style='display: inline' id='ufs-on-usb-keys'>UFS on USB keys</h3><br />
+<br />
+<span>We&#39;ll format the USB drives with UFS (Unix File System) rather than ZFS for simplicity. There is no need to use ZFS.</span><br />
+<br />
+<span>Let&#39;s see the USB keys:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-6/usbkeys1.jpg'><img alt='USB keys' title='USB keys' src='./f3s-kubernetes-with-freebsd-part-6/usbkeys1.jpg' /></a><br />
+<br />
+<span>To verify, that the USB key (flash disk) is there:</span><br />
 <br />
 <pre>
 paul@f0:/ % doas camcontrol devlist
@@ -72,13 +220,7 @@ paul@f0:/ % doas camcontrol devlist
 paul@f0:/ %
 </pre>
 <br />
-<pre>
-paul@f1:/ % doas camcontrol devlist
-&lt;512GB SSD D910R170&gt;               at scbus0 target 0 lun 0 (pass0,ada0)
-&lt;CT1000BX500SSD1 M6CR072&gt;          at scbus1 target 0 lun 0 (pass1,ada1)
-&lt;Generic Flash Disk 8.07&gt;          at scbus2 target 0 lun 0 (da0,pass2)
-paul@f1:/ %
-</pre>
+<span>Let&#39;s create the UFS file system and mount it (done on all 3 nodes <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>):</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -101,39 +243,47 @@ paul@f0:/ % df | grep keys
 /dev/da<font color="#000000">0</font>             <font color="#000000">14877596</font>       <font color="#000000">8</font>  <font color="#000000">13687384</font>     <font color="#000000">0</font>%    /keys
 </pre>
 <br />
+<a href='./f3s-kubernetes-with-freebsd-part-6/usbkeys2.jpg'><img alt='USB keys sticked in' title='USB keys sticked in' src='./f3s-kubernetes-with-freebsd-part-6/usbkeys2.jpg' /></a><br />
+<br />
 <h3 style='display: inline' id='generating-encryption-keys'>Generating encryption keys</h3><br />
 <br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32</span><br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32</span><br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32</span><br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:zdata.key 32</span><br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:zdata.key 32</span><br />
-<span>paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:zdata.key 32</span><br />
-<span>paul@f0:/keys % doas chown root *</span><br />
-<span>paul@f0:/keys % doas chmod 400 *</span><br />
+<span>The following keys will later be used to encrypt the ZFS file systems. They will be stored on all three nodes, serving as a backup in case one of the keys is lost. When we later replicate encrypted ZFS volumes from one node to another, the keys must also be available on the destination node.</span><br />
 <br />
-<span>paul@f0:/keys % ls -l</span><br />
-<span>total 20</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:zdata.key</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:zdata.key</span><br />
-<span>-r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key</span><br />
+<pre>
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas chown root *
+paul@f0:/keys % doas chmod 400 *
+
+paul@f0:/keys % ls -l
+total 20
+*r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:zdata.key
+*r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:zdata.key
+*r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key
+</pre>
 <br />
-<span>Copy those to all 3 nodes to /keys</span><br />
+<span>After creation, these are copied to the other two nodes, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, into the <span class='inlinecode'>/keys</span> partition (I won&#39;t provide the commands here; just create a tarball, copy it over, and extract it on the destination nodes).</span><br />
 <br />
-<h3 style='display: inline' id='configuring-zdata-zfs-pool-and-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool and encryption</h3><br />
+<h3 style='display: inline' id='configuring-zdata-zfs-pool-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool encryption</h3><br />
+<br />
+<span>Let&#39;s encrypt our <span class='inlinecode'>zdata</span> ZFS pool. Actually, we are not encrypting the whole pool, but everythig within the <span class='inlinecode'>zdata/enc</span> data set:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:/keys % doas zpool create -m /data zdata /dev/ada<font color="#000000">1</font>
-paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+<pre>paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:zdata.key zdata/enc
 paul@f0:/ % zfs list | grep zdata
 zdata                                          836K   899G    96K  /data
 zdata/enc                                      200K   899G   200K  /data/enc
+
 paul@f0:/keys % zfs get all zdata/enc | grep -E -i <font color="#808080">'(encryption|key)'</font>
 zdata/enc  encryption            aes-<font color="#000000">256</font>-gcm                               -
 zdata/enc  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key  <b><u><font color="#000000">local</font></u></b>
@@ -142,9 +292,11 @@ zdata/enc  encryptionroot        zdata/enc                                 -
 zdata/enc  keystatus             available                                 -
 </pre>
 <br />
+<span>All future data sets within <span class='inlinecode'>zdata/enc</span> will inherit the same encription key.</span><br />
+<br />
 <h3 style='display: inline' id='migrating-bhyve-vms-to-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to encrypted <span class='inlinecode'>bhyve</span> ZFS volume</h3><br />
 <br />
-<span>Run on all 3 nodes</span><br />
+<span>We set up Bhyve VMs in one of the previous blog posts. Their ZFS data sets rely on <span class='inlinecode'>zroot</span>, which is the default ZFS pool on the internal 512GB NVME drive. They aren&#39;t encrypted yet, so we encrypt the VM data sets as well now. To do so, we first shut down the VMs on all 3 nodes:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -156,24 +308,42 @@ Sending ACPI shutdown to rocky
 paul@f0:/keys % doas vm list
 NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE
 rocky    default    uefi       <font color="#000000">4</font>    14G     -    Yes [<font color="#000000">1</font>]  Stopped
-
-
-paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
+</pre>
+<br />
+<span>After this, we rename the unencrypted data set to <span class='inlinecode'>_old</span> and create a new encrypted data set and we also snapshot it as <span class='inlinecode'>@hamburger</span>!</span><br />
+<span>  </span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
 paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/mnt zroot/bhyve_old
 paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
 
-
-paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o \
+  keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
 paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve zroot/bhyve
 paul@f0:/keys % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
-
-paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | doas zfs recv zroot/bhyve/rocky
+</pre>
+<br />
+<span>Once done, we import the snapshot into the encrypted dataset and also copy some other metadata files from <span class='inlinecode'>vm-bhyve</span> back over.</span><br />
+<br />
+<pre>
+paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | \
+  doas zfs recv zroot/bhyve/rocky
 paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
 paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
-
-paul@f0:/keys % doas sysrc zfskeys_enable=YES
+</pre>
+<br />
+<span>We also have to make encrypted ZFS data sets mount automatically on boot:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:/keys % doas sysrc zfskeys_enable=YES
 zfskeys_enable:  -&gt; YES
 paul@f0:/keys % doas vm init
 paul@f0:/keys % doas reboot
@@ -186,18 +356,28 @@ NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
 rocky    default    uefi       <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2265</font>)
 </pre>
 <br />
+<span>As you can see, the VM is running. This means the encrypted <span class='inlinecode'>zroot/bhyve</span> was mounted successfully after the reboot! Now we can destroy the old, unencrypted, and now unused bhyve dataset:</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
-
-paul@f0:~ % zfs get all zroot/bhyve | grep -E <font color="#808080">'(encryption|key)'</font>
+</pre>
+<br />
+<span>To verify once again that <span class='inlinecode'>zroot/bhyve</span> and <span class='inlinecode'>zroot/bhyve/rocky</span> are now both encrypted, we run:</span><br />
+<span>  </span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % zfs get all zroot/bhyve | grep -E <font color="#808080">'(encryption|key)'</font>
 zroot/bhyve  encryption            aes-<font color="#000000">256</font>-gcm                               -
 zroot/bhyve  keylocation           file:///keys/f<font color="#000000">0</font>.lan.buetow.org:bhyve.key  <b><u><font color="#000000">local</font></u></b>
 zroot/bhyve  keyformat             raw                                       -
 zroot/bhyve  encryptionroot        zroot/bhyve                               -
 zroot/bhyve  keystatus             available                                 -
+
 paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E <font color="#808080">'(encryption|key)'</font>
 zroot/bhyve/rocky  encryption            aes-<font color="#000000">256</font>-gcm            -
 zroot/bhyve/rocky  keylocation           none                   default
@@ -206,62 +386,41 @@ zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
 zroot/bhyve/rocky  keystatus             available              -
 </pre>
 <br />
-<h2 style='display: inline' id='carp'>CARP</h2><br />
-<br />
-<span>adding to /etc/rc.conf on f0 and f1:</span><br />
-<span>ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"</span><br />
-<br />
-<span>adding to /etc/hosts:</span><br />
-<br />
-<span>192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org</span><br />
-<br />
-<span>Adding on f0 and f1:</span><br />
-<br />
-<span>paul@f0:~ % cat &lt;&lt;END | doas tee -a /etc/devd.conf</span><br />
-<span>notify 0 {</span><br />
-<span>        match "system"          "CARP";</span><br />
-<span>        match "subsystem"       "[0-9]+@[0-9a-z.]+";</span><br />
-<span>        match "type"            "(MASTER|BACKUP)";</span><br />
-<span>        action "/usr/local/bin/carpcontrol.sh $subsystem $type";</span><br />
-<span>};</span><br />
-<span>END</span><br />
-<br />
-<span>next, copied that script /usr/local/bin/carpcontrol.sh and adjusted the disk to storage</span><br />
-<br />
-<span>/boot/loader.conf add carp_load="YES"</span><br />
-<span>reboot or run doas kldload carp0 </span><br />
-<br />
-<br />
 <h2 style='display: inline' id='zfs-replication-with-zrepl'>ZFS Replication with zrepl</h2><br />
 <br />
-<span>In this section, we&#39;ll set up automatic ZFS replication from f0 to f1 using zrepl. This ensures our data is replicated across nodes for redundancy.</span><br />
+<span>Data replication is the cornerstone of high availability. While CARP handles IP failover (see later in this post), we need continuous data replication to ensure the backup server has current data when it becomes active. Without replication, failover would result in data loss or require shared storage (like iSCSI), which introduces a single point of failure.</span><br />
 <br />
-<h3 style='display: inline' id='why-zrepl-instead-of-hast'>Why zrepl instead of HAST?</h3><br />
+<h3 style='display: inline' id='understanding-replication-requirements'>Understanding Replication Requirements</h3><br />
 <br />
-<span>While HAST (Highly Available Storage) is FreeBSD&#39;s native solution for high-availability storage, I&#39;ve chosen zrepl for several important reasons:</span><br />
+<span>Our storage system has different replication needs:</span><br />
 <br />
-<span>1. **HAST can cause ZFS corruption**: HAST operates at the block level and doesn&#39;t understand ZFS&#39;s transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I&#39;ve experienced this firsthand - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.</span><br />
+<ul>
+<li>NFS data (<span class='inlinecode'>/data/nfs/k3svolumes</span>): Contains active Kubernetes persistent volumes. Needs frequent replication (every minute) to minimize data loss during failover.</li>
+<li>VM data (<span class='inlinecode'>/zroot/bhyve/fedora</span>): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).</li>
+</ul><br />
+<span>The replication frequency determines your Recovery Point Objective (RPO) - the maximum acceptable data loss. With 1-minute replication, you lose at most 1 minute of changes during an unplanned failover.</span><br />
 <br />
-<span>2. **ZFS-aware replication**: zrepl understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.</span><br />
+<h3 style='display: inline' id='why-zrepl-instead-of-hast'>Why <span class='inlinecode'>zrepl</span> instead of HAST?</h3><br />
 <br />
-<span>3. **Snapshot history**: With zrepl, you get multiple recovery points (every 5 minutes in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.</span><br />
+<span>While HAST (Highly Available Storage) is FreeBSD&#39;s native solution for high-availability storage, I&#39;ve chosen <span class='inlinecode'>zrepl</span> for several important reasons:</span><br />
 <br />
-<span>4. **Easier recovery**: When something goes wrong with zrepl, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary too.</span><br />
-<br />
-<span>5. **Network flexibility**: zrepl works over any TCP connection (in our case, WireGuard), while HAST requires dedicated network configuration.</span><br />
-<br />
-<span>The 5-minute replication window is perfectly acceptable for my personal use cases. This isn&#39;t a high-frequency trading system or a real-time database - it&#39;s storage for personal projects, development work, and home lab experiments. Losing at most 5 minutes of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication.</span><br />
+<ul>
+<li>HAST can cause ZFS corruption: HAST operates at the block level and doesn&#39;t understand ZFS&#39;s transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I&#39;ve experienced this firsthand - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.</li>
+<li>ZFS-aware replication: <span class='inlinecode'>zrepl</span> understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.</li>
+<li>Snapshot history: With zrepl, you get multiple recovery points (every minute for NFS data in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.</li>
+<li>Easier recovery: When something goes wrong with zrepl, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary too.</li>
+</ul><br />
+<span>The 1-minute replication window is perfectly acceptable for my personal use cases. This isn&#39;t a high-frequency trading system or a real-time database—it&#39;s storage for personal projects, development work, and home lab experiments. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Also, in the case of "1 minute of data loss," I would very likely still have the data available on the client side.</span><br />
 <br />
 <h3 style='display: inline' id='installing-zrepl'>Installing zrepl</h3><br />
 <br />
-<span>First, install zrepl on both hosts:</span><br />
+<span>First, install <span class='inlinecode'>zrepl</span> on both hosts involved (we will replicate data from <span class='inlinecode'>f0</span> to <span class='inlinecode'>f1</span>):</span><br />
 <br />
-<pre>
-# On f0
-paul@f0:~ % doas pkg install -y zrepl
-
-# On f1
-paul@f1:~ % doas pkg install -y zrepl
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install -y zrepl
 </pre>
 <br />
 <h3 style='display: inline' id='checking-zfs-pools'>Checking ZFS pools</h3><br />
@@ -293,7 +452,7 @@ NAME        USED  AVAIL  REFER  MOUNTPOINT
 zdata/enc   200K   899G   200K  /data/enc
 </pre>
 <br />
-<h3 style='display: inline' id='configuring-zrepl-with-wireguard-tunnel'>Configuring zrepl with WireGuard tunnel</h3><br />
+<h3 style='display: inline' id='configuring-zrepl-with-wireguard-tunnel'>Configuring <span class='inlinecode'>zrepl</span> with WireGuard tunnel</h3><br />
 <br />
 <span>Since we have a WireGuard tunnel between f0 and f1, we&#39;ll use TCP transport over the secure tunnel instead of SSH. First, check the WireGuard IP addresses:</span><br />
 <br />
@@ -309,7 +468,7 @@ paul@f1:~ % ifconfig wg0 | grep inet
 	inet <font color="#000000">192.168</font>.<font color="#000000">2.131</font> netmask <font color="#000000">0xffffff00</font>
 </pre>
 <br />
-<h3 style='display: inline' id='configuring-zrepl-on-f0-source'>Configuring zrepl on f0 (source)</h3><br />
+<h3 style='display: inline' id='configuring-zrepl-on-f0-source'>Configuring <span class='inlinecode'>zrepl</span> on f0 (source)</h3><br />
 <br />
 <span>First, create a dedicated dataset for NFS data that will be replicated:</span><br />
 <br />
@@ -321,7 +480,7 @@ http://www.gnu.org/software/src-highlite -->
 paul@f0:~ % doas zfs create zdata/enc/nfsdata
 </pre>
 <br />
-<span>Create the zrepl configuration on f0:</span><br />
+<span>Create the <span class='inlinecode'>zrepl</span> configuration on f0:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -335,20 +494,40 @@ global:
       format: human
 
 <b><u><font color="#000000">jobs</font></u></b>:
-  - name: f0_to_f1
+  - name: f0_to_f1_nfsdata
     <b><u><font color="#000000">type</font></u></b>: push
     connect:
       <b><u><font color="#000000">type</font></u></b>: tcp
       address: <font color="#808080">"192.168.2.131:8888"</font>
     filesystems:
       <font color="#808080">"zdata/enc/nfsdata"</font>: <b><u><font color="#000000">true</font></u></b>
+    send:
+      encrypted: <b><u><font color="#000000">true</font></u></b>
+    snapshotting:
+      <b><u><font color="#000000">type</font></u></b>: periodic
+      prefix: zrepl_
+      interval: 1m
+    pruning:
+      keep_sender:
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
+      keep_receiver:
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
+
+  - name: f0_to_f1_fedora
+    <b><u><font color="#000000">type</font></u></b>: push
+    connect:
+      <b><u><font color="#000000">type</font></u></b>: tcp
+      address: <font color="#808080">"192.168.2.131:8888"</font>
+    filesystems:
       <font color="#808080">"zroot/bhyve/fedora"</font>: <b><u><font color="#000000">true</font></u></b>
     send:
       encrypted: <b><u><font color="#000000">true</font></u></b>
     snapshotting:
       <b><u><font color="#000000">type</font></u></b>: periodic
       prefix: zrepl_
-      interval: 5m
+      interval: 10m
     pruning:
       keep_sender:
         - <b><u><font color="#000000">type</font></u></b>: last_n
@@ -359,11 +538,23 @@ global:
 EOF
 </pre>
 <br />
-<span>Note: We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</span><br />
+<span> We&#39;re using two separate replication jobs with different intervals:</span><br />
 <br />
-<h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring zrepl on f1 (sink)</h3><br />
+<ul>
+<li><span class='inlinecode'>f0_to_f1_nfsdata</span>: Replicates NFS data every minute for faster failover recovery</li>
+<li><span class='inlinecode'>f0_to_f1_fedora</span>: Replicates Fedora VM every 10 minutes (less critical for NFS operations)</li>
+</ul><br />
+<span>The Fedora is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases, hows zrepl&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
 <br />
-<span>Create the zrepl configuration on f1:</span><br />
+<span>Furthermore:</span><br />
+<br />
+<ul>
+<li>We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</li>
+<li>The <span class='inlinecode'>send: encrypted: false</span> option disables ZFS native encryption for the replication stream. Since we&#39;re using a WireGuard tunnel between f0 and f1, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.</li>
+</ul><br />
+<h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring <span class='inlinecode'>zrepl</span> on <span class='inlinecode'>f1</span> (sink)</h3><br />
+<br />
+<span>On <span class='inlinecode'>f1</span> we configure <span class='inlinecode'>zrepl</span> to receive the data as follows:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -380,7 +571,7 @@ global:
       format: human
 
 <b><u><font color="#000000">jobs</font></u></b>:
-  - name: <font color="#808080">"sink"</font>
+  - name: sink
     <b><u><font color="#000000">type</font></u></b>: sink
     serve:
       <b><u><font color="#000000">type</font></u></b>: tcp
@@ -394,9 +585,9 @@ global:
 EOF
 </pre>
 <br />
-<h3 style='display: inline' id='enabling-and-starting-zrepl-services'>Enabling and starting zrepl services</h3><br />
+<h3 style='display: inline' id='enabling-and-starting-zrepl-services'>Enabling and starting <span class='inlinecode'>zrepl</span> services</h3><br />
 <br />
-<span>Enable and start zrepl on both hosts:</span><br />
+<span>Enable and start <span class='inlinecode'>zrepl</span> on both hosts:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -405,36 +596,36 @@ http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="silver"># On f0</font></i>
 paul@f0:~ % doas sysrc zrepl_enable=YES
 zrepl_enable:  -&gt; YES
-paul@f0:~ % doas service zrepl start
+paul@f0:~ % doas service `zrepl` start
 Starting zrepl.
 
 <i><font color="silver"># On f1</font></i>
 paul@f1:~ % doas sysrc zrepl_enable=YES
 zrepl_enable:  -&gt; YES
-paul@f1:~ % doas service zrepl start
+paul@f1:~ % doas service `zrepl` start
 Starting zrepl.
 </pre>
 <br />
 <h3 style='display: inline' id='verifying-replication'>Verifying replication</h3><br />
 <br />
-<span>Check the replication status:</span><br />
+<span>To check the replication status, we run:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># On f0, check zrepl status (use raw mode for non-tty)</font></i>
-paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">2</font> <font color="#808080">"Replication"</font>
+<pre><i><font color="silver"># On f0, check `zrepl` status (use raw mode for non-tty)</font></i>
+paul@f0:~ % doas `zrepl` status --mode raw | grep -A<font color="#000000">2</font> <font color="#808080">"Replication"</font>
 <font color="#808080">"Replication"</font>:{<font color="#808080">"StartAt"</font>:<font color="#808080">"2025-07-01T22:31:48.712143123+03:00"</font>...
 
 <i><font color="silver"># Check if services are running</font></i>
-paul@f0:~ % doas service zrepl status
+paul@f0:~ % doas service `zrepl` status
 zrepl is running as pid <font color="#000000">2649</font>.
 
-paul@f1:~ % doas service zrepl status
+paul@f1:~ % doas service `zrepl` status
 zrepl is running as pid <font color="#000000">2574</font>.
 
-<i><font color="silver"># Check for zrepl snapshots on source</font></i>
+<i><font color="silver"># Check for `zrepl` snapshots on source</font></i>
 paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
 zdata/enc@zrepl_20250701_193148_000    0B      -   176K  -
 
@@ -459,13 +650,13 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="silver"># Real-time status</font></i>
-paul@f0:~ % doas zrepl status --mode interactive
+paul@f0:~ % doas `zrepl` status --mode interactive
 
 <i><font color="silver"># Check specific job details</font></i>
-paul@f0:~ % doas zrepl status --job f0_to_f1
+paul@f0:~ % doas `zrepl` status --job f0_to_f1
 </pre>
 <br />
-<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/fedora</span> on f0 will be automatically replicated to f1 every 5 minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
+<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/fedora</span> on f0 will be automatically replicated to f1 every 1 (or 10 in case of the Fedora VM) minutes, with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
 <br />
 <span>The replicated data appears on f1 under <span class='inlinecode'>zdata/sink/</span> with the source host and dataset hierarchy preserved:</span><br />
 <br />
@@ -473,69 +664,11 @@ paul@f0:~ % doas zrepl status --job f0_to_f1
 <li><span class='inlinecode'>zdata/enc/nfsdata</span> → <span class='inlinecode'>zdata/sink/f0/zdata/enc/nfsdata</span></li>
 <li><span class='inlinecode'>zroot/bhyve/fedora</span> → <span class='inlinecode'>zdata/sink/f0/zroot/bhyve/fedora</span></li>
 </ul><br />
-<span>This is by design - zrepl preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources. The replication uses the WireGuard tunnel for secure, encrypted transport between nodes.</span><br />
+<span>This is by design - <span class='inlinecode'>zrepl</span> preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources. The replication uses the WireGuard tunnel for secure, encrypted transport between nodes.</span><br />
 <br />
-<h3 style='display: inline' id='a-note-about-the-bhyve-vm-replication'>A note about the Bhyve VM replication</h3><br />
-<br />
-<span>While replicating a Bhyve VM (Fedora in this case) is slightly off-topic for the f3s series, I&#39;ve included it here as it demonstrates zrepl&#39;s flexibility. This is a development VM I use occasionally to log in remotely for certain development tasks. Having it replicated ensures I have a backup copy available on f1 if needed.</span><br />
-<br />
-<h3 style='display: inline' id='quick-status-check-commands'>Quick status check commands</h3><br />
-<br />
-<span>Here are the essential commands to monitor replication status:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># On the source node (f0) - check if replication is active</font></i>
-paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -E <font color="#808080">'(State|Last)'</font>
-State: <b><u><font color="#000000">done</font></u></b>
-LastError: 
-
-<i><font color="silver"># List all zrepl snapshots on source</font></i>
-paul@f0:~ % doas zfs list -t snapshot | grep zrepl
-zdata/enc/nfsdata@zrepl_20250701_202530_000             0B      -   200K  -
-zroot/bhyve/fedora@zrepl_20250701_202530_000            0B      -  <font color="#000000">2</font>.97G  -
-
-<i><font color="silver"># On the sink node (f1) - verify received datasets</font></i>
-paul@f1:~ % doas zfs list -r zdata/sink
-NAME                                   USED  AVAIL  REFER  MOUNTPOINT
-zdata/sink                             <font color="#000000">3</font>.0G   896G   200K  /data/sink
-zdata/sink/f<font color="#000000">0</font>                          <font color="#000000">3</font>.0G   896G   200K  none
-zdata/sink/f<font color="#000000">0</font>/zdata                    472K   896G   200K  none
-zdata/sink/f<font color="#000000">0</font>/zdata/enc                272K   896G   200K  none
-zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata        176K   896G   176K  none
-zdata/sink/f<font color="#000000">0</font>/zroot                    <font color="#000000">2</font>.9G   896G   200K  none
-zdata/sink/f<font color="#000000">0</font>/zroot/bhyve              <font color="#000000">2</font>.9G   896G   200K  none
-zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora       <font color="#000000">2</font>.9G   896G  <font color="#000000">2</font>.97G  none
-
-<i><font color="silver"># Check received snapshots on sink</font></i>
-paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | wc -l
-       <font color="#000000">3</font>
-
-<i><font color="silver"># Monitor replication progress in real-time (on source)</font></i>
-paul@f0:~ % doas zrepl status --mode interactive
-
-<i><font color="silver"># Check last replication time (on source)</font></i>
-paul@f0:~ % doas zrepl status --job f0_to_f1 | grep -A<font color="#000000">1</font> <font color="#808080">"Replication"</font>
-Replication:
-  Status: Idle (last run: <font color="#000000">2025</font>-<font color="#000000">07</font>-01T22:<font color="#000000">41</font>:<font color="#000000">48</font>)
-
-<i><font color="silver"># View zrepl logs for troubleshooting</font></i>
-paul@f0:~ % doas tail -<font color="#000000">20</font> /var/log/zrepl.log | grep -E <font color="#808080">'(error|warn|replication)'</font>
-</pre>
-<br />
-<span>These commands provide a quick way to verify that:</span><br />
-<br />
-<ul>
-<li>Replication jobs are running without errors</li>
-<li>Snapshots are being created on the source</li>
-<li>Data is being received on the sink</li>
-<li>The replication schedule is being followed</li>
-</ul><br />
 <h3 style='display: inline' id='verifying-replication-after-reboot'>Verifying replication after reboot</h3><br />
 <br />
-<span>The zrepl service is configured to start automatically at boot. After rebooting both hosts:</span><br />
+<span>The <span class='inlinecode'>zrepl</span> service is configured to start automatically at boot. After rebooting both hosts:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -544,14 +677,14 @@ http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % uptime
 <font color="#000000">11</font>:17PM  up <font color="#000000">1</font> min, <font color="#000000">0</font> users, load averages: <font color="#000000">0.16</font>, <font color="#000000">0.06</font>, <font color="#000000">0.02</font>
 
-paul@f0:~ % doas service zrepl status
+paul@f0:~ % doas service `zrepl` status
 zrepl is running as pid <font color="#000000">2366</font>.
 
-paul@f1:~ % doas service zrepl status
+paul@f1:~ % doas service `zrepl` status
 zrepl is running as pid <font color="#000000">2309</font>.
 
 <i><font color="silver"># Check that new snapshots are being created and replicated</font></i>
-paul@f0:~ % doas zfs list -t snapshot | grep zrepl | tail -<font color="#000000">2</font>
+paul@f0:~ % doas zfs list -t snapshot | grep `zrepl` | tail -<font color="#000000">2</font>
 zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
 zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  <font color="#000000">2</font>.97G  -
 
@@ -562,9 +695,25 @@ zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora@zrepl_20250701_202
 <br />
 <span>The timestamps confirm that replication resumed automatically after the reboot, ensuring continuous data protection.</span><br />
 <br />
-<h3 style='display: inline' id='important-note-about-failover-limitations'>Important note about failover limitations</h3><br />
+<h3 style='display: inline' id='understanding-failover-limitations-and-design-decisions'>Understanding Failover Limitations and Design Decisions</h3><br />
 <br />
-<span>The current zrepl setup provides **backup/disaster recovery** but not automatic failover. The replicated datasets on f1 are not mounted by default (<span class='inlinecode'>mountpoint=none</span>). In case f0 fails:</span><br />
+<br />
+<br />
+<span>#### Why Manual Failover?</span><br />
+<br />
+<span>This storage system intentionally uses manual failover rather than automatic failover. This might seem counterintuitive for a "high availability" system, but it&#39;s a deliberate design choice based on real-world experience:</span><br />
+<br />
+<span>1. Split-brain prevention: Automatic failover can cause both nodes to become active simultaneously if network communication fails. This leads to data divergence that&#39;s extremely difficult to resolve.</span><br />
+<br />
+<span>2. False positive protection: Temporary network issues or high load can trigger unwanted failovers. Manual intervention ensures failovers only occur when truly necessary.</span><br />
+<br />
+<span>3. Data integrity over availability: For storage systems, data consistency is paramount. A few minutes of downtime is preferable to data corruption or loss.</span><br />
+<br />
+<span>4. Simplified recovery: With manual failover, you always know which dataset is authoritative, making recovery straightforward.</span><br />
+<br />
+<span>#### Current Failover Process</span><br />
+<br />
+<span>The replicated datasets on f1 are intentionally not mounted (<span class='inlinecode'>mountpoint=none</span>). In case f0 fails:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -575,7 +724,7 @@ paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/
 paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 </pre>
 <br />
-<span>However, this creates a **split-brain problem**: when f0 comes back online, both systems would have diverged data. Resolving this requires careful manual intervention to:</span><br />
+<span>However, this creates a split-brain problem: when f0 comes back online, both systems would have diverged data. Resolving this requires careful manual intervention to:</span><br />
 <br />
 <span>1. Stop the original replication</span><br />
 <span>2. Sync changes from f1 back to f0</span><br />
@@ -584,13 +733,13 @@ paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/
 <span>For true high-availability NFS, you might consider:</span><br />
 <br />
 <ul>
-<li>**Shared storage** (like iSCSI) with proper clustering</li>
-<li>**GlusterFS** or similar distributed filesystems</li>
-<li>**Manual failover with ZFS replication** (as we have here)</li>
+<li>Shared storage (like iSCSI) with proper clustering</li>
+<li>GlusterFS or similar distributed filesystems</li>
+<li>Manual failover with ZFS replication (as we have here)</li>
 </ul><br />
 <span>Note: While HAST+CARP is often suggested for HA storage, it can cause filesystem corruption in practice, especially with ZFS. The block-level replication of HAST doesn&#39;t understand ZFS&#39;s transactional model, leading to inconsistent states during failover. </span><br />
 <br />
-<span>The current zrepl setup, despite requiring manual intervention, is actually safer because:</span><br />
+<span>The current <span class='inlinecode'>zrepl</span> setup, despite requiring manual intervention, is actually safer because:</span><br />
 <br />
 <ul>
 <li>ZFS snapshots are always consistent</li>
@@ -647,7 +796,7 @@ zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata    896G    204K    
 <br />
 <span>Note: The dataset is mounted at the same path (<span class='inlinecode'>/data/nfs</span>) on both hosts to simplify failover procedures. The dataset on f1 is set to <span class='inlinecode'>readonly=on</span> to prevent accidental modifications that would break replication.</span><br />
 <br />
-<span>**CRITICAL WARNING**: Do NOT write to <span class='inlinecode'>/data/nfs/</span> on f1! Any modifications will break the replication. If you accidentally write to it, you&#39;ll see this error:</span><br />
+<span>CRITICAL WARNING: Do NOT write to <span class='inlinecode'>/data/nfs/</span> on f1! Any modifications will break the replication. If you accidentally write to it, you&#39;ll see this error:</span><br />
 <br />
 <pre>
 cannot receive incremental stream: destination zdata/sink/f0/zdata/enc/nfsdata has been modified
@@ -664,14 +813,6 @@ paul@f1:~ % doas zfs rollback zdata/sink/f<font color="#000000">0</font>/zdata/e
 
 <i><font color="silver"># Option 2: Make it read-only to prevent accidents</font></i>
 paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
-</pre>
-<br />
-<span>To ensure the encryption key is loaded automatically after reboot on f1:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>paul@f1:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/sink/f0/zdata/enc/nfsdata"</font>
 </pre>
 <br />
 <h3 style='display: inline' id='failback-scenario-syncing-changes-from-f1-back-to-f0'>Failback scenario: Syncing changes from f1 back to f0</h3><br />
@@ -707,12 +848,12 @@ paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@failback
 paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 paul@f1:~ % doas zfs destroy zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@failback
 
-<i><font color="silver"># Stop zrepl services first - CRITICAL!</font></i>
-paul@f0:~ % doas service zrepl stop
-paul@f1:~ % doas service zrepl stop
+<i><font color="silver"># Stop `zrepl` services first - CRITICAL!</font></i>
+paul@f0:~ % doas service `zrepl` stop
+paul@f1:~ % doas service `zrepl` stop
 
-<i><font color="silver"># Clean up any zrepl snapshots on f0</font></i>
-paul@f0:~ % doas zfs list -t snapshot -r zdata/enc/nfsdata | grep zrepl | \
+<i><font color="silver"># Clean up any `zrepl` snapshots on f0</font></i>
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc/nfsdata | grep `zrepl` | \
     awk <font color="#808080">'{print $1}'</font> | xargs -I {} doas zfs destroy {}
 
 <i><font color="silver"># Clean up and destroy the entire replicated structure on f1</font></i>
@@ -748,20 +889,20 @@ paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.la
     zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 
-<i><font color="silver"># Now restart zrepl services</font></i>
-paul@f0:~ % doas service zrepl start
-paul@f1:~ % doas service zrepl start
+<i><font color="silver"># Now restart `zrepl` services</font></i>
+paul@f0:~ % doas service `zrepl` start
+paul@f1:~ % doas service `zrepl` start
 
 <i><font color="silver"># Verify replication is working</font></i>
-paul@f0:~ % doas zrepl status --job f0_to_f1
+paul@f0:~ % doas `zrepl` status --job f0_to_f1
 </pre>
 <br />
-<span>**Important notes about failback**:</span><br />
+<span>Important notes about failback:</span><br />
 <br />
 <ul>
 <li>The <span class='inlinecode'>-F</span> flag forces a rollback on f0, destroying any local changes</li>
 <li>Replication often won&#39;t resume automatically after a forced receive</li>
-<li>You must clean up old zrepl snapshots on both sides</li>
+<li>You must clean up old <span class='inlinecode'>zrepl</span> snapshots on both sides</li>
 <li>Creating a manual snapshot helps re-establish the replication relationship</li>
 <li>Always verify replication status after the failback procedure</li>
 <li>The first replication after failback will be a full send of the current state</li>
@@ -775,7 +916,7 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="silver"># Simulate failure: Stop replication on f0</font></i>
-paul@f0:~ % doas service zrepl stop
+paul@f0:~ % doas service `zrepl` stop
 
 <i><font color="silver"># On f1: Take over by making the dataset writable</font></i>
 paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=off zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
@@ -806,17 +947,17 @@ paul@f0:~ % ls -la /data/nfs/
 total <font color="#000000">18</font>
 drwxr-xr-x  <font color="#000000">2</font> root wheel  <font color="#000000">4</font> Jul  <font color="#000000">2</font> <font color="#000000">00</font>:<font color="#000000">01</font> .
 drwxr-xr-x  <font color="#000000">4</font> root wheel  <font color="#000000">4</font> Jul  <font color="#000000">1</font> <font color="#000000">23</font>:<font color="#000000">41</font> ..
--rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">35</font> Jul  <font color="#000000">2</font> <font color="#000000">00</font>:<font color="#000000">01</font> failover-data.txt
--rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">12</font> Jul  <font color="#000000">1</font> <font color="#000000">23</font>:<font color="#000000">34</font> hello.txt
+*rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">35</font> Jul  <font color="#000000">2</font> <font color="#000000">00</font>:<font color="#000000">01</font> failover-data.txt
+*rw-r--r--  <font color="#000000">1</font> root wheel <font color="#000000">12</font> Jul  <font color="#000000">1</font> <font color="#000000">23</font>:<font color="#000000">34</font> hello.txt
 </pre>
 <br />
 <span>Success! The failover data from f1 is now on f0. To resume normal replication, you would need to:</span><br />
 <br />
 <span>1. Clean up old snapshots on both sides</span><br />
 <span>2. Create a new manual baseline snapshot</span><br />
-<span>3. Restart zrepl services</span><br />
+<span>3. Restart <span class='inlinecode'>zrepl</span> services</span><br />
 <br />
-<span>**Key learnings from the test**:</span><br />
+<span>Key learnings from the test:</span><br />
 <br />
 <ul>
 <li>The <span class='inlinecode'>-w</span> flag is essential for encrypted datasets</li>
@@ -824,10 +965,2044 @@ drwxr-xr-x  <font color="#000000">4</font> root wheel  <font color="#000000">4</
 <li>The encryption key must be loaded after receiving the dataset</li>
 <li>Always verify data integrity before resuming normal operations</li>
 </ul><br />
+<h3 style='display: inline' id='troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</h3><br />
+<br />
+<span>If you write files to <span class='inlinecode'>/data/nfs/</span> on f0 but they don&#39;t appear on f1, check:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># 1. Is the dataset actually mounted on f0?</font></i>
+paul@f0:~ % doas zfs list -o name,mountpoint,mounted | grep nfsdata
+zdata/enc/nfsdata                             /data/nfs             yes
+
+<i><font color="silver"># If it shows "no", the dataset isn't mounted!</font></i>
+<i><font color="silver"># This means files are being written to the root filesystem, not ZFS</font></i>
+
+<i><font color="silver"># 2. Check if encryption key is loaded</font></i>
+paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
+NAME               PROPERTY   VALUE        SOURCE
+zdata/enc/nfsdata  keystatus  available    -
+
+<i><font color="silver"># If "unavailable", load the key:</font></i>
+paul@f0:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs mount zdata/enc/nfsdata
+
+<i><font color="silver"># 3. Verify files are in the snapshot (not just the directory)</font></i>
+paul@f0:~ % ls -la /data/nfs/.zfs/snapshot/zrepl_*/
+</pre>
+<br />
+<span>This issue commonly occurs after reboot if the encryption keys aren&#39;t configured to load automatically.</span><br />
+<br />
+<h3 style='display: inline' id='configuring-automatic-key-loading-on-boot'>Configuring automatic key loading on boot</h3><br />
+<br />
+<span>To ensure all encrypted datasets are mounted automatically after reboot:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 - configure all encrypted datasets</font></i>
+paul@f0:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: NO -&gt; YES
+paul@f0:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/enc zdata/enc/nfsdata zroot/bhyve"</font>
+zfskeys_datasets:  -&gt; zdata/enc zdata/enc/nfsdata zroot/bhyve
+
+<i><font color="silver"># Set correct key locations for all datasets</font></i>
+paul@f0:~ % doas zfs <b><u><font color="#000000">set</font></u></b> keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
+
+<i><font color="silver"># On f1 - include the replicated dataset</font></i>
+paul@f1:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: NO -&gt; YES
+paul@f1:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"</font>
+zfskeys_datasets:  -&gt; zdata/enc zroot/bhyve zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Set key location for replicated dataset</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+</pre>
+<br />
+<span>Important notes:</span><br />
+<ul>
+<li>Each encryption root needs its own key load entry - child datasets don&#39;t inherit key loading</li>
+<li>The replicated dataset on f1 uses the same encryption key as the source on f0</li>
+<li>Always verify datasets are mounted after reboot with <span class='inlinecode'>zfs list -o name,mounted</span></li>
+<li>Critical: Always ensure the replicated dataset on f1 remains read-only with <span class='inlinecode'>doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata</span></li>
+</ul><br />
+<h3 style='display: inline' id='troubleshooting-replication-broken-due-to-modified-destination'>Troubleshooting: Replication broken due to modified destination</h3><br />
+<br />
+<span>If you see the error "cannot receive incremental stream: destination has been modified since most recent snapshot", it means the read-only flag was accidentally removed on f1. To fix without a full resync:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Stop `zrepl` on both servers</font></i>
+paul@f0:~ % doas service `zrepl` stop
+paul@f1:~ % doas service `zrepl` stop
+
+<i><font color="silver"># Find the last common snapshot</font></i>
+paul@f0:~ % doas zfs list -t snapshot -o name,creation zdata/enc/nfsdata
+paul@f1:~ % doas zfs list -t snapshot -o name,creation zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Rollback f1 to the last common snapshot (example: @zrepl_20250705_000007_000)</font></i>
+paul@f1:~ % doas zfs rollback -r zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@zrepl_20250705_000007_000
+
+<i><font color="silver"># Ensure the dataset is read-only</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Restart zrepl</font></i>
+paul@f0:~ % doas service `zrepl` start
+paul@f1:~ % doas service `zrepl` start
+</pre>
+<br />
+<h3 style='display: inline' id='forcing-a-full-resync'>Forcing a full resync</h3><br />
+<br />
+<span>If replication gets out of sync and incremental updates fail:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Stop services</font></i>
+paul@f0:~ % doas service `zrepl` stop
+paul@f1:~ % doas service `zrepl` stop
+
+<i><font color="silver"># On f1: Release holds and destroy the dataset</font></i>
+paul@f1:~ % doas zfs holds -r zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata | \
+    grep -v NAME | awk <font color="#808080">'{print $2, $1}'</font> | \
+    <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> tag snap; <b><u><font color="#000000">do</font></u></b> doas zfs release <font color="#808080">"$tag"</font> <font color="#808080">"$snap"</font>; <b><u><font color="#000000">done</font></u></b>
+paul@f1:~ % doas zfs destroy -rf zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># On f0: Create fresh snapshot</font></i>
+paul@f0:~ % doas zfs snapshot zdata/enc/nfsdata@resync
+
+<i><font color="silver"># Send full dataset</font></i>
+paul@f0:~ % doas zfs send -Rw zdata/enc/nfsdata@resync | \
+    ssh f1 <font color="#808080">"doas zfs recv zdata/sink/f0/zdata/enc/nfsdata"</font>
+
+<i><font color="silver"># Configure f1</font></i>
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key \
+    zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Clean up and restart</font></i>
+paul@f0:~ % doas zfs destroy zdata/enc/nfsdata@resync
+paul@f1:~ % doas zfs destroy zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@resync
+paul@f0:~ % doas service `zrepl` start
+paul@f1:~ % doas service `zrepl` start
+</pre>
+<br />
 <span>ZFS auto scrubbing....~?</span><br />
 <br />
 <span>Backup of the keys on the key locations (all keys on all 3 USB keys)</span><br />
 <br />
+<h2 style='display: inline' id='carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</h2><br />
+<br />
+<span>High availability is crucial for storage systems. If the storage server goes down, all pods lose access to their persistent data. CARP provides a solution by creating a virtual IP address that automatically moves between servers during failures.</span><br />
+<br />
+<h3 style='display: inline' id='how-carp-works'>How CARP Works</h3><br />
+<br />
+<span>CARP allows two hosts to share a virtual IP address (VIP). The hosts communicate using multicast to elect a MASTER, while the other remain as BACKUP. When the MASTER fails, a BACKUP automatically promotes itself, and the VIP moves to the new MASTER. This happens within seconds.</span><br />
+<br />
+<span>Key benefits for our storage system:</span><br />
+<br />
+<ul>
+<li>Automatic failover: No manual intervention is required for basic failures, although there are a few limitations. The backup will only have read-only access to the available data, as we will learn later. However, we could manually promote it to read-write if needed.</li>
+<li>Transparent to clients: Pods continue using the same IP address</li>
+<li>Works with stunnel: Behind the VIP there will be a <span class='inlinecode'>stunnel</span> process running, which ensures encrypted connections follow the active server</li>
+<li>Simple configuration</li>
+</ul><br />
+<h3 style='display: inline' id='configuring-carp'>Configuring CARP</h3><br />
+<br />
+<span>First, add the CARP configuration to <span class='inlinecode'>/etc/rc.conf</span> on both f0 and f1:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># The virtual IP 192.168.1.138 will float between f0 and f1</font></i>
+ifconfig_re0_alias0=<font color="#808080">"inet vhid 1 pass testpass alias 192.168.1.138/32"</font>
+</pre>
+<br />
+<span>Whereas:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>vhid 1</span>: Virtual Host ID - must match on all CARP members</li>
+<li><span class='inlinecode'>pass testpass</span>: Password for CARP authentication (if you follow this, use a different password!)</li>
+<li><span class='inlinecode'>alias 192.168.1.138/32</span>: The virtual IP address with a /32 netmask</li>
+</ul><br />
+<span>Next, update <span class='inlinecode'>/etc/hosts</span> on all nodes (n0, n1, n2, r0, r1, r2) to resolve the VIP hostname:</span><br />
+<br />
+<pre>
+192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+</pre>
+<br />
+<span>This allows clients to connect to <span class='inlinecode'>f3s-storage-ha</span> regardless of which physical server is currently the MASTER.</span><br />
+<br />
+<h3 style='display: inline' id='carp-state-change-notifications'>CARP State Change Notifications</h3><br />
+<br />
+<span>To properly manage services during failover, we need to detect CARP state changes. FreeBSD&#39;s devd system can notify us when CARP transitions between MASTER and BACKUP states.</span><br />
+<br />
+<span>Add this to <span class='inlinecode'>/etc/devd.conf</span> on both f0 and f1:</span><br />
+<br />
+<span>paul@f0:~ % cat &lt;&lt;END | doas tee -a /etc/devd.conf</span><br />
+<span>notify 0 {</span><br />
+<span>        match "system"          "CARP";</span><br />
+<span>        match "subsystem"       "[0-9]+@[0-9a-z.]+";</span><br />
+<span>        match "type"            "(MASTER|BACKUP)";</span><br />
+<span>        action "/usr/local/bin/carpcontrol.sh $subsystem $type";</span><br />
+<span>};</span><br />
+<span>END</span><br />
+<br />
+<span>Next, create the CARP control script that will restart stunnel when CARP state changes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh &lt;&lt;<font color="#808080">'EOF'</font>
+<i><font color="silver">#!/bin/sh</font></i>
+<i><font color="silver"># CARP state change control script</font></i>
+
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
+    MASTER)
+        logger <font color="#808080">"CARP state changed to MASTER, starting services"</font>
+        service rpcbind start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service mountd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsuserd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service stunnel restart &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        logger <font color="#808080">"CARP MASTER: NFS and stunnel services started"</font>
+        ;;
+    BACKUP)
+        logger <font color="#808080">"CARP state changed to BACKUP, stopping services"</font>
+        service stunnel stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service mountd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsuserd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        logger <font color="#808080">"CARP BACKUP: NFS and stunnel services stopped"</font>
+        ;;
+    *)
+        logger <font color="#808080">"CARP state changed to $1 (unhandled)"</font>
+        ;;
+<b><u><font color="#000000">esac</font></u></b>
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+
+<i><font color="silver"># Copy the same script to f1</font></i>
+paul@f0:~ % scp /usr/local/bin/carpcontrol.sh f1:/tmp/
+paul@f1:~ % doas mv /tmp/carpcontrol.sh /usr/local/bin/
+paul@f1:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+</pre>
+<br />
+<span>Note that we perform several tasks in the <span class='inlinecode'>carpcontrol.sh</span> script, which starts and/or stops all the services required for an NFS server running over an encrypted tunnel (via <span class='inlinecode'>stunnel</span>). We will set up all those services later in this blog post!</span><br />
+<br />
+<span>To enable CARP in /boot/loader.conf, run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % echo <font color="#808080">'carp_load="YES"'</font> | doas tee -a /boot/loader.conf
+carp_load=<font color="#808080">"YES"</font>
+paul@f1:~ % echo <font color="#808080">'carp_load="YES"'</font> | doas tee -a /boot/loader.conf  
+carp_load=<font color="#808080">"YES"</font>
+</pre>
+<br />
+<span>Then reboot both hosts or run <span class='inlinecode'>doas kldload carp</span> to load the module immediately. </span><br />
+<br />
+<h2 style='display: inline' id='future-storage-explorations'>Future Storage Explorations</h2><br />
+<br />
+<span>While <span class='inlinecode'>zrepl</span> provides excellent snapshot-based replication for disaster recovery, there are other storage technologies worth exploring for the f3s project:</span><br />
+<br />
+<h3 style='display: inline' id='minio-for-s3-compatible-object-storage'>MinIO for S3-Compatible Object Storage</h3><br />
+<br />
+<span>MinIO is a high-performance, S3-compatible object storage system that could complement our ZFS-based storage. Some potential use cases:</span><br />
+<br />
+<ul>
+<li>S3 API compatibility: Many modern applications expect S3-style object storage APIs. MinIO could provide this interface while using our ZFS storage as the backend.</li>
+<li>Multi-site replication: MinIO supports active-active replication across multiple sites, which could work well with our f0/f1/f2 node setup.</li>
+<li>Kubernetes native: MinIO has excellent Kubernetes integration with operators and CSI drivers, making it ideal for the f3s k3s environment.</li>
+</ul><br />
+<h3 style='display: inline' id='moosefs-for-distributed-high-availability'>MooseFS for Distributed High Availability</h3><br />
+<br />
+<span>MooseFS is a fault-tolerant, distributed file system that could provide true high-availability storage:</span><br />
+<br />
+<ul>
+<li>True HA: Unlike our current setup which requires manual failover, MooseFS provides automatic failover with no single point of failure.</li>
+<li>POSIX compliance: Applications can use MooseFS like any regular filesystem, no code changes needed.</li>
+<li>Flexible redundancy: Configure different replication levels per directory or file, optimizing storage efficiency.</li>
+<li>FreeBSD support: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.</li>
+</ul><br />
+<span>Both technologies could potentially run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS).</span><br />
+<br />
+<h2 style='display: inline' id='nfs-server-configuration'>NFS Server Configuration</h2><br />
+<br />
+<span>With ZFS replication in place, we can now set up NFS servers on both f0 and f1 to export the replicated data. Since native NFS over TLS (RFC 9289) has compatibility issues between Linux and FreeBSD, we&#39;ll use stunnel to provide encryption.</span><br />
+<br />
+<h3 style='display: inline' id='setting-up-nfs-on-f0-primary'>Setting up NFS on f0 (Primary)</h3><br />
+<br />
+<span>First, enable the NFS services in rc.conf:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: YES -&gt; YES
+paul@f0:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: YES -&gt; YES
+paul@f0:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: YES -&gt; YES
+paul@f0:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -&gt; YES
+paul@f0:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -&gt; YES
+</pre>
+<br />
+<span>Create a dedicated directory for Kubernetes volumes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># First ensure the dataset is mounted</font></i>
+paul@f0:~ % doas zfs get mounted zdata/enc/nfsdata
+NAME               PROPERTY  VALUE    SOURCE
+zdata/enc/nfsdata  mounted   yes      -
+
+<i><font color="silver"># Create the k3svolumes directory</font></i>
+paul@f0:~ % doas mkdir -p /data/nfs/k3svolumes
+paul@f0:~ % doas chmod <font color="#000000">755</font> /data/nfs/k3svolumes
+
+<i><font color="silver"># This directory will be replicated to f1 automatically</font></i>
+</pre>
+<br />
+<span>Create the /etc/exports file. Since we&#39;re using stunnel for encryption, ALL clients must connect through stunnel, which appears as localhost (127.0.0.1) to the NFS server:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas tee /etc/exports &lt;&lt;<font color="#808080">'EOF'</font>
+V4: /data/nfs -sec=sys
+/data/nfs -alldirs -maproot=root -network <font color="#000000">127.0</font>.<font color="#000000">0.1</font> -mask <font color="#000000">255.255</font>.<font color="#000000">255.255</font>
+EOF
+</pre>
+<br />
+<span>The exports configuration:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>V4: /data/nfs -sec=sys</span>: Sets the NFSv4 root directory to /data/nfs</li>
+<li><span class='inlinecode'>/data/nfs -alldirs</span>: Allows mounting any subdirectory under /data/nfs</li>
+<li><span class='inlinecode'>-maproot=root</span>: Maps root user from client to root on server (needed for Kubernetes and ownership changes)</li>
+<li><span class='inlinecode'>-network 127.0.0.1</span>: Only accepts connections from localhost (stunnel)</li>
+</ul><br />
+<span>Note: </span><br />
+<ul>
+<li>ALL clients (r0, r1, r2, laptop) must connect through stunnel for encryption</li>
+<li>Stunnel proxies connections through localhost, so only 127.0.0.1 needs access</li>
+<li>With NFSv4, clients mount using relative paths (e.g., <span class='inlinecode'>/k3svolumes</span> instead of <span class='inlinecode'>/data/nfs/k3svolumes</span>)</li>
+</ul><br />
+<span>Start the NFS services:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f0:~ % doas service mountd start
+Starting mountd.
+paul@f0:~ % doas service nfsd start
+Starting nfsd.
+paul@f0:~ % doas service nfsuserd start
+Starting nfsuserd.
+</pre>
+<br />
+<h3 style='display: inline' id='configuring-stunnel-for-nfs-encryption-with-carp-failover'>Configuring Stunnel for NFS Encryption with CARP Failover</h3><br />
+<br />
+<span>#### Why Not Native NFS over TLS?</span><br />
+<br />
+<span>FreeBSD 13+ supports native NFS over TLS (RFC 9289), which would be the ideal solution. However, there are significant compatibility challenges:</span><br />
+<br />
+<ul>
+<li>Linux client support is incomplete: Most Linux distributions don&#39;t fully support NFS over TLS yet</li>
+<li>Certificate management differs: FreeBSD and Linux handle TLS certificates differently for NFS</li>
+<li>Kernel module requirements: Requires specific kernel modules that may not be available</li>
+</ul><br />
+<span>Stunnel provides a more compatible solution that works reliably across all operating systems while offering equivalent security.</span><br />
+<br />
+<span>#### Stunnel Architecture with CARP</span><br />
+<br />
+<span>Stunnel integrates seamlessly with our CARP setup:</span><br />
+<br />
+<pre>
+                    CARP VIP (192.168.1.138)
+                           |
+    f0 (MASTER) ←---------→|←---------→ f1 (BACKUP)
+    stunnel:2323           |           stunnel:stopped
+    nfsd:2049              |           nfsd:stopped
+                           |
+                    Clients connect here
+</pre>
+<br />
+<span>The key insight is that stunnel binds to the CARP VIP. When CARP fails over, the VIP moves to the new MASTER, and stunnel starts there automatically. Clients maintain their connection to the same IP throughout.</span><br />
+<br />
+<span>#### Creating a Certificate Authority for Client Authentication</span><br />
+<br />
+<span>First, create a CA to sign both server and client certificates:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 - Create CA</font></i>
+paul@f0:~ % doas mkdir -p /usr/local/etc/stunnel/ca
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas openssl genrsa -out ca-key.pem <font color="#000000">4096</font>
+paul@f0:~ % doas openssl req -new -x<font color="#000000">509</font> -days <font color="#000000">3650</font> -key ca-key.pem -out ca-cert.pem \
+  -subj <font color="#808080">'/C=US/ST=State/L=City/O=F3S Storage/CN=F3S Stunnel CA'</font>
+
+<i><font color="silver"># Create server certificate</font></i>
+paul@f0:~ % cd /usr/local/etc/stunnel
+paul@f0:~ % doas openssl genrsa -out server-key.pem <font color="#000000">4096</font>
+paul@f0:~ % doas openssl req -new -key server-key.pem -out server.csr \
+  -subj <font color="#808080">'/C=US/ST=State/L=City/O=F3S Storage/CN=f3s-storage-ha.lan'</font>
+paul@f0:~ % doas openssl x509 -req -days <font color="#000000">3650</font> -in server.csr -CA ca/ca-cert.pem \
+  -CAkey ca/ca-key.pem -CAcreateserial -out server-cert.pem
+
+<i><font color="silver"># Create client certificates for authorized clients</font></i>
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas sh -c <font color="#808080">'for client in r0 r1 r2 earth; do </font>
+<font color="#808080">  openssl genrsa -out ${client}-key.pem 4096</font>
+<font color="#808080">  openssl req -new -key ${client}-key.pem -out ${client}.csr \</font>
+<font color="#808080">    -subj "/C=US/ST=State/L=City/O=F3S Storage/CN=${client}.lan.buetow.org"</font>
+<font color="#808080">  openssl x509 -req -days 3650 -in ${client}.csr -CA ca-cert.pem \</font>
+<font color="#808080">    -CAkey ca-key.pem -CAcreateserial -out ${client}-cert.pem</font>
+<font color="#808080">done'</font>
+</pre>
+<br />
+<span>#### Install and Configure Stunnel on f0</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Install stunnel</font></i>
+paul@f0:~ % doas pkg install -y stunnel
+
+<i><font color="silver"># Configure stunnel server with client certificate authentication</font></i>
+paul@f0:~ % doas tee /usr/local/etc/stunnel/stunnel.conf &lt;&lt;<font color="#808080">'EOF'</font>
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>
+connect = <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2049</font>
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = <font color="#000000">2</font>
+requireCert = yes
+EOF
+
+<i><font color="silver"># Enable and start stunnel</font></i>
+paul@f0:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -&gt; YES
+paul@f0:~ % doas service stunnel start
+Starting stunnel.
+
+<i><font color="silver"># Restart stunnel to apply the CARP VIP binding</font></i>
+paul@f0:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+</pre>
+<br />
+<span>The configuration includes:</span><br />
+<ul>
+<li><span class='inlinecode'>verify = 2</span>: Verify client certificate and fail if not provided</li>
+<li><span class='inlinecode'>requireCert = yes</span>: Client must present a valid certificate</li>
+<li><span class='inlinecode'>CAfile</span>: Path to the CA certificate that signed the client certificates</li>
+</ul><br />
+<h3 style='display: inline' id='setting-up-nfs-on-f1-standby'>Setting up NFS on f1 (Standby)</h3><br />
+<br />
+<span>Repeat the same configuration on f1:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: NO -&gt; YES
+paul@f1:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: NO -&gt; YES
+paul@f1:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: NO -&gt; YES
+paul@f1:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -&gt; YES
+paul@f1:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -&gt; YES
+
+paul@f1:~ % doas tee /etc/exports &lt;&lt;<font color="#808080">'EOF'</font>
+V4: /data/nfs -sec=sys
+/data/nfs -alldirs -maproot=root -network <font color="#000000">127.0</font>.<font color="#000000">0.1</font> -mask <font color="#000000">255.255</font>.<font color="#000000">255.255</font>
+EOF
+
+paul@f1:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f1:~ % doas service mountd start
+Starting mountd.
+paul@f1:~ % doas service nfsd start
+Starting nfsd.
+paul@f1:~ % doas service nfsuserd start
+Starting nfsuserd.
+</pre>
+<br />
+<span>Configure stunnel on f1:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Install stunnel</font></i>
+paul@f1:~ % doas pkg install -y stunnel
+
+<i><font color="silver"># Copy certificates from f0</font></i>
+paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
+paul@f0:~ % scp /tmp/stunnel-certs.tar f1:/tmp/
+paul@f1:~ % cd /usr/local/etc/stunnel &amp;&amp; doas tar -xf /tmp/stunnel-certs.tar
+
+<i><font color="silver"># Configure stunnel server on f1 with client certificate authentication</font></i>
+paul@f1:~ % doas tee /usr/local/etc/stunnel/stunnel.conf &lt;&lt;<font color="#808080">'EOF'</font>
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>
+connect = <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2049</font>
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = <font color="#000000">2</font>
+requireCert = yes
+EOF
+
+<i><font color="silver"># Enable and start stunnel</font></i>
+paul@f1:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -&gt; YES
+paul@f1:~ % doas service stunnel start
+Starting stunnel.
+
+<i><font color="silver"># Restart stunnel to apply the CARP VIP binding</font></i>
+paul@f1:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+</pre>
+<br />
+<h3 style='display: inline' id='how-stunnel-works-with-carp'>How Stunnel Works with CARP</h3><br />
+<br />
+<span>With stunnel configured to bind to the CARP VIP (192.168.1.138), only the server that is currently the CARP MASTER will accept stunnel connections. This provides automatic failover for encrypted NFS:</span><br />
+<br />
+<ul>
+<li>When f0 is CARP MASTER: stunnel on f0 accepts connections on 192.168.1.138:2323</li>
+<li>When f1 becomes CARP MASTER: stunnel on f1 starts accepting connections on 192.168.1.138:2323</li>
+<li>The backup server&#39;s stunnel process will fail to bind to the VIP and won&#39;t accept connections</li>
+</ul><br />
+<span>This ensures that clients always connect to the active NFS server through the CARP VIP.</span><br />
+<br />
+<h3 style='display: inline' id='carp-control-script-for-clean-failover'>CARP Control Script for Clean Failover</h3><br />
+<br />
+<span>To ensure clean failover behavior and prevent stale file handles, we&#39;ll create a control script that:</span><br />
+<ul>
+<li>Stops NFS services on BACKUP nodes (preventing split-brain scenarios)</li>
+<li>Starts NFS services only on the MASTER node</li>
+<li>Manages stunnel binding to the CARP VIP</li>
+</ul><br />
+<span>This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Create CARP control script on both f0 and f1</font></i>
+paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh &lt;&lt;<font color="#808080">'EOF'</font>
+<i><font color="silver">#!/bin/sh</font></i>
+<i><font color="silver"># CARP state change control script</font></i>
+
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
+    MASTER)
+        logger <font color="#808080">"CARP state changed to MASTER, starting services"</font>
+        service rpcbind start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service mountd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsuserd start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service stunnel restart &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        logger <font color="#808080">"CARP MASTER: NFS and stunnel services started"</font>
+        ;;
+    BACKUP)
+        logger <font color="#808080">"CARP state changed to BACKUP, stopping services"</font>
+        service stunnel stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service mountd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        service nfsuserd stop &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+        logger <font color="#808080">"CARP BACKUP: NFS and stunnel services stopped"</font>
+        ;;
+    *)
+        logger <font color="#808080">"CARP state changed to $1 (unhandled)"</font>
+        ;;
+<b><u><font color="#000000">esac</font></u></b>
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+
+<i><font color="silver"># Add to devd configuration</font></i>
+paul@f0:~ % doas tee -a /etc/devd.conf &lt;&lt;<font color="#808080">'EOF'</font>
+
+<i><font color="silver"># CARP state change notifications</font></i>
+notify <font color="#000000">0</font> {
+    match <font color="#808080">"system"</font> <font color="#808080">"CARP"</font>;
+    match <font color="#808080">"subsystem"</font> <font color="#808080">"[0-9]+@[a-z]+[0-9]+"</font>;
+    match <font color="#808080">"type"</font> <font color="#808080">"(MASTER|BACKUP)"</font>;
+    action <font color="#808080">"/usr/local/bin/carpcontrol.sh $type"</font>;
+};
+EOF
+
+<i><font color="silver"># Restart devd to apply changes</font></i>
+paul@f0:~ % doas service devd restart
+</pre>
+<br />
+<span>This enhanced script ensures that:</span><br />
+<ul>
+<li>Only the MASTER node runs NFS and stunnel services</li>
+<li>BACKUP nodes have all services stopped, preventing any client connections</li>
+<li>Failovers are clean with no possibility of accessing the wrong server</li>
+<li>Stale file handles are minimized because the old server immediately stops responding</li>
+</ul><br />
+<h3 style='display: inline' id='carp-management-script'>CARP Management Script</h3><br />
+<br />
+<span>To simplify CARP state management and failover testing, create this helper script on both f0 and f1:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Create the CARP management script</font></i>
+paul@f0:~ % doas tee /usr/local/bin/carp &lt;&lt;<font color="#808080">'EOF'</font>
+<i><font color="silver">#!/bin/sh</font></i>
+<i><font color="silver"># CARP state management script</font></i>
+<i><font color="silver"># Usage: carp [master|backup|auto-failback enable|auto-failback disable]</font></i>
+<i><font color="silver"># Without arguments: shows current state</font></i>
+
+<i><font color="silver"># Find the interface with CARP configured</font></i>
+CARP_IF=$(ifconfig -l | xargs -n<font color="#000000">1</font> | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> <b><u><font color="#000000">if</font></u></b>; <b><u><font color="#000000">do</font></u></b>
+    ifconfig <font color="#808080">"$if"</font> <font color="#000000">2</font>&gt;/dev/null | grep -q <font color="#808080">"carp:"</font> &amp;&amp; echo <font color="#808080">"$if"</font> &amp;&amp; <b><u><font color="#000000">break</font></u></b>
+<b><u><font color="#000000">done</font></u></b>)
+
+<b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$CARP_IF"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"Error: No CARP interface found"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Get CARP VHID</font></i>
+VHID=$(ifconfig <font color="#808080">"$CARP_IF"</font> | grep <font color="#808080">"carp:"</font> | sed -n <font color="#808080">'s/.*vhid </font>\(<font color="#808080">[0-9]*</font>\)<font color="#808080">.*/</font>\1<font color="#808080">/p'</font>)
+
+<b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$VHID"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"Error: Could not determine CARP VHID"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Function to get current state</font></i>
+get_state() {
+    ifconfig <font color="#808080">"$CARP_IF"</font> | grep <font color="#808080">"carp:"</font> | awk <font color="#808080">'{print $2}'</font>
+}
+
+<i><font color="silver"># Check for auto-failback block file</font></i>
+BLOCK_FILE=<font color="#808080">"/data/nfs/nfs.NO_AUTO_FAILBACK"</font>
+check_auto_failback() {
+    <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$BLOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"WARNING: Auto-failback is DISABLED (file exists: $BLOCK_FILE)"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+}
+
+<i><font color="silver"># Main logic</font></i>
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
+    <font color="#808080">""</font>)
+        <i><font color="silver"># No argument - show current state</font></i>
+        STATE=$(get_state)
+        echo <font color="#808080">"CARP state on $CARP_IF (vhid $VHID): $STATE"</font>
+        check_auto_failback
+        ;;
+    master)
+        <i><font color="silver"># Force to MASTER state</font></i>
+        echo <font color="#808080">"Setting CARP to MASTER state..."</font>
+        ifconfig <font color="#808080">"$CARP_IF"</font> vhid <font color="#808080">"$VHID"</font> state master
+        sleep <font color="#000000">1</font>
+        STATE=$(get_state)
+        echo <font color="#808080">"CARP state on $CARP_IF (vhid $VHID): $STATE"</font>
+        check_auto_failback
+        ;;
+    backup)
+        <i><font color="silver"># Force to BACKUP state</font></i>
+        echo <font color="#808080">"Setting CARP to BACKUP state..."</font>
+        ifconfig <font color="#808080">"$CARP_IF"</font> vhid <font color="#808080">"$VHID"</font> state backup
+        sleep <font color="#000000">1</font>
+        STATE=$(get_state)
+        echo <font color="#808080">"CARP state on $CARP_IF (vhid $VHID): $STATE"</font>
+        check_auto_failback
+        ;;
+    auto-failback)
+        <b><u><font color="#000000">case</font></u></b> <font color="#808080">"$2"</font> <b><u><font color="#000000">in</font></u></b>
+            <b><u><font color="#000000">enable</font></u></b>)
+                <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$BLOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+                    rm <font color="#808080">"$BLOCK_FILE"</font>
+                    echo <font color="#808080">"Auto-failback ENABLED (removed $BLOCK_FILE)"</font>
+                <b><u><font color="#000000">else</font></u></b>
+                    echo <font color="#808080">"Auto-failback was already enabled"</font>
+                <b><u><font color="#000000">fi</font></u></b>
+                ;;
+            disable)
+                <b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$BLOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+                    touch <font color="#808080">"$BLOCK_FILE"</font>
+                    echo <font color="#808080">"Auto-failback DISABLED (created $BLOCK_FILE)"</font>
+                <b><u><font color="#000000">else</font></u></b>
+                    echo <font color="#808080">"Auto-failback was already disabled"</font>
+                <b><u><font color="#000000">fi</font></u></b>
+                ;;
+            *)
+                echo <font color="#808080">"Usage: $0 auto-failback [enable|disable]"</font>
+                echo <font color="#808080">"  enable:  Remove block file to allow automatic failback"</font>
+                echo <font color="#808080">"  disable: Create block file to prevent automatic failback"</font>
+                <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+                ;;
+        <b><u><font color="#000000">esac</font></u></b>
+        ;;
+    *)
+        echo <font color="#808080">"Usage: $0 [master|backup|auto-failback enable|auto-failback disable]"</font>
+        echo <font color="#808080">"  Without arguments: show current CARP state"</font>
+        echo <font color="#808080">"  master: force this node to become CARP MASTER"</font>
+        echo <font color="#808080">"  backup: force this node to become CARP BACKUP"</font>
+        echo <font color="#808080">"  auto-failback enable:  allow automatic failback to f0"</font>
+        echo <font color="#808080">"  auto-failback disable: prevent automatic failback to f0"</font>
+        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+        ;;
+<b><u><font color="#000000">esac</font></u></b>
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carp
+
+<i><font color="silver"># Copy to f1 as well</font></i>
+paul@f0:~ % scp /usr/local/bin/carp f1:/tmp/
+paul@f1:~ % doas cp /tmp/carp /usr/local/bin/carp &amp;&amp; doas chmod +x /usr/local/bin/carp
+</pre>
+<br />
+<span>Now you can easily manage CARP states and auto-failback:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check current CARP state</font></i>
+paul@f0:~ % doas carp
+CARP state on re0 (vhid <font color="#000000">1</font>): MASTER
+
+<i><font color="silver"># If auto-failback is disabled, you'll see a warning</font></i>
+paul@f0:~ % doas carp
+CARP state on re0 (vhid <font color="#000000">1</font>): MASTER
+WARNING: Auto-failback is DISABLED (file exists: /data/nfs/nfs.NO_AUTO_FAILBACK)
+
+<i><font color="silver"># Force f0 to become BACKUP (triggers failover to f1)</font></i>
+paul@f0:~ % doas carp backup
+Setting CARP to BACKUP state...
+CARP state on re0 (vhid <font color="#000000">1</font>): BACKUP
+
+<i><font color="silver"># Disable auto-failback (useful for maintenance)</font></i>
+paul@f0:~ % doas carp auto-failback disable
+Auto-failback DISABLED (created /data/nfs/nfs.NO_AUTO_FAILBACK)
+
+<i><font color="silver"># Enable auto-failback</font></i>
+paul@f0:~ % doas carp auto-failback <b><u><font color="#000000">enable</font></u></b>
+Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
+</pre>
+<br />
+<span>This enhanced script:</span><br />
+<span>- Shows warnings when auto-failback is disabled</span><br />
+<span>- Provides easy control over the auto-failback feature</span><br />
+<span>- Makes failover testing and maintenance simpler</span><br />
+<br />
+<h3 style='display: inline' id='automatic-failback-after-reboot'>Automatic Failback After Reboot</h3><br />
+<br />
+<span>When f0 reboots (planned or unplanned), f1 takes over as CARP MASTER. To ensure f0 automatically reclaims its primary role once it&#39;s fully operational, we&#39;ll implement an automatic failback mechanism.</span><br />
+<br />
+<span>#### Why Automatic Failback?</span><br />
+<br />
+<span>- **Primary node preference**: f0 has the primary storage; it should be MASTER when available</span><br />
+<span>- **Post-reboot automation**: Eliminates manual intervention after every f0 reboot</span><br />
+<span>- **Maintenance flexibility**: Can be disabled when you want f1 to remain MASTER</span><br />
+<br />
+<span>#### The Auto-Failback Script</span><br />
+<br />
+<span>Create this script on f0 only (not on f1):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas tee /usr/local/bin/carp-auto-failback.sh &lt;&lt;<font color="#808080">'EOF'</font>
+<i><font color="silver">#!/bin/sh</font></i>
+<i><font color="silver"># CARP automatic failback script for f0</font></i>
+<i><font color="silver"># Ensures f0 reclaims MASTER role after reboot when storage is ready</font></i>
+
+LOGFILE=<font color="#808080">"/var/log/carp-auto-failback.log"</font>
+MARKER_FILE=<font color="#808080">"/data/nfs/nfs.DO_NOT_REMOVE"</font>
+BLOCK_FILE=<font color="#808080">"/data/nfs/nfs.NO_AUTO_FAILBACK"</font>
+
+log_message() {
+    echo <font color="#808080">"$(date '+%Y-%m-%d %H:%M:%S') - $1"</font> &gt;&gt; <font color="#808080">"$LOGFILE"</font>
+}
+
+<i><font color="silver"># Check if we're already MASTER</font></i>
+CURRENT_STATE=$(/usr/local/bin/carp | awk <font color="#808080">'{print $NF}'</font>)
+<b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$CURRENT_STATE"</font> = <font color="#808080">"MASTER"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Check if /data/nfs is mounted</font></i>
+<b><u><font color="#000000">if</font></u></b> ! mount | grep -q <font color="#808080">"on /data/nfs "</font>; <b><u><font color="#000000">then</font></u></b>
+    log_message <font color="#808080">"SKIP: /data/nfs not mounted"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Check if marker file exists (identifies this as primary storage)</font></i>
+<b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$MARKER_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log_message <font color="#808080">"SKIP: Marker file $MARKER_FILE not found"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Check if failback is blocked (for maintenance)</font></i>
+<b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$BLOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log_message <font color="#808080">"SKIP: Failback blocked by $BLOCK_FILE"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Check if NFS services are running (ensure we're fully ready)</font></i>
+<b><u><font color="#000000">if</font></u></b> ! service nfsd status &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
+    log_message <font color="#808080">"SKIP: NFS services not yet running"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># All conditions met - promote to MASTER</font></i>
+log_message <font color="#808080">"CONDITIONS MET: Promoting to MASTER (was $CURRENT_STATE)"</font>
+/usr/local/bin/carp master
+
+<i><font color="silver"># Log result</font></i>
+sleep <font color="#000000">2</font>
+NEW_STATE=$(/usr/local/bin/carp | awk <font color="#808080">'{print $NF}'</font>)
+log_message <font color="#808080">"Failback complete: State is now $NEW_STATE"</font>
+
+<i><font color="silver"># If successful, log to system log too</font></i>
+<b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$NEW_STATE"</font> = <font color="#808080">"MASTER"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    logger <font color="#808080">"CARP: f0 automatically reclaimed MASTER role"</font>
+<b><u><font color="#000000">fi</font></u></b>
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carp-auto-failback.sh
+</pre>
+<br />
+<span>#### Setting Up the Marker File</span><br />
+<br />
+<span>The marker file identifies f0&#39;s primary storage. Create it once:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas touch /data/nfs/nfs.DO_NOT_REMOVE
+</pre>
+<br />
+<span>This file will be replicated to f1, but since f1 mounts the dataset at a different path, it won&#39;t trigger failback there.</span><br />
+<br />
+<span>#### Configuring Cron</span><br />
+<br />
+<span>Add a cron job to check every minute:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % echo <font color="#808080">"* * * * * /usr/local/bin/carp-auto-failback.sh"</font> | doas crontab -
+</pre>
+<br />
+<span>#### Managing Automatic Failback</span><br />
+<br />
+<span>The enhanced CARP script provides integrated control over auto-failback:</span><br />
+<br />
+<span>**To temporarily disable automatic failback** (e.g., for f0 maintenance):</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas carp auto-failback disable
+Auto-failback DISABLED (created /data/nfs/nfs.NO_AUTO_FAILBACK)
+</pre>
+<br />
+<span>**To re-enable automatic failback**:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas carp auto-failback <b><u><font color="#000000">enable</font></u></b>
+Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
+</pre>
+<br />
+<span>**To check if auto-failback is enabled**:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas carp
+CARP state on re0 (vhid <font color="#000000">1</font>): MASTER
+<i><font color="silver"># If disabled, you'll see: WARNING: Auto-failback is DISABLED</font></i>
+</pre>
+<br />
+<span>**To monitor failback attempts**:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % tail -f /var/log/carp-auto-failback.log
+</pre>
+<br />
+<span>#### How It Works</span><br />
+<br />
+<span>1. **After f0 reboots**: f1 is MASTER, f0 boots as BACKUP</span><br />
+<span>2. **Cron runs every minute**: Checks if conditions are met</span><br />
+<span>3. **Safety checks**:</span><br />
+<span>   - Is f0 currently BACKUP? (don&#39;t run if already MASTER)</span><br />
+<span>   - Is /data/nfs mounted? (ZFS datasets are ready)</span><br />
+<span>   - Does marker file exist? (confirms this is primary storage)</span><br />
+<span>   - Is failback blocked? (admin can prevent failback)</span><br />
+<span>   - Are NFS services running? (system is fully ready)</span><br />
+<span>4. **Failback occurs**: Typically 2-3 minutes after boot completes</span><br />
+<span>5. **Logging**: All attempts logged for troubleshooting</span><br />
+<br />
+<span>This ensures f0 automatically resumes its role as primary storage server after any reboot, while providing administrative control when needed.</span><br />
+<br />
+<h3 style='display: inline' id='verifying-stunnel-and-carp-status'>Verifying Stunnel and CARP Status</h3><br />
+<br />
+<span>First, check which host is currently CARP MASTER:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 - check CARP status</font></i>
+paul@f0:~ % ifconfig re0 | grep carp
+	inet <font color="#000000">192.168</font>.<font color="#000000">1.130</font> netmask <font color="#000000">0xffffff00</font> broadcast <font color="#000000">192.168</font>.<font color="#000000">1.255</font>
+	inet <font color="#000000">192.168</font>.<font color="#000000">1.138</font> netmask <font color="#000000">0xffffffff</font> broadcast <font color="#000000">192.168</font>.<font color="#000000">1.138</font> vhid <font color="#000000">1</font>
+
+<i><font color="silver"># If f0 is MASTER, verify stunnel is listening on the VIP</font></i>
+paul@f0:~ % doas sockstat -l | grep <font color="#000000">2323</font>
+stunnel  stunnel    <font color="#000000">1234</font>  <font color="#000000">3</font>  tcp4   <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>    *:*
+
+<i><font color="silver"># On f1 - check CARP status  </font></i>
+paul@f1:~ % ifconfig re0 | grep carp
+	inet <font color="#000000">192.168</font>.<font color="#000000">1.131</font> netmask <font color="#000000">0xffffff00</font> broadcast <font color="#000000">192.168</font>.<font color="#000000">1.255</font>
+
+<i><font color="silver"># If f1 is BACKUP, stunnel won't be able to bind to the VIP</font></i>
+paul@f1:~ % doas tail /var/log/messages | grep stunnel
+Jul  <font color="#000000">4</font> <font color="#000000">12</font>:<font color="#000000">34</font>:<font color="#000000">56</font> f1 stunnel: [!] <b><u><font color="#000000">bind</font></u></b>: <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>: Can<font color="#808080">'t assign requested address (49)</font>
+</pre>
+<br />
+<h3 style='display: inline' id='verifying-nfs-exports'>Verifying NFS Exports</h3><br />
+<br />
+<span>Check that the exports are active on both servers:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0</font></i>
+paul@f0:~ % doas showmount -e localhost
+Exports list on localhost:
+/data/nfs                          <font color="#000000">127.0</font>.<font color="#000000">0.1</font>
+
+<i><font color="silver"># On f1</font></i>
+paul@f1:~ % doas showmount -e localhost
+Exports list on localhost:
+/data/nfs                          <font color="#000000">127.0</font>.<font color="#000000">0.1</font>
+</pre>
+<br />
+<h3 style='display: inline' id='client-configuration-for-stunnel'>Client Configuration for Stunnel</h3><br />
+<br />
+<span>To mount NFS shares with stunnel encryption, clients need to install and configure stunnel with their client certificates.</span><br />
+<br />
+<span>#### Preparing Client Certificates</span><br />
+<br />
+<span>On f0, prepare the client certificate packages:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Create combined certificate/key files for each client</font></i>
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas sh -c <font color="#808080">'for client in r0 r1 r2 earth; do</font>
+<font color="#808080">  cat ${client}-cert.pem ${client}-key.pem &gt; /tmp/${client}-stunnel.pem</font>
+<font color="#808080">done'</font>
+</pre>
+<br />
+<span>#### Configuring Rocky Linux Clients (r0, r1, r2)</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Install stunnel on client (example for r0)</font></i>
+[root@r0 ~]<i><font color="silver"># dnf install -y stunnel</font></i>
+
+<i><font color="silver"># Copy client certificate and CA certificate from f0</font></i>
+[root@r0 ~]<i><font color="silver"># scp f0:/tmp/r0-stunnel.pem /etc/stunnel/</font></i>
+[root@r0 ~]<i><font color="silver"># scp f0:/usr/local/etc/stunnel/ca/ca-cert.pem /etc/stunnel/</font></i>
+
+<i><font color="silver"># Configure stunnel client with certificate authentication</font></i>
+[root@r0 ~]<i><font color="silver"># tee /etc/stunnel/stunnel.conf &lt;&lt;'EOF'</font></i>
+cert = /etc/stunnel/r<font color="#000000">0</font>-stunnel.pem
+CAfile = /etc/stunnel/ca-cert.pem
+client = yes
+verify = <font color="#000000">2</font>
+
+[nfs-ha]
+accept = <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font>
+connect = <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>
+EOF
+
+<i><font color="silver"># Enable and start stunnel</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl enable --now stunnel</font></i>
+
+<i><font color="silver"># Repeat for r1 and r2 with their respective certificates</font></i>
+</pre>
+<br />
+<span>Note: Each client must use its own certificate file (r0-stunnel.pem, r1-stunnel.pem, r2-stunnel.pem, or earth-stunnel.pem).</span><br />
+<br />
+<h3 style='display: inline' id='testing-nfs-mount-with-stunnel'>Testing NFS Mount with Stunnel</h3><br />
+<br />
+<span>Mount NFS through the stunnel encrypted tunnel:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Create mount point</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes</font></i>
+
+<i><font color="silver"># Mount through stunnel (using localhost and NFSv4)</font></i>
+[root@r0 ~]<i><font color="silver"># mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes</font></i>
+
+<i><font color="silver"># Verify mount</font></i>
+[root@r0 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes on /data/nfs/k3svolumes <b><u><font color="#000000">type</font></u></b> nfs4 (rw,relatime,vers=<font color="#000000">4.2</font>,rsize=<font color="#000000">131072</font>,wsize=<font color="#000000">131072</font>,namlen=<font color="#000000">255</font>,hard,proto=tcp,port=<font color="#000000">2323</font>,timeo=<font color="#000000">600</font>,retrans=<font color="#000000">2</font>,sec=sys,clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
+
+<i><font color="silver"># For persistent mount, add to /etc/fstab:</font></i>
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev <font color="#000000">0</font> <font color="#000000">0</font>
+</pre>
+<br />
+<span>Note: The mount uses localhost (127.0.0.1) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.</span><br />
+<br />
+<span>Verify the file was written and replicated:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check on f0</font></i>
+paul@f0:~ % cat /data/nfs/test-r<font color="#000000">0</font>.txt
+Test from r0
+
+<i><font color="silver"># After replication interval (5 minutes), check on f1</font></i>
+paul@f1:~ % cat /data/nfs/test-r<font color="#000000">0</font>.txt
+Test from r0
+</pre>
+<br />
+<h3 style='display: inline' id='important-encryption-keys-for-replicated-datasets'>Important: Encryption Keys for Replicated Datasets</h3><br />
+<br />
+<span>When using encrypted ZFS datasets with raw sends (send -w), the replicated datasets on f1 need the encryption keys loaded to access the data:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check encryption status on f1</font></i>
+paul@f1:~ % doas zfs get keystatus zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+NAME                             PROPERTY   VALUE        SOURCE
+zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata  keystatus  unavailable  -
+
+<i><font color="silver"># Load the encryption key (uses the same key as f0)</font></i>
+paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Mount the dataset</font></i>
+paul@f1:~ % doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Configure automatic key loading on boot</font></i>
+paul@f1:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"</font>
+zfskeys_datasets:  -&gt; zdata/enc zroot/bhyve zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+</pre>
+<br />
+<span>This ensures that after a reboot, f1 will automatically load the encryption keys and mount all encrypted datasets, including the replicated ones.</span><br />
+<br />
+<h3 style='display: inline' id='nfs-failover-with-carp-and-stunnel'>NFS Failover with CARP and Stunnel</h3><br />
+<br />
+<span>With NFS servers running on both f0 and f1 and stunnel bound to the CARP VIP:</span><br />
+<br />
+<ul>
+<li>Automatic failover: When f0 fails, CARP automatically promotes f1 to MASTER</li>
+<li>Stunnel failover: The carpcontrol.sh script automatically starts stunnel on the new MASTER</li>
+<li>Client transparency: Clients always connect to 192.168.1.138:2323, which routes to the active server</li>
+<li>No connection disruption: Existing NFS mounts continue working through the same VIP</li>
+<li>Data consistency: ZFS replication ensures f1 has recent data (within 5-minute window)</li>
+<li>Read-only replica: The replicated dataset on f1 is always mounted read-only to prevent breaking replication</li>
+<li>Manual intervention required for full RW failover: When f1 becomes MASTER, you must:</li>
+</ul><br />
+<span>  2. Make the replicated dataset writable: <span class='inlinecode'>doas zfs set readonly=off zdata/sink/f0/zdata/enc/nfsdata</span></span><br />
+<span>  3. Ensure encryption keys are loaded (should be automatic with zfskeys_enable)</span><br />
+<span>  4. NFS will automatically start serving read/write requests through the VIP</span><br />
+<br />
+<span>Important: The <span class='inlinecode'>/data/nfs</span> mount on f1 remains read-only during normal operation to ensure replication integrity. In case of a failover, clients can still read data immediately, but write operations require the manual steps above to promote f1 to full read-write mode.</span><br />
+<br />
+<h3 style='display: inline' id='testing-carp-failover'>Testing CARP Failover</h3><br />
+<br />
+<span>To test the failover process:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 (current MASTER) - trigger failover</font></i>
+paul@f0:~ % doas ifconfig re0 vhid <font color="#000000">1</font> state backup
+
+<i><font color="silver"># On f1 - verify it becomes MASTER</font></i>
+paul@f1:~ % ifconfig re0 | grep carp
+    inet <font color="#000000">192.168</font>.<font color="#000000">1.138</font> netmask <font color="#000000">0xffffffff</font> broadcast <font color="#000000">192.168</font>.<font color="#000000">1.138</font> vhid <font color="#000000">1</font>
+
+<i><font color="silver"># Check stunnel is now listening on f1</font></i>
+paul@f1:~ % doas sockstat -l | grep <font color="#000000">2323</font>
+stunnel  stunnel    <font color="#000000">4567</font>  <font color="#000000">3</font>  tcp4   <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>    *:*
+
+<i><font color="silver"># On client - verify NFS mount still works</font></i>
+[root@r0 ~]<i><font color="silver"># ls /data/nfs/k3svolumes/</font></i>
+[root@r0 ~]<i><font color="silver"># echo "Test after failover" &gt; /data/nfs/k3svolumes/failover-test.txt</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='handling-stale-file-handles-after-failover'>Handling Stale File Handles After Failover</h3><br />
+<br />
+<span>After a CARP failover, NFS clients may experience "Stale file handle" errors because they cached file handles from the previous server. To resolve this:</span><br />
+<br />
+<span>Manual recovery (immediate fix):</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Force unmount and remount</font></i>
+[root@r0 ~]<i><font color="silver"># umount -f /data/nfs/k3svolumes</font></i>
+[root@r0 ~]<i><font color="silver"># mount /data/nfs/k3svolumes</font></i>
+</pre>
+<br />
+<span>Automatic recovery options:</span><br />
+<br />
+<span>1. Use soft mounts with shorter timeouts in <span class='inlinecode'>/etc/fstab</span>:</span><br />
+<pre>
+127.0.0.1:/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev,soft,timeo=10,retrans=2,intr 0 0
+</pre>
+<br />
+<span>2. Create an automatic recovery system using systemd timers (checks every 10 seconds):</span><br />
+<br />
+<span>First, create the monitoring script:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt; /usr/local/bin/check-nfs-mount.sh &lt;&lt; 'EOF'</font></i>
+<i><font color="silver">#!/bin/bash</font></i>
+<i><font color="silver"># Fast NFS mount health monitor - runs every 10 seconds via systemd timer</font></i>
+
+MOUNT_POINT=<font color="#808080">"/data/nfs/k3svolumes"</font>
+LOCK_FILE=<font color="#808080">"/var/run/nfs-mount-check.lock"</font>
+STATE_FILE=<font color="#808080">"/var/run/nfs-mount.state"</font>
+
+<i><font color="silver"># Use a lock file to prevent concurrent runs</font></i>
+<b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$LOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+touch <font color="#808080">"$LOCK_FILE"</font>
+<b><u><font color="#000000">trap</font></u></b> <font color="#808080">"rm -f $LOCK_FILE"</font> EXIT
+
+<i><font color="silver"># Quick check - try to stat a directory with very short timeout</font></i>
+<b><u><font color="#000000">if</font></u></b> timeout 2s stat <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
+    <i><font color="silver"># Mount appears healthy</font></i>
+    <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$STATE_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+        <i><font color="silver"># Was previously unhealthy, log recovery</font></i>
+        echo <font color="#808080">"NFS mount recovered at $(date)"</font> | systemd-cat -t nfs-monitor -p info
+        rm -f <font color="#808080">"$STATE_FILE"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Mount is unhealthy</font></i>
+<b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$STATE_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    <i><font color="silver"># First detection of unhealthy state</font></i>
+    echo <font color="#808080">"NFS mount unhealthy detected at $(date)"</font> | systemd-cat -t nfs-monitor -p warning
+    touch <font color="#808080">"$STATE_FILE"</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># Try to fix</font></i>
+echo <font color="#808080">"Attempting to fix stale NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p notice
+umount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null
+sleep <font color="#000000">1</font>
+
+<b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"NFS mount fixed at $(date)"</font> | systemd-cat -t nfs-monitor -p info
+    rm -f <font color="#808080">"$STATE_FILE"</font>
+<b><u><font color="#000000">else</font></u></b>
+    echo <font color="#808080">"Failed to fix NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p err
+<b><u><font color="#000000">fi</font></u></b>
+EOF
+[root@r0 ~]<i><font color="silver"># chmod +x /usr/local/bin/check-nfs-mount.sh</font></i>
+</pre>
+<br />
+<span>Create the systemd service:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt; /etc/systemd/system/nfs-mount-monitor.service &lt;&lt; 'EOF'</font></i>
+[Unit]
+Description=NFS Mount Health Monitor
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/check-nfs-mount.sh
+StandardOutput=journal
+StandardError=journal
+EOF
+</pre>
+<br />
+<span>Create the systemd timer (runs every 10 seconds):</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt; /etc/systemd/system/nfs-mount-monitor.timer &lt;&lt; 'EOF'</font></i>
+[Unit]
+Description=Run NFS Mount Health Monitor every <font color="#000000">10</font> seconds
+Requires=nfs-mount-monitor.service
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=10s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
+EOF
+</pre>
+<br />
+<span>Enable and start the timer:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># systemctl daemon-reload</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl enable nfs-mount-monitor.timer</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl start nfs-mount-monitor.timer</font></i>
+
+<i><font color="silver"># Check status</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl status nfs-mount-monitor.timer</font></i>
+● nfs-mount-monitor.timer - Run NFS Mount Health Monitor every <font color="#000000">10</font> seconds
+     Loaded: loaded (/etc/systemd/system/nfs-mount-monitor.timer; enabled)
+     Active: active (waiting) since Sat <font color="#000000">2025</font>-<font color="#000000">07</font>-<font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">00</font>:<font color="#000000">00</font> EEST
+    Trigger: Sat <font color="#000000">2025</font>-<font color="#000000">07</font>-<font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">00</font>:<font color="#000000">10</font> EEST; 8s left
+
+<i><font color="silver"># Monitor logs</font></i>
+[root@r0 ~]<i><font color="silver"># journalctl -u nfs-mount-monitor -f</font></i>
+</pre>
+<br />
+<span>3. For Kubernetes, use liveness probes that restart pods when NFS becomes stale</span><br />
+<br />
+<span>Note: Stale file handles are inherent to NFS failover because file handles are server-specific. The best approach depends on your application&#39;s tolerance for brief disruptions.</span><br />
+<br />
+<h3 style='display: inline' id='complete-failover-test'>Complete Failover Test</h3><br />
+<br />
+<span>Here&#39;s a comprehensive test of the failover behavior with all optimizations in place:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># 1. Check initial state</font></i>
+paul@f0:~ % ifconfig re0 | grep carp
+    carp: MASTER vhid <font color="#000000">1</font> advbase <font color="#000000">1</font> advskew <font color="#000000">0</font>
+paul@f1:~ % ifconfig re0 | grep carp
+    carp: BACKUP vhid <font color="#000000">1</font> advbase <font color="#000000">1</font> advskew <font color="#000000">0</font>
+
+<i><font color="silver"># 2. Create a test file from a client</font></i>
+[root@r0 ~]<i><font color="silver"># echo "test before failover" &gt; /data/nfs/k3svolumes/test-before.txt</font></i>
+
+<i><font color="silver"># 3. Trigger failover (f0 → f1)</font></i>
+paul@f0:~ % doas ifconfig re0 vhid <font color="#000000">1</font> state backup
+
+<i><font color="silver"># 4. Monitor client behavior</font></i>
+[root@r0 ~]<i><font color="silver"># ls /data/nfs/k3svolumes/</font></i>
+ls: cannot access <font color="#808080">'/data/nfs/k3svolumes/'</font>: Stale file handle
+
+<i><font color="silver"># 5. Check automatic recovery (within 10 seconds)</font></i>
+[root@r0 ~]<i><font color="silver"># journalctl -u nfs-mount-monitor -f</font></i>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount unhealthy detected at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: Attempting to fix stale NFS mount at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount fixed at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> EEST <font color="#000000">2025</font>
+</pre>
+<br />
+<span>Failover Timeline:</span><br />
+<ul>
+<li>0 seconds: CARP failover triggered</li>
+<li>0-2 seconds: Clients get "Stale file handle" errors (not hanging)</li>
+<li>3-10 seconds: Soft mounts ensure quick failure of operations</li>
+<li>Within 10 seconds: Automatic recovery via systemd timer</li>
+</ul><br />
+<span>Benefits of the Optimized Setup:</span><br />
+<span>1. No hanging processes - Soft mounts fail quickly</span><br />
+<span>2. Clean failover - Old server stops serving immediately</span><br />
+<span>3. Fast automatic recovery - No manual intervention needed</span><br />
+<span>4. Predictable timing - Recovery within 10 seconds with systemd timer</span><br />
+<span>5. Better visibility - systemd journal provides detailed logs</span><br />
+<br />
+<span>Important Considerations:</span><br />
+<ul>
+<li>Recent writes (within 5 minutes) may not be visible after failover due to replication lag</li>
+<li>Applications should handle brief NFS errors gracefully</li>
+<li>For zero-downtime requirements, consider synchronous replication or distributed storage</li>
+</ul><br />
+<h3 style='display: inline' id='verifying-replication-status'>Verifying Replication Status</h3><br />
+<br />
+<span>To check if replication is working correctly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check replication status</font></i>
+paul@f0:~ % doas `zrepl` status
+
+<i><font color="silver"># Check recent snapshots on source</font></i>
+paul@f0:~ % doas zfs list -t snapshot -o name,creation zdata/enc/nfsdata | tail -<font color="#000000">5</font>
+
+<i><font color="silver"># Check recent snapshots on destination</font></i>
+paul@f1:~ % doas zfs list -t snapshot -o name,creation zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata | tail -<font color="#000000">5</font>
+
+<i><font color="silver"># Verify data appears on f1 (should be read-only)</font></i>
+paul@f1:~ % ls -la /data/nfs/k3svolumes/
+</pre>
+<br />
+<span>Important: If you see "connection refused" errors in <span class='inlinecode'>zrepl</span> logs, ensure:</span><br />
+<ul>
+<li>Both servers have <span class='inlinecode'>zrepl</span> running (<span class='inlinecode'>doas service </span>zrepl<span class='inlinecode'> status</span>)</li>
+<li>No firewall or hosts.allow rules are blocking port 8888</li>
+<li>WireGuard is up if using WireGuard IPs for replication</li>
+</ul><br />
+<h3 style='display: inline' id='post-reboot-verification'>Post-Reboot Verification</h3><br />
+<br />
+<span>After rebooting the FreeBSD servers, verify the complete stack:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check CARP status on all servers</font></i>
+paul@f0:~ % ifconfig re0 | grep carp
+paul@f1:~ % ifconfig re0 | grep carp
+
+<i><font color="silver"># Verify stunnel is running on the MASTER</font></i>
+paul@f0:~ % doas sockstat -l | grep <font color="#000000">2323</font>
+
+<i><font color="silver"># Check NFS is exported</font></i>
+paul@f0:~ % doas showmount -e localhost
+
+<i><font color="silver"># Verify all r servers have NFS mounted</font></i>
+[root@r0 ~]<i><font color="silver"># mount | grep nfs</font></i>
+[root@r1 ~]<i><font color="silver"># mount | grep nfs</font></i>
+[root@r2 ~]<i><font color="silver"># mount | grep nfs</font></i>
+
+<i><font color="silver"># Test write access</font></i>
+[root@r0 ~]<i><font color="silver"># echo "Test after reboot $(date)" &gt; /data/nfs/k3svolumes/test-reboot.txt</font></i>
+
+<i><font color="silver"># Verify `zrepl` is running and replicating</font></i>
+paul@f0:~ % doas service `zrepl` status
+paul@f1:~ % doas service `zrepl` status
+</pre>
+<br />
+<h3 style='display: inline' id='integration-with-kubernetes'>Integration with Kubernetes</h3><br />
+<br />
+<span>In your Kubernetes manifests, you can now create PersistentVolumes using the NFS servers:</span><br />
+<br />
+<pre>
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.1.138  # f3s-storage-ha.lan (CARP virtual IP)
+    path: /data/nfs/k3svolumes
+  mountOptions:
+    - nfsvers=4
+    - tcp
+    - hard
+    - intr
+</pre>
+<br />
+<span>Using the CARP virtual IP (192.168.1.138) instead of direct server IPs ensures that Kubernetes workloads continue to access storage even if the primary NFS server fails. For encryption, configure stunnel on the Kubernetes nodes.</span><br />
+<br />
+<h3 style='display: inline' id='security-benefits-of-stunnel-with-client-certificates'>Security Benefits of Stunnel with Client Certificates</h3><br />
+<br />
+<span>Using stunnel with client certificate authentication for NFS encryption provides several advantages:</span><br />
+<br />
+<ul>
+<li>Compatibility: Works with any NFS version and between different operating systems</li>
+<li>Strong encryption: Uses TLS/SSL with configurable cipher suites</li>
+<li>Transparent: Applications don&#39;t need modification, encryption happens at transport layer</li>
+<li>Performance: Minimal overhead (~2% in benchmarks)</li>
+<li>Flexibility: Can encrypt any TCP-based protocol, not just NFS</li>
+<li>Strong Authentication: Client certificates provide cryptographic proof of identity</li>
+<li>Access Control: Only clients with valid certificates signed by your CA can connect</li>
+<li>Certificate Revocation: You can revoke access by removing certificates from the CA</li>
+</ul><br />
+<h3 style='display: inline' id='laptopworkstation-access'>Laptop/Workstation Access</h3><br />
+<br />
+<span>For development workstations like "earth" (laptop), the same stunnel configuration works, but there&#39;s an important caveat with NFSv4:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Install stunnel</font></i>
+sudo dnf install stunnel
+
+<i><font color="silver"># Configure stunnel (/etc/stunnel/stunnel.conf)</font></i>
+cert = /etc/stunnel/earth-stunnel.pem
+CAfile = /etc/stunnel/ca-cert.pem
+client = yes
+verify = <font color="#000000">2</font>
+
+[nfs-ha]
+accept = <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font>
+connect = <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>
+
+<i><font color="silver"># Enable and start stunnel</font></i>
+sudo systemctl <b><u><font color="#000000">enable</font></u></b> --now stunnel
+
+<i><font color="silver"># Mount NFS through stunnel</font></i>
+sudo mount -t nfs4 -o port=<font color="#000000">2323</font> <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/ /data/nfs
+
+<i><font color="silver"># Make persistent in /etc/fstab</font></i>
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/ /data/nfs nfs4 port=<font color="#000000">2323</font>,hard,intr,_netdev <font color="#000000">0</font> <font color="#000000">0</font>
+</pre>
+<br />
+<span>#### Important: NFSv4 and Stunnel on Newer Linux Clients</span><br />
+<br />
+<span>On newer Linux distributions (like Fedora 42+), NFSv4 only uses the specified port for initial mount negotiation, but then establishes data connections directly to port 2049, bypassing stunnel. This doesn&#39;t occur on Rocky Linux 9 VMs, which properly route all traffic through the specified port. </span><br />
+<br />
+<span>To ensure all NFS traffic goes through the encrypted tunnel on affected systems, you need to use iptables:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Redirect all NFS traffic to the CARP VIP through stunnel</font></i>
+sudo iptables -t nat -A OUTPUT -d <font color="#000000">192.168</font>.<font color="#000000">1.138</font> -p tcp --dport <font color="#000000">2049</font> -j DNAT --to-destination <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font>
+
+<i><font color="silver"># Make it persistent (example for Fedora)</font></i>
+sudo dnf install iptables-services
+sudo service iptables save
+sudo systemctl <b><u><font color="#000000">enable</font></u></b> iptables
+
+<i><font color="silver"># Or create a startup script</font></i>
+cat &gt; ~/setup-nfs-stunnel.sh &lt;&lt; <font color="#808080">'EOF'</font>
+<i><font color="silver">#!/bin/bash</font></i>
+<i><font color="silver"># Ensure NFSv4 data connections go through stunnel</font></i>
+sudo iptables -t nat -D OUTPUT -d <font color="#000000">192.168</font>.<font color="#000000">1.138</font> -p tcp --dport <font color="#000000">2049</font> -j DNAT --to-destination <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font> <font color="#000000">2</font>&gt;/dev/null
+sudo iptables -t nat -A OUTPUT -d <font color="#000000">192.168</font>.<font color="#000000">1.138</font> -p tcp --dport <font color="#000000">2049</font> -j DNAT --to-destination <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font>
+EOF
+chmod +x ~/setup-nfs-stunnel.sh
+</pre>
+<br />
+<span>To verify all traffic is encrypted:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check active connections</font></i>
+sudo ss -tnp | grep -E <font color="#808080">":2049|:2323"</font>
+<i><font color="silver"># You should see connections to localhost:2323 (stunnel), not direct to the CARP VIP</font></i>
+
+<i><font color="silver"># Monitor stunnel logs</font></i>
+journalctl -u stunnel -f
+<i><font color="silver"># You should see connection logs for all NFS operations</font></i>
+</pre>
+<br />
+<span>Note: The laptop has full access to <span class='inlinecode'>/data/nfs</span> with the <span class='inlinecode'>-alldirs</span> export option, while Kubernetes nodes are restricted to <span class='inlinecode'>/data/nfs/k3svolumes</span>.</span><br />
+<br />
+<span>The client certificate requirement ensures that:</span><br />
+<ul>
+<li>Only authorized clients (r0, r1, r2, and earth) can establish stunnel connections</li>
+<li>Each client has a unique identity that can be individually managed</li>
+<li>Stolen IP addresses alone cannot grant access without the corresponding certificate</li>
+<li>Access can be revoked without changing the server configuration</li>
+</ul><br />
+<span>The combination of ZFS encryption at rest and stunnel in transit ensures data is protected throughout its lifecycle.</span><br />
+<br />
+<span>This configuration provides a solid foundation for shared storage in the f3s Kubernetes cluster, with automatic replication and encrypted transport.</span><br />
+<br />
+<h2 style='display: inline' id='mounting-nfs-on-rocky-linux-9'>Mounting NFS on Rocky Linux 9</h2><br />
+<br />
+<h3 style='display: inline' id='installing-and-configuring-nfs-clients-on-r0-r1-and-r2'>Installing and Configuring NFS Clients on r0, r1, and r2</h3><br />
+<br />
+<span>First, install the necessary packages on all three Rocky Linux nodes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0, r1, and r2</font></i>
+dnf install -y nfs-utils stunnel
+</pre>
+<br />
+<h3 style='display: inline' id='configuring-stunnel-client-on-all-nodes'>Configuring Stunnel Client on All Nodes</h3><br />
+<br />
+<span>Copy the certificate and configure stunnel on each Rocky Linux node:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0</font></i>
+scp f0:/usr/local/etc/stunnel/stunnel.pem /etc/stunnel/
+tee /etc/stunnel/stunnel.conf &lt;&lt;<font color="#808080">'EOF'</font>
+cert = /etc/stunnel/stunnel.pem
+client = yes
+
+[nfs-ha]
+accept = <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:<font color="#000000">2323</font>
+connect = <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font>
+EOF
+
+systemctl <b><u><font color="#000000">enable</font></u></b> --now stunnel
+
+<i><font color="silver"># Repeat the same configuration on r1 and r2</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='setting-up-nfs-mounts'>Setting Up NFS Mounts</h3><br />
+<br />
+<span>Create mount points and configure persistent mounts on all nodes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0, r1, and r2</font></i>
+mkdir -p /data/nfs/k3svolumes
+
+<i><font color="silver"># Add to /etc/fstab for persistent mount (note the NFSv4 relative path)</font></i>
+echo <font color="#808080">'127.0.0.1:/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,hard,intr,_netdev 0 0'</font> &gt;&gt; /etc/fstab
+
+<i><font color="silver"># Mount the share</font></i>
+mount /data/nfs/k3svolumes
+</pre>
+<br />
+<h3 style='display: inline' id='comprehensive-nfs-mount-testing'>Comprehensive NFS Mount Testing</h3><br />
+<br />
+<span>Here&#39;s a detailed test plan to verify NFS mounts are working correctly on all nodes:</span><br />
+<br />
+<span>#### Test 1: Verify Mount Status on All Nodes</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0</font></i>
+[root@r0 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
+<i><font color="silver"># Expected output:</font></i>
+<i><font color="silver"># 127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)</font></i>
+
+<i><font color="silver"># On r1</font></i>
+[root@r1 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
+<i><font color="silver"># Should show similar output</font></i>
+
+<i><font color="silver"># On r2</font></i>
+[root@r2 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
+<i><font color="silver"># Should show similar output</font></i>
+</pre>
+<br />
+<span>#### Test 2: Verify Stunnel Connectivity</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl status stunnel</font></i>
+<i><font color="silver"># Should show: Active: active (running)</font></i>
+
+[root@r0 ~]<i><font color="silver"># ss -tnl | grep 2323</font></i>
+<i><font color="silver"># Should show: LISTEN 0 128 127.0.0.1:2323 0.0.0.0:*</font></i>
+
+<i><font color="silver"># Test connection to CARP VIP</font></i>
+[root@r0 ~]<i><font color="silver"># nc -zv 192.168.1.138 2323</font></i>
+<i><font color="silver"># Should show: Connection to 192.168.1.138 2323 port [tcp/*] succeeded!</font></i>
+
+<i><font color="silver"># Repeat on r1 and r2</font></i>
+</pre>
+<br />
+<span>#### Test 3: File Creation and Visibility Test</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0 - Create test file</font></i>
+[root@r0 ~]<i><font color="silver"># echo "Test from r0 - $(date)" &gt; /data/nfs/k3svolumes/test-r0.txt</font></i>
+[root@r0 ~]<i><font color="silver"># ls -la /data/nfs/k3svolumes/test-r0.txt</font></i>
+<i><font color="silver"># Should show the file with timestamp</font></i>
+
+<i><font color="silver"># On r1 - Create test file and check r0's file</font></i>
+[root@r1 ~]<i><font color="silver"># echo "Test from r1 - $(date)" &gt; /data/nfs/k3svolumes/test-r1.txt</font></i>
+[root@r1 ~]<i><font color="silver"># ls -la /data/nfs/k3svolumes/</font></i>
+<i><font color="silver"># Should show both test-r0.txt and test-r1.txt</font></i>
+
+<i><font color="silver"># On r2 - Create test file and check all files</font></i>
+[root@r2 ~]<i><font color="silver"># echo "Test from r2 - $(date)" &gt; /data/nfs/k3svolumes/test-r2.txt</font></i>
+[root@r2 ~]<i><font color="silver"># ls -la /data/nfs/k3svolumes/</font></i>
+<i><font color="silver"># Should show all three files: test-r0.txt, test-r1.txt, test-r2.txt</font></i>
+</pre>
+<br />
+<span>#### Test 4: Verify Files on Storage Servers</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 (primary storage)</font></i>
+paul@f0:~ % ls -la /data/nfs/k3svolumes/
+<i><font color="silver"># Should show all three test files</font></i>
+
+<i><font color="silver"># Wait 5 minutes for replication, then check on f1</font></i>
+paul@f1:~ % ls -la /data/nfs/k3svolumes/
+<i><font color="silver"># Should show all three test files (after replication)</font></i>
+</pre>
+<br />
+<span>#### Test 5: Performance and Concurrent Access Test</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0 - Write large file</font></i>
+[root@r0 ~]<i><font color="silver"># dd if=/dev/zero of=/data/nfs/k3svolumes/test-large-r0.dat bs=1M count=100</font></i>
+<i><font color="silver"># Should complete without errors</font></i>
+
+<i><font color="silver"># On r1 - Read the file while r2 writes</font></i>
+[root@r1 ~]<i><font color="silver"># dd if=/data/nfs/k3svolumes/test-large-r0.dat of=/dev/null bs=1M &amp;</font></i>
+<i><font color="silver"># Simultaneously on r2</font></i>
+[root@r2 ~]<i><font color="silver"># dd if=/dev/zero of=/data/nfs/k3svolumes/test-large-r2.dat bs=1M count=100</font></i>
+
+<i><font color="silver"># Check for any errors or performance issues</font></i>
+</pre>
+<br />
+<span>#### Test 6: Directory Operations Test</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0 - Create directory structure</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/test-dir/subdir1/subdir2</font></i>
+[root@r0 ~]<i><font color="silver"># echo "Deep file" &gt; /data/nfs/k3svolumes/test-dir/subdir1/subdir2/deep.txt</font></i>
+
+<i><font color="silver"># On r1 - Verify and add files</font></i>
+[root@r1 ~]<i><font color="silver"># ls -la /data/nfs/k3svolumes/test-dir/subdir1/subdir2/</font></i>
+[root@r1 ~]<i><font color="silver"># echo "Another file from r1" &gt; /data/nfs/k3svolumes/test-dir/subdir1/file-r1.txt</font></i>
+
+<i><font color="silver"># On r2 - Verify complete structure</font></i>
+[root@r2 ~]<i><font color="silver"># find /data/nfs/k3svolumes/test-dir -type f</font></i>
+<i><font color="silver"># Should show both files</font></i>
+</pre>
+<br />
+<span>#### Test 7: Permission and Ownership Test</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On r0 - Create files with different permissions</font></i>
+[root@r0 ~]<i><font color="silver"># touch /data/nfs/k3svolumes/test-perms-644.txt</font></i>
+[root@r0 ~]<i><font color="silver"># chmod 644 /data/nfs/k3svolumes/test-perms-644.txt</font></i>
+[root@r0 ~]<i><font color="silver"># touch /data/nfs/k3svolumes/test-perms-755.txt</font></i>
+[root@r0 ~]<i><font color="silver"># chmod 755 /data/nfs/k3svolumes/test-perms-755.txt</font></i>
+
+<i><font color="silver"># On r1 and r2 - Verify permissions are preserved</font></i>
+[root@r1 ~]<i><font color="silver"># ls -l /data/nfs/k3svolumes/test-perms-*.txt</font></i>
+[root@r2 ~]<i><font color="silver"># ls -l /data/nfs/k3svolumes/test-perms-*.txt</font></i>
+<i><font color="silver"># Permissions should match what was set on r0</font></i>
+</pre>
+<br />
+<span>#### Test 8: Failover Test (Optional but Recommended)</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0 - Trigger CARP failover</font></i>
+paul@f0:~ % doas ifconfig re0 vhid <font color="#000000">1</font> state backup
+
+<i><font color="silver"># On all Rocky nodes - Verify mounts still work</font></i>
+[root@r0 ~]<i><font color="silver"># echo "Test during failover from r0 - $(date)" &gt; /data/nfs/k3svolumes/failover-test-r0.txt</font></i>
+[root@r1 ~]<i><font color="silver"># echo "Test during failover from r1 - $(date)" &gt; /data/nfs/k3svolumes/failover-test-r1.txt</font></i>
+[root@r2 ~]<i><font color="silver"># echo "Test during failover from r2 - $(date)" &gt; /data/nfs/k3svolumes/failover-test-r2.txt</font></i>
+
+<i><font color="silver"># Verify all files are accessible</font></i>
+[root@r0 ~]<i><font color="silver"># ls -la /data/nfs/k3svolumes/failover-test-*.txt</font></i>
+
+<i><font color="silver"># On f1 - Verify it's now MASTER</font></i>
+paul@f1:~ % ifconfig re0 | grep carp
+<i><font color="silver"># Should show the VIP 192.168.1.138</font></i>
+
+<i><font color="silver"># Restore f0 as MASTER</font></i>
+paul@f0:~ % doas ifconfig re0 vhid <font color="#000000">1</font> state master
+</pre>
+<br />
+<h3 style='display: inline' id='troubleshooting-common-issues'>Troubleshooting Common Issues</h3><br />
+<br />
+<span>#### Mount Hangs or Times Out</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check stunnel connectivity</font></i>
+systemctl status stunnel
+ss -tnl | grep <font color="#000000">2323</font>
+telnet <font color="#000000">127.0</font>.<font color="#000000">0.1</font> <font color="#000000">2323</font>
+
+<i><font color="silver"># Check if you can reach the CARP VIP</font></i>
+ping <font color="#000000">192.168</font>.<font color="#000000">1.138</font>
+nc -zv <font color="#000000">192.168</font>.<font color="#000000">1.138</font> <font color="#000000">2323</font>
+
+<i><font color="silver"># Check for firewall issues</font></i>
+iptables -L -n | grep <font color="#000000">2323</font>
+</pre>
+<br />
+<span>#### Permission Denied Errors</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Verify the export allows your IP</font></i>
+<i><font color="silver"># On f0 or f1</font></i>
+doas showmount -e localhost
+
+<i><font color="silver"># Check if SELinux is blocking (on Rocky Linux)</font></i>
+getenforce
+<i><font color="silver"># If enforcing, try:</font></i>
+setenforce <font color="#000000">0</font>  <i><font color="silver"># Temporary for testing</font></i>
+<i><font color="silver"># Or add proper SELinux context:</font></i>
+setsebool -P use_nfs_home_dirs <font color="#000000">1</font>
+</pre>
+<br />
+<span>#### Files Not Visible Across Nodes</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Force NFS cache refresh</font></i>
+<i><font color="silver"># On the affected node</font></i>
+umount /data/nfs/k3svolumes
+mount /data/nfs/k3svolumes
+
+<i><font color="silver"># Check NFS version</font></i>
+nfsstat -m
+<i><font color="silver"># Should show NFSv4</font></i>
+</pre>
+<br />
+<span>#### I/O Errors When Accessing NFS Mount</span><br />
+<br />
+<span>I/O errors can have several causes:</span><br />
+<br />
+<span>1. Missing localhost in exports (most common with stunnel):</span><br />
+<span>   - Since stunnel proxies connections, the NFS server sees requests from 127.0.0.1</span><br />
+<span>   - Ensure your exports include localhost access:</span><br />
+<span>   ```</span><br />
+<span>   /data/nfs/k3svolumes -maproot=root -network 127.0.0.1 -mask 255.255.255.255</span><br />
+<span>   ```</span><br />
+<br />
+<span>2. Stunnel connection issues or CARP failover:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On the affected node (e.g., r0)</font></i>
+<i><font color="silver"># Check stunnel is running</font></i>
+systemctl status stunnel
+
+<i><font color="silver"># Restart stunnel to re-establish connection</font></i>
+systemctl restart stunnel
+
+<i><font color="silver"># Force remount</font></i>
+umount -f -l /data/nfs/k3svolumes
+mount -t nfs4 -o port=<font color="#000000">2323</font>,hard,intr <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes /data/nfs/k3svolumes
+
+<i><font color="silver"># Check which FreeBSD host is CARP MASTER</font></i>
+<i><font color="silver"># On f0</font></i>
+ssh f0 <font color="#808080">"ifconfig re0 | grep carp"</font>
+<i><font color="silver"># On f1</font></i>
+ssh f1 <font color="#808080">"ifconfig re0 | grep carp"</font>
+
+<i><font color="silver"># Verify stunnel on MASTER is bound to VIP</font></i>
+<i><font color="silver"># On the MASTER host</font></i>
+ssh &lt;master-host&gt; <font color="#808080">"sockstat -l | grep 2323"</font>
+
+<i><font color="silver"># Debug stunnel connection</font></i>
+openssl s_client -connect <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">2323</font> &lt;/dev/null
+
+<i><font color="silver"># If persistent I/O errors, check logs</font></i>
+journalctl -u stunnel -n <font color="#000000">50</font>
+dmesg | tail -<font color="#000000">20</font> | grep -i nfs
+</pre>
+<br />
+<h3 style='display: inline' id='comprehensive-production-test-results'>Comprehensive Production Test Results</h3><br />
+<br />
+<span>After implementing all the improvements (enhanced CARP control script, soft mounts, and automatic recovery), here&#39;s a complete test of the setup including reboots and failovers:</span><br />
+<br />
+<span>#### Test Scenario: Full System Reboot and Failover</span><br />
+<br />
+<pre>
+1. Initial state: Rebooted all servers (f0, f1, f2)
+   - Result: f1 became CARP MASTER after reboot (not always f0)
+   - NFS accessible and writable from all clients
+   
+2. Created test file from laptop:
+   paul@earth:~ % echo "Post-reboot test at $(date)" &gt; /data/nfs/k3svolumes/reboot-test.txt
+   
+3. Verified 1-minute replication to f1:
+   - File appeared on f1 within 70 seconds
+   - Content identical on both servers
+   
+4. Performed failover from f0 to f1:
+   paul@f0:~ % doas ifconfig re0 vhid 1 state backup
+   - f1 immediately became MASTER
+   - Clients experienced "Stale file handle" errors
+   - With soft mounts: No hanging, immediate error response
+   
+5. Recovery time:
+   - Manual recovery: Immediate with umount/mount
+   - Automatic recovery: Within 10 seconds via systemd timer
+   - No data loss during failover
+   
+6. Failback to f0:
+   paul@f1:~ % doas ifconfig re0 vhid 1 state backup
+   - f0 reclaimed MASTER status
+   - Similar stale handle behavior
+   - Recovery within 10 seconds
+</pre>
+<br />
+<span>#### Key Findings</span><br />
+<br />
+<span>1. CARP Master Selection: After reboot, either f0 or f1 can become MASTER. This is normal CARP behavior and doesn&#39;t affect functionality.</span><br />
+<br />
+<span>2. Stale File Handles: Despite all optimizations, NFS clients still experience stale file handles during failover. This is inherent to NFS protocol design. However:</span><br />
+<span>   - Soft mounts prevent hanging</span><br />
+<span>   - Automatic recovery works reliably</span><br />
+<span>   - No data loss occurs</span><br />
+<br />
+<span>3. Replication Timing: The 1-minute replication interval for NFS data ensures minimal data loss window during unplanned failovers. The Fedora VM replication runs every 10 minutes, which is sufficient for less critical VM data.</span><br />
+<br />
+<span>4. Service Management: The enhanced carpcontrol.sh script successfully stops services on BACKUP nodes, preventing split-brain scenarios.</span><br />
+<br />
+<h2 style='display: inline' id='performance-considerations'>Performance Considerations</h2><br />
+<br />
+<h3 style='display: inline' id='encryption-overhead'>Encryption Overhead</h3><br />
+<br />
+<span>Stunnel adds CPU overhead for TLS encryption/decryption. On modern hardware, the impact is minimal:</span><br />
+<br />
+<ul>
+<li>Beelink Mini PCs: With hardware AES acceleration, expect 5-10% CPU overhead</li>
+<li>Network throughput: Gigabit Ethernet is usually the bottleneck, not TLS</li>
+<li>Latency: Adds &lt;1ms in LAN environments</li>
+</ul><br />
+<span>For reference, with AES-256-GCM on a typical mini PC:</span><br />
+<ul>
+<li>Sequential reads: ~110 MB/s (near line-speed for gigabit)</li>
+<li>Sequential writes: ~105 MB/s</li>
+<li>Random 4K IOPS: ~15% reduction compared to unencrypted</li>
+</ul><br />
+<h3 style='display: inline' id='replication-bandwidth'>Replication Bandwidth</h3><br />
+<br />
+<span>ZFS replication with <span class='inlinecode'>zrepl</span> is efficient, only sending changed blocks:</span><br />
+<br />
+<ul>
+<li>Initial sync: Full dataset size (can be large)</li>
+<li>Incremental: Typically &lt;1% of dataset size per snapshot</li>
+<li>Network usage: With 1-minute intervals and moderate changes, expect 10-50 MB/minute</li>
+</ul><br />
+<span>To monitor replication bandwidth:</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On f0, check network usage on WireGuard interface</font></i>
+doas systat -ifstat <font color="#000000">1</font>
+<i><font color="silver"># Look for wg0 traffic during replication</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='nfs-tuning'>NFS Tuning</h3><br />
+<br />
+<span>For optimal performance with Kubernetes workloads:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># On NFS server (f0/f1) - /etc/sysctl.conf</font></i>
+vfs.nfsd.async=<font color="#000000">1</font>                    <i><font color="silver"># Enable async writes (careful with data integrity)</font></i>
+vfs.nfsd.cachetcp=<font color="#000000">1</font>                 <i><font color="silver"># Cache TCP connections</font></i>
+vfs.nfsd.tcphighwater=<font color="#000000">64</font>            <i><font color="silver"># Increase TCP connection limit</font></i>
+
+<i><font color="silver"># On NFS clients - mount options</font></i>
+rsize=<font color="#000000">131072</font>,wsize=<font color="#000000">131072</font>           <i><font color="silver"># Larger read/write buffers</font></i>
+hard,intr                           <i><font color="silver"># Hard mount with interruption</font></i>
+vers=<font color="#000000">4.2</font>                            <i><font color="silver"># Use latest NFSv4.2 for best performance</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='zfs-tuning'>ZFS Tuning</h3><br />
+<br />
+<span>Key ZFS settings for NFS storage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Set on the NFS dataset</font></i>
+zfs <b><u><font color="#000000">set</font></u></b> compression=lz4 zdata/enc/nfsdata              <i><font color="silver"># Fast compression</font></i>
+zfs <b><u><font color="#000000">set</font></u></b> atime=off zdata/enc/nfsdata                    <i><font color="silver"># Disable access time updates</font></i>
+zfs <b><u><font color="#000000">set</font></u></b> redundant_metadata=most zdata/enc/nfsdata      <i><font color="silver"># Protect metadata</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='monitoring'>Monitoring</h3><br />
+<br />
+<span>Monitor system performance to identify bottlenecks:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># CPU and memory</font></i>
+doas top -P
+
+<i><font color="silver"># Disk I/O</font></i>
+doas gstat -p
+
+<i><font color="silver"># Network traffic</font></i>
+doas netstat -w <font color="#000000">1</font> -h
+
+<i><font color="silver"># ZFS statistics</font></i>
+doas zpool iostat -v <font color="#000000">1</font>
+
+<i><font color="silver"># NFS statistics</font></i>
+doas nfsstat -s -w <font color="#000000">1</font>
+</pre>
+<br />
+<h3 style='display: inline' id='cleanup-after-testing'>Cleanup After Testing</h3><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Remove test files (run on any node)</font></i>
+rm -f /data/nfs/k3svolumes/test-*.txt
+rm -f /data/nfs/k3svolumes/test-large-*.dat
+rm -f /data/nfs/k3svolumes/failover-test-*.txt
+rm -f /data/nfs/k3svolumes/test-perms-*.txt
+rm -rf /data/nfs/k3svolumes/test-dir
+</pre>
+<br />
+<span>This comprehensive testing ensures that:</span><br />
+<ul>
+<li>All nodes can mount the NFS share</li>
+<li>Files created on one node are visible on all others</li>
+<li>The encrypted stunnel connection is working</li>
+<li>Permissions and ownership are preserved</li>
+<li>The setup can handle concurrent access</li>
+<li>Failover works correctly (if tested)</li>
+</ul><br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>We&#39;ve built a robust, encrypted storage system for our FreeBSD-based Kubernetes cluster that provides:</span><br />
+<br />
+<h3 style='display: inline' id='what-we-achieved'>What We Achieved</h3><br />
+<br />
+<ul>
+<li>High Availability: CARP ensures the storage VIP moves automatically during failures</li>
+<li>Data Protection: ZFS encryption protects data at rest, stunnel protects data in transit</li>
+<li>Continuous Replication: 1-minute RPO for critical data, automated via zrepl</li>
+<li>Secure Access: Client certificate authentication prevents unauthorized access</li>
+<li>Kubernetes Integration: Shared storage accessible from all cluster nodes</li>
+</ul><br />
+<h3 style='display: inline' id='architecture-benefits'>Architecture Benefits</h3><br />
+<br />
+<span>This design prioritizes data integrity over pure availability:</span><br />
+<ul>
+<li>Manual failover prevents split-brain scenarios</li>
+<li>Certificate-based authentication provides strong security</li>
+<li>Encrypted replication protects data even over untrusted networks</li>
+<li>ZFS snapshots enable point-in-time recovery</li>
+</ul><br />
+<h3 style='display: inline' id='lessons-learned'>Lessons Learned</h3><br />
+<br />
+<span>1. Stunnel vs Native NFS/TLS: While native encryption would be ideal, stunnel provides better cross-platform compatibility</span><br />
+<span>2. Manual vs Automatic Failover: For storage systems, controlled failover often prevents more problems than it causes</span><br />
+<span>3. Replication Frequency: Balance between data protection (RPO) and system load</span><br />
+<span>4. Client Compatibility: Different NFS implementations behave differently - test thoroughly</span><br />
+<br />
+<h3 style='display: inline' id='next-steps'>Next Steps</h3><br />
+<br />
+<span>With reliable storage in place, we can now:</span><br />
+<ul>
+<li>Deploy stateful applications on Kubernetes</li>
+<li>Set up databases with persistent volumes</li>
+<li>Create shared configuration stores</li>
+<li>Implement backup strategies using ZFS snapshots</li>
+</ul><br />
+<span>The storage layer is the foundation for any serious Kubernetes deployment. By building it on FreeBSD with ZFS, CARP, and stunnel, we get enterprise-grade features on commodity hardware.</span><br />
+<br />
+<h3 style='display: inline' id='references'>References</h3><br />
+<br />
+<ul>
+<li>FreeBSD CARP documentation: https://docs.freebsd.org/en/books/handbook/advanced-networking/#carp</li>
+<li>ZFS encryption guide: https://docs.freebsd.org/en/books/handbook/zfs/#zfs-encryption</li>
+<li>Stunnel documentation: https://www.stunnel.org/docs.html</li>
+<li><span class='inlinecode'>zrepl</span> documentation: https://zrepl.github.io/</li>
+</ul><br />
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -840,13 +3015,6 @@ drwxr-xr-x  <font color="#000000">4</font> root wheel  <font color="#000000">4</
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-<br />
-<span>https://forums.freebsd.org/threads/hast-and-zfs-with-carp-failover.29639/</span><br />
-<br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
 <br />
