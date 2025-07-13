@@ -9,6 +9,7 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
 [2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
+[2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -363,6 +364,7 @@ Read the next post of this series:
 
 Other BSD related posts are:
 
+[2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts (You are currently reading this)](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
