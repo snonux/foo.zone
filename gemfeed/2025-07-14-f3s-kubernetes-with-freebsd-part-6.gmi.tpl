@@ -1264,7 +1264,7 @@ So, in summary:
 
 This ensures `f0` automatically resumes its role as primary storage server after any reboot, while providing administrative control when needed.
 
-## Client Configuration for Stunnel
+## Client Configuration for NFS via Stunnel
 
 To mount NFS shares with stunnel encryption, clients must install and configure stunnel using their client certificates.
 

@@ -47,7 +47,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * ⇢ ⇢ ⇢ CARP Control Script for Clean Failover
 * ⇢ ⇢ ⇢ CARP Management Script
 * ⇢ ⇢ ⇢ Automatic Failback After Reboot
-* ⇢ ⇢ Client Configuration for Stunnel
+* ⇢ ⇢ Client Configuration for NFS via Stunnel
 * ⇢ ⇢ ⇢ Configuring Rocky Linux Clients (`r0`, `r1`, `r2`)
 * ⇢ ⇢ ⇢ Testing NFS Mount with Stunnel
 * ⇢ ⇢ ⇢ Testing CARP Failover with mounted clients and stale file handles:
@@ -1311,7 +1311,7 @@ So, in summary:
 
 This ensures `f0` automatically resumes its role as primary storage server after any reboot, while providing administrative control when needed.
 
-## Client Configuration for Stunnel
+## Client Configuration for NFS via Stunnel
 
 To mount NFS shares with stunnel encryption, clients must install and configure stunnel using their client certificates.
 
