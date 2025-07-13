@@ -898,7 +898,9 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 
 Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.
 
-I look forward to the next blog post in this series. We may start setting up k3s or take a first look at the NFS server (for persistent storage) side of things. I hope you liked all the posts so far in this series.
+Read the next post of this series:
+
+=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi f3s: Kubernetes with FreeBSD - Part 6: Storage
 
 Other *BSD-related posts:
 
