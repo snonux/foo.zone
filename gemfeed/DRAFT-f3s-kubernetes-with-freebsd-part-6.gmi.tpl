@@ -1298,7 +1298,7 @@ EOF
 # Repeat for r1 and r2 with their respective certificates
 ```
 
-Note: Each client must use its own certificate file (`r0-stunnel.pem`, `r1-stunnel.pem`, `r2-stunnel.pem`, or `earth-stunnel.pem` - the latter is my Laptop, which also can mount the NFS shares).
+Note: Each client must use its own certificate file (`r0-key.pem`, `r1-key.pem`, `r2-key.pem`, or `earth-key.pem` - the latter is my Laptop, which also can mount the NFS shares).
 
 ### Testing NFS Mount with Stunnel
 
@@ -1314,6 +1314,7 @@ To mount NFS through the stunnel encrypted tunnel, we run:
 # Verify mount
 [root@r0 ~]# mount | grep k3svolumes
 127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+
 # For persistent mount, add to /etc/fstab:
 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0
 ```
