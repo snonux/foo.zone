@@ -1,0 +1,1555 @@
+TODO:
+
+r0, r1, r2: add ``
+
+# f3s: Kubernetes with FreeBSD - Part 6: Storage
+
+This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
+
+<< template::inline::index f3s-kubernetes-with-freebsd-part
+
+=> ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
+
+<< template::inline::toc
+
+## Introduction
+
+In the previous posts, we set up a FreeBSD-based Kubernetes cluster using k3s. While the base system works well, Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:
+
+* No data sharing: Pods (once we run Kubernetes) on different nodes can't access the same data
+* Pod mobility: If a pod moves to another node, it loses access to its data
+* No redundancy: Hardware failure means data loss
+
+This post implements a robust storage solution using:
+
+* CARP: For high availability with automatic IP failover
+* NFS over stunnel: For secure, encrypted network storage
+* ZFS: For data integrity, encryption, and efficient snapshots
+* `zrepl`: For continuous ZFS replication between nodes
+
+The result is a highly available, encrypted storage system that survives node failures while providing shared storage to all Kubernetes pods.
+
+Other than what was mentioned in the first post of this blog series, we aren't using HAST, but `zrepl` for data replication. Read more about it later in this blog post.
+
+## Additional storage capacity
+
+We add 1 TB of additional storage to each of the nodes (`f0`, `f1`, `f2`) in the form of an SSD drive. The Beelink mini PCs have enough space in the chassis for the extra space.
+
+=> ./f3s-kubernetes-with-freebsd-part-6/drives.jpg
+
+Upgrading the storage was as easy as unscrewing, plugging the drive in, and then screwing it back together again. The procedure was uneventful! We're using two different SSD models (Samsung 870 EVO and Crucial BX500) to avoid simultaneous failures from the same manufacturing batch.
+
+We then create the `zdata` ZFS pool on all three nodes:
+
+```sh
+paul@f0:~ % doas zpool create -m /data zdata /dev/ada1
+paul@f0:~ % zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  12.1M   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  29.0G   443G        -         -     0%     6%  1.00x    ONLINE  -
+
+paul@f0:/ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<Samsung SSD 870 EVO 1TB SVT03B6Q>  at scbus1 target 0 lun 0 (pass1,ada1)
+paul@f0:/ %
+```
+
+To verify that we have a different SSD on the second node (the third node has the same drive as the first):
+
+```sh
+paul@f1:/ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<CT1000BX500SSD1 M6CR072>          at scbus1 target 0 lun 0 (pass1,ada1)
+```
+
+## ZFS encryption keys
+
+ZFS native encryption requires encryption keys to unlock datasets. We need a secure method to store these keys that balances security with operational needs:
+
+* Security: Keys must not be stored on the same disks they encrypt
+* Availability: Keys must be available at boot for automatic mounting
+* Portability: Keys should be easily moved between systems for recovery
+
+Using USB flash drives as hardware key storage provides a convenient and elegant solution. The encrypted data is unreadable without physical access to the USB key, protecting against disk theft or improper disposal. In production environments, you may use enterprise key management systems; however, for a home lab, USB keys offer good security with minimal complexity.
+
+### UFS on USB keys
+
+We'll format the USB drives with UFS (Unix File System) rather than ZFS for simplicity. There is no need to use ZFS.
+
+Let's see the USB keys:
+
+=> ./f3s-kubernetes-with-freebsd-part-6/usbkeys1.jpg USB keys
+
+To verify that the USB key (flash disk) is there:
+
+```
+paul@f0:/ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<Samsung SSD 870 EVO 1TB SVT03B6Q>  at scbus1 target 0 lun 0 (pass1,ada1)
+<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
+paul@f0:/ %
+```
+
+Let's create the UFS file system and mount it (done on all three nodes `f0`, `f1` and `f2`):
+
+```sh
+paul@f0:/ % doas newfs /dev/da0
+/dev/da0: 15000.0MB (30720000 sectors) block size 32768, fragment size 4096
+        using 24 cylinder groups of 625.22MB, 20007 blks, 80128 inodes.
+        with soft updates
+super-block backups (for fsck_ffs -b #) at:
+ 192, 1280640, 2561088, 3841536, 5121984, 6402432, 7682880, 8963328, 10243776,
+11524224, 12804672, 14085120, 15365568, 16646016, 17926464, 19206912,k 20487360,
+...
+
+paul@f0:/ % echo '/dev/da0 /keys ufs rw 0 2' | doas tee -a /etc/fstab
+/dev/da0 /keys ufs rw 0 2
+paul@f0:/ % doas mkdir /keys
+paul@f0:/ % doas mount /keys
+paul@f0:/ % df | grep keys
+/dev/da0             14877596       8  13687384     0%    /keys
+```
+
+=> ./f3s-kubernetes-with-freebsd-part-6/usbkeys2.jpg USB keys stuck in
+
+### Generating encryption keys
+
+The following keys will later be used to encrypt the ZFS file systems. They will be stored on all three nodes, serving as a backup in case one of the keys is lost or corrupted. When we later replicate encrypted ZFS volumes from one node to another, the keys must also be available on the destination node.
+
+```
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:bhyve.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f0.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f1.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas openssl rand -out /keys/f2.lan.buetow.org:zdata.key 32
+paul@f0:/keys % doas chown root *
+paul@f0:/keys % doas chmod 400 *
+
+paul@f0:/keys % ls -l
+total 20
+*r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:bhyve.key
+*r--------  1 root wheel 32 May 25 13:07 f0.lan.buetow.org:zdata.key
+*r--------  1 root wheel 32 May 25 13:07 f1.lan.buetow.org:zdata.key
+*r--------  1 root wheel 32 May 25 13:07 f2.lan.buetow.org:zdata.key
+````
+
+After creation, these are copied to the other two nodes, `f1` and `f2`, into the `/keys` partition (I won't provide the commands here; create a tarball, copy it over, and extract it on the destination nodes).
+
+### Configuring `zdata` ZFS pool encryption
+
+Let's encrypt our `zdata` ZFS pool. We are not encrypting the whole pool, but everything within the `zdata/enc` data set:
+
+```sh
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o \
+  keylocation=file:///keys/`hostname`:zdata.key zdata/enc
+paul@f0:/ % zfs list | grep zdata
+zdata                                          836K   899G    96K  /data
+zdata/enc                                      200K   899G   200K  /data/enc
+
+paul@f0:/keys % zfs get all zdata/enc | grep -E -i '(encryption|key)'
+zdata/enc  encryption            aes-256-gcm                               -
+zdata/enc  keylocation           file:///keys/f0.lan.buetow.org:zdata.key  local
+zdata/enc  keyformat             raw                                       -
+zdata/enc  encryptionroot        zdata/enc                                 -
+zdata/enc  keystatus             available                                 -
+````
+
+All future data sets within `zdata/enc` will inherit the same encryption key.
+
+### Migrating Bhyve VMs to an encrypted `bhyve` ZFS volume
+
+We set up Bhyve VMs in a previous blog post. Their ZFS data sets rely on `zroot`, which is the default ZFS pool on the internal 512GB NVME drive. They aren't encrypted yet, so we encrypt the VM data sets as well now. To do so, we first shut down the VMs on all three nodes:
+
+```sh
+paul@f0:/keys % doas vm stop rocky
+Sending ACPI shutdown to rocky
+
+paul@f0:/keys % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC  AUTO     STATE
+rocky    default    uefi       4    14G     -    Yes [1]  Stopped
+```
+
+After this, we rename the unencrypted data set to `_old`, create a new encrypted data set, and also snapshot it as `@hamburger`.
+  
+```sh
+paul@f0:/keys % doas zfs rename zroot/bhyve zroot/bhyve_old
+paul@f0:/keys % doas zfs set mountpoint=/mnt zroot/bhyve_old
+paul@f0:/keys % doas zfs snapshot zroot/bhyve_old/rocky@hamburger
+
+paul@f0:/keys % doas zfs create -o encryption=on -o keyformat=raw -o \
+  keylocation=file:///keys/`hostname`:bhyve.key zroot/bhyve
+paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve zroot/bhyve
+paul@f0:/keys % doas zfs set mountpoint=/zroot/bhyve/rocky zroot/bhyve/rocky
+```
+
+Once done, we import the snapshot into the encrypted dataset and also copy some other metadata files from `vm-bhyve` back over.
+
+```
+paul@f0:/keys % doas zfs send zroot/bhyve_old/rocky@hamburger | \
+  doas zfs recv zroot/bhyve/rocky
+paul@f0:/keys % doas cp -Rp /mnt/.config /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.img /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.templates /zroot/bhyve/
+paul@f0:/keys % doas cp -Rp /mnt/.iso /zroot/bhyve/
+```
+
+We also have to make encrypted ZFS data sets mount automatically on boot:
+
+```sh
+paul@f0:/keys % doas sysrc zfskeys_enable=YES
+zfskeys_enable:  -> YES
+paul@f0:/keys % doas vm init
+paul@f0:/keys % doas reboot
+.
+.
+.
+paul@f0:~ % doas vm list
+paul@f0:~ % doas vm list
+NAME     DATASTORE  LOADER     CPU  MEMORY  VNC           AUTO     STATE
+rocky    default    uefi       4    14G     0.0.0.0:5900  Yes [1]  Running (2265)
+```
+
+As you can see, the VM is running. This means the encrypted `zroot/bhyve` was mounted successfully after the reboot! Now we can destroy the old, unencrypted, and now unused bhyve dataset:
+
+```sh
+paul@f0:~ % doas zfs destroy -R zroot/bhyve_old
+```
+
+To verify once again that `zroot/bhyve` and `zroot/bhyve/rocky` are now both encrypted, we run:
+  
+```sh
+paul@f0:~ % zfs get all zroot/bhyve | grep -E '(encryption|key)'
+zroot/bhyve  encryption            aes-256-gcm                               -
+zroot/bhyve  keylocation           file:///keys/f0.lan.buetow.org:bhyve.key  local
+zroot/bhyve  keyformat             raw                                       -
+zroot/bhyve  encryptionroot        zroot/bhyve                               -
+zroot/bhyve  keystatus             available                                 -
+
+paul@f0:~ % zfs get all zroot/bhyve/rocky | grep -E '(encryption|key)'
+zroot/bhyve/rocky  encryption            aes-256-gcm            -
+zroot/bhyve/rocky  keylocation           none                   default
+zroot/bhyve/rocky  keyformat             raw                    -
+zroot/bhyve/rocky  encryptionroot        zroot/bhyve            -
+zroot/bhyve/rocky  keystatus             available              -
+```
+
+## ZFS Replication with `zrepl`
+
+Data replication is the cornerstone of high availability. While CARP handles IP failover (see later in this post), we need continuous data replication to ensure the backup server has current data when it becomes active. Without replication, failover would result in data loss or require shared storage (like iSCSI), which introduces a single point of failure.
+
+### Understanding Replication Requirements
+
+Our storage system has different replication needs:
+
+* NFS data (`/data/nfs/k3svolumes`): Soon, it will contain active Kubernetes persistent volumes. Needs frequent replication (every minute) to minimise data loss during failover.
+* VM data (`/zroot/bhyve/fedora`): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).
+
+The 1-minute replication window is perfectly acceptable for my personal use cases. This isn't a high-frequency trading system or a real-time database—it's storage for personal projects, development work, and home lab experiments. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Additionally, in the case of a "1 minute of data loss," I would likely still have the data available on the client side.
+
+Why use `zrepl` instead of HAST? While HAST (Highly Available Storage) is FreeBSD's native solution for high-availability storage and supports synchronous replication—thus eliminating the mentioned 1-minute window—I've chosen `zrepl` for several important reasons:
+
+* HAST can cause ZFS corruption: HAST operates at the block level and doesn't understand ZFS's transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I've experienced this firsthand (I am confident I have configured something wrong) - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.
+* ZFS-aware replication: `zrepl` understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.
+* Snapshot history: With `zrepl`, you get multiple recovery points (every minute for NFS data in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.
+* Easier recovery: When something goes wrong with `zrepl`, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary as well.
+
+=> https://wiki.freebsd.org/HighlyAvailableStorage FreeBSD HAST
+
+### Installing `zrepl`
+
+First, install `zrepl` on both hosts involved (we will replicate data from `f0` to `f1`):
+
+```sh
+paul@f0:~ % doas pkg install -y zrepl
+```
+
+Then, we verify the pools and datasets on both hosts:
+
+```sh
+# On f0
+paul@f0:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G  1.03M   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  26.7G   445G        -         -     0%     5%  1.00x    ONLINE  -
+
+paul@f0:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+
+# On f1
+paul@f1:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata   928G   956K   928G        -         -     0%     0%  1.00x    ONLINE  -
+zroot   472G  11.7G   460G        -         -     0%     2%  1.00x    ONLINE  -
+
+paul@f1:~ % doas zfs list -r zdata/enc
+NAME        USED  AVAIL  REFER  MOUNTPOINT
+zdata/enc   200K   899G   200K  /data/enc
+```
+
+Since we have a WireGuard tunnel between `f0` and f1, we'll use TCP transport over the secure tunnel instead of SSH. First, check the WireGuard IP addresses:
+
+```sh
+# Check WireGuard interface IPs
+paul@f0:~ % ifconfig wg0 | grep inet
+	inet 192.168.2.130 netmask 0xffffff00
+
+paul@f1:~ % ifconfig wg0 | grep inet
+	inet 192.168.2.131 netmask 0xffffff00
+```
+
+Let's create a dedicated dataset for NFS data that will be replicated:
+
+```sh
+# Create the nfsdata dataset that will hold all data exposed via NFS
+paul@f0:~ % doas zfs create zdata/enc/nfsdata
+```
+
+Afterwards, we create the `zrepl` configuration on `f0`:
+
+```sh
+paul@f0:~ % doas tee /usr/local/etc/zrepl/zrepl.yml <<'EOF'
+global:
+  logging:
+    - type: stdout
+      level: info
+      format: human
+
+jobs:
+  - name: f0_to_f1_nfsdata
+    type: push
+    connect:
+      type: tcp
+      address: "192.168.2.131:8888"
+    filesystems:
+      "zdata/enc/nfsdata": true
+    send:
+      encrypted: true
+    snapshotting:
+      type: periodic
+      prefix: zrepl_
+      interval: 1m
+    pruning:
+      keep_sender:
+        - type: last_n
+          count: 10
+      keep_receiver:
+        - type: last_n
+          count: 10
+
+  - name: f0_to_f1_fedora
+    type: push
+    connect:
+      type: tcp
+      address: "192.168.2.131:8888"
+    filesystems:
+      "zroot/bhyve/fedora": true
+    send:
+      encrypted: true
+    snapshotting:
+      type: periodic
+      prefix: zrepl_
+      interval: 10m
+    pruning:
+      keep_sender:
+        - type: last_n
+          count: 10
+      keep_receiver:
+        - type: last_n
+          count: 10
+EOF
+```
+
+ We're using two separate replication jobs with different intervals:
+
+* `f0_to_f1_nfsdata`: Replicates NFS data every minute for faster failover recovery
+* `f0_to_f1_fedora`: Replicates Fedora VM every ten minutes (less critical)
+
+The Fedora VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows `zrepl`'s flexibility in handling different datasets with varying replication needs.
+
+Furthermore:
+
+* We're specifically replicating `zdata/enc/nfsdata` instead of the entire `zdata/enc` dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.
+* The `send: encrypted: false` option turns off ZFS native encryption for the replication stream. Since we're using a WireGuard tunnel between `f0` and `f1`, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.
+
+### Configuring `zrepl` on `f1` (sink)
+
+On `f1` (the sink, meaning it's the node receiving the replication data), we configure `zrepl` to receive the data as follows:
+
+```sh
+# First, create a dedicated sink dataset
+paul@f1:~ % doas zfs create zdata/sink
+
+paul@f1:~ % doas tee /usr/local/etc/zrepl/zrepl.yml <<'EOF'
+global:
+  logging:
+    - type: stdout
+      level: info
+      format: human
+
+jobs:
+  - name: sink
+    type: sink
+    serve:
+      type: tcp
+      listen: "192.168.2.131:8888"
+      clients:
+        "192.168.2.130": "f0"
+    recv:
+      placeholder:
+        encryption: inherit
+    root_fs: "zdata/sink"
+EOF
+```
+
+### Enabling and starting `zrepl` services
+
+We then enable and start `zrepl` on both hosts via:
+
+```sh
+# On f0
+paul@f0:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -> YES
+paul@f0:~ % doas service `zrepl` start
+Starting zrepl.
+
+# On f1
+paul@f1:~ % doas sysrc zrepl_enable=YES
+zrepl_enable:  -> YES
+paul@f1:~ % doas service `zrepl` start
+Starting zrepl.
+```
+
+To check the replication status, we run:
+
+```sh
+# On f0, check `zrepl` status (use raw mode for non-tty)
+paul@f0:~ % doas pkg install jq
+paul@f0:~ % doas zrepl status --mode raw | grep -A2 "Replication" | jq .
+"Replication":{"StartAt":"2025-07-01T22:31:48.712143123+03:00"...
+
+# Check if services are running
+paul@f0:~ % doas service zrepl status
+zrepl is running as pid 2649.
+
+paul@f1:~ % doas service zrepl status
+zrepl is running as pid 2574.
+
+# Check for `zrepl` snapshots on source
+paul@f0:~ % doas zfs list -t snapshot -r zdata/enc | grep zrepl
+zdata/enc@zrepl_20250701_193148_000    0B      -   176K  -
+
+# On f1, verify the replicated datasets  
+paul@f1:~ % doas zfs list -r zdata | grep f0
+zdata/f0             576K   899G   200K  none
+zdata/f0/zdata       376K   899G   200K  none
+zdata/f0/zdata/enc   176K   899G   176K  none
+
+# Check replicated snapshots on f1
+paul@f1:~ % doas zfs list -t snapshot -r zdata | grep zrepl
+zdata/f0/zdata/enc@zrepl_20250701_193148_000     0B      -   176K  -
+zdata/f0/zdata/enc@zrepl_20250701_194148_000     0B      -   176K  -
+.
+.
+.
+```
+
+### Monitoring replication
+
+You can monitor the replication progress with:
+
+```sh
+paul@f0:~ % doas zrepl status
+```
+
+=> ./f3s-kubernetes-with-freebsd-part-6/zrepl.png zrepl status
+
+With this setup, both `zdata/enc/nfsdata` and `zroot/bhyve/fedora` on `f0` will be automatically replicated to `f1` every 1 minute (or 10 minutes in the case of the Fedora VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.
+
+The replicated data appears on `f1` under `zdata/sink/` with the source host and dataset hierarchy preserved:
+
+* `zdata/enc/nfsdata` → `zdata/sink/f0/zdata/enc/nfsdata`
+* `zroot/bhyve/fedora` → `zdata/sink/f0/zroot/bhyve/fedora`
+
+This is by design - `zrepl` preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources.
+
+### Verifying replication after reboot
+
+The `zrepl` service is configured to start automatically at boot. After rebooting both hosts:
+
+```sh
+paul@f0:~ % uptime
+11:17PM  up 1 min, 0 users, load averages: 0.16, 0.06, 0.02
+
+paul@f0:~ % doas service `zrepl` status
+zrepl is running as pid 2366.
+
+paul@f1:~ % doas service `zrepl` status
+zrepl is running as pid 2309.
+
+# Check that new snapshots are being created and replicated
+paul@f0:~ % doas zfs list -t snapshot | grep `zrepl` | tail -2
+zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
+zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  2.97G  -
+.
+.
+.
+
+paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep 202530
+zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_202530_000      0B      -   176K  -
+zdata/sink/f0/zroot/bhyve/fedora@zrepl_20250701_202530_000     0B      -  2.97G  -
+.
+.
+.
+```
+
+The timestamps confirm that replication resumed automatically after the reboot, ensuring continuous data protection. We can also write a test file to the NFS data directory on `f0` and verify whether it appears on `f1` after a minute.
+
+### Understanding Failover Limitations and Design Decisions
+
+Our system intentionally fails over to a read-only copy of the replica in the event of the primary's failure. This is due to the nature of `zrepl`, which only replicates data in one direction. If we mount the data set on the sink node in read-write mode, it would cause the ZFS dataset to diverge from the original, and the replication would break. It can still be mounted read-write on the sink node in case of a genuine issue on the primary node, but that step is left intentionally manual. Therefore, we don't need to fix the replication later on manually.
+
+So in summary:
+
+* Split-brain prevention: Automatic failover to a read-write copy can cause both nodes to become active simultaneously if network communication fails. This leads to data divergence that's extremely difficult to resolve.
+* False positive protection: Temporary network issues or high load can trigger unwanted failovers. Manual intervention ensures that failovers occur only when truly necessary.
+* Data integrity over availability: For storage systems, data consistency is paramount. A few minutes of downtime is preferable to data corruption in this specific use case.
+* Simplified recovery: With manual failover, you always know which dataset is authoritative, making recovery more straightforward.
+
+### Mounting the NFS datasets
+
+To make the NFS data accessible on both nodes, we need to mount it. On `f0`, this is straightforward:
+
+```sh
+# On f0 - set mountpoint for the primary nfsdata
+paul@f0:~ % doas zfs set mountpoint=/data/nfs zdata/enc/nfsdata
+paul@f0:~ % doas mkdir -p /data/nfs
+
+# Verify it's mounted
+paul@f0:~ % df -h /data/nfs
+Filesystem           Size    Used   Avail Capacity  Mounted on
+zdata/enc/nfsdata    899G    204K    899G     0%    /data/nfs
+```
+
+On `f1`, we need to handle the encryption key and mount the standby copy:
+
+```sh
+# On f1 - first check encryption status
+paul@f1:~ % doas zfs get keystatus zdata/sink/f0/zdata/enc/nfsdata
+NAME                             PROPERTY   VALUE        SOURCE
+zdata/sink/f0/zdata/enc/nfsdata  keystatus  unavailable  -
+
+# Load the encryption key (using f0's key stored on the USB)
+paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
+    zdata/sink/f0/zdata/enc/nfsdata
+
+# Set mountpoint and mount (same path as f0 for easier failover)
+paul@f1:~ % doas mkdir -p /data/nfs
+paul@f1:~ % doas zfs set mountpoint=/data/nfs zdata/sink/f0/zdata/enc/nfsdata
+paul@f1:~ % doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
+
+# Make it read-only to prevent accidental writes that would break replication
+paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
+
+# Verify
+paul@f1:~ % df -h /data/nfs
+Filesystem                         Size    Used   Avail Capacity  Mounted on
+zdata/sink/f0/zdata/enc/nfsdata    896G    204K    896G     0%    /data/nfs
+```
+
+Note: The dataset is mounted at the same path (`/data/nfs`) on both hosts to simplify failover procedures. The dataset on `f1` is set to `readonly=on` to prevent accidental modifications, which, as mentioned earlier, would break replication. If we did, replication from `f0` to `f1` would fail like this:
+
+> cannot receive incremental stream: destination zdata/sink/f0/zdata/enc/nfsdata has been modified since most recent snapshot 
+
+To fix a broken replication after accidental writes, we can do:
+
+```sh
+# Option 1: Rollback to the last common snapshot (loses local changes)
+paul@f1:~ % doas zfs rollback zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_204054_000
+
+# Option 2: Make it read-only to prevent accidents again
+paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
+```
+
+And replication should work again!
+
+### Troubleshooting: Files not appearing in replication
+
+If you write files to `/data/nfs/` on `f0` but they don't appear on `f1`, check if the dataset is mounted on `f0`?
+
+```sh
+paul@f0:~ % doas zfs list -o name,mountpoint,mounted | grep nfsdata
+zdata/enc/nfsdata                             /data/nfs             yes
+```
+
+If it shows `no`, the dataset isn't mounted! This means files are being written to the root filesystem, not ZFS. Next, we should check whether the encryption key is loaded:
+
+```sh
+paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
+NAME               PROPERTY   VALUE        SOURCE
+zdata/enc/nfsdata  keystatus  available    -
+# If "unavailable", load the key:
+paul@f0:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs mount zdata/enc/nfsdata
+```
+
+You can also verify that files are in the snapshot (not just the directory):
+
+```sh
+paul@f0:~ % ls -la /data/nfs/.zfs/snapshot/zrepl_*/
+```
+
+This issue commonly occurs after a reboot if the encryption keys aren't configured to load automatically.
+
+### Configuring automatic key loading on boot
+
+To ensure all additional encrypted datasets are mounted automatically after reboot as well, we do:
+
+```sh
+# On f0 - configure all encrypted datasets
+paul@f0:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: YES -> YES
+paul@f0:~ % doas sysrc zfskeys_datasets="zdata/enc zdata/enc/nfsdata zroot/bhyve"
+zfskeys_datasets:  -> zdata/enc zdata/enc/nfsdata zroot/bhyve
+
+# Set correct key locations for all datasets
+paul@f0:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+
+# On f1 - include the replicated dataset
+paul@f1:~ % doas sysrc zfskeys_enable=YES
+zfskeys_enable: YES -> YES
+paul@f1:~ % doas sysrc zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
+zfskeys_datasets:  -> zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata
+
+# Set key location for replicated dataset
+paul@f1:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
+```
+
+Important notes:
+
+* Each encryption root needs its own key load entry
+* The replicated dataset on `f1` uses the same encryption key as the source on `f0`
+* Always verify datasets are mounted after reboot with `zfs list -o name,mounted`
+* Critical: Always ensure the replicated dataset on `f1` remains read-only with `doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata`
+
+## CARP (Common Address Redundancy Protocol)
+
+High availability is crucial for storage systems. If the storage server goes down, all NFS clients (which will also be Kubernetes pods later on in this series) lose access to their persistent data. CARP provides a solution by creating a virtual IP address that automatically migrates to a different server during failures. This means that clients point to that VIP for NFS mounts and are always contacting the current primary node.
+
+### How CARP Works
+
+In our case, CARP allows two hosts (`f0` and `f1`) to share a virtual IP address (VIP). The hosts communicate using multicast to elect a MASTER, while the other remain as BACKUP. When the MASTER fails, the BACKUP automatically promotes itself, and the VIP is reassigned to the new MASTER. This happens within seconds.
+
+Key benefits for our storage system:
+
+* Automatic failover: No manual intervention is required for basic failures, although there are a few limitations. The backup will have read-only access to the available data by default, as we have already learned.
+* Transparent to clients: Pods continue using the same IP address
+* Works with `stunnel`: Behind the VIP, there will be a `stunnel` process running, which ensures encrypted connections follow the active server.
+
+=> https://docs-archive.freebsd.org/doc/13.0-RELEASE/usr/local/share/doc/freebsd/en/books/handbook/carp.html FreeBSD CARP
+=> https://www.stunnel.org/ Stunnel
+
+### Configuring CARP
+
+First, we add the CARP configuration to `/etc/rc.conf` on both `f0` and `f1`:
+
+```sh
+# The virtual IP 192.168.1.138 will float between f0 and f1
+ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"
+```
+
+Whereas:
+
+* `vhid 1`: Virtual Host ID - must match on all CARP members
+* `pass testpass`: Password for CARP authentication (if you follow this, use a different password!)
+* `alias 192.168.1.138/32`: The virtual IP address with a /32 netmask
+
+Next, update `/etc/hosts` on all nodes (n0, n1, n2, r0, r1, r2) to resolve the VIP hostname:
+
+```
+192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+```
+
+This allows clients to connect to `f3s-storage-ha` regardless of which physical server is currently the MASTER.
+
+### CARP State Change Notifications
+
+To correctly manage services during failover, we need to detect CARP state changes. FreeBSD's devd system can notify us when CARP transitions between MASTER and BACKUP states.
+
+Add this to `/etc/devd.conf` on both `f0` and `f1`:
+
+```sh
+paul@f0:~ % cat <<END | doas tee -a /etc/devd.conf
+notify 0 {
+        match "system"          "CARP";
+        match "subsystem"       "[0-9]+@[0-9a-z.]+";
+        match "type"            "(MASTER|BACKUP)";
+        action "/usr/local/bin/carpcontrol.sh $subsystem $type";
+};
+END
+
+paul@f0:~ % doas service devd restart
+```
+
+Next, we create the CARP control script that will restart stunnel when the CARP state changes:
+
+```sh
+paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
+#!/bin/sh
+# CARP state change control script
+
+case "$1" in
+    MASTER)
+        logger "CARP state changed to MASTER, starting services"
+        ;;
+    BACKUP)
+        logger "CARP state changed to BACKUP, stopping services"
+        ;;
+    *)
+        logger "CARP state changed to $1 (unhandled)"
+        ;;
+esac
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+
+# Copy the same script to f1
+paul@f0:~ % scp /usr/local/bin/carpcontrol.sh f1:/tmp/
+paul@f1:~ % doas mv /tmp/carpcontrol.sh /usr/local/bin/
+paul@f1:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+```
+
+Note that `carpcontrol.sh` doesn't do anything useful yet. We will provide more details (including starting and stopping services upon failover) later in this blog post.
+
+To enable CARP in `/boot/loader.conf`, run:
+
+```sh
+paul@f0:~ % echo 'carp_load="YES"' | doas tee -a /boot/loader.conf
+carp_load="YES"
+paul@f1:~ % echo 'carp_load="YES"' | doas tee -a /boot/loader.conf  
+carp_load="YES"
+```
+
+Then reboot both hosts or run `doas kldload carp` to load the module immediately. 
+
+## NFS Server Configuration
+
+With ZFS replication in place, we can now set up NFS servers on both `f0` and `f1` to export the replicated data. Since native NFS over TLS (RFC 9289) has compatibility issues between Linux and FreeBSD (not digging into the details here, but I couldn't get it to work), we'll use stunnel to provide encryption.
+
+### Setting up NFS on `f0` (Primary)
+
+First, enable the NFS services in rc.conf:
+
+```sh
+paul@f0:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: YES -> YES
+paul@f0:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: YES -> YES
+paul@f0:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: YES -> YES
+paul@f0:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -> YES
+paul@f0:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -> YES
+```
+
+And we also create a dedicated directory for Kubernetes volumes:
+
+```sh
+# First, ensure the dataset is mounted
+paul@f0:~ % doas zfs get mounted zdata/enc/nfsdata
+NAME               PROPERTY  VALUE    SOURCE
+zdata/enc/nfsdata  mounted   yes      -
+
+# Create the k3svolumes directory
+paul@f0:~ % doas mkdir -p /data/nfs/k3svolumes
+paul@f0:~ % doas chmod 755 /data/nfs/k3svolumes
+```
+
+We also create the `/etc/exports` file. Since we're using stunnel for encryption, ALL clients must connect through stunnel, which appears as localhost (`127.0.0.1`) to the NFS server:
+
+```sh
+paul@f0:~ % doas tee /etc/exports <<'EOF'
+V4: /data/nfs -sec=sys
+/data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+EOF
+```
+
+The exports configuration:
+
+* `V4: /data/nfs -sec=sys`: Sets the NFSv4 root directory to /data/nfs
+* `-maproot=root`: Maps root user from client to root on server
+* `-network 127.0.0.1`: Only accepts connections from localhost (`stunnel`)
+
+To start the NFS services, we run:
+
+```sh
+paul@f0:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f0:~ % doas service mountd start
+Starting mountd.
+paul@f0:~ % doas service nfsd start
+Starting nfsd.
+paul@f0:~ % doas service nfsuserd start
+Starting nfsuserd.
+```
+
+### Configuring Stunnel for NFS Encryption with CARP Failover
+
+Using stunnel with client certificate authentication for NFS encryption provides several advantages:
+
+* Compatibility: Works with any NFS version and between different operating systems
+* Strong encryption: Uses TLS/SSL with configurable cipher suites
+* Transparent: Applications don't need modification, encryption happens at the transport layer
+* Performance: Minimal overhead (~2% in benchmarks)
+* Flexibility: Can encrypt any TCP-based protocol, not just NFS
+* Strong Authentication: Client certificates provide cryptographic proof of identity
+* Access Control: Only clients with valid certificates signed by your CA can connect
+* Certificate Revocation: You can revoke access by removing certificates from the CA
+
+Stunnel integrates seamlessly with our CARP setup:
+
+```
+                    CARP VIP (192.168.1.138)
+                           |
+    f0 (MASTER) ←---------→|←---------→ f1 (BACKUP)
+    stunnel:2323           |           stunnel:stopped
+    nfsd:2049              |           nfsd:stopped
+                           |
+                    Clients connect here
+```
+
+The key insight is that stunnel binds to the CARP VIP. When CARP fails over, the VIP is moved to the new master, and stunnel starts there automatically. Clients maintain their connection to the same IP throughout.
+
+### Creating a Certificate Authority for Client Authentication
+
+First, create a CA to sign both server and client certificates:
+
+```sh
+# On f0 - Create CA
+paul@f0:~ % doas mkdir -p /usr/local/etc/stunnel/ca
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas openssl genrsa -out ca-key.pem 4096
+paul@f0:~ % doas openssl req -new -x509 -days 3650 -key ca-key.pem -out ca-cert.pem \
+  -subj '/C=US/ST=State/L=City/O=F3S Storage/CN=F3S Stunnel CA'
+
+# Create server certificate
+paul@f0:~ % cd /usr/local/etc/stunnel
+paul@f0:~ % doas openssl genrsa -out server-key.pem 4096
+paul@f0:~ % doas openssl req -new -key server-key.pem -out server.csr \
+  -subj '/C=US/ST=State/L=City/O=F3S Storage/CN=f3s-storage-ha.lan'
+paul@f0:~ % doas openssl x509 -req -days 3650 -in server.csr -CA ca/ca-cert.pem \
+  -CAkey ca/ca-key.pem -CAcreateserial -out server-cert.pem
+
+# Create client certificates for authorised clients
+paul@f0:~ % cd /usr/local/etc/stunnel/ca
+paul@f0:~ % doas sh -c 'for client in r0 r1 r2 earth; do 
+  openssl genrsa -out ${client}-key.pem 4096
+  openssl req -new -key ${client}-key.pem -out ${client}.csr \
+    -subj "/C=US/ST=State/L=City/O=F3S Storage/CN=${client}.lan.buetow.org"
+  openssl x509 -req -days 3650 -in ${client}.csr -CA ca-cert.pem \
+    -CAkey ca-key.pem -CAcreateserial -out ${client}-cert.pem
+done'
+```
+
+### Install and Configure Stunnel on `f0`
+
+```sh
+# Install stunnel
+paul@f0:~ % doas pkg install -y stunnel
+
+# Configure stunnel server with client certificate authentication
+paul@f0:~ % doas tee /usr/local/etc/stunnel/stunnel.conf <<'EOF'
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = 192.168.1.138:2323
+connect = 127.0.0.1:2049
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = 2
+requireCert = yes
+EOF
+
+# Enable and start stunnel
+paul@f0:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -> YES
+paul@f0:~ % doas service stunnel start
+Starting stunnel.
+
+# Restart stunnel to apply the CARP VIP binding
+paul@f0:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+```
+
+The configuration includes:
+
+* `verify = 2`: Verify client certificate and fail if not provided
+* `requireCert = yes`: Client must present a valid certificate
+* `CAfile`: Path to the CA certificate that signed the client certificates
+
+### Setting up NFS on `f1` (Standby)
+
+Repeat the same configuration on `f1`:
+
+```sh
+paul@f1:~ % doas sysrc nfs_server_enable=YES
+nfs_server_enable: NO -> YES
+paul@f1:~ % doas sysrc nfsv4_server_enable=YES
+nfsv4_server_enable: NO -> YES
+paul@f1:~ % doas sysrc nfsuserd_enable=YES
+nfsuserd_enable: NO -> YES
+paul@f1:~ % doas sysrc mountd_enable=YES
+mountd_enable: NO -> YES
+paul@f1:~ % doas sysrc rpcbind_enable=YES
+rpcbind_enable: NO -> YES
+
+paul@f1:~ % doas tee /etc/exports <<'EOF'
+V4: /data/nfs -sec=sys
+/data/nfs -alldirs -maproot=root -network 127.0.0.1 -mask 255.255.255.255
+EOF
+
+paul@f1:~ % doas service rpcbind start
+Starting rpcbind.
+paul@f1:~ % doas service mountd start
+Starting mountd.
+paul@f1:~ % doas service nfsd start
+Starting nfsd.
+paul@f1:~ % doas service nfsuserd start
+Starting nfsuserd.
+```
+
+And to configure stunnel on `f1`, we run:
+
+```sh
+# Install stunnel
+paul@f1:~ % doas pkg install -y stunnel
+
+# Copy certificates from f0
+paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
+paul@f0:~ % scp /tmp/stunnel-certs.tar f1:/tmp/
+
+paul@f1:~ % cd /usr/local/etc/stunnel && doas tar -xf /tmp/stunnel-certs.tar
+
+# Configure stunnel server on f1 with client certificate authentication
+paul@f1:~ % doas tee /usr/local/etc/stunnel/stunnel.conf <<'EOF'
+cert = /usr/local/etc/stunnel/server-cert.pem
+key = /usr/local/etc/stunnel/server-key.pem
+
+setuid = stunnel
+setgid = stunnel
+
+[nfs-tls]
+accept = 192.168.1.138:2323
+connect = 127.0.0.1:2049
+CAfile = /usr/local/etc/stunnel/ca/ca-cert.pem
+verify = 2
+requireCert = yes
+EOF
+
+# Enable and start stunnel
+paul@f1:~ % doas sysrc stunnel_enable=YES
+stunnel_enable:  -> YES
+paul@f1:~ % doas service stunnel start
+Starting stunnel.
+
+# Restart stunnel to apply the CARP VIP binding
+paul@f1:~ % doas service stunnel restart
+Stopping stunnel.
+Starting stunnel.
+```
+
+### CARP Control Script for Clean Failover
+
+With stunnel configured to bind to the CARP VIP (192.168.1.138), only the server that is currently the CARP MASTER will accept stunnel connections. This provides automatic failover for encrypted NFS:
+
+* When `f0` is CARP MASTER: stunnel on `f0` accepts connections on `192.168.1.138:2323`
+* When `f1` becomes CARP MASTER: stunnel on `f1` starts accepting connections on `192.168.1.138:2323`
+* The backup server's stunnel process will fail to bind to the VIP and won't accept connections
+
+This ensures that clients always connect to the active NFS server through the CARP VIP. To ensure clean failover behaviour and prevent stale file handles, we'll update our `carpcontrol.sh` script so that:
+
+* Stops NFS services on BACKUP nodes (preventing split-brain scenarios)
+* Starts NFS services only on the MASTER node
+* Manages stunnel binding to the CARP VIP
+
+This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:
+
+```sh
+# Create CARP control script on both f0 and f1
+paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
+#!/bin/sh
+# CARP state change control script
+
+case "$1" in
+    MASTER)
+        logger "CARP state changed to MASTER, starting services"
+        service rpcbind start >/dev/null 2>&1
+        service mountd start >/dev/null 2>&1
+        service nfsd start >/dev/null 2>&1
+        service nfsuserd start >/dev/null 2>&1
+        service stunnel restart >/dev/null 2>&1
+        logger "CARP MASTER: NFS and stunnel services started"
+        ;;
+    BACKUP)
+        logger "CARP state changed to BACKUP, stopping services"
+        service stunnel stop >/dev/null 2>&1
+        service nfsd stop >/dev/null 2>&1
+        service mountd stop >/dev/null 2>&1
+        service nfsuserd stop >/dev/null 2>&1
+        logger "CARP BACKUP: NFS and stunnel services stopped"
+        ;;
+    *)
+        logger "CARP state changed to $1 (unhandled)"
+        ;;
+esac
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carpcontrol.sh
+```
+
+### CARP Management Script
+
+To simplify CARP state management and failover testing, create this helper script on both `f0` and `f1`:
+
+```sh
+# Create the CARP management script
+paul@f0:~ % doas tee /usr/local/bin/carp <<'EOF'
+#!/bin/sh
+# CARP state management script
+# Usage: carp [master|backup|auto-failback enable|auto-failback disable]
+# Without arguments: shows current state
+
+# Find the interface with CARP configured
+CARP_IF=$(ifconfig -l | xargs -n1 | while read if; do
+    ifconfig "$if" 2>/dev/null | grep -q "carp:" && echo "$if" && break
+done)
+
+if [ -z "$CARP_IF" ]; then
+    echo "Error: No CARP interface found"
+    exit 1
+fi
+
+# Get CARP VHID
+VHID=$(ifconfig "$CARP_IF" | grep "carp:" | sed -n 's/.*vhid \([0-9]*\).*/\1/p')
+
+if [ -z "$VHID" ]; then
+    echo "Error: Could not determine CARP VHID"
+    exit 1
+fi
+
+# Function to get the current state
+get_state() {
+    ifconfig "$CARP_IF" | grep "carp:" | awk '{print $2}'
+}
+
+# Check for auto-failback block file
+BLOCK_FILE="/data/nfs/nfs.NO_AUTO_FAILBACK"
+check_auto_failback() {
+    if [ -f "$BLOCK_FILE" ]; then
+        echo "WARNING: Auto-failback is DISABLED (file exists: $BLOCK_FILE)"
+    fi
+}
+
+# Main logic
+case "$1" in
+    "")
+        # No argument - show current state
+        STATE=$(get_state)
+        echo "CARP state on $CARP_IF (vhid $VHID): $STATE"
+        check_auto_failback
+        ;;
+    master)
+        # Force to MASTER state
+        echo "Setting CARP to MASTER state..."
+        ifconfig "$CARP_IF" vhid "$VHID" state master
+        sleep 1
+        STATE=$(get_state)
+        echo "CARP state on $CARP_IF (vhid $VHID): $STATE"
+        check_auto_failback
+        ;;
+    backup)
+        # Force to BACKUP state
+        echo "Setting CARP to BACKUP state..."
+        ifconfig "$CARP_IF" vhid "$VHID" state backup
+        sleep 1
+        STATE=$(get_state)
+        echo "CARP state on $CARP_IF (vhid $VHID): $STATE"
+        check_auto_failback
+        ;;
+    auto-failback)
+        case "$2" in
+            enable)
+                if [ -f "$BLOCK_FILE" ]; then
+                    rm "$BLOCK_FILE"
+                    echo "Auto-failback ENABLED (removed $BLOCK_FILE)"
+                else
+                    echo "Auto-failback was already enabled"
+                fi
+                ;;
+            disable)
+                if [ ! -f "$BLOCK_FILE" ]; then
+                    touch "$BLOCK_FILE"
+                    echo "Auto-failback DISABLED (created $BLOCK_FILE)"
+                else
+                    echo "Auto-failback was already disabled"
+                fi
+                ;;
+            *)
+                echo "Usage: $0 auto-failback [enable|disable]"
+                echo "  enable:  Remove block file to allow automatic failback"
+                echo "  disable: Create block file to prevent automatic failback"
+                exit 1
+                ;;
+        esac
+        ;;
+    *)
+        echo "Usage: $0 [master|backup|auto-failback enable|auto-failback disable]"
+        echo "  Without arguments: show current CARP state"
+        echo "  master: force this node to become CARP MASTER"
+        echo "  backup: force this node to become CARP BACKUP"
+        echo "  auto-failback enable:  allow automatic failback to f0"
+        echo "  auto-failback disable: prevent automatic failback to f0"
+        exit 1
+        ;;
+esac
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carp
+
+# Copy to f1 as well
+paul@f0:~ % scp /usr/local/bin/carp f1:/tmp/
+paul@f1:~ % doas cp /tmp/carp /usr/local/bin/carp && doas chmod +x /usr/local/bin/carp
+```
+
+Now you can easily manage CARP states and auto-failback:
+
+```sh
+# Check current CARP state
+paul@f0:~ % doas carp
+CARP state on re0 (vhid 1): MASTER
+
+# If auto-failback is disabled, you'll see a warning
+paul@f0:~ % doas carp
+CARP state on re0 (vhid 1): MASTER
+WARNING: Auto-failback is DISABLED (file exists: /data/nfs/nfs.NO_AUTO_FAILBACK)
+
+# Force f0 to become BACKUP (triggers failover to f1)
+paul@f0:~ % doas carp backup
+Setting CARP to BACKUP state...
+CARP state on re0 (vhid 1): BACKUP
+
+# Disable auto-failback (useful for maintenance)
+paul@f0:~ % doas carp auto-failback disable
+Auto-failback DISABLED (created /data/nfs/nfs.NO_AUTO_FAILBACK)
+
+# Enable auto-failback
+paul@f0:~ % doas carp auto-failback enable
+Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
+```
+
+### Automatic Failback After Reboot
+
+When `f0` reboots (planned or unplanned), `f1` takes over as CARP MASTER. To ensure `f0` automatically reclaims its primary role once it's fully operational, we'll implement an automatic failback mechanism. With:
+
+```sh
+paul@f0:~ % doas tee /usr/local/bin/carp-auto-failback.sh <<'EOF'
+#!/bin/sh
+# CARP automatic failback script for f0
+# Ensures f0 reclaims MASTER role after reboot when storage is ready
+
+LOGFILE="/var/log/carp-auto-failback.log"
+MARKER_FILE="/data/nfs/nfs.DO_NOT_REMOVE"
+BLOCK_FILE="/data/nfs/nfs.NO_AUTO_FAILBACK"
+
+log_message() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$LOGFILE"
+}
+
+# Check if we're already MASTER
+CURRENT_STATE=$(/usr/local/bin/carp | awk '{print $NF}')
+if [ "$CURRENT_STATE" = "MASTER" ]; then
+    exit 0
+fi
+
+# Check if /data/nfs is mounted
+if ! mount | grep -q "on /data/nfs "; then
+    log_message "SKIP: /data/nfs not mounted"
+    exit 0
+fi
+
+# Check if the marker file exists (identifies that the ZFS data set is properly mounted)
+if [ ! -f "$MARKER_FILE" ]; then
+    log_message "SKIP: Marker file $MARKER_FILE not found"
+    exit 0
+fi
+
+# Check if failback is blocked (for maintenance)
+if [ -f "$BLOCK_FILE" ]; then
+    log_message "SKIP: Failback blocked by $BLOCK_FILE"
+    exit 0
+fi
+
+# Check if NFS services are running (ensure we're fully ready)
+if ! service nfsd status >/dev/null 2>&1; then
+    log_message "SKIP: NFS services not yet running"
+    exit 0
+fi
+
+# All conditions met - promote to MASTER
+log_message "CONDITIONS MET: Promoting to MASTER (was $CURRENT_STATE)"
+/usr/local/bin/carp master
+
+# Log result
+sleep 2
+NEW_STATE=$(/usr/local/bin/carp | awk '{print $NF}')
+log_message "Failback complete: State is now $NEW_STATE"
+
+# If successful, log to the system log too
+if [ "$NEW_STATE" = "MASTER" ]; then
+    logger "CARP: f0 automatically reclaimed MASTER role"
+fi
+EOF
+
+paul@f0:~ % doas chmod +x /usr/local/bin/carp-auto-failback.sh
+```
+
+The marker file identifies that the ZFS data set is mounted correctly. We create it with:
+
+```sh
+paul@f0:~ % doas touch /data/nfs/nfs.DO_NOT_REMOVE
+```
+
+We add a cron job to check every minute:
+
+```sh
+paul@f0:~ % echo "* * * * * /usr/local/bin/carp-auto-failback.sh" | doas crontab -
+```
+
+The enhanced CARP script provides integrated control over auto-failback. To temporarily turn off automatic failback (e.g., for `f0` maintenance), we run:
+
+```sh
+paul@f0:~ % doas carp auto-failback disable
+Auto-failback DISABLED (created /data/nfs/nfs.NO_AUTO_FAILBACK)
+```
+
+And to re-enable it:
+
+```sh
+paul@f0:~ % doas carp auto-failback enable
+Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
+```
+
+To check whether auto-failback is enabled, we run:
+
+```sh
+paul@f0:~ % doas carp
+CARP state on re0 (vhid 1): MASTER
+# If disabled, you'll see: WARNING: Auto-failback is DISABLED
+```
+
+The failback attempts are logged to `/var/log/carp-auto-failback.log`!
+
+So, in summary:
+
+* After f`0 `reboots: `f1` is MASTER, f`0 `boots as BACKUP
+* Cron runs every minute: Checks if conditions are met (Is `f0` currently BACKUP? (don't run if already MASTER)), (Is /data/nfs mounted? (ZFS datasets are ready)), (Does marker file exist? (confirms this is primary storage)), (Is failback blocked? (admin can prevent failback)), (Are NFS services running? (system is fully ready))
+* Failback occurs: Typically 2-3 minutes after boot completes
+* Logging: All attempts logged for troubleshooting
+
+This ensures `f0` automatically resumes its role as primary storage server after any reboot, while providing administrative control when needed.
+
+## Client Configuration for Stunnel
+
+To mount NFS shares with stunnel encryption, clients must install and configure stunnel using their client certificates.
+
+### Configuring Rocky Linux Clients (r0, r1, r2)
+
+On the Rocky Linux VMs, we run:
+
+```sh
+# Install stunnel on client (example for r0)
+[root@r0 ~]# dnf install -y stunnel nfs-utils
+
+# Copy client certificate and CA certificate from f0
+[root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/r0-key.pem /etc/stunnel/
+[root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/ca-cert.pem /etc/stunnel/
+
+# Configure stunnel client with certificate authentication
+[root@r0 ~]# tee /etc/stunnel/stunnel.conf <<'EOF'
+cert = /etc/stunnel/r0-key.pem
+CAfile = /etc/stunnel/ca-cert.pem
+client = yes
+verify = 2
+
+[nfs-ha]
+accept = 127.0.0.1:2323
+connect = 192.168.1.138:2323
+EOF
+
+# Enable and start stunnel
+[root@r0 ~]# systemctl enable --now stunnel
+
+# Repeat for r1 and r2 with their respective certificates
+```
+
+Note: Each client must use its certificate file (`r0-key.pem`, `r1-key.pem`, `r2-key.pem`, or `earth-key.pem` - the latter is for my Laptop, which can also mount the NFS shares).
+
+### Testing NFS Mount with Stunnel
+
+To mount NFS through the stunnel encrypted tunnel, we run:
+
+```sh
+# Create a mount point
+[root@r0 ~]# mkdir -p /data/nfs/k3svolumes
+
+# Mount through stunnel (using localhost and NFSv4)
+[root@r0 ~]# mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes
+
+# Verify mount
+[root@r0 ~]# mount | grep k3svolumes
+127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+
+# For persistent mount, add to /etc/fstab:
+127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0
+```
+
+Note: The mount uses localhost (`127.0.0.1`) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.
+
+### Testing CARP Failover with mounted clients and stale file handles:
+
+To test the failover process:
+
+```sh
+# On f0 (current MASTER) - trigger failover
+paul@f0:~ % doas ifconfig re0 vhid 1 state backup
+
+# On f1 - verify it becomes MASTER
+paul@f1:~ % ifconfig re0 | grep carp
+    inet 192.168.1.138 netmask 0xffffffff broadcast 192.168.1.138 vhid 1
+
+# Check stunnel is now listening on f1
+paul@f1:~ % doas sockstat -l | grep 2323
+stunnel  stunnel    4567  3  tcp4   192.168.1.138:2323    *:*
+
+# On client - verify NFS mount still works
+[root@r0 ~]# ls /data/nfs/k3svolumes/
+[root@r0 ~]# echo "Test after failover" > /data/nfs/k3svolumes/failover-test.txt
+```
+
+After a CARP failover, NFS clients may experience "Stale file handle" errors because they cached file handles from the previous server. To resolve this manually, we can run:
+
+```sh
+# Force unmount and remount
+[root@r0 ~]# umount -f /data/nfs/k3svolumes
+[root@r0 ~]# mount /data/nfs/k3svolumes
+```
+
+For the automatic recovery, we create a script:
+
+```sh
+[root@r0 ~]# cat > /usr/local/bin/check-nfs-mount.sh << 'EOF'
+#!/bin/bash
+# Fast NFS mount health monitor - runs every 10 seconds via systemd timer
+
+MOUNT_POINT="/data/nfs/k3svolumes"
+LOCK_FILE="/var/run/nfs-mount-check.lock"
+STATE_FILE="/var/run/nfs-mount.state"
+
+# Use a lock file to prevent concurrent runs
+if [ -f "$LOCK_FILE" ]; then
+    exit 0
+fi
+touch "$LOCK_FILE"
+trap "rm -f $LOCK_FILE" EXIT
+
+# Quick check - try to stat a directory with a very short timeout
+if timeout 2s stat "$MOUNT_POINT" >/dev/null 2>&1; then
+    # Mount appears healthy
+    if [ -f "$STATE_FILE" ]; then
+        # Was previously unhealthy, log recovery
+        echo "NFS mount recovered at $(date)" | systemd-cat -t nfs-monitor -p info
+        rm -f "$STATE_FILE"
+    fi
+    exit 0
+fi
+
+# Mount is unhealthy
+if [ ! -f "$STATE_FILE" ]; then
+    # First detection of unhealthy state
+    echo "NFS mount unhealthy detected at $(date)" | systemd-cat -t nfs-monitor -p warning
+    touch "$STATE_FILE"
+fi
+
+# Try to fix
+echo "Attempting to fix stale NFS mount at $(date)" | systemd-cat -t nfs-monitor -p notice
+umount -f "$MOUNT_POINT" 2>/dev/null
+sleep 1
+
+if mount "$MOUNT_POINT"; then
+    echo "NFS mount fixed at $(date)" | systemd-cat -t nfs-monitor -p info
+    rm -f "$STATE_FILE"
+else
+    echo "Failed to fix NFS mount at $(date)" | systemd-cat -t nfs-monitor -p err
+fi
+EOF
+[root@r0 ~]# chmod +x /usr/local/bin/check-nfs-mount.sh
+```
+
+And we create the systemd service as follows:
+
+```sh
+[root@r0 ~]# cat > /etc/systemd/system/nfs-mount-monitor.service << 'EOF'
+[Unit]
+Description=NFS Mount Health Monitor
+After=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/check-nfs-mount.sh
+StandardOutput=journal
+StandardError=journal
+EOF
+```
+
+And we also create the systemd timer (runs every 10 seconds):
+
+```sh
+[root@r0 ~]# cat > /etc/systemd/system/nfs-mount-monitor.timer << 'EOF'
+[Unit]
+Description=Run NFS Mount Health Monitor every 10 seconds
+Requires=nfs-mount-monitor.service
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=10s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
+EOF
+```
+
+To enable and start the timer, we run:
+
+```sh
+[root@r0 ~]# systemctl daemon-reload
+[root@r0 ~]# systemctl enable nfs-mount-monitor.timer
+[root@r0 ~]# systemctl start nfs-mount-monitor.timer
+
+# Check status
+[root@r0 ~]# systemctl status nfs-mount-monitor.timer
+● nfs-mount-monitor.timer - Run NFS Mount Health Monitor every 10 seconds
+     Loaded: loaded (/etc/systemd/system/nfs-mount-monitor.timer; enabled)
+     Active: active (waiting) since Sat 2025-07-06 10:00:00 EEST
+    Trigger: Sat 2025-07-06 10:00:10 EEST; 8s left
+
+# Monitor logs
+[root@r0 ~]# journalctl -u nfs-mount-monitor -f
+```
+
+Note: Stale file handles are inherent to NFS failover because file handles are server-specific. The best approach depends on your application's tolerance for brief disruptions. Of course, all the changes made to `r0` above must also be applied to `r1` and `r2`.
+
+### Complete Failover Test
+
+Here's a comprehensive test of the failover behaviour with all optimisations in place:
+
+```sh
+# 1. Check the initial state
+paul@f0:~ % ifconfig re0 | grep carp
+    carp: MASTER vhid 1 advbase 1 advskew 0
+paul@f1:~ % ifconfig re0 | grep carp
+    carp: BACKUP vhid 1 advbase 1 advskew 0
+
+# 2. Create a test file from a client
+[root@r0 ~]# echo "test before failover" > /data/nfs/k3svolumes/test-before.txt
+
+# 3. Trigger failover (f0 → f1)
+paul@f0:~ % doas ifconfig re0 vhid 1 state backup
+
+# 4. Monitor client behaviour
+[root@r0 ~]# ls /data/nfs/k3svolumes/
+ls: cannot access '/data/nfs/k3svolumes/': Stale file handle
+
+# 5. Check automatic recovery (within 10 seconds)
+[root@r0 ~]# journalctl -u nfs-mount-monitor -f
+Jul 06 10:15:32 r0 nfs-monitor[1234]: NFS mount unhealthy detected at Sun Jul 6 10:15:32 EEST 2025
+Jul 06 10:15:32 r0 nfs-monitor[1234]: Attempting to fix stale NFS mount at Sun Jul 6 10:15:32 EEST 2025
+Jul 06 10:15:33 r0 nfs-monitor[1234]: NFS mount fixed at Sun Jul 6 10:15:33 EEST 2025
+```
+
+Failover Timeline:
+
+* 0 seconds: CARP failover triggered
+* 0-2 seconds: Clients get "Stale file handle" errors (not hanging)
+* 3-10 seconds: Soft mounts ensure quick failure of operations
+* Within 10 seconds: Automatic recovery via systemd timer
+
+Benefits of the Optimised Setup:
+
+* No hanging processes - Soft mounts fail quickly
+* Clean failover - Old server stops serving immediately
+* Fast automatic recovery - No manual intervention needed
+* Predictable timing - Recovery within 10 seconds with systemd timer
+* Better visibility - systemd journal provides detailed logs
+
+Important Considerations:
+
+* Recent writes (within 1 minute) may not be visible after failover due to replication lag
+* Applications should handle brief NFS errors gracefully
+* For zero-downtime requirements, consider synchronous replication or distributed storage (see "Future storage explorations" section later in this blog post)
+
+## Conclusion
+
+We've built a robust, encrypted storage system for our FreeBSD-based Kubernetes cluster that provides:
+
+* High Availability: CARP ensures the storage VIP moves automatically during failures
+* Data Protection: ZFS encryption protects data at rest, stunnel protects data in transit
+* Continuous Replication: 1-minute RPO for the data, automated via `zrepl`
+* Secure Access: Client certificate authentication prevents unauthorised access
+
+Some key lessons learned are:
+
+* Stunnel vs Native NFS/TLS: While native encryption would be ideal, stunnel provides better cross-platform compatibility
+* Manual vs Automatic Failover: For storage systems, controlled failover often prevents more problems than it causes
+* Client Compatibility: Different NFS implementations behave differently - test thoroughly
+
+## Future Storage Explorations
+
+While `zrepl` provides excellent snapshot-based replication for disaster recovery, there are other storage technologies worth exploring for the f3s project:
+
+### MinIO for S3-Compatible Object Storage
+
+MinIO is a high-performance, S3-compatible object storage system that could complement our ZFS-based storage. Some potential use cases:
+
+* S3 API compatibility: Many modern applications expect S3-style object storage APIs. MinIO could provide this interface while using our ZFS storage as the backend.
+* Multi-site replication: MinIO supports active-active replication across multiple sites, which could work well with our f0/f1/f2 node setup.
+* Kubernetes native: MinIO has excellent Kubernetes integration with operators and CSI drivers, making it ideal for the f3s k3s environment.
+
+### MooseFS for Distributed High Availability
+
+MooseFS is a fault-tolerant, distributed file system that could provide proper high-availability storage:
+
+* True HA: Unlike our current setup, which requires manual failover, MooseFS provides automatic failover with no single point of failure.
+* POSIX compliance: Applications can use MooseFS like any regular filesystem, no code changes needed.
+* Flexible redundancy: Configure different replication levels per directory or file, optimising storage efficiency.
+* FreeBSD support: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.
+
+Both technologies could run on top of our encrypted ZFS volumes, combining ZFS's data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS).
+
+I'm looking forward to the next post in this series, where we will set up k3s (Kubernetes) on the Linux VMs.
+
+Other *BSD-related posts:
+
+<< template::inline::rindex bsd
+
+E-Mail your comments to `paul@nospam.buetow.org`
+
+=> ../ Back to the main site
