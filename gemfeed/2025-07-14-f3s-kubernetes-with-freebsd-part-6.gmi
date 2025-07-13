@@ -4,11 +4,58 @@
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
-<< template::inline::index f3s-kubernetes-with-freebsd-part
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+=> ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
+=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
-<< template::inline::toc
+## Table of Contents
+
+* ⇢ f3s: Kubernetes with FreeBSD - Part 6: Storage
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ Additional storage capacity
+* ⇢ ⇢ ZFS encryption keys
+* ⇢ ⇢ ⇢ UFS on USB keys
+* ⇢ ⇢ ⇢ Generating encryption keys
+* ⇢ ⇢ ⇢ Configuring `zdata` ZFS pool encryption
+* ⇢ ⇢ ⇢ Migrating Bhyve VMs to an encrypted `bhyve` ZFS volume
+* ⇢ ⇢ ZFS Replication with `zrepl`
+* ⇢ ⇢ ⇢ Understanding Replication Requirements
+* ⇢ ⇢ ⇢ Installing `zrepl`
+* ⇢ ⇢ ⇢ Configuring `zrepl` on `f1` (sink)
+* ⇢ ⇢ ⇢ Enabling and starting `zrepl` services
+* ⇢ ⇢ ⇢ Monitoring replication
+* ⇢ ⇢ ⇢ Verifying replication after reboot
+* ⇢ ⇢ ⇢ Understanding Failover Limitations and Design Decisions
+* ⇢ ⇢ ⇢ Mounting the NFS datasets
+* ⇢ ⇢ ⇢ Troubleshooting: Files not appearing in replication
+* ⇢ ⇢ ⇢ Configuring automatic key loading on boot
+* ⇢ ⇢ CARP (Common Address Redundancy Protocol)
+* ⇢ ⇢ ⇢ How CARP Works
+* ⇢ ⇢ ⇢ Configuring CARP
+* ⇢ ⇢ ⇢ CARP State Change Notifications
+* ⇢ ⇢ NFS Server Configuration
+* ⇢ ⇢ ⇢ Setting up NFS on `f0` (Primary)
+* ⇢ ⇢ ⇢ Configuring Stunnel for NFS Encryption with CARP Failover
+* ⇢ ⇢ ⇢ Creating a Certificate Authority for Client Authentication
+* ⇢ ⇢ ⇢ Install and Configure Stunnel on `f0`
+* ⇢ ⇢ ⇢ Setting up NFS on `f1` (Standby)
+* ⇢ ⇢ ⇢ CARP Control Script for Clean Failover
+* ⇢ ⇢ ⇢ CARP Management Script
+* ⇢ ⇢ ⇢ Automatic Failback After Reboot
+* ⇢ ⇢ Client Configuration for Stunnel
+* ⇢ ⇢ ⇢ Configuring Rocky Linux Clients (`r0`, `r1`, `r2`)
+* ⇢ ⇢ ⇢ Testing NFS Mount with Stunnel
+* ⇢ ⇢ ⇢ Testing CARP Failover with mounted clients and stale file handles:
+* ⇢ ⇢ ⇢ Complete Failover Test
+* ⇢ ⇢ Conclusion
+* ⇢ ⇢ Future Storage Explorations
+* ⇢ ⇢ ⇢ MinIO for S3-Compatible Object Storage
+* ⇢ ⇢ ⇢ MooseFS for Distributed High Availability
 
 ## Introduction
 
@@ -1546,7 +1593,17 @@ I'm looking forward to the next post in this series, where we will set up k3s (K
 
 Other *BSD-related posts:
 
-<< template::inline::rindex bsd
+=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)
+=> ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 E-Mail your comments to `paul@nospam.buetow.org`
 
