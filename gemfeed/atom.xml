@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-07-13T16:55:45+03:00</updated>
+    <updated>2025-07-13T19:45:38+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -769,16 +769,19 @@ paul@f0:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/enc zdata/e
 zfskeys_datasets:  -&gt; zdata/enc zdata/enc/nfsdata zroot/bhyve
 
 <i><font color="silver"># Set correct key locations for all datasets</font></i>
-paul@f0:~ % doas zfs <b><u><font color="#000000">set</font></u></b> keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs <b><u><font color="#000000">set</font></u></b> \
+  keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
 
 <i><font color="silver"># On f1 - include the replicated dataset</font></i>
 paul@f1:~ % doas sysrc zfskeys_enable=YES
 zfskeys_enable: YES -&gt; YES
-paul@f1:~ % doas sysrc zfskeys_datasets=<font color="#808080">"zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"</font>
+paul@f1:~ % doas sysrc \
+  zfskeys_datasets=<font color="#808080">"zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"</font>
 zfskeys_datasets:  -&gt; zdata/enc zroot/bhyve zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 
 <i><font color="silver"># Set key location for replicated dataset</font></i>
-paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> \
+  keylocation=file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 </pre>
 <br />
 <span>Important notes:</span><br />
@@ -1128,7 +1131,8 @@ http://www.gnu.org/software/src-highlite -->
 paul@f1:~ % doas pkg install -y stunnel
 
 <i><font color="silver"># Copy certificates from f0</font></i>
-paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
+paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar \
+  -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
 paul@f0:~ % scp /tmp/stunnel-certs.tar f1:/tmp/
 
 paul@f1:~ % cd /usr/local/etc/stunnel &amp;&amp; doas tar -xf /tmp/stunnel-certs.tar
@@ -1394,7 +1398,8 @@ CURRENT_STATE=$(/usr/local/bin/carp | awk <font color="#808080">'{print $NF}'</f
     <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
 <b><u><font color="#000000">fi</font></u></b>
 
-<i><font color="silver"># Check if the marker file exists (identifies that the ZFS data set is properly mounted)</font></i>
+<i><font color="silver"># Check if the marker file exists</font></i>
+<i><font color="silver"># (identifies that the ZFS data set is properly mounted)</font></i>
 <b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$MARKER_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
     log_message <font color="#808080">"SKIP: Marker file $MARKER_FILE not found"</font>
     <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
@@ -1546,7 +1551,10 @@ http://www.gnu.org/software/src-highlite -->
 
 <i><font color="silver"># Verify mount</font></i>
 [root@r0 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
-<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes on /data/nfs/k3svolumes <b><u><font color="#000000">type</font></u></b> nfs4 (rw,relatime,vers=<font color="#000000">4.2</font>,rsize=<font color="#000000">131072</font>,wsize=<font color="#000000">131072</font>,namlen=<font color="#000000">255</font>,hard,proto=tcp,port=<font color="#000000">2323</font>,timeo=<font color="#000000">600</font>,retrans=<font color="#000000">2</font>,sec=sys,clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes on /data/nfs/k3svolumes 
+  <b><u><font color="#000000">type</font></u></b> nfs4 (rw,relatime,vers=<font color="#000000">4.2</font>,rsize=<font color="#000000">131072</font>,wsize=<font color="#000000">131072</font>,
+  namlen=<font color="#000000">255</font>,hard,proto=tcp,port=<font color="#000000">2323</font>,timeo=<font color="#000000">600</font>,retrans=<font color="#000000">2</font>,sec=sys,
+  clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
 
 <i><font color="silver"># For persistent mount, add to /etc/fstab:</font></i>
 <font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev <font color="#000000">0</font> <font color="#000000">0</font>
@@ -1732,9 +1740,12 @@ ls: cannot access <font color="#808080">'/data/nfs/k3svolumes/'</font>: Stale fi
 
 <i><font color="silver"># 5. Check automatic recovery (within 10 seconds)</font></i>
 [root@r0 ~]<i><font color="silver"># journalctl -u nfs-mount-monitor -f</font></i>
-Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount unhealthy detected at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
-Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: Attempting to fix stale NFS mount at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
-Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount fixed at Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> EEST <font color="#000000">2025</font>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount unhealthy detected at \
+  Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> r0 nfs-monitor[<font color="#000000">1234</font>]: Attempting to fix stale NFS mount at \
+  Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">32</font> EEST <font color="#000000">2025</font>
+Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> r0 nfs-monitor[<font color="#000000">1234</font>]: NFS mount fixed at \
+  Sun Jul <font color="#000000">6</font> <font color="#000000">10</font>:<font color="#000000">15</font>:<font color="#000000">33</font> EEST <font color="#000000">2025</font>
 </pre>
 <br />
 <span>Failover Timeline:</span><br />

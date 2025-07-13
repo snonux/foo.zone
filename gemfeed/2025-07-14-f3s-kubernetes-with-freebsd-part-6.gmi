@@ -661,16 +661,19 @@ paul@f0:~ % doas sysrc zfskeys_datasets="zdata/enc zdata/enc/nfsdata zroot/bhyve
 zfskeys_datasets:  -> zdata/enc zdata/enc/nfsdata zroot/bhyve
 
 # Set correct key locations for all datasets
-paul@f0:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+paul@f0:~ % doas zfs set \
+  keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
 
 # On f1 - include the replicated dataset
 paul@f1:~ % doas sysrc zfskeys_enable=YES
 zfskeys_enable: YES -> YES
-paul@f1:~ % doas sysrc zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
+paul@f1:~ % doas sysrc \
+  zfskeys_datasets="zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata"
 zfskeys_datasets:  -> zdata/enc zroot/bhyve zdata/sink/f0/zdata/enc/nfsdata
 
 # Set key location for replicated dataset
-paul@f1:~ % doas zfs set keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
+paul@f1:~ % doas zfs set \
+  keylocation=file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
 ```
 
 Important notes:
@@ -978,7 +981,8 @@ And to configure stunnel on `f1`, we run:
 paul@f1:~ % doas pkg install -y stunnel
 
 # Copy certificates from f0
-paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
+paul@f0:~ % doas tar -cf /tmp/stunnel-certs.tar \
+  -C /usr/local/etc/stunnel server-cert.pem server-key.pem ca
 paul@f0:~ % scp /tmp/stunnel-certs.tar f1:/tmp/
 
 paul@f1:~ % cd /usr/local/etc/stunnel && doas tar -xf /tmp/stunnel-certs.tar
@@ -1230,7 +1234,8 @@ if ! mount | grep -q "on /data/nfs "; then
     exit 0
 fi
 
-# Check if the marker file exists (identifies that the ZFS data set is properly mounted)
+# Check if the marker file exists
+# (identifies that the ZFS data set is properly mounted)
 if [ ! -f "$MARKER_FILE" ]; then
     log_message "SKIP: Marker file $MARKER_FILE not found"
     exit 0
@@ -1360,7 +1365,10 @@ To mount NFS through the stunnel encrypted tunnel, we run:
 
 # Verify mount
 [root@r0 ~]# mount | grep k3svolumes
-127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
+127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes 
+  type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,
+  namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,
+  clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
 
 # For persistent mount, add to /etc/fstab:
 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0
@@ -1525,9 +1533,12 @@ ls: cannot access '/data/nfs/k3svolumes/': Stale file handle
 
 # 5. Check automatic recovery (within 10 seconds)
 [root@r0 ~]# journalctl -u nfs-mount-monitor -f
-Jul 06 10:15:32 r0 nfs-monitor[1234]: NFS mount unhealthy detected at Sun Jul 6 10:15:32 EEST 2025
-Jul 06 10:15:32 r0 nfs-monitor[1234]: Attempting to fix stale NFS mount at Sun Jul 6 10:15:32 EEST 2025
-Jul 06 10:15:33 r0 nfs-monitor[1234]: NFS mount fixed at Sun Jul 6 10:15:33 EEST 2025
+Jul 06 10:15:32 r0 nfs-monitor[1234]: NFS mount unhealthy detected at \
+  Sun Jul 6 10:15:32 EEST 2025
+Jul 06 10:15:32 r0 nfs-monitor[1234]: Attempting to fix stale NFS mount at \
+  Sun Jul 6 10:15:32 EEST 2025
+Jul 06 10:15:33 r0 nfs-monitor[1234]: NFS mount fixed at \
+  Sun Jul 6 10:15:33 EEST 2025
 ```
 
 Failover Timeline:
