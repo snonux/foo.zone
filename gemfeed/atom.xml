@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-07-13T16:50:30+03:00</updated>
+    <updated>2025-07-13T16:55:45+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1801,7 +1801,8 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <li>Flexible redundancy: Configure different replication levels per directory or file, optimising storage efficiency.</li>
 <li>FreeBSD support: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.</li>
 </ul><br />
-<span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS).</span><br />
+<span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn&#39;t seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.</span><br />
+<br />
 <br />
 <span>I&#39;m looking forward to the next post in this series, where we will set up k3s (Kubernetes) on the Linux VMs.</span><br />
 <br />
