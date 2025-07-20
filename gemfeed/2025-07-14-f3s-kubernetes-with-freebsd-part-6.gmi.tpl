@@ -12,7 +12,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 
 ## Introduction
 
-In the previous posts, we set up a FreeBSD-based Kubernetes cluster using k3s. While the base system works well, Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:
+In the previous posts, we set up a WireGuard mesh network. In the future, we will also setting up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:
 
 * No data sharing: Pods (once we run Kubernetes) on different nodes can't access the same data
 * Pod mobility: If a pod moves to another node, it loses access to its data
