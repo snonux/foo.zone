@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2025-07-20
+Generated on: 2025-07-21
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
@@ -9,34 +9,36 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 56
-* 📊 Total Commits: 10,552
-* 📈 Total Lines of Code: 216,571
-* 📄 Total Lines of Documentation: 22,738
-* 💻 Languages: Go (26.6%), Java (18.7%), HTML (15.8%), C (8.9%), Perl (7.2%), XML (6.2%), C/C++ (3.7%), Shell (3.2%), C++ (2.4%), Config (1.4%), Ruby (1.3%), HCL (1.3%), Python (0.7%), Make (0.6%), CSS (0.6%), Raku (0.4%), JSON (0.4%), Haskell (0.3%), YAML (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (50.5%), Markdown (47.0%), LaTeX (2.5%)
+* 📊 Total Commits: 10,576
+* 📈 Total Lines of Code: 206,858
+* 📄 Total Lines of Documentation: 24,896
+* 💻 Languages: Go (29.9%), Java (26.5%), C (9.3%), C++ (8.2%), Perl (6.9%), C/C++ (6.0%), Shell (2.8%), HTML (1.8%), Config (1.8%), Ruby (1.4%), HCL (1.3%), Python (0.8%), Make (0.7%), CSS (0.6%), XML (0.5%), Raku (0.4%), JSON (0.4%), Haskell (0.3%), YAML (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (44.4%), Markdown (41.8%), LaTeX (13.8%)
 * 🎵 Vibe-Coded Projects: 4 out of 56 (7.1%)
-* 🤖 AI-Assisted Projects (including vibe-coded): 9 out of 56 (16.1% AI-assisted, 83.9% human-only)
+* 🤖 AI-Assisted Projects (including vibe-coded): 8 out of 56 (14.3% AI-assisted, 85.7% human-only)
 * 🚀 Release Status: 34 released, 22 experimental (60.7% with releases, 39.3% experimental)
 
 ## Projects
 
 ### totalrecall
 
-* 💻 Languages: Go (98.9%), Shell (0.9%), YAML (0.2%)
-* 📚 Documentation: Markdown (93.3%), Text (6.7%)
-* 📊 Commits: 55
-* 📈 Lines of Code: 7684
-* 📄 Lines of Documentation: 390
-* 📅 Development Period: 2025-07-14 to 2025-07-20
-* 🔥 Recent Activity: 1.7 days (avg. age of last 42 commits)
+* 💻 Languages: Go (98.9%), Shell (0.5%), YAML (0.5%)
+* 📚 Documentation: Markdown (89.0%), Text (11.0%)
+* 📊 Commits: 74
+* 📈 Lines of Code: 12010
+* 📄 Lines of Documentation: 498
+* 📅 Development Period: 2025-07-14 to 2025-07-21
+* 🔥 Recent Activity: 1.6 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.6.1 (2025-07-20)
+* 🏷️ Latest Release: v0.7.1 (2025-07-21)
 * 🎵 Vibe-Coded: This project has been vibe coded
 
 
 => showcase/totalrecall/image-1.png totalrecall screenshot
 
 **totalrecall** is a Bulgarian language learning tool that generates comprehensive Anki flashcard materials from Bulgarian words. It creates high-quality audio pronunciations using OpenAI TTS, AI-generated contextual images via DALL-E, and automatic translations, making it easier for learners to memorize Bulgarian vocabulary through visual and auditory associations. The tool is particularly useful for language learners who want to create professional-quality flashcards with authentic Bulgarian pronunciation and memorable visual contexts without manually sourcing audio and images.
+
+=> showcase/totalrecall/image-2.png totalrecall screenshot
 
 The project is implemented in Go with a modular architecture featuring both CLI and GUI interfaces. It leverages OpenAI's APIs for audio generation (11 available voices) and image creation, includes audio caching to minimize API costs, and supports batch processing from text files. The tool outputs Anki-compatible packages (.apkg format) or CSV files with all media included, following a clean package structure with separate modules for audio generation, image processing, Anki formatting, and configuration management using industry-standard libraries like Cobra for CLI and Viper for configuration.
 
@@ -49,13 +51,13 @@ The project is implemented in Go with a modular architecture featuring both CLI 
 
 * 💻 Languages: Go (90.3%), Shell (8.1%), YAML (1.0%), JSON (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 92
-* 📈 Lines of Code: 9187
+* 📊 Commits: 94
+* 📈 Lines of Code: 9183
 * 📄 Lines of Documentation: 2484
-* 📅 Development Period: 2025-06-23 to 2025-07-19
-* 🔥 Recent Activity: 7.8 days (avg. age of last 42 commits)
+* 📅 Development Period: 2025-06-23 to 2025-07-20
+* 🔥 Recent Activity: 8.7 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.8.2 (2025-07-19)
+* 🏷️ Latest Release: v0.8.3 (2025-07-20)
 * 🎵 Vibe-Coded: This project has been vibe coded
 
 
@@ -76,7 +78,7 @@ The tool is implemented in Go with a clean architecture that supports both indiv
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 137
 * 📅 Development Period: 2025-06-25 to 2025-07-19
-* 🔥 Recent Activity: 22.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 23.4 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.0.0 (2025-06-29)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -99,7 +101,7 @@ The project is implemented using a clean modular architecture with the CLI entry
 * 📈 Lines of Code: 4142
 * 📄 Lines of Documentation: 854
 * 📅 Development Period: 2021-12-28 to 2025-07-16
-* 🔥 Recent Activity: 22.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 24.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -121,7 +123,7 @@ The project consists of three main components: **dotfiles** management for perso
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-12
-* 🔥 Recent Activity: 23.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 25.2 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -140,29 +142,6 @@ The implementation follows a clean architecture with clear separation of concern
 
 ---
 
-### foo.zone
-
-* 💻 Languages: HTML (70.6%), XML (28.8%), Shell (0.4%), CSS (0.2%)
-* 📚 Documentation: Markdown (61.0%), Text (39.0%)
-* 📊 Commits: 2939
-* 📈 Lines of Code: 44172
-* 📄 Lines of Documentation: 574
-* 📅 Development Period: 2021-04-29 to 2025-07-20
-* 🔥 Recent Activity: 24.8 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-This is **foo.zone**, a personal blog and technical website belonging to Paul Buetow, a Site Reliability Engineer based in Sofia, Bulgaria. The project is a static website that serves as a comprehensive platform for sharing technical knowledge, book notes, and personal experiences in the fields of system administration, DevOps, and programming.
-
-The site is built using **Gemtexter**, a static site generator that creates both HTML and Gemini protocol content from markdown sources. The architecture is refreshingly simple and follows KISS principles, with content organized into several key sections: a main blog feed (gemfeed) with over 100 technical posts dating back to 2008, detailed book notes and summaries, project documentation (including tools like DTail for distributed log tailing), and personal resources. The website is served by OpenBSD using relayd and httpd, demonstrating the author's preference for robust, security-focused Unix systems. The project emphasizes clean, semantic HTML, custom CSS styling, and accessibility, while maintaining both web and Gemini protocol compatibility for broader reach across different internet communities.
-
-=> https://codeberg.org/snonux/foo.zone View on Codeberg
-=> https://github.com/snonux/foo.zone View on GitHub
-
----
-
 ### ior
 
 * 💻 Languages: Go (50.2%), C (43.4%), Raku (4.4%), Make (1.1%), C/C++ (0.9%)
@@ -171,7 +150,7 @@ The site is built using **Gemtexter**, a static site generator that creates both
 * 📈 Lines of Code: 12762
 * 📄 Lines of Documentation: 742
 * 📅 Development Period: 2024-01-18 to 2025-07-14
-* 🔥 Recent Activity: 61.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 63.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -200,7 +179,7 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 63.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 64.7 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.2.0 (2023-06-21)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -227,7 +206,7 @@ The system uses a client-server architecture where dtail servers run on target m
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 82.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 84.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -249,7 +228,7 @@ The implementation uses a YAML configuration file to define the network topology
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 96.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 97.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -274,7 +253,7 @@ The project is built on an event-driven architecture with clear component separa
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 108.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 110.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -296,7 +275,7 @@ The implementation is minimal and focused, consisting of a basic Go module with 
 * 📈 Lines of Code: 3967
 * 📄 Lines of Documentation: 324
 * 📅 Development Period: 2024-05-04 to 2025-07-12
-* 🔥 Recent Activity: 121.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 123.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-03-04)
 
@@ -322,7 +301,7 @@ The tool is architected around a file-based queueing system where posts progress
 * 📈 Lines of Code: 1586
 * 📄 Lines of Documentation: 154
 * 📅 Development Period: 2023-01-02 to 2025-07-12
-* 🔥 Recent Activity: 129.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 130.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.0 (2025-07-12)
 
@@ -344,7 +323,7 @@ The project implements a modular architecture with seven core components: FileHe
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 149.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 150.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -358,28 +337,6 @@ The system is implemented with a modular architecture centered around a DSL clas
 
 ---
 
-### gemtexter
-
-* 💻 Languages: Shell (68.1%), CSS (28.7%), Config (1.9%), HTML (1.3%)
-* 📚 Documentation: Text (76.1%), Markdown (23.9%)
-* 📊 Commits: 465
-* 📈 Lines of Code: 2268
-* 📄 Lines of Documentation: 1180
-* 📅 Development Period: 2021-05-21 to 2025-07-09
-* 🔥 Recent Activity: 211.7 days (avg. age of last 42 commits)
-* ⚖️ License: GPL-3.0
-* 🏷️ Latest Release: 3.0.0 (2024-10-01)
-
-
-**Gemtexter** is a static site generator and blog engine that transforms content written in Gemini Gemtext format into multiple output formats. It's a comprehensive Bash-based tool designed to support the Gemini protocol (a simpler alternative to HTTP) while maintaining compatibility with traditional web technologies. The project converts a single source of Gemtext content into HTML (XHTML 1.0 Transitional), Markdown, and native Gemtext formats, enabling authors to write once and publish across multiple platforms including Gemini capsules, traditional websites, and GitHub/Codeberg pages.
-
-The implementation is built entirely in Bash (version 5.x+) using a modular library approach with separate source files for different functionality (atomfeed, gemfeed, HTML generation, Markdown conversion, templating, etc.). Key features include automatic blog post indexing, Atom feed generation, customizable HTML themes, source code highlighting, Bash-based templating system, and integrated Git workflow management. The architecture separates content directories by format (gemtext/, html/, md/) and includes comprehensive theming support, font embedding, and publishing workflows that can automatically sync content to multiple Git repositories for deployment on various platforms.
-
-=> https://codeberg.org/snonux/gemtexter View on Codeberg
-=> https://github.com/snonux/gemtexter View on GitHub
-
----
-
 ### quicklogger
 
 * 💻 Languages: Go (97.6%), Shell (1.5%), TOML (0.9%)
@@ -388,7 +345,7 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 * 📈 Lines of Code: 917
 * 📄 Lines of Documentation: 33
 * 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 459.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 460.7 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
@@ -414,7 +371,7 @@ The project follows a clean, single-file architecture with all functionality con
 * 📈 Lines of Code: 12
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2024-03-24 to 2024-03-24
-* 🔥 Recent Activity: 483.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 484.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -436,7 +393,7 @@ The project is implemented as a simple Docker build system with a Makefile that 
 * 📈 Lines of Code: 2850
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-04-05
-* 🔥 Recent Activity: 513.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 514.5 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -458,7 +415,7 @@ The system is designed to host multiple personal services including Anki sync se
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 525.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 527.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -483,7 +440,7 @@ The implementation follows a clean architecture with concurrent check execution,
 * 📈 Lines of Code: 32
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2023-12-31
-* 🔥 Recent Activity: 566.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 568.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -505,7 +462,7 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 * 📈 Lines of Code: 29
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-08-13 to 2024-01-01
-* 🔥 Recent Activity: 659.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 661.3 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -527,7 +484,7 @@ The implementation is built using a Rocky Linux base image with Python 3.9, and 
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 712.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 713.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -549,7 +506,7 @@ The architecture consists of several key components: a quorum manager that handl
 * 📈 Lines of Code: 312
 * 📄 Lines of Documentation: 416
 * 📅 Development Period: 2013-03-22 to 2025-05-18
-* 🔥 Recent Activity: 762.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 763.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -571,7 +528,7 @@ The tool is implemented with a clean object-oriented architecture featuring an A
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 776.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 778.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -586,6 +543,29 @@ The implementation is straightforward - a bash script that uses `find` to locate
 
 ---
 
+### gemtexter
+
+* 💻 Languages: Shell (86.6%), CSS (8.3%), Config (3.2%), HTML (1.9%)
+* 📚 Documentation: Text (68.0%), Markdown (32.0%)
+* 📊 Commits: 465
+* 📈 Lines of Code: 1585
+* 📄 Lines of Documentation: 778
+* 📅 Development Period: 2021-05-21 to 2023-07-17
+* 🔥 Recent Activity: 826.8 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-3.0
+* 🏷️ Latest Release: 3.0.0 (2024-10-01)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**Gemtexter** is a static site generator and blog engine that transforms content written in Gemini Gemtext format into multiple output formats. It's a comprehensive Bash-based tool designed to support the Gemini protocol (a simpler alternative to HTTP) while maintaining compatibility with traditional web technologies. The project converts a single source of Gemtext content into HTML (XHTML 1.0 Transitional), Markdown, and native Gemtext formats, enabling authors to write once and publish across multiple platforms including Gemini capsules, traditional websites, and GitHub/Codeberg pages.
+
+The implementation is built entirely in Bash (version 5.x+) using a modular library approach with separate source files for different functionality (atomfeed, gemfeed, HTML generation, Markdown conversion, templating, etc.). Key features include automatic blog post indexing, Atom feed generation, customizable HTML themes, source code highlighting, Bash-based templating system, and integrated Git workflow management. The architecture separates content directories by format (gemtext/, html/, md/) and includes comprehensive theming support, font embedding, and publishing workflows that can automatically sync content to multiple Git repositories for deployment on various platforms.
+
+=> https://codeberg.org/snonux/gemtexter View on Codeberg
+=> https://github.com/snonux/gemtexter View on GitHub
+
+---
+
 ### sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
@@ -594,7 +574,7 @@ The implementation is straightforward - a bash script that uses `find` to locate
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1070.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1071.7 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -616,7 +596,7 @@ The implementation consists of two main components: `autorotate.sh` monitors the
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1289.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1291.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -639,7 +619,7 @@ The implementation centers around a single Bash script (`photoalbum.sh`) that us
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1441.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1442.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -662,7 +642,7 @@ The project leverages Go's generics system to provide type-safe implementations 
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 19
 * 📅 Development Period: 2018-05-26 to 2025-01-21
-* 🔥 Recent Activity: 1442.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1444.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -678,6 +658,53 @@ The system is architected around several key components: a configuration system 
 
 ---
 
+### foo.zone
+
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 2942
+* 📈 Lines of Code: 0
+* 📄 Lines of Documentation: 23
+* 📅 Development Period: 2021-05-21 to 2022-04-02
+* 🔥 Recent Activity: 1458.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+This is **foo.zone**, a personal blog and technical website belonging to Paul Buetow, a Site Reliability Engineer based in Sofia, Bulgaria. The project is a static website that serves as a comprehensive platform for sharing technical knowledge, book notes, and personal experiences in the fields of system administration, DevOps, and programming.
+
+The site is built using **Gemtexter**, a static site generator that creates both HTML and Gemini protocol content from markdown sources. The architecture is refreshingly simple and follows KISS principles, with content organized into several key sections: a main blog feed (gemfeed) with over 100 technical posts dating back to 2008, detailed book notes and summaries, project documentation (including tools like DTail for distributed log tailing), and personal resources. The website is served by OpenBSD using relayd and httpd, demonstrating the author's preference for robust, security-focused Unix systems. The project emphasizes clean, semantic HTML, custom CSS styling, and accessibility, while maintaining both web and Gemini protocol compatibility for broader reach across different internet communities.
+
+=> https://codeberg.org/snonux/foo.zone View on Codeberg
+=> https://github.com/snonux/foo.zone View on GitHub
+
+---
+
+### xerl
+
+* 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
+* 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
+* 📊 Commits: 670
+* 📈 Lines of Code: 815
+* 📄 Lines of Documentation: 102
+* 📅 Development Period: 2011-03-06 to 2021-11-02
+* 🔥 Recent Activity: 1860.8 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0.0 (2018-12-22)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+Based on my analysis of the project files, here's a summary of Xerl:
+
+**Xerl** is an open-source website template engine with Content Management System (CMS) features, written in object-oriented Perl and powered by FastCGI. It uses XML-based configuration and content files to generate static websites with multiple output formats (HTML5, XHTML, RSS feeds, and plain text).
+
+The system works through a template-driven architecture where content is written in XML files with semantic tags (like `<pagetitle>`, `<text>`, `<enumeration>`) that get transformed into HTML using configurable transformation rules. The `config.xml` file defines how these semantic tags map to HTML elements, supporting variables and dynamic content insertion. Each website can have its own template configuration, content files, and static assets (CSS, images, fonts), making it useful for maintaining multiple related websites with consistent styling and structure while allowing customization per site. The project includes several example sites (paul.buetow.org, xerl.buetow.org) and redirect configurations, demonstrating its practical use for personal or organizational web presence management.
+
+=> https://codeberg.org/snonux/xerl View on Codeberg
+=> https://github.com/snonux/xerl View on GitHub
+
+---
+
 ### perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
@@ -686,7 +713,7 @@ The system is architected around several key components: a configuration system 
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1921.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1923.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -709,7 +736,7 @@ The project is useful as an educational tool for understanding language syntax s
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2463.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2464.9 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -734,7 +761,7 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 2972.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2973.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -757,7 +784,7 @@ The system is particularly useful for distributed static content delivery where 
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3208.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3209.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -780,7 +807,7 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3474.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3476.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -803,7 +830,7 @@ The tool is particularly useful for system administrators and DevOps engineers w
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3478.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3480.3 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -826,7 +853,7 @@ The tool is implemented as a single Ruby script that leverages threading for par
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3558.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3560.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -849,7 +876,7 @@ The project is implemented as a modular Perl application with a clean architectu
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3569.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3570.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -864,29 +891,6 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 
 ---
 
-### xerl
-
-* 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
-* 📊 Commits: 670
-* 📈 Lines of Code: 1675
-* 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3624.9 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0.0 (2018-12-22)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Based on my analysis of the project files, here's a summary of Xerl:
-
-**Xerl** is an open-source website template engine with Content Management System (CMS) features, written in object-oriented Perl and powered by FastCGI. It uses XML-based configuration and content files to generate static websites with multiple output formats (HTML5, XHTML, RSS feeds, and plain text).
-
-The system works through a template-driven architecture where content is written in XML files with semantic tags (like `<pagetitle>`, `<text>`, `<enumeration>`) that get transformed into HTML using configurable transformation rules. The `config.xml` file defines how these semantic tags map to HTML elements, supporting variables and dynamic content insertion. Each website can have its own template configuration, content files, and static assets (CSS, images, fonts), making it useful for maintaining multiple related websites with consistent styling and structure while allowing customization per site. The project includes several example sites (paul.buetow.org, xerl.buetow.org) and redirect configurations, demonstrating its practical use for personal or organizational web presence management.
-
-=> https://codeberg.org/snonux/xerl View on Codeberg
-=> https://github.com/snonux/xerl View on GitHub
-
----
-
 ### debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
@@ -895,7 +899,7 @@ The system works through a template-driven architecture where content is written
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3673.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3674.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -920,7 +924,7 @@ The implementation works by creating a Debian filesystem image using debootstrap
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 3951.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3952.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -943,7 +947,7 @@ The implementation is written in Python and built on top of the bigsuds library,
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 4005.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4006.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -966,7 +970,7 @@ The project implements a clean, Make-based build system with automatic versionin
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4018.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4019.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -989,7 +993,7 @@ The implementation is elegantly simple, consisting of a bash script that operate
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4025.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4027.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1012,7 +1016,7 @@ The tool works by having both hosts run the same command simultaneously - one ac
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4069.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4070.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1035,7 +1039,7 @@ The implementation leverages GPG for strong encryption, ensuring passwords are n
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4074.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4075.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1058,7 +1062,7 @@ The implementation uses modern Perl with the Moo object system and consists of t
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4135.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4136.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1079,7 +1083,7 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4215.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4217.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1102,7 +1106,7 @@ The implementation uses a straightforward approach with three test endpoints: on
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4256.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4257.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1125,7 +1129,7 @@ The implementation is remarkably simple - a single shell script that uses GNU AW
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4286.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4287.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1146,7 +1150,7 @@ The application is implemented using a multi-threaded architecture where each mo
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4335.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4337.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1169,7 +1173,7 @@ The architecture centers around a modular plugin system where custom functionali
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4666.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4668.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1192,7 +1196,7 @@ The implementation consists of a main AWK script (`index.cgi`) that reads config
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4729.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4730.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1209,6 +1213,31 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 
 ---
 
+### ychat
+
+* 💻 Languages: C++ (62.8%), C/C++ (27.1%), HTML (3.1%), Config (2.5%), Perl (1.9%), Shell (1.9%), Make (0.4%), CSS (0.2%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 27104
+* 📄 Lines of Documentation: 109
+* 📅 Development Period: 2008-05-15 to 2014-07-01
+* 🔥 Recent Activity: 5331.8 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+Based on my analysis of the codebase, here's a concise summary of the yChat project:
+
+**yChat** is a web-based chat server written in C++ that functions as a standalone HTTP server without requiring external web server dependencies. It allows users to participate in multi-room chat sessions using standard web browsers, with no special client software needed. The system supports user registration, authentication via session IDs, customizable HTML templates, and multi-language support through XML configuration files.
+
+The architecture is built around several key managers: a socket manager for handling HTTP connections, a chat manager for core functionality, an HTML template manager for dynamic content generation, and a modular system supporting dynamically loadable command modules. It uses hash maps for efficient O(1) data retrieval, POSIX threads for concurrent request handling, and includes advanced features like SSL support, MySQL database integration, garbage collection for memory management, and comprehensive logging. The codebase also includes related projects like yhttpd (a lightweight HTTP server) and ycurses (a terminal interface library), making it a comprehensive communication platform designed for performance and extensibility.
+
+=> https://codeberg.org/snonux/ychat View on Codeberg
+=> https://github.com/snonux/ychat View on GitHub
+
+---
+
 ### netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
@@ -1217,7 +1246,7 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5360.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5361.6 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1236,28 +1265,28 @@ The implementation uses a clean separation of concerns with dedicated packages f
 
 ---
 
-### ychat
+### vs-sim
 
-* 💻 Languages: C++ (51.1%), C/C++ (29.9%), Shell (15.9%), HTML (1.4%), Perl (1.2%), Make (0.4%), CSS (0.1%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 9958
-* 📄 Lines of Documentation: 103
-* 📅 Development Period: 2008-05-15 to 2014-07-01
-* 🔥 Recent Activity: 5389.7 days (avg. age of last 42 commits)
-* ⚖️ License: GPL-2.0
-* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+* 💻 Languages: Java (98.6%), Shell (0.8%), XML (0.4%)
+* 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
+* 📊 Commits: 411
+* 📈 Lines of Code: 14582
+* 📄 Lines of Documentation: 2903
+* 📅 Development Period: 2008-05-15 to 2022-04-03
+* 🔥 Recent Activity: 5397.8 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0 (2008-08-24)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-Based on my analysis of the codebase, here's a concise summary of the yChat project:
+=> showcase/vs-sim/image-1.jpg vs-sim screenshot
 
-**yChat** is a web-based chat server written in C++ that functions as a standalone HTTP server without requiring external web server dependencies. It allows users to participate in multi-room chat sessions using standard web browsers, with no special client software needed. The system supports user registration, authentication via session IDs, customizable HTML templates, and multi-language support through XML configuration files.
+VS-Sim is an open-source distributed systems simulator written in Java, developed as a diploma thesis at Aachen University of Applied Sciences. It provides a visual environment for simulating and understanding distributed system algorithms including consensus protocols (one-phase/two-phase commit), time synchronization (Berkeley, Lamport, vector clocks), and communication patterns (multicast, broadcast, reliable messaging). The simulator is useful for educational purposes, allowing students and researchers to visualize complex distributed system concepts through interactive simulations.
 
-The architecture is built around several key managers: a socket manager for handling HTTP connections, a chat manager for core functionality, an HTML template manager for dynamic content generation, and a modular system supporting dynamically loadable command modules. It uses hash maps for efficient O(1) data retrieval, POSIX threads for concurrent request handling, and includes advanced features like SSL support, MySQL database integration, garbage collection for memory management, and comprehensive logging. The codebase also includes related projects like yhttpd (a lightweight HTTP server) and ycurses (a terminal interface library), making it a comprehensive communication platform designed for performance and extensibility.
+The implementation features a modular architecture with separate packages for core processes, events, protocols, and visualization. It includes pre-built protocol implementations, a GUI-based simulator with start/pause/reset controls, serialization support for saving simulations, and comprehensive time modeling systems. The codebase demonstrates clean separation of concerns with abstract base classes for extensibility and a plugin-like protocol system for easy addition of new distributed algorithms.
 
-=> https://codeberg.org/snonux/ychat View on Codeberg
-=> https://github.com/snonux/ychat View on GitHub
+=> https://codeberg.org/snonux/vs-sim View on Codeberg
+=> https://github.com/snonux/vs-sim View on GitHub
 
 ---
 
@@ -1267,7 +1296,7 @@ The architecture is built around several key managers: a socket manager for hand
 * 📊 Commits: 80
 * 📈 Lines of Code: 601
 * 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5455.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5457.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1282,37 +1311,15 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 
 ---
 
-### vs-sim
-
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 411
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 7
-* 📅 Development Period: 2008-05-15 to 2015-05-23
-* 🔥 Recent Activity: 5816.7 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v1.0 (2008-08-24)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-VS-Sim is an open-source distributed systems simulator written in Java, developed as a diploma thesis at Aachen University of Applied Sciences. It provides a visual environment for simulating and understanding distributed system algorithms including consensus protocols (one-phase/two-phase commit), time synchronization (Berkeley, Lamport, vector clocks), and communication patterns (multicast, broadcast, reliable messaging). The simulator is useful for educational purposes, allowing students and researchers to visualize complex distributed system concepts through interactive simulations.
-
-The implementation features a modular architecture with separate packages for core processes, events, protocols, and visualization. It includes pre-built protocol implementations, a GUI-based simulator with start/pause/reset controls, serialization support for saving simulations, and comprehensive time modeling systems. The codebase demonstrates clean separation of concerns with abstract base classes for extensibility and a plugin-like protocol system for easy addition of new distributed algorithms.
-
-=> https://codeberg.org/snonux/vs-sim View on Codeberg
-=> https://github.com/snonux/vs-sim View on GitHub
-
----
-
 ### fype
 
-* 💻 Languages: C (71.2%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
-* 📚 Documentation: Text (60.3%), LaTeX (39.7%)
+* 💻 Languages: C (71.3%), C/C++ (20.6%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (60.2%), LaTeX (39.8%)
 * 📊 Commits: 99
-* 📈 Lines of Code: 8954
-* 📄 Lines of Documentation: 1432
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5842.4 days (avg. age of last 42 commits)
+* 📈 Lines of Code: 8906
+* 📄 Lines of Documentation: 1431
+* 📅 Development Period: 2008-05-15 to 2021-04-29
+* 🔥 Recent Activity: 5864.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
