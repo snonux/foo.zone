@@ -118,6 +118,8 @@ kube-system   traefik-c98fdf6fb-lt6fx                   1/1     Running     0   
 
 In order to connect with `kubect` from my Fedora Laptop, I had to copy `/etc/rancher/k3s/k3s.yaml` from `r0` to `~/.kube/config` and then replace the value of the server field with `r0.lan.buetow.org`. kubectl can now manage the cluster. Note this step has to be repeated when we want to connect to another node of the cluster (e.g. when `r0` is down).
 
+## Test deployments
+
 ### Test deployment to Kubernetes
 
 Let's create a test namespace:
@@ -294,7 +296,7 @@ So let's test the Apache webserver through the ingress rule:
 <html><body><h1>It works!</h1></body></html>
 ```
 
-## Test deployment with persistent volume claim
+### Test deployment with persistent volume claim
 
 So let's modify the Apache example to serve the `htdocs` directory from the NFS share we created in the previous blog post. We are using the following manifests. The majority of the manifests are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.
 
