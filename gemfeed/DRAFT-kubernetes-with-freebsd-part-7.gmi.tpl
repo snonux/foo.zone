@@ -1,6 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Part 6: Storage
-
-> Published at 2025-07-13T16:44:29+03:00
+# f3s: Kubernetes with FreeBSD - Part 7: First pod deployments
 
 This is the seventh blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -519,7 +517,8 @@ Next, this should be made accessible through the public internet via the `www.f3
 Shutting down `f0` and let NFS failing over for the Apache content.
 
 
-Todo: include k9s screenshot
+TODO: include k9s screenshot
+TODO: include a diagram again?
 
 Other *BSD-related posts:
 
