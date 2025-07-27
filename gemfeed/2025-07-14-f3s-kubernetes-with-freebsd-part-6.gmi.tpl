@@ -1376,6 +1376,22 @@ fi
 touch "$LOCK_FILE"
 trap "rm -f $LOCK_FILE" EXIT
 
+mount_it () {
+    if mount "$MOUNT_POINT"; then
+        echo "NFS mount fixed at $(date)" | systemd-cat -t nfs-monitor -p info
+        rm -f "$STATE_FILE"
+    else
+        echo "Failed to fix NFS mount at $(date)" | systemd-cat -t nfs-monitor -p err
+        exit 1
+    fi
+}
+
+# Quick check - ensure it's actually mounted
+if ! mountpoint -q "$MOUNT_POINT"; then
+    echo "NFS mount not found at $(date)" | systemd-cat -t nfs-monitor -p err
+    mount_it
+fi
+
 # Quick check - try to stat a directory with a very short timeout
 if timeout 2s stat "$MOUNT_POINT" >/dev/null 2>&1; then
     # Mount appears healthy
@@ -1399,12 +1415,7 @@ echo "Attempting to fix stale NFS mount at $(date)" | systemd-cat -t nfs-monitor
 umount -f "$MOUNT_POINT" 2>/dev/null
 sleep 1
 
-if mount "$MOUNT_POINT"; then
-    echo "NFS mount fixed at $(date)" | systemd-cat -t nfs-monitor -p info
-    rm -f "$STATE_FILE"
-else
-    echo "Failed to fix NFS mount at $(date)" | systemd-cat -t nfs-monitor -p err
-fi
+mount_it
 EOF
 [root@r0 ~]# chmod +x /usr/local/bin/check-nfs-mount.sh
 ```
