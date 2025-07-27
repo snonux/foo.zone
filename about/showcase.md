@@ -11,11 +11,11 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ Projects](#projects)
 * [⇢ ⇢ ⇢ totalrecall](#totalrecall)
 * [⇢ ⇢ ⇢ gitsyncer](#gitsyncer)
+* [⇢ ⇢ ⇢ dtail](#dtail)
 * [⇢ ⇢ ⇢ rexfiles](#rexfiles)
 * [⇢ ⇢ ⇢ timr](#timr)
 * [⇢ ⇢ ⇢ tasksamurai](#tasksamurai)
 * [⇢ ⇢ ⇢ ior](#ior)
-* [⇢ ⇢ ⇢ dtail](#dtail)
 * [⇢ ⇢ ⇢ wireguardmeshgenerator](#wireguardmeshgenerator)
 * [⇢ ⇢ ⇢ ds-sim](#ds-sim)
 * [⇢ ⇢ ⇢ sillybench](#sillybench)
@@ -45,8 +45,8 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ rubyfy](#rubyfy)
 * [⇢ ⇢ ⇢ pingdomfetch](#pingdomfetch)
 * [⇢ ⇢ ⇢ gotop](#gotop)
-* [⇢ ⇢ ⇢ debroid](#debroid)
 * [⇢ ⇢ ⇢ xerl](#xerl)
+* [⇢ ⇢ ⇢ debroid](#debroid)
 * [⇢ ⇢ ⇢ fapi](#fapi)
 * [⇢ ⇢ ⇢ template](#template)
 * [⇢ ⇢ ⇢ muttdelay](#muttdelay)
@@ -61,19 +61,19 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ awksite](#awksite)
 * [⇢ ⇢ ⇢ jsmstrade](#jsmstrade)
 * [⇢ ⇢ ⇢ netcalendar](#netcalendar)
-* [⇢ ⇢ ⇢ ychat](#ychat)
 * [⇢ ⇢ ⇢ hsbot](#hsbot)
+* [⇢ ⇢ ⇢ ychat](#ychat)
 * [⇢ ⇢ ⇢ fype](#fype)
 * [⇢ ⇢ ⇢ vs-sim](#vs-sim)
 
 ## Overall Statistics
 
 * 📦 Total Projects: 56
-* 📊 Total Commits: 10,587
-* 📈 Total Lines of Code: 235,542
-* 📄 Total Lines of Documentation: 22,073
-* 💻 Languages: Go (26.2%), Java (17.2%), C++ (15.8%), C/C++ (8.9%), C (8.6%), Perl (7.2%), Shell (6.2%), Config (1.9%), HTML (1.9%), Ruby (1.2%), HCL (1.2%), Make (0.8%), Python (0.7%), CSS (0.6%), JSON (0.3%), Raku (0.3%), XML (0.3%), Haskell (0.3%), YAML (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (52.8%), Markdown (45.0%), LaTeX (2.3%)
+* 📊 Total Commits: 10,597
+* 📈 Total Lines of Code: 175,312
+* 📄 Total Lines of Documentation: 236,493
+* 💻 Languages: Go (38.8%), Java (23.1%), C (11.5%), Perl (8.8%), Shell (3.6%), C/C++ (3.0%), Config (1.7%), HTML (1.6%), Ruby (1.6%), HCL (1.6%), Python (0.9%), Make (0.9%), CSS (0.7%), JSON (0.5%), Raku (0.4%), XML (0.4%), Haskell (0.3%), YAML (0.3%), TOML (0.2%)
+* 📚 Documentation: Text (94.5%), Markdown (5.3%), LaTeX (0.2%)
 * 🎵 Vibe-Coded Projects: 4 out of 56 (7.1%)
 * 🤖 AI-Assisted Projects (including vibe-coded): 8 out of 56 (14.3% AI-assisted, 85.7% human-only)
 * 🚀 Release Status: 34 released, 22 experimental (60.7% with releases, 39.3% experimental)
@@ -83,14 +83,14 @@ This page showcases my side projects, providing an overview of what each project
 ### totalrecall
 
 * 💻 Languages: Go (98.9%), Shell (0.6%), YAML (0.5%)
-* 📚 Documentation: Markdown (94.4%), Text (5.6%)
-* 📊 Commits: 78
-* 📈 Lines of Code: 11771
-* 📄 Lines of Documentation: 359
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 83
+* 📈 Lines of Code: 11782
+* 📄 Lines of Documentation: 357
 * 📅 Development Period: 2025-07-14 to 2025-07-22
-* 🔥 Recent Activity: 1.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1.8 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.7.2 (2025-07-22)
+* 🏷️ Latest Release: v0.7.3 (2025-07-22)
 * 🎵 Vibe-Coded: This project has been vibe coded
 
 
@@ -115,7 +115,7 @@ The project is implemented in Go with a modular architecture featuring both CLI 
 * 📈 Lines of Code: 9182
 * 📄 Lines of Documentation: 2484
 * 📅 Development Period: 2025-06-23 to 2025-07-20
-* 🔥 Recent Activity: 8.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 9.1 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.8.4 (2025-07-20)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -130,15 +130,42 @@ The tool is implemented in Go with a clean architecture that supports both indiv
 
 ---
 
+### dtail
+
+* 💻 Languages: Go (91.0%), Shell (4.1%), JSON (2.1%), C (1.4%), Make (0.9%), C/C++ (0.2%), Config (0.1%)
+* 📚 Documentation: Text (98.3%), Markdown (1.7%)
+* 📊 Commits: 1049
+* 📈 Lines of Code: 27726
+* 📄 Lines of Documentation: 220214
+* 📅 Development Period: 2020-01-09 to 2025-07-04
+* 🔥 Recent Activity: 20.2 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.2.0 (2023-06-21)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+
+
+[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
+
+DTail is a distributed log processing system written in Go that allows DevOps engineers to tail, cat, and grep log files across thousands of servers concurrently. It provides secure access through SSH authentication and respects UNIX file system permissions, making it ideal for enterprise environments where log analysis needs to scale horizontally across large server fleets. The tool supports advanced features like compressed file handling (gzip/zstd) and distributed MapReduce aggregations for complex log analytics.
+
+[![dtail screenshot](showcase/dtail/image-2.gif "dtail screenshot")](showcase/dtail/image-2.gif)  
+
+The system uses a client-server architecture where dtail servers run on target machines (listening on port 2222) and clients connect to multiple servers simultaneously. It can also operate in serverless mode for local operations. The implementation leverages SSH for secure communication, includes sophisticated connection throttling and resource management, and provides specialized tools (dcat, dgrep, dmap) for different log processing tasks. The MapReduce functionality supports SQL-like queries with server-side local aggregation and client-side final aggregation, enabling powerful distributed analytics across log data.
+
+[View on Codeberg](https://codeberg.org/snonux/dtail)  
+[View on GitHub](https://github.com/snonux/dtail)  
+
+---
+
 ### rexfiles
 
 * 💻 Languages: Perl (38.1%), Shell (30.9%), Config (8.0%), CSS (7.8%), TOML (6.9%), Ruby (5.8%), Lua (1.7%), JSON (0.7%), INI (0.1%)
 * 📚 Documentation: Text (97.3%), Markdown (2.7%)
-* 📊 Commits: 882
+* 📊 Commits: 883
 * 📈 Lines of Code: 4160
 * 📄 Lines of Documentation: 854
 * 📅 Development Period: 2021-12-28 to 2025-07-22
-* 🔥 Recent Activity: 22.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 22.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -160,7 +187,7 @@ The project consists of three main components: **dotfiles** management for perso
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 137
 * 📅 Development Period: 2025-06-25 to 2025-07-19
-* 🔥 Recent Activity: 23.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 24.3 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.0.0 (2025-06-29)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -183,7 +210,7 @@ The project is implemented using a clean modular architecture with the CLI entry
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-12
-* 🔥 Recent Activity: 25.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 26.1 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -210,7 +237,7 @@ The implementation follows a clean architecture with clear separation of concern
 * 📈 Lines of Code: 12762
 * 📄 Lines of Documentation: 742
 * 📅 Development Period: 2024-01-18 to 2025-07-14
-* 🔥 Recent Activity: 63.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 64.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -231,33 +258,6 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 
 ---
 
-### dtail
-
-* 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
-* 📚 Documentation: Text (79.4%), Markdown (20.6%)
-* 📊 Commits: 1049
-* 📈 Lines of Code: 20091
-* 📄 Lines of Documentation: 5674
-* 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 65.1 days (avg. age of last 42 commits)
-* ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v4.2.0 (2023-06-21)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
-
-DTail is a distributed log processing system written in Go that allows DevOps engineers to tail, cat, and grep log files across thousands of servers concurrently. It provides secure access through SSH authentication and respects UNIX file system permissions, making it ideal for enterprise environments where log analysis needs to scale horizontally across large server fleets. The tool supports advanced features like compressed file handling (gzip/zstd) and distributed MapReduce aggregations for complex log analytics.
-
-[![dtail screenshot](showcase/dtail/image-2.gif "dtail screenshot")](showcase/dtail/image-2.gif)  
-
-The system uses a client-server architecture where dtail servers run on target machines (listening on port 2222) and clients connect to multiple servers simultaneously. It can also operate in serverless mode for local operations. The implementation leverages SSH for secure communication, includes sophisticated connection throttling and resource management, and provides specialized tools (dcat, dgrep, dmap) for different log processing tasks. The MapReduce functionality supports SQL-like queries with server-side local aggregation and client-side final aggregation, enabling powerful distributed analytics across log data.
-
-[View on Codeberg](https://codeberg.org/snonux/dtail)  
-[View on GitHub](https://github.com/snonux/dtail)  
-
----
-
 ### wireguardmeshgenerator
 
 * 💻 Languages: Ruby (73.5%), YAML (26.5%)
@@ -266,7 +266,7 @@ The system uses a client-server architecture where dtail servers run on target m
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 84.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 85.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -288,7 +288,7 @@ The implementation uses a YAML configuration file to define the network topology
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 97.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 98.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -313,7 +313,7 @@ The project is built on an event-driven architecture with clear component separa
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 110.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 110.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -335,7 +335,7 @@ The implementation is minimal and focused, consisting of a basic Go module with 
 * 📈 Lines of Code: 3967
 * 📄 Lines of Documentation: 324
 * 📅 Development Period: 2024-05-04 to 2025-07-12
-* 🔥 Recent Activity: 123.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 124.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-03-04)
 
@@ -361,7 +361,7 @@ The tool is architected around a file-based queueing system where posts progress
 * 📈 Lines of Code: 1586
 * 📄 Lines of Documentation: 154
 * 📅 Development Period: 2023-01-02 to 2025-07-12
-* 🔥 Recent Activity: 131.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 131.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.0 (2025-07-12)
 
@@ -383,7 +383,7 @@ The project implements a modular architecture with seven core components: FileHe
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 151.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 151.6 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -405,7 +405,7 @@ The system is implemented with a modular architecture centered around a DSL clas
 * 📈 Lines of Code: 2268
 * 📄 Lines of Documentation: 1180
 * 📅 Development Period: 2021-05-21 to 2025-07-09
-* 🔥 Recent Activity: 213.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 214.0 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -427,7 +427,7 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 * 📈 Lines of Code: 917
 * 📄 Lines of Documentation: 33
 * 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 461.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 461.6 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
@@ -453,7 +453,7 @@ The project follows a clean, single-file architecture with all functionality con
 * 📈 Lines of Code: 12
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2024-03-24 to 2024-03-24
-* 🔥 Recent Activity: 484.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 485.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -475,7 +475,7 @@ The project is implemented as a simple Docker build system with a Makefile that 
 * 📈 Lines of Code: 2850
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-04-05
-* 🔥 Recent Activity: 514.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 515.4 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -497,7 +497,7 @@ The system is designed to host multiple personal services including Anki sync se
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 527.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 528.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -522,7 +522,7 @@ The implementation follows a clean architecture with concurrent check execution,
 * 📈 Lines of Code: 32
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2023-12-31
-* 🔥 Recent Activity: 568.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 569.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -544,7 +544,7 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 * 📈 Lines of Code: 29
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-08-13 to 2024-01-01
-* 🔥 Recent Activity: 661.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 662.2 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -566,7 +566,7 @@ The implementation is built using a Rocky Linux base image with Python 3.9, and 
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 713.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 714.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -588,7 +588,7 @@ The architecture consists of several key components: a quorum manager that handl
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 778.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 779.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -611,7 +611,7 @@ The implementation is straightforward - a bash script that uses `find` to locate
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1072.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1072.6 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -633,7 +633,7 @@ The implementation consists of two main components: `autorotate.sh` monitors the
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1291.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1292.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -656,7 +656,7 @@ The implementation centers around a single Bash script (`photoalbum.sh`) that us
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1442.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1443.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -679,7 +679,7 @@ The project leverages Go's generics system to provide type-safe implementations 
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 19
 * 📅 Development Period: 2018-05-26 to 2025-01-21
-* 🔥 Recent Activity: 1444.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1445.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -698,11 +698,11 @@ The system is architected around several key components: a configuration system 
 ### foo.zone
 
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 2945
+* 📊 Commits: 2949
 * 📈 Lines of Code: 0
 * 📄 Lines of Documentation: 23
 * 📅 Development Period: 2021-05-21 to 2022-04-02
-* 🔥 Recent Activity: 1458.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1458.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -725,7 +725,7 @@ The site is built using **Gemtexter**, a static site generator that creates both
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1923.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1924.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -746,7 +746,7 @@ The project is useful as an educational tool for understanding language syntax s
 * 📊 Commits: 95
 * 📈 Lines of Code: 195
 * 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🔥 Recent Activity: 2138.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2139.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -769,7 +769,7 @@ The tool is implemented with a clean object-oriented architecture featuring an A
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2465.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2465.8 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -794,7 +794,7 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 2974.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2974.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -817,7 +817,7 @@ The system is particularly useful for distributed static content delivery where 
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3209.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3210.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -840,7 +840,7 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3476.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3477.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -863,7 +863,7 @@ The tool is particularly useful for system administrators and DevOps engineers w
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3480.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3481.3 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -886,7 +886,7 @@ The tool is implemented as a single Ruby script that leverages threading for par
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3560.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3560.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -904,12 +904,12 @@ The project is implemented as a modular Perl application with a clean architectu
 ### gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
-* 📚 Documentation: Markdown (50.0%), Text (50.0%)
+* 📚 Documentation: Text (50.0%), Markdown (50.0%)
 * 📊 Commits: 57
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3571.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3571.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -924,38 +924,13 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 
 ---
 
-### debroid
-
-* 💻 Languages: Shell (92.0%), Make (8.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 16
-* 📈 Lines of Code: 88
-* 📄 Lines of Documentation: 148
-* 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3674.8 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-[![debroid screenshot](showcase/debroid/image-1.png "debroid screenshot")](showcase/debroid/image-1.png)  
-
-**Debroid** is a project that enables running a full Debian GNU/Linux environment on Android devices using a chroot container. Specifically designed for the LG G3 D855 running CyanogenMod 13 (Android 6), it allows users to install and run a complete Debian Jessie system alongside Android. This is particularly useful for developers and power users who want access to a full Linux command-line environment, package management system, and GNU/Linux tools directly on their Android device without dual-booting or replacing the Android system.
-
-The implementation works by creating a Debian filesystem image using debootstrap on a Linux host machine, then transferring it to the Android device's SD card. The core architecture uses loop devices to mount the Debian image file and bind mounts to share Android's `/proc`, `/dev`, and `/sys` filesystems with the chroot environment. The `jessie.sh` script handles mounting/unmounting the chroot and provides commands to enter the Debian environment or start services, while `userinit.sh` automatically starts Debian services at Android boot time. The project includes automation scripts and a Makefile for easy deployment via ADB.
-
-[View on Codeberg](https://codeberg.org/snonux/debroid)  
-[View on GitHub](https://github.com/snonux/debroid)  
-
----
-
 ### xerl
 
-* 💻 Languages: Perl (98.4%), Config (1.1%), Make (0.5%)
+* 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 670
-* 📈 Lines of Code: 1667
-* 📅 Development Period: 2011-03-06 to 2017-01-01
-* 🔥 Recent Activity: 3892.8 days (avg. age of last 42 commits)
+* 📈 Lines of Code: 1675
+* 📅 Development Period: 2011-03-06 to 2018-12-22
+* 🔥 Recent Activity: 3627.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -972,6 +947,31 @@ The system works through a template-driven architecture where content is written
 
 ---
 
+### debroid
+
+* 💻 Languages: Shell (92.0%), Make (8.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 16
+* 📈 Lines of Code: 88
+* 📄 Lines of Documentation: 148
+* 📅 Development Period: 2015-06-18 to 2015-12-05
+* 🔥 Recent Activity: 3675.4 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+[![debroid screenshot](showcase/debroid/image-1.png "debroid screenshot")](showcase/debroid/image-1.png)  
+
+**Debroid** is a project that enables running a full Debian GNU/Linux environment on Android devices using a chroot container. Specifically designed for the LG G3 D855 running CyanogenMod 13 (Android 6), it allows users to install and run a complete Debian Jessie system alongside Android. This is particularly useful for developers and power users who want access to a full Linux command-line environment, package management system, and GNU/Linux tools directly on their Android device without dual-booting or replacing the Android system.
+
+The implementation works by creating a Debian filesystem image using debootstrap on a Linux host machine, then transferring it to the Android device's SD card. The core architecture uses loop devices to mount the Debian image file and bind mounts to share Android's `/proc`, `/dev`, and `/sys` filesystems with the chroot environment. The `jessie.sh` script handles mounting/unmounting the chroot and provides commands to enter the Debian environment or start services, while `userinit.sh` automatically starts Debian services at Android boot time. The project includes automation scripts and a Makefile for easy deployment via ADB.
+
+[View on Codeberg](https://codeberg.org/snonux/debroid)  
+[View on GitHub](https://github.com/snonux/debroid)  
+
+---
+
 ### fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
@@ -980,7 +980,7 @@ The system works through a template-driven architecture where content is written
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 3952.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3953.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -1003,7 +1003,7 @@ The implementation is written in Python and built on top of the bigsuds library,
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 4007.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4007.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -1026,7 +1026,7 @@ The project implements a clean, Make-based build system with automatic versionin
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4020.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4020.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1049,7 +1049,7 @@ The implementation is elegantly simple, consisting of a bash script that operate
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4027.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4028.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1072,7 +1072,7 @@ The tool works by having both hosts run the same command simultaneously - one ac
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4071.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4071.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1095,7 +1095,7 @@ The implementation leverages GPG for strong encryption, ensuring passwords are n
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4076.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4076.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1118,7 +1118,7 @@ The implementation uses modern Perl with the Moo object system and consists of t
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4137.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4137.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1139,7 +1139,7 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4217.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4217.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1162,7 +1162,7 @@ The implementation uses a straightforward approach with three test endpoints: on
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4258.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4258.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1185,7 +1185,7 @@ The implementation is remarkably simple - a single shell script that uses GNU AW
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4288.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4288.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1206,7 +1206,7 @@ The application is implemented using a multi-threaded architecture where each mo
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4337.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4338.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1229,7 +1229,7 @@ The architecture centers around a modular plugin system where custom functionali
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4668.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4669.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1252,7 +1252,7 @@ The implementation consists of a main AWK script (`index.cgi`) that reads config
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4731.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4731.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1277,7 +1277,7 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5361.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5362.5 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1296,16 +1296,36 @@ The implementation uses a clean separation of concerns with dedicated packages f
 
 ---
 
+### hsbot
+
+* 💻 Languages: Haskell (98.5%), Make (1.5%)
+* 📊 Commits: 80
+* 📈 Lines of Code: 601
+* 📅 Development Period: 2009-11-22 to 2011-10-17
+* 🔥 Recent Activity: 5458.1 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**HSBot** is a modular IRC bot written in Haskell that provides a plugin-based architecture for handling IRC messages and commands. The bot connects to IRC servers, joins channels, and responds to both direct commands (prefixed with `!`) and general messages through its plugin system. It includes built-in commands for help, info, state management, and graceful shutdown, while supporting extensible functionality through plugins like message counting, printing, and storage capabilities.
+
+The implementation uses a clean separation of concerns with modules for IRC connectivity, command handling, state management, and plugin orchestration. The bot maintains persistent state through a database file and provides a dispatch system that routes messages to appropriate handlers based on whether they're commands or general messages. Its plugin architecture allows for easy extension with new functionality, making it a flexible foundation for IRC automation tasks.
+
+[View on Codeberg](https://codeberg.org/snonux/hsbot)  
+[View on GitHub](https://github.com/snonux/hsbot)  
+
+---
+
 ### ychat
 
-* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
 * 📊 Commits: 67
-* 📈 Lines of Code: 67884
-* 📄 Lines of Documentation: 127
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5382.2 days (avg. age of last 42 commits)
-* ⚖️ License: GPL-2.0
+* 📈 Lines of Code: 0
+* 📄 Lines of Documentation: 9
+* 📅 Development Period: 2008-05-15 to 2013-12-15
+* 🔥 Recent Activity: 5597.9 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
 * 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
@@ -1321,27 +1341,6 @@ The architecture is built around several key managers: a socket manager for hand
 
 ---
 
-### hsbot
-
-* 💻 Languages: Haskell (98.5%), Make (1.5%)
-* 📊 Commits: 80
-* 📈 Lines of Code: 601
-* 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5457.6 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-**HSBot** is a modular IRC bot written in Haskell that provides a plugin-based architecture for handling IRC messages and commands. The bot connects to IRC servers, joins channels, and responds to both direct commands (prefixed with `!`) and general messages through its plugin system. It includes built-in commands for help, info, state management, and graceful shutdown, while supporting extensible functionality through plugins like message counting, printing, and storage capabilities.
-
-The implementation uses a clean separation of concerns with modules for IRC connectivity, command handling, state management, and plugin orchestration. The bot maintains persistent state through a database file and provides a dispatch system that routes messages to appropriate handlers based on whether they're commands or general messages. Its plugin architecture allows for easy extension with new functionality, making it a flexible foundation for IRC automation tasks.
-
-[View on Codeberg](https://codeberg.org/snonux/hsbot)  
-[View on GitHub](https://github.com/snonux/hsbot)  
-
----
-
 ### fype
 
 * 💻 Languages: C (72.1%), C/C++ (20.7%), HTML (5.7%), Make (1.5%)
@@ -1350,7 +1349,7 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 * 📈 Lines of Code: 10196
 * 📄 Lines of Documentation: 1741
 * 📅 Development Period: 2008-05-15 to 2021-11-03
-* 🔥 Recent Activity: 5619.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5619.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1372,7 +1371,7 @@ The implementation is built using a straightforward top-down parser with a maxim
 * 📈 Lines of Code: 0
 * 📄 Lines of Documentation: 7
 * 📅 Development Period: 2008-05-15 to 2015-05-23
-* 🔥 Recent Activity: 5818.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5819.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0 (2008-08-24)
 

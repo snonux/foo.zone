@@ -30,10 +30,6 @@
 
 ## Books
 
-### Books I am currently re-reading
-
-* Fluent Forever, Gabriel Wyner, Audiobook
-
 ### Books I am currently reading
 
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones, eBook
