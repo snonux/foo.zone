@@ -1,0 +1,300 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TotalRecall: Learning Bulgarian with AI and Anki</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-totalrecall.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-totalrecall.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='totalrecall-learning-bulgarian-with-ai-and-anki'>TotalRecall: Learning Bulgarian with AI and Anki</h1><br />
+<br />
+<span class='quote'>Published at 2025-01-22T10:30:00+02:00</span><br />
+<br />
+<span>Learning a new language is hard. Learning Bulgarian? That&#39;s a special kind of challenge. The Cyrillic script, the complex grammar, the pronunciation - it all adds up. But what if we could leverage AI to make flashcard creation instant and effortless? That&#39;s where TotalRecall comes in.</span><br />
+<br />
+<a class='textlink' href='https://github.com/yourusername/totalrecall'>TotalRecall on GitHub</a><br />
+<br />
+<pre>
+ ╔══════════════════════════════╗
+ ║  🇧🇬  TOTALRECALL  🧠        ║
+ ║  ┌─────────┐  ┌─────────┐   ║
+ ║  │ ябълка  │→ │  🍎     │   ║
+ ║  │ [audio] │  │ "apple" │   ║
+ ║  └─────────┘  └─────────┘   ║
+ ╚══════════════════════════════╝
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#totalrecall-learning-bulgarian-with-ai-and-anki'>TotalRecall: Learning Bulgarian with AI and Anki</a></li>
+<li>⇢ <a href='#why-totalrecall-exists'>Why TotalRecall exists</a></li>
+<li>⇢ ⇢ <a href='#learning-bulgarian'>Learning Bulgarian</a></li>
+<li>⇢ ⇢ <a href='#practicing-agentic-coding'>Practicing agentic coding</a></li>
+<li>⇢ <a href='#how-it-works'>How it works</a></li>
+<li>⇢ ⇢ <a href='#the-ai-pipeline'>The AI pipeline</a></li>
+<li>⇢ ⇢ <a href='#why-openai-for-everything'>Why OpenAI for everything?</a></li>
+<li>⇢ <a href='#the-science-of-memorable-flashcards'>The science of memorable flashcards</a></li>
+<li>⇢ ⇢ <a href='#no-english-on-the-front'>No English on the front</a></li>
+<li>⇢ ⇢ <a href='#the-power-of-personal-connection'>The power of personal connection</a></li>
+<li>⇢ ⇢ <a href='#sound-comes-first'>Sound comes first</a></li>
+<li>⇢ ⇢ <a href='#images-over-translations'>Images over translations</a></li>
+<li>⇢ ⇢ <a href='#ipa-for-precision'>IPA for precision</a></li>
+<li>⇢ <a href='#spaced-repetition-the-secret-sauce'>Spaced repetition: The secret sauce</a></li>
+<li>⇢ ⇢ <a href='#start-small-stay-consistent'>Start small, stay consistent</a></li>
+<li>⇢ ⇢ <a href='#review-first-add-new-cards-second'>Review first, add new cards second</a></li>
+<li>⇢ ⇢ <a href='#trust-the-algorithm'>Trust the algorithm</a></li>
+<li>⇢ ⇢ <a href='#quality-over-quantity'>Quality over quantity</a></li>
+<li>⇢ <a href='#the-technical-bits'>The technical bits</a></li>
+<li>⇢ <a href='#agentic-coding-insights'>Agentic coding insights</a></li>
+<li>⇢ ⇢ <a href='#clear-communication-is-crucial'>Clear communication is crucial</a></li>
+<li>⇢ ⇢ <a href='#ai-excels-at-boilerplate-and-testing'>AI excels at boilerplate and testing</a></li>
+<li>⇢ ⇢ <a href='#the-scaling-challenge'>The scaling challenge</a></li>
+<li>⇢ ⇢ <a href='#code-duplication-becomes-a-real-problem'>Code duplication becomes a real problem</a></li>
+<li>⇢ ⇢ <a href='#tests-are-your-safety-net'>Tests are your safety net</a></li>
+<li>⇢ ⇢ <a href='#the-context-window-problem'>The context window problem</a></li>
+<li>⇢ <a href='#my-learning-workflow'>My learning workflow</a></li>
+<li>⇢ ⇢ <a href='#morning-routine'>Morning routine</a></li>
+<li>⇢ ⇢ <a href='#encountering-new-words'>Encountering new words</a></li>
+<li>⇢ ⇢ <a href='#weekly-maintenance'>Weekly maintenance</a></li>
+<li>⇢ <a href='#future-plans'>Future plans</a></li>
+<li>⇢ <a href='#tips-for-language-learners'>Tips for language learners</a></li>
+<li>⇢ ⇢ <a href='#focus-on-frequency'>Focus on frequency</a></li>
+<li>⇢ ⇢ <a href='#use-memory-palaces'>Use memory palaces</a></li>
+<li>⇢ ⇢ <a href='#study-before-sleep'>Study before sleep</a></li>
+<li>⇢ ⇢ <a href='#embrace-the-mess'>Embrace the mess</a></li>
+<li>⇢ <a href='#try-it-yourself'>Try it yourself</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-totalrecall-exists'>Why TotalRecall exists</h2><br />
+<br />
+<span>Two motivations drove me to create this tool:</span><br />
+<br />
+<h3 style='display: inline' id='learning-bulgarian'>Learning Bulgarian</h3><br />
+<br />
+<span>I&#39;ve been fascinated by the Bulgarian language for a while now. It&#39;s the oldest written Slavic language, and Sofia has become quite the tech hub. But finding good learning materials? That&#39;s tough. Most apps focus on the big languages - Spanish, French, German. Bulgarian gets the short end of the stick.</span><br />
+<br />
+<span>AnkiDroid has been my go-to for spaced repetition learning. It&#39;s powerful, customizable, and works offline. But creating cards manually? That&#39;s tedious. Type the word, find an image, record audio, format everything... By the time you&#39;ve made 10 cards, you&#39;re exhausted.</span><br />
+<br />
+<h3 style='display: inline' id='practicing-agentic-coding'>Practicing agentic coding</h3><br />
+<br />
+<span>The second reason is more technical. I wanted to explore agentic coding - letting AI assistants help write and refactor code. TotalRecall became my playground for this experiment. Could I build something useful while learning how to effectively collaborate with AI coding assistants?</span><br />
+<br />
+<span>Turns out, yes. The combination of human creativity and AI assistance is powerful. I set the architecture, made design decisions, and the AI helped with implementation details, test writing, and refactoring.</span><br />
+<br />
+<h2 style='display: inline' id='how-it-works'>How it works</h2><br />
+<br />
+<span>TotalRecall is beautifully simple:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>totalrecall <font color="#808080">"ябълка"</font>
+</pre>
+<br />
+<span>That&#39;s it. One command, and you get a complete flashcard with everything you need. But there&#39;s sophisticated AI magic happening behind the scenes.</span><br />
+<br />
+<h3 style='display: inline' id='the-ai-pipeline'>The AI pipeline</h3><br />
+<br />
+<span>When you run that command, TotalRecall orchestrates multiple OpenAI API calls:</span><br />
+<br />
+<span>1. **Translation** - Bidirectional translation (Bulgarian ↔ English) to understand the word&#39;s meaning</span><br />
+<span>2. **Phonetic transcription** - IPA notation for precise pronunciation guidance</span><br />
+<span>3. **Scene description** - AI generates a culturally appropriate scene description for the image</span><br />
+<span>4. **Image generation** - DALL-E creates a memorable visual based on the scene description</span><br />
+<span>5. **Audio synthesis** - High-quality TTS pronunciation that can be regenerated with different voices</span><br />
+<br />
+<span>All this happens in seconds. The result? A rich, multi-sensory flashcard that engages visual, auditory, and linguistic memory systems.</span><br />
+<br />
+<h3 style='display: inline' id='why-openai-for-everything'>Why OpenAI for everything?</h3><br />
+<br />
+<span>I could have used Google Translate for translations, or pulled IPA from Wiktionary. But OpenAI&#39;s models understand context. When you input "банка", it knows whether you mean "bank" (financial) or "jar" based on usage patterns. The scene descriptions are culturally aware - Bulgarian bread looks different from American bread, and the AI knows this.</span><br />
+<br />
+<h2 style='display: inline' id='the-science-of-memorable-flashcards'>The science of memorable flashcards</h2><br />
+<br />
+<span>After reading extensively about language learning and memory techniques, I&#39;ve built TotalRecall to create cards that stick. Here&#39;s why our approach works:</span><br />
+<br />
+<h3 style='display: inline' id='no-english-on-the-front'>No English on the front</h3><br />
+<br />
+<span>The cards show only Bulgarian text and images - no English translations on the front. This forces your brain to recall meaning from context and imagery, creating stronger neural pathways. When you see "ябълка" with an apple image, your brain learns to connect the Bulgarian word directly to the concept, not to the English word "apple."</span><br />
+<br />
+<h3 style='display: inline' id='the-power-of-personal-connection'>The power of personal connection</h3><br />
+<br />
+<span>The best flashcards include personal context. While TotalRecall generates generic images, I recommend adding your own notes about where you first encountered the word. Did you see "хляб" (bread) at a Bulgarian bakery? Add that story. Personal connections make memories stick. So at will, a custom image prompt (not AI generated) can be specified.</span><br />
+<br />
+<h3 style='display: inline' id='sound-comes-first'>Sound comes first</h3><br />
+<br />
+<span>Native pronunciation from day one is crucial. That&#39;s why every card includes audio. Your brain needs to hear the rhythm and melody of Bulgarian, not your English-accented approximation. The OpenAI voices aren&#39;t perfect, but they&#39;re leagues better than text-to-speech engines of the past. Plus, you can regenerate audio with different voices if one doesn&#39;t sound quite right.</span><br />
+<br />
+<h3 style='display: inline' id='images-over-translations'>Images over translations</h3><br />
+<br />
+<span>A picture of bread teaches "хляб" better than the word "bread" ever could. Images bypass linguistic processing and create direct conceptual links. DALL-E generates contextually appropriate images - Bulgarian bread looks different from Wonder Bread, and these cultural nuances matter.</span><br />
+<br />
+<h3 style='display: inline' id='ipa-for-precision'>IPA for precision</h3><br />
+<br />
+<span>The phonetic transcriptions are gold for pronunciation. Bulgarian has sounds that don&#39;t exist in English. The IPA shows you exactly where to place your tongue, how to shape your lips. It&#39;s the difference between sounding foreign and sounding fluent.</span><br />
+<br />
+<h2 style='display: inline' id='spaced-repetition-the-secret-sauce'>Spaced repetition: The secret sauce</h2><br />
+<br />
+<span>Anki&#39;s algorithm is based on the spacing effect - we remember things better when we review them at increasing intervals. Here&#39;s how to maximize it:</span><br />
+<br />
+<h3 style='display: inline' id='start-small-stay-consistent'>Start small, stay consistent</h3><br />
+<br />
+<span>Don&#39;t add 100 words on day one. Start with 10-15 new cards daily. Consistency beats intensity. Your brain needs time to consolidate memories during sleep.</span><br />
+<br />
+<h3 style='display: inline' id='review-first-add-new-cards-second'>Review first, add new cards second</h3><br />
+<br />
+<span>Always clear your review queue before adding new cards. Reviews are where the real learning happens. New cards are just seeds - reviews make them grow.</span><br />
+<br />
+<h3 style='display: inline' id='trust-the-algorithm'>Trust the algorithm</h3><br />
+<br />
+<span>When Anki says to review a card in 4 months, trust it. The urge to over-review is strong, but it actually weakens memory formation. Let your brain struggle a bit - that&#39;s where learning happens.</span><br />
+<br />
+<h3 style='display: inline' id='quality-over-quantity'>Quality over quantity</h3><br />
+<br />
+<span>One well-made card beats ten mediocre ones. TotalRecall ensures quality with:</span><br />
+<span>- Clear, native audio with regeneration options</span><br />
+<span>- Relevant, memorable images from scene-aware descriptions</span><br />
+<span>- IPA transcriptions for pronunciation precision</span><br />
+<span>- Clean, distraction-free formatting</span><br />
+<br />
+<h2 style='display: inline' id='the-technical-bits'>The technical bits</h2><br />
+<br />
+<span>Written in Go because I wanted something fast and portable. The architecture is clean:</span><br />
+<br />
+<pre>
+internal/
+├── audio/     # OpenAI TTS integration
+├── image/     # DALL-E image generation
+├── anki/      # Card formatting
+├── phonetic/  # IPA transcription fetching
+├── translation/ # Bidirectional translation
+└── config/    # YAML configuration
+</pre>
+<br />
+<span>Each package has a single responsibility. The audio package doesn&#39;t know about images. The image package doesn&#39;t know about Anki. Clean interfaces everywhere.</span><br />
+<br />
+<h2 style='display: inline' id='agentic-coding-insights'>Agentic coding insights</h2><br />
+<br />
+<span>Working with AI assistants taught me several valuable lessons:</span><br />
+<br />
+<h3 style='display: inline' id='clear-communication-is-crucial'>Clear communication is crucial</h3><br />
+<br />
+<span>Vague requests get vague results. "Make it better" doesn&#39;t work. "Refactor this 80-line function into smaller functions, each handling one responsibility" does. The AI needs specific, actionable instructions.</span><br />
+<br />
+<h3 style='display: inline' id='ai-excels-at-boilerplate-and-testing'>AI excels at boilerplate and testing</h3><br />
+<br />
+<span>Writing comprehensive test suites? Perfect AI task. Implementing error handling patterns? Also great. Creative architecture decisions? Still very much a human job. The AI is your implementation partner, not your architect.</span><br />
+<br />
+<h3 style='display: inline' id='the-scaling-challenge'>The scaling challenge</h3><br />
+<br />
+<span>Here&#39;s the hard truth about agentic coding: it gets exponentially harder as your codebase grows. When TotalRecall was 500 lines, the AI could keep everything in context. At 2000 lines? Not so much.</span><br />
+<br />
+<span>Features start colliding in unexpected ways. You add batch processing, and suddenly the GUI breaks because it assumes single-word input. You change the default output directory, and it updates in the GUI but not in the CLI batch mode. The AI doesn&#39;t see these connections because it can&#39;t hold your entire codebase in memory.</span><br />
+<br />
+<h3 style='display: inline' id='code-duplication-becomes-a-real-problem'>Code duplication becomes a real problem</h3><br />
+<br />
+<span>The AI tends to solve problems locally. Need to validate Bulgarian input? It&#39;ll write a validation function right where you need it. Need it again elsewhere? It&#39;ll write another one. Before you know it, you have three different ways to validate Cyrillic text.</span><br />
+<br />
+<span>This isn&#39;t the AI being dumb - it&#39;s optimizing for the local context you&#39;ve given it. The burden of architectural consistency falls on you, the human.</span><br />
+<br />
+<h3 style='display: inline' id='tests-are-your-safety-net'>Tests are your safety net</h3><br />
+<br />
+<span>The larger the codebase, the more critical comprehensive tests become. Every time the AI touches code, it might break something three files away. Without tests, you won&#39;t know until a user complains.</span><br />
+<br />
+<span>My rule: before any AI-assisted refactoring, ensure test coverage. The AI is great at writing tests, so use it! Have it write tests for existing code before modifying anything. Then, when it inevitably breaks something, you&#39;ll know immediately.</span><br />
+<br />
+<h3 style='display: inline' id='the-context-window-problem'>The context window problem</h3><br />
+<br />
+<span>Modern AI assistants have impressive context windows, but they&#39;re not infinite. As TotalRecall grew, I had to become strategic about what context to provide. The entire codebase? Too much. Just the current file? Too little.</span><br />
+<br />
+<span>The sweet spot: provide the interface definitions, the specific module you&#39;re working on, and any directly dependent code. Let the AI know about the broader architecture through comments and documentation, not by dumping everything into context.</span><br />
+<br />
+<span>So after every feature, clear the context window and/or compact it to start fresh.</span><br />
+<br />
+<h2 style='display: inline' id='my-learning-workflow'>My learning workflow</h2><br />
+<br />
+<span>Here&#39;s how I use TotalRecall in practice:</span><br />
+<br />
+<h3 style='display: inline' id='morning-routine'>Morning routine</h3><br />
+<br />
+<ul>
+<li>Review all due cards in Anki (usually 50-100)</li>
+<li>which includes the review of failed cards</li>
+<li>Add 10-15 new words I encountered yesterday</li>
+</ul><br />
+<h3 style='display: inline' id='encountering-new-words'>Encountering new words</h3><br />
+<br />
+<span>When I find a new Bulgarian word (in articles, videos, conversations):</span><br />
+<br />
+<span>1. Immediately run <span class='inlinecode'>totalrecall "word"</span></span><br />
+<span>2. Add personal context in Anki notes</span><br />
+<span>3. Tag it with source (e.g., #news, #conversation)</span><br />
+<br />
+<h3 style='display: inline' id='weekly-maintenance'>Weekly maintenance</h3><br />
+<span>- Delete cards for words I&#39;ll never use</span><br />
+<span>- Suspend cards I&#39;ve truly mastered</span><br />
+<span>- Adjust ease factors for consistently hard cards</span><br />
+<br />
+<h2 style='display: inline' id='future-plans'>Future plans</h2><br />
+<br />
+<span>TotalRecall already packs a lot of features, but I&#39;m planning more:</span><br />
+<span>- Batch processing for word lists</span><br />
+<span>- Support for phrases and sentences</span><br />
+<span>- Grammar pattern recognition</span><br />
+<span>- Integration with Bulgarian dictionaries</span><br />
+<span>- Automatic difficulty scoring based on word frequency</span><br />
+<span>- Multiple image generation options per word</span><br />
+<span>- Voice selection preferences per word</span><br />
+<br />
+<span>But the real goal? Building a comprehensive Bulgarian deck for AnkiDroid. One command at a time, one word at a time.</span><br />
+<br />
+<h2 style='display: inline' id='tips-for-language-learners'>Tips for language learners</h2><br />
+<br />
+<h3 style='display: inline' id='focus-on-frequency'>Focus on frequency</h3><br />
+<span>Learn the most common 1000 words first. In any language, the top 1000 words cover ~80% of everyday conversation. TotalRecall will eventually include frequency data to help prioritize.</span><br />
+<br />
+<h3 style='display: inline' id='use-memory-palaces'>Use memory palaces</h3><br />
+<span>Assign Bulgarian words to locations in your home. Put "хладилник" (refrigerator) on your actual fridge. Spatial memory is incredibly powerful.</span><br />
+<br />
+<h3 style='display: inline' id='study-before-sleep'>Study before sleep</h3><br />
+<span>Review your hardest cards right before bed. Your brain consolidates memories during sleep, especially from the last hour before sleeping.</span><br />
+<br />
+<h3 style='display: inline' id='embrace-the-mess'>Embrace the mess</h3><br />
+<span>Language learning is messy. You&#39;ll mix up cases, forget words you "knew" yesterday, and butcher pronunciation. That&#39;s normal. TotalRecall makes it easy to try again tomorrow.</span><br />
+<br />
+<h2 style='display: inline' id='try-it-yourself'>Try it yourself</h2><br />
+<br />
+<span>If you&#39;re learning Bulgarian (or want to experiment with agentic coding), give TotalRecall a spin:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install github.com/yourusername/totalrecall@latest
+<b><u><font color="#000000">export</font></u></b> OPENAI_API_KEY=<font color="#808080">"your-key"</font>
+totalrecall <font color="#808080">"котка"</font>  <i><font color="silver"># cat</font></i>
+totalrecall <font color="#808080">"куче"</font>   <i><font color="silver"># dog</font></i>
+totalrecall <font color="#808080">"вода"</font>   <i><font color="silver"># water</font></i>
+</pre>
+<br />
+<span>Learning languages should be fun, not tedious. Let&#39;s make better tools.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
