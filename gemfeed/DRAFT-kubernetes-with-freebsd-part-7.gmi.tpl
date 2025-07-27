@@ -116,7 +116,7 @@ kube-system   svclb-traefik-411cec5b-twrd7              2/2     Running     0   
 kube-system   traefik-c98fdf6fb-lt6fx                   1/1     Running     0          4m58s
 ```
 
-In order to connect with `kubect` from my Fedora Laptop, I had to copy `/etc/rancher/k3s/k3s.yaml` from `r0` to `~/.kube/config` and then replace the value of the server field with `r0.lan.buetow.org`. kubectl can now manage the cluster. Note this step has to be repeated when k3s restarts or when we want to connect to another node of the cluster (e.g. when `r0` is down).
+In order to connect with `kubect` from my Fedora Laptop, I had to copy `/etc/rancher/k3s/k3s.yaml` from `r0` to `~/.kube/config` and then replace the value of the server field with `r0.lan.buetow.org`. kubectl can now manage the cluster. Note this step has to be repeated when we want to connect to another node of the cluster (e.g. when `r0` is down).
 
 ### Test deployment to Kubernetes
 
@@ -211,6 +211,8 @@ apache-service   ClusterIP   10.43.249.165   <none>        80/TCP    4s
 
 And also an ingress:
 
+> Note: I've modified the hosts listed in this example after I've published this blog post. This is to ensure that there aren't any bots scarping it.
+
 ```sh
 > ~ cat <<END > apache-ingress.yaml
 
@@ -292,6 +294,201 @@ So let's test the Apache webserver through the ingress rule:
 <html><body><h1>It works!</h1></body></html>
 ```
 
+## Test deployment with persistent volume claim
+
+So let's modify the Apache example to serve the `htdocs` directory from the NFS share we created in the previous blog post. We are using the following manifests. The majority of the manifests are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.
+
+```sh
+> ~ cat <<END > apache-deployment.yaml
+# Apache HTTP Server Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-deployment
+  namespace: test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: apache
+        image: httpd:latest
+        ports:
+        # Container port where Apache listens
+        - containerPort: 80
+        volumeMounts:
+        - name: apache-htdocs
+          mountPath: /usr/local/apache2/htdocs/
+      volumes:
+      - name: apache-htdocs
+        persistentVolumeClaim:
+          claimName: example-apache-pvc
+END
+
+> ~ cat <<END > apache-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: apache-ingress
+  namespace: test
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: f3s.buetow.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: 80
+    - host: standby.f3s.buetow.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: 80
+    - host: www.f3s.buetow.org
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: 80
+END
+
+> ~ cat <<END > apache-persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-apache-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/nfs/k3svolumes/example-apache-volume-claim
+    type: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-apache-pvc
+  namespace: test
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+END
+
+> ~ cat <<END > apache-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache
+  name: apache-service
+  namespace: test
+spec:
+  ports:
+    - name: web
+      port: 80
+      protocol: TCP
+      # Expose port 80 on the service
+      targetPort: 80
+  selector:
+  # Link this service to pods with the label app=apache
+    app: apache
+END
+```
+
+And let's apply the manifests:
+
+```sh
+> ~ kubectl apply -f apache-persistent-volume.yaml
+> ~ kubectl apply -f apache-service.yaml
+> ~ kubectl apply -f apache-deployment.yaml
+> ~ kubectl apply -f apache-ingress.yaml
+```
+
+So looking at the deployment, it failed now, as the directory doesn't exist yet on the NFS share:
+
+```sh
+> ~ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS   AGE
+apache-deployment-5b96bd6b6b-fv2jx   0/1     ContainerCreating   0          9m15s
+
+> ~ kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx | tail -n 5
+Events:
+  Type     Reason       Age                   From               Message
+  ----     ------       ----                  ----               -------
+  Normal   Scheduled    9m34s                 default-scheduler  Successfully
+    assigned test/apache-deployment-5b96bd6b6b-fv2jx to r2.lan.buetow.org
+  Warning  FailedMount  80s (x12 over 9m34s)  kubelet            MountVolume.SetUp
+    failed for volume "example-apache-pv" : hostPath type check failed:
+    /data/nfs/k3svolumes/example-apache is not a directory
+```
+
+This is on purpose! We need to create the directory on the NFS share first, so let's do that (e.g. on `r0`):
+
+```sh
+[root@r0 ~]# mkdir /data/nfs/k3svolumes/example-apache-volume-claim/
+
+[root@r0 ~ ] cat <<END > /data/nfs/k3svolumes/example-apache-volume-claim/index.html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello, it works</title>
+</head>
+<body>
+  <h1>Hello, it works!</h1>
+  <p>This site is served via a PVC!</p>
+</body>
+</html>
+END
+```
+
+The `index.html` file was also created to serve content along the way. After deleting the pod, it recreates itself, and the volume mounts correctly:
+
+```sh
+> ~ kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx
+
+> ~ curl -H "Host: www.f3s.buetow.org" http://r0.lan.buetow.org:80
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello, it works</title>
+</head>
+<body>
+  <h1>Hello, it works!</h1>
+  <p>This site is served via a PVC!</p>
+</body>
+</html>
+```
+
 ## Make it accessible from the public internet
 
 Next, this should be made accessible through the public internet via the `www.f3s.foo.zone` hosts. As a reminder, refer back to part 1 of this series and review the section titled "OpenBSD/relayd to the rescue for external connectivity":
@@ -315,6 +512,10 @@ Next, this should be made accessible through the public internet via the `www.f3
 <html><body><h1>It works!</h1></body></html>
 ```
 
+## Failure test
+
+Shutting down `f0` and let NFS failing over for the Apache content.
+
 
 Todo: include k9s screenshot
 
@@ -324,8 +525,6 @@ Other *BSD-related posts:
 
 E-Mail your comments to `paul@nospam.buetow.org`
 
-
-Note, that I've modified the hosts after I'd published this blog post. This is to ensure that there aren't any bots scarping it.
 => ../ Back to the main site
 
 
