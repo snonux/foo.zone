@@ -536,6 +536,9 @@ Shutting down `f0` and let NFS failing over for the Apache content.
 
 TODO: include k9s screenshot
 TODO: include a diagram again?
+TODO: increase replica of traefik to 2, persist config surviving reboots
+TODO: fix check-mounts script (mountpoint command and stale mounts... differentiate better)
+TODO: remove traefic metal lb pods? persist the change? 
 
 Other *BSD-related posts:
 

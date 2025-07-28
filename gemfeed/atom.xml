@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-07-27T23:04:32+03:00</updated>
+    <updated>2025-07-28T14:27:18+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1618,20 +1618,24 @@ STATE_FILE=<font color="#808080">"/var/run/nfs-mount.state"</font>
 touch <font color="#808080">"$LOCK_FILE"</font>
 <b><u><font color="#000000">trap</font></u></b> <font color="#808080">"rm -f $LOCK_FILE"</font> EXIT
 
-mount_it () {
+remount_it () {
+    <i><font color="silver"># Try to fix</font></i>
+    echo <font color="#808080">"Attempting to fix/remount NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p notice
+    umount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null
+    sleep <font color="#000000">1</font>
+
     <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
         echo <font color="#808080">"NFS mount fixed at $(date)"</font> | systemd-cat -t nfs-monitor -p info
         rm -f <font color="#808080">"$STATE_FILE"</font>
     <b><u><font color="#000000">else</font></u></b>
         echo <font color="#808080">"Failed to fix NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p err
-        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
     <b><u><font color="#000000">fi</font></u></b>
 }
 
 <i><font color="silver"># Quick check - ensure it's actually mounted</font></i>
 <b><u><font color="#000000">if</font></u></b> ! mountpoint -q <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
     echo <font color="#808080">"NFS mount not found at $(date)"</font> | systemd-cat -t nfs-monitor -p err
-    mount_it
+    remount_it
 <b><u><font color="#000000">fi</font></u></b>
 
 <i><font color="silver"># Quick check - try to stat a directory with a very short timeout</font></i>
@@ -1652,12 +1656,7 @@ mount_it () {
     touch <font color="#808080">"$STATE_FILE"</font>
 <b><u><font color="#000000">fi</font></u></b>
 
-<i><font color="silver"># Try to fix</font></i>
-echo <font color="#808080">"Attempting to fix stale NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p notice
-umount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null
-sleep <font color="#000000">1</font>
-
-mount_it
+remount_it
 EOF
 [root@r0 ~]<i><font color="silver"># chmod +x /usr/local/bin/check-nfs-mount.sh</font></i>
 </pre>
