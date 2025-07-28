@@ -1602,7 +1602,6 @@ http://www.gnu.org/software/src-highlite -->
 
 MOUNT_POINT=<font color="#808080">"/data/nfs/k3svolumes"</font>
 LOCK_FILE=<font color="#808080">"/var/run/nfs-mount-check.lock"</font>
-STATE_FILE=<font color="#808080">"/var/run/nfs-mount.state"</font>
 
 <i><font color="silver"># Use a lock file to prevent concurrent runs</font></i>
 <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$LOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
@@ -1611,46 +1610,57 @@ STATE_FILE=<font color="#808080">"/var/run/nfs-mount.state"</font>
 touch <font color="#808080">"$LOCK_FILE"</font>
 <b><u><font color="#000000">trap</font></u></b> <font color="#808080">"rm -f $LOCK_FILE"</font> EXIT
 
-remount_it () {
-    <i><font color="silver"># Try to fix</font></i>
-    echo <font color="#808080">"Attempting to fix/remount NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p notice
-    umount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null
-    sleep <font color="#000000">1</font>
-
-    <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
-        echo <font color="#808080">"NFS mount fixed at $(date)"</font> | systemd-cat -t nfs-monitor -p info
-        rm -f <font color="#808080">"$STATE_FILE"</font>
+fix_mount () {
+    echo <font color="#808080">"Attempting to remount NFS mount $MOUNT_POINT"</font>
+    <b><u><font color="#000000">if</font></u></b> mount -o remount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"Remount command issued for $MOUNT_POINT"</font>
     <b><u><font color="#000000">else</font></u></b>
-        echo <font color="#808080">"Failed to fix NFS mount at $(date)"</font> | systemd-cat -t nfs-monitor -p err
+        echo <font color="#808080">"Failed to remount NFS mount $MOUNT_POINT"</font>
     <b><u><font color="#000000">fi</font></u></b>
+
+    echo <font color="#808080">"Checking if $MOUNT_POINT is a mountpoint"</font>
+    <b><u><font color="#000000">if</font></u></b> mountpoint <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"$MOUNT_POINT is a valid mountpoint"</font>
+    <b><u><font color="#000000">else</font></u></b>
+        echo <font color="#808080">"$MOUNT_POINT is not a valid mountpoint, attempting mount"</font>
+        <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
+            echo <font color="#808080">"Successfully mounted $MOUNT_POINT"</font>
+            <b><u><font color="#000000">return</font></u></b>
+        <b><u><font color="#000000">else</font></u></b>
+            echo <font color="#808080">"Failed to mount $MOUNT_POINT"</font>
+        <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">fi</font></u></b>
+
+    echo <font color="#808080">"Attempting to unmount $MOUNT_POINT"</font>
+    <b><u><font color="#000000">if</font></u></b> umount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"Successfully unmounted $MOUNT_POINT"</font>
+    <b><u><font color="#000000">else</font></u></b>
+        echo <font color="#808080">"Failed to unmount $MOUNT_POINT (it might not be mounted)"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+
+    echo <font color="#808080">"Attempting to mount $MOUNT_POINT"</font>
+    <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"NFS mount $MOUNT_POINT mounted successfully"</font>
+        <b><u><font color="#000000">return</font></u></b>
+    <b><u><font color="#000000">else</font></u></b>
+        echo <font color="#808080">"Failed to mount NFS mount $MOUNT_POINT"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+
+    echo <font color="#808080">"Failed to fix NFS mount $MOUNT_POINT"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
 }
 
-<i><font color="silver"># Quick check - ensure it's actually mounted</font></i>
-<b><u><font color="#000000">if</font></u></b> ! mountpoint -q <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
-    echo <font color="#808080">"NFS mount not found at $(date)"</font> | systemd-cat -t nfs-monitor -p err
-    remount_it
+<b><u><font color="#000000">if</font></u></b> ! mountpoint <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"NFS mount $MOUNT_POINT not found"</font>
+    fix_mount
 <b><u><font color="#000000">fi</font></u></b>
 
-<i><font color="silver"># Quick check - try to stat a directory with a very short timeout</font></i>
-<b><u><font color="#000000">if</font></u></b> timeout 2s stat <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
-    <i><font color="silver"># Mount appears healthy</font></i>
-    <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$STATE_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
-        <i><font color="silver"># Was previously unhealthy, log recovery</font></i>
-        echo <font color="#808080">"NFS mount recovered at $(date)"</font> | systemd-cat -t nfs-monitor -p info
-        rm -f <font color="#808080">"$STATE_FILE"</font>
-    <b><u><font color="#000000">fi</font></u></b>
-    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+<b><u><font color="#000000">if</font></u></b> ! timeout 2s stat <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"NFS mount $MOUNT_POINT appears to be unresponsive"</font>
+    fix_mount
 <b><u><font color="#000000">fi</font></u></b>
-
-<i><font color="silver"># Mount is unhealthy</font></i>
-<b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$STATE_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
-    <i><font color="silver"># First detection of unhealthy state</font></i>
-    echo <font color="#808080">"NFS mount unhealthy detected at $(date)"</font> | systemd-cat -t nfs-monitor -p warning
-    touch <font color="#808080">"$STATE_FILE"</font>
-<b><u><font color="#000000">fi</font></u></b>
-
-remount_it
 EOF
+
 [root@r0 ~]<i><font color="silver"># chmod +x /usr/local/bin/check-nfs-mount.sh</font></i>
 </pre>
 <br />
