@@ -1367,7 +1367,6 @@ For the automatic recovery, we create a script:
 
 MOUNT_POINT="/data/nfs/k3svolumes"
 LOCK_FILE="/var/run/nfs-mount-check.lock"
-STATE_FILE="/var/run/nfs-mount.state"
 
 # Use a lock file to prevent concurrent runs
 if [ -f "$LOCK_FILE" ]; then
@@ -1376,46 +1375,57 @@ fi
 touch "$LOCK_FILE"
 trap "rm -f $LOCK_FILE" EXIT
 
-remount_it () {
-    # Try to fix
-    echo "Attempting to fix/remount NFS mount at $(date)" | systemd-cat -t nfs-monitor -p notice
-    umount -f "$MOUNT_POINT" 2>/dev/null
-    sleep 1
-
-    if mount "$MOUNT_POINT"; then
-        echo "NFS mount fixed at $(date)" | systemd-cat -t nfs-monitor -p info
-        rm -f "$STATE_FILE"
+fix_mount () {
+    echo "Attempting to remount NFS mount $MOUNT_POINT"
+    if mount -o remount -f "$MOUNT_POINT" 2>/dev/null; then
+        echo "Remount command issued for $MOUNT_POINT"
     else
-        echo "Failed to fix NFS mount at $(date)" | systemd-cat -t nfs-monitor -p err
+        echo "Failed to remount NFS mount $MOUNT_POINT"
     fi
+
+    echo "Checking if $MOUNT_POINT is a mountpoint"
+    if mountpoint "$MOUNT_POINT" >/dev/null 2>&1; then
+        echo "$MOUNT_POINT is a valid mountpoint"
+    else
+        echo "$MOUNT_POINT is not a valid mountpoint, attempting mount"
+        if mount "$MOUNT_POINT"; then
+            echo "Successfully mounted $MOUNT_POINT"
+            return
+        else
+            echo "Failed to mount $MOUNT_POINT"
+        fi
+    fi
+
+    echo "Attempting to unmount $MOUNT_POINT"
+    if umount -f "$MOUNT_POINT" 2>/dev/null; then
+        echo "Successfully unmounted $MOUNT_POINT"
+    else
+        echo "Failed to unmount $MOUNT_POINT (it might not be mounted)"
+    fi
+
+    echo "Attempting to mount $MOUNT_POINT"
+    if mount "$MOUNT_POINT"; then
+        echo "NFS mount $MOUNT_POINT mounted successfully"
+        return
+    else
+        echo "Failed to mount NFS mount $MOUNT_POINT"
+    fi
+
+    echo "Failed to fix NFS mount $MOUNT_POINT"
+    exit 1
 }
 
-# Quick check - ensure it's actually mounted
-if ! mountpoint -q "$MOUNT_POINT"; then
-    echo "NFS mount not found at $(date)" | systemd-cat -t nfs-monitor -p err
-    remount_it
+if ! mountpoint "$MOUNT_POINT" >/dev/null 2>&1; then
+    echo "NFS mount $MOUNT_POINT not found"
+    fix_mount
 fi
 
-# Quick check - try to stat a directory with a very short timeout
-if timeout 2s stat "$MOUNT_POINT" >/dev/null 2>&1; then
-    # Mount appears healthy
-    if [ -f "$STATE_FILE" ]; then
-        # Was previously unhealthy, log recovery
-        echo "NFS mount recovered at $(date)" | systemd-cat -t nfs-monitor -p info
-        rm -f "$STATE_FILE"
-    fi
-    exit 0
+if ! timeout 2s stat "$MOUNT_POINT" >/dev/null 2>&1; then
+    echo "NFS mount $MOUNT_POINT appears to be unresponsive"
+    fix_mount
 fi
-
-# Mount is unhealthy
-if [ ! -f "$STATE_FILE" ]; then
-    # First detection of unhealthy state
-    echo "NFS mount unhealthy detected at $(date)" | systemd-cat -t nfs-monitor -p warning
-    touch "$STATE_FILE"
-fi
-
-remount_it
 EOF
+
 [root@r0 ~]# chmod +x /usr/local/bin/check-nfs-mount.sh
 ```
 
