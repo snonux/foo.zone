@@ -519,6 +519,7 @@ Shutting down `f0` and let NFS failing over for the Apache content.
 
 TODO: include k9s screenshot
 TODO: include a diagram again?
+TODO: increase replica of traefik to 2
 
 Other *BSD-related posts:
 
