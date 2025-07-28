@@ -307,7 +307,7 @@ metadata:
   name: apache-deployment
   namespace: test
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: apache
@@ -322,6 +322,18 @@ spec:
         ports:
         # Container port where Apache listens
         - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 15
+          periodSeconds: 10
         volumeMounts:
         - name: apache-htdocs
           mountPath: /usr/local/apache2/htdocs/
@@ -429,17 +441,18 @@ And let's apply the manifests:
 
 ```sh
 > ~ kubectl apply -f apache-persistent-volume.yaml
-> ~ kubectl apply -f apache-service.yaml
-> ~ kubectl apply -f apache-deployment.yaml
-> ~ kubectl apply -f apache-ingress.yaml
+    kubectl apply -f apache-service.yaml
+    kubectl apply -f apache-deployment.yaml
+    kubectl apply -f apache-ingress.yaml
 ```
 
-So looking at the deployment, it failed now, as the directory doesn't exist yet on the NFS share:
+So looking at the deployment, it failed now, as the directory doesn't exist yet on the NFS share (note, we also increased the replica count to 2, so in case one node goes down, that there is already a replica running on another node for faster failover):
 
 ```sh
 > ~ kubectl get pods
 NAME                                 READY   STATUS              RESTARTS   AGE
 apache-deployment-5b96bd6b6b-fv2jx   0/1     ContainerCreating   0          9m15s
+apache-deployment-5b96bd6b6b-ax2ji   0/1     ContainerCreating   0          9m15s
 
 > ~ kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx | tail -n 5
 Events:
