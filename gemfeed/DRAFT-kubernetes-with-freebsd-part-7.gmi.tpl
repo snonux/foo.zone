@@ -530,6 +530,9 @@ Next, this should be made accessible through the public internet via the `www.f3
 Shutting down `f0` and let NFS failing over for the Apache content.
 
 
+TODO: openbsd relayd config
+TODO: registry howto
+TODO: anki-droid deployment
 TODO: include k9s screenshot
 TODO: include a diagram again?
 TODO: increase replica of traefik to 2, persist config surviving reboots
