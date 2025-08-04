@@ -14,6 +14,25 @@
   /_|     |_\_________________/ quantised \
 ```
 
+## Table of Contents
+
+* [⇢ Local LLM for Coding with Ollama on macOS](#local-llm-for-coding-with-ollama-on-macos)
+* [⇢ ⇢ Why Local LLMs?](#why-local-llms)
+* [⇢ ⇢ Hardware Considerations](#hardware-considerations)
+* [⇢ ⇢ Basic Setup and Manual Code Prompting](#basic-setup-and-manual-code-prompting)
+* [⇢ ⇢ ⇢ Installing Ollama and a Model](#installing-ollama-and-a-model)
+* [⇢ ⇢ ⇢ Example Usage](#example-usage)
+* [⇢ ⇢ Agentic Coding with Aider](#agentic-coding-with-aider)
+* [⇢ ⇢ ⇢ Installation](#installation)
+* [⇢ ⇢ ⇢ Agentic coding prompt](#agentic-coding-prompt)
+* [⇢ ⇢ ⇢ Compilation & Execution](#compilation--execution)
+* [⇢ ⇢ ⇢ The code](#the-code)
+* [⇢ ⇢ In-Editor Code Completion](#in-editor-code-completion)
+* [⇢ ⇢ ⇢ Installation of `lsp-ai`](#installation-of-lsp-ai)
+* [⇢ ⇢ ⇢ Helix Configuration](#helix-configuration)
+* [⇢ ⇢ ⇢ Code completion in action](#code-completion-in-action)
+* [⇢ ⇢ Conclusion](#conclusion)
+
 With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. 
 
 Ollama is a powerful tool that brings local AI capabilities directly to your local hardware. By running AI models locally, you can enjoy the benefits of intelligent assistance without relying on cloud services. This document outlines my initial setup and experiences with Ollama, with a focus on coding tasks and agentic coding.
@@ -401,7 +420,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2025-08-05 Local LLM for Coding with Ollama (You are currently reading this)](./2025-08-05-local-coding-llm-with-ollama.md)  
+[2025-08-05 Local LLM for Coding with Ollama on macOS (You are currently reading this)](./2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-06-22 Task Samurai: An agentic coding learning experiment](./2025-06-22-task-samurai.md)  
 
 [Back to the main site](../)  
