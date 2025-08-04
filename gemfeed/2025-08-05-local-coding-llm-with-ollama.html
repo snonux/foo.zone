@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Local LLM for Coding with Ollama</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='local-llm-for-coding-with-ollama'>Local LLM for Coding with Ollama</h1><br />
+<br />
+<span class='quote'>Published at 2025-08-04T16:43:39+03:00</span><br />
+<br />
+<pre>
+      [::]
+     _|  |_
+   /  o  o  \                       |
+  |    ∆    |  &lt;-- Ollama          / \
+  |  \___/  |                     /   \
+   \_______/             LLM --&gt; / 30B \
+    |     |                     / Qwen3 \
+   /|     |\                   /  Coder  \
+  /_|     |_\_________________/ quantised \
+</pre>
+<br />
+<span>With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. </span><br />
+<br />
+<span>Ollama is a powerful tool that brings local AI capabilities directly to your local hardware. By running AI models locally, you can enjoy the benefits of intelligent assistance without relying on cloud services. This document outlines my initial setup and experiences with Ollama, with a focus on coding tasks and agentic coding.</span><br />
+<br />
+<a class='textlink' href='https://ollama.com/'>https://ollama.com/</a><br />
+<br />
+<h2 style='display: inline' id='why-local-llms'>Why Local LLMs?</h2><br />
+<br />
+<span>Using local AI models through Ollama offers several advantages:</span><br />
+<br />
+<ul>
+<li>Data Privacy: Keep your code and data completely private by processing everything locally.</li>
+<li>Cost-Effective: Reduce reliance on expensive cloud API calls.</li>
+<li>Reliability: Works seamlessly even with spotty internet or offline.</li>
+<li>Speed: Avoid network latency and enjoy instant responses while coding. Although I mostly found Ollama slower than commercial LLM providers. However, that may change with the evolution of models and hardware.</li>
+</ul><br />
+<h2 style='display: inline' id='hardware-considerations'>Hardware Considerations</h2><br />
+<br />
+<span>Running large language models locally is currently limited by consumer hardware capabilities:</span><br />
+<br />
+<ul>
+<li>GPU Memory: Most consumer-grade GPUs (even in 2025) top out at 16–24GB of VRAM, making it challenging to run larger models like the 30B (30 billion) parameter LLMs (they go up to the 100 billion and more).</li>
+<li>RAM Constraints: On my MacBook Pro with M3 CPU and 36GB RAM, I chose a 14B model (<span class='inlinecode'>qwen2.5-coder:14b-instruct</span>) as it represents a practical balance between capability and resource requirements.</li>
+</ul><br />
+<span>For reference, here are some key points about running large LLMs locally:</span><br />
+<br />
+<ul>
+<li>Models larger than 30B: I don&#39;t even think about running them locally. One (e.g. from Qwen, Deepseek or Kimi K2) with several hundred billion parameters could match the "performance" of commercial LLMs (Claude Sonnet 4, etc). Still, for personal use, the hardware demands are just too high (or temporarily "rent" it via the public cloud?).</li>
+<li>30B models: Require at least 48GB of GPU VRAM for full inference without quantisation. Currently only feasible on high-end professional GPUs (or an Apple-silicone Mac with enough unified RAM).</li>
+<li>14B models: Can run with 16-24GB GPU memory (VRAM), suitable for consumer-grade hardware (or use a quantised larger model)</li>
+<li>7B-13B models: Best fit for mainstream consumer hardware, requiring minimal VRAM and running smoothly on mid-range GPUs, but with limited capabilities compared to larger models and more hallucinations.</li>
+</ul><br />
+<span>The model I&#39;ll be mainly using in this blog post (<span class='inlinecode'>qwen2.5-coder:14b-instruct</span>) is particularly interesting as:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>instruct</span>: Indicates this is the instruction-tuned variant of QWE, optimised for diverse tasks including coding</li>
+<li><span class='inlinecode'>coder</span>: Tells me that this model was trained on a mix of code and text data, making it especially effective for programming assistance</li>
+</ul><br />
+<a class='textlink' href='https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct'>https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct</a><br />
+<br />
+<span>For general thinking tasks, I found <span class='inlinecode'>deepseek-r1:14b</span> to be useful. For instance, I utilised <span class='inlinecode'>deepseek-r1:14b</span> to format this blog post and correct some English errors, demonstrating its effectiveness in natural language processing tasks. Additionally, it has proven invaluable for adding context and enhancing clarity in technical explanations, all while running locally on the MacBook Pro. Admittedly, it was a lot slower than "just using ChatGPT", but still within minutes. </span><br />
+<br />
+<a class='textlink' href='https://ollama.com/library/deepseek-r1:14b'>https://ollama.com/library/deepseek-r1:14b</a><br />
+<br />
+<span>A quantised (as mentioned above) LLM which has been converted from high-precision connection (typically 16- or 32-bit floating point) representations to lower-precision formats, such as 8-bit integers. This reduces the overall memory footprint of the model, making it significantly smaller and enabling it to run more efficiently on hardware with limited resources or to allow higher throughput on GPUs and CPUs. The benefits of quantisation include reduced storage and faster inference times due to simpler computations and better memory bandwidth utilisation. However, quantisation can introduce a drop in model accuracy because the lower numerical precision means the model cannot represent parameter values as precisely. In some cases, it may lead to instability or unexpected outputs in specific tasks or edge cases.</span><br />
+<br />
+<h2 style='display: inline' id='basic-setup-and-manual-code-prompting'>Basic Setup and Manual Code Prompting</h2><br />
+<br />
+<h3 style='display: inline' id='installing-ollama-and-a-model'>Installing Ollama and a Model</h3><br />
+<br />
+<span>To install Ollama, IIperformed these steps (this assumes that you have already installed Homebrew on your macOS system):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>brew install ollama
+rehash
+ollama serve
+</pre>
+<br />
+<span>Which started up the Ollama server with something like this (the screenshots shows already some requests made):</span><br />
+<br />
+<a href='./local-coding-LLM-with-ollama/ollama-serve.png'><img alt='Ollama serving' title='Ollama serving' src='./local-coding-LLM-with-ollama/ollama-serve.png' /></a><br />
+<br />
+<span>And then, in a new terminal, I pulled the model with:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>ollama pull qwen2.<font color="#000000">5</font>-coder:14b-instruct
+</pre>
+<br />
+<span>Now, I was ready to go! It wasn&#39;t so difficult. Now, let&#39;s see how I used this model for coding tasks.</span><br />
+<br />
+<h3 style='display: inline' id='example-usage'>Example Usage</h3><br />
+<br />
+<span>I run the following command to get a Go function for calculating Fibonacci numbers:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>time echo <font color="#808080">"Write a function in golang to print out the Nth fibonacci number, \</font>
+<font color="#808080">  only the function without the boilerplate"</font> | ollama run qwen2.<font color="#000000">5</font>-coder:14b-instruct
+
+Output:
+
+func fibonacci(n int) int {
+    <b><u><font color="#000000">if</font></u></b> n &lt;= <font color="#000000">1</font> {
+        <b><u><font color="#000000">return</font></u></b> n
+    }
+    a, b := <font color="#000000">0</font>, <font color="#000000">1</font>
+    <b><u><font color="#000000">for</font></u></b> i := <font color="#000000">2</font>; i &lt;= n; i++ {
+        a, b = b, a+b
+    }
+    <b><u><font color="#000000">return</font></u></b> b
+}
+
+Execution Metrics:
+
+Executed <b><u><font color="#000000">in</font></u></b>    <font color="#000000">4.90</font> secs      fish           external
+   usr time   <font color="#000000">15.54</font> millis    <font color="#000000">0.31</font> millis   <font color="#000000">15.24</font> millis
+   sys time   <font color="#000000">19.68</font> millis    <font color="#000000">1.02</font> millis   <font color="#000000">18.66</font> millis
+</pre>
+<br />
+<span class='quote'>Note, after having written this blog post, I tried the same with the newer model <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (which "just" came out, and it&#39;s a quantised 30B model), and it was much faster:</span><br />
+<br />
+<pre>
+Executed in    1.83 secs      fish           external
+   usr time   17.82 millis    4.40 millis   13.42 millis
+   sys time   17.07 millis    1.57 millis   15.50 millis
+</pre>
+<br />
+<a class='textlink' href='https://ollama.com/library/qwen3-coder:30b-a3b-q4_K_M'>https://ollama.com/library/qwen3-coder:30b-a3b-q4_K_M</a><br />
+<br />
+<h2 style='display: inline' id='agentic-coding-with-aider'>Agentic Coding with Aider</h2><br />
+<br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
+<br />
+<span>Aider is a tool that enables agentic coding by leveraging AI models (also local ones, as in our case). While setting up OpenAI Codex and OpenCode with Ollama proved challenging (those tools either didn&#39;t know how to work with the "tools" (the capability to execute external commands or to edit files for example) or didn&#39;t connect at all to Ollama for some reason), Aider worked smoothly.</span><br />
+<br />
+<span>To get started, the only thing I had to do was to install it via Homebrew, initialise a Git repository, and then start Aider with the Ollama model <span class='inlinecode'>ollama_chat/qwen2.5-coder:14b-instruct</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>brew install aider
+mkdir ~/git/aitest &amp;&amp; cd ~/git/aitest &amp;&amp; git init
+aider --model ollama_chat/qwen<font color="#000000">2.5</font>-coder:14b-instruct
+</pre>
+<br />
+<a class='textlink' href='https://aider.chat'>https://aider.chat</a><br />
+<a class='textlink' href='https://opencode.ai'>https://opencode.ai</a><br />
+<a class='textlink' href='https://github.com/openai/codex'>https://github.com/openai/codex</a><br />
+<br />
+<h3 style='display: inline' id='agentic-coding-prompt'>Agentic coding prompt</h3><br />
+<br />
+<span>This is the prompt I gave:</span><br />
+<br />
+<pre>
+Create a Go project with these files:
+
+* `cmd/aitest/main.go`: CLI entry point
+* `internal/version.go`: Version information (0.0.0), should be printed when the
+   program was started with `-version` flag
+* `internal/count.go`: File counting functionality, the program should print out
+   the number of files in a given subdirectory (the directory is provided as a
+   command line flag with `-dir`), if none flag is given, no counting should be
+   done
+* `README.md`: Installation and usage instructions
+</pre>
+<br />
+<span>It then generated something, but did not work out of the box, as it had some issues with the imports and package names. So I had to do some follow-up prompts to fix those issues with something like this:</span><br />
+<br />
+<pre>
+* Update import paths to match module name, github.com/yourname/aitest should be
+  aitest in main.go
+* The package names of internal/count.go and internal/version.go should be
+  internal, and not count and version.
+</pre>
+<br />
+<a href='./local-coding-LLM-with-ollama/aider-fix-package.png'><img alt='Aider fixing the packages' title='Aider fixing the packages' src='./local-coding-LLM-with-ollama/aider-fix-package.png' /></a><br />
+<br />
+<h3 style='display: inline' id='compilation--execution'>Compilation &amp; Execution</h3><br />
+<br />
+<span>Once done so, the project was ready and I could compile and run it:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go build cmd/aitest/main.go
+./main --help
+./main -v
+<font color="#000000">0.0</font>.<font color="#000000">0</font>
+./main -dir .
+Number of files <b><u><font color="#000000">in</font></u></b> directory .: <font color="#000000">4</font>
+</pre>
+<br />
+<h3 style='display: inline' id='the-code'>The code</h3><br />
+<br />
+<span>The code it generated was simple, but functional. The <span class='inlinecode'>./cmd/aitest/main.go</span> file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> main
+
+<b><u><font color="#000000">import</font></u></b> (
+	<font color="#808080">"flag"</font>
+	<font color="#808080">"fmt"</font>
+	<font color="#808080">"os"</font>
+
+	<font color="#808080">"aitest/internal"</font>
+)
+
+<b><u><font color="#000000">func</font></u></b> main() {
+	<b><u><font color="#000000">var</font></u></b> versionFlag <b><font color="#000000">bool</font></b>
+	flag.BoolVar(&amp;versionFlag, <font color="#808080">"v"</font>, false, <font color="#808080">"print version"</font>)
+	dir := flag.String(<font color="#808080">"dir"</font>, <font color="#808080">""</font>, <font color="#808080">"directory to count files in"</font>)
+	flag.Parse()
+
+	<b><u><font color="#000000">if</font></u></b> versionFlag {
+		fmt.Println(internal.GetVersion())
+		<b><u><font color="#000000">return</font></u></b>
+	}
+
+	<b><u><font color="#000000">if</font></u></b> *dir != <font color="#808080">""</font> {
+		fileCount, err := internal.CountFiles(*dir)
+		<b><u><font color="#000000">if</font></u></b> err != nil {
+			fmt.Fprintf(os.Stderr, <font color="#808080">"Error counting files: %v\n"</font>, err)
+			os.Exit(<font color="#000000">1</font>)
+		}
+		fmt.Printf(<font color="#808080">"Number of files in directory %s: %d\n"</font>, *dir, fileCount)
+	} <b><u><font color="#000000">else</font></u></b> {
+		fmt.Println(<font color="#808080">"No directory specified. No count given."</font>)
+	}
+}
+</pre>
+<br />
+<span>The <span class='inlinecode'>./internal/version.go</span> file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> internal
+
+<b><u><font color="#000000">var</font></u></b> Version = <font color="#808080">"0.0.0"</font>
+
+<b><u><font color="#000000">func</font></u></b> GetVersion() <b><font color="#000000">string</font></b> {
+	<b><u><font color="#000000">return</font></u></b> Version
+}
+</pre>
+<br />
+<span>The <span class='inlinecode'>./internal/count.go</span> file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> internal
+
+<b><u><font color="#000000">import</font></u></b> (
+	<font color="#808080">"os"</font>
+)
+
+<b><u><font color="#000000">func</font></u></b> CountFiles(dir <b><font color="#000000">string</font></b>) (int, error) {
+	files, err := os.ReadDir(dir)
+	<b><u><font color="#000000">if</font></u></b> err != nil {
+		<b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>, err
+	}
+
+	count := <font color="#000000">0</font>
+	<b><u><font color="#000000">for</font></u></b> _, file := <b><u><font color="#000000">range</font></u></b> files {
+		<b><u><font color="#000000">if</font></u></b> !file.IsDir() {
+			count++
+		}
+	}
+
+	<b><u><font color="#000000">return</font></u></b> count, nil
+}
+</pre>
+<br />
+<span>Etc...</span><br />
+<br />
+<span>The code is quite straightforward, especially for generating boilerplate code this will be useful for many use cases!</span><br />
+<br />
+<h2 style='display: inline' id='in-editor-code-completion'>In-Editor Code Completion</h2><br />
+<br />
+<span>To leverage Ollama for real-time code completion in my editor, I have integrated it with Helix, my preferred text editor. Helix supports the LSP (Language Server Protocol), which enables advanced code completion features. The <span class='inlinecode'>lsp-ai</span> is an LSP server that can interface with Ollama models for code completion tasks.</span><br />
+<br />
+<a class='textlink' href='https://github.com/SilasMarvin/lsp-ai'>https://github.com/SilasMarvin/lsp-ai</a><br />
+<br />
+<h3 style='display: inline' id='installation-of-lsp-ai'>Installation of <span class='inlinecode'>lsp-ai</span></h3><br />
+<br />
+<span>I installed <span class='inlinecode'>lsp-ai</span> via Rust&#39;s Cargo package manager. (If you don&#39;t have Rust installed, you can install it via Homebrew as well.):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cargo install lsp-ai
+</pre>
+<br />
+<h3 style='display: inline' id='helix-configuration'>Helix Configuration</h3><br />
+<br />
+<span>I edited <span class='inlinecode'>~/.config/helix/languages.toml</span> to include:</span><br />
+<br />
+<pre>
+&lt;&lt;language]]
+name = "go"
+auto-format= true
+diagnostic-severity = "hint"
+formatter = { command = "goimports" }
+language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
+</pre>
+<br />
+<span>Note that there is also a <span class='inlinecode'>gpt</span> language server configured, which is for GitHub Copilot, but it is out of scope of this blog post. Let&#39;s also configure <span class='inlinecode'>lsp-ai</span> settings in the same file:</span><br />
+<br />
+<pre>
+[language-server.lsp-ai]
+command = "lsp-ai"
+
+[language-server.lsp-ai.config.memory]
+file_store = { }
+
+[language-server.lsp-ai.config.models.model1]
+type = "ollama"
+model =  "qwen2.5-coder"
+
+[language-server.lsp-ai.config.models.model2]
+type = "ollama"
+model = "mistral-nemo:latest"
+
+[language-server.lsp-ai.config.models.model3]
+type = "ollama"
+model = "deepseek-r1:14b"
+
+[language-server.lsp-ai.config.completion]
+model = "model1"
+
+[language-server.lsp-ai.config.completion.parameters]
+max_tokens = 64
+max_context = 8096
+
+## Configure the messages per your needs
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "system"
+content = "Instructions:\n- You are an AI programming assistant.\n- Given a
+piece of code with the cursor location marked by \"&lt;CURSOR&gt;\", replace
+\"&lt;CURSOR&gt;\" with the correct code or comment.\n- First, think step-by-step.\n
+- Describe your plan for what to build in pseudocode, written out in great
+detail.\n- Then output the code replacing the \"&lt;CURSOR&gt;\"\n- Ensure that your
+completion fits within the language context of the provided code snippet (e.g.,
+Go, Ruby, Bash, Java, Puppet DSL).\n\nRules:\n- Only respond with code or
+comments.\n- Only replace \"&lt;CURSOR&gt;\"; do not include any previously written
+code.\n- Never include \"&lt;CURSOR&gt;\" in your response\n- If the cursor is within
+a comment, complete the comment meaningfully.\n- Handle ambiguous cases by
+providing the most contextually appropriate completion.\n- Be consistent with
+your responses."
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "func greet(name) {\n    print(f\"Hello, {&lt;CURSOR&gt;}\")\n}"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "name"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "func sum(a, b) {\n    return a + &lt;CURSOR&gt;\n}"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "b"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "func multiply(a, b int ) int {\n    a * &lt;CURSOR&gt;\n}"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "b"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "// &lt;CURSOR&gt;\nfunc add(a, b) {\n    return a + b\n}"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "Adds two numbers"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "// This function checks if a number is even\n&lt;CURSOR&gt;"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "assistant"
+content = "func is_even(n) {\n    return n % 2 == 0\n}"
+
+&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+role = "user"
+content = "{CODE}"
+</pre>
+<br />
+<span>As you can see, I have also added other models, such as Mistral Nemo and DeepSeek R1, so that I can switch between them in Helix. Other than that, the completion parameters are interesting. They define how the LLM should interact with the text in the text editor based on the given examples.</span><br />
+<br />
+<h3 style='display: inline' id='code-completion-in-action'>Code completion in action</h3><br />
+<br />
+<span>The screenshot shows how Ollama&#39;s <span class='inlinecode'>qwen2.5-coder</span> model provides code completion suggestions within the Helix editor. The LSP auto-completion is triggered by typing <span class='inlinecode'>&lt;CURSOR&gt;</span> in the code snippet, and Ollama responds with relevant completions based on the context.</span><br />
+<br />
+<a href='./local-coding-LLM-with-ollama/helix-lsp-ai.png'><img alt='Completing the fib-function' title='Completing the fib-function' src='./local-coding-LLM-with-ollama/helix-lsp-ai.png' /></a><br />
+<br />
+<span>In the LSP auto-completion, the one prefixed with <span class='inlinecode'>ai - </span> was generated by <span class='inlinecode'>qwen2.5-coder</span>, the other ones are from other LSP servers (GitHub Copilot, Go linter, Go language server, etc.).</span><br />
+<br />
+<span>I found GitHub Copilot to be still faster than <span class='inlinecode'>qwen2.5-coder:14b</span>, but the local LLM one is actually workable for me already. And, as mentioned earlier, things will likely improve in the future regarding local LLMs. So I am excited about the future of local LLMs and coding tools like Ollama and Helix.</span><br />
+<br />
+<span>After trying <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Experimentation reveals that even current local setups are surprisingly effective for routine coding tasks, offering a glimpse into the future of on-machine AI assistance.</span><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>Will there ever be a time we can run larger models (60B, 100B, ...and larger) on consumer hardware, or even on our phones? We are not quite there yet, but I am optimistic that we will see significant improvements in the next few years. As hardware capabilities improve and/or become cheaper, and more efficient models are developed, the landscape of local AI coding assistants will continue to evolve. </span><br />
+<br />
+<span>For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I&#39;ve performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I will continue experimenting with Ollama and other local LLMs to see how they can enhance my coding experience. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.</span><br />
+<br />
+<span>However, truth be told, I don&#39;t think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which can be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-06-22-task-samurai.html'>2025-06-22 Task Samurai: An agentic coding learning experiment</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+</p>
+</body>
+</html>
