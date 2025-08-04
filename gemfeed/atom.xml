@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-04T16:43:39+03:00</updated>
+    <updated>2025-08-04T16:49:29+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='local-llm-for-coding-with-ollama'>Local LLM for Coding with Ollama</h1><br />
+<br />
+<span class='quote'>Published at 2025-08-04T16:43:39+03:00</span><br />
 <br />
 <pre>
       [::]
@@ -326,12 +328,12 @@ http://www.gnu.org/software/src-highlite -->
 <span>I edited <span class='inlinecode'>~/.config/helix/languages.toml</span> to include:</span><br />
 <br />
 <pre>
-&lt;&lt;language]]
-name = "go"
-auto-format= true
-diagnostic-severity = "hint"
-formatter = { command = "goimports" }
-language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
+ [[language]]
+ name = "go"
+ auto-format= true
+ diagnostic-severity = "hint"
+ formatter = { command = "goimports" }
+ language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
 </pre>
 <br />
 <span>Note that there is also a <span class='inlinecode'>gpt</span> language server configured, which is for GitHub Copilot, but it is out of scope of this blog post. Let&#39;s also configure <span class='inlinecode'>lsp-ai</span> settings in the same file:</span><br />
