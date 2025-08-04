@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-04T16:49:29+03:00</updated>
+    <updated>2025-08-04T17:00:52+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -310,6 +310,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>To leverage Ollama for real-time code completion in my editor, I have integrated it with Helix, my preferred text editor. Helix supports the LSP (Language Server Protocol), which enables advanced code completion features. The <span class='inlinecode'>lsp-ai</span> is an LSP server that can interface with Ollama models for code completion tasks.</span><br />
 <br />
+<a class='textlink' href='https://helix-editor.com'>https://helix-editor.com</a><br />
 <a class='textlink' href='https://github.com/SilasMarvin/lsp-ai'>https://github.com/SilasMarvin/lsp-ai</a><br />
 <br />
 <h3 style='display: inline' id='installation-of-lsp-ai'>Installation of <span class='inlinecode'>lsp-ai</span></h3><br />

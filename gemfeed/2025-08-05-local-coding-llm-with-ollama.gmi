@@ -262,6 +262,7 @@ The code is quite straightforward, especially for generating boilerplate code th
 
 To leverage Ollama for real-time code completion in my editor, I have integrated it with Helix, my preferred text editor. Helix supports the LSP (Language Server Protocol), which enables advanced code completion features. The `lsp-ai` is an LSP server that can interface with Ollama models for code completion tasks.
 
+=> https://helix-editor.com
 => https://github.com/SilasMarvin/lsp-ai
 
 ### Installation of `lsp-ai`
