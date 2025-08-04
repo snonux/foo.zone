@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-04T17:00:52+03:00</updated>
+    <updated>2025-08-04T17:04:39+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -330,11 +330,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <pre>
  [[language]]
- name = "go"
- auto-format= true
- diagnostic-severity = "hint"
- formatter = { command = "goimports" }
- language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
+name = "go"
+auto-format= true
+diagnostic-severity = "hint"
+formatter = { command = "goimports" }
+language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
 </pre>
 <br />
 <span>Note that there is also a <span class='inlinecode'>gpt</span> language server configured, which is for GitHub Copilot, but it is out of scope of this blog post. Let&#39;s also configure <span class='inlinecode'>lsp-ai</span> settings in the same file:</span><br />
@@ -366,7 +366,7 @@ max_tokens = 64
 max_context = 8096
 
 ## Configure the messages per your needs
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "system"
 content = "Instructions:\n- You are an AI programming assistant.\n- Given a
 piece of code with the cursor location marked by \"&lt;CURSOR&gt;\", replace
@@ -381,47 +381,47 @@ a comment, complete the comment meaningfully.\n- Handle ambiguous cases by
 providing the most contextually appropriate completion.\n- Be consistent with
 your responses."
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func greet(name) {\n    print(f\"Hello, {&lt;CURSOR&gt;}\")\n}"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "name"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func sum(a, b) {\n    return a + &lt;CURSOR&gt;\n}"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func multiply(a, b int ) int {\n    a * &lt;CURSOR&gt;\n}"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// &lt;CURSOR&gt;\nfunc add(a, b) {\n    return a + b\n}"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "Adds two numbers"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// This function checks if a number is even\n&lt;CURSOR&gt;"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "func is_even(n) {\n    return n % 2 == 0\n}"
 
-&lt;&lt;language-server.lsp-ai.config.completion.parameters.messages]]
+ [[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "{CODE}"
 </pre>
