@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-04T17:04:39+03:00</updated>
+    <updated>2025-08-04T17:23:03+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>Local LLM for Coding with Ollama</title>
+        <title>Local LLM for Coding with Ollama on macOS</title>
         <link href="https://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.html" />
         <id>https://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.html</id>
         <updated>2025-08-04T16:43:39+03:00</updated>
@@ -18,7 +18,7 @@
         <summary>With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='local-llm-for-coding-with-ollama'>Local LLM for Coding with Ollama</h1><br />
+                <h1 style='display: inline' id='local-llm-for-coding-with-ollama-on-macos'>Local LLM for Coding with Ollama on macOS</h1><br />
 <br />
 <span class='quote'>Published at 2025-08-04T16:43:39+03:00</span><br />
 <br />
