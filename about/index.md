@@ -26,7 +26,6 @@
 
 [@snonux@fosstodon.org - Me at Mastodon](https://fosstodon.org/@snonux)  
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
-[Gophers Slack - Under my real name](https://gophers.slack.com)  
 
 ## Books
 
@@ -34,12 +33,12 @@
 
 * Chaos Engineering - System Resiliency in Practice, Casey Rosenthal and Nora Jones, eBook
 * Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
-* Inhibitor Phase, Alastair Reynolds, Audiobook
 * Seeking SRE: Conversations About Running Production Systems at Scale, David N. Blank-Edelman, eBook
 * Yoga Nidra Made Easy, Uma Dinsmore-Tuli, eBook
 
 ### Unread books already in my shelf
 
+* Inhibitor Phase, Alastair Reynolds, Audiobook
 * Okular, Alastair Reynolds, eBook
 * 97 Things Every Engineering Manager Should Know, Camille Fournier, Audiobook
 

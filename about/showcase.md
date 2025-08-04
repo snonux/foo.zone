@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2025-07-22
+Generated on: 2025-08-01
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
@@ -10,12 +10,12 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ Overall Statistics](#overall-statistics)
 * [⇢ ⇢ Projects](#projects)
 * [⇢ ⇢ ⇢ totalrecall](#totalrecall)
-* [⇢ ⇢ ⇢ gitsyncer](#gitsyncer)
-* [⇢ ⇢ ⇢ dtail](#dtail)
 * [⇢ ⇢ ⇢ rexfiles](#rexfiles)
+* [⇢ ⇢ ⇢ gitsyncer](#gitsyncer)
 * [⇢ ⇢ ⇢ timr](#timr)
 * [⇢ ⇢ ⇢ tasksamurai](#tasksamurai)
 * [⇢ ⇢ ⇢ ior](#ior)
+* [⇢ ⇢ ⇢ dtail](#dtail)
 * [⇢ ⇢ ⇢ wireguardmeshgenerator](#wireguardmeshgenerator)
 * [⇢ ⇢ ⇢ ds-sim](#ds-sim)
 * [⇢ ⇢ ⇢ sillybench](#sillybench)
@@ -25,11 +25,12 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ gemtexter](#gemtexter)
 * [⇢ ⇢ ⇢ quicklogger](#quicklogger)
 * [⇢ ⇢ ⇢ docker-gpodder-sync-server](#docker-gpodder-sync-server)
+* [⇢ ⇢ ⇢ docker-anki-sync-server](#docker-anki-sync-server)
 * [⇢ ⇢ ⇢ terraform](#terraform)
 * [⇢ ⇢ ⇢ gogios](#gogios)
 * [⇢ ⇢ ⇢ docker-radicale-server](#docker-radicale-server)
-* [⇢ ⇢ ⇢ docker-anki-sync-server](#docker-anki-sync-server)
 * [⇢ ⇢ ⇢ gorum](#gorum)
+* [⇢ ⇢ ⇢ guprecords](#guprecords)
 * [⇢ ⇢ ⇢ randomjournalpage](#randomjournalpage)
 * [⇢ ⇢ ⇢ sway-autorotate](#sway-autorotate)
 * [⇢ ⇢ ⇢ photoalbum](#photoalbum)
@@ -37,7 +38,6 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ geheim](#geheim)
 * [⇢ ⇢ ⇢ foo.zone](#foozone)
 * [⇢ ⇢ ⇢ perl-c-fibonacci](#perl-c-fibonacci)
-* [⇢ ⇢ ⇢ guprecords](#guprecords)
 * [⇢ ⇢ ⇢ ioriot](#ioriot)
 * [⇢ ⇢ ⇢ staticfarm-apache-handlers](#staticfarm-apache-handlers)
 * [⇢ ⇢ ⇢ dyndns](#dyndns)
@@ -60,20 +60,20 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ perldaemon](#perldaemon)
 * [⇢ ⇢ ⇢ awksite](#awksite)
 * [⇢ ⇢ ⇢ jsmstrade](#jsmstrade)
+* [⇢ ⇢ ⇢ ychat](#ychat)
 * [⇢ ⇢ ⇢ netcalendar](#netcalendar)
 * [⇢ ⇢ ⇢ hsbot](#hsbot)
-* [⇢ ⇢ ⇢ ychat](#ychat)
-* [⇢ ⇢ ⇢ fype](#fype)
 * [⇢ ⇢ ⇢ vs-sim](#vs-sim)
+* [⇢ ⇢ ⇢ fype](#fype)
 
 ## Overall Statistics
 
 * 📦 Total Projects: 56
-* 📊 Total Commits: 10,597
-* 📈 Total Lines of Code: 175,312
-* 📄 Total Lines of Documentation: 236,493
-* 💻 Languages: Go (38.8%), Java (23.1%), C (11.5%), Perl (8.8%), Shell (3.6%), C/C++ (3.0%), Config (1.7%), HTML (1.6%), Ruby (1.6%), HCL (1.6%), Python (0.9%), Make (0.9%), CSS (0.7%), JSON (0.5%), Raku (0.4%), XML (0.4%), Haskell (0.3%), YAML (0.3%), TOML (0.2%)
-* 📚 Documentation: Text (94.5%), Markdown (5.3%), LaTeX (0.2%)
+* 📊 Total Commits: 10,648
+* 📈 Total Lines of Code: 194,087
+* 📄 Total Lines of Documentation: 22,230
+* 💻 Languages: Go (31.8%), Java (20.8%), C (9.9%), C++ (8.8%), Perl (8.2%), C/C++ (6.4%), Shell (3.0%), HTML (1.9%), Config (1.9%), Ruby (1.5%), HCL (1.4%), Python (0.8%), Make (0.8%), CSS (0.7%), Raku (0.5%), YAML (0.4%), JSON (0.4%), XML (0.3%), Haskell (0.3%), TOML (0.2%)
+* 📚 Documentation: Text (50.5%), Markdown (46.9%), LaTeX (2.6%)
 * 🎵 Vibe-Coded Projects: 4 out of 56 (7.1%)
 * 🤖 AI-Assisted Projects (including vibe-coded): 8 out of 56 (14.3% AI-assisted, 85.7% human-only)
 * 🚀 Release Status: 34 released, 22 experimental (60.7% with releases, 39.3% experimental)
@@ -88,7 +88,7 @@ This page showcases my side projects, providing an overview of what each project
 * 📈 Lines of Code: 11782
 * 📄 Lines of Documentation: 357
 * 📅 Development Period: 2025-07-14 to 2025-07-22
-* 🔥 Recent Activity: 1.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 11.2 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.7.3 (2025-07-22)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -107,65 +107,15 @@ The project is implemented in Go with a modular architecture featuring both CLI 
 
 ---
 
-### gitsyncer
-
-* 💻 Languages: Go (90.3%), Shell (8.1%), YAML (1.0%), JSON (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 96
-* 📈 Lines of Code: 9182
-* 📄 Lines of Documentation: 2484
-* 📅 Development Period: 2025-06-23 to 2025-07-20
-* 🔥 Recent Activity: 9.1 days (avg. age of last 42 commits)
-* ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.8.4 (2025-07-20)
-* 🎵 Vibe-Coded: This project has been vibe coded
-
-
-GitSyncer is a cross-platform repository synchronization tool that automatically keeps Git repositories in sync across multiple hosting platforms like GitHub, Codeberg, and private SSH servers. It solves the common problem of maintaining consistent code across different Git hosting services by cloning repositories, adding all configured platforms as remotes, and continuously merging and pushing changes bidirectionally while handling branch creation and conflict detection.
-
-The tool is implemented in Go with a clean architecture that supports both individual repository syncing and bulk operations for public repositories. Key features include automatic repository creation, SSH backup locations for private servers, branch exclusion patterns, and an opt-in backup mode for resilient offline backups. It uses a JSON configuration file to define organizations and repositories, employs safe merge strategies that never delete branches, and provides comprehensive error handling for merge conflicts and missing repositories.
-
-[View on Codeberg](https://codeberg.org/snonux/gitsyncer)  
-[View on GitHub](https://github.com/snonux/gitsyncer)  
-
----
-
-### dtail
-
-* 💻 Languages: Go (91.0%), Shell (4.1%), JSON (2.1%), C (1.4%), Make (0.9%), C/C++ (0.2%), Config (0.1%)
-* 📚 Documentation: Text (98.3%), Markdown (1.7%)
-* 📊 Commits: 1049
-* 📈 Lines of Code: 27726
-* 📄 Lines of Documentation: 220214
-* 📅 Development Period: 2020-01-09 to 2025-07-04
-* 🔥 Recent Activity: 20.2 days (avg. age of last 42 commits)
-* ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v4.2.0 (2023-06-21)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
-
-DTail is a distributed log processing system written in Go that allows DevOps engineers to tail, cat, and grep log files across thousands of servers concurrently. It provides secure access through SSH authentication and respects UNIX file system permissions, making it ideal for enterprise environments where log analysis needs to scale horizontally across large server fleets. The tool supports advanced features like compressed file handling (gzip/zstd) and distributed MapReduce aggregations for complex log analytics.
-
-[![dtail screenshot](showcase/dtail/image-2.gif "dtail screenshot")](showcase/dtail/image-2.gif)  
-
-The system uses a client-server architecture where dtail servers run on target machines (listening on port 2222) and clients connect to multiple servers simultaneously. It can also operate in serverless mode for local operations. The implementation leverages SSH for secure communication, includes sophisticated connection throttling and resource management, and provides specialized tools (dcat, dgrep, dmap) for different log processing tasks. The MapReduce functionality supports SQL-like queries with server-side local aggregation and client-side final aggregation, enabling powerful distributed analytics across log data.
-
-[View on Codeberg](https://codeberg.org/snonux/dtail)  
-[View on GitHub](https://github.com/snonux/dtail)  
-
----
-
 ### rexfiles
 
-* 💻 Languages: Perl (38.1%), Shell (30.9%), Config (8.0%), CSS (7.8%), TOML (6.9%), Ruby (5.8%), Lua (1.7%), JSON (0.7%), INI (0.1%)
-* 📚 Documentation: Text (97.3%), Markdown (2.7%)
-* 📊 Commits: 883
-* 📈 Lines of Code: 4160
-* 📄 Lines of Documentation: 854
-* 📅 Development Period: 2021-12-28 to 2025-07-22
-* 🔥 Recent Activity: 22.4 days (avg. age of last 42 commits)
+* 💻 Languages: Perl (34.1%), Shell (27.8%), YAML (7.9%), TOML (7.6%), Config (7.1%), CSS (7.0%), Ruby (5.2%), Lua (1.5%), Make (0.9%), JSON (0.6%), INI (0.1%)
+* 📚 Documentation: Text (89.8%), Markdown (10.2%)
+* 📊 Commits: 905
+* 📈 Lines of Code: 4651
+* 📄 Lines of Documentation: 925
+* 📅 Development Period: 2021-12-28 to 2025-07-31
+* 🔥 Recent Activity: 12.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -179,6 +129,29 @@ The project consists of three main components: **dotfiles** management for perso
 
 ---
 
+### gitsyncer
+
+* 💻 Languages: Go (90.3%), Shell (8.1%), YAML (1.0%), JSON (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 101
+* 📈 Lines of Code: 9166
+* 📄 Lines of Documentation: 2484
+* 📅 Development Period: 2025-06-23 to 2025-07-25
+* 🔥 Recent Activity: 17.4 days (avg. age of last 42 commits)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.8.6 (2025-07-25)
+* 🎵 Vibe-Coded: This project has been vibe coded
+
+
+GitSyncer is a cross-platform repository synchronization tool that automatically keeps Git repositories in sync across multiple hosting platforms like GitHub, Codeberg, and private SSH servers. It solves the common problem of maintaining consistent code across different Git hosting services by cloning repositories, adding all configured platforms as remotes, and continuously merging and pushing changes bidirectionally while handling branch creation and conflict detection.
+
+The tool is implemented in Go with a clean architecture that supports both individual repository syncing and bulk operations for public repositories. Key features include automatic repository creation, SSH backup locations for private servers, branch exclusion patterns, and an opt-in backup mode for resilient offline backups. It uses a JSON configuration file to define organizations and repositories, employs safe merge strategies that never delete branches, and provides comprehensive error handling for merge conflicts and missing repositories.
+
+[View on Codeberg](https://codeberg.org/snonux/gitsyncer)  
+[View on GitHub](https://github.com/snonux/gitsyncer)  
+
+---
+
 ### timr
 
 * 💻 Languages: Go (98.3%), YAML (1.7%)
@@ -187,7 +160,7 @@ The project consists of three main components: **dotfiles** management for perso
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 137
 * 📅 Development Period: 2025-06-25 to 2025-07-19
-* 🔥 Recent Activity: 24.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 33.8 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.0.0 (2025-06-29)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -210,7 +183,7 @@ The project is implemented using a clean modular architecture with the CLI entry
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-12
-* 🔥 Recent Activity: 26.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 35.6 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -237,7 +210,7 @@ The implementation follows a clean architecture with clear separation of concern
 * 📈 Lines of Code: 12762
 * 📄 Lines of Documentation: 742
 * 📅 Development Period: 2024-01-18 to 2025-07-14
-* 🔥 Recent Activity: 64.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 73.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -258,6 +231,33 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 
 ---
 
+### dtail
+
+* 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
+* 📚 Documentation: Text (79.4%), Markdown (20.6%)
+* 📊 Commits: 1049
+* 📈 Lines of Code: 20091
+* 📄 Lines of Documentation: 5674
+* 📅 Development Period: 2020-01-09 to 2025-06-20
+* 🔥 Recent Activity: 75.1 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.3.3 (2024-08-23)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+
+
+[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
+
+DTail is a distributed log processing system written in Go that allows DevOps engineers to tail, cat, and grep log files across thousands of servers concurrently. It provides secure access through SSH authentication and respects UNIX file system permissions, making it ideal for enterprise environments where log analysis needs to scale horizontally across large server fleets. The tool supports advanced features like compressed file handling (gzip/zstd) and distributed MapReduce aggregations for complex log analytics.
+
+[![dtail screenshot](showcase/dtail/image-2.gif "dtail screenshot")](showcase/dtail/image-2.gif)  
+
+The system uses a client-server architecture where dtail servers run on target machines (listening on port 2222) and clients connect to multiple servers simultaneously. It can also operate in serverless mode for local operations. The implementation leverages SSH for secure communication, includes sophisticated connection throttling and resource management, and provides specialized tools (dcat, dgrep, dmap) for different log processing tasks. The MapReduce functionality supports SQL-like queries with server-side local aggregation and client-side final aggregation, enabling powerful distributed analytics across log data.
+
+[View on Codeberg](https://codeberg.org/snonux/dtail)  
+[View on GitHub](https://github.com/snonux/dtail)  
+
+---
+
 ### wireguardmeshgenerator
 
 * 💻 Languages: Ruby (73.5%), YAML (26.5%)
@@ -266,7 +266,7 @@ The architecture combines kernel-level tracing with user-space analysis: eBPF pr
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 85.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 94.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -288,7 +288,7 @@ The implementation uses a YAML configuration file to define the network topology
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 98.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 107.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -313,7 +313,7 @@ The project is built on an event-driven architecture with clear component separa
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 110.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 120.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -335,7 +335,7 @@ The implementation is minimal and focused, consisting of a basic Go module with 
 * 📈 Lines of Code: 3967
 * 📄 Lines of Documentation: 324
 * 📅 Development Period: 2024-05-04 to 2025-07-12
-* 🔥 Recent Activity: 124.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 133.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-03-04)
 
@@ -361,7 +361,7 @@ The tool is architected around a file-based queueing system where posts progress
 * 📈 Lines of Code: 1586
 * 📄 Lines of Documentation: 154
 * 📅 Development Period: 2023-01-02 to 2025-07-12
-* 🔥 Recent Activity: 131.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 141.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.0 (2025-07-12)
 
@@ -383,7 +383,7 @@ The project implements a modular architecture with seven core components: FileHe
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 151.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 161.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -405,7 +405,7 @@ The system is implemented with a modular architecture centered around a DSL clas
 * 📈 Lines of Code: 2268
 * 📄 Lines of Documentation: 1180
 * 📅 Development Period: 2021-05-21 to 2025-07-09
-* 🔥 Recent Activity: 214.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 223.5 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -427,7 +427,7 @@ The implementation is built entirely in Bash (version 5.x+) using a modular libr
 * 📈 Lines of Code: 917
 * 📄 Lines of Documentation: 33
 * 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 461.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 471.0 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.3 (2025-07-06)
 
@@ -453,7 +453,7 @@ The project follows a clean, single-file architecture with all functionality con
 * 📈 Lines of Code: 12
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2024-03-24 to 2024-03-24
-* 🔥 Recent Activity: 485.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 494.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -467,6 +467,28 @@ The project is implemented as a simple Docker build system with a Makefile that 
 
 ---
 
+### docker-anki-sync-server
+
+* 💻 Languages: Docker (54.5%), Make (45.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 4
+* 📈 Lines of Code: 33
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2023-08-13 to 2025-07-31
+* 🔥 Recent Activity: 503.9 days (avg. age of last 42 commits)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
+
+
+This project is a Docker containerization of the Anki sync server, designed to provide a self-hosted synchronization service for Anki flashcard applications. Anki is a popular spaced repetition learning tool, and this project allows users to run their own sync server instead of relying on AnkiWeb's hosted service, giving them full control over their data privacy and synchronization infrastructure.
+
+The implementation is built using a Rocky Linux base image with Python 3.9, and it integrates the community-maintained `anki-sync-server` project. The Dockerfile:dockerfile:1-19 sets up the environment by installing dependencies, configuring data paths for collections and authentication databases to persist in `/data`, and running the service under a dedicated user for security. The Makefile:makefile:1-12 provides build automation that clones the upstream anki-sync-server repository and includes AWS ECR deployment capabilities for cloud hosting. This containerized approach makes it easy to deploy and manage an Anki sync server across different environments while maintaining data persistence through volume mounts.
+
+[View on Codeberg](https://codeberg.org/snonux/docker-anki-sync-server)  
+[View on GitHub](https://github.com/snonux/docker-anki-sync-server)  
+
+---
+
 ### terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
@@ -475,7 +497,7 @@ The project is implemented as a simple Docker build system with a Makefile that 
 * 📈 Lines of Code: 2850
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-04-05
-* 🔥 Recent Activity: 515.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 524.9 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -497,7 +519,7 @@ The system is designed to host multiple personal services including Anki sync se
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 528.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 537.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -522,7 +544,7 @@ The implementation follows a clean architecture with concurrent check execution,
 * 📈 Lines of Code: 32
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2023-12-31
-* 🔥 Recent Activity: 569.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 578.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -536,28 +558,6 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 
 ---
 
-### docker-anki-sync-server
-
-* 💻 Languages: Docker (62.1%), Make (37.9%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 3
-* 📈 Lines of Code: 29
-* 📄 Lines of Documentation: 3
-* 📅 Development Period: 2023-08-13 to 2024-01-01
-* 🔥 Recent Activity: 662.2 days (avg. age of last 42 commits)
-* ⚖️ License: MIT
-* 🧪 Status: Experimental (no releases yet)
-
-
-This project is a Docker containerization of the Anki sync server, designed to provide a self-hosted synchronization service for Anki flashcard applications. Anki is a popular spaced repetition learning tool, and this project allows users to run their own sync server instead of relying on AnkiWeb's hosted service, giving them full control over their data privacy and synchronization infrastructure.
-
-The implementation is built using a Rocky Linux base image with Python 3.9, and it integrates the community-maintained `anki-sync-server` project. The Dockerfile:dockerfile:1-19 sets up the environment by installing dependencies, configuring data paths for collections and authentication databases to persist in `/data`, and running the service under a dedicated user for security. The Makefile:makefile:1-12 provides build automation that clones the upstream anki-sync-server repository and includes AWS ECR deployment capabilities for cloud hosting. This containerized approach makes it easy to deploy and manage an Anki sync server across different environments while maintaining data persistence through volume mounts.
-
-[View on Codeberg](https://codeberg.org/snonux/docker-anki-sync-server)  
-[View on GitHub](https://github.com/snonux/docker-anki-sync-server)  
-
----
-
 ### gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
@@ -566,7 +566,7 @@ The implementation is built using a Rocky Linux base image with Python 3.9, and 
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 714.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 723.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -580,6 +580,28 @@ The architecture consists of several key components: a quorum manager that handl
 
 ---
 
+### guprecords
+
+* 💻 Languages: Raku (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 95
+* 📈 Lines of Code: 312
+* 📄 Lines of Documentation: 416
+* 📅 Development Period: 2013-03-22 to 2025-05-18
+* 🔥 Recent Activity: 773.8 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0.0 (2023-04-29)
+
+
+GupRecords is a Raku-based system administration tool that analyzes and reports on system uptime statistics across multiple hosts. It processes raw uptime records from various systems and generates formatted reports showing the top-performing hosts or operating systems based on metrics like uptime, boot count, downtime, and calculated meta-scores.
+
+The tool is implemented with a clean object-oriented architecture featuring an Aggregator class that parses record files, Host and OS Aggregate classes that store statistics, and Reporter classes that generate formatted tables. It supports multiple analysis categories (host, OS, OS-major, uname) and various sorting criteria including uptime duration, boot frequency, system lifespan, and downtime. The formatted output includes visual indicators for active systems and provides both duration-based and numerical metrics in a structured table format, making it useful for system administrators to quickly identify the most reliable systems in their infrastructure.
+
+[View on Codeberg](https://codeberg.org/snonux/guprecords)  
+[View on GitHub](https://github.com/snonux/guprecords)  
+
+---
+
 ### randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
@@ -588,7 +610,7 @@ The architecture consists of several key components: a quorum manager that handl
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 779.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 788.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -611,7 +633,7 @@ The implementation is straightforward - a bash script that uses `find` to locate
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1072.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1082.1 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -633,7 +655,7 @@ The implementation consists of two main components: `autorotate.sh` monitors the
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1292.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1301.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -656,7 +678,7 @@ The implementation centers around a single Bash script (`photoalbum.sh`) that us
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1443.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1452.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -679,7 +701,7 @@ The project leverages Go's generics system to provide type-safe implementations 
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 19
 * 📅 Development Period: 2018-05-26 to 2025-01-21
-* 🔥 Recent Activity: 1445.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1454.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -698,11 +720,11 @@ The system is architected around several key components: a configuration system 
 ### foo.zone
 
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 2949
+* 📊 Commits: 2972
 * 📈 Lines of Code: 0
 * 📄 Lines of Documentation: 23
 * 📅 Development Period: 2021-05-21 to 2022-04-02
-* 🔥 Recent Activity: 1458.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1468.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -725,7 +747,7 @@ The site is built using **Gemtexter**, a static site generator that creates both
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1924.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1933.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -740,27 +762,6 @@ The project is useful as an educational tool for understanding language syntax s
 
 ---
 
-### guprecords
-
-* 💻 Languages: Raku (100.0%)
-* 📊 Commits: 95
-* 📈 Lines of Code: 195
-* 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🔥 Recent Activity: 2139.4 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v1.0.0 (2023-04-29)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-GupRecords is a Raku-based system administration tool that analyzes and reports on system uptime statistics across multiple hosts. It processes raw uptime records from various systems and generates formatted reports showing the top-performing hosts or operating systems based on metrics like uptime, boot count, downtime, and calculated meta-scores.
-
-The tool is implemented with a clean object-oriented architecture featuring an Aggregator class that parses record files, Host and OS Aggregate classes that store statistics, and Reporter classes that generate formatted tables. It supports multiple analysis categories (host, OS, OS-major, uname) and various sorting criteria including uptime duration, boot frequency, system lifespan, and downtime. The formatted output includes visual indicators for active systems and provides both duration-based and numerical metrics in a structured table format, making it useful for system administrators to quickly identify the most reliable systems in their infrastructure.
-
-[View on Codeberg](https://codeberg.org/snonux/guprecords)  
-[View on GitHub](https://github.com/snonux/guprecords)  
-
----
-
 ### ioriot
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
@@ -769,7 +770,7 @@ The tool is implemented with a clean object-oriented architecture featuring an A
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2465.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2475.3 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -794,7 +795,7 @@ The tool is implemented in C for minimal overhead and uses SystemTap for efficie
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 2974.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2984.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -817,7 +818,7 @@ The system is particularly useful for distributed static content delivery where 
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3210.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3219.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -840,7 +841,7 @@ The implementation consists of a shell script (`update-dyndns`) that accepts hos
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3477.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3486.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -863,7 +864,7 @@ The tool is particularly useful for system administrators and DevOps engineers w
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3481.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3490.7 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -886,7 +887,7 @@ The tool is implemented as a single Ruby script that leverages threading for par
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3560.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3570.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -904,12 +905,12 @@ The project is implemented as a modular Perl application with a clean architectu
 ### gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
-* 📚 Documentation: Text (50.0%), Markdown (50.0%)
+* 📚 Documentation: Markdown (50.0%), Text (50.0%)
 * 📊 Commits: 57
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3571.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3581.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -930,7 +931,7 @@ The implementation follows a concurrent architecture using Go's goroutines and c
 * 📊 Commits: 670
 * 📈 Lines of Code: 1675
 * 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3627.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3636.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -955,7 +956,7 @@ The system works through a template-driven architecture where content is written
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3675.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3684.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -980,7 +981,7 @@ The implementation works by creating a Debian filesystem image using debootstrap
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 3953.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3962.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -1003,7 +1004,7 @@ The implementation is written in Python and built on top of the bigsuds library,
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 4007.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4017.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -1026,7 +1027,7 @@ The project implements a clean, Make-based build system with automatic versionin
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4020.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4030.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1049,7 +1050,7 @@ The implementation is elegantly simple, consisting of a bash script that operate
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4028.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4037.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1072,7 +1073,7 @@ The tool works by having both hosts run the same command simultaneously - one ac
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4071.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4081.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1095,7 +1096,7 @@ The implementation leverages GPG for strong encryption, ensuring passwords are n
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4076.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4086.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1118,7 +1119,7 @@ The implementation uses modern Perl with the Moo object system and consists of t
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4137.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4147.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1139,7 +1140,7 @@ Each script explores different themes - Christmas celebrations, mathematical stu
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4217.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4227.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1162,7 +1163,7 @@ The implementation uses a straightforward approach with three test endpoints: on
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4258.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4268.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1185,7 +1186,7 @@ The implementation is remarkably simple - a single shell script that uses GNU AW
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4288.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4298.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1206,7 +1207,7 @@ The application is implemented using a multi-threaded architecture where each mo
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4338.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4347.6 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1229,7 +1230,7 @@ The architecture centers around a modular plugin system where custom functionali
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4669.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4678.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1252,7 +1253,7 @@ The implementation consists of a main AWK script (`index.cgi`) that reads config
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4731.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4741.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1269,6 +1270,31 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 
 ---
 
+### ychat
+
+* 💻 Languages: C++ (62.8%), C/C++ (27.1%), HTML (3.1%), Config (2.5%), Perl (1.9%), Shell (1.9%), Make (0.4%), CSS (0.2%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 27104
+* 📄 Lines of Documentation: 109
+* 📅 Development Period: 2008-05-15 to 2014-07-01
+* 🔥 Recent Activity: 5342.2 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+Based on my analysis of the codebase, here's a concise summary of the yChat project:
+
+**yChat** is a web-based chat server written in C++ that functions as a standalone HTTP server without requiring external web server dependencies. It allows users to participate in multi-room chat sessions using standard web browsers, with no special client software needed. The system supports user registration, authentication via session IDs, customizable HTML templates, and multi-language support through XML configuration files.
+
+The architecture is built around several key managers: a socket manager for handling HTTP connections, a chat manager for core functionality, an HTML template manager for dynamic content generation, and a modular system supporting dynamically loadable command modules. It uses hash maps for efficient O(1) data retrieval, POSIX threads for concurrent request handling, and includes advanced features like SSL support, MySQL database integration, garbage collection for memory management, and comprehensive logging. The codebase also includes related projects like yhttpd (a lightweight HTTP server) and ycurses (a terminal interface library), making it a comprehensive communication platform designed for performance and extensibility.
+
+[View on Codeberg](https://codeberg.org/snonux/ychat)  
+[View on GitHub](https://github.com/snonux/ychat)  
+
+---
+
 ### netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
@@ -1277,7 +1303,7 @@ The implementation follows a clean three-class architecture: `SMain` handles the
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5362.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5371.9 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1302,7 +1328,7 @@ The implementation uses a clean separation of concerns with dedicated packages f
 * 📊 Commits: 80
 * 📈 Lines of Code: 601
 * 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5458.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5467.6 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1317,53 +1343,6 @@ The implementation uses a clean separation of concerns with modules for IRC conn
 
 ---
 
-### ychat
-
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 9
-* 📅 Development Period: 2008-05-15 to 2013-12-15
-* 🔥 Recent Activity: 5597.9 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Based on my analysis of the codebase, here's a concise summary of the yChat project:
-
-**yChat** is a web-based chat server written in C++ that functions as a standalone HTTP server without requiring external web server dependencies. It allows users to participate in multi-room chat sessions using standard web browsers, with no special client software needed. The system supports user registration, authentication via session IDs, customizable HTML templates, and multi-language support through XML configuration files.
-
-The architecture is built around several key managers: a socket manager for handling HTTP connections, a chat manager for core functionality, an HTML template manager for dynamic content generation, and a modular system supporting dynamically loadable command modules. It uses hash maps for efficient O(1) data retrieval, POSIX threads for concurrent request handling, and includes advanced features like SSL support, MySQL database integration, garbage collection for memory management, and comprehensive logging. The codebase also includes related projects like yhttpd (a lightweight HTTP server) and ycurses (a terminal interface library), making it a comprehensive communication platform designed for performance and extensibility.
-
-[View on Codeberg](https://codeberg.org/snonux/ychat)  
-[View on GitHub](https://github.com/snonux/ychat)  
-
----
-
-### fype
-
-* 💻 Languages: C (72.1%), C/C++ (20.7%), HTML (5.7%), Make (1.5%)
-* 📚 Documentation: Text (71.3%), LaTeX (28.7%)
-* 📊 Commits: 99
-* 📈 Lines of Code: 10196
-* 📄 Lines of Documentation: 1741
-* 📅 Development Period: 2008-05-15 to 2021-11-03
-* 🔥 Recent Activity: 5619.9 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-**Fype** is a 32-bit scripting language interpreter written in C that aims to be "at least as good as AWK" while providing a different syntax and some unique features. Created by Paul C. Buetow as a fun project, Fype supports variables, functions, procedures, loops, arrays, and control structures with features like variable synonyms (references), nested functions/procedures, and automatic type conversion. The language uses a simple syntax with statements ending in semicolons and supports both global procedures (which share scope with their callers) and lexically-scoped functions.
-
-The implementation is built using a straightforward top-down parser with a maximum lookahead of 1 token, simultaneously parsing and interpreting code (meaning syntax errors are only detected at runtime). The architecture is modular with separate components for scanning/tokenization, symbol management, garbage collection, type conversion, and data structures (including arrays, lists, hash tables, stacks, and trees). The interpreter is designed for Unix-like systems (BSD/Linux) and includes built-in functions for I/O, math operations, bitwise operations, system calls like `fork`, and memory management with garbage collection.
-
-[View on Codeberg](https://codeberg.org/snonux/fype)  
-[View on GitHub](https://github.com/snonux/fype)  
-
----
-
 ### vs-sim
 
 * 📚 Documentation: Markdown (100.0%)
@@ -1371,7 +1350,7 @@ The implementation is built using a straightforward top-down parser with a maxim
 * 📈 Lines of Code: 0
 * 📄 Lines of Documentation: 7
 * 📅 Development Period: 2008-05-15 to 2015-05-23
-* 🔥 Recent Activity: 5819.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5828.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0 (2008-08-24)
 
@@ -1383,3 +1362,26 @@ The implementation features a modular architecture with separate packages for co
 
 [View on Codeberg](https://codeberg.org/snonux/vs-sim)  
 [View on GitHub](https://github.com/snonux/vs-sim)  
+
+---
+
+### fype
+
+* 💻 Languages: C (71.3%), C/C++ (20.6%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (60.2%), LaTeX (39.8%)
+* 📊 Commits: 99
+* 📈 Lines of Code: 8906
+* 📄 Lines of Documentation: 1431
+* 📅 Development Period: 2008-05-15 to 2021-04-29
+* 🔥 Recent Activity: 5874.4 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**Fype** is a 32-bit scripting language interpreter written in C that aims to be "at least as good as AWK" while providing a different syntax and some unique features. Created by Paul C. Buetow as a fun project, Fype supports variables, functions, procedures, loops, arrays, and control structures with features like variable synonyms (references), nested functions/procedures, and automatic type conversion. The language uses a simple syntax with statements ending in semicolons and supports both global procedures (which share scope with their callers) and lexically-scoped functions.
+
+The implementation is built using a straightforward top-down parser with a maximum lookahead of 1 token, simultaneously parsing and interpreting code (meaning syntax errors are only detected at runtime). The architecture is modular with separate components for scanning/tokenization, symbol management, garbage collection, type conversion, and data structures (including arrays, lists, hash tables, stacks, and trees). The interpreter is designed for Unix-like systems (BSD/Linux) and includes built-in functions for I/O, math operations, bitwise operations, system calls like `fork`, and memory management with garbage collection.
+
+[View on Codeberg](https://codeberg.org/snonux/fype)  
+[View on GitHub](https://github.com/snonux/fype)  

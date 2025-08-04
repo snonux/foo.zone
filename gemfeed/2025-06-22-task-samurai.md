@@ -112,7 +112,7 @@ Did it buy me speed?
 
 ## Conclusion
 
-Building Task Samurai with agentic coding was a wild ride—rapid feature growth, countless fast fixes, and more merge commits I'd expected. Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a polished terminal UI in days instead of weeks is a testament to the power of agentic development.
+Building Task Samurai with agentic coding was a wild ride—rapid feature growth, countless fast fixes, and more merge commits I'd expected. Keep the iterations short (or maybe in my next experiment, much larger, with better and more complete design before generating a single line of code), keep tests and documentation concise, and review and refine for final polish at the end. Even with the bumps along the way, shipping a terminal UI in days instead of weeks is a neat little showcase vibe coding.
 
 Am I an agentic coding expert now? I don't think so. There are still many things to learn, and the landscape is constantly evolving.
 
@@ -123,5 +123,10 @@ Personally, I am not sure whether I like where the industry is going with agenti
 Do you have any thoughts on that? I hope, I am partially wrong at least.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other related posts are:
+
+[2025-08-05 Local LLM for Coding with Ollama](./2025-08-05-local-coding-llm-with-ollama.md)  
+[2025-06-22 Task Samurai: An agentic coding learning experiment (You are currently reading this)](./2025-06-22-task-samurai.md)  
 
 [Back to the main site](../)  
