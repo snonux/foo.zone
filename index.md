@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-08-04T17:04:39+03:00 by `Gemtexter`
+> This site was generated at 2025-08-04T17:23:03+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -30,7 +30,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
-[2025-08-05 - Local LLM for Coding with Ollama](./gemfeed/2025-08-05-local-coding-llm-with-ollama.md)  
+[2025-08-05 - Local LLM for Coding with Ollama on macOS](./gemfeed/2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-07-14 - f3s: Kubernetes with FreeBSD - Part 6: Storage](./gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-07-01 - Posts from January to June 2025](./gemfeed/2025-07-01-posts-from-january-to-june-2025.md)  
 [2025-06-22 - Task Samurai: An agentic coding learning experiment](./gemfeed/2025-06-22-task-samurai.md)  

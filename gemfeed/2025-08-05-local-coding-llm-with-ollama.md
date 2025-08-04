@@ -1,4 +1,4 @@
-# Local LLM for Coding with Ollama
+# Local LLM for Coding with Ollama on macOS
 
 > Published at 2025-08-04T16:43:39+03:00
 
