@@ -277,12 +277,12 @@ cargo install lsp-ai
 I edited `~/.config/helix/languages.toml` to include:
 
 ```
-<<language]]
-name = "go"
-auto-format= true
-diagnostic-severity = "hint"
-formatter = { command = "goimports" }
-language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
+ [[language]]
+ name = "go"
+ auto-format= true
+ diagnostic-severity = "hint"
+ formatter = { command = "goimports" }
+ language-servers = [ "gopls", "golangci-lint-lsp", "lsp-ai", "gpt" ]
 ```
 
 Note that there is also a `gpt` language server configured, which is for GitHub Copilot, but it is out of scope of this blog post. Let's also configure `lsp-ai` settings in the same file:
