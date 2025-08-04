@@ -14,6 +14,8 @@
   /_|     |_\_________________/ quantised \
 ```
 
+<< template::inline::toc
+
 With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. 
 
 Ollama is a powerful tool that brings local AI capabilities directly to your local hardware. By running AI models locally, you can enjoy the benefits of intelligent assistance without relying on cloud services. This document outlines my initial setup and experiences with Ollama, with a focus on coding tasks and agentic coding.

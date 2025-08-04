@@ -14,6 +14,25 @@
   /_|     |_\_________________/ quantised \
 ```
 
+## Table of Contents
+
+* ⇢ Local LLM for Coding with Ollama on macOS
+* ⇢ ⇢ Why Local LLMs?
+* ⇢ ⇢ Hardware Considerations
+* ⇢ ⇢ Basic Setup and Manual Code Prompting
+* ⇢ ⇢ ⇢ Installing Ollama and a Model
+* ⇢ ⇢ ⇢ Example Usage
+* ⇢ ⇢ Agentic Coding with Aider
+* ⇢ ⇢ ⇢ Installation
+* ⇢ ⇢ ⇢ Agentic coding prompt
+* ⇢ ⇢ ⇢ Compilation & Execution
+* ⇢ ⇢ ⇢ The code
+* ⇢ ⇢ In-Editor Code Completion
+* ⇢ ⇢ ⇢ Installation of `lsp-ai`
+* ⇢ ⇢ ⇢ Helix Configuration
+* ⇢ ⇢ ⇢ Code completion in action
+* ⇢ ⇢ Conclusion
+
 With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. 
 
 Ollama is a powerful tool that brings local AI capabilities directly to your local hardware. By running AI models locally, you can enjoy the benefits of intelligent assistance without relying on cloud services. This document outlines my initial setup and experiences with Ollama, with a focus on coding tasks and agentic coding.
@@ -401,7 +420,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2025-08-05-local-coding-llm-with-ollama.gmi 2025-08-05 Local LLM for Coding with Ollama (You are currently reading this)
+=> ./2025-08-05-local-coding-llm-with-ollama.gmi 2025-08-05 Local LLM for Coding with Ollama on macOS (You are currently reading this)
 => ./2025-06-22-task-samurai.gmi 2025-06-22 Task Samurai: An agentic coding learning experiment
 
 => ../ Back to the main site
