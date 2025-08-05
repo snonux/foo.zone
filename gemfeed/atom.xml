@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-04T17:48:22+03:00</updated>
+    <updated>2025-08-05T09:54:29+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -89,14 +89,16 @@
 <span>The model I&#39;ll be mainly using in this blog post (<span class='inlinecode'>qwen2.5-coder:14b-instruct</span>) is particularly interesting as:</span><br />
 <br />
 <ul>
-<li><span class='inlinecode'>instruct</span>: Indicates this is the instruction-tuned variant of QWE, optimised for diverse tasks including coding</li>
+<li><span class='inlinecode'>instruct</span>: Indicates this is the instruction-tuned variant, optimised for diverse tasks including coding</li>
 <li><span class='inlinecode'>coder</span>: Tells me that this model was trained on a mix of code and text data, making it especially effective for programming assistance</li>
 </ul><br />
+<a class='textlink' href='https://ollama.com/library/qwen2.5-coder'>https://ollama.com/library/qwen2.5-coder</a><br />
 <a class='textlink' href='https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct'>https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct</a><br />
 <br />
-<span>For general thinking tasks, I found <span class='inlinecode'>deepseek-r1:14b</span> to be useful. For instance, I utilised <span class='inlinecode'>deepseek-r1:14b</span> to format this blog post and correct some English errors, demonstrating its effectiveness in natural language processing tasks. Additionally, it has proven invaluable for adding context and enhancing clarity in technical explanations, all while running locally on the MacBook Pro. Admittedly, it was a lot slower than "just using ChatGPT", but still within minutes. </span><br />
+<span>For general thinking tasks, I found <span class='inlinecode'>deepseek-r1:14b</span> to be useful (in the future, I also want to try other <span class='inlinecode'>qwen</span> models here). For instance, I utilised <span class='inlinecode'>deepseek-r1:14b</span> to format this blog post and correct some English errors, demonstrating its effectiveness in natural language processing tasks. Additionally, it has proven invaluable for adding context and enhancing clarity in technical explanations, all while running locally on the MacBook Pro. Admittedly, it was a lot slower than "just using ChatGPT", but still within a minute or so. </span><br />
 <br />
 <a class='textlink' href='https://ollama.com/library/deepseek-r1:14b'>https://ollama.com/library/deepseek-r1:14b</a><br />
+<a class='textlink' href='https://huggingface.co/deepseek-ai/DeepSeek-R1'>https://huggingface.co/deepseek-ai/DeepSeek-R1</a><br />
 <br />
 <span>A quantised (as mentioned above) LLM which has been converted from high-precision connection (typically 16- or 32-bit floating point) representations to lower-precision formats, such as 8-bit integers. This reduces the overall memory footprint of the model, making it significantly smaller and enabling it to run more efficiently on hardware with limited resources or to allow higher throughput on GPUs and CPUs. The benefits of quantisation include reduced storage and faster inference times due to simpler computations and better memory bandwidth utilisation. However, quantisation can introduce a drop in model accuracy because the lower numerical precision means the model cannot represent parameter values as precisely. In some cases, it may lead to instability or unexpected outputs in specific tasks or edge cases.</span><br />
 <br />
@@ -448,6 +450,8 @@ content = "{CODE}"
 <br />
 <span>As you can see, I have also added other models, such as Mistral Nemo and DeepSeek R1, so that I can switch between them in Helix. Other than that, the completion parameters are interesting. They define how the LLM should interact with the text in the text editor based on the given examples.</span><br />
 <br />
+<span>If you want to see more <span class='inlinecode'>lsp-ai</span> configuration examples, they are some for Vim and Helix in the <span class='inlinecode'>lsp-ai</span> git repository!</span><br />
+<br />
 <h3 style='display: inline' id='code-completion-in-action'>Code completion in action</h3><br />
 <br />
 <span>The screenshot shows how Ollama&#39;s <span class='inlinecode'>qwen2.5-coder</span> model provides code completion suggestions within the Helix editor. The LSP auto-completion is triggered by typing <span class='inlinecode'>&lt;CURSOR&gt;</span> in the code snippet, and Ollama responds with relevant completions based on the context.</span><br />
@@ -458,15 +462,15 @@ content = "{CODE}"
 <br />
 <span>I found GitHub Copilot to be still faster than <span class='inlinecode'>qwen2.5-coder:14b</span>, but the local LLM one is actually workable for me already. And, as mentioned earlier, things will likely improve in the future regarding local LLMs. So I am excited about the future of local LLMs and coding tools like Ollama and Helix.</span><br />
 <br />
-<span>After trying <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Experimentation reveals that even current local setups are surprisingly effective for routine coding tasks, offering a glimpse into the future of on-machine AI assistance.</span><br />
+<span class='quote'>After trying <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Experimentation reveals that even current local setups are surprisingly effective for routine coding tasks, offering a glimpse into the future of on-machine AI assistance.</span><br />
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Will there ever be a time we can run larger models (60B, 100B, ...and larger) on consumer hardware, or even on our phones? We are not quite there yet, but I am optimistic that we will see significant improvements in the next few years. As hardware capabilities improve and/or become cheaper, and more efficient models are developed, the landscape of local AI coding assistants will continue to evolve. </span><br />
+<span>Will there ever be a time we can run larger models (60B, 100B, ...and larger) on consumer hardware, or even on our phones? We are not quite there yet, but I am optimistic that we will see improvements in the next few years. As hardware capabilities improve and/or become cheaper, and more efficient models are developed (or new techniques will be invented to make language models more effective), the landscape of local AI coding assistants will continue to evolve. </span><br />
 <br />
 <span>For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I&#39;ve performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I will continue experimenting with Ollama and other local LLMs to see how they can enhance my coding experience. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.</span><br />
 <br />
-<span>However, truth be told, I don&#39;t think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which can be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?</span><br />
+<span>However, truth be told, I don&#39;t think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which can be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
