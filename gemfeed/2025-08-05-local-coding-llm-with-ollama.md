@@ -81,7 +81,7 @@ A quantised (as mentioned above) LLM which has been converted from high-precisio
 
 ### Installing Ollama and a Model
 
-To install Ollama, IIperformed these steps (this assumes that you have already installed Homebrew on your macOS system):
+To install Ollama, performed these steps (this assumes that you have already installed Homebrew on your macOS system):
 
 ```sh
 brew install ollama
@@ -402,7 +402,7 @@ If you want to see more `lsp-ai` configuration examples, they are some for Vim a
 
 ### Code completion in action
 
-The screenshot shows how Ollama's `qwen2.5-coder` model provides code completion suggestions within the Helix editor. The LSP auto-completion is triggered by typing `<CURSOR>` in the code snippet, and Ollama responds with relevant completions based on the context.
+The screenshot shows how Ollama's `qwen2.5-coder` model provides code completion suggestions within the Helix editor. LSP auto-completion is triggered by leaving the cursor at position `<CURSOR>` for a short period in the code snippet, and Ollama responds with relevant completions based on the context.
 
 [![Completing the fib-function](./local-coding-LLM-with-ollama/helix-lsp-ai.png "Completing the fib-function")](./local-coding-LLM-with-ollama/helix-lsp-ai.png)  
 
@@ -418,7 +418,7 @@ Will there ever be a time we can run larger models (60B, 100B, ...and larger) on
 
 For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I've performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I will continue experimenting with Ollama and other local LLMs to see how they can enhance my coding experience. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.
 
-However, truth be told, I don't think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which can be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?
+However, truth be told, I don't think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which would be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
