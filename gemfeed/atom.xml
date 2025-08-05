@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-05T09:54:29+03:00</updated>
+    <updated>2025-08-05T16:04:59+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -106,7 +106,7 @@
 <br />
 <h3 style='display: inline' id='installing-ollama-and-a-model'>Installing Ollama and a Model</h3><br />
 <br />
-<span>To install Ollama, IIperformed these steps (this assumes that you have already installed Homebrew on your macOS system):</span><br />
+<span>To install Ollama, performed these steps (this assumes that you have already installed Homebrew on your macOS system):</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -454,7 +454,7 @@ content = "{CODE}"
 <br />
 <h3 style='display: inline' id='code-completion-in-action'>Code completion in action</h3><br />
 <br />
-<span>The screenshot shows how Ollama&#39;s <span class='inlinecode'>qwen2.5-coder</span> model provides code completion suggestions within the Helix editor. The LSP auto-completion is triggered by typing <span class='inlinecode'>&lt;CURSOR&gt;</span> in the code snippet, and Ollama responds with relevant completions based on the context.</span><br />
+<span>The screenshot shows how Ollama&#39;s <span class='inlinecode'>qwen2.5-coder</span> model provides code completion suggestions within the Helix editor. LSP auto-completion is triggered by leaving the cursor at position <span class='inlinecode'>&lt;CURSOR&gt;</span> for a short period in the code snippet, and Ollama responds with relevant completions based on the context.</span><br />
 <br />
 <a href='./local-coding-LLM-with-ollama/helix-lsp-ai.png'><img alt='Completing the fib-function' title='Completing the fib-function' src='./local-coding-LLM-with-ollama/helix-lsp-ai.png' /></a><br />
 <br />
@@ -470,7 +470,7 @@ content = "{CODE}"
 <br />
 <span>For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I&#39;ve performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I will continue experimenting with Ollama and other local LLMs to see how they can enhance my coding experience. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.</span><br />
 <br />
-<span>However, truth be told, I don&#39;t think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which can be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?</span><br />
+<span>However, truth be told, I don&#39;t think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which would be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
