@@ -174,7 +174,6 @@ Once done so, the project was ready and I could compile and run it:
 
 ```sh
 go build cmd/aitest/main.go
-./main --help
 ./main -v
 0.0.0
 ./main -dir .
