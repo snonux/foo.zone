@@ -58,15 +58,15 @@
 <pre>
 # Hello world
 
-&lt;&lt; echo "&gt; This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
+[[ echo "&gt; This site was generated at $(date --iso-8601=seconds) by \`Gemtexter\`"
 
 Welcome to this capsule!
 
-&lt;&lt;&lt;
+[[[
   for i in {1..10}; do
     echo Multiline template line $i
   done
-&gt;&gt;&gt;
+]]]
 </pre>
 <br />
 <span>... results into the following <span class='inlinecode'>index.gmi</span> after running <span class='inlinecode'>./gemtexter --generate</span> (or <span class='inlinecode'>./gemtexter --template</span>, which instructs to do only template processing and nothing else):</span><br />
@@ -95,7 +95,7 @@ Multiline template line 10
 <pre>
 See more entries about DTail and Golang:
 
-&lt;&lt; template::inline::rindex dtail golang
+[[ template::inline::rindex dtail golang
 
 Blablabla...
 </pre>
