@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-05T16:04:59+03:00</updated>
+    <updated>2025-08-05T16:11:18+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -231,7 +231,6 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>go build cmd/aitest/main.go
-./main --help
 ./main -v
 <font color="#000000">0.0</font>.<font color="#000000">0</font>
 ./main -dir .
