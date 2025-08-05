@@ -281,7 +281,7 @@ cargo install lsp-ai
 I edited `~/.config/helix/languages.toml` to include:
 
 ```
- [[language]]
+[[language]]
 name = "go"
 auto-format= true
 diagnostic-severity = "hint"
@@ -318,7 +318,7 @@ max_tokens = 64
 max_context = 8096
 
 ## Configure the messages per your needs
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "system"
 content = "Instructions:\n- You are an AI programming assistant.\n- Given a
 piece of code with the cursor location marked by \"<CURSOR>\", replace
@@ -333,47 +333,47 @@ a comment, complete the comment meaningfully.\n- Handle ambiguous cases by
 providing the most contextually appropriate completion.\n- Be consistent with
 your responses."
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func greet(name) {\n    print(f\"Hello, {<CURSOR>}\")\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "name"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func sum(a, b) {\n    return a + <CURSOR>\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func multiply(a, b int ) int {\n    a * <CURSOR>\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// <CURSOR>\nfunc add(a, b) {\n    return a + b\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "Adds two numbers"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// This function checks if a number is even\n<CURSOR>"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "func is_even(n) {\n    return n % 2 == 0\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "{CODE}"
 ```

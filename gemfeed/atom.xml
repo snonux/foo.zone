@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-05T16:11:18+03:00</updated>
+    <updated>2025-08-05T16:21:03+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -350,7 +350,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>I edited <span class='inlinecode'>~/.config/helix/languages.toml</span> to include:</span><br />
 <br />
 <pre>
- [[language]]
+[[language]]
 name = "go"
 auto-format= true
 diagnostic-severity = "hint"
@@ -387,7 +387,7 @@ max_tokens = 64
 max_context = 8096
 
 ## Configure the messages per your needs
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "system"
 content = "Instructions:\n- You are an AI programming assistant.\n- Given a
 piece of code with the cursor location marked by \"&lt;CURSOR&gt;\", replace
@@ -402,47 +402,47 @@ a comment, complete the comment meaningfully.\n- Handle ambiguous cases by
 providing the most contextually appropriate completion.\n- Be consistent with
 your responses."
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func greet(name) {\n    print(f\"Hello, {&lt;CURSOR&gt;}\")\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "name"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func sum(a, b) {\n    return a + &lt;CURSOR&gt;\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "func multiply(a, b int ) int {\n    a * &lt;CURSOR&gt;\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "b"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// &lt;CURSOR&gt;\nfunc add(a, b) {\n    return a + b\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "Adds two numbers"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "// This function checks if a number is even\n&lt;CURSOR&gt;"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "assistant"
 content = "func is_even(n) {\n    return n % 2 == 0\n}"
 
- [[language-server.lsp-ai.config.completion.parameters.messages]]
+[[language-server.lsp-ai.config.completion.parameters.messages]]
 role = "user"
 content = "{CODE}"
 </pre>
@@ -8927,7 +8927,7 @@ def _token:
 ?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ 
 \t]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\0
 31]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\
-&gt;(?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+
+](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+
 (?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:
 (?:\r\n)?[ \t])*))*|(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z
 |(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)
@@ -8943,8 +8943,8 @@ r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\
 |\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r
 \n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:
 \r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t
-&gt;))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031
-&gt;+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](
+]))*"(?:(?:\r\n)?[ \t])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031
+]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](
 ?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?
 :(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?
 :\r\n)?[ \t])*))*\&gt;(?:(?:\r\n)?[ \t])*)|(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?
@@ -8963,7 +8963,7 @@ r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\
 :\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([
 ^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\"
 .\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\
-&gt;\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*(?:,@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
+]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*(?:,@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
 [\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\
 r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] 
 \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]
@@ -8975,17 +8975,17 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
 (?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".
 \[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[
 ^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]
-&gt;))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*\&gt;(?:(?:\r\n)?[ \t])*)(?:,\s*(
+]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*\&gt;(?:(?:\r\n)?[ \t])*)(?:,\s*(
 ?:(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\
 ".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)(?:\.(?:(
 ?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[
 \["()&lt;&gt;@,;:\\".\[\]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t
-&gt;)*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t
-&gt;)+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?
+])*))*@(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t
+])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?
 :\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|
 \Z|(?=[\["()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*))*|(?:
 [^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;@,;:\\".\[\
-&gt;]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)*\&lt;(?:(?:\r\n)
+]]))|"(?:[^\"\r\\]|\\.|(?:(?:\r\n)?[ \t]))*"(?:(?:\r\n)?[ \t])*)*\&lt;(?:(?:\r\n)
 ?[ \t])*(?:@(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["
 ()&lt;&gt;@,;:\\".\[\]]))|\[([^\[\]\r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)
 ?[ \t])*(?:[^()&lt;&gt;@,;:\\".\[\] \000-\031]+(?:(?:(?:\r\n)?[ \t])+|\Z|(?=[\["()&lt;&gt;
