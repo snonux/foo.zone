@@ -257,8 +257,6 @@ func CountFiles(dir string) (int, error) {
 }
 ```
 
-Etc...
-
 The code is quite straightforward, especially for generating boilerplate code this will be useful for many use cases!
 
 ## In-Editor Code Completion
