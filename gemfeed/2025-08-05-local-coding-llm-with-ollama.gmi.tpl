@@ -132,7 +132,7 @@ To get started, the only thing I had to do was to install it via Homebrew, initi
 
 ```sh
 brew install aider
-mkdir ~/git/aitest && cd ~/git/aitest && git init
+mkdir -p ~/git/aitest && cd ~/git/aitest && git init
 aider --model ollama_chat/qwen2.5-coder:14b-instruct
 ```
 
