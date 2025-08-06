@@ -14,7 +14,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Webring
 
-`shring` (sh-ring) is a small web of `unix-y` personal web (sorry, Gemini users) sites I am part of:
+`shring.sh` (sh-ring) is a small web of "unix-y" personal web (sorry, Gemini users) sites I am part of:
 
 => https://shring.sh/foo.zone/previous previous
 => https://shring.sh shring.sh
