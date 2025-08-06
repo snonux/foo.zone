@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-08-05T18:06:45+03:00 by `Gemtexter`
+> This site was generated at 2025-08-06T09:02:04+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -12,7 +12,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [My machine uptime statistics](./uptime-stats.md)  
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 
-## Webring
+### Webring
 
 `shring` (sh-ring) is a small web of `unix-y` personal web (sorry, Gemini users) sites I am part of:
 
