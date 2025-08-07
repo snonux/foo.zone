@@ -537,7 +537,8 @@ TODO: include k9s screenshot
 TODO: include a diagram again?
 TODO: increase replica of traefik to 2, persist config surviving reboots
 TODO: fix check-mounts script (mountpoint command and stale mounts... differentiate better)
-TODO: remove traefic metal lb pods? persist the change? 
+TODO: remove traefic metal lb pods? persist the change?
+TODO: use helm charts examples, but only after the initial apache example...
 
 Other *BSD-related posts:
 
