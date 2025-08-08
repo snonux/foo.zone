@@ -1309,6 +1309,30 @@ EOF
 
 Note: Each client must use its certificate file (`r0-key.pem`, `r1-key.pem`, `r2-key.pem`, or `earth-key.pem` - the latter is for my Laptop, which can also mount the NFS shares).
 
+### NFSv4 user mapping config on Rocky
+
+> Update: This section was added 08.08.2025!
+
+For this, we need to set the `Domain` in `/etc/idmapd.conf` on all 3 Rocky hosts to `lan.buetow.org` (remember, earlier in this blog post we set the `nfsuserd` domain on the NFS server side to `lan.buetow.org` as well!)
+
+```
+[General]
+
+Domain = lan.buetow.org
+.
+.
+.
+```
+
+And afterwards, we need to run the following on all 3 Rocky hosts::
+
+```sh
+[root@r0 ~]# systemctl enable --now nfs-idmapd
+[root@r0 ~]# systemctl enable --now nfs-client.target
+```
+
+and then, safest, reboot those.
+
 ### Testing NFS Mount with Stunnel
 
 To mount NFS through the stunnel encrypted tunnel, we run:
