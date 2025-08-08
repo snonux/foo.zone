@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-06T09:02:04+03:00</updated>
+    <updated>2025-08-08T18:20:01+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -484,7 +484,7 @@ content = "{CODE}"
         <title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
         <link href="gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi" />
         <id>gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi</id>
-        <updated>2025-07-13T16:44:29+03:00</updated>
+        <updated>2025-07-13T16:44:29+03:00, last updated: 08.08.2025</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -494,7 +494,7 @@ content = "{CODE}"
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -1398,11 +1398,15 @@ paul@f0:~ % doas sysrc nfsv4_server_enable=YES
 nfsv4_server_enable: YES -&gt; YES
 paul@f0:~ % doas sysrc nfsuserd_enable=YES
 nfsuserd_enable: YES -&gt; YES
+paul@f0:~ % doas sysrc nfsuserd_flags=<font color="#808080">"-domain lan.buetow.org"</font>
+nfsuserd_flags: <font color="#808080">""</font> -&gt; <font color="#808080">"-domain lan.buetow.org"</font>
 paul@f0:~ % doas sysrc mountd_enable=YES
 mountd_enable: NO -&gt; YES
 paul@f0:~ % doas sysrc rpcbind_enable=YES
 rpcbind_enable: NO -&gt; YES
 </pre>
+<br />
+<span class='quote'>Update: 08.08.2025: I&#39;ve added the domain to <span class='inlinecode'>nfsuserd_flags</span></span><br />
 <br />
 <span>And we also create a dedicated directory for Kubernetes volumes:</span><br />
 <br />
@@ -7446,18 +7450,20 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>root@f0:~ <i><font color="silver"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</font></i>
 daily_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-daily_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+daily_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
 daily_zfs_snapshot_keep=<font color="#808080">"7"</font>
 weekly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-weekly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+weekly_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
 weekly_zfs_snapshot_keep=<font color="#808080">"5"</font>
 monthly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-monthly_zfs_snapshot_pools=<font color="#808080">"zroot"</font>
+monthly_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
 monthly_zfs_snapshot_keep=<font color="#808080">"6"</font>
 END
 </pre>
 <br />
 <a class='textlink' href='https://github.com/ross/zfs-periodic'>https://github.com/ross/zfs-periodic</a><br />
+<br />
+<span>Note: We have also added <span class='inlinecode'>zdata</span> to the list of snapshot pools. Currently, this pool does not exist yet, but it will be created later in this blog series.</span><br />
 <br />
 <h3 style='display: inline' id='uptime-tracking'>Uptime tracking</h3><br />
 <br />
