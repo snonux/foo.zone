@@ -63,6 +63,7 @@
 <li>⇢ ⇢ <a href='#automatic-failback-after-reboot'>Automatic Failback After Reboot</a></li>
 <li>⇢ <a href='#client-configuration-for-nfs-via-stunnel'>Client Configuration for NFS via Stunnel</a></li>
 <li>⇢ ⇢ <a href='#configuring-rocky-linux-clients-r0-r1-r2'>Configuring Rocky Linux Clients (<span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>)</a></li>
+<li>⇢ ⇢ <a href='#nfsv4-user-mapping-config-on-rocky'>NFSv4 user mapping config on Rocky</a></li>
 <li>⇢ ⇢ <a href='#testing-nfs-mount-with-stunnel'>Testing NFS Mount with Stunnel</a></li>
 <li>⇢ ⇢ <a href='#testing-carp-failover-with-mounted-clients-and-stale-file-handles'>Testing CARP Failover with mounted clients and stale file handles:</a></li>
 <li>⇢ ⇢ <a href='#complete-failover-test'>Complete Failover Test</a></li>
@@ -1531,6 +1532,33 @@ EOF
 </pre>
 <br />
 <span>Note: Each client must use its certificate file (<span class='inlinecode'>r0-key.pem</span>, <span class='inlinecode'>r1-key.pem</span>, <span class='inlinecode'>r2-key.pem</span>, or <span class='inlinecode'>earth-key.pem</span> - the latter is for my Laptop, which can also mount the NFS shares).</span><br />
+<br />
+<h3 style='display: inline' id='nfsv4-user-mapping-config-on-rocky'>NFSv4 user mapping config on Rocky</h3><br />
+<br />
+<span class='quote'>Update: This section was added 08.08.2025!</span><br />
+<br />
+<span>For this, we need to set the <span class='inlinecode'>Domain</span> in <span class='inlinecode'>/etc/idmapd.conf</span> on all 3 Rocky hosts to <span class='inlinecode'>lan.buetow.org</span> (remember, earlier in this blog post we set the <span class='inlinecode'>nfsuserd</span> domain on the NFS server side to <span class='inlinecode'>lan.buetow.org</span> as well!)</span><br />
+<br />
+<pre>
+[General]
+
+Domain = lan.buetow.org
+.
+.
+.
+</pre>
+<br />
+<span>And afterwards, we need to run the following on all 3 Rocky hosts::</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># systemctl enable --now nfs-idmapd</font></i>
+[root@r0 ~]<i><font color="silver"># systemctl enable --now nfs-client.target</font></i>
+</pre>
+<br />
+<span>and then, safest, reboot those.</span><br />
 <br />
 <h3 style='display: inline' id='testing-nfs-mount-with-stunnel'>Testing NFS Mount with Stunnel</h3><br />
 <br />
