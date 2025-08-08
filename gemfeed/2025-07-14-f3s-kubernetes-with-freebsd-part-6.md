@@ -49,6 +49,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * [⇢ ⇢ ⇢ Automatic Failback After Reboot](#automatic-failback-after-reboot)
 * [⇢ ⇢ Client Configuration for NFS via Stunnel](#client-configuration-for-nfs-via-stunnel)
 * [⇢ ⇢ ⇢ Configuring Rocky Linux Clients (`r0`, `r1`, `r2`)](#configuring-rocky-linux-clients-r0-r1-r2)
+* [⇢ ⇢ ⇢ NFSv4 user mapping config on Rocky](#nfsv4-user-mapping-config-on-rocky)
 * [⇢ ⇢ ⇢ Testing NFS Mount with Stunnel](#testing-nfs-mount-with-stunnel)
 * [⇢ ⇢ ⇢ Testing CARP Failover with mounted clients and stale file handles:](#testing-carp-failover-with-mounted-clients-and-stale-file-handles)
 * [⇢ ⇢ ⇢ Complete Failover Test](#complete-failover-test)
@@ -1355,6 +1356,30 @@ EOF
 ```
 
 Note: Each client must use its certificate file (`r0-key.pem`, `r1-key.pem`, `r2-key.pem`, or `earth-key.pem` - the latter is for my Laptop, which can also mount the NFS shares).
+
+### NFSv4 user mapping config on Rocky
+
+> Update: This section was added 08.08.2025!
+
+For this, we need to set the `Domain` in `/etc/idmapd.conf` on all 3 Rocky hosts to `lan.buetow.org` (remember, earlier in this blog post we set the `nfsuserd` domain on the NFS server side to `lan.buetow.org` as well!)
+
+```
+[General]
+
+Domain = lan.buetow.org
+.
+.
+.
+```
+
+And afterwards, we need to run the following on all 3 Rocky hosts::
+
+```sh
+[root@r0 ~]# systemctl enable --now nfs-idmapd
+[root@r0 ~]# systemctl enable --now nfs-client.target
+```
+
+and then, safest, reboot those.
 
 ### Testing NFS Mount with Stunnel
 
