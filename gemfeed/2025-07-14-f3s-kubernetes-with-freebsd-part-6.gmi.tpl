@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-> Published at 2025-07-13T16:44:29+03:00
+> Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -751,11 +751,15 @@ paul@f0:~ % doas sysrc nfsv4_server_enable=YES
 nfsv4_server_enable: YES -> YES
 paul@f0:~ % doas sysrc nfsuserd_enable=YES
 nfsuserd_enable: YES -> YES
+paul@f0:~ % doas sysrc nfsuserd_flags="-domain lan.buetow.org"
+nfsuserd_flags: "" -> "-domain lan.buetow.org"
 paul@f0:~ % doas sysrc mountd_enable=YES
 mountd_enable: NO -> YES
 paul@f0:~ % doas sysrc rpcbind_enable=YES
 rpcbind_enable: NO -> YES
 ```
+
+> Update: 08.08.2025: I've added the domain to `nfsuserd_flags`
 
 And we also create a dedicated directory for Kubernetes volumes:
 
