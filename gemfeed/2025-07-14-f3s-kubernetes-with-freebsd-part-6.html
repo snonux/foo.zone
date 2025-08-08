@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -917,11 +917,15 @@ paul@f0:~ % doas sysrc nfsv4_server_enable=YES
 nfsv4_server_enable: YES -&gt; YES
 paul@f0:~ % doas sysrc nfsuserd_enable=YES
 nfsuserd_enable: YES -&gt; YES
+paul@f0:~ % doas sysrc nfsuserd_flags=<font color="#808080">"-domain lan.buetow.org"</font>
+nfsuserd_flags: <font color="#808080">""</font> -&gt; <font color="#808080">"-domain lan.buetow.org"</font>
 paul@f0:~ % doas sysrc mountd_enable=YES
 mountd_enable: NO -&gt; YES
 paul@f0:~ % doas sysrc rpcbind_enable=YES
 rpcbind_enable: NO -&gt; YES
 </pre>
+<br />
+<span class='quote'>Update: 08.08.2025: I&#39;ve added the domain to <span class='inlinecode'>nfsuserd_flags</span></span><br />
 <br />
 <span>And we also create a dedicated directory for Kubernetes volumes:</span><br />
 <br />
