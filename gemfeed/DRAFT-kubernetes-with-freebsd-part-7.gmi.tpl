@@ -539,6 +539,7 @@ TODO: increase replica of traefik to 2, persist config surviving reboots
 TODO: fix check-mounts script (mountpoint command and stale mounts... differentiate better)
 TODO: remove traefic metal lb pods? persist the change?
 TODO: use helm charts examples, but only after the initial apache example...
+TODO: how to set up the users for the NFSv4 user mapping (same user with same UIDs i ncontainer, on Rocky and on FreeBSD). also ensure, that the `id` command shows all the same. as there may be already entries/duplicates in the passwd files (e.g. tape group, etc)
 
 Other *BSD-related posts:
 
