@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Random Weird Things - Part Ⅲ</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-15-random-weird-things-iii.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-08-15-random-weird-things-iii.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅲ</h1><br />
+<br />
+<span class='quote'>Published at 2025-08-14T23:21:32+03:00</span><br />
+<br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. It would be neat to share them here from time to time. This is the third run.</span><br />
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ (You are currently reading this)</a><br />
+<br />
+<pre>
+ /\_/\        /\_/\        /\_/\
+( o.o ) WHOA!( o.o ) WHOA!( o.o )
+ &gt; ^ &lt;        &gt; ^ &lt;        &gt; ^ &lt;
+ /   \  MEOW! /   \  MOEEW!/   \
+/_____\      /_____\      /_____\
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅲ</a></li>
+<li>⇢ <a href='#21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</a></li>
+<li>⇢ <a href='#run-it-in-a-pdf'>Run it in a PDF</a></li>
+<li>⇢ ⇢ <a href='#22-doom-inside-a-pdf'>22. Doom inside a PDF</a></li>
+<li>⇢ ⇢ <a href='#23-linux-inside-a-pdf'>23. Linux inside a PDF</a></li>
+<li>⇢ <a href='#24-sqlite-loves-tcl'>24. SQLite loves Tcl</a></li>
+<li>⇢ <a href='#25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</a></li>
+<li>⇢ <a href='#26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</a></li>
+<li>⇢ <a href='#27-sre-means-sorry'>27. SRE means “Sorry…”</a></li>
+<li>⇢ <a href='#28-touch-grass-the-app'>28. Touch Grass, the app</a></li>
+<li>⇢ <a href='#29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</a></li>
+<li>⇢ <a href='#30-accidentally-turing-complete'>30. Accidentally Turing-complete</a></li>
+</ul><br />
+<h2 style='display: inline' id='21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</h2><br />
+<br />
+<span>Yes, really. Someone has implemented Doom to run within the TypeScript type system—compile-time madness, but fun to watch.</span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=0mCsluv5FXA'>Doom in the TS type system</a><br />
+<br />
+<span>TypeScript’s type checker is surprisingly expressive: conditional types, recursion, and template literal types let you encode nontrivial logic that “executes” during compilation. The demo exploits this to build a tiny ray-caster that renders as compiler errors or types. It’s wildly impractical, but a great reminder that enough expressiveness plus recursion tends to drift toward Turing completeness.</span><br />
+<br />
+<h2 style='display: inline' id='run-it-in-a-pdf'>Run it in a PDF</h2><br />
+<br />
+<h3 style='display: inline' id='22-doom-inside-a-pdf'>22. Doom inside a PDF</h3><br />
+<br />
+<span>Running Doom embedded in a PDF file. No separate binary—just a cursed document.</span><br />
+<br />
+<a class='textlink' href='https://github.com/ading2210/doompdf'>doompdf</a><br />
+<br />
+<span>This relies on features like PDF JavaScript and interactive objects, which some viewers still support. Expect mixed results: many modern readers sandbox or disable scripting by default for security. If you try it, use a compatible desktop viewer and be prepared for portability quirks.</span><br />
+<br />
+<h3 style='display: inline' id='23-linux-inside-a-pdf'>23. Linux inside a PDF</h3><br />
+<br />
+<span>Boot a tiny Linux inside a PDF. This rabbit hole goes deep.</span><br />
+<br />
+<a class='textlink' href='https://github.com/ading2210/linuxpdf'>linuxpdf</a><br />
+<br />
+<span>Like the Doom-in-PDF trick, this leans on the PDF runtime to host unconventional logic and rendering. It’s more of an art piece than a daily driver, but it shows how “document” formats can accidentally become platforms. The security posture of PDF viewers varies significantly, so expect inconsistent behaviour across different apps.</span><br />
+<br />
+<h2 style='display: inline' id='24-sqlite-loves-tcl'>24. SQLite loves Tcl</h2><br />
+<br />
+<span>SQLite was initially designed as a Tcl extension and still relies heavily on Tcl today: the amalgamated C source is generated by <span class='inlinecode'>mksqlite3c.tcl</span>, tests are written in Tcl, and even the documentation is built with it.</span><br />
+<br />
+<a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>Tcl 2017 paper</a><br />
+<br />
+<span>The famous single-file <span class='inlinecode'>sqlite3.c</span> is not hand-edited—developers maintain sources, plus build scripts that knit everything together deterministically. Their Tcl-centric tooling provides them with reproducible builds and a very opinionated workflow. It’s a great counterexample to the idea that “serious” projects must standardise on the most popular build stacks.</span><br />
+<br />
+<h2 style='display: inline' id='25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</h2><br />
+<br />
+<span>The SQLite folks use a custom Tcl/Tk editor called “e”, a homegrown VCS (Fossil), and even a Tcl/Tk chat room for development—peak bespoke tooling.</span><br />
+<br />
+<a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>More details in the paper</a><br />
+<br />
+<span>Fossil bundles source control, tickets, wiki, and a web UI into a single portable binary—no external services required. The “e” editor and chat complete a tight, integrated loop tailored to their team’s needs and constraints. It’s delightfully “boring tech” that has produced one of the most reliable databases on earth.</span><br />
+<br />
+<h2 style='display: inline' id='26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</h2><br />
+<br />
+<span>Drive <span class='inlinecode'>kubectl</span> from an <span class='inlinecode'>.xlsx</span> file because clusters belong in spreadsheets, apparently.</span><br />
+<br />
+<a class='textlink' href='https://github.com/learnk8s/xlskubectl'>xlskubectl</a><br />
+<br />
+<span>Resources are rows; columns map to fields; the tool renders YAML and applies it for you. It’s oddly ergonomic for demos, audits, or letting non‑YAML‑native teammates propose changes. Obviously, be careful—permissions and review gates still matter even if your “IDE” is Excel.</span><br />
+<br />
+<h2 style='display: inline' id='27-sre-means-sorry'>27. SRE means “Sorry…”</h2><br />
+<br />
+<span>An industry joke (or truth?) that SRE stands for “Sorry…”. </span><br />
+<br />
+<span>Anecdotes are a good reminder that failure is inevitable and empathy is essential. The best takeaways are about clear communication, graceful degradation, and blameless postmortems. Laughing helps, but guardrails and good on‑call hygiene help even more.</span><br />
+<br />
+<h2 style='display: inline' id='28-touch-grass-the-app'>28. Touch Grass, the app</h2><br />
+<br />
+<span>When screens consume too much, this site/app nudges you to go outside.</span><br />
+<br />
+<a class='textlink' href='https://touchgrass.now/'>Touch grass</a><br />
+<br />
+<span>It’s simple and playful—sometimes that’s the nudge you need to break doomscroll loops. Treat it like a micro‑ritual: set a reminder, step outside, reset. Your eyes (and nervous system) will thank you.</span><br />
+<br />
+<h2 style='display: inline' id='29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</h2><br />
+<br />
+<span>Use the C preprocessor to assemble a blog. It shouldn’t work this well—and yet.</span><br />
+<br />
+<a class='textlink' href='https://wheybags.com/blog/macroblog.html'>Macroblog with cpp</a><br />
+<br />
+<span>Posts are stitched together with <span class='inlinecode'>#include</span>s and macros, giving you DRY content blocks and repeatable builds. It’s hacky, fast, and delightfully text‑only—perfect for people who think makefiles are a UI. Would I recommend it for everyone? No. Is it charming and effective? Absolutely.</span><br />
+<br />
+<h2 style='display: inline' id='30-accidentally-turing-complete'>30. Accidentally Turing-complete</h2><br />
+<br />
+<span>A delightful catalogue of systems that unintentionally become Turing-complete.</span><br />
+<br />
+<a class='textlink' href='https://beza1e1.tuxen.de/articles/accidentally_turing_complete.html'>Accidentally Turing-complete</a><br />
+<br />
+<span>Give a system conditionals, state, and unbounded composition, and it often crosses the threshold into general computation—whether that was the goal or not. The list includes items such as CSS, regular expression dialects, and even card games. It’s a fun lens for understanding why “just a configuration language” can get complicated fast.</span><br />
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
