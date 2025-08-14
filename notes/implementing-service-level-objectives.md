@@ -11,19 +11,6 @@ These are my personal book notes of Alex Hidalgo's "Implementing Service Level O
 * [⇢ ⇢ ⇢ The Three Phases of SLO Implementation](#the-three-phases-of-slo-implementation)
 * [⇢ ⇢ ⇢ Phase 1: Defining SLOs](#phase-1-defining-slos)
 * [⇢ ⇢ ⇢ Phase 2: Collecting SLIs](#phase-2-collecting-slis)
-* # "Implementing Service Level Objectives" book notes
-
-These are my personal book notes of Alex Hidalgo's "Implementing Service Level Objectives: A Pratical Guide to SLIs, SLOs, and Error Budgets" They are for myself, but I hope they might be useful to you too.
-
-## Table of Contents
-
-* [⇢ "Implementing Service Level Objectives" book notes](#implementing-service-level-objectives-book-notes)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Importance of Documentation](#importance-of-documentation)
-* [⇢ ⇢ Implementation Phases](#implementation-phases)
-* [⇢ ⇢ ⇢ The Three Phases of SLO Implementation](#the-three-phases-of-slo-implementation)
-* [⇢ ⇢ ⇢ Phase 1: Defining SLOs](#phase-1-defining-slos)
-* [⇢ ⇢ ⇢ Phase 2: Collecting SLIs](#phase-2-collecting-slis)
 * [⇢ ⇢ ⇢ Phase 3: Utilizing SLOs](#phase-3-utilizing-slos)
 * [⇢ ⇢ Best Practices](#best-practices)
 

@@ -22,30 +22,6 @@
 * [⇢ ⇢ ⇢ High-Resolution Perception](#high-resolution-perception)
 * [⇢ ⇢ Mindfulness in Two Minutes](#mindfulness-in-two-minutes)
 * [⇢ ⇢ ⇢ Meditation is Exercise](#meditation-is-exercise)
-* # "Search Inside Yourself" book notes
-
-> Last updated 23.7.2024
-
-## Table of Contents
-
-* [⇢ "Search Inside Yourself" book notes](#search-inside-yourself-book-notes)
-* [⇢ ⇢ How to Master Your Mind in 100 Minutes](#how-to-master-your-mind-in-100-minutes)
-* [⇢ ⇢ Mindfulness and Personal Development](#mindfulness-and-personal-development)
-* [⇢ ⇢ Three Steps of "Search Inside Yourself"](#three-steps-of-search-inside-yourself)
-* [⇢ ⇢ Even an Engineer Can Thrive on Emotional Intelligence](#even-an-engineer-can-thrive-on-emotional-intelligence)
-* [⇢ ⇢ Emotional Intelligence Enables Three Important Skills](#emotional-intelligence-enables-three-important-skills)
-* [⇢ ⇢ ⇢ 1. Stellar Work Performance](#1-stellar-work-performance)
-* [⇢ ⇢ ⇢ 2. Outstanding Leadership](#2-outstanding-leadership)
-* [⇢ ⇢ ⇢ 3. The Ability to Create the Conditions for Happiness](#3-the-ability-to-create-the-conditions-for-happiness)
-* [⇢ ⇢ Attention Training](#attention-training)
-* [⇢ ⇢ ⇢ Train Attention](#train-attention)
-* [⇢ ⇢ Self-Knowledge and Self-Mastery](#self-knowledge-and-self-mastery)
-* [⇢ ⇢ Creating Useful Mental Habits](#creating-useful-mental-habits)
-* [⇢ ⇢ Optimize Thyself](#optimize-thyself)
-* [⇢ ⇢ Train at the Level of Physiology](#train-at-the-level-of-physiology)
-* [⇢ ⇢ ⇢ High-Resolution Perception](#high-resolution-perception)
-* [⇢ ⇢ Mindfulness in Two Minutes](#mindfulness-in-two-minutes)
-* [⇢ ⇢ ⇢ Meditation is Exercise](#meditation-is-exercise)
 * [⇢ ⇢ ⇢ Sustaining Your Practice](#sustaining-your-practice)
 * [⇢ ⇢ Breathing as if Your Life Depends on It](#breathing-as-if-your-life-depends-on-it)
 * [⇢ ⇢ Happiness is the Default State of Mind](#happiness-is-the-default-state-of-mind)

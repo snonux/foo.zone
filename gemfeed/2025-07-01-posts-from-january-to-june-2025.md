@@ -50,58 +50,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ Neat little blog post, showcasing various ...](#neat-little-blog-post-showcasing-various-)
 * [⇢ ⇢ ⇢ The smallest thing in Go `#golang` ...](#the-smallest-thing-in-go-golang-)
 * [⇢ ⇢ ⇢ Fun with defer in `#golang`, I did't know, that ...](#fun-with-defer-in-golang-i-did-t-know-that-)
-* # Posts from January to June 2025
-
-> Published at 2025-07-01T22:39:29+03:00
-
-These are my social media posts from the last six months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. 
-
-These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
-
-[My about page](../about/index.md)  
-[https://codeberg.org/snonux/gos](https://codeberg.org/snonux/gos)  
-
-## Table of Contents
-
-* [⇢ Posts from January to June 2025](#posts-from-january-to-june-2025)
-* [⇢ ⇢ January 2025](#january-2025)
-* [⇢ ⇢ ⇢ I am currently binge-listening to the Google ...](#i-am-currently-binge-listening-to-the-google-)
-* [⇢ ⇢ ⇢ Recently, there was a >5000 LOC `#bash` ...](#recently-there-was-a-5000-loc-bash-)
-* [⇢ ⇢ ⇢ Ghostty is a terminal emulator that was ...](#ghostty-is-a-terminal-emulator-that-was-)
-* [⇢ ⇢ ⇢ Go is not an easy programming language. Don't ...](#go-is-not-an-easy-programming-language-don-t-)
-* [⇢ ⇢ ⇢ How will AI change software engineering (or has ...](#how-will-ai-change-software-engineering-or-has-)
-* [⇢ ⇢ ⇢ Eliminating toil - Toil is not always a bad ...](#eliminating-toil---toil-is-not-always-a-bad-)
-* [⇢ ⇢ ⇢ Fun read. How about using the character ...](#fun-read-how-about-using-the-character-)
-* [⇢ ⇢ ⇢ Thats unexpected, you cant remove a NaN key ...](#thats-unexpected-you-cant-remove-a-nan-key-)
-* [⇢ ⇢ ⇢ Nice refresher for `#shell` `#bash` `#zsh` ...](#nice-refresher-for-shell-bash-zsh-)
-* [⇢ ⇢ ⇢ I think discussing action items in incident ...](#i-think-discussing-action-items-in-incident-)
-* [⇢ ⇢ ⇢ At first, functional options add a bit of ...](#at-first-functional-options-add-a-bit-of-)
-* [⇢ ⇢ ⇢ In the "Working with an SRE Interview" I have ...](#in-the-working-with-an-sre-interview-i-have-)
-* [⇢ ⇢ ⇢ Small introduction to the `#Android` ...](#small-introduction-to-the-android-)
-* [⇢ ⇢ ⇢ Helix 2025.01 has been released. The completion ...](#helix-202501-has-been-released-the-completion-)
-* [⇢ ⇢ ⇢ I found these are excellent examples of how ...](#i-found-these-are-excellent-examples-of-how-)
-* [⇢ ⇢ ⇢ LLMs for Ops? Summaries of logs, probabilities ...](#llms-for-ops-summaries-of-logs-probabilities-)
-* [⇢ ⇢ ⇢ Enjoying an APC Power-UPS BX750MI in my ...](#enjoying-an-apc-power-ups-bx750mi-in-my-)
-* [⇢ ⇢ ⇢ "Even in the projects where I'm the only ...](#even-in-the-projects-where-i-m-the-only-)
-* [⇢ ⇢ ⇢ Connecting an `#UPS` to my `#FreeBSD` cluster ...](#connecting-an-ups-to-my-freebsd-cluster-)
-* [⇢ ⇢ ⇢ So, the Co-founder and CTO of honeycomb.io and ...](#so-the-co-founder-and-cto-of-honeycombio-and-)
-* [⇢ ⇢ February 2025](#february-2025)
-* [⇢ ⇢ ⇢ I don't know about you, but at work, I usually ...](#i-don-t-know-about-you-but-at-work-i-usually-)
-* [⇢ ⇢ ⇢ Great proposal (got accepted by the Goteam) for ...](#great-proposal-got-accepted-by-the-goteam-for-)
-* [⇢ ⇢ ⇢ My Gemtexter has only 1320 LOC.... The Biggest ...](#my-gemtexter-has-only-1320-loc-the-biggest-)
-* [⇢ ⇢ ⇢ Against /tmp - He is making a point `#unix` ...](#against-tmp---he-is-making-a-point-unix-)
-* [⇢ ⇢ ⇢ Random Weird Things Part 2: `#blog` ...](#random-weird-things-part-2-blog-)
-* [⇢ ⇢ ⇢ As a former `#Pebble` user and fan, thats ...](#as-a-former-pebble-user-and-fan-thats-)
-* [⇢ ⇢ ⇢ I think I am slowly getting the point of Cue. ...](#i-think-i-am-slowly-getting-the-point-of-cue-)
-* [⇢ ⇢ ⇢ Jonathan's reflection of 10 years of ...](#jonathan-s-reflection-of-10-years-of-)
-* [⇢ ⇢ ⇢ Really enjoyed reading this. Easily digestible ...](#really-enjoyed-reading-this-easily-digestible-)
-* [⇢ ⇢ ⇢ Some great advice from 40 years of experience ...](#some-great-advice-from-40-years-of-experience-)
-* [⇢ ⇢ ⇢ I enjoyed this talk, some recipes I knew ...](#i-enjoyed-this-talk-some-recipes-i-knew-)
-* [⇢ ⇢ ⇢ A way of how to add the version info to the Go ...](#a-way-of-how-to-add-the-version-info-to-the-go-)
-* [⇢ ⇢ ⇢ In other words, using t.Parallel() for ...](#in-other-words-using-tparallel-for-)
-* [⇢ ⇢ ⇢ Neat little blog post, showcasing various ...](#neat-little-blog-post-showcasing-various-)
-* [⇢ ⇢ ⇢ The smallest thing in Go `#golang` ...](#the-smallest-thing-in-go-golang-)
-* [⇢ ⇢ ⇢ Fun with defer in `#golang`, I did't know, that ...](#fun-with-defer-in-golang-i-did-t-know-that-)
 * [⇢ ⇢ ⇢ What I like about Go is that it is still ...](#what-i-like-about-go-is-that-it-is-still-)
 * [⇢ ⇢ March 2025](#march-2025)
 * [⇢ ⇢ ⇢ Television has somewhat transformed how I work ...](#television-has-somewhat-transformed-how-i-work-)

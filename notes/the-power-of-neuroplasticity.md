@@ -10,18 +10,6 @@ These notes capture key points from "The Power of Neuroplasticity" by Shad Helms
 * [⇢ ⇢ Choose the friends you spend time woth carefully](#choose-the-friends-you-spend-time-woth-carefully)
 * [⇢ ⇢ Beware of the brain's autopilot](#beware-of-the-brain-s-autopilot)
 * [⇢ ⇢ Cultiate a positive mindset](#cultiate-a-positive-mindset)
-* # "The Power of Neuroplasticity" book notes
-
-These notes capture key points from "The Power of Neuroplasticity" by Shad Helmstetter. These are for my personal use, but you might find them useful, too.
-
-## Table of Contents
-
-* [⇢ "The Power of Neuroplasticity" book notes](#the-power-of-neuroplasticity-book-notes)
-* [⇢ ⇢ Your thoughts can influence changes in your brain](#your-thoughts-can-influence-changes-in-your-brain)
-* [⇢ ⇢ Wire on what we can do and not what we can't](#wire-on-what-we-can-do-and-not-what-we-can-t)
-* [⇢ ⇢ Choose the friends you spend time woth carefully](#choose-the-friends-you-spend-time-woth-carefully)
-* [⇢ ⇢ Beware of the brain's autopilot](#beware-of-the-brain-s-autopilot)
-* [⇢ ⇢ Cultiate a positive mindset](#cultiate-a-positive-mindset)
 * [⇢ ⇢ The monkey mind](#the-monkey-mind)
 * [⇢ ⇢ Wiring good attitudes](#wiring-good-attitudes)
 * [⇢ ⇢ Techniques to train the brain](#techniques-to-train-the-brain)

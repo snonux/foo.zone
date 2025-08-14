@@ -58,66 +58,6 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ Excellent article about your dream Product ...](#excellent-article-about-your-dream-product-)
 * [⇢ ⇢ ⇢ I just finished reading all chapters of CPU ...](#i-just-finished-reading-all-chapters-of-cpu-)
 * [⇢ ⇢ ⇢ Indeed, useful to know this stuff! `#sre` ...](#indeed-useful-to-know-this-stuff-sre-)
-* # Posts from October to December 2024
-
-> Published at 2024-12-31T18:09:58+02:00
-
-Happy new year!
-
-These are my social media posts from the last three months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. 
-
-These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
-
-[My about page](../about/index.md)  
-[https://codeberg.org/snonux/gos](https://codeberg.org/snonux/gos)  
-
-## Table of Contents
-
-* [⇢ Posts from October to December 2024](#posts-from-october-to-december-2024)
-* [⇢ ⇢ October 2024](#october-2024)
-* [⇢ ⇢ ⇢ First on-call experience in a startup. Doesn't ...](#first-on-call-experience-in-a-startup-doesn-t-)
-* [⇢ ⇢ ⇢ Reviewing your own PR or MR before asking ...](#reviewing-your-own-pr-or-mr-before-asking-)
-* [⇢ ⇢ ⇢ Fun with defer in `#golang`, I did't know, that ...](#fun-with-defer-in-golang-i-did-t-know-that-)
-* [⇢ ⇢ ⇢ I have been in incidents. Understandably, ...](#i-have-been-in-incidents-understandably-)
-* [⇢ ⇢ ⇢ Little tips using strings in `#golang` and I ...](#little-tips-using-strings-in-golang-and-i-)
-* [⇢ ⇢ ⇢ Reading this post about `#rust` (especially the ...](#reading-this-post-about-rust-especially-the-)
-* [⇢ ⇢ ⇢ The opposite of `#ChaosMonkey` ... ...](#the-opposite-of-chaosmonkey--)
-* [⇢ ⇢ November 2024](#november-2024)
-* [⇢ ⇢ ⇢ I just became a Silver Patreon for OSnews. What ...](#i-just-became-a-silver-patreon-for-osnews-what-)
-* [⇢ ⇢ ⇢ Until now, I wasn't aware, that Go is under a ...](#until-now-i-wasn-t-aware-that-go-is-under-a-)
-* [⇢ ⇢ ⇢ These are some book notes from "Staff Engineer" ...](#these-are-some-book-notes-from-staff-engineer-)
-* [⇢ ⇢ ⇢ Looking at `#Kubernetes`, it's pretty much ...](#looking-at-kubernetes-it-s-pretty-much-)
-* [⇢ ⇢ ⇢ There has been an outage at the upstream ...](#there-has-been-an-outage-at-the-upstream-)
-* [⇢ ⇢ ⇢ One of the more confusing parts in Go, nil ...](#one-of-the-more-confusing-parts-in-go-nil-)
-* [⇢ ⇢ ⇢ Agreeably, writing down with Diagrams helps you ...](#agreeably-writing-down-with-diagrams-helps-you-)
-* [⇢ ⇢ ⇢ I like the idea of types in Ruby. Raku is ...](#i-like-the-idea-of-types-in-ruby-raku-is-)
-* [⇢ ⇢ ⇢ So, `#Haskell` is better suited for general ...](#so-haskell-is-better-suited-for-general-)
-* [⇢ ⇢ ⇢ At first, functional options add a bit of ...](#at-first-functional-options-add-a-bit-of-)
-* [⇢ ⇢ ⇢ Revamping my home lab a little bit. `#freebsd` ...](#revamping-my-home-lab-a-little-bit-freebsd-)
-* [⇢ ⇢ ⇢ Wondering to which `#web` `#browser` I should ...](#wondering-to-which-web-browser-i-should-)
-* [⇢ ⇢ ⇢ eks-node-viewer is a nifty tool, showing the ...](#eks-node-viewer-is-a-nifty-tool-showing-the-)
-* [⇢ ⇢ ⇢ Have put more Photos on - On my static photo ...](#have-put-more-photos-on---on-my-static-photo-)
-* [⇢ ⇢ ⇢ In Go, passing pointers are not automatically ...](#in-go-passing-pointers-are-not-automatically-)
-* [⇢ ⇢ ⇢ Myself being part of an on-call rotations over ...](#myself-being-part-of-an-on-call-rotations-over-)
-* [⇢ ⇢ ⇢ Feels good to code in my old love `#Perl` again ...](#feels-good-to-code-in-my-old-love-perl-again-)
-* [⇢ ⇢ ⇢ This is an interactive summary of the Go ...](#this-is-an-interactive-summary-of-the-go-)
-* [⇢ ⇢ December 2024](#december-2024)
-* [⇢ ⇢ ⇢ Thats unexpected, you cant remove a NaN key ...](#thats-unexpected-you-cant-remove-a-nan-key-)
-* [⇢ ⇢ ⇢ My second blog post about revamping my home lab ...](#my-second-blog-post-about-revamping-my-home-lab-)
-* [⇢ ⇢ ⇢ Very insightful article about tech hiring in ...](#very-insightful-article-about-tech-hiring-in-)
-* [⇢ ⇢ ⇢ for `#bpf` `#ebpf` performance debugging, have ...](#for-bpf-ebpf-performance-debugging-have-)
-* [⇢ ⇢ ⇢ 89 things he/she knows about Git commits is a ...](#89-things-heshe-knows-about-git-commits-is-a-)
-* [⇢ ⇢ ⇢ I found that working on multiple side projects ...](#i-found-that-working-on-multiple-side-projects-)
-* [⇢ ⇢ ⇢ Agreed? Agreed. Besides `#Ruby`, I would also ...](#agreed-agreed-besides-ruby-i-would-also-)
-* [⇢ ⇢ ⇢ Plan9 assembly format in Go, but wait, it's not ...](#plan9-assembly-format-in-go-but-wait-it-s-not-)
-* [⇢ ⇢ ⇢ This is a neat blog post about the Helix text ...](#this-is-a-neat-blog-post-about-the-helix-text-)
-* [⇢ ⇢ ⇢ This blog post is basically a rant against ...](#this-blog-post-is-basically-a-rant-against-)
-* [⇢ ⇢ ⇢ Quick trick to get Helix themes selected ...](#quick-trick-to-get-helix-themes-selected-)
-* [⇢ ⇢ ⇢ Example where complexity attacks you from ...](#example-where-complexity-attacks-you-from-)
-* [⇢ ⇢ ⇢ LLMs for Ops? Summaries of logs, probabilities ...](#llms-for-ops-summaries-of-logs-probabilities-)
-* [⇢ ⇢ ⇢ Excellent article about your dream Product ...](#excellent-article-about-your-dream-product-)
-* [⇢ ⇢ ⇢ I just finished reading all chapters of CPU ...](#i-just-finished-reading-all-chapters-of-cpu-)
-* [⇢ ⇢ ⇢ Indeed, useful to know this stuff! `#sre` ...](#indeed-useful-to-know-this-stuff-sre-)
 * [⇢ ⇢ ⇢ It's the small things, which make Unix like ...](#it-s-the-small-things-which-make-unix-like-)
 * [⇢ ⇢ ⇢ My New Year's resolution is not to start any ...](#my-new-year-s-resolution-is-not-to-start-any-)
 

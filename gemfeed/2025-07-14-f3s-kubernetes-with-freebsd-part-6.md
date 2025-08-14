@@ -50,58 +50,6 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * [⇢ ⇢ Client Configuration for NFS via Stunnel](#client-configuration-for-nfs-via-stunnel)
 * [⇢ ⇢ ⇢ Configuring Rocky Linux Clients (`r0`, `r1`, `r2`)](#configuring-rocky-linux-clients-r0-r1-r2)
 * [⇢ ⇢ ⇢ NFSv4 user mapping config on Rocky](#nfsv4-user-mapping-config-on-rocky)
-* # f3s: Kubernetes with FreeBSD - Part 6: Storage
-
-> Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025
-
-This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
-
-[2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
-[2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
-[2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts](./2025-02-01-f3s-kubernetes-with-freebsd-part-3.md)  
-[2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
-[2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
-[2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
-
-[![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
-
-## Table of Contents
-
-* [⇢ f3s: Kubernetes with FreeBSD - Part 6: Storage](#f3s-kubernetes-with-freebsd---part-6-storage)
-* [⇢ ⇢ Introduction](#introduction)
-* [⇢ ⇢ Additional storage capacity](#additional-storage-capacity)
-* [⇢ ⇢ ZFS encryption keys](#zfs-encryption-keys)
-* [⇢ ⇢ ⇢ UFS on USB keys](#ufs-on-usb-keys)
-* [⇢ ⇢ ⇢ Generating encryption keys](#generating-encryption-keys)
-* [⇢ ⇢ ⇢ Configuring `zdata` ZFS pool encryption](#configuring-zdata-zfs-pool-encryption)
-* [⇢ ⇢ ⇢ Migrating Bhyve VMs to an encrypted `bhyve` ZFS volume](#migrating-bhyve-vms-to-an-encrypted-bhyve-zfs-volume)
-* [⇢ ⇢ ZFS Replication with `zrepl`](#zfs-replication-with-zrepl)
-* [⇢ ⇢ ⇢ Understanding Replication Requirements](#understanding-replication-requirements)
-* [⇢ ⇢ ⇢ Installing `zrepl`](#installing-zrepl)
-* [⇢ ⇢ ⇢ Configuring `zrepl` on `f1` (sink)](#configuring-zrepl-on-f1-sink)
-* [⇢ ⇢ ⇢ Enabling and starting `zrepl` services](#enabling-and-starting-zrepl-services)
-* [⇢ ⇢ ⇢ Monitoring replication](#monitoring-replication)
-* [⇢ ⇢ ⇢ Verifying replication after reboot](#verifying-replication-after-reboot)
-* [⇢ ⇢ ⇢ Understanding Failover Limitations and Design Decisions](#understanding-failover-limitations-and-design-decisions)
-* [⇢ ⇢ ⇢ Mounting the NFS datasets](#mounting-the-nfs-datasets)
-* [⇢ ⇢ ⇢ Troubleshooting: Files not appearing in replication](#troubleshooting-files-not-appearing-in-replication)
-* [⇢ ⇢ ⇢ Configuring automatic key loading on boot](#configuring-automatic-key-loading-on-boot)
-* [⇢ ⇢ CARP (Common Address Redundancy Protocol)](#carp-common-address-redundancy-protocol)
-* [⇢ ⇢ ⇢ How CARP Works](#how-carp-works)
-* [⇢ ⇢ ⇢ Configuring CARP](#configuring-carp)
-* [⇢ ⇢ ⇢ CARP State Change Notifications](#carp-state-change-notifications)
-* [⇢ ⇢ NFS Server Configuration](#nfs-server-configuration)
-* [⇢ ⇢ ⇢ Setting up NFS on `f0` (Primary)](#setting-up-nfs-on-f0-primary)
-* [⇢ ⇢ ⇢ Configuring Stunnel for NFS Encryption with CARP Failover](#configuring-stunnel-for-nfs-encryption-with-carp-failover)
-* [⇢ ⇢ ⇢ Creating a Certificate Authority for Client Authentication](#creating-a-certificate-authority-for-client-authentication)
-* [⇢ ⇢ ⇢ Install and Configure Stunnel on `f0`](#install-and-configure-stunnel-on-f0)
-* [⇢ ⇢ ⇢ Setting up NFS on `f1` (Standby)](#setting-up-nfs-on-f1-standby)
-* [⇢ ⇢ ⇢ CARP Control Script for Clean Failover](#carp-control-script-for-clean-failover)
-* [⇢ ⇢ ⇢ CARP Management Script](#carp-management-script)
-* [⇢ ⇢ ⇢ Automatic Failback After Reboot](#automatic-failback-after-reboot)
-* [⇢ ⇢ Client Configuration for NFS via Stunnel](#client-configuration-for-nfs-via-stunnel)
-* [⇢ ⇢ ⇢ Configuring Rocky Linux Clients (`r0`, `r1`, `r2`)](#configuring-rocky-linux-clients-r0-r1-r2)
-* [⇢ ⇢ ⇢ NFSv4 user mapping config on Rocky](#nfsv4-user-mapping-config-on-rocky)
 * [⇢ ⇢ ⇢ Testing NFS Mount with Stunnel](#testing-nfs-mount-with-stunnel)
 * [⇢ ⇢ ⇢ Testing CARP Failover with mounted clients and stale file handles:](#testing-carp-failover-with-mounted-clients-and-stale-file-handles)
 * [⇢ ⇢ ⇢ Complete Failover Test](#complete-failover-test)

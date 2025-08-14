@@ -24,32 +24,6 @@ These are my personal takeaways after reading "Staff Engineer" by Will Larson. N
 * [⇢ ⇢ Breadth and Depth of Knowledge](#breadth-and-depth-of-knowledge)
 * [⇢ ⇢ Mentorship and Sponsorship](#mentorship-and-sponsorship)
 * [⇢ ⇢ Managing Up and Across](#managing-up-and-across)
-* # "Staff Engineer" book notes
-
-> Published at 2024-10-24T20:57:44+03:00
-
-These are my personal takeaways after reading "Staff Engineer" by Will Larson. Note that the book contains much more knowledge wisdom and that these notes only contain points I personally found worth writing down. This is mainly for my own use, but you might find it helpful too.
-
-```
-         ,..........   ..........,
-     ,..,'          '.'          ',..,
-    ,' ,'            :            ', ',
-   ,' ,'             :             ', ',
-  ,' ,'              :              ', ',
- ,' ,'............., : ,.............', ',
-,'  '............   '.'   ............'  ',
- '''''''''''''''''';''';''''''''''''''''''
-                    '''
-```
-
-## Table of Contents
-
-* [⇢ "Staff Engineer" book notes](#staff-engineer-book-notes)
-* [⇢ ⇢ The Four Archetypes of a Staff Engineer](#the-four-archetypes-of-a-staff-engineer)
-* [⇢ ⇢ Influence and Impact over Authority](#influence-and-impact-over-authority)
-* [⇢ ⇢ Breadth and Depth of Knowledge](#breadth-and-depth-of-knowledge)
-* [⇢ ⇢ Mentorship and Sponsorship](#mentorship-and-sponsorship)
-* [⇢ ⇢ Managing Up and Across](#managing-up-and-across)
 * [⇢ ⇢ Strategic Thinking](#strategic-thinking)
 * [⇢ ⇢ Emotional Intelligence](#emotional-intelligence)
 * [⇢ ⇢ Navigating Ambiguity](#navigating-ambiguity)
