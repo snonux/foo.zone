@@ -5,6 +5,13 @@ These are my personal book notes of Niall Richard Murphy's "Site Reliability Eng
 ## Table of Contents
 
 * [⇢ "Site Reliability Engineering" book notes](#site-reliability-engineering-book-notes)
+* # "Site Reliability Engineering" book notes
+
+These are my personal book notes of Niall Richard Murphy's "Site Reliability Engineering: How Google Runs Production systems". They are for myself, but I hope they might be useful to you too.
+
+## Table of Contents
+
+* [⇢ "Site Reliability Engineering" book notes](#site-reliability-engineering-book-notes)
 * [⇢ ⇢ Key Concepts in SRE](#key-concepts-in-sre)
 * [⇢ ⇢ ⇢ Role of an SRE:](#role-of-an-sre)
 * [⇢ ⇢ ⇢ Error Budget](#error-budget)

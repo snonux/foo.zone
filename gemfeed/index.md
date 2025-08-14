@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-08-15 - Random Weird Things - Part Ⅲ](./2025-08-15-random-weird-things-iii.md)  
 [2025-08-05 - Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-07-14 - f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-07-01 - Posts from January to June 2025](./2025-07-01-posts-from-january-to-june-2025.md)  

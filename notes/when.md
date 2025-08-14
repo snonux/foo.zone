@@ -18,6 +18,26 @@ __ejm\___/________dwb`---`______________________
 
 ## Table of Contents
 
+* # "When: The Scientific Secrets of Perfect Timing" book notes
+
+> Published at 2025-04-19T10:26:05+03:00
+
+These are my personal book notes from Daniel Pink's "When: The Scientific Secrets of Perfect Timing." They are for me, but I hope they might be useful to you too.
+
+```
+	  __
+ (`/\
+ `=\/\ __...--~~~~~-._   _.-~~~~~--...__
+  `=\/\               \ /               \\
+   `=\/                V                 \\
+   //_\___--~~~~~~-._  |  _.-~~~~~~--...__\\
+  //  ) (..----~~~~._\ | /_.~~~~----.....__\\
+ ===( INK )==========\\|//====================
+__ejm\___/________dwb`---`______________________
+```
+
+## Table of Contents
+
 * [⇢ "When: The Scientific Secrets of Perfect Timing" book notes](#when-the-scientific-secrets-of-perfect-timing-book-notes)
 * [⇢ ⇢ Daily Rhythms](#daily-rhythms)
 * [⇢ ⇢ Optimal Task Timing](#optimal-task-timing)

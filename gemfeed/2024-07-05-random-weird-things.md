@@ -6,6 +6,7 @@ Every so often, I come across random, weird, and unexpected things on the intern
 
 [2024-07-05 Random Weird Things - Part Ⅰ (You are currently reading this)](./2024-07-05-random-weird-things.md)  
 [2025-02-08 Random Weird Things - Part Ⅱ](./2025-02-08-random-weird-things-ii.md)  
+[2025-08-15 Random Weird Things - Part Ⅲ](./2025-08-15-random-weird-things-iii.md)  
 
 ```
 		       /\_/\

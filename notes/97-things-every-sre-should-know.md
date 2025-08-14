@@ -16,6 +16,24 @@ These are my personal book notes of Emil Stolarsky's and Jaime Woo's "97 Things 
 * [⇢ ⇢ Runbooks](#runbooks)
 * [⇢ ⇢ Alerts per shift](#alerts-per-shift)
 * [⇢ ⇢ Balancing velocity](#balancing-velocity)
+* # "97 Things Every SRE Should Know" book notes
+
+These are my personal book notes of Emil Stolarsky's and Jaime Woo's "97 Things Every SRE Should Know". They are for myself, but I hope they might be useful to you too.
+
+## Table of Contents
+
+* [⇢ "97 Things Every SRE Should Know" book notes](#97-things-every-sre-should-know-book-notes)
+* [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Observability](#observability)
+* [⇢ ⇢ The ancient art of writing things down](#the-ancient-art-of-writing-things-down)
+* [⇢ ⇢ The teams health](#the-teams-health)
+* [⇢ ⇢ Sharing responsibilities](#sharing-responsibilities)
+* [⇢ ⇢ The roles and the solo SRE](#the-roles-and-the-solo-sre)
+* [⇢ ⇢ Being customer-focused](#being-customer-focused)
+* [⇢ ⇢ Don't have all the answers](#don-t-have-all-the-answers)
+* [⇢ ⇢ Runbooks](#runbooks)
+* [⇢ ⇢ Alerts per shift](#alerts-per-shift)
+* [⇢ ⇢ Balancing velocity](#balancing-velocity)
 * [⇢ ⇢ The power in knowing how to be self-sufficient](#the-power-in-knowing-how-to-be-self-sufficient)
 * [⇢ ⇢ Prioritize towards the overall reliability goal](#prioritize-towards-the-overall-reliability-goal)
 * [⇢ ⇢ The quiet time vs the burnout](#the-quiet-time-vs-the-burnout)

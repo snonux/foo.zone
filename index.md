@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-08-08T18:47:55+03:00 by `Gemtexter`
+> This site was generated at 2025-08-14T23:22:50+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2025-08-15 - Random Weird Things - Part Ⅲ](./gemfeed/2025-08-15-random-weird-things-iii.md)  
 [2025-08-05 - Local LLM for Coding with Ollama on macOS](./gemfeed/2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-07-14 - f3s: Kubernetes with FreeBSD - Part 6: Storage](./gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-07-01 - Posts from January to June 2025](./gemfeed/2025-07-01-posts-from-january-to-june-2025.md)  

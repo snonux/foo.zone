@@ -18,6 +18,26 @@
 * [⇢ ⇢ Confidence and Equanimity](#confidence-and-equanimity)
 * [⇢ ⇢ Resilience and Growth](#resilience-and-growth)
 * [⇢ ⇢ Experiencing Joy](#experiencing-joy)
+* # "Joy On Domand" book notes
+
+## Table of Contents
+
+* [⇢ "Joy On Domand" book notes](#joy-on-domand-book-notes)
+* [⇢ ⇢ Mindfulness and Joy](#mindfulness-and-joy)
+* [⇢ ⇢ Joy and Happiness](#joy-and-happiness)
+* [⇢ ⇢ Training Joy: Easing, Inclining, and Uplifting](#training-joy-easing-inclining-and-uplifting)
+* [⇢ ⇢ Joy and Pain](#joy-and-pain)
+* [⇢ ⇢ Path to Happiness](#path-to-happiness)
+* [⇢ ⇢ Difference Between Joy and Happiness](#difference-between-joy-and-happiness)
+* [⇢ ⇢ The Spiral of Joy and Practice](#the-spiral-of-joy-and-practice)
+* [⇢ ⇢ Inner Peace and Pain](#inner-peace-and-pain)
+* [⇢ ⇢ Benefits of Mind Training](#benefits-of-mind-training)
+* [⇢ ⇢ Practicing Mind Training](#practicing-mind-training)
+* [⇢ ⇢ Creativity and Mindfulness](#creativity-and-mindfulness)
+* [⇢ ⇢ The Joyful Mind and Creativity](#the-joyful-mind-and-creativity)
+* [⇢ ⇢ Confidence and Equanimity](#confidence-and-equanimity)
+* [⇢ ⇢ Resilience and Growth](#resilience-and-growth)
+* [⇢ ⇢ Experiencing Joy](#experiencing-joy)
 * [⇢ ⇢ Compassion and Joy](#compassion-and-joy)
 * [⇢ ⇢ Meditation and Mindfulness](#meditation-and-mindfulness)
 * [⇢ ⇢ The Joy of Exercise](#the-joy-of-exercise)
