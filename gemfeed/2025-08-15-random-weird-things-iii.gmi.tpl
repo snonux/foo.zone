@@ -68,7 +68,7 @@ Resources are rows; columns map to fields; the tool renders YAML and applies it 
 
 ## 27. SRE means “Sorry…”
 
-An industry joke (or truth?) that SRE stands for “Sorry…”. 
+An industry joke (or truth?) that SRE (short for Site Reliability Engineer) stands for “Sorry…”. 
 
 Anecdotes are a good reminder that failure is inevitable and empathy is essential. The best takeaways are about clear communication, graceful degradation, and blameless postmortems. Laughing helps, but guardrails and good on‑call hygiene help even more.
 
