@@ -1,11 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-08-08T18:47:55+03:00</updated>
+    <updated>2025-08-14T23:22:50+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Random Weird Things - Part Ⅲ</title>
+        <link href="gemini://foo.zone/gemfeed/2025-08-15-random-weird-things-iii.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-08-15-random-weird-things-iii.gmi</id>
+        <updated>2025-08-14T23:21:32+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Every so often, I come across random, weird, and unexpected things on the internet. It would be neat to share them here from time to time. This is the third run.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅲ</h1><br />
+<br />
+<span class='quote'>Published at 2025-08-14T23:21:32+03:00</span><br />
+<br />
+<span>Every so often, I come across random, weird, and unexpected things on the internet. It would be neat to share them here from time to time. This is the third run.</span><br />
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ (You are currently reading this)</a><br />
+<br />
+<pre>
+ /\_/\        /\_/\        /\_/\
+( o.o ) WHOA!( o.o ) WHOA!( o.o )
+ &gt; ^ &lt;        &gt; ^ &lt;        &gt; ^ &lt;
+ /   \  MEOW! /   \  MOEEW!/   \
+/_____\      /_____\      /_____\
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅲ</a></li>
+<li>⇢ <a href='#21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</a></li>
+<li>⇢ <a href='#run-it-in-a-pdf'>Run it in a PDF</a></li>
+<li>⇢ ⇢ <a href='#22-doom-inside-a-pdf'>22. Doom inside a PDF</a></li>
+<li>⇢ ⇢ <a href='#23-linux-inside-a-pdf'>23. Linux inside a PDF</a></li>
+<li>⇢ <a href='#24-sqlite-loves-tcl'>24. SQLite loves Tcl</a></li>
+<li>⇢ <a href='#25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</a></li>
+<li>⇢ <a href='#26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</a></li>
+<li>⇢ <a href='#27-sre-means-sorry'>27. SRE means “Sorry…”</a></li>
+<li>⇢ <a href='#28-touch-grass-the-app'>28. Touch Grass, the app</a></li>
+<li>⇢ <a href='#29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</a></li>
+<li>⇢ <a href='#30-accidentally-turing-complete'>30. Accidentally Turing-complete</a></li>
+</ul><br />
+<h2 style='display: inline' id='21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</h2><br />
+<br />
+<span>Yes, really. Someone has implemented Doom to run within the TypeScript type system—compile-time madness, but fun to watch.</span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=0mCsluv5FXA'>Doom in the TS type system</a><br />
+<br />
+<span>TypeScript’s type checker is surprisingly expressive: conditional types, recursion, and template literal types let you encode nontrivial logic that “executes” during compilation. The demo exploits this to build a tiny ray-caster that renders as compiler errors or types. It’s wildly impractical, but a great reminder that enough expressiveness plus recursion tends to drift toward Turing completeness.</span><br />
+<br />
+<h2 style='display: inline' id='run-it-in-a-pdf'>Run it in a PDF</h2><br />
+<br />
+<h3 style='display: inline' id='22-doom-inside-a-pdf'>22. Doom inside a PDF</h3><br />
+<br />
+<span>Running Doom embedded in a PDF file. No separate binary—just a cursed document.</span><br />
+<br />
+<a class='textlink' href='https://github.com/ading2210/doompdf'>doompdf</a><br />
+<br />
+<span>This relies on features like PDF JavaScript and interactive objects, which some viewers still support. Expect mixed results: many modern readers sandbox or disable scripting by default for security. If you try it, use a compatible desktop viewer and be prepared for portability quirks.</span><br />
+<br />
+<h3 style='display: inline' id='23-linux-inside-a-pdf'>23. Linux inside a PDF</h3><br />
+<br />
+<span>Boot a tiny Linux inside a PDF. This rabbit hole goes deep.</span><br />
+<br />
+<a class='textlink' href='https://github.com/ading2210/linuxpdf'>linuxpdf</a><br />
+<br />
+<span>Like the Doom-in-PDF trick, this leans on the PDF runtime to host unconventional logic and rendering. It’s more of an art piece than a daily driver, but it shows how “document” formats can accidentally become platforms. The security posture of PDF viewers varies significantly, so expect inconsistent behaviour across different apps.</span><br />
+<br />
+<h2 style='display: inline' id='24-sqlite-loves-tcl'>24. SQLite loves Tcl</h2><br />
+<br />
+<span>SQLite was initially designed as a Tcl extension and still relies heavily on Tcl today: the amalgamated C source is generated by <span class='inlinecode'>mksqlite3c.tcl</span>, tests are written in Tcl, and even the documentation is built with it.</span><br />
+<br />
+<a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>Tcl 2017 paper</a><br />
+<br />
+<span>The famous single-file <span class='inlinecode'>sqlite3.c</span> is not hand-edited—developers maintain sources, plus build scripts that knit everything together deterministically. Their Tcl-centric tooling provides them with reproducible builds and a very opinionated workflow. It’s a great counterexample to the idea that “serious” projects must standardise on the most popular build stacks.</span><br />
+<br />
+<h2 style='display: inline' id='25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</h2><br />
+<br />
+<span>The SQLite folks use a custom Tcl/Tk editor called “e”, a homegrown VCS (Fossil), and even a Tcl/Tk chat room for development—peak bespoke tooling.</span><br />
+<br />
+<a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>More details in the paper</a><br />
+<br />
+<span>Fossil bundles source control, tickets, wiki, and a web UI into a single portable binary—no external services required. The “e” editor and chat complete a tight, integrated loop tailored to their team’s needs and constraints. It’s delightfully “boring tech” that has produced one of the most reliable databases on earth.</span><br />
+<br />
+<h2 style='display: inline' id='26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</h2><br />
+<br />
+<span>Drive <span class='inlinecode'>kubectl</span> from an <span class='inlinecode'>.xlsx</span> file because clusters belong in spreadsheets, apparently.</span><br />
+<br />
+<a class='textlink' href='https://github.com/learnk8s/xlskubectl'>xlskubectl</a><br />
+<br />
+<span>Resources are rows; columns map to fields; the tool renders YAML and applies it for you. It’s oddly ergonomic for demos, audits, or letting non‑YAML‑native teammates propose changes. Obviously, be careful—permissions and review gates still matter even if your “IDE” is Excel.</span><br />
+<br />
+<h2 style='display: inline' id='27-sre-means-sorry'>27. SRE means “Sorry…”</h2><br />
+<br />
+<span>An industry joke (or truth?) that SRE stands for “Sorry…”. </span><br />
+<br />
+<span>Anecdotes are a good reminder that failure is inevitable and empathy is essential. The best takeaways are about clear communication, graceful degradation, and blameless postmortems. Laughing helps, but guardrails and good on‑call hygiene help even more.</span><br />
+<br />
+<h2 style='display: inline' id='28-touch-grass-the-app'>28. Touch Grass, the app</h2><br />
+<br />
+<span>When screens consume too much, this site/app nudges you to go outside.</span><br />
+<br />
+<a class='textlink' href='https://touchgrass.now/'>Touch grass</a><br />
+<br />
+<span>It’s simple and playful—sometimes that’s the nudge you need to break doomscroll loops. Treat it like a micro‑ritual: set a reminder, step outside, reset. Your eyes (and nervous system) will thank you.</span><br />
+<br />
+<h2 style='display: inline' id='29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</h2><br />
+<br />
+<span>Use the C preprocessor to assemble a blog. It shouldn’t work this well—and yet.</span><br />
+<br />
+<a class='textlink' href='https://wheybags.com/blog/macroblog.html'>Macroblog with cpp</a><br />
+<br />
+<span>Posts are stitched together with <span class='inlinecode'>#include</span>s and macros, giving you DRY content blocks and repeatable builds. It’s hacky, fast, and delightfully text‑only—perfect for people who think makefiles are a UI. Would I recommend it for everyone? No. Is it charming and effective? Absolutely.</span><br />
+<br />
+<h2 style='display: inline' id='30-accidentally-turing-complete'>30. Accidentally Turing-complete</h2><br />
+<br />
+<span>A delightful catalogue of systems that unintentionally become Turing-complete.</span><br />
+<br />
+<a class='textlink' href='https://beza1e1.tuxen.de/articles/accidentally_turing_complete.html'>Accidentally Turing-complete</a><br />
+<br />
+<span>Give a system conditionals, state, and unbounded composition, and it often crosses the threshold into general computation—whether that was the goal or not. The list includes items such as CSS, regular expression dialects, and even card games. It’s a fun lens for understanding why “just a configuration language” can get complicated fast.</span><br />
+<br />
+<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Local LLM for Coding with Ollama on macOS</title>
         <link href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi" />
@@ -5978,6 +6110,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
 <a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
 <br />
 <pre>
 /\_/\           /\_/\
@@ -8669,6 +8802,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
 <br />
 <pre>
 		       /\_/\
@@ -12944,136 +13078,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>'The Obstacle is the Way' book notes</title>
-        <link href="gemini://foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.gmi" />
-        <id>gemini://foo.zone/gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.gmi</id>
-        <updated>2023-05-06T17:23:16+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>These are my personal takeaways after reading 'The Obstacle Is the Way' by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='the-obstacle-is-the-way-book-notes'>"The Obstacle is the Way" book notes</h1><br />
-<br />
-<span class='quote'>Published at 2023-05-06T17:23:16+03:00</span><br />
-<br />
-<span>These are my personal takeaways after reading "The Obstacle Is the Way" by Ryan Holiday. This is mainly for my own use, but you might find it helpful too.</span><br />
-<br />
-<pre>
-         ,..........   ..........,
-     ,..,&#39;          &#39;.&#39;          &#39;,..,
-    ,&#39; ,&#39;            :            &#39;, &#39;,
-   ,&#39; ,&#39;             :             &#39;, &#39;,
-  ,&#39; ,&#39;              :              &#39;, &#39;,
- ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
-,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
- &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-                    &#39;&#39;&#39;
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#the-obstacle-is-the-way-book-notes'>"The Obstacle is the Way" book notes</a></li>
-<li>⇢ <a href='#reframe-your-perspective'>Reframe your perspective</a></li>
-<li>⇢ <a href='#embrace-rationality'>Embrace rationality</a></li>
-<li>⇢ <a href='#control-your-response'>Control your response</a></li>
-<li>⇢ <a href='#practice-emotional-and-physical-resilience'>Practice emotional and physical resilience</a></li>
-<li>⇢ <a href='#persistence-and-patience'>Persistence and patience</a></li>
-<li>⇢ <a href='#embrace-failure'>Embrace failure</a></li>
-<li>⇢ <a href='#be-adaptable'>Be adaptable</a></li>
-<li>⇢ <a href='#embrace-non-action'>Embrace non-action</a></li>
-<li>⇢ <a href='#leverage-crisis'>Leverage crisis</a></li>
-<li>⇢ <a href='#build-your-inner-citadel'>Build your inner citadel</a></li>
-<li>⇢ <a href='#love-everything-that-happens'>Love everything that happens</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<span>"The obstacle is the way" is a powerful statement that encapsulates the wisdom of turning challenges into opportunities for growth and success. We will explore using obstacles as fuel, transforming weaknesses into strengths, and adopting a mindset that allows us to be creative and persistent in the face of adversity.</span><br />
-<br />
-<h2 style='display: inline' id='reframe-your-perspective'>Reframe your perspective</h2><br />
-<br />
-<span>The obstacle in your path can become your path to success. Instead of being paralyzed by challenges, see them as opportunities to learn and grow. Remember, the things that hurt us often instruct us. </span><br />
-<br />
-<span>We spend a lot of time trying to get things perfect and look at the rules, but what matters is that it works; it doesn&#39;t need to be after the book. Focus on results rather than on beautiful methods. In Jujitsu, it does matter that you bring your opponent down, but not how. There are many ways from point A to point B; it doesn&#39;t need to be a straight line. So many try to find the best solution but need to catch up on what is in Infront of them. Think progress and not perfection.</span><br />
-<br />
-<span>Don&#39;t always try to use the front door; a backdoor could open. It&#39;s nonsense. Don&#39;t fight the judo master with judo. Non-action can be action, exposing the weaknesses of others.</span><br />
-<br />
-<h2 style='display: inline' id='embrace-rationality'>Embrace rationality</h2><br />
-<br />
-<span>It is a superpower to see things rationally when others are fearful. Focus on the reality of the situation without letting emotions, such as anger, cloud your judgment. This ability will enable you to make better decisions in adversity. Ability to see things what they really are. E.g. wine is old fermented grapes, or other people behaving like animals during a fight. Show the middle finger if someone persists on the stupid rules occasionally.</span><br />
-<br />
-<h2 style='display: inline' id='control-your-response'>Control your response</h2><br />
-<br />
-<span>You can choose how you respond to obstacles. Focus on what you can control, and don&#39;t let yourself feel harmed by external circumstances. Remember, you decide how things affect you; nobody else does. Choose to feel good in response to any situation. Embrace the challenges and obstacles that come your way, as they are opportunities for growth and learning.</span><br />
-<br />
-<h2 style='display: inline' id='practice-emotional-and-physical-resilience'>Practice emotional and physical resilience</h2><br />
-<br />
-<span>Martial artists know the importance of developing physical and emotional strength. Cultivate the art of not panicking; it will help you avoid making mistakes during high-pressure situations.</span><br />
-<br />
-<span>Focus on what you can control. Don&#39;t choose to feel harmed, and then you won&#39;t be harmed. I decide things that affect me; nobody else does. E.g., in prison, your mind stays your own. Don&#39;t ignore fear but explain it away, have a different view.</span><br />
-<br />
-<h2 style='display: inline' id='persistence-and-patience'>Persistence and patience</h2><br />
-<br />
-<span>Practice persistence and patience in your pursuits. Focus on the process rather than the prize and take one step at a time. Remember, the journey is about finishing tasks, projects, or workouts to the best of your ability. Never be in a hurry and never be desperate. There is no reason to be rushed; there are all in the long haul. Follow the process and not the price. Take it one step at a time. The process is about finishing (workout, task, project, etc.).</span><br />
-<br />
-<h2 style='display: inline' id='embrace-failure'>Embrace failure</h2><br />
-<br />
-<span>Failure is a natural part of life and can make us stronger. Treat defeat as a stepping stone to success and education. What is defeat? The first step to education. Failure makes you stronger. If we do our best, we can be proud of it, regardless of the result. Do your job, but do it right. Only an asshole thinks he is too good at the things he does. Also, asking for forgiveness is easier than asking for permission. </span><br />
-<br />
-<h2 style='display: inline' id='be-adaptable'>Be adaptable</h2><br />
-<br />
-<span>There are many ways to achieve your goals; sometimes, unconventional methods are necessary. Feel free to break the rules or go off the beaten path if it will lead to better results. Transform weaknesses into strengths. We have a choice of how to respond to things. It&#39;s not about being positive but to be creative. Aim high, but stuff will happen; E.g., surprises will always happen.</span><br />
-<br />
-<h2 style='display: inline' id='embrace-non-action'>Embrace non-action</h2><br />
-<br />
-<span>We constantly push to the next thing. Sometimes the best course of action is standing still or even going backwards. Obstacles might resolve by themselves. Or going sideways. Sometimes, the best action is to stand still, go sideways, or even go backwards. Obstacles may resolve themselves or present new opportunities if you&#39;re patient and observant. People always want your input before you have all the facts. They want you to play after their rules. The question is, do you let them? The English call it the cool head. Being in control of Stress; requires practice. Appear, the absence of fear (Greek). When all others do it one way, it does not mean it is the correct or best practice.</span><br />
-<br />
-<h2 style='display: inline' id='leverage-crisis'>Leverage crisis</h2><br />
-<br />
-<span>In times of crisis, seize the chance to do things never done before. Great people use negative situations to their advantage and become the most effective in challenging circumstances.</span><br />
-<br />
-<span>The art of not panicking; otherwise, you will make mistakes. When overs are shocked, you know which way to take due to your thinking of the problem at Hand. A crisis gives you a chance to do things which never done before. Ordinary people shy from negative situations; great people use these for their benefit and are the most effective. The obstacle is not just turned upside down but used as a catapult.</span><br />
-<br />
-<span>Be prepared for nothing to work. Problems are an opportunity to do your best, not to do miracles. Always manage your expectations. It will suck, but it will be ok. Be prepared to begin from the beginning. Be cheerful and eagerly work on the next obstacle. Each time you become better. Life is not a sprint but a marathon. After each obstacle lies another obstacle, there won&#39;t be anything without obstacles. Passing one means you are ready for the next.</span><br />
-<br />
-<h2 style='display: inline' id='build-your-inner-citadel'>Build your inner citadel</h2><br />
-<br />
-<span>Develop your inner strength during good times so you can rely on it in bad times. Always prepare for adversity and face it with calmness and resilience. Be humble enough that things which happen will happen. Build your inner citadel. In good times strengthen it. In bad times rely on it.</span><br />
-<br />
-<span>We should always prepare for things to get tough. Your house burns down: no worries, we eliminated much rubbish. Imagine what can go wrong before things go wrong. We are prepared for adversity; it&#39;s other people who aren&#39;t. Phil Jackson&#39;s hip problem example. To receive unexpected benefits, you must first accept the unexpected obstacles. Meditate on death. It&#39;s a universal obstacle. Use it as a reminder to do your best.</span><br />
-<br />
-<h2 style='display: inline' id='love-everything-that-happens'>Love everything that happens</h2><br />
-<br />
-<span>Turn an obstacle the other way around for your benefit. Use it at fuel. It&#39;s simple but challenging. Most are paralyzed instead. The obstacle in the path becomes the path. Obstacles are neither good nor bad. The things which hurt, instruct.</span><br />
-<br />
-<span>Should I hate people who hate me? That&#39;s their problem and not mine. Be always calm and relaxed during the fight. The story of the battle is the story of the smile. Cheerfulness in all situations, especially the bad ones. Love for everything that happens; if it happens, it was meant to happen. We can choose how we react to things, so why not choose to feel good? I love everything that happens. You must never lower yourself to the person you don&#39;t like.</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>Life is a marathon, not a sprint. Each obstacle we overcome prepares us for the next one. Remember, the obstacle is not just a barrier to be turned upside down; it can also be used as a catapult to propel us forward. By embracing challenges and using them as opportunities for growth, we become stronger, more adaptable, and, ultimately, more successful.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other book notes of mine are:</span><br />
-<br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
