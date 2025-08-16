@@ -160,7 +160,7 @@ This all is of no real practical use but fun!
 
 The `rexfiles` project contains all Rex files for my (personal) server setup automation. A `Rexfile` is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly. 
 
-[https://codeberg.org/snonux/rexfiles](https://codeberg.org/snonux/rexfiles)  
+[https://codeberg.org/snonux/conf](https://codeberg.org/snonux/conf)  
 [https://www.rexify.org](https://www.rexify.org)  
 
 This is an E-Mail I posted to the Rex mailing list:
