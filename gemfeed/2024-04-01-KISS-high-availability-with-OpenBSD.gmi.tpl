@@ -193,7 +193,7 @@ The authorative nameserver for my domains runs on both VMs, and both are configu
 
 Check out the whole script here:
 
-=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/dns-failover.ksh dns-failover.ksh
+=> https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/dns-failover.ksh dns-failover.ksh
 
 ### Fairly cheap and geo-redundant
 
@@ -252,7 +252,7 @@ The ACME automation is yet another daily CRON script `/usr/local/bin/acme.sh`. I
 
 Let's encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.
 
-=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends/scripts/acme.sh.tpl `acme.sh.tpl` - Rex template for the `acme.sh` script of mine.
+=> https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/acme.sh.tpl `acme.sh.tpl` - Rex template for the `acme.sh` script of mine.
 => https://man.OpenBSD.org/acme-client.1
 => ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi Let's Encrypt with OpenBSD and Rex
 
@@ -270,7 +270,7 @@ Gogios, as I developed it by myself, isn't part of the OpenBSD base system.
 I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.
 
 => https://www.rexify.org
-=> https://codeberg.org/snonux/rexfiles/src/branch/master/frontends codeberg.org/snonux/rexfiles/frontends
+=> https://codeberg.org/snonux/conf/src/branch/master/frontends codeberg.org/snonux/rexfiles/frontends
 
 Rex isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either as Rex is invoked from my Laptop!
 

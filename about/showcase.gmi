@@ -97,8 +97,8 @@ Based on my analysis of the codebase, **rexfiles** is a comprehensive infrastruc
 
 The project consists of three main components: **dotfiles** management for personal development environment configuration (bash, fish shell, helix editor, tmux, etc.), **frontends** for managing production OpenBSD servers with services like DNS (nsd), web servers (httpd), mail (OpenSMTPD), SSL certificates (ACME), and monitoring systems, and **babylon5** containing Docker container startup scripts for self-hosted applications. The implementation leverages Rex's declarative syntax to define tasks for package installation, file management, service configuration, and system state management, with templates for configuration files and support for multiple operating systems (OpenBSD, FreeBSD, Fedora Linux, Termux). This approach provides a KISS (Keep It Simple, Stupid) alternative to more complex configuration management tools while maintaining the ability to manage both local development environments and production infrastructure consistently.
 
-=> https://codeberg.org/snonux/rexfiles View on Codeberg
-=> https://github.com/snonux/rexfiles View on GitHub
+=> https://codeberg.org/snonux/conf View on Codeberg
+=> https://github.com/snonux/conf View on GitHub
 
 ---
 
