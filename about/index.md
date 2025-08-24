@@ -35,12 +35,13 @@
 * Die Tiefe der Zeit, Andreas Brandhorst (german), Paperback
 * Seeking SRE: Conversations About Running Production Systems at Scale, David N. Blank-Edelman, eBook
 * Yoga Nidra Made Easy, Uma Dinsmore-Tuli, eBook
+* 97 Things Every Engineering Manager Should Know, Camille Fournier, Audiobook
 
 ### Unread books already in my shelf
 
 * Inhibitor Phase, Alastair Reynolds, Audiobook
 * Okular, Alastair Reynolds, eBook
-* 97 Things Every Engineering Manager Should Know, Camille Fournier, Audiobook
+* A Fire Upon the Deep (german: Ein Feuer auf der Tiefe),  Vernor Vinge, eBook
 
 ### Books I've read
 
