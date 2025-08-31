@@ -770,7 +770,7 @@ Currently I/O Riot supports replaying I/O on ``ext2``, ``ext3``, ``ext4`` and ``
 
 Currently, these file I/O related syscalls are supported (as of CentOS 7):
 
-```code
+```
 open
 openat
 lseek
