@@ -11,8 +11,6 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ Projects](#projects)
 * [⇢ ⇢ ⇢ hexai](#hexai)
 * [⇢ ⇢ ⇢ conf](#conf)
-* [⇢ ⇢ ⇢ rexfiles](#rexfiles)
-* [⇢ ⇢ ⇢ hxcode](#hxcode)
 * [⇢ ⇢ ⇢ totalrecall](#totalrecall)
 * [⇢ ⇢ ⇢ gitsyncer](#gitsyncer)
 * [⇢ ⇢ ⇢ timr](#timr)
@@ -71,15 +69,15 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 59
-* 📊 Total Commits: 11,848
-* 📈 Total Lines of Code: 205,836
-* 📄 Total Lines of Documentation: 23,246
-* 💻 Languages: Go (32.9%), Java (19.7%), C++ (8.3%), Perl (8.3%), C (8.2%), C/C++ (5.9%), Shell (3.5%), Config (1.9%), HTML (1.8%), Ruby (1.7%), YAML (1.6%), HCL (1.3%), JSON (0.9%), Python (0.8%), CSS (0.8%), Make (0.7%), Raku (0.4%), TOML (0.4%), XML (0.3%), Haskell (0.3%), TypeScript (0.2%)
-* 📚 Documentation: Text (50.6%), Markdown (49.4%)
-* 🎵 Vibe-Coded Projects: 4 out of 59 (6.8%)
-* 🤖 AI-Assisted Projects (including vibe-coded): 9 out of 59 (15.3% AI-assisted, 84.7% human-only)
-* 🚀 Release Status: 35 released, 24 experimental (59.3% with releases, 40.7% experimental)
+* 📦 Total Projects: 57
+* 📊 Total Commits: 10,900
+* 📈 Total Lines of Code: 198,325
+* 📄 Total Lines of Documentation: 21,954
+* 💻 Languages: Go (34.2%), Java (20.4%), C++ (8.6%), C (8.6%), Perl (7.8%), C/C++ (6.1%), Shell (2.9%), HTML (1.9%), Config (1.8%), Ruby (1.4%), HCL (1.4%), YAML (0.9%), Python (0.8%), Make (0.7%), CSS (0.6%), Raku (0.4%), JSON (0.4%), XML (0.3%), Haskell (0.3%), TOML (0.2%)
+* 📚 Documentation: Markdown (50.2%), Text (49.8%)
+* 🎵 Vibe-Coded Projects: 4 out of 57 (7.0%)
+* 🤖 AI-Assisted Projects (including vibe-coded): 9 out of 57 (15.8% AI-assisted, 84.2% human-only)
+* 🚀 Release Status: 35 released, 22 experimental (61.4% with releases, 38.6% experimental)
 
 ## Projects
 
@@ -111,66 +109,21 @@ The project is implemented primarily in Go and uses Mage as its build and task a
 ### conf
 
 * 💻 Languages: Perl (27.4%), YAML (24.1%), Shell (23.8%), TOML (6.4%), Config (5.8%), CSS (5.7%), Ruby (4.2%), Lua (1.2%), Docker (0.7%), JSON (0.6%), INI (0.1%)
-* 📚 Documentation: Text (70.2%), Markdown (29.8%)
-* 📊 Commits: 964
+* 📚 Documentation: Text (69.9%), Markdown (30.1%)
+* 📊 Commits: 965
 * 📈 Lines of Code: 5749
-* 📄 Lines of Documentation: 1183
+* 📄 Lines of Documentation: 1188
 * 📅 Development Period: 2021-12-28 to 2025-08-31
-* 🔥 Recent Activity: 16.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 16.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-Certainly! However, the project description you provided for "Jupdidu" only contains a playful phrase ("Bapdidu di du di du dap dap dap!") and does not include any technical or functional details about the project itself. Without additional information—such as its purpose, features, or implementation details—it's not possible to summarize what the project does, why it's useful, or how it's architected.
-
-If you can provide a README, code snippet, or a more detailed description of "Jupdidu," I'd be happy to analyze it and provide a concise, informative summary focusing on its key features and architecture. Please share more context or documentation for a meaningful explanation.
+conf
+====
 
 [View on Codeberg](https://codeberg.org/snonux/conf)  
 [View on GitHub](https://github.com/snonux/conf)  
-
----
-
-### rexfiles
-
-* 💻 Languages: Perl (28.0%), YAML (24.3%), Shell (23.3%), TOML (6.2%), Config (5.8%), CSS (5.7%), Ruby (4.3%), Lua (1.2%), Docker (0.7%), JSON (0.5%), INI (0.1%)
-* 📚 Documentation: Text (70.2%), Markdown (29.8%)
-* 📊 Commits: 947
-* 📈 Lines of Code: 5715
-* 📄 Lines of Documentation: 1183
-* 📅 Development Period: 2021-12-28 to 2025-08-13
-* 🔥 Recent Activity: 22.7 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-Certainly! However, the provided project description ("Bapdidu di du di du dap dap dap!") does not contain any technical or descriptive information about the project "Jupdidu." To provide a meaningful summary, I would need details such as the project's purpose, main features, target users, and implementation approach.
-
-If you can share a README file, code snippets, or a more detailed description, I can analyze that information and deliver a concise, informative summary focusing on what the project does, its usefulness, and its key architectural features. Please provide more context or documentation for "Jupdidu," and I'll be happy to help!
-
-[View on Codeberg](https://codeberg.org/snonux/rexfiles)  
-[View on GitHub](https://github.com/snonux/rexfiles)  
-
----
-
-### hxcode
-
-* 💻 Languages: JSON (53.6%), Ruby (19.3%), TypeScript (17.9%), JavaScript (3.2%), Python (3.1%), Shell (2.9%)
-* 📚 Documentation: Markdown (96.5%), Text (3.5%)
-* 📊 Commits: 2
-* 📈 Lines of Code: 1796
-* 📄 Lines of Documentation: 114
-* 📅 Development Period: 2025-07-22 to 2025-07-23
-* 🔥 Recent Activity: 39.7 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-The HxCode project provides seamless integration between the Helix text editor and Visual Studio Code (VSCode) through a set of extensions and plugins. Its primary goal is to enable users to leverage the advanced features and ecosystem of VSCode—such as language servers, debugging, and extensions—directly within the Helix editor, which is known for its modal editing and performance. This interoperability is particularly useful for developers who prefer Helix's editing model but require the rich tooling and language support available in VSCode.
-
-The project is organized into two main components: the ./hxcode directory contains the VSCode extension, which acts as a bridge to expose Helix's capabilities within the VSCode environment, while the ./helix directory provides the necessary integration hooks and configuration for Helix to communicate with VSCode services. The architecture relies on standardized protocols (such as the Language Server Protocol) and inter-process communication to synchronize features like code completion, diagnostics, and navigation between the two editors. This modular design makes it easy to maintain and extend, allowing users to benefit from the strengths of both platforms without sacrificing workflow efficiency.
-
-[View on Codeberg](https://codeberg.org/snonux/hxcode)  
-[View on GitHub](https://github.com/snonux/hxcode)  
 
 ---
 
