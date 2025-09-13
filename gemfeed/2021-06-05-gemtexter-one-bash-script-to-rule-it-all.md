@@ -183,6 +183,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
+[2025-09-14 Bash Golf Part 4](./2025-09-14-bash-golf-part-4.md)  
 [2024-10-02 Gemtexter 3.0.0 - Let's Gemtext again⁴](./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
 [2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2023-07-21 Gemtexter 2.1.0 - Let's Gemtext again³](./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  

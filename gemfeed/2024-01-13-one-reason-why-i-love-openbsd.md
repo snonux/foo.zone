@@ -29,6 +29,8 @@ $ doas sysupgrade # Update all binaries (including Kernel)
 
 `sysupgrade` downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:
 
+> Note to myself: I have to undo the `/var/www` symlink before upgrading, and re-establishing the symlink afterwards again. This is due to disk space constraings on my setup!
+
 ```shell
 $ doas sysmerge # Update system configuration files
 $ doas pkg_add -u # Update all packages

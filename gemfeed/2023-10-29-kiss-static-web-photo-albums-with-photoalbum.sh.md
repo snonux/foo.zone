@@ -272,6 +272,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Bash and KISS-related posts are:
 
+[2025-09-14 Bash Golf Part 4](./2025-09-14-bash-golf-part-4.md)  
 [2024-04-01 KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 [2023-12-10 Bash Golf Part 3](./2023-12-10-bash-golf-part-3.md)  
 [2023-10-29 KISS static web photo albums with `photoalbum.sh` (You are currently reading this)](./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md)  
