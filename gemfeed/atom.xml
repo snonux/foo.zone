@@ -1,11 +1,664 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-09-11T11:09:24+03:00</updated>
+    <updated>2025-09-13T12:04:03+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Bash Golf Part 4</title>
+        <link href="gemini://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.gmi</id>
+        <updated>2025-09-13T12:04:03+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the fourth blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='bash-golf-part-4'>Bash Golf Part 4</h1><br />
+<br />
+<span>This is the fourth blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4 (You are currently reading this)</a><br />
+<br />
+<pre>
+    &#39;\       &#39;\        &#39;\        &#39;\                   .  .        |&gt;18&gt;&gt;
+      \        \         \         \              .         &#39; .   |
+     O&gt;&gt;      O&gt;&gt;       O&gt;&gt;       O&gt;&gt;         .                 &#39;o |
+      \       .\. ..    .\. ..    .\. ..   .                      |
+      /\    .  /\     .  /\     .  /\    . .                      |
+     / /   .  / /  .&#39;.  / /  .&#39;.  / /  .&#39;    .                    |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#bash-golf-part-4'>Bash Golf Part 4</a></li>
+<li>⇢ <a href='#split-pipelines-with-tee--process-substitution'>Split pipelines with tee + process substitution</a></li>
+<li>⇢ <a href='#heredocs-for-remote-sessions-and-their-gotchas'>Heredocs for remote sessions (and their gotchas)</a></li>
+<li>⇢ <a href='#namespacing-and-dynamic-dispatch-with-'>Namespacing and dynamic dispatch with <span class='inlinecode'>::</span></a></li>
+<li>⇢ <a href='#indirect-references-with-namerefs'>Indirect references with namerefs</a></li>
+<li>⇢ <a href='#function-declaration-forms'>Function declaration forms</a></li>
+<li>⇢ <a href='#chaining-function-calls-in-conditionals'>Chaining function calls in conditionals</a></li>
+<li>⇢ <a href='#grep-sed-awk-quickies'>Grep, sed, awk quickies</a></li>
+<li>⇢ <a href='#safe-xargs-with-nuls'>Safe xargs with NULs</a></li>
+<li>⇢ <a href='#efficient-file-to-variable-and-arrays'>Efficient file-to-variable and arrays</a></li>
+<li>⇢ <a href='#quick-password-generator'>Quick password generator</a></li>
+<li>⇢ <a href='#yes-for-automation'><span class='inlinecode'>yes</span> for automation</a></li>
+<li>⇢ <a href='#forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</a></li>
+<li>⇢ <a href='#restricted-bash'>Restricted Bash</a></li>
+<li>⇢ <a href='#useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</a></li>
+<li>⇢ <a href='#atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></a></li>
+<li>⇢ <a href='#smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</a></li>
+</ul><br />
+<h2 style='display: inline' id='split-pipelines-with-tee--process-substitution'>Split pipelines with tee + process substitution</h2><br />
+<br />
+<span>Sometimes you want to fan out one stream to multiple consumers and still continue the original pipeline. <span class='inlinecode'>tee</span> plus process substitution does exactly that:</span><br />
+<br />
+<pre>
+somecommand \
+    | tee &gt;(command1) &gt;(command2) \
+    | command3
+</pre>
+<br />
+<span>All of <span class='inlinecode'>command1</span>, <span class='inlinecode'>command2</span>, and <span class='inlinecode'>command3</span> see the output of <span class='inlinecode'>somecommand</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a</font>\n<font color="#808080">b</font>\n<font color="#808080">'</font> \
+    | tee &gt;(sed <font color="#808080">'s/.*/X:&amp;/; s/$/ :c1/'</font>) &gt;(tr a-z A-Z | sed <font color="#808080">'s/$/ :c2/'</font>) \
+    | sed <font color="#808080">'s/$/ :c3/'</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+a :c3
+b :c3
+A :c2 :c3
+B :c2 :c3
+X:a :c1 :c3
+X:b :c1 :c3
+</pre>
+<br />
+<span>This relies on Bash process substitution (<span class='inlinecode'>&gt;(...)</span>). Make sure your shell is Bash and not a POSIX <span class='inlinecode'>/bin/sh</span>.</span><br />
+<br />
+<span>Example (fails under <span class='inlinecode'>dash</span>/POSIX sh):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>/bin/sh -c <font color="#808080">'echo hi | tee &gt;(cat)'</font>
+<i><font color="silver"># /bin/sh: 1: Syntax error: "(" unexpected</font></i>
+</pre>
+<br />
+<span>Combine with <span class='inlinecode'>set -o pipefail</span> if failures in side branches should fail the whole pipeline.</span><br />
+<br />
+<span>Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">set</font></u></b> -o pipefail
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'ok</font>\n<font color="#808080">'</font> | tee &gt;(<b><u><font color="#000000">false</font></u></b>) | cat &gt;/dev/null
+echo $?   <i><font color="silver"># 1 because a side branch failed</font></i>
+</pre>
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://blogtitle.github.io/splitting-pipelines/'>Splitting pipelines with tee</a><br />
+<br />
+<h2 style='display: inline' id='heredocs-for-remote-sessions-and-their-gotchas'>Heredocs for remote sessions (and their gotchas)</h2><br />
+<br />
+<span>Heredocs are great to send multiple commands over SSH in a readable way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>ssh <font color="#808080">"$SSH_USER@$SSH_HOST"</font> &lt;&lt;EOF
+    <i><font color="silver"># Go to the work directory</font></i>
+    cd <font color="#808080">"$WORK_DIR"</font>
+  
+    <i><font color="silver"># Make a git pull</font></i>
+    git pull
+  
+    <i><font color="silver"># Export environment variables required for the service to run</font></i>
+    <b><u><font color="#000000">export</font></u></b> AUTH_TOKEN=<font color="#808080">"$APP_AUTH_TOKEN"</font>
+  
+    <i><font color="silver"># Start the service</font></i>
+    docker compose up -d --build
+EOF
+</pre>
+<br />
+<span>Tips:</span><br />
+<br />
+<span>Quoting the delimiter changes interpolation. Use <span class='inlinecode'>&lt;&lt;&#39;EOF&#39;</span> to avoid local expansion and send the content literally.</span><br />
+<br />
+<span>Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>FOO=bar
+cat &lt;&lt;<font color="#808080">'EOF'</font>
+$FOO is not expanded here
+EOF
+</pre>
+<br />
+<span>Prefer explicit quoting for variables (as above) to avoid surprises. Example (spaces preserved only when quoted):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>WORK_DIR=<font color="#808080">"/tmp/my work"</font>
+ssh host &lt;&lt;EOF
+    cd $WORK_DIR      <i><font color="silver"># may break if unquoted</font></i>
+    cd <font color="#808080">"$WORK_DIR"</font>   <i><font color="silver"># safe</font></i>
+EOF
+</pre>
+<br />
+<span>Consider <span class='inlinecode'>set -euo pipefail</span> at the top of the remote block for stricter error handling. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>ssh host &lt;&lt;<font color="#808080">'EOF'</font>
+    <b><u><font color="#000000">set</font></u></b> -euo pipefail
+    <b><u><font color="#000000">false</font></u></b>   <i><font color="silver"># causes immediate failure</font></i>
+    echo never
+EOF
+</pre>
+<br />
+<span>Indent-friendly variant: use a dash to strip leading tabs in the body:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat &lt;&lt;-EOF &gt; script.sh
+	<i><font color="silver">#!/usr/bin/env bash</font></i>
+	echo <font color="#808080">"tab-indented content is dedented"</font>
+EOF
+</pre>
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://rednafi.com/misc/heredoc_headache/'>Heredoc headaches and fixes</a><br />
+<br />
+<h2 style='display: inline' id='namespacing-and-dynamic-dispatch-with-'>Namespacing and dynamic dispatch with <span class='inlinecode'>::</span></h2><br />
+<br />
+<span>You can emulate simple namespacing by encoding hierarchy in function names. One neat pattern is pseudo-inheritance via a tiny <span class='inlinecode'>super</span> helper that maps <span class='inlinecode'>pkg::lang::action</span> to a <span class='inlinecode'>pkg::base::action</span> default.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
+<b><u><font color="#000000">set</font></u></b> -euo pipefail
+
+super() {
+    <b><u><font color="#000000">local</font></u></b> -r fn=${FUNCNAME[1]}
+    <i><font color="silver"># Split name on :: and dispatch to base implementation</font></i>
+    <b><u><font color="#000000">local</font></u></b> -a parts=( ${fn//::/ } )
+    <font color="#808080">"${parts[0]}::base::${parts[2]}"</font> <font color="#808080">"$@"</font>
+}
+
+foo::base::greet() { echo <font color="#808080">"base: $@"</font>; }
+foo::german::greet()  { super <font color="#808080">"Guten Tag, $@!"</font>; }
+foo::english::greet() { super <font color="#808080">"Good day,  $@!"</font>; }
+
+<b><u><font color="#000000">for</font></u></b> lang <b><u><font color="#000000">in</font></u></b> german english; <b><u><font color="#000000">do</font></u></b>
+    foo::$lang::greet Paul
+<b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+base: Guten Tag, Paul!
+base: Good day,  Paul!
+</pre>
+<br />
+<h2 style='display: inline' id='indirect-references-with-namerefs'>Indirect references with namerefs</h2><br />
+<br />
+<span><span class='inlinecode'>declare -n</span> creates a name reference — a variable that points to another variable. It’s cleaner than <span class='inlinecode'>eval</span> for indirection:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>user_name=paul
+<b><u><font color="#000000">declare</font></u></b> -n ref=user_name
+echo <font color="#808080">"$ref"</font>       <i><font color="silver"># paul</font></i>
+ref=julia
+echo <font color="#808080">"$user_name"</font> <i><font color="silver"># julia</font></i>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+paul
+julia
+</pre>
+<br />
+<span>Namerefs are local to functions when declared with <span class='inlinecode'>local -n</span>. Requires Bash ≥4.3.</span><br />
+<br />
+<span>You can also construct the target name dynamically:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>make_var() {
+    <b><u><font color="#000000">local</font></u></b> idx=$1; <b><u><font color="#000000">shift</font></u></b>
+    <b><u><font color="#000000">local</font></u></b> name=<font color="#808080">"slot_$idx"</font>
+    <b><u><font color="#000000">printf</font></u></b> -v <font color="#808080">"$name"</font> <font color="#808080">'%s'</font> <font color="#808080">"$*"</font>   <i><font color="silver"># create variable slot_$idx</font></i>
+}
+
+get_var() {
+    <b><u><font color="#000000">local</font></u></b> idx=$1
+    <b><u><font color="#000000">local</font></u></b> -n ref=<font color="#808080">"slot_$idx"</font>      <i><font color="silver"># bind ref to slot_$idx</font></i>
+    <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"$ref"</font>
+}
+
+make_var <font color="#000000">7</font> <font color="#808080">"seven"</font>
+get_var <font color="#000000">7</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+seven
+</pre>
+<br />
+<h2 style='display: inline' id='function-declaration-forms'>Function declaration forms</h2><br />
+<br />
+<span>All of these work in Bash, but only the first one is POSIX-ish:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>foo() { echo foo; }
+function foo { echo foo; }
+function foo() { echo foo; }
+</pre>
+<br />
+<span>Recommendation: prefer <span class='inlinecode'>name() { ... }</span> for portability and consistency.</span><br />
+<br />
+<h2 style='display: inline' id='chaining-function-calls-in-conditionals'>Chaining function calls in conditionals</h2><br />
+<br />
+<span>Functions return a status like commands. You can short-circuit them in conditionals:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>deploy_check() { <b><u><font color="#000000">test</font></u></b> -f deploy.yaml; }
+smoke_test()   { curl -fsS http://localhost/healthz &gt;/dev/null; }
+
+<b><u><font color="#000000">if</font></u></b> deploy_check || smoke_test; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"All good."</font>
+<b><u><font color="#000000">else</font></u></b>
+    echo <font color="#808080">"Something failed."</font> &gt;&amp;<font color="#000000">2</font>
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>You can also compress it golf-style:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>deploy_check || smoke_test &amp;&amp; echo ok || echo fail &gt;&amp;<font color="#000000">2</font>
+</pre>
+<br />
+<h2 style='display: inline' id='grep-sed-awk-quickies'>Grep, sed, awk quickies</h2><br />
+<br />
+<span>Word match and context: <span class='inlinecode'>grep -w word file</span>; with context: <span class='inlinecode'>grep -C3 foo file</span> (same as <span class='inlinecode'>-A3 -B3</span>). Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat &gt; /tmp/ctx.txt &lt;&lt;EOF
+one
+foo
+two
+three
+bar
+EOF
+grep -C<font color="#000000">1</font> foo /tmp/ctx.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+one
+foo
+two
+</pre>
+<br />
+<span>Skip a directory while recursing: <span class='inlinecode'>grep -R --exclude-dir=foo &#39;bar&#39; /path</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mkdir -p /tmp/golf/foo /tmp/golf/src
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'bar</font>\n<font color="#808080">'</font> &gt; /tmp/golf/src/a.txt
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'bar</font>\n<font color="#808080">'</font> &gt; /tmp/golf/foo/skip.txt
+grep -R --exclude-dir=foo <font color="#808080">'bar'</font> /tmp/golf
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+/tmp/golf/src/a.txt:bar
+</pre>
+<br />
+<span>Insert lines with sed: <span class='inlinecode'>sed -e &#39;1isomething&#39; -e &#39;3isomething&#39; file</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'A</font>\n<font color="#808080">B</font>\n<font color="#808080">C</font>\n<font color="#808080">'</font> &gt; /tmp/s.txt
+sed -e <font color="#808080">'1iHEAD'</font> -e <font color="#808080">'3iMID'</font> /tmp/s.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+HEAD
+A
+B
+MID
+C
+</pre>
+<br />
+<span>Drop last column with awk: <span class='inlinecode'>awk &#39;NF{NF-=1};1&#39; file</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a b c</font>\n<font color="#808080">x y z</font>\n<font color="#808080">'</font> &gt; /tmp/t.txt
+cat /tmp/t.txt
+echo
+awk <font color="#808080">'NF{NF-=1};1'</font> /tmp/t.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+a b c
+x y z
+
+a b
+x y
+</pre>
+<br />
+<h2 style='display: inline' id='safe-xargs-with-nuls'>Safe xargs with NULs</h2><br />
+<br />
+<span>Avoid breaking on spaces/newlines by pairing <span class='inlinecode'>find -print0</span> with <span class='inlinecode'>xargs -0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>find . -type f -name <font color="#808080">'*.log'</font> -print<font color="#000000">0</font> | xargs -<font color="#000000">0</font> rm -f
+</pre>
+<br />
+<span>Example with spaces and NULs only:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a</font>\0<font color="#808080">b c</font>\0<font color="#808080">'</font> | xargs -<font color="#000000">0</font> -I{} <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'&lt;%s&gt;</font>\n<font color="#808080">'</font> {}
+</pre>
+<br />
+<span>Output:</span><br />
+<span>  </span><br />
+<pre>
+&lt;a&gt;
+&lt;b c&gt;
+</pre>
+<br />
+<h2 style='display: inline' id='efficient-file-to-variable-and-arrays'>Efficient file-to-variable and arrays</h2><br />
+<br />
+<span>Read a whole file into a variable without spawning <span class='inlinecode'>cat</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cfg=$(&lt;config.ini)
+</pre>
+<br />
+<span>Read lines into an array safely with <span class='inlinecode'>mapfile</span> (aka <span class='inlinecode'>readarray</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mapfile -t lines &lt; &lt;(grep -v <font color="#808080">'^#'</font> config.ini)
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"${lines[@]}"</font>
+</pre>
+<br />
+<span>Assign formatted strings without a subshell using <span class='inlinecode'>printf -v</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> -v msg <font color="#808080">'Hello %s, id=%04d'</font> <font color="#808080">"$USER"</font> <font color="#000000">42</font>
+echo <font color="#808080">"$msg"</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+Hello paul, id=0042
+</pre>
+<br />
+<span>Read NUL-delimited data (pairs well with <span class='inlinecode'>-print0</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mapfile -d <font color="#808080">''</font> -t files &lt; &lt;(find . -type f -print<font color="#000000">0</font>)
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"${files[@]}"</font>
+</pre>
+<br />
+<h2 style='display: inline' id='quick-password-generator'>Quick password generator</h2><br />
+<br />
+<span>Pure Bash with <span class='inlinecode'>/dev/urandom</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>LC_ALL=C tr -dc <font color="#808080">'A-Za-z0-9_'</font> &lt;/dev/urandom | head -c <font color="#000000">16</font>; echo
+</pre>
+<br />
+<span>Alternative using <span class='inlinecode'>openssl</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>openssl rand -base<font color="#000000">64</font> <font color="#000000">16</font> | tr -d <font color="#808080">'</font>\n<font color="#808080">'</font> | cut -c<font color="#000000">1</font>-<font color="#000000">22</font>
+</pre>
+<br />
+<h2 style='display: inline' id='yes-for-automation'><span class='inlinecode'>yes</span> for automation</h2><br />
+<br />
+<span><span class='inlinecode'>yes</span> streams a string repeatedly; handy for feeding interactive commands or quick load generation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>yes | rm -r large_directory        <i><font color="silver"># auto-confirm</font></i>
+yes n | dangerous-command          <i><font color="silver"># auto-decline</font></i>
+yes anything | head -n<font color="#000000">1</font>            <i><font color="silver"># prints one line: anything</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</h2><br />
+<br />
+<span>You can shadow builtins with functions:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>true()  { <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>; }
+false() { <b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>; }
+
+<b><u><font color="#000000">true</font></u></b>  || echo <font color="#808080">'true failed'</font>
+<b><u><font color="#000000">false</font></u></b> &amp;&amp; echo <font color="#808080">'false succeeded'</font>
+
+<i><font color="silver"># Bypass function with builtin/command</font></i>
+<b><u><font color="#000000">builtin</font></u></b> <b><u><font color="#000000">true</font></u></b> <i><font color="silver"># returns 0</font></i>
+<b><u><font color="#000000">command</font></u></b> <b><u><font color="#000000">true</font></u></b> <i><font color="silver"># returns 0</font></i>
+</pre>
+<br />
+<span>To disable a builtin entirely: <span class='inlinecode'>enable -n true</span> (re-enable with <span class='inlinecode'>enable true</span>).</span><br />
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://blog.robertelder.org/force-true-command-to-return-false/'>Force true to return false</a><br />
+<br />
+<h2 style='display: inline' id='restricted-bash'>Restricted Bash</h2><br />
+<br />
+<span><span class='inlinecode'>bash -r</span> (or <span class='inlinecode'>rbash</span>) starts a restricted shell that limits potentially dangerous actions, for example:</span><br />
+<br />
+<ul>
+<li>Changing directories (<span class='inlinecode'>cd</span>).</li>
+<li>Modifying <span class='inlinecode'>PATH</span>, <span class='inlinecode'>SHELL</span>, <span class='inlinecode'>BASH_ENV</span>, or <span class='inlinecode'>ENV</span>.</li>
+<li>Redirecting output.</li>
+<li>Running commands with <span class='inlinecode'>/</span> in the name.</li>
+<li>Using <span class='inlinecode'>exec</span>.</li>
+</ul><br />
+<span>It’s a coarse sandbox for highly constrained shells; read <span class='inlinecode'>man bash</span> (RESTRICTED SHELL) for details and caveats.</span><br />
+<br />
+<span>Example session:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>rbash -c <font color="#808080">'cd /'</font>            <i><font color="silver"># cd: restricted</font></i>
+rbash -c <font color="#808080">'PATH=/tmp'</font>       <i><font color="silver"># PATH: restricted</font></i>
+rbash -c <font color="#808080">'echo hi &gt; out'</font>   <i><font color="silver"># redirection: restricted</font></i>
+rbash -c <font color="#808080">'/bin/echo hi'</font>    <i><font color="silver"># commands with /: restricted</font></i>
+rbash -c <font color="#808080">'exec ls'</font>         <i><font color="silver"># exec: restricted</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</h2><br />
+<br />
+<span>Avoid the extra process if a command already reads files or <span class='inlinecode'>STDIN</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Prefer</font></i>
+grep -i foo file
+&lt;file grep -i foo        <i><font color="silver"># or feed via redirection</font></i>
+
+<i><font color="silver"># Over</font></i>
+cat file | grep -i foo
+</pre>
+<br />
+<span>But for interactive composition, or when you truly need to concatenate multiple sources into a single stream, <span class='inlinecode'>cat</span> is fine, as you may think, "First I need the content, then I do X." Changing the "useless use of cat" in retrospect is really a waste of time for one-time interactive use:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat file1 file2 | grep -i foo
+</pre>
+<br />
+<span>From notes: “Good for interactivity; Useless use of cat” — use judgment.</span><br />
+<br />
+<h2 style='display: inline' id='atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></h2><br />
+<br />
+<span>Portable advisory locks can be emulated with <span class='inlinecode'>mkdir</span> because it’s atomic:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>lockdir=/tmp/myjob.lock
+<b><u><font color="#000000">if</font></u></b> mkdir <font color="#808080">"$lockdir"</font> <font color="#000000">2</font>&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">trap</font></u></b> <font color="#808080">'rmdir "$lockdir"'</font> EXIT INT TERM
+    <i><font color="silver"># critical section</font></i>
+    do_work
+<b><u><font color="#000000">else</font></u></b>
+    echo <font color="#808080">"Another instance is running"</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>This works well on Linux. Remove the lock in <span class='inlinecode'>trap</span> so crashes don’t leave stale locks.</span><br />
+<br />
+<h2 style='display: inline' id='smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</h2><br />
+<br />
+<ul>
+<li>Enable extended globs when useful: <span class='inlinecode'>shopt -s extglob</span>; then patterns like <span class='inlinecode'>!(tmp|cache)</span> work.</li>
+<li>Use <span class='inlinecode'>-exec ... {} +</span> to batch many paths in fewer process invocations:</li>
+</ul><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>find . -name <font color="#808080">'*.log'</font> -exec gzip -<font color="#000000">9</font> {} +
+</pre>
+<br />
+<span>Example for extglob (exclude two dirs from listing):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">shopt</font></u></b> -s extglob
+ls -d -- !(.git|node_modules) <font color="#000000">2</font>&gt;/dev/null
+</pre>
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Random Weird Things - Part Ⅲ</title>
         <link href="gemini://foo.zone/gemfeed/2025-08-15-random-weird-things-iii.gmi" />
@@ -8667,7 +9320,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>As I mentioned, keyboards will remain an expensive hobby of mine. I don&#39;t regret anything here, though. After all, I use keyboards at my day job. I&#39;ve ordered a Kinesis custom build with the Gateron Kangaroo switches, and I&#39;m excited to see how that compares to my current setup. I&#39;m still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting or to sell it.</span><br />
 <br />
-<span class='quote'>Update 2025-02-22: I&#39;ve received my custom Kinesis Adv. 360 build with the Gateron Baby Kangaroo key switches. I am absolutely in love! I will keep my Gateron Brown versin around, though.</span><br />
+<span class='quote'>Update 2025-02-22: I&#39;ve received my custom Kinesis Adv. 360 build with the Gateron Baby Kangaroo key switches. I am absolutely in love! I will keep my Gateron Brown version around, though.</span><br />
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
@@ -10792,6 +11445,8 @@ $ doas sysupgrade <i><font color="silver"># Update all binaries (including Kerne
 <br />
 <span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
 <br />
+<span class='quote'>Note to myself: I have to undo the <span class='inlinecode'>/var/www</span> symlink before upgrading, and re-establishing the symlink afterwards again. This is due to disk space constraings on my setup!</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -10933,6 +11588,7 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
 <br />
 <pre>
     &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
@@ -11332,6 +11988,7 @@ echo baz
 <br />
 <span>Other related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
 <a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
 <a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
@@ -11848,6 +12505,7 @@ blurs  html  index.html  photos  thumbs
 <br />
 <span>Other Bash and KISS-related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
 <a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
@@ -12772,306 +13430,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>KISS server monitoring with Gogios</title>
-        <link href="gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi" />
-        <id>gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi</id>
-        <updated>2023-06-01T21:10:17+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</h1><br />
-<br />
-<span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
-<br />
-<span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
-<br />
-<span>With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
-<br />
-<a href='./kiss-server-monitoring-with-gogios/gogios-small.png'><img alt='Gogios logo' title='Gogios logo' src='./kiss-server-monitoring-with-gogios/gogios-small.png' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</a></li>
-<li>⇢ <a href='#motivation'>Motivation</a></li>
-<li>⇢ <a href='#features'>Features</a></li>
-<li>⇢ <a href='#example-alert'>Example alert</a></li>
-<li>⇢ <a href='#installation'>Installation</a></li>
-<li>⇢ ⇢ <a href='#compiling-and-installing-gogios'>Compiling and installing Gogios</a></li>
-<li>⇢ ⇢ <a href='#setting-up-user-group-and-directories'>Setting up user, group and directories</a></li>
-<li>⇢ ⇢ <a href='#installing-monitoring-plugins'>Installing monitoring plugins</a></li>
-<li>⇢ <a href='#configuration'>Configuration</a></li>
-<li>⇢ ⇢ <a href='#mta'>MTA</a></li>
-<li>⇢ ⇢ <a href='#configuring-gogios'>Configuring Gogios</a></li>
-<li>⇢ <a href='#running-gogios'>Running Gogios</a></li>
-<li>⇢ ⇢ <a href='#high-availability'>High-availability</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion:</a></li>
-</ul><br />
-<pre>
-    _____________________________    ____________________________
-   /                             \  /                            \
-  |    _______________________    ||    ______________________    |
-  |   /                       \   ||   /                      \   |
-  |   | # Alerts with status c|   ||   | # Unhandled alerts:  |   |
-  |   | hanged:               |   ||   |                      |   |
-  |   |                       |   ||   | CRITICAL: Check Pizza|   |
-  |   | OK-&gt;CRITICAL: Check Pi|   ||   | : Late delivery      |   |
-  |   | zza: Late delivery    |   ||   |                      |   |
-  |   |                       |   ||   | WARNING: Check Thirst|   |
-  |   |                       |   ||   | : OutofKombuchaExcept|   |
-  |   \_______________________/   ||   \______________________/   |
-  |  /|\ GOGIOS MONITOR 1    _    ||  /|\ GOGIOS MONITOR 2   _    |
-   \_____________________________/  \____________________________/
-     !_________________________!      !________________________!
-
-------------------------------------------------
-ASCII art was modified by Paul Buetow
-The original can be found at
-https://asciiart.website/index.php?art=objects/computers
-</pre>
-<br />
-<h2 style='display: inline' id='motivation'>Motivation</h2><br />
-<br />
-<span>With experience in monitoring solutions like Nagios, Icinga, Prometheus and OpsGenie, these tools often came with many features that I didn&#39;t necessarily need for personal use. Contact groups, host groups, check clustering, and the requirement of operating a DBMS and a WebUI added complexity and bloat to my monitoring setup.</span><br />
-<br />
-<span>My primary goal was to have a single email address for notifications and a simple mechanism to periodically execute standard Nagios check scripts and notify me of any state changes. I wanted the most minimalistic monitoring solution possible but wasn&#39;t satisfied with the available options.</span><br />
-<br />
-<span>This led me to create Gogios, a lightweight monitoring tool tailored to my specific needs. I chose the Go programming language for this project as it comes, in my opinion, with the best balance of ease to use and performance.</span><br />
-<br />
-<h2 style='display: inline' id='features'>Features</h2><br />
-<br />
-<ul>
-<li>Compatible with Nagios Check scripts: Gogios leverages the widely-used Nagios Check API, allowing to use existing Nagios plugins.</li>
-<li>Lightweight and Minimalistic: Gogios is designed to be simple and fairly easy to set up.</li>
-<li>Configurable Check Timeout and Concurrency: Gogios allows you to set a timeout for checks and configure the number of concurrent checks, offering flexibility in monitoring your resources.</li>
-<li>Configurable check dependency: A check can depend on another check, which enables scenarios like not executing an HTTP check when the server isn&#39;t pingable.</li>
-<li>Retries: Check retry and retry intervals are configurable per check.</li>
-<li>Email Notifications: Gogios can send email notifications regarding the status of monitored services, ensuring you stay informed about potential issues.</li>
-<li>CRON-based Execution: Gogios can be quickly scheduled to run periodically via CRON, allowing you to automate monitoring without needing a complex setup.</li>
-</ul><br />
-<h2 style='display: inline' id='example-alert'>Example alert</h2><br />
-<br />
-<span>This is an example alert report received via E-Mail. Whereas, <span class='inlinecode'>[C:2 W:0 U:0 OK:51]</span> means that we&#39;ve got two alerts in status critical, 0 warnings, 0 unknowns and 51 OKs.</span><br />
-<br />
-<pre>
-Subject: GOGIOS Report [C:2 W:0 U:0 OK:51]
-
-This is the recent Gogios report!
-
-# Alerts with status changed:
-
-OK-&gt;CRITICAL: Check ICMP4 vulcan.buetow.org: Check command timed out
-OK-&gt;CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
-
-# Unhandled alerts:
-
-CRITICAL: Check ICMP4 vulcan.buetow.org: Check command timed out
-CRITICAL: Check ICMP6 vulcan.buetow.org: Check command timed out
-
-Have a nice day!
-</pre>
-<br />
-<h2 style='display: inline' id='installation'>Installation</h2><br />
-<br />
-<h3 style='display: inline' id='compiling-and-installing-gogios'>Compiling and installing Gogios</h3><br />
-<br />
-<span>This document is primarily written for OpenBSD, but applying the corresponding steps to any Unix-like (e.g. Linux-based) operating system should be easy. On systems other than OpenBSD, you may always have to replace <span class='inlinecode'>does</span> with the <span class='inlinecode'>sudo</span> command and replace the <span class='inlinecode'>/usr/local/bin</span> path with <span class='inlinecode'>/usr/bin</span>.</span><br />
-<br />
-<span>To compile and install Gogios on OpenBSD, follow these steps:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>git clone https://codeberg.org/snonux/gogios.git
-cd gogios
-go build -o gogios cmd/gogios/main.go
-doas cp gogios /usr/local/bin/gogios
-doas chmod <font color="#000000">755</font> /usr/local/bin/gogios
-</pre>
-<br />
-<span>You can use cross-compilation if you want to compile Gogios for OpenBSD on a Linux system without installing the Go compiler on OpenBSD. Follow these steps:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">export</font></u></b> GOOS=openbsd
-<b><u><font color="#000000">export</font></u></b> GOARCH=amd64
-go build -o gogios cmd/gogios/main.go
-</pre>
-<br />
-<span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
-<br />
-<a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
-<br />
-<h3 style='display: inline' id='setting-up-user-group-and-directories'>Setting up user, group and directories</h3><br />
-<br />
-<span>It is best to create a dedicated system user and group for Gogios to ensure proper isolation and security. Here are the steps to create the <span class='inlinecode'>_gogios</span> user and group under OpenBSD:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>doas adduser -group _gogios -batch _gogios
-doas usermod -d /var/run/gogios _gogios
-doas mkdir -p /var/run/gogios
-doas chown _gogios:_gogios /var/run/gogios
-doas chmod <font color="#000000">750</font> /var/run/gogios
-</pre>
-<br />
-<span>Please note that creating a user and group might differ depending on your operating system. For other operating systems, consult their documentation for creating system users and groups.</span><br />
-<br />
-<h3 style='display: inline' id='installing-monitoring-plugins'>Installing monitoring plugins</h3><br />
-<br />
-<span>Gogios relies on external Nagios or Icinga monitoring plugin scripts. On OpenBSD, you can install the <span class='inlinecode'>monitoring-plugins</span> package with Gogios. The monitoring-plugins package is a collection of monitoring plugins, similar to Nagios plugins, that can be used to monitor various services and resources:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>doas pkg_add monitoring-plugins
-doas pkg_add nrpe <i><font color="silver"># If you want to execute checks remotely via NRPE.</font></i>
-</pre>
-<br />
-<span>Once the installation is complete, you can find the monitoring plugins in the <span class='inlinecode'>/usr/local/libexec/nagios</span> directory, which then can be configured to be used in <span class='inlinecode'>gogios.json</span>.</span><br />
-<br />
-<h2 style='display: inline' id='configuration'>Configuration</h2><br />
-<br />
-<h3 style='display: inline' id='mta'>MTA</h3><br />
-<br />
-<span>Gogios requires a local Mail Transfer Agent (MTA) such as Postfix or OpenBSD SMTPD running on the same server where the CRON job (see about the CRON job further below) is executed. The local MTA handles email delivery, allowing Gogios to send email notifications to monitor status changes. Before using Gogios, ensure that you have a properly configured MTA installed and running on your server to facilitate the sending of emails. Once the MTA is set up and functioning correctly, Gogios can leverage it to send email notifications.</span><br />
-<br />
-<span>You can use the mail command to send an email via the command line on OpenBSD. Here&#39;s an example of how to send a test email to ensure that your email server is working correctly:</span><br />
-<br />
-<pre>
-echo &#39;This is a test email from OpenBSD.&#39; | mail -s &#39;Test Email&#39; your-email@example.com
-</pre>
-<br />
-<span>Check the recipient&#39;s inbox to confirm the delivery of the test email. If the email is delivered successfully, it indicates that your email server is configured correctly and functioning. Please check your MTA logs in case of issues.</span><br />
-<br />
-<h3 style='display: inline' id='configuring-gogios'>Configuring Gogios</h3><br />
-<br />
-<span>To configure Gogios, create a JSON configuration file (e.g., <span class='inlinecode'>/etc/gogios.json</span>). Here&#39;s an example configuration:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>{
-  "EmailTo": "<font color="#808080">paul@dev.buetow.org</font>",
-  "EmailFrom": "<font color="#808080">gogios@buetow.org</font>",
-  "CheckTimeoutS": <font color="#000000">10</font>,
-  "CheckConcurrency": <font color="#000000">2</font>,
-  "StateDir": "<font color="#808080">/var/run/gogios</font>",
-  "Checks": {
-    "Check ICMP4 www.foo.zone": {
-      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_ping</font>",
-      "Args": [ "-H", "www.foo.zone", "-4", "-w", "50,10%", "-c", "100,15%" ],
-      "Retries": <font color="#000000">3</font>,
-      "RetryInterval": <font color="#000000">10</font>
-    },
-    "Check ICMP6 www.foo.zone": {
-      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_ping</font>",
-      "Args": [ "-H", "www.foo.zone", "-6", "-w", "50,10%", "-c", "100,15%" ],
-      "Retries": <font color="#000000">3</font>,
-      "RetryInterval": <font color="#000000">10</font>
-    },
-    "www.foo.zone HTTP IPv4": {
-      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_http</font>",
-      "Args": ["www.foo.zone", "-4"],
-      "DependsOn": ["Check ICMP4 www.foo.zone"]
-    },
-    "www.foo.zone HTTP IPv6": {
-      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_http</font>",
-      "Args": ["www.foo.zone", "-6"],
-      "DependsOn": ["Check ICMP6 www.foo.zone"]
-    }
-    "Check NRPE Disk Usage foo.zone": {
-      "Plugin": "<font color="#808080">/usr/local/libexec/nagios/check_nrpe</font>",
-      "Args": ["-H", "foo.zone", "-c", "check_disk", "-p", "5666", "-4"]
-    }
-  }
-}
-</pre>
-<br />
-<ul>
-<li><span class='inlinecode'>EmailTo</span>: Specifies the recipient of the email notifications.</li>
-<li><span class='inlinecode'>EmailFrom</span>: Indicates the sender&#39;s email address for email notifications.</li>
-<li><span class='inlinecode'>CheckTimeoutS</span>: Sets the timeout for checks in seconds.</li>
-<li><span class='inlinecode'>CheckConcurrency</span>: Determines the number of concurrent checks that can run simultaneously.</li>
-<li><span class='inlinecode'>StateDir</span>: Specifies the directory where Gogios stores its persistent state in a <span class='inlinecode'>state.json</span> file. </li>
-<li><span class='inlinecode'>Checks</span>: Defines a list of checks to be performed, each with a unique name, plugin path, and arguments.</li>
-</ul><br />
-<span>Adjust the configuration file according to your needs, specifying the checks you want Gogios to perform.</span><br />
-<br />
-<span>If you want to execute checks only when another check succeeded (status OK), use <span class='inlinecode'>DependsOn</span>. In the example above, the HTTP checks won&#39;t run when the hosts aren&#39;t pingable. They will show up as <span class='inlinecode'>UNKNOWN</span> in the report.</span><br />
-<br />
-<span><span class='inlinecode'>Retries</span> and <span class='inlinecode'>RetryInterval</span> are optional check configuration parameters. In case of failure, Gogios will retry <span class='inlinecode'>Retries</span> times each <span class='inlinecode'>RetryInterval</span> seconds.</span><br />
-<br />
-<span>For remote checks, use the <span class='inlinecode'>check_nrpe</span> plugin. You also need to have the NRPE server set up correctly on the target host (out of scope for this document).</span><br />
-<br />
-<span>The <span class='inlinecode'>state.json</span> file mentioned above keeps track of the monitoring state and check results between Gogios runs, enabling Gogios only to send email notifications when there are changes in the check status.</span><br />
-<br />
-<h2 style='display: inline' id='running-gogios'>Running Gogios</h2><br />
-<br />
-<span>Now it is time to give it a first run. On OpenBSD, do:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>doas -u _gogios /usr/local/bin/gogios -cfg /etc/gogios.json
-</pre>
-<br />
-<span>To run Gogios via CRON on OpenBSD as the <span class='inlinecode'>gogios</span> user and check all services once per minute, follow these steps:</span><br />
-<br />
-<span>Type <span class='inlinecode'>doas crontab -e -u _gogios</span> and press Enter to open the crontab file for the <span class='inlinecode'>_gogios</span> user for editing and add the following lines to the crontab file:</span><br />
-<br />
-<pre>
-*/5 8-22 * * * /usr/local/bin/gogios -cfg /etc/gogios.json
-0 7 * * * /usr/local/bin/gogios -renotify -cfg /etc/gogios.json
-</pre>
-<br />
-<span>Gogios is now configured to run every five minutes from 8 am to 10 pm via CRON as the <span class='inlinecode'>_gogios</span> user. It will execute the checks and send monitoring status whenever a check status changes via email according to your configuration. Also, Gogios will run once at 7 am every morning and re-notify all unhandled alerts as a reminder.</span><br />
-<br />
-<h3 style='display: inline' id='high-availability'>High-availability</h3><br />
-<br />
-<span>To create a high-availability Gogios setup, you can install Gogios on two servers that will monitor each other using the NRPE (Nagios Remote Plugin Executor) plugin. By running Gogios in alternate CRON intervals on both servers, you can ensure that even if one server goes down, the other will continue monitoring your infrastructure and sending notifications.</span><br />
-<br />
-<ul>
-<li>Install Gogios on both servers following the compilation and installation instructions provided earlier.</li>
-<li>Install the NRPE server (out of scope for this document) and plugin on both servers. This plugin allows you to execute Nagios check scripts on remote hosts.</li>
-<li>Configure Gogios on both servers to monitor each other using the NRPE plugin. Add a check to the Gogios configuration file (<span class='inlinecode'>/etc/gogios.json</span>) on both servers that uses the NRPE plugin to execute a check script on the other server. For example, if you have Server A and Server B, the configuration on Server A should include a check for Server B, and vice versa.</li>
-<li>Set up alternate CRON intervals on both servers. Configure the CRON job on Server A to run Gogios at minutes 0, 10, 20, ..., and on Server B to run at minutes 5, 15, 25, ... This will ensure that if one server goes down, the other server will continue monitoring and sending notifications. </li>
-<li>Gogios doesn&#39;t support clustering. So it means when both servers are up, unhandled alerts will be notified via E-Mail twice; from each server once. That&#39;s the trade-off for simplicity.</li>
-</ul><br />
-<span>There are plans to make it possible to execute certain checks only on certain nodes (e.g. on elected leader or master nodes). This is still in progress (check out my Gorum Git project).</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion:</h2><br />
-<br />
-<span>Gogios is a lightweight and straightforward monitoring tool that is perfect for small-scale environments. With its compatibility with the Nagios Check API, email notifications, and CRON-based scheduling, Gogios offers an easy-to-use solution for those looking to monitor a limited number of resources. I personally use it to execute around 500 checks on my personal server infrastructure. I am very happy with this solution.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other KISS-related posts are:</span><br />
-<br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios (You are currently reading this)</a><br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-09-11T11:13:29+03:00 by `Gemtexter`
+> This site was generated at 2025-09-13T12:04:03+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+=> ./gemfeed/2025-09-14-bash-golf-part-4.gmi 2025-09-14 - Bash Golf Part 4
 => ./gemfeed/2025-08-15-random-weird-things-iii.gmi 2025-08-15 - Random Weird Things - Part Ⅲ
 => ./gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi 2025-08-05 - Local LLM for Coding with Ollama on macOS
 => ./gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 - f3s: Kubernetes with FreeBSD - Part 6: Storage

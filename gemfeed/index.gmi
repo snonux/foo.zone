@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+=> ./2025-09-14-bash-golf-part-4.gmi 2025-09-14 - Bash Golf Part 4
 => ./2025-08-15-random-weird-things-iii.gmi 2025-08-15 - Random Weird Things - Part Ⅲ
 => ./2025-08-05-local-coding-llm-with-ollama.gmi 2025-08-05 - Local LLM for Coding with Ollama on macOS
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 - f3s: Kubernetes with FreeBSD - Part 6: Storage
