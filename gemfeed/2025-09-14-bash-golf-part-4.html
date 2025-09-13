@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Bash Golf Part 4</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-09-14-bash-golf-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='bash-golf-part-4'>Bash Golf Part 4</h1><br />
+<br />
+<span class='quote'>Published at 2025-09-13T12:04:03+03:00</span><br />
+<br />
+<span>This is the fourth blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
+<br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4 (You are currently reading this)</a><br />
+<br />
+<pre>
+    &#39;\       &#39;\        &#39;\        &#39;\                   .  .        |&gt;18&gt;&gt;
+      \        \         \         \              .         &#39; .   |
+     O&gt;&gt;      O&gt;&gt;       O&gt;&gt;       O&gt;&gt;         .                 &#39;o |
+      \       .\. ..    .\. ..    .\. ..   .                      |
+      /\    .  /\     .  /\     .  /\    . .                      |
+     / /   .  / /  .&#39;.  / /  .&#39;.  / /  .&#39;    .                    |
+jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                        Art by Joan Stark, mod. by Paul Buetow
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#bash-golf-part-4'>Bash Golf Part 4</a></li>
+<li>⇢ <a href='#split-pipelines-with-tee--process-substitution'>Split pipelines with tee + process substitution</a></li>
+<li>⇢ <a href='#heredocs-for-remote-sessions-and-their-gotchas'>Heredocs for remote sessions (and their gotchas)</a></li>
+<li>⇢ <a href='#namespacing-and-dynamic-dispatch-with-'>Namespacing and dynamic dispatch with <span class='inlinecode'>::</span></a></li>
+<li>⇢ <a href='#indirect-references-with-namerefs'>Indirect references with namerefs</a></li>
+<li>⇢ <a href='#function-declaration-forms'>Function declaration forms</a></li>
+<li>⇢ <a href='#chaining-function-calls-in-conditionals'>Chaining function calls in conditionals</a></li>
+<li>⇢ <a href='#grep-sed-awk-quickies'>Grep, sed, awk quickies</a></li>
+<li>⇢ <a href='#safe-xargs-with-nuls'>Safe xargs with NULs</a></li>
+<li>⇢ <a href='#efficient-file-to-variable-and-arrays'>Efficient file-to-variable and arrays</a></li>
+<li>⇢ <a href='#quick-password-generator'>Quick password generator</a></li>
+<li>⇢ <a href='#yes-for-automation'><span class='inlinecode'>yes</span> for automation</a></li>
+<li>⇢ <a href='#forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</a></li>
+<li>⇢ <a href='#restricted-bash'>Restricted Bash</a></li>
+<li>⇢ <a href='#useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</a></li>
+<li>⇢ <a href='#atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></a></li>
+<li>⇢ <a href='#smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</a></li>
+</ul><br />
+<h2 style='display: inline' id='split-pipelines-with-tee--process-substitution'>Split pipelines with tee + process substitution</h2><br />
+<br />
+<span>Sometimes you want to fan out one stream to multiple consumers and still continue the original pipeline. <span class='inlinecode'>tee</span> plus process substitution does exactly that:</span><br />
+<br />
+<pre>
+somecommand \
+    | tee &gt;(command1) &gt;(command2) \
+    | command3
+</pre>
+<br />
+<span>All of <span class='inlinecode'>command1</span>, <span class='inlinecode'>command2</span>, and <span class='inlinecode'>command3</span> see the output of <span class='inlinecode'>somecommand</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a</font>\n<font color="#808080">b</font>\n<font color="#808080">'</font> \
+    | tee &gt;(sed <font color="#808080">'s/.*/X:&amp;/; s/$/ :c1/'</font>) &gt;(tr a-z A-Z | sed <font color="#808080">'s/$/ :c2/'</font>) \
+    | sed <font color="#808080">'s/$/ :c3/'</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+a :c3
+b :c3
+A :c2 :c3
+B :c2 :c3
+X:a :c1 :c3
+X:b :c1 :c3
+</pre>
+<br />
+<span>This relies on Bash process substitution (<span class='inlinecode'>&gt;(...)</span>). Make sure your shell is Bash and not a POSIX <span class='inlinecode'>/bin/sh</span>.</span><br />
+<br />
+<span>Example (fails under <span class='inlinecode'>dash</span>/POSIX sh):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>/bin/sh -c <font color="#808080">'echo hi | tee &gt;(cat)'</font>
+<i><font color="silver"># /bin/sh: 1: Syntax error: "(" unexpected</font></i>
+</pre>
+<br />
+<span>Combine with <span class='inlinecode'>set -o pipefail</span> if failures in side branches should fail the whole pipeline.</span><br />
+<br />
+<span>Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">set</font></u></b> -o pipefail
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'ok</font>\n<font color="#808080">'</font> | tee &gt;(<b><u><font color="#000000">false</font></u></b>) | cat &gt;/dev/null
+echo $?   <i><font color="silver"># 1 because a side branch failed</font></i>
+</pre>
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://blogtitle.github.io/splitting-pipelines/'>Splitting pipelines with tee</a><br />
+<br />
+<h2 style='display: inline' id='heredocs-for-remote-sessions-and-their-gotchas'>Heredocs for remote sessions (and their gotchas)</h2><br />
+<br />
+<span>Heredocs are great to send multiple commands over SSH in a readable way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>ssh <font color="#808080">"$SSH_USER@$SSH_HOST"</font> &lt;&lt;EOF
+    <i><font color="silver"># Go to the work directory</font></i>
+    cd <font color="#808080">"$WORK_DIR"</font>
+  
+    <i><font color="silver"># Make a git pull</font></i>
+    git pull
+  
+    <i><font color="silver"># Export environment variables required for the service to run</font></i>
+    <b><u><font color="#000000">export</font></u></b> AUTH_TOKEN=<font color="#808080">"$APP_AUTH_TOKEN"</font>
+  
+    <i><font color="silver"># Start the service</font></i>
+    docker compose up -d --build
+EOF
+</pre>
+<br />
+<span>Tips:</span><br />
+<br />
+<span>Quoting the delimiter changes interpolation. Use <span class='inlinecode'>&lt;&lt;&#39;EOF&#39;</span> to avoid local expansion and send the content literally.</span><br />
+<br />
+<span>Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>FOO=bar
+cat &lt;&lt;<font color="#808080">'EOF'</font>
+$FOO is not expanded here
+EOF
+</pre>
+<br />
+<span>Prefer explicit quoting for variables (as above) to avoid surprises. Example (spaces preserved only when quoted):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>WORK_DIR=<font color="#808080">"/tmp/my work"</font>
+ssh host &lt;&lt;EOF
+    cd $WORK_DIR      <i><font color="silver"># may break if unquoted</font></i>
+    cd <font color="#808080">"$WORK_DIR"</font>   <i><font color="silver"># safe</font></i>
+EOF
+</pre>
+<br />
+<span>Consider <span class='inlinecode'>set -euo pipefail</span> at the top of the remote block for stricter error handling. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>ssh host &lt;&lt;<font color="#808080">'EOF'</font>
+    <b><u><font color="#000000">set</font></u></b> -euo pipefail
+    <b><u><font color="#000000">false</font></u></b>   <i><font color="silver"># causes immediate failure</font></i>
+    echo never
+EOF
+</pre>
+<br />
+<span>Indent-friendly variant: use a dash to strip leading tabs in the body:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat &lt;&lt;-EOF &gt; script.sh
+	<i><font color="silver">#!/usr/bin/env bash</font></i>
+	echo <font color="#808080">"tab-indented content is dedented"</font>
+EOF
+</pre>
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://rednafi.com/misc/heredoc_headache/'>Heredoc headaches and fixes</a><br />
+<br />
+<h2 style='display: inline' id='namespacing-and-dynamic-dispatch-with-'>Namespacing and dynamic dispatch with <span class='inlinecode'>::</span></h2><br />
+<br />
+<span>You can emulate simple namespacing by encoding hierarchy in function names. One neat pattern is pseudo-inheritance via a tiny <span class='inlinecode'>super</span> helper that maps <span class='inlinecode'>pkg::lang::action</span> to a <span class='inlinecode'>pkg::base::action</span> default.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
+<b><u><font color="#000000">set</font></u></b> -euo pipefail
+
+super() {
+    <b><u><font color="#000000">local</font></u></b> -r fn=${FUNCNAME[1]}
+    <i><font color="silver"># Split name on :: and dispatch to base implementation</font></i>
+    <b><u><font color="#000000">local</font></u></b> -a parts=( ${fn//::/ } )
+    <font color="#808080">"${parts[0]}::base::${parts[2]}"</font> <font color="#808080">"$@"</font>
+}
+
+foo::base::greet() { echo <font color="#808080">"base: $@"</font>; }
+foo::german::greet()  { super <font color="#808080">"Guten Tag, $@!"</font>; }
+foo::english::greet() { super <font color="#808080">"Good day,  $@!"</font>; }
+
+<b><u><font color="#000000">for</font></u></b> lang <b><u><font color="#000000">in</font></u></b> german english; <b><u><font color="#000000">do</font></u></b>
+    foo::$lang::greet Paul
+<b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+base: Guten Tag, Paul!
+base: Good day,  Paul!
+</pre>
+<br />
+<h2 style='display: inline' id='indirect-references-with-namerefs'>Indirect references with namerefs</h2><br />
+<br />
+<span><span class='inlinecode'>declare -n</span> creates a name reference — a variable that points to another variable. It’s cleaner than <span class='inlinecode'>eval</span> for indirection:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>user_name=paul
+<b><u><font color="#000000">declare</font></u></b> -n ref=user_name
+echo <font color="#808080">"$ref"</font>       <i><font color="silver"># paul</font></i>
+ref=julia
+echo <font color="#808080">"$user_name"</font> <i><font color="silver"># julia</font></i>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+paul
+julia
+</pre>
+<br />
+<span>Namerefs are local to functions when declared with <span class='inlinecode'>local -n</span>. Requires Bash ≥4.3.</span><br />
+<br />
+<span>You can also construct the target name dynamically:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>make_var() {
+    <b><u><font color="#000000">local</font></u></b> idx=$1; <b><u><font color="#000000">shift</font></u></b>
+    <b><u><font color="#000000">local</font></u></b> name=<font color="#808080">"slot_$idx"</font>
+    <b><u><font color="#000000">printf</font></u></b> -v <font color="#808080">"$name"</font> <font color="#808080">'%s'</font> <font color="#808080">"$*"</font>   <i><font color="silver"># create variable slot_$idx</font></i>
+}
+
+get_var() {
+    <b><u><font color="#000000">local</font></u></b> idx=$1
+    <b><u><font color="#000000">local</font></u></b> -n ref=<font color="#808080">"slot_$idx"</font>      <i><font color="silver"># bind ref to slot_$idx</font></i>
+    <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"$ref"</font>
+}
+
+make_var <font color="#000000">7</font> <font color="#808080">"seven"</font>
+get_var <font color="#000000">7</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+seven
+</pre>
+<br />
+<h2 style='display: inline' id='function-declaration-forms'>Function declaration forms</h2><br />
+<br />
+<span>All of these work in Bash, but only the first one is POSIX-ish:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>foo() { echo foo; }
+function foo { echo foo; }
+function foo() { echo foo; }
+</pre>
+<br />
+<span>Recommendation: prefer <span class='inlinecode'>name() { ... }</span> for portability and consistency.</span><br />
+<br />
+<h2 style='display: inline' id='chaining-function-calls-in-conditionals'>Chaining function calls in conditionals</h2><br />
+<br />
+<span>Functions return a status like commands. You can short-circuit them in conditionals:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>deploy_check() { <b><u><font color="#000000">test</font></u></b> -f deploy.yaml; }
+smoke_test()   { curl -fsS http://localhost/healthz &gt;/dev/null; }
+
+<b><u><font color="#000000">if</font></u></b> deploy_check || smoke_test; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"All good."</font>
+<b><u><font color="#000000">else</font></u></b>
+    echo <font color="#808080">"Something failed."</font> &gt;&amp;<font color="#000000">2</font>
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>You can also compress it golf-style:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>deploy_check || smoke_test &amp;&amp; echo ok || echo fail &gt;&amp;<font color="#000000">2</font>
+</pre>
+<br />
+<h2 style='display: inline' id='grep-sed-awk-quickies'>Grep, sed, awk quickies</h2><br />
+<br />
+<span>Word match and context: <span class='inlinecode'>grep -w word file</span>; with context: <span class='inlinecode'>grep -C3 foo file</span> (same as <span class='inlinecode'>-A3 -B3</span>). Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat &gt; /tmp/ctx.txt &lt;&lt;EOF
+one
+foo
+two
+three
+bar
+EOF
+grep -C<font color="#000000">1</font> foo /tmp/ctx.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+one
+foo
+two
+</pre>
+<br />
+<span>Skip a directory while recursing: <span class='inlinecode'>grep -R --exclude-dir=foo &#39;bar&#39; /path</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mkdir -p /tmp/golf/foo /tmp/golf/src
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'bar</font>\n<font color="#808080">'</font> &gt; /tmp/golf/src/a.txt
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'bar</font>\n<font color="#808080">'</font> &gt; /tmp/golf/foo/skip.txt
+grep -R --exclude-dir=foo <font color="#808080">'bar'</font> /tmp/golf
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+/tmp/golf/src/a.txt:bar
+</pre>
+<br />
+<span>Insert lines with sed: <span class='inlinecode'>sed -e &#39;1isomething&#39; -e &#39;3isomething&#39; file</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'A</font>\n<font color="#808080">B</font>\n<font color="#808080">C</font>\n<font color="#808080">'</font> &gt; /tmp/s.txt
+sed -e <font color="#808080">'1iHEAD'</font> -e <font color="#808080">'3iMID'</font> /tmp/s.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+HEAD
+A
+B
+MID
+C
+</pre>
+<br />
+<span>Drop last column with awk: <span class='inlinecode'>awk &#39;NF{NF-=1};1&#39; file</span>. Example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a b c</font>\n<font color="#808080">x y z</font>\n<font color="#808080">'</font> &gt; /tmp/t.txt
+cat /tmp/t.txt
+echo
+awk <font color="#808080">'NF{NF-=1};1'</font> /tmp/t.txt
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+a b c
+x y z
+
+a b
+x y
+</pre>
+<br />
+<h2 style='display: inline' id='safe-xargs-with-nuls'>Safe xargs with NULs</h2><br />
+<br />
+<span>Avoid breaking on spaces/newlines by pairing <span class='inlinecode'>find -print0</span> with <span class='inlinecode'>xargs -0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>find . -type f -name <font color="#808080">'*.log'</font> -print<font color="#000000">0</font> | xargs -<font color="#000000">0</font> rm -f
+</pre>
+<br />
+<span>Example with spaces and NULs only:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> <font color="#808080">'a</font>\0<font color="#808080">b c</font>\0<font color="#808080">'</font> | xargs -<font color="#000000">0</font> -I{} <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'&lt;%s&gt;</font>\n<font color="#808080">'</font> {}
+</pre>
+<br />
+<span>Output:</span><br />
+<span>  </span><br />
+<pre>
+&lt;a&gt;
+&lt;b c&gt;
+</pre>
+<br />
+<h2 style='display: inline' id='efficient-file-to-variable-and-arrays'>Efficient file-to-variable and arrays</h2><br />
+<br />
+<span>Read a whole file into a variable without spawning <span class='inlinecode'>cat</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cfg=$(&lt;config.ini)
+</pre>
+<br />
+<span>Read lines into an array safely with <span class='inlinecode'>mapfile</span> (aka <span class='inlinecode'>readarray</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mapfile -t lines &lt; &lt;(grep -v <font color="#808080">'^#'</font> config.ini)
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"${lines[@]}"</font>
+</pre>
+<br />
+<span>Assign formatted strings without a subshell using <span class='inlinecode'>printf -v</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">printf</font></u></b> -v msg <font color="#808080">'Hello %s, id=%04d'</font> <font color="#808080">"$USER"</font> <font color="#000000">42</font>
+echo <font color="#808080">"$msg"</font>
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+Hello paul, id=0042
+</pre>
+<br />
+<span>Read NUL-delimited data (pairs well with <span class='inlinecode'>-print0</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>mapfile -d <font color="#808080">''</font> -t files &lt; &lt;(find . -type f -print<font color="#000000">0</font>)
+<b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"${files[@]}"</font>
+</pre>
+<br />
+<h2 style='display: inline' id='quick-password-generator'>Quick password generator</h2><br />
+<br />
+<span>Pure Bash with <span class='inlinecode'>/dev/urandom</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>LC_ALL=C tr -dc <font color="#808080">'A-Za-z0-9_'</font> &lt;/dev/urandom | head -c <font color="#000000">16</font>; echo
+</pre>
+<br />
+<span>Alternative using <span class='inlinecode'>openssl</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>openssl rand -base<font color="#000000">64</font> <font color="#000000">16</font> | tr -d <font color="#808080">'</font>\n<font color="#808080">'</font> | cut -c<font color="#000000">1</font>-<font color="#000000">22</font>
+</pre>
+<br />
+<h2 style='display: inline' id='yes-for-automation'><span class='inlinecode'>yes</span> for automation</h2><br />
+<br />
+<span><span class='inlinecode'>yes</span> streams a string repeatedly; handy for feeding interactive commands or quick load generation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>yes | rm -r large_directory        <i><font color="silver"># auto-confirm</font></i>
+yes n | dangerous-command          <i><font color="silver"># auto-decline</font></i>
+yes anything | head -n<font color="#000000">1</font>            <i><font color="silver"># prints one line: anything</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</h2><br />
+<br />
+<span>You can shadow builtins with functions:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>true()  { <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>; }
+false() { <b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>; }
+
+<b><u><font color="#000000">true</font></u></b>  || echo <font color="#808080">'true failed'</font>
+<b><u><font color="#000000">false</font></u></b> &amp;&amp; echo <font color="#808080">'false succeeded'</font>
+
+<i><font color="silver"># Bypass function with builtin/command</font></i>
+<b><u><font color="#000000">builtin</font></u></b> <b><u><font color="#000000">true</font></u></b> <i><font color="silver"># returns 0</font></i>
+<b><u><font color="#000000">command</font></u></b> <b><u><font color="#000000">true</font></u></b> <i><font color="silver"># returns 0</font></i>
+</pre>
+<br />
+<span>To disable a builtin entirely: <span class='inlinecode'>enable -n true</span> (re-enable with <span class='inlinecode'>enable true</span>).</span><br />
+<br />
+<span>Further reading:</span><br />
+<br />
+<a class='textlink' href='https://blog.robertelder.org/force-true-command-to-return-false/'>Force true to return false</a><br />
+<br />
+<h2 style='display: inline' id='restricted-bash'>Restricted Bash</h2><br />
+<br />
+<span><span class='inlinecode'>bash -r</span> (or <span class='inlinecode'>rbash</span>) starts a restricted shell that limits potentially dangerous actions, for example:</span><br />
+<br />
+<ul>
+<li>Changing directories (<span class='inlinecode'>cd</span>).</li>
+<li>Modifying <span class='inlinecode'>PATH</span>, <span class='inlinecode'>SHELL</span>, <span class='inlinecode'>BASH_ENV</span>, or <span class='inlinecode'>ENV</span>.</li>
+<li>Redirecting output.</li>
+<li>Running commands with <span class='inlinecode'>/</span> in the name.</li>
+<li>Using <span class='inlinecode'>exec</span>.</li>
+</ul><br />
+<span>It’s a coarse sandbox for highly constrained shells; read <span class='inlinecode'>man bash</span> (RESTRICTED SHELL) for details and caveats.</span><br />
+<br />
+<span>Example session:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>rbash -c <font color="#808080">'cd /'</font>            <i><font color="silver"># cd: restricted</font></i>
+rbash -c <font color="#808080">'PATH=/tmp'</font>       <i><font color="silver"># PATH: restricted</font></i>
+rbash -c <font color="#808080">'echo hi &gt; out'</font>   <i><font color="silver"># redirection: restricted</font></i>
+rbash -c <font color="#808080">'/bin/echo hi'</font>    <i><font color="silver"># commands with /: restricted</font></i>
+rbash -c <font color="#808080">'exec ls'</font>         <i><font color="silver"># exec: restricted</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</h2><br />
+<br />
+<span>Avoid the extra process if a command already reads files or <span class='inlinecode'>STDIN</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Prefer</font></i>
+grep -i foo file
+&lt;file grep -i foo        <i><font color="silver"># or feed via redirection</font></i>
+
+<i><font color="silver"># Over</font></i>
+cat file | grep -i foo
+</pre>
+<br />
+<span>But for interactive composition, or when you truly need to concatenate multiple sources into a single stream, <span class='inlinecode'>cat</span> is fine, as you may think, "First I need the content, then I do X." Changing the "useless use of cat" in retrospect is really a waste of time for one-time interactive use:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cat file1 file2 | grep -i foo
+</pre>
+<br />
+<span>From notes: “Good for interactivity; Useless use of cat” — use judgment.</span><br />
+<br />
+<h2 style='display: inline' id='atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></h2><br />
+<br />
+<span>Portable advisory locks can be emulated with <span class='inlinecode'>mkdir</span> because it’s atomic:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>lockdir=/tmp/myjob.lock
+<b><u><font color="#000000">if</font></u></b> mkdir <font color="#808080">"$lockdir"</font> <font color="#000000">2</font>&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">trap</font></u></b> <font color="#808080">'rmdir "$lockdir"'</font> EXIT INT TERM
+    <i><font color="silver"># critical section</font></i>
+    do_work
+<b><u><font color="#000000">else</font></u></b>
+    echo <font color="#808080">"Another instance is running"</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
+<br />
+<span>This works well on Linux. Remove the lock in <span class='inlinecode'>trap</span> so crashes don’t leave stale locks.</span><br />
+<br />
+<h2 style='display: inline' id='smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</h2><br />
+<br />
+<ul>
+<li>Enable extended globs when useful: <span class='inlinecode'>shopt -s extglob</span>; then patterns like <span class='inlinecode'>!(tmp|cache)</span> work.</li>
+<li>Use <span class='inlinecode'>-exec ... {} +</span> to batch many paths in fewer process invocations:</li>
+</ul><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>find . -name <font color="#808080">'*.log'</font> -exec gzip -<font color="#000000">9</font> {} +
+</pre>
+<br />
+<span>Example for extglob (exclude two dirs from listing):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">shopt</font></u></b> -s extglob
+ls -d -- !(.git|node_modules) <font color="#000000">2</font>&gt;/dev/null
+</pre>
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4 (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
+<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
