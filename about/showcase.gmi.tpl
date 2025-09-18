@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2025-09-11
+Generated on: 2025-09-18
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
@@ -9,11 +9,11 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 55
-* 📊 Total Commits: 11,028
-* 📈 Total Lines of Code: 284,649
-* 📄 Total Lines of Documentation: 23,038
-* 💻 Languages: Go (26.5%), Java (14.2%), C++ (13.1%), C/C++ (7.2%), C (6.7%), Perl (6.2%), CSS (6.1%), HTML (5.4%), Shell (5.2%), Python (2.3%), Config (1.7%), Ruby (1.0%), JSON (1.0%), HCL (1.0%), Make (0.7%), YAML (0.6%), Raku (0.3%), XML (0.2%), Haskell (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (48.8%), Markdown (48.7%), LaTeX (2.5%)
+* 📊 Total Commits: 11,075
+* 📈 Total Lines of Code: 294,461
+* 📄 Total Lines of Documentation: 240,909
+* 💻 Languages: Go (28.5%), Java (18.6%), HTML (15.0%), C (6.4%), C++ (6.0%), Perl (5.6%), XML (4.8%), Shell (4.6%), C/C++ (4.2%), Config (1.2%), Ruby (1.0%), HCL (0.9%), YAML (0.6%), Python (0.6%), Make (0.5%), CSS (0.5%), Raku (0.3%), JSON (0.3%), Haskell (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (92.8%), Markdown (5.8%), LaTeX (1.4%)
 * 🎵 Vibe-Coded Projects: 4 out of 55 (7.3%)
 * 🤖 AI-Assisted Projects (including vibe-coded): 10 out of 55 (18.2% AI-assisted, 81.8% human-only)
 * 🚀 Release Status: 35 released, 20 experimental (63.6% with releases, 36.4% experimental)
@@ -22,15 +22,15 @@ This page showcases my side projects, providing an overview of what each project
 
 ### hexai
 
-* 💻 Languages: Go (66.6%), HTML (33.4%)
+* 💻 Languages: Go (66.1%), HTML (33.9%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 193
-* 📈 Lines of Code: 19021
-* 📄 Lines of Documentation: 369
-* 📅 Development Period: 2025-08-01 to 2025-09-08
-* 🔥 Recent Activity: 3.9 days (avg. age of last 42 commits)
+* 📊 Commits: 208
+* 📈 Lines of Code: 22125
+* 📄 Lines of Documentation: 546
+* 📅 Development Period: 2025-08-01 to 2025-09-17
+* 🔥 Recent Activity: 7.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: v0.9.0 (2025-09-08)
+* 🏷️ Latest Release: v0.11.3 (2025-09-17)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
@@ -47,13 +47,13 @@ The project is implemented primarily in Go and uses Mage as its build and task a
 
 ### conf
 
-* 💻 Languages: Perl (31.4%), YAML (23.1%), Shell (23.0%), Config (5.6%), CSS (5.4%), TOML (4.8%), Ruby (4.1%), Lua (1.2%), Docker (0.7%), JSON (0.6%), INI (0.1%)
+* 💻 Languages: Perl (31.3%), Shell (23.2%), YAML (23.0%), Config (5.6%), CSS (5.4%), TOML (4.8%), Ruby (4.2%), Lua (1.2%), Docker (0.6%), JSON (0.5%)
 * 📚 Documentation: Text (69.9%), Markdown (30.1%)
-* 📊 Commits: 980
-* 📈 Lines of Code: 5994
+* 📊 Commits: 995
+* 📈 Lines of Code: 6017
 * 📄 Lines of Documentation: 1188
-* 📅 Development Period: 2021-12-28 to 2025-09-10
-* 🔥 Recent Activity: 16.6 days (avg. age of last 42 commits)
+* 📅 Development Period: 2021-12-28 to 2025-09-17
+* 🔥 Recent Activity: 12.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -66,6 +66,29 @@ conf
 
 ---
 
+### foo.zone
+
+* 💻 Languages: HTML (70.5%), XML (28.8%), Shell (0.3%), CSS (0.2%), Go (0.1%)
+* 📚 Documentation: Text (75.5%), Markdown (24.5%)
+* 📊 Commits: 3072
+* 📈 Lines of Code: 46613
+* 📄 Lines of Documentation: 298
+* 📅 Development Period: 2021-04-29 to 2025-09-13
+* 🔥 Recent Activity: 42.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+
+
+This project hosts the static files for the foo.zone website, which is accessible via both the Gemini protocol (gemini://foo.zone) and the web (https://foo.zone). The repository is organized with separate branches for each content format—such as Gemtext, HTML, and Markdown—allowing the site to be served in multiple formats tailored to different protocols and user preferences. This structure makes it easy to maintain and update content across platforms, ensuring consistency and flexibility.
+
+The site is maintained using a suite of open-source tools, including Neovim for editing, GNU Bash for scripting, and ShellCheck for shell script linting. It is deployed on OpenBSD, utilizing the vger Gemini server (managed via relayd and inetd) for Gemini content and the native httpd server for the HTML site. Source code and hosting are managed through Codeberg. The static content is generated with the help of the gemtexter tool, which streamlines the process of converting and managing content in various formats. This architecture emphasizes simplicity, security, and portability, making it a robust solution for multi-protocol static site hosting.
+
+=> https://codeberg.org/snonux/foo.zone View on Codeberg
+=> https://github.com/snonux/foo.zone View on GitHub
+
+---
+
 ### gitsyncer
 
 * 💻 Languages: Go (91.0%), Shell (7.4%), YAML (0.9%), JSON (0.6%)
@@ -74,7 +97,7 @@ conf
 * 📈 Lines of Code: 10036
 * 📄 Lines of Documentation: 2433
 * 📅 Development Period: 2025-06-23 to 2025-09-08
-* 🔥 Recent Activity: 48.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 55.5 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-09-08)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -97,7 +120,7 @@ The tool is implemented as a modern CLI application in Go, with a modular, comma
 * 📈 Lines of Code: 12003
 * 📄 Lines of Documentation: 361
 * 📅 Development Period: 2025-07-14 to 2025-08-02
-* 🔥 Recent Activity: 50.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 58.3 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.7.5 (2025-08-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -118,6 +141,33 @@ Architecturally, totalrecall is implemented in Go and integrates with OpenAI ser
 
 ---
 
+### dtail
+
+* 💻 Languages: Go (91.0%), Shell (4.1%), JSON (2.1%), C (1.4%), Make (0.9%), C/C++ (0.2%), Config (0.1%)
+* 📚 Documentation: Text (98.3%), Markdown (1.7%)
+* 📊 Commits: 1046
+* 📈 Lines of Code: 27726
+* 📄 Lines of Documentation: 220214
+* 📅 Development Period: 2020-01-09 to 2025-07-04
+* 🔥 Recent Activity: 78.1 days (avg. age of last 42 commits)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.3.3 (2024-08-23)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+
+
+=> showcase/dtail/image-1.png dtail screenshot
+
+DTail is an open-source distributed log management tool designed for DevOps engineers to efficiently tail, cat, and grep log files across thousands of servers simultaneously. Written in Go, it supports advanced features such as on-the-fly decompression (gzip, zstd) and distributed MapReduce-style aggregations, making it highly useful for large-scale log analysis and troubleshooting in complex environments. By leveraging SSH for secure communication and adhering to UNIX file permission models, DTail ensures both security and compatibility with existing infrastructure.
+
+=> showcase/dtail/image-2.gif dtail screenshot
+
+The architecture consists of a client-server model: DTail servers run on each target machine, while a DTail client—typically on an engineer’s workstation—connects to all servers concurrently to aggregate and process logs in real time. This design enables scalable, parallel log operations and can be extended to a serverless mode for added flexibility. DTail’s implementation emphasizes performance, security, and ease of use, making it a valuable tool for organizations needing to monitor and analyze distributed logs efficiently.
+
+=> https://codeberg.org/snonux/dtail View on Codeberg
+=> https://github.com/snonux/dtail View on GitHub
+
+---
+
 ### timr
 
 * 💻 Languages: Go (98.3%), YAML (1.7%)
@@ -126,7 +176,7 @@ Architecturally, totalrecall is implemented in Go and integrates with OpenAI ser
 * 📈 Lines of Code: 873
 * 📄 Lines of Documentation: 137
 * 📅 Development Period: 2025-06-25 to 2025-07-19
-* 🔥 Recent Activity: 74.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 82.2 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.0.0 (2025-06-29)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -151,7 +201,7 @@ From an architectural standpoint, `timr` is implemented in Go, ensuring cross-pl
 * 📈 Lines of Code: 6160
 * 📄 Lines of Documentation: 162
 * 📅 Development Period: 2025-06-19 to 2025-07-12
-* 🔥 Recent Activity: 76.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 84.0 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-07-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -178,7 +228,7 @@ The core architecture leverages the Bubble Tea framework for rendering the termi
 * 📈 Lines of Code: 12762
 * 📄 Lines of Documentation: 742
 * 📅 Development Period: 2024-01-18 to 2025-07-14
-* 🔥 Recent Activity: 114.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 122.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -197,33 +247,6 @@ The project is implemented using a combination of Go, C, and BPF, leveraging the
 
 ---
 
-### dtail
-
-* 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
-* 📚 Documentation: Text (79.4%), Markdown (20.6%)
-* 📊 Commits: 1046
-* 📈 Lines of Code: 20091
-* 📄 Lines of Documentation: 5674
-* 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 116.1 days (avg. age of last 42 commits)
-* ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v4.3.3 (2024-08-23)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
-
-
-=> showcase/dtail/image-1.png dtail screenshot
-
-DTail is an open-source distributed log management tool designed for DevOps engineers to efficiently tail, cat, and grep log files across thousands of servers simultaneously. Written in Go, it supports advanced features such as on-the-fly decompression (gzip, zstd) and distributed MapReduce-style aggregations, making it highly useful for large-scale log analysis and troubleshooting in complex environments. By leveraging SSH for secure communication and adhering to UNIX file permission models, DTail ensures both security and compatibility with existing infrastructure.
-
-=> showcase/dtail/image-2.gif dtail screenshot
-
-The architecture consists of a client-server model: DTail servers run on each target machine, while a DTail client—typically on an engineer’s workstation—connects to all servers concurrently to aggregate and process logs in real time. This design enables scalable, parallel log operations and can be extended to a serverless mode for added flexibility. DTail’s implementation emphasizes performance, security, and ease of use, making it a valuable tool for organizations needing to monitor and analyze distributed logs efficiently.
-
-=> https://codeberg.org/snonux/dtail View on Codeberg
-=> https://github.com/snonux/dtail View on GitHub
-
----
-
 ### foostats
 
 * 💻 Languages: Perl (100.0%)
@@ -232,7 +255,7 @@ The architecture consists of a client-server model: DTail servers run on each ta
 * 📈 Lines of Code: 1887
 * 📄 Lines of Documentation: 240
 * 📅 Development Period: 2023-01-02 to 2025-09-03
-* 🔥 Recent Activity: 120.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 128.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.0 (2025-07-12)
 
@@ -254,7 +277,7 @@ Architecturally, foostats is modular, with components for log parsing, filtering
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 135.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 142.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -268,6 +291,32 @@ The project is implemented using Ruby, with tasks managed via Rake, and configur
 
 ---
 
+### gos
+
+* 💻 Languages: Go (98.6%), YAML (1.1%), JSON (0.3%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 389
+* 📈 Lines of Code: 3996
+* 📄 Lines of Documentation: 352
+* 📅 Development Period: 2024-05-04 to 2025-09-16
+* 🔥 Recent Activity: 146.8 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.1.0 (2025-09-16)
+
+
+=> showcase/gos/image-1.png gos screenshot
+
+**Gos (Go Social Media)** is a command-line tool written in Go that serves as a self-hosted, scriptable alternative to Buffer.com for scheduling and managing social media posts. Designed for users who prefer automation, privacy, and control, Gos enables posting to Mastodon and LinkedIn (with OAuth2 authentication for LinkedIn) directly from the terminal. It supports features like dry-run mode for safe testing, flexible configuration via flags and environment variables, image previews for LinkedIn, and a pseudo-platform ("Noop") for tracking posts without publishing. Gos is particularly useful for developers, power users, or anyone who wants to automate their social media workflow, avoid third-party service limitations, and integrate posting into their own scripts or shell startup routines.
+
+=> showcase/gos/image-2.png gos screenshot
+
+**Architecturally**, Gos operates on a file-based queueing system: users compose posts as text files (optionally using the companion `gosc` composer tool) in a designated directory. Posts are tagged via filenames or inline tags to control target platforms, priorities, and behaviors (e.g., immediate posting, pausing, or requiring confirmation). When Gos runs, it processes these files, moves them through platform-specific queues, and posts them according to user-defined cadence, priorities, and pause intervals. The configuration is managed via a JSON file storing API credentials and scheduling preferences. Gos also supports generating Gemini Gemtext summaries of posted content for blogging or archival purposes. The system is highly scriptable, easy to integrate into automated workflows, and can be synced or backed up using tools like Syncthing, making it a robust, extensible solution for personal or small-team social media management.
+
+=> https://codeberg.org/snonux/gos View on Codeberg
+=> https://github.com/snonux/gos View on GitHub
+
+---
+
 ### ds-sim
 
 * 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
@@ -276,7 +325,7 @@ The project is implemented using Ruby, with tasks managed via Rake, and configur
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 148.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 156.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -293,32 +342,6 @@ Architecturally, DS-Sim is organized into modular components: core process and m
 
 ---
 
-### gos
-
-* 💻 Languages: Go (98.6%), YAML (1.1%), JSON (0.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 387
-* 📈 Lines of Code: 3978
-* 📄 Lines of Documentation: 342
-* 📅 Development Period: 2024-05-04 to 2025-09-07
-* 🔥 Recent Activity: 149.7 days (avg. age of last 42 commits)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0.3 (2025-09-07)
-
-
-=> showcase/gos/image-1.png gos screenshot
-
-**Gos (Go Social Media)** is a command-line tool written in Go that serves as a self-hosted, scriptable alternative to Buffer.com for scheduling and managing social media posts. Designed for users who prefer automation, privacy, and control, Gos enables posting to Mastodon and LinkedIn (with OAuth2 authentication for LinkedIn) directly from the terminal. It supports features like dry-run mode for safe testing, flexible configuration via flags and environment variables, image previews for LinkedIn, and a pseudo-platform ("Noop") for tracking posts without publishing. Gos is particularly useful for developers, power users, or anyone who wants to automate their social media workflow, avoid third-party service limitations, and integrate posting into their own scripts or shell startup routines.
-
-=> showcase/gos/image-2.png gos screenshot
-
-**Architecturally**, Gos operates on a file-based queueing system: users compose posts as text files (optionally using the companion `gosc` composer tool) in a designated directory. Posts are tagged via filenames or inline tags to control target platforms, priorities, and behaviors (e.g., immediate posting, pausing, or requiring confirmation). When Gos runs, it processes these files, moves them through platform-specific queues, and posts them according to user-defined cadence, priorities, and pause intervals. The configuration is managed via a JSON file storing API credentials and scheduling preferences. Gos also supports generating Gemini Gemtext summaries of posted content for blogging or archival purposes. The system is highly scriptable, easy to integrate into automated workflows, and can be synced or backed up using tools like Syncthing, making it a robust, extensible solution for personal or small-team social media management.
-
-=> https://codeberg.org/snonux/gos View on Codeberg
-=> https://github.com/snonux/gos View on GitHub
-
----
-
 ### sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
@@ -327,7 +350,7 @@ Architecturally, DS-Sim is organized into modular components: core process and m
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 161.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 168.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -349,7 +372,7 @@ Implementation-wise, the project likely consists of a small, easily portable pro
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 202.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 209.5 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -365,16 +388,15 @@ Key features include a test suite (run via `rake test`) to ensure reliability, a
 
 ### gemtexter
 
-* 💻 Languages: CSS (55.3%), Python (16.1%), HTML (15.3%), JSON (6.6%), Shell (5.3%), Config (1.5%)
-* 📚 Documentation: Text (70.2%), Markdown (29.8%)
+* 💻 Languages: Shell (68.3%), CSS (28.4%), Config (1.9%), HTML (1.3%)
+* 📚 Documentation: Text (76.1%), Markdown (23.9%)
 * 📊 Commits: 466
-* 📈 Lines of Code: 30319
-* 📄 Lines of Documentation: 1280
-* 📅 Development Period: 2021-05-21 to 2025-06-22
-* 🔥 Recent Activity: 266.0 days (avg. age of last 42 commits)
+* 📈 Lines of Code: 2285
+* 📄 Lines of Documentation: 1180
+* 📅 Development Period: 2021-05-21 to 2025-08-31
+* 🔥 Recent Activity: 254.9 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
 **Summary of the Gemtexter Project**
@@ -388,39 +410,17 @@ The project is implemented as a large Bash script, leveraging standard GNU utili
 
 ---
 
-### docker-radicale-server
-
-* 💻 Languages: Make (57.5%), Docker (42.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 5
-* 📈 Lines of Code: 40
-* 📄 Lines of Documentation: 3
-* 📅 Development Period: 2023-12-31 to 2025-08-11
-* 🔥 Recent Activity: 501.7 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This project provides a Docker image for the [Radicale server](https://radicale.org), an open-source CalDAV and CardDAV server for managing calendars and contacts. By containerizing Radicale, the project makes it easy to deploy and run the server in isolated, reproducible environments, ensuring consistent behavior across different systems. This is particularly useful for users who want to quickly set up personal or small-team calendar/contact synchronization without complex installation steps or dependency management.
-
-The Docker image is typically implemented using a `Dockerfile` that installs Radicale and its dependencies into a minimal base image, exposes the necessary ports, and defines configuration options via environment variables or mounted volumes. Key features include ease of deployment, portability, and simplified updates—users can start a Radicale server with a single `docker run` command, mount their data/configuration for persistence, and benefit from Docker’s security and resource isolation. The architecture leverages Docker’s containerization to encapsulate Radicale, making it suitable for both development and production use.
-
-=> https://codeberg.org/snonux/docker-radicale-server View on Codeberg
-=> https://github.com/snonux/docker-radicale-server View on GitHub
-
----
-
 ### quicklogger
 
-* 💻 Languages: Go (97.6%), Shell (1.5%), TOML (0.9%)
+* 💻 Languages: Go (96.1%), XML (1.9%), Shell (1.2%), TOML (0.7%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 32
-* 📈 Lines of Code: 917
-* 📄 Lines of Documentation: 33
-* 📅 Development Period: 2024-01-20 to 2025-07-06
-* 🔥 Recent Activity: 512.0 days (avg. age of last 42 commits)
+* 📊 Commits: 35
+* 📈 Lines of Code: 1133
+* 📄 Lines of Documentation: 78
+* 📅 Development Period: 2024-01-20 to 2025-09-13
+* 🔥 Recent Activity: 475.4 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.0.3 (2025-07-06)
+* 🏷️ Latest Release: v0.0.4 (2025-09-13)
 
 
 => showcase/quicklogger/image-1.png quicklogger screenshot
@@ -436,6 +436,28 @@ The project’s key features include its minimalistic design, cross-platform com
 
 ---
 
+### docker-radicale-server
+
+* 💻 Languages: Make (57.5%), Docker (42.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 40
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2023-12-31 to 2025-08-11
+* 🔥 Recent Activity: 509.1 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This project provides a Docker image for the [Radicale server](https://radicale.org), an open-source CalDAV and CardDAV server for managing calendars and contacts. By containerizing Radicale, the project makes it easy to deploy and run the server in isolated, reproducible environments, ensuring consistent behavior across different systems. This is particularly useful for users who want to quickly set up personal or small-team calendar/contact synchronization without complex installation steps or dependency management.
+
+The Docker image is typically implemented using a `Dockerfile` that installs Radicale and its dependencies into a minimal base image, exposes the necessary ports, and defines configuration options via environment variables or mounted volumes. Key features include ease of deployment, portability, and simplified updates—users can start a Radicale server with a single `docker run` command, mount their data/configuration for persistence, and benefit from Docker’s security and resource isolation. The architecture leverages Docker’s containerization to encapsulate Radicale, making it suitable for both development and production use.
+
+=> https://codeberg.org/snonux/docker-radicale-server View on Codeberg
+=> https://github.com/snonux/docker-radicale-server View on GitHub
+
+---
+
 ### terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
@@ -444,7 +466,7 @@ The project’s key features include its minimalistic design, cross-platform com
 * 📈 Lines of Code: 2851
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-08-08
-* 🔥 Recent Activity: 537.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 545.3 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -466,7 +488,7 @@ Key features include the ability to specify which ECS services to deploy, automa
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 578.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 586.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -491,7 +513,7 @@ Architecturally, Gogios is implemented in Go for efficiency and ease of deployme
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 764.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 772.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -514,7 +536,7 @@ The project is still under development, but its planned features include remote 
 * 📈 Lines of Code: 312
 * 📄 Lines of Documentation: 416
 * 📅 Development Period: 2013-03-22 to 2025-05-18
-* 🔥 Recent Activity: 814.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 822.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -536,7 +558,7 @@ The architecture of `guprecords` is modular, with classes dedicated to parsing e
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 829.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 837.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -559,7 +581,7 @@ The implementation relies on standard Linux utilities: `qpdf` for manipulating P
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1123.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1130.5 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -581,7 +603,7 @@ The script is implemented by piping the output of `monitor-sensor` into `autorot
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1342.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1350.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -606,7 +628,7 @@ The `photoalbum` project is a minimal Bash script designed for Linux systems to 
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2018-05-26 to 2025-09-04
-* 🔥 Recent Activity: 1437.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1444.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -632,7 +654,7 @@ The architecture centers around a local Git repository that acts as the secure s
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1493.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1501.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -647,28 +669,6 @@ Key features include a modular codebase where each algorithm or exercise is like
 
 ---
 
-### foo.zone
-
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 3060
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 23
-* 📅 Development Period: 2021-05-21 to 2022-04-02
-* 🔥 Recent Activity: 1509.4 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-This project hosts the static files for the foo.zone website, which is accessible via both the Gemini protocol (gemini://foo.zone) and the web (https://foo.zone). The repository is organized with separate branches for each content format—such as Gemtext, HTML, and Markdown—allowing the site to be served in multiple formats tailored to different protocols and user preferences. This structure makes it easy to maintain and update content across platforms, ensuring consistency and flexibility.
-
-The site is maintained using a suite of open-source tools, including Neovim for editing, GNU Bash for scripting, and ShellCheck for shell script linting. It is deployed on OpenBSD, utilizing the vger Gemini server (managed via relayd and inetd) for Gemini content and the native httpd server for the HTML site. Source code and hosting are managed through Codeberg. The static content is generated with the help of the gemtexter tool, which streamlines the process of converting and managing content in various formats. This architecture emphasizes simplicity, security, and portability, making it a robust solution for multi-protocol static site hosting.
-
-=> https://codeberg.org/snonux/foo.zone View on Codeberg
-=> https://github.com/snonux/foo.zone View on GitHub
-
----
-
 ### perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
@@ -677,7 +677,7 @@ The site is maintained using a suite of open-source tools, including Neovim for 
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1974.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1982.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -698,7 +698,7 @@ perl-c-fibonacci: source code repository.
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2516.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2523.7 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -723,7 +723,7 @@ The tool operates in five main steps: capturing I/O on the production server, tr
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 3025.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3032.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -746,7 +746,7 @@ In terms of implementation, the project consists of Perl modules that conform to
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3260.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3268.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -776,7 +776,7 @@ This setup is useful for anyone running their own DNS server who needs to keep D
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3527.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3535.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -803,7 +803,7 @@ The "mon" tool is a command-line monitoring API client designed to interact with
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3531.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3539.2 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -832,7 +832,7 @@ The architecture is simple but effective: it reads a list of servers, establishe
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3611.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3618.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -859,7 +859,7 @@ pingdomfetch is implemented as a script that reads configuration files from stan
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3622.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3629.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -880,7 +880,7 @@ The tool is implemented in Go, which offers advantages in terms of performance, 
 * 📊 Commits: 670
 * 📈 Lines of Code: 1675
 * 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3677.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3685.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -903,7 +903,7 @@ The implementation is primarily documentation-driven, meant to be included at th
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3725.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3733.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -928,7 +928,7 @@ The implementation involves several key steps: first, a Debian image is created 
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 4003.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4011.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -955,7 +955,7 @@ The `fapi` project is a command-line tool designed to simplify the management of
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 4058.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4065.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -978,7 +978,7 @@ Key features of the template include a Makefile that automates compilation and p
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4071.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4078.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1005,7 +1005,7 @@ The core functionality is implemented through a combination of Vim integration, 
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4078.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4086.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1022,29 +1022,6 @@ The tool operates by having users simultaneously run the same command on both ho
 
 ---
 
-### pwgrep
-
-* 💻 Languages: Shell (85.0%), Make (15.0%)
-* 📚 Documentation: Text (80.8%), Markdown (19.2%)
-* 📊 Commits: 142
-* 📈 Lines of Code: 493
-* 📄 Lines of Documentation: 26
-* 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4122.0 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.9.3 (2014-06-14)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-**pwgrep** is a lightweight password manager designed for Unix-like systems, implemented primarily in Bash and GNU AWK. It securely stores and retrieves passwords by encrypting them with GPG (GNU Privacy Guard), ensuring that sensitive information remains protected. Version control for password files is handled using an RCS (Revision Control System) such as Git, allowing users to track changes, revert to previous versions, and maintain an audit trail of password updates. This approach leverages familiar command-line tools, making it accessible to users comfortable with shell environments.
-
-The core features of pwgrep include encrypted password storage, easy retrieval and search functionality (using AWK for pattern matching), and robust version control integration. The architecture is modular and script-based: Bash scripts orchestrate user interactions and file management, AWK handles efficient searching within password files, GPG provides encryption/decryption, and Git (or another RCS) manages version history. This combination offers a secure, auditable, and scriptable solution for password management without relying on heavyweight external applications or GUIs.
-
-=> https://codeberg.org/snonux/pwgrep View on Codeberg
-=> https://github.com/snonux/pwgrep View on GitHub
-
----
-
 ### japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
@@ -1053,7 +1030,7 @@ The core features of pwgrep include encrypted password storage, easy retrieval a
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4127.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4134.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1078,7 +1055,7 @@ The tool is implemented in Perl and relies on the "JIRA::REST" CPAN module to co
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4188.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4195.8 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1099,7 +1076,7 @@ In terms of implementation, each script is written to be syntactically correct a
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4268.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4275.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1122,7 +1099,7 @@ The implementation relies on Perl scripts running on a web server, with DNS and 
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4309.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4316.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1145,7 +1122,7 @@ The tool achieves this by invoking AWK, a powerful text-processing utility, to p
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4339.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4346.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
@@ -1158,13 +1135,36 @@ loadbars: source code repository.
 
 ---
 
+### pwgrep
+
+* 💻 Languages: Shell (85.0%), Make (15.0%)
+* 📚 Documentation: Text (72.4%), Markdown (27.6%)
+* 📊 Commits: 142
+* 📈 Lines of Code: 493
+* 📄 Lines of Documentation: 29
+* 📅 Development Period: 2009-09-27 to 2015-05-23
+* 🔥 Recent Activity: 4360.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.9.3 (2014-06-14)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**pwgrep** is a lightweight password manager designed for Unix-like systems, implemented primarily in Bash and GNU AWK. It securely stores and retrieves passwords by encrypting them with GPG (GNU Privacy Guard), ensuring that sensitive information remains protected. Version control for password files is handled using an RCS (Revision Control System) such as Git, allowing users to track changes, revert to previous versions, and maintain an audit trail of password updates. This approach leverages familiar command-line tools, making it accessible to users comfortable with shell environments.
+
+The core features of pwgrep include encrypted password storage, easy retrieval and search functionality (using AWK for pattern matching), and robust version control integration. The architecture is modular and script-based: Bash scripts orchestrate user interactions and file management, AWK handles efficient searching within password files, GPG provides encryption/decryption, and Git (or another RCS) manages version history. This combination offers a secure, auditable, and scriptable solution for password management without relying on heavyweight external applications or GUIs.
+
+=> https://codeberg.org/snonux/pwgrep View on Codeberg
+=> https://github.com/snonux/pwgrep View on GitHub
+
+---
+
 ### perldaemon
 
 * 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
 * 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4388.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4396.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1189,7 +1189,7 @@ The implementation centers around a main daemon process that manages the event l
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4719.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4727.1 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1212,7 +1212,7 @@ The core architecture of Awksite consists of AWK scripts executed via the Common
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4782.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4789.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1229,6 +1229,29 @@ The application is implemented as a desktop GUI, likely using a framework such a
 
 ---
 
+### ychat
+
+* 💻 Languages: C++ (52.1%), C/C++ (21.3%), Shell (20.1%), HTML (2.5%), Config (2.1%), Perl (1.5%), Make (0.3%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 33823
+* 📄 Lines of Documentation: 109
+* 📅 Development Period: 2008-05-15 to 2014-07-01
+* 🔥 Recent Activity: 5344.6 days (avg. age of last 42 commits)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**yChat** is a free, open-source, HTTP-based chat server written in C++ that allows users to communicate in real time using only a standard web browser—no special client software is required. Designed for portability and performance, yChat runs as a standalone web server (with its own lightweight HTTP engine, yhttpd) and supports POSIX-compliant operating systems like Linux and BSD. Key features include multi-threading (using POSIX threads), modular architecture with dynamically loadable modules, MySQL-based user management, customizable HTML and language templates, and an ncurses-based administration interface. The system is highly configurable via XML-based config files and supports advanced features like session management, logging (including Apache-style logs), and a smart garbage collection engine for efficient resource handling.
+
+yChat’s architecture is built around a core C++ engine that handles HTTP requests directly, bypassing the need for external web servers like Apache. It uses hash maps for fast data access, supports CGI scripting, and allows for easy customization of both appearance and functionality through templates and modules. The project is organized into several branches (CURRENT, STABLE, BASIC, LEGACY) to balance stability and feature development, and it provides tools for easy installation, configuration, and administration. Its modular design, performance optimizations, and ease of customization make it a practical solution for organizations or communities seeking a lightweight, browser-accessible chat platform that is easy to deploy and extend.
+
+=> https://codeberg.org/snonux/ychat View on Codeberg
+=> https://github.com/snonux/ychat View on GitHub
+
+---
+
 ### netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
@@ -1237,7 +1260,7 @@ The application is implemented as a desktop GUI, likely using a framework such a
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5412.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5420.4 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1256,26 +1279,28 @@ NetCalendar is implemented as a Java application (requiring JRE 6 or higher) and
 
 ---
 
-### ychat
+### vs-sim
 
-* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 67884
-* 📄 Lines of Documentation: 127
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🔥 Recent Activity: 5433.2 days (avg. age of last 42 commits)
-* ⚖️ License: GPL-2.0
-* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+* 💻 Languages: Java (98.6%), Shell (0.8%), XML (0.4%)
+* 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
+* 📊 Commits: 411
+* 📈 Lines of Code: 14582
+* 📄 Lines of Documentation: 2903
+* 📅 Development Period: 2008-05-15 to 2022-04-03
+* 🔥 Recent Activity: 5456.7 days (avg. age of last 42 commits)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.0 (2008-08-24)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-**yChat** is a free, open-source, HTTP-based chat server written in C++ that allows users to communicate in real time using only a standard web browser—no special client software is required. Designed for portability and performance, yChat runs as a standalone web server (with its own lightweight HTTP engine, yhttpd) and supports POSIX-compliant operating systems like Linux and BSD. Key features include multi-threading (using POSIX threads), modular architecture with dynamically loadable modules, MySQL-based user management, customizable HTML and language templates, and an ncurses-based administration interface. The system is highly configurable via XML-based config files and supports advanced features like session management, logging (including Apache-style logs), and a smart garbage collection engine for efficient resource handling.
+=> showcase/vs-sim/image-1.jpg vs-sim screenshot
 
-yChat’s architecture is built around a core C++ engine that handles HTTP requests directly, bypassing the need for external web servers like Apache. It uses hash maps for fast data access, supports CGI scripting, and allows for easy customization of both appearance and functionality through templates and modules. The project is organized into several branches (CURRENT, STABLE, BASIC, LEGACY) to balance stability and feature development, and it provides tools for easy installation, configuration, and administration. Its modular design, performance optimizations, and ease of customization make it a practical solution for organizations or communities seeking a lightweight, browser-accessible chat platform that is easy to deploy and extend.
+VS-Sim is an open-source Java-based simulator designed to model and analyze distributed systems. Its primary purpose is to provide a virtual environment where users can create, configure, and observe the behavior of distributed algorithms and networked components without the need for physical hardware. This makes it a valuable tool for researchers, educators, and students who want to experiment with distributed system concepts, test fault tolerance mechanisms, or visualize communication protocols in a controlled and repeatable manner.
 
-=> https://codeberg.org/snonux/ychat View on Codeberg
-=> https://github.com/snonux/ychat View on GitHub
+The simulator features a modular architecture, allowing users to define custom network topologies, node behaviors, and communication protocols. Key components include a graphical user interface for system configuration and visualization, an event-driven simulation engine to manage the timing and sequencing of distributed events, and extensible APIs for integrating new algorithms or system models. By abstracting the complexities of real-world distributed environments, VS-Sim enables rapid prototyping and debugging, making it an effective platform for both teaching and research in distributed computing.
+
+=> https://codeberg.org/snonux/vs-sim View on Codeberg
+=> https://github.com/snonux/vs-sim View on GitHub
 
 ---
 
@@ -1285,7 +1310,7 @@ yChat’s architecture is built around a core C++ engine that handles HTTP reque
 * 📊 Commits: 80
 * 📈 Lines of Code: 601
 * 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5508.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5516.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1300,37 +1325,15 @@ The architecture is modular, relying on external Haskell packages: libghc6-hsql-
 
 ---
 
-### vs-sim
-
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 411
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 7
-* 📅 Development Period: 2008-05-15 to 2015-05-23
-* 🔥 Recent Activity: 5869.5 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v1.0 (2008-08-24)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-VS-Sim is an open-source Java-based simulator designed to model and analyze distributed systems. Its primary purpose is to provide a virtual environment where users can create, configure, and observe the behavior of distributed algorithms and networked components without the need for physical hardware. This makes it a valuable tool for researchers, educators, and students who want to experiment with distributed system concepts, test fault tolerance mechanisms, or visualize communication protocols in a controlled and repeatable manner.
-
-The simulator features a modular architecture, allowing users to define custom network topologies, node behaviors, and communication protocols. Key components include a graphical user interface for system configuration and visualization, an event-driven simulation engine to manage the timing and sequencing of distributed events, and extensible APIs for integrating new algorithms or system models. By abstracting the complexities of real-world distributed environments, VS-Sim enables rapid prototyping and debugging, making it an effective platform for both teaching and research in distributed computing.
-
-=> https://codeberg.org/snonux/vs-sim View on Codeberg
-=> https://github.com/snonux/vs-sim View on GitHub
-
----
-
 ### fype
 
-* 💻 Languages: C (71.3%), C/C++ (20.6%), HTML (6.6%), Make (1.5%)
-* 📚 Documentation: Text (60.2%), LaTeX (39.8%)
+* 💻 Languages: C (67.9%), C/C++ (23.6%), HTML (6.9%), Make (1.6%)
+* 📚 Documentation: Text (61.4%), LaTeX (38.6%)
 * 📊 Commits: 99
-* 📈 Lines of Code: 8906
-* 📄 Lines of Documentation: 1431
-* 📅 Development Period: 2008-05-15 to 2021-04-29
-* 🔥 Recent Activity: 5915.4 days (avg. age of last 42 commits)
+* 📈 Lines of Code: 8622
+* 📄 Lines of Documentation: 1474
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🔥 Recent Activity: 5840.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
