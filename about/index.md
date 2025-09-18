@@ -31,15 +31,15 @@
 
 ### Books I am currently reading
 
-* Chaos Engineering - System Resiliency in Practice; Casey Rosenthal and Nora Jones; eBook
+* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook
 * Okular; Alastair Reynolds; eBook
 * The Courage to Be Disliked; Ichiro Kishimi and Fumitake Koga; Audiobook
 
 ### Unread books already in my shelf
 
-* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook
 * Inhibitor Phase; Alastair Reynolds; Audiobook
 * A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook
+* Senior Engineer Mindset; Swizec Teller
 
 ### Books I've read
 

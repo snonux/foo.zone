@@ -1,3 +1,4 @@
+* Chaos Engineering - System Resiliency in Practice; Casey Rosenthal and Nora Jones; eBook
 * 100 Go Mistakes and How to Avoid Them; Teiva Harsanyi; Manning Publications
 * The KCNA (Kubernetes and Cloud Native Associate) Book; Nigel Poulton
 * Hands-on Infrastructure Monitoring with Prometheus; Joel Bastos, Pedro Araujo; Packt 
