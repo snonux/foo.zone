@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-09-18T20:39:02+03:00</updated>
+    <updated>2025-09-29T09:38:00+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -8048,7 +8048,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
         </content>
     </entry>
     <entry>
-        <title>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</title>
+        <title>Deciding on the hardware</title>
         <link href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi" />
         <id>gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi</id>
         <updated>2024-12-02T23:48:21+02:00</updated>
@@ -8059,7 +8059,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
         <summary>This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
+                <span> f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</span><br />
 <br />
 <span class='quote'>Published at 2024-12-02T23:48:21+02:00</span><br />
 <br />
@@ -8085,7 +8085,6 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a></li>
 <li><a href='#deciding-on-the-hardware'>Deciding on the hardware</a></li>
 <li>⇢ <a href='#not-arm-but-intel-n100-'>Not ARM but Intel N100 </a></li>
 <li>⇢ <a href='#beelink-unboxing'>Beelink unboxing</a></li>
@@ -8260,13 +8259,13 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>root@f0:~ <i><font color="silver"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</font></i>
 daily_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-daily_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
+daily_zfs_snapshot_pools=<font color="#808080">"zroot zdata"</font>
 daily_zfs_snapshot_keep=<font color="#808080">"7"</font>
 weekly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-weekly_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
+weekly_zfs_snapshot_pools=<font color="#808080">"zroot zdata"</font>
 weekly_zfs_snapshot_keep=<font color="#808080">"5"</font>
 monthly_zfs_snapshot_enable=<font color="#808080">"YES"</font>
-monthly_zfs_snapshot_pools=<font color="#808080">"zroot,zdata"</font>
+monthly_zfs_snapshot_pools=<font color="#808080">"zroot zdata"</font>
 monthly_zfs_snapshot_keep=<font color="#808080">"6"</font>
 END
 </pre>
