@@ -1,4 +1,4 @@
-# f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+ f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 > Published at 2024-12-02T23:48:21+02:00
 
@@ -23,7 +23,6 @@ Let's continue...
 
 ## Table of Contents
 
-* [⇢ f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](#f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation)
 * [⇢ Deciding on the hardware](#deciding-on-the-hardware)
 * [⇢ ⇢ Not ARM but Intel N100 ](#not-arm-but-intel-n100-)
 * [⇢ ⇢ Beelink unboxing](#beelink-unboxing)
@@ -177,13 +176,13 @@ root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 ```sh
 root@f0:~ # cat <<END >>/etc/periodic.conf
 daily_zfs_snapshot_enable="YES"
-daily_zfs_snapshot_pools="zroot,zdata"
+daily_zfs_snapshot_pools="zroot zdata"
 daily_zfs_snapshot_keep="7"
 weekly_zfs_snapshot_enable="YES"
-weekly_zfs_snapshot_pools="zroot,zdata"
+weekly_zfs_snapshot_pools="zroot zdata"
 weekly_zfs_snapshot_keep="5"
 monthly_zfs_snapshot_enable="YES"
-monthly_zfs_snapshot_pools="zroot,zdata"
+monthly_zfs_snapshot_pools="zroot zdata"
 monthly_zfs_snapshot_keep="6"
 END
 ```

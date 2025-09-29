@@ -39,7 +39,10 @@
 
 * Inhibitor Phase; Alastair Reynolds; Audiobook
 * A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook
-* Senior Engineer Mindset; Swizec Teller
+
+### Books on my wishlist
+
+* Senior Engineer Mindset; Swizec Teller; eBook
 
 ### Books I've read
 

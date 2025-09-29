@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-09-18T20:39:02+03:00 by `Gemtexter`
+> This site was generated at 2025-09-29T09:38:00+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -55,7 +55,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [2025-01-15 - Working with an SRE Interview](./gemfeed/2025-01-15-working-with-an-sre-interview.md)  
 [2025-01-01 - Posts from October to December 2024](./gemfeed/2025-01-01-posts-from-october-to-december-2024.md)  
 [2024-12-15 - Random Helix Themes](./gemfeed/2024-12-15-random-helix-themes.md)  
-[2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2024-12-03 - Deciding on the hardware](./gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-10-24 - 'Staff Engineer' book notes](./gemfeed/2024-10-24-staff-engineer-book-notes.md)  
 [2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴](./gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  
