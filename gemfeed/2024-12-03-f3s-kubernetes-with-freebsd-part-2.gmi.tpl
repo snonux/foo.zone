@@ -151,6 +151,7 @@ root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 
 ```sh
 root@f0:~ # cat <<END >>/etc/periodic.conf
+daily_zfs_enable="YES"
 daily_zfs_snapshot_enable="YES"
 daily_zfs_snapshot_pools="zroot,zdata"
 daily_zfs_snapshot_keep="7"
