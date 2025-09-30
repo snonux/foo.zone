@@ -547,7 +547,7 @@ How does that work in `relayd.conf` on OpenBSD? Read on...
 
 The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every `f3s` hostname lands on the same pool of k3s nodes:
 
-```conf
+```
 table <f3s> {
   192.168.2.120
   192.168.2.121
@@ -557,7 +557,7 @@ table <f3s> {
 
 Inside the `http protocol "https"` block each public hostname gets its Let's Encrypt certificate and is matched to that backend table. Besides the primary trio, every service-specific hostname (`anki`, `bag`, `flux`, `audiobookshelf`, `gpodder`, `radicale`, `vault`, `syncthing`, `uprecords`) and their `www` / `standby` aliases reuse the same pool so new apps can go live just by publishing an ingress rule:
 
-```conf
+```
 http protocol "https" {
     tls keypair f3s.foo.zone
     tls keypair www.f3s.foo.zone
@@ -625,7 +625,7 @@ http protocol "https" {
 
 Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:
 
-```conf
+```
 relay "https4" {
     listen on 46.23.94.99 port 443 tls
     protocol "https"
@@ -734,7 +734,7 @@ $ docker push r0.lan.buetow.org:30001/my-app:latest
 
 Inside the cluster (or from other nodes), reference the image via the service name that Helm created:
 
-```yaml
+```
 image: docker-registry-service:5000/my-app:latest
 ```
 
@@ -748,11 +748,11 @@ $ kubectl run registry-test \
 
 If the pod pulls successfully, the private registry is ready for use by the rest of the workloads.
 
-### Example: Anki Sync Server from the private registry
+## Example: Anki Sync Server from the private registry
 
 One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in `examples/conf/f3s/anki-sync-server/`: a Docker build context plus a Helm chart that references the freshly built image.
 
-#### Build and push the image
+### Build and push the image
 
 The Dockerfile lives under `docker-image/` and takes the Anki release to compile as an `ANKI_VERSION` build argument. The accompanying `Justfile` wraps the steps, but the raw commands look like this:
 
@@ -766,7 +766,7 @@ $ docker push r0.lan.buetow.org:30001/anki-sync-server:25.07.5b
 
 Because every k3s node treats `registry.lan.buetow.org:30001` as an insecure mirror (see above), the push succeeds regardless of which node answers. If you prefer the shortcut, `just f3s` in that directory performs the same build/tag/push sequence.
 
-#### Create the secret and storage on the cluster
+### Create the secret and storage on the cluster
 
 The Helm chart expects the `services` namespace, a pre-created NFS directory, and a Kubernetes secret that holds the credentials the upstream container understands:
 
@@ -782,7 +782,7 @@ You may reuse the same credentials you had on the old VM—`SYNC_USER1` follows 
 
 If the `services` namespace already exists, you can skip that line or let Kubernetes tell you the namespace is unchanged.
 
-#### Deploy the chart
+### Deploy the chart
 
 With the prerequisites in place, install (or upgrade) the chart. It pins the container image to the tag we just pushed and mounts the NFS export via a `PersistentVolume/PersistentVolumeClaim` pair:
 
@@ -793,10 +793,9 @@ $ helm upgrade --install anki-sync-server . -n services
 
 Helm provisions everything referenced in the templates:
 
-```yaml
+```
 containers:
-- name: anki-sync-server
-  image: registry.lan.buetow.org:30001/anki-sync-server:25.07.5b
+- name: anki-sync-server  image: registry.lan.buetow.org:30001/anki-sync-server:25.07.5b
   volumeMounts:
   - name: anki-data
     mountPath: /anki_data
@@ -810,9 +809,93 @@ $ kubectl get ingress anki-sync-server-ingress -n services
 $ curl https://anki.f3s.buetow.org/health
 ```
 
-All of this runs solely on first-party images that now live in the private registry, proving the full flow from local build to WireGuard-exposed service.
+All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.
 
-TODO: how to set up the users for the NFSv4 user mapping (same user with the same UIDs in container, on Rocky, and on FreeBSD). Also ensure that the `id` command shows the same results, as there may already be entries/duplicates in the passwd files (e.g. tape group, etc)
+## NFSv4 UID mapping for Postgres-backed (and other) apps
+
+NFSv4 only sees numeric user and group IDs, so the `postgres` account created inside the container must exist with the same UID/GID on the Kubernetes worker and on the FreeBSD NFS servers. Otherwise the pod starts with UID 999, the export sees it as an unknown anonymous user, and Postgres fails to initialise its data directory.
+
+To verify things line up end-to-end I run `id` in the container and on the hosts:
+
+```sh
+> ~ kubectl exec -n services deploy/miniflux-postgres -- id postgres
+uid=999(postgres) gid=999(postgres) groups=999(postgres)
+
+[root@r0 ~]# id postgres
+uid=999(postgres) gid=999(postgres) groups=999(postgres)
+
+paul@f0:~ % doas id postgres
+uid=999(postgres) gid=99(postgres) groups=999(postgres)
+```
+
+The Rocky Linux workers get their matching user with plain `useradd`/`groupadd` (repeat on `r0`, `r1`, and `r2`):
+
+```sh
+[root@r0 ~]# groupadd --gid 999 postgres
+[root@r0 ~]# useradd --uid 999 --gid 999 \
+                --home-dir /var/lib/pgsql \
+                --shell /sbin/nologin postgres
+```
+
+FreeBSD uses `pw`, so on each NFS server (`f0`, `f1`, `f2`) I created the same account and disabled shell access:
+
+```sh
+paul@f0:~ % doas pw groupadd postgres -g 999
+paul@f0:~ % doas pw useradd postgres -u 999 -g postgres \
+                -d /var/db/postgres -s /usr/sbin/nologin
+```
+
+Once the UID/GID exist everywhere, the Miniflux chart in `examples/conf/f3s/miniflux` deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in `hel-chart/templates/persistent-volumes.yaml` and `deployment.yaml`:
+
+```
+# Persistent volume lives on the NFS export
+hostPath:
+  path: /data/nfs/k3svolumes/miniflux/data  type: Directory
+...
+containers:
+- name: miniflux-postgres
+  image: postgres:17
+  volumeMounts:
+  - name: miniflux-postgres-data
+    mountPath: /var/lib/postgresql/data
+```
+
+Follow the README beside the chart to create the secrets and the target directory:
+
+```sh
+$ cd examples/conf/f3s/miniflux/helm-chart
+$ mkdir -p /data/nfs/k3svolumes/miniflux/data
+$ kubectl create secret generic miniflux-db-password \
+    --from-literal=fluxdb_password='YOUR_PASSWORD' -n services
+$ kubectl create secret generic miniflux-admin-password \
+    --from-literal=admin_password='YOUR_ADMIN_PASSWORD' -n services
+$ helm upgrade --install miniflux . -n services --create-namespace
+```
+
+Or from the repository root I simply run:
+
+```sh
+$ helm upgrade --install miniflux ./examples/conf/f3s/miniflux/helm-chart \
+    -n services --create-namespace
+```
+
+If the IDs drift, Kubernetes reports `permission denied` when Postgres initialises. Keeping the mapping aligned avoids the issue entirely and lets the pod survive restarts and node drains just like the Apache example.
+
+### Helm charts currently in service
+
+These are the charts that already live under `examples/conf/f3s` and run on the cluster today (and I'll keep adding more as new services graduate into production):
+
+* `anki-sync-server` — custom-built image served from the private registry, stores decks on `/data/nfs/k3svolumes/anki-sync-server/anki_data`, and authenticates through the `anki-sync-server-secret`.
+* `audiobookshelf` — media streaming stack with three hostPath mounts (`config`, `audiobooks`, `podcasts`) so the library survives node rebuilds.
+* `example-apache` — minimal HTTP service I use for smoke-testing ingress and relayd rules.
+* `example-apache-volume-claim` — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.
+* `freshrss` — RSS reader chart pinned to UID/GID 65534, mounting `/data/nfs/k3svolumes/freshrss/data`.
+* `miniflux` — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.
+* `opodsync` — podsync deployment with its data directory under `/data/nfs/k3svolumes/opodsync/data`.
+* `radicale` — CalDAV/CardDAV (and gpodder) backend with separate `collections` and `auth` volumes.
+* `registry` — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as `registry.lan.buetow.org:30001`.
+* `syncthing` — two-volume setup for config and shared data, fronted by the `syncthing.f3s.buetow.org` ingress.
+* `wallabag` — read-it-later service with persistent `data` and `images` directories on the NFS export.
 
 Other *BSD-related posts:
 

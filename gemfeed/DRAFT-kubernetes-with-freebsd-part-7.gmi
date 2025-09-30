@@ -3,7 +3,7 @@
 This is the seventh blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 Deciding on the hardware
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
 => ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
@@ -17,13 +17,25 @@ This is the seventh blog post about the f3s series for self-hosting demands in a
 * ⇢ ⇢ Introduction
 * ⇢ ⇢ Updating
 * ⇢ ⇢ Installing k3s
-* ⇢ ⇢ ⇢ Generating `K3S_TOKEN` and starting first k3s node
+* ⇢ ⇢ ⇢ Generating `K3S_TOKEN` and starting the first k3s node
 * ⇢ ⇢ ⇢ Adding the remaining nodes to the cluster
 * ⇢ ⇢ Test deployments
 * ⇢ ⇢ ⇢ Test deployment to Kubernetes
 * ⇢ ⇢ ⇢ Test deployment with persistent volume claim
+* ⇢ ⇢ ⇢ Scaling Traefik for faster failover
 * ⇢ ⇢ Make it accessible from the public internet
-* ⇢ ⇢ Failure test
+* ⇢ ⇢ ⇢ OpenBSD relayd configuration
+* ⇢ ⇢ Deploying the private Docker image registry
+* ⇢ ⇢ ⇢ Prepare the NFS-backed storage
+* ⇢ ⇢ ⇢ Install (or upgrade) the chart
+* ⇢ ⇢ ⇢ Allow nodes and workstations to trust the registry
+* ⇢ ⇢ ⇢ Push and pull images
+* ⇢ ⇢ Example: Anki Sync Server from the private registry
+* ⇢ ⇢ ⇢ Build and push the image
+* ⇢ ⇢ ⇢ Create the secret and storage on the cluster
+* ⇢ ⇢ ⇢ Deploy the chart
+* ⇢ ⇢ NFSv4 UID mapping for Postgres-backed (and other) apps
+* ⇢ ⇢ ⇢ Helm charts currently in service
 
 ## Introduction
 
@@ -66,9 +78,9 @@ FreeBSD f0.lan.buetow.org 14.3-RELEASE FreeBSD 14.3-RELEASE
 
 ## Installing k3s
 
-### Generating `K3S_TOKEN` and starting first k3s node
+### Generating `K3S_TOKEN` and starting the first k3s node
 
-Generating the k3s token on my Fedora Laptop with `pwgen -n 32` and selected one. And then on all 3 `r` hosts (replace SECRET_TOKEN with the actual secret!! before running the following command) run:
+I generated the k3s token on my Fedora laptop with `pwgen -n 32` and selected one of the results. Then, on all three `r` hosts (replace SECRET_TOKEN with the actual secret before running the following command) run:
 
 ```sh
 [root@r0 ~]# echo -n SECRET_TOKEN > ~/.k3s_token
@@ -78,7 +90,7 @@ The following steps are also documented on the k3s website:
 
 => https://docs.k3s.io/datastore/ha-embedded
 
-So on `r0` we run:
+We run this on `r0`:
 
 ```sh
 [root@r0 ~]# curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \
@@ -93,7 +105,7 @@ So on `r0` we run:
 
 ### Adding the remaining nodes to the cluster
 
-And we run on the other two nodes `r1` and `r2`:
+Then we run on the other two nodes `r1` and `r2`:
 
 ```sh
 [root@r1 ~]# curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \
@@ -109,7 +121,7 @@ And we run on the other two nodes `r1` and `r2`:
 
 ```
 
-Once done, we've got a 3 node Kubernetes cluster control plane:
+Once done, we've got a three-node Kubernetes cluster control plane:
 
 ```sh
 [root@r0 ~]# kubectl get nodes
@@ -131,7 +143,7 @@ kube-system   svclb-traefik-411cec5b-twrd7              2/2     Running     0   
 kube-system   traefik-c98fdf6fb-lt6fx                   1/1     Running     0          4m58s
 ```
 
-In order to connect with `kubect` from my Fedora Laptop, I had to copy `/etc/rancher/k3s/k3s.yaml` from `r0` to `~/.kube/config` and then replace the value of the server field with `r0.lan.buetow.org`. kubectl can now manage the cluster. Note this step has to be repeated when we want to connect to another node of the cluster (e.g. when `r0` is down).
+In order to connect with `kubectl` from my Fedora laptop, I had to copy `/etc/rancher/k3s/k3s.yaml` from `r0` to `~/.kube/config` and then replace the value of the server field with `r0.lan.buetow.org`. kubectl can now manage the cluster. Note that this step has to be repeated when we want to connect to another node of the cluster (e.g. when `r0` is down).
 
 ## Test deployments
 
@@ -155,7 +167,7 @@ test              Active   5s
 Context "default" modified.
 ```
 
-And let's also create an apache test pod:
+And let's also create an Apache test pod:
 
 ```sh
 > ~ cat <<END > apache-deployment.yaml
@@ -226,9 +238,9 @@ NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
 apache-service   ClusterIP   10.43.249.165   <none>        80/TCP    4s
 ```
 
-And also an ingress:
+Now let's create an ingress:
 
-> Note: I've modified the hosts listed in this example after I've published this blog post. This is to ensure that there aren't any bots scarping it.
+> Note: I've modified the hosts listed in this example after I published this blog post. This is to ensure that there aren't any bots scraping it.
 
 ```sh
 > ~ cat <<END > apache-ingress.yaml
@@ -301,10 +313,10 @@ Events:                   <none>
 
 Notes: 
 
-* I've modified the ingress hosts after I'd published this blog post. This is to ensure that there aren't any bots scarping it.
-* In the ingress we use plain http (web) for the traefik rule, as all the "production" traefic will routed through a WireGuard tunnel anyway as we will see later.
+* I've modified the ingress hosts after I'd published this blog post. This is to ensure that there aren't any bots scraping it.
+* In the ingress we use plain HTTP (web) for the Traefik rule, as all the "production" traffic will be routed through a WireGuard tunnel anyway, as we will see later.
 
-So let's test the Apache webserver through the ingress rule:
+So let's test the Apache web server through the ingress rule:
 
 ```sh
 > ~ curl -H "Host: www.f3s.foo.zone" http://r0.lan.buetow.org:80
@@ -313,7 +325,7 @@ So let's test the Apache webserver through the ingress rule:
 
 ### Test deployment with persistent volume claim
 
-So let's modify the Apache example to serve the `htdocs` directory from the NFS share we created in the previous blog post. We are using the following manifests. The majority of the manifests are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.
+So let's modify the Apache example to serve the `htdocs` directory from the NFS share we created in the previous blog post. We use the following manifests. Most of them are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.
 
 ```sh
 > ~ cat <<END > apache-deployment.yaml
@@ -454,16 +466,16 @@ spec:
 END
 ```
 
-And let's apply the manifests:
+Let's apply the manifests:
 
 ```sh
 > ~ kubectl apply -f apache-persistent-volume.yaml
-    kubectl apply -f apache-service.yaml
-    kubectl apply -f apache-deployment.yaml
-    kubectl apply -f apache-ingress.yaml
+> ~ kubectl apply -f apache-service.yaml
+> ~ kubectl apply -f apache-deployment.yaml
+> ~ kubectl apply -f apache-ingress.yaml
 ```
 
-So looking at the deployment, it failed now, as the directory doesn't exist yet on the NFS share (note, we also increased the replica count to 2, so in case one node goes down, that there is already a replica running on another node for faster failover):
+Looking at the deployment, we can see it failed because the directory doesn't exist yet on the NFS share (note that we also increased the replica count to 2 so if one node goes down there's already a replica running on another node for faster failover):
 
 ```sh
 > ~ kubectl get pods
@@ -482,12 +494,12 @@ Events:
     /data/nfs/k3svolumes/example-apache is not a directory
 ```
 
-This is on purpose! We need to create the directory on the NFS share first, so let's do that (e.g. on `r0`):
+That's intentional—we need to create the directory on the NFS share first, so let's do that (e.g. on `r0`):
 
 ```sh
 [root@r0 ~]# mkdir /data/nfs/k3svolumes/example-apache-volume-claim/
 
-[root@r0 ~ ] cat <<END > /data/nfs/k3svolumes/example-apache-volume-claim/index.html
+[root@r0 ~]# cat <<END > /data/nfs/k3svolumes/example-apache-volume-claim/index.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -501,7 +513,7 @@ This is on purpose! We need to create the directory on the NFS share first, so l
 END
 ```
 
-The `index.html` file was also created to serve content along the way. After deleting the pod, it recreates itself, and the volume mounts correctly:
+The `index.html` file gives us some actual content to serve. After deleting the pod, it recreates itself and the volume mounts correctly:
 
 ```sh
 > ~ kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx
@@ -519,9 +531,25 @@ The `index.html` file was also created to serve content along the way. After del
 </html>
 ```
 
+### Scaling Traefik for faster failover
+
+Traefik ships with a single replica by default, but for faster failover I bumped it to two replicas so each worker node runs one pod. That way, if a node disappears, the service stays up while Kubernetes schedules a replacement. Here's the command I used:
+
+```sh
+> ~ kubectl -n kube-system scale deployment traefik --replicas=2
+```
+
+And the result:
+
+```sh
+> ~ kubectl -n kube-system get pods -l app.kubernetes.io/name=traefik
+kube-system   traefik-c98fdf6fb-97kqk   1/1   Running   19 (53d ago)   64d
+kube-system   traefik-c98fdf6fb-9npg2   1/1   Running   11 (53d ago)   61d
+```
+
 ## Make it accessible from the public internet
 
-Next, this should be made accessible through the public internet via the `www.f3s.foo.zone` hosts. As a reminder, refer back to part 1 of this series and review the section titled "OpenBSD/relayd to the rescue for external connectivity":
+Next, we should make this accessible through the public internet via the `www.f3s.foo.zone` hosts. As a reminder, refer back to part 1 of this series and review the section titled "OpenBSD/relayd to the rescue for external connectivity":
 
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 
@@ -542,21 +570,354 @@ Next, this should be made accessible through the public internet via the `www.f3
 <html><body><h1>It works!</h1></body></html>
 ```
 
-## Failure test
+How does that work in `relayd.conf` on OpenBSD? Read on...
 
-Shutting down `f0` and let NFS failing over for the Apache content.
+### OpenBSD relayd configuration
 
+The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every `f3s` hostname lands on the same pool of k3s nodes:
 
-TODO: openbsd relayd config
-TODO: registry howto
-TODO: anki-droid deployment
-TODO: include k9s screenshot
-TODO: include a diagram again?
-TODO: increase replica of traefik to 2, persist config surviving reboots
-TODO: fix check-mounts script (mountpoint command and stale mounts... differentiate better)
-TODO: remove traefic metal lb pods? persist the change?
-TODO: use helm charts examples, but only after the initial apache example...
-TODO: how to set up the users for the NFSv4 user mapping (same user with same UIDs i ncontainer, on Rocky and on FreeBSD). also ensure, that the `id` command shows all the same. as there may be already entries/duplicates in the passwd files (e.g. tape group, etc)
+```
+table <f3s> {
+  192.168.2.120
+  192.168.2.121
+  192.168.2.122
+}
+```
+
+Inside the `http protocol "https"` block each public hostname gets its Let's Encrypt certificate and is matched to that backend table. Besides the primary trio, every service-specific hostname (`anki`, `bag`, `flux`, `audiobookshelf`, `gpodder`, `radicale`, `vault`, `syncthing`, `uprecords`) and their `www` / `standby` aliases reuse the same pool so new apps can go live just by publishing an ingress rule:
+
+```
+http protocol "https" {
+    tls keypair f3s.foo.zone
+    tls keypair www.f3s.foo.zone
+    tls keypair standby.f3s.foo.zone
+    tls keypair anki.f3s.foo.zone
+    tls keypair www.anki.f3s.foo.zone
+    tls keypair standby.anki.f3s.foo.zone
+    tls keypair bag.f3s.foo.zone
+    tls keypair www.bag.f3s.foo.zone
+    tls keypair standby.bag.f3s.foo.zone
+    tls keypair flux.f3s.foo.zone
+    tls keypair www.flux.f3s.foo.zone
+    tls keypair standby.flux.f3s.foo.zone
+    tls keypair audiobookshelf.f3s.foo.zone
+    tls keypair www.audiobookshelf.f3s.foo.zone
+    tls keypair standby.audiobookshelf.f3s.foo.zone
+    tls keypair gpodder.f3s.foo.zone
+    tls keypair www.gpodder.f3s.foo.zone
+    tls keypair standby.gpodder.f3s.foo.zone
+    tls keypair radicale.f3s.foo.zone
+    tls keypair www.radicale.f3s.foo.zone
+    tls keypair standby.radicale.f3s.foo.zone
+    tls keypair vault.f3s.foo.zone
+    tls keypair www.vault.f3s.foo.zone
+    tls keypair standby.vault.f3s.foo.zone
+    tls keypair syncthing.f3s.foo.zone
+    tls keypair www.syncthing.f3s.foo.zone
+    tls keypair standby.syncthing.f3s.foo.zone
+    tls keypair uprecords.f3s.foo.zone
+    tls keypair www.uprecords.f3s.foo.zone
+    tls keypair standby.uprecords.f3s.foo.zone
+
+    match request quick header "Host" value "f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "anki.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.anki.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.anki.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "bag.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.bag.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.bag.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "flux.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.flux.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.flux.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "audiobookshelf.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.audiobookshelf.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.audiobookshelf.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "gpodder.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.gpodder.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.gpodder.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "radicale.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.radicale.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.radicale.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "vault.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.vault.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.vault.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "syncthing.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.syncthing.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.syncthing.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "uprecords.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "www.uprecords.f3s.foo.zone" forward to <f3s>
+    match request quick header "Host" value "standby.uprecords.f3s.foo.zone" forward to <f3s>
+}
+```
+
+Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:
+
+```
+relay "https4" {
+    listen on 46.23.94.99 port 443 tls
+    protocol "https"
+    forward to <f3s> port 80 check tcp
+}
+
+relay "https6" {
+    listen on 2a03:6000:6f67:624::99 port 443 tls
+    protocol "https"
+    forward to <f3s> port 80 check tcp
+}
+```
+
+In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.
+
+## Deploying the private Docker image registry
+
+As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry. 
+
+All manifests for the f3s stack live in my configuration repository:
+
+=> https://codeberg.org/snonux/conf/f3s snonux/conf/f3s
+
+Within that repo, the `examples/conf/f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed README. Here's the condensed walkthrough I used to roll out the registry with Helm.
+
+### Prepare the NFS-backed storage
+
+Create the directory that will hold the registry blobs on the NFS share (I ran this on `r0`, but any node that exports `/data/nfs/k3svolumes` works):
+
+```sh
+[root@r0 ~]# mkdir -p /data/nfs/k3svolumes/registry
+```
+
+### Install (or upgrade) the chart
+
+Clone the repo (or pull the latest changes) on a workstation that has `helm` configured for the cluster, then deploy the chart. The Justfile wraps the commands, but the raw Helm invocation looks like this:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf/f3s.git
+$ cd conf/f3s/examples/conf/f3s/registry
+$ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
+```
+
+Helm creates the `infra` namespace if it does not exist, provisions a `PersistentVolume`/`PersistentVolumeClaim` pair that points at `/data/nfs/k3svolumes/registry`, and spins up a single `registry:2` pod exposed via the `docker-registry-service` NodePort (`30001`). Verify everything is up before continuing:
+
+```sh
+$ kubectl get pods --namespace infra
+NAME                               READY   STATUS    RESTARTS      AGE
+docker-registry-6bc9bb46bb-6grkr   1/1     Running   6 (53d ago)   54d
+
+$ kubectl get svc docker-registry-service -n infra
+NAME                      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+docker-registry-service   NodePort   10.43.141.56   <none>        5000:30001/TCP   54d
+```
+
+### Allow nodes and workstations to trust the registry
+
+The registry listens on plain HTTP, so both Docker daemons on workstations and the k3s nodes need to treat it as an insecure registry. That's fine for my personal needs, as:
+
+* I don't store any secrets in the images
+* I access the registry this way only via my LAN
+
+On my Fedora workstation where I build images:
+
+```sh
+$ cat <<"EOF" | sudo tee /etc/docker/daemon.json >/dev/null
+{
+  "insecure-registries": [
+    "r0.lan.buetow.org:30001",
+    "r1.lan.buetow.org:30001",
+    "r2.lan.buetow.org:30001"
+  ]
+}
+EOF
+$ sudo systemctl restart docker
+```
+
+On each k3s node, make `registry.lan.buetow.org` resolve locally and point k3s at the NodePort:
+
+```sh
+$ for node in r0 r1 r2; do
+>   ssh root@$node "echo '127.0.0.1 registry.lan.buetow.org' >> /etc/hosts"
+> done
+
+$ for node in r0 r1 r2; do
+> ssh root@$node "cat <<'EOF' > /etc/rancher/k3s/registries.yaml
+mirrors:
+  "registry.lan.buetow.org:30001":
+    endpoint:
+      - "http://localhost:30001"
+EOF
+systemctl restart k3s"
+> done
+```
+
+Thanks to the relayd configuration earlier in the post, the external hostnames (`f3s.foo.zone`, etc.) can already reach NodePort `30001`, so publishing the registry later to the outside world is just a matter of wiring the DNS the same way as the ingress hosts. But by default, that's not enabled for now.
+
+### Push and pull images
+
+Tag any locally built image with one of the node IPs on port `30001`, then push it. I usually target whichever node is closest to me, but any of the three will do:
+
+```sh
+$ docker tag my-app:latest r0.lan.buetow.org:30001/my-app:latest
+$ docker push r0.lan.buetow.org:30001/my-app:latest
+```
+
+Inside the cluster (or from other nodes), reference the image via the service name that Helm created:
+
+```
+image: docker-registry-service:5000/my-app:latest
+```
+
+You can test the pull path straight away:
+
+```sh
+$ kubectl run registry-test \
+>   --image=docker-registry-service:5000/my-app:latest \
+>   --restart=Never -n test --command -- sleep 300
+```
+
+If the pod pulls successfully, the private registry is ready for use by the rest of the workloads.
+
+## Example: Anki Sync Server from the private registry
+
+One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in `examples/conf/f3s/anki-sync-server/`: a Docker build context plus a Helm chart that references the freshly built image.
+
+### Build and push the image
+
+The Dockerfile lives under `docker-image/` and takes the Anki release to compile as an `ANKI_VERSION` build argument. The accompanying `Justfile` wraps the steps, but the raw commands look like this:
+
+```sh
+$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image
+$ docker build -t anki-sync-server:25.07.5b --build-arg ANKI_VERSION=25.07.5 .
+$ docker tag anki-sync-server:25.07.5b \
+    r0.lan.buetow.org:30001/anki-sync-server:25.07.5b
+$ docker push r0.lan.buetow.org:30001/anki-sync-server:25.07.5b
+```
+
+Because every k3s node treats `registry.lan.buetow.org:30001` as an insecure mirror (see above), the push succeeds regardless of which node answers. If you prefer the shortcut, `just f3s` in that directory performs the same build/tag/push sequence.
+
+### Create the secret and storage on the cluster
+
+The Helm chart expects the `services` namespace, a pre-created NFS directory, and a Kubernetes secret that holds the credentials the upstream container understands:
+
+```sh
+$ ssh root@r0 "mkdir -p /data/nfs/k3svolumes/anki-sync-server/anki_data"
+$ kubectl create namespace services
+$ kubectl create secret generic anki-sync-server-secret \
+    --from-literal=SYNC_USER1='paul:SECRETPASSWORD' \
+    -n services
+```
+
+You may reuse the same credentials you had on the old VM—`SYNC_USER1` follows the `username:password` format, and additional user pairs can be added later via `kubectl edit`.
+
+If the `services` namespace already exists, you can skip that line or let Kubernetes tell you the namespace is unchanged.
+
+### Deploy the chart
+
+With the prerequisites in place, install (or upgrade) the chart. It pins the container image to the tag we just pushed and mounts the NFS export via a `PersistentVolume/PersistentVolumeClaim` pair:
+
+```sh
+$ cd ../helm-chart
+$ helm upgrade --install anki-sync-server . -n services
+```
+
+Helm provisions everything referenced in the templates:
+
+```
+containers:
+- name: anki-sync-server  image: registry.lan.buetow.org:30001/anki-sync-server:25.07.5b
+  volumeMounts:
+  - name: anki-data
+    mountPath: /anki_data
+```
+
+Once the release comes up, verify that the pod pulled the freshly pushed image and that the ingress we configured earlier resolves through relayd just like the Apache example. The default chart routes `anki.f3s.buetow.org`—adjust the hostnames if you prefer the `foo.zone` variants we used earlier:
+
+```sh
+$ kubectl get pods -n services
+$ kubectl get ingress anki-sync-server-ingress -n services
+$ curl https://anki.f3s.buetow.org/health
+```
+
+All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.
+
+## NFSv4 UID mapping for Postgres-backed (and other) apps
+
+NFSv4 only sees numeric user and group IDs, so the `postgres` account created inside the container must exist with the same UID/GID on the Kubernetes worker and on the FreeBSD NFS servers. Otherwise the pod starts with UID 999, the export sees it as an unknown anonymous user, and Postgres fails to initialise its data directory.
+
+To verify things line up end-to-end I run `id` in the container and on the hosts:
+
+```sh
+> ~ kubectl exec -n services deploy/miniflux-postgres -- id postgres
+uid=999(postgres) gid=999(postgres) groups=999(postgres)
+
+[root@r0 ~]# id postgres
+uid=999(postgres) gid=999(postgres) groups=999(postgres)
+
+paul@f0:~ % doas id postgres
+uid=999(postgres) gid=99(postgres) groups=999(postgres)
+```
+
+The Rocky Linux workers get their matching user with plain `useradd`/`groupadd` (repeat on `r0`, `r1`, and `r2`):
+
+```sh
+[root@r0 ~]# groupadd --gid 999 postgres
+[root@r0 ~]# useradd --uid 999 --gid 999 \
+                --home-dir /var/lib/pgsql \
+                --shell /sbin/nologin postgres
+```
+
+FreeBSD uses `pw`, so on each NFS server (`f0`, `f1`, `f2`) I created the same account and disabled shell access:
+
+```sh
+paul@f0:~ % doas pw groupadd postgres -g 999
+paul@f0:~ % doas pw useradd postgres -u 999 -g postgres \
+                -d /var/db/postgres -s /usr/sbin/nologin
+```
+
+Once the UID/GID exist everywhere, the Miniflux chart in `examples/conf/f3s/miniflux` deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in `hel-chart/templates/persistent-volumes.yaml` and `deployment.yaml`:
+
+```
+# Persistent volume lives on the NFS export
+hostPath:
+  path: /data/nfs/k3svolumes/miniflux/data  type: Directory
+...
+containers:
+- name: miniflux-postgres
+  image: postgres:17
+  volumeMounts:
+  - name: miniflux-postgres-data
+    mountPath: /var/lib/postgresql/data
+```
+
+Follow the README beside the chart to create the secrets and the target directory:
+
+```sh
+$ cd examples/conf/f3s/miniflux/helm-chart
+$ mkdir -p /data/nfs/k3svolumes/miniflux/data
+$ kubectl create secret generic miniflux-db-password \
+    --from-literal=fluxdb_password='YOUR_PASSWORD' -n services
+$ kubectl create secret generic miniflux-admin-password \
+    --from-literal=admin_password='YOUR_ADIN_PASSWORD' -n services
+$ helm upgrade --install miniflux . -n services --create-namespace
+```
+
+If the IDs drift, Kubernetes reports `permission denied` when Postgres initialises. Keeping the mapping aligned avoids the issue entirely and lets the pod survive restarts and node drains just like the Apache example.
+
+### Helm charts currently in service
+
+These are the charts that already live under `examples/conf/f3s` and run on the cluster today (and I'll keep adding more as new services graduate into production):
+
+* `anki-sync-server` — custom-built image served from the private registry, stores decks on `/data/nfs/k3svolumes/anki-sync-server/anki_data`, and authenticates through the `anki-sync-server-secret`.
+* `audiobookshelf` — media streaming stack with three hostPath mounts (`config`, `audiobooks`, `podcasts`) so the library survives node rebuilds.
+* `example-apache` — minimal HTTP service I use for smoke-testing ingress and relayd rules.
+* `example-apache-volume-claim` — Apache pus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.
+* `freshrss` — RSS reader chart pinned to UID/GID 65534, mounting `/data/nfs/k3svolumes/freshrss/data`.
+* `miniflux` — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.
+* `opodsync` — podsync deployment with its data directory under `/data/nfs/k3svolumes/opodsync/data`.
+* `radicale` — CalDAV/CardDAV (and gpodder) backend with separate `collections` and `auth` volumes.
+* `registry` — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as `registry.lan.buetow.org:30001`.
+* `syncthing` — two-volume setup for config and shared data, fronted by the `syncthing.f3s.buetow.org` ingress.
+* `wallabag` — read-it-later service with persistent `data` and `images` directories on the NFS export.
 
 Other *BSD-related posts:
 
@@ -564,7 +925,7 @@ Other *BSD-related posts:
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 => ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 => ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 Deciding on the hardware
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
 => ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
@@ -577,4 +938,4 @@ E-Mail your comments to `paul@nospam.buetow.org`
 => ../ Back to the main site
 
 
-Note, that I've modified the hosts after I'd published this blog post. This is to ensure that there aren't any bots scarping it.
+Note that I've modified the hosts after I'd published this blog post. This is to ensure that there aren't any bots scraping it.
