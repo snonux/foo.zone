@@ -10,9 +10,13 @@ This is the seventh blog post about the f3s series for self-hosting demands in a
 
 ## Introduction
 
+In this blog post we are finally going to install k3s (the Kubernetes distribution we use) to the whole setup and deploy the first workloads (helm charts, and a private registry) to it.
+
+=> https://k3s.io
+
 ## Updating
 
-On all three Rocky Linux 9 boxes `r0`, `r1`, and `r2`:
+Before proceeding, we bring all systems involved up-to-date. On all three Rocky Linux 9 boxes `r0`, `r1`, and `r2`:
 
 ```sh
 dnf update -y
@@ -647,7 +651,7 @@ As not all Docker images I want to deploy are available on public Docker registr
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://codeberg.org/snonux/conf/f3s snonux/conf/f3s
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
 
 Within that repo, the `examples/conf/f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed README. Here's the condensed walkthrough I used to roll out the registry with Helm.
 
