@@ -671,7 +671,7 @@ Whereas:
 Next, update `/etc/hosts` on all nodes (`f0`, `f1`, `f2`, `r0`, `r1`, `r2`) to resolve the VIP hostname:
 
 ```
-192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+192.168.2.138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
 ```
 
 This allows clients to connect to `f3s-storage-ha` regardless of which physical server is currently the MASTER.
@@ -1352,7 +1352,7 @@ To mount NFS through the stunnel encrypted tunnel, we run:
   clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
 
 # For persistent mount, add to /etc/fstab:
-127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev 0 0
+127.0.0.1:/k3svolumes /data/nfs/k3svolumes nfs4 port=2323,_netdev,soft,timeo=10,retrans=2,intr 0 0
 ```
 
 Note: The mount uses localhost (`127.0.0.1`) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.
