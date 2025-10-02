@@ -1,7 +1,0 @@
-#!/usr/bin/env zsh
-
-if [ $(uname) = Darwin ]; then
-    exec hx.nvim-copilot-prompt "$@"
-else
-    exec hx.hexai-prompt "$@"
-fi
