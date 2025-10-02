@@ -1602,7 +1602,9 @@ MooseFS is a fault-tolerant, distributed file system that could provide proper h
 Both technologies could run on top of our encrypted ZFS volumes, combining ZFS's data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn't seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.
 
 
-I'm looking forward to the next post in this series, where we will set up k3s (Kubernetes) on the Linux VMs.
+Read the next post of this series:
+
+=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 
 Other *BSD-related posts:
 

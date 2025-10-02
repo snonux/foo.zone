@@ -10,6 +10,7 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 => ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
+=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -364,6 +365,7 @@ Read the next post of this series:
 
 Other BSD related posts are:
 
+=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
 => ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 => ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs

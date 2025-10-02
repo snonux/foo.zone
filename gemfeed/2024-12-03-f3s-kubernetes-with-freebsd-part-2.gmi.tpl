@@ -1,4 +1,4 @@
- f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+# f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 > Published at 2024-12-02T23:48:21+02:00
 
