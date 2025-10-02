@@ -1,4 +1,4 @@
- f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+# f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
 > Published at 2024-12-02T23:48:21+02:00
 
@@ -14,6 +14,7 @@ These are all the posts so far:
 [2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
+[2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -23,6 +24,7 @@ Let's continue...
 
 ## Table of Contents
 
+* [⇢ f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](#f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation)
 * [⇢ Deciding on the hardware](#deciding-on-the-hardware)
 * [⇢ ⇢ Not ARM but Intel N100 ](#not-arm-but-intel-n100-)
 * [⇢ ⇢ Beelink unboxing](#beelink-unboxing)
@@ -302,6 +304,7 @@ Read the next post of this series:
 
 Other *BSD-related posts:
 
+[2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs](./2025-04-05-f3s-kubernetes-with-freebsd-part-4.md)  

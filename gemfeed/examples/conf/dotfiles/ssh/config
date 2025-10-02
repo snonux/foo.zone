@@ -1,0 +1,21 @@
+ControlPath ~/.ssh/cp-%C
+ControlMaster auto
+#UseKeychain yes
+AddKeysToAgent yes
+ControlPersist 60m
+#StrictHostKeyChecking no
+
+Host blowfish.buetow.org
+User rex
+Port 2
+
+Host fishfinger.buetow.org
+User rex
+Port 2
+
+Host *.aws.buetow.org
+User ec2-user
+Port 22
+
+Host *.buetow.org
+Port 2

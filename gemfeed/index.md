@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-10-02 - f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-09-14 - Bash Golf Part 4](./2025-09-14-bash-golf-part-4.md)  
 [2025-08-15 - Random Weird Things - Part Ⅲ](./2025-08-15-random-weird-things-iii.md)  
 [2025-08-05 - Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
@@ -19,7 +20,7 @@
 [2025-01-15 - Working with an SRE Interview](./2025-01-15-working-with-an-sre-interview.md)  
 [2025-01-01 - Posts from October to December 2024](./2025-01-01-posts-from-october-to-december-2024.md)  
 [2024-12-15 - Random Helix Themes](./2024-12-15-random-helix-themes.md)  
-[2024-12-03 - Deciding on the hardware](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
+[2024-12-03 - f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation](./2024-12-03-f3s-kubernetes-with-freebsd-part-2.md)  
 [2024-11-17 - f3s: Kubernetes with FreeBSD - Part 1: Setting the stage](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 [2024-10-24 - 'Staff Engineer' book notes](./2024-10-24-staff-engineer-book-notes.md)  
 [2024-10-02 - Gemtexter 3.0.0 - Let's Gemtext again⁴](./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.md)  

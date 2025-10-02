@@ -1,0 +1,5 @@
+httpd_flags=
+inetd_flags=
+nsd_flags=
+pkg_scripts="uptimed httpd"
+relayd_flags=
