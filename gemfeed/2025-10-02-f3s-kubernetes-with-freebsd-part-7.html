@@ -1,0 +1,1088 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</h1><br />
+<br />
+<span class='quote'>Published at 2025-10-02T11:27:19+03:00</span><br />
+<br />
+<span>This is the seventh blog post about the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#updating'>Updating</a></li>
+<li>⇢ <a href='#installing-k3s'>Installing k3s</a></li>
+<li>⇢ ⇢ <a href='#generating-k3stoken-and-starting-the-first-k3s-node'>Generating <span class='inlinecode'>K3S_TOKEN</span> and starting the first k3s node</a></li>
+<li>⇢ ⇢ <a href='#adding-the-remaining-nodes-to-the-cluster'>Adding the remaining nodes to the cluster</a></li>
+<li>⇢ <a href='#test-deployments'>Test deployments</a></li>
+<li>⇢ ⇢ <a href='#test-deployment-to-kubernetes'>Test deployment to Kubernetes</a></li>
+<li>⇢ ⇢ <a href='#test-deployment-with-persistent-volume-claim'>Test deployment with persistent volume claim</a></li>
+<li>⇢ ⇢ <a href='#scaling-traefik-for-faster-failover'>Scaling Traefik for faster failover</a></li>
+<li>⇢ <a href='#make-it-accessible-from-the-public-internet'>Make it accessible from the public internet</a></li>
+<li>⇢ ⇢ <a href='#openbsd-relayd-configuration'>OpenBSD relayd configuration</a></li>
+<li>⇢ <a href='#deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</a></li>
+<li>⇢ ⇢ <a href='#prepare-the-nfs-backed-storage'>Prepare the NFS-backed storage</a></li>
+<li>⇢ ⇢ <a href='#install-or-upgrade-the-chart'>Install (or upgrade) the chart</a></li>
+<li>⇢ ⇢ <a href='#allow-nodes-and-workstations-to-trust-the-registry'>Allow nodes and workstations to trust the registry</a></li>
+<li>⇢ ⇢ <a href='#pushing-and-pulling-images'>Pushing and pulling images</a></li>
+<li>⇢ <a href='#example-anki-sync-server-from-the-private-registry'>Example: Anki Sync Server from the private registry</a></li>
+<li>⇢ ⇢ <a href='#build-and-push-the-image'>Build and push the image</a></li>
+<li>⇢ ⇢ <a href='#create-the-anki-secret-and-storage-on-the-cluster'>Create the Anki secret and storage on the cluster</a></li>
+<li>⇢ ⇢ <a href='#deploy-the-chart'>Deploy the chart</a></li>
+<li>⇢ <a href='#nfsv4-uid-mapping-for-postgres-backed-and-other-apps'>NFSv4 UID mapping for Postgres-backed (and other) apps</a></li>
+<li>⇢ ⇢ <a href='#helm-charts-currently-in-service'>Helm charts currently in service</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, I am finally going to install k3s (the Kubernetes distribution I use) to the whole setup and deploy the first workloads (helm charts, and a private registry) to it.</span><br />
+<br />
+<a class='textlink' href='https://k3s.io'>https://k3s.io</a><br />
+<br />
+<h2 style='display: inline' id='updating'>Updating</h2><br />
+<br />
+<span>Before proceeding, I bring all systems involved up-to-date. On all three Rocky Linux 9 boxes <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>dnf update -y
+reboot
+</pre>
+<br />
+<span>On the FreeBSD hosts, I upgraded from FreeBSD 14.2 to 14.3-RELEASE, running this on all three hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas freebsd-update fetch
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % doas freebsd-update -r <font color="#000000">14.3</font>-RELEASE upgrade
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas pkg update
+paul@f0:~ % doas pkg upgrade
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org <font color="#000000">14.3</font>-RELEASE FreeBSD <font color="#000000">14.3</font>-RELEASE
+        releng/<font color="#000000">14.3</font>-n<font color="#000000">271432</font>-8c9ce319fef7 GENERIC amd64
+</pre>
+<br />
+<h2 style='display: inline' id='installing-k3s'>Installing k3s</h2><br />
+<br />
+<h3 style='display: inline' id='generating-k3stoken-and-starting-the-first-k3s-node'>Generating <span class='inlinecode'>K3S_TOKEN</span> and starting the first k3s node</h3><br />
+<br />
+<span>I generated the k3s token on my Fedora laptop with <span class='inlinecode'>pwgen -n 32</span> and selected one of the results. Then, on all three <span class='inlinecode'>r</span> hosts, I ran the following (replace SECRET_TOKEN with the actual secret):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># echo -n SECRET_TOKEN &gt; ~/.k3s_token</font></i>
+</pre>
+<br />
+<span>The following steps are also documented on the k3s website:</span><br />
+<br />
+<a class='textlink' href='https://docs.k3s.io/datastore/ha-embedded'>https://docs.k3s.io/datastore/ha-embedded</a><br />
+<br />
+<span>To bootstrap k3s on the first node, I ran this on <span class='inlinecode'>r0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --cluster-init --tls-san=r0.wg0.wan.buetow.org
+[INFO]  Finding release <b><u><font color="#000000">for</font></u></b> channel stable
+[INFO]  Using v1.<font color="#000000">32.6</font>+k3s1 as release
+.
+.
+.
+[INFO]  systemd: Starting k3s
+</pre>
+<br />
+<h3 style='display: inline' id='adding-the-remaining-nodes-to-the-cluster'>Adding the remaining nodes to the cluster</h3><br />
+<br />
+<span>Then I ran on the other two nodes <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r1 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --tls-san=r1.wg0.wan.buetow.org
+
+[root@r2 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --tls-san=r2.wg0.wan.buetow.org
+.
+.
+.
+
+</pre>
+<br />
+<span>Once done, I had a three-node Kubernetes cluster control plane:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># kubectl get nodes</font></i>
+NAME                STATUS   ROLES                       AGE     VERSION
+r0.lan.buetow.org   Ready    control-plane,etcd,master   4m44s   v1.<font color="#000000">32.6</font>+k3s1
+r1.lan.buetow.org   Ready    control-plane,etcd,master   3m13s   v1.<font color="#000000">32.6</font>+k3s1
+r2.lan.buetow.org   Ready    control-plane,etcd,master   30s     v1.<font color="#000000">32.6</font>+k3s1
+
+[root@r0 ~]<i><font color="silver"># kubectl get pods --all-namespaces</font></i>
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE
+kube-system   coredns-5688667fd4-fs2jj                  <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   helm-install-traefik-crd-f9hgd            <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">0</font>          5m27s
+kube-system   helm-install-traefik-zqqqk                <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">2</font>          5m27s
+kube-system   local-path-provisioner-774c6665dc-jqlnc   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   metrics-server-6f4c6675d5-5xpmp           <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   svclb-traefik-411cec5b-cdp2l              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          78s
+kube-system   svclb-traefik-411cec5b-f625r              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m58s
+kube-system   svclb-traefik-411cec5b-twrd<font color="#000000">7</font>              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m2s
+kube-system   traefik-c98fdf6fb-lt6fx                   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          4m58s
+</pre>
+<br />
+<span>In order to connect with <span class='inlinecode'>kubectl</span> from my Fedora laptop, I had to copy <span class='inlinecode'>/etc/rancher/k3s/k3s.yaml</span> from <span class='inlinecode'>r0</span> to <span class='inlinecode'>~/.kube/config</span> and then replace the value of the server field with <span class='inlinecode'>r0.lan.buetow.org</span>. kubectl can now manage the cluster. Note that this step has to be repeated when I want to connect to another node of the cluster (e.g. when <span class='inlinecode'>r0</span> is down).</span><br />
+<br />
+<h2 style='display: inline' id='test-deployments'>Test deployments</h2><br />
+<br />
+<h3 style='display: inline' id='test-deployment-to-kubernetes'>Test deployment to Kubernetes</h3><br />
+<br />
+<span>Let&#39;s create a test namespace:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl create namespace <b><u><font color="#000000">test</font></u></b>
+namespace/test created
+
+&gt; ~ kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   6h11m
+kube-node-lease   Active   6h11m
+kube-public       Active   6h11m
+kube-system       Active   6h11m
+<b><u><font color="#000000">test</font></u></b>              Active   5s
+
+&gt; ~ kubectl config set-context --current --namespace=<b><u><font color="#000000">test</font></u></b>
+Context <font color="#808080">"default"</font> modified.
+</pre>
+<br />
+<span>And let&#39;s also create an Apache test pod:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
+<i><font color="silver"># Apache HTTP Server Deployment</font></i>
+apiVersion: apps/v<font color="#000000">1</font>
+kind: Deployment
+metadata:
+  name: apache-deployment
+spec:
+  replicas: <font color="#000000">1</font>
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: apache
+        image: httpd:latest
+        ports:
+        <i><font color="silver"># Container port where Apache listens</font></i>
+        - containerPort: <font color="#000000">80</font>
+END
+
+&gt; ~ kubectl apply -f apache-deployment.yaml
+deployment.apps/apache-deployment created
+
+&gt; ~ kubectl get all
+NAME                                     READY   STATUS    RESTARTS   AGE
+pod/apache-deployment-5fd955856f-4pjmf   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          7s
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/apache-deployment   <font color="#000000">1</font>/<font color="#000000">1</font>     <font color="#000000">1</font>            <font color="#000000">1</font>           7s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/apache-deployment-5fd955856f   <font color="#000000">1</font>         <font color="#000000">1</font>         <font color="#000000">1</font>       7s
+</pre>
+<br />
+<span>Let&#39;s also create a service: </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache
+  name: apache-service
+spec:
+  ports:
+    - name: web
+      port: <font color="#000000">80</font>
+      protocol: TCP
+      <i><font color="silver"># Expose port 80 on the service</font></i>
+      targetPort: <font color="#000000">80</font>
+  selector:
+  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
+    app: apache
+END
+
+&gt; ~ kubectl apply -f apache-service.yaml
+service/apache-service created
+
+&gt; ~ kubectl get service
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+apache-service   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">249.165</font>   &lt;none&gt;        <font color="#000000">80</font>/TCP    4s
+</pre>
+<br />
+<span>Now let&#39;s create an ingress:</span><br />
+<br />
+<span class='quote'>Note: I&#39;ve modified the hosts listed in this example after I published this blog post to ensure that there aren&#39;t any bots scraping it.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
+
+apiVersion: networking.k8s.io/v<font color="#000000">1</font>
+kind: Ingress
+metadata:
+  name: apache-ingress
+  namespace: <b><u><font color="#000000">test</font></u></b>
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: standby.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: www.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+END
+
+&gt; ~ kubectl apply -f apache-ingress.yaml
+ingress.networking.k8s.io/apache-ingress created
+
+&gt; ~ kubectl describe ingress
+Name:             apache-ingress
+Labels:           &lt;none&gt;
+Namespace:        <b><u><font color="#000000">test</font></u></b>
+Address:          <font color="#000000">192.168</font>.<font color="#000000">1.120</font>,<font color="#000000">192.168</font>.<font color="#000000">1.121</font>,<font color="#000000">192.168</font>.<font color="#000000">1.122</font>
+Ingress Class:    traefik
+Default backend:  &lt;default&gt;
+Rules:
+  Host                    Path  Backends
+  ----                    ----  --------
+  f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+  standby.f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+  www.f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+Annotations:              spec.ingressClassName: traefik
+                          traefik.ingress.kubernetes.io/router.entrypoints: web
+Events:                   &lt;none&gt;
+</pre>
+<br />
+<span>Notes: </span><br />
+<br />
+<ul>
+<li>In the ingress, I use plain HTTP (web) for the Traefik rule, as all the "production" traffic will be routed through a WireGuard tunnel anyway, as I will show later.</li>
+</ul><br />
+<span>So I tested the Apache web server through the ingress rule:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+</pre>
+<br />
+<h3 style='display: inline' id='test-deployment-with-persistent-volume-claim'>Test deployment with persistent volume claim</h3><br />
+<br />
+<span>Next, I modified the Apache example to serve the <span class='inlinecode'>htdocs</span> directory from the NFS share I created in the previous blog post. I used the following manifests. Most of them are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
+<i><font color="silver"># Apache HTTP Server Deployment</font></i>
+apiVersion: apps/v<font color="#000000">1</font>
+kind: Deployment
+metadata:
+  name: apache-deployment
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  replicas: <font color="#000000">2</font>
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: apache
+        image: httpd:latest
+        ports:
+        <i><font color="silver"># Container port where Apache listens</font></i>
+        - containerPort: <font color="#000000">80</font>
+        readinessProbe:
+          httpGet:
+            path: /
+            port: <font color="#000000">80</font>
+          initialDelaySeconds: <font color="#000000">5</font>
+          periodSeconds: <font color="#000000">10</font>
+        livenessProbe:
+          httpGet:
+            path: /
+            port: <font color="#000000">80</font>
+          initialDelaySeconds: <font color="#000000">15</font>
+          periodSeconds: <font color="#000000">10</font>
+        volumeMounts:
+        - name: apache-htdocs
+          mountPath: /usr/local/apache<font color="#000000">2</font>/htdocs/
+      volumes:
+      - name: apache-htdocs
+        persistentVolumeClaim:
+          claimName: example-apache-pvc
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
+apiVersion: networking.k8s.io/v<font color="#000000">1</font>
+kind: Ingress
+metadata:
+  name: apache-ingress
+  namespace: <b><u><font color="#000000">test</font></u></b>
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: standby.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: www.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-apache-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/nfs/k3svolumes/example-apache-volume-claim
+    <b><u><font color="#000000">type</font></u></b>: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-apache-pvc
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  storageClassName: <font color="#808080">""</font>
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache
+  name: apache-service
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  ports:
+    - name: web
+      port: <font color="#000000">80</font>
+      protocol: TCP
+      <i><font color="silver"># Expose port 80 on the service</font></i>
+      targetPort: <font color="#000000">80</font>
+  selector:
+  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
+    app: apache
+END
+</pre>
+<br />
+<span>I applied the manifests:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl apply -f apache-persistent-volume.yaml
+&gt; ~ kubectl apply -f apache-service.yaml
+&gt; ~ kubectl apply -f apache-deployment.yaml
+&gt; ~ kubectl apply -f apache-ingress.yaml
+</pre>
+<br />
+<span>Looking at the deployment, I could see it failed because the directory didn&#39;t exist yet on the NFS share (note that I also increased the replica count to 2 so if one node goes down there&#39;s already a replica running on another node for faster failover):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS   AGE
+apache-deployment-5b96bd6b6b-fv2jx   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
+apache-deployment-5b96bd6b6b-ax2ji   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
+
+&gt; ~ kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx | tail -n <font color="#000000">5</font>
+Events:
+  Type     Reason       Age                   From               Message
+  ----     ------       ----                  ----               -------
+  Normal   Scheduled    9m34s                 default-scheduler  Successfully
+    assigned test/apache-deployment-5b96bd6b6b-fv2jx to r2.lan.buetow.org
+  Warning  FailedMount  80s (x12 over 9m34s)  kubelet            MountVolume.SetUp
+    failed <b><u><font color="#000000">for</font></u></b> volume <font color="#808080">"example-apache-pv"</font> : hostPath <b><u><font color="#000000">type</font></u></b> check failed:
+    /data/nfs/k3svolumes/example-apache is not a directory
+</pre>
+<br />
+<span>That&#39;s intentional—I needed to create the directory on the NFS share first, so I did that (e.g. on <span class='inlinecode'>r0</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir /data/nfs/k3svolumes/example-apache-volume-claim/</font></i>
+
+[root@r0 ~]<i><font color="silver"># cat &lt;&lt;END &gt; /data/nfs/k3svolumes/example-apache-volume-claim/index.html</font></i>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello, it works&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
+  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+END
+</pre>
+<br />
+<span>The <span class='inlinecode'>index.html</span> file gives us some actual content to serve. After deleting the pod, it recreates itself and the volume mounts correctly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx
+
+&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello, it works&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
+  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br />
+<h3 style='display: inline' id='scaling-traefik-for-faster-failover'>Scaling Traefik for faster failover</h3><br />
+<br />
+<span>Traefik (used for ingress on k3s) ships with a single replica by default, but for faster failover I bumped it to two replicas so each worker node runs one pod. That way, if a node disappears, the service stays up while Kubernetes schedules a replacement. Here&#39;s the command I used:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl -n kube-system scale deployment traefik --replicas=<font color="#000000">2</font>
+</pre>
+<br />
+<span>And the result:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl -n kube-system get pods -l app.kubernetes.io/name=traefik
+kube-system   traefik-c98fdf6fb-97kqk   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">19</font> (53d ago)   64d
+kube-system   traefik-c98fdf6fb-9npg2   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">11</font> (53d ago)   61d
+</pre>
+<br />
+<h2 style='display: inline' id='make-it-accessible-from-the-public-internet'>Make it accessible from the public internet</h2><br />
+<br />
+<span>Next, I made this accessible through the public internet via the <span class='inlinecode'>www.f3s.foo.zone</span> hosts. As a reminder from part 1 of this series, I reviewed the section titled "OpenBSD/relayd to the rescue for external connectivity":</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<br />
+<span class='quote'>All apps should be reachable through the internet (e.g., from my phone or computer when travelling). For external connectivity and TLS management, I&#39;ve got two OpenBSD VMs (one hosted by OpenBSD Amsterdam and another hosted by Hetzner) handling public-facing services like DNS, relaying traffic, and automating Let&#39;s Encrypt certificates.</span><br />
+<br />
+<span class='quote'>All of this (every Linux VM to every OpenBSD box) will be connected via WireGuard tunnels, keeping everything private and secure. There will be 6 WireGuard tunnels (3 k3s nodes times two OpenBSD VMs).</span><br />
+<br />
+<span class='quote'>So, when I want to access a service running in k3s, I will hit an external DNS endpoint (with the authoritative DNS servers being the OpenBSD boxes). The DNS will resolve to the master OpenBSD VM (see my KISS highly-available with OpenBSD blog post), and from there, the relayd process (with a Let&#39;s Encrypt certificate—see my Let&#39;s Encrypt with OpenBSD and Rex blog post) will accept the TCP connection and forward it through the WireGuard tunnel to a reachable node port of one of the k3s nodes, thus serving the traffic.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ curl https://f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+
+&gt; ~ curl https://www.f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+
+&gt; ~ curl https://standby.f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+</pre>
+<br />
+<span>This is how it works in <span class='inlinecode'>relayd.conf</span> on OpenBSD:</span><br />
+<br />
+<h3 style='display: inline' id='openbsd-relayd-configuration'>OpenBSD relayd configuration</h3><br />
+<br />
+<span>The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every <span class='inlinecode'>f3s</span> hostname lands on the same pool of k3s nodes (pointing to the WireGuard IP addresses of those nodes - remember, they are running locally in my LAN, wheras the OpenBSD edge relays operate in the public internet):</span><br />
+<br />
+<pre>
+table &lt;f3s&gt; {
+  192.168.2.120
+  192.168.2.121
+  192.168.2.122
+}
+</pre>
+<br />
+<span>Inside the <span class='inlinecode'>http protocol "https"</span> block each public hostname gets its Let&#39;s Encrypt certificate and is matched to that backend table. Besides the primary trio, every service-specific hostname (<span class='inlinecode'>anki</span>, <span class='inlinecode'>bag</span>, <span class='inlinecode'>flux</span>, <span class='inlinecode'>audiobookshelf</span>, <span class='inlinecode'>gpodder</span>, <span class='inlinecode'>radicale</span>, <span class='inlinecode'>vault</span>, <span class='inlinecode'>syncthing</span>, <span class='inlinecode'>uprecords</span>) and their <span class='inlinecode'>www</span> / <span class='inlinecode'>standby</span> aliases reuse the same pool so new apps can go live just by publishing an ingress rule, whereas they will all map to a service running in k3s:</span><br />
+<br />
+<pre>
+http protocol "https" {
+    tls keypair f3s.foo.zone
+    tls keypair www.f3s.foo.zone
+    tls keypair standby.f3s.foo.zone
+    tls keypair anki.f3s.foo.zone
+    tls keypair www.anki.f3s.foo.zone
+    tls keypair standby.anki.f3s.foo.zone
+    tls keypair bag.f3s.foo.zone
+    tls keypair www.bag.f3s.foo.zone
+    tls keypair standby.bag.f3s.foo.zone
+    tls keypair flux.f3s.foo.zone
+    tls keypair www.flux.f3s.foo.zone
+    tls keypair standby.flux.f3s.foo.zone
+    tls keypair audiobookshelf.f3s.foo.zone
+    tls keypair www.audiobookshelf.f3s.foo.zone
+    tls keypair standby.audiobookshelf.f3s.foo.zone
+    tls keypair gpodder.f3s.foo.zone
+    tls keypair www.gpodder.f3s.foo.zone
+    tls keypair standby.gpodder.f3s.foo.zone
+    tls keypair radicale.f3s.foo.zone
+    tls keypair www.radicale.f3s.foo.zone
+    tls keypair standby.radicale.f3s.foo.zone
+    tls keypair vault.f3s.foo.zone
+    tls keypair www.vault.f3s.foo.zone
+    tls keypair standby.vault.f3s.foo.zone
+    tls keypair syncthing.f3s.foo.zone
+    tls keypair www.syncthing.f3s.foo.zone
+    tls keypair standby.syncthing.f3s.foo.zone
+    tls keypair uprecords.f3s.foo.zone
+    tls keypair www.uprecords.f3s.foo.zone
+    tls keypair standby.uprecords.f3s.foo.zone
+
+    match request quick header "Host" value "f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+}
+</pre>
+<br />
+<span>Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:</span><br />
+<br />
+<pre>
+relay "https4" {
+    listen on 46.23.94.99 port 443 tls
+    protocol "https"
+    forward to &lt;f3s&gt; port 80 check tcp
+}
+
+relay "https6" {
+    listen on 2a03:6000:6f67:624::99 port 443 tls
+    protocol "https"
+    forward to &lt;f3s&gt; port 80 check tcp
+}
+</pre>
+<br />
+<span>In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.</span><br />
+<br />
+<h2 style='display: inline' id='deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</h2><br />
+<br />
+<span>As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry. </span><br />
+<br />
+<span>All manifests for the f3s stack live in my configuration repository:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<span>Within that repo, the <span class='inlinecode'>examples/conf/f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
+<br />
+<h3 style='display: inline' id='prepare-the-nfs-backed-storage'>Prepare the NFS-backed storage</h3><br />
+<br />
+<span>Create the directory that will hold the registry blobs on the NFS share (I ran this on <span class='inlinecode'>r0</span>, but any node that exports <span class='inlinecode'>/data/nfs/k3svolumes</span> works):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/registry</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='install-or-upgrade-the-chart'>Install (or upgrade) the chart</h3><br />
+<br />
+<span>Clone the repo (or pull the latest changes) on a workstation that has <span class='inlinecode'>helm</span> configured for the cluster, then deploy the chart. The Justfile wraps the commands, but the raw Helm invocation looks like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf/f3s.git
+$ cd conf/f3s/examples/conf/f3s/registry
+$ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
+</pre>
+<br />
+<span>Helm creates the <span class='inlinecode'>infra</span> namespace if it does not exist, provisions a <span class='inlinecode'>PersistentVolume</span>/<span class='inlinecode'>PersistentVolumeClaim</span> pair that points at <span class='inlinecode'>/data/nfs/k3svolumes/registry</span>, and spins up a single registry pod exposed via the <span class='inlinecode'>docker-registry-service</span> NodePort (<span class='inlinecode'>30001</span>). Verify everything is up before continuing:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get pods --namespace infra
+NAME                               READY   STATUS    RESTARTS      AGE
+docker-registry-6bc9bb46bb-6grkr   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">6</font> (53d ago)   54d
+
+$ kubectl get svc docker-registry-service -n infra
+NAME                      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+docker-registry-service   NodePort   <font color="#000000">10.43</font>.<font color="#000000">141.56</font>   &lt;none&gt;        <font color="#000000">5000</font>:<font color="#000000">30001</font>/TCP   54d
+</pre>
+<br />
+<h3 style='display: inline' id='allow-nodes-and-workstations-to-trust-the-registry'>Allow nodes and workstations to trust the registry</h3><br />
+<br />
+<span>The registry listens on plain HTTP, so both Docker daemons on workstations and the k3s nodes need to treat it as an insecure registry. That&#39;s fine for my personal needs, as:</span><br />
+<br />
+<ul>
+<li>I don&#39;t store any secrets in the images</li>
+<li>I access the registry this way only via my LAN</li>
+<li>I may will change it later on...</li>
+</ul><br />
+<span>On my Fedora workstation where I build images:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cat &lt;&lt;<font color="#808080">"EOF"</font> | sudo tee /etc/docker/daemon.json &gt;/dev/null
+{
+  <font color="#808080">"insecure-registries"</font>: [
+    <font color="#808080">"r0.lan.buetow.org:30001"</font>,
+    <font color="#808080">"r1.lan.buetow.org:30001"</font>,
+    <font color="#808080">"r2.lan.buetow.org:30001"</font>
+  ]
+}
+EOF
+$ sudo systemctl restart docker
+</pre>
+<br />
+<span>On each k3s node, make <span class='inlinecode'>registry.lan.buetow.org</span> resolve locally and point k3s at the NodePort:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
+&gt;   ssh root@$node <font color="#808080">"echo '127.0.0.1 registry.lan.buetow.org' &gt;&gt; /etc/hosts"</font>
+&gt; <b><u><font color="#000000">done</font></u></b>
+
+$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
+&gt; ssh root@$node <font color="#808080">"cat &lt;&lt;'EOF' &gt; /etc/rancher/k3s/registries.yaml</font>
+<font color="#808080">mirrors:</font>
+<font color="#808080">  "</font>registry.lan.buetow.org:<font color="#000000">30001</font><font color="#808080">":</font>
+<font color="#808080">    endpoint:</font>
+<font color="#808080">      - "</font>http://localhost:<font color="#000000">30001</font><font color="#808080">"</font>
+<font color="#808080">EOF</font>
+<font color="#808080">systemctl restart k3s"</font>
+&gt; <b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>Thanks to the relayd configuration earlier in the post, the external hostnames (<span class='inlinecode'>f3s.foo.zone</span>, etc.) can already reach NodePort <span class='inlinecode'>30001</span>, so publishing the registry later to the outside world is just a matter of wiring the DNS the same way as the ingress hosts. But by default, that&#39;s not enabled for now due to security reasons.</span><br />
+<br />
+<h3 style='display: inline' id='pushing-and-pulling-images'>Pushing and pulling images</h3><br />
+<br />
+<span>Tag any locally built image with one of the node IPs on port <span class='inlinecode'>30001</span>, then push it. I usually target whichever node is closest to me, but any of the three will do:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ docker tag my-app:latest r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
+$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
+</pre>
+<br />
+<span>Inside the cluster (or from other nodes), reference the image via the service name that Helm created:</span><br />
+<br />
+<pre>
+image: docker-registry-service:5000/my-app:latest
+</pre>
+<br />
+<span>You can test the pull path straight away:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl run registry-test \
+&gt;   --image=docker-registry-service:<font color="#000000">5000</font>/my-app:latest \
+&gt;   --restart=Never -n <b><u><font color="#000000">test</font></u></b> --command -- sleep <font color="#000000">300</font>
+</pre>
+<br />
+<span>If the pod pulls successfully, the private registry is ready for use by the rest of the workloads. Note, that the commands above actually don&#39;t work, they are only for illustration purpose mentioned here.</span><br />
+<br />
+<h2 style='display: inline' id='example-anki-sync-server-from-the-private-registry'>Example: Anki Sync Server from the private registry</h2><br />
+<br />
+<span>One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in <span class='inlinecode'>examples/conf/f3s/anki-sync-server/</span>: a Docker build context plus a Helm chart that references the freshly built image.</span><br />
+<br />
+<h3 style='display: inline' id='build-and-push-the-image'>Build and push the image</h3><br />
+<br />
+<span>The Dockerfile lives under <span class='inlinecode'>docker-image/</span> and takes the Anki release to compile as an <span class='inlinecode'>ANKI_VERSION</span> build argument. The accompanying <span class='inlinecode'>Justfile</span> wraps the steps, but the raw commands look like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image
+$ docker build -t anki-sync-server:<font color="#000000">25.07</font>.5b --build-arg ANKI_VERSION=<font color="#000000">25.07</font>.<font color="#000000">5</font> .
+$ docker tag anki-sync-server:<font color="#000000">25.07</font>.5b \
+    r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
+$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
+</pre>
+<br />
+<span>Because every k3s node treats <span class='inlinecode'>registry.lan.buetow.org:30001</span> as an insecure mirror (see above), the push succeeds regardless of which node answers. If you prefer the shortcut, <span class='inlinecode'>just f3s</span> in that directory performs the same build/tag/push sequence.</span><br />
+<br />
+<h3 style='display: inline' id='create-the-anki-secret-and-storage-on-the-cluster'>Create the Anki secret and storage on the cluster</h3><br />
+<br />
+<span>The Helm chart expects the <span class='inlinecode'>services</span> namespace, a pre-created NFS directory, and a Kubernetes secret that holds the credentials the upstream container understands:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ ssh root@r0 <font color="#808080">"mkdir -p /data/nfs/k3svolumes/anki-sync-server/anki_data"</font>
+$ kubectl create namespace services
+$ kubectl create secret generic anki-sync-server-secret \
+    --from-literal=SYNC_USER1=<font color="#808080">'paul:SECRETPASSWORD'</font> \
+    -n services
+</pre>
+<br />
+<span>If the <span class='inlinecode'>services</span> namespace already exists, you can skip that line or let Kubernetes tell you the namespace is unchanged.</span><br />
+<br />
+<h3 style='display: inline' id='deploy-the-chart'>Deploy the chart</h3><br />
+<br />
+<span>With the prerequisites in place, install (or upgrade) the chart. It pins the container image to the tag we just pushed and mounts the NFS export via a <span class='inlinecode'>PersistentVolume/PersistentVolumeClaim</span> pair:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd ../helm-chart
+$ helm upgrade --install anki-sync-server . -n services
+</pre>
+<br />
+<span>Helm provisions everything referenced in the templates:</span><br />
+<br />
+<pre>
+containers:
+- name: anki-sync-server  image: registry.lan.buetow.org:30001/anki-sync-server:25.07.5b
+  volumeMounts:
+  - name: anki-data
+    mountPath: /anki_data
+</pre>
+<br />
+<span>Once the release comes up, verify that the pod pulled the freshly pushed image and that the ingress we configured earlier resolves through relayd just like the Apache example.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get pods -n services
+$ kubectl get ingress anki-sync-server-ingress -n services
+$ curl https://anki.f3s.foo.zone/health
+</pre>
+<br />
+<span>All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.</span><br />
+<br />
+<h2 style='display: inline' id='nfsv4-uid-mapping-for-postgres-backed-and-other-apps'>NFSv4 UID mapping for Postgres-backed (and other) apps</h2><br />
+<br />
+<span>NFSv4 only sees numeric user and group IDs, so the <span class='inlinecode'>postgres</span> account created inside the container must exist with the same UID/GID on the Kubernetes worker and on the FreeBSD NFS servers. Otherwise the pod starts with UID 999, the export sees it as an unknown anonymous user, and Postgres fails to initialise its data directory.</span><br />
+<br />
+<span>To verify things line up end-to-end I run <span class='inlinecode'>id</span> in the container and on the hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl <b><u><font color="#000000">exec</font></u></b> -n services deploy/miniflux-postgres -- id postgres
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+
+[root@r0 ~]<i><font color="silver"># id postgres</font></i>
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+
+paul@f0:~ % doas id postgres
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">99</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+</pre>
+<br />
+<span>The Rocky Linux workers get their matching user with plain <span class='inlinecode'>useradd</span>/<span class='inlinecode'>groupadd</span> (repeat on <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># groupadd --gid 999 postgres</font></i>
+[root@r0 ~]<i><font color="silver"># useradd --uid 999 --gid 999 \</font></i>
+                --home-dir /var/lib/pgsql \
+                --shell /sbin/nologin postgres
+</pre>
+<br />
+<span>FreeBSD uses <span class='inlinecode'>pw</span>, so on each NFS server (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) I created the same account and disabled shell access:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pw groupadd postgres -g <font color="#000000">999</font>
+paul@f0:~ % doas pw useradd postgres -u <font color="#000000">999</font> -g postgres \
+                -d /var/db/postgres -s /usr/sbin/nologin
+</pre>
+<br />
+<span>Once the UID/GID exist everywhere, the Miniflux chart in <span class='inlinecode'>examples/conf/f3s/miniflux</span> deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in <span class='inlinecode'>helm-chart/templates/persistent-volumes.yaml</span> and <span class='inlinecode'>deployment.yaml</span>:</span><br />
+<br />
+<pre>
+# Persistent volume lives on the NFS export
+hostPath:
+  path: /data/nfs/k3svolumes/miniflux/data
+  type: Directory
+...
+containers:
+- name: miniflux-postgres
+  image: postgres:17
+  volumeMounts:
+  - name: miniflux-postgres-data
+    mountPath: /var/lib/postgresql/data
+</pre>
+<br />
+<span>Follow the <span class='inlinecode'>README</span> beside the chart to create the secrets and the target directory:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd examples/conf/f3s/miniflux/helm-chart
+$ mkdir -p /data/nfs/k3svolumes/miniflux/data
+$ kubectl create secret generic miniflux-db-password \
+    --from-literal=fluxdb_password=<font color="#808080">'YOUR_PASSWORD'</font> -n services
+$ kubectl create secret generic miniflux-admin-password \
+    --from-literal=admin_password=<font color="#808080">'YOUR_ADMIN_PASSWORD'</font> -n services
+$ helm upgrade --install miniflux . -n services --create-namespace
+</pre>
+<br />
+<span>And to verify it&#39;s all up:</span><br />
+<br />
+<pre>
+$ kubectl get all --namespace=services | grep mini
+pod/miniflux-postgres-556444cb8d-xvv2p   1/1     Running   0             54d
+pod/miniflux-server-85d7c64664-stmt9     1/1     Running   0             54d
+service/miniflux                   ClusterIP   10.43.47.80     &lt;none&gt;        8080/TCP             54d
+service/miniflux-postgres          ClusterIP   10.43.139.50    &lt;none&gt;        5432/TCP             54d
+deployment.apps/miniflux-postgres   1/1     1            1           54d
+deployment.apps/miniflux-server     1/1     1            1           54d
+replicaset.apps/miniflux-postgres-556444cb8d   1         1         1       54d
+replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
+</pre>
+<br />
+<span>Or from the repository root I simply run:</span><br />
+<br />
+<h3 style='display: inline' id='helm-charts-currently-in-service'>Helm charts currently in service</h3><br />
+<br />
+<span>These are the charts that already live under <span class='inlinecode'>examples/conf/f3s</span> and run on the cluster today (and I&#39;ll keep adding more as new services graduate into production):</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>anki-sync-server</span> — custom-built image served from the private registry, stores decks on <span class='inlinecode'>/data/nfs/k3svolumes/anki-sync-server/anki_data</span>, and authenticates through the <span class='inlinecode'>anki-sync-server-secret</span>.</li>
+<li><span class='inlinecode'>audiobookshelf</span> — media streaming stack with three hostPath mounts (<span class='inlinecode'>config</span>, <span class='inlinecode'>audiobooks</span>, <span class='inlinecode'>podcasts</span>) so the library survives node rebuilds.</li>
+<li><span class='inlinecode'>example-apache</span> — minimal HTTP service I use for smoke-testing ingress and relayd rules.</li>
+<li><span class='inlinecode'>example-apache-volume-claim</span> — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.</li>
+<li><span class='inlinecode'>miniflux</span> — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.</li>
+<li><span class='inlinecode'>opodsync</span> — podsync deployment with its data directory under <span class='inlinecode'>/data/nfs/k3svolumes/opodsync/data</span>.</li>
+<li><span class='inlinecode'>radicale</span> — CalDAV/CardDAV (and gpodder) backend with separate <span class='inlinecode'>collections</span> and <span class='inlinecode'>auth</span> volumes.</li>
+<li><span class='inlinecode'>registry</span> — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as <span class='inlinecode'>registry.lan.buetow.org:30001</span>.</li>
+<li><span class='inlinecode'>syncthing</span> — two-volume setup for config and shared data, fronted by the <span class='inlinecode'>syncthing.f3s.foo.zone</span> ingress.</li>
+<li><span class='inlinecode'>wallabag</span> — read-it-later service with persistent <span class='inlinecode'>data</span> and <span class='inlinecode'>images</span> directories on the NFS export.</li>
+</ul><br />
+<span>I hope you enjoyed this walkthrough. In the next part of this series, I will likely tackle monitoring, backup, or observability. I haven&#39;t fully decided yet which topic to cover next, so stay tuned!</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>

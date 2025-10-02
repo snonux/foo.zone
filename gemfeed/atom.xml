@@ -1,11 +1,1090 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-09-29T09:38:00+03:00</updated>
+    <updated>2025-10-02T11:27:20+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</title>
+        <link href="https://foo.zone/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.html" />
+        <id>https://foo.zone/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.html</id>
+        <updated>2025-10-02T11:27:19+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the seventh blog post about the f3s series for my self-hosting demands in a home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</h1><br />
+<br />
+<span>This is the seventh blog post about the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#updating'>Updating</a></li>
+<li>⇢ <a href='#installing-k3s'>Installing k3s</a></li>
+<li>⇢ ⇢ <a href='#generating-k3stoken-and-starting-the-first-k3s-node'>Generating <span class='inlinecode'>K3S_TOKEN</span> and starting the first k3s node</a></li>
+<li>⇢ ⇢ <a href='#adding-the-remaining-nodes-to-the-cluster'>Adding the remaining nodes to the cluster</a></li>
+<li>⇢ <a href='#test-deployments'>Test deployments</a></li>
+<li>⇢ ⇢ <a href='#test-deployment-to-kubernetes'>Test deployment to Kubernetes</a></li>
+<li>⇢ ⇢ <a href='#test-deployment-with-persistent-volume-claim'>Test deployment with persistent volume claim</a></li>
+<li>⇢ ⇢ <a href='#scaling-traefik-for-faster-failover'>Scaling Traefik for faster failover</a></li>
+<li>⇢ <a href='#make-it-accessible-from-the-public-internet'>Make it accessible from the public internet</a></li>
+<li>⇢ ⇢ <a href='#openbsd-relayd-configuration'>OpenBSD relayd configuration</a></li>
+<li>⇢ <a href='#deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</a></li>
+<li>⇢ ⇢ <a href='#prepare-the-nfs-backed-storage'>Prepare the NFS-backed storage</a></li>
+<li>⇢ ⇢ <a href='#install-or-upgrade-the-chart'>Install (or upgrade) the chart</a></li>
+<li>⇢ ⇢ <a href='#allow-nodes-and-workstations-to-trust-the-registry'>Allow nodes and workstations to trust the registry</a></li>
+<li>⇢ ⇢ <a href='#pushing-and-pulling-images'>Pushing and pulling images</a></li>
+<li>⇢ <a href='#example-anki-sync-server-from-the-private-registry'>Example: Anki Sync Server from the private registry</a></li>
+<li>⇢ ⇢ <a href='#build-and-push-the-image'>Build and push the image</a></li>
+<li>⇢ ⇢ <a href='#create-the-anki-secret-and-storage-on-the-cluster'>Create the Anki secret and storage on the cluster</a></li>
+<li>⇢ ⇢ <a href='#deploy-the-chart'>Deploy the chart</a></li>
+<li>⇢ <a href='#nfsv4-uid-mapping-for-postgres-backed-and-other-apps'>NFSv4 UID mapping for Postgres-backed (and other) apps</a></li>
+<li>⇢ ⇢ <a href='#helm-charts-currently-in-service'>Helm charts currently in service</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, I am finally going to install k3s (the Kubernetes distribution I use) to the whole setup and deploy the first workloads (helm charts, and a private registry) to it.</span><br />
+<br />
+<a class='textlink' href='https://k3s.io'>https://k3s.io</a><br />
+<br />
+<h2 style='display: inline' id='updating'>Updating</h2><br />
+<br />
+<span>Before proceeding, I bring all systems involved up-to-date. On all three Rocky Linux 9 boxes <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>dnf update -y
+reboot
+</pre>
+<br />
+<span>On the FreeBSD hosts, I upgraded from FreeBSD 14.2 to 14.3-RELEASE, running this on all three hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas freebsd-update fetch
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % doas freebsd-update -r <font color="#000000">14.3</font>-RELEASE upgrade
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % doas freebsd-update install
+paul@f0:~ % doas pkg update
+paul@f0:~ % doas pkg upgrade
+paul@f0:~ % doas reboot
+.
+.
+.
+paul@f0:~ % uname -a
+FreeBSD f0.lan.buetow.org <font color="#000000">14.3</font>-RELEASE FreeBSD <font color="#000000">14.3</font>-RELEASE
+        releng/<font color="#000000">14.3</font>-n<font color="#000000">271432</font>-8c9ce319fef7 GENERIC amd64
+</pre>
+<br />
+<h2 style='display: inline' id='installing-k3s'>Installing k3s</h2><br />
+<br />
+<h3 style='display: inline' id='generating-k3stoken-and-starting-the-first-k3s-node'>Generating <span class='inlinecode'>K3S_TOKEN</span> and starting the first k3s node</h3><br />
+<br />
+<span>I generated the k3s token on my Fedora laptop with <span class='inlinecode'>pwgen -n 32</span> and selected one of the results. Then, on all three <span class='inlinecode'>r</span> hosts, I ran the following (replace SECRET_TOKEN with the actual secret):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># echo -n SECRET_TOKEN &gt; ~/.k3s_token</font></i>
+</pre>
+<br />
+<span>The following steps are also documented on the k3s website:</span><br />
+<br />
+<a class='textlink' href='https://docs.k3s.io/datastore/ha-embedded'>https://docs.k3s.io/datastore/ha-embedded</a><br />
+<br />
+<span>To bootstrap k3s on the first node, I ran this on <span class='inlinecode'>r0</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --cluster-init --tls-san=r0.wg0.wan.buetow.org
+[INFO]  Finding release <b><u><font color="#000000">for</font></u></b> channel stable
+[INFO]  Using v1.<font color="#000000">32.6</font>+k3s1 as release
+.
+.
+.
+[INFO]  systemd: Starting k3s
+</pre>
+<br />
+<h3 style='display: inline' id='adding-the-remaining-nodes-to-the-cluster'>Adding the remaining nodes to the cluster</h3><br />
+<br />
+<span>Then I ran on the other two nodes <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r1 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --tls-san=r1.wg0.wan.buetow.org
+
+[root@r2 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --tls-san=r2.wg0.wan.buetow.org
+.
+.
+.
+
+</pre>
+<br />
+<span>Once done, I had a three-node Kubernetes cluster control plane:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># kubectl get nodes</font></i>
+NAME                STATUS   ROLES                       AGE     VERSION
+r0.lan.buetow.org   Ready    control-plane,etcd,master   4m44s   v1.<font color="#000000">32.6</font>+k3s1
+r1.lan.buetow.org   Ready    control-plane,etcd,master   3m13s   v1.<font color="#000000">32.6</font>+k3s1
+r2.lan.buetow.org   Ready    control-plane,etcd,master   30s     v1.<font color="#000000">32.6</font>+k3s1
+
+[root@r0 ~]<i><font color="silver"># kubectl get pods --all-namespaces</font></i>
+NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE
+kube-system   coredns-5688667fd4-fs2jj                  <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   helm-install-traefik-crd-f9hgd            <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">0</font>          5m27s
+kube-system   helm-install-traefik-zqqqk                <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">2</font>          5m27s
+kube-system   local-path-provisioner-774c6665dc-jqlnc   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   metrics-server-6f4c6675d5-5xpmp           <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
+kube-system   svclb-traefik-411cec5b-cdp2l              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          78s
+kube-system   svclb-traefik-411cec5b-f625r              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m58s
+kube-system   svclb-traefik-411cec5b-twrd<font color="#000000">7</font>              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m2s
+kube-system   traefik-c98fdf6fb-lt6fx                   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          4m58s
+</pre>
+<br />
+<span>In order to connect with <span class='inlinecode'>kubectl</span> from my Fedora laptop, I had to copy <span class='inlinecode'>/etc/rancher/k3s/k3s.yaml</span> from <span class='inlinecode'>r0</span> to <span class='inlinecode'>~/.kube/config</span> and then replace the value of the server field with <span class='inlinecode'>r0.lan.buetow.org</span>. kubectl can now manage the cluster. Note that this step has to be repeated when I want to connect to another node of the cluster (e.g. when <span class='inlinecode'>r0</span> is down).</span><br />
+<br />
+<h2 style='display: inline' id='test-deployments'>Test deployments</h2><br />
+<br />
+<h3 style='display: inline' id='test-deployment-to-kubernetes'>Test deployment to Kubernetes</h3><br />
+<br />
+<span>Let&#39;s create a test namespace:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl create namespace <b><u><font color="#000000">test</font></u></b>
+namespace/test created
+
+&gt; ~ kubectl get namespaces
+NAME              STATUS   AGE
+default           Active   6h11m
+kube-node-lease   Active   6h11m
+kube-public       Active   6h11m
+kube-system       Active   6h11m
+<b><u><font color="#000000">test</font></u></b>              Active   5s
+
+&gt; ~ kubectl config set-context --current --namespace=<b><u><font color="#000000">test</font></u></b>
+Context <font color="#808080">"default"</font> modified.
+</pre>
+<br />
+<span>And let&#39;s also create an Apache test pod:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
+<i><font color="silver"># Apache HTTP Server Deployment</font></i>
+apiVersion: apps/v<font color="#000000">1</font>
+kind: Deployment
+metadata:
+  name: apache-deployment
+spec:
+  replicas: <font color="#000000">1</font>
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: apache
+        image: httpd:latest
+        ports:
+        <i><font color="silver"># Container port where Apache listens</font></i>
+        - containerPort: <font color="#000000">80</font>
+END
+
+&gt; ~ kubectl apply -f apache-deployment.yaml
+deployment.apps/apache-deployment created
+
+&gt; ~ kubectl get all
+NAME                                     READY   STATUS    RESTARTS   AGE
+pod/apache-deployment-5fd955856f-4pjmf   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          7s
+
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/apache-deployment   <font color="#000000">1</font>/<font color="#000000">1</font>     <font color="#000000">1</font>            <font color="#000000">1</font>           7s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/apache-deployment-5fd955856f   <font color="#000000">1</font>         <font color="#000000">1</font>         <font color="#000000">1</font>       7s
+</pre>
+<br />
+<span>Let&#39;s also create a service: </span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache
+  name: apache-service
+spec:
+  ports:
+    - name: web
+      port: <font color="#000000">80</font>
+      protocol: TCP
+      <i><font color="silver"># Expose port 80 on the service</font></i>
+      targetPort: <font color="#000000">80</font>
+  selector:
+  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
+    app: apache
+END
+
+&gt; ~ kubectl apply -f apache-service.yaml
+service/apache-service created
+
+&gt; ~ kubectl get service
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+apache-service   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">249.165</font>   &lt;none&gt;        <font color="#000000">80</font>/TCP    4s
+</pre>
+<br />
+<span>Now let&#39;s create an ingress:</span><br />
+<br />
+<span class='quote'>Note: I&#39;ve modified the hosts listed in this example after I published this blog post to ensure that there aren&#39;t any bots scraping it.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
+
+apiVersion: networking.k8s.io/v<font color="#000000">1</font>
+kind: Ingress
+metadata:
+  name: apache-ingress
+  namespace: <b><u><font color="#000000">test</font></u></b>
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: standby.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: www.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+END
+
+&gt; ~ kubectl apply -f apache-ingress.yaml
+ingress.networking.k8s.io/apache-ingress created
+
+&gt; ~ kubectl describe ingress
+Name:             apache-ingress
+Labels:           &lt;none&gt;
+Namespace:        <b><u><font color="#000000">test</font></u></b>
+Address:          <font color="#000000">192.168</font>.<font color="#000000">1.120</font>,<font color="#000000">192.168</font>.<font color="#000000">1.121</font>,<font color="#000000">192.168</font>.<font color="#000000">1.122</font>
+Ingress Class:    traefik
+Default backend:  &lt;default&gt;
+Rules:
+  Host                    Path  Backends
+  ----                    ----  --------
+  f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+  standby.f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+  www.f3s.foo.zone
+                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
+Annotations:              spec.ingressClassName: traefik
+                          traefik.ingress.kubernetes.io/router.entrypoints: web
+Events:                   &lt;none&gt;
+</pre>
+<br />
+<span>Notes: </span><br />
+<br />
+<ul>
+<li>In the ingress, I use plain HTTP (web) for the Traefik rule, as all the "production" traffic will be routed through a WireGuard tunnel anyway, as I will show later.</li>
+</ul><br />
+<span>So I tested the Apache web server through the ingress rule:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+</pre>
+<br />
+<h3 style='display: inline' id='test-deployment-with-persistent-volume-claim'>Test deployment with persistent volume claim</h3><br />
+<br />
+<span>Next, I modified the Apache example to serve the <span class='inlinecode'>htdocs</span> directory from the NFS share I created in the previous blog post. I used the following manifests. Most of them are the same as before, except for the persistent volume claim and the volume mount in the Apache deployment.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
+<i><font color="silver"># Apache HTTP Server Deployment</font></i>
+apiVersion: apps/v<font color="#000000">1</font>
+kind: Deployment
+metadata:
+  name: apache-deployment
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  replicas: <font color="#000000">2</font>
+  selector:
+    matchLabels:
+      app: apache
+  template:
+    metadata:
+      labels:
+        app: apache
+    spec:
+      containers:
+      - name: apache
+        image: httpd:latest
+        ports:
+        <i><font color="silver"># Container port where Apache listens</font></i>
+        - containerPort: <font color="#000000">80</font>
+        readinessProbe:
+          httpGet:
+            path: /
+            port: <font color="#000000">80</font>
+          initialDelaySeconds: <font color="#000000">5</font>
+          periodSeconds: <font color="#000000">10</font>
+        livenessProbe:
+          httpGet:
+            path: /
+            port: <font color="#000000">80</font>
+          initialDelaySeconds: <font color="#000000">15</font>
+          periodSeconds: <font color="#000000">10</font>
+        volumeMounts:
+        - name: apache-htdocs
+          mountPath: /usr/local/apache<font color="#000000">2</font>/htdocs/
+      volumes:
+      - name: apache-htdocs
+        persistentVolumeClaim:
+          claimName: example-apache-pvc
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
+apiVersion: networking.k8s.io/v<font color="#000000">1</font>
+kind: Ingress
+metadata:
+  name: apache-ingress
+  namespace: <b><u><font color="#000000">test</font></u></b>
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: standby.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+    - host: www.f3s.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: apache-service
+                port:
+                  number: <font color="#000000">80</font>
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-persistent-volume.yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: example-apache-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/nfs/k3svolumes/example-apache-volume-claim
+    <b><u><font color="#000000">type</font></u></b>: Directory
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-apache-pvc
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  storageClassName: <font color="#808080">""</font>
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+END
+
+&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: apache
+  name: apache-service
+  namespace: <b><u><font color="#000000">test</font></u></b>
+spec:
+  ports:
+    - name: web
+      port: <font color="#000000">80</font>
+      protocol: TCP
+      <i><font color="silver"># Expose port 80 on the service</font></i>
+      targetPort: <font color="#000000">80</font>
+  selector:
+  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
+    app: apache
+END
+</pre>
+<br />
+<span>I applied the manifests:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl apply -f apache-persistent-volume.yaml
+&gt; ~ kubectl apply -f apache-service.yaml
+&gt; ~ kubectl apply -f apache-deployment.yaml
+&gt; ~ kubectl apply -f apache-ingress.yaml
+</pre>
+<br />
+<span>Looking at the deployment, I could see it failed because the directory didn&#39;t exist yet on the NFS share (note that I also increased the replica count to 2 so if one node goes down there&#39;s already a replica running on another node for faster failover):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl get pods
+NAME                                 READY   STATUS              RESTARTS   AGE
+apache-deployment-5b96bd6b6b-fv2jx   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
+apache-deployment-5b96bd6b6b-ax2ji   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
+
+&gt; ~ kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx | tail -n <font color="#000000">5</font>
+Events:
+  Type     Reason       Age                   From               Message
+  ----     ------       ----                  ----               -------
+  Normal   Scheduled    9m34s                 default-scheduler  Successfully
+    assigned test/apache-deployment-5b96bd6b6b-fv2jx to r2.lan.buetow.org
+  Warning  FailedMount  80s (x12 over 9m34s)  kubelet            MountVolume.SetUp
+    failed <b><u><font color="#000000">for</font></u></b> volume <font color="#808080">"example-apache-pv"</font> : hostPath <b><u><font color="#000000">type</font></u></b> check failed:
+    /data/nfs/k3svolumes/example-apache is not a directory
+</pre>
+<br />
+<span>That&#39;s intentional—I needed to create the directory on the NFS share first, so I did that (e.g. on <span class='inlinecode'>r0</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir /data/nfs/k3svolumes/example-apache-volume-claim/</font></i>
+
+[root@r0 ~]<i><font color="silver"># cat &lt;&lt;END &gt; /data/nfs/k3svolumes/example-apache-volume-claim/index.html</font></i>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello, it works&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
+  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+END
+</pre>
+<br />
+<span>The <span class='inlinecode'>index.html</span> file gives us some actual content to serve. After deleting the pod, it recreates itself and the volume mounts correctly:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx
+
+&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hello, it works&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
+  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<br />
+<h3 style='display: inline' id='scaling-traefik-for-faster-failover'>Scaling Traefik for faster failover</h3><br />
+<br />
+<span>Traefik (used for ingress on k3s) ships with a single replica by default, but for faster failover I bumped it to two replicas so each worker node runs one pod. That way, if a node disappears, the service stays up while Kubernetes schedules a replacement. Here&#39;s the command I used:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl -n kube-system scale deployment traefik --replicas=<font color="#000000">2</font>
+</pre>
+<br />
+<span>And the result:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl -n kube-system get pods -l app.kubernetes.io/name=traefik
+kube-system   traefik-c98fdf6fb-97kqk   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">19</font> (53d ago)   64d
+kube-system   traefik-c98fdf6fb-9npg2   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">11</font> (53d ago)   61d
+</pre>
+<br />
+<h2 style='display: inline' id='make-it-accessible-from-the-public-internet'>Make it accessible from the public internet</h2><br />
+<br />
+<span>Next, I made this accessible through the public internet via the <span class='inlinecode'>www.f3s.foo.zone</span> hosts. As a reminder from part 1 of this series, I reviewed the section titled "OpenBSD/relayd to the rescue for external connectivity":</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<br />
+<span class='quote'>All apps should be reachable through the internet (e.g., from my phone or computer when travelling). For external connectivity and TLS management, I&#39;ve got two OpenBSD VMs (one hosted by OpenBSD Amsterdam and another hosted by Hetzner) handling public-facing services like DNS, relaying traffic, and automating Let&#39;s Encrypt certificates.</span><br />
+<br />
+<span class='quote'>All of this (every Linux VM to every OpenBSD box) will be connected via WireGuard tunnels, keeping everything private and secure. There will be 6 WireGuard tunnels (3 k3s nodes times two OpenBSD VMs).</span><br />
+<br />
+<span class='quote'>So, when I want to access a service running in k3s, I will hit an external DNS endpoint (with the authoritative DNS servers being the OpenBSD boxes). The DNS will resolve to the master OpenBSD VM (see my KISS highly-available with OpenBSD blog post), and from there, the relayd process (with a Let&#39;s Encrypt certificate—see my Let&#39;s Encrypt with OpenBSD and Rex blog post) will accept the TCP connection and forward it through the WireGuard tunnel to a reachable node port of one of the k3s nodes, thus serving the traffic.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ curl https://f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+
+&gt; ~ curl https://www.f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+
+&gt; ~ curl https://standby.f3s.foo.zone
+&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+</pre>
+<br />
+<span>This is how it works in <span class='inlinecode'>relayd.conf</span> on OpenBSD:</span><br />
+<br />
+<h3 style='display: inline' id='openbsd-relayd-configuration'>OpenBSD relayd configuration</h3><br />
+<br />
+<span>The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every <span class='inlinecode'>f3s</span> hostname lands on the same pool of k3s nodes (pointing to the WireGuard IP addresses of those nodes - remember, they are running locally in my LAN, wheras the OpenBSD edge relays operate in the public internet):</span><br />
+<br />
+<pre>
+table &lt;f3s&gt; {
+  192.168.2.120
+  192.168.2.121
+  192.168.2.122
+}
+</pre>
+<br />
+<span>Inside the <span class='inlinecode'>http protocol "https"</span> block each public hostname gets its Let&#39;s Encrypt certificate and is matched to that backend table. Besides the primary trio, every service-specific hostname (<span class='inlinecode'>anki</span>, <span class='inlinecode'>bag</span>, <span class='inlinecode'>flux</span>, <span class='inlinecode'>audiobookshelf</span>, <span class='inlinecode'>gpodder</span>, <span class='inlinecode'>radicale</span>, <span class='inlinecode'>vault</span>, <span class='inlinecode'>syncthing</span>, <span class='inlinecode'>uprecords</span>) and their <span class='inlinecode'>www</span> / <span class='inlinecode'>standby</span> aliases reuse the same pool so new apps can go live just by publishing an ingress rule, whereas they will all map to a service running in k3s:</span><br />
+<br />
+<pre>
+http protocol "https" {
+    tls keypair f3s.foo.zone
+    tls keypair www.f3s.foo.zone
+    tls keypair standby.f3s.foo.zone
+    tls keypair anki.f3s.foo.zone
+    tls keypair www.anki.f3s.foo.zone
+    tls keypair standby.anki.f3s.foo.zone
+    tls keypair bag.f3s.foo.zone
+    tls keypair www.bag.f3s.foo.zone
+    tls keypair standby.bag.f3s.foo.zone
+    tls keypair flux.f3s.foo.zone
+    tls keypair www.flux.f3s.foo.zone
+    tls keypair standby.flux.f3s.foo.zone
+    tls keypair audiobookshelf.f3s.foo.zone
+    tls keypair www.audiobookshelf.f3s.foo.zone
+    tls keypair standby.audiobookshelf.f3s.foo.zone
+    tls keypair gpodder.f3s.foo.zone
+    tls keypair www.gpodder.f3s.foo.zone
+    tls keypair standby.gpodder.f3s.foo.zone
+    tls keypair radicale.f3s.foo.zone
+    tls keypair www.radicale.f3s.foo.zone
+    tls keypair standby.radicale.f3s.foo.zone
+    tls keypair vault.f3s.foo.zone
+    tls keypair www.vault.f3s.foo.zone
+    tls keypair standby.vault.f3s.foo.zone
+    tls keypair syncthing.f3s.foo.zone
+    tls keypair www.syncthing.f3s.foo.zone
+    tls keypair standby.syncthing.f3s.foo.zone
+    tls keypair uprecords.f3s.foo.zone
+    tls keypair www.uprecords.f3s.foo.zone
+    tls keypair standby.uprecords.f3s.foo.zone
+
+    match request quick header "Host" value "f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.anki.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.bag.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.flux.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.audiobookshelf.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.gpodder.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.radicale.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.vault.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.syncthing.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "www.uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+    match request quick header "Host" value "standby.uprecords.f3s.foo.zone" forward to &lt;f3s&gt;
+}
+</pre>
+<br />
+<span>Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:</span><br />
+<br />
+<pre>
+relay "https4" {
+    listen on 46.23.94.99 port 443 tls
+    protocol "https"
+    forward to &lt;f3s&gt; port 80 check tcp
+}
+
+relay "https6" {
+    listen on 2a03:6000:6f67:624::99 port 443 tls
+    protocol "https"
+    forward to &lt;f3s&gt; port 80 check tcp
+}
+</pre>
+<br />
+<span>In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.</span><br />
+<br />
+<h2 style='display: inline' id='deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</h2><br />
+<br />
+<span>As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry. </span><br />
+<br />
+<span>All manifests for the f3s stack live in my configuration repository:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<span>Within that repo, the <span class='inlinecode'>examples/conf/f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
+<br />
+<h3 style='display: inline' id='prepare-the-nfs-backed-storage'>Prepare the NFS-backed storage</h3><br />
+<br />
+<span>Create the directory that will hold the registry blobs on the NFS share (I ran this on <span class='inlinecode'>r0</span>, but any node that exports <span class='inlinecode'>/data/nfs/k3svolumes</span> works):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/registry</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='install-or-upgrade-the-chart'>Install (or upgrade) the chart</h3><br />
+<br />
+<span>Clone the repo (or pull the latest changes) on a workstation that has <span class='inlinecode'>helm</span> configured for the cluster, then deploy the chart. The Justfile wraps the commands, but the raw Helm invocation looks like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf/f3s.git
+$ cd conf/f3s/examples/conf/f3s/registry
+$ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
+</pre>
+<br />
+<span>Helm creates the <span class='inlinecode'>infra</span> namespace if it does not exist, provisions a <span class='inlinecode'>PersistentVolume</span>/<span class='inlinecode'>PersistentVolumeClaim</span> pair that points at <span class='inlinecode'>/data/nfs/k3svolumes/registry</span>, and spins up a single registry pod exposed via the <span class='inlinecode'>docker-registry-service</span> NodePort (<span class='inlinecode'>30001</span>). Verify everything is up before continuing:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get pods --namespace infra
+NAME                               READY   STATUS    RESTARTS      AGE
+docker-registry-6bc9bb46bb-6grkr   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">6</font> (53d ago)   54d
+
+$ kubectl get svc docker-registry-service -n infra
+NAME                      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
+docker-registry-service   NodePort   <font color="#000000">10.43</font>.<font color="#000000">141.56</font>   &lt;none&gt;        <font color="#000000">5000</font>:<font color="#000000">30001</font>/TCP   54d
+</pre>
+<br />
+<h3 style='display: inline' id='allow-nodes-and-workstations-to-trust-the-registry'>Allow nodes and workstations to trust the registry</h3><br />
+<br />
+<span>The registry listens on plain HTTP, so both Docker daemons on workstations and the k3s nodes need to treat it as an insecure registry. That&#39;s fine for my personal needs, as:</span><br />
+<br />
+<ul>
+<li>I don&#39;t store any secrets in the images</li>
+<li>I access the registry this way only via my LAN</li>
+<li>I may will change it later on...</li>
+</ul><br />
+<span>On my Fedora workstation where I build images:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cat &lt;&lt;<font color="#808080">"EOF"</font> | sudo tee /etc/docker/daemon.json &gt;/dev/null
+{
+  <font color="#808080">"insecure-registries"</font>: [
+    <font color="#808080">"r0.lan.buetow.org:30001"</font>,
+    <font color="#808080">"r1.lan.buetow.org:30001"</font>,
+    <font color="#808080">"r2.lan.buetow.org:30001"</font>
+  ]
+}
+EOF
+$ sudo systemctl restart docker
+</pre>
+<br />
+<span>On each k3s node, make <span class='inlinecode'>registry.lan.buetow.org</span> resolve locally and point k3s at the NodePort:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
+&gt;   ssh root@$node <font color="#808080">"echo '127.0.0.1 registry.lan.buetow.org' &gt;&gt; /etc/hosts"</font>
+&gt; <b><u><font color="#000000">done</font></u></b>
+
+$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
+&gt; ssh root@$node <font color="#808080">"cat &lt;&lt;'EOF' &gt; /etc/rancher/k3s/registries.yaml</font>
+<font color="#808080">mirrors:</font>
+<font color="#808080">  "</font>registry.lan.buetow.org:<font color="#000000">30001</font><font color="#808080">":</font>
+<font color="#808080">    endpoint:</font>
+<font color="#808080">      - "</font>http://localhost:<font color="#000000">30001</font><font color="#808080">"</font>
+<font color="#808080">EOF</font>
+<font color="#808080">systemctl restart k3s"</font>
+&gt; <b><u><font color="#000000">done</font></u></b>
+</pre>
+<br />
+<span>Thanks to the relayd configuration earlier in the post, the external hostnames (<span class='inlinecode'>f3s.foo.zone</span>, etc.) can already reach NodePort <span class='inlinecode'>30001</span>, so publishing the registry later to the outside world is just a matter of wiring the DNS the same way as the ingress hosts. But by default, that&#39;s not enabled for now due to security reasons.</span><br />
+<br />
+<h3 style='display: inline' id='pushing-and-pulling-images'>Pushing and pulling images</h3><br />
+<br />
+<span>Tag any locally built image with one of the node IPs on port <span class='inlinecode'>30001</span>, then push it. I usually target whichever node is closest to me, but any of the three will do:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ docker tag my-app:latest r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
+$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
+</pre>
+<br />
+<span>Inside the cluster (or from other nodes), reference the image via the service name that Helm created:</span><br />
+<br />
+<pre>
+image: docker-registry-service:5000/my-app:latest
+</pre>
+<br />
+<span>You can test the pull path straight away:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl run registry-test \
+&gt;   --image=docker-registry-service:<font color="#000000">5000</font>/my-app:latest \
+&gt;   --restart=Never -n <b><u><font color="#000000">test</font></u></b> --command -- sleep <font color="#000000">300</font>
+</pre>
+<br />
+<span>If the pod pulls successfully, the private registry is ready for use by the rest of the workloads. Note, that the commands above actually don&#39;t work, they are only for illustration purpose mentioned here.</span><br />
+<br />
+<h2 style='display: inline' id='example-anki-sync-server-from-the-private-registry'>Example: Anki Sync Server from the private registry</h2><br />
+<br />
+<span>One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in <span class='inlinecode'>examples/conf/f3s/anki-sync-server/</span>: a Docker build context plus a Helm chart that references the freshly built image.</span><br />
+<br />
+<h3 style='display: inline' id='build-and-push-the-image'>Build and push the image</h3><br />
+<br />
+<span>The Dockerfile lives under <span class='inlinecode'>docker-image/</span> and takes the Anki release to compile as an <span class='inlinecode'>ANKI_VERSION</span> build argument. The accompanying <span class='inlinecode'>Justfile</span> wraps the steps, but the raw commands look like this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image
+$ docker build -t anki-sync-server:<font color="#000000">25.07</font>.5b --build-arg ANKI_VERSION=<font color="#000000">25.07</font>.<font color="#000000">5</font> .
+$ docker tag anki-sync-server:<font color="#000000">25.07</font>.5b \
+    r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
+$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
+</pre>
+<br />
+<span>Because every k3s node treats <span class='inlinecode'>registry.lan.buetow.org:30001</span> as an insecure mirror (see above), the push succeeds regardless of which node answers. If you prefer the shortcut, <span class='inlinecode'>just f3s</span> in that directory performs the same build/tag/push sequence.</span><br />
+<br />
+<h3 style='display: inline' id='create-the-anki-secret-and-storage-on-the-cluster'>Create the Anki secret and storage on the cluster</h3><br />
+<br />
+<span>The Helm chart expects the <span class='inlinecode'>services</span> namespace, a pre-created NFS directory, and a Kubernetes secret that holds the credentials the upstream container understands:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ ssh root@r0 <font color="#808080">"mkdir -p /data/nfs/k3svolumes/anki-sync-server/anki_data"</font>
+$ kubectl create namespace services
+$ kubectl create secret generic anki-sync-server-secret \
+    --from-literal=SYNC_USER1=<font color="#808080">'paul:SECRETPASSWORD'</font> \
+    -n services
+</pre>
+<br />
+<span>If the <span class='inlinecode'>services</span> namespace already exists, you can skip that line or let Kubernetes tell you the namespace is unchanged.</span><br />
+<br />
+<h3 style='display: inline' id='deploy-the-chart'>Deploy the chart</h3><br />
+<br />
+<span>With the prerequisites in place, install (or upgrade) the chart. It pins the container image to the tag we just pushed and mounts the NFS export via a <span class='inlinecode'>PersistentVolume/PersistentVolumeClaim</span> pair:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd ../helm-chart
+$ helm upgrade --install anki-sync-server . -n services
+</pre>
+<br />
+<span>Helm provisions everything referenced in the templates:</span><br />
+<br />
+<pre>
+containers:
+- name: anki-sync-server  image: registry.lan.buetow.org:30001/anki-sync-server:25.07.5b
+  volumeMounts:
+  - name: anki-data
+    mountPath: /anki_data
+</pre>
+<br />
+<span>Once the release comes up, verify that the pod pulled the freshly pushed image and that the ingress we configured earlier resolves through relayd just like the Apache example.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get pods -n services
+$ kubectl get ingress anki-sync-server-ingress -n services
+$ curl https://anki.f3s.foo.zone/health
+</pre>
+<br />
+<span>All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.</span><br />
+<br />
+<h2 style='display: inline' id='nfsv4-uid-mapping-for-postgres-backed-and-other-apps'>NFSv4 UID mapping for Postgres-backed (and other) apps</h2><br />
+<br />
+<span>NFSv4 only sees numeric user and group IDs, so the <span class='inlinecode'>postgres</span> account created inside the container must exist with the same UID/GID on the Kubernetes worker and on the FreeBSD NFS servers. Otherwise the pod starts with UID 999, the export sees it as an unknown anonymous user, and Postgres fails to initialise its data directory.</span><br />
+<br />
+<span>To verify things line up end-to-end I run <span class='inlinecode'>id</span> in the container and on the hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; ~ kubectl <b><u><font color="#000000">exec</font></u></b> -n services deploy/miniflux-postgres -- id postgres
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+
+[root@r0 ~]<i><font color="silver"># id postgres</font></i>
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+
+paul@f0:~ % doas id postgres
+uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">99</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+</pre>
+<br />
+<span>The Rocky Linux workers get their matching user with plain <span class='inlinecode'>useradd</span>/<span class='inlinecode'>groupadd</span> (repeat on <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span>):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># groupadd --gid 999 postgres</font></i>
+[root@r0 ~]<i><font color="silver"># useradd --uid 999 --gid 999 \</font></i>
+                --home-dir /var/lib/pgsql \
+                --shell /sbin/nologin postgres
+</pre>
+<br />
+<span>FreeBSD uses <span class='inlinecode'>pw</span>, so on each NFS server (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) I created the same account and disabled shell access:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pw groupadd postgres -g <font color="#000000">999</font>
+paul@f0:~ % doas pw useradd postgres -u <font color="#000000">999</font> -g postgres \
+                -d /var/db/postgres -s /usr/sbin/nologin
+</pre>
+<br />
+<span>Once the UID/GID exist everywhere, the Miniflux chart in <span class='inlinecode'>examples/conf/f3s/miniflux</span> deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in <span class='inlinecode'>helm-chart/templates/persistent-volumes.yaml</span> and <span class='inlinecode'>deployment.yaml</span>:</span><br />
+<br />
+<pre>
+# Persistent volume lives on the NFS export
+hostPath:
+  path: /data/nfs/k3svolumes/miniflux/data
+  type: Directory
+...
+containers:
+- name: miniflux-postgres
+  image: postgres:17
+  volumeMounts:
+  - name: miniflux-postgres-data
+    mountPath: /var/lib/postgresql/data
+</pre>
+<br />
+<span>Follow the <span class='inlinecode'>README</span> beside the chart to create the secrets and the target directory:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd examples/conf/f3s/miniflux/helm-chart
+$ mkdir -p /data/nfs/k3svolumes/miniflux/data
+$ kubectl create secret generic miniflux-db-password \
+    --from-literal=fluxdb_password=<font color="#808080">'YOUR_PASSWORD'</font> -n services
+$ kubectl create secret generic miniflux-admin-password \
+    --from-literal=admin_password=<font color="#808080">'YOUR_ADMIN_PASSWORD'</font> -n services
+$ helm upgrade --install miniflux . -n services --create-namespace
+</pre>
+<br />
+<span>And to verify it&#39;s all up:</span><br />
+<br />
+<pre>
+$ kubectl get all --namespace=services | grep mini
+pod/miniflux-postgres-556444cb8d-xvv2p   1/1     Running   0             54d
+pod/miniflux-server-85d7c64664-stmt9     1/1     Running   0             54d
+service/miniflux                   ClusterIP   10.43.47.80     &lt;none&gt;        8080/TCP             54d
+service/miniflux-postgres          ClusterIP   10.43.139.50    &lt;none&gt;        5432/TCP             54d
+deployment.apps/miniflux-postgres   1/1     1            1           54d
+deployment.apps/miniflux-server     1/1     1            1           54d
+replicaset.apps/miniflux-postgres-556444cb8d   1         1         1       54d
+replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
+</pre>
+<br />
+<span>Or from the repository root I simply run:</span><br />
+<br />
+<h3 style='display: inline' id='helm-charts-currently-in-service'>Helm charts currently in service</h3><br />
+<br />
+<span>These are the charts that already live under <span class='inlinecode'>examples/conf/f3s</span> and run on the cluster today (and I&#39;ll keep adding more as new services graduate into production):</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>anki-sync-server</span> — custom-built image served from the private registry, stores decks on <span class='inlinecode'>/data/nfs/k3svolumes/anki-sync-server/anki_data</span>, and authenticates through the <span class='inlinecode'>anki-sync-server-secret</span>.</li>
+<li><span class='inlinecode'>audiobookshelf</span> — media streaming stack with three hostPath mounts (<span class='inlinecode'>config</span>, <span class='inlinecode'>audiobooks</span>, <span class='inlinecode'>podcasts</span>) so the library survives node rebuilds.</li>
+<li><span class='inlinecode'>example-apache</span> — minimal HTTP service I use for smoke-testing ingress and relayd rules.</li>
+<li><span class='inlinecode'>example-apache-volume-claim</span> — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.</li>
+<li><span class='inlinecode'>miniflux</span> — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.</li>
+<li><span class='inlinecode'>opodsync</span> — podsync deployment with its data directory under <span class='inlinecode'>/data/nfs/k3svolumes/opodsync/data</span>.</li>
+<li><span class='inlinecode'>radicale</span> — CalDAV/CardDAV (and gpodder) backend with separate <span class='inlinecode'>collections</span> and <span class='inlinecode'>auth</span> volumes.</li>
+<li><span class='inlinecode'>registry</span> — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as <span class='inlinecode'>registry.lan.buetow.org:30001</span>.</li>
+<li><span class='inlinecode'>syncthing</span> — two-volume setup for config and shared data, fronted by the <span class='inlinecode'>syncthing.f3s.foo.zone</span> ingress.</li>
+<li><span class='inlinecode'>wallabag</span> — read-it-later service with persistent <span class='inlinecode'>data</span> and <span class='inlinecode'>images</span> directories on the NFS export.</li>
+</ul><br />
+<span>I hope you enjoyed this walkthrough. In the next part of this series, I will likely tackle monitoring, backup, or observability. I haven&#39;t fully decided yet which topic to cover next, so stay tuned!</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Bash Golf Part 4</title>
         <link href="https://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.html" />
@@ -1291,6 +2370,7 @@ content = "{CODE}"
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -2094,7 +3174,7 @@ ifconfig_re0_alias0=<font color="#808080">"inet vhid 1 pass testpass alias 192.1
 <span>Next, update <span class='inlinecode'>/etc/hosts</span> on all nodes (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>, <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>) to resolve the VIP hostname:</span><br />
 <br />
 <pre>
-192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+192.168.2.138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
 </pre>
 <br />
 <span>This allows clients to connect to <span class='inlinecode'>f3s-storage-ha</span> regardless of which physical server is currently the MASTER.</span><br />
@@ -2850,7 +3930,7 @@ http://www.gnu.org/software/src-highlite -->
   clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
 
 <i><font color="silver"># For persistent mount, add to /etc/fstab:</font></i>
-<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev <font color="#000000">0</font> <font color="#000000">0</font>
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev,soft,timeo=<font color="#000000">10</font>,retrans=<font color="#000000">2</font>,intr <font color="#000000">0</font> <font color="#000000">0</font>
 </pre>
 <br />
 <span>Note: The mount uses localhost (<span class='inlinecode'>127.0.0.1</span>) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.</span><br />
@@ -3128,10 +4208,13 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn&#39;t seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.</span><br />
 <br />
 <br />
-<span>I&#39;m looking forward to the next post in this series, where we will set up k3s (Kubernetes) on the Linux VMs.</span><br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -4194,6 +5277,7 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -5174,6 +6258,7 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -5755,6 +6840,7 @@ __ejm\___/________dwb`---`______________________
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -6331,6 +7417,7 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs (You are currently reading this)</a><br />
@@ -7056,6 +8143,7 @@ This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#0000
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -7445,6 +8533,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>Other BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -8048,7 +9137,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
         </content>
     </entry>
     <entry>
-        <title>Deciding on the hardware</title>
+        <title>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</title>
         <link href="https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html" />
         <id>https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html</id>
         <updated>2024-12-02T23:48:21+02:00</updated>
@@ -8059,7 +9148,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
         <summary>This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <span> f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</span><br />
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
 <br />
 <span class='quote'>Published at 2024-12-02T23:48:21+02:00</span><br />
 <br />
@@ -8075,6 +9164,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -8085,6 +9175,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a></li>
 <li><a href='#deciding-on-the-hardware'>Deciding on the hardware</a></li>
 <li>⇢ <a href='#not-arm-but-intel-n100-'>Not ARM but Intel N100 </a></li>
 <li>⇢ <a href='#beelink-unboxing'>Beelink unboxing</a></li>
@@ -8406,6 +9497,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -8452,6 +9544,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -8603,6 +9696,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -11105,6 +12199,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other *BSD and KISS related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -11473,6 +12568,7 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>Other *BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
@@ -13069,368 +14165,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>'Software Developmers Career Guide and Soft Skills' book notes</title>
-        <link href="https://foo.zone/gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.html" />
-        <id>https://foo.zone/gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.html</id>
-        <updated>2023-07-17T04:56:20+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>These notes are of two books by 'John Sommez' I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='software-developmers-career-guide-and-soft-skills-book-notes'>"Software Developmers Career Guide and Soft Skills" book notes</h1><br />
-<br />
-<span class='quote'>Published at 2023-07-17T04:56:20+03:00</span><br />
-<br />
-<span>These notes are of two books by "John Sommez" I found helpful. I also added some of my own keypoints to it. These notes are mainly for my own use, but you might find them helpful, too.</span><br />
-<br />
-<pre>
-         ,..........   ..........,
-     ,..,&#39;          &#39;.&#39;          &#39;,..,
-    ,&#39; ,&#39;            :            &#39;, &#39;,
-   ,&#39; ,&#39;             :             &#39;, &#39;,
-  ,&#39; ,&#39;              :              &#39;, &#39;,
- ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
-,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
- &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-                    &#39;&#39;&#39;
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#software-developmers-career-guide-and-soft-skills-book-notes'>"Software Developmers Career Guide and Soft Skills" book notes</a></li>
-<li>⇢ <a href='#improve'>Improve</a></li>
-<li>⇢ ⇢ <a href='#always-learn-new-things'>Always learn new things</a></li>
-<li>⇢ ⇢ <a href='#set-goals'>Set goals</a></li>
-<li>⇢ ⇢ <a href='#ratings'>Ratings</a></li>
-<li>⇢ ⇢ <a href='#promotions'>Promotions</a></li>
-<li>⇢ ⇢ <a href='#finish-things'>Finish things</a></li>
-<li>⇢ <a href='#expand-the-empire'>Expand the empire</a></li>
-<li>⇢ <a href='#be-pragmatic-and-also-manage-your-time'>Be pragmatic and also manage your time</a></li>
-<li>⇢ ⇢ <a href='#the-quota-system'>The quota system</a></li>
-<li>⇢ ⇢ <a href='#don-t-waste-time'>Don&#39;t waste time</a></li>
-<li>⇢ ⇢ <a href='#habits'>Habits</a></li>
-<li><a href='#work-life-balance'>Work-life balance</a></li>
-<li>⇢ <a href='#mental-health'>Mental health</a></li>
-<li>⇢ <a href='#physical-health'>Physical health</a></li>
-<li>⇢ <a href='#no-drama'>No drama</a></li>
-<li><a href='#personal-brand'>Personal brand</a></li>
-<li>⇢ <a href='#market-yourself'>Market yourself</a></li>
-<li>⇢ <a href='#networking'>Networking</a></li>
-<li>⇢ <a href='#public-speaking'>Public speaking</a></li>
-<li><a href='#new-job'>New job</a></li>
-<li>⇢ <a href='#for-the-interview'>For the interview</a></li>
-<li>⇢ <a href='#find-the-right-type-of-company'>Find the right type of company</a></li>
-<li>⇢ <a href='#apply-for-the-new-job'>Apply for the new job</a></li>
-<li>⇢ <a href='#negotiation'>Negotiation</a></li>
-<li>⇢ <a href='#leaving-the-old-job'>Leaving the old job</a></li>
-<li><a href='#other-things'>Other things</a></li>
-<li>⇢ <a href='#testing'>Testing</a></li>
-<li>⇢ <a href='#books-to-read'>Books to read</a></li>
-</ul><br />
-<h2 style='display: inline' id='improve'>Improve</h2><br />
-<br />
-<h3 style='display: inline' id='always-learn-new-things'>Always learn new things</h3><br />
-<br />
-<span>When you learn something new, e.g. a programming language, first gather an overview, learn from multiple sources, play around and learn by doing and not consuming and form your own questions. Don&#39;t read too much upfront. A large amount of time is spent in learning technical skills which were never use. You want to have a practical set of skills you are actually using. You need to know 20 percent to get out 80 percent of the results.</span><br />
-<br />
-<ul>
-<li>Learn a technology with a goal, e.g. implement a tool. Practice practise practice.</li>
-<li>"I know X can do Y, I don&#39;t know exactly how, but I can look it up."</li>
-<li>Read what experts are writing, for example follow blogs. Stay up to date and spent half an hour per day trading blogs and books.</li>
-<li>Pick an open source application, read the code and try to understand it to get a feel of the syntax of the programming language.</li>
-<li>Understand, that the standard library makes you a much better programmer.</li>
-<li>Self learning is the top skill a programmer can have and is also useful in other aspects in your life.</li>
-<li>Keep learning skills every day. Code every day. Don&#39;t be overconfident for job security. Read blogs, read books.</li>
-<li>If you want to learn, then do it by exploring. Also teach what you learned (for example write a blog post or hold a presentation).</li>
-</ul><br />
-<span>Fake it until you make it. But be honest about your abilities or lack of. There is however only time between now and until you make it. Refer to your abilities to learn.</span><br />
-<br />
-<span>Boot camps: The advantage of a boot camp is to pragmatically learn things fast. We almost always overestimate what we can do in a day. Especially during boot camps. Connect to others during the boot camps</span><br />
-<br />
-<h3 style='display: inline' id='set-goals'>Set goals</h3><br />
-<br />
-<span>Your own goals are important but the manager also looks at how the team performs and how someone can help the team perform better. Check whether you are on track with your goals every 2 weeks in order to avoid surprises for the annual review. Make concrete goals for next review. Track and document your progress. Invest in your education. Make your goals known. If you want something, then ask for it. Nobody but you knows what you want.</span><br />
-<br />
-<h3 style='display: inline' id='ratings'>Ratings</h3><br />
-<br />
-<span>That&#39;s a trap: If you have to rate yourself, that&#39;s a trap. That never works in an unbiased way. Rate yourself always the best way but rate your weakest part as high as possible minus one point. Rate yourself as good as you can otherwise. Nobody is putting for fun a gun on his own head. </span><br />
-<br />
-<ul>
-<li>Don&#39;t do peer rating, it can fire back on you. What if the colleague becomes your new boss?</li>
-<li>Cooperate rankings are unfortunately HR guidelines and politics and only mirror a little your actual performance.</li>
-</ul><br />
-<h3 style='display: inline' id='promotions'>Promotions</h3><br />
-<br />
-<span>The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.</span><br />
-<br />
-<ul>
-<li>Raise or promotion, what&#39;s better? Promotion is better as money will follow anyway then.</li>
-<li>Take projects no-one wants and make them shine. A promotion will follow.</li>
-<li>A promotion is not going to come to you because you deserve it. You have to hunt and ask for it.</li>
-<li>Track all kudos (e.g. ask for emails from your colleagues).</li>
-<li>Big corporations HRs don&#39;t expect a figjit. That&#39;s why it&#39;s so important to keep track of your accomplishments and kudos&#39;.</li>
-<li>If you want a raise be specific how much and know to back your demands. Don&#39;t make a thread and no ultimatums.</li>
-<li>Best way for a promotion is to switch jobs. You can even switch back with a better salary.</li>
-</ul><br />
-<h3 style='display: inline' id='finish-things'>Finish things</h3><br />
-<br />
-<span>Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.</span><br />
-<br />
-<ul>
-<li>Learn to finish things without motivation. Things will pay off when you stick to stuff and eventually motivation can also come back.</li>
-<li>You will fail if you don&#39;t plan realistically. Set also a schedule and follow to it as of life depends on it.</li>
-<li>Advances come only of you give more than asked. Consistency, commitment and knowing what you need to do is more key than hard work.</li>
-<li>Any action is better than no action. If you get stuck you have gained nothing.</li>
-<li>You need to know the unknowns. Identify as many unknown not known things as possible. </li>
-</ul><br />
-<span>Hard vs fun: Both engage the brain (video games vs work). Some work is hard and other is easy. Hard work is boring. The harsh truth is you have to put in hard and boring work in order to accomplish and be successful. Work won&#39;t be always boring though, as joy will follow with mastery.</span><br />
-<br />
-<span>Defeat is finally give up. Failure is the road to success, embrace it. Failure does not define you but how you respond to it. Events don&#39;t make your unhappy, but how you react to events do.</span><br />
-<br />
-<h2 style='display: inline' id='expand-the-empire'>Expand the empire</h2><br />
-<br />
-<span>The larger your empire is, the larger your circle of influence is. The larger the circle of influence is, the more opportunities you have.</span><br />
-<br />
-<ul>
-<li>Do the dirty work if you want to expand the empire. That&#39;s there the opportunities are.</li>
-<li>SCRUM often fails due to the lack to commitment. The backlog just becomes a wish to get completed.</li>
-<li>Apply work on your quality standards. Don&#39;t cross the line of compromise. Always improve your skills. Never be happy being good enough.</li>
-</ul><br />
-<span>Become visible, keep track that you accomplishments. E.g. write a weekly summary. Do presentations, be seen. Learn new things and share your learnings. Be the problem solver and not the blamer.</span><br />
-<br />
-<h2 style='display: inline' id='be-pragmatic-and-also-manage-your-time'>Be pragmatic and also manage your time</h2><br />
-<br />
-<span>Make use of time boxing via the Pomodoro technique: Set a target of rounds and track the rounds. That give you exact focused work time. That&#39;s really the trick. For example set a goal of 6 daily pomodores.</span><br />
-<br />
-<ul>
-<li>Every time you do something question why does it make sense be pragmatic and don&#39;t follow because it is best practice.</li>
-<li>You can also apply the time boxing technique (Cal Newport) for focused deep work.</li>
-</ul><br />
-<span>You should feel good of the work done even if you don&#39;t finished the task. You will feel good about pomodoro wise even you don&#39;t finish the task on hand yet. Helps you to enjoy time off more. Working longer may not sell anything.</span><br />
-<br />
-<h3 style='display: inline' id='the-quota-system'>The quota system</h3><br />
-<br />
-<span>Defined quota of things done. E.g. N runs per week or M Blog posts per month or O pomodoros per week. This helps with consistency. Truly commit to these quotas. Failure is not an option. Start with small commitments. Don&#39;t commit to something you can&#39;t fulfill otherwise you set yourself up for failure.</span><br />
-<br />
-<ul>
-<li>Why does the quota System work? Slow and consistent pace is the key. It also overcomes willpower weaknesses as goals are preset.</li>
-<li>Internal motivation is more important over external motivation. Check out Daniels book drive.</li>
-<li>Multitasking: Batching is effective. E.g. emails twice daily at pre-set times..</li>
-</ul><br />
-<h3 style='display: inline' id='don-t-waste-time'>Don&#39;t waste time</h3><br />
-<br />
-<span>The biggest time waster is TV watching. The TV is programming you. It&#39;s insane that Americans watch so much TV as they work full time. Schedule one show at a time and watch it when you want to watch it. Most movies are crap anyways. The good movies will come to you as people will talk about them.</span><br />
-<br />
-<ul>
-<li>Social media is time waster as well. Schedule your Social Media times. For example be on Facebook only for max one hour on Saturdays.</li>
-<li>Meetings can waste time as well. Simply don&#39;t go to them. Try to cancel meeting if it can be dealt with via email.</li>
-<li>Enjoying things is not a waste of time. E.g. you could still play a game once in a while. It is important not to cut away all you enjoy from your life.</li>
-</ul><br />
-<h3 style='display: inline' id='habits'>Habits</h3><br />
-<br />
-<span>Try to have as many good habits as possible. Start with easy habits, and make them a little bit more challenging over time. Set ankers and rewards. Over time the routines will become habits naturally.</span><br />
-<br />
-<span>Habit stacking is effective, which is combining multiple habits at the same time. For example you can workout on a circular trainer while while watching a learning video on O&#39;Reilly Safari Online while getting closer to your weekly step goal.</span><br />
-<br />
-<ul>
-<li>We don&#39;t have control over our habits but our own routines.</li>
-<li>Routines help to form the habits, though.</li>
-</ul><br />
-<h1 style='display: inline' id='work-life-balance'>Work-life balance</h1><br />
-<br />
-<span>Avoid overwork hours. That&#39;s not as beneficial as you might think and comes only with very small rewards. Invest rather in yourself and not in your employer.</span><br />
-<br />
-<ul>
-<li>Work-life balance is a myth. Make it so that you enjoy work and your personal life and not just personal life.</li>
-<li>Maintain fewer but good relationships. As a reward, better and integrated your life will be.</li>
-<li>Life in the present Moment. Make the best of every moment of your life.</li>
-<li>Enjoy every aspect of your life. If you want to take away one thing from this book that is it.</li>
-</ul><br />
-<span>Use your most productive hours to work on you. Make that your priority. Take care of yourself a priority (E.g. do workouts or learn a new language). You can always workout 2 or 1 hour per day, but will you pay the price?</span><br />
-<br />
-<h2 style='display: inline' id='mental-health'>Mental health</h2><br />
-<br />
-<ul>
-<li>Friendships and positive thinking help to have and maintain better health, longer Life, better productivity and increased happiness.</li>
-<li>Positive thinking can be trained and be a habit. Read the book "The Power of Positive Thinking".</li>
-<li>Stoicism helps. Meditation helps.  Playing for fun helps too.</li>
-</ul><br />
-<span>Become the person you want to become (your self image). Program your brain unconsciously. Don&#39;t become the person other people want you to be. Embrace yourself, you are you.</span><br />
-<br />
-<span>In most cases burnout is just an illusion. If you don&#39;t have motivation push through the wall. People usually don&#39;t pass the wall as they feel they are burned out. After pushing through the wall you will have the most fun, for example you will be able playing the guitar greatly.</span><br />
-<br />
-<h2 style='display: inline' id='physical-health'>Physical health</h2><br />
-<br />
-<span>Utilise a standing desk and treadmill (you could walk and type at the same time). Increase the incline in order to burn more calories. Even on the standing desk you burn more calories than sitting. When you use pomodoro then you can use the small breaks for push-ups (maybe won&#39;t do as good when you are in a fasted state).</span><br />
-<br />
-<ul>
-<li>You can only do one thing, lose fat or gain muscles. Not both at the same time.</li>
-<li>Train your strength by heavy lifting, but only with a very few repetitions (e.g. 5 max for each exercise, everything over this is body building).</li>
-<li>If you want to increase the muscle mass use medium weights but lift them more often. If you want to increase your endurance lift light weights but with even more reps.</li>
-<li>Avoid highly processed foods</li>
-</ul><br />
-<span>Intermittent fasting is an effective method to maintain weight and health. But it does not mean that you can only eat junk food in the feeding windows. Also, diet and nutrition is the most important for health and fitness. They make it also easier to stay focused and positive.</span><br />
-<br />
-<h2 style='display: inline' id='no-drama'>No drama</h2><br />
-<br />
-<span>Avoid drama at work. Where are humans there is drama. You can decide where to spent your energy in. But don&#39;t avoid conflict. Conflict is healthy in any kind of relationship. Be tactful and state your opinion. The goal is to find the best solution to the problem.</span><br />
-<br />
-<span>Don&#39;t worry about other people what they do and don&#39;t do. You only worry about you. Shut up and get your own things done. But you could help to inspire a not working colleague.</span><br />
-<br />
-<ul>
-<li>During an argument, take the opponent&#39;s position and see how your opinion changes.</li>
-<li>If you they to convince someone else it&#39;s an argument. Of you try to find the best solution it is a good resolution.</li>
-<li>If someone is hurting the team let the manager know but phrase it nicely.</li>
-<li>How to get rid of a never ending talking person? Set up focus hours officially where you don&#39;t want to be interrupted. Present as if it is your defect that you get interrupted easily.</li>
-<li>TOXIC PEOPLE: AVOID THEM. RUN.</li>
-<li>Boss likes if you get shit done without getting asked all the time about things and also without drama.</li>
-</ul><br />
-<span>You have to learn how to work in a team. Be honest but tactful. It&#39;s not too be the loudest but about selling your ideas. Don&#39;t argue otherwise you won&#39;t sell anything. Be persuasive by finding the common ground. Or lead the colleagues to your idea and don&#39;t sell it upfront. Communicate clearly.</span><br />
-<br />
-<h1 style='display: inline' id='personal-brand'>Personal brand</h1><br />
-<br />
-<ul>
-<li>Invest your value outside the company. Build your personal brand. Show how valuable you are, also to other companies. Become an asset.</li>
-<li>Invest in your education. Make your goals known. If you want something ask for it (see also the sections about goals in this document).</li>
-</ul><br />
-<h2 style='display: inline' id='market-yourself'>Market yourself</h2><br />
-<br />
-<ul>
-<li>The best way to market yourself is to make you usable.</li>
-<li>Create a brand. Decide your focus. Throw your name out as often as possible.</li>
-</ul><br />
-<span>Have a blog. Schedule your posts. Consistency beats every other factor. E.g. post once a month a new post. Find your voice, you don&#39;t have to sound academic. Keep writing, if you keep it long enough the rewards will be coming. Your own blog can take 5 years to take off. Most people give up too soon.</span><br />
-<br />
-<ul>
-<li>Consistency of your blog is key. Also write quality content. Don&#39;t try to be a man of success but try to be a man of value.</li>
-<li>Have an elevator pitch: "buetow.org - Having fun with computers!"</li>
-<li>Have social media accounts, especially the ones which are more tech related.</li>
-</ul><br />
-<h2 style='display: inline' id='networking'>Networking</h2><br />
-<br />
-<span>Ask people so they talk about themselves. They are not really interested in you. Use meetup.com to find groups you are interested and build up the network over time. Don&#39;t drink on social networking events even when others do. Talking to other people at events only has upsides. Just saying "hi" and introducing yourself is enough. What worse can happen? If the person rejects you so what, life goes on. Ask open questions and no "yes" and "no" questions. E.g.: "What is your story, why are you here?".</span><br />
-<br />
-<h2 style='display: inline' id='public-speaking'>Public speaking</h2><br />
-<br />
-<span>Before your talk go on stage 10 minutes in advance. Introduce yourself to the front row people. During the talk they will smile at you and encourage you during your talk.</span><br />
-<br />
-<ul>
-<li>Try at least 5 times before giving up public speaking. You can also start small, e.g. present a topic at work you are learning.</li>
-<li>Practise your talk and timing. You can also record your practicing.</li>
-</ul><br />
-<span>Just do it. Just go to conferences. Even if you are not speaking. Sell your boss what you would learn and "this and that" and you would present the learnings to the team afterwards.</span><br />
-<br />
-<h1 style='display: inline' id='new-job'>New job</h1><br />
-<br />
-<h2 style='display: inline' id='for-the-interview'>For the interview</h2><br />
-<br />
-<ul>
-<li>Build up a network before the interview. E.g., follow and comment blogs. Or go to meet-ups and conferences. Join user groups.</li>
-<li>Ask to touch base before the real interview and ask questions about the company. Do "pre-interviews".</li>
-<li>Have a blog, a CV can only be 2 pages and an interview only can last only 2 hours. A blog helps you also to be a better communicator.</li>
-</ul><br />
-<span>If you are specialized then there is a better chance to get a fitting job. No one will hire a general lawyer if there are specialized lawyers available. Even if you are specialized, you will have a wide range of skills (T-shape knowledge).</span><br />
-<br />
-<h2 style='display: inline' id='find-the-right-type-of-company'>Find the right type of company</h2><br />
-<br />
-<span>Not all companies are equal. They have individual cultures and guidelines.</span><br />
-<br />
-<ul>
-<li>Startup: dynamic and larger impact. Many hats on.</li>
-<li>Medium size companies: most stable ones. Not cutting edge technologies. No crazy working hours.</li>
-<li>Large company: very established with a lot of structure however constant layoffs and restructurings. Less impact you can have. Complex politics.</li>
-<li>Working for yourself: This is harder than you think, probably much harder.</li>
-</ul><br />
-<span>Work in a tech. company if you want to work on/with cutting edge technologies.</span><br />
-<br />
-<h2 style='display: inline' id='apply-for-the-new-job'>Apply for the new job</h2><br />
-<br />
-<span>Get a professional resume writer. Get referrals of writers and get samples from there. Get sufficient with algorithm and data structures interview questions. Cracking the coding interview book and blog </span><br />
-<br />
-<ul>
-<li>Apply for each job with a specialised CV each. Each CV fits the job better.</li>
-<li>Best get a job via a personal referral or inbound marketing. The latter is somehow rare.</li>
-<li>Inbound marketing is for example someone responds to your blog and offers you a job.</li>
-<li>Interview the interviewer. Be persistent.</li>
-<li>Create creative looking resumes, see simple programmer website. Action-result style for a resume.</li>
-</ul><br />
-<span>Invest in your dress code as appearance masters. It does make sense to invest in your style. You could even hire a professional stylist (not my personal way though).</span><br />
-<br />
-<h2 style='display: inline' id='negotiation'>Negotiation</h2><br />
-<br />
-<ul>
-<li>Whoever names the number first loses. You don&#39;t know what someone else is expecting unless told. Low ball number may be an issue but you have to know the market.</li>
-<li>Salary is not about what you need but what you are worth. Try to find out what you are worth.</li>
-<li>Big tech companies have a pay scale. You can ask for this.</li>
-<li>Don&#39;t tell your current salary. Only do one counter offer and say "If you do X then I commit today". Be tactful and not rude. Nobody wants to be taken advantage of. Also, don&#39;t be arrogant.</li>
-<li>If the company wants to know your range, respond: "I would rather learn more about the job and compensation. You have a range in mind, correct?" Be brave and just pause here.</li>
-<li>Otherwise, if the company refuses then say "if you tell me what the range is and although I am not yet sure yet what are my exact salary requirements are I can see if the range is of what I am looking for. If they absolute refuse give a high ball range you would expect and make it conditional to the overall compensation package. E.g. 70k to 100k depending on the compensation package. THE LOW END SHOULD BE YOUR REAL LOW END. Play a little bit of hardball here and be brave. Practise it.</li>
-<li>Put 10 percent on top of the salary range into a counter offer.</li>
-<li>Everything is negotiable, not only the salary.</li>
-<li>Job markup rate: Check it regarding the recruitment rate negotiation.</li>
-<li>Don&#39;t make a rushed decision based on deadlines. Make a fairly high counter offer shortly before deadline.</li>
-<li>You should also cope with rejections while selling yourself. There is no such thing as job security.</li>
-</ul><br />
-<ul>
-<li>Never spilt the difference is the best book for learning negotiation techniques..</li>
-</ul><br />
-<h2 style='display: inline' id='leaving-the-old-job'>Leaving the old job</h2><br />
-<br />
-<span>When leaving a job make a clean and non personal as possible. Never complain and never explain. Don&#39;t worry about abandonment of the team. Everybody is replacement and you make a business decision. Don&#39;t threaten to quit as you are replaceable.</span><br />
-<br />
-<h1 style='display: inline' id='other-things'>Other things</h1><br />
-<br />
-<ul>
-<li>As a leader lead by example and don&#39;t lead from the Eiffel tower.</li>
-<li>As a leader you are responsible for the team. If the team fails then it&#39;s your fault only.</li>
-</ul><br />
-<h2 style='display: inline' id='testing'>Testing</h2><br />
-<br />
-<span>Unit testing Vs regression testing: Unit tests test the smallest possible unit and get rewritten if the unit gets changed. It&#39;s like programming against a specification n. Regression tests test whether the software still works after the change. Now you know more than most software engineers.</span><br />
-<br />
-<h2 style='display: inline' id='books-to-read'>Books to read</h2><br />
-<br />
-<ul>
-<li>Clean Code</li>
-<li>Code Complete</li>
-<li>Cracking the Interview - Lessons and Solutions.</li>
-<li>Daniels Book "Drive" (about internal and external motivation)</li>
-<li>God&#39;s degree (inventor of Dilbert)</li>
-<li>Head first Design Patterns</li>
-<li>How to win Friends and influence People</li>
-<li>Never Split the Difference [X]</li>
-<li>Structure and programming functional programs</li>
-<li>The obstacle is the way [X]</li>
-<li>The passionate programmer</li>
-<li>The Power of Positive Thinking (Highly religious - I personally don&#39;t like it)</li>
-<li>The Pragmatic Programmer [X]</li>
-<li>The war of Art (to combat procrastination)</li>
-<li>Willpower Instinct</li>
-</ul><br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other book notes of mine are:</span><br />
-<br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

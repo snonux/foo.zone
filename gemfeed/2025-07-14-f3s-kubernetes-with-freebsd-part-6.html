@@ -23,6 +23,7 @@
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -826,7 +827,7 @@ ifconfig_re0_alias0=<font color="#808080">"inet vhid 1 pass testpass alias 192.1
 <span>Next, update <span class='inlinecode'>/etc/hosts</span> on all nodes (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>, <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>) to resolve the VIP hostname:</span><br />
 <br />
 <pre>
-192.168.1.138 f3s-storage-ha f3s-storage-ha.lan f3s-storage-ha.lan.buetow.org
+192.168.2.138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
 </pre>
 <br />
 <span>This allows clients to connect to <span class='inlinecode'>f3s-storage-ha</span> regardless of which physical server is currently the MASTER.</span><br />
@@ -1582,7 +1583,7 @@ http://www.gnu.org/software/src-highlite -->
   clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
 
 <i><font color="silver"># For persistent mount, add to /etc/fstab:</font></i>
-<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev <font color="#000000">0</font> <font color="#000000">0</font>
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/k3svolumes /data/nfs/k3svolumes nfs4 port=<font color="#000000">2323</font>,_netdev,soft,timeo=<font color="#000000">10</font>,retrans=<font color="#000000">2</font>,intr <font color="#000000">0</font> <font color="#000000">0</font>
 </pre>
 <br />
 <span>Note: The mount uses localhost (<span class='inlinecode'>127.0.0.1</span>) because stunnel is listening locally and forwarding the encrypted traffic to the remote server.</span><br />
@@ -1860,10 +1861,13 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn&#39;t seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.</span><br />
 <br />
 <br />
-<span>I&#39;m looking forward to the next post in this series, where we will set up k3s (Kubernetes) on the Linux VMs.</span><br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />

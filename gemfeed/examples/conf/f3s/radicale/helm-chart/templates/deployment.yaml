@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: radicale
+  namespace: services
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: radicale
+  template:
+    metadata:
+      labels:
+        app: radicale
+    spec:
+      initContainers:
+      - name: debug-auth-and-mounts
+        image: busybox:1.36
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+          set -eu
+          echo "=== /proc/mounts ===" && cat /proc/mounts || true
+          echo "=== df -h ===" && df -h || true
+          echo "=== ls -lna / ===" && ls -lna / || true
+          echo "=== ls -lna /auth ===" && ls -lna /auth || true
+          echo "=== ls -lna /collections ===" && ls -lna /collections || true
+          echo "=== find /auth (maxdepth 2) ===" && find /auth -maxdepth 2 || true
+          [ -f /auth/htpasswd ] && { echo "=== stat /auth/htpasswd ==="; stat /auth/htpasswd || true; } || echo "htpasswd missing in init"
+        volumeMounts:
+        - name: radicale-collections
+          mountPath: /collections
+        - name: radicale-auth
+          mountPath: /auth
+      containers:
+      - name: radicale
+        image: registry.lan.buetow.org:30001/radicale:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: radicale-collections
+          mountPath: /collections
+        - name: radicale-auth
+          mountPath: /auth
+      volumes:
+      - name: radicale-collections
+        persistentVolumeClaim:
+          claimName: radicale-collections-pvc
+      - name: radicale-auth
+        persistentVolumeClaim:
+          claimName: radicale-auth-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: radicale
+  name: radicale-service
+  namespace: services
+spec:
+  ports:
+    - name: web
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: radicale

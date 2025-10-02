@@ -1,0 +1,87 @@
+theme = "adwaita-dark"
+
+[editor]
+bufferline = "always"
+rulers = [80, 100, 120, 140]
+line-number = "relative"
+mouse = true
+cursorline = true
+cursorcolumn = true
+continue-comments = false
+completion-timeout = 2000
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+# cursor-line = "hint"
+
+[editor.auto-save]
+focus-lost = true
+after-delay.timeout = 3000
+after-delay.enable = true
+    
+[editor.statusline]
+left = ["version-control", "mode", "spinner", "file-name", "position" ]
+center = ["diagnostics"]
+right = ["selections", "file-encoding", "file-line-ending", "file-type"]
+
+[editor.lsp]
+display-messages = true
+display-inlay-hints = false
+
+[editor.cursor-shape]
+normal = "block"
+insert = "underline"
+select = "bar"
+
+[editor.whitespace.render]
+space = "none"
+tab = "none"
+newline = "none"
+
+[keys.normal]
+D = ["ensure_selections_forward", "extend_to_line_end"]
+S = ["ensure_selections_forward", "extend_to_line_start"]
+0 = ["select_mode", "extend_to_file_start"]
+G = ["ensure_selections_forward", "extend_to_file_end"]
+"^" = ["move_prev_word_start", "move_next_word_end", "search_selection", "global_search"]
+"ret" = "goto_word"
+
+C-c = "yank_main_selection_to_clipboard"
+C-v = { b = "paste_clipboard_before", a = "paste_clipboard_after", r = ":clipboard-paste-replace" }
+A-c = "toggle_comments" # Was originally C-c, so mapped to ALT now
+
+# Helix related helpers
+C-h = { c = ":config-open", r = ":config-reload", C = ":run-shell-command cp -v ~/.config/helix/*.toml ~/git/conf/dotfiles/helix/", l = ":open ~/.config/helix/languages.toml", h = ":open ~/git/worktime/HelixCheat.md", L = ":log-open", d = ":theme default" }
+
+C-r = [ ":config-reload", ":reload-all" ]
+
+C-u = [ ":write", ":run-shell-command sh -c 'source ~/.hx.remote.source; scp $LOCAL_PATH $REMOTE_URI && echo Uploaded to $REMOTE_URI || echo Failed uploading to $REMOTE_URI'"] 
+
+# Various helpers
+C-s = { e = ":set-option soft-wrap.enable true", d = ":set-option soft-wrap.enable false", s = "save_selection" }
+
+# Buffer stuff
+C-q = ":buffer-close"
+
+# AI commands are good here.
+C-p = { c = ":pipe ai correct this sentence and only print out the corrected text", r = ":pipe ai restructure and reword the input and dont leave information out and only print out the new text", a = ":pipe ai rewrite this in a more casual style", n = ":pipe ai these are book notes of mine. correct the grammar and re-organize the notes. use bullet points for short information and whole paragraphs for longer one. the output must be in Gemini Gemtext format with the star * as the bullet point symbol and not the minus - . dont leave out any content.", p = ":pipe ai" }
+# Will replace the above
+C-a = ":pipe hexai-tmux-action"
+
+# Git commands
+C-g = { d = ":run-shell-command git diff", p = ":run-shell-command git pull", u = ":run-shell-command git push", t = ":run-shell-command tmux new-window -n hx-git-tig tig", c = ":run-shell-command tmux split-window -v 'git commit -a'" }
+
+# Build commands
+C-l = { m = ":run-shell-command make", d = ":run-shell-command go-task dev", r = ":run-shell-command tmux new-window -n hx-go-task-run 'go-task run'" }
+
+[keys.normal.space]
+B = "file_picker_in_current_buffer_directory"
+Q = [ ":cd ~/QuickEdit",  "file_picker_in_current_directory" ]
+
+[keys.select]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
+n = ["extend_search_next", "merge_selections"]
+N = ["extend_search_prev", "merge_selections"]
