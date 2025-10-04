@@ -1,13 +1,11 @@
 # Perl New Features and Foostats
 
-> Published at DRAFT; Updated at DRAFT
-
-Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and gemini capsules, and almost every Perl release adds new features which make life better. The book *Perl New Features* by Joshua McAdams and brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning.
+Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. `foo.zone`), and almost every Perl release adds new features which make life better. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.
 
 Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats for three simple reasons:
 
 * I wanted an excuse to explore the newer features of my first programming love.
-* Perl ships with OpenBSD (operating system on which my sites run) by default
+* Perl ships with OpenBSD (the operating system on which my sites run) by default
 * It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding.
 
 => https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language Perl re-enters the top ten
@@ -17,11 +15,11 @@ Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats 
 
 ## Inside foostats
 
-Foostats is simply a log file analyzer.
+Foostats is simply a log file analyser.
 
 ### Log pipeline
 
-A cron job starts foostats, reads OpenBSD httpd and relayd access vger Gemini logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is pretty opinionated and probably I will be the only one ever using it for my own sites, but the code demonstrates how Perl’s newer features help keep a non-trivial program maintainable.
+A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated, and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
 
 On OpenBSD, I've configured the job via the `daily.local` on both servers (`fishfinger` and `blowfish`):
 
@@ -30,7 +28,7 @@ fishfinger$ grep foostats /etc/daily.local
 perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 ```
 
-Internally, `Foostats::Logreader` parses each line of the log-files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into YYYYMMDD/HHMMSS values, hashes IP addresses with SHA3 (for anonymization), and hands a normalised event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP requests within the same second, and drops anything suspicious (e.g. from web-crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
+Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into YYYYMMDD/HHMMSS values, hashes IP addresses with SHA3 (for anonymisation), and hands a normalised event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
 
 ### Aggregation and output
 
@@ -38,23 +36,23 @@ Foostats also merges the stats from both hosts, master and standby. For the mast
 
 => ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi KISS high-availability with OpenBSD
 
-Those gz files land in `stats/`. From there `Foostats::Replicator` can pull matching files from the partner host (`fishfinger` or `blowfish`) so the view covers both servers, `Foostats::Merger` combines them into daily summaries, and `Foostats::Reporter` rebuilds Gemtext and HTML reports.
+Those gz files land in `stats/`. From there, `Foostats::Replicator` can pull matching files from the partner host (`fishfinger` or `blowfish`) so the view covers both servers, `Foostats::Merger` combines them into daily summaries, and `Foostats::Reporter` rebuilds Gemtext and HTML reports.
 
 => https://blowfish.buetow.org/foostats/
 => https://fishfinger.buetow.org/foostats/
 
-This are the 30-day reports generated:
+These are the 30-day reports generated:
 
 => gemini://stats.foo.zone stats.foo.zone Gemini capsule dashboard
 => https://stats.foo.zone stats.foo.zone HTTP dashboard
 
 ### Command-line entry points
 
-`foostats_main` is the command entry point. `--parse-logs` refreshes the gz files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days across HTTPS and leaves older files untouched to save bandwidth.
+`foostats_main` is the command entry point. `--parse-logs` refreshes the gz files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.
 
-`fooodds.txt` is a plain text list of substrings of URLs to be blocked, which makes it quick to shut down web-crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines go to `/var/log/fooodds` which then can be later reviewed for false-positives (I do that around once monthly). The `Justfile` even has a `gather-fooodds` task that collects suspicious paths from remote logs so new patterns can be added quickly.
+`fooodds.txt` is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to `/var/log/fooodds`, which can later be reviewed for false positives (I do this around once a month). The `Justfile` even has a `gather-fooodds` task that collects suspicious paths from remote logs so new patterns can be added quickly.
 
-The full source lives on Codeberg here:
+The complete source lives on Codeberg here:
 
 => https://codeberg.org/snonux/foostats foostats on Codeberg
 
@@ -86,9 +84,9 @@ Lexical subroutines keep helpers close to the code that needs them. In `Foostats
 
 ### Shared data on purpose
 
-Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent. The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
+Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly. The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
 
-The aggregator aliases `$self->{stats}{$date_key}` before updating counters so the structure stays in place. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied and prevents silent bugs.
+The aggregator aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.
 
 ## Persistent state without globals
 
@@ -96,17 +94,17 @@ A Perl state variable is declared with `state $var` and retains its value betwee
 
 ### Rate limiting state
 
-`state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the same second. Hash and array state variables have been supported since `state` arrived in Perl 5.10, so this code simply takes advantage of that long-standing capability. But what's new is that hashes can be state variables now as well!
+`state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the exact second. Hash and array state variables have been supported since `state` arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what's new is that hashes can now also be state variables.
 
 ### Deduplicated logging
 
-`state %dedup` keeps the log output to one warning per URI. Early versions used global hashes for the same tasks and produced inconsistent results during tests. Switching to `state` removed those edge cases.
+`state %dedup` keeps the log output to one warning per URI. Early versions utilised global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
 
 ## Subroutine signatures clarify every call site
 
 Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere.
 
-### Contracts in the code
+### "normal" subroutine signatures now
 
 Subroutine signatures are active throughout foostats. Constructors declare `sub new ($class, $odds_file, $log_path)`, anonymous callbacks expose `sub ($event)`, and helper subs list the values they expect.
 
@@ -116,16 +114,45 @@ Subroutine signatures are active throughout foostats. Constructors declare `sub 
 
 The operator `//=` keeps configuration and counters simple. Environment variables may be missing when cron runs the script, so `//=`, combined with signatures, sets defaults without warnings. 
 
-## `say` is the ergonomic logging voice
+## `say` is the default voice now
 
-### Short logging statements
+`say` became the default once the script switched to `use v5.38;`. Log messages such as "Processing $path" or "Writing report to $report_path". It adds a newline to every message printed, comparable to Ruby's `put`.
 
-`say` became the default once the script switched to `use v5.38;`. Log messages such as “Processing $path” or “Writing report to $report_path” now end with a newline automatically. It adds a newline to every message printed, comparable to Ruby's `put`.
+## Cleanup with `defer`
 
-## Ecosystem momentum
+Even though not used in Foostats, this (borrowed from Go?) feature is neat to have in Perl now.
 
-### Builtins and booleans
+The `defer` block (`use feature 'defer"`) schedules a piece of code to run when the current scope exits, regardless of how it exits (e.g. normal return, exception). This is perfect for ensuring resources, such as file handles, are closed. `Foostats::Logreader` uses it to make sure log files are always closed, even if parsing fails mid-way.
 
-The script also uses other modern additions that do not always get headlines. `use builtin qw(true false);` together with `experimental::builtin` gives predictable boolean values.
+```perl
+use feature qw(defer);
+
+sub parse_log_file {
+    my ($path) = @_;
+    open my $fh, '<', $path or die "Cannot open $path: $!";
+    defer { close $fh };
+
+    while (my $line = <$fh>) {
+        # ... parsing logic that might throw an exception ...
+    }
+    # $fh is automatically closed here
+}
+```
+
+This pattern replaces manual `close` calls in every exit path of the subroutine and is more robust than relying solely on object destructors.
+
+## Builtins and booleans
+
+The script also utilises other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
+
+## Conclusion
+
+I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as well as for Go and Ruby.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other related posts are:
+
+<< template::inline::rindex perl raku
 
 => ../ Back to the main site
