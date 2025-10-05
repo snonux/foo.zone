@@ -31,6 +31,7 @@
 
 ### Books I am currently reading
 
+* The Software Engineer's Guidebook: Navigating senior, tech lead, and staff engineer positions at tech companies and startups; Gergely Orosz; Audiobook 
 * Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook
 * Okular; Alastair Reynolds; eBook
 * The Courage to Be Disliked; Ichiro Kishimi and Fumitake Koga; Audiobook
