@@ -106,4 +106,8 @@ Will I abandon my beloved Perl? Probably not. There are also some Perl scripts I
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
+Other Ruby-related posts:
+
+<< template::inline::rindex ruby
+
 => ../ Back to the main site
