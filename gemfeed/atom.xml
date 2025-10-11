@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-10-11T15:25:15+03:00</updated>
+    <updated>2025-10-11T15:30:19+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -20,8 +20,27 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='key-takeaways-from-the-well-grounded-rubyist'>Key Takeaways from The Well-Grounded Rubyist</h1><br />
 <br />
+<span class='quote'>Published at 2025-10-11T15:25:14+03:00</span><br />
+<br />
 <span>Some time ago, I wrote about my journey into Ruby and how "The Well-Grounded Rubyist" helped me to get a better understanding of the language. I took a lot of notes while reading the book, and I think it&#39;s time to share some of them. This is not a comprehensive review, but rather a collection of interesting tidbits and concepts that stuck with me.</span><br />
 <br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#key-takeaways-from-the-well-grounded-rubyist'>Key Takeaways from The Well-Grounded Rubyist</a></li>
+<li>⇢ <a href='#the-object-model'>The Object Model</a></li>
+<li>⇢ ⇢ <a href='#everything-is-an-object-almost'>Everything is an object (almost)</a></li>
+<li>⇢ ⇢ <a href='#the-self-keyword'>The <span class='inlinecode'>self</span> keyword</a></li>
+<li>⇢ ⇢ <a href='#singleton-methods'>Singleton Methods</a></li>
+<li>⇢ ⇢ <a href='#classes-are-objects'>Classes are Objects</a></li>
+<li>⇢ <a href='#control-flow-and-methods'>Control Flow and Methods</a></li>
+<li>⇢ ⇢ <a href='#case-and-the--operator'><span class='inlinecode'>case</span> and the <span class='inlinecode'>===</span> operator</a></li>
+<li>⇢ ⇢ <a href='#blocks-and-yield'>Blocks and <span class='inlinecode'>yield</span></a></li>
+<li>⇢ <a href='#fun-with-data-types'>Fun with Data Types</a></li>
+<li>⇢ ⇢ <a href='#symbols'>Symbols</a></li>
+<li>⇢ ⇢ <a href='#arrays-and-hashes'>Arrays and Hashes</a></li>
+<li>⇢ <a href='#final-thoughts'>Final Thoughts</a></li>
+</ul><br />
 <a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>My first post about the book.</a><br />
 <br />
 <h2 style='display: inline' id='the-object-model'>The Object Model</h2><br />
@@ -244,6 +263,7 @@ p hash.values_at(:a, :c)
 <br />
 <span>Other Ruby-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-10-11-the-well-grounded-rubyist-notes.html'>2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>2021-07-04 The Well-Grounded Rubyist</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
