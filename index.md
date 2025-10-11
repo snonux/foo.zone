@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-10-11T15:41:33+03:00 by `Gemtexter`
+> This site was generated at 2025-10-11T15:44:10+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -38,7 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
-[2025-11-11 - Key Takeaways from The Well-Grounded Rubyist](./gemfeed/2025-11-11-key-takeaways-from-the-well-grounded-rubyist.md)  
+[2025-10-11 - Key Takeaways from The Well-Grounded Rubyist](./gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md)  
 [2025-10-02 - f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-09-14 - Bash Golf Part 4](./gemfeed/2025-09-14-bash-golf-part-4.md)  
 [2025-08-15 - Random Weird Things - Part Ⅲ](./gemfeed/2025-08-15-random-weird-things-iii.md)  

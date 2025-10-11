@@ -217,7 +217,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Ruby-related posts:
 
-[2025-11-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)](./2025-11-11-key-takeaways-from-the-well-grounded-rubyist.md)  
+[2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)](./2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md)  
 [2021-07-04 The Well-Grounded Rubyist](./2021-07-04-the-well-grounded-rubyist.md)  
 
 [Back to the main site](../)  
