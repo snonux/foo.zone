@@ -35,9 +35,6 @@ This page showcases my side projects, providing an overview of what each project
 
 
 => showcase/yoga/image-1.png yoga screenshot
-
-# Yoga
-
 => https://codeberg.org/snonux/yoga View on Codeberg
 => https://github.com/snonux/yoga View on GitHub
 
