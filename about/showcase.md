@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2025-09-28
+Generated on: 2025-10-06
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ordered by recent activity, with the most actively maintained projects listed first.
 
@@ -9,6 +9,8 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ Project Showcase](#project-showcase)
 * [⇢ ⇢ Overall Statistics](#overall-statistics)
 * [⇢ ⇢ Projects](#projects)
+* [⇢ ⇢ ⇢ yoga](#yoga)
+* [⇢ Yoga](#yoga)
 * [⇢ ⇢ ⇢ hexai](#hexai)
 * [⇢ ⇢ ⇢ conf](#conf)
 * [⇢ ⇢ ⇢ foostats](#foostats)
@@ -52,10 +54,10 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ netdiff](#netdiff)
 * [⇢ ⇢ ⇢ pwgrep](#pwgrep)
 * [⇢ ⇢ ⇢ japi](#japi)
+* [⇢ ⇢ ⇢ loadbars](#loadbars)
 * [⇢ ⇢ ⇢ perl-poetry](#perl-poetry)
 * [⇢ ⇢ ⇢ ipv6test](#ipv6test)
 * [⇢ ⇢ ⇢ cpuinfo](#cpuinfo)
-* [⇢ ⇢ ⇢ loadbars](#loadbars)
 * [⇢ ⇢ ⇢ perldaemon](#perldaemon)
 * [⇢ ⇢ ⇢ awksite](#awksite)
 * [⇢ ⇢ ⇢ jsmstrade](#jsmstrade)
@@ -67,29 +69,52 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 55
-* 📊 Total Commits: 11,126
-* 📈 Total Lines of Code: 285,161
-* 📄 Total Lines of Documentation: 26,755
-* 💻 Languages: Go (28.2%), Java (19.2%), C++ (13.0%), Shell (7.4%), C/C++ (7.2%), C (7.1%), Perl (6.2%), HTML (4.4%), Config (1.6%), Ruby (1.0%), HCL (1.0%), Make (0.7%), YAML (0.6%), Python (0.6%), CSS (0.5%), Raku (0.3%), JSON (0.3%), XML (0.2%), Haskell (0.2%), TOML (0.1%)
-* 📚 Documentation: Text (44.9%), Markdown (42.6%), LaTeX (12.5%)
-* 🎵 Vibe-Coded Projects: 4 out of 55 (7.3%)
-* 🤖 AI-Assisted Projects (including vibe-coded): 9 out of 55 (16.4% AI-assisted, 83.6% human-only)
-* 🚀 Release Status: 35 released, 20 experimental (63.6% with releases, 36.4% experimental)
+* 📦 Total Projects: 56
+* 📊 Total Commits: 11,174
+* 📈 Total Lines of Code: 247,835
+* 📄 Total Lines of Documentation: 26,482
+* 💻 Languages: Go (34.0%), Java (22.1%), C (7.8%), C++ (7.1%), Perl (6.7%), Shell (5.0%), C/C++ (4.9%), HTML (4.8%), Config (1.5%), Ruby (1.2%), HCL (1.1%), YAML (0.7%), Python (0.7%), Make (0.6%), CSS (0.5%), Raku (0.4%), JSON (0.3%), XML (0.3%), Haskell (0.2%), TOML (0.1%)
+* 📚 Documentation: Text (44.2%), Markdown (42.8%), LaTeX (12.9%)
+* 🎵 Vibe-Coded Projects: 4 out of 56 (7.1%)
+* 🤖 AI-Assisted Projects (including vibe-coded): 10 out of 56 (17.9% AI-assisted, 82.1% human-only)
+* 🚀 Release Status: 36 released, 20 experimental (64.3% with releases, 35.7% experimental)
 
 ## Projects
 
+### yoga
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 6
+* 📈 Lines of Code: 2628
+* 📄 Lines of Documentation: 76
+* 📅 Development Period: 2025-10-01 to 2025-10-02
+* 🔥 Recent Activity: 4.7 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.2.0 (2025-10-02)
+* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+
+
+[![yoga screenshot](showcase/yoga/image-1.png "yoga screenshot")](showcase/yoga/image-1.png)  
+
+# Yoga
+
+[View on Codeberg](https://codeberg.org/snonux/yoga)  
+[View on GitHub](https://github.com/snonux/yoga)  
+
+---
+
 ### hexai
 
-* 💻 Languages: Go (68.1%), HTML (31.9%)
+* 💻 Languages: Go (69.5%), HTML (30.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 229
-* 📈 Lines of Code: 25355
-* 📄 Lines of Documentation: 629
-* 📅 Development Period: 2025-08-01 to 2025-09-27
-* 🔥 Recent Activity: 9.8 days (avg. age of last 42 commits)
+* 📊 Commits: 238
+* 📈 Lines of Code: 26565
+* 📄 Lines of Documentation: 564
+* 📅 Development Period: 2025-08-01 to 2025-10-04
+* 🔥 Recent Activity: 13.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: v0.12.1 (2025-09-26)
+* 🏷️ Latest Release: v0.15.1 (2025-10-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
 
 
@@ -108,11 +133,11 @@ The project is implemented primarily in Go and uses Mage as its build and task a
 
 * 💻 Languages: Perl (31.6%), Shell (23.1%), YAML (22.9%), Config (5.6%), CSS (5.4%), TOML (4.8%), Ruby (4.2%), Lua (1.2%), Docker (0.6%), JSON (0.5%)
 * 📚 Documentation: Text (73.7%), Markdown (26.3%)
-* 📊 Commits: 998
-* 📈 Lines of Code: 6043
+* 📊 Commits: 1003
+* 📈 Lines of Code: 6046
 * 📄 Lines of Documentation: 1356
-* 📅 Development Period: 2021-12-28 to 2025-09-27
-* 🔥 Recent Activity: 20.3 days (avg. age of last 42 commits)
+* 📅 Development Period: 2021-12-28 to 2025-10-03
+* 🔥 Recent Activity: 23.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -129,11 +154,11 @@ conf
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.4%), Text (45.6%)
-* 📊 Commits: 95
-* 📈 Lines of Code: 1859
+* 📊 Commits: 96
+* 📈 Lines of Code: 1910
 * 📄 Lines of Documentation: 421
-* 📅 Development Period: 2023-01-02 to 2025-09-26
-* 🔥 Recent Activity: 48.6 days (avg. age of last 42 commits)
+* 📅 Development Period: 2023-01-02 to 2025-09-28
+* 🔥 Recent Activity: 51.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.0 (2025-07-12)
 
@@ -155,7 +180,7 @@ Architecturally, foostats is modular, with components for log parsing, filtering
 * 📈 Lines of Code: 10036
 * 📄 Lines of Documentation: 2433
 * 📅 Development Period: 2025-06-23 to 2025-09-08
-* 🔥 Recent Activity: 65.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 73.7 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.2 (2025-09-08)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -178,7 +203,7 @@ The tool is implemented as a modern CLI application in Go, with a modular, comma
 * 📈 Lines of Code: 12003
 * 📄 Lines of Documentation: 361
 * 📅 Development Period: 2025-07-14 to 2025-08-02
-* 🔥 Recent Activity: 68.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 76.5 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.7.5 (2025-08-02)
 * 🎵 Vibe-Coded: This project has been vibe coded
@@ -201,15 +226,15 @@ Architecturally, totalrecall is implemented in Go and integrates with OpenAI ser
 
 ### timr
 
-* 💻 Languages: Go (98.3%), YAML (1.7%)
+* 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 21
-* 📈 Lines of Code: 873
-* 📄 Lines of Documentation: 137
-* 📅 Development Period: 2025-06-25 to 2025-07-19
-* 🔥 Recent Activity: 92.3 days (avg. age of last 42 commits)
+* 📊 Commits: 25
+* 📈 Lines of Code: 929
+* 📄 Lines of Documentation: 80
+* 📅 Development Period: 2025-06-25 to 2025-09-29
+* 🔥 Recent Activity: 85.6 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.0.0 (2025-06-29)
+* 🏷️ Latest Release: v0.1.1 (2025-09-29)
 * 🎵 Vibe-Coded: This project has been vibe coded
 
 
@@ -228,13 +253,13 @@ From an architectural standpoint, `timr` is implemented in Go, ensuring cross-pl
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 216
-* 📈 Lines of Code: 6160
+* 📊 Commits: 217
+* 📈 Lines of Code: 6168
 * 📄 Lines of Documentation: 162
-* 📅 Development Period: 2025-06-19 to 2025-07-12
-* 🔥 Recent Activity: 94.0 days (avg. age of last 42 commits)
+* 📅 Development Period: 2025-06-19 to 2025-10-05
+* 🔥 Recent Activity: 99.7 days (avg. age of last 42 commits)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.9.2 (2025-07-02)
+* 🏷️ Latest Release: v0.9.3 (2025-10-05)
 * 🎵 Vibe-Coded: This project has been vibe coded
 
 
@@ -259,7 +284,7 @@ The core architecture leverages the Bubble Tea framework for rendering the termi
 * 📈 Lines of Code: 12762
 * 📄 Lines of Documentation: 684
 * 📅 Development Period: 2024-01-18 to 2025-09-21
-* 🔥 Recent Activity: 128.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 136.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -286,7 +311,7 @@ The project is implemented using a combination of Go, C, and BPF, leveraging the
 * 📈 Lines of Code: 4102
 * 📄 Lines of Documentation: 357
 * 📅 Development Period: 2024-05-04 to 2025-09-24
-* 🔥 Recent Activity: 130.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 138.1 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.2.0 (2025-09-24)
 
@@ -312,7 +337,7 @@ The project is implemented using a combination of Go, C, and BPF, leveraging the
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🔥 Recent Activity: 133.6 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 141.7 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -339,7 +364,7 @@ The architecture consists of a client-server model: DTail servers run on each ta
 * 📈 Lines of Code: 396
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🔥 Recent Activity: 152.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 161.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -361,7 +386,7 @@ The project is implemented using Ruby, with tasks managed via Rake, and configur
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🔥 Recent Activity: 166.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 174.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -386,7 +411,7 @@ Architecturally, DS-Sim is organized into modular components: core process and m
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🔥 Recent Activity: 178.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 187.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -408,7 +433,7 @@ Implementation-wise, the project likely consists of a small, easily portable pro
 * 📈 Lines of Code: 1373
 * 📄 Lines of Documentation: 48
 * 📅 Development Period: 2024-12-05 to 2025-02-28
-* 🔥 Recent Activity: 219.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 227.7 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -430,7 +455,7 @@ Key features include a test suite (run via `rake test`) to ensure reliability, a
 * 📈 Lines of Code: 2285
 * 📄 Lines of Documentation: 1180
 * 📅 Development Period: 2021-05-21 to 2025-08-31
-* 🔥 Recent Activity: 264.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 273.0 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -454,7 +479,7 @@ The project is implemented as a large Bash script, leveraging standard GNU utili
 * 📈 Lines of Code: 1133
 * 📄 Lines of Documentation: 78
 * 📅 Development Period: 2024-01-20 to 2025-09-13
-* 🔥 Recent Activity: 485.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 493.6 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.4 (2025-09-13)
 
@@ -480,7 +505,7 @@ The project’s key features include its minimalistic design, cross-platform com
 * 📈 Lines of Code: 40
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2025-08-11
-* 🔥 Recent Activity: 519.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 527.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -502,7 +527,7 @@ The Docker image is typically implemented using a `Dockerfile` that installs Rad
 * 📈 Lines of Code: 2851
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-08-08
-* 🔥 Recent Activity: 555.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 563.4 days (avg. age of last 42 commits)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -524,7 +549,7 @@ Key features include the ability to specify which ECS services to deploy, automa
 * 📈 Lines of Code: 1096
 * 📄 Lines of Documentation: 287
 * 📅 Development Period: 2023-04-17 to 2025-06-12
-* 🔥 Recent Activity: 596.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 604.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.1.0 (2024-05-03)
 * 🤖 AI-Assisted: This project was partially created with the help of generative AI
@@ -549,7 +574,7 @@ Architecturally, Gogios is implemented in Go for efficiency and ease of deployme
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🔥 Recent Activity: 782.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 790.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -572,7 +597,7 @@ The project is still under development, but its planned features include remote 
 * 📈 Lines of Code: 312
 * 📄 Lines of Documentation: 416
 * 📅 Development Period: 2013-03-22 to 2025-05-18
-* 🔥 Recent Activity: 832.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 840.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -594,7 +619,7 @@ The architecture of `guprecords` is modular, with classes dedicated to parsing e
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2022-06-02 to 2024-04-20
-* 🔥 Recent Activity: 847.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 855.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -617,7 +642,7 @@ The implementation relies on standard Linux utilities: `qpdf` for manipulating P
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🔥 Recent Activity: 1140.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1148.7 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -639,7 +664,7 @@ The script is implemented by piping the output of `monitor-sensor` into `autorot
 * 📈 Lines of Code: 342
 * 📄 Lines of Documentation: 39
 * 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🔥 Recent Activity: 1360.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1368.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
@@ -664,7 +689,7 @@ The `photoalbum` project is a minimal Bash script designed for Linux systems to 
 * 📈 Lines of Code: 671
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2018-05-26 to 2025-09-04
-* 🔥 Recent Activity: 1454.9 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1463.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -690,7 +715,7 @@ The architecture centers around a local Git repository that acts as the secure s
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🔥 Recent Activity: 1511.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1519.4 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -708,11 +733,11 @@ Key features include a modular codebase where each algorithm or exercise is like
 ### foo.zone
 
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 3078
+* 📊 Commits: 3100
 * 📈 Lines of Code: 0
 * 📄 Lines of Documentation: 23
 * 📅 Development Period: 2021-05-21 to 2022-04-02
-* 🔥 Recent Activity: 1526.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 1535.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -735,7 +760,7 @@ The site is maintained using a suite of open-source tools, including Neovim for 
 * 📈 Lines of Code: 51
 * 📄 Lines of Documentation: 69
 * 📅 Development Period: 2014-03-24 to 2022-04-23
-* 🔥 Recent Activity: 1992.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2000.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -756,7 +781,7 @@ perl-c-fibonacci: source code repository.
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🔥 Recent Activity: 2533.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 2541.9 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -781,7 +806,7 @@ The tool operates in five main steps: capturing I/O on the production server, tr
 * 📈 Lines of Code: 919
 * 📄 Lines of Documentation: 12
 * 📅 Development Period: 2015-01-02 to 2021-11-04
-* 🔥 Recent Activity: 3042.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3050.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
@@ -804,7 +829,7 @@ In terms of implementation, the project consists of Perl modules that conform to
 * 📈 Lines of Code: 18
 * 📄 Lines of Documentation: 49
 * 📅 Development Period: 2014-03-24 to 2021-11-05
-* 🔥 Recent Activity: 3278.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3286.5 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -834,7 +859,7 @@ This setup is useful for anyone running their own DNS server who needs to keep D
 * 📈 Lines of Code: 5360
 * 📄 Lines of Documentation: 789
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3545.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3553.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
@@ -861,7 +886,7 @@ The "mon" tool is a command-line monitoring API client designed to interact with
 * 📈 Lines of Code: 273
 * 📄 Lines of Documentation: 32
 * 📅 Development Period: 2015-09-29 to 2021-11-05
-* 🔥 Recent Activity: 3549.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3557.3 days (avg. age of last 42 commits)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
@@ -890,7 +915,7 @@ The architecture is simple but effective: it reads a list of servers, establishe
 * 📈 Lines of Code: 1839
 * 📄 Lines of Documentation: 412
 * 📅 Development Period: 2015-01-02 to 2021-11-05
-* 🔥 Recent Activity: 3628.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3637.0 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
@@ -917,7 +942,7 @@ pingdomfetch is implemented as a script that reads configuration files from stan
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2015-05-24 to 2021-11-03
-* 🔥 Recent Activity: 3639.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3647.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
@@ -938,7 +963,7 @@ The tool is implemented in Go, which offers advantages in terms of performance, 
 * 📊 Commits: 670
 * 📈 Lines of Code: 1675
 * 📅 Development Period: 2011-03-06 to 2018-12-22
-* 🔥 Recent Activity: 3695.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3703.3 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2018-12-22)
 
@@ -961,7 +986,7 @@ The implementation is primarily documentation-driven, meant to be included at th
 * 📈 Lines of Code: 88
 * 📄 Lines of Documentation: 148
 * 📅 Development Period: 2015-06-18 to 2015-12-05
-* 🔥 Recent Activity: 3743.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 3751.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -986,7 +1011,7 @@ The implementation involves several key steps: first, a Debian image is created 
 * 📈 Lines of Code: 1681
 * 📄 Lines of Documentation: 539
 * 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🔥 Recent Activity: 4021.3 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4029.4 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
@@ -1013,7 +1038,7 @@ The `fapi` project is a command-line tool designed to simplify the management of
 * 📈 Lines of Code: 65
 * 📄 Lines of Documentation: 228
 * 📅 Development Period: 2013-03-22 to 2021-11-04
-* 🔥 Recent Activity: 4075.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4083.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
@@ -1036,7 +1061,7 @@ Key features of the template include a Makefile that automates compilation and p
 * 📈 Lines of Code: 136
 * 📄 Lines of Documentation: 96
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4088.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4096.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
@@ -1063,7 +1088,7 @@ The core functionality is implemented through a combination of Vim integration, 
 * 📈 Lines of Code: 134
 * 📄 Lines of Documentation: 106
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4096.2 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4104.3 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
@@ -1088,7 +1113,7 @@ The tool operates by having users simultaneously run the same command on both ho
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 26
 * 📅 Development Period: 2009-09-27 to 2021-11-02
-* 🔥 Recent Activity: 4139.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4147.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
@@ -1111,7 +1136,7 @@ The core features of pwgrep include encrypted password storage, easy retrieval a
 * 📈 Lines of Code: 286
 * 📄 Lines of Documentation: 144
 * 📅 Development Period: 2013-03-22 to 2021-11-05
-* 🔥 Recent Activity: 4144.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4152.7 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
@@ -1128,6 +1153,27 @@ The tool is implemented in Perl and relies on the "JIRA::REST" CPAN module to co
 
 ---
 
+### loadbars
+
+* 💻 Languages: Perl (97.4%), Make (2.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 527
+* 📈 Lines of Code: 1828
+* 📄 Lines of Documentation: 200
+* 📅 Development Period: 2010-11-05 to 2021-11-03
+* 🔥 Recent Activity: 4173.0 days (avg. age of last 42 commits)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.7.5 (2014-06-22)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+loadbars: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/loadbars)  
+[View on GitHub](https://github.com/snonux/loadbars)  
+
+---
+
 ### perl-poetry
 
 * 💻 Languages: Perl (100.0%)
@@ -1136,7 +1182,7 @@ The tool is implemented in Perl and relies on the "JIRA::REST" CPAN module to co
 * 📈 Lines of Code: 191
 * 📄 Lines of Documentation: 8
 * 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🔥 Recent Activity: 4205.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4213.9 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1157,7 +1203,7 @@ In terms of implementation, each script is written to be syntactically correct a
 * 📊 Commits: 7
 * 📈 Lines of Code: 80
 * 📅 Development Period: 2011-07-09 to 2015-01-13
-* 🔥 Recent Activity: 4285.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4294.0 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1180,7 +1226,7 @@ The implementation relies on Perl scripts running on a web server, with DNS and 
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
 * 📅 Development Period: 2010-11-05 to 2021-11-05
-* 🔥 Recent Activity: 4326.5 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4334.6 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
@@ -1195,34 +1241,13 @@ The tool achieves this by invoking AWK, a powerful text-processing utility, to p
 
 ---
 
-### loadbars
-
-* 💻 Languages: Perl (97.4%), Make (2.6%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 527
-* 📈 Lines of Code: 1828
-* 📄 Lines of Documentation: 100
-* 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🔥 Recent Activity: 4356.6 days (avg. age of last 42 commits)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.7.5 (2014-06-22)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-loadbars: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/loadbars)  
-[View on GitHub](https://github.com/snonux/loadbars)  
-
----
-
 ### perldaemon
 
-* 💻 Languages: Perl (74.2%), Shell (22.2%), Config (3.6%)
+* 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
-* 📈 Lines of Code: 659
+* 📈 Lines of Code: 614
 * 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🔥 Recent Activity: 4500.8 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4414.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
@@ -1247,7 +1272,7 @@ The implementation centers around a main daemon process that manages the event l
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 10
 * 📅 Development Period: 2011-01-27 to 2014-06-22
-* 🔥 Recent Activity: 4737.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4745.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
@@ -1270,7 +1295,7 @@ The core architecture of Awksite consists of AWK scripts executed via the Common
 * 📈 Lines of Code: 720
 * 📄 Lines of Documentation: 6
 * 📅 Development Period: 2008-06-21 to 2021-11-03
-* 🔥 Recent Activity: 4799.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 4807.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.3 (2009-02-08)
 
@@ -1289,13 +1314,13 @@ The application is implemented as a desktop GUI, likely using a framework such a
 
 ### ychat
 
-* 💻 Languages: C++ (50.4%), Shell (21.3%), C/C++ (20.8%), Perl (2.3%), HTML (2.3%), Config (2.2%), Make (0.7%), CSS (0.1%)
+* 💻 Languages: C++ (52.1%), C/C++ (21.3%), Shell (20.1%), HTML (2.5%), Config (2.1%), Perl (1.5%), Make (0.3%)
 * 📚 Documentation: Text (100.0%)
 * 📊 Commits: 67
-* 📈 Lines of Code: 73818
-* 📄 Lines of Documentation: 127
+* 📈 Lines of Code: 33823
+* 📄 Lines of Documentation: 109
 * 📅 Development Period: 2008-05-15 to 2014-07-01
-* 🔥 Recent Activity: 5391.1 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5362.7 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
 
@@ -1318,7 +1343,7 @@ yChat’s architecture is built around a core C++ engine that handles HTTP reque
 * 📈 Lines of Code: 17380
 * 📄 Lines of Documentation: 947
 * 📅 Development Period: 2009-02-07 to 2021-05-01
-* 🔥 Recent Activity: 5430.4 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5438.6 days (avg. age of last 42 commits)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.1 (2009-02-08)
 
@@ -1345,7 +1370,7 @@ NetCalendar is implemented as a Java application (requiring JRE 6 or higher) and
 * 📈 Lines of Code: 14582
 * 📄 Lines of Documentation: 2903
 * 📅 Development Period: 2008-05-15 to 2022-04-03
-* 🔥 Recent Activity: 5466.7 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5474.9 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0 (2008-08-24)
 
@@ -1368,7 +1393,7 @@ The simulator features a modular architecture, allowing users to define custom n
 * 📊 Commits: 80
 * 📈 Lines of Code: 601
 * 📅 Development Period: 2009-11-22 to 2011-10-17
-* 🔥 Recent Activity: 5526.0 days (avg. age of last 42 commits)
+* 🔥 Recent Activity: 5534.2 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1385,13 +1410,13 @@ The architecture is modular, relying on external Haskell packages: libghc6-hsql-
 
 ### fype
 
-* 💻 Languages: C (72.1%), C/C++ (20.7%), HTML (5.7%), Make (1.5%)
-* 📚 Documentation: Text (71.3%), LaTeX (28.7%)
+* 💻 Languages: C (71.2%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (60.3%), LaTeX (39.7%)
 * 📊 Commits: 99
-* 📈 Lines of Code: 10196
-* 📄 Lines of Documentation: 1741
-* 📅 Development Period: 2008-05-15 to 2021-11-03
-* 🔥 Recent Activity: 5687.8 days (avg. age of last 42 commits)
+* 📈 Lines of Code: 8954
+* 📄 Lines of Documentation: 1432
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🔥 Recent Activity: 5920.8 days (avg. age of last 42 commits)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 

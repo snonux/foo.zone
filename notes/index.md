@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+['Yoga Nidra Made Easy' book notes](./yoga-nidra-made-easy.md)  
 ['When: The Scientific Secrets of Perfect Timing' book notes](./when.md)  
 ['The Stoic Challenge' book notes](./the-stoic-challenge.md)  
 ['Science of Living' book notes](./the-science-of-living.md)  
