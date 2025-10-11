@@ -4,6 +4,22 @@
 
 Some time ago, I wrote about my journey into Ruby and how "The Well-Grounded Rubyist" helped me to get a better understanding of the language. I took a lot of notes while reading the book, and I think it's time to share some of them. This is not a comprehensive review, but rather a collection of interesting tidbits and concepts that stuck with me.
 
+## Table of Contents
+
+* [⇢ Key Takeaways from The Well-Grounded Rubyist](#key-takeaways-from-the-well-grounded-rubyist)
+* [⇢ ⇢ The Object Model](#the-object-model)
+* [⇢ ⇢ ⇢ Everything is an object (almost)](#everything-is-an-object-almost)
+* [⇢ ⇢ ⇢ The `self` keyword](#the-self-keyword)
+* [⇢ ⇢ ⇢ Singleton Methods](#singleton-methods)
+* [⇢ ⇢ ⇢ Classes are Objects](#classes-are-objects)
+* [⇢ ⇢ Control Flow and Methods](#control-flow-and-methods)
+* [⇢ ⇢ ⇢ `case` and the `===` operator](#case-and-the--operator)
+* [⇢ ⇢ ⇢ Blocks and `yield`](#blocks-and-yield)
+* [⇢ ⇢ Fun with Data Types](#fun-with-data-types)
+* [⇢ ⇢ ⇢ Symbols](#symbols)
+* [⇢ ⇢ ⇢ Arrays and Hashes](#arrays-and-hashes)
+* [⇢ ⇢ Final Thoughts](#final-thoughts)
+
 [My first post about the book.](./2021-07-04-the-well-grounded-rubyist.md)  
 
 ## The Object Model
@@ -199,6 +215,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Ruby-related posts:
 
+[2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)](./2025-10-11-the-well-grounded-rubyist-notes.md)  
 [2021-07-04 The Well-Grounded Rubyist](./2021-07-04-the-well-grounded-rubyist.md)  
 
 [Back to the main site](../)  
