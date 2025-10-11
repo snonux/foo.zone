@@ -4,6 +4,8 @@
 
 Some time ago, I wrote about my journey into Ruby and how "The Well-Grounded Rubyist" helped me to get a better understanding of the language. I took a lot of notes while reading the book, and I think it's time to share some of them. This is not a comprehensive review, but rather a collection of interesting tidbits and concepts that stuck with me.
 
+<< template::inline::toc
+
 => ./2021-07-04-the-well-grounded-rubyist.gmi My first post about the book.
 
 ## The Object Model
