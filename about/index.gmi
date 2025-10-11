@@ -39,7 +39,8 @@
 ### Unread books already in my shelf
 
 * Inhibitor Phase; Alastair Reynolds; Audiobook
-* A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook
+* A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
+* Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
 
 ### Books on my wishlist
 
