@@ -22,6 +22,8 @@ Some time ago, I wrote about my journey into Ruby and how "The Well-Grounded Rub
 
 [My first post about the book.](./2021-07-04-the-well-grounded-rubyist.md)  
 
+[![./the-well-grounded-rubyist/book-cover.jpg](./the-well-grounded-rubyist/book-cover.jpg)](./the-well-grounded-rubyist/book-cover.jpg)  
+
 ## The Object Model
 
 One of the most fascinating aspects of Ruby is its object model. The book does a great job of explaining the details.
@@ -215,7 +217,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Ruby-related posts:
 
-[2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)](./2025-10-11-the-well-grounded-rubyist-notes.md)  
+[2025-11-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)](./2025-11-11-key-takeaways-from-the-well-grounded-rubyist.md)  
 [2021-07-04 The Well-Grounded Rubyist](./2021-07-04-the-well-grounded-rubyist.md)  
 
 [Back to the main site](../)  
