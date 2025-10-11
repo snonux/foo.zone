@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-10-11T15:30:19+03:00</updated>
+    <updated>2025-10-11T15:41:33+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -8,8 +8,8 @@
     <id>gemini://foo.zone/</id>
     <entry>
         <title>Key Takeaways from The Well-Grounded Rubyist</title>
-        <link href="gemini://foo.zone/gemfeed/2025-10-11-the-well-grounded-rubyist-notes.gmi" />
-        <id>gemini://foo.zone/gemfeed/2025-10-11-the-well-grounded-rubyist-notes.gmi</id>
+        <link href="gemini://foo.zone/gemfeed/2025-11-11-key-takeaways-from-the-well-grounded-rubyist.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-11-11-key-takeaways-from-the-well-grounded-rubyist.gmi</id>
         <updated>2025-10-11T15:25:14+03:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
@@ -42,6 +42,8 @@
 <li>⇢ <a href='#final-thoughts'>Final Thoughts</a></li>
 </ul><br />
 <a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>My first post about the book.</a><br />
+<br />
+<a href='./the-well-grounded-rubyist/book-cover.jpg'><img src='./the-well-grounded-rubyist/book-cover.jpg' /></a><br />
 <br />
 <h2 style='display: inline' id='the-object-model'>The Object Model</h2><br />
 <br />
@@ -263,7 +265,7 @@ p hash.values_at(:a, :c)
 <br />
 <span>Other Ruby-related posts:</span><br />
 <br />
-<a class='textlink' href='./2025-10-11-the-well-grounded-rubyist-notes.html'>2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-11-11-key-takeaways-from-the-well-grounded-rubyist.html'>2025-11-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>2021-07-04 The Well-Grounded Rubyist</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
