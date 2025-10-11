@@ -10,7 +10,6 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ Overall Statistics](#overall-statistics)
 * [⇢ ⇢ Projects](#projects)
 * [⇢ ⇢ ⇢ yoga](#yoga)
-* [⇢ Yoga](#yoga)
 * [⇢ ⇢ ⇢ hexai](#hexai)
 * [⇢ ⇢ ⇢ conf](#conf)
 * [⇢ ⇢ ⇢ foostats](#foostats)
@@ -96,9 +95,6 @@ This page showcases my side projects, providing an overview of what each project
 
 
 [![yoga screenshot](showcase/yoga/image-1.png "yoga screenshot")](showcase/yoga/image-1.png)  
-
-# Yoga
-
 [View on Codeberg](https://codeberg.org/snonux/yoga)  
 [View on GitHub](https://github.com/snonux/yoga)  
 
