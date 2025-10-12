@@ -636,6 +636,138 @@ Important notes:
 * Always verify datasets are mounted after reboot with `zfs list -o name,mounted`
 * Critical: Always ensure the replicated dataset on `f1` remains read-only with `doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata`
 
+### Troubleshooting: zrepl Replication Not Working
+
+If `zrepl` replication is not working, here's a systematic approach to diagnose and fix common issues:
+
+#### Check if zrepl Services are Running
+
+First, verify that `zrepl` is running on both nodes:
+
+```sh
+# Check service status on both f0 and f1
+paul@f0:~ % doas service zrepl status
+paul@f1:~ % doas service zrepl status
+
+# If not running, start the service
+paul@f0:~ % doas service zrepl start
+paul@f1:~ % doas service zrepl start
+```
+
+#### Check zrepl Status for Errors
+
+Use the status command to see detailed error information:
+
+```sh
+# Check detailed status (use --mode raw for non-tty environments)
+paul@f0:~ % doas zrepl status --mode raw
+
+# Look for error messages in the replication section
+# Common errors include "no common snapshot" or connection failures
+```
+
+#### Fixing "No Common Snapshot" Errors
+
+This is the most common replication issue, typically occurring when:
+
+* The receiver has existing snapshots that don't match the sender
+* Different snapshot naming schemes are in use
+* The receiver dataset was created independently
+
+**Error message example:**
+```
+no common snapshot or suitable bookmark between sender and receiver
+```
+
+**Solution: Clean up conflicting snapshots on receiver**
+
+```sh
+# First, identify the destination dataset on f1
+paul@f1:~ % doas zfs list | grep sink
+
+# Check existing snapshots on the problematic dataset
+paul@f1:~ % doas zfs list -t snapshot | grep nfsdata
+
+# If you see snapshots with different naming (e.g., @daily-*, @weekly-*)
+# these conflict with zrepl's @zrepl_* snapshots
+
+# Destroy the entire destination dataset to allow clean replication
+paul@f1:~ % doas zfs destroy -r zdata/sink/f0/zdata/enc/nfsdata
+
+# For VM replication, do the same for the fedora dataset
+paul@f1:~ % doas zfs destroy -r zdata/sink/f0/zroot/bhyve/fedora
+
+# Wake up zrepl to start fresh replication
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_nfsdata
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_fedora
+
+# Check replication status
+paul@f0:~ % doas zrepl status --mode raw
+```
+
+**Verification that replication is working:**
+
+```sh
+# Look for "stepping" state and active zfs send processes
+paul@f0:~ % doas zrepl status --mode raw | grep -A5 "State.*stepping"
+
+# Check for active ZFS commands
+paul@f0:~ % doas zrepl status --mode raw | grep -A10 "ZFSCmds.*Active"
+
+# Monitor progress - bytes replicated should be increasing
+paul@f0:~ % doas zrepl status --mode raw | grep BytesReplicated
+```
+
+#### Network Connectivity Issues
+
+If replication fails to connect:
+
+```sh
+# Test connectivity between nodes
+paul@f0:~ % nc -zv 192.168.2.131 8888
+
+# Check if zrepl is listening on f1
+paul@f1:~ % doas netstat -an | grep 8888
+
+# Verify WireGuard tunnel is working
+paul@f0:~ % ping 192.168.2.131
+```
+
+#### Encryption Key Issues
+
+If encrypted replication fails:
+
+```sh
+# Verify encryption keys are available on both nodes
+paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
+paul@f1:~ % doas zfs get keystatus zdata/sink/f0/zdata/enc/nfsdata
+
+# Load keys if unavailable
+paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
+    zdata/sink/f0/zdata/enc/nfsdata
+```
+
+#### Monitoring Ongoing Replication
+
+After fixing issues, monitor replication health:
+
+```sh
+# Monitor replication progress (run repeatedly to check status)
+paul@f0:~ % doas zrepl status --mode raw | grep -A10 BytesReplicated
+
+# Or install watch from ports and use it
+paul@f0:~ % doas pkg install watch
+paul@f0:~ % watch -n 5 'doas zrepl status --mode raw | grep -A10 BytesReplicated'
+
+# Check for new snapshots being created
+paul@f0:~ % doas zfs list -t snapshot | grep zrepl | tail -5
+
+# Verify snapshots appear on receiver
+paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | tail -5
+```
+
+This troubleshooting process resolves the most common `zrepl` issues and ensures continuous data replication between your storage nodes.
+
 ## CARP (Common Address Redundancy Protocol)
 
 High availability is crucial for storage systems. If the storage server goes down, all NFS clients (which will also be Kubernetes pods later on in this series) lose access to their persistent data. CARP provides a solution by creating a virtual IP address that automatically migrates to a different server during failures. This means that clients point to that VIP for NFS mounts and are always contacting the current primary node.
