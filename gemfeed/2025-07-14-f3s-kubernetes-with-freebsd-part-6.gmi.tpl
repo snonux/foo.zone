@@ -332,11 +332,13 @@ jobs:
       interval: 1m
     pruning:
       keep_sender:
-        - type: last_n
-          count: 10
+        - type: grid
+          grid: 4x7d | 6x30d
+          regex: "^zrepl_.*"
       keep_receiver:
-        - type: last_n
-          count: 10
+        - type: grid
+          grid: 4x7d | 6x30d
+          regex: "^zrepl_.*"
 
   - name: f0_to_f1_fedora
     type: push
