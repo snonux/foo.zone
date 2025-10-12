@@ -178,20 +178,20 @@ root@f0:~ # cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf
 ```sh
 root@f0:~ # cat <<END >>/etc/periodic.conf
 daily_zfs_snapshot_enable="YES"
-daily_zfs_snapshot_pools="zroot zdata"
+daily_zfs_snapshot_pools="zroot"
 daily_zfs_snapshot_keep="7"
 weekly_zfs_snapshot_enable="YES"
-weekly_zfs_snapshot_pools="zroot zdata"
+weekly_zfs_snapshot_pools="zroot"
 weekly_zfs_snapshot_keep="5"
 monthly_zfs_snapshot_enable="YES"
-monthly_zfs_snapshot_pools="zroot zdata"
+monthly_zfs_snapshot_pools="zroot"
 monthly_zfs_snapshot_keep="6"
 END
 ```
 
 [https://github.com/ross/zfs-periodic](https://github.com/ross/zfs-periodic)  
 
-Note: We have also added `zdata` to the list of snapshot pools. Currently, this pool does not exist yet, but it will be created later in this blog series.
+Note: We have not added `zdata` to the list of snapshot pools. Currently, this pool does not exist yet, but it will be created later in this blog series. `zrepl`, which we will use for replication, later in this blog series will manage the `zdata` snapshots.
 
 ### Uptime tracking
 
