@@ -49,6 +49,13 @@
 <li>⇢ ⇢ <a href='#mounting-the-nfs-datasets'>Mounting the NFS datasets</a></li>
 <li>⇢ ⇢ <a href='#troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</a></li>
 <li>⇢ ⇢ <a href='#configuring-automatic-key-loading-on-boot'>Configuring automatic key loading on boot</a></li>
+<li>⇢ ⇢ <a href='#troubleshooting-zrepl-replication-not-working'>Troubleshooting: zrepl Replication Not Working</a></li>
+<li>⇢ <a href='#-check-if-zrepl-services-are-running'>⇢# Check if zrepl Services are Running</a></li>
+<li>⇢ <a href='#-check-zrepl-status-for-errors'>⇢# Check zrepl Status for Errors</a></li>
+<li>⇢ <a href='#-fixing-no-common-snapshot-errors'>⇢# Fixing "No Common Snapshot" Errors</a></li>
+<li>⇢ <a href='#-network-connectivity-issues'>⇢# Network Connectivity Issues</a></li>
+<li>⇢ <a href='#-encryption-key-issues'>⇢# Encryption Key Issues</a></li>
+<li>⇢ <a href='#-monitoring-ongoing-replication'>⇢# Monitoring Ongoing Replication</a></li>
 <li>⇢ <a href='#carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</a></li>
 <li>⇢ ⇢ <a href='#how-carp-works'>How CARP Works</a></li>
 <li>⇢ ⇢ <a href='#configuring-carp'>Configuring CARP</a></li>
@@ -787,6 +794,160 @@ paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> \
 <li>Always verify datasets are mounted after reboot with <span class='inlinecode'>zfs list -o name,mounted</span></li>
 <li>Critical: Always ensure the replicated dataset on <span class='inlinecode'>f1</span> remains read-only with <span class='inlinecode'>doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata</span></li>
 </ul><br />
+<h3 style='display: inline' id='troubleshooting-zrepl-replication-not-working'>Troubleshooting: zrepl Replication Not Working</h3><br />
+<br />
+<span>If <span class='inlinecode'>zrepl</span> replication is not working, here&#39;s a systematic approach to diagnose and fix common issues:</span><br />
+<br />
+<span>#### Check if zrepl Services are Running</span><br />
+<br />
+<span>First, verify that <span class='inlinecode'>zrepl</span> is running on both nodes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check service status on both f0 and f1</font></i>
+paul@f0:~ % doas service zrepl status
+paul@f1:~ % doas service zrepl status
+
+<i><font color="silver"># If not running, start the service</font></i>
+paul@f0:~ % doas service zrepl start
+paul@f1:~ % doas service zrepl start
+</pre>
+<br />
+<span>#### Check zrepl Status for Errors</span><br />
+<br />
+<span>Use the status command to see detailed error information:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Check detailed status (use --mode raw for non-tty environments)</font></i>
+paul@f0:~ % doas zrepl status --mode raw
+
+<i><font color="silver"># Look for error messages in the replication section</font></i>
+<i><font color="silver"># Common errors include "no common snapshot" or connection failures</font></i>
+</pre>
+<br />
+<span>#### Fixing "No Common Snapshot" Errors</span><br />
+<br />
+<span>This is the most common replication issue, typically occurring when:</span><br />
+<br />
+<ul>
+<li>The receiver has existing snapshots that don&#39;t match the sender</li>
+<li>Different snapshot naming schemes are in use</li>
+<li>The receiver dataset was created independently</li>
+</ul><br />
+<span>**Error message example:**</span><br />
+<pre>
+no common snapshot or suitable bookmark between sender and receiver
+</pre>
+<br />
+<span>**Solution: Clean up conflicting snapshots on receiver**</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># First, identify the destination dataset on f1</font></i>
+paul@f1:~ % doas zfs list | grep sink
+
+<i><font color="silver"># Check existing snapshots on the problematic dataset</font></i>
+paul@f1:~ % doas zfs list -t snapshot | grep nfsdata
+
+<i><font color="silver"># If you see snapshots with different naming (e.g., @daily-*, @weekly-*)</font></i>
+<i><font color="silver"># these conflict with zrepl's @zrepl_* snapshots</font></i>
+
+<i><font color="silver"># Destroy the entire destination dataset to allow clean replication</font></i>
+paul@f1:~ % doas zfs destroy -r zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># For VM replication, do the same for the fedora dataset</font></i>
+paul@f1:~ % doas zfs destroy -r zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora
+
+<i><font color="silver"># Wake up zrepl to start fresh replication</font></i>
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_nfsdata
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_fedora
+
+<i><font color="silver"># Check replication status</font></i>
+paul@f0:~ % doas zrepl status --mode raw
+</pre>
+<br />
+<span>**Verification that replication is working:**</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Look for "stepping" state and active zfs send processes</font></i>
+paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">5</font> <font color="#808080">"State.*stepping"</font>
+
+<i><font color="silver"># Check for active ZFS commands</font></i>
+paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">10</font> <font color="#808080">"ZFSCmds.*Active"</font>
+
+<i><font color="silver"># Monitor progress - bytes replicated should be increasing</font></i>
+paul@f0:~ % doas zrepl status --mode raw | grep BytesReplicated
+</pre>
+<br />
+<span>#### Network Connectivity Issues</span><br />
+<br />
+<span>If replication fails to connect:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Test connectivity between nodes</font></i>
+paul@f0:~ % nc -zv <font color="#000000">192.168</font>.<font color="#000000">2.131</font> <font color="#000000">8888</font>
+
+<i><font color="silver"># Check if zrepl is listening on f1</font></i>
+paul@f1:~ % doas netstat -an | grep <font color="#000000">8888</font>
+
+<i><font color="silver"># Verify WireGuard tunnel is working</font></i>
+paul@f0:~ % ping <font color="#000000">192.168</font>.<font color="#000000">2.131</font>
+</pre>
+<br />
+<span>#### Encryption Key Issues</span><br />
+<br />
+<span>If encrypted replication fails:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Verify encryption keys are available on both nodes</font></i>
+paul@f0:~ % doas zfs get keystatus zdata/enc/nfsdata
+paul@f1:~ % doas zfs get keystatus zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+
+<i><font color="silver"># Load keys if unavailable</font></i>
+paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key \
+    zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+</pre>
+<br />
+<span>#### Monitoring Ongoing Replication</span><br />
+<br />
+<span>After fixing issues, monitor replication health:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Monitor replication progress (run repeatedly to check status)</font></i>
+paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">10</font> BytesReplicated
+
+<i><font color="silver"># Or install watch from ports and use it</font></i>
+paul@f0:~ % doas pkg install watch
+paul@f0:~ % watch -n <font color="#000000">5</font> <font color="#808080">'doas zrepl status --mode raw | grep -A10 BytesReplicated'</font>
+
+<i><font color="silver"># Check for new snapshots being created</font></i>
+paul@f0:~ % doas zfs list -t snapshot | grep zrepl | tail -<font color="#000000">5</font>
+
+<i><font color="silver"># Verify snapshots appear on receiver</font></i>
+paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | tail -<font color="#000000">5</font>
+</pre>
+<br />
+<span>This troubleshooting process resolves the most common <span class='inlinecode'>zrepl</span> issues and ensures continuous data replication between your storage nodes.</span><br />
+<br />
 <h2 style='display: inline' id='carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</h2><br />
 <br />
 <span>High availability is crucial for storage systems. If the storage server goes down, all NFS clients (which will also be Kubernetes pods later on in this series) lose access to their persistent data. CARP provides a solution by creating a virtual IP address that automatically migrates to a different server during failures. This means that clients point to that VIP for NFS mounts and are always contacting the current primary node.</span><br />
