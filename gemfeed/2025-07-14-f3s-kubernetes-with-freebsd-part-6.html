@@ -449,11 +449,13 @@ global:
       interval: 1m
     pruning:
       keep_sender:
-        - <b><u><font color="#000000">type</font></u></b>: last_n
-          count: <font color="#000000">10</font>
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 4x7d | 6x30d
+          regex: <font color="#808080">"^zrepl_.*"</font>
       keep_receiver:
-        - <b><u><font color="#000000">type</font></u></b>: last_n
-          count: <font color="#000000">10</font>
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 4x7d | 6x30d
+          regex: <font color="#808080">"^zrepl_.*"</font>
 
   - name: f0_to_f1_fedora
     <b><u><font color="#000000">type</font></u></b>: push
