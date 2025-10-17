@@ -31,7 +31,6 @@
 
 ### Books I am currently reading
 
-* The Software Engineer's Guidebook: Navigating senior, tech lead, and staff engineer positions at tech companies and startups; Gergely Orosz; Audiobook 
 * Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook
 * Okular; Alastair Reynolds; eBook
 * The Courage to Be Disliked; Ichiro Kishimi and Fumitake Koga; Audiobook
@@ -41,6 +40,8 @@
 * Inhibitor Phase; Alastair Reynolds; Audiobook
 * A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
+* Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
+* Origin: Die Erloesung (german); Brandon Q. Morris; eBook (buecher.de)
 
 ### Books on my wishlist
 
