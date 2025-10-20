@@ -2,6 +2,7 @@
 
 TODO: SSH server in KOReader?
 TODO: Speed Reading module?
+TODO: Add more pictures i made
 
 I am an avid reader, and for years I've been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don't have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo's cloud sync, and in this post, I'll show you how.
 
