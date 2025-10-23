@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-10-12T22:45:20+03:00</updated>
+    <updated>2025-10-23T09:26:00+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1320,6 +1320,7 @@ replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 <br />
 <ul>
 <li><span class='inlinecode'>anki-sync-server</span> — custom-built image served from the private registry, stores decks on <span class='inlinecode'>/data/nfs/k3svolumes/anki-sync-server/anki_data</span>, and authenticates through the <span class='inlinecode'>anki-sync-server-secret</span>.</li>
+<li><span class='inlinecode'>koreade-sync-server</span> — Sync server for KOReader.</li>
 <li><span class='inlinecode'>audiobookshelf</span> — media streaming stack with three hostPath mounts (<span class='inlinecode'>config</span>, <span class='inlinecode'>audiobooks</span>, <span class='inlinecode'>podcasts</span>) so the library survives node rebuilds.</li>
 <li><span class='inlinecode'>example-apache</span> — minimal HTTP service I use for smoke-testing ingress and relayd rules.</li>
 <li><span class='inlinecode'>example-apache-volume-claim</span> — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.</li>

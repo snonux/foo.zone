@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Cloudless Kobo Forma with KOReader</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-cloudless-kobo-forma-with-koreader.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-cloudless-kobo-forma-with-koreader.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='cloudless-kobo-forma-with-koreader'>Cloudless Kobo Forma with KOReader</h1><br />
+<br />
+<span>TODO: SSH server in KOReader?</span><br />
+<span>TODO: Speed Reading module?</span><br />
+<span>TODO: Add more pictures i made</span><br />
+<br />
+<span>I am an avid reader, and for years I&#39;ve been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don&#39;t have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo&#39;s cloud sync, and in this post, I&#39;ll show you how.</span><br />
+<br />
+<a class='textlink' href='https://gl.kobobooks.com/products/kobo-forma'>Kobo Forma</a><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/forma.jpg'><img alt='KOReader running on Kobo Forma' title='KOReader running on Kobo Forma' src='./cloudless-kobo-forma-with-koreader/forma.jpg' /></a><br />
+<br />
+<span>I initially bought the Kobo Forma because I wanted a device with a large screen for reading PDFs and ePubs. However, as time went on, I became more concerned about the privacy implications of having all my reading data synced to the Kobo cloud. So, I looked into alternative ways to use this device.</span><br />
+<br />
+<span>The Kobo Forma is so old that it can&#39;t be purchased from Kobo directly anymore. But I love the form factor; it&#39;s much lighter than the Kobo Sage and still has a 7" screen. It&#39;s just that the stock firmware is becoming too slow and sluggish.</span><br />
+<br />
+<pre>
+Art by Donovan Bake
+
+      __...--~~~~~-._   _.-~~~~~--...__
+    //               `V&#39;               \\ 
+   //                 |                 \\ 
+  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\ 
+ //__.....----~~~~._\ | /_.~~~~----.....__\\
+====================\\|//====================
+                dwb `---`
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#cloudless-kobo-forma-with-koreader'>Cloudless Kobo Forma with KOReader</a></li>
+<li>⇢ <a href='#koreader-to-the-rescue'>KOReader to the Rescue</a></li>
+<li>⇢ ⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#sideloaded-mode'>Sideloaded Mode</a></li>
+<li>⇢ ⇢ <a href='#enablement'>Enablement</a></li>
+<li>⇢ ⇢ <a href='#benefits'>Benefits</a></li>
+<li>⇢ <a href='#my-workflow'>My Workflow</a></li>
+<li>⇢ ⇢ <a href='#sideloading-books'>Sideloading Books</a></li>
+<li>⇢ ⇢ <a href='#koreader-sync-server'>KOReader Sync Server</a></li>
+<li>⇢ ⇢ <a href='#exporting-book-notes-and-highlights'>Exporting Book Notes and Highlights</a></li>
+<li>⇢ ⇢ <a href='#wallabag-integration'>Wallabag Integration</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='koreader-to-the-rescue'>KOReader to the Rescue</h2><br />
+<br />
+<span>In a world of constant connectivity, the Kobo Forma with KOReader offers a way out. By keeping it disconnected from the cloud, I can focus on my reading without compromising my privacy. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma.</span><br />
+<br />
+<a class='textlink' href='https://koreader.rocks/'>KOReader</a><br />
+<br />
+<span>By not syncing my reading progress and library to Kobo&#39;s cloud service, I retain full ownership and control over my data. There&#39;s no risk of my personal reading habits being accessed or mined by third parties. </span><br />
+<br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
+<br />
+<span>Installing KOReader is straightforward. You can follow the official guide for that. I used the Linux one: </span><br />
+<br />
+<a class='textlink' href='https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux'>https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux</a><br />
+<br />
+<span>Basically, what I had to do is to download a .zip file of the KOReader binary and an <span class='inlinecode'>install.sh</span> script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.</span><br />
+<br />
+<span>After the initial install, KOReader can update itself through its menus.</span><br />
+<br />
+<span>It is worth noting that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It&#39;s a small annoyance, but it&#39;s well worth it!</span><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/nickel-menu.jpg'><img alt='Nickel Menu' title='Nickel Menu' src='./cloudless-kobo-forma-with-koreader/nickel-menu.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='sideloaded-mode'>Sideloaded Mode</h2><br />
+<br />
+<h3 style='display: inline' id='enablement'>Enablement</h3><br />
+<br />
+<span>To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account, which is perfect for a cloudless setup. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.</span><br />
+<br />
+<span>To enable it, you need to edit the configuration file. Connect your Kobo device to your computer via USB. Open the file <span class='inlinecode'>.kobo/Kobo/Kobo eReader.conf</span> and add the following lines:</span><br />
+<br />
+<pre>
+[ApplicationPreferences]
+SideloadedMode=true
+</pre>
+<br />
+<span>After saving the file, eject the device. You might need to restart it for the changes to take effect.</span><br />
+<br />
+<h3 style='display: inline' id='benefits'>Benefits</h3><br />
+<br />
+<span>KOReader is much faster than the stock firmware; it feels about three times as fast. Before trying out KOReader, I was thinking about selling the Forma as it felt too sluggish. But now there is new life in this 7-year-old device! It also offers a night mode (inverted colors), a feature that the stock firmware on the Forma is lacking.</span><br />
+<br />
+<h2 style='display: inline' id='my-workflow'>My Workflow</h2><br />
+<br />
+<span>My workflow is simple and efficient, relying on a direct USB connection to my Linux laptop for sideloading books and a self-hosted sync server for progress synchronization.</span><br />
+<br />
+<h3 style='display: inline' id='sideloading-books'>Sideloading Books</h3><br />
+<br />
+<span>I connect my Kobo Forma to my Linux laptop via a USB-C cable. The device is automatically recognized as a storage device, and I can directly access its storage to copy over ePubs, PDFs, and other supported formats.</span><br />
+<br />
+<h3 style='display: inline' id='koreader-sync-server'>KOReader Sync Server</h3><br />
+<br />
+<span>To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a <span class='inlinecode'>koreader-sync-server</span> instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I&#39;m using.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server'>https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server</a><br />
+<br />
+<span>To configure the sync server in KOReader, open a document, go to "Settings" -&gt; "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials.</span><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg'><img alt='KOReader sync menu' title='KOReader sync menu' src='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg' /></a><br />
+<br />
+<h3 style='display: inline' id='exporting-book-notes-and-highlights'>Exporting Book Notes and Highlights</h3><br />
+<br />
+<span>KOReader allows you to export book notes and highlights directly from the device in various formats, including plain text and Markdown. Unfortunately, these are not automatically synced to the sync server. I have an offline backup procedure where I regularly sync them via USB to my backup server. There&#39;s a 3rd party plugin available for KOReader, which seems to be able to do this kind of sync, though.</span><br />
+<br />
+<h3 style='display: inline' id='wallabag-integration'>Wallabag Integration</h3><br />
+<br />
+<span>KOReader has built-in Wallabag support. This allows me to save articles from the web to my self-hosted Wallabag instance and then read them comfortably on my Kobo.</span><br />
+<br />
+<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>The Kobo Forma with KOReader has become an indispensable tool for me. By using it offline and with self-hosted services, I&#39;ve created a distraction-free and private reading environment. The simple, manual workflow for transferring books gives me full control over my data, and the reading experience is second to none. If you&#39;re looking for a digital e-reader that respects your privacy and helps you focus, I highly recommend giving the Kobo a try with an offline-first approach using KOReader.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
