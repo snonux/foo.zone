@@ -928,6 +928,7 @@ Or from the repository root I simply run:
 These are the charts that already live under `examples/conf/f3s` and run on the cluster today (and I'll keep adding more as new services graduate into production):
 
 * `anki-sync-server` — custom-built image served from the private registry, stores decks on `/data/nfs/k3svolumes/anki-sync-server/anki_data`, and authenticates through the `anki-sync-server-secret`.
+* `koreade-sync-server` — Sync server for KOReader.
 * `audiobookshelf` — media streaming stack with three hostPath mounts (`config`, `audiobooks`, `podcasts`) so the library survives node rebuilds.
 * `example-apache` — minimal HTTP service I use for smoke-testing ingress and relayd rules.
 * `example-apache-volume-claim` — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.

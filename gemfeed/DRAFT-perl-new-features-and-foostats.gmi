@@ -6,7 +6,7 @@ Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats 
 
 * I wanted an excuse to explore the newer features of my first programming love.
 * Perl ships with OpenBSD (the operating system on which my sites run) by default
-* It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding.
+* It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding I did with foostats.
 
 => https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language Perl re-enters the top ten
 => https://perlschool.com/books/perl-new-features/ Perl New Features by Joshua McAdams and brian d foy
