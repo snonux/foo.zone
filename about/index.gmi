@@ -38,6 +38,7 @@
 
 ### Next books already in my shelf
 
+* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook
 * 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
 * 2025 - Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
