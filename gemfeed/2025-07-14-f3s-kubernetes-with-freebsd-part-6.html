@@ -1354,6 +1354,24 @@ paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh &lt;&lt;<font color="#808080"
 <i><font color="silver">#!/bin/sh</font></i>
 <i><font color="silver"># CARP state change control script</font></i>
 
+HOSTNAME=`hostname`
+
+<b><u><font color="#000000">if</font></u></b> [ ! -f /data/nfs/nfs.DO_NOT_REMOVE ]; <b><u><font color="#000000">then</font></u></b>
+    logger <font color="#808080">'/data/nfs not mounted, mounting it now!'</font>
+    <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$HOSTNAME"</font> = <font color="#808080">'f0.lan.buetow.org'</font> ]; <b><u><font color="#000000">then</font></u></b>
+        zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
+        zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/enc/nfsdata
+    <b><u><font color="#000000">else</font></u></b>
+        doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+    <b><u><font color="#000000">fi</font></u></b>
+    doas service nfsd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+    doas service mountd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+<b><u><font color="#000000">fi</font></u></b>
+
+
 <b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
     MASTER)
         logger <font color="#808080">"CARP state changed to MASTER, starting services"</font>
