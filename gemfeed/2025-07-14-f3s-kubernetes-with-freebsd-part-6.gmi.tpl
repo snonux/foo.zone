@@ -1128,6 +1128,24 @@ paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
 #!/bin/sh
 # CARP state change control script
 
+HOSTNAME=`hostname`
+
+if [ ! -f /data/nfs/nfs.DO_NOT_REMOVE ]; then
+    logger '/data/nfs not mounted, mounting it now!'
+    if [ "$HOSTNAME" = 'f0.lan.buetow.org' ]; then
+        zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/enc/nfsdata
+        zfs set mountpoint=/data/nfs zdata/enc/nfsdata
+    else
+        doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key zdata/sink/f0/zdata/enc/nfsdata
+        doas zfs set mountpoint=/data/nfs zdata/sink/f0/zdata/enc/nfsdata
+        doas zfs mount zdata/sink/f0/zdata/enc/nfsdata
+        doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
+    fi
+    doas service nfsd stop 2>&1
+    doas service mountd stop 2>&1
+fi
+
+
 case "$1" in
     MASTER)
         logger "CARP state changed to MASTER, starting services"
