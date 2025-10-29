@@ -31,19 +31,22 @@
 
 ### Books I am currently reading / listening
 
-* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook
-* The Courage to Be Disliked; Ichiro Kishimi and Fumitake Koga; Audiobook
-* Sapiens: A Brief History of Humankind; Yuval Noah Harari; Audiobook
-* 2005 - Okular; Alastair Reynolds; eBook
+* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook (Kobo kePub)
+* Sapiens: A Brief History of Humankind; Yuval Noah Harari; Audiobook (Libro.fm)
+* 2005 - Okular; Alastair Reynolds; eBook (Kobo kePub)
+* 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook (Libro.fm)
 
 ### Next books already in my shelf
 
-* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook
+* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
 * 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
 * 2025 - Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
 * 2025 - Origin: Die Erloesung (german); Brandon Q. Morris; eBook (buecher.de)
-* 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook
+
+### Book wishlist
+
+* 2025 - Gateway - Frederik Pohl (german)
 
 ### Books I've read
 
