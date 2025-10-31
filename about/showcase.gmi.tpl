@@ -36,9 +36,9 @@ This page showcases my side projects, providing an overview of what each project
 
 => showcase/yoga/image-1.png yoga screenshot
 
-Yoga is a terminal-based video browser designed for managing and playing local yoga video collections. It scans a directory (defaulting to `~/Yoga`) for common video formats, probes and caches their durations, and provides a keyboard-driven interface for quickly filtering videos by name, duration range, or tags. Users can sort by name, length, or age, and launch videos directly in VLC with optional crop settings—all without leaving the terminal. The tool is optimized for quick navigation and playback, making it easy to find and start a specific practice session in seconds.
+Yoga is a terminal-based user interface (TUI) for managing and playing local yoga video collections. It scans a directory for video files, extracts and caches duration metadata, and provides keyboard-driven browsing with rich filtering capabilities—you can filter by name, duration ranges (min/max minutes), and tags. Videos launch directly in VLC with a single keypress, and the app supports runtime crop toggling for different aspect ratios. The tool is designed for quick, efficient workflow without leaving the terminal.
 
-The project is implemented in Go with a TUI interface, organized around a clean `cmd/yoga` entry point that wires together internal packages for filesystem operations (`internal/fsutil`), metadata caching (`internal/meta`), and UI flow (`internal/app`). Video metadata is persisted in `.video_duration_cache.json` files to avoid re-probing on every launch. Development uses Mage for build tasks, enforces ≥85% test coverage, and follows standard Go idioms with `gofumpt` formatting.
+The implementation is written in Go with a modular architecture: the entry point lives in `cmd/yoga/main.go`, domain logic is organized under `internal/` packages (TUI flow, filesystem utilities, metadata caching), and build automation runs through Mage targets. Duration metadata is cached per-directory in JSON files to avoid re-probing videos on subsequent launches, and the app follows Go idioms with an emphasis on small, testable functions and ≥85% test coverage.
 
 => https://codeberg.org/snonux/yoga View on Codeberg
 => https://github.com/snonux/yoga View on GitHub
