@@ -1,35 +1,76 @@
 # Perl New Features and Foostats
 
-Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. `foo.zone`), and almost every Perl release adds new features which make life better. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.
+Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. `foo.zone`), and almost every Perl release adds new features. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.
 
-Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats for three simple reasons:
+```
+$b="24P7cP3dP31P3bPaP28P24P64P31P2cP24P64P32P2cP24P73P2cP24P67P2cP24P7
+2P29P3dP28P22P31P30P30P30P30P22P2cP22P31P30P30P30P30P30P22P2cP22P4aP75
+P7                                                                  3P
+74                                                                  P2
+0P  41P6eP6fP74P     68P65P72P20P50 P65P72P6cP2     0P48P           61
+P6  3P6bP65P72P22P   29P3bPaP40P6dP 3dP73P70P6cP6   9P74P           20
+P2  fP2fP    2cP22P  2cP2eP3aP21P2  bP2aP    30P4f  P40P2           2P
+3b  PaP24      P6eP3 dP6c           P65P6      eP67 P74P6           8P
+20  P24P7      3P3bP aP24           P75P3      dP22 P20P2           2P
+78  P24P6      eP3bP aPaP           70P72      P69P 6eP74           P2
+0P  22P5c    P6eP20  P20P           24P75    P5cP7  2P22P           3b
+Pa  PaP66P6fP72P2    8P24P7aP20P    3dP20P31P3bP    20P24           P7
+aP  3cP3dP24P6       eP3bP20P24     P7aP2bP2bP      29P20           P7
+bP  aPaP9            P77P28P24P6    4P31P29P        3bPaP           9P
+24  P72P3            dP69           P6eP74P28       P72P6           1P
+6e  P64P2            8P24           P6eP2 9P29P     3bPaP           9P
+24  P67P3            dP73           P75P6  2P73P    74P72           P2
+0P  24P73            P2cP24P72P2cP  31P3b   PaP9P   24P67P20P3fP20  P6
+4P  6fP20            P9P7bP20PaP9P9 P9P9P    9P66P  6fP72P20P28P24  P6
+bP  3dP30            P3bP24P6bP3cP3 9P3bP    24P6bP 2bP2bP29P20P7b  Pa
+P9                                                                  P9
+P9                                                                  P9
+P9  P9P73P75P6     2P73   P74P  72P2       8P24P75P2c     P24P72    P2
+cP  31P29P3dP24P   6dP5   bP24  P6bP       5dP3bP20Pa   P9P9  P9P9  P9
+P9  P70P    72P69  P6eP   74P2  0P22       P20P20P24P  75P      5cP 72
+P2  2P3b      PaP9 P9P9   P9P9  P9P7       7P28       P24        P6 4P
+32  P29P      3bPa P9P9   P9P9  P9P7       dPaP       9P9           P9
+P9  P9P7      3P75 P62P   73P7  4P72       P28P        24P7         5P
+2c  P24P    72P2c  P31P   29P3  dP24       P67P3bP20P   aP9P9       P9
+P9  P7dP20PaP9P    9P3a   P20P  72P6       5P64P6fP3b      PaP9     P7
+3P  75P62P73P      74P7   2P28  P24P       73P2cP24P7        2P2c   P3
+1P  29P3dP2        2P30   P22P  3bPa       P9P7                0P7  2P
+69  P6eP74P2       0P22   P20P  20P2       4P75                 P5c P7
+2P  22P3 bPaPa     P7dP   aPaP  77P2       0P28                 P24 P6
+4P  32P2  9P3bP    aP70   P72P  69P6       eP74       P2        0P2 2P
+20  P20P   24P75   P20P21P5cP7  2P22P3bPaP 73P6cP65P6 5P7     0P20  P3
+2P  3bPa    P70P7  2P69P6eP74P  20P22P20P2 0P24P75P20  P21P  5cP6   eP
+22  P3bP     aPaP7  3P75P62P2   0P77P20P7b PaP9P24P6c    P3dP73     P6
+8P                                                                  69
+P6                                                                  6P
+74P3bPaP9P66P6fP72P28P24P6aP3dP30P3bP24P6aP3cP24P6cP3bP24P6aP2bP2bP29P
+7bP7dPaP7dP";$b=~s/\s//g;split /P/,$b;foreach(@_){$c.=chr hex};eval $c
 
-* I wanted an excuse to explore the newer features of my first programming love.
-* Perl ships with OpenBSD (the operating system on which my sites run) by default
-* It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding I did with foostats.
+The above Perl scripts prints out "Just Another Perl Hacker !" in an
+animation of sorts.
 
-[Perl re-enters the top ten](https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language)  
-[Perl New Features by Joshua McAdams and brian d foy](https://perlschool.com/books/perl-new-features/)  
+```
 
 ## Table of Contents
 
 * [⇢ Perl New Features and Foostats](#perl-new-features-and-foostats)
+* [⇢ ⇢ Motivation](#motivation)
+* [⇢ ⇢ Why I used Perl](#why-i-used-perl)
 * [⇢ ⇢ Inside foostats](#inside-foostats)
 * [⇢ ⇢ ⇢ Log pipeline](#log-pipeline)
 * [⇢ ⇢ ⇢ Aggregation and output](#aggregation-and-output)
 * [⇢ ⇢ ⇢ Command-line entry points](#command-line-entry-points)
 * [⇢ ⇢ Packages as real blocks](#packages-as-real-blocks)
 * [⇢ ⇢ ⇢ Scoped packages](#scoped-packages)
-* [⇢ ⇢ Postfix deref keeps data structures tidy](#postfix-deref-keeps-data-structures-tidy)
+* [⇢ ⇢ Postfix dereferencing keeps data structures tidy](#postfix-dereferencing-keeps-data-structures-tidy)
 * [⇢ ⇢ ⇢ Clear dereferencing](#clear-dereferencing)
-* [⇢ ⇢ ⇢ Simpler merge loops](#simpler-merge-loops)
 * [⇢ ⇢ Lexical subs promote local reasoning](#lexical-subs-promote-local-reasoning)
 * [⇢ ⇢ ⇢ Helpers that stay local](#helpers-that-stay-local)
-* [⇢ ⇢ Ref aliasing makes intent explicit](#ref-aliasing-makes-intent-explicit)
+* [⇢ ⇢ Reference aliasing makes intent explicit](#reference-aliasing-makes-intent-explicit)
 * [⇢ ⇢ ⇢ Shared data on purpose](#shared-data-on-purpose)
 * [⇢ ⇢ Persistent state without globals](#persistent-state-without-globals)
 * [⇢ ⇢ ⇢ Rate limiting state](#rate-limiting-state)
-* [⇢ ⇢ ⇢ Deduplicated logging](#deduplicated-logging)
+* [⇢ ⇢ ⇢ De-duplicated logging](#de-duplicated-logging)
 * [⇢ ⇢ Subroutine signatures clarify every call site](#subroutine-signatures-clarify-every-call-site)
 * [⇢ ⇢ ⇢ "normal" subroutine signatures now](#normal-subroutine-signatures-now)
 * [⇢ ⇢ Defined-or assignment keeps defaults obvious](#defined-or-assignment-keeps-defaults-obvious)
@@ -39,30 +80,63 @@ Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats 
 * [⇢ ⇢ Builtins and booleans](#builtins-and-booleans)
 * [⇢ ⇢ Conclusion](#conclusion)
 
+## Motivation
+
+I've been running `foo.zone` for a while now, but I've never looked into visitor statistics or analytics. I value privacy—not just my own, but also the privacy of others (the visitors of this site) — so I hesitated to use any off-the-shelf analytics plugins. All I wanted to collect were:
+
+* Which blog posts had the most (unique) visitors
+* Exclude, if possible, any bots and scrapers from the stats
+* Track only anonymized IP addresses, never store raw addresses
+
+With Foostats I've created a Perl script which does that for my highly opinionated website/blog setup:
+
+[Gemtexter, my static site and Gemini capsule generator](https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html)  
+[How I host this site highly-available using OpenBSD](https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html)  
+
+## Why I used Perl
+
+Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for three simple reasons:
+
+* I wanted an excuse to explore the newer features of my first programming love.
+* Sometimes, I miss Perl.
+* Perl ships with OpenBSD (the operating system on which my sites run) by default.
+* It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding I did with foostats.
+
+[Perl re-enters the top ten](https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language)  
+[Perl New Features by Joshua McAdams and brian d foy](https://perlschool.com/books/perl-new-features/)  
+
 ## Inside foostats
 
-Foostats is simply a log file analyser.
+Foostats is simply a log file analyser, which analyses the OpenBSD httpd and relayd logs.
 
 ### Log pipeline
 
-A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated, and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
+A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
 
-On OpenBSD, I've configured the job via the `daily.local` on both servers (`fishfinger` and `blowfish`):
+On OpenBSD, I've configured the job via the `daily.local` on both of my OpenBSD servers (`fishfinger.buetow.org` and `blowfish.buetow.org` - note one is the master server, the other is the standby server, but the script runs on both and the stats are merged later in the process):
 
 ```sh
 fishfinger$ grep foostats /etc/daily.local
 perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 ```
 
-Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into YYYYMMDD/HHMMSS values, hashes IP addresses with SHA3 (for anonymisation), and hands a normalised event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
+Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into `YYYYMMDD/HHMMSS` values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
+
+Whereas, there are different kinds of feeds:
+
+* The Atom web-feed
+* The same feed via Gemini
+* The Gemfeed (a special format popular in the Geminispace)
 
 ### Aggregation and output
 
-Foostats also merges the stats from both hosts, master and standby. For the master-standby setup description, read:
+As mentioned, Foostats merges the stats from both hosts, master and standby. For the master-standby setup description, read:
 
 [KISS high-availability with OpenBSD](./2024-04-01-KISS-high-availability-with-OpenBSD.md)  
 
-Those gz files land in `stats/`. From there, `Foostats::Replicator` can pull matching files from the partner host (`fishfinger` or `blowfish`) so the view covers both servers, `Foostats::Merger` combines them into daily summaries, and `Foostats::Reporter` rebuilds Gemtext and HTML reports.
+Those gzipped files land in `stats/`. From there, `Foostats::Replicator` can pull matching files from the partner host (`fishfinger` or `blowfish`) so the view covers both servers, `Foostats::Merger` combines them into daily summaries, and `Foostats::Reporter` rebuilds Gemtext and HTML reports.
+
+Those are the raw stats files:
 
 [https://blowfish.buetow.org/foostats/](https://blowfish.buetow.org/foostats/)  
 [https://fishfinger.buetow.org/foostats/](https://fishfinger.buetow.org/foostats/)  
@@ -74,9 +148,9 @@ These are the 30-day reports generated:
 
 ### Command-line entry points
 
-`foostats_main` is the command entry point. `--parse-logs` refreshes the gz files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.
+`foostats_main` is the command entry point. `--parse-logs` refreshes the gzipped files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.
 
-`fooodds.txt` is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to `/var/log/fooodds`, which can later be reviewed for false positives (I do this around once a month). The `Justfile` even has a `gather-fooodds` task that collects suspicious paths from remote logs so new patterns can be added quickly.
+`fooodds.txt` is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to `/var/log/fooodds`, which can later be reviewed for false or true positives (I do this around once a month). The `Justfile` even has a `gather-fooodds` target that collects suspicious paths from remote logs so new patterns can be added quickly.
 
 The complete source lives on Codeberg here:
 
@@ -90,15 +164,69 @@ Now let's go to some new Perl features:
 
 Recent Perl versions allow the block form `package Foo { ... }`. Foostats uses it for every package. Imports stay local to the block, helper subs do not leak into the global symbol table, and configuration happens where the code needs it.
 
-## Postfix deref keeps data structures tidy
+The old way:
+
+```perl
+package foo;
+
+sub hello {
+    print "Hello from package foo\n";
+}
+
+package bar;
+
+sub hello {
+    print "Hello from package bar\n";
+}
+
+1
+```
+
+But now it is also possible to do this:
+
+```perl
+package foo {
+    sub hello {
+        print "Hello from package foo\n";
+    }
+}
+
+package bar {
+    sub hello {
+        print "Hello from package bar\n";
+    }
+}
+```
+
+## Postfix dereferencing keeps data structures tidy
 
 ### Clear dereferencing
 
 The script handles nested hashes and arrays. Postfix dereferencing (`$hash->%*`, `$array->@*`) keeps that readable.
 
-### Simpler merge loops
+E.g. instead of having to write:
 
-Loops like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show which level of the structure is in play. The merger updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix deref, the same code relied on braces within braces and was harder to read.
+```perl
+for my $elem (@{$array_ref}) {
+    print "$elem\n";
+}
+```
+
+one can now do:
+
+```perl
+for my $elem ($array_ref->@*) {
+    print "$elem\n";
+}
+```
+
+You see that this feature becomes increasingly useful the with nested data structures, e.g. to print all keys of the nested hash:
+
+```perl
+print for keys $hash->{stats}->%*;
+```
+
+Loops over like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.
 
 ## Lexical subs promote local reasoning
 
@@ -106,29 +234,72 @@ Loops like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show whi
 
 Lexical subroutines keep helpers close to the code that needs them. In `Foostats::Logreader::parse_web_logs`, functions such as `my sub parse_date` and `my sub open_file` live only inside that scope.
 
-## Ref aliasing makes intent explicit
+## Reference aliasing makes intent explicit
 
 ### Shared data on purpose
 
-Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly. The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
+Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course. Otherwise, it's like chinese). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
 
-The aggregator aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.
+```perl
+use feature qw(refaliasing);
+
+my $hash = { foo => 42 };
+\my $foo = \$hash->{foo};
+
+$foo = 99;
+print $hash->{foo}; # prints 99
+```
+
+The aggregator in Foostats aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.
 
 ## Persistent state without globals
 
-A Perl state variable is declared with `state $var` and retains its value between calls to the enclosing subroutine. Foostats uses that for rate limiting and deduplicated logging.
+A Perl state variable is declared with `state $var` and retains its value between calls to the enclosing subroutine. Foostats uses that for rate limiting and de-duplicated logging.
+
+This is a small example demonstrating the use of a state variable in Perl:
+
+```perl
+sub counter {
+    state $count = 0;
+    $count++;
+    return $count;
+}
+
+say counter(); # 1
+say counter(); # 2
+say counter(); # 3
+```
 
 ### Rate limiting state
 
-`state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the exact second. Hash and array state variables have been supported since `state` arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what's new is that hashes can now also be state variables.
+In Foostats, `state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the exact second. Hash and array state variables have been supported since `state` arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what's new is that hashes can now also be state variables.
 
-### Deduplicated logging
+### De-duplicated logging
 
-`state %dedup` keeps the log output to one warning per URI. Early versions utilised global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
+`state %dedup` keeps the log output to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
 
 ## Subroutine signatures clarify every call site
 
 Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere.
+
+```perl
+# Old way
+sub greet_old { my $name = shift; print "Hello, $name!\n" }
+
+# Another old way
+sub greet_old ($) { $name = shift; print "Hello, $name!\n" }
+
+# New way
+sub greet ($name) { say "Hello, $name!"; }
+
+greet("Alice"); # prints "Hello, Alice!"
+
+sub greet ($name) {
+    say "Hello, $name!";
+}
+
+greet("Alice"); # prints "Hello, Alice!"
+```
 
 ### "normal" subroutine signatures now
 
