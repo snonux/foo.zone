@@ -13,38 +13,78 @@
 </p>
 <h1 style='display: inline' id='perl-new-features-and-foostats'>Perl New Features and Foostats</h1><br />
 <br />
-<span>Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. <span class='inlinecode'>foo.zone</span>), and almost every Perl release adds new features which make life better. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.</span><br />
+<span>Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. <span class='inlinecode'>foo.zone</span>), and almost every Perl release adds new features. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.</span><br />
 <br />
-<span>Even though nowadays I code more in Go and Ruby, I stuck with Perl for foostats for three simple reasons:</span><br />
-<br />
-<ul>
-<li>I wanted an excuse to explore the newer features of my first programming love.</li>
-<li>Perl ships with OpenBSD (the operating system on which my sites run) by default</li>
-<li>It really does live up to its Practical Extraction and Report Language (that&#39;s where the name Perl means) for this kind of log grinding I did with foostats.</li>
-</ul><br />
-<a class='textlink' href='https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language'>Perl re-enters the top ten</a><br />
-<a class='textlink' href='https://perlschool.com/books/perl-new-features/'>Perl New Features by Joshua McAdams and brian d foy</a><br />
+<pre>
+$b="24P7cP3dP31P3bPaP28P24P64P31P2cP24P64P32P2cP24P73P2cP24P67P2cP24P7
+2P29P3dP28P22P31P30P30P30P30P22P2cP22P31P30P30P30P30P30P22P2cP22P4aP75
+P7                                                                  3P
+74                                                                  P2
+0P  41P6eP6fP74P     68P65P72P20P50 P65P72P6cP2     0P48P           61
+P6  3P6bP65P72P22P   29P3bPaP40P6dP 3dP73P70P6cP6   9P74P           20
+P2  fP2fP    2cP22P  2cP2eP3aP21P2  bP2aP    30P4f  P40P2           2P
+3b  PaP24      P6eP3 dP6c           P65P6      eP67 P74P6           8P
+20  P24P7      3P3bP aP24           P75P3      dP22 P20P2           2P
+78  P24P6      eP3bP aPaP           70P72      P69P 6eP74           P2
+0P  22P5c    P6eP20  P20P           24P75    P5cP7  2P22P           3b
+Pa  PaP66P6fP72P2    8P24P7aP20P    3dP20P31P3bP    20P24           P7
+aP  3cP3dP24P6       eP3bP20P24     P7aP2bP2bP      29P20           P7
+bP  aPaP9            P77P28P24P6    4P31P29P        3bPaP           9P
+24  P72P3            dP69           P6eP74P28       P72P6           1P
+6e  P64P2            8P24           P6eP2 9P29P     3bPaP           9P
+24  P67P3            dP73           P75P6  2P73P    74P72           P2
+0P  24P73            P2cP24P72P2cP  31P3b   PaP9P   24P67P20P3fP20  P6
+4P  6fP20            P9P7bP20PaP9P9 P9P9P    9P66P  6fP72P20P28P24  P6
+bP  3dP30            P3bP24P6bP3cP3 9P3bP    24P6bP 2bP2bP29P20P7b  Pa
+P9                                                                  P9
+P9                                                                  P9
+P9  P9P73P75P6     2P73   P74P  72P2       8P24P75P2c     P24P72    P2
+cP  31P29P3dP24P   6dP5   bP24  P6bP       5dP3bP20Pa   P9P9  P9P9  P9
+P9  P70P    72P69  P6eP   74P2  0P22       P20P20P24P  75P      5cP 72
+P2  2P3b      PaP9 P9P9   P9P9  P9P7       7P28       P24        P6 4P
+32  P29P      3bPa P9P9   P9P9  P9P7       dPaP       9P9           P9
+P9  P9P7      3P75 P62P   73P7  4P72       P28P        24P7         5P
+2c  P24P    72P2c  P31P   29P3  dP24       P67P3bP20P   aP9P9       P9
+P9  P7dP20PaP9P    9P3a   P20P  72P6       5P64P6fP3b      PaP9     P7
+3P  75P62P73P      74P7   2P28  P24P       73P2cP24P7        2P2c   P3
+1P  29P3dP2        2P30   P22P  3bPa       P9P7                0P7  2P
+69  P6eP74P2       0P22   P20P  20P2       4P75                 P5c P7
+2P  22P3 bPaPa     P7dP   aPaP  77P2       0P28                 P24 P6
+4P  32P2  9P3bP    aP70   P72P  69P6       eP74       P2        0P2 2P
+20  P20P   24P75   P20P21P5cP7  2P22P3bPaP 73P6cP65P6 5P7     0P20  P3
+2P  3bPa    P70P7  2P69P6eP74P  20P22P20P2 0P24P75P20  P21P  5cP6   eP
+22  P3bP     aPaP7  3P75P62P2   0P77P20P7b PaP9P24P6c    P3dP73     P6
+8P                                                                  69
+P6                                                                  6P
+74P3bPaP9P66P6fP72P28P24P6aP3dP30P3bP24P6aP3cP24P6cP3bP24P6aP2bP2bP29P
+7bP7dPaP7dP";$b=~s/\s//g;split /P/,$b;foreach(@_){$c.=chr hex};eval $c
+
+The above Perl scripts prints out "Just Another Perl Hacker !" in an
+animation of sorts.
+
+</pre>
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
 <li><a href='#perl-new-features-and-foostats'>Perl New Features and Foostats</a></li>
+<li>⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#why-i-used-perl'>Why I used Perl</a></li>
 <li>⇢ <a href='#inside-foostats'>Inside foostats</a></li>
 <li>⇢ ⇢ <a href='#log-pipeline'>Log pipeline</a></li>
 <li>⇢ ⇢ <a href='#aggregation-and-output'>Aggregation and output</a></li>
 <li>⇢ ⇢ <a href='#command-line-entry-points'>Command-line entry points</a></li>
 <li>⇢ <a href='#packages-as-real-blocks'>Packages as real blocks</a></li>
 <li>⇢ ⇢ <a href='#scoped-packages'>Scoped packages</a></li>
-<li>⇢ <a href='#postfix-deref-keeps-data-structures-tidy'>Postfix deref keeps data structures tidy</a></li>
+<li>⇢ <a href='#postfix-dereferencing-keeps-data-structures-tidy'>Postfix dereferencing keeps data structures tidy</a></li>
 <li>⇢ ⇢ <a href='#clear-dereferencing'>Clear dereferencing</a></li>
-<li>⇢ ⇢ <a href='#simpler-merge-loops'>Simpler merge loops</a></li>
 <li>⇢ <a href='#lexical-subs-promote-local-reasoning'>Lexical subs promote local reasoning</a></li>
 <li>⇢ ⇢ <a href='#helpers-that-stay-local'>Helpers that stay local</a></li>
-<li>⇢ <a href='#ref-aliasing-makes-intent-explicit'>Ref aliasing makes intent explicit</a></li>
+<li>⇢ <a href='#reference-aliasing-makes-intent-explicit'>Reference aliasing makes intent explicit</a></li>
 <li>⇢ ⇢ <a href='#shared-data-on-purpose'>Shared data on purpose</a></li>
 <li>⇢ <a href='#persistent-state-without-globals'>Persistent state without globals</a></li>
 <li>⇢ ⇢ <a href='#rate-limiting-state'>Rate limiting state</a></li>
-<li>⇢ ⇢ <a href='#deduplicated-logging'>Deduplicated logging</a></li>
+<li>⇢ ⇢ <a href='#de-duplicated-logging'>De-duplicated logging</a></li>
 <li>⇢ <a href='#subroutine-signatures-clarify-every-call-site'>Subroutine signatures clarify every call site</a></li>
 <li>⇢ ⇢ <a href='#normal-subroutine-signatures-now'>"normal" subroutine signatures now</a></li>
 <li>⇢ <a href='#defined-or-assignment-keeps-defaults-obvious'>Defined-or assignment keeps defaults obvious</a></li>
@@ -54,15 +94,42 @@
 <li>⇢ <a href='#builtins-and-booleans'>Builtins and booleans</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
+<h2 style='display: inline' id='motivation'>Motivation</h2><br />
+<br />
+<span>I&#39;ve been running <span class='inlinecode'>foo.zone</span> for a while now, but I&#39;ve never looked into visitor statistics or analytics. I value privacy—not just my own, but also the privacy of others (the visitors of this site) — so I hesitated to use any off-the-shelf analytics plugins. All I wanted to collect were:</span><br />
+<br />
+<ul>
+<li>Which blog posts had the most (unique) visitors</li>
+<li>Exclude, if possible, any bots and scrapers from the stats</li>
+<li>Track only anonymized IP addresses, never store raw addresses</li>
+</ul><br />
+<span>With Foostats I&#39;ve created a Perl script which does that for my highly opinionated website/blog setup:</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>Gemtexter, my static site and Gemini capsule generator</a><br />
+<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>How I host this site highly-available using OpenBSD</a><br />
+<br />
+<h2 style='display: inline' id='why-i-used-perl'>Why I used Perl</h2><br />
+<br />
+<span>Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for three simple reasons:</span><br />
+<br />
+<ul>
+<li>I wanted an excuse to explore the newer features of my first programming love.</li>
+<li>Sometimes, I miss Perl.</li>
+<li>Perl ships with OpenBSD (the operating system on which my sites run) by default.</li>
+<li>It really does live up to its Practical Extraction and Report Language (that&#39;s where the name Perl means) for this kind of log grinding I did with foostats.</li>
+</ul><br />
+<a class='textlink' href='https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language'>Perl re-enters the top ten</a><br />
+<a class='textlink' href='https://perlschool.com/books/perl-new-features/'>Perl New Features by Joshua McAdams and brian d foy</a><br />
+<br />
 <h2 style='display: inline' id='inside-foostats'>Inside foostats</h2><br />
 <br />
-<span>Foostats is simply a log file analyser.</span><br />
+<span>Foostats is simply a log file analyser, which analyses the OpenBSD httpd and relayd logs.</span><br />
 <br />
 <h3 style='display: inline' id='log-pipeline'>Log pipeline</h3><br />
 <br />
-<span>A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at <span class='inlinecode'>https://stats.foo.zone</span> and <span class='inlinecode'>gemini://stats.foo.zone</span>. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated, and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl&#39;s newer features help keep a small script like this exciting and fun!</span><br />
+<span>A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at <span class='inlinecode'>https://stats.foo.zone</span> and <span class='inlinecode'>gemini://stats.foo.zone</span>. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl&#39;s newer features help keep a small script like this exciting and fun!</span><br />
 <br />
-<span>On OpenBSD, I&#39;ve configured the job via the <span class='inlinecode'>daily.local</span> on both servers (<span class='inlinecode'>fishfinger</span> and <span class='inlinecode'>blowfish</span>):</span><br />
+<span>On OpenBSD, I&#39;ve configured the job via the <span class='inlinecode'>daily.local</span> on both of my OpenBSD servers (<span class='inlinecode'>fishfinger.buetow.org</span> and <span class='inlinecode'>blowfish.buetow.org</span> - note one is the master server, the other is the standby server, but the script runs on both and the stats are merged later in the process):</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -72,15 +139,24 @@ http://www.gnu.org/software/src-highlite -->
 perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 </pre>
 <br />
-<span>Internally, <span class='inlinecode'>Foostats::Logreader</span> parses each line of the log files <span class='inlinecode'>/var/log/daemon*</span> and <span class='inlinecode'>/var/www/logs/access_log*</span>, turns timestamps into YYYYMMDD/HHMMSS values, hashes IP addresses with SHA3 (for anonymisation), and hands a normalised event to <span class='inlinecode'>Foostats::Filter</span>. The filter compares the URI against entries in <span class='inlinecode'>fooodds.txt</span>, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach <span class='inlinecode'>Foostats::Aggregator</span>, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. <span class='inlinecode'>Foostats::FileOutputter</span> writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.</span><br />
+<span>Internally, <span class='inlinecode'>Foostats::Logreader</span> parses each line of the log files <span class='inlinecode'>/var/log/daemon*</span> and <span class='inlinecode'>/var/www/logs/access_log*</span>, turns timestamps into <span class='inlinecode'>YYYYMMDD/HHMMSS</span> values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to <span class='inlinecode'>Foostats::Filter</span>. The filter compares the URI against entries in <span class='inlinecode'>fooodds.txt</span>, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach <span class='inlinecode'>Foostats::Aggregator</span>, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. <span class='inlinecode'>Foostats::FileOutputter</span> writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.</span><br />
 <br />
+<span>Whereas, there are different kinds of feeds:</span><br />
+<br />
+<ul>
+<li>The Atom web-feed</li>
+<li>The same feed via Gemini</li>
+<li>The Gemfeed (a special format popular in the Geminispace)</li>
+</ul><br />
 <h3 style='display: inline' id='aggregation-and-output'>Aggregation and output</h3><br />
 <br />
-<span>Foostats also merges the stats from both hosts, master and standby. For the master-standby setup description, read:</span><br />
+<span>As mentioned, Foostats merges the stats from both hosts, master and standby. For the master-standby setup description, read:</span><br />
 <br />
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>KISS high-availability with OpenBSD</a><br />
 <br />
-<span>Those gz files land in <span class='inlinecode'>stats/</span>. From there, <span class='inlinecode'>Foostats::Replicator</span> can pull matching files from the partner host (<span class='inlinecode'>fishfinger</span> or <span class='inlinecode'>blowfish</span>) so the view covers both servers, <span class='inlinecode'>Foostats::Merger</span> combines them into daily summaries, and <span class='inlinecode'>Foostats::Reporter</span> rebuilds Gemtext and HTML reports.</span><br />
+<span>Those gzipped files land in <span class='inlinecode'>stats/</span>. From there, <span class='inlinecode'>Foostats::Replicator</span> can pull matching files from the partner host (<span class='inlinecode'>fishfinger</span> or <span class='inlinecode'>blowfish</span>) so the view covers both servers, <span class='inlinecode'>Foostats::Merger</span> combines them into daily summaries, and <span class='inlinecode'>Foostats::Reporter</span> rebuilds Gemtext and HTML reports.</span><br />
+<br />
+<span>Those are the raw stats files:</span><br />
 <br />
 <a class='textlink' href='https://blowfish.buetow.org/foostats/'>https://blowfish.buetow.org/foostats/</a><br />
 <a class='textlink' href='https://fishfinger.buetow.org/foostats/'>https://fishfinger.buetow.org/foostats/</a><br />
@@ -92,9 +168,9 @@ perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 <br />
 <h3 style='display: inline' id='command-line-entry-points'>Command-line entry points</h3><br />
 <br />
-<span><span class='inlinecode'>foostats_main</span> is the command entry point. <span class='inlinecode'>--parse-logs</span> refreshes the gz files, <span class='inlinecode'>--replicate</span> runs the cross-host sync, and <span class='inlinecode'>--report</span> rebuilds the HTML and Gemini report pages. <span class='inlinecode'>--all</span> performs everything in one go. Defaults point to <span class='inlinecode'>/var/www/htdocs/buetow.org/self/foostats</span> for data, <span class='inlinecode'>/var/gemini/stats.foo.zone</span> for Gemtext output, and <span class='inlinecode'>/var/www/htdocs/gemtexter/stats.foo.zone</span> for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.</span><br />
+<span><span class='inlinecode'>foostats_main</span> is the command entry point. <span class='inlinecode'>--parse-logs</span> refreshes the gzipped files, <span class='inlinecode'>--replicate</span> runs the cross-host sync, and <span class='inlinecode'>--report</span> rebuilds the HTML and Gemini report pages. <span class='inlinecode'>--all</span> performs everything in one go. Defaults point to <span class='inlinecode'>/var/www/htdocs/buetow.org/self/foostats</span> for data, <span class='inlinecode'>/var/gemini/stats.foo.zone</span> for Gemtext output, and <span class='inlinecode'>/var/www/htdocs/gemtexter/stats.foo.zone</span> for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.</span><br />
 <br />
-<span><span class='inlinecode'>fooodds.txt</span> is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to <span class='inlinecode'>/var/log/fooodds</span>, which can later be reviewed for false positives (I do this around once a month). The <span class='inlinecode'>Justfile</span> even has a <span class='inlinecode'>gather-fooodds</span> task that collects suspicious paths from remote logs so new patterns can be added quickly.</span><br />
+<span><span class='inlinecode'>fooodds.txt</span> is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to <span class='inlinecode'>/var/log/fooodds</span>, which can later be reviewed for false or true positives (I do this around once a month). The <span class='inlinecode'>Justfile</span> even has a <span class='inlinecode'>gather-fooodds</span> target that collects suspicious paths from remote logs so new patterns can be added quickly.</span><br />
 <br />
 <span>The complete source lives on Codeberg here:</span><br />
 <br />
@@ -108,15 +184,84 @@ perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 <br />
 <span>Recent Perl versions allow the block form <span class='inlinecode'>package Foo { ... }</span>. Foostats uses it for every package. Imports stay local to the block, helper subs do not leak into the global symbol table, and configuration happens where the code needs it.</span><br />
 <br />
-<h2 style='display: inline' id='postfix-deref-keeps-data-structures-tidy'>Postfix deref keeps data structures tidy</h2><br />
+<span>The old way:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> foo;
+
+<b><u><font color="#000000">sub</font></u></b> hello {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package foo\n"</font>;
+}
+
+<b><u><font color="#000000">package</font></u></b> bar;
+
+<b><u><font color="#000000">sub</font></u></b> hello {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package bar\n"</font>;
+}
+
+<font color="#000000">1</font>
+</pre>
+<br />
+<span>But now it is also possible to do this:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">package</font></u></b> foo {
+    <b><u><font color="#000000">sub</font></u></b> hello {
+        <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package foo\n"</font>;
+    }
+}
+
+<b><u><font color="#000000">package</font></u></b> bar {
+    <b><u><font color="#000000">sub</font></u></b> hello {
+        <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package bar\n"</font>;
+    }
+}
+</pre>
+<br />
+<h2 style='display: inline' id='postfix-dereferencing-keeps-data-structures-tidy'>Postfix dereferencing keeps data structures tidy</h2><br />
 <br />
 <h3 style='display: inline' id='clear-dereferencing'>Clear dereferencing</h3><br />
 <br />
 <span>The script handles nested hashes and arrays. Postfix dereferencing (<span class='inlinecode'>$hash-&gt;%*</span>, <span class='inlinecode'>$array-&gt;@*</span>) keeps that readable.</span><br />
 <br />
-<h3 style='display: inline' id='simpler-merge-loops'>Simpler merge loops</h3><br />
+<span>E.g. instead of having to write:</span><br />
 <br />
-<span>Loops like <span class='inlinecode'>$stats-&gt;{page_ips}-&gt;{urls}-&gt;%*</span> or <span class='inlinecode'>$merge{$key}-&gt;{$_}-&gt;%*</span> show which level of the structure is in play. The merger updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix deref, the same code relied on braces within braces and was harder to read.</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $elem (@{$array_ref}) {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"$elem\n"</font>;
+}
+</pre>
+<br />
+<span>one can now do:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $elem ($array_ref-&gt;@*) {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"$elem\n"</font>;
+}
+</pre>
+<br />
+<span>You see that this feature becomes increasingly useful the with nested data structures, e.g. to print all keys of the nested hash:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">print</font></u></b> <b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">keys</font></u></b> $hash-&gt;{stats}-&gt;%*;
+</pre>
+<br />
+<span>Loops over like <span class='inlinecode'>$stats-&gt;{page_ips}-&gt;{urls}-&gt;%*</span> or <span class='inlinecode'>$merge{$key}-&gt;{$_}-&gt;%*</span> show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.</span><br />
 <br />
 <h2 style='display: inline' id='lexical-subs-promote-local-reasoning'>Lexical subs promote local reasoning</h2><br />
 <br />
@@ -124,29 +269,81 @@ perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 <br />
 <span>Lexical subroutines keep helpers close to the code that needs them. In <span class='inlinecode'>Foostats::Logreader::parse_web_logs</span>, functions such as <span class='inlinecode'>my sub parse_date</span> and <span class='inlinecode'>my sub open_file</span> live only inside that scope.</span><br />
 <br />
-<h2 style='display: inline' id='ref-aliasing-makes-intent-explicit'>Ref aliasing makes intent explicit</h2><br />
+<h2 style='display: inline' id='reference-aliasing-makes-intent-explicit'>Reference aliasing makes intent explicit</h2><br />
 <br />
 <h3 style='display: inline' id='shared-data-on-purpose'>Shared data on purpose</h3><br />
 <br />
-<span>Ref aliasing is enabled with <span class='inlinecode'>use feature qw(refaliasing)</span> and helps communicate intent more clearly. The filter starts with <span class='inlinecode'>\my $uri_path = \$event-&gt;{uri_path}</span> so any later modification touches the original event.</span><br />
+<span>Ref aliasing is enabled with <span class='inlinecode'>use feature qw(refaliasing)</span> and helps communicate intent more clearly (if you remember the Perl syntax, of course. Otherwise, it&#39;s like chinese). The filter starts with <span class='inlinecode'>\my $uri_path = \$event-&gt;{uri_path}</span> so any later modification touches the original event.</span><br />
 <br />
-<span>The aggregator aliases <span class='inlinecode'>$self-&gt;{stats}{$date_key}</span> before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">use</font></u></b> feature <b><u><font color="#000000">qw</font></u></b>(refaliasing);
+
+<b><u><font color="#000000">my</font></u></b> $hash = { foo =&gt; <font color="#000000">42</font> };
+\<b><u><font color="#000000">my</font></u></b> $foo = \$hash-&gt;{foo};
+
+$foo = <font color="#000000">99</font>;
+<b><u><font color="#000000">print</font></u></b> $hash-&gt;{foo}; <i><font color="silver"># prints 99</font></i>
+</pre>
+<br />
+<span>The aggregator in Foostats aliases <span class='inlinecode'>$self-&gt;{stats}{$date_key}</span> before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.</span><br />
 <br />
 <h2 style='display: inline' id='persistent-state-without-globals'>Persistent state without globals</h2><br />
 <br />
-<span>A Perl state variable is declared with <span class='inlinecode'>state $var</span> and retains its value between calls to the enclosing subroutine. Foostats uses that for rate limiting and deduplicated logging.</span><br />
+<span>A Perl state variable is declared with <span class='inlinecode'>state $var</span> and retains its value between calls to the enclosing subroutine. Foostats uses that for rate limiting and de-duplicated logging.</span><br />
+<br />
+<span>This is a small example demonstrating the use of a state variable in Perl:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">sub</font></u></b> counter {
+    state $count = <font color="#000000">0</font>;
+    $count++;
+    <b><u><font color="#000000">return</font></u></b> $count;
+}
+
+say counter(); <i><font color="silver"># 1</font></i>
+say counter(); <i><font color="silver"># 2</font></i>
+say counter(); <i><font color="silver"># 3</font></i>
+</pre>
 <br />
 <h3 style='display: inline' id='rate-limiting-state'>Rate limiting state</h3><br />
 <br />
-<span><span class='inlinecode'>state</span> variables store run-specific state without using package globals. <span class='inlinecode'>state %blocked</span> remembers IP hashes that already triggered the odd-request filter, and <span class='inlinecode'>state $last_time</span> and <span class='inlinecode'>state %count</span> track how many requests an IP makes in the exact second. Hash and array state variables have been supported since <span class='inlinecode'>state</span> arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what&#39;s new is that hashes can now also be state variables.</span><br />
+<span>In Foostats, <span class='inlinecode'>state</span> variables store run-specific state without using package globals. <span class='inlinecode'>state %blocked</span> remembers IP hashes that already triggered the odd-request filter, and <span class='inlinecode'>state $last_time</span> and <span class='inlinecode'>state %count</span> track how many requests an IP makes in the exact second. Hash and array state variables have been supported since <span class='inlinecode'>state</span> arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what&#39;s new is that hashes can now also be state variables.</span><br />
 <br />
-<h3 style='display: inline' id='deduplicated-logging'>Deduplicated logging</h3><br />
+<h3 style='display: inline' id='de-duplicated-logging'>De-duplicated logging</h3><br />
 <br />
-<span><span class='inlinecode'>state %dedup</span> keeps the log output to one warning per URI. Early versions utilised global hashes for the same tasks, producing inconsistent results during tests. Switching to <span class='inlinecode'>state</span> removed those edge cases.</span><br />
+<span><span class='inlinecode'>state %dedup</span> keeps the log output to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to <span class='inlinecode'>state</span> removed those edge cases.</span><br />
 <br />
 <h2 style='display: inline' id='subroutine-signatures-clarify-every-call-site'>Subroutine signatures clarify every call site</h2><br />
 <br />
 <span>Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Old way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet_old { <b><u><font color="#000000">my</font></u></b> $name = <b><u><font color="#000000">shift</font></u></b>; <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, $name!\n"</font> }
+
+<i><font color="silver"># Another old way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet_old ($) { $name = <b><u><font color="#000000">shift</font></u></b>; <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, $name!\n"</font> }
+
+<i><font color="silver"># New way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet ($name) { say <font color="#808080">"Hello, $name!"</font>; }
+
+greet(<font color="#808080">"Alice"</font>); <i><font color="silver"># prints "Hello, Alice!"</font></i>
+
+<b><u><font color="#000000">sub</font></u></b> greet ($name) {
+    say <font color="#808080">"Hello, $name!"</font>;
+}
+
+greet(<font color="#808080">"Alice"</font>); <i><font color="silver"># prints "Hello, Alice!"</font></i>
+</pre>
 <br />
 <h3 style='display: inline' id='normal-subroutine-signatures-now'>"normal" subroutine signatures now</h3><br />
 <br />
