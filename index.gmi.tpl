@@ -9,8 +9,8 @@ Everything you read on this site is my personal opinion and experience. You can 
 ## Some links
 
 => ./about/index.gmi About me
-=> ./uptime-stats.gmi My machine uptime statistics
 => ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
+=> ./stats.gmi Some stats
 
 ### Webring
 
