@@ -84,7 +84,7 @@ Foostats is simply a log file analyser, which analyses the OpenBSD httpd and rel
 
 ### Log pipeline
 
-A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
+A CRON job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
 
 On OpenBSD, I've configured the job via the `daily.local` on both of my OpenBSD servers (`fishfinger.buetow.org` and `blowfish.buetow.org` - note one is the master server, the other is the standby server, but the script runs on both and the stats are merged later in the process):
 
@@ -201,6 +201,18 @@ print for keys $hash->{stats}->%*;
 
 Loops over like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.
 
+## `say` is the default voice now
+
+`say` became the default once the script switched to `use v5.38;`. Log messages such as "Processing $path" or "Writing report to $report_path". It adds a newline to every message printed, comparable to Ruby's `put`:
+
+```perl
+use v5.38;
+
+print "Hello, world!\n";    # old way
+
+say "Hello, world!";        # new way
+```
+
 ## Lexical subs promote local reasoning
 
 ### Helpers that stay local
@@ -209,9 +221,9 @@ Lexical subroutines keep helpers close to the code that needs them. In `Foostats
 
 ## Reference aliasing makes intent explicit
 
-### Shared data on purpose
+### Shared data
 
-Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course. Otherwise, it's like chinese). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
+Reference aliasing can be enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course. Otherwise, it's like Chinese). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event. This is an example with ref aliasing in action:
 
 ```perl
 use feature qw(refaliasing);
@@ -249,11 +261,11 @@ In Foostats, `state` variables store run-specific state without using package gl
 
 ### De-duplicated logging
 
-`state %dedup` keeps the log output to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
+`state %dedup` keeps the log output of the suspicious calls to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
 
-## Subroutine signatures clarify every call site
+## Subroutine signatures
 
-Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere.
+Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere. Examples:
 
 ```perl
 # Old way
@@ -274,19 +286,30 @@ sub greet ($name) {
 greet("Alice"); # prints "Hello, Alice!"
 ```
 
-### "normal" subroutine signatures now
+In Foostats, constructors declare `sub new ($class, $odds_file, $log_path)`, anonymous callbacks expose `sub ($event)`, and helper subs list the values they expect, e.g.:
 
-Subroutine signatures are active throughout foostats. Constructors declare `sub new ($class, $odds_file, $log_path)`, anonymous callbacks expose `sub ($event)`, and helper subs list the values they expect.
+```perl
+my $anon = sub ($name) {
+    say "Hello, $name!";
+};
+
+$anon->("World"); # prints "Hello, World!"
+```
 
 ## Defined-or assignment keeps defaults obvious
 
 ### Defaults without boilerplate
 
-The operator `//=` keeps configuration and counters simple. Environment variables may be missing when cron runs the script, so `//=`, combined with signatures, sets defaults without warnings. 
+The operator `//=` keeps configuration and counters simple. Environment variables may be missing when CRON runs the script, so `//=`, combined with signatures, sets defaults without warnings. Example use of that operator:
 
-## `say` is the default voice now
+```perl
+my $foo;
+$foo //= 42;
+say $foo; # prints 42
 
-`say` became the default once the script switched to `use v5.38;`. Log messages such as "Processing $path" or "Writing report to $report_path". It adds a newline to every message printed, comparable to Ruby's `put`.
+$foo //= 99;
+say $foo; # still prints 42, because $foo was already defined
+```
 
 ## Cleanup with `defer`
 
@@ -313,11 +336,11 @@ This pattern replaces manual `close` calls in every exit path of the subroutine 
 
 ## Builtins and booleans
 
-The script also utilises other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
+The script also utilizes other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
 
 ## Conclusion
 
-I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as well as for Go and Ruby.
+I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as good as the ones available for Go and Ruby.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
