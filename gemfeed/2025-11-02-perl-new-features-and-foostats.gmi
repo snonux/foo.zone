@@ -188,8 +188,6 @@ package bar;
 sub hello {
     print "Hello from package bar\n";
 }
-
-1
 ```
 
 But now it is also possible to do this:
