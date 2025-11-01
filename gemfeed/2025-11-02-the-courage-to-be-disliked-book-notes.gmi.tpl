@@ -4,6 +4,20 @@
 
 These are my personal book notes from Ichiro Kishimi and Fumitake Koga's "The Courage To Be Disliked". They are for me, but I hope they might be useful to you too.
 
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
+<< template::inline::toc
+
 ## The Nature of Life and Happiness
 
 * Life and the world are fundamentally simple; we are the ones who make them complicated. Drama does not exist.
