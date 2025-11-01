@@ -282,7 +282,6 @@ http://www.gnu.org/software/src-highlite -->
 <pre><b><u><font color="#000000">use</font></u></b> v5.<font color="#000000">38</font>;
 
 <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, world!\n"</font>;    <i><font color="silver"># old way</font></i>
-
 say <font color="#808080">"Hello, world!"</font>;        <i><font color="silver"># new way</font></i>
 </pre>
 <br />
@@ -298,13 +297,10 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><b><u><font color="#000000">use</font></u></b> v5.<font color="#000000">38</font>;
 
-<b><u><font color="#000000">sub</font></u></b> process_lines {
-    <b><u><font color="#000000">my</font></u></b> @lines = @_;
-
+<b><u><font color="#000000">sub</font></u></b> process_lines (@lines) {
     <b><u><font color="#000000">my</font></u></b> <b><u><font color="#000000">sub</font></u></b> trim ($str) {
         $str =~ <b><u><font color="#000000">s</font></u></b><font color="#808080">/^\s+|\s+$//</font>gr;
     }
-
     <b><u><font color="#000000">return</font></u></b> [ <b><u><font color="#000000">map</font></u></b> { trim($_) } @lines ];
 }
 
@@ -424,8 +420,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><b><u><font color="#000000">use</font></u></b> feature <b><u><font color="#000000">qw</font></u></b>(defer);
 
-<b><u><font color="#000000">sub</font></u></b> parse_log_file {
-    <b><u><font color="#000000">my</font></u></b> ($path) = @_;
+<b><u><font color="#000000">sub</font></u></b> parse_log_file ($path) {
     <b><u><font color="#000000">open</font></u></b> <b><u><font color="#000000">my</font></u></b> $fh, <font color="#808080">'&lt;'</font>, $path or <b><u><font color="#000000">die</font></u></b> <font color="#808080">"Cannot open $path: $!"</font>;
     defer { <b><u><font color="#000000">close</font></u></b> $fh };
 
