@@ -1,6 +1,35 @@
 # "The Courage To Be Disliked" book notes
 
+> Published at 2025-11-01T17:28:38+02:00
+
 These are my personal book notes from Ichiro Kishimi and Fumitake Koga's "The Courage To Be Disliked". They are for me, but I hope they might be useful to you too.
+
+```
+         ,..........   ..........,
+     ,..,'          '.'          ',..,
+    ,' ,'            :            ', ',
+   ,' ,'             :             ', ',
+  ,' ,'              :              ', ',
+ ,' ,'............., : ,.............', ',
+,'  '............   '.'   ............'  ',
+ '''''''''''''''''';''';''''''''''''''''''
+                    '''
+```
+
+## Table of Contents
+
+* [⇢ "The Courage To Be Disliked" book notes](#the-courage-to-be-disliked-book-notes)
+* [⇢ ⇢ The Nature of Life and Happiness](#the-nature-of-life-and-happiness)
+* [⇢ ⇢ Subjective Reality and Perception](#subjective-reality-and-perception)
+* [⇢ ⇢ The Power to Change and the Role of the Past](#the-power-to-change-and-the-role-of-the-past)
+* [⇢ ⇢ Self-Acceptance, Lifestyle, and Life Lies](#self-acceptance-lifestyle-and-life-lies)
+* [⇢ ⇢ Interpersonal Relationships](#interpersonal-relationships)
+* [⇢ ⇢ Inferiority and Superiority](#inferiority-and-superiority)
+* [⇢ ⇢ Community, Contribution, and Happiness](#community-contribution-and-happiness)
+* [⇢ ⇢ Living in the Here and Now](#living-in-the-here-and-now)
+* [⇢ ⇢ The Courage to Be Normal](#the-courage-to-be-normal)
+* [⇢ ⇢ Freedom is Being Disliked](#freedom-is-being-disliked)
+* [⇢ ⇢ The Meaning of Life](#the-meaning-of-life)
 
 ## The Nature of Life and Happiness
 
