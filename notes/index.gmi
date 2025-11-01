@@ -9,6 +9,7 @@
 => ./the-pragmatic-programmer.gmi 'The Pragmatic Programmer' book notes
 => ./the-power-of-neuroplasticity.gmi 'The Power of Neuroplasticity' book notes
 => ./the-obstacle-is-the-way.gmi 'The Obstacle is the Way' book notes
+=> ./the-courage-to-be-disliked.gmi 'The Courage To Be Disliked' book notes
 => ./staff-engineer.gmi 'Staff Engineer' book notes
 => ./slow-productivity.gmi 'Slow Productivity' book notes
 => ./site-reliability-engineering.gmi 'Site Reliability Engineering' book notes
