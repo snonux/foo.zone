@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-01T16:10:35+02:00</updated>
+    <updated>2025-11-01T16:12:30+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='perl-new-features-and-foostats'>Perl New Features and Foostats</h1><br />
+<br />
+<span class='quote'>Published at 2025-11-01T16:10:35+02:00</span><br />
 <br />
 <span>Perl recently reached rank 10 in the TIOBE index. That headline made me write this blog post as I was developing the Foostats script for simple analytics of my personal websites and Gemini capsules (e.g. <span class='inlinecode'>foo.zone</span>) and there were a couple of new features added to the Perl language over the last releases. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.</span><br />
 <br />
@@ -457,6 +459,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-perl-new-features-and-foostats.html'>2025-11-02 Perl New Features and Foostats (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
 <a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
