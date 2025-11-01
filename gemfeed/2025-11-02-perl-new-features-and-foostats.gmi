@@ -244,7 +244,6 @@ Loops over like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` sho
 use v5.38;
 
 print "Hello, world!\n";    # old way
-
 say "Hello, world!";        # new way
 ```
 
@@ -257,13 +256,10 @@ This is an example of a lexical sub named `trim`, which is only visible within t
 ```perl
 use v5.38;
 
-sub process_lines {
-    my @lines = @_;
-
+sub process_lines (@lines) {
     my sub trim ($str) {
         $str =~ s/^\s+|\s+$//gr;
     }
-
     return [ map { trim($_) } @lines ];
 }
 
@@ -365,8 +361,7 @@ The `defer` block (`use feature 'defer"`) schedules a piece of code to run when 
 ```perl
 use feature qw(defer);
 
-sub parse_log_file {
-    my ($path) = @_;
+sub parse_log_file ($path) {
     open my $fh, '<', $path or die "Cannot open $path: $!";
     defer { close $fh };
 
