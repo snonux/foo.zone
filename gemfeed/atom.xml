@@ -1,11 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-01T16:25:00+02:00</updated>
+    <updated>2025-11-01T17:28:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>'The Courage To Be Disliked' book notes</title>
+        <link href="https://foo.zone/gemfeed/2025-11-02-the-courage-to-be-disliked-book-notes.html" />
+        <id>https://foo.zone/gemfeed/2025-11-02-the-courage-to-be-disliked-book-notes.html</id>
+        <updated>2025-11-01T17:28:38+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>These are my personal book notes from Ichiro Kishimi and Fumitake Koga's 'The Courage To Be Disliked'. They are for me, but I hope they might be useful to you too.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='the-courage-to-be-disliked-book-notes'>"The Courage To Be Disliked" book notes</h1><br />
+<br />
+<span>These are my personal book notes from Ichiro Kishimi and Fumitake Koga&#39;s "The Courage To Be Disliked". They are for me, but I hope they might be useful to you too.</span><br />
+<br />
+<h2 style='display: inline' id='the-nature-of-life-and-happiness'>The Nature of Life and Happiness</h2><br />
+<br />
+<ul>
+<li>Life and the world are fundamentally simple; we are the ones who make them complicated. Drama does not exist.</li>
+<li>Happiness is a choice and is attainable for everyone. Often, we lack the courage to be happy because it&#39;s easier to stay in a familiar, albeit unhappy, situation than to choose a new lifestyle, which may bring anxiety and unknowns.</li>
+<li>Unhappiness is something you choose for yourself.</li>
+</ul><br />
+<h2 style='display: inline' id='subjective-reality-and-perception'>Subjective Reality and Perception</h2><br />
+<br />
+<ul>
+<li>Our perception of the world is subjective. We don&#39;t see the world as it is, but as we are.</li>
+<li>The world you see is different from the one I see, and it&#39;s impossible to truly share your world with anyone else.</li>
+</ul><br />
+<span>This is illustrated by the "10 people" example: if one person dislikes you, two love you, and seven are indifferent, focusing only on the one who dislikes you gives a distorted and negative view of your life. You are focusing on a tiny, insignificant part and judging the whole by it.</span><br />
+<br />
+<span>The challenge is to find the courage to see the world directly, without the filters of our own subjective views.</span><br />
+<br />
+<h2 style='display: inline' id='the-power-to-change-and-the-role-of-the-past'>The Power to Change and the Role of the Past</h2><br />
+<br />
+<ul>
+<li>We are not defined by our past experiences but by the meaning we assign to them. The past does not determine our future.</li>
+<li>The book rejects Freudian etiology (the idea that past trauma defines us) in favor of teleology (the idea that we are driven by our present goals).</li>
+<li>Change is possible for everyone at any moment, regardless of their circumstances or age. This change must come from your own doing, not from others.</li>
+<li>We live in accordance with our present goals, not past causes. The past does not exist; the only issue is the present.</li>
+<li>Emotions, like anger, can be fabricated tools used to achieve a goal (e.g., to control or shout at someone) rather than uncontrollable forces that rule us.</li>
+</ul><br />
+<h2 style='display: inline' id='self-acceptance-lifestyle-and-life-lies'>Self-Acceptance, Lifestyle, and Life Lies</h2><br />
+<br />
+<ul>
+<li>Your "lifestyle"—your worldview and outlook on life—is a choice, not a fixed personality trait. You can change it instantly.</li>
+<li>The key is self-acceptance, not self-affirmation. Accept what you cannot change and have the courage to change what you can.</li>
+<li>You cannot be reborn as someone else. It is better to learn to love yourself and make the best use of the "equipment" you were born with.</li>
+<li>Workaholism is a "life lie." It is a form of being in disharmony with life, using work as an excuse to avoid other life tasks and responsibilities.</li>
+</ul><br />
+<h2 style='display: inline' id='interpersonal-relationships'>Interpersonal Relationships</h2><br />
+<br />
+<ul>
+<li>All problems are, at their core, problems of interpersonal relationships. To escape all problems would mean to live alone in the universe, which is impossible.</li>
+<li>The book identifies three "Life Tasks" that everyone faces: the task of work, the task of friendship, and the task of love.</li>
+<li>**Competition:** Life is not a competition. When we stop comparing ourselves to others, we cease to see them as enemies. They become comrades, and we can genuinely celebrate their successes. This removes the fear of losing and allows for peace.</li>
+<li>**Power Struggles:** When someone is angry with you, recognize it as their attempt at a power struggle. The person who attacks you is the one with the problem. Do not get drawn in. Arguing about who is right or wrong is a trap. Admitting a fault is not a defeat.</li>
+<li>**Horizontal vs. Vertical Relationships:** Strive for "horizontal relationships" based on equality, rather than "vertical relationships" based on hierarchy. Praise and rebuke are forms of manipulation found in vertical relationships. Instead, offer encouragement. (Note: The original author expresses disagreement with applying this to children, feeling a hierarchy is necessary and that children appreciate praise).</li>
+<li>**Separation of Tasks:** Understand what is your responsibility and what is someone else&#39;s. For example, if someone takes advantage of your trust, that is their task. Your task is to decide whether to trust them in the first place.</li>
+<li>**Confidence in Others:** Having unconditional confidence in others helps build deep relationships and a sense of belonging, turning others into comrades.</li>
+</ul><br />
+<h2 style='display: inline' id='inferiority-and-superiority'>Inferiority and Superiority</h2><br />
+<br />
+<ul>
+<li>A feeling of inferiority is not inherently bad; it can be a catalyst for growth when we compare ourselves to our ideal self. This "pursuit of superiority" drives progress.</li>
+<li>This is different from an "inferiority complex," which is using feelings of inadequacy as an excuse to avoid change and responsibility.</li>
+<li>Value is based on a social context. An object&#39;s worth is subjective and can be reinterpreted.</li>
+</ul><br />
+<h2 style='display: inline' id='community-contribution-and-happiness'>Community, Contribution, and Happiness</h2><br />
+<br />
+<ul>
+<li>The definition of happiness is the feeling of contribution.</li>
+<li>A true sense of self-worth comes from feeling useful to a community (the "community feeling").</li>
+<li>This contribution doesn&#39;t have to be grand. You can be of worth to the community simply by being.</li>
+<li>When you have a genuine feeling of contribution, you no longer need recognition or praise from others.</li>
+</ul><br />
+<h2 style='display: inline' id='living-in-the-here-and-now'>Living in the Here and Now</h2><br />
+<br />
+<ul>
+<li>Life is a series of moments ("dots"), not a continuous line. We should live fully in the "here and now."</li>
+<li>The greatest life lie is to dwell on the past and the future, which do not exist, instead of focusing on the present moment.</li>
+<li>Focus on the process, not just the outcome. The goal of a dance is the dancing itself, not just reaching a destination.</li>
+</ul><br />
+<h2 style='display: inline' id='the-courage-to-be-normal'>The Courage to Be Normal</h2><br />
+<br />
+<ul>
+<li>Why does everyone want to be special? Is it inferior to be normal?</li>
+<li>Embracing being normal, instead of striving for a special status, is a form of courage. In the grander sense, isn&#39;t everyone normal?</li>
+</ul><br />
+<h2 style='display: inline' id='freedom-is-being-disliked'>Freedom is Being Disliked</h2><br />
+<br />
+<ul>
+<li>The price of true freedom is to be disliked by other people. It is a sign that you are living in accordance with your own principles.</li>
+</ul><br />
+<h2 style='display: inline' id='the-meaning-of-life'>The Meaning of Life</h2><br />
+<br />
+<ul>
+<li>Life has no inherent meaning. It is up to each individual to assign meaning to their own life.</li>
+<li>Do not be afraid of being disliked by others for living your life according to the meaning you create.</li>
+<li>You have the power to change yourself, and in doing so, you change your world. No one else can change it for you.</li>
+</ul><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other book notes of mine are:</span><br />
+<br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Perl New Features and Foostats</title>
         <link href="https://foo.zone/gemfeed/2025-11-02-perl-new-features-and-foostats.html" />
@@ -6140,6 +6261,7 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
@@ -7707,6 +7829,7 @@ __ejm\___/________dwb`---`______________________
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
@@ -10760,6 +10883,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes (You are currently reading this)</a><br />
@@ -11415,6 +11539,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
@@ -12758,6 +12883,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
@@ -14199,6 +14325,7 @@ echo baz
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
 <a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
 <a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
 <a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
@@ -14518,343 +14645,6 @@ blurs  html  index.html  photos  thumbs
 <a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
 <a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>DTail usage examples</title>
-        <link href="https://foo.zone/gemfeed/2023-09-25-dtail-usage-examples.html" />
-        <id>https://foo.zone/gemfeed/2023-09-25-dtail-usage-examples.html</id>
-        <updated>2023-09-25T14:57:42+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They're from the DTail documentation, but not all readers of my blog may be aware of those!</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='dtail-usage-examples'>DTail usage examples</h1><br />
-<br />
-<span class='quote'>Published at 2023-09-25T14:57:42+03:00</span><br />
-<br />
-<span>Hey there. As I am pretty busy this month personally (I am now on Paternity Leave) and as I still want to post once monthly, the blog post of this month will only be some DTail usage examples. They&#39;re from the DTail documentation, but not all readers of my blog may be aware of those!</span><br />
-<br />
-<span>DTail is a distributed DevOps tool for tailing, grepping, catting logs and other text files on many remote machines at once which I programmed in Go.</span><br />
-<br />
-<a class='textlink' href='https://dtail.dev'>https://dtail.dev</a><br />
-<br />
-<pre>
-                              ,_---~~~~~----._
-                        _,,_,*^____      _____``*g*\"*,
-  ____ _____     _ _   / __/ /&#39;     ^.  /      \ ^@q   f
- |  _ \_   _|_ _(_) |   @f |      ((@|  |@))    l  0 _/
- | | | || |/ _` | | |  \`/   \~____ / __ \_____/    \
- | |_| || | (_| | | |   |           _l__l_           I
- |____/ |_|\__,_|_|_|   }          [______]           I
-                        ]            | | |            |
-                        ]             ~ ~             |
-                        |   Let&#39;s tail those logs!   |
-                         |                           |
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#dtail-usage-examples'>DTail usage examples</a></li>
-<li>⇢ <a href='#commands'>Commands</a></li>
-<li>⇢ <a href='#following-logs'>Following logs</a></li>
-<li>⇢ <a href='#aggregating-logs'>Aggregating logs</a></li>
-<li>⇢ <a href='#how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></a></li>
-<li>⇢ <a href='#how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></a></li>
-<li>⇢ <a href='#how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></a></li>
-<li>⇢ <a href='#how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</a></li>
-<li>⇢ ⇢ <a href='#serverless-map-reduce-query'>Serverless map-reduce query</a></li>
-<li>⇢ ⇢ <a href='#aggregating-csv-files'>Aggregating CSV files</a></li>
-<li>⇢ ⇢ <a href='#other-serverless-commands'>Other serverless commands</a></li>
-</ul><br />
-<h2 style='display: inline' id='commands'>Commands</h2><br />
-<br />
-<span>DTail consists out of a server and several client binaries. In this post, I am showcasing their use!</span><br />
-<br />
-<ul>
-<li>Use <span class='inlinecode'>dtail</span> to follow logs</li>
-<li>Use <span class='inlinecode'>dtail</span> to aggregate logs while they are followed</li>
-<li>Use <span class='inlinecode'>dcat</span> to display logs and other text files already written</li>
-<li>Use <span class='inlinecode'>dgrep</span> to grep (search) logs and other text files already written</li>
-<li>Use <span class='inlinecode'>dmap</span> to aggregate logs and other text files already written</li>
-<li><span class='inlinecode'>dserver</span> is the DTail server, where all the clients can connect to</li>
-</ul><br />
-<h2 style='display: inline' id='following-logs'>Following logs</h2><br />
-<br />
-<span>The following example demonstrates how to follow logs of several servers at once. The server list is provided as a flat text file. The example filters all records containing the string <span class='inlinecode'>INFO</span>. Any other Go compatible regular expression can also be used instead of <span class='inlinecode'>INFO</span>.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt --grep INFO --files <font color="#808080">"/var/log/dserver/*.log"</font>
-</pre>
-<br />
-<span>Hint: you can also provide a comma separated server list, e.g.: <span class='inlinecode'>servers server1.example.org,server2.example.org:PORT,...</span></span><br />
-<br />
-<a href='./dtail-usage-examples/dtail.gif'><img alt='Tail example' title='Tail example' src='./dtail-usage-examples/dtail.gif' /></a><br />
-<br />
-<span class='quote'>Hint: You can also use the shorthand version (omitting the <span class='inlinecode'>--files</span>)</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt --grep INFO <font color="#808080">"/var/log/dserver/*.log"</font>
-</pre>
-<br />
-<h2 style='display: inline' id='aggregating-logs'>Aggregating logs</h2><br />
-<br />
-<span>To run ad-hoc map-reduce aggregations on newly written log lines you must add a query. The following example follows all remote log lines and prints out every few seconds the result to standard output.</span><br />
-<br />
-<span class='quote'>Hint: To run a map-reduce query across log lines written in the past, please use the <span class='inlinecode'>dmap</span> command instead.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt \
-    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
-    --query <font color="#808080">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#808080">             last($time),max(lifetimeConnections)'</font>
-</pre>
-<br />
-<span>Beware: For map-reduce queries to work, you have to ensure that DTail supports your log format. Check out the documentaiton of the DTail query language and the DTail log formats on the DTail homepage for more information.</span><br />
-<br />
-<a href='./dtail-usage-examples/dtail-map.gif'><img alt='Tail map-reduce example' title='Tail map-reduce example' src='./dtail-usage-examples/dtail-map.gif' /></a><br />
-<br />
-<span class='quote'>Hint: You can also use the shorthand version:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt \
-    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
-    <font color="#808080">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#808080">     last($time),max(lifetimeConnections)'</font>
-</pre>
-<br />
-<span>Here is another example:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt \
-    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
-    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#808080">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
-</pre>
-<br />
-<a href='./dtail-usage-examples/dtail-map2.gif'><img alt='Tail map-reduce example 2' title='Tail map-reduce example 2' src='./dtail-usage-examples/dtail-map2.gif' /></a><br />
-<br />
-<span>You can also continuously append the results to a CSV file by adding <span class='inlinecode'>outfile append filename.csv</span> to the query:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --servers serverlist.txt \
-    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
-    --query <font color="#808080">'from STATS select ... outfile append result.csv'</font>
-</pre>
-<br />
-<h2 style='display: inline' id='how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
-<br />
-<span>The following example demonstrates how to cat files (display the full content of the files) on several servers at once.</span><br />
-<br />
-<span>As you can see in this example, a DTail client also creates a local log file of all received data in <span class='inlinecode'>~/log</span>. You can also use the <span class='inlinecode'>noColor</span> and <span class='inlinecode'>-plain</span> flags (this all also work with other DTail commands than <span class='inlinecode'>dcat</span>).</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dcat --servers serverlist.txt --files /etc/hostname
-</pre>
-<br />
-<a href='./dtail-usage-examples/dcat.gif'><img alt='Cat example' title='Cat example' src='./dtail-usage-examples/dcat.gif' /></a><br />
-<br />
-<span class='quote'>Hint: You can also use the shorthand version:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dcat --servers serverlist.txt /etc/hostname
-</pre>
-<br />
-<h2 style='display: inline' id='how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
-<br />
-<span>The following example demonstrates how to grep files (display only the lines which match a given regular expression) of multiple servers at once. In this example, we look after some entries in <span class='inlinecode'>/etc/passwd</span>. This time, we don&#39;t provide the server list via an file but rather via a comma separated list directly on the command line. We also explore the <span class='inlinecode'>-before</span>, <span class='inlinecode'>-after</span> and <span class='inlinecode'>-max</span> flags (see animation).</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dgrep --servers server1.example.org:<font color="#000000">2223</font> \
-    --files /etc/passwd \
-    --regex nologin
-</pre>
-<br />
-<span>Generally, <span class='inlinecode'>dgrep</span> is also a very useful way to search historic application logs for certain content.</span><br />
-<br />
-<a href='./dtail-usage-examples/dgrep.gif'><img alt='Grep example' title='Grep example' src='./dtail-usage-examples/dgrep.gif' /></a><br />
-<br />
-<span class='quote'>Hint: <span class='inlinecode'>-regex</span> is an alias for <span class='inlinecode'>-grep</span>.</span><br />
-<br />
-<h2 style='display: inline' id='how-to-use-dmap'>How to use <span class='inlinecode'>dmap</span></h2><br />
-<br />
-<span>To run a map-reduce aggregation over logs written in the past, the <span class='inlinecode'>dmap</span> command can be used. The following example aggregates all map-reduce fields <span class='inlinecode'>dmap</span> will print interim results every few seconds. You can also write the result to an CSV file by adding <span class='inlinecode'>outfile result.csv</span> to the query.</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dmap --servers serverlist.txt \
-    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
-    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#808080">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
-</pre>
-<br />
-<span>Remember: For that to work, you have to make sure that DTail supports your log format. You can either use the ones already defined in <span class='inlinecode'>internal/mapr/logformat</span> or add an extension to support a custom log format. The example here works out of the box though, as DTail understands its own log format already. </span><br />
-<br />
-<a href='./dtail-usage-examples/dmap.gif'><img alt='DMap example' title='DMap example' src='./dtail-usage-examples/dmap.gif' /></a><br />
-<br />
-<h2 style='display: inline' id='how-to-use-the-dtail-serverless-mode'>How to use the DTail serverless mode</h2><br />
-<br />
-<span>Until now, all examples so far required to have remote server(s) to connect to. That makes sense, as after all DTail is a *distributed* tool. However, there are circumstances where you don&#39;t really need to connect to a server remotely. For example, you already have a login shell open to the server an all what you want is to run some queries directly on local log files.</span><br />
-<br />
-<span>The serverless mode does not require any <span class='inlinecode'>dserver</span> up and running and therefore there is no networking/SSH involved. </span><br />
-<br />
-<span>All commands shown so far also work in a serverless mode. All what needs to be done is to omit a server list. The DTail client then starts in serverless mode.</span><br />
-<br />
-<h3 style='display: inline' id='serverless-map-reduce-query'>Serverless map-reduce query</h3><br />
-<br />
-<span>The following <span class='inlinecode'>dmap</span> example is the same as the previously shown one, but the difference is that it operates on a local log file directly:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dmap --files /var/log/dserver/dserver.log
-    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#808080">              lifetimeConnections group by $hostname order by max($cgocalls)'</font>
-</pre>
-<br />
-<span>As a shorthand version the following command can be used:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dmap <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#808080">        lifetimeConnections group by $hostname order by max($cgocalls)'</font> \
-        /var/log/dsever/dserver.log
-</pre>
-<br />
-<span>You can also use a file input pipe as follows:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% cat /var/log/dserver/dserver.log | \
-    dmap <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#808080">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
-</pre>
-<br />
-<h3 style='display: inline' id='aggregating-csv-files'>Aggregating CSV files</h3><br />
-<br />
-<span>In essence, this works exactly like aggregating logs. All files operated on must be valid CSV files and the first line of the CSV must be the header. E.g.:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% cat example.csv
-name,lastname,age,profession
-Michael,Jordan,<font color="#000000">40</font>,Basketball player
-Michael,Jackson,<font color="#000000">100</font>,Singer
-Albert,Einstein,<font color="#000000">200</font>,Physician
-% dmap --query <font color="#808080">'select lastname,name where age &gt; 40 logformat csv outfile result.csv'</font> example.csv
-% cat result.csv
-lastname,name
-Jackson,Michael
-Einstein,Albert
-</pre>
-<br />
-<span>DMap can also be used to query and aggregate CSV files from remote servers.</span><br />
-<br />
-<h3 style='display: inline' id='other-serverless-commands'>Other serverless commands</h3><br />
-<br />
-<span>The serverless mode works transparently with all other DTail commands. Here are some examples:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail /var/log/dserver/dserver.log
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dtail --logLevel trace /var/log/dserver/dserver.log
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dcat /etc/passwd
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dcat --plain /etc/passwd &gt; /etc/test
-<i><font color="silver"># Should show no differences.</font></i>
-diff /etc/test /etc/passwd 
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dgrep --regex ERROR --files /var/log/dserver/dsever.log
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% dgrep --before <font color="#000000">10</font> --after <font color="#000000">10</font> --max <font color="#000000">10</font> --grep ERROR /var/log/dserver/dsever.log
-</pre>
-<br />
-<span>Use <span class='inlinecode'>--help</span> for more available options. Or go to the DTail page for more information! Hope you find DTail useful!</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2023-09-25-dtail-usage-examples.html'>2023-09-25 DTail usage examples (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
-<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>2021-04-22 DTail - The distributed log tail program</a><br />
-<br />
-<span>I hope you find the tools presented in this post useful!</span><br />
-<br />
-<span>Paul</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
