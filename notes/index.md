@@ -9,6 +9,7 @@
 ['The Pragmatic Programmer' book notes](./the-pragmatic-programmer.md)  
 ['The Power of Neuroplasticity' book notes](./the-power-of-neuroplasticity.md)  
 ['The Obstacle is the Way' book notes](./the-obstacle-is-the-way.md)  
+['The Courage To Be Disliked' book notes](./the-courage-to-be-disliked.md)  
 ['Staff Engineer' book notes](./staff-engineer.md)  
 ['Slow Productivity' book notes](./slow-productivity.md)  
 ['Site Reliability Engineering' book notes](./site-reliability-engineering.md)  

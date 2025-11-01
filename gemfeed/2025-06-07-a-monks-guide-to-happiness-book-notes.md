@@ -79,6 +79,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
+[2025-11-02 "The Courage To Be Disliked" book notes](./2025-11-02-the-courage-to-be-disliked-book-notes.md)  
 [2025-06-07 "A Monk's Guide to Happiness" book notes (You are currently reading this)](./2025-06-07-a-monks-guide-to-happiness-book-notes.md)  
 [2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes](./2025-04-19-when-book-notes.md)  
 [2024-10-24 "Staff Engineer" book notes](./2024-10-24-staff-engineer-book-notes.md)  
