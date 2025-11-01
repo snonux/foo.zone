@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-11-02 - Perl New Features and Foostats](./2025-11-02-perl-new-features-and-foostats.md)  
 [2025-10-11 - Key Takeaways from The Well-Grounded Rubyist](./2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md)  
 [2025-10-02 - f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-09-14 - Bash Golf Part 4](./2025-09-14-bash-golf-part-4.md)  

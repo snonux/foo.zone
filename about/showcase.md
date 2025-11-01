@@ -91,14 +91,14 @@ This page showcases my side projects, providing an overview of what each project
 * 🔥 Recent Activity: 24.2 days (avg. age of last 42 commits)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.3.0 (2025-10-24)
-* 🤖 AI-Assisted: This project was partially created with the help of generative AI
+* 🤖 AI-Assisted: This project was vibe-coded.
 
 
 [![yoga screenshot](showcase/yoga/image-1.png "yoga screenshot")](showcase/yoga/image-1.png)  
 
-Yoga is a terminal-based video browser designed for managing and playing local yoga video collections. It scans a directory (defaulting to `~/Yoga`) for common video formats, probes and caches their durations, and provides a keyboard-driven interface for quickly filtering videos by name, duration range, or tags. Users can sort by name, length, or age, and launch videos directly in VLC with optional crop settings—all without leaving the terminal. The tool is optimized for quick navigation and playback, making it easy to find and start a specific practice session in seconds.
+Yoga is a Terminal User Interface (TUI) application written in Go that helps users browse and play local yoga video collections. It scans a designated directory for video files (MP4, MKV, MOV, AVI, WMV, M4V), extracts and caches duration metadata, and presents them in an interactive table. Users can quickly filter videos by name, duration range, or tags, sort by various criteria (name, length, age), and launch playback in VLC with a single keypress. The tool is particularly useful for managing personal yoga practice libraries where you want to quickly find videos matching specific time constraints or styles without opening a file browser.
 
-The project is implemented in Go with a TUI interface, organized around a clean `cmd/yoga` entry point that wires together internal packages for filesystem operations (`internal/fsutil`), metadata caching (`internal/meta`), and UI flow (`internal/app`). Video metadata is persisted in `.video_duration_cache.json` files to avoid re-probing on every launch. Development uses Mage for build tasks, enforces ≥85% test coverage, and follows standard Go idioms with `gofumpt` formatting.
+The implementation follows clean Go architecture with domain logic organized under `internal/` (including `app` for TUI flow, `fsutil` for filesystem operations, and `meta` for metadata caching). It uses a keyboard-driven interface with vim-like navigation and maintains a `.video_duration_cache.json` file per directory to avoid re-probing video durations on subsequent scans. The project emphasizes maintainability with ≥85% test coverage requirements, table-driven tests, and strict formatting via `gofumpt`, while keeping the entry point minimal in `cmd/yoga/main.go`.
 
 [View on Codeberg](https://codeberg.org/snonux/yoga)  
 [View on GitHub](https://github.com/snonux/yoga)  

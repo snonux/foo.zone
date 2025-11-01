@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-10-31T20:26:55+02:00 by `Gemtexter`
+> This site was generated at 2025-11-01T16:10:35+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -9,8 +9,8 @@ Everything you read on this site is my personal opinion and experience. You can 
 ## Some links
 
 [About me](./about/index.md)  
-[My machine uptime statistics](./uptime-stats.md)  
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
+[Some stats](./stats.md)  
 
 ### Webring
 
@@ -38,6 +38,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2025-11-02 - Perl New Features and Foostats](./gemfeed/2025-11-02-perl-new-features-and-foostats.md)  
 [2025-10-11 - Key Takeaways from The Well-Grounded Rubyist](./gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md)  
 [2025-10-02 - f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-09-14 - Bash Golf Part 4](./gemfeed/2025-09-14-bash-golf-part-4.md)  

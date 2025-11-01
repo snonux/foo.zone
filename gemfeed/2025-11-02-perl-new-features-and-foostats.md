@@ -1,6 +1,11 @@
 # Perl New Features and Foostats
 
-Perl just reached rank 10 in the TIOBE index. That headline matches my day-to-day reality because I keep developing the foostats script for simple analytics of my personal websites and Gemini capsules (e.g. `foo.zone`), and almost every Perl release adds new features. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.
+> Published at 2025-11-01T16:10:35+02:00
+
+Perl recently reached rank 10 in the TIOBE index. That headline made me write this blog post as I was developing the Foostats script for simple analytics of my personal websites and Gemini capsules (e.g. `foo.zone`) and there were a couple of new features added to the Perl language over the last releases. The book *Perl New Features* by brian d foy documents the changes well; this post shows how those features look in a real program that runs every morning for my stats generation.
+
+[Perl re-enters the top ten](https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language)  
+[Perl New Features by Joshua McAdams and brian d foy](https://perlschool.com/books/perl-new-features/)  
 
 ```
 $b="24P7cP3dP31P3bPaP28P24P64P31P2cP24P64P32P2cP24P73P2cP24P67P2cP24P7
@@ -46,7 +51,7 @@ P6                                                                  6P
 74P3bPaP9P66P6fP72P28P24P6aP3dP30P3bP24P6aP3cP24P6cP3bP24P6aP2bP2bP29P
 7bP7dPaP7dP";$b=~s/\s//g;split /P/,$b;foreach(@_){$c.=chr hex};eval $c
 
-The above Perl scripts prints out "Just Another Perl Hacker !" in an
+The above Perl script prints out "Just Another Perl Hacker !" in an
 animation of sorts.
 
 ```
@@ -56,26 +61,24 @@ animation of sorts.
 * [⇢ Perl New Features and Foostats](#perl-new-features-and-foostats)
 * [⇢ ⇢ Motivation](#motivation)
 * [⇢ ⇢ Why I used Perl](#why-i-used-perl)
-* [⇢ ⇢ Inside foostats](#inside-foostats)
+* [⇢ ⇢ Inside Foostats](#inside-foostats)
 * [⇢ ⇢ ⇢ Log pipeline](#log-pipeline)
+* [⇢ ⇢ ⇢ `fooodds.txt`](#foooddstxt)
+* [⇢ ⇢ ⇢ Feed kinds](#feed-kinds)
 * [⇢ ⇢ ⇢ Aggregation and output](#aggregation-and-output)
 * [⇢ ⇢ ⇢ Command-line entry points](#command-line-entry-points)
 * [⇢ ⇢ Packages as real blocks](#packages-as-real-blocks)
 * [⇢ ⇢ ⇢ Scoped packages](#scoped-packages)
 * [⇢ ⇢ Postfix dereferencing keeps data structures tidy](#postfix-dereferencing-keeps-data-structures-tidy)
 * [⇢ ⇢ ⇢ Clear dereferencing](#clear-dereferencing)
+* [⇢ ⇢ `say` is the default voice now](#say-is-the-default-voice-now)
 * [⇢ ⇢ Lexical subs promote local reasoning](#lexical-subs-promote-local-reasoning)
-* [⇢ ⇢ ⇢ Helpers that stay local](#helpers-that-stay-local)
 * [⇢ ⇢ Reference aliasing makes intent explicit](#reference-aliasing-makes-intent-explicit)
-* [⇢ ⇢ ⇢ Shared data on purpose](#shared-data-on-purpose)
 * [⇢ ⇢ Persistent state without globals](#persistent-state-without-globals)
 * [⇢ ⇢ ⇢ Rate limiting state](#rate-limiting-state)
 * [⇢ ⇢ ⇢ De-duplicated logging](#de-duplicated-logging)
-* [⇢ ⇢ Subroutine signatures clarify every call site](#subroutine-signatures-clarify-every-call-site)
-* [⇢ ⇢ ⇢ "normal" subroutine signatures now](#normal-subroutine-signatures-now)
-* [⇢ ⇢ Defined-or assignment keeps defaults obvious](#defined-or-assignment-keeps-defaults-obvious)
-* [⇢ ⇢ ⇢ Defaults without boilerplate](#defaults-without-boilerplate)
-* [⇢ ⇢ `say` is the default voice now](#say-is-the-default-voice-now)
+* [⇢ ⇢ Subroutine signatures](#subroutine-signatures)
+* [⇢ ⇢ Defined-or assignment for defaults without boilerplate](#defined-or-assignment-for-defaults-without-boilerplate)
 * [⇢ ⇢ Cleanup with `defer`](#cleanup-with-defer)
 * [⇢ ⇢ Builtins and booleans](#builtins-and-booleans)
 * [⇢ ⇢ Conclusion](#conclusion)
@@ -88,7 +91,7 @@ I've been running `foo.zone` for a while now, but I've never looked into visitor
 * Exclude, if possible, any bots and scrapers from the stats
 * Track only anonymized IP addresses, never store raw addresses
 
-With Foostats I've created a Perl script which does that for my highly opinionated website/blog setup:
+With Foostats I've created a Perl script which does that for my highly opinionated website/blog setup, which consists of:
 
 [Gemtexter, my static site and Gemini capsule generator](https://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html)  
 [How I host this site highly-available using OpenBSD](https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html)  
@@ -100,18 +103,21 @@ Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats 
 * I wanted an excuse to explore the newer features of my first programming love.
 * Sometimes, I miss Perl.
 * Perl ships with OpenBSD (the operating system on which my sites run) by default.
-* It really does live up to its Practical Extraction and Report Language (that's where the name Perl means) for this kind of log grinding I did with foostats.
+* It really does live up to its Practical Extraction and Report Language (that's what the name Perl means) for this kind of log grinding I did with Foostats.
 
-[Perl re-enters the top ten](https://developers.slashdot.org/story/25/09/14/0134239/is-perl-the-worlds-10th-most-popular-programming-language)  
-[Perl New Features by Joshua McAdams and brian d foy](https://perlschool.com/books/perl-new-features/)  
-
-## Inside foostats
+## Inside Foostats
 
 Foostats is simply a log file analyser, which analyses the OpenBSD httpd and relayd logs.
 
+[https://man.openbsd.org/httpd.8](https://man.openbsd.org/httpd.8)  
+[https://man.openbsd.org/relayd.8](https://man.openbsd.org/relayd.8)  
+
 ### Log pipeline
 
-A cron job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
+A CRON job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
+
+[Foostats (HTTP)](https://stats.foo.zone)  
+[Foostats (Gemini)](gemini://stats.foo.zone)  
 
 On OpenBSD, I've configured the job via the `daily.local` on both of my OpenBSD servers (`fishfinger.buetow.org` and `blowfish.buetow.org` - note one is the master server, the other is the standby server, but the script runs on both and the stats are merged later in the process):
 
@@ -122,7 +128,13 @@ perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 
 Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into `YYYYMMDD/HHMMSS` values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
 
-Whereas, there are different kinds of feeds:
+### `fooodds.txt`
+
+`fooodds.txt` is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to `/var/log/fooodds`, which can later be reviewed for false or true positives (I do this around once a month). The `Justfile` even has a `gather-fooodds` target that collects suspicious paths from remote logs so new patterns can be added quickly.
+
+### Feed kinds
+
+There are different kinds of feeds being tracked by Foostats:
 
 * The Atom web-feed
 * The same feed via Gemini
@@ -141,22 +153,20 @@ Those are the raw stats files:
 [https://blowfish.buetow.org/foostats/](https://blowfish.buetow.org/foostats/)  
 [https://fishfinger.buetow.org/foostats/](https://fishfinger.buetow.org/foostats/)  
 
-These are the 30-day reports generated:
+These are the 30-day reports generated (already linked earlier in this post, but adding here again for clarity):
 
 [stats.foo.zone Gemini capsule dashboard](gemini://stats.foo.zone)  
 [stats.foo.zone HTTP dashboard](https://stats.foo.zone)  
 
 ### Command-line entry points
 
-`foostats_main` is the command entry point. `--parse-logs` refreshes the gzipped files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days worth of the data across HTTPS and leaves older files untouched to save bandwidth.
-
-`fooodds.txt` is a plain text list of substrings of URLs to be blocked, making it quick to shut down web crawlers. Foostats also detects rapid requests (an indicator of excessive crawling) and blocks the IP. Audit lines are written to `/var/log/fooodds`, which can later be reviewed for false or true positives (I do this around once a month). The `Justfile` even has a `gather-fooodds` target that collects suspicious paths from remote logs so new patterns can be added quickly.
+`foostats_main` is the command entry point. `--parse-logs` refreshes the gzipped files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days' worth of data across HTTPS and leaves older files untouched to save bandwidth.
 
 The complete source lives on Codeberg here:
 
-[foostats on Codeberg](https://codeberg.org/snonux/foostats)  
+[Foostats on Codeberg](https://codeberg.org/snonux/foostats)  
 
-Now let's go to some new Perl features:  
+Now let's go to some new Perl features:
 
 ## Packages as real blocks
 
@@ -220,7 +230,7 @@ for my $elem ($array_ref->@*) {
 }
 ```
 
-You see that this feature becomes increasingly useful the with nested data structures, e.g. to print all keys of the nested hash:
+You see that this feature becomes increasingly useful with nested data structures, e.g. to print all keys of the nested hash:
 
 ```perl
 print for keys $hash->{stats}->%*;
@@ -228,17 +238,45 @@ print for keys $hash->{stats}->%*;
 
 Loops over like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.
 
-## Lexical subs promote local reasoning
+## `say` is the default voice now
 
-### Helpers that stay local
+`say` became the default once the script switched to `use v5.38;`. It adds a newline to every message printed, comparable to Ruby's `puts`, making log messages like "Processing $path" or "Writing report to $report_path" cleaner:
+
+```perl
+use v5.38;
+
+print "Hello, world!\n";    # old way
+
+say "Hello, world!";        # new way
+```
+
+## Lexical subs promote local reasoning
 
 Lexical subroutines keep helpers close to the code that needs them. In `Foostats::Logreader::parse_web_logs`, functions such as `my sub parse_date` and `my sub open_file` live only inside that scope.
 
+This is an example of a lexical sub named `trim`, which is only visible within the outer sub named `process_lines`:
+
+```perl
+use v5.38;
+
+sub process_lines {
+    my @lines = @_;
+
+    my sub trim ($str) {
+        $str =~ s/^\s+|\s+$//gr;
+    }
+
+    return [ map { trim($_) } @lines ];
+}
+
+my @raw = ("  foo  ", " bar", "baz ");
+my $cleaned = process_lines(@raw);
+say for @$cleaned; # prints "foo", "bar", "baz"
+```
+
 ## Reference aliasing makes intent explicit
 
-### Shared data on purpose
-
-Ref aliasing is enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course. Otherwise, it's like chinese). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event.
+Reference aliasing can be enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course—otherwise, it can look rather cryptic). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event. This is an example with ref aliasing in action:
 
 ```perl
 use feature qw(refaliasing);
@@ -250,7 +288,7 @@ $foo = 99;
 print $hash->{foo}; # prints 99
 ```
 
-The aggregator in Foostats aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs.
+The aggregator in Foostats aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs. This enables having shorter names for long nested data structures.
 
 ## Persistent state without globals
 
@@ -270,56 +308,61 @@ say counter(); # 2
 say counter(); # 3
 ```
 
+Hash and array state variables have been supported since `state` arrived in Perl 5.10. Scalar state variables were already supported previously.
+
 ### Rate limiting state
 
-In Foostats, `state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the exact second. Hash and array state variables have been supported since `state` arrived in Perl 5.10, so this code takes advantage of that long-standing capability. However, what's new is that hashes can now also be state variables.
+In Foostats, `state` variables store run-specific state without using package globals. `state %blocked` remembers IP hashes that already triggered the odd-request filter, and `state $last_time` and `state %count` track how many requests an IP makes in the exact second.
 
 ### De-duplicated logging
 
-`state %dedup` keeps the log output to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
+`state %dedup` keeps the log output of the suspicious calls to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
 
-## Subroutine signatures clarify every call site
+## Subroutine signatures
 
-Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere.
+Perl now supports subroutine signatures like other modern languages do. Foostats uses them everywhere. Examples:
 
 ```perl
 # Old way
 sub greet_old { my $name = shift; print "Hello, $name!\n" }
 
 # Another old way
-sub greet_old ($) { $name = shift; print "Hello, $name!\n" }
+sub greet_old2 ($) { my $name = shift; print "Hello, $name!\n" }
 
 # New way
 sub greet ($name) { say "Hello, $name!"; }
 
 greet("Alice"); # prints "Hello, Alice!"
-
-sub greet ($name) {
-    say "Hello, $name!";
-}
-
-greet("Alice"); # prints "Hello, Alice!"
 ```
 
-### "normal" subroutine signatures now
+In Foostats, constructors declare `sub new ($class, $odds_file, $log_path)`, anonymous callbacks expose `sub ($event)`, and helper subs list the values they expect, e.g.:
 
-Subroutine signatures are active throughout foostats. Constructors declare `sub new ($class, $odds_file, $log_path)`, anonymous callbacks expose `sub ($event)`, and helper subs list the values they expect.
+```perl
+my $anon = sub ($name) {
+    say "Hello, $name!";
+};
 
-## Defined-or assignment keeps defaults obvious
+$anon->("World"); # prints "Hello, World!"
+```
 
-### Defaults without boilerplate
+## Defined-or assignment for defaults without boilerplate
 
-The operator `//=` keeps configuration and counters simple. Environment variables may be missing when cron runs the script, so `//=`, combined with signatures, sets defaults without warnings. 
+The operator `//=` keeps configuration and counters simple. Environment variables may be missing when CRON runs the script, so `//=`, combined with signatures, sets defaults without warnings. Example use of that operator:
 
-## `say` is the default voice now
+```perl
+my $foo;
+$foo //= 42;
+say $foo; # prints 42
 
-`say` became the default once the script switched to `use v5.38;`. Log messages such as "Processing $path" or "Writing report to $report_path". It adds a newline to every message printed, comparable to Ruby's `put`.
+$foo //= 99;
+say $foo; # still prints 42, because $foo was already defined
+```
 
 ## Cleanup with `defer`
 
-Even though not used in Foostats, this (borrowed from Go?) feature is neat to have in Perl now.
+Even though not used in Foostats, this feature (similar to Go's defer) is neat to have in Perl now.
 
-The `defer` block (`use feature 'defer"`) schedules a piece of code to run when the current scope exits, regardless of how it exits (e.g. normal return, exception). This is perfect for ensuring resources, such as file handles, are closed. `Foostats::Logreader` uses it to make sure log files are always closed, even if parsing fails mid-way.
+The `defer` block (`use feature 'defer"`) schedules a piece of code to run when the current scope exits, regardless of how it exits (e.g. normal return, exception). This is perfect for ensuring resources, such as file handles, are closed.
 
 ```perl
 use feature qw(defer);
@@ -340,11 +383,11 @@ This pattern replaces manual `close` calls in every exit path of the subroutine 
 
 ## Builtins and booleans
 
-The script also utilises other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
+The script also utilizes other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
 
 ## Conclusion
 
-I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as well as for Go and Ruby.
+I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as good as the ones available for Go and Ruby.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
