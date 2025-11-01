@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-01T17:33:07+02:00</updated>
+    <updated>2025-11-01T22:25:15+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -271,7 +271,7 @@ animation of sorts.
 <br />
 <h2 style='display: inline' id='why-i-used-perl'>Why I used Perl</h2><br />
 <br />
-<span>Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for three simple reasons:</span><br />
+<span>Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for four simple reasons:</span><br />
 <br />
 <ul>
 <li>I wanted an excuse to explore the newer features of my first programming love.</li>
@@ -598,6 +598,10 @@ http://www.gnu.org/software/src-highlite -->
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven&#39;t looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as good as the ones available for Go and Ruby.</span><br />
+<br />
+<span class='quote'>A reader pointed out that there&#39;s now a third-party Perl Tree-sitter implementation one could use:</span><br />
+<br />
+<a class='textlink' href='https://github.com/tree-sitter-perl/tree-sitter-perl'>https://github.com/tree-sitter-perl/tree-sitter-perl</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

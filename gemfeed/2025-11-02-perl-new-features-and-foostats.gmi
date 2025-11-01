@@ -98,7 +98,7 @@ With Foostats I've created a Perl script which does that for my highly opinionat
 
 ## Why I used Perl
 
-Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for three simple reasons:
+Even though nowadays I code more in Go and Ruby, I stuck with Perl for Foostats for four simple reasons:
 
 * I wanted an excuse to explore the newer features of my first programming love.
 * Sometimes, I miss Perl.
@@ -381,6 +381,10 @@ The script also utilizes other modern additions that often go unnoticed. `use bu
 ## Conclusion
 
 I want to code more in Perl again. The newer features make it a joy to write small scripts like Foostats. If you haven't looked at Perl in a while, give it another try! The main thing which holds me back from writing more Perl is the lack of good tooling. For example, there is no proper LSP and tree sitter support available, which would work as good as the ones available for Go and Ruby.
+
+> A reader pointed out that there's now a third-party Perl Tree-sitter implementation one could use:
+
+=> https://github.com/tree-sitter-perl/tree-sitter-perl
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
