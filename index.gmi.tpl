@@ -12,14 +12,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 => ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
 => ./stats.gmi Some stats
 
-### Webring
-
-`shring.sh` (sh-ring) is a small web of "unix-y" personal web (sorry, Gemini users) sites I am part of:
-
-=> https://shring.sh/foo.zone/previous previous
-=> https://shring.sh shring.sh
-=> https://shring.sh/foo.zone/next next
-
 ## Blog
 
 ### Atom and Gemfeeds
