@@ -287,7 +287,7 @@ MBATTCHG : 5 Percent
 
 I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:
 
-````
+```
 Broadcast Message from root@f0.lan.buetow.org
         (no tty) at 15:03 EET...
 

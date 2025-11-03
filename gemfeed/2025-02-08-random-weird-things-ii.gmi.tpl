@@ -146,7 +146,7 @@ Languages with One-Based Indexing:
 ```lua
 arr = {10, 20, 30, 40, 50}
 print(arr[1]) -- Accessing the first element
-````
+```
 
 ```sh
 ❯ lua foo.lua
