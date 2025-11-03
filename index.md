@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-11-01T22:25:15+02:00 by `Gemtexter`
+> This site was generated at 2025-11-03T04:03:34+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -11,14 +11,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 [About me](./about/index.md)  
 [Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 [Some stats](./stats.md)  
-
-### Webring
-
-`shring.sh` (sh-ring) is a small web of "unix-y" personal web (sorry, Gemini users) sites I am part of:
-
-[previous](https://shring.sh/foo.zone/previous)  
-[shring.sh](https://shring.sh)  
-[next](https://shring.sh/foo.zone/next)  
 
 ## Blog
 
