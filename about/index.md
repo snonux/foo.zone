@@ -32,12 +32,14 @@
 ### Books I am currently reading / listening
 
 * Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook (Kobo kePub)
-* Sapiens: A Brief History of Humankind; Yuval Noah Harari; Audiobook (Libro.fm)
+* How to talk so kids will listen & Listen so kids will talk; Audiobook (Audible)
 * 2005 - Okular; Alastair Reynolds; eBook (Kobo kePub)
 * 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook (Libro.fm)
 
 ### Next books already in my shelf
 
+* Clean Code; Audiobook (Audible)
+* Bash it out
 * 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
 * 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
