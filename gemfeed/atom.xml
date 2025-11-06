@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-01T22:25:15+02:00</updated>
+    <updated>2025-11-06T15:43:19+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -9544,6 +9544,12 @@ MBATTCHG : <font color="#000000">5</font> Percent
 <br />
 <span>I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:</span><br />
 <br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
+
+Power failure. Running on UPS batteries.                                              
+</pre>
 <br />
 <span>I ran the following command to confirm the available battery time:</span><br />
 <br />
@@ -10184,14 +10190,93 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>So I put this into my <span class='inlinecode'>zsh</span> dotfiles (in some <span class='inlinecode'>editor.zsh.source</span> in my <span class='inlinecode'>~</span> directory):</span><br />
 <br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
+<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
+<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
+<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::random_theme () {
+    <i><font color="silver"># May add more theme search paths based on OS. This one is</font></i>
+    <i><font color="silver"># for Fedora Linux, but there is also MacOS, etc.</font></i>
+    <b><u><font color="#000000">local</font></u></b> -r theme_dir=/usr/share/helix/runtime/themes
+    <b><u><font color="#000000">if</font></u></b> [ ! -d $theme_dir ]; <b><u><font color="#000000">then</font></u></b>
+        echo <font color="#808080">"Helix theme dir $theme_dir doesnt exist"</font>
+        <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
+    <b><u><font color="#000000">fi</font></u></b>
+
+    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
+    <b><u><font color="#000000">local</font></u></b> -r random_theme=<font color="#808080">"$(basename "</font>$(ls $theme_dir \
+        | grep -v random.toml | grep .toml | sort -R \
+        | head -n <font color="#000000">1</font>)<font color="#808080">" | cut -d. -f1)"</font>
+
+    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$random_theme</font>\"<font color="#808080">/; }"</font> \
+        $config_file &gt; $config_file.tmp &amp;&amp; 
+        mv $config_file.tmp $config_file
+}
+
+<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
+    editor::helix::random_theme
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
 <br />
 <span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
 <br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"jellybeans"</font>
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"rose_pine"</font>
+[paul@earth] ~ % editor::helix::random_theme
+[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
+theme = <font color="#808080">"noctis"</font>
+[paul@earth] ~ %
+</pre>
 <br />
 <h2 style='display: inline' id='a-better-version'>A better version</h2><br />
 <br />
 <span class='quote'>Update 2024-12-18: This is an improved version, which works cross platform (e.g., also on MacOS) and multiple theme directories:</span><br />
 <br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
+<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
+<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
+<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+
+editor::helix::theme::get_random () {
+    <b><u><font color="#000000">for</font></u></b> dir <b><u><font color="#000000">in</font></u></b> $(hx --health \
+        | awk <font color="#808080">'/^Runtime directories/ { print $3 }'</font> | tr <font color="#808080">';'</font> <font color="#808080">' '</font>); <b><u><font color="#000000">do</font></u></b>
+        <b><u><font color="#000000">if</font></u></b> [ -d $dir/themes ]; <b><u><font color="#000000">then</font></u></b>
+            ls $dir/themes
+        <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">done</font></u></b> | grep -F .toml | sort -R | head -n <font color="#000000">1</font> | cut -d. -f<font color="#000000">1</font>
+}
+
+editor::helix::theme::set () {
+    <b><u><font color="#000000">local</font></u></b> -r theme=<font color="#808080">"$1"</font>; <b><u><font color="#000000">shift</font></u></b>
+
+    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
+
+    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$theme</font>\"<font color="#808080">/; }"</font> \
+        $config_file &gt; $config_file.tmp &amp;&amp; 
+        mv $config_file.tmp $config_file
+}
+
+<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
+    editor::helix::theme::<b><u><font color="#000000">set</font></u></b> $(editor::helix::theme::get_random)
+<b><u><font color="#000000">fi</font></u></b>
+</pre>
 <br />
 <span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
