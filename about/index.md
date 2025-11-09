@@ -49,11 +49,23 @@
 ### Book wishlist
 
 * 2025 - Gateway - Frederik Pohl (german)
+* Bozo Loop -  https://rachelbythebay.gumroad.com/l/bozo-loop-epub
+* Maybe Understanding Distributed Systems - https://understandingdistributed.systems (or do I know most of it already?)
 
 ### Books I've read
 
 [Resources, Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
+
+## Things I am currently learning
+
+* Bulgarian language level 4 (A2)
+
+## Things I want to learn (soon?)
+
+* `jqlang` - Deep dive into https://jqlang.org
+* `d2lant` - Deep dive into https://d2lang.com
+* Advanced Prometheus Course at Grafana Labs
 
 That's all for now...
 
