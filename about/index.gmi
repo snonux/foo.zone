@@ -65,7 +65,7 @@
 ## Things I want to learn (soon?)
 
 * `jqlang` - Deep dive into https://jqlang.org
-* `d2lant` - Deep dive into https://d2lang.com
+* `d2lang` - Deep dive into https://d2lang.com
 * Advanced Prometheus Course at Grafana Labs
 
 That's all for now...
