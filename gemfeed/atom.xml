@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-01T22:25:15+02:00</updated>
+    <updated>2025-11-18T09:38:47+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -9544,6 +9544,12 @@ MBATTCHG : <font color="#000000">5</font> Percent
 <br />
 <span>I simulated a power outage by removing the power input from the APC. Immediately, the following message appeared on all the nodes:</span><br />
 <br />
+<pre>
+Broadcast Message from root@f0.lan.buetow.org
+        (no tty) at 15:03 EET...
+
+Power failure. Running on UPS batteries.                                              
+</pre>
 <br />
 <span>I ran the following command to confirm the available battery time:</span><br />
 <br />
