@@ -29,29 +29,44 @@
 
 ## Books
 
-### Books I am currently reading / listening
+### Books I am currently reading / listening (4)
 
-* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook (Kobo kePub)
-* Sapiens: A Brief History of Humankind; Yuval Noah Harari; Audiobook (Libro.fm)
+* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
+* How to talk so kids will listen & Listen so kids will talk; Audiobook (Audible)
 * 2005 - Okular; Alastair Reynolds; eBook (Kobo kePub)
 * 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook (Libro.fm)
 
-### Next books already in my shelf
+### Next books already in my shelf (8)
 
-* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
+* Clean Code; Audiobook (Audible)
+* Bash it out
+* Positiv Wirkt: Wie du mit positivem Denken und Handeln aktiv dein Leben gestaltest (german); Armin Schubert; Paperback
+* The Courage To Be Happy; Ichiro Kishimi and Fumitake Koga; Paperback
 * 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
 * 2025 - Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
 * 2025 - Origin: Die Erloesung (german); Brandon Q. Morris; eBook (buecher.de)
 
-### Book wishlist
+### Book wishlist (3)
 
 * 2025 - Gateway - Frederik Pohl (german)
+* Bozo Loop -  https://rachelbythebay.gumroad.com/l/bozo-loop-epub
+* Maybe Understanding Distributed Systems - https://understandingdistributed.systems (or do I know most of it already?)
 
 ### Books I've read
 
 [Resources, Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
+
+## Things I am currently learning
+
+* Bulgarian language level 4 (A2)
+
+## Things I want to learn (soon?)
+
+* `jqlang` - Deep dive into https://jqlang.org
+* `d2lant` - Deep dive into https://d2lang.com
+* Advanced Prometheus Course at Grafana Labs
 
 That's all for now...
 
