@@ -1,10 +1,6 @@
 # Hello!
 
-<<<<<<< HEAD
-> This site was generated at 2025-11-18T09:41:06+02:00 by `Gemtexter`
-=======
-> This site was generated at 2025-11-09T12:53:07+02:00 by `Gemtexter`
->>>>>>> 0d5b0f03017acf7b5099cc10d6dd7f6b9af72428
+> This site was generated at 2025-11-18T09:45:23+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 

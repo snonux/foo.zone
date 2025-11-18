@@ -31,11 +31,7 @@
 
 ### Books I am currently reading / listening (4)
 
-<<<<<<< HEAD
 * 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
-=======
-* Seeking SRE: Conversations About Running Production Systems at Scale; David N. Blank-Edelman; eBook (Kobo kePub)
->>>>>>> 0d5b0f03017acf7b5099cc10d6dd7f6b9af72428
 * How to talk so kids will listen & Listen so kids will talk; Audiobook (Audible)
 * 2005 - Okular; Alastair Reynolds; eBook (Kobo kePub)
 * 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook (Libro.fm)
@@ -44,12 +40,8 @@
 
 * Clean Code; Audiobook (Audible)
 * Bash it out
-<<<<<<< HEAD
 * Positiv Wirkt: Wie du mit positivem Denken und Handeln aktiv dein Leben gestaltest (german); Armin Schubert; Paperback
 * The Courage To Be Happy; Ichiro Kishimi and Fumitake Koga; Paperback
-=======
-* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
->>>>>>> 0d5b0f03017acf7b5099cc10d6dd7f6b9af72428
 * 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
 * 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
 * 2025 - Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
@@ -73,7 +65,7 @@
 ## Things I want to learn (soon?)
 
 * `jqlang` - Deep dive into https://jqlang.org
-* `d2lant` - Deep dive into https://d2lang.com
+* `d2lang` - Deep dive into https://d2lang.com
 * Advanced Prometheus Course at Grafana Labs
 
 That's all for now...
