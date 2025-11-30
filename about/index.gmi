@@ -24,46 +24,10 @@
 => https://fosstodon.org/@snonux @snonux@fosstodon.org - Me at Mastodon
 => https://www.linkedin.com/in/paul-buetow-b4857270/ My LinkedIn profile
 
-## Books
-
-### Books I am currently reading / listening (4)
-
-* 97 Things Every Cloud Engineer Should Know: Collective Wisdom from the Experts; Emily Freeman, Nathen Harvey; eBook (ePub)
-* 2005 - Okular; Alastair Reynolds; eBook (Kobo kePub)
-* 2021 - Inhibitor Phase; Alastair Reynolds; Audiobook (Libro.fm)
-* Re-listening the Audiobook: Search Inside Yourself - The Unexpected path to Achieving Success, Happiness (and World Peace); Chade-Meng Tan, Daniel Goleman, Jon Kabat-Zinn; HarperOne
-
-### Next books already in my shelf (8)
-
-* Clean Code; Audiobook (Audible)
-* Bash it out
-* Positiv Wirkt: Wie du mit positivem Denken und Handeln aktiv dein Leben gestaltest (german); Armin Schubert; Paperback
-* The Courage To Be Happy; Ichiro Kishimi and Fumitake Koga; Paperback
-* 1992 - A Fire Upon the Deep (german: Ein Feuer auf der Tiefe); Vernor Vinge; eBook (buecher.de)
-* 2025 - Origin: Die Entdecknug (german); Andreas Brandhorst; eBook (buecher.de)
-* 2025 - Origin: Die Erweckung (german); Joschua Tree; eBook (buecher.de)
-* 2025 - Origin: Die Erloesung (german); Brandon Q. Morris; eBook (buecher.de)
-
-### Book wishlist (3)
-
-* 2025 - Gateway - Frederik Pohl (german)
-* Bozo Loop -  https://rachelbythebay.gumroad.com/l/bozo-loop-epub
-* Maybe Understanding Distributed Systems - https://understandingdistributed.systems (or do I know most of it already?)
-
-### Books I've read
+## Books I've read
 
 => ./resources.gmi Resources, Technical Books, Podcasts, Courses and Guides I recommend
 => ./novels.gmi Novels I've read
-
-## Things I am currently learning
-
-* Bulgarian language level 4 (A2.2)
-
-## Things I want to learn (soon?)
-
-* `jqlang` - Deep dive into https://jqlang.org
-* `d2lang` - Deep dive into https://d2lang.com
-* Advanced Prometheus Course at Grafana Labs
 
 That's all for now...
 
