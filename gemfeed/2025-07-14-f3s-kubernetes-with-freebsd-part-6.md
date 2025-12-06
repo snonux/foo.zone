@@ -11,6 +11,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
+[2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -1809,13 +1810,13 @@ MooseFS is a fault-tolerant, distributed file system that could provide proper h
 
 Both technologies could run on top of our encrypted ZFS volumes, combining ZFS's data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn't seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.
 
-
 Read the next post of this series:
 
 [f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 
 Other *BSD-related posts:
 
+[2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 [2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  

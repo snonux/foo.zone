@@ -11,6 +11,7 @@ This is the seventh blog post about the f3s series for my self-hosting demands i
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
+[2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -939,10 +940,13 @@ These are the charts that already live under `examples/conf/f3s` and run on the 
 * `syncthing` — two-volume setup for config and shared data, fronted by the `syncthing.f3s.foo.zone` ingress.
 * `wallabag` — read-it-later service with persistent `data` and `images` directories on the NFS export.
 
-I hope you enjoyed this walkthrough. In the next part of this series, I will likely tackle monitoring, backup, or observability. I haven't fully decided yet which topic to cover next, so stay tuned!
+I hope you enjoyed this walkthrough. Read the next post of this series:
+
+[f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 
 Other *BSD-related posts:
 
+[2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 [2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)](./2025-10-02-f3s-kubernetes-with-freebsd-part-7.md)  
 [2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage](./2025-07-14-f3s-kubernetes-with-freebsd-part-6.md)  
 [2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network](./2025-05-11-f3s-kubernetes-with-freebsd-part-5.md)  
