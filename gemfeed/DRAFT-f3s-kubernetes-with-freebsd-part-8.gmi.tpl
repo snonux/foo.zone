@@ -1,27 +1,27 @@
-# f3s: Kubernetes with FreeBSD - Part 8: Grafana, Prometheus, Loki, and Alloy
+# f3s: Kubernetes with FreeBSD - Part 8: Observability
 
 This is the 8th blog post about the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
 
-=> ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
+=> ./f3s-kubernetes-with-freebsd-part-1f3slogo.png f3s logo
 
 << template::inline::toc
 
 ## Introduction
 
-In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what's happening inside the cluster—whether it's tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of four main components, all deployed into the `monitoring` namespace:
+In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what's happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of four main components, all deployed into the `monitoring` namespace:
 
-* `Prometheus`: time-series database for metrics collection and alerting
-* `Grafana`: visualisation and dashboarding frontend
-* `Loki`: log aggregation system (like Prometheus, but for logs)
-* `Alloy`: telemetry collector that ships logs from all pods to Loki
+* Prometheus: time-series database for metrics collection and alerting
+* Grafana: visualisation and dashboarding frontend
+* Loki: log aggregation system (like Prometheus, but for logs)
+* Alloy: telemetry collector that ships logs from all pods to Loki
 
 Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a popular open-source alternative to commercial observability platforms.
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+=> https:/codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s codeberg.org/snonux/conf/f3s
 
 ## Persistent storage recap
 
@@ -50,7 +50,7 @@ namespace/monitoring created
 
 ## Installing Prometheus and Grafana
 
-Prometheus and Grafana are deployed together using the `kube-prometheus-stack` Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. I'll explain what each component does in detail later when we look at the running pods.
+Prometheus and Grafana are deployed together using the `kube-prometheus-stack` Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.
 
 ### Prerequisites
 
@@ -73,7 +73,6 @@ Create the directories on the NFS server for persistent storage:
 The configuration repository contains a `Justfile` that automates the deployment. `just` is a handy command runner—think of it as a simpler, more modern alternative to `make`. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:
 
 => https://github.com/casey/just just - A handy way to save and run project-specific commands
-
 => https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus codeberg.org/snonux/conf/f3s/prometheus
 
 To install everything:
@@ -112,7 +111,6 @@ prometheus-kube-prometheus-prometheus   ClusterIP   10.43.152.163   9090/TCP,808
 Grafana connects to Prometheus using the internal service URL `http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090`. The default Grafana credentials are `admin`/`prom-operator`, which should be changed immediately after first login.
 
 => ./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png Grafana dashboard showing cluster metrics
-
 => ./f3s-kubernetes-with-freebsd-part-8/grafana-node-exporter.png Node Exporter dashboard with host metrics
 
 ## Installing Loki and Alloy
@@ -166,7 +164,7 @@ For full high-availability, you'd deploy Loki in microservices mode with separat
 
 Alloy is configured via `alloy-values.yaml` to discover all pods in the cluster and forward their logs to Loki:
 
-```
+```sh
 discovery.kubernetes "pods" {
   role = "pod"
 }
@@ -237,8 +235,6 @@ Once configured, you can explore logs in Grafana's "Explore" view. I'll show som
 
 After deploying everything, here's what's running in the monitoring namespace:
 
-=> ./f3s-kubernetes-with-freebsd-part-8/k9s-monitoring-namespace.png k9s showing all pods in the monitoring namespace
-
 ```sh
 $ kubectl get pods -n monitoring
 NAME                                                     READY   STATUS    RESTARTS   AGE
@@ -297,9 +293,9 @@ Let me break down what each pod does:
 
 The kube-prometheus-stack comes with many pre-built dashboards. Some useful ones include:
 
-* `Kubernetes / Compute Resources / Cluster`: overview of CPU and memory usage across the cluster
-* `Kubernetes / Compute Resources / Namespace (Pods)`: resource usage by namespace
-* `Node Exporter / Nodes`: detailed host metrics like disk I/O, network, and CPU
+* Kubernetes / Compute Resources / Cluster: overview of CPU and memory usage across the cluster
+* Kubernetes / Compute Resources / Namespace (Pods): resource usage by namespace
+* Node Exporter / Nodes: detailed host metrics like disk I/O, network, and CPU
 
 ### Querying logs with LogQL
 
@@ -462,7 +458,7 @@ The same approach works for OpenBSD hosts. I have two OpenBSD edge relay servers
 On each OpenBSD host, install the node_exporter package:
 
 ```sh
-rex@blowfish:~ $ doas pkg_add node_exporter
+blowfish:~ $ doas pkg_add node_exporter
 quirks-7.103 signed on 2025-10-13T22:55:16Z
 The following new rcscripts were installed: /etc/rc.d/node_exporter
 See rcctl(8) for details.
@@ -471,26 +467,26 @@ See rcctl(8) for details.
 Enable the service to start at boot:
 
 ```sh
-rex@blowfish:~ $ doas rcctl enable node_exporter
+blowfish:~ $ doas rcctl enable node_exporter
 ```
 
 Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host's WireGuard address:
 
 ```sh
-rex@blowfish:~ $ doas rcctl set node_exporter flags '--web.listen-address=192.168.2.110:9100'
+blowfish:~ $ doas rcctl set node_exporter flags '--web.listen-address=192.168.2.110:9100'
 ```
 
 Start the service:
 
 ```sh
-rex@blowfish:~ $ doas rcctl start node_exporter
+blowfish:~ $ doas rcctl start node_exporter
 node_exporter(ok)
 ```
 
 Verify it's running:
 
 ```sh
-rex@blowfish:~ $ curl -s http://192.168.2.110:9100/metrics | head -3
+blowfish:~ $ curl -s http://192.168.2.110:9100/metrics | head -3
 # HELP go_gc_duration_seconds A summary of the wall-time pause...
 # TYPE go_gc_duration_seconds summary
 go_gc_duration_seconds{quantile="0"} 0
@@ -564,10 +560,10 @@ After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and
 
 With Prometheus, Grafana, Loki, and Alloy deployed, I now have complete visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:
 
-* `Metrics`: Prometheus collects and stores time-series data from all components
-* `Logs`: Loki aggregates logs from all containers, searchable via Grafana
-* `Visualisation`: Grafana provides dashboards and exploration tools
-* `Alerting`: Alertmanager can notify on conditions defined in Prometheus rules
+* metrics: Prometheus collects and stores time-series data from all components
+* Logs: Loki aggregates logs from all containers, searchable via Grafana
+* Visualisation: Grafana provides dashboards and exploration tools
+* Alerting: Alertmanager can notify on conditions defined in Prometheus rules
 
 This observability stack runs entirely on the home lab infrastructure, with data persisted to the NFS share. It's lightweight enough for a three-node cluster but provides the same capabilities as production-grade setups.
 
