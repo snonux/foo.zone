@@ -453,9 +453,116 @@ Unlike memory metrics, disk I/O metrics (`node_disk_read_bytes_total`, `node_dis
 
 The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (`node_zfs_arcstats_*`) for ARC cache performance, and per-dataset I/O stats are available via `sysctl kstat.zfs`, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. Creating custom ZFS-specific dashboards is left as an exercise for another day.
 
+## Monitoring external OpenBSD hosts
+
+The same approach works for OpenBSD hosts. I have two OpenBSD edge relay servers (`blowfish`, `fishfinger`) that handle TLS termination and forward traffic through WireGuard to the cluster. These can also be monitored with Node Exporter.
+
+### Installing Node Exporter on OpenBSD
+
+On each OpenBSD host, install the node_exporter package:
+
+```sh
+rex@blowfish:~ $ doas pkg_add node_exporter
+quirks-7.103 signed on 2025-10-13T22:55:16Z
+The following new rcscripts were installed: /etc/rc.d/node_exporter
+See rcctl(8) for details.
+```
+
+Enable the service to start at boot:
+
+```sh
+rex@blowfish:~ $ doas rcctl enable node_exporter
+```
+
+Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host's WireGuard address:
+
+```sh
+rex@blowfish:~ $ doas rcctl set node_exporter flags '--web.listen-address=192.168.2.110:9100'
+```
+
+Start the service:
+
+```sh
+rex@blowfish:~ $ doas rcctl start node_exporter
+node_exporter(ok)
+```
+
+Verify it's running:
+
+```sh
+rex@blowfish:~ $ curl -s http://192.168.2.110:9100/metrics | head -3
+# HELP go_gc_duration_seconds A summary of the wall-time pause...
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 0
+```
+
+Repeat for the other OpenBSD host (`fishfinger`) with its respective WireGuard IP (`192.168.2.111`).
+
+### Adding OpenBSD hosts to Prometheus
+
+Update `additional-scrape-configs.yaml` to include the OpenBSD targets:
+
+```yaml
+- job_name: 'node-exporter'
+  static_configs:
+    - targets:
+      - '192.168.2.130:9100'  # f0 via WireGuard
+      - '192.168.2.131:9100'  # f1 via WireGuard
+      - '192.168.2.132:9100'  # f2 via WireGuard
+      labels:
+        os: freebsd
+    - targets:
+      - '192.168.2.110:9100'  # blowfish via WireGuard
+      - '192.168.2.111:9100'  # fishfinger via WireGuard
+      labels:
+        os: openbsd
+```
+
+The `os: openbsd` label allows filtering these hosts separately from FreeBSD and Linux nodes.
+
+### OpenBSD memory metrics compatibility
+
+OpenBSD uses the same memory metric names as FreeBSD (`node_memory_size_bytes`, `node_memory_free_bytes`, etc.), so a similar PrometheusRule is needed to generate Linux-compatible metrics:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: openbsd-memory-rules
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: openbsd-memory
+      rules:
+        - record: node_memory_MemTotal_bytes
+          expr: node_memory_size_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemAvailable_bytes
+          expr: node_memory_free_bytes{os="openbsd"} + node_memory_inactive_bytes{os="openbsd"} + node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemFree_bytes
+          expr: node_memory_free_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_Cached_bytes
+          expr: node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+```
+
+This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
+
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
+
+After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
+
 ## Summary
 
-With Prometheus, Grafana, Loki, and Alloy deployed, I now have complete visibility into the k3s cluster and the FreeBSD storage servers:
+With Prometheus, Grafana, Loki, and Alloy deployed, I now have complete visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:
 
 * `Metrics`: Prometheus collects and stores time-series data from all components
 * `Logs`: Loki aggregates logs from all containers, searchable via Grafana
