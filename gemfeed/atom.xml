@@ -1,11 +1,732 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-11-18T09:45:04+02:00</updated>
+    <updated>2025-12-06T23:58:24+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 8: Observability</title>
+        <link href="https://foo.zone/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.html" />
+        <id>https://foo.zone/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.html</id>
+        <updated>2025-12-06T23:58:24+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the 8th blog post about the f3s series for my self-hosting demands in a home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-8-observability'>f3s: Kubernetes with FreeBSD - Part 8: Observability</h1><br />
+<br />
+<span>This is the 8th blog post about the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-8-observability'>f3s: Kubernetes with FreeBSD - Part 8: Observability</a></li>
+<li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#persistent-storage-recap'>Persistent storage recap</a></li>
+<li>⇢ <a href='#the-monitoring-namespace'>The monitoring namespace</a></li>
+<li>⇢ <a href='#installing-prometheus-and-grafana'>Installing Prometheus and Grafana</a></li>
+<li>⇢ ⇢ <a href='#prerequisites'>Prerequisites</a></li>
+<li>⇢ ⇢ <a href='#deploying-with-the-justfile'>Deploying with the Justfile</a></li>
+<li>⇢ ⇢ <a href='#exposing-grafana-via-ingress'>Exposing Grafana via ingress</a></li>
+<li>⇢ <a href='#installing-loki-and-alloy'>Installing Loki and Alloy</a></li>
+<li>⇢ ⇢ <a href='#prerequisites'>Prerequisites</a></li>
+<li>⇢ ⇢ <a href='#deploying-loki-and-alloy'>Deploying Loki and Alloy</a></li>
+<li>⇢ ⇢ <a href='#configuring-alloy'>Configuring Alloy</a></li>
+<li>⇢ ⇢ <a href='#adding-loki-as-a-grafana-data-source'>Adding Loki as a Grafana data source</a></li>
+<li>⇢ <a href='#the-complete-monitoring-stack'>The complete monitoring stack</a></li>
+<li>⇢ <a href='#using-the-observability-stack'>Using the observability stack</a></li>
+<li>⇢ ⇢ <a href='#viewing-metrics-in-grafana'>Viewing metrics in Grafana</a></li>
+<li>⇢ ⇢ <a href='#querying-logs-with-logql'>Querying logs with LogQL</a></li>
+<li>⇢ ⇢ <a href='#creating-alerts'>Creating alerts</a></li>
+<li>⇢ <a href='#monitoring-external-freebsd-hosts'>Monitoring external FreeBSD hosts</a></li>
+<li>⇢ ⇢ <a href='#installing-node-exporter-on-freebsd'>Installing Node Exporter on FreeBSD</a></li>
+<li>⇢ ⇢ <a href='#adding-freebsd-hosts-to-prometheus'>Adding FreeBSD hosts to Prometheus</a></li>
+<li>⇢ ⇢ <a href='#freebsd-memory-metrics-compatibility'>FreeBSD memory metrics compatibility</a></li>
+<li>⇢ ⇢ <a href='#disk-io-metrics-limitation'>Disk I/O metrics limitation</a></li>
+<li>⇢ <a href='#monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</a></li>
+<li>⇢ ⇢ <a href='#installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</a></li>
+<li>⇢ ⇢ <a href='#adding-openbsd-hosts-to-prometheus'>Adding OpenBSD hosts to Prometheus</a></li>
+<li>⇢ ⇢ <a href='#openbsd-memory-metrics-compatibility'>OpenBSD memory metrics compatibility</a></li>
+<li>⇢ <a href='#summary'>Summary</a></li>
+</ul><br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what&#39;s happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of four main components, all deployed into the <span class='inlinecode'>monitoring</span> namespace:</span><br />
+<br />
+<ul>
+<li>Prometheus: time-series database for metrics collection and alerting</li>
+<li>Grafana: visualisation and dashboarding frontend</li>
+<li>Loki: log aggregation system (like Prometheus, but for logs)</li>
+<li>Alloy: telemetry collector that ships logs from all pods to Loki</li>
+</ul><br />
+<span>Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a popular open-source alternative to commercial observability platforms.</span><br />
+<br />
+<span>All manifests for the f3s stack live in my configuration repository:</span><br />
+<br />
+<a class='textlink' href='https:/codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
+<br />
+<span>All observability components need persistent storage so that metrics and logs survive pod restarts. As covered in Part 6 of this series, the cluster uses NFS-backed persistent volumes:</span><br />
+<br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<br />
+<span>The FreeBSD hosts (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) serve as NFS servers, exporting ZFS datasets that are replicated across hosts using <span class='inlinecode'>zrepl</span>. The Rocky Linux k3s nodes (<span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>) mount these exports at <span class='inlinecode'>/data/nfs/k3svolumes</span>. This directory contains subdirectories for each application that needs persistent storage—including Prometheus, Grafana, and Loki.</span><br />
+<br />
+<span>For example, the observability stack uses these paths on the NFS share:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>/data/nfs/k3svolumes/prometheus/data</span> — Prometheus time-series database</li>
+<li><span class='inlinecode'>/data/nfs/k3svolumes/grafana/data</span> — Grafana configuration, dashboards, and plugins</li>
+<li><span class='inlinecode'>/data/nfs/k3svolumes/loki/data</span> — Loki log chunks and index</li>
+</ul><br />
+<span>Each path gets a corresponding <span class='inlinecode'>PersistentVolume</span> and <span class='inlinecode'>PersistentVolumeClaim</span> in Kubernetes, allowing pods to mount them as regular volumes. Because the underlying storage is ZFS with replication, we get snapshots and redundancy for free.</span><br />
+<br />
+<h2 style='display: inline' id='the-monitoring-namespace'>The monitoring namespace</h2><br />
+<br />
+<span>First, I created the monitoring namespace where all observability components will live:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl create namespace monitoring
+namespace/monitoring created
+</pre>
+<br />
+<h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
+<br />
+<span>Prometheus and Grafana are deployed together using the <span class='inlinecode'>kube-prometheus-stack</span> Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.</span><br />
+<br />
+<h3 style='display: inline' id='prerequisites'>Prerequisites</h3><br />
+<br />
+<span>Add the Prometheus Helm chart repository:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo update
+</pre>
+<br />
+<span>Create the directories on the NFS server for persistent storage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/prometheus/data</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/grafana/data</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='deploying-with-the-justfile'>Deploying with the Justfile</h3><br />
+<br />
+<span>The configuration repository contains a <span class='inlinecode'>Justfile</span> that automates the deployment. <span class='inlinecode'>just</span> is a handy command runner—think of it as a simpler, more modern alternative to <span class='inlinecode'>make</span>. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:</span><br />
+<br />
+<a class='textlink' href='https://github.com/casey/just'>just - A handy way to save and run project-specific commands</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
+<br />
+<span>To install everything:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd conf/f3s/prometheus
+$ just install
+kubectl apply -f persistent-volumes.yaml
+persistentvolume/prometheus-data-pv created
+persistentvolume/grafana-data-pv created
+persistentvolumeclaim/grafana-data-pvc created
+helm install prometheus prometheus-community/kube-prometheus-stack \
+    --namespace monitoring -f persistence-values.yaml
+NAME: prometheus
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
+</pre>
+<br />
+<span>The <span class='inlinecode'>persistence-values.yaml</span> configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
+<br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<br />
+<h3 style='display: inline' id='exposing-grafana-via-ingress'>Exposing Grafana via ingress</h3><br />
+<br />
+<span>The chart also deploys an ingress for Grafana, making it accessible at <span class='inlinecode'>grafana.f3s.foo.zone</span>. The ingress configuration follows the same pattern as other services in the cluster—Traefik handles the routing internally, while the OpenBSD edge relays terminate TLS and forward traffic through WireGuard.</span><br />
+<br />
+<span>Once deployed, Grafana is accessible and comes pre-configured with Prometheus as a data source. You can verify the Prometheus service is running:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+NAME                                    TYPE        CLUSTER-IP      PORT(S)
+prometheus-kube-prometheus-prometheus   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">152.163</font>   <font color="#000000">9090</font>/TCP,<font color="#000000">8080</font>/TCP
+</pre>
+<br />
+<span>Grafana connects to Prometheus using the internal service URL <span class='inlinecode'>http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090</span>. The default Grafana credentials are <span class='inlinecode'>admin</span>/<span class='inlinecode'>prom-operator</span>, which should be changed immediately after first login.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png'><img alt='Grafana dashboard showing Prometheus metrics' title='Grafana dashboard showing Prometheus metrics' src='./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png' /></a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png'><img alt='Grafana dashboard showing cluster metrics' title='Grafana dashboard showing cluster metrics' src='./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png' /></a><br />
+<br />
+<h2 style='display: inline' id='installing-loki-and-alloy'>Installing Loki and Alloy</h2><br />
+<br />
+<span>While Prometheus handles metrics, Loki handles logs. It&#39;s designed to be cost-effective and easy to operate—it doesn&#39;t index the contents of logs, only the metadata (labels), making it very efficient for storage.</span><br />
+<br />
+<span>Alloy is Grafana&#39;s telemetry collector (the successor to Promtail). It runs as a DaemonSet on each node, tails container logs, and ships them to Loki.</span><br />
+<br />
+<h3 style='display: inline' id='prerequisites'>Prerequisites</h3><br />
+<br />
+<span>Create the data directory on the NFS server:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/loki/data</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='deploying-loki-and-alloy'>Deploying Loki and Alloy</h3><br />
+<br />
+<span>The Loki configuration also lives in the repository:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>codeberg.org/snonux/conf/f3s/loki</a><br />
+<br />
+<span>To install:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ cd conf/f3s/loki
+$ just install
+helm repo add grafana https://grafana.github.io/helm-charts || <b><u><font color="#000000">true</font></u></b>
+helm repo update
+kubectl apply -f persistent-volumes.yaml
+persistentvolume/loki-data-pv created
+persistentvolumeclaim/loki-data-pvc created
+helm install loki grafana/loki --namespace monitoring -f values.yaml
+NAME: loki
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
+...
+helm install alloy grafana/alloy --namespace monitoring -f alloy-values.yaml
+NAME: alloy
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
+</pre>
+<br />
+<span>Loki runs in single-binary mode with a single replica (<span class='inlinecode'>loki-0</span>), which is appropriate for a home lab cluster. This means there&#39;s only one Loki pod running at any time. If the node hosting Loki fails, Kubernetes will automatically reschedule the pod to another worker node—but there will be a brief downtime (typically under a minute) while this happens. For my home lab use case, this is perfectly acceptable.</span><br />
+<br />
+<span>For full high-availability, you&#39;d deploy Loki in microservices mode with separate read, write, and backend components, backed by object storage like S3 or MinIO instead of local filesystem storage. That&#39;s a more complex setup that I might explore in a future blog post—but for now, the single-binary mode with NFS-backed persistence strikes the right balance between simplicity and durability.</span><br />
+<br />
+<h3 style='display: inline' id='configuring-alloy'>Configuring Alloy</h3><br />
+<br />
+<span>Alloy is configured via <span class='inlinecode'>alloy-values.yaml</span> to discover all pods in the cluster and forward their logs to Loki:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>discovery.kubernetes <font color="#808080">"pods"</font> {
+  role = <font color="#808080">"pod"</font>
+}
+
+discovery.relabel <font color="#808080">"pods"</font> {
+  targets = discovery.kubernetes.pods.targets
+
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_namespace"</font>]
+    target_label  = <font color="#808080">"namespace"</font>
+  }
+
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_name"</font>]
+    target_label  = <font color="#808080">"pod"</font>
+  }
+
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_container_name"</font>]
+    target_label  = <font color="#808080">"container"</font>
+  }
+
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_label_app"</font>]
+    target_label  = <font color="#808080">"app"</font>
+  }
+}
+
+loki.<b><u><font color="#000000">source</font></u></b>.kubernetes <font color="#808080">"pods"</font> {
+  targets    = discovery.relabel.pods.output
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write <font color="#808080">"default"</font> {
+  endpoint {
+    url = <font color="#808080">"http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"</font>
+  }
+}
+</pre>
+<br />
+<span>This configuration automatically labels each log line with the namespace, pod name, container name, and app label, making it easy to filter logs in Grafana.</span><br />
+<br />
+<h3 style='display: inline' id='adding-loki-as-a-grafana-data-source'>Adding Loki as a Grafana data source</h3><br />
+<br />
+<span>Loki doesn&#39;t have its own web UI—you query it through Grafana. First, verify the Loki service is running:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get svc -n monitoring loki
+NAME   TYPE        CLUSTER-IP    PORT(S)
+loki   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.60</font>   <font color="#000000">3100</font>/TCP,<font color="#000000">9095</font>/TCP
+</pre>
+<br />
+<span>To add Loki as a data source in Grafana:</span><br />
+<br />
+<ul>
+<li>Navigate to Configuration → Data Sources</li>
+<li>Click "Add data source"</li>
+<li>Select "Loki"</li>
+<li>Set the URL to: <span class='inlinecode'>http://loki.monitoring.svc.cluster.local:3100</span></li>
+<li>Click "Save &amp; Test"</li>
+</ul><br />
+<span>Once configured, you can explore logs in Grafana&#39;s "Explore" view. I&#39;ll show some example queries in the "Using the observability stack" section below.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/loki-explore.png'><img alt='Exploring logs in Grafana with Loki' title='Exploring logs in Grafana with Loki' src='./f3s-kubernetes-with-freebsd-part-8/loki-explore.png' /></a><br />
+<br />
+<h2 style='display: inline' id='the-complete-monitoring-stack'>The complete monitoring stack</h2><br />
+<br />
+<span>After deploying everything, here&#39;s what&#39;s running in the monitoring namespace:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get pods -n monitoring
+NAME                                                     READY   STATUS    RESTARTS   AGE
+alertmanager-prometheus-kube-prometheus-alertmanager-<font color="#000000">0</font>   <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          42d
+alloy-g5fgj                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+alloy-nfw8w                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+alloy-tg9vj                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+loki-<font color="#000000">0</font>                                                   <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          25m
+prometheus-grafana-868f9dc7cf-lg2vl                      <font color="#000000">3</font>/<font color="#000000">3</font>     Running   <font color="#000000">0</font>          42d
+prometheus-kube-prometheus-operator-8d7bbc48c-p4sf4      <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-kube-state-metrics-7c5fb9d798-hh2fx           <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-kube-prometheus-prometheus-<font color="#000000">0</font>       <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-2nsg9                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-mqr<font color="#000000">25</font>                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-wp4ds                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+</pre>
+<br />
+<span>And the services:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl get svc -n monitoring
+NAME                                      TYPE        CLUSTER-IP      PORT(S)
+alertmanager-operated                     ClusterIP   None            <font color="#000000">9093</font>/TCP,<font color="#000000">9094</font>/TCP
+alloy                                     ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">74.14</font>     <font color="#000000">12345</font>/TCP
+loki                                      ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.60</font>     <font color="#000000">3100</font>/TCP,<font color="#000000">9095</font>/TCP
+loki-headless                             ClusterIP   None            <font color="#000000">3100</font>/TCP
+prometheus-grafana                        ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">46.82</font>     <font color="#000000">80</font>/TCP
+prometheus-kube-prometheus-alertmanager   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">208.43</font>    <font color="#000000">9093</font>/TCP,<font color="#000000">8080</font>/TCP
+prometheus-kube-prometheus-operator       ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">246.121</font>   <font color="#000000">443</font>/TCP
+prometheus-kube-prometheus-prometheus     ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">152.163</font>   <font color="#000000">9090</font>/TCP,<font color="#000000">8080</font>/TCP
+prometheus-kube-state-metrics             ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.26</font>     <font color="#000000">8080</font>/TCP
+prometheus-prometheus-node-exporter       ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">127.242</font>   <font color="#000000">9100</font>/TCP
+</pre>
+<br />
+<span>Let me break down what each pod does:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>alertmanager-prometheus-kube-prometheus-alertmanager-0</span>: the Alertmanager instance that receives alerts from Prometheus, deduplicates them, groups related alerts together, and routes notifications to the appropriate receivers (email, Slack, PagerDuty, etc.). It runs as a StatefulSet with persistent storage for silences and notification state.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>alloy-g5fgj, alloy-nfw8w, alloy-tg9vj</span>: three Alloy pods running as a DaemonSet, one on each k3s node. Each pod tails the container logs from its local node via the Kubernetes API and forwards them to Loki. This ensures log collection continues even if a node becomes isolated from the others.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>loki-0</span>: the single Loki instance running in single-binary mode. It receives log streams from Alloy, stores them in chunks on the NFS-backed persistent volume, and serves queries from Grafana. The <span class='inlinecode'>-0</span> suffix indicates it&#39;s a StatefulSet pod.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>prometheus-grafana-...</span>: the Grafana web interface for visualising metrics and logs. It comes pre-configured with Prometheus as a data source and includes dozens of dashboards for Kubernetes monitoring. Dashboards, users, and settings are persisted to the NFS share.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>prometheus-kube-prometheus-operator-...</span>: the Prometheus Operator that watches for custom resources (ServiceMonitor, PodMonitor, PrometheusRule) and automatically configures Prometheus to scrape new targets. This allows applications to declare their own monitoring requirements.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>prometheus-kube-state-metrics-...</span>: generates metrics about the state of Kubernetes objects themselves: how many pods are running, pending, or failed; deployment replica counts; node conditions; PVC status; and more. Essential for cluster-level dashboards.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>prometheus-prometheus-kube-prometheus-prometheus-0</span>: the Prometheus server that scrapes metrics from all configured targets (pods, services, nodes), stores them in a time-series database, evaluates alerting rules, and serves queries to Grafana.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>prometheus-prometheus-node-exporter-...</span>: three Node Exporter pods running as a DaemonSet, one on each node. They expose hardware and OS-level metrics: CPU usage, memory, disk I/O, filesystem usage, network statistics, and more. These feed the "Node Exporter" dashboards in Grafana.</li>
+</ul><br />
+<h2 style='display: inline' id='using-the-observability-stack'>Using the observability stack</h2><br />
+<br />
+<h3 style='display: inline' id='viewing-metrics-in-grafana'>Viewing metrics in Grafana</h3><br />
+<br />
+<span>The kube-prometheus-stack comes with many pre-built dashboards. Some useful ones include:</span><br />
+<br />
+<ul>
+<li>Kubernetes / Compute Resources / Cluster: overview of CPU and memory usage across the cluster</li>
+<li>Kubernetes / Compute Resources / Namespace (Pods): resource usage by namespace</li>
+<li>Node Exporter / Nodes: detailed host metrics like disk I/O, network, and CPU</li>
+</ul><br />
+<h3 style='display: inline' id='querying-logs-with-logql'>Querying logs with LogQL</h3><br />
+<br />
+<span>In Grafana&#39;s Explore view, select Loki as the data source and try queries like:</span><br />
+<br />
+<pre>
+# All logs from the services namespace
+{namespace="services"}
+
+# Logs from pods matching a pattern
+{pod=~"miniflux.*"}
+
+# Filter by log content
+{namespace="services"} |= "error"
+
+# Parse JSON logs and filter
+{namespace="services"} | json | level="error"
+</pre>
+<br />
+<h3 style='display: inline' id='creating-alerts'>Creating alerts</h3><br />
+<br />
+<span>Prometheus supports alerting rules that can notify you when something goes wrong. The kube-prometheus-stack includes many default alerts for common issues like high CPU usage, pod crashes, and node problems. These can be customised via PrometheusRule CRDs.</span><br />
+<br />
+<h2 style='display: inline' id='monitoring-external-freebsd-hosts'>Monitoring external FreeBSD hosts</h2><br />
+<br />
+<span>The observability stack can also monitor servers outside the Kubernetes cluster. The FreeBSD hosts (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) that serve NFS storage can be added to Prometheus using the Node Exporter.</span><br />
+<br />
+<h3 style='display: inline' id='installing-node-exporter-on-freebsd'>Installing Node Exporter on FreeBSD</h3><br />
+<br />
+<span>On each FreeBSD host, install the node_exporter package:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas pkg install -y node_exporter
+</pre>
+<br />
+<span>Enable the service to start at boot:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas sysrc node_exporter_enable=YES
+node_exporter_enable:  -&gt; YES
+</pre>
+<br />
+<span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas sysrc node_exporter_args=<font color="#808080">'--web.listen-address=192.168.2.130:9100'</font>
+node_exporter_args:  -&gt; --web.listen-address=<font color="#000000">192.168</font>.<font color="#000000">2.130</font>:<font color="#000000">9100</font>
+</pre>
+<br />
+<span>Start the service:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas service node_exporter start
+Starting node_exporter.
+</pre>
+<br />
+<span>Verify it&#39;s running:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % curl -s http://<font color="#000000">192.168</font>.<font color="#000000">2.130</font>:<font color="#000000">9100</font>/metrics | head -<font color="#000000">3</font>
+<i><font color="silver"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
+<i><font color="silver"># TYPE go_gc_duration_seconds summary</font></i>
+go_gc_duration_seconds{quantile=<font color="#808080">"0"</font>} <font color="#000000">0</font>
+</pre>
+<br />
+<span>Repeat for the other FreeBSD hosts (<span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) with their respective WireGuard IPs.</span><br />
+<br />
+<h3 style='display: inline' id='adding-freebsd-hosts-to-prometheus'>Adding FreeBSD hosts to Prometheus</h3><br />
+<br />
+<span>Create a file <span class='inlinecode'>additional-scrape-configs.yaml</span> in the prometheus configuration directory:</span><br />
+<br />
+<pre>
+- job_name: &#39;node-exporter&#39;
+  static_configs:
+    - targets:
+      - &#39;192.168.2.130:9100&#39;  # f0 via WireGuard
+      - &#39;192.168.2.131:9100&#39;  # f1 via WireGuard
+      - &#39;192.168.2.132:9100&#39;  # f2 via WireGuard
+      labels:
+        os: freebsd
+</pre>
+<br />
+<span>The <span class='inlinecode'>job_name</span> must be <span class='inlinecode'>node-exporter</span> to match the existing dashboards. The <span class='inlinecode'>os: freebsd</span> label allows filtering these hosts separately if needed.</span><br />
+<br />
+<span>Create a Kubernetes secret from this file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ kubectl create secret generic additional-scrape-configs \
+    --from-file=additional-scrape-configs.yaml \
+    -n monitoring
+</pre>
+<br />
+<span>Update <span class='inlinecode'>persistence-values.yaml</span> to reference the secret:</span><br />
+<br />
+<pre>
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigsSecret:
+      enabled: true
+      name: additional-scrape-configs
+      key: additional-scrape-configs.yaml
+</pre>
+<br />
+<span>Upgrade the Prometheus deployment:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ just upgrade
+</pre>
+<br />
+<span>After a minute or so, the FreeBSD hosts appear in the Prometheus targets and in the Node Exporter dashboards in Grafana.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-freebsd-nodes.png'><img alt='FreeBSD hosts in the Node Exporter dashboard' title='FreeBSD hosts in the Node Exporter dashboard' src='./f3s-kubernetes-with-freebsd-part-8/grafana-freebsd-nodes.png' /></a><br />
+<br />
+<h3 style='display: inline' id='freebsd-memory-metrics-compatibility'>FreeBSD memory metrics compatibility</h3><br />
+<br />
+<span>The default Node Exporter dashboards are designed for Linux and expect metrics like <span class='inlinecode'>node_memory_MemAvailable_bytes</span>. FreeBSD uses different metric names (<span class='inlinecode'>node_memory_size_bytes</span>, <span class='inlinecode'>node_memory_free_bytes</span>, etc.), so memory panels will show "No data" out of the box.</span><br />
+<br />
+<span>To fix this, I created a PrometheusRule that generates synthetic Linux-compatible metrics from the FreeBSD equivalents:</span><br />
+<br />
+<pre>
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: freebsd-memory-rules
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: freebsd-memory
+      rules:
+        - record: node_memory_MemTotal_bytes
+          expr: node_memory_size_bytes{os="freebsd"}
+        - record: node_memory_MemAvailable_bytes
+          expr: node_memory_free_bytes{os="freebsd"} + node_memory_inactive_bytes{os="freebsd"} + node_memory_cache_bytes{os="freebsd"}
+        - record: node_memory_MemFree_bytes
+          expr: node_memory_free_bytes{os="freebsd"}
+        - record: node_memory_Buffers_bytes
+          expr: node_memory_buffer_bytes{os="freebsd"}
+        - record: node_memory_Cached_bytes
+          expr: node_memory_cache_bytes{os="freebsd"}
+</pre>
+<br />
+<span>This file is saved as <span class='inlinecode'>freebsd-recording-rules.yaml</span> and applied as part of the Prometheus installation. The <span class='inlinecode'>os="freebsd"</span> label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
+<br />
+<h3 style='display: inline' id='disk-io-metrics-limitation'>Disk I/O metrics limitation</h3><br />
+<br />
+<span>Unlike memory metrics, disk I/O metrics (<span class='inlinecode'>node_disk_read_bytes_total</span>, <span class='inlinecode'>node_disk_written_bytes_total</span>, etc.) are not available on FreeBSD. The Linux diskstats collector that provides these metrics doesn&#39;t have a FreeBSD equivalent in the node_exporter.</span><br />
+<br />
+<span>The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (<span class='inlinecode'>node_zfs_arcstats_*</span>) for ARC cache performance, and per-dataset I/O stats are available via <span class='inlinecode'>sysctl kstat.zfs</span>, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. Creating custom ZFS-specific dashboards is left as an exercise for another day.</span><br />
+<br />
+<h2 style='display: inline' id='monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</h2><br />
+<br />
+<span>The same approach works for OpenBSD hosts. I have two OpenBSD edge relay servers (<span class='inlinecode'>blowfish</span>, <span class='inlinecode'>fishfinger</span>) that handle TLS termination and forward traffic through WireGuard to the cluster. These can also be monitored with Node Exporter.</span><br />
+<br />
+<h3 style='display: inline' id='installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</h3><br />
+<br />
+<span>On each OpenBSD host, install the node_exporter package:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish:~ $ doas pkg_add node_exporter
+quirks-<font color="#000000">7.103</font> signed on <font color="#000000">2025</font>-<font color="#000000">10</font>-13T22:<font color="#000000">55</font>:16Z
+The following new rcscripts were installed: /etc/rc.d/node_exporter
+See rcctl(<font color="#000000">8</font>) <b><u><font color="#000000">for</font></u></b> details.
+</pre>
+<br />
+<span>Enable the service to start at boot:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish:~ $ doas rcctl <b><u><font color="#000000">enable</font></u></b> node_exporter
+</pre>
+<br />
+<span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish:~ $ doas rcctl <b><u><font color="#000000">set</font></u></b> node_exporter flags <font color="#808080">'--web.listen-address=192.168.2.110:9100'</font>
+</pre>
+<br />
+<span>Start the service:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish:~ $ doas rcctl start node_exporter
+node_exporter(ok)
+</pre>
+<br />
+<span>Verify it&#39;s running:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>blowfish:~ $ curl -s http://<font color="#000000">192.168</font>.<font color="#000000">2.110</font>:<font color="#000000">9100</font>/metrics | head -<font color="#000000">3</font>
+<i><font color="silver"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
+<i><font color="silver"># TYPE go_gc_duration_seconds summary</font></i>
+go_gc_duration_seconds{quantile=<font color="#808080">"0"</font>} <font color="#000000">0</font>
+</pre>
+<br />
+<span>Repeat for the other OpenBSD host (<span class='inlinecode'>fishfinger</span>) with its respective WireGuard IP (<span class='inlinecode'>192.168.2.111</span>).</span><br />
+<br />
+<h3 style='display: inline' id='adding-openbsd-hosts-to-prometheus'>Adding OpenBSD hosts to Prometheus</h3><br />
+<br />
+<span>Update <span class='inlinecode'>additional-scrape-configs.yaml</span> to include the OpenBSD targets:</span><br />
+<br />
+<pre>
+- job_name: &#39;node-exporter&#39;
+  static_configs:
+    - targets:
+      - &#39;192.168.2.130:9100&#39;  # f0 via WireGuard
+      - &#39;192.168.2.131:9100&#39;  # f1 via WireGuard
+      - &#39;192.168.2.132:9100&#39;  # f2 via WireGuard
+      labels:
+        os: freebsd
+    - targets:
+      - &#39;192.168.2.110:9100&#39;  # blowfish via WireGuard
+      - &#39;192.168.2.111:9100&#39;  # fishfinger via WireGuard
+      labels:
+        os: openbsd
+</pre>
+<br />
+<span>The <span class='inlinecode'>os: openbsd</span> label allows filtering these hosts separately from FreeBSD and Linux nodes.</span><br />
+<br />
+<h3 style='display: inline' id='openbsd-memory-metrics-compatibility'>OpenBSD memory metrics compatibility</h3><br />
+<br />
+<span>OpenBSD uses the same memory metric names as FreeBSD (<span class='inlinecode'>node_memory_size_bytes</span>, <span class='inlinecode'>node_memory_free_bytes</span>, etc.), so a similar PrometheusRule is needed to generate Linux-compatible metrics:</span><br />
+<br />
+<pre>
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: openbsd-memory-rules
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: openbsd-memory
+      rules:
+        - record: node_memory_MemTotal_bytes
+          expr: node_memory_size_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemAvailable_bytes
+          expr: node_memory_free_bytes{os="openbsd"} + node_memory_inactive_bytes{os="openbsd"} + node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemFree_bytes
+          expr: node_memory_free_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_Cached_bytes
+          expr: node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+</pre>
+<br />
+<span>This file is saved as <span class='inlinecode'>openbsd-recording-rules.yaml</span> and applied alongside the FreeBSD rules. Note that OpenBSD doesn&#39;t expose a buffer memory metric, so that rule is omitted.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
+<br />
+<span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
+<br />
+<h2 style='display: inline' id='summary'>Summary</h2><br />
+<br />
+<span>With Prometheus, Grafana, Loki, and Alloy deployed, I now have complete visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:</span><br />
+<br />
+<ul>
+<li>metrics: Prometheus collects and stores time-series data from all components</li>
+<li>Logs: Loki aggregates logs from all containers, searchable via Grafana</li>
+<li>Visualisation: Grafana provides dashboards and exploration tools</li>
+<li>Alerting: Alertmanager can notify on conditions defined in Prometheus rules</li>
+</ul><br />
+<span>This observability stack runs entirely on the home lab infrastructure, with data persisted to the NFS share. It&#39;s lightweight enough for a three-node cluster but provides the same capabilities as production-grade setups.</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>'The Courage To Be Disliked' book notes</title>
         <link href="https://foo.zone/gemfeed/2025-11-02-the-courage-to-be-disliked-book-notes.html" />
@@ -908,6 +1629,7 @@ p hash.values_at(:a, :c)
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -1942,10 +2664,13 @@ replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 <li><span class='inlinecode'>syncthing</span> — two-volume setup for config and shared data, fronted by the <span class='inlinecode'>syncthing.f3s.foo.zone</span> ingress.</li>
 <li><span class='inlinecode'>wallabag</span> — read-it-later service with persistent <span class='inlinecode'>data</span> and <span class='inlinecode'>images</span> directories on the NFS export.</li>
 </ul><br />
-<span>I hope you enjoyed this walkthrough. In the next part of this series, I will likely tackle monitoring, backup, or observability. I haven&#39;t fully decided yet which topic to cover next, so stay tuned!</span><br />
+<span>I hope you enjoyed this walkthrough. Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -3251,6 +3976,7 @@ content = "{CODE}"
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -5268,13 +5994,13 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 </ul><br />
 <span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn&#39;t seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.</span><br />
 <br />
-<br />
 <span>Read the next post of this series:</span><br />
 <br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -6340,6 +7066,7 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -7320,6 +8047,7 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network (You are currently reading this)</a><br />
@@ -7904,6 +8632,7 @@ __ejm\___/________dwb`---`______________________
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -8480,6 +9209,7 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -9207,6 +9937,7 @@ This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#0000
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -9602,6 +10333,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>Other BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -10234,6 +10966,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -10566,6 +11299,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -10614,6 +11348,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
 <br />
@@ -10765,6 +11500,7 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -13271,6 +14007,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other *BSD and KISS related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -13640,6 +14377,7 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <br />
 <span>Other *BSD related posts are:</span><br />
 <br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
@@ -14376,315 +15114,6 @@ echo baz
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>KISS static web photo albums with `photoalbum.sh`</title>
-        <link href="https://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html" />
-        <id>https://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html</id>
-        <updated>2023-10-29T22:25:04+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
-<br />
-<span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
-<br />
-<span>Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don&#39;t have enough time for it - so I am primarily a point-and-shoot photographer).</span><br />
-<br />
-<span>I&#39;m not particularly eager to use any photo social sharing platforms such as Flickr, 500px (I used them regularly in the past), etc., anymore. I value self-hosting, DIY and privacy (nobody should data mine my photos), and no third party should have any rights to my pictures. </span><br />
-<br />
-<span>I value KISS (keep it simple and stupid) and simplicity. All that&#39;s required for a web photo album is some simple HTML and spice it up with CSS. No need for JavaScript, no need for a complex dynamic website. </span><br />
-<br />
-<pre>
-         ___        .---------.._
-  ______!fsc!_....-&#39; .g8888888p. &#39;-------....._
-.&#39;          //     .g8:       :8p..---....___ \&#39;.
-| foo.zone //  ()  d88:       :88b|==========! !|
-|         //       888:       :888|==========| !|
-|___      \\_______&#39;T88888888888P&#39;&#39;----------&#39;//|   
-|   \       """"""""""""""""""""""""""""""""""/ |   
-|    !...._____      .="""=.   .[]    ____...!  |   
-|   /               ! .g$p. !   .[]          :  |   
-|  !               :  $$$$$  :  .[]          :  |   
-|  !irregular.ninja ! &#39;T$P&#39; !   .[]           &#39;.|   
-|   \__              "=._.="   .()        __    |   
-|.--&#39;  &#39;----._______________________.----&#39;  &#39;--.|
-&#39;._____________________________________________.&#39;   
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a></li>
-<li>⇢ <a href='#introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></a></li>
-<li>⇢ <a href='#installation'>Installation</a></li>
-<li>⇢ <a href='#setting-it-up'>Setting it up</a></li>
-<li>⇢ <a href='#generating-the-static-photo-album'>Generating the static photo album</a></li>
-<li>⇢ <a href='#cleaning-it-up'>Cleaning it up</a></li>
-<li>⇢ <a href='#html-templates'>HTML templates</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='introducing-photoalbumsh'>Introducing <span class='inlinecode'>photoalbum.sh</span></h2><br />
-<br />
-<span><span class='inlinecode'>photoalbum.sh</span> is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.</span><br />
-<br />
-<h2 style='display: inline' id='installation'>Installation</h2><br />
-<br />
-<span>Installation is straightforward. All required is a recent version of GNU Bash, GNU Make, Git and ImageMagick. On Fedora, the dependencies are installed with:</span><br />
-<br />
-<pre>
-% sudo dnf install -y ImageMagick make git
-</pre>
-<br />
-<span>Now, clone, make and install the script:</span><br />
-<br />
-<pre>
-% git clone https://codeberg.org/snonux/photoalbum
-Cloning into &#39;photoalbum&#39;...
-remote: Enumerating objects: 1624, done.
-remote: Total 1624 (delta 0), reused 0 (delta 0), pack-reused 1624
-Receiving objects: 100% (1624/1624), 193.36 KiB | 1.49 MiB/s, done.
-Resolving deltas: 100% (1227/1227), done.
-
-% cd photoalbum
-/home/paul/photoalbum
-
-% make
-cut -d&#39; &#39; -f2 changelog | head -n 1 | sed &#39;s/(//;s/)//&#39; &gt; .version
-test ! -d ./bin &amp;&amp; mkdir ./bin || exit 0
-sed "s/PHOTOALBUMVERSION/$(cat .version)/" src/photoalbum.sh &gt; ./bin/photoalbum
-chmod 0755 ./bin/photoalbum
-
-% sudo make install
-test ! -d /usr/bin &amp;&amp; mkdir -p /usr/bin || exit 0
-cp ./bin/* /usr/bin
-test ! -d /usr/share/photoalbum/templates &amp;&amp; mkdir -p /usr/share/photoalbum/templates || exit 0
-cp -R ./share/templates /usr/share/photoalbum/
-test ! -d /etc/default &amp;&amp; mkdir -p /etc/default || exit 0
-cp ./src/photoalbum.default.conf /etc/default/photoalbum
-</pre>
-<br />
-<span>You should now have the <span class='inlinecode'>photoalbum</span> command in your <span class='inlinecode'>$PATH</span>. But wait to use it! First, it needs to be set up!</span><br />
-<br />
-<pre>
-% photoalbum version
-This is Photoalbum Version 0.5.1
-</pre>
-<br />
-<h2 style='display: inline' id='setting-it-up'>Setting it up</h2><br />
-<br />
-<span>Now, it&#39;s time to set up the Irregular Ninja static web photo album (or any other web photo album you may be setting up!)! Create a directory (here: <span class='inlinecode'>irregular.ninja</span> for the Irregular Ninja Photo site - or any oter sub-directory reflecting your album&#39;s name), and inside of that directory, create an <span class='inlinecode'>incoming</span> directory. The <span class='inlinecode'>incoming</span> directory. Copy all photos to be part of the album there.</span><br />
-<br />
-<pre>
-% mkdir irregular.ninja
-% cd irregular.ninja
-% # cp -Rpv ~/Photos/your-photos ./incoming
-</pre>
-<br />
-<span>In this example, I am skipping the <span class='inlinecode'>cp ...</span> part as I intend to use an alternative <span class='inlinecode'>incoming</span> directory, as you will see later in the configuration file.</span><br />
-<br />
-<span>The general usage of <span class='inlinecode'>potoalbum</span> is as follows:</span><br />
-<br />
-<pre>
-photoalbum clean|generate|version [rcfile] photoalbum
-photoalbum makemake
-</pre>
-<br />
-<span>Whereas:</span><br />
-<br />
-<ul>
-<li><span class='inlinecode'>clean</span>: Cleans up the workspace</li>
-<li><span class='inlinecode'>generate</span>: Generates the static photo album</li>
-<li><span class='inlinecode'>version</span>: Prints out the version</li>
-<li><span class='inlinecode'>makemake</span>: Creates a <span class='inlinecode'>Makefile</span> and <span class='inlinecode'>photoalbumrc</span> in the current working directory.</li>
-</ul><br />
-<span>So what we will do next is to run the following inside of the <span class='inlinecode'>irregular.ninja/</span> directory; it will generate a <span class='inlinecode'>Makefile</span> and a configuration file <span class='inlinecode'>photoalbumrc</span> containing a few configurable options:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>% photoalbum makemake
-You may now customize ./photoalbumrc and run make
-
-% cat Makefile
-all:
-	photoalbum generate photoalbumrc
-clean:
-	photoalbum clean photoalbumrc
-
-% cat photoalbumrc
-<i><font color="silver"># The title of the photoalbum</font></i>
-TITLE=<font color="#808080">'A simple Photoalbum'</font>
-
-<i><font color="silver"># Thumbnail height geometry</font></i>
-THUMBHEIGHT=<font color="#000000">300</font>
-<i><font color="silver"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</font></i>
-HEIGHT=<font color="#000000">1200</font>
-<i><font color="silver"># Max previews per page.</font></i>
-MAXPREVIEWS=<font color="#000000">40</font>
-<i><font color="silver"># Randomly shuffle all previews.</font></i>
-<i><font color="silver"># SHUFFLE=yes</font></i>
-
-<i><font color="silver"># Diverse directories, need to be full paths, not relative!</font></i>
-INCOMING_DIR=$(pwd)/incoming
-DIST_DIR=$(pwd)/dist
-TEMPLATE_DIR=/usr/share/photoalbum/templates/default
-<i><font color="silver">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</font></i>
-
-<i><font color="silver"># Includes a .tar of the incoming dir in the dist, can be yes or no</font></i>
-TARBALL_INCLUDE=yes
-TARBALL_SUFFIX=.tar
-TAR_OPTS=<font color="#808080">'-c'</font>
-
-<i><font color="silver"># Some debugging options</font></i>
-<i><font color="silver">#set -e</font></i>
-<i><font color="silver">#set -x</font></i>
-</pre>
-<br />
-<span>In the case for <span class='inlinecode'>irregular.ninja</span>, I changed the defaults to the following:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200
-+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300
-@@ -1,23 +1,24 @@
- # The title of the photoalbum
--TITLE='A simple Photoalbum'
-+TITLE='Irregular.Ninja'
-
- # Thumbnail height geometry
--THUMBHEIGHT=300
-+THUMBHEIGHT=400
- # Normal geometry height (when viewing photo). Uncomment, to keep original size.
--HEIGHT=1200
-+HEIGHT=1800
- # Max previews per page.
- MAXPREVIEWS=40
--# Randomly shuffle all previews.
--# SHUFFLE=yes
-+# Randomly shuffle
-+SHUFFLE=yes
-
- # Diverse directories, need to be full paths, not relative!
--INCOMING_DIR=$(pwd)/incoming
-+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja
- DIST_DIR=$(pwd)/dist
- TEMPLATE_DIR=/usr/share/photoalbum/templates/default
- #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal
-
- # Includes a .tar of the incoming dir in the dist, can be yes or no
--TARBALL_INCLUDE=yes
-+TARBALL_INCLUDE=no
- TARBALL_SUFFIX=.tar
- TAR_OPTS='-c'
-</pre>
-<br />
-<span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
-<br />
-<h2 style='display: inline' id='generating-the-static-photo-album'>Generating the static photo album</h2><br />
-<br />
-<span>Let&#39;s generate it. Depending on the image sizes and count, the following step may take a while. </span><br />
-<br />
-<pre>
-% make
-photoalbum generate photoalbumrc
-Processing 1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg to /home/paul/irregular.ninja/dist/photos/1055079_cool-water-wallpapers-hd-hd-desktop-wal.jpg
-Processing 11271242324.jpg to /home/paul/irregular.ninja/dist/photos/11271242324.jpg
-Processing 11271306683.jpg to /home/paul/irregular.ninja/dist/photos/11271306683.jpg
-Processing 13950707932.jpg to /home/paul/irregular.ninja/dist/photos/13950707932.jpg
-Processing 14077406487.jpg to /home/paul/irregular.ninja/dist/photos/14077406487.jpg
-Processing 14859380100.jpg to /home/paul/irregular.ninja/dist/photos/14859380100.jpg
-Processing 14869239578.jpg to /home/paul/irregular.ninja/dist/photos/14869239578.jpg
-Processing 14879132910.jpg to /home/paul/irregular.ninja/dist/photos/14879132910.jpg
-.
-.
-.
-Generating /home/paul/irregular.ninja/dist/html/7-4.html
-Creating thumb /home/paul/irregular.ninja/dist/thumbs/20211130_091051.jpg
-Creating blur /home/paul/irregular.ninja/dist/blurs/20211130_091051.jpg
-Generating /home/paul/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/irregular.ninja/dist/html/7-5.html
-Generating /home/paul/irregular.ninja/dist/html/7-5.html
-Creating thumb /home/paul/irregular.ninja/dist/thumbs/DSCF0188.JPG
-Creating blur /home/paul/irregular.ninja/dist/blurs/DSCF0188.JPG
-Generating /home/paul/irregular.ninja/dist/html/page-7.html
-Generating /home/paul/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/irregular.ninja/dist/html/7-6.html
-Generating /home/paul/irregular.ninja/dist/html/7-6.html
-Creating thumb /home/paul/irregular.ninja/dist/thumbs/P3500897-01.jpg
-Creating blur /home/paul/irregular.ninja/dist/blurs/P3500897-01.jpg
-.
-.
-.
-Generating /home/paul/irregular.ninja/dist/html/8-0.html
-Generating /home/paul/irregular.ninja/dist/html/8-41.html
-Generating /home/paul/irregular.ninja/dist/html/9-0.html
-Generating /home/paul/irregular.ninja/dist/html/9-41.html
-Generating /home/paul/irregular.ninja/dist/html/index.html
-Generating /home/paul/irregular.ninja/dist/.//index.html
-</pre>
-<br />
-<span>The result will be in the distribution directory <span class='inlinecode'>./dist</span>. This directory is publishable to the inter-web:</span><br />
-<br />
-<pre>
-% ls ./dist
-blurs  html  index.html  photos  thumbs
-</pre>
-<br />
-<span>I usually do that via rsync to my web server (I use OpenBSD with the standard <span class='inlinecode'>httpd</span> web server, btw.), which is as simple as:</span><br />
-<br />
-<pre>
-% rsync --delete -av ./dist/. admin@blowfish.buetow.org:/var/www/htdocs/irregular.ninja/
-</pre>
-<br />
-<span>Have a look at the end result here:</span><br />
-<br />
-<a class='textlink' href='https://irregular.ninja'>https://irregular.ninja</a><br />
-<br />
-<span class='quote'>PS: There&#39;s also a server-side synchronisation script mirroring the same content to another server for high availability reasons (out of scope for this blog post).</span><br />
-<br />
-<h2 style='display: inline' id='cleaning-it-up'>Cleaning it up</h2><br />
-<br />
-<span>A simple <span class='inlinecode'>make clean</span> will clean up the <span class='inlinecode'>./dist</span> directory and all other (if any) temp files created.</span><br />
-<br />
-<h2 style='display: inline' id='html-templates'>HTML templates</h2><br />
-<br />
-<span>Poke around in this source directory. You will find a bunch of Bash-HTML template files. You could tweak them to your liking. </span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>A decent looking (in my opinion, at least) in less than 500 (273 as of this writing, to be precise) lines of Bash code and with minimal dependencies; what more do you want? How many LOCs would this be in Raku with the same functionality (can it be sub-100?). </span><br />
-<br />
-<span>Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/photoalbum'><span class='inlinecode'>photoalbum.sh</span> source code on Codeberg.</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other Bash and KISS-related posts are:</span><br />
-<br />
-<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span> (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-09-12-keep-it-simple-and-stupid.html'>2021-09-12 Keep it simple and stupid</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
