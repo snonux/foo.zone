@@ -909,7 +909,9 @@ These are the charts that already live under `examples/conf/f3s` and run on the 
 * `syncthing` — two-volume setup for config and shared data, fronted by the `syncthing.f3s.foo.zone` ingress.
 * `wallabag` — read-it-later service with persistent `data` and `images` directories on the NFS export.
 
-I hope you enjoyed this walkthrough. In the next part of this series, I will likely tackle monitoring, backup, or observability. I haven't fully decided yet which topic to cover next, so stay tuned!
+I hope you enjoyed this walkthrough. Read the next post of this series:
+
+=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi f3s: Kubernetes with FreeBSD - Part 8: Observability
 
 Other *BSD-related posts:
 

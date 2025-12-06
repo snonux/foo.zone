@@ -4,7 +4,7 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
 
-=> ./f3s-kubernetes-with-freebsd-part-1f3slogo.png f3s logo
+=> ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
 << template::inline::toc
 
@@ -110,8 +110,9 @@ prometheus-kube-prometheus-prometheus   ClusterIP   10.43.152.163   9090/TCP,808
 
 Grafana connects to Prometheus using the internal service URL `http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090`. The default Grafana credentials are `admin`/`prom-operator`, which should be changed immediately after first login.
 
+=> ./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png Grafana dashboard showing Prometheus metrics
+
 => ./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png Grafana dashboard showing cluster metrics
-=> ./f3s-kubernetes-with-freebsd-part-8/grafana-node-exporter.png Node Exporter dashboard with host metrics
 
 ## Installing Loki and Alloy
 
@@ -228,8 +229,6 @@ To add Loki as a data source in Grafana:
 Once configured, you can explore logs in Grafana's "Explore" view. I'll show some example queries in the "Using the observability stack" section below.
 
 => ./f3s-kubernetes-with-freebsd-part-8/loki-explore.png Exploring logs in Grafana with Loki
-
-=> ./f3s-kubernetes-with-freebsd-part-8/loki-logs-detail.png Detailed log view with parsed fields
 
 ## The complete monitoring stack
 
