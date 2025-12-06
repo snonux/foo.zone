@@ -59,7 +59,7 @@ Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a pop
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https:/codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s codeberg.org/snonux/conf/f3s
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s 
 
 ## Persistent storage recap
 
