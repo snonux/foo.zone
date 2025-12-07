@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-07T00:32:01+02:00</updated>
+    <updated>2025-12-07T10:08:23+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -554,7 +554,10 @@ spec:
         - record: node_memory_MemTotal_bytes
           expr: node_memory_size_bytes{os="freebsd"}
         - record: node_memory_MemAvailable_bytes
-          expr: node_memory_free_bytes{os="freebsd"} + node_memory_inactive_bytes{os="freebsd"} + node_memory_cache_bytes{os="freebsd"}
+          expr: |
+            node_memory_free_bytes{os="freebsd"}
+              + node_memory_inactive_bytes{os="freebsd"}
+              + node_memory_cache_bytes{os="freebsd"}
         - record: node_memory_MemFree_bytes
           expr: node_memory_free_bytes{os="freebsd"}
         - record: node_memory_Buffers_bytes
@@ -676,7 +679,10 @@ spec:
           labels:
             os: openbsd
         - record: node_memory_MemAvailable_bytes
-          expr: node_memory_free_bytes{os="openbsd"} + node_memory_inactive_bytes{os="openbsd"} + node_memory_cache_bytes{os="openbsd"}
+          expr: |
+            node_memory_free_bytes{os="openbsd"}
+              + node_memory_inactive_bytes{os="openbsd"}
+              + node_memory_cache_bytes{os="openbsd"}
           labels:
             os: openbsd
         - record: node_memory_MemFree_bytes
@@ -4002,15 +4008,15 @@ content = "{CODE}"
 <li>⇢ ⇢ <a href='#verifying-replication-after-reboot'>Verifying replication after reboot</a></li>
 <li>⇢ ⇢ <a href='#understanding-failover-limitations-and-design-decisions'>Understanding Failover Limitations and Design Decisions</a></li>
 <li>⇢ ⇢ <a href='#mounting-the-nfs-datasets'>Mounting the NFS datasets</a></li>
-<li>⇢ ⇢ <a href='#troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</a></li>
+<li>⇢ <a href='#troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</a></li>
 <li>⇢ ⇢ <a href='#configuring-automatic-key-loading-on-boot'>Configuring automatic key loading on boot</a></li>
 <li>⇢ ⇢ <a href='#troubleshooting-zrepl-replication-not-working'>Troubleshooting: zrepl Replication Not Working</a></li>
-<li>⇢ <a href='#-check-if-zrepl-services-are-running'>⇢# Check if zrepl Services are Running</a></li>
-<li>⇢ <a href='#-check-zrepl-status-for-errors'>⇢# Check zrepl Status for Errors</a></li>
-<li>⇢ <a href='#-fixing-no-common-snapshot-errors'>⇢# Fixing "No Common Snapshot" Errors</a></li>
-<li>⇢ <a href='#-network-connectivity-issues'>⇢# Network Connectivity Issues</a></li>
-<li>⇢ <a href='#-encryption-key-issues'>⇢# Encryption Key Issues</a></li>
-<li>⇢ <a href='#-monitoring-ongoing-replication'>⇢# Monitoring Ongoing Replication</a></li>
+<li>⇢ ⇢ <a href='#check-if-zrepl-services-are-running'>Check if zrepl Services are Running</a></li>
+<li>⇢ ⇢ <a href='#check-zrepl-status-for-errors'>Check zrepl Status for Errors</a></li>
+<li>⇢ ⇢ <a href='#fixing-no-common-snapshot-errors'>Fixing "No Common Snapshot" Errors</a></li>
+<li>⇢ ⇢ <a href='#network-connectivity-issues'>Network Connectivity Issues</a></li>
+<li>⇢ ⇢ <a href='#encryption-key-issues'>Encryption Key Issues</a></li>
+<li>⇢ ⇢ <a href='#monitoring-ongoing-replication'>Monitoring Ongoing Replication</a></li>
 <li>⇢ <a href='#carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</a></li>
 <li>⇢ ⇢ <a href='#how-carp-works'>How CARP Works</a></li>
 <li>⇢ ⇢ <a href='#configuring-carp'>Configuring CARP</a></li>
@@ -4404,10 +4410,14 @@ global:
       interval: 1m
     pruning:
       keep_sender:
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
         - <b><u><font color="#000000">type</font></u></b>: grid
           grid: 4x7d | 6x30d
           regex: <font color="#808080">"^zrepl_.*"</font>
       keep_receiver:
+        - <b><u><font color="#000000">type</font></u></b>: last_n
+          count: <font color="#000000">10</font>
         - <b><u><font color="#000000">type</font></u></b>: grid
           grid: 4x7d | 6x30d
           regex: <font color="#808080">"^zrepl_.*"</font>
@@ -4429,9 +4439,15 @@ global:
       keep_sender:
         - <b><u><font color="#000000">type</font></u></b>: last_n
           count: <font color="#000000">10</font>
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 4x7d
+          regex: <font color="#808080">"^zrepl_.*"</font>
       keep_receiver:
         - <b><u><font color="#000000">type</font></u></b>: last_n
           count: <font color="#000000">10</font>
+        - <b><u><font color="#000000">type</font></u></b>: grid
+          grid: 4x7d
+          regex: <font color="#808080">"^zrepl_.*"</font>
 EOF
 </pre>
 <br />
@@ -4676,7 +4692,7 @@ paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font 
 <br />
 <span>And replication should work again!</span><br />
 <br />
-<h3 style='display: inline' id='troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</h3><br />
+<h2 style='display: inline' id='troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</h2><br />
 <br />
 <span>If you write files to <span class='inlinecode'>/data/nfs/</span> on <span class='inlinecode'>f0</span> but they don&#39;t appear on <span class='inlinecode'>f1</span>, check if the dataset is mounted on <span class='inlinecode'>f0</span>?</span><br />
 <br />
@@ -4755,7 +4771,7 @@ paul@f1:~ % doas zfs <b><u><font color="#000000">set</font></u></b> \
 <br />
 <span>If <span class='inlinecode'>zrepl</span> replication is not working, here&#39;s a systematic approach to diagnose and fix common issues:</span><br />
 <br />
-<span>#### Check if zrepl Services are Running</span><br />
+<h3 style='display: inline' id='check-if-zrepl-services-are-running'>Check if zrepl Services are Running</h3><br />
 <br />
 <span>First, verify that <span class='inlinecode'>zrepl</span> is running on both nodes:</span><br />
 <br />
@@ -4772,7 +4788,7 @@ paul@f0:~ % doas service zrepl start
 paul@f1:~ % doas service zrepl start
 </pre>
 <br />
-<span>#### Check zrepl Status for Errors</span><br />
+<h3 style='display: inline' id='check-zrepl-status-for-errors'>Check zrepl Status for Errors</h3><br />
 <br />
 <span>Use the status command to see detailed error information:</span><br />
 <br />
@@ -4787,7 +4803,7 @@ paul@f0:~ % doas zrepl status --mode raw
 <i><font color="silver"># Common errors include "no common snapshot" or connection failures</font></i>
 </pre>
 <br />
-<span>#### Fixing "No Common Snapshot" Errors</span><br />
+<h3 style='display: inline' id='fixing-no-common-snapshot-errors'>Fixing "No Common Snapshot" Errors</h3><br />
 <br />
 <span>This is the most common replication issue, typically occurring when:</span><br />
 <br />
@@ -4846,7 +4862,7 @@ paul@f0:~ % doas zrepl status --mode raw | grep -A<font color="#000000">10</font
 paul@f0:~ % doas zrepl status --mode raw | grep BytesReplicated
 </pre>
 <br />
-<span>#### Network Connectivity Issues</span><br />
+<h3 style='display: inline' id='network-connectivity-issues'>Network Connectivity Issues</h3><br />
 <br />
 <span>If replication fails to connect:</span><br />
 <br />
@@ -4864,7 +4880,7 @@ paul@f1:~ % doas netstat -an | grep <font color="#000000">8888</font>
 paul@f0:~ % ping <font color="#000000">192.168</font>.<font color="#000000">2.131</font>
 </pre>
 <br />
-<span>#### Encryption Key Issues</span><br />
+<h3 style='display: inline' id='encryption-key-issues'>Encryption Key Issues</h3><br />
 <br />
 <span>If encrypted replication fails:</span><br />
 <br />
@@ -4881,7 +4897,7 @@ paul@f1:~ % doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.la
     zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 </pre>
 <br />
-<span>#### Monitoring Ongoing Replication</span><br />
+<h3 style='display: inline' id='monitoring-ongoing-replication'>Monitoring Ongoing Replication</h3><br />
 <br />
 <span>After fixing issues, monitor replication health:</span><br />
 <br />
@@ -5317,13 +5333,13 @@ HOSTNAME=`hostname`
         zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/enc/nfsdata
         zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/enc/nfsdata
     <b><u><font color="#000000">else</font></u></b>
-        doas zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
-        doas zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
-        doas zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
-        doas zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        zfs load-key -L file:///keys/f<font color="#000000">0</font>.lan.buetow.org:zdata.key zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        zfs <b><u><font color="#000000">set</font></u></b> mountpoint=/data/nfs zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        zfs mount zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
+        zfs <b><u><font color="#000000">set</font></u></b> <b><u><font color="#000000">readonly</font></u></b>=on zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
     <b><u><font color="#000000">fi</font></u></b>
-    doas service nfsd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
-    doas service mountd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+    service nfsd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+    service mountd stop <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
 <b><u><font color="#000000">fi</font></u></b>
 
 
