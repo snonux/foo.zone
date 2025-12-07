@@ -31,7 +31,7 @@ All observability components need persistent storage so that metrics and logs su
 
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-The FreeBSD hosts (`f0`, `f1`, `f2`) serve as NFS servers, exporting ZFS datasets that are replicated across hosts using `zrepl`. The Rocky Linux k3s nodes (`r0`, `r1`, `r2`) mount these exports at `/data/nfs/k3svolumes`. This directory contains subdirectories for each application that needs persistent storage—including Prometheus, Grafana, and Loki.
+The FreeBSD hosts (`f0`, `f1`) serve as master-standby NFS servers, exporting ZFS datasets that are replicated across hosts using `zrepl`. The Rocky Linux k3s nodes (`r0`, `r1`, `r2`) mount these exports at `/data/nfs/k3svolumes`. This directory contains subdirectories for each application that needs persistent storage—including Prometheus, Grafana, and Loki.
 
 For example, the observability stack uses these paths on the NFS share:
 
