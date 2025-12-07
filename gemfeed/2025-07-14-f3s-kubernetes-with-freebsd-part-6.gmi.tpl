@@ -332,10 +332,14 @@ jobs:
       interval: 1m
     pruning:
       keep_sender:
+        - type: last_n
+          count: 10
         - type: grid
           grid: 4x7d | 6x30d
           regex: "^zrepl_.*"
       keep_receiver:
+        - type: last_n
+          count: 10
         - type: grid
           grid: 4x7d | 6x30d
           regex: "^zrepl_.*"
@@ -357,9 +361,15 @@ jobs:
       keep_sender:
         - type: last_n
           count: 10
+        - type: grid
+          grid: 4x7d
+          regex: "^zrepl_.*"
       keep_receiver:
         - type: last_n
           count: 10
+        - type: grid
+          grid: 4x7d
+          regex: "^zrepl_.*"
 EOF
 ```
 
@@ -576,7 +586,7 @@ paul@f1:~ % doas zfs set readonly=on zdata/sink/f0/zdata/enc/nfsdata
 
 And replication should work again!
 
-### Troubleshooting: Files not appearing in replication
+## Troubleshooting: Files not appearing in replication
 
 If you write files to `/data/nfs/` on `f0` but they don't appear on `f1`, check if the dataset is mounted on `f0`?
 
@@ -642,7 +652,7 @@ Important notes:
 
 If `zrepl` replication is not working, here's a systematic approach to diagnose and fix common issues:
 
-#### Check if zrepl Services are Running
+### Check if zrepl Services are Running
 
 First, verify that `zrepl` is running on both nodes:
 
@@ -656,7 +666,7 @@ paul@f0:~ % doas service zrepl start
 paul@f1:~ % doas service zrepl start
 ```
 
-#### Check zrepl Status for Errors
+### Check zrepl Status for Errors
 
 Use the status command to see detailed error information:
 
@@ -668,7 +678,7 @@ paul@f0:~ % doas zrepl status --mode raw
 # Common errors include "no common snapshot" or connection failures
 ```
 
-#### Fixing "No Common Snapshot" Errors
+### Fixing "No Common Snapshot" Errors
 
 This is the most common replication issue, typically occurring when:
 
@@ -720,7 +730,7 @@ paul@f0:~ % doas zrepl status --mode raw | grep -A10 "ZFSCmds.*Active"
 paul@f0:~ % doas zrepl status --mode raw | grep BytesReplicated
 ```
 
-#### Network Connectivity Issues
+### Network Connectivity Issues
 
 If replication fails to connect:
 
@@ -735,7 +745,7 @@ paul@f1:~ % doas netstat -an | grep 8888
 paul@f0:~ % ping 192.168.2.131
 ```
 
-#### Encryption Key Issues
+### Encryption Key Issues
 
 If encrypted replication fails:
 
@@ -749,7 +759,7 @@ paul@f1:~ % doas zfs load-key -L file:///keys/f0.lan.buetow.org:zdata.key \
     zdata/sink/f0/zdata/enc/nfsdata
 ```
 
-#### Monitoring Ongoing Replication
+### Monitoring Ongoing Replication
 
 After fixing issues, monitor replication health:
 
