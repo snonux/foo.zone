@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-07T10:08:23+02:00</updated>
+    <updated>2025-12-07T10:16:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -89,7 +89,7 @@
 <br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <br />
-<span>The FreeBSD hosts (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) serve as NFS servers, exporting ZFS datasets that are replicated across hosts using <span class='inlinecode'>zrepl</span>. The Rocky Linux k3s nodes (<span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>) mount these exports at <span class='inlinecode'>/data/nfs/k3svolumes</span>. This directory contains subdirectories for each application that needs persistent storage—including Prometheus, Grafana, and Loki.</span><br />
+<span>The FreeBSD hosts (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>) serve as master-standby NFS servers, exporting ZFS datasets that are replicated across hosts using <span class='inlinecode'>zrepl</span>. The Rocky Linux k3s nodes (<span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, <span class='inlinecode'>r2</span>) mount these exports at <span class='inlinecode'>/data/nfs/k3svolumes</span>. This directory contains subdirectories for each application that needs persistent storage—including Prometheus, Grafana, and Loki.</span><br />
 <br />
 <span>For example, the observability stack uses these paths on the NFS share:</span><br />
 <br />
