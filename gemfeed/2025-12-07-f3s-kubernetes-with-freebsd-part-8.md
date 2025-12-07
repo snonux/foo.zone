@@ -467,7 +467,10 @@ spec:
         - record: node_memory_MemTotal_bytes
           expr: node_memory_size_bytes{os="freebsd"}
         - record: node_memory_MemAvailable_bytes
-          expr: node_memory_free_bytes{os="freebsd"} + node_memory_inactive_bytes{os="freebsd"} + node_memory_cache_bytes{os="freebsd"}
+          expr: |
+            node_memory_free_bytes{os="freebsd"}
+              + node_memory_inactive_bytes{os="freebsd"}
+              + node_memory_cache_bytes{os="freebsd"}
         - record: node_memory_MemFree_bytes
           expr: node_memory_free_bytes{os="freebsd"}
         - record: node_memory_Buffers_bytes
@@ -574,7 +577,10 @@ spec:
           labels:
             os: openbsd
         - record: node_memory_MemAvailable_bytes
-          expr: node_memory_free_bytes{os="openbsd"} + node_memory_inactive_bytes{os="openbsd"} + node_memory_cache_bytes{os="openbsd"}
+          expr: |
+            node_memory_free_bytes{os="openbsd"}
+              + node_memory_inactive_bytes{os="openbsd"}
+              + node_memory_cache_bytes{os="openbsd"}
           labels:
             os: openbsd
         - record: node_memory_MemFree_bytes
