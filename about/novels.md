@@ -51,7 +51,8 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 * 2001 - Chasm City - Revelation Space Universe, Paperback
 * 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe, Paperback
 * 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe, Paperback
-* 2005 - Diamond Dogs, Turquoise Days (english ) / Träume von Unendlichkeit (german) - Revelation Space Universe, Paperback
+* 2005 - Diamond Dogs, Turquoise Days (english) / Träume von Unendlichkeit (german) - Revelation Space Universe, Paperback
+* 2021 - Inhibitor Phase - Revelation Space Universe, Audiobook (Libro.fm)
 
 ### Arthur C. Clarke
 
