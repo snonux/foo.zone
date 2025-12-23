@@ -1,4 +1,4 @@
-# Adding Observability to X-RAG
+# X-RAG Observability Hackathon
 
 This blog post describes my hackathon efforts adding observability to X-RAG, a distributed Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I especially made time available over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.
 
@@ -6,7 +6,7 @@ This blog post describes my hackathon efforts adding observability to X-RAG, a d
 
 ## Table of Contents
 
-* [⇢ Adding Observability to X-RAG](#adding-observability-to-x-rag)
+* [⇢ X-RAG Observability Hackathon](#x-rag-observability-hackathon)
 * [⇢ ⇢ What is X-RAG?](#what-is-x-rag)
 * [⇢ ⇢ Running Kubernetes locally with Kind](#running-kubernetes-locally-with-kind)
 * [⇢ ⇢ Motivation](#motivation)
