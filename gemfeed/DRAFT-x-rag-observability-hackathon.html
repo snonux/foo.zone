@@ -1,0 +1,923 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Adding Observability to X-RAG</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-x-rag-observability-hackathon.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-x-rag-observability-hackathon.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='adding-observability-to-x-rag'>Adding Observability to X-RAG</h1><br />
+<br />
+<span>This blog post describes my hackathon efforts adding observability to X-RAG, a distributed Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I especially made time available over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let&#39;s add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.</span><br />
+<br />
+<a class='textlink' href='https://github.com/florianbuetow/x-rag'>X-RAG source code on GitHub</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#adding-observability-to-x-rag'>Adding Observability to X-RAG</a></li>
+<li>⇢ <a href='#what-is-x-rag'>What is X-RAG?</a></li>
+<li>⇢ <a href='#running-kubernetes-locally-with-kind'>Running Kubernetes locally with Kind</a></li>
+<li>⇢ <a href='#motivation'>Motivation</a></li>
+<li>⇢ <a href='#the-observability-stack'>The observability stack</a></li>
+<li>⇢ <a href='#grafana-alloy-the-unified-collector'>Grafana Alloy: the unified collector</a></li>
+<li>⇢ <a href='#centralised-logging-with-loki'>Centralised logging with Loki</a></li>
+<li>⇢ ⇢ <a href='#alloy-configuration-for-logs'>Alloy configuration for logs</a></li>
+<li>⇢ ⇢ <a href='#querying-logs-with-logql'>Querying logs with LogQL</a></li>
+<li>⇢ <a href='#metrics-with-prometheus'>Metrics with Prometheus</a></li>
+<li>⇢ ⇢ <a href='#alloy-configuration-for-application-metrics'>Alloy configuration for application metrics</a></li>
+<li>⇢ ⇢ <a href='#kubernetes-metrics-kubelet-cadvisor-and-kube-state-metrics'>Kubernetes metrics: kubelet, cAdvisor, and kube-state-metrics</a></li>
+<li>⇢ ⇢ <a href='#infrastructure-metrics-kafka-redis-minio'>Infrastructure metrics: Kafka, Redis, MinIO</a></li>
+<li>⇢ <a href='#distributed-tracing-with-tempo'>Distributed tracing with Tempo</a></li>
+<li>⇢ ⇢ <a href='#understanding-traces-spans-and-the-trace-tree'>Understanding traces, spans, and the trace tree</a></li>
+<li>⇢ ⇢ <a href='#how-trace-context-propagates'>How trace context propagates</a></li>
+<li>⇢ ⇢ <a href='#implementation'>Implementation</a></li>
+<li>⇢ ⇢ <a href='#alloy-configuration-for-traces'>Alloy configuration for traces</a></li>
+<li>⇢ <a href='#async-ingestion-trace-walkthrough'>Async ingestion trace walkthrough</a></li>
+<li>⇢ ⇢ <a href='#step-1-ingest-a-document'>Step 1: Ingest a document</a></li>
+<li>⇢ ⇢ <a href='#step-2-find-the-ingestion-trace'>Step 2: Find the ingestion trace</a></li>
+<li>⇢ ⇢ <a href='#step-3-fetch-the-complete-trace'>Step 3: Fetch the complete trace</a></li>
+<li>⇢ ⇢ <a href='#step-4-analyse-the-async-trace'>Step 4: Analyse the async trace</a></li>
+<li>⇢ ⇢ <a href='#viewing-traces-in-grafana'>Viewing traces in Grafana</a></li>
+<li>⇢ <a href='#end-to-end-search-trace-walkthrough'>End-to-end search trace walkthrough</a></li>
+<li>⇢ ⇢ <a href='#step-1-make-a-search-request'>Step 1: Make a search request</a></li>
+<li>⇢ ⇢ <a href='#step-2-query-tempo-for-the-trace'>Step 2: Query Tempo for the trace</a></li>
+<li>⇢ ⇢ <a href='#step-3-analyse-the-trace'>Step 3: Analyse the trace</a></li>
+<li>⇢ ⇢ <a href='#step-4-search-traces-with-traceql'>Step 4: Search traces with TraceQL</a></li>
+<li>⇢ ⇢ <a href='#viewing-the-search-trace-in-grafana'>Viewing the search trace in Grafana</a></li>
+<li>⇢ <a href='#correlating-the-three-signals'>Correlating the three signals</a></li>
+<li>⇢ <a href='#grafana-dashboards'>Grafana dashboards</a></li>
+<li>⇢ <a href='#results-two-days-well-spent'>Results: two days well spent</a></li>
+<li>⇢ <a href='#slis-slos-and-slas'>SLIs, SLOs and SLAs</a></li>
+<li>⇢ <a href='#using-amp-for-ai-assisted-development'>Using Amp for AI-assisted development</a></li>
+<li>⇢ <a href='#other-changes-along-the-way'>Other changes along the way</a></li>
+<li>⇢ <a href='#lessons-learned'>Lessons learned</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-is-x-rag'>What is X-RAG?</h2><br />
+<br />
+<span>X-RAG is a distributed RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.</span><br />
+<br />
+<span>X-RAG handles the full pipeline: ingest documents, chunk them into searchable pieces, generate vector embeddings, store them in a vector database, and at query time, retrieve relevant chunks and pass them to an LLM for answer generation. The system supports both local LLMs (Florian runs his on a beefy desktop) and cloud APIs like OpenAI. I configured an OpenAI API key since my laptop&#39;s CPU and GPU aren&#39;t fast enough for decent local inference.</span><br />
+<br />
+<span>All services are implemented in Python. I&#39;m more used to Ruby, Go, and Bash these days, but for this project it didn&#39;t matter—Python&#39;s OpenTelemetry integration is straightforward, I wasn&#39;t planning to write or rewrite tons of application code, and with GenAI assistance the language barrier was a non-issue. The OpenTelemetry concepts and patterns should translate to other languages too—the SDK APIs are intentionally similar across Python, Go, Java, and others.</span><br />
+<br />
+<span>X-RAG consists of several independently scalable microservices:</span><br />
+<br />
+<ul>
+<li>Search UI: FastAPI web interface for queries</li>
+<li>Ingestion API: Document upload endpoint</li>
+<li>Embedding Service: gRPC service for vector embeddings</li>
+<li>Indexer: Kafka consumer that processes documents</li>
+<li>Search Service: gRPC service orchestrating the RAG pipeline</li>
+</ul><br />
+<span>The Embedding Service deserves extra explanation because in the beginning I didn&#39;t really knew what it was. Text isn&#39;t directly searchable in a vector database—you need to convert it to numerical vectors (embeddings) that capture semantic meaning. The Embedding Service takes text chunks and calls an embedding model (OpenAI&#39;s <span class='inlinecode'>text-embedding-3-small</span> in my case, or a local model on Florian&#39;s setup) to produce these vectors. For the LLM search completion answer, I used <span class='inlinecode'>gpt-4o-mini</span>.</span><br />
+<br />
+<span>Similar concepts end up with similar vectors, so "What is machine learning?" and "Explain ML" produce vectors close together in the embedding space. At query time, your question gets embedded too, and the vector database finds chunks with nearby vectors—that&#39;s semantic search.</span><br />
+<br />
+<span>The data layer includes Weaviate (vector database with hybrid search), Kafka (message queue), MinIO (object storage), and Redis (cache). All of this runs in a Kind Kubernetes cluster for local development, with the same manifests deployable to production.</span><br />
+<br />
+<pre>
+┌─────────────────────────────────────────────────────────────────────────┐
+│                      X-RAG Kubernetes Cluster                            │
+├─────────────────────────────────────────────────────────────────────────┤
+│   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
+│   │ Search UI   │  │Search Svc   │  │Embed Service│  │   Indexer   │    │
+│   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘    │
+│          │                │                │                │           │
+│          └────────────────┴────────────────┴────────────────┘           │
+│                                    │                                     │
+│                                    ▼                                     │
+│          ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
+│          │  Weaviate   │  │   Kafka     │  │   MinIO     │              │
+│          └─────────────┘  └─────────────┘  └─────────────┘              │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre>
+<br />
+<h2 style='display: inline' id='running-kubernetes-locally-with-kind'>Running Kubernetes locally with Kind</h2><br />
+<br />
+<span>X-RAG runs on Kubernetes, but you don&#39;t need a cloud account to develop it. The project uses Kind (Kubernetes in Docker)—a tool originally created by the Kubernetes SIG for testing Kubernetes itself.</span><br />
+<br />
+<a class='textlink' href='https://kind.sigs.k8s.io/'>Kind - Kubernetes in Docker</a><br />
+<br />
+<span>Kind spins up a full Kubernetes cluster using Docker containers as nodes. The control plane (API server, etcd, scheduler, controller-manager) runs in one container, and worker nodes run in separate containers. Inside these "node containers," pods run just like they would on real servers—using containerd as the container runtime. It&#39;s containers all the way down.</span><br />
+<br />
+<span>Technically, each Kind node is a Docker container running a minimal Linux image with kubelet and containerd installed. When you deploy a pod, kubelet inside the node container instructs containerd to pull and run the container image. So you have Docker running node containers, and inside those, containerd running application containers. Network-wise, Kind sets up a Docker bridge network and uses CNI plugins (kindnet by default) for pod networking within the cluster.</span><br />
+<br />
+<pre>
+$ docker ps --format "table {{.Names}}\t{{.Image}}"
+NAMES                  IMAGE
+xrag-k8-control-plane  kindest/node:v1.32.0
+xrag-k8-worker         kindest/node:v1.32.0
+xrag-k8-worker2        kindest/node:v1.32.0
+</pre>
+<br />
+<span>The <span class='inlinecode'>kindest/node</span> image contains everything needed: kubelet, containerd, CNI plugins, and pre-pulled pause containers. Port mappings in the Kind config expose services to the host—that&#39;s how http://localhost:8080 reaches the search-ui running inside a pod, inside a worker container, inside Docker.</span><br />
+<br />
+<pre>
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           Docker Host                                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│  ┌───────────────────┐  ┌───────────────────┐  ┌───────────────────┐    │
+│  │ xrag-k8-control   │  │ xrag-k8-worker    │  │ xrag-k8-worker2   │    │
+│  │ -plane (container)│  │ (container)       │  │ (container)       │    │
+│  │                   │  │                   │  │                   │    │
+│  │ K8s API server    │  │ Pods:             │  │ Pods:             │    │
+│  │ etcd, scheduler   │  │ • search-ui       │  │ • weaviate        │    │
+│  │                   │  │ • search-service  │  │ • kafka           │    │
+│  │                   │  │ • embedding-svc   │  │ • prometheus      │    │
+│  │                   │  │ • indexer         │  │ • grafana         │    │
+│  └───────────────────┘  └───────────────────┘  └───────────────────┘    │
+└─────────────────────────────────────────────────────────────────────────┘
+</pre>
+<br />
+<span>Why Kind? It gives you a real Kubernetes environment—the same manifests deploy to production clouds unchanged. No minikube quirks, no Docker Compose translation layer. Just Kubernetes. I already have a k3s cluster running at home, but Kind made collaboration easier—everyone working on X-RAG gets the exact same setup by cloning the repo and running <span class='inlinecode'>make cluster-start</span>.</span><br />
+<br />
+<span>Florian developed X-RAG on macOS, but it worked seamlessly on my Linux laptop. The only difference was Docker&#39;s resource allocation: on macOS you configure limits in Docker Desktop, on Linux it uses host resources directly. That&#39;s because under macOS the Linux Docker containers run on an emulation layer as macOS is not Linux.</span><br />
+<br />
+<span>My hardware: a ThinkPad X1 Carbon Gen 9 with an 11th Gen Intel Core i7-1185G7 (4 cores, 8 threads at 3.00GHz) and 32GB RAM (running Fedora Linux). During the hackathon, memory usage peaked around 15GB—comfortable headroom. CPU was the bottleneck; with ~38 pods running across all namespaces (rag-system, monitoring, kube-system, etc.), plus Discord for the remote video call and Tidal streaming hi-res music, things got tight. When rebuilding Docker images or restarting the cluster, Discord video and audio would stutter—my fellow hackers probably wondered why I kept freezing mid-sentence. A beefier CPU would have meant less waiting and smoother calls, but it was manageable.</span><br />
+<br />
+<h2 style='display: inline' id='motivation'>Motivation</h2><br />
+<br />
+<span>When I joined the hackathon, Florian&#39;s X-RAG was functional but opaque. With five services communicating via gRPC, Kafka, and HTTP, debugging was cumbersome. When a search request take 5 seconds, there was no visibility into where the time was being spent. Was it the embedding generation? The vector search? The LLM synthesis? Nobody would be able to figure it out quickly.</span><br />
+<br />
+<span>Distributed systems are inherently opaque. Each service logs its own view of the world, but correlating events across service boundaries is archaeology. Grepping through logs on many pods, trying to mentally reconstruct what happened—not fun. This was the perfect hackathon project: Explore this Observability Stack in greater depth.</span><br />
+<br />
+<h2 style='display: inline' id='the-observability-stack'>The observability stack</h2><br />
+<br />
+<span>Before diving into implementation, here&#39;s what I deployed. The complete stack runs in the monitoring namespace:</span><br />
+<br />
+<pre>
+$ kubectl get pods -n monitoring
+NAME                                  READY   STATUS
+alloy-84ddf4cd8c-7phjp                1/1     Running
+grafana-6fcc89b4d6-pnh8l              1/1     Running
+kube-state-metrics-5d954c569f-2r45n   1/1     Running
+loki-8c9bbf744-sc2p5                  1/1     Running
+node-exporter-kb8zz                   1/1     Running
+node-exporter-zcrdz                   1/1     Running
+node-exporter-zmskc                   1/1     Running
+prometheus-7f755f675-dqcht            1/1     Running
+tempo-55df7dbcdd-t8fg9                1/1     Running
+</pre>
+<br />
+<span>Each component has a specific role:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>Grafana Alloy</span>: The unified collector. Receives OTLP from applications, scrapes Prometheus endpoints, tails log files. Think of it as the central nervous system.</li>
+<li><span class='inlinecode'>Prometheus</span>: Time-series database for metrics. Stores counters, gauges, and histograms with 15-day retention.</li>
+<li><span class='inlinecode'>Tempo</span>: Trace storage. Receives spans via OTLP, correlates them by trace ID, enables TraceQL queries.</li>
+<li><span class='inlinecode'>Loki</span>: Log aggregation. Indexes labels (namespace, pod, container), stores log chunks, enables LogQL queries.</li>
+<li><span class='inlinecode'>Grafana</span>: The unified UI. Queries all three backends, correlates signals, displays dashboards.</li>
+<li><span class='inlinecode'>kube-state-metrics</span>: Exposes Kubernetes object metrics (pod status, deployments, resource requests).</li>
+<li><span class='inlinecode'>node-exporter</span>: Exposes host-level metrics (CPU, memory, disk, network) from each Kubernetes node.</li>
+</ul><br />
+<span>Everything is accessible via port-forwards:</span><br />
+<br />
+<ul>
+<li>Grafana: http://localhost:3000 (unified UI for all three signals)</li>
+<li>Prometheus: http://localhost:9090 (metrics queries)</li>
+<li>Tempo: http://localhost:3200 (trace queries)</li>
+<li>Loki: http://localhost:3100 (log queries)</li>
+</ul><br />
+<h2 style='display: inline' id='grafana-alloy-the-unified-collector'>Grafana Alloy: the unified collector</h2><br />
+<br />
+<span>Before diving into the individual signals, I want to highlight Grafana Alloy—the component that ties everything together. Alloy is Grafana&#39;s vendor-neutral OpenTelemetry Collector distribution, and it became the backbone of the observability stack.</span><br />
+<br />
+<a class='textlink' href='https://grafana.com/docs/alloy/latest/'>Grafana Alloy documentation</a><br />
+<br />
+<span>Why use a centralised collector instead of having each service push directly to backends?</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>Decoupling</span>: Applications don&#39;t need to know about Prometheus, Tempo, or Loki. They speak OTLP, and Alloy handles the translation.</li>
+<li><span class='inlinecode'>Unified timestamps</span>: All telemetry flows through one system, making correlation in Grafana more reliable.</li>
+<li><span class='inlinecode'>Processing pipeline</span>: Batch data before sending, filter noisy metrics, enrich with labels—all in one place.</li>
+<li><span class='inlinecode'>Backend flexibility</span>: Switch from Tempo to Jaeger without changing application code.</li>
+</ul><br />
+<span>Alloy uses a configuration language called River, which feels similar to Terraform&#39;s HCL—declarative blocks with attributes. If you&#39;ve written Terraform, River will look familiar. The full Alloy configuration runs to over 1400 lines with comments explaining each section. It handles OTLP receiving, batch processing, Prometheus export, Tempo export, Kubernetes metrics scraping, infrastructure metrics, and pod log collection. All three signals—metrics, traces, logs—flow through this single component, making Alloy the central nervous system of the observability stack.</span><br />
+<br />
+<span>In the following sections, I&#39;ll cover each observability pillar and show the relevant Alloy configuration for each.</span><br />
+<br />
+<h2 style='display: inline' id='centralised-logging-with-loki'>Centralised logging with Loki</h2><br />
+<br />
+<span>Getting all logs in one place was the foundation. I deployed Grafana Loki in the monitoring namespace, with Grafana Alloy running as a DaemonSet on each node to collect logs.</span><br />
+<br />
+<pre>
+┌──────────────────────────────────────────────────────────────────────┐
+│                           LOGS PIPELINE                               │
+├──────────────────────────────────────────────────────────────────────┤
+│  Applications write to stdout → containerd stores in /var/log/pods   │
+│                                    │                                  │
+│                              File tail                                │
+│                                    ▼                                  │
+│                         Grafana Alloy (DaemonSet)                     │
+│                    Discovers pods, extracts metadata                  │
+│                                    │                                  │
+│                       HTTP POST /loki/api/v1/push                     │
+│                                    ▼                                  │
+│                           Grafana Loki                                │
+│                   Indexes labels, stores chunks                       │
+└──────────────────────────────────────────────────────────────────────┘
+</pre>
+<br />
+<h3 style='display: inline' id='alloy-configuration-for-logs'>Alloy configuration for logs</h3><br />
+<br />
+<span>Alloy discovers pods via the Kubernetes API, tails their log files from /var/log/pods/, and ships to Loki. Importantly, Alloy runs as a DaemonSet on each worker node—it doesn&#39;t run inside the application pods. Since containerd writes all container stdout/stderr to /var/log/pods/ on the node&#39;s filesystem, Alloy can tail logs for every pod on that node from a single location without any sidecar injection:</span><br />
+<br />
+<pre>
+loki.source.kubernetes "pod_logs" {
+  targets    = discovery.relabel.pod_logs.output
+  forward_to = [loki.process.pod_logs.receiver]
+}
+
+loki.write "default" {
+  endpoint {
+    url = "http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"
+  }
+}
+</pre>
+<br />
+<h3 style='display: inline' id='querying-logs-with-logql'>Querying logs with LogQL</h3><br />
+<br />
+<span>Now I could query logs in Loki (e.g. via Grafana UI) with LogQL:</span><br />
+<br />
+<pre>
+{namespace="rag-system", container="search-ui"} |= "ERROR"
+</pre>
+<br />
+<h2 style='display: inline' id='metrics-with-prometheus'>Metrics with Prometheus</h2><br />
+<br />
+<span>I added Prometheus metrics to every service. Following the Four Golden Signals (latency, traffic, errors, saturation), I instrumented the codebase with histograms, counters, and gauges:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">from</font></u></b> prometheus_client <b><u><font color="#000000">import</font></u></b> Histogram, Counter, Gauge
+
+search_duration = Histogram(
+    <font color="#808080">"search_service_request_duration_seconds"</font>,
+    <font color="#808080">"Total duration of Search Service requests"</font>,
+    [<font color="#808080">"method"</font>],
+    buckets=[<font color="#000000">0.1</font>, <font color="#000000">0.25</font>, <font color="#000000">0.5</font>, <font color="#000000">1.0</font>, <font color="#000000">2.5</font>, <font color="#000000">5.0</font>, <font color="#000000">10.0</font>, <font color="#000000">20.0</font>, <font color="#000000">30.0</font>, <font color="#000000">60.0</font>],
+)
+
+errors_total = Counter(
+    <font color="#808080">"search_service_errors_total"</font>,
+    <font color="#808080">"Error count by type"</font>,
+    [<font color="#808080">"method"</font>, <font color="#808080">"error_type"</font>],
+)
+</pre>
+<br />
+<span>Initially, I used Prometheus scraping—each service exposed a /metrics endpoint, and Prometheus pulled metrics every 15 seconds. This worked, but I wanted a unified pipeline.</span><br />
+<br />
+<h3 style='display: inline' id='alloy-configuration-for-application-metrics'>Alloy configuration for application metrics</h3><br />
+<br />
+<span>The breakthrough came with Grafana Alloy as an OpenTelemetry collector. Services now push metrics via OTLP (OpenTelemetry Protocol), and Alloy converts them to Prometheus format:</span><br />
+<br />
+<pre>
+┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
+│ search-ui   │  │search-svc   │  │embed-svc    │  │  indexer    │
+│ OTel Meter  │  │ OTel Meter  │  │ OTel Meter  │  │ OTel Meter  │
+│      │      │  │      │      │  │      │      │  │      │      │
+│ OTLPExporter│  │ OTLPExporter│  │ OTLPExporter│  │ OTLPExporter│
+└──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
+       │                │                │                │
+       └────────────────┴────────────────┴────────────────┘
+                                 │
+                                 ▼ OTLP/gRPC (port 4317)
+                        ┌─────────────────────┐
+                        │   Grafana Alloy     │
+                        └──────────┬──────────┘
+                                   │ prometheus.remote_write
+                                   ▼
+                        ┌─────────────────────┐
+                        │    Prometheus       │
+                        └─────────────────────┘
+</pre>
+<br />
+<span>Alloy receives OTLP on ports 4317 (gRPC) or 4318 (HTTP), batches the data for efficiency, and exports to Prometheus:</span><br />
+<br />
+<pre>
+otelcol.receiver.otlp "default" {
+  grpc { endpoint = "0.0.0.0:4317" }
+  http { endpoint = "0.0.0.0:4318" }
+  output {
+    metrics = [otelcol.processor.batch.metrics.input]
+    traces  = [otelcol.processor.batch.traces.input]
+  }
+}
+
+otelcol.processor.batch "metrics" {
+  timeout = "5s"
+  send_batch_size = 1000
+  output { metrics = [otelcol.exporter.prometheus.default.input] }
+}
+
+otelcol.exporter.prometheus "default" {
+  forward_to = [prometheus.remote_write.prom.receiver]
+}
+</pre>
+<br />
+<span>Instead of sending each metric individually, Alloy accumulates up to 1000 metrics (or waits 5 seconds) before flushing. This reduces network overhead and protects backends from being overwhelmed.</span><br />
+<br />
+<h3 style='display: inline' id='kubernetes-metrics-kubelet-cadvisor-and-kube-state-metrics'>Kubernetes metrics: kubelet, cAdvisor, and kube-state-metrics</h3><br />
+<br />
+<span>Alloy also pulls metrics from Kubernetes itself—kubelet resource metrics, cAdvisor container metrics, and kube-state-metrics for cluster state.</span><br />
+<br />
+<span>Why three separate sources? It does feel fragmented, but each serves a distinct purpose. <span class='inlinecode'>kubelet</span> exposes resource metrics about pod CPU and memory usage from its own bookkeeping—lightweight summaries of what&#39;s running on each node. <span class='inlinecode'>cAdvisor</span> (Container Advisor) runs inside kubelet and provides detailed container-level metrics: CPU throttling, memory working sets, filesystem I/O, network bytes. These are the raw runtime stats from containerd. <span class='inlinecode'>kube-state-metrics</span> is different—it doesn&#39;t measure resource usage at all. Instead, it queries the Kubernetes API and exposes the *desired state*: how many replicas a Deployment wants, whether a Pod is pending or running, what resource requests and limits are configured. You need all three because "container used 500MB" (cAdvisor), "pod requested 1GB" (kube-state-metrics), and "node has 4GB available" (kubelet) are complementary views. The fragmentation is a consequence of Kubernetes&#39; architecture—no single component has the complete picture.</span><br />
+<br />
+<span>None of these components speak OpenTelemetry—they all expose Prometheus-format metrics via HTTP endpoints. That&#39;s why Alloy uses <span class='inlinecode'>prometheus.scrape</span> instead of receiving OTLP pushes. Alloy handles both worlds: OTLP from our applications, Prometheus scraping for infrastructure.</span><br />
+<br />
+<pre>
+prometheus.scrape "kubelet_resource" {
+  targets         = discovery.relabel.kubelet.output
+  job_name        = "kubelet-resource"
+  scheme          = "https"
+  scrape_interval = "30s"
+  bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  tls_config { insecure_skip_verify = true }
+  forward_to      = [prometheus.remote_write.prom.receiver]
+}
+
+prometheus.scrape "cadvisor" {
+  targets         = discovery.relabel.cadvisor.output
+  job_name        = "cadvisor"
+  scheme          = "https"
+  scrape_interval = "60s"
+  bearer_token_file = "/var/run/secrets/kubernetes.io/serviceaccount/token"
+  tls_config { insecure_skip_verify = true }
+  forward_to      = [prometheus.relabel.cadvisor_filter.receiver]
+}
+
+prometheus.scrape "kube_state_metrics" {
+  targets = [
+    {"__address__" = "kube-state-metrics.monitoring.svc.cluster.local:8080"},
+  ]
+  job_name        = "kube-state-metrics"
+  scrape_interval = "30s"
+  forward_to      = [prometheus.relabel.kube_state_filter.receiver]
+}
+</pre>
+<br />
+<span>Note that <span class='inlinecode'>kubelet</span> and <span class='inlinecode'>cAdvisor</span> require HTTPS with bearer token authentication (using the service account token mounted by Kubernetes), while <span class='inlinecode'>kube-state-metrics</span> is a simple HTTP target. <span class='inlinecode'>cAdvisor</span> is scraped less frequently (60s) because it returns many more metrics with higher cardinality.</span><br />
+<br />
+<h3 style='display: inline' id='infrastructure-metrics-kafka-redis-minio'>Infrastructure metrics: Kafka, Redis, MinIO</h3><br />
+<br />
+<span>Application metrics weren&#39;t enough. I also needed visibility into the data layer. Each infrastructure component has a specific role in X-RAG and got its own exporter:</span><br />
+<br />
+<span><span class='inlinecode'>Redis</span> is the caching layer. It stores search results and embeddings to avoid redundant API calls to OpenAI. We collect 25 metrics via oliver006/redis_exporter running as a sidecar, including cache hit/miss rates, memory usage, connected clients, and command latencies. The key metric? <span class='inlinecode'>redis_keyspace_hits_total / (redis_keyspace_hits_total + redis_keyspace_misses_total)</span> tells you if caching is actually helping.</span><br />
+<br />
+<span><span class='inlinecode'>Kafka</span> is the message queue connecting the ingestion API to the indexer. Documents are published to a topic, and the indexer consumes them asynchronously. We collect 12 metrics via danielqsj/kafka-exporter, with consumer lag being the most critical—it shows how far behind the indexer is. High lag means documents aren&#39;t being indexed fast enough.</span><br />
+<br />
+<span><span class='inlinecode'>MinIO</span> is the S3-compatible object storage where raw documents are stored before processing. We collect 16 metrics from its native /minio/v2/metrics/cluster endpoint, covering request rates, error counts, storage usage, and cluster health.</span><br />
+<br />
+<span>You can verify these counts by querying Prometheus directly:</span><br />
+<br />
+<pre>
+$ curl -s &#39;http://localhost:9090/api/v1/label/__name__/values&#39; \
+    | jq -r &#39;.data[]&#39; | grep -c &#39;^redis_&#39;
+25
+$ curl -s &#39;http://localhost:9090/api/v1/label/__name__/values&#39; \
+    | jq -r &#39;.data[]&#39; | grep -c &#39;^kafka_&#39;
+12
+$ curl -s &#39;http://localhost:9090/api/v1/label/__name__/values&#39; \
+    | jq -r &#39;.data[]&#39; | grep -c &#39;^minio_&#39;
+16
+</pre>
+<br />
+<a class='textlink' href='https://github.com/florianbuetow/x-rag/blob/main/infra/k8s/monitoring/alloy-config.yaml'>Full Alloy configuration with detailed metric filtering</a><br />
+<br />
+<span>Alloy scrapes all of these and remote-writes to Prometheus:</span><br />
+<br />
+<pre>
+prometheus.scrape "redis_exporter" {
+  targets = [
+    {"__address__" = "xrag-redis.rag-system.svc.cluster.local:9121"},
+  ]
+  job_name        = "redis"
+  scrape_interval = "30s"
+  forward_to      = [prometheus.relabel.redis_filter.receiver]
+}
+
+prometheus.scrape "kafka_exporter" {
+  targets = [
+    {"__address__" = "kafka-exporter.rag-system.svc.cluster.local:9308"},
+  ]
+  job_name        = "kafka"
+  scrape_interval = "30s"
+  forward_to      = [prometheus.relabel.kafka_filter.receiver]
+}
+
+prometheus.scrape "minio" {
+  targets = [
+    {"__address__" = "xrag-minio.rag-system.svc.cluster.local:9000"},
+  ]
+  job_name     = "minio"
+  metrics_path = "/minio/v2/metrics/cluster"
+  scrape_interval = "30s"
+  forward_to   = [prometheus.relabel.minio_filter.receiver]
+}
+</pre>
+<br />
+<span>Note that MinIO exposes metrics at a custom path (<span class='inlinecode'>/minio/v2/metrics/cluster</span>) rather than the default <span class='inlinecode'>/metrics</span>. Each exporter forwards to a relabel component that filters down to essential metrics before sending to Prometheus.</span><br />
+<br />
+<span>With all metrics in Prometheus, I can use PromQL queries in Grafana dashboards. For example, to check Kafka consumer lag and see if the indexer is falling behind:</span><br />
+<br />
+<pre>
+sum by (consumergroup, topic) (kafka_consumergroup_lag)
+</pre>
+<br />
+<span>Or check Redis cache effectiveness:</span><br />
+<br />
+<pre>
+redis_keyspace_hits_total / (redis_keyspace_hits_total + redis_keyspace_misses_total)
+</pre>
+<br />
+<h2 style='display: inline' id='distributed-tracing-with-tempo'>Distributed tracing with Tempo</h2><br />
+<br />
+<h3 style='display: inline' id='understanding-traces-spans-and-the-trace-tree'>Understanding traces, spans, and the trace tree</h3><br />
+<br />
+<span>Before diving into the implementation, let me explain the core concepts I learned. A <span class='inlinecode'>trace</span> represents a single request&#39;s journey through the entire distributed system. Think of it as a receipt that follows your request from the moment it enters the system until the final response.</span><br />
+<br />
+<span>Each trace is identified by a <span class='inlinecode'>trace ID</span>—a 128-bit identifier (32 hex characters) that stays constant across all services. When I make a search request, every service handling that request uses the same trace ID: <span class='inlinecode'>9df981cac91857b228eca42b501c98c6</span>.</span><br />
+<br />
+<a class='textlink' href='https://www.youtube.com/watch?v=KPGjqus5qFo'>Quick video explaining the difference between trace IDs and span IDs in OpenTelemetry</a><br />
+<br />
+<span>Within a trace, individual operations are recorded as <span class='inlinecode'>spans</span>. A span has:</span><br />
+<br />
+<ul>
+<li>A <span class='inlinecode'>span ID</span>: 64-bit identifier (16 hex characters) unique to this operation</li>
+<li>A <span class='inlinecode'>parent span ID</span>: links this span to its caller</li>
+<li>A <span class='inlinecode'>name</span>: what operation this represents (e.g., "POST /api/search")</li>
+<li><span class='inlinecode'>Start time</span> and <span class='inlinecode'>duration</span></li>
+<li><span class='inlinecode'>Attributes</span>: key-value metadata (e.g., <span class='inlinecode'>http.status_code=200</span>)</li>
+</ul><br />
+<span>The first span in a trace is the <span class='inlinecode'>root span</span>—it has no parent. When the root span calls another service, that service creates a <span class='inlinecode'>child span</span> with the root&#39;s span ID as its parent. This parent-child relationship forms a <span class='inlinecode'>tree structure</span>:</span><br />
+<br />
+<pre>
+                        ┌─────────────────────────┐
+                        │      Root Span          │
+                        │  POST /api/search       │
+                        │  span_id: a1b2c3d4...   │
+                        │  parent: (none)         │
+                        └───────────┬─────────────┘
+                                    │
+              ┌─────────────────────┴─────────────────────┐
+              │                                           │
+              ▼                                           ▼
+┌─────────────────────────┐             ┌─────────────────────────┐
+│      Child Span         │             │      Child Span         │
+│  gRPC Search            │             │  render_template        │
+│  span_id: e5f6g7h8...   │             │  span_id: i9j0k1l2...   │
+│  parent: a1b2c3d4...    │             │  parent: a1b2c3d4...    │
+└───────────┬─────────────┘             └─────────────────────────┘
+            │
+            ├──────────────────┬──────────────────┐
+            ▼                  ▼                  ▼
+     ┌────────────┐     ┌────────────┐     ┌────────────┐
+     │ Grandchild │     │ Grandchild │     │ Grandchild │
+     │ embedding  │     │ vector     │     │ llm.rag    │
+     │ .generate  │     │ _search    │     │ _completion│
+     └────────────┘     └────────────┘     └────────────┘
+</pre>
+<br />
+<span>This tree structure answers the critical question: "What called what?" When I see a slow span, I can trace up to see what triggered it and down to see what it&#39;s waiting on.</span><br />
+<br />
+<h3 style='display: inline' id='how-trace-context-propagates'>How trace context propagates</h3><br />
+<br />
+<span>The magic that links spans across services is <span class='inlinecode'>trace context propagation</span>. When Service A calls Service B, it must pass along the trace ID and its own span ID (which becomes the parent). OpenTelemetry uses the W3C <span class='inlinecode'>traceparent</span> header:</span><br />
+<br />
+<pre>
+traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
+             │   │                                │                 │
+             │   │                                │                 └── flags
+             │   │                                └── parent span ID (16 hex)
+             │   └── trace ID (32 hex)
+             └── version
+</pre>
+<br />
+<span>For HTTP, this travels as a request header. For gRPC, it&#39;s passed as metadata. For Kafka, it&#39;s embedded in message headers. The receiving service extracts this context, creates a new span with the propagated trace ID and the caller&#39;s span ID as parent, then continues the chain.</span><br />
+<br />
+<span>This is why all my spans link together—OpenTelemetry&#39;s auto-instrumentation handles propagation automatically for HTTP, gRPC, and Kafka clients.</span><br />
+<br />
+<h3 style='display: inline' id='implementation'>Implementation</h3><br />
+<br />
+<span>This is where distributed tracing made the difference. I integrated OpenTelemetry auto-instrumentation for FastAPI, gRPC, and HTTP clients, plus manual spans for RAG-specific operations:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.fastapi <b><u><font color="#000000">import</font></u></b> FastAPIInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.grpc <b><u><font color="#000000">import</font></u></b> GrpcAioInstrumentorClient
+
+<i><font color="silver"># Auto-instrument frameworks</font></i>
+FastAPIInstrumentor.instrument_app(app)
+GrpcAioInstrumentorClient().instrument()
+
+<i><font color="silver"># Manual spans for custom operations</font></i>
+with tracer.start_as_current_span(<font color="#808080">"llm.rag_completion"</font>) as span:
+    span.set_attribute(<font color="#808080">"llm.model"</font>, model_name)
+    result = <b><u><font color="#000000">await</font></u></b> generate_answer(query, context)
+</pre>
+<br />
+<span><span class='inlinecode'>Auto-instrumentation</span> is the quick win: one line of code and you get spans for every HTTP request, gRPC call, or database query. The instrumentor patches the framework at runtime, so existing code works without modification. The downside? You only get what the library authors decided to capture—generic HTTP attributes like <span class='inlinecode'>http.method</span> and <span class='inlinecode'>http.status_code</span>, but nothing domain-specific. Auto-instrumented spans also can&#39;t know your business logic, so a slow request shows up as "POST /api/search took 5 seconds" without revealing which internal operation caused the delay.</span><br />
+<br />
+<span><span class='inlinecode'>Manual spans</span> fill that gap. By wrapping specific operations (like <span class='inlinecode'>llm.rag_completion</span> or <span class='inlinecode'>vector_search.query</span>), you get visibility into your application&#39;s unique behaviour. You can add custom attributes (<span class='inlinecode'>llm.model</span>, <span class='inlinecode'>query.top_k</span>, <span class='inlinecode'>cache.hit</span>) that make traces actually useful for debugging. The downside is maintenance: manual spans are code you write and maintain, and you need to decide where instrumentation adds value versus where it just adds noise. In practice, I found the right balance was auto-instrumentation for framework boundaries (HTTP, gRPC) plus manual spans for the 5-10 operations that actually matter for understanding performance.</span><br />
+<br />
+<span>The magic is trace context propagation. When the Search UI calls the Search Service via gRPC, the trace ID travels in metadata headers:</span><br />
+<br />
+<pre>
+Metadata: [
+  ("traceparent", "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01"),
+  ("content-type", "application/grpc"),
+]
+</pre>
+<br />
+<span>Spans from all services are linked by this trace ID, forming a tree:</span><br />
+<br />
+<pre>
+Trace ID: 0af7651916cd43dd8448eb211c80319c
+
+├─ [search-ui] POST /api/search (300ms)
+│   │
+│   ├─ [search-service] Search (gRPC server) (275ms)
+│   │   │
+│   │   ├─ [search-service] embedding.generate (50ms)
+│   │   │   └─ [embedding-service] Embed (45ms)
+│   │   │       └─ POST https://api.openai.com (35ms)
+│   │   │
+│   │   ├─ [search-service] vector_search.query (100ms)
+│   │   │
+│   │   └─ [search-service] llm.rag_completion (120ms)
+│           └─ openai.chat (115ms)
+</pre>
+<br />
+<h3 style='display: inline' id='alloy-configuration-for-traces'>Alloy configuration for traces</h3><br />
+<br />
+<span>Traces are collected by Alloy and stored in Grafana Tempo. Alloy batches traces for efficiency before exporting via OTLP:</span><br />
+<br />
+<pre>
+otelcol.processor.batch "traces" {
+  timeout = "5s"
+  send_batch_size = 500
+  output { traces = [otelcol.exporter.otlp.tempo.input] }
+}
+
+otelcol.exporter.otlp "tempo" {
+  client {
+    endpoint = "tempo.monitoring.svc.cluster.local:4317"
+    tls { insecure = true }
+  }
+}
+</pre>
+<br />
+<span>In Tempo&#39;s UI, I can finally see exactly where time is spent. That 5-second query? Turns out the vector search was waiting on a cold Weaviate connection. Now I knew what to fix.</span><br />
+<br />
+<h2 style='display: inline' id='async-ingestion-trace-walkthrough'>Async ingestion trace walkthrough</h2><br />
+<br />
+<span>One of the most powerful aspects of distributed tracing is following requests across async boundaries like message queues. The document ingestion pipeline flows through Kafka, creating spans that are linked even though they execute in different processes at different times.</span><br />
+<br />
+<h3 style='display: inline' id='step-1-ingest-a-document'>Step 1: Ingest a document</h3><br />
+<br />
+<pre>
+$ curl -s -X POST http://localhost:8082/ingest \
+  -H "Content-Type: application/json" \
+  -d &#39;{
+    "text": "This is the X-RAG Observability Guide...",
+    "metadata": {
+      "title": "X-RAG Observability Guide",
+      "source_file": "docs/OBSERVABILITY.md",
+      "type": "markdown"
+    },
+    "namespace": "default"
+  }&#39; | jq .
+{
+  "document_id": "8538656a-ba99-406c-8da7-87c5f0dda34d",
+  "status": "accepted",
+  "minio_bucket": "documents",
+  "minio_key": "8538656a-ba99-406c-8da7-87c5f0dda34d.json",
+  "message": "Document accepted for processing"
+}
+</pre>
+<br />
+<span>The ingestion API immediately returns—it doesn&#39;t wait for indexing. The document is stored in MinIO and a message is published to Kafka.</span><br />
+<br />
+<h3 style='display: inline' id='step-2-find-the-ingestion-trace'>Step 2: Find the ingestion trace</h3><br />
+<br />
+<span>Using Tempo&#39;s HTTP API (port 3200), we can search for traces by span name using TraceQL:</span><br />
+<br />
+<pre>
+$ curl -s -G "http://localhost:3200/api/search" \
+  --data-urlencode &#39;q={name="POST /ingest"}&#39; \
+  --data-urlencode &#39;limit=3&#39; | jq &#39;.traces[0].traceID&#39;
+"b3fc896a1cf32b425b8e8c46c86c76f7"
+</pre>
+<br />
+<h3 style='display: inline' id='step-3-fetch-the-complete-trace'>Step 3: Fetch the complete trace</h3><br />
+<br />
+<pre>
+$ curl -s "http://localhost:3200/api/traces/b3fc896a1cf32b425b8e8c46c86c76f7" \
+  | jq &#39;[.batches[] | ... | {service, span}] | unique&#39;
+[
+  { "service": "ingestion-api", "span": "POST /ingest" },
+  { "service": "ingestion-api", "span": "storage.upload" },
+  { "service": "ingestion-api", "span": "messaging.publish" },
+  { "service": "indexer", "span": "indexer.process_document" },
+  { "service": "indexer", "span": "document.duplicate_check" },
+  { "service": "indexer", "span": "document.pipeline" },
+  { "service": "indexer", "span": "storage.download" },
+  { "service": "indexer", "span": "/xrag.embedding.EmbeddingService/EmbedBatch" },
+  { "service": "embedding-service", "span": "openai.embeddings" },
+  { "service": "indexer", "span": "db.insert" }
+]
+</pre>
+<br />
+<span>The trace spans <span class='inlinecode'>three services</span>: ingestion-api, indexer, and embedding-service. The trace context propagates through Kafka, linking the original HTTP request to the async consumer processing.</span><br />
+<br />
+<h3 style='display: inline' id='step-4-analyse-the-async-trace'>Step 4: Analyse the async trace</h3><br />
+<br />
+<pre>
+ingestion-api | POST /ingest             |   16ms  ← HTTP response returns
+ingestion-api | storage.upload           |   13ms  ← Save to MinIO
+ingestion-api | messaging.publish        |    1ms  ← Publish to Kafka
+              |                          |         
+              | ~~~ Kafka queue ~~~      |         ← Async boundary
+              |                          |         
+indexer       | indexer.process_document | 1799ms  ← Consumer picks up message
+indexer       | document.duplicate_check |    1ms
+indexer       | document.pipeline        | 1796ms
+indexer       | storage.download         |    1ms  ← Fetch from MinIO
+indexer       | EmbedBatch (gRPC)        |  754ms  ← Call embedding service
+embedding-svc | openai.embeddings        |  752ms  ← OpenAI API
+indexer       | db.insert                | 1038ms  ← Store in Weaviate
+</pre>
+<br />
+<span>The total async processing takes ~1.8 seconds, but the user sees a 16ms response. Without tracing, debugging "why isn&#39;t my document showing up in search results?" would require correlating logs from three services manually.</span><br />
+<br />
+<span><span class='inlinecode'>Key insight</span>: The trace context propagates through Kafka message headers, allowing the indexer&#39;s spans to link back to the original ingestion request. This is configured via OpenTelemetry&#39;s Kafka instrumentation.</span><br />
+<br />
+<h3 style='display: inline' id='viewing-traces-in-grafana'>Viewing traces in Grafana</h3><br />
+<br />
+<span>To view a trace in Grafana&#39;s UI:</span><br />
+<br />
+<span>1. Open Grafana at http://localhost:3000/explore</span><br />
+<span>2. Select <span class='inlinecode'>Tempo</span> as the data source (top-left dropdown)</span><br />
+<span>3. Choose <span class='inlinecode'>TraceQL</span> as the query type</span><br />
+<span>4. Paste the trace ID: <span class='inlinecode'>b3fc896a1cf32b425b8e8c46c86c76f7</span></span><br />
+<span>5. Click <span class='inlinecode'>Run query</span></span><br />
+<br />
+<span>The trace viewer shows a Gantt chart with all spans, their timing, and parent-child relationships. Click any span to see its attributes.</span><br />
+<br />
+<a href='./x-rag-observability-hackathon/index-trace.png'><img alt='Async ingestion trace in Grafana Tempo' title='Async ingestion trace in Grafana Tempo' src='./x-rag-observability-hackathon/index-trace.png' /></a><br />
+<br />
+<a href='./x-rag-observability-hackathon/index-node-graph.png'><img alt='Ingestion trace node graph showing service dependencies' title='Ingestion trace node graph showing service dependencies' src='./x-rag-observability-hackathon/index-node-graph.png' /></a><br />
+<br />
+<h2 style='display: inline' id='end-to-end-search-trace-walkthrough'>End-to-end search trace walkthrough</h2><br />
+<br />
+<span>To demonstrate the observability stack in action, here&#39;s a complete trace from a search request through all services.</span><br />
+<br />
+<h3 style='display: inline' id='step-1-make-a-search-request'>Step 1: Make a search request</h3><br />
+<br />
+<span>Normally you&#39;d use the Search UI web interface at http://localhost:8080, but for demonstration purposes curl makes it easier to show the raw request and response:</span><br />
+<br />
+<pre>
+$ curl -s -X POST http://localhost:8080/api/search \
+  -H "Content-Type: application/json" \
+  -d &#39;{"query": "What is RAG?", "namespace": "default", "mode": "hybrid", "top_k": 5}&#39; | jq .
+{
+  "answer": "I don&#39;t have enough information to answer this question.",
+  "sources": [
+    {
+      "id": "71adbc34-56c1-4f75-9248-4ed38094ac69",
+      "content": "# X-RAG Observability Guide This document describes...",
+      "score": 0.8292956352233887,
+      "metadata": {
+        "source": "docs/OBSERVABILITY.md",
+        "type": "markdown",
+        "namespace": "default"
+      }
+    }
+  ],
+  "metadata": {
+    "namespace": "default",
+    "num_sources": "5",
+    "cache_hit": "False",
+    "mode": "hybrid",
+    "top_k": "5",
+    "trace_id": "9df981cac91857b228eca42b501c98c6"
+  }
+}
+</pre>
+<br />
+<span>The response includes a <span class='inlinecode'>trace_id</span> that links this request to all spans across services.</span><br />
+<br />
+<h3 style='display: inline' id='step-2-query-tempo-for-the-trace'>Step 2: Query Tempo for the trace</h3><br />
+<br />
+<span>Using the trace ID from the response, query Tempo&#39;s API:</span><br />
+<br />
+<pre>
+$ curl -s "http://localhost:3200/api/traces/9df981cac91857b228eca42b501c98c6" \
+  | jq &#39;.batches[].scopeSpans[].spans[] 
+        | {name, service: .attributes[] 
+           | select(.key=="service.name") 
+           | .value.stringValue}&#39;
+</pre>
+<br />
+<span>The raw trace shows spans from multiple services:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>search-ui</span>: <span class='inlinecode'>POST /api/search</span> (root span, 2138ms total)</li>
+<li><span class='inlinecode'>search-ui</span>: <span class='inlinecode'>/xrag.search.SearchService/Search</span> (gRPC client call)</li>
+<li><span class='inlinecode'>search-service</span>: <span class='inlinecode'>/xrag.search.SearchService/Search</span> (gRPC server)</li>
+<li><span class='inlinecode'>search-service</span>: <span class='inlinecode'>/xrag.embedding.EmbeddingService/Embed</span> (gRPC client)</li>
+<li><span class='inlinecode'>embedding-service</span>: <span class='inlinecode'>/xrag.embedding.EmbeddingService/Embed</span> (gRPC server)</li>
+<li><span class='inlinecode'>embedding-service</span>: <span class='inlinecode'>openai.embeddings</span> (OpenAI API call, 647ms)</li>
+<li><span class='inlinecode'>embedding-service</span>: <span class='inlinecode'>POST https://api.openai.com/v1/embeddings</span> (HTTP client)</li>
+<li><span class='inlinecode'>search-service</span>: <span class='inlinecode'>vector_search.query</span> (Weaviate hybrid search, 13ms)</li>
+<li><span class='inlinecode'>search-service</span>: <span class='inlinecode'>openai.chat</span> (LLM answer generation, 1468ms)</li>
+<li><span class='inlinecode'>search-service</span>: <span class='inlinecode'>POST https://api.openai.com/v1/chat/completions</span> (HTTP client)</li>
+</ul><br />
+<h3 style='display: inline' id='step-3-analyse-the-trace'>Step 3: Analyse the trace</h3><br />
+<br />
+<span>From this single trace, I can see exactly where time is spent:</span><br />
+<br />
+<pre>
+Total request:                     2138ms
+├── gRPC to search-service:        2135ms
+│   ├── Embedding generation:       649ms
+│   │   └── OpenAI embeddings API:   640ms
+│   ├── Vector search (Weaviate):    13ms
+│   └── LLM answer generation:     1468ms
+│       └── OpenAI chat API:       1463ms
+</pre>
+<br />
+<span>The bottleneck is clear: <span class='inlinecode'>68% of time is spent in LLM answer generation</span>. The vector search (13ms) and embedding generation (649ms) are relatively fast. Without tracing, I would have guessed the embedding service was slow—traces proved otherwise.</span><br />
+<br />
+<h3 style='display: inline' id='step-4-search-traces-with-traceql'>Step 4: Search traces with TraceQL</h3><br />
+<br />
+<span>Tempo supports TraceQL for querying traces by attributes:</span><br />
+<br />
+<pre>
+$ curl -s -G "http://localhost:3200/api/search" \
+  --data-urlencode &#39;q={resource.service.name="search-service"}&#39; \
+  --data-urlencode &#39;limit=5&#39; | jq &#39;.traces[:2] | .[].rootTraceName&#39;
+"/xrag.search.SearchService/Search"
+"GET /health/ready"
+</pre>
+<br />
+<span>Other useful TraceQL queries:</span><br />
+<br />
+<pre>
+# Find slow searches (&gt; 2 seconds)
+{resource.service.name="search-ui" &amp;&amp; name="POST /api/search"} | duration &gt; 2s
+
+# Find errors
+{status=error}
+
+# Find OpenAI calls
+{name=~"openai.*"}
+</pre>
+<br />
+<h3 style='display: inline' id='viewing-the-search-trace-in-grafana'>Viewing the search trace in Grafana</h3><br />
+<br />
+<span>Follow the same steps as above, but use the search trace ID: <span class='inlinecode'>9df981cac91857b228eca42b501c98c6</span></span><br />
+<br />
+<a href='./x-rag-observability-hackathon/search-trace.png'><img alt='Search trace in Grafana Tempo' title='Search trace in Grafana Tempo' src='./x-rag-observability-hackathon/search-trace.png' /></a><br />
+<br />
+<a href='./x-rag-observability-hackathon/search-node-graph.png'><img alt='Search trace node graph showing service flow' title='Search trace node graph showing service flow' src='./x-rag-observability-hackathon/search-node-graph.png' /></a><br />
+<br />
+<h2 style='display: inline' id='correlating-the-three-signals'>Correlating the three signals</h2><br />
+<br />
+<span>The real power comes from correlating traces, metrics, and logs. When an alert fires for high error rate, I follow this workflow:</span><br />
+<br />
+<span>1. Metrics: Prometheus shows error spike started at 10:23:00</span><br />
+<span>2. Traces: Query Tempo for traces with status=error around that time</span><br />
+<span>3. Logs: Use the trace ID to find detailed error messages in Loki</span><br />
+<br />
+<pre>
+{namespace="rag-system"} |= "trace_id=abc123" |= "error"
+</pre>
+<br />
+<span>Prometheus exemplars link specific metric samples to trace IDs, so I can click directly from a latency spike to the responsible trace.</span><br />
+<br />
+<h2 style='display: inline' id='grafana-dashboards'>Grafana dashboards</h2><br />
+<br />
+<span>During the hackathon, I also created six pre-built Grafana dashboards that are automatically provisioned when the monitoring stack starts:</span><br />
+<br />
+<span>| Dashboard | Description |</span><br />
+<span>|-----------|-------------|</span><br />
+<span>| **X-RAG Overview** | The main dashboard with 22 panels covering request rates, latencies, error rates, and service health across all X-RAG components |</span><br />
+<span>| **OpenTelemetry HTTP Metrics** | HTTP request/response metrics from OpenTelemetry-instrumented services—request rates, latency percentiles, and status code breakdowns |</span><br />
+<span>| **Pod System Metrics** | Kubernetes pod resource utilisation: CPU usage, memory consumption, network I/O, disk I/O, and pod state from kube-state-metrics |</span><br />
+<span>| **Redis** | Cache performance: memory usage, hit/miss rates, commands per second, connected clients, and memory fragmentation |</span><br />
+<span>| **Kafka** | Message queue health: consumer lag (critical for indexer monitoring), broker status, topic partitions, and throughput |</span><br />
+<span>| **MinIO** | Object storage metrics: S3 request rates, error counts, traffic volume, bucket sizes, and disk usage |</span><br />
+<br />
+<span>All dashboards are stored as JSON files in <span class='inlinecode'>infra/k8s/monitoring/grafana-dashboards/</span> and deployed via ConfigMaps, so they survive pod restarts and cluster recreations.</span><br />
+<br />
+<a href='./x-rag-observability-hackathon/dashboard-xrag-overview.png'><img alt='X-RAG Overview dashboard' title='X-RAG Overview dashboard' src='./x-rag-observability-hackathon/dashboard-xrag-overview.png' /></a><br />
+<a href='./x-rag-observability-hackathon/dashboard-pod-system-metrics.png'><img alt='Pod System Metrics dashboard' title='Pod System Metrics dashboard' src='./x-rag-observability-hackathon/dashboard-pod-system-metrics.png' /></a><br />
+<br />
+<h2 style='display: inline' id='results-two-days-well-spent'>Results: two days well spent</h2><br />
+<br />
+<span>What did two days of hackathon work achieve? The system went from flying blind to fully instrumented:</span><br />
+<br />
+<ul>
+<li>All three pillars implemented: logs (Loki), metrics (Prometheus), traces (Tempo)</li>
+<li>Unified collection via Grafana Alloy</li>
+<li>Infrastructure metrics for Kafka, Redis, and MinIO</li>
+<li>Six pre-built Grafana dashboards covering application metrics, pod resources, and infrastructure</li>
+<li>Trace context propagation across all gRPC calls</li>
+</ul><br />
+<span>The biggest insight from testing? The embedding service wasn&#39;t the bottleneck I assumed. Traces revealed that LLM synthesis dominated latency, not embedding generation. Without tracing, optimisation efforts would have targeted the wrong component.</span><br />
+<br />
+<span>Beyond the technical wins, I had a lot of fun. The hackathon brought together people working on different projects, and I got to know some really nice folks during the sessions themselves. There&#39;s something energising about being in a (virtual) room with other people all heads-down on their own challenges—even if you&#39;re not collaborating directly, the shared focus is motivating.</span><br />
+<br />
+<h2 style='display: inline' id='slis-slos-and-slas'>SLIs, SLOs and SLAs</h2><br />
+<br />
+<span>The system now has full observability, but there&#39;s always more. And to be clear: this is not production-grade yet. It works well for development and could scale to production, but that would need to be validated with proper load testing and chaos testing first. We haven&#39;t stress-tested the observability pipeline under heavy load, nor have we tested failure scenarios like Tempo going down or Alloy running out of memory. The Alloy config includes comments on sampling strategies and rate limiting that would be essential for high-traffic environments.</span><br />
+<br />
+<span>One thing we didn&#39;t cover: monitoring and alerting. These are related but distinct from observability. Observability is about collecting and exploring data to understand system behaviour. Monitoring is about defining thresholds and alerting when they&#39;re breached. We have Prometheus with all the metrics, but no alerting rules yet—no PagerDuty integration, no Slack notifications when latency spikes or error rates climb.</span><br />
+<br />
+<span>We also didn&#39;t define any SLIs (Service Level Indicators) or SLOs (Service Level Objectives). An SLI is a quantitative measure of service quality—for example, "99th percentile search latency" or "percentage of requests returning successfully." An SLO is a target for that indicator—"99th percentile latency should be under 2 seconds" or "99.9% of requests should succeed." Without SLOs, you don&#39;t know what "good" looks like, and alerting becomes arbitrary.</span><br />
+<br />
+<span>For X-RAG specifically, potential SLOs might include:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>Search latency</span>: 99th percentile search response time under 3 seconds</li>
+<li><span class='inlinecode'>Uptime</span>: 99.9% availability of the search API endpoint</li>
+<li><span class='inlinecode'>Response quality</span>: Percentage of searches returning relevant results (though this is harder to measure automatically and might require user feedback or evaluation frameworks)</li>
+</ul><br />
+<span>SLAs (Service Level Agreements) are often confused with SLOs, but they&#39;re different. An SLA is a contractual commitment to customers—a legally binding promise with consequences (refunds, credits, penalties) if you fail to meet it. SLOs are internal engineering targets; SLAs are external business promises. Typically, SLAs are less strict than SLOs: if your internal target is 99.9% availability (SLO), your customer contract might promise 99.5% (SLA), giving you a buffer before you owe anyone money.</span><br />
+<br />
+<span>But then again, X-RAG is a proof-of-concept, a prototype, a learning system—there are no real customers to disappoint. SLOs would become essential if this ever served actual users, and SLAs would follow once there&#39;s a business relationship to protect.</span><br />
+<br />
+<h2 style='display: inline' id='using-amp-for-ai-assisted-development'>Using Amp for AI-assisted development</h2><br />
+<br />
+<span>I used Amp (formerly Ampcode) throughout this project. While I knew what I wanted to achieve, I let the LLM generate the actual configurations, Kubernetes manifests, and Python instrumentation code.</span><br />
+<br />
+<a class='textlink' href='https://ampcode.com/'>Amp - AI coding agent by Sourcegraph</a><br />
+<br />
+<span>My workflow was step-by-step rather than handing over a grand plan:</span><br />
+<br />
+<span>1. "Deploy Grafana Alloy to the monitoring namespace"</span><br />
+<span>2. "Verify Alloy is running and receiving data"</span><br />
+<span>3. "Document what we did to docs/OBSERVABILITY.md"</span><br />
+<span>4. "Commit with message &#39;feat: add Grafana Alloy for telemetry collection&#39;"</span><br />
+<span>5. Hand off context, start fresh: "Now instrument the search-ui with OpenTelemetry to push traces to Alloy..."</span><br />
+<br />
+<span>Chaining many small, focused tasks worked better than one massive plan. Each task had clear success criteria, and I could verify results before moving on. The LLM generated the River configuration, the OpenTelemetry Python code, the Kubernetes manifests—I reviewed, tweaked, and committed.</span><br />
+<br />
+<span>I only ran out of the 200k token context window once, during a debugging session that involved restarting the Kubernetes cluster multiple times. The fix required correlating error messages across several services, and the conversation history grew too long. Starting a fresh context and summarising the problem solved it.</span><br />
+<br />
+<span>Amp automatically selects the best model for the task at hand. Based on the response speed and Sourcegraph&#39;s recent announcements, I believe it was using Claude Opus 4.5 for most of my coding and infrastructure work. The quality was excellent—it understood Python, Kubernetes, OpenTelemetry, and Grafana tooling without much hand-holding.</span><br />
+<br />
+<span>Let me be clear: without the LLM, I&#39;d never have managed to write all these configuration files by hand in two days. The Alloy config alone is 1400+ lines. But I also reviewed and verified every change manually, verified it made sense, and understood what was being deployed. This wasn&#39;t vibe-coding—the whole point of the hackathon was to learn. I already knew Grafana and Prometheus from previous work, but OpenTelemetry, Alloy, Tempo, Loki and the X-RAG system overall were all pretty new to me. By reviewing each generated config and understanding why it was structured that way, I actually learned the tools rather than just deploying magic incantations.</span><br />
+<br />
+<span>Cost-wise, I spent around 20 USD on Amp credits over the two-day hackathon. For the amount of code generated, configs reviewed, and debugging assistance—that&#39;s remarkably affordable.</span><br />
+<br />
+<h2 style='display: inline' id='other-changes-along-the-way'>Other changes along the way</h2><br />
+<br />
+<span>Looking at the git history, I made 25 commits during the hackathon. Beyond the main observability features, there were several smaller but useful additions:</span><br />
+<br />
+<span><span class='inlinecode'>OBSERVABILITY_ENABLED flag</span>: Added an environment variable to completely disable the monitoring stack. Set <span class='inlinecode'>OBSERVABILITY_ENABLED=false</span> in <span class='inlinecode'>.env</span> and the cluster starts without Prometheus, Grafana, Tempo, Loki, or Alloy. Useful when you just want to work on application code without the overhead.</span><br />
+<br />
+<span><span class='inlinecode'>Load generator</span>: Added a <span class='inlinecode'>make load-gen</span> target that fires concurrent requests at the search API. Useful for generating enough trace data to see patterns in Tempo, and for stress-testing the observability pipeline itself.</span><br />
+<br />
+<span><span class='inlinecode'>Verification scripts</span>: Created scripts to test that OTLP is actually reaching Alloy and that traces appear in Tempo. Debugging "why aren&#39;t my traces showing up?" is frustrating without a systematic way to verify each hop in the pipeline.</span><br />
+<br />
+<span><span class='inlinecode'>Moving monitoring to dedicated namespace</span>: Refactored from having observability components scattered across namespaces to a clean <span class='inlinecode'>monitoring</span> namespace. Makes <span class='inlinecode'>kubectl get pods -n monitoring</span> show exactly what&#39;s running for observability.</span><br />
+<br />
+<h2 style='display: inline' id='lessons-learned'>Lessons learned</h2><br />
+<br />
+<ul>
+<li>Start with metrics, but don&#39;t stop there—they tell you *what*, not *why*</li>
+<li>Trace context propagation is the key to distributed debugging</li>
+<li>Grafana Alloy as a unified collector simplifies the pipeline</li>
+<li>Infrastructure metrics matter—your app is only as fast as your data layer</li>
+<li>The three pillars work together; none is sufficient alone</li>
+</ul><br />
+<span>All manifests and observability code live in Florian&#39;s repository:</span><br />
+<br />
+<a class='textlink' href='https://github.com/florianbuetow/x-rag'>X-RAG on GitHub (source code, K8s manifests, observability configs)</a><br />
+<br />
+<span>The best part? Everything I learned during this hackathon—OpenTelemetry instrumentation, Grafana Alloy configuration, trace context propagation, PromQL queries—I can immediately apply at work as we are shifting to that new observability stack and I am going to have a few meetings talking with developers how and what they need to implement for application instrumentalization. Observability patterns are universal, and hands-on experience with a real distributed system beats reading documentation any day.</span><br />
+<br />
+<span>E-Mail your comments to paul@nospam.buetow.org</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
