@@ -784,7 +784,7 @@ We also didn't define any SLIs (Service Level Indicators) or SLOs (Service Level
 
 For X-RAG specifically, potential SLOs might include:
 
-* `Search latency`: 99th percentile search response time under 3 seconds
+* `Search latency`: 99th percentile over 5 minutes search response time under 3 seconds
 * `Uptime`: 99.9% availability of the search API endpoint
 * `Response quality`: How good was the search? There are some metrics which could be used...
 
