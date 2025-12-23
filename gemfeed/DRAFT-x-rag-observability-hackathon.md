@@ -824,7 +824,7 @@ For X-RAG specifically, potential SLOs might include:
 
 * `Search latency`: 99th percentile search response time under 3 seconds
 * `Uptime`: 99.9% availability of the search API endpoint
-* `Response quality`: Percentage of searches returning relevant results (though this is harder to measure automatically and might require user feedback or evaluation frameworks)
+* `Response quality`: How good was the search? There are some metrics which could be used...
 
 SLAs (Service Level Agreements) are often confused with SLOs, but they're different. An SLA is a contractual commitment to customers—a legally binding promise with consequences (refunds, credits, penalties) if you fail to meet it. SLOs are internal engineering targets; SLAs are external business promises. Typically, SLAs are less strict than SLOs: if your internal target is 99.9% availability (SLO), your customer contract might promise 99.5% (SLA), giving you a buffer before you owe anyone money.
 
