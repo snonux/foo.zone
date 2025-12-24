@@ -9,9 +9,11 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-x-rag-observability-hackathon.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-x-rag-observability-hackathon.gmi">Gemini</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-12-24-x-rag-observability-hackathon.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.gmi">Gemini</a>
 </p>
 <h1 style='display: inline' id='x-rag-observability-hackathon'>X-RAG Observability Hackathon</h1><br />
+<br />
+<span class='quote'>Published at 2025-12-24T09:45:29+02:00</span><br />
 <br />
 <span>This blog post describes my hackathon efforts adding observability to X-RAG, a distributed Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I especially made time available over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let&#39;s add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.</span><br />
 <br />
@@ -60,7 +62,7 @@
 </ul><br />
 <h2 style='display: inline' id='what-is-x-rag'>What is X-RAG?</h2><br />
 <br />
-<span>X-RAG is a distributed RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.</span><br />
+<span>X-RAG is the extendendible RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.</span><br />
 <br />
 <span>X-RAG handles the full pipeline: ingest documents, chunk them into searchable pieces, generate vector embeddings, store them in a vector database, and at query time, retrieve relevant chunks and pass them to an LLM for answer generation. The system supports both local LLMs (Florian runs his on a beefy desktop) and cloud APIs like OpenAI. I configured an OpenAI API key since my laptop&#39;s CPU and GPU aren&#39;t fast enough for decent local inference.</span><br />
 <br />
@@ -83,15 +85,15 @@
 <br />
 <pre>
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                      X-RAG Kubernetes Cluster                            │
+│                      X-RAG Kubernetes Cluster                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
 │   │ Search UI   │  │Search Svc   │  │Embed Service│  │   Indexer   │    │
 │   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘    │
 │          │                │                │                │           │
 │          └────────────────┴────────────────┴────────────────┘           │
-│                                    │                                     │
-│                                    ▼                                     │
+│                                    │                                    │
+│                                    ▼                                    │
 │          ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
 │          │  Weaviate   │  │   Kafka     │  │   MinIO     │              │
 │          └─────────────┘  └─────────────┘  └─────────────┘              │
@@ -120,7 +122,7 @@ xrag-k8-worker2        kindest/node:v1.32.0
 <br />
 <pre>
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           Docker Host                                    │
+│                           Docker Host                                   │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  ┌───────────────────┐  ┌───────────────────┐  ┌───────────────────┐    │
 │  │ xrag-k8-control   │  │ xrag-k8-worker    │  │ xrag-k8-worker2   │    │
@@ -208,19 +210,19 @@ tempo-55df7dbcdd-t8fg9                1/1     Running
 <br />
 <pre>
 ┌──────────────────────────────────────────────────────────────────────┐
-│                           LOGS PIPELINE                               │
+│                           LOGS PIPELINE                              │
 ├──────────────────────────────────────────────────────────────────────┤
 │  Applications write to stdout → containerd stores in /var/log/pods   │
-│                                    │                                  │
-│                              File tail                                │
-│                                    ▼                                  │
-│                         Grafana Alloy (DaemonSet)                     │
-│                    Discovers pods, extracts metadata                  │
-│                                    │                                  │
-│                       HTTP POST /loki/api/v1/push                     │
-│                                    ▼                                  │
-│                           Grafana Loki                                │
-│                   Indexes labels, stores chunks                       │
+│                                    │                                 │
+│                              File tail                               │
+│                                    ▼                                 │
+│                         Grafana Alloy (DaemonSet)                    │
+│                    Discovers pods, extracts metadata                 │
+│                                    │                                 │
+│                       HTTP POST /loki/api/v1/push                    │
+│                                    ▼                                 │
+│                           Grafana Loki                               │
+│                   Indexes labels, stores chunks                      │
 └──────────────────────────────────────────────────────────────────────┘
 </pre>
 <br />
