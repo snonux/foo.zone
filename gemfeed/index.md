@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2025-12-24 - X-RAG Observability Hackathon](./2025-12-24-x-rag-observability-hackathon.md)  
 [2025-12-07 - f3s: Kubernetes with FreeBSD - Part 8: Observability](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 [2025-11-02 - 'The Courage To Be Disliked' book notes](./2025-11-02-the-courage-to-be-disliked-book-notes.md)  
 [2025-11-02 - Perl New Features and Foostats](./2025-11-02-perl-new-features-and-foostats.md)  

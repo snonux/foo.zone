@@ -1,5 +1,7 @@
 # X-RAG Observability Hackathon
 
+> Published at 2025-12-24T09:45:29+02:00
+
 This blog post describes my hackathon efforts adding observability to X-RAG, a distributed Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I especially made time available over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.
 
 [X-RAG source code on GitHub](https://github.com/florianbuetow/x-rag)  
@@ -46,7 +48,7 @@ This blog post describes my hackathon efforts adding observability to X-RAG, a d
 
 ## What is X-RAG?
 
-X-RAG is a distributed RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.
+X-RAG is the extendendible RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.
 
 X-RAG handles the full pipeline: ingest documents, chunk them into searchable pieces, generate vector embeddings, store them in a vector database, and at query time, retrieve relevant chunks and pass them to an LLM for answer generation. The system supports both local LLMs (Florian runs his on a beefy desktop) and cloud APIs like OpenAI. I configured an OpenAI API key since my laptop's CPU and GPU aren't fast enough for decent local inference.
 
@@ -68,15 +70,15 @@ The data layer includes Weaviate (vector database with hybrid search), Kafka (me
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                      X-RAG Kubernetes Cluster                            │
+│                      X-RAG Kubernetes Cluster                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │   ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
 │   │ Search UI   │  │Search Svc   │  │Embed Service│  │   Indexer   │    │
 │   └──────┬──────┘  └──────┬──────┘  └──────┬──────┘  └──────┬──────┘    │
 │          │                │                │                │           │
 │          └────────────────┴────────────────┴────────────────┘           │
-│                                    │                                     │
-│                                    ▼                                     │
+│                                    │                                    │
+│                                    ▼                                    │
 │          ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
 │          │  Weaviate   │  │   Kafka     │  │   MinIO     │              │
 │          └─────────────┘  └─────────────┘  └─────────────┘              │
@@ -105,7 +107,7 @@ The `kindest/node` image contains everything needed: kubelet, containerd, CNI pl
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                           Docker Host                                    │
+│                           Docker Host                                   │
 ├─────────────────────────────────────────────────────────────────────────┤
 │  ┌───────────────────┐  ┌───────────────────┐  ┌───────────────────┐    │
 │  │ xrag-k8-control   │  │ xrag-k8-worker    │  │ xrag-k8-worker2   │    │
@@ -190,19 +192,19 @@ Getting all logs in one place was the foundation. I deployed Grafana Loki in the
 
 ```
 ┌──────────────────────────────────────────────────────────────────────┐
-│                           LOGS PIPELINE                               │
+│                           LOGS PIPELINE                              │
 ├──────────────────────────────────────────────────────────────────────┤
 │  Applications write to stdout → containerd stores in /var/log/pods   │
-│                                    │                                  │
-│                              File tail                                │
-│                                    ▼                                  │
-│                         Grafana Alloy (DaemonSet)                     │
-│                    Discovers pods, extracts metadata                  │
-│                                    │                                  │
-│                       HTTP POST /loki/api/v1/push                     │
-│                                    ▼                                  │
-│                           Grafana Loki                                │
-│                   Indexes labels, stores chunks                       │
+│                                    │                                 │
+│                              File tail                               │
+│                                    ▼                                 │
+│                         Grafana Alloy (DaemonSet)                    │
+│                    Discovers pods, extracts metadata                 │
+│                                    │                                 │
+│                       HTTP POST /loki/api/v1/push                    │
+│                                    ▼                                 │
+│                           Grafana Loki                               │
+│                   Indexes labels, stores chunks                      │
 └──────────────────────────────────────────────────────────────────────┘
 ```
 
