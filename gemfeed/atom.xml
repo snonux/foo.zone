@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-26T00:46:52+02:00</updated>
+    <updated>2025-12-26T01:27:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1083,7 +1083,52 @@ NAMESPACE: monitoring
 STATUS: deployed
 </pre>
 <br />
-<span>The <span class='inlinecode'>persistence-values.yaml</span> configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
+<span>The <span class='inlinecode'>persistence-values.yaml</span> configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. It also enables scraping of etcd and kube-controller-manager metrics:</span><br />
+<br />
+<pre>
+kubeEtcd:
+  enabled: true
+  endpoints:
+    - 192.168.2.120
+    - 192.168.2.121
+    - 192.168.2.122
+  service:
+    enabled: true
+    port: 2381
+    targetPort: 2381
+
+kubeControllerManager:
+  enabled: true
+  endpoints:
+    - 192.168.2.120
+    - 192.168.2.121
+    - 192.168.2.122
+  service:
+    enabled: true
+    port: 10257
+    targetPort: 10257
+  serviceMonitor:
+    enabled: true
+    https: true
+    insecureSkipVerify: true
+</pre>
+<br />
+<span>By default, k3s binds the controller-manager to localhost only, so the "Kubernetes / Controller Manager" dashboard in Grafana will show no data. To expose the metrics endpoint, add the following to <span class='inlinecode'>/etc/rancher/k3s/config.yaml</span> on each k3s server node:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</font></i>
+kube-controller-manager-arg:
+  - bind-address=<font color="#000000">0.0</font>.<font color="#000000">0.0</font>
+EOF
+[root@r0 ~]<i><font color="silver"># systemctl restart k3s</font></i>
+</pre>
+<br />
+<span>Repeat for <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>. After restarting all nodes, the controller-manager metrics endpoint will be accessible and Prometheus can scrape it.</span><br />
+<br />
+<span>The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
 <br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <br />
