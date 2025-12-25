@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-26T00:40:44+02:00</updated>
+    <updated>2025-12-26T00:46:52+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2886,7 +2886,7 @@ ingress.networking.k8s.io/apache-ingress created
 Name:             apache-ingress
 Labels:           &lt;none&gt;
 Namespace:        <b><u><font color="#000000">test</font></u></b>
-Address:          <font color="#000000">192.168</font>.<font color="#000000">1.120</font>,<font color="#000000">192.168</font>.<font color="#000000">1.121</font>,<font color="#000000">192.168</font>.<font color="#000000">1.122</font>
+Address:          <font color="#000000">192.168</font>.<font color="#000000">2.120</font>,<font color="#000000">192.168</font>.<font color="#000000">2.121</font>,<font color="#000000">192.168</font>.<font color="#000000">2.122</font>
 Ingress Class:    traefik
 Default backend:  &lt;default&gt;
 Rules:
