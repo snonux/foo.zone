@@ -128,7 +128,10 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>[root@r0 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
-        sh -s - server --cluster-init --tls-san=r0.wg0.wan.buetow.org
+        sh -s - server --cluster-init \
+        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.120</font> \
+        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.120</font> \
+        --tls-san=r0.wg0.wan.buetow.org
 [INFO]  Finding release <b><u><font color="#000000">for</font></u></b> channel stable
 [INFO]  Using v1.<font color="#000000">32.6</font>+k3s1 as release
 .
@@ -136,6 +139,8 @@ http://www.gnu.org/software/src-highlite -->
 .
 [INFO]  systemd: Starting k3s
 </pre>
+<br />
+<span>Note: The <span class='inlinecode'>--node-ip</span> and <span class='inlinecode'>--advertise-address</span> flags are important to ensure that the embedded etcd cluster communicates over the WireGuard interface (192.168.2.x) rather than the LAN interface (192.168.1.x). This ensures that all control plane traffic is encrypted via WireGuard.</span><br />
 <br />
 <h3 style='display: inline' id='adding-the-remaining-nodes-to-the-cluster'>Adding the remaining nodes to the cluster</h3><br />
 <br />
@@ -147,10 +152,14 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>[root@r1 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
         sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.121</font> \
+        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.121</font> \
         --tls-san=r1.wg0.wan.buetow.org
 
 [root@r2 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
         sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
+        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.122</font> \
+        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.122</font> \
         --tls-san=r2.wg0.wan.buetow.org
 .
 .
