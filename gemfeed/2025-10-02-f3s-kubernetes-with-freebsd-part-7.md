@@ -311,7 +311,7 @@ ingress.networking.k8s.io/apache-ingress created
 Name:             apache-ingress
 Labels:           <none>
 Namespace:        test
-Address:          192.168.1.120,192.168.1.121,192.168.1.122
+Address:          192.168.2.120,192.168.2.121,192.168.2.122
 Ingress Class:    traefik
 Default backend:  <default>
 Rules:
