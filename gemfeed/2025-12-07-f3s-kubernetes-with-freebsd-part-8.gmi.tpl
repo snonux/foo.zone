@@ -94,7 +94,49 @@ NAMESPACE: monitoring
 STATUS: deployed
 ```
 
-The `persistence-values.yaml` configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. The persistent volume definitions bind to specific paths on the NFS share using `hostPath` volumes—the same pattern used for other services in Part 7:
+The `persistence-values.yaml` configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. It also enables scraping of etcd and kube-controller-manager metrics:
+
+```yaml
+kubeEtcd:
+  enabled: true
+  endpoints:
+    - 192.168.2.120
+    - 192.168.2.121
+    - 192.168.2.122
+  service:
+    enabled: true
+    port: 2381
+    targetPort: 2381
+
+kubeControllerManager:
+  enabled: true
+  endpoints:
+    - 192.168.2.120
+    - 192.168.2.121
+    - 192.168.2.122
+  service:
+    enabled: true
+    port: 10257
+    targetPort: 10257
+  serviceMonitor:
+    enabled: true
+    https: true
+    insecureSkipVerify: true
+```
+
+By default, k3s binds the controller-manager to localhost only, so the "Kubernetes / Controller Manager" dashboard in Grafana will show no data. To expose the metrics endpoint, add the following to `/etc/rancher/k3s/config.yaml` on each k3s server node:
+
+```sh
+[root@r0 ~]# cat >> /etc/rancher/k3s/config.yaml << 'EOF'
+kube-controller-manager-arg:
+  - bind-address=0.0.0.0
+EOF
+[root@r0 ~]# systemctl restart k3s
+```
+
+Repeat for `r1` and `r2`. After restarting all nodes, the controller-manager metrics endpoint will be accessible and Prometheus can scrape it.
+
+The persistent volume definitions bind to specific paths on the NFS share using `hostPath` volumes—the same pattern used for other services in Part 7:
 
 => ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 
