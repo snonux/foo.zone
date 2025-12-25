@@ -102,7 +102,10 @@ To bootstrap k3s on the first node, I ran this on `r0`:
 
 ```sh
 [root@r0 ~]# curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \
-        sh -s - server --cluster-init --tls-san=r0.wg0.wan.buetow.org
+        sh -s - server --cluster-init \
+        --node-ip=192.168.2.120 \
+        --advertise-address=192.168.2.120 \
+        --tls-san=r0.wg0.wan.buetow.org
 [INFO]  Finding release for channel stable
 [INFO]  Using v1.32.6+k3s1 as release
 .
@@ -111,6 +114,8 @@ To bootstrap k3s on the first node, I ran this on `r0`:
 [INFO]  systemd: Starting k3s
 ```
 
+Note: The `--node-ip` and `--advertise-address` flags are important to ensure that the embedded etcd cluster communicates over the WireGuard interface (192.168.2.x) rather than the LAN interface (192.168.1.x). This ensures that all control plane traffic is encrypted via WireGuard.
+
 ### Adding the remaining nodes to the cluster
 
 Then I ran on the other two nodes `r1` and `r2`:
@@ -118,10 +123,14 @@ Then I ran on the other two nodes `r1` and `r2`:
 ```sh
 [root@r1 ~]# curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \
         sh -s - server --server https://r0.wg0.wan.buetow.org:6443 \
+        --node-ip=192.168.2.121 \
+        --advertise-address=192.168.2.121 \
         --tls-san=r1.wg0.wan.buetow.org
 
 [root@r2 ~]# curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \
         sh -s - server --server https://r0.wg0.wan.buetow.org:6443 \
+        --node-ip=192.168.2.122 \
+        --advertise-address=192.168.2.122 \
         --tls-san=r2.wg0.wan.buetow.org
 .
 .
