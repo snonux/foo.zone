@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 
-> Published at 2025-04-04T23:21:01+03:00
+> Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025
 
 This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -465,6 +465,97 @@ Overall, Bhyve has a small overhead, but the CPU performance difference is negli
 ### Rocky Linux VM @ Bhyve `ubench` benchmark
 
 Unfortunately, I wasn't able to find `ubench` in any of the Rocky Linux repositories. So, I skipped this test.
+
+## Update: Improving Disk I/O Performance for etcd
+
+> Updated: Fri 26 Dec 08:51:23 EET 2025
+
+After running k3s for some time, I noticed frequent etcd leader elections and "apply request took too long" warnings in the logs. Investigation revealed that etcd's sync writes were extremely slow - around 250 kB/s with the default `virtio-blk` disk emulation. etcd requires fast sync writes (ideally under 10ms fsync latency) for stable operation.
+
+### The Problem
+
+The k3s logs showed etcd struggling with disk I/O:
+
+```
+{"level":"warn","msg":"apply request took too long","took":"4.996516657s","expected-duration":"100ms"}
+{"level":"warn","msg":"slow fdatasync","took":"1.328469363s","expected-duration":"1s"}
+```
+
+A simple sync write benchmark confirmed the issue:
+
+```sh
+[root@r0 ~]# dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync
+8192000 bytes copied, 31.7058 s, 258 kB/s
+```
+
+### The Solution: Switch to NVMe Emulation
+
+Bhyve's NVMe emulation provides significantly better I/O performance than `virtio-blk`.
+
+### Step 1: Prepare the Guest OS
+
+Before changing the disk type, the guest needs NVMe drivers in the initramfs and LVM must be configured to scan all devices (not just those recorded during installation):
+
+```sh
+[root@r0 ~]# cat > /etc/dracut.conf.d/nvme.conf << EOF
+add_drivers+=" nvme nvme_core "
+hostonly=no
+EOF
+
+[root@r0 ~]# sed -i 's/# use_devicesfile = 1/use_devicesfile = 0/' /etc/lvm/lvm.conf
+[root@r0 ~]# dracut -f
+[root@r0 ~]# shutdown -h now
+```
+
+The `hostonly=no` setting ensures the initramfs includes drivers for hardware not currently present. The `use_devicesfile = 0` tells LVM to scan all block devices rather than only those recorded in `/etc/lvm/devices/system.devices` - this is important because the device path changes from `/dev/vda` to `/dev/nvme0n1`.
+
+### Step 2: Update the Bhyve Configuration
+
+On the FreeBSD host, update the VM configuration to use NVMe:
+
+```sh
+paul@f0:~ % doas vm stop rocky
+paul@f0:~ % doas vm configure rocky
+```
+
+Change `disk0_type` from `virtio-blk` to `nvme`:
+
+```
+disk0_type="nvme"
+```
+
+Then start the VM:
+
+```sh
+paul@f0:~ % doas vm start rocky
+```
+
+### Benchmark Results
+
+After switching to NVMe emulation, the sync write performance improved dramatically:
+
+```sh
+[root@r0 ~]# dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync
+8192000 bytes copied, 0.330718 s, 24.8 MB/s
+```
+
+That's approximately **100x faster** than before (24.8 MB/s vs 258 kB/s).
+
+The etcd metrics also showed healthy fsync latencies:
+
+```
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.001"} 347
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.002"} 396
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
+```
+
+Most fsyncs now complete in under 1ms, and there are no more "slow fdatasync" warnings in the logs. The k3s cluster is now stable without spurious leader elections.
+
+### Important Notes
+
+* Do NOT use `disk0_opts="nocache,direct"` with NVMe emulation - in my testing this actually made performance worse.
+* The guest OS must have NVMe drivers in the initramfs before switching, otherwise it won't boot.
+* LVM's devices file feature (enabled by default in RHEL 9 / Rocky Linux 9) must be disabled to allow booting from a different device path.
 
 ## Conclusion
 
