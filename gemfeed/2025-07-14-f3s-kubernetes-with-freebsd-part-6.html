@@ -1741,13 +1741,23 @@ Domain = lan.buetow.org
 .
 </pre>
 <br />
-<span>And afterwards, we need to run the following on all 3 Rocky hosts::</span><br />
+<span>We also need to increase the inotify limit, otherwise nfs-idmapd may fail to start with "Too many open files":</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># systemctl enable --now nfs-idmapd</font></i>
+<pre>[root@r0 ~]<i><font color="silver"># echo 'fs.inotify.max_user_instances = 512' &gt; /etc/sysctl.d/99-inotify.conf</font></i>
+[root@r0 ~]<i><font color="silver"># sysctl -w fs.inotify.max_user_instances=512</font></i>
+</pre>
+<br />
+<span>And afterwards, we need to run the following on all 3 Rocky hosts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># systemctl start nfs-idmapd</font></i>
 [root@r0 ~]<i><font color="silver"># systemctl enable --now nfs-client.target</font></i>
 </pre>
 <br />

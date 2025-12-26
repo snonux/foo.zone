@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 9: Enabling etcd Metrics</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X-OBSERVABILITY2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X-OBSERVABILITY2.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-9-enabling-etcd-metrics'>f3s: Kubernetes with FreeBSD - Part 9: Enabling etcd Metrics</h1><br />
+<br />
+<h2 style='display: inline' id='introduction'>Introduction</h2><br />
+<br />
+<span>This post covers enabling etcd metrics monitoring for the k3s cluster. The etcd dashboard in Grafana initially showed no data because k3s uses an embedded etcd that doesn&#39;t expose metrics by default.</span><br />
+<br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>Part 8: Observability</a><br />
+<br />
+<h2 style='display: inline' id='enabling-etcd-metrics-in-k3s'>Enabling etcd metrics in k3s</h2><br />
+<br />
+<span>On each control-plane node (r0, r1, r2), create /etc/rancher/k3s/config.yaml:</span><br />
+<br />
+<pre>
+etcd-expose-metrics: true
+</pre>
+<br />
+<span>Then restart k3s on each node:</span><br />
+<br />
+<pre>
+systemctl restart k3s
+</pre>
+<br />
+<span>After restarting, etcd metrics are available on port 2381:</span><br />
+<br />
+<pre>
+curl http://127.0.0.1:2381/metrics | grep etcd
+</pre>
+<br />
+<h2 style='display: inline' id='configuring-prometheus-to-scrape-etcd'>Configuring Prometheus to scrape etcd</h2><br />
+<br />
+<span>In persistence-values.yaml, enable kubeEtcd with the node IP addresses:</span><br />
+<br />
+<pre>
+kubeEtcd:
+  enabled: true
+  endpoints:
+    - 192.168.1.120
+    - 192.168.1.121
+    - 192.168.1.122
+  service:
+    enabled: true
+    port: 2381
+    targetPort: 2381
+</pre>
+<br />
+<span>Apply the changes:</span><br />
+<br />
+<pre>
+just upgrade
+</pre>
+<br />
+<h2 style='display: inline' id='verifying-etcd-metrics'>Verifying etcd metrics</h2><br />
+<br />
+<span>After the changes, all etcd targets are being scraped:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 \
+  -c prometheus -- wget -qO- &#39;http://localhost:9090/api/v1/query?query=etcd_server_has_leader&#39; | \
+  jq -r &#39;.data.result[] | "\(.metric.instance): \(.value[1])"&#39;
+</pre>
+<br />
+<span>Output:</span><br />
+<br />
+<pre>
+192.168.1.120:2381: 1
+192.168.1.121:2381: 1
+192.168.1.122:2381: 1
+</pre>
+<br />
+<span>The etcd dashboard in Grafana now displays metrics including Raft proposals, leader elections, and peer round trip times.</span><br />
+<br />
+<h2 style='display: inline' id='complete-persistence-valuesyaml'>Complete persistence-values.yaml</h2><br />
+<br />
+<span>The complete updated persistence-values.yaml:</span><br />
+<br />
+<pre>
+kubeEtcd:
+  enabled: true
+  endpoints:
+    - 192.168.1.120
+    - 192.168.1.121
+    - 192.168.1.122
+  service:
+    enabled: true
+    port: 2381
+    targetPort: 2381
+
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigsSecret:
+      enabled: true
+      name: additional-scrape-configs
+      key: additional-scrape-configs.yaml
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: ""
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+          selector:
+            matchLabels:
+              type: local
+              app: prometheus
+
+grafana:
+  persistence:
+    enabled: true
+    type: pvc
+    existingClaim: "grafana-data-pvc"
+
+  initChownData:
+    enabled: false
+
+  podSecurityContext:
+    fsGroup: 911
+    runAsUser: 911
+    runAsGroup: 911
+</pre>
+<br />
+<h2 style='display: inline' id='summary'>Summary</h2><br />
+<br />
+<span>Enabled etcd metrics monitoring for the k3s embedded etcd by:</span><br />
+<br />
+<ul>
+<li>Adding etcd-expose-metrics: true to /etc/rancher/k3s/config.yaml on each control-plane node</li>
+<li>Configuring Prometheus to scrape etcd on port 2381</li>
+</ul><br />
+<span>The etcd dashboard now provides visibility into cluster health, leader elections, and Raft consensus metrics.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>prometheus configuration on Codeberg</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
