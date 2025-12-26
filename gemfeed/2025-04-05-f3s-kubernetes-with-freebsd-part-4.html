@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-4-rocky-linux-bhyve-vms'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</h1><br />
 <br />
-<span class='quote'>Published at 2025-04-04T23:21:01+03:00</span><br />
+<span class='quote'>Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025</span><br />
 <br />
 <span>This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -54,6 +54,13 @@
 <li>⇢ ⇢ <a href='#freebsd-host-ubench-benchmark'>FreeBSD host <span class='inlinecode'>ubench</span> benchmark</a></li>
 <li>⇢ ⇢ <a href='#freebsd-vm--bhyve-ubench-benchmark'>FreeBSD VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
 <li>⇢ ⇢ <a href='#rocky-linux-vm--bhyve-ubench-benchmark'>Rocky Linux VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
+<li>⇢ <a href='#update-improving-disk-io-performance-for-etcd'>Update: Improving Disk I/O Performance for etcd</a></li>
+<li>⇢ ⇢ <a href='#the-problem'>The Problem</a></li>
+<li>⇢ ⇢ <a href='#the-solution-switch-to-nvme-emulation'>The Solution: Switch to NVMe Emulation</a></li>
+<li>⇢ ⇢ <a href='#step-1-prepare-the-guest-os'>Step 1: Prepare the Guest OS</a></li>
+<li>⇢ ⇢ <a href='#step-2-update-the-bhyve-configuration'>Step 2: Update the Bhyve Configuration</a></li>
+<li>⇢ ⇢ <a href='#benchmark-results'>Benchmark Results</a></li>
+<li>⇢ ⇢ <a href='#important-notes'>Important Notes</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
@@ -587,6 +594,113 @@ Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color=
 <br />
 <span>Unfortunately, I wasn&#39;t able to find <span class='inlinecode'>ubench</span> in any of the Rocky Linux repositories. So, I skipped this test.</span><br />
 <br />
+<h2 style='display: inline' id='update-improving-disk-io-performance-for-etcd'>Update: Improving Disk I/O Performance for etcd</h2><br />
+<br />
+<span class='quote'>Updated: Fri 26 Dec 08:51:23 EET 2025</span><br />
+<br />
+<span>After running k3s for some time, I noticed frequent etcd leader elections and "apply request took too long" warnings in the logs. Investigation revealed that etcd&#39;s sync writes were extremely slow - around 250 kB/s with the default <span class='inlinecode'>virtio-blk</span> disk emulation. etcd requires fast sync writes (ideally under 10ms fsync latency) for stable operation.</span><br />
+<br />
+<h3 style='display: inline' id='the-problem'>The Problem</h3><br />
+<br />
+<span>The k3s logs showed etcd struggling with disk I/O:</span><br />
+<br />
+<pre>
+{"level":"warn","msg":"apply request took too long","took":"4.996516657s","expected-duration":"100ms"}
+{"level":"warn","msg":"slow fdatasync","took":"1.328469363s","expected-duration":"1s"}
+</pre>
+<br />
+<span>A simple sync write benchmark confirmed the issue:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
+<font color="#000000">8192000</font> bytes copied, <font color="#000000">31.7058</font> s, <font color="#000000">258</font> kB/s
+</pre>
+<br />
+<h3 style='display: inline' id='the-solution-switch-to-nvme-emulation'>The Solution: Switch to NVMe Emulation</h3><br />
+<br />
+<span>Bhyve&#39;s NVMe emulation provides significantly better I/O performance than <span class='inlinecode'>virtio-blk</span>.</span><br />
+<br />
+<h3 style='display: inline' id='step-1-prepare-the-guest-os'>Step 1: Prepare the Guest OS</h3><br />
+<br />
+<span>Before changing the disk type, the guest needs NVMe drivers in the initramfs and LVM must be configured to scan all devices (not just those recorded during installation):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt; /etc/dracut.conf.d/nvme.conf &lt;&lt; EOF</font></i>
+add_drivers+=<font color="#808080">" nvme nvme_core "</font>
+hostonly=no
+EOF
+
+[root@r0 ~]<i><font color="silver"># sed -i 's/# use_devicesfile = 1/use_devicesfile = 0/' /etc/lvm/lvm.conf</font></i>
+[root@r0 ~]<i><font color="silver"># dracut -f</font></i>
+[root@r0 ~]<i><font color="silver"># shutdown -h now</font></i>
+</pre>
+<br />
+<span>The <span class='inlinecode'>hostonly=no</span> setting ensures the initramfs includes drivers for hardware not currently present. The <span class='inlinecode'>use_devicesfile = 0</span> tells LVM to scan all block devices rather than only those recorded in <span class='inlinecode'>/etc/lvm/devices/system.devices</span> - this is important because the device path changes from <span class='inlinecode'>/dev/vda</span> to <span class='inlinecode'>/dev/nvme0n1</span>.</span><br />
+<br />
+<h3 style='display: inline' id='step-2-update-the-bhyve-configuration'>Step 2: Update the Bhyve Configuration</h3><br />
+<br />
+<span>On the FreeBSD host, update the VM configuration to use NVMe:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm stop rocky
+paul@f0:~ % doas vm configure rocky
+</pre>
+<br />
+<span>Change <span class='inlinecode'>disk0_type</span> from <span class='inlinecode'>virtio-blk</span> to <span class='inlinecode'>nvme</span>:</span><br />
+<br />
+<pre>
+disk0_type="nvme"
+</pre>
+<br />
+<span>Then start the VM:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas vm start rocky
+</pre>
+<br />
+<h3 style='display: inline' id='benchmark-results'>Benchmark Results</h3><br />
+<br />
+<span>After switching to NVMe emulation, the sync write performance improved dramatically:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[root@r0 ~]<i><font color="silver"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
+<font color="#000000">8192000</font> bytes copied, <font color="#000000">0.330718</font> s, <font color="#000000">24.8</font> MB/s
+</pre>
+<br />
+<span>That&#39;s approximately **100x faster** than before (24.8 MB/s vs 258 kB/s).</span><br />
+<br />
+<span>The etcd metrics also showed healthy fsync latencies:</span><br />
+<br />
+<pre>
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.001"} 347
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.002"} 396
+etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
+</pre>
+<br />
+<span>Most fsyncs now complete in under 1ms, and there are no more "slow fdatasync" warnings in the logs. The k3s cluster is now stable without spurious leader elections.</span><br />
+<br />
+<h3 style='display: inline' id='important-notes'>Important Notes</h3><br />
+<br />
+<ul>
+<li>Do NOT use <span class='inlinecode'>disk0_opts="nocache,direct"</span> with NVMe emulation - in my testing this actually made performance worse.</li>
+<li>The guest OS must have NVMe drivers in the initramfs before switching, otherwise it won&#39;t boot.</li>
+<li>LVM&#39;s devices file feature (enabled by default in RHEL 9 / Rocky Linux 9) must be disabled to allow booting from a different device path.</li>
+</ul><br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
 <span>Having Linux VMs running inside FreeBSD&#39;s Bhyve is a solid move for future f3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes, eBPF, systemd) in the Linux world while keeping the steady reliability of FreeBSD.</span><br />
