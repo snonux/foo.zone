@@ -864,6 +864,92 @@ kubectl logs -n monitoring -l app.kubernetes.io/name=tempo | grep -i trace
 **4. Grafana displays traces:**
 Navigate to Explore → Tempo → Search for traces
 
+### Practical Example: Viewing a Distributed Trace
+
+Let's generate a trace and examine it in Grafana.
+
+**1. Generate a trace by calling the demo application:**
+
+```
+curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
+```
+
+**Response:**
+
+```json
+{
+  "middleware_response": {
+    "backend_data": {
+      "data": {
+        "id": 12345,
+        "query_time_ms": 100.0,
+        "timestamp": "2025-12-28T17:15:48.454023",
+        "value": "Sample data from backend service"
+      },
+      "service": "backend"
+    },
+    "middleware_processed": true,
+    "original_data": {
+      "source": "GET request"
+    },
+    "transformation_time_ms": 50
+  },
+  "request_data": {
+    "source": "GET request"
+  },
+  "service": "frontend",
+  "status": "success"
+}
+```
+
+**2. Find the trace in Tempo:**
+
+The request generated a distributed trace that spans all three services. The trace ID is:
+
+```
+4e8d5a25ae6f8f8d737b46625920fbb9
+```
+
+**3. View the trace in Grafana:**
+
+Navigate to: Grafana → Explore → Tempo datasource
+
+Search using TraceQL:
+```
+{ resource.service.namespace = "tracing-demo" }
+```
+
+Or directly open the trace by ID in the search box:
+```
+4e8d5a25ae6f8f8d737b46625920fbb9
+```
+
+**4. Trace visualization:**
+
+The trace shows the complete request flow with timing information:
+
+[SCREENSHOT PLACEHOLDER 1: Trace waterfall view showing Frontend → Middleware → Backend spans with timing (222ms total)]
+
+The trace details reveal:
+* Frontend service received the request (span: GET /api/process)
+* Frontend called Middleware service via HTTP (span: GET)
+* Middleware performed transformation (span: middleware-transform)
+* Middleware called Backend service (span: GET)
+* Backend simulated database query with 100ms delay (span: GET /api/data)
+* Total request time: 222ms
+
+**5. Service graph visualization:**
+
+The service graph automatically generated from traces shows service dependencies:
+
+[SCREENSHOT PLACEHOLDER 2: Service graph showing Frontend → Middleware → Backend with request rates and latencies]
+
+This visualization helps identify:
+* Request rates between services
+* Average latency for each hop
+* Error rates (if any)
+* Service dependencies and communication patterns
+
 ### Storage and Retention
 
 Monitor Tempo storage usage:
