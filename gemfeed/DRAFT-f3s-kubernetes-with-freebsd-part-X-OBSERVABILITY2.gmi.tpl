@@ -898,7 +898,7 @@ Let's generate a trace and examine it in Grafana.
 curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
 ```
 
-**Response:**
+**Response (HTTP 200):**
 
 ```json
 {
@@ -907,7 +907,7 @@ curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
       "data": {
         "id": 12345,
         "query_time_ms": 100.0,
-        "timestamp": "2025-12-28T17:15:48.454023",
+        "timestamp": "2025-12-28T18:35:01.064538",
         "value": "Sample data from backend service"
       },
       "service": "backend"
@@ -926,15 +926,57 @@ curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
 }
 ```
 
-**2. Find the trace in Tempo:**
+**2. Find the trace in Tempo via API:**
 
-The request generated a distributed trace that spans all three services. The trace ID is:
+After a few seconds (for batch export), search for recent traces:
 
 ```
-4e8d5a25ae6f8f8d737b46625920fbb9
+kubectl exec -n monitoring tempo-0 -- wget -qO- \
+  'http://localhost:3200/api/search?tags=service.namespace%3Dtracing-demo&limit=5' 2>/dev/null | \
+  python3 -m json.tool
 ```
 
-**3. View the trace in Grafana:**
+Returns traces including:
+
+```json
+{
+  "traceID": "4be1151c0bdcd5625ac7e02b98d95bd5",
+  "rootServiceName": "frontend",
+  "rootTraceName": "GET /api/process",
+  "durationMs": 221
+}
+```
+
+**3. Fetch complete trace details:**
+
+```
+kubectl exec -n monitoring tempo-0 -- wget -qO- \
+  'http://localhost:3200/api/traces/4be1151c0bdcd5625ac7e02b98d95bd5' 2>/dev/null | \
+  python3 -m json.tool
+```
+
+**Trace structure (8 spans across 3 services):**
+
+```
+Trace ID: 4be1151c0bdcd5625ac7e02b98d95bd5
+Services: 3 (frontend, middleware, backend)
+
+Service: frontend
+  └─ GET /api/process                 221.10ms  (HTTP server span)
+  └─ frontend-process                 216.23ms  (custom business logic span)
+  └─ POST                             209.97ms  (HTTP client span to middleware)
+
+Service: middleware
+  └─ POST /api/transform              186.02ms  (HTTP server span)
+  └─ middleware-transform             180.96ms  (custom business logic span)
+  └─ GET                              127.52ms  (HTTP client span to backend)
+
+Service: backend
+  └─ GET /api/data                    103.93ms  (HTTP server span)
+  └─ backend-get-data                 102.11ms  (custom business logic span with 100ms sleep)
+```
+
+**4. View the trace in Grafana UI:**
 
 Navigate to: Grafana → Explore → Tempo datasource
 
@@ -943,26 +985,25 @@ Search using TraceQL:
 { resource.service.namespace = "tracing-demo" }
 ```
 
-Or directly open the trace by ID in the search box:
+Or directly open the trace by pasting the trace ID in the search box:
 ```
-4e8d5a25ae6f8f8d737b46625920fbb9
+4be1151c0bdcd5625ac7e02b98d95bd5
 ```
 
-**4. Trace visualization:**
+**5. Trace visualization:**
 
-The trace shows the complete request flow with timing information:
+The trace waterfall view shows the complete request flow with timing:
 
-[SCREENSHOT PLACEHOLDER 1: Trace waterfall view showing Frontend → Middleware → Backend spans with timing (222ms total)]
+[SCREENSHOT PLACEHOLDER 1: Trace waterfall view showing Frontend → Middleware → Backend spans with timing (221ms total)]
 
-The trace details reveal:
-* Frontend service received the request (span: GET /api/process)
-* Frontend called Middleware service via HTTP (span: GET)
-* Middleware performed transformation (span: middleware-transform)
-* Middleware called Backend service (span: GET)
-* Backend simulated database query with 100ms delay (span: GET /api/data)
-* Total request time: 222ms
+The trace reveals the distributed request flow:
+* **Frontend (221ms)**: Receives GET /api/process, executes business logic, calls middleware
+* **Middleware (186ms)**: Receives POST /api/transform, transforms data, calls backend
+* **Backend (104ms)**: Receives GET /api/data, simulates database query with 100ms sleep
+* **Total request time**: 221ms end-to-end
+* **Span propagation**: W3C Trace Context headers automatically link all spans
 
-**5. Service graph visualization:**
+**6. Service graph visualization:**
 
 The service graph automatically generated from traces shows service dependencies:
 
