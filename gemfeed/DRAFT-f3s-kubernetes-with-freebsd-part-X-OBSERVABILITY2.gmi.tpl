@@ -992,9 +992,9 @@ Or directly open the trace by pasting the trace ID in the search box:
 
 **5. Trace visualization:**
 
-The trace waterfall view shows the complete request flow with timing:
+The trace waterfall view in Grafana shows the complete request flow with timing. For screenshots of how distributed traces appear in the Grafana UI, see the X-RAG Observability Hackathon blog post which demonstrates similar trace visualization:
 
-[SCREENSHOT PLACEHOLDER 1: Trace waterfall view showing Frontend → Middleware → Backend spans with timing (221ms total)]
+=> https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html X-RAG Observability Hackathon (includes Grafana Tempo screenshots)
 
 The trace reveals the distributed request flow:
 * **Frontend (221ms)**: Receives GET /api/process, executes business logic, calls middleware
@@ -1005,9 +1005,9 @@ The trace reveals the distributed request flow:
 
 **6. Service graph visualization:**
 
-The service graph automatically generated from traces shows service dependencies:
+The service graph is automatically generated from traces and shows service dependencies. For examples of service graph visualization in Grafana, see the screenshots in the X-RAG Observability Hackathon blog post.
 
-[SCREENSHOT PLACEHOLDER 2: Service graph showing Frontend → Middleware → Backend with request rates and latencies]
+=> https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html X-RAG Observability Hackathon (includes service graph screenshots)
 
 This visualization helps identify:
 * Request rates between services
