@@ -994,7 +994,7 @@ Or directly open the trace by pasting the trace ID in the search box:
 
 The trace waterfall view in Grafana shows the complete request flow with timing:
 
-=> ./f3s-observability-tempo/grafana-tempo-trace.png Distributed trace visualization in Grafana Tempo showing Frontend → Middleware → Backend spans
+=> ./f3s-kubernetes-with-freebsd-part-8b/grafana-tempo-trace.png Distributed trace visualization in Grafana Tempo showing Frontend → Middleware → Backend spans
 
 For additional examples of Tempo trace visualization, see also:
 
