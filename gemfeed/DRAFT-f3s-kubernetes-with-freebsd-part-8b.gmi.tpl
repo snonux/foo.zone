@@ -241,6 +241,10 @@ Includes variables to select:
 * Total ARC Hits vs Misses (cluster-wide sum)
 * ARC Size by Host
 
+**Dashboard Visualization:**
+
+=> ./f3s-kubernetes-with-freebsd-part-8b/grafana-zfs-dashboard.png ZFS monitoring dashboard in Grafana showing pool statistics and ARC cache metrics
+
 ### Deployment
 
 Applied the resources to the cluster:
