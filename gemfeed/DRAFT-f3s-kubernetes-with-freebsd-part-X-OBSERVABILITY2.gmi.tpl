@@ -992,9 +992,13 @@ Or directly open the trace by pasting the trace ID in the search box:
 
 **5. Trace visualization:**
 
-The trace waterfall view in Grafana shows the complete request flow with timing. For screenshots of how distributed traces appear in the Grafana UI, see the X-RAG Observability Hackathon blog post which demonstrates similar trace visualization:
+The trace waterfall view in Grafana shows the complete request flow with timing:
 
-=> https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html X-RAG Observability Hackathon (includes Grafana Tempo screenshots)
+=> ./f3s-observability-tempo/grafana-tempo-trace.png Distributed trace visualization in Grafana Tempo showing Frontend → Middleware → Backend spans
+
+For additional examples of Tempo trace visualization, see also:
+
+=> https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html X-RAG Observability Hackathon (more Grafana Tempo screenshots)
 
 The trace reveals the distributed request flow:
 * **Frontend (221ms)**: Receives GET /api/process, executes business logic, calls middleware
