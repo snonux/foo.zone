@@ -530,34 +530,58 @@ spec:
       storage: 10Gi
 ```
 
-**datasource-configmap.yaml** - Grafana integration:
+**Grafana Datasource Provisioning**
+
+All Grafana datasources (Prometheus, Alertmanager, Loki, Tempo) are provisioned via a unified ConfigMap that is directly mounted to the Grafana pod. This approach ensures datasources are loaded on startup without requiring sidecar-based discovery.
+
+In /home/paul/git/conf/f3s/prometheus/grafana-datasources-all.yaml:
 
 ```
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: tempo-grafana-datasource
+  name: grafana-datasources-all
   namespace: monitoring
-  labels:
-    grafana_datasource: "1"
 data:
-  tempo-datasource.yaml: |-
+  datasources.yaml: |
     apiVersion: 1
     datasources:
-    - name: "Tempo"
-      type: tempo
-      uid: tempo
-      url: http://tempo.monitoring.svc.cluster.local:3200
-      jsonData:
-        tracesToLogsV2:
-          datasourceUid: 'loki'
-        tracesToMetrics:
-          datasourceUid: 'prometheus'
-        serviceMap:
-          datasourceUid: 'prometheus'
+      - name: Prometheus
+        type: prometheus
+        uid: prometheus
+        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+      - name: Alertmanager
+        type: alertmanager
+        uid: alertmanager
+        url: http://prometheus-kube-prometheus-alertmanager.monitoring:9093/
+      - name: Loki
+        type: loki
+        uid: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+      - name: Tempo
+        type: tempo
+        uid: tempo
+        url: http://tempo.monitoring.svc.cluster.local:3200
+        jsonData:
+          tracesToLogsV2:
+            datasourceUid: loki
+            spanStartTimeShift: -1h
+            spanEndTimeShift: 1h
+          tracesToMetrics:
+            datasourceUid: prometheus
+          serviceMap:
+            datasourceUid: prometheus
+          nodeGraph:
+            enabled: true
 ```
 
-The ConfigMap label grafana_datasource: "1" enables automatic discovery by the Grafana sidecar, just like the Prometheus datasource configuration.
+The kube-prometheus-stack Helm values (persistence-values.yaml) are configured to:
+* Disable sidecar-based datasource provisioning
+* Mount grafana-datasources-all ConfigMap directly to /etc/grafana/provisioning/datasources/
+
+This direct mounting approach is simpler and more reliable than sidecar-based discovery.
 
 #### Installation
 
