@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>%%TITLE%%</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="%%STYLESHEET%%" />
+<link rel="stylesheet" href="%%STYLESHEET_OVERRIDE%%" />
+</head>
+<body>
+<p class="header">
+<a href="https://%%DOMAIN%%">Home</a> | <a href="%%MARKDOWN_BASE_URI%%%%CURRENT_PAGE%%.md">Markdown</a> | <a href="gemini://%%DOMAIN%%%%CURRENT_PAGE%%.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='template-tags-test'>Template Tags Test</h1><br />
+<br />
+<span>This file demonstrates the template::inline::tags feature.</span><br />
+<br />
+<br />
+<h2 style='display: inline' id='tags'>Tags</h2><br />
+<br />
+<a class='textlink' href='../tags/golang.html'><a class='textlink' href='../tags/golang.html'>#golang</a></a><br />
+<a class='textlink' href='../tags/programming.html'><a class='textlink' href='../tags/programming.html'>#programming</a></a><br />
+<a class='textlink' href='../tags/testing.html'><a class='textlink' href='../tags/testing.html'>#testing</a></a><br />
+<br />
+<span>This page is about <a class='textlink' href='../tags/golang.html'>#golang</a> and <a class='textlink' href='../tags/testing.html'>#testing</a>.</span><br />
+<br />
+<h2 style='display: inline' id='content'>Content</h2><br />
+<br />
+<span>Some content here about <a class='textlink' href='../tags/programming.html'>#programming</a>.</span><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">%%GEMTEXTER%%</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://%%DOMAIN%%/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
