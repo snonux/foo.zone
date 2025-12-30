@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 
-> Published at 2025-10-02T11:27:19+03:00
+> Published at 2025-10-02T11:27:19+03:00, last updated Tue 30 Dec 10:11:58 EET 2025
 
 This is the seventh blog post about the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
@@ -569,10 +569,11 @@ table <f3s> {
 }
 ```
 
-Inside the `http protocol "https"` block each public hostname gets its Let's Encrypt certificate and is matched to that backend table. Besides the primary trio, every service-specific hostname (`anki`, `bag`, `flux`, `audiobookshelf`, `gpodder`, `radicale`, `vault`, `syncthing`, `uprecords`) and their `www` / `standby` aliases reuse the same pool so new apps can go live just by publishing an ingress rule, whereas they will all map to a service running in k3s:
+Inside the `http protocol "https"` block each public hostname gets its Let's Encrypt certificate. The protocol configures TLS keypairs for all f3s services and other public endpoints. For f3s hosts specifically, there are no explicit `forward to` rules in the protocol—they use the relay-level failover mechanism described later. Non-f3s hosts get explicit localhost routing to prevent them from trying the f3s backends:
 
 ```
 http protocol "https" {
+    # TLS certificates for all f3s services
     tls keypair f3s.foo.zone
     tls keypair www.f3s.foo.zone
     tls keypair standby.f3s.foo.zone
@@ -604,36 +605,15 @@ http protocol "https" {
     tls keypair www.uprecords.f3s.foo.zone
     tls keypair standby.uprecords.f3s.foo.zone
 
-    match request quick header "Host" value "f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "anki.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.anki.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.anki.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "bag.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.bag.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.bag.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "flux.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.flux.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.flux.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "audiobookshelf.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.audiobookshelf.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.audiobookshelf.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "gpodder.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.gpodder.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.gpodder.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "radicale.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.radicale.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.radicale.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "vault.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.vault.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.vault.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "syncthing.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.syncthing.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.syncthing.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "uprecords.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "www.uprecords.f3s.foo.zone" forward to <f3s>
-    match request quick header "Host" value "standby.uprecords.f3s.foo.zone" forward to <f3s>
+    # Explicitly route non-f3s hosts to localhost
+    match request header "Host" value "foo.zone" forward to <localhost>
+    match request header "Host" value "www.foo.zone" forward to <localhost>
+    match request header "Host" value "dtail.dev" forward to <localhost>
+    # ... other non-f3s hosts ...
+
+    # NOTE: f3s hosts have NO match rules here!
+    # They use relay-level failover (f3s -> localhost backup)
+    # See the relay configuration below for automatic failover details
 }
 ```
 
@@ -643,17 +623,136 @@ Both IPv4 and IPv6 listeners reuse the same protocol definition, making the rela
 relay "https4" {
     listen on 46.23.94.99 port 443 tls
     protocol "https"
+    # Primary: f3s cluster (with health checks) - Falls back to localhost when all hosts down
     forward to <f3s> port 80 check tcp
+    forward to <localhost> port 8080
 }
 
 relay "https6" {
     listen on 2a03:6000:6f67:624::99 port 443 tls
     protocol "https"
+    # Primary: f3s cluster (with health checks) - Falls back to localhost when all hosts down
     forward to <f3s> port 80 check tcp
+    forward to <localhost> port 8080
 }
 ```
 
 In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.
+
+### Automatic failover when f3s cluster is down
+
+> Update: This section was added at Tue 30 Dec 10:11:44 EET 2025
+
+One important aspect of this setup is graceful degradation: when all three f3s nodes are unreachable (e.g., during maintenance or a power outage in my LAN), users should see a friendly status page instead of an error message.
+
+OpenBSD's relayd supports automatic failover through its health check mechanism. According to the relayd.conf manual:
+
+> This directive can be specified multiple times - subsequent entries will be used as the backup table if all hosts in the previous table are down.
+
+The key is the order of `forward to` statements in the relay configuration. By placing the f3s table first with `check tcp` health checks, followed by localhost as a backup, relayd automatically routes traffic based on backend availability:
+
+When f3s cluster is UP:
+
+* Health checks on port 80 succeed for f3s nodes
+* All f3s traffic routes to the Kubernetes cluster
+* Localhost backup remains idle
+
+When f3s cluster is DOWN:
+
+* All health checks fail (nodes unreachable)
+* The `<f3s>` table becomes unavailable
+* Traffic automatically falls back to `<localhost>` on port 8080
+* OpenBSD's httpd serves a static fallback page
+
+```
+# NEW configuration - supports automatic failover
+http protocol "https" {
+    # Explicitly route non-f3s hosts to localhost
+    match request header "Host" value "foo.zone" forward to <localhost>
+    match request header "Host" value "dtail.dev" forward to <localhost>
+    # ... other non-f3s hosts ...
+
+    # f3s hosts have NO protocol rules - they use relay-level failover
+    # (no match rules for f3s.foo.zone, anki.f3s.foo.zone, etc.)
+}
+
+relay "https4" {
+    # f3s FIRST (with health checks), localhost as BACKUP
+    forward to <f3s> port 80 check tcp
+    forward to <localhost> port 8080
+}
+```
+
+This way, f3s traffic uses the relay's default behavior: try the first table, fall back to the second when health checks fail.
+
+### OpenBSD httpd fallback configuration
+
+The localhost httpd service on port 8080 serves the fallback content from `/var/www/htdocs/f3s_fallback/`. This directory contains a simple HTML page explaining the situation:
+
+```
+# OpenBSD httpd.conf
+# Fallback for f3s hosts
+server "f3s.foo.zone" {
+  listen on * port 8080
+  log style forwarded
+  location * {
+    root "/htdocs/f3s_fallback"
+    directory auto index
+  }
+}
+
+server "anki.f3s.foo.zone" {
+  listen on * port 8080
+  log style forwarded
+  location * {
+    root "/htdocs/f3s_fallback"
+    directory auto index
+  }
+}
+
+# ... similar blocks for all f3s hostnames ...
+```
+
+The fallback page itself is straightforward:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Server turned off</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Server turned off</h1>
+        <p>The servers are all currently turned off.</p>
+        <p>Please try again later.</p>
+        <p>Or email <a href="mailto:paul@nospam.buetow.org">paul@nospam.buetow.org</a>
+           - so I can turn them back on for you!</p>
+    </div>
+</body>
+</html>
+```
+
+This approach provides several benefits:
+
+* Automatic detection: Health checks run continuously; no manual intervention needed
+* Instant fallback: When all f3s nodes go down, the next request automatically routes to localhost
+* Transparent recovery: When f3s comes back online, health checks pass and traffic resumes automatically
+* User experience: Visitors see a helpful message instead of connection errors
+* No DNS changes: The same hostnames work whether f3s is up or down
+
+This fallback mechanism has proven invaluable during maintenance windows and unexpected outages, ensuring that users always get a response even when the home lab is offline.
 
 ## Deploying the private Docker image registry
 
