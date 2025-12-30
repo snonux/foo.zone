@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-30T10:15:58+02:00</updated>
+    <updated>2025-12-30T10:38:22+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -3370,17 +3370,20 @@ relay "https4" {
 <br />
 <h3 style='display: inline' id='openbsd-httpd-fallback-configuration'>OpenBSD httpd fallback configuration</h3><br />
 <br />
-<span>The localhost httpd service on port 8080 serves the fallback content from <span class='inlinecode'>/var/www/htdocs/f3s_fallback/</span>. This directory contains a simple HTML page explaining the situation:</span><br />
+<span>The localhost httpd service on port 8080 serves the fallback content from <span class='inlinecode'>/var/www/htdocs/f3s_fallback/</span>. This directory contains a simple HTML page explaining the situation.</span><br />
+<br />
+<span>The key configuration detail is using <span class='inlinecode'>request rewrite</span> to ensure the fallback page is served for ALL paths, not just the root. Without this, accessing paths like <span class='inlinecode'>/login?redirect=/files/</span> would return 404 instead of the fallback page:</span><br />
 <br />
 <pre>
 # OpenBSD httpd.conf
-# Fallback for f3s hosts
+# Fallback for f3s hosts - serve fallback page for ALL paths
 server "f3s.foo.zone" {
   listen on * port 8080
   log style forwarded
   location * {
+    # Rewrite all requests to /index.html to show fallback page regardless of path
+    request rewrite "/index.html"
     root "/htdocs/f3s_fallback"
-    directory auto index
   }
 }
 
@@ -3388,13 +3391,15 @@ server "anki.f3s.foo.zone" {
   listen on * port 8080
   log style forwarded
   location * {
+    request rewrite "/index.html"
     root "/htdocs/f3s_fallback"
-    directory auto index
   }
 }
 
 # ... similar blocks for all f3s hostnames ...
 </pre>
+<br />
+<span>The <span class='inlinecode'>request rewrite "/index.html"</span> directive ensures that whether someone accesses <span class='inlinecode'>/</span>, <span class='inlinecode'>/login</span>, <span class='inlinecode'>/api/status</span>, or any other path, they all receive the same fallback page. This prevents confusing 404 errors when users have bookmarked specific URLs or follow deep links while the cluster is down.</span><br />
 <br />
 <span>The fallback page itself is straightforward:</span><br />
 <br />
