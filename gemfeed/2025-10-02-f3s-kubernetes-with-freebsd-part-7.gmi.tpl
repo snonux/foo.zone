@@ -687,17 +687,20 @@ This way, f3s traffic uses the relay's default behavior: try the first table, fa
 
 ### OpenBSD httpd fallback configuration
 
-The localhost httpd service on port 8080 serves the fallback content from `/var/www/htdocs/f3s_fallback/`. This directory contains a simple HTML page explaining the situation:
+The localhost httpd service on port 8080 serves the fallback content from `/var/www/htdocs/f3s_fallback/`. This directory contains a simple HTML page explaining the situation.
+
+The key configuration detail is using `request rewrite` to ensure the fallback page is served for ALL paths, not just the root. Without this, accessing paths like `/login?redirect=/files/` would return 404 instead of the fallback page:
 
 ```
 # OpenBSD httpd.conf
-# Fallback for f3s hosts
+# Fallback for f3s hosts - serve fallback page for ALL paths
 server "f3s.foo.zone" {
   listen on * port 8080
   log style forwarded
   location * {
+    # Rewrite all requests to /index.html to show fallback page regardless of path
+    request rewrite "/index.html"
     root "/htdocs/f3s_fallback"
-    directory auto index
   }
 }
 
@@ -705,13 +708,15 @@ server "anki.f3s.foo.zone" {
   listen on * port 8080
   log style forwarded
   location * {
+    request rewrite "/index.html"
     root "/htdocs/f3s_fallback"
-    directory auto index
   }
 }
 
 # ... similar blocks for all f3s hostnames ...
 ```
+
+The `request rewrite "/index.html"` directive ensures that whether someone accesses `/`, `/login`, `/api/status`, or any other path, they all receive the same fallback page. This prevents confusing 404 errors when users have bookmarked specific URLs or follow deep links while the cluster is down.
 
 The fallback page itself is straightforward:
 
