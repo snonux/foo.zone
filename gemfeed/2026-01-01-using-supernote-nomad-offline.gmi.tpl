@@ -1,11 +1,12 @@
 # Using Supernote Nomad offline
 
-I am a note taker. For years, I've been searching for a good digital device that could complement my paper notebooks. I've finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I'll explain why this is a benefit.
+> Published at 2025-12-31T16:25:30+02:00
 
+I am a note taker. For years, I've been searching for a good digital device that could complement my paper notebooks. I've finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I'll explain why this is a benefit.
 
 => https://supernote.com/pages/supernote-nomad Supernote Nomad
 
-I initially bought it because Retta stated on their website that an open-source Linux firmware would be released soon. However, after over a year, there still hasn't been any progress (hopefully there will be someday). So I looked into alternative ways to use this device.
+I initially bought it because Retta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. However, after over a year, there still hasn't been any progress (hopefully there will be someday). So I looked into alternative ways to use this device.
 
 ```
 ⣿⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -31,11 +32,7 @@ I initially bought it because Retta stated on their website that an open-source 
 
 In a world of constant connectivity, the Supernote Nomad offers a sanctuary. By keeping it offline, I can focus on my thoughts and notes without compromise of my privacy.
 
-### Battery for Days
-
 One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last  a week, on a single charge when it's not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.
-
-### Your Data is Your Data
 
 Privacy was my main concern. By not syncing my notes to Retta's cloud service, I retain full ownership and control over my data. There's no risk of my personal thoughts and ideas being accessed or mined by third parties. It's a simple and effective way to ensure my privacy.
 
@@ -43,19 +40,17 @@ Privacy was my main concern. By not syncing my notes to Retta's cloud service, I
 
 ## My Offline Workflow
 
-My workflow is simple and efficient, relying on a direct USB connection to my Linux laptop.
-
-### Getting Notes to my Laptop
+My workflow is simple, only relying on a direct USB connection to my Linux laptop.
 
 I connect my Supernote Nomad to my Linux laptop via a USB-C cable. The device is automatically recognized as a storage device, and I can directly access the `Note` folder, which contains all my notes as `.note` files. I then copy these files to a dedicated archive folder on my laptop.
 
 ### Converting Notes to PDF
 
-To make my notes accessible and shareable, I convert them from the proprietary `.note` format to PDF. For this, I use a fantastic open-source tool called `supernote-tool`. It's not an official tool from Ratta (the manufacturer of the Supernote), but it works flawlessly.
+To make my notes accessible and shareable, I convert them from the proprietary `.note` format to PDF. For this, I use a fantastic open-source tool called `supernote-tool`. It's not an official tool from Ratta, but it works flawlessly.
 
 => https://github.com/jya-dev/supernote-tool
 
-I've created a small shell script to automate the conversion process. This script, `convert-notes-to-pdfs.sh`, resides in my notes archive folder:
+I've created a small shell script to automate the conversion process using tis tool. This script, `convert-notes-to-pdfs.sh`, resides in my notes archive folder:
 
 ```bash
 #!/usr/bin/env bash
@@ -71,7 +66,7 @@ convert () {
       done
 }
 
-# Mage the PDFs available on my Phone as well
+# Make the PDFs available on my Phone as well
 copy () {
   if [ ! -d ~/Documents/Supernote ]; then
     echo "Directory ~/Documents/Supernote does not exist, skipping"

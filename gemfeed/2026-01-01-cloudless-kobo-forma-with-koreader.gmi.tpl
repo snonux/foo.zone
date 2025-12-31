@@ -41,7 +41,7 @@ Installing KOReader is straightforward. You can follow the official guide for th
 
 => https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux
 
-Basically, what I had to do is to download a .zip file of the KOReader binary and an `install.sh` script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.
+Basically, what I had to do is to download a `.zip` file of the KOReader binary and an `install.sh` script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.
 
 After the initial install, KOReader can update itself through its menus.
 
@@ -51,7 +51,7 @@ It is worth noting that after the KOReader install, the Kobo Forma still boots i
 
 ## Sideloaded Mode
 
-To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account, which is perfect for a cloudless setup. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.
+To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.
 
 To enable it, you need to edit the configuration file. Connect your Kobo device to your computer via USB. Open the file `.kobo/Kobo/Kobo eReader.conf` and add the following lines:
 
@@ -96,7 +96,7 @@ I haven't tried it out yet, though. I may will and will update this blog post he
 
 ### Purchasing e-books
 
-If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in EPUB format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)
+If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in ePub format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)
 
 All the books I read you can see here:
 
