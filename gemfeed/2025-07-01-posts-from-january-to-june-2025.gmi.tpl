@@ -620,3 +620,7 @@ The `#Ruby` Data class seems quite helpful
 Other related posts:
 
 << template::inline::index posts-from
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+=> ../ Back to the main site
