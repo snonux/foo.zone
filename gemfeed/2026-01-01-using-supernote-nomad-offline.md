@@ -123,6 +123,7 @@ The Supernote didn't fully replace my traditional paper journals, though. Each o
 
 Other related posts:
 
+[2026-01-01 Using Supernote Nomad offline (You are currently reading this)](./2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 Cloudless Kobo Forma with KOReader](./2026-01-01-cloudless-kobo-forma-with-koreader.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)

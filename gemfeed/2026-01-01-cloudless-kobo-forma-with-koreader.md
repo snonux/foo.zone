@@ -121,6 +121,7 @@ The Kobo Forma with KOReader has become an indispensable tool for me. By using i
 
 Other related posts:
 
+[2026-01-01 Using Supernote Nomad offline](./2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 Cloudless Kobo Forma with KOReader (You are currently reading this)](./2026-01-01-cloudless-kobo-forma-with-koreader.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
