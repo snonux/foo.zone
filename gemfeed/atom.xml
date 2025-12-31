@@ -1,11 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-31T16:11:11+02:00</updated>
+    <updated>2025-12-31T16:25:30+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Using Supernote Nomad offline</title>
+        <link href="https://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.html" />
+        <id>https://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.html</id>
+        <updated>2025-12-31T16:25:30+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I am a note taker. For years, I've been searching for a good digital device that could complement my paper notebooks. I've finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I'll explain why this is a benefit.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='using-supernote-nomad-offline'>Using Supernote Nomad offline</h1><br />
+<br />
+<span>I am a note taker. For years, I&#39;ve been searching for a good digital device that could complement my paper notebooks. I&#39;ve finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I&#39;ll explain why this is a benefit.</span><br />
+<br />
+<a class='textlink' href='https://supernote.com/pages/supernote-nomad'>Supernote Nomad</a><br />
+<br />
+<span>I initially bought it because Retta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. However, after over a year, there still hasn&#39;t been any progress (hopefully there will be someday). So I looked into alternative ways to use this device.</span><br />
+<br />
+<pre>
+⣿⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣏⠀⢶⣆⡘⠉⠙⠛⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⠋⣤⣄⠘⠃⢠⣀⣀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠿⢿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⡿⠀⡉⠻⡟⠀⠈⠉⠙⠛⠷⠶⣦⣤⣄⣀⠀⠀⠀⠀⠀⣾⣿⣿⣿⣿
+⣿⣿⣿⣿⡄⠸⢿⣤⠀⢠⣤⣀⡀⠀⠀⠀⠀⠀⠉⠙⠛⠻⠶⠀⢰⣿⣿⠻⣿⣿
+⣿⣿⣿⣿⠠⣶⣆⡉⠀⠀⠈⠉⠙⠛⠳⠶⠦⣤⣤⣄⣀⡀⢀⣴⠟⠋⠙⢷⣬⣿
+⣿⣿⣿⠏⣠⡄⠹⠁⠰⢶⣤⣤⣀⡀⠀⠀⠀⠀⠀⠉⢉⣿⠟⠁⠀⠀⣠⣾⣿⣿
+⣿⣿⡿⠂⠙⠻⡆⠀⠀⠀⠀⠈⠉⠛⠛⠷⠶⣦⣤⣴⠟⠁⠀⠀⣠⣾⣿⣿⣿⣿
+⣿⣿⡇⠸⣿⣄⠀⠰⠶⢶⣤⣄⣀⡀⠀⠀⠀⣴⣟⠁⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿
+⣿⡟⠀⣶⣀⠃⠀⠀⠀⠀⠀⠈⠉⠙⠛⠓⢾⡟⢙⣷⣤⢾⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⠋⣀⡉⠻⠀⠘⠛⠻⠶⢶⣤⣤⣀⡀⢠⠿⠟⠛⠉⠁⣸⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⡀⠛⠳⠆⠀⠀⠀⠀⠀⠀⠀⠉⠉⠛⠛⠷⠶⣦⠄⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣶⣦⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣶⣶⣤⣤⣀⣀⠀⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#using-supernote-nomad-offline'>Using Supernote Nomad offline</a></li>
+<li>⇢ <a href='#the-joy-of-being-offline'>The Joy of Being Offline</a></li>
+<li>⇢ <a href='#my-offline-workflow'>My Offline Workflow</a></li>
+<li>⇢ ⇢ <a href='#converting-notes-to-pdf'>Converting Notes to PDF</a></li>
+<li>⇢ ⇢ <a href='#syncing-to-my-phone'>Syncing to my Phone</a></li>
+<li>⇢ ⇢ <a href='#firmware-updates'>Firmware updates</a></li>
+<li>⇢ <a href='#the-writing-experience'>The Writing Experience</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<h2 style='display: inline' id='the-joy-of-being-offline'>The Joy of Being Offline</h2><br />
+<br />
+<span>In a world of constant connectivity, the Supernote Nomad offers a sanctuary. By keeping it offline, I can focus on my thoughts and notes without compromise of my privacy.</span><br />
+<br />
+<span>One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last  a week, on a single charge when it&#39;s not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.</span><br />
+<br />
+<span>Privacy was my main concern. By not syncing my notes to Retta&#39;s cloud service, I retain full ownership and control over my data. There&#39;s no risk of my personal thoughts and ideas being accessed or mined by third parties. It&#39;s a simple and effective way to ensure my privacy.</span><br />
+<br />
+<a href='./using-supernote-nomad-offline/nomad2.jpg'><img alt='A picture of the Supernote Nomad' title='A picture of the Supernote Nomad' src='./using-supernote-nomad-offline/nomad2.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='my-offline-workflow'>My Offline Workflow</h2><br />
+<br />
+<span>My workflow is simple, only relying on a direct USB connection to my Linux laptop.</span><br />
+<br />
+<span>I connect my Supernote Nomad to my Linux laptop via a USB-C cable. The device is automatically recognized as a storage device, and I can directly access the <span class='inlinecode'>Note</span> folder, which contains all my notes as <span class='inlinecode'>.note</span> files. I then copy these files to a dedicated archive folder on my laptop.</span><br />
+<br />
+<h3 style='display: inline' id='converting-notes-to-pdf'>Converting Notes to PDF</h3><br />
+<br />
+<span>To make my notes accessible and shareable, I convert them from the proprietary <span class='inlinecode'>.note</span> format to PDF. For this, I use a fantastic open-source tool called <span class='inlinecode'>supernote-tool</span>. It&#39;s not an official tool from Ratta, but it works flawlessly.</span><br />
+<br />
+<a class='textlink' href='https://github.com/jya-dev/supernote-tool'>https://github.com/jya-dev/supernote-tool</a><br />
+<br />
+<span>I&#39;ve created a small shell script to automate the conversion process using tis tool. This script, <span class='inlinecode'>convert-notes-to-pdfs.sh</span>, resides in my notes archive folder:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
+
+convert () {
+  find . -name \*.note \
+    | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> -r note; <b><u><font color="#000000">do</font></u></b>
+        echo supernote-tool convert -a -t pdf <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}"</font>
+        supernote-tool convert -a -t pdf <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}.tmp"</font>
+        mv <font color="#808080">"${note/.note/.pdf}.tmp"</font> <font color="#808080">"${note/.note/.pdf}"</font>
+        du -hs <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}"</font>
+        echo
+      <b><u><font color="#000000">done</font></u></b>
+}
+
+<i><font color="silver"># Make the PDFs available on my Phone as well</font></i>
+copy () {
+  <b><u><font color="#000000">if</font></u></b> [ ! -d ~/Documents/Supernote ]; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"Directory ~/Documents/Supernote does not exist, skipping"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+  <b><u><font color="#000000">fi</font></u></b>
+
+  rsync -delete -av --include=<font color="#808080">'*/'</font> --include=<font color="#808080">'*.pdf'</font> --exclude=<font color="#808080">'*'</font> . ~/Documents/Supernote/
+  echo This was copied from $(pwd) so dont edit manually &gt;~/Documents/Supernote/README.txt
+}
+
+convert
+copy
+</pre>
+<br />
+<span>This script does two things:</span><br />
+<br />
+<ul>
+<li>It finds all <span class='inlinecode'>.note</span> files in the current directory and converts them to PDF using <span class='inlinecode'>supernote-tool</span>.</li>
+<li>It copies the generated PDFs to my <span class='inlinecode'>~/Documents/Supernote</span> folder.</li>
+</ul><br />
+<h3 style='display: inline' id='syncing-to-my-phone'>Syncing to my Phone</h3><br />
+<br />
+<span>The <span class='inlinecode'>~/Documents/Supernote</span> folder on my laptop is synchronized with my phone using Syncthing. This way, I have access to all my notes in PDF format on my phone, wherever I go, without relying on any cloud service.</span><br />
+<br />
+<a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
+<br />
+<h3 style='display: inline' id='firmware-updates'>Firmware updates</h3><br />
+<br />
+<span>One usually updates the software or firmware of the Supernote Nomad via Wi-Fi. However, it is also possible to update it completely offline. To install the firmware update, follow the steps below (the following instructions were copied from the Supernote website):</span><br />
+<br />
+<ul>
+<li>Connect your Supernote to your PC with a USB-C cable. For macOS, an MTP software (e.g. OpenMTP or Android File Transfer) is required for your Supernote to show up on your Mac. </li>
+<li>For Manta, Nomad, A5 X and A6 X devices, copy the firmware (DO NOT UNZIP) to the "Export" folder of Supernote; for A5 and A6 devices, copy the firmware (DO NOT UNZIP) to the root directory of Supernote.</li>
+<li>Unplug the USB connection, tap “OK” on your Supernote to continue, and if no prompt pops up, please restart your device directly to proceed to update.</li>
+</ul><br />
+<h2 style='display: inline' id='the-writing-experience'>The Writing Experience</h2><br />
+<br />
+<span>The writing feel of the Supernote Nomad is simply great. The combination of the screen&#39;s texture and the ceramic nib of the pen creates a feeling that is remarkably close to writing on real paper. The latency is almost non-existent, and the pressure sensitivity allows for a natural and expressive writing experience. It&#39;s great to write on, and it makes me want to take more notes.</span><br />
+<br />
+<a href='./using-supernote-nomad-offline/nomad1.jpg'><img alt='Another picture of the Supernote Nomad' title='Another picture of the Supernote Nomad' src='./using-supernote-nomad-offline/nomad1.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>The Supernote Nomad has become an additional tool for me. By using it offline, I&#39;ve created a distraction-free and private note-taking environment. The simple, manual workflow for transferring and converting notes gives me full control over my data, and the writing experience is second to none. If you&#39;re looking for a digital notebook that respects your privacy and helps you focus, I highly recommend giving the Supernote Nomad a try with an offline-first approach.</span><br />
+<br />
+<span>The Supernote didn&#39;t fully replace my traditional paper journals, though. Each of them has its own use case. However, that is outside the scope of this blog post.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-01-01-cloudless-kobo-forma-with-koreader.html'>2026-01-01 Cloudless Kobo Forma with KOReader</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Posts from July to December 2025</title>
         <link href="https://foo.zone/gemfeed/2026-01-01-posts-from-july-to-december-2025.html" />
@@ -1121,7 +1270,7 @@ Art by Donovan Bake
 <br />
 <a class='textlink' href='https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux'>https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux</a><br />
 <br />
-<span>Basically, what I had to do is to download a .zip file of the KOReader binary and an <span class='inlinecode'>install.sh</span> script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.</span><br />
+<span>Basically, what I had to do is to download a <span class='inlinecode'>.zip</span> file of the KOReader binary and an <span class='inlinecode'>install.sh</span> script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.</span><br />
 <br />
 <span>After the initial install, KOReader can update itself through its menus.</span><br />
 <br />
@@ -1131,7 +1280,7 @@ Art by Donovan Bake
 <br />
 <h2 style='display: inline' id='sideloaded-mode'>Sideloaded Mode</h2><br />
 <br />
-<span>To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account, which is perfect for a cloudless setup. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.</span><br />
+<span>To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.</span><br />
 <br />
 <span>To enable it, you need to edit the configuration file. Connect your Kobo device to your computer via USB. Open the file <span class='inlinecode'>.kobo/Kobo/Kobo eReader.conf</span> and add the following lines:</span><br />
 <br />
@@ -1176,7 +1325,7 @@ SideloadedMode=true
 <br />
 <h3 style='display: inline' id='purchasing-e-books'>Purchasing e-books</h3><br />
 <br />
-<span>If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in EPUB format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)</span><br />
+<span>If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in ePub format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)</span><br />
 <br />
 <span>All the books I read you can see here:</span><br />
 <br />
@@ -16813,85 +16962,6 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Site Reliability Engineering - Part 3: On-Call Culture</title>
-        <link href="https://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.html" />
-        <id>https://foo.zone/gemfeed/2024-01-09-site-reliability-engineering-part-3.html</id>
-        <updated>2024-01-09T18:35:48+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I'm currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='site-reliability-engineering---part-3-on-call-culture'>Site Reliability Engineering - Part 3: On-Call Culture</h1><br />
-<br />
-<span class='quote'>Published at 2024-01-09T18:35:48+02:00</span><br />
-<br />
-<span>Welcome to Part 3 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I’m here to share what SRE is all about in this blog series.</span><br />
-<br />
-<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
-<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
-<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
-<br />
-<pre>
-                    ..--""""----..                 
-                 .-"   ..--""""--.j-.              
-              .-"   .-"        .--.""--..          
-           .-"   .-"       ..--"-. \/    ;         
-        .-"   .-"_.--..--""  ..--&#39;  "-.  :         
-      .&#39;    .&#39;  /  `. \..--"" __ _     \ ;         
-     :.__.-"    \  /        .&#39; ( )"-.   Y          
-     ;           ;:        ( )     ( ).  \         
-   .&#39;:          /::       :            \  \        
- .&#39;.-"\._   _.-" ; ;      ( )    .-.  ( )  \       
-  "    `."""  .j"  :      :      \  ;    ;  \      
-    bug /"""""/     ;      ( )    "" :.( )   \     
-       /\    /      :       \         \`.:  _ \    
-      :  `. /        ;       `( )     (\/ :" \ \   
-       \   `.        :         "-.(_)_.&#39;   t-&#39;  ;  
-        \    `.       ;                    ..--":  
-         `.    `.     :              ..--""     :  
-           `.    "-.   ;       ..--""           ;  
-             `.     "-.:_..--""            ..--"   
-               `.      :             ..--""        
-                 "-.   :       ..--""              
-                    "-.;_..--""                    
-
-</pre>
-<br />
-<h2 style='display: inline' id='putting-well-being-first'>Putting Well-being First</h2><br />
-<br />
-<span>Site Reliability Engineering is all about keeping systems reliable, but we often forget how important the human side is. A healthy on-call culture is just as crucial as any technical fix. The well-being of the engineers really matters.</span><br />
-<br />
-<span>First off, a healthy on-call rotation is about more than just handling incidents. It&#39;s about creating a supportive ecosystem. This means cutting down on pain points, offering mentorship, quickly iterating on processes, and making sure engineers have the right tools. But there&#39;s a catch—engineers need to be willing to learn. Especially in on-call rotations where SREs work with Software Engineers or QA Engineers, it can be tough to get everyone motivated. QA Engineers want to test, Software Engineers want to build new features; they don’t want to deal with production issues. This can be really frustrating for the SREs trying to mentor them.</span><br />
-<br />
-<span>Plus, measuring a good on-call experience isn&#39;t always clear-cut. You might think fewer pages mean a better on-call setup—and yeah, no one wants to get paged after hours—but it&#39;s not just about the number of pages. Trust, ownership, accountability, and solid communication are what really matter.</span><br />
-<br />
-<span>A key part is giving feedback about the on-call experience to keep learning and improving. If alerts are mostly noise, they need to be tweaked or even ditched. If alerts are helpful, can we automate the repetitive tasks? If there are knowledge gaps, is the documentation lacking? Regular retrospectives ensure that the systems get better over time and the on-call experience improves for the engineers.</span><br />
-<br />
-<span>Getting new team members ready for on-call duties is super important for keeping systems reliable and efficient. This means giving them the knowledge, tools, and support they need to handle incidents with confidence. It starts with a rundown of the system architecture and common issues, then training on monitoring tools, alerting systems, and incident response protocols. Watching experienced on-call engineers in action can provide some hands-on learning. Too often, though, new engineers get thrown into the deep end without proper onboarding because the more experienced engineers are too busy dealing with ongoing production issues.</span><br />
-<br />
-<span>A culture where everyone&#39;s always on and alert can cause burnout. Engineers need to know their limits, take breaks, and ask for help when they need it. This isn&#39;t just about personal health; a burnt-out engineer can drag down the whole team and the systems they manage. A good on-call culture keeps systems running while making sure engineers are happy, healthy, and supported. Experienced engineers should take the time to mentor juniors, but junior engineers should also stay engaged, investigate issues, and learn new things on their own.</span><br />
-<br />
-<span>For junior engineers, it&#39;s tempting to always ask the experts for help whenever something goes wrong. While that might seem reasonable, constantly handing out solutions doesn&#39;t scale—there are endless ways for production systems to break. So, every engineer needs to learn how to debug, troubleshoot, and resolve incidents on their own. The experts should be there for guidance and can step in when a junior gets really stuck, but they also need to give space for less experienced engineers to grow and learn.</span><br />
-<br />
-<span>A blameless on-call culture is essential for creating a safe and collaborative environment where engineers can handle incidents without worrying about getting blamed. It recognizes that mistakes are just part of learning and innovating. When people know they won’t be punished for errors, they’re more likely to talk openly about what went wrong, which helps the whole team learn and improve. Plus, a blameless culture boosts psychological safety, job satisfaction, and reduces burnout, keeping everyone committed and engaged.</span><br />
-<br />
-<span>Mistakes are gonna happen, which is why having a blameless on-call culture is so important.</span><br />
-<br />
-<span>Continue with the fourth part of this series:</span><br />
-<br />
-<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
