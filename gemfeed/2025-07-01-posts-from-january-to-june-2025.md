@@ -729,3 +729,8 @@ Other related posts:
 
 [2025-01-01 Posts from October to December 2024](./2025-01-01-posts-from-october-to-december-2024.md)  
 [2025-07-01 Posts from January to June 2025 (You are currently reading this)](./2025-07-01-posts-from-january-to-june-2025.md)  
+[2026-01-01 Posts from July to December 2025](./2026-01-01-posts-from-july-to-december-2025.md)  
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+[Back to the main site](../)  
