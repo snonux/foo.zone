@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-31T16:25:30+02:00</updated>
+    <updated>2025-12-31T16:28:33+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='using-supernote-nomad-offline'>Using Supernote Nomad offline</h1><br />
+<br />
+<span class='quote'>Published at 2025-12-31T16:25:30+02:00</span><br />
 <br />
 <span>I am a note taker. For years, I&#39;ve been searching for a good digital device that could complement my paper notebooks. I&#39;ve finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I&#39;ll explain why this is a benefit.</span><br />
 <br />
@@ -147,6 +149,7 @@ copy
 <br />
 <span>Other related posts:</span><br />
 <br />
+<a class='textlink' href='./2026-01-01-using-supernote-nomad-offline.html'>2026-01-01 Using Supernote Nomad offline (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-01-01-cloudless-kobo-forma-with-koreader.html'>2026-01-01 Cloudless Kobo Forma with KOReader</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
@@ -1338,6 +1341,7 @@ SideloadedMode=true
 <br />
 <span>Other related posts:</span><br />
 <br />
+<a class='textlink' href='./2026-01-01-using-supernote-nomad-offline.html'>2026-01-01 Using Supernote Nomad offline</a><br />
 <a class='textlink' href='./2026-01-01-cloudless-kobo-forma-with-koreader.html'>2026-01-01 Cloudless Kobo Forma with KOReader (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
