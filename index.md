@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2025-12-31T16:11:11+02:00 by `Gemtexter`
+> This site was generated at 2025-12-31T16:25:30+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -30,6 +30,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-01-01 - Using Supernote Nomad offline](./gemfeed/2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 - Posts from July to December 2025](./gemfeed/2026-01-01-posts-from-july-to-december-2025.md)  
 [2026-01-01 - Cloudless Kobo Forma with KOReader](./gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.md)  
 [2025-12-24 - X-RAG Observability Hackathon](./gemfeed/2025-12-24-x-rag-observability-hackathon.md)  
