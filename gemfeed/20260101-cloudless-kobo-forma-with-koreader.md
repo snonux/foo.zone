@@ -2,8 +2,6 @@
 
 I am an reader, and for years I've been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don't have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo's cloud sync, and in this post, I'll show you how.
 
-[Kobo Forma](https://gl.kobobooks.com/products/kobo-forma)  
-
 ```
 Art by Donovan Bake
 
@@ -27,6 +25,7 @@ Art by Donovan Bake
 * [⇢ ⇢ ⇢ KOReader Sync Server](#koreader-sync-server)
 * [⇢ ⇢ ⇢ Exporting Book Notes and Highlights](#exporting-book-notes-and-highlights)
 * [⇢ ⇢ ⇢ Wallabag Integration](#wallabag-integration)
+* [⇢ ⇢ ⇢ Purchasing e-books](#purchasing-e-books)
 * [⇢ ⇢ Conclusion](#conclusion)
 
 
@@ -35,6 +34,8 @@ I initially bought the Kobo Forma because I wanted a device with a large screen 
 [![KOReader running on Kobo Forma](./cloudless-kobo-forma-with-koreader/forma.jpg "KOReader running on Kobo Forma")](./cloudless-kobo-forma-with-koreader/forma.jpg)  
 
 The Kobo Forma is so old that it can't be purchased from Kobo directly anymore. But I love the form factor; it's much lighter than the Kobo Sage and still has a 7" screen. It's just that the stock firmware is becoming too slow and sluggish.
+
+[Kobo Forma](https://gl.kobobooks.com/products/kobo-forma)  
 
 ## KOReader to the Rescue
 
@@ -101,12 +102,20 @@ KOReader has built-in Wallabag support. This allows me to save articles from the
 
 [https://wallabag.org/](https://wallabag.org/)  
 
+I haven't tried it out yet, though. I may will and will update this blog post here after done so.
+
+
+### Purchasing e-books
+
+If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in EPUB format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)
+
 ## Conclusion
 
 The Kobo Forma with KOReader has become an indispensable tool for me. By using it offline and with self-hosted services, I've created a distraction-free and private reading environment. The simple, manual workflow for transferring books gives me full control over my data, and the reading experience is second to none. If you're looking for a digital e-reader that respects your privacy and helps you focus, I highly recommend giving the Kobo a try with an offline-first approach using KOReader.
 
 Other related posts:
 
+[20260101-cloudless-kobo Cloudless Kobo Forma with KOReader (You are currently reading this)](./20260101-cloudless-kobo-forma-with-koreader.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
