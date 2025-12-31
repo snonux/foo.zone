@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-31T15:51:17+02:00</updated>
+    <updated>2025-12-31T16:11:11+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1046,6 +1046,150 @@
 <a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024</a><br />
 <a class='textlink' href='./2025-07-01-posts-from-january-to-june-2025.html'>2025-07-01 Posts from January to June 2025</a><br />
 <a class='textlink' href='./2026-01-01-posts-from-july-to-december-2025.html'>2026-01-01 Posts from July to December 2025 (You are currently reading this)</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Cloudless Kobo Forma with KOReader</title>
+        <link href="https://foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.html" />
+        <id>https://foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.html</id>
+        <updated>2025-12-31T16:08:33+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I am an reader, and for years I've been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don't have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo's cloud sync, and in this post, I'll show you how.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='cloudless-kobo-forma-with-koreader'>Cloudless Kobo Forma with KOReader</h1><br />
+<br />
+<span class='quote'>Published at 2025-12-31T16:08:33+02:00</span><br />
+<br />
+<span>I am an reader, and for years I&#39;ve been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don&#39;t have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo&#39;s cloud sync, and in this post, I&#39;ll show you how.</span><br />
+<br />
+<pre>
+Art by Donovan Bake
+
+      __...--~~~~~-._   _.-~~~~~--...__
+    //               `V&#39;               \\ 
+   //                 |                 \\ 
+  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\ 
+ //__.....----~~~~._\ | /_.~~~~----.....__\\
+====================\\|//====================
+                dwb `---`
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#cloudless-kobo-forma-with-koreader'>Cloudless Kobo Forma with KOReader</a></li>
+<li>⇢ <a href='#koreader-to-the-rescue'>KOReader to the Rescue</a></li>
+<li>⇢ ⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#sideloaded-mode'>Sideloaded Mode</a></li>
+<li>⇢ <a href='#my-workflow'>My Workflow</a></li>
+<li>⇢ ⇢ <a href='#sideloading-books'>Sideloading Books</a></li>
+<li>⇢ ⇢ <a href='#koreader-sync-server'>KOReader Sync Server</a></li>
+<li>⇢ ⇢ <a href='#exporting-book-notes-and-highlights'>Exporting Book Notes and Highlights</a></li>
+<li>⇢ ⇢ <a href='#wallabag-integration'>Wallabag Integration</a></li>
+<li>⇢ ⇢ <a href='#purchasing-e-books'>Purchasing e-books</a></li>
+<li>⇢ <a href='#conclusion'>Conclusion</a></li>
+</ul><br />
+<br />
+<span>I initially bought the Kobo Forma because I wanted a device with a large screen for reading PDFs and ePubs. However, as time went on, I became more concerned about the privacy implications of having all my reading data synced to the Kobo cloud. So, I looked into alternative ways to use this device.</span><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/forma.jpg'><img alt='KOReader running on Kobo Forma' title='KOReader running on Kobo Forma' src='./cloudless-kobo-forma-with-koreader/forma.jpg' /></a><br />
+<br />
+<span>The Kobo Forma is so old that it can&#39;t be purchased from Kobo directly anymore. But I love the form factor; it&#39;s much lighter than the Kobo Sage and still has a 7" screen. It&#39;s just that the stock firmware is becoming too slow and sluggish.</span><br />
+<br />
+<a class='textlink' href='https://gl.kobobooks.com/products/kobo-forma'>Kobo Forma</a><br />
+<br />
+<h2 style='display: inline' id='koreader-to-the-rescue'>KOReader to the Rescue</h2><br />
+<br />
+<span>In a world of constant connectivity, the Kobo Forma with the KOReader software offers a way out. By keeping it disconnected from the cloud, I can focus on my reading without compromising my privacy. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma.</span><br />
+<br />
+<a class='textlink' href='https://koreader.rocks/'>KOReader</a><br />
+<br />
+<span>By not syncing my reading progress and library to Kobo&#39;s cloud service, I retain full ownership and control over my data. There&#39;s no risk of my personal reading habits being accessed or mined by third parties. </span><br />
+<br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
+<br />
+<span>Installing KOReader is straightforward. You can follow the official guide for that. I used the Linux one: </span><br />
+<br />
+<a class='textlink' href='https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux'>https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux</a><br />
+<br />
+<span>Basically, what I had to do is to download a .zip file of the KOReader binary and an <span class='inlinecode'>install.sh</span> script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.</span><br />
+<br />
+<span>After the initial install, KOReader can update itself through its menus.</span><br />
+<br />
+<span>It is worth noting that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It&#39;s a small annoyance, but it&#39;s well worth it!</span><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/nickel-menu.jpg'><img alt='Nickel Menu' title='Nickel Menu' src='./cloudless-kobo-forma-with-koreader/nickel-menu.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='sideloaded-mode'>Sideloaded Mode</h2><br />
+<br />
+<span>To use the Kobo Forma completely without a Kobo account, you can enable "Sideloaded Mode". This mode allows you to use the device without being signed in to a Kobo account, which is perfect for a cloudless setup. When enabled, the home screen will default to your library instead of showing Kobo recommendations, and the sync button will disappear. This prevents the device from trying to sync with the Kobo cloud.</span><br />
+<br />
+<span>To enable it, you need to edit the configuration file. Connect your Kobo device to your computer via USB. Open the file <span class='inlinecode'>.kobo/Kobo/Kobo eReader.conf</span> and add the following lines:</span><br />
+<br />
+<pre>
+[ApplicationPreferences]
+SideloadedMode=true
+</pre>
+<br />
+<span>After saving the file, eject the device. You might need to restart it for the changes to take effect.</span><br />
+<br />
+<span>KOReader is much faster than the stock firmware; it feels about three times as fast. Before trying out KOReader, I was thinking about selling the Forma as it felt too sluggish. But now there is new life in this 7-year-old device! It also offers a night mode (inverted colors), a feature that the stock firmware on the Forma is lacking.</span><br />
+<br />
+<h2 style='display: inline' id='my-workflow'>My Workflow</h2><br />
+<br />
+<span>My workflow is simple and efficient, relying on a direct USB connection to my Linux laptop for sideloading books and a self-hosted sync server for progress synchronization.</span><br />
+<br />
+<h3 style='display: inline' id='sideloading-books'>Sideloading Books</h3><br />
+<br />
+<span>I connect my Kobo Forma to my Linux laptop via a USB-C cable. The device is automatically recognized as a storage device, and I can directly access its storage to copy over ePubs, PDFs, and other supported formats.</span><br />
+<br />
+<h3 style='display: inline' id='koreader-sync-server'>KOReader Sync Server</h3><br />
+<br />
+<span>To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a <span class='inlinecode'>koreader-sync-server</span> instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I&#39;m using.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server'>https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server</a><br />
+<br />
+<span>To configure the sync server in KOReader, open a document, go to "Settings" -&gt; "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials.</span><br />
+<br />
+<a href='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg'><img alt='KOReader sync menu' title='KOReader sync menu' src='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg' /></a><br />
+<br />
+<h3 style='display: inline' id='exporting-book-notes-and-highlights'>Exporting Book Notes and Highlights</h3><br />
+<br />
+<span>KOReader allows you to export book notes and highlights directly from the device in various formats, including plain text and Markdown. Unfortunately, these are not automatically synced to the sync server. I have an offline backup procedure where I regularly sync them via USB to my backup server. There&#39;s a 3rd party plugin available for KOReader, which seems to be able to do this kind of sync, though.</span><br />
+<br />
+<h3 style='display: inline' id='wallabag-integration'>Wallabag Integration</h3><br />
+<br />
+<span>KOReader has built-in Wallabag support. This allows me to save articles from the web to my self-hosted Wallabag instance and then read them comfortably on my Kobo.</span><br />
+<br />
+<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
+<br />
+<span>I haven&#39;t tried it out yet, though. I may will and will update this blog post here after done so.</span><br />
+<br />
+<h3 style='display: inline' id='purchasing-e-books'>Purchasing e-books</h3><br />
+<br />
+<span>If you search a little bit you also find stores which sell digital rights management (DRM) free e-books (in EPUB format), for example buecher.de does, they sell german and english books. Before purchasing, just make sure that the book is DRM-free (not all their books are that.)</span><br />
+<br />
+<span>All the books I read you can see here:</span><br />
+<br />
+<a class='textlink' href='../about/novels.html'>Novels I&#39;ve read</a><br />
+<a class='textlink' href='../about/resources.html'>Resources, Technical Books, Podcasts, Courses and Guides I recommend</a><br />
+<br />
+<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
+<br />
+<span>The Kobo Forma with KOReader has become an indispensable tool for me. By using it offline and with self-hosted services, I&#39;ve created a distraction-free and private reading environment. The simple, manual workflow for transferring books gives me full control over my data, and the reading experience is second to none. If you&#39;re looking for a digital e-reader that respects your privacy and helps you focus, I highly recommend giving the Kobo a try with an offline-first approach using KOReader.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-01-01-cloudless-kobo-forma-with-koreader.html'>2026-01-01 Cloudless Kobo Forma with KOReader (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -16748,438 +16892,6 @@ $ doas reboot <i><font color="silver"># Just in case, reboot one more time</font
 <a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Bash Golf Part 3</title>
-        <link href="https://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.html" />
-        <id>https://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.html</id>
-        <updated>2023-12-10T11:35:54+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='bash-golf-part-3'>Bash Golf Part 3</h1><br />
-<br />
-<span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
-<br />
-<span>This is the third blog post about my Bash Golf series. This series is random Bash tips, tricks, and weirdnesses I have encountered over time. </span><br />
-<br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
-<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
-<br />
-<pre>
-    &#39;\       &#39;\        &#39;\                   .  .          |&gt;18&gt;&gt;
-      \        \         \              .         &#39; .     |
-     O&gt;&gt;      O&gt;&gt;       O&gt;&gt;         .                 &#39;o  |
-      \       .\. ..    .\. ..   .                        |
-      /\    .  /\     .  /\    . .                        |
-     / /   .  / /  .&#39;.  / /  .&#39;    .                      |
-jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-                        Art by Joan Stark, mod. by Paul Buetow
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#bash-golf-part-3'>Bash Golf Part 3</a></li>
-<li>⇢ <a href='#funcname'><span class='inlinecode'>FUNCNAME</span></a></li>
-<li>⇢ <a href='#--'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
-<li>⇢ <a href='#inner-functions'>Inner functions</a></li>
-<li>⇢ <a href='#exporting-functions'>Exporting functions</a></li>
-<li>⇢ <a href='#dynamic-variables-with-local'>Dynamic variables with <span class='inlinecode'>local</span></a></li>
-<li>⇢ <a href='#if-conditionals'><span class='inlinecode'>if</span> conditionals</a></li>
-<li>⇢ <a href='#multi-line-comments'>Multi-line comments</a></li>
-<li>⇢ <a href='#don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</a></li>
-</ul><br />
-<h2 style='display: inline' id='funcname'><span class='inlinecode'>FUNCNAME</span></h2><br />
-<br />
-<span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
-<br />
-<span>This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-log () {
-    <b><u><font color="#000000">local</font></u></b> -r level=<font color="#808080">"$1"</font>; <b><u><font color="#000000">shift</font></u></b>
-    <b><u><font color="#000000">local</font></u></b> -r message=<font color="#808080">"$1"</font>; <b><u><font color="#000000">shift</font></u></b>
-    <b><u><font color="#000000">local</font></u></b> -i pid=<font color="#808080">"$$"</font>
-
-    <b><u><font color="#000000">local</font></u></b> -r callee=${FUNCNAME[1]}
-    <b><u><font color="#000000">local</font></u></b> -r stamp=$(date +%Y%m%d-%H%M%S)
-
-    echo <font color="#808080">"$level|$stamp|$pid|$callee|$message"</font> &gt;&amp;<font color="#000000">2</font>
-}
-
-at_home_friday_evening () {
-    log INFO <font color="#808080">'One Peperoni Pizza, please'</font>
-}
-
-at_home_friday_evening
-</pre>
-<br />
-<span>The output is as follows:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>❯ ./logexample.sh
-INFO|<font color="#000000">20231210</font>-<font color="#000000">082732</font>|<font color="#000000">123002</font>|at_home_friday_evening|One Peperoni Pizza, please
-</pre>
-<br />
-<h2 style='display: inline' id='--'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
-<br />
-<span>This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break <span class='inlinecode'>:(){ :|:&amp; };:</span> down:</span><br />
-<br />
-<ul>
-<li><span class='inlinecode'>:(){ }</span> is really a declaration of the function <span class='inlinecode'>:</span></li>
-<li>The <span class='inlinecode'>;</span> is ending the current statement</li>
-<li>The <span class='inlinecode'>:</span> at the end is calling the function <span class='inlinecode'>:</span></li>
-<li><span class='inlinecode'>:|:&amp;</span> is the function body</li>
-</ul><br />
-<span>Let&#39;s break down the function body <span class='inlinecode'>:|:&amp;</span>: </span><br />
-<br />
-<ul>
-<li>The first <span class='inlinecode'>:</span> is calling the function recursively</li>
-<li>The <span class='inlinecode'>|:</span> is piping the output to the function <span class='inlinecode'>:</span> again (parallel recursion)</li>
-<li>The <span class='inlinecode'>&amp;</span> lets it run in the background.</li>
-</ul><br />
-<span>So, it&#39;s a fork bomb. If you run it, your computer will run out of resources eventually. (Modern Linux distributions could have reasonable limits configured for your login session, so it won&#39;t bring down your whole system anymore unless you run it as <span class='inlinecode'>root</span>!)</span><br />
-<br />
-<span>And here is the cute illustration:</span><br />
-<br />
-<a href='./bash-golf-part-3/bash-fork-bomb.jpg'><img alt='Bash fork bomb' title='Bash fork bomb' src='./bash-golf-part-3/bash-fork-bomb.jpg' /></a><br />
-<br />
-<h2 style='display: inline' id='inner-functions'>Inner functions</h2><br />
-<br />
-<span>Bash defines variables as it is interpreting the code. The same applies to function declarations. Let&#39;s consider this code:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-outer() {
-  inner() {
-    echo <font color="#808080">'Intel inside!'</font>
-  }
-  inner
-}
-
-inner
-outer
-inner
-</pre>
-<br />
-<span>And let&#39;s execute it:</span><br />
-<br />
-<pre>
-❯ ./inner.sh
-/tmp/inner.sh: line 10: inner: command not found
-Intel inside!
-Intel inside!
-</pre>
-<br />
-<span>What happened? The first time <span class='inlinecode'>inner</span> was called, it wasn&#39;t defined yet. That only happens after the <span class='inlinecode'>outer</span> run. Note that <span class='inlinecode'>inner</span> will still be globally defined. But functions can be declared multiple times (the last version wins):</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-outer1() {
-  inner() {
-    echo <font color="#808080">'Intel inside!'</font>
-  }
-  inner
-}
-
-outer2() {
-  inner() {
-    echo <font color="#808080">'Wintel inside!'</font>
-  }
-  inner
-}
-
-outer1
-inner
-outer2
-inner
-</pre>
-<br />
-<span>And let&#39;s run it:</span><br />
-<br />
-<pre>
-❯ ./inner2.sh
-Intel inside!
-Intel inside!
-Wintel inside!
-Wintel inside!
-</pre>
-<br />
-<h2 style='display: inline' id='exporting-functions'>Exporting functions</h2><br />
-<br />
-<span>Have you ever wondered how to execute a shell function in parallel through <span class='inlinecode'>xargs</span>? The problem is that this won&#39;t work:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-some_expensive_operations() {
-  echo <font color="#808080">"Doing expensive operations with '$1' from pid $$"</font>
-}
-
-<b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> {<font color="#000000">0</font>..<font color="#000000">9</font>}; <b><u><font color="#000000">do</font></u></b> echo $i; <b><u><font color="#000000">done</font></u></b> \
-  | xargs -P<font color="#000000">10</font> -I{} bash -c <font color="#808080">'some_expensive_operations "{}"'</font>
-</pre>
-<br />
-<span>We try here to run ten parallel processes; each of them should run the <span class='inlinecode'>some_expensive_operations</span> function with a different argument. The arguments are provided to <span class='inlinecode'>xargs</span> through <span class='inlinecode'>STDIN</span> one per line. When executed, we get this:</span><br />
-<br />
-<pre>
-❯ ./xargs.sh
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-bash: line 1: some_expensive_operations: command not found
-</pre>
-<br />
-<span>There&#39;s an easy solution for this. Just export the function! It will then be magically available in any sub-shell!</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-some_expensive_operations() {
-  echo <font color="#808080">"Doing expensive operations with '$1' from pid $$"</font>
-}
-<b><u><font color="#000000">export</font></u></b> -f some_expensive_operations
-
-<b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> {<font color="#000000">0</font>..<font color="#000000">9</font>}; <b><u><font color="#000000">do</font></u></b> echo $i; <b><u><font color="#000000">done</font></u></b> \
-  | xargs -P<font color="#000000">10</font> -I{} bash -c <font color="#808080">'some_expensive_operations "{}"'</font>
-</pre>
-<br />
-<span>When we run this now, we get:</span><br />
-<br />
-<pre>
-❯ ./xargs.sh
-Doing expensive operations with &#39;0&#39; from pid 132831
-Doing expensive operations with &#39;1&#39; from pid 132832
-Doing expensive operations with &#39;2&#39; from pid 132833
-Doing expensive operations with &#39;3&#39; from pid 132834
-Doing expensive operations with &#39;4&#39; from pid 132835
-Doing expensive operations with &#39;5&#39; from pid 132836
-Doing expensive operations with &#39;6&#39; from pid 132837
-Doing expensive operations with &#39;7&#39; from pid 132838
-Doing expensive operations with &#39;8&#39; from pid 132839
-Doing expensive operations with &#39;9&#39; from pid 132840
-</pre>
-<br />
-<span>If <span class='inlinecode'>some_expensive_function</span> would call another function, the other function must also be exported. Otherwise, there will be a runtime error again. E.g., this won&#39;t work:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-some_other_function() {
-  echo <font color="#808080">"$1"</font>
-}
-
-some_expensive_operations() {
-  some_other_function <font color="#808080">"Doing expensive operations with '$1' from pid $$"</font>
-}
-<b><u><font color="#000000">export</font></u></b> -f some_expensive_operations
-
-<b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> {<font color="#000000">0</font>..<font color="#000000">9</font>}; <b><u><font color="#000000">do</font></u></b> echo $i; <b><u><font color="#000000">done</font></u></b> \
-  | xargs -P<font color="#000000">10</font> -I{} bash -c <font color="#808080">'some_expensive_operations "{}"'</font>
-</pre>
-<br />
-<span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
-<br />
-<h2 style='display: inline' id='dynamic-variables-with-local'>Dynamic variables with <span class='inlinecode'>local</span></h2><br />
-<br />
-<span>You may know that <span class='inlinecode'>local</span> is how to declare local variables in a function. Most don&#39;t know that those variables actually have dynamic scope. Let&#39;s consider the following example:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-foo() {
-  <b><u><font color="#000000">local</font></u></b> foo=bar <i><font color="silver"># Declare local/dynamic variable</font></i>
-  bar
-  echo <font color="#808080">"$foo"</font>
-}
-
-bar() {
-  echo <font color="#808080">"$foo"</font>
-  foo=baz
-}
-
-foo=foo <i><font color="silver"># Declare global variable</font></i>
-foo <i><font color="silver"># Call function foo</font></i>
-echo <font color="#808080">"$foo"</font>
-</pre>
-<br />
-<span>Let&#39;s pause a minute. What do you think the output would be?</span><br />
-<br />
-<span>Let&#39;s run it:</span><br />
-<br />
-<pre>
-❯ ./dynamic.sh
-bar
-baz
-foo
-</pre>
-<br />
-<span>What happened? The variable <span class='inlinecode'>foo</span> (declared with <span class='inlinecode'>local</span>) is available in the function it was declared in and in all other functions down the call stack! We can even modify the value of <span class='inlinecode'>foo</span>, and the change will be visible up the call stack. It&#39;s not a global variable; on the last line, <span class='inlinecode'>echo "$foo"</span> echoes the global variable content.</span><br />
-<br />
-<br />
-<h2 style='display: inline' id='if-conditionals'><span class='inlinecode'>if</span> conditionals</h2><br />
-<br />
-<span>Consider all variants here more or less equivalent:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-<b><u><font color="#000000">declare</font></u></b> -r foo=foo
-<b><u><font color="#000000">declare</font></u></b> -r bar=bar
-
-<b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$foo"</font> = foo ]; <b><u><font color="#000000">then</font></u></b>
-  <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$bar"</font> = bar ]; <b><u><font color="#000000">then</font></u></b>
-    echo ok1
-  <b><u><font color="#000000">fi</font></u></b>
-<b><u><font color="#000000">fi</font></u></b>
-
-<b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$foo"</font> = foo ] &amp;&amp; [ <font color="#808080">"$bar"</font> == bar ]; <b><u><font color="#000000">then</font></u></b>
-  echo ok2a
-<b><u><font color="#000000">fi</font></u></b>
-
-[ <font color="#808080">"$foo"</font> = foo ] &amp;&amp; [ <font color="#808080">"$bar"</font> == bar ] &amp;&amp; echo ok2b
-
-<b><u><font color="#000000">if</font></u></b> [[ <font color="#808080">"$foo"</font> = foo &amp;&amp; <font color="#808080">"$bar"</font> == bar ]]; <b><u><font color="#000000">then</font></u></b>
-  echo ok3a
-<b><u><font color="#000000">fi</font></u></b>
-
- [[ <font color="#808080">"$foo"</font> = foo &amp;&amp; <font color="#808080">"$bar"</font> == bar ]] &amp;&amp; echo ok3b
-
-<b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> <font color="#808080">"$foo"</font> = foo &amp;&amp; <b><u><font color="#000000">test</font></u></b> <font color="#808080">"$bar"</font> = bar; <b><u><font color="#000000">then</font></u></b>
-  echo ok4a
-<b><u><font color="#000000">fi</font></u></b>
-
-<b><u><font color="#000000">test</font></u></b> <font color="#808080">"$foo"</font> = foo &amp;&amp; <b><u><font color="#000000">test</font></u></b> <font color="#808080">"$bar"</font> = bar &amp;&amp; echo ok4b
-</pre>
-<br />
-<span>The output we get is:</span><br />
-<br />
-<pre>
-❯ ./if.sh
-ok1
-ok2a
-ok2b
-ok3a
-ok3b
-ok4a
-ok4b
-</pre>
-<br />
-<h2 style='display: inline' id='multi-line-comments'>Multi-line comments</h2><br />
-<br />
-<span>You all know how to comment. Put a <span class='inlinecode'>#</span> in front of it. You could use multiple single-line comments or abuse heredocs and redirect it to the <span class='inlinecode'>:</span> no-op command to emulate multi-line comments. </span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-<i><font color="silver"># Single line comment</font></i>
-
-<i><font color="silver"># These are two single line</font></i>
-<i><font color="silver"># comments one after another</font></i>
-
-: &lt;&lt;COMMENT
-This is another way a
-multi line comment
-could be written!
-COMMENT
-</pre>
-<br />
-<span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
-<br />
-<h2 style='display: inline' id='don-t-change-it-while-it-s-executed'>Don&#39;t change it while it&#39;s executed</h2><br />
-<br />
-<span>Consider this script:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
-
-echo foo
-echo echo baz &gt;&gt; $0
-echo bar
-</pre>
-<br />
-<span>When it is run, it will do:</span><br />
-<br />
-<pre>
-❯ ./if.sh
-foo
-bar
-baz
-❯ cat if.sh
-#!/usr/bin/env bash
-
-echo foo
-echo echo baz &gt;&gt; $0
-echo bar
-echo baz
-</pre>
-<br />
-<span>So what happened? The <span class='inlinecode'>echo baz</span> line was appended to the script while it was still executed! And the interpreter also picked it up! It tells us that Bash evaluates each line as it encounters it. This can lead to nasty side effects when editing the script while it is still being executed! You should always keep this in mind!</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3 (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
