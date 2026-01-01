@@ -90,7 +90,7 @@ To keep my reading progress synchronized across multiple devices (my Kobo, my ph
 
 => https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server
 
-To configure the sync server in KOReader, open a document, go to "Settings" -> "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials.
+To configure the sync server in KOReader, open a document, go to "Settings" -> "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials. The progress can then also be synced to and from KOReader running on other devices (e.g. a Laptop or a Smartphone!)
 
 => ./cloudless-kobo-forma-with-koreader/koreader-sync.jpg KOReader sync menu
 
