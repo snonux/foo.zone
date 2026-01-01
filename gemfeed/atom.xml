@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2025-12-31T16:28:33+02:00</updated>
+    <updated>2026-01-01T02:12:39+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -1310,7 +1310,7 @@ SideloadedMode=true
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server'>https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server</a><br />
 <br />
-<span>To configure the sync server in KOReader, open a document, go to "Settings" -&gt; "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials.</span><br />
+<span>To configure the sync server in KOReader, open a document, go to "Settings" -&gt; "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials. The progress can then also be synced to and from KOReader running on other devices (e.g. a Laptop or a Smartphone!)</span><br />
 <br />
 <a href='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg'><img alt='KOReader sync menu' title='KOReader sync menu' src='./cloudless-kobo-forma-with-koreader/koreader-sync.jpg' /></a><br />
 <br />
