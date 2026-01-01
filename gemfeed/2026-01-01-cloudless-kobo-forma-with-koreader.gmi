@@ -39,6 +39,8 @@ The Kobo Forma is so old that it can't be purchased from Kobo directly anymore. 
 
 => https://gl.kobobooks.com/products/kobo-forma Kobo Forma
 
+Note: Some of the screenshots in this post are taken from my Kobo Clara HD, which is another Kobo eReader I have. It's smaller and better for travel, and I use the same KOReader setup on both devices.
+
 ## KOReader to the Rescue
 
 In a world of constant connectivity, the Kobo Forma with the KOReader software offers a way out. By keeping it disconnected from the cloud, I can focus on my reading without compromising my privacy. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma.
@@ -55,7 +57,11 @@ Installing KOReader is straightforward. You can follow the official guide for th
 
 Basically, what I had to do is to download a `.zip` file of the KOReader binary and an `install.sh` script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.
 
+=> ./cloudless-kobo-forma-with-koreader/install.jpg KOReader installation via USB
+
 After the initial install, KOReader can update itself through its menus.
+
+=> ./cloudless-kobo-forma-with-koreader/update.jpg KOReader self-update menu
 
 It is worth noting that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It's a small annoyance, but it's well worth it!
 
@@ -76,6 +82,8 @@ After saving the file, eject the device. You might need to restart it for the ch
 
 KOReader is much faster than the stock firmware; it feels about three times as fast. Before trying out KOReader, I was thinking about selling the Forma as it felt too sluggish. But now there is new life in this 7-year-old device! It also offers a night mode (inverted colors), a feature that the stock firmware on the Forma is lacking.
 
+=> ./cloudless-kobo-forma-with-koreader/dark-mode.jpg KOReader dark mode (inverted colors)
+
 ## My Workflow
 
 My workflow is simple and efficient, relying on a direct USB connection to my Linux laptop for sideloading books and a self-hosted sync server for progress synchronization.
@@ -89,6 +97,8 @@ I connect my Kobo Forma to my Linux laptop via a USB-C cable. The device is auto
 To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a `koreader-sync-server` instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I'm using.
 
 => https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server
+
+=> ./cloudless-kobo-forma-with-koreader/sync-server.jpg Custom sync server configuration
 
 To configure the sync server in KOReader, open a document, go to "Settings" -> "Progress Sync", and select "Custom sync server". There you can enter the URL of your server and your credentials. The progress can then also be synced to and from KOReader running on other devices (e.g. a Laptop or a Smartphone!)
 
