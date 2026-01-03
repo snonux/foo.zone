@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-04T00:34:59+02:00</updated>
+    <updated>2026-01-04T00:36:39+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -6401,7 +6401,7 @@ content = "{CODE}"
         <title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
         <link href="gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi" />
         <id>gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi</id>
-        <updated>2025-07-13T16:44:29+03:00, last updated: 08.08.2025</updated>
+        <updated>2025-07-13T16:44:29+03:00, last updated: 04.01.2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -6411,7 +6411,7 @@ content = "{CODE}"
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 04.01.2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -8378,7 +8378,7 @@ http://www.gnu.org/software/src-highlite -->
 paul@f0:~ % ifconfig re0 | grep carp
     carp: MASTER vhid <font color="#000000">1</font> advbase <font color="#000000">1</font> advskew <font color="#000000">0</font>
 paul@f1:~ % ifconfig re0 | grep carp
-    carp: BACKUP vhid <font color="#000000">1</font> advbase <font color="#000000">1</font> advskew <font color="#000000">0</font>
+    carp: BACKUP vhid <font color="#000000">1</font> advbase <font color="#000000">1</font> advskew <font color="#000000">100</font>
 
 <i><font color="silver"># 2. Create a test file from a client</font></i>
 [root@r0 ~]<i><font color="silver"># echo "test before failover" &gt; /data/nfs/k3svolumes/test-before.txt</font></i>

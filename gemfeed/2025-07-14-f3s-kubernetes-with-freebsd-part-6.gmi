@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-> Published at 2025-07-13T16:44:29+03:00, last updated: 08.08.2025
+> Published at 2025-07-13T16:44:29+03:00, last updated: 04.01.2026
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -1752,7 +1752,7 @@ Here's a comprehensive test of the failover behaviour with all optimisations in 
 paul@f0:~ % ifconfig re0 | grep carp
     carp: MASTER vhid 1 advbase 1 advskew 0
 paul@f1:~ % ifconfig re0 | grep carp
-    carp: BACKUP vhid 1 advbase 1 advskew 0
+    carp: BACKUP vhid 1 advbase 1 advskew 100
 
 # 2. Create a test file from a client
 [root@r0 ~]# echo "test before failover" > /data/nfs/k3svolumes/test-before.txt
