@@ -898,12 +898,14 @@ paul@f0:~ % doas service devd restart
 
 Next, we create the CARP control script that will restart stunnel when the CARP state changes:
 
+> Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
+
 ```sh
 paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
 #!/bin/sh
 # CARP state change control script
 
-case "$1" in
+case "$2" in
     MASTER)
         logger "CARP state changed to MASTER, starting services"
         ;;
@@ -911,7 +913,7 @@ case "$1" in
         logger "CARP state changed to BACKUP, stopping services"
         ;;
     *)
-        logger "CARP state changed to $1 (unhandled)"
+        logger "CARP state changed to $2 (unhandled)"
         ;;
 esac
 EOF
@@ -1189,6 +1191,8 @@ This ensures that clients always connect to the active NFS server through the CA
 
 This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:
 
+> Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
+
 ```sh
 # Create CARP control script on both f0 and f1
 paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
@@ -1213,7 +1217,7 @@ if [ ! -f /data/nfs/nfs.DO_NOT_REMOVE ]; then
 fi
 
 
-case "$1" in
+case "$2" in
     MASTER)
         logger "CARP state changed to MASTER, starting services"
         service rpcbind start >/dev/null 2>&1
@@ -1232,7 +1236,7 @@ case "$1" in
         logger "CARP BACKUP: NFS and stunnel services stopped"
         ;;
     *)
-        logger "CARP state changed to $1 (unhandled)"
+        logger "CARP state changed to $2 (unhandled)"
         ;;
 esac
 EOF
