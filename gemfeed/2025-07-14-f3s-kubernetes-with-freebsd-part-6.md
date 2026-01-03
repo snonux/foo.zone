@@ -858,14 +858,20 @@ Key benefits for our storage system:
 
 First, we add the CARP configuration to `/etc/rc.conf` on both `f0` and `f1`:
 
+> Update: Sun  4 Jan 00:17:00 EET 2026 - Added `advskew 100` to f1 so f0 always wins CARP elections when it comes back online after a reboot.
+
 ```sh
-# The virtual IP 192.168.1.138 will float between f0 and f1
+# On f0 - The virtual IP 192.168.1.138 will float between f0 and f1
 ifconfig_re0_alias0="inet vhid 1 pass testpass alias 192.168.1.138/32"
+
+# On f1 - Higher advskew means lower priority, so f0 wins elections
+ifconfig_re0_alias0="inet vhid 1 advskew 100 pass testpass alias 192.168.1.138/32"
 ```
 
 Whereas:
 
 * `vhid 1`: Virtual Host ID - must match on all CARP members
+* `advskew`: Advertisement skew - higher value means lower priority (f1 uses 100, f0 uses default 0)
 * `pass testpass`: Password for CARP authentication (if you follow this, use a different password!)
 * `alias 192.168.1.138/32`: The virtual IP address with a /32 netmask
 
