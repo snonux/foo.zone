@@ -1388,6 +1388,8 @@ Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
 
 When `f0` reboots (planned or unplanned), `f1` takes over as CARP MASTER. To ensure `f0` automatically reclaims its primary role once it's fully operational, we'll implement an automatic failback mechanism. With:
 
+> Update: Fixed the script at Sun  4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.
+
 ```sh
 paul@f0:~ % doas tee /usr/local/bin/carp-auto-failback.sh <<'EOF'
 #!/bin/sh
@@ -1424,12 +1426,6 @@ fi
 # Check if failback is blocked (for maintenance)
 if [ -f "$BLOCK_FILE" ]; then
     log_message "SKIP: Failback blocked by $BLOCK_FILE"
-    exit 0
-fi
-
-# Check if NFS services are running (ensure we're fully ready)
-if ! service nfsd status >/dev/null 2>&1; then
-    log_message "SKIP: NFS services not yet running"
     exit 0
 fi
 
