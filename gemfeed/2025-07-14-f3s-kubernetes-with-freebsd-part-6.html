@@ -1564,6 +1564,8 @@ Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
 <br />
 <span>When <span class='inlinecode'>f0</span> reboots (planned or unplanned), <span class='inlinecode'>f1</span> takes over as CARP MASTER. To ensure <span class='inlinecode'>f0</span> automatically reclaims its primary role once it&#39;s fully operational, we&#39;ll implement an automatic failback mechanism. With:</span><br />
 <br />
+<span class='quote'>Update: Fixed the script at Sun  4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -1603,12 +1605,6 @@ CURRENT_STATE=$(/usr/local/bin/carp | awk <font color="#808080">'{print $NF}'</f
 <i><font color="silver"># Check if failback is blocked (for maintenance)</font></i>
 <b><u><font color="#000000">if</font></u></b> [ -f <font color="#808080">"$BLOCK_FILE"</font> ]; <b><u><font color="#000000">then</font></u></b>
     log_message <font color="#808080">"SKIP: Failback blocked by $BLOCK_FILE"</font>
-    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
-<b><u><font color="#000000">fi</font></u></b>
-
-<i><font color="silver"># Check if NFS services are running (ensure we're fully ready)</font></i>
-<b><u><font color="#000000">if</font></u></b> ! service nfsd status &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
-    log_message <font color="#808080">"SKIP: NFS services not yet running"</font>
     <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
 <b><u><font color="#000000">fi</font></u></b>
 
