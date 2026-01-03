@@ -1030,6 +1030,8 @@ paul@f0:~ % doas service devd restart
 <br />
 <span>Next, we create the CARP control script that will restart stunnel when the CARP state changes:</span><br />
 <br />
+<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -1038,7 +1040,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="silver">#!/bin/sh</font></i>
 <i><font color="silver"># CARP state change control script</font></i>
 
-<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$2"</font> <b><u><font color="#000000">in</font></u></b>
     MASTER)
         logger <font color="#808080">"CARP state changed to MASTER, starting services"</font>
         ;;
@@ -1046,7 +1048,7 @@ http://www.gnu.org/software/src-highlite -->
         logger <font color="#808080">"CARP state changed to BACKUP, stopping services"</font>
         ;;
     *)
-        logger <font color="#808080">"CARP state changed to $1 (unhandled)"</font>
+        logger <font color="#808080">"CARP state changed to $2 (unhandled)"</font>
         ;;
 <b><u><font color="#000000">esac</font></u></b>
 EOF
@@ -1356,6 +1358,8 @@ Starting stunnel.
 </ul><br />
 <span>This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:</span><br />
 <br />
+<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -1383,7 +1387,7 @@ HOSTNAME=`hostname`
 <b><u><font color="#000000">fi</font></u></b>
 
 
-<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$1"</font> <b><u><font color="#000000">in</font></u></b>
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$2"</font> <b><u><font color="#000000">in</font></u></b>
     MASTER)
         logger <font color="#808080">"CARP state changed to MASTER, starting services"</font>
         service rpcbind start &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
@@ -1402,7 +1406,7 @@ HOSTNAME=`hostname`
         logger <font color="#808080">"CARP BACKUP: NFS and stunnel services stopped"</font>
         ;;
     *)
-        logger <font color="#808080">"CARP state changed to $1 (unhandled)"</font>
+        logger <font color="#808080">"CARP state changed to $2 (unhandled)"</font>
         ;;
 <b><u><font color="#000000">esac</font></u></b>
 EOF
