@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-04T00:05:40+02:00</updated>
+    <updated>2026-01-04T00:34:59+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -7381,18 +7381,24 @@ paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | tail -<font c
 <br />
 <span>First, we add the CARP configuration to <span class='inlinecode'>/etc/rc.conf</span> on both <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span>:</span><br />
 <br />
+<span class='quote'>Update: Sun  4 Jan 00:17:00 EET 2026 - Added <span class='inlinecode'>advskew 100</span> to f1 so f0 always wins CARP elections when it comes back online after a reboot.</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># The virtual IP 192.168.1.138 will float between f0 and f1</font></i>
+<pre><i><font color="silver"># On f0 - The virtual IP 192.168.1.138 will float between f0 and f1</font></i>
 ifconfig_re0_alias0=<font color="#808080">"inet vhid 1 pass testpass alias 192.168.1.138/32"</font>
+
+<i><font color="silver"># On f1 - Higher advskew means lower priority, so f0 wins elections</font></i>
+ifconfig_re0_alias0=<font color="#808080">"inet vhid 1 advskew 100 pass testpass alias 192.168.1.138/32"</font>
 </pre>
 <br />
 <span>Whereas:</span><br />
 <br />
 <ul>
 <li><span class='inlinecode'>vhid 1</span>: Virtual Host ID - must match on all CARP members</li>
+<li><span class='inlinecode'>advskew</span>: Advertisement skew - higher value means lower priority (f1 uses 100, f0 uses default 0)</li>
 <li><span class='inlinecode'>pass testpass</span>: Password for CARP authentication (if you follow this, use a different password!)</li>
 <li><span class='inlinecode'>alias 192.168.1.138/32</span>: The virtual IP address with a /32 netmask</li>
 </ul><br />
