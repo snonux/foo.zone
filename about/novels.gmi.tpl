@@ -36,12 +36,18 @@ _-"   .       '  +  .              .        ,//////0\ | /00HHHHHHHMMMMM
 
 ### Alastair Reynolds
 
-* 2000 - Revelation Space (english) / Unendlichkeit (german) - Revelation Space Universe, Paperback
-* 2001 - Chasm City - Revelation Space Universe, Paperback
-* 2002 - Redemption Ark (english) / Die Arche (german) - Revelation Space Universe, Paperback
-* 2003 - Absolution Gap (english) / Offenbarung (german) - Revelation Space Universe, Paperback
-* 2005 - Diamond Dogs, Turquoise Days (english) / Träume von Unendlichkeit (german) - Revelation Space Universe, Paperback
-* 2021 - Inhibitor Phase - Revelation Space Universe, Audiobook (Libro.fm)
+Revelation Space Universe:
+
+* 2000 - Revelation Space (english) / Unendlichkeit (german), Paperback
+* 2001 - Chasm City, Paperback
+* 2002 - Redemption Ark (english) / Die Arche (german), Paperback
+* 2003 - Absolution Gap (english) / Offenbarung (german), Paperback
+* 2005 - Diamond Dogs, Turquoise Days (english) / Träume von Unendlichkeit (german), Paperback
+* 2021 - Inhibitor Phase, Audiobook (Libro.fm)
+
+Poseidons Children Series:
+
+* 2016 - Blue Remembered Earth - Poseidons Children (english) / Okular - Poseidons Kinder  (german), eBook
 
 ### Arthur C. Clarke
 
