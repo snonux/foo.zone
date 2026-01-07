@@ -19,6 +19,7 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 
 * ⇢ f3s: Kubernetes with FreeBSD - Part 8: Observability
 * ⇢ ⇢ Introduction
+* ⇢ ⇢ Important Note: GitOps Migration
 * ⇢ ⇢ Persistent storage recap
 * ⇢ ⇢ The monitoring namespace
 * ⇢ ⇢ Installing Prometheus and Grafana
@@ -59,7 +60,27 @@ Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a pop
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s 
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+
+## Important Note: GitOps Migration
+
+**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for ArgoCD-based continuous deployment.
+
+**To view the exact configuration as it existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/prometheus/
+```
+
+**Current master branch** contains the ArgoCD-managed versions with:
+- Application manifests organized under `argocd-apps/{monitoring,services,infra,test}/`
+- Resources organized under `prometheus/manifests/`, `loki/`, etc.
+- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands
+
+The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series. 
 
 ## Persistent storage recap
 
@@ -87,17 +108,6 @@ namespace/monitoring created
 ```
 
 ## Installing Prometheus and Grafana
-
-**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for declarative deployment. To view the exact configuration as it existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:
-
-```sh
-$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  # Last commit before ArgoCD migration
-$ cd f3s/prometheus/
-```
-
-The current master branch contains the ArgoCD-managed versions with Application manifests under `argocd-apps/` and resources organized under `prometheus/manifests/`, `loki/`, etc. The Justfiles have been updated to trigger ArgoCD syncs instead of direct Helm commands.
 
 Prometheus and Grafana are deployed together using the `kube-prometheus-stack` Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.
 

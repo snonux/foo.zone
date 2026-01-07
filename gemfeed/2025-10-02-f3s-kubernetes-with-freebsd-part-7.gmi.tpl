@@ -16,6 +16,26 @@ In this blog post, I am finally going to install k3s (the Kubernetes distributio
 
 => https://k3s.io
 
+## Important Note: GitOps Migration
+
+**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests and Helm charts in the repository have been reorganized for ArgoCD-based continuous deployment.
+
+**To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/
+```
+
+**Current master branch** contains the ArgoCD-managed versions with:
+- Application manifests organized under `argocd-apps/{monitoring,services,infra,test}/`
+- Additional resources under `*/manifests/` directories (e.g., `prometheus/manifests/`)
+- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands
+
+The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series.
+
 ## Updating
 
 Before proceeding, I bring all systems involved up-to-date. On all three Rocky Linux 9 boxes `r0`, `r1`, and `r2`:
@@ -767,18 +787,7 @@ All manifests for the f3s stack live in my configuration repository:
 
 => https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
 
-**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests and Helm charts in the repository have been reorganized for declarative deployment. To view the exact manifests and charts as they existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:
-
-```sh
-$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  # Last commit before ArgoCD migration
-$ cd f3s/
-```
-
-The current master branch contains the ArgoCD-managed versions with manifests organized under `argocd-apps/` and `*/manifests/` directories.
-
-Within that repo, the `examples/conf/f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
+Within that repo, the `f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
 
 ### Prepare the NFS-backed storage
 

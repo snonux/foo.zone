@@ -4,11 +4,62 @@
 
 This is part X of the f3s series for my self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
-<< template::inline::index f3s-kubernetes-with-freebsd-part
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+=> ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
+=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
+=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
+=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
-<< template::inline::toc
+## Table of Contents
+
+* ⇢ f3s: Kubernetes with FreeBSD - Part X: GitOps with ArgoCD
+* ⇢ ⇢ Introduction
+* ⇢ ⇢ What is GitOps?
+* ⇢ ⇢ What is ArgoCD?
+* ⇢ ⇢ Why ArgoCD for f3s?
+* ⇢ ⇢ Deploying ArgoCD
+* ⇢ ⇢ ⇢ Prerequisites
+* ⇢ ⇢ ⇢ Installing ArgoCD
+* ⇢ ⇢ ⇢ Accessing ArgoCD
+* ⇢ ⇢ ArgoCD Application Structure
+* ⇢ ⇢ Repository Organization
+* ⇢ ⇢ Migration Strategy: Incremental, One App at a Time
+* ⇢ ⇢ ⇢ Migration Phases
+* ⇢ ⇢ Example Migration: Miniflux
+* ⇢ ⇢ ⇢ Before: Imperative Helm deployment
+* ⇢ ⇢ ⇢ After: Declarative GitOps with ArgoCD
+* ⇢ ⇢ ⇢ Migration procedure
+* ⇢ ⇢ Complex Migration: Prometheus with Multi-Source
+* ⇢ ⇢ ⇢ Sync Waves and Hooks
+* ⇢ ⇢ Migration Results
+* ⇢ ⇢ Benefits Realized
+* ⇢ ⇢ ⇢ 1. Single Source of Truth
+* ⇢ ⇢ ⇢ 2. Automatic Synchronization
+* ⇢ ⇢ ⇢ 3. Drift Detection and Self-Healing
+* ⇢ ⇢ ⇢ 4. Easy Rollbacks
+* ⇢ ⇢ ⇢ 5. Disaster Recovery
+* ⇢ ⇢ ⇢ 6. Documentation by Default
+* ⇢ ⇢ ⇢ 7. Safe Experimentation
+* ⇢ ⇢ Challenges and Solutions
+* ⇢ ⇢ ⇢ Challenge 1: Helm Release Adoption
+* ⇢ ⇢ ⇢ Challenge 2: Persistent Volumes Not Tracked by Helm
+* ⇢ ⇢ ⇢ Challenge 3: Secrets Management
+* ⇢ ⇢ ⇢ Challenge 4: Grafana Not Reloading Datasources
+* ⇢ ⇢ ⇢ Challenge 5: Prometheus With Multiple Sources
+* ⇢ ⇢ ⇢ Challenge 6: Sync Ordering for Prometheus
+* ⇢ ⇢ Justfile Evolution
+* ⇢ ⇢ Lessons Learned
+* ⇢ ⇢ Future Improvements
+* ⇢ ⇢ ⇢ 1. External Secrets Operator
+* ⇢ ⇢ ⇢ 2. ApplicationSet for Similar Apps
+* ⇢ ⇢ ⇢ 3. App-of-Apps Pattern
+* ⇢ ⇢ ⇢ 4. ArgoCD Image Updater
+* ⇢ ⇢ Summary
 
 ## Introduction
 
@@ -1046,7 +1097,19 @@ ArgoCD has become an essential part of the f3s infrastructure, and I can't imagi
 
 Other *BSD-related posts:
 
-<< template::inline::rindex bsd
+=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
+=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
+=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
+=> ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
+=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
+=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
+=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
+=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
+=> ./2024-04-01-KISS-high-availability-with-OpenBSD.gmi 2024-04-01 KISS high-availability with OpenBSD
+=> ./2024-01-13-one-reason-why-i-love-openbsd.gmi 2024-01-13 One reason why I love OpenBSD
+=> ./2022-10-30-installing-dtail-on-openbsd.gmi 2022-10-30 Installing DTail on OpenBSD
+=> ./2022-07-30-lets-encrypt-with-openbsd-and-rex.gmi 2022-07-30 Let's Encrypt with OpenBSD and Rex
+=> ./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.gmi 2016-04-09 Jails and ZFS with Puppet on FreeBSD
 
 E-Mail your comments to `paul@nospam.buetow.org`
 

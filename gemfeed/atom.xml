@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-07T23:43:40+02:00</updated>
+    <updated>2026-01-07T23:57:53+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2312,6 +2312,7 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-8-observability'>f3s: Kubernetes with FreeBSD - Part 8: Observability</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#important-note-gitops-migration'>Important Note: GitOps Migration</a></li>
 <li>⇢ <a href='#persistent-storage-recap'>Persistent storage recap</a></li>
 <li>⇢ <a href='#the-monitoring-namespace'>The monitoring namespace</a></li>
 <li>⇢ <a href='#installing-prometheus-and-grafana'>Installing Prometheus and Grafana</a></li>
@@ -2353,7 +2354,30 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s </a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
+<br />
+<span>**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for ArgoCD-based continuous deployment.</span><br />
+<br />
+<span>**To view the exact configuration as it existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/prometheus/
+</pre>
+<br />
+<span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
+<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
+<span>- Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</span><br />
+<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
+<br />
+<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series. </span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
 <br />
@@ -2385,20 +2409,6 @@ namespace/monitoring created
 </pre>
 <br />
 <h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
-<br />
-<span>**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for declarative deployment. To view the exact configuration as it existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
-$ cd f3s/prometheus/
-</pre>
-<br />
-<span>The current master branch contains the ArgoCD-managed versions with Application manifests under <span class='inlinecode'>argocd-apps/</span> and resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc. The Justfiles have been updated to trigger ArgoCD syncs instead of direct Helm commands.</span><br />
 <br />
 <span>Prometheus and Grafana are deployed together using the <span class='inlinecode'>kube-prometheus-stack</span> Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.</span><br />
 <br />
@@ -3977,6 +3987,7 @@ p hash.values_at(:a, :c)
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments'>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#important-note-gitops-migration'>Important Note: GitOps Migration</a></li>
 <li>⇢ <a href='#updating'>Updating</a></li>
 <li>⇢ <a href='#installing-k3s'>Installing k3s</a></li>
 <li>⇢ ⇢ <a href='#generating-k3stoken-and-starting-the-first-k3s-node'>Generating <span class='inlinecode'>K3S_TOKEN</span> and starting the first k3s node</a></li>
@@ -4006,6 +4017,29 @@ p hash.values_at(:a, :c)
 <span>In this blog post, I am finally going to install k3s (the Kubernetes distribution I use) to the whole setup and deploy the first workloads (helm charts, and a private registry) to it.</span><br />
 <br />
 <a class='textlink' href='https://k3s.io'>https://k3s.io</a><br />
+<br />
+<h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
+<br />
+<span>**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests and Helm charts in the repository have been reorganized for ArgoCD-based continuous deployment.</span><br />
+<br />
+<span>**To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/
+</pre>
+<br />
+<span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
+<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
+<span>- Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</span><br />
+<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
+<br />
+<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series.</span><br />
 <br />
 <h2 style='display: inline' id='updating'>Updating</h2><br />
 <br />
@@ -4822,21 +4856,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
 <br />
-<span>**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests and Helm charts in the repository have been reorganized for declarative deployment. To view the exact manifests and charts as they existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
-$ cd f3s/
-</pre>
-<br />
-<span>The current master branch contains the ArgoCD-managed versions with manifests organized under <span class='inlinecode'>argocd-apps/</span> and <span class='inlinecode'>*/manifests/</span> directories.</span><br />
-<br />
-<span>Within that repo, the <span class='inlinecode'>examples/conf/f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
+<span>Within that repo, the <span class='inlinecode'>f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
 <br />
 <h3 style='display: inline' id='prepare-the-nfs-backed-storage'>Prepare the NFS-backed storage</h3><br />
 <br />
