@@ -761,11 +761,22 @@ This fallback mechanism has proven invaluable during maintenance windows and une
 
 ## Deploying the private Docker image registry
 
-As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry. 
+As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry.
 
 All manifests for the f3s stack live in my configuration repository:
 
 => https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+
+**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests and Helm charts in the repository have been reorganized for declarative deployment. To view the exact manifests and charts as they existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/
+```
+
+The current master branch contains the ArgoCD-managed versions with manifests organized under `argocd-apps/` and `*/manifests/` directories.
 
 Within that repo, the `examples/conf/f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
 

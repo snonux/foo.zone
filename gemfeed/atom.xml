@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-04T00:36:39+02:00</updated>
+    <updated>2026-01-07T23:43:40+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2385,6 +2385,20 @@ namespace/monitoring created
 </pre>
 <br />
 <h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
+<br />
+<span>**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for declarative deployment. To view the exact configuration as it existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/prometheus/
+</pre>
+<br />
+<span>The current master branch contains the ArgoCD-managed versions with Application manifests under <span class='inlinecode'>argocd-apps/</span> and resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc. The Justfiles have been updated to trigger ArgoCD syncs instead of direct Helm commands.</span><br />
 <br />
 <span>Prometheus and Grafana are deployed together using the <span class='inlinecode'>kube-prometheus-stack</span> Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.</span><br />
 <br />
@@ -4802,11 +4816,25 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</h2><br />
 <br />
-<span>As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry. </span><br />
+<span>As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry.</span><br />
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<span>**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests and Helm charts in the repository have been reorganized for declarative deployment. To view the exact manifests and charts as they existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/
+</pre>
+<br />
+<span>The current master branch contains the ArgoCD-managed versions with manifests organized under <span class='inlinecode'>argocd-apps/</span> and <span class='inlinecode'>*/manifests/</span> directories.</span><br />
 <br />
 <span>Within that repo, the <span class='inlinecode'>examples/conf/f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
 <br />

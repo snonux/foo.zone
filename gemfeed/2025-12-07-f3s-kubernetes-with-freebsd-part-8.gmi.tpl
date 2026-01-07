@@ -52,6 +52,17 @@ namespace/monitoring created
 
 ## Installing Prometheus and Grafana
 
+**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for declarative deployment. To view the exact configuration as it existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/prometheus/
+```
+
+The current master branch contains the ArgoCD-managed versions with Application manifests under `argocd-apps/` and resources organized under `prometheus/manifests/`, `loki/`, etc. The Justfiles have been updated to trigger ArgoCD syncs instead of direct Helm commands.
+
 Prometheus and Grafana are deployed together using the `kube-prometheus-stack` Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.
 
 ### Prerequisites
