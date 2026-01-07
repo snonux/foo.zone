@@ -19,6 +19,7 @@ This is the seventh blog post about the f3s series for my self-hosting demands i
 
 * [⇢ f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments](#f3s-kubernetes-with-freebsd---part-7-k3s-and-first-pod-deployments)
 * [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Important Note: GitOps Migration](#important-note-gitops-migration)
 * [⇢ ⇢ Updating](#updating)
 * [⇢ ⇢ Installing k3s](#installing-k3s)
 * [⇢ ⇢ ⇢ Generating `K3S_TOKEN` and starting the first k3s node](#generating-k3stoken-and-starting-the-first-k3s-node)
@@ -48,6 +49,26 @@ This is the seventh blog post about the f3s series for my self-hosting demands i
 In this blog post, I am finally going to install k3s (the Kubernetes distribution I use) to the whole setup and deploy the first workloads (helm charts, and a private registry) to it.
 
 [https://k3s.io](https://k3s.io)  
+
+## Important Note: GitOps Migration
+
+**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests and Helm charts in the repository have been reorganized for ArgoCD-based continuous deployment.
+
+**To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/
+```
+
+**Current master branch** contains the ArgoCD-managed versions with:
+- Application manifests organized under `argocd-apps/{monitoring,services,infra,test}/`
+- Additional resources under `*/manifests/` directories (e.g., `prometheus/manifests/`)
+- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands
+
+The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series.
 
 ## Updating
 
@@ -800,18 +821,7 @@ All manifests for the f3s stack live in my configuration repository:
 
 [codeberg.org/snonux/conf/f3s](https://codeberg.org/snonux/conf/src/branch/master/f3s)  
 
-**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests and Helm charts in the repository have been reorganized for declarative deployment. To view the exact manifests and charts as they existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:
-
-```sh
-$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  # Last commit before ArgoCD migration
-$ cd f3s/
-```
-
-The current master branch contains the ArgoCD-managed versions with manifests organized under `argocd-apps/` and `*/manifests/` directories.
-
-Within that repo, the `examples/conf/f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
+Within that repo, the `f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
 
 ### Prepare the NFS-backed storage
 
