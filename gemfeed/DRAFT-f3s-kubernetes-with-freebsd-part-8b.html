@@ -19,6 +19,32 @@
 <br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>Part 8: Observability</a><br />
 <br />
+<h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
+<br />
+<span>**Note:** After the initial observability setup, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Prometheus configuration and deployment process described in this post have been updated for ArgoCD.</span><br />
+<br />
+<span>**To view the configuration as it existed before the ArgoCD migration**, check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/prometheus/
+</pre>
+<br />
+<span>**Current master branch** uses ArgoCD with:</span><br />
+<span>- Application manifest: <span class='inlinecode'>argocd-apps/monitoring/prometheus.yaml</span></span><br />
+<span>- Multi-source Application combining upstream chart + custom manifests</span><br />
+<span>- Justfile commands updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
+<br />
+<span>The etcd configuration concepts remain the same—only the deployment method changed. Instead of running <span class='inlinecode'>just upgrade</span>, you would:</span><br />
+<span>1. Update the configuration in Git</span><br />
+<span>2. Commit and push</span><br />
+<span>3. ArgoCD automatically syncs (or run <span class='inlinecode'>just sync</span> for immediate sync)</span><br />
+<br />
 <h2 style='display: inline' id='enabling-etcd-metrics-in-k3s'>Enabling etcd metrics in k3s</h2><br />
 <br />
 <span>On each control-plane node (r0, r1, r2), create /etc/rancher/k3s/config.yaml:</span><br />

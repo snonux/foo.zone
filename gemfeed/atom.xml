@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-07T23:57:53+02:00</updated>
+    <updated>2026-01-08T00:01:51+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -2377,7 +2377,7 @@ $ cd f3s/prometheus/
 <span>- Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</span><br />
 <span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
 <br />
-<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series. </span><br />
+<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). </span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
 <br />
@@ -4039,7 +4039,7 @@ $ cd f3s/
 <span>- Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</span><br />
 <span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
 <br />
-<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series.</span><br />
+<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
 <br />
 <h2 style='display: inline' id='updating'>Updating</h2><br />
 <br />
