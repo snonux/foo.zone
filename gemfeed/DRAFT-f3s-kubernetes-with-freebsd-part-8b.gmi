@@ -6,6 +6,29 @@ This post covers enabling etcd metrics monitoring for the k3s cluster. The etcd 
 
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html Part 8: Observability
 
+## Important Note: GitOps Migration
+
+**Note:** After the initial observability setup, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Prometheus configuration and deployment process described in this post have been updated for ArgoCD.
+
+**To view the configuration as it existed before the ArgoCD migration**, check out the pre-ArgoCD revision:
+
+```sh
+$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  # Last commit before ArgoCD migration
+$ cd f3s/prometheus/
+```
+
+**Current master branch** uses ArgoCD with:
+- Application manifest: `argocd-apps/monitoring/prometheus.yaml`
+- Multi-source Application combining upstream chart + custom manifests
+- Justfile commands updated to trigger ArgoCD syncs instead of direct Helm commands
+
+The etcd configuration concepts remain the same—only the deployment method changed. Instead of running `just upgrade`, you would:
+1. Update the configuration in Git
+2. Commit and push
+3. ArgoCD automatically syncs (or run `just sync` for immediate sync)
+
 ## Enabling etcd metrics in k3s
 
 On each control-plane node (r0, r1, r2), create /etc/rancher/k3s/config.yaml:
