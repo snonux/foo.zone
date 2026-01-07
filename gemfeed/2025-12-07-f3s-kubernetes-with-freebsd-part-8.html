@@ -33,6 +33,7 @@
 <ul>
 <li><a href='#f3s-kubernetes-with-freebsd---part-8-observability'>f3s: Kubernetes with FreeBSD - Part 8: Observability</a></li>
 <li>⇢ <a href='#introduction'>Introduction</a></li>
+<li>⇢ <a href='#important-note-gitops-migration'>Important Note: GitOps Migration</a></li>
 <li>⇢ <a href='#persistent-storage-recap'>Persistent storage recap</a></li>
 <li>⇢ <a href='#the-monitoring-namespace'>The monitoring namespace</a></li>
 <li>⇢ <a href='#installing-prometheus-and-grafana'>Installing Prometheus and Grafana</a></li>
@@ -74,7 +75,30 @@
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s </a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<br />
+<h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
+<br />
+<span>**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for ArgoCD-based continuous deployment.</span><br />
+<br />
+<span>**To view the exact configuration as it existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/prometheus/
+</pre>
+<br />
+<span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
+<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
+<span>- Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</span><br />
+<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
+<br />
+<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series. </span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
 <br />
@@ -106,20 +130,6 @@ namespace/monitoring created
 </pre>
 <br />
 <h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
-<br />
-<span>**Note:** After publishing this blog post, the f3s cluster was migrated to ArgoCD GitOps. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for declarative deployment. To view the exact configuration as it existed when this blog post was written (before ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
-$ cd f3s/prometheus/
-</pre>
-<br />
-<span>The current master branch contains the ArgoCD-managed versions with Application manifests under <span class='inlinecode'>argocd-apps/</span> and resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc. The Justfiles have been updated to trigger ArgoCD syncs instead of direct Helm commands.</span><br />
 <br />
 <span>Prometheus and Grafana are deployed together using the <span class='inlinecode'>kube-prometheus-stack</span> Helm chart from the Prometheus community. This chart bundles Prometheus, Grafana, Alertmanager, and various exporters (Node Exporter, Kube State Metrics) into a single deployment. Ill explain what each component does in detail later when we look at the running pods.</span><br />
 <br />
