@@ -68,7 +68,7 @@ $ cd f3s/
 - Additional resources under `*/manifests/` directories (e.g., `prometheus/manifests/`)
 - Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands
 
-The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD). For details on the GitOps migration, see Part X of this series.
+The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD).
 
 ## Updating
 
