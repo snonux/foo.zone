@@ -1,10 +1,12 @@
 # f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 
-> Published at 2025-05-11T11:35:57+03:00
+> Published at 2025-05-11T11:35:57+03:00, last updated Sun 11 Jan 21:33:40 EET 2026
 
 This is the fifth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
 I will post a new entry every month or so (there are too many other side projects for more frequent updates — I bet you can understand).
+
+> This post has been updated to include two roaming clients (`earth` - Fedora laptop, `pixel7pro` - Android phone) that connect to the mesh via the internet gateways. The updated content is integrated throughout the post.
 
 These are all the posts so far:
 
@@ -44,31 +46,53 @@ Let's begin...
 * [⇢ ⇢ ⇢ Generating the `wg0.conf` files and keys](#generating-the-wg0conf-files-and-keys)
 * [⇢ ⇢ ⇢ Installing the `wg0.conf` files](#installing-the-wg0conf-files)
 * [⇢ ⇢ ⇢ Re-generating mesh and installing the `wg0.conf` files again](#re-generating-mesh-and-installing-the-wg0conf-files-again)
+* [⇢ ⇢ ⇢ Setting up roaming clients](#setting-up-roaming-clients)
 * [⇢ ⇢ Happy WireGuard-ing](#happy-wireguard-ing)
+* [⇢ ⇢ Managing Roaming Client Tunnels](#managing-roaming-client-tunnels)
+* [⇢ ⇢ ⇢ Starting and stopping on earth (Fedora laptop)](#starting-and-stopping-on-earth-fedora-laptop)
+* [⇢ ⇢ ⇢ Starting and stopping on pixel7pro (Android phone)](#starting-and-stopping-on-pixel7pro-android-phone)
+* [⇢ ⇢ ⇢ Verifying connectivity](#verifying-connectivity)
 * [⇢ ⇢ Conclusion](#conclusion)
 
 ## Introduction
 
-By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network of all participating hosts:
+By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network:
 
-[![Full mesh network](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg "Full mesh network")](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh.svg)  
+[![WireGuard mesh network topology](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh-with-roaming.svg "WireGuard mesh network topology")](./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh-with-roaming.svg)  
 
-Whereas `f0`, `f1`, and `f2` are the FreeBSD base hosts, `r0`, `r1`, and `r2` are the Rocky Linux Bhyve VMs, and `blowfish` and `fishfinger` are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems).
+The mesh network consists of eight infrastructure hosts and two roaming clients:
 
-As we can see from the graph, it is a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.
+Infrastructure hosts (full mesh):
+
+* `f0`, `f1`, and `f2` are the FreeBSD base hosts in my home LAN
+* `r0`, `r1`, and `r2` are the Rocky Linux Bhyve VMs running on the FreeBSD hosts
+* `blowfish` and `fishfinger` are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems)
+
+oaming clients (gateway-only connections):
+
+* `earth` is my Fedora laptop (192.168.2.200) which connects only to the internet gateways for remote access
+* `pixel7pro` is my Android phone (192.168.2.201) which routes all traffic through the VPN when activated
+
+As we can see from the diagram, the eight infrastructure hosts form a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels. The roaming clients take a simpler approach—they only connect to the two internet-facing gateways (`blowfish` and `fishfinger`), which is sufficient for remote access and internet connectivity.
 
 For simplicity, we also establish VPN tunnels between `f0 <-> r0`, `f1 <-> r1`, and `f2 <-> r2`. Technically, this wouldn't be strictly required since the VMs `rN` are running on the hosts `fN`, and no network traffic is leaving the box. However, it simplifies the configuration as we don't have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).
 
 ### Expected traffic flow
 
-The traffic is expected to flow between the host groups through the mesh network as follows: 
+The traffic is expected to flow between the host groups through the mesh network as follows:
 
-* `fN <-> rN`: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the `fN` hosts. 
+nfrastructure mesh traffic:
+
+* `fN <-> rN`: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the `fN` hosts.
 * `fN <-> blowfish,fishfinger`: The traffic between the FreeBSD hosts and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.
 * `rN <-> blowfish,fishfinger`: The traffic between the Rocky Linux VMs and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for usage traffic. Since k3s will be running on the `rN` hosts, the OpenBSD servers will route the traffic through `relayd` to the services running in Kubernetes.
 * `fN <-> fM`: The traffic between the FreeBSD hosts may be later used for data replication for the NFS storage.
 * `rN <-> rM`: The traffic between the Rocky Linux VMs will later be used by the k3s cluster itself, as every `rN` will be a Kubernetes worker node.
 * `blowfish <-> fishfinger`: The traffic between the OpenBSD hosts isn't strictly required for this setup, but I set it up anyway for future use cases.
+
+oaming client traffic:
+
+* `earth,pixel7pro <-> blowfish,fishfinger`: The roaming clients connect exclusively to the two internet gateways. All traffic from these clients (0.0.0.0/0) is routed through the VPN, providing secure internet access and the ability to reach services running in the mesh (via the gateways). The gateways use NAT to allow roaming clients to access the internet using the gateway's public IP address. The roaming clients cannot be reached by the LAN hosts—they are client-only and initiate all connections.
 
 We won't cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.
 
@@ -240,7 +264,28 @@ blowfish$ cat <<END | doas tee -a /etc/hosts
 
 192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
 192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+192.168.2.200 earth.wg0 earth.wg0.wan.buetow.org
+192.168.2.201 pixel7pro.wg0 pixel7pro.wg0.wan.buetow.org
 END
+```
+
+To enable roaming clients (like `earth` and `pixel7pro`) to access the internet through the VPN, we need to configure NAT on the OpenBSD gateways. This allows the roaming clients to use the gateway's public IP address for outbound traffic. We add the following to `/etc/pf.conf` on both `blowfish` and `fishfinger`:
+
+```sh
+# NAT for WireGuard clients to access internet
+match out on vio0 from 192.168.2.0/24 to any nat-to (vio0)
+
+# Allow inbound traffic on WireGuard interface
+pass in on wg0
+
+# Allow all UDP traffic on WireGuard port
+pass in inet proto udp from any to any port 56709
+```
+
+The NAT rule translates outgoing traffic from the WireGuard network (192.168.2.0/24) to the gateway's public IP. The firewall rules permit WireGuard traffic on the wg0 interface and UDP port 56709. After updating `/etc/pf.conf`, reload the firewall:
+
+```sh
+blowfish$ doas pfctl -f /etc/pf.conf
 ```
 
 ## WireGuard configuration
@@ -315,7 +360,40 @@ Endpoint = 46.23.94.99:56709
 PersistentKeepalive = 25
 ```
 
-Whereas there are two main sections. One is `[Interface]`, which configures the current host (here: `f0`):
+For roaming clients like `pixel7pro` (Android phone) or `earth` (Fedora laptop), the configuration looks different because they route all traffic through the VPN and only connect to the internet gateways:
+
+```
+[Interface]
+# pixel7pro.wg0.wan.buetow.org
+Address = 192.168.2.201
+PrivateKey = **************************
+ListenPort = 56709
+DNS = 1.1.1.1, 8.8.8.8
+
+[Peer]
+# blowfish.buetow.org as blowfish.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = 23.88.35.144:56709
+PersistentKeepalive = 25
+
+[Peer]
+# fishfinger.buetow.org as fishfinger.wg0.wan.buetow.org
+PublicKey = **************************
+PresharedKey = **************************
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = 46.23.94.99:56709
+PersistentKeepalive = 25
+```
+
+Note the key differences for roaming clients:
+* `DNS` is configured to use external DNS servers (Cloudflare and Google)
+* `AllowedIPs = 0.0.0.0/0, ::/0` routes all traffic (IPv4 and IPv6) through the VPN
+* Only two peers are configured (the internet gateways), not the full mesh
+* `PersistentKeepalive = 25` is used for both peers to maintain NAT traversal
+
+Whereas there are two main sections. One is `[Interface]`, which configures the current host (here: `f0` or `pixel7pro`):
 
 * `Address`: Local virtual IP address on the WireGuard interface.
 * `PrivateKey`: Private key for this node.
@@ -388,32 +466,12 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.130'
-  f1:
-    os: FreeBSD
-    ssh:
-      user: paul
-      conf_dir: /usr/local/etc/wireguard
-      sudo_cmd: doas
-      reload_cmd: service wireguard reload
-    lan:
-      domain: 'lan.buetow.org'
-      ip: '192.168.1.131'
-    wg0:
-      domain: 'wg0.wan.buetow.org'
-      ip: '192.168.2.131'
-  f2:
-    os: FreeBSD
-    ssh:
-      user: paul
-      conf_dir: /usr/local/etc/wireguard
-      sudo_cmd: doas
-      reload_cmd: service wireguard reload
-    lan:
-      domain: 'lan.buetow.org'
-      ip: '192.168.1.132'
-    wg0:
-      domain: 'wg0.wan.buetow.org'
-      ip: '192.168.2.132'
+    exclude_peers:
+      - earth
+      - pixel7pro
+  # f1 and f2 similarly configured with exclude_peers for roaming clients
+  # (full config omitted for brevity)
+  ...
   r0:
     os: Linux
     ssh:
@@ -427,36 +485,16 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.120'
-  r1:
-    os: Linux
-    ssh:
-      user: root
-      conf_dir: /etc/wireguard
-      sudo_cmd:
-      reload_cmd: systemctl reload wg-quick@wg0.service
-    lan:
-      domain: 'lan.buetow.org'
-      ip: '192.168.1.121'
-    wg0:
-      domain: 'wg0.wan.buetow.org'
-      ip: '192.168.2.121'
-  r2:
-    os: Linux
-    ssh:
-      user: root
-      conf_dir: /etc/wireguard
-      sudo_cmd:
-      reload_cmd: systemctl reload wg-quick@wg0.service
-    lan:
-      domain: 'lan.buetow.org'
-      ip: '192.168.1.122'
-    wg0:
-      domain: 'wg0.wan.buetow.org'
-      ip: '192.168.2.122'
+    exclude_peers:
+      - earth
+      - pixel7pro
+  # r1 and r2 similarly configured
+  ...
   blowfish:
     os: OpenBSD
     ssh:
       user: rex
+      port: 2
       conf_dir: /etc/wireguard
       sudo_cmd: doas
       reload_cmd: sh /etc/netstart wg0
@@ -466,10 +504,14 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.110'
+    exclude_peers:
+      - earth
+      - pixel7pro
   fishfinger:
     os: OpenBSD
     ssh:
       user: rex
+      port: 2
       conf_dir: /etc/wireguard
       sudo_cmd: doas
       reload_cmd: sh /etc/netstart wg0
@@ -479,9 +521,40 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.111'
+    exclude_peers:
+      - earth
+      - pixel7pro
+  earth:
+    os: Linux
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.200'
+    exclude_peers:
+      - f0
+      - f1
+      - f2
+      - r0
+      - r1
+      - r2
+      - pixel7pro
+  pixel7pro:
+    os: Android
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.201'
+    exclude_peers:
+      - f0
+      - f1
+      - f2
+      - r0
+      - r1
+      - r2
+      - earth
 ```
 
 The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (`wg0`) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.
+
+Roaming clients: Note the `earth` and `pixel7pro` entries—these are configured differently from the infrastructure hosts. They have no `lan` or `internet` sections, which signals to the generator that they are roaming clients. The `exclude_peers` configuration ensures they only connect to the internet gateways (`blowfish` and `fishfinger`) and are not reachable by LAN hosts. The generator automatically configures these clients with `AllowedIPs = 0.0.0.0/0, ::/0` to route all traffic through the VPN, includes DNS configuration (`1.1.1.1, 8.8.8.8`), and enables `PersistentKeepalive` for NAT traversal.
 
 ### `wireguardmeshgenerator.rb` overview
 
@@ -566,6 +639,8 @@ Generating dist/r1/etc/wireguard/wg0.conf
 Generating dist/r2/etc/wireguard/wg0.conf
 Generating dist/blowfish/etc/wireguard/wg0.conf
 Generating dist/fishfinger/etc/wireguard/wg0.conf
+Generating dist/earth/etc/wireguard/wg0.conf
+Generating dist/pixel7pro/etc/wireguard/wg0.conf
 ```
 
 It generated all the `wg0.conf` files listed in the output, plus those keys:
@@ -602,6 +677,10 @@ keys/psk/fishfinger_r1.key
 keys/psk/blowfish_r2.key
 keys/psk/fishfinger_r2.key
 keys/psk/blowfish_fishfinger.key
+keys/psk/blowfish_earth.key
+keys/psk/earth_fishfinger.key
+keys/psk/blowfish_pixel7pro.key
+keys/psk/fishfinger_pixel7pro.key
 keys/f1/priv.key
 keys/f1/pub.key
 keys/f2/priv.key
@@ -616,6 +695,10 @@ keys/blowfish/priv.key
 keys/blowfish/pub.key
 keys/fishfinger/priv.key
 keys/fishfinger/pub.key
+keys/earth/priv.key
+keys/earth/pub.key
+keys/pixel7pro/priv.key
+keys/pixel7pro/pub.key
 ```
 
 Those keys are embedded in the resulting `wg0.conf`, so later, we only need to install the `wg0.conf` files and not all the keys individually.
@@ -744,6 +827,34 @@ The mesh network can be re-generated and re-installed as follows:
 ```
 
 That would also delete and re-generate all the keys involved.
+
+### Setting up roaming clients
+
+For roaming clients like `earth` (Fedora laptop) and `pixel7pro` (Android phone), the setup process differs slightly since these devices are not always accessible via SSH:
+
+Android phone (`pixel7pro`):
+
+The configuration is transferred to the phone using a QR code. The official WireGuard Android app (from Google Play Store) can scan and import the configuration:
+
+```sh
+> sudo dnf install qrencode
+> qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0.conf
+```
+
+Scan the QR code with the WireGuard app to import the configuration. The phone will then route all traffic through the VPN when the tunnel is activated. Note that WireGuard does not support automatic failover between the two gateways (`blowfish` and `fishfinger`)—if one fails, manual disconnection and reconnection is required to switch to the other.
+
+Fedora laptop (`earth`):
+
+For the laptop, manually copy the generated configuration:
+
+```sh
+> sudo cp dist/earth/etc/wireguard/wg0.conf /etc/wireguard/
+> sudo chmod 600 /etc/wireguard/wg0.conf
+> sudo systemctl start wg-quick@wg0.service  # Start manually
+> sudo systemctl disable wg-quick@wg0.service  # Prevent auto-start
+```
+
+The service is disabled from auto-start so the VPN is only active when manually started. This allows selective VPN usage based on need.
 
 ## Happy WireGuard-ing
 
@@ -922,6 +1033,105 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   endpoint: 192.168.1.131:56709
   allowed ips: 192.168.2.131/32
 ```
+
+## Managing Roaming Client Tunnels
+
+Since roaming clients like `earth` and `pixel7pro` connect on-demand rather than being always-on like the infrastructure hosts, it's useful to know how to start and stop the WireGuard tunnels.
+
+### Starting and stopping on earth (Fedora laptop)
+
+On the Fedora laptop, WireGuard is managed via systemd. Starting the tunnel:
+
+```sh
+earth$ sudo systemctl start wg-quick@wg0.service
+earth$ sudo wg show
+interface: wg0
+  public key: Mc1CpSS3rbLN9A2w9c75XugQyXUkGPHKI2iCGbh8DRo=
+  private key: (hidden)
+  listening port: 56709
+  fwmark: 0xca6c
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: 46.23.94.99:56709
+  allowed ips: 0.0.0.0/0, ::/0
+  latest handshake: 5 seconds ago
+  transfer: 15.89 KiB received, 32.15 KiB sent
+  persistent keepalive: every 25 seconds
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: 23.88.35.144:56709
+  allowed ips: (none)
+  latest handshake: 5 seconds ago
+  transfer: 124 B received, 180 B sent
+  persistent keepalive: every 25 seconds
+```
+
+Stoppint the tunnel:
+
+```sh
+earth$ sudo systemctl stop wg-quick@wg0.service
+earth$ sudo wg show
+# No output - WireGuard interface is down
+```
+
+Checking the tunnel status:
+
+```sh
+earth$ sudo systemctl status wg-quick@wg0.service
+● wg-quick@wg0.service - WireGuard via wg-quick(8) for wg0
+     Loaded: loaded (/usr/lib/systemd/system/wg-quick@.service; disabled)
+     Active: active (exited) since Sun 2026-01-11 22:45:00 EET
+```
+
+The service remains `disabled` to prevent auto-start on boot, allowing manual control of when the VPN is active.
+
+### Starting and stopping on pixel7pro (Android phone)
+
+On Android using the official WireGuard app, tunnel management is like this:
+
+Starting the tunnel:
+
+* 1. Open the WireGuard app
+* 2. Tap the toggle switch next to the `pixel7pro` tunnel configuration
+* 3. The switch turns blue/green and shows "Active"
+* 4. A key icon appears in the notification bar indicating VPN is active
+* 5. All traffic now routes through the VPN
+
+Stopping the tunnel:
+
+* 1. Open the WireGuard app
+* 2. Tap the toggle switch again to disable it
+* 3. The switch turns gray and shows "Inactive"
+* 4. The notification bar key icon disappears
+* 5. Normal internet routing resumes
+
+Quick toggling from notification:
+
+* Pull down the notification shade
+* Tap the WireGuard notification to quickly enable/disable the tunnel without opening the app
+
+The WireGuard Android app supports automatically activating tunnels based on:
+
+* Mobile data connection (e.g., enable VPN when on cellular)
+* WiFi SSID (e.g., disable VPN when on trusted home network)
+* Ethernet connection status
+
+These settings can be configured by tapping the pencil icon next to the tunnel name, then scrolling to "Toggle on/off based on" options.
+
+### Verifying connectivity
+
+Once the tunnel is active on either device, verify connectivity:
+
+```sh
+# From earth laptop:
+earth$ ping -c2 blowfish.wg0
+earth$ ping -c2 fishfinger.wg0
+earth$ curl https://ifconfig.me  # Should show gateway's public IP
+```
+
+Check which gateway is active: The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with `sudo wg show` on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.
 
 ## Conclusion
 
