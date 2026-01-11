@@ -996,6 +996,103 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   allowed ips: 192.168.2.131/32
 ```
 
+## Managing Roaming Client Tunnels
+
+Since roaming clients like `earth` and `pixel7pro` connect on-demand rather than being always-on like the infrastructure hosts, it's useful to know how to start and stop the WireGuard tunnels.
+
+### Starting and stopping on earth (Fedora laptop)
+
+On the Fedora laptop, WireGuard is managed via systemd:
+
+**Start the tunnel:**
+```sh
+earth$ sudo systemctl start wg-quick@wg0.service
+earth$ sudo wg show
+interface: wg0
+  public key: Mc1CpSS3rbLN9A2w9c75XugQyXUkGPHKI2iCGbh8DRo=
+  private key: (hidden)
+  listening port: 56709
+  fwmark: 0xca6c
+
+peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
+  preshared key: (hidden)
+  endpoint: 46.23.94.99:56709
+  allowed ips: 0.0.0.0/0, ::/0
+  latest handshake: 5 seconds ago
+  transfer: 15.89 KiB received, 32.15 KiB sent
+  persistent keepalive: every 25 seconds
+
+peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
+  preshared key: (hidden)
+  endpoint: 23.88.35.144:56709
+  allowed ips: (none)
+  latest handshake: 5 seconds ago
+  transfer: 124 B received, 180 B sent
+  persistent keepalive: every 25 seconds
+```
+
+**Stop the tunnel:**
+```sh
+earth$ sudo systemctl stop wg-quick@wg0.service
+earth$ sudo wg show
+# No output - WireGuard interface is down
+```
+
+**Check tunnel status:**
+```sh
+earth$ sudo systemctl status wg-quick@wg0.service
+● wg-quick@wg0.service - WireGuard via wg-quick(8) for wg0
+     Loaded: loaded (/usr/lib/systemd/system/wg-quick@.service; disabled)
+     Active: active (exited) since Sun 2026-01-11 22:45:00 EET
+```
+
+The service remains `disabled` to prevent auto-start on boot, allowing manual control of when the VPN is active.
+
+### Starting and stopping on pixel7pro (Android phone)
+
+On Android using the official WireGuard app, tunnel management is straightforward:
+
+**Start the tunnel:**
+1. Open the WireGuard app
+2. Tap the toggle switch next to the `pixel7pro` tunnel configuration
+3. The switch turns blue/green and shows "Active"
+4. A key icon appears in the notification bar indicating VPN is active
+5. All traffic now routes through the VPN
+
+**Stop the tunnel:**
+1. Open the WireGuard app
+2. Tap the toggle switch again to disable it
+3. The switch turns gray and shows "Inactive"
+4. The notification bar key icon disappears
+5. Normal internet routing resumes
+
+**Quick toggle from notification:**
+- Pull down the notification shade
+- Tap the WireGuard notification to quickly enable/disable the tunnel without opening the app
+
+**Automatic activation (optional):**
+The WireGuard Android app supports automatically activating tunnels based on:
+- Mobile data connection (e.g., enable VPN when on cellular)
+- WiFi SSID (e.g., disable VPN when on trusted home network)
+- Ethernet connection status
+
+These settings can be configured by tapping the pencil icon next to the tunnel name, then scrolling to "Toggle on/off based on" options.
+
+### Verifying connectivity
+
+Once the tunnel is active on either device, verify connectivity:
+
+**Test VPN connection:**
+```sh
+# From earth laptop:
+earth$ ping -c2 blowfish.wg0
+earth$ ping -c2 fishfinger.wg0
+earth$ curl https://ifconfig.me  # Should show gateway's public IP
+```
+
+**Check which gateway is active:**
+The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with `sudo wg show` on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.
+
 ## Conclusion
 
 Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.
