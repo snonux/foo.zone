@@ -50,7 +50,9 @@ Whereas `f0`, `f1`, and `f2` are the FreeBSD base hosts, `r0`, `r1`, and `r2` ar
 
 **Update (January 2026):** Two roaming clients have been added to the setup: `earth` (Fedora laptop) and `pixel7pro` (Android phone). Unlike the full-mesh participants, these clients connect only to the two internet-facing gateways (`blowfish` and `fishfinger`) for internet access and are not reachable by the LAN hosts. See the update section above for details.
 
-As we can see from the graph, the original eight hosts form a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.
+=> ./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh-with-roaming.svg Updated mesh network with roaming clients
+
+As we can see from the graphs, the original eight hosts form a true full-mesh network, where every host has a VPN tunnel to every other host. The benefit is that we do not need to route traffic through intermediate hosts (significantly simplifying the routing configuration). However, the downside is that there is some overhead in configuring and managing all the tunnels.
 
 For simplicity, we also establish VPN tunnels between `f0 <-> r0`, `f1 <-> r1`, and `f2 <-> r2`. Technically, this wouldn't be strictly required since the VMs `rN` are running on the hosts `fN`, and no network traffic is leaving the box. However, it simplifies the configuration as we don't have to account for exceptions, and we are going to automate the mesh network configuration anyway (read on).
 
