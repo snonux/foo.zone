@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-08T00:01:51+02:00</updated>
+    <updated>2026-01-11T10:37:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -13581,7 +13581,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
         <title>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</title>
         <link href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi" />
         <id>gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi</id>
-        <updated>2024-12-02T23:48:21+02:00</updated>
+        <updated>2024-12-02T23:48:21+02:00, last updated Sun 11 Jan 10:30:00 EET 2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -13591,7 +13591,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
 <br />
-<span class='quote'>Published at 2024-12-02T23:48:21+02:00</span><br />
+<span class='quote'>Published at 2024-12-02T23:48:21+02:00, last updated Sun 11 Jan 10:30:00 EET 2026</span><br />
 <br />
 <span>This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
@@ -13635,6 +13635,11 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <li>⇢ <a href='#ram'>RAM</a></li>
 <li>⇢ <a href='#cpus'>CPUs</a></li>
 <li>⇢ <a href='#cpu-throttling'>CPU throttling</a></li>
+<li><a href='#wake-on-lan-setup'>Wake-on-LAN Setup</a></li>
+<li>⇢ <a href='#setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</a></li>
+<li>⇢ <a href='#testing-wol'>Testing WoL</a></li>
+<li>⇢ <a href='#wol-from-wifi'>WoL from WiFi</a></li>
+<li>⇢ <a href='#bios-configuration'>BIOS Configuration</a></li>
 <li><a href='#conclusion'>Conclusion</a></li>
 </ul><br />
 <h1 style='display: inline' id='deciding-on-the-hardware'>Deciding on the hardware</h1><br />
@@ -13924,6 +13929,127 @@ dev.cpu.<font color="#000000">0</font>.freq: <font color="#000000">2922</font>
 <span>Idle, all three Beelinks plus the switch consumed 26.2W. But with <span class='inlinecode'>ubench</span> stressing all the CPUs, it went up to 38.8W.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/watt.jpg'><img alt='Idle consumption.' title='Idle consumption.' src='./f3s-kubernetes-with-freebsd-part-2/watt.jpg' /></a><br />
+<br />
+<h1 style='display: inline' id='wake-on-lan-setup'>Wake-on-LAN Setup</h1><br />
+<br />
+<span class='quote'>Updated Sun 11 Jan 10:30:00 EET 2026</span><br />
+<br />
+<span>As mentioned in the hardware specs above, the Beelink S12 Pro supports Wake-on-LAN (WoL), which allows me to remotely power on the machines over the network. This is particularly useful since I don&#39;t need all three machines running 24/7, and I can save power by shutting them down when not needed and waking them up on demand.</span><br />
+<br />
+<span>The good news is that FreeBSD already has WoL support enabled by default on the Realtek network interface, as evidenced by the <span class='inlinecode'>WOL_MAGIC</span> option shown in the <span class='inlinecode'>ifconfig re0</span> output above (line 215).</span><br />
+<br />
+<h2 style='display: inline' id='setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</h2><br />
+<br />
+<span>To wake the Beelinks from my Fedora laptop (<span class='inlinecode'>earth</span>), I installed the <span class='inlinecode'>wol</span> package:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth]~% sudo dnf install -y wol
+</pre>
+<br />
+<span>Next, I created a simple script (<span class='inlinecode'>~/bin/wol-f3s</span>) to wake the machines:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/bin/bash</font></i>
+<i><font color="silver"># Wake-on-LAN script for f3s cluster (f0, f1, f2)</font></i>
+
+<i><font color="silver"># MAC addresses</font></i>
+F0_MAC=<font color="#808080">"e8:ff:1e:d7:1c:ac"</font>  <i><font color="silver"># f0 (192.168.1.130)</font></i>
+F1_MAC=<font color="#808080">"e8:ff:1e:d7:1e:44"</font>  <i><font color="silver"># f1 (192.168.1.131)</font></i>
+F2_MAC=<font color="#808080">"e8:ff:1e:d7:1c:a0"</font>  <i><font color="silver"># f2 (192.168.1.132)</font></i>
+
+<i><font color="silver"># Broadcast address for your LAN</font></i>
+BROADCAST=<font color="#808080">"192.168.1.255"</font>
+
+wake() {
+    <b><u><font color="#000000">local</font></u></b> name=$1
+    <b><u><font color="#000000">local</font></u></b> mac=$2
+    echo <font color="#808080">"Sending WoL packet to $name ($mac)..."</font>
+    wol -i <font color="#808080">"$BROADCAST"</font> <font color="#808080">"$mac"</font>
+}
+
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"${1:-all}"</font> <b><u><font color="#000000">in</font></u></b>
+    f0) wake <font color="#808080">"f0"</font> <font color="#808080">"$F0_MAC"</font> ;;
+    f1) wake <font color="#808080">"f1"</font> <font color="#808080">"$F1_MAC"</font> ;;
+    f2) wake <font color="#808080">"f2"</font> <font color="#808080">"$F2_MAC"</font> ;;
+    all|<font color="#808080">""</font>)
+        wake <font color="#808080">"f0"</font> <font color="#808080">"$F0_MAC"</font>
+        wake <font color="#808080">"f1"</font> <font color="#808080">"$F1_MAC"</font>
+        wake <font color="#808080">"f2"</font> <font color="#808080">"$F2_MAC"</font>
+        ;;
+    *)
+        echo <font color="#808080">"Usage: $0 [f0|f1|f2|all]"</font>
+        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+        ;;
+<b><u><font color="#000000">esac</font></u></b>
+
+echo <font color="#808080">""</font>
+echo <font color="#808080">"✓ WoL packets sent. Machines should boot in a few seconds."</font>
+</pre>
+<br />
+<span>After making the script executable with <span class='inlinecode'>chmod +x ~/bin/wol-f3s</span>, I can now wake the machines with simple commands:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth]~% wol-f3s        <i><font color="silver"># Wake all three</font></i>
+[paul@earth]~% wol-f3s f0     <i><font color="silver"># Wake only f0</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='testing-wol'>Testing WoL</h2><br />
+<br />
+<span>To test the setup, I shutdown all three machines:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.130</font> <font color="#808080">"doas poweroff"</font>
+[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.131</font> <font color="#808080">"doas poweroff"</font>
+[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.132</font> <font color="#808080">"doas poweroff"</font>
+</pre>
+<br />
+<span>After waiting for them to fully power down (about 1 minute), I sent the WoL magic packets:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth]~% wol-f3s
+Sending WoL packet to f0 (e8:ff:1e:d7:1c:ac)...
+Waking up e8:ff:1e:d7:1c:ac...
+Sending WoL packet to f1 (e8:ff:1e:d7:1e:<font color="#000000">44</font>)...
+Waking up e8:ff:1e:d7:1e:<font color="#000000">44</font>...
+Sending WoL packet to f2 (e8:ff:1e:d7:1c:a0)...
+Waking up e8:ff:1e:d7:1c:a0...
+
+✓ WoL packets sent. Machines should boot <b><u><font color="#000000">in</font></u></b> a few seconds.
+</pre>
+<br />
+<span>Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!</span><br />
+<br />
+<h2 style='display: inline' id='wol-from-wifi'>WoL from WiFi</h2><br />
+<br />
+<span>An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.</span><br />
+<br />
+<span>This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I&#39;m on WiFi or ethernet.</span><br />
+<br />
+<h2 style='display: inline' id='bios-configuration'>BIOS Configuration</h2><br />
+<br />
+<span>For WoL to work reliably, make sure to check the BIOS settings on each Beelink:</span><br />
+<br />
+<ul>
+<li>Enable "Wake on LAN" (usually under Power Management)</li>
+<li>Disable "ERP Support" or "ErP Ready" (this can prevent WoL from working)</li>
+<li>Enable "Power on by PCI-E" or "Wake on PCI-E"</li>
+</ul><br />
+<span>The exact menu names vary, but these settings are typically found in the Power Management or Advanced sections of the BIOS.</span><br />
 <br />
 <h1 style='display: inline' id='conclusion'>Conclusion</h1><br />
 <br />
