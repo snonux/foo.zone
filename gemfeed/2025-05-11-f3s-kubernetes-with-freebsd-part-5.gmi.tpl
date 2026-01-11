@@ -601,6 +601,8 @@ Generating dist/r1/etc/wireguard/wg0.conf
 Generating dist/r2/etc/wireguard/wg0.conf
 Generating dist/blowfish/etc/wireguard/wg0.conf
 Generating dist/fishfinger/etc/wireguard/wg0.conf
+Generating dist/earth/etc/wireguard/wg0.conf
+Generating dist/pixel7pro/etc/wireguard/wg0.conf
 ```
 
 It generated all the `wg0.conf` files listed in the output, plus those keys:
@@ -637,6 +639,10 @@ keys/psk/fishfinger_r1.key
 keys/psk/blowfish_r2.key
 keys/psk/fishfinger_r2.key
 keys/psk/blowfish_fishfinger.key
+keys/psk/blowfish_earth.key
+keys/psk/earth_fishfinger.key
+keys/psk/blowfish_pixel7pro.key
+keys/psk/fishfinger_pixel7pro.key
 keys/f1/priv.key
 keys/f1/pub.key
 keys/f2/priv.key
@@ -651,6 +657,10 @@ keys/blowfish/priv.key
 keys/blowfish/pub.key
 keys/fishfinger/priv.key
 keys/fishfinger/pub.key
+keys/earth/priv.key
+keys/earth/pub.key
+keys/pixel7pro/priv.key
+keys/pixel7pro/pub.key
 ```
 
 Those keys are embedded in the resulting `wg0.conf`, so later, we only need to install the `wg0.conf` files and not all the keys individually.
