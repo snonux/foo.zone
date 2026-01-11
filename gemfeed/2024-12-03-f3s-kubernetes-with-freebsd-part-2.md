@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
 
-> Published at 2024-12-02T23:48:21+02:00
+> Published at 2024-12-02T23:48:21+02:00, last updated Sun 11 Jan 10:30:00 EET 2026
 
 This is the second blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
@@ -43,6 +43,11 @@ Let's continue...
 * [⇢ ⇢ RAM](#ram)
 * [⇢ ⇢ CPUs](#cpus)
 * [⇢ ⇢ CPU throttling](#cpu-throttling)
+* [⇢ Wake-on-LAN Setup](#wake-on-lan-setup)
+* [⇢ ⇢ Setting up WoL on the laptop](#setting-up-wol-on-the-laptop)
+* [⇢ ⇢ Testing WoL](#testing-wol)
+* [⇢ ⇢ WoL from WiFi](#wol-from-wifi)
+* [⇢ ⇢ BIOS Configuration](#bios-configuration)
 * [⇢ Conclusion](#conclusion)
 
 # Deciding on the hardware
@@ -290,6 +295,111 @@ dev.cpu.0.freq: 2922
 Idle, all three Beelinks plus the switch consumed 26.2W. But with `ubench` stressing all the CPUs, it went up to 38.8W.
 
 [![Idle consumption.](./f3s-kubernetes-with-freebsd-part-2/watt.jpg "Idle consumption.")](./f3s-kubernetes-with-freebsd-part-2/watt.jpg)  
+
+# Wake-on-LAN Setup
+
+> Updated Sun 11 Jan 10:30:00 EET 2026
+
+As mentioned in the hardware specs above, the Beelink S12 Pro supports Wake-on-LAN (WoL), which allows me to remotely power on the machines over the network. This is particularly useful since I don't need all three machines running 24/7, and I can save power by shutting them down when not needed and waking them up on demand.
+
+The good news is that FreeBSD already has WoL support enabled by default on the Realtek network interface, as evidenced by the `WOL_MAGIC` option shown in the `ifconfig re0` output above (line 215).
+
+## Setting up WoL on the laptop
+
+To wake the Beelinks from my Fedora laptop (`earth`), I installed the `wol` package:
+
+```sh
+[paul@earth]~% sudo dnf install -y wol
+```
+
+Next, I created a simple script (`~/bin/wol-f3s`) to wake the machines:
+
+```sh
+#!/bin/bash
+# Wake-on-LAN script for f3s cluster (f0, f1, f2)
+
+# MAC addresses
+F0_MAC="e8:ff:1e:d7:1c:ac"  # f0 (192.168.1.130)
+F1_MAC="e8:ff:1e:d7:1e:44"  # f1 (192.168.1.131)
+F2_MAC="e8:ff:1e:d7:1c:a0"  # f2 (192.168.1.132)
+
+# Broadcast address for your LAN
+BROADCAST="192.168.1.255"
+
+wake() {
+    local name=$1
+    local mac=$2
+    echo "Sending WoL packet to $name ($mac)..."
+    wol -i "$BROADCAST" "$mac"
+}
+
+case "${1:-all}" in
+    f0) wake "f0" "$F0_MAC" ;;
+    f1) wake "f1" "$F1_MAC" ;;
+    f2) wake "f2" "$F2_MAC" ;;
+    all|"")
+        wake "f0" "$F0_MAC"
+        wake "f1" "$F1_MAC"
+        wake "f2" "$F2_MAC"
+        ;;
+    *)
+        echo "Usage: $0 [f0|f1|f2|all]"
+        exit 1
+        ;;
+esac
+
+echo ""
+echo "✓ WoL packets sent. Machines should boot in a few seconds."
+```
+
+After making the script executable with `chmod +x ~/bin/wol-f3s`, I can now wake the machines with simple commands:
+
+```sh
+[paul@earth]~% wol-f3s        # Wake all three
+[paul@earth]~% wol-f3s f0     # Wake only f0
+```
+
+## Testing WoL
+
+To test the setup, I shutdown all three machines:
+
+```sh
+[paul@earth]~% ssh paul@192.168.1.130 "doas poweroff"
+[paul@earth]~% ssh paul@192.168.1.131 "doas poweroff"
+[paul@earth]~% ssh paul@192.168.1.132 "doas poweroff"
+```
+
+After waiting for them to fully power down (about 1 minute), I sent the WoL magic packets:
+
+```sh
+[paul@earth]~% wol-f3s
+Sending WoL packet to f0 (e8:ff:1e:d7:1c:ac)...
+Waking up e8:ff:1e:d7:1c:ac...
+Sending WoL packet to f1 (e8:ff:1e:d7:1e:44)...
+Waking up e8:ff:1e:d7:1e:44...
+Sending WoL packet to f2 (e8:ff:1e:d7:1c:a0)...
+Waking up e8:ff:1e:d7:1c:a0...
+
+✓ WoL packets sent. Machines should boot in a few seconds.
+```
+
+Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!
+
+## WoL from WiFi
+
+An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.
+
+This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I'm on WiFi or ethernet.
+
+## BIOS Configuration
+
+For WoL to work reliably, make sure to check the BIOS settings on each Beelink:
+
+* Enable "Wake on LAN" (usually under Power Management)
+* Disable "ERP Support" or "ErP Ready" (this can prevent WoL from working)
+* Enable "Power on by PCI-E" or "Wake on PCI-E"
+
+The exact menu names vary, but these settings are typically found in the Power Management or Advanced sections of the BIOS.
 
 # Conclusion
 
