@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-11T10:37:38+02:00</updated>
+    <updated>2026-01-11T10:46:34+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -13637,8 +13637,9 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <li>⇢ <a href='#cpu-throttling'>CPU throttling</a></li>
 <li><a href='#wake-on-lan-setup'>Wake-on-LAN Setup</a></li>
 <li>⇢ <a href='#setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</a></li>
-<li>⇢ <a href='#testing-wol'>Testing WoL</a></li>
+<li>⇢ <a href='#testing-wol-and-shutdown'>Testing WoL and Shutdown</a></li>
 <li>⇢ <a href='#wol-from-wifi'>WoL from WiFi</a></li>
+<li>⇢ <a href='#remote-shutdown-via-ssh'>Remote Shutdown via SSH</a></li>
 <li>⇢ <a href='#bios-configuration'>BIOS Configuration</a></li>
 <li><a href='#conclusion'>Conclusion</a></li>
 </ul><br />
@@ -13949,19 +13950,27 @@ http://www.gnu.org/software/src-highlite -->
 <pre>[paul@earth]~% sudo dnf install -y wol
 </pre>
 <br />
-<span>Next, I created a simple script (<span class='inlinecode'>~/bin/wol-f3s</span>) to wake the machines:</span><br />
+<span>Next, I created a simple script (<span class='inlinecode'>~/bin/wol-f3s</span>) to wake and shutdown the machines:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="silver">#!/bin/bash</font></i>
-<i><font color="silver"># Wake-on-LAN script for f3s cluster (f0, f1, f2)</font></i>
+<i><font color="silver"># Wake-on-LAN and shutdown script for f3s cluster (f0, f1, f2)</font></i>
 
 <i><font color="silver"># MAC addresses</font></i>
 F0_MAC=<font color="#808080">"e8:ff:1e:d7:1c:ac"</font>  <i><font color="silver"># f0 (192.168.1.130)</font></i>
 F1_MAC=<font color="#808080">"e8:ff:1e:d7:1e:44"</font>  <i><font color="silver"># f1 (192.168.1.131)</font></i>
 F2_MAC=<font color="#808080">"e8:ff:1e:d7:1c:a0"</font>  <i><font color="silver"># f2 (192.168.1.132)</font></i>
+
+<i><font color="silver"># IP addresses</font></i>
+F0_IP=<font color="#808080">"192.168.1.130"</font>
+F1_IP=<font color="#808080">"192.168.1.131"</font>
+F2_IP=<font color="#808080">"192.168.1.132"</font>
+
+<i><font color="silver"># SSH user</font></i>
+SSH_USER=<font color="#808080">"paul"</font>
 
 <i><font color="silver"># Broadcast address for your LAN</font></i>
 BROADCAST=<font color="#808080">"192.168.1.255"</font>
@@ -13973,7 +13982,18 @@ wake() {
     wol -i <font color="#808080">"$BROADCAST"</font> <font color="#808080">"$mac"</font>
 }
 
-<b><u><font color="#000000">case</font></u></b> <font color="#808080">"${1:-all}"</font> <b><u><font color="#000000">in</font></u></b>
+shutdown_host() {
+    <b><u><font color="#000000">local</font></u></b> name=$1
+    <b><u><font color="#000000">local</font></u></b> ip=$2
+    echo <font color="#808080">"Shutting down $name ($ip)..."</font>
+    ssh -o ConnectTimeout=<font color="#000000">5</font> <font color="#808080">"$SSH_USER@$ip"</font> <font color="#808080">"doas poweroff"</font> <font color="#000000">2</font>&gt;/dev/null &amp;&amp; \
+        echo <font color="#808080">"  ✓ Shutdown command sent to $name"</font> || \
+        echo <font color="#808080">"  ✗ Failed to reach $name (already down?)"</font>
+}
+
+ACTION=<font color="#808080">"${1:-all}"</font>
+
+<b><u><font color="#000000">case</font></u></b> <font color="#808080">"$ACTION"</font> <b><u><font color="#000000">in</font></u></b>
     f0) wake <font color="#808080">"f0"</font> <font color="#808080">"$F0_MAC"</font> ;;
     f1) wake <font color="#808080">"f1"</font> <font color="#808080">"$F1_MAC"</font> ;;
     f2) wake <font color="#808080">"f2"</font> <font color="#808080">"$F2_MAC"</font> ;;
@@ -13982,8 +14002,16 @@ wake() {
         wake <font color="#808080">"f1"</font> <font color="#808080">"$F1_MAC"</font>
         wake <font color="#808080">"f2"</font> <font color="#808080">"$F2_MAC"</font>
         ;;
+    shutdown|poweroff|down)
+        shutdown_host <font color="#808080">"f0"</font> <font color="#808080">"$F0_IP"</font>
+        shutdown_host <font color="#808080">"f1"</font> <font color="#808080">"$F1_IP"</font>
+        shutdown_host <font color="#808080">"f2"</font> <font color="#808080">"$F2_IP"</font>
+        echo <font color="#808080">""</font>
+        echo <font color="#808080">"✓ Shutdown commands sent to all machines."</font>
+        <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+        ;;
     *)
-        echo <font color="#808080">"Usage: $0 [f0|f1|f2|all]"</font>
+        echo <font color="#808080">"Usage: $0 [f0|f1|f2|all|shutdown]"</font>
         <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
         ;;
 <b><u><font color="#000000">esac</font></u></b>
@@ -13992,27 +14020,34 @@ echo <font color="#808080">""</font>
 echo <font color="#808080">"✓ WoL packets sent. Machines should boot in a few seconds."</font>
 </pre>
 <br />
-<span>After making the script executable with <span class='inlinecode'>chmod +x ~/bin/wol-f3s</span>, I can now wake the machines with simple commands:</span><br />
+<span>After making the script executable with <span class='inlinecode'>chmod +x ~/bin/wol-f3s</span>, I can now control the machines with simple commands:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[paul@earth]~% wol-f3s        <i><font color="silver"># Wake all three</font></i>
-[paul@earth]~% wol-f3s f0     <i><font color="silver"># Wake only f0</font></i>
+<pre>[paul@earth]~% wol-f3s          <i><font color="silver"># Wake all three</font></i>
+[paul@earth]~% wol-f3s f0       <i><font color="silver"># Wake only f0</font></i>
+[paul@earth]~% wol-f3s shutdown <i><font color="silver"># Shutdown all three via SSH</font></i>
 </pre>
 <br />
-<h2 style='display: inline' id='testing-wol'>Testing WoL</h2><br />
+<h2 style='display: inline' id='testing-wol-and-shutdown'>Testing WoL and Shutdown</h2><br />
 <br />
-<span>To test the setup, I shutdown all three machines:</span><br />
+<span>To test the setup, I shutdown all three machines using the script&#39;s shutdown function:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.130</font> <font color="#808080">"doas poweroff"</font>
-[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.131</font> <font color="#808080">"doas poweroff"</font>
-[paul@earth]~% ssh paul@<font color="#000000">192.168</font>.<font color="#000000">1.132</font> <font color="#808080">"doas poweroff"</font>
+<pre>[paul@earth]~% wol-f3s shutdown
+Shutting down f0 (<font color="#000000">192.168</font>.<font color="#000000">1.130</font>)...
+  ✓ Shutdown <b><u><font color="#000000">command</font></u></b> sent to f0
+Shutting down f1 (<font color="#000000">192.168</font>.<font color="#000000">1.131</font>)...
+  ✓ Shutdown <b><u><font color="#000000">command</font></u></b> sent to f1
+Shutting down f2 (<font color="#000000">192.168</font>.<font color="#000000">1.132</font>)...
+  ✓ Shutdown <b><u><font color="#000000">command</font></u></b> sent to f2
+
+✓ Shutdown commands sent to all machines.
 </pre>
 <br />
 <span>After waiting for them to fully power down (about 1 minute), I sent the WoL magic packets:</span><br />
@@ -14039,6 +14074,21 @@ Waking up e8:ff:1e:d7:1c:a0...
 <span>An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.</span><br />
 <br />
 <span>This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I&#39;m on WiFi or ethernet.</span><br />
+<br />
+<h2 style='display: inline' id='remote-shutdown-via-ssh'>Remote Shutdown via SSH</h2><br />
+<br />
+<span>While Wake-on-LAN handles powering on the machines remotely, I also added a shutdown function to the script for convenience. The <span class='inlinecode'>wol-f3s shutdown</span> command uses SSH to connect to each machine and execute <span class='inlinecode'>doas poweroff</span>, gracefully shutting them all down.</span><br />
+<br />
+<span>This is particularly useful for power saving - when I&#39;m done working with the cluster for the day, I can simply run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>[paul@earth]~% wol-f3s shutdown
+</pre>
+<br />
+<span>And all three machines will shut down cleanly. The next time I need them, a simple <span class='inlinecode'>wol-f3s</span> command wakes them all back up. This combination makes the cluster very energy-efficient while maintaining quick access when needed.</span><br />
 <br />
 <h2 style='display: inline' id='bios-configuration'>BIOS Configuration</h2><br />
 <br />

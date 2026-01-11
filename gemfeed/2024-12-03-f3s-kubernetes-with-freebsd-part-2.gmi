@@ -45,8 +45,9 @@ Let's continue...
 * ⇢ ⇢ CPU throttling
 * ⇢ Wake-on-LAN Setup
 * ⇢ ⇢ Setting up WoL on the laptop
-* ⇢ ⇢ Testing WoL
+* ⇢ ⇢ Testing WoL and Shutdown
 * ⇢ ⇢ WoL from WiFi
+* ⇢ ⇢ Remote Shutdown via SSH
 * ⇢ ⇢ BIOS Configuration
 * ⇢ Conclusion
 
@@ -312,16 +313,24 @@ To wake the Beelinks from my Fedora laptop (`earth`), I installed the `wol` pack
 [paul@earth]~% sudo dnf install -y wol
 ```
 
-Next, I created a simple script (`~/bin/wol-f3s`) to wake the machines:
+Next, I created a simple script (`~/bin/wol-f3s`) to wake and shutdown the machines:
 
 ```sh
 #!/bin/bash
-# Wake-on-LAN script for f3s cluster (f0, f1, f2)
+# Wake-on-LAN and shutdown script for f3s cluster (f0, f1, f2)
 
 # MAC addresses
 F0_MAC="e8:ff:1e:d7:1c:ac"  # f0 (192.168.1.130)
 F1_MAC="e8:ff:1e:d7:1e:44"  # f1 (192.168.1.131)
 F2_MAC="e8:ff:1e:d7:1c:a0"  # f2 (192.168.1.132)
+
+# IP addresses
+F0_IP="192.168.1.130"
+F1_IP="192.168.1.131"
+F2_IP="192.168.1.132"
+
+# SSH user
+SSH_USER="paul"
 
 # Broadcast address for your LAN
 BROADCAST="192.168.1.255"
@@ -333,7 +342,18 @@ wake() {
     wol -i "$BROADCAST" "$mac"
 }
 
-case "${1:-all}" in
+shutdown_host() {
+    local name=$1
+    local ip=$2
+    echo "Shutting down $name ($ip)..."
+    ssh -o ConnectTimeout=5 "$SSH_USER@$ip" "doas poweroff" 2>/dev/null && \
+        echo "  ✓ Shutdown command sent to $name" || \
+        echo "  ✗ Failed to reach $name (already down?)"
+}
+
+ACTION="${1:-all}"
+
+case "$ACTION" in
     f0) wake "f0" "$F0_MAC" ;;
     f1) wake "f1" "$F1_MAC" ;;
     f2) wake "f2" "$F2_MAC" ;;
@@ -342,8 +362,16 @@ case "${1:-all}" in
         wake "f1" "$F1_MAC"
         wake "f2" "$F2_MAC"
         ;;
+    shutdown|poweroff|down)
+        shutdown_host "f0" "$F0_IP"
+        shutdown_host "f1" "$F1_IP"
+        shutdown_host "f2" "$F2_IP"
+        echo ""
+        echo "✓ Shutdown commands sent to all machines."
+        exit 0
+        ;;
     *)
-        echo "Usage: $0 [f0|f1|f2|all]"
+        echo "Usage: $0 [f0|f1|f2|all|shutdown]"
         exit 1
         ;;
 esac
@@ -352,21 +380,28 @@ echo ""
 echo "✓ WoL packets sent. Machines should boot in a few seconds."
 ```
 
-After making the script executable with `chmod +x ~/bin/wol-f3s`, I can now wake the machines with simple commands:
+After making the script executable with `chmod +x ~/bin/wol-f3s`, I can now control the machines with simple commands:
 
 ```sh
-[paul@earth]~% wol-f3s        # Wake all three
-[paul@earth]~% wol-f3s f0     # Wake only f0
+[paul@earth]~% wol-f3s          # Wake all three
+[paul@earth]~% wol-f3s f0       # Wake only f0
+[paul@earth]~% wol-f3s shutdown # Shutdown all three via SSH
 ```
 
-## Testing WoL
+## Testing WoL and Shutdown
 
-To test the setup, I shutdown all three machines:
+To test the setup, I shutdown all three machines using the script's shutdown function:
 
 ```sh
-[paul@earth]~% ssh paul@192.168.1.130 "doas poweroff"
-[paul@earth]~% ssh paul@192.168.1.131 "doas poweroff"
-[paul@earth]~% ssh paul@192.168.1.132 "doas poweroff"
+[paul@earth]~% wol-f3s shutdown
+Shutting down f0 (192.168.1.130)...
+  ✓ Shutdown command sent to f0
+Shutting down f1 (192.168.1.131)...
+  ✓ Shutdown command sent to f1
+Shutting down f2 (192.168.1.132)...
+  ✓ Shutdown command sent to f2
+
+✓ Shutdown commands sent to all machines.
 ```
 
 After waiting for them to fully power down (about 1 minute), I sent the WoL magic packets:
@@ -390,6 +425,18 @@ Within 30-50 seconds, all three machines successfully booted up and became acces
 An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.
 
 This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I'm on WiFi or ethernet.
+
+## Remote Shutdown via SSH
+
+While Wake-on-LAN handles powering on the machines remotely, I also added a shutdown function to the script for convenience. The `wol-f3s shutdown` command uses SSH to connect to each machine and execute `doas poweroff`, gracefully shutting them all down.
+
+This is particularly useful for power saving - when I'm done working with the cluster for the day, I can simply run:
+
+```sh
+[paul@earth]~% wol-f3s shutdown
+```
+
+And all three machines will shut down cleanly. The next time I need them, a simple `wol-f3s` command wakes them all back up. This combination makes the cluster very energy-efficient while maintaining quick access when needed.
 
 ## BIOS Configuration
 
