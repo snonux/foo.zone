@@ -6,7 +6,7 @@ This is the fifth blog post about my f3s series for my self-hosting demands in m
 
 I will post a new entry every month or so (there are too many other side projects for more frequent updates — I bet you can understand).
 
-> **Note (January 2026):** This post has been updated to include two roaming clients (`earth` - Fedora laptop, `pixel7pro` - Android phone) that connect to the mesh via the internet gateways. The updated content is integrated throughout the post.
+> This post has been updated to include two roaming clients (`earth` - Fedora laptop, `pixel7pro` - Android phone) that connect to the mesh via the internet gateways. The updated content is integrated throughout the post.
 
 These are all the posts so far:
 
@@ -28,12 +28,14 @@ By default, traffic within my home LAN, including traffic inside a k3s cluster, 
 
 The mesh network consists of eight infrastructure hosts and two roaming clients:
 
-**Infrastructure hosts (full mesh):**
+Infrastructure hosts (full mesh):
+
 * `f0`, `f1`, and `f2` are the FreeBSD base hosts in my home LAN
 * `r0`, `r1`, and `r2` are the Rocky Linux Bhyve VMs running on the FreeBSD hosts
 * `blowfish` and `fishfinger` are two OpenBSD systems running on the internet (as mentioned in the first blog of this series—these systems are already built; in fact, this very blog is served by those OpenBSD systems)
 
-**Roaming clients (gateway-only connections):**
+oaming clients (gateway-only connections):
+
 * `earth` is my Fedora laptop (192.168.2.200) which connects only to the internet gateways for remote access
 * `pixel7pro` is my Android phone (192.168.2.201) which routes all traffic through the VPN when activated
 
@@ -45,7 +47,8 @@ For simplicity, we also establish VPN tunnels between `f0 <-> r0`, `f1 <-> r1`, 
 
 The traffic is expected to flow between the host groups through the mesh network as follows:
 
-**Infrastructure mesh traffic:**
+nfrastructure mesh traffic:
+
 * `fN <-> rN`: The traffic between the FreeBSD hosts and the Rocky Linux VMs will be routed through the VPN tunnels for persistent storage. In a later post in this series, we will set up an NFS server on the `fN` hosts.
 * `fN <-> blowfish,fishfinger`: The traffic between the FreeBSD hosts and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for management. We may want to log in via the internet to set it up remotely. The VPN tunnel will also be used for monitoring purposes.
 * `rN <-> blowfish,fishfinger`: The traffic between the Rocky Linux VMs and the OpenBSD host `blowfish,fishfinger` will be routed through the VPN tunnels for usage traffic. Since k3s will be running on the `rN` hosts, the OpenBSD servers will route the traffic through `relayd` to the services running in Kubernetes.
@@ -53,7 +56,8 @@ The traffic is expected to flow between the host groups through the mesh network
 * `rN <-> rM`: The traffic between the Rocky Linux VMs will later be used by the k3s cluster itself, as every `rN` will be a Kubernetes worker node.
 * `blowfish <-> fishfinger`: The traffic between the OpenBSD hosts isn't strictly required for this setup, but I set it up anyway for future use cases.
 
-**Roaming client traffic:**
+oaming client traffic:
+
 * `earth,pixel7pro <-> blowfish,fishfinger`: The roaming clients connect exclusively to the two internet gateways. All traffic from these clients (0.0.0.0/0) is routed through the VPN, providing secure internet access and the ability to reach services running in the mesh (via the gateways). The gateways use NAT to allow roaming clients to access the internet using the gateway's public IP address. The roaming clients cannot be reached by the LAN hosts—they are client-only and initiate all connections.
 
 We won't cover all the details in this blog post, as we only focus on setting up the Mesh network in this blog post. Subsequent posts in this series will cover the other details.
@@ -516,7 +520,7 @@ hosts:
 
 The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (`wg0`) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.
 
-**Roaming clients:** Note the `earth` and `pixel7pro` entries—these are configured differently from the infrastructure hosts. They have no `lan` or `internet` sections, which signals to the generator that they are roaming clients. The `exclude_peers` configuration ensures they only connect to the internet gateways (`blowfish` and `fishfinger`) and are not reachable by LAN hosts. The generator automatically configures these clients with `AllowedIPs = 0.0.0.0/0, ::/0` to route all traffic through the VPN, includes DNS configuration (`1.1.1.1, 8.8.8.8`), and enables `PersistentKeepalive` for NAT traversal.
+Roaming clients: Note the `earth` and `pixel7pro` entries—these are configured differently from the infrastructure hosts. They have no `lan` or `internet` sections, which signals to the generator that they are roaming clients. The `exclude_peers` configuration ensures they only connect to the internet gateways (`blowfish` and `fishfinger`) and are not reachable by LAN hosts. The generator automatically configures these clients with `AllowedIPs = 0.0.0.0/0, ::/0` to route all traffic through the VPN, includes DNS configuration (`1.1.1.1, 8.8.8.8`), and enables `PersistentKeepalive` for NAT traversal.
 
 ### `wireguardmeshgenerator.rb` overview
 
@@ -794,7 +798,7 @@ That would also delete and re-generate all the keys involved.
 
 For roaming clients like `earth` (Fedora laptop) and `pixel7pro` (Android phone), the setup process differs slightly since these devices are not always accessible via SSH:
 
-**Android phone (`pixel7pro`):**
+Android phone (`pixel7pro`):
 
 The configuration is transferred to the phone using a QR code. The official WireGuard Android app (from Google Play Store) can scan and import the configuration:
 
@@ -805,7 +809,7 @@ The configuration is transferred to the phone using a QR code. The official Wire
 
 Scan the QR code with the WireGuard app to import the configuration. The phone will then route all traffic through the VPN when the tunnel is activated. Note that WireGuard does not support automatic failover between the two gateways (`blowfish` and `fishfinger`)—if one fails, manual disconnection and reconnection is required to switch to the other.
 
-**Fedora laptop (`earth`):**
+Fedora laptop (`earth`):
 
 For the laptop, manually copy the generated configuration:
 
@@ -1002,9 +1006,8 @@ Since roaming clients like `earth` and `pixel7pro` connect on-demand rather than
 
 ### Starting and stopping on earth (Fedora laptop)
 
-On the Fedora laptop, WireGuard is managed via systemd:
+On the Fedora laptop, WireGuard is managed via systemd. Starting the tunnel:
 
-**Start the tunnel:**
 ```sh
 earth$ sudo systemctl start wg-quick@wg0.service
 earth$ sudo wg show
@@ -1031,14 +1034,16 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   persistent keepalive: every 25 seconds
 ```
 
-**Stop the tunnel:**
+Stoppint the tunnel:
+
 ```sh
 earth$ sudo systemctl stop wg-quick@wg0.service
 earth$ sudo wg show
 # No output - WireGuard interface is down
 ```
 
-**Check tunnel status:**
+Checking the tunnel status:
+
 ```sh
 earth$ sudo systemctl status wg-quick@wg0.service
 ● wg-quick@wg0.service - WireGuard via wg-quick(8) for wg0
@@ -1050,31 +1055,34 @@ The service remains `disabled` to prevent auto-start on boot, allowing manual co
 
 ### Starting and stopping on pixel7pro (Android phone)
 
-On Android using the official WireGuard app, tunnel management is straightforward:
+On Android using the official WireGuard app, tunnel management is like this:
 
-**Start the tunnel:**
-1. Open the WireGuard app
-2. Tap the toggle switch next to the `pixel7pro` tunnel configuration
-3. The switch turns blue/green and shows "Active"
-4. A key icon appears in the notification bar indicating VPN is active
-5. All traffic now routes through the VPN
+Starting the tunnel:
 
-**Stop the tunnel:**
-1. Open the WireGuard app
-2. Tap the toggle switch again to disable it
-3. The switch turns gray and shows "Inactive"
-4. The notification bar key icon disappears
-5. Normal internet routing resumes
+* 1. Open the WireGuard app
+* 2. Tap the toggle switch next to the `pixel7pro` tunnel configuration
+* 3. The switch turns blue/green and shows "Active"
+* 4. A key icon appears in the notification bar indicating VPN is active
+* 5. All traffic now routes through the VPN
 
-**Quick toggle from notification:**
-- Pull down the notification shade
-- Tap the WireGuard notification to quickly enable/disable the tunnel without opening the app
+Stopping the tunnel:
 
-**Automatic activation (optional):**
+* 1. Open the WireGuard app
+* 2. Tap the toggle switch again to disable it
+* 3. The switch turns gray and shows "Inactive"
+* 4. The notification bar key icon disappears
+* 5. Normal internet routing resumes
+
+Quick toggling from notification:
+
+* Pull down the notification shade
+* Tap the WireGuard notification to quickly enable/disable the tunnel without opening the app
+
 The WireGuard Android app supports automatically activating tunnels based on:
-- Mobile data connection (e.g., enable VPN when on cellular)
-- WiFi SSID (e.g., disable VPN when on trusted home network)
-- Ethernet connection status
+
+* Mobile data connection (e.g., enable VPN when on cellular)
+* WiFi SSID (e.g., disable VPN when on trusted home network)
+* Ethernet connection status
 
 These settings can be configured by tapping the pencil icon next to the tunnel name, then scrolling to "Toggle on/off based on" options.
 
@@ -1082,7 +1090,6 @@ These settings can be configured by tapping the pencil icon next to the tunnel n
 
 Once the tunnel is active on either device, verify connectivity:
 
-**Test VPN connection:**
 ```sh
 # From earth laptop:
 earth$ ping -c2 blowfish.wg0
@@ -1090,8 +1097,7 @@ earth$ ping -c2 fishfinger.wg0
 earth$ curl https://ifconfig.me  # Should show gateway's public IP
 ```
 
-**Check which gateway is active:**
-The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with `sudo wg show` on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.
+Check which gateway is active: The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with `sudo wg show` on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.
 
 ## Conclusion
 
