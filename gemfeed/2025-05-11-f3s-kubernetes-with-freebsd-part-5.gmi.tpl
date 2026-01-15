@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
 
-> Published at 2025-05-11T11:35:57+03:00, last updated Sun 11 Jan 21:33:40 EET 2026
+> Published at 2025-05-11T11:35:57+03:00, last updated Thu 15 Jan 19:30:46 EET 2026
 
 This is the fifth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.
 
@@ -821,6 +821,145 @@ For the laptop, manually copy the generated configuration:
 ```
 
 The service is disabled from auto-start so the VPN is only active when manually started. This allows selective VPN usage based on need.
+
+## Adding IPv6 support to the mesh
+
+After setting up the IPv4-only mesh network, we decided to add dual-stack IPv6 support to enable modern networking capabilities and prepare for the future. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.
+
+### IPv6 addressing scheme
+
+We use ULA (Unique Local Address) private IPv6 space, analogous to RFC1918 private IPv4 addresses:
+
+* Prefix: `fd42:beef:cafe::/48`
+* Subnet: `fd42:beef:cafe:2::/64` (wg0 interfaces)
+
+All hosts receive dual-stack addresses:
+
+```
+fd42:beef:cafe:2::110/64  - blowfish.wg0 (OpenBSD gateway)
+fd42:beef:cafe:2::111/64  - fishfinger.wg0 (OpenBSD gateway)
+fd42:beef:cafe:2::120/64  - r0.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::121/64  - r1.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::122/64  - r2.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::130/64  - f0.wg0 (FreeBSD host)
+fd42:beef:cafe:2::131/64  - f1.wg0 (FreeBSD host)
+fd42:beef:cafe:2::132/64  - f2.wg0 (FreeBSD host)
+fd42:beef:cafe:2::200/64  - earth.wg0 (roaming laptop)
+fd42:beef:cafe:2::201/64  - pixel7pro.wg0 (roaming phone)
+```
+
+### Updating the mesh generator for IPv6
+
+The mesh generator required two modifications to support dual-stack configurations:
+
+**1. Address generation (`address` method)**
+
+The generator now outputs multiple `Address` directives when IPv6 is present:
+
+```ruby
+def address
+  return '# No Address = ... for OpenBSD here' if hosts[myself]['os'] == 'OpenBSD'
+
+  ipv4 = hosts[myself]['wg0']['ip']
+  ipv6 = hosts[myself]['wg0']['ipv6']
+
+  # WireGuard supports multiple Address directives for dual-stack
+  if ipv6
+    "Address = #{ipv4}\nAddress = #{ipv6}/64"
+  else
+    "Address = #{ipv4}"
+  end
+end
+```
+
+**2. AllowedIPs generation (`peers` method)**
+
+For mesh peers, both IPv4 and IPv6 addresses are included in AllowedIPs:
+
+```ruby
+if is_roaming
+  allowed_ips = '0.0.0.0/0, ::/0'
+else
+  # For mesh peers, allow both IPv4 and IPv6 if present
+  ipv4 = data['wg0']['ip']
+  ipv6 = data['wg0']['ipv6']
+  allowed_ips = ipv6 ? "#{ipv4}/32, #{ipv6}/128" : "#{ipv4}/32"
+end
+```
+
+Roaming clients keep `AllowedIPs = 0.0.0.0/0, ::/0` to route all traffic (IPv4 and IPv6) through the VPN.
+
+### IPv6 NAT on OpenBSD gateways
+
+To allow roaming clients to access the internet via IPv6, we added NAT66 rules to the OpenBSD gateways' `pf.conf`:
+
+```
+# NAT for WireGuard clients to access internet (IPv4)
+match out on vio0 from 192.168.2.0/24 to any nat-to (vio0)
+
+# NAT66 for WireGuard clients to access internet (IPv6)
+# Uses NPTv6 (Network Prefix Translation) to translate ULA to public IPv6
+match out on vio0 inet6 from fd42:beef:cafe:2::/64 to any nat-to (vio0)
+
+# Allow all UDP traffic on WireGuard port (IPv4 and IPv6)
+pass in inet proto udp from any to any port 56709
+pass in inet6 proto udp from any to any port 56709
+```
+
+OpenBSD's PF firewall supports IPv6 NAT with the same syntax as IPv4, using NPTv6 (RFC 6296) to translate the ULA addresses to the gateway's public IPv6 address.
+
+### Manual OpenBSD interface configuration
+
+Since OpenBSD doesn't use the `Address` directive in WireGuard configs, IPv6 must be manually configured on the wg0 interfaces. On `blowfish`:
+
+```sh
+rex@blowfish:~ $ doas vi /etc/hostname.wg0
+```
+
+Add the IPv6 address:
+
+```
+inet 192.168.2.110 255.255.255.0 NONE
+inet6 fd42:beef:cafe:2::110 64
+!/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
+up
+```
+
+Apply the configuration:
+
+```sh
+rex@blowfish:~ $ doas sh /etc/netstart wg0
+rex@blowfish:~ $ ifconfig wg0 | grep inet6
+inet6 fd42:beef:cafe:2::110 prefixlen 64
+```
+
+Repeat for `fishfinger` with address `fd42:beef:cafe:2::111`.
+
+### Verifying dual-stack connectivity
+
+After regenerating and deploying the configurations, both IPv4 and IPv6 work across the mesh:
+
+```sh
+# From r0 (Rocky Linux VM)
+root@r0:~ # ping -c 2 192.168.2.130  # IPv4 to f0
+64 bytes from 192.168.2.130: icmp_seq=1 ttl=64 time=2.12 ms
+64 bytes from 192.168.2.130: icmp_seq=2 ttl=64 time=0.681 ms
+
+root@r0:~ # ping6 -c 2 fd42:beef:cafe:2::130  # IPv6 to f0
+64 bytes from fd42:beef:cafe:2::130: icmp_seq=1 ttl=64 time=2.16 ms
+64 bytes from fd42:beef:cafe:2::130: icmp_seq=2 ttl=64 time=0.909 ms
+```
+
+The dual-stack configuration is backward compatible—hosts without the `ipv6` field in the YAML configuration will continue to generate IPv4-only configs.
+
+### Benefits of dual-stack
+
+Adding IPv6 to the mesh network provides:
+
+* **Future-proofing**: Ready for IPv6-only services and networks
+* **Compatibility**: Dual-stack maintains full IPv4 compatibility
+* **Learning**: Hands-on experience with IPv6 networking
+* **Flexibility**: Roaming clients can access both IPv4 and IPv6 internet resources
 
 ## Happy WireGuard-ing
 
