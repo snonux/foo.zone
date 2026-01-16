@@ -822,6 +822,7 @@ Next, update `/etc/hosts` on all nodes (`f0`, `f1`, `f2`, `r0`, `r1`, `r2`) to r
 
 ```
 192.168.2.138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
+fd42:beef:cafe:2::138 f3s-storage-ha f3s-storage-ha.wg0 f3s-storage-ha.wg0.wan.buetow.org
 ```
 
 This allows clients to connect to `f3s-storage-ha` regardless of which physical server is currently the MASTER.

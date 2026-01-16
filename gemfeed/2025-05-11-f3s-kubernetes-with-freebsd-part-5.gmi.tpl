@@ -141,6 +141,17 @@ paul@f0:~ % cat <<END | doas tee -a /etc/hosts
 
 192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
 192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::130 f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:2::131 f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:2::132 f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::120 r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:2::121 r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:2::122 r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:2::111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 END
 ```
 
@@ -185,6 +196,17 @@ We also update the `hosts` file accordingly:
 
 192.168.2.110 blowfish.wg0 blowfish.wg0.wan.buetow.org
 192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::130 f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:2::131 f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:2::132 f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::120 r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:2::121 r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:2::122 r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:2::111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 END
 ```
 
@@ -232,6 +254,19 @@ blowfish$ cat <<END | doas tee -a /etc/hosts
 192.168.2.111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 192.168.2.200 earth.wg0 earth.wg0.wan.buetow.org
 192.168.2.201 pixel7pro.wg0 pixel7pro.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::130 f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:2::131 f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:2::132 f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::120 r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:2::121 r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:2::122 r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:2::110 blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:2::111 fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+fd42:beef:cafe:2::200 earth.wg0 earth.wg0.wan.buetow.org
+fd42:beef:cafe:2::201 pixel7pro.wg0 pixel7pro.wg0.wan.buetow.org
 END
 ```
 
@@ -432,6 +467,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.130'
+      ipv6: 'fd42:beef:cafe:2::130'
     exclude_peers:
       - earth
       - pixel7pro
@@ -451,6 +487,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.120'
+      ipv6: 'fd42:beef:cafe:2::120'
     exclude_peers:
       - earth
       - pixel7pro
@@ -470,6 +507,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.110'
+      ipv6: 'fd42:beef:cafe:2::110'
     exclude_peers:
       - earth
       - pixel7pro
@@ -487,6 +525,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.111'
+      ipv6: 'fd42:beef:cafe:2::111'
     exclude_peers:
       - earth
       - pixel7pro
@@ -495,6 +534,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.200'
+      ipv6: 'fd42:beef:cafe:2::200'
     exclude_peers:
       - f0
       - f1
@@ -508,6 +548,7 @@ hosts:
     wg0:
       domain: 'wg0.wan.buetow.org'
       ip: '192.168.2.201'
+      ipv6: 'fd42:beef:cafe:2::201'
     exclude_peers:
       - f0
       - f1
@@ -824,7 +865,7 @@ The service is disabled from auto-start so the VPN is only active when manually 
 
 ## Adding IPv6 support to the mesh
 
-After setting up the IPv4-only mesh network, we decided to add dual-stack IPv6 support to enable modern networking capabilities and prepare for the future. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.
+After setting up the IPv4-only mesh network, I decided to add dual-stack IPv6 support to enable more networking capabilities and prepare for the future. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.
 
 ### IPv6 addressing scheme
 
