@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-17T00:03:44+02:00</updated>
+    <updated>2026-01-17T00:15:15+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -9632,13 +9632,9 @@ Jul <font color="#000000">06</font> <font color="#000000">10</font>:<font color=
 <li>⇢ ⇢ <a href='#manual-openbsd-interface-configuration'>Manual OpenBSD interface configuration</a></li>
 <li>⇢ ⇢ <a href='#verifying-dual-stack-connectivity'>Verifying dual-stack connectivity</a></li>
 <li>⇢ ⇢ <a href='#benefits-of-dual-stack'>Benefits of dual-stack</a></li>
-<li>⇢ <a href='#manual-gateway-failover-for-roaming-clients'>Manual gateway failover for roaming clients</a></li>
-<li>⇢ ⇢ <a href='#configuration-files-for-pixel7pro-phone'>Configuration files for pixel7pro (phone)</a></li>
-<li>⇢ ⇢ <a href='#configuration-files-for-earth-laptop'>Configuration files for earth (laptop)</a></li>
-<li>⇢ ⇢ <a href='#using-manual-failover-on-android'>Using manual failover on Android</a></li>
-<li>⇢ ⇢ <a href='#using-manual-failover-on-linux'>Using manual failover on Linux</a></li>
 <li>⇢ <a href='#happy-wireguard-ing'>Happy WireGuard-ing</a></li>
 <li>⇢ <a href='#managing-roaming-client-tunnels'>Managing Roaming Client Tunnels</a></li>
+<li>⇢ ⇢ <a href='#manual-gateway-failover-configuration'>Manual gateway failover configuration</a></li>
 <li>⇢ ⇢ <a href='#starting-and-stopping-on-earth-fedora-laptop'>Starting and stopping on earth (Fedora laptop)</a></li>
 <li>⇢ ⇢ <a href='#starting-and-stopping-on-pixel7pro-android-phone'>Starting and stopping on pixel7pro (Android phone)</a></li>
 <li>⇢ ⇢ <a href='#verifying-connectivity'>Verifying connectivity</a></li>
@@ -10139,9 +10135,40 @@ hosts:
     exclude_peers:
       - earth
       - pixel7pro
-  # f1 and f2 similarly configured with exclude_peers for roaming clients
-  # (full config omitted for brevity)
-  ...
+  f1:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.131&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.131&#39;
+      ipv6: &#39;fd42:beef:cafe:2::131&#39;
+    exclude_peers:
+      - earth
+      - pixel7pro
+  f2:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.132&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.132&#39;
+      ipv6: &#39;fd42:beef:cafe:2::132&#39;
+    exclude_peers:
+      - earth
+      - pixel7pro
   r0:
     os: Linux
     ssh:
@@ -10159,8 +10186,40 @@ hosts:
     exclude_peers:
       - earth
       - pixel7pro
-  # r1 and r2 similarly configured
-  ...
+  r1:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.121&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.121&#39;
+      ipv6: &#39;fd42:beef:cafe:2::121&#39;
+    exclude_peers:
+      - earth
+      - pixel7pro
+  r2:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: &#39;lan.buetow.org&#39;
+      ip: &#39;192.168.1.122&#39;
+    wg0:
+      domain: &#39;wg0.wan.buetow.org&#39;
+      ip: &#39;192.168.2.122&#39;
+      ipv6: &#39;fd42:beef:cafe:2::122&#39;
+    exclude_peers:
+      - earth
+      - pixel7pro
   blowfish:
     os: OpenBSD
     ssh:
@@ -10669,7 +10728,7 @@ up
 !/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
 </pre>
 <br />
-<span>**Important**: The IPv6 address must be specified before the <span class='inlinecode'>up</span> directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.</span><br />
+<span>Important: The IPv6 address must be specified before the <span class='inlinecode'>up</span> directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.</span><br />
 <br />
 <span>Apply the configuration:</span><br />
 <br />
@@ -10711,70 +10770,11 @@ root@r0:~ <i><font color="silver"># ping6 -c 2 fd42:beef:cafe:2::130  # IPv6 to 
 <span>Adding IPv6 to the mesh network provides:</span><br />
 <br />
 <ul>
-<li>**Future-proofing**: Ready for IPv6-only services and networks</li>
-<li>**Compatibility**: Dual-stack maintains full IPv4 compatibility</li>
-<li>**Learning**: Hands-on experience with IPv6 networking</li>
-<li>**Flexibility**: Roaming clients can access both IPv4 and IPv6 internet resources</li>
+<li>Future-proofing: Ready for IPv6-only services and networks</li>
+<li>Compatibility: Dual-stack maintains full IPv4 compatibility</li>
+<li>Learning: Hands-on experience with IPv6 networking</li>
+<li>Flexibility: Roaming clients can access both IPv4 and IPv6 internet resources</li>
 </ul><br />
-<h2 style='display: inline' id='manual-gateway-failover-for-roaming-clients'>Manual gateway failover for roaming clients</h2><br />
-<br />
-<span>WireGuard doesn&#39;t automatically failover between multiple peers with identical <span class='inlinecode'>AllowedIPs</span> routes. When both gateways (blowfish and fishfinger) are configured with <span class='inlinecode'>AllowedIPs = 0.0.0.0/0, ::/0</span>, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won&#39;t automatically switch to the backup.</span><br />
-<br />
-<span>To enable manual failover, separate configuration files have been created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer.</span><br />
-<br />
-<h3 style='display: inline' id='configuration-files-for-pixel7pro-phone'>Configuration files for pixel7pro (phone)</h3><br />
-<br />
-<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/</span>:</span><br />
-<br />
-<ul>
-<li>**wg0-blowfish.conf** - Routes all traffic through blowfish gateway (23.88.35.144)</li>
-<li>**wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway (46.23.94.99)</li>
-</ul><br />
-<h3 style='display: inline' id='configuration-files-for-earth-laptop'>Configuration files for earth (laptop)</h3><br />
-<br />
-<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/</span>:</span><br />
-<br />
-<ul>
-<li>**wg0-blowfish.conf** - Routes all traffic through blowfish gateway</li>
-<li>**wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway</li>
-</ul><br />
-<h3 style='display: inline' id='using-manual-failover-on-android'>Using manual failover on Android</h3><br />
-<br />
-<span>On the pixel7pro phone, import both QR codes using the WireGuard app to create two separate tunnel profiles:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Generate QR codes</font></i>
-qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf
-qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf
-</pre>
-<br />
-<span>In the WireGuard app, you can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.</span><br />
-<br />
-<h3 style='display: inline' id='using-manual-failover-on-linux'>Using manual failover on Linux</h3><br />
-<br />
-<span>On the earth laptop, copy both configs and use systemd to switch between them:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Install both configurations</font></i>
-sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf /etc/wireguard/
-sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf /etc/wireguard/
-
-<i><font color="silver"># Start with blowfish gateway</font></i>
-sudo systemctl start wg-quick@wg0-blowfish.service
-
-<i><font color="silver"># To switch to fishfinger gateway</font></i>
-sudo systemctl stop wg-quick@wg0-blowfish.service
-sudo systemctl start wg-quick@wg0-fishfinger.service
-</pre>
-<br />
-<span>This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.</span><br />
-<br />
 <h2 style='display: inline' id='happy-wireguard-ing'>Happy WireGuard-ing</h2><br />
 <br />
 <span>All is set up now. E.g. on <span class='inlinecode'>f0</span>:</span><br />
@@ -10964,17 +10964,69 @@ peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
 <br />
 <h2 style='display: inline' id='managing-roaming-client-tunnels'>Managing Roaming Client Tunnels</h2><br />
 <br />
-<span>Since roaming clients like <span class='inlinecode'>earth</span> and <span class='inlinecode'>pixel7pro</span> connect on-demand rather than being always-on like the infrastructure hosts, it&#39;s useful to know how to start and stop the WireGuard tunnels.</span><br />
+<span>Since roaming clients like <span class='inlinecode'>earth</span> and <span class='inlinecode'>pixel7pro</span> connect on-demand rather than being always-on like the infrastructure hosts, it&#39;s useful to know how to configure and manage the WireGuard tunnels.</span><br />
 <br />
-<h3 style='display: inline' id='starting-and-stopping-on-earth-fedora-laptop'>Starting and stopping on earth (Fedora laptop)</h3><br />
+<h3 style='display: inline' id='manual-gateway-failover-configuration'>Manual gateway failover configuration</h3><br />
 <br />
-<span>On the Fedora laptop, WireGuard is managed via systemd. Starting the tunnel:</span><br />
+<span>The default configuration for roaming clients includes both gateways (blowfish and fishfinger) with <span class='inlinecode'>AllowedIPs = 0.0.0.0/0, ::/0</span>. However, WireGuard doesn&#39;t automatically failover between multiple peers with identical <span class='inlinecode'>AllowedIPs</span> routes. When both gateways are configured this way, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won&#39;t automatically switch to the backup gateway.</span><br />
+<br />
+<span>To enable manual failover, separate configuration files can be created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer. This provides explicit control over which gateway handles traffic.</span><br />
+<br />
+<span>Configuration files for pixel7pro (phone):</span><br />
+<br />
+<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/</span>:</span><br />
+<br />
+<ul>
+<li>wg0-blowfish.conf - Routes all traffic through blowfish gateway (23.88.35.144)</li>
+<li>wg0-fishfinger.conf - Routes all traffic through fishfinger gateway (46.23.94.99)</li>
+</ul><br />
+<span>Generate QR codes for importing into the WireGuard Android app:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>earth$ sudo systemctl start wg-quick@wg0.service
+<pre>qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf
+qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf
+</pre>
+<br />
+<span>Import both QR codes using the WireGuard app to create two separate tunnel profiles. You can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.</span><br />
+<br />
+<span>Configuration files for earth (laptop):</span><br />
+<br />
+<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/</span>:</span><br />
+<br />
+<ul>
+<li>wg0-blowfish.conf - Routes all traffic through blowfish gateway</li>
+<li>wg0-fishfinger.conf - Routes all traffic through fishfinger gateway</li>
+</ul><br />
+<span>Install both configurations:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf /etc/wireguard/
+sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf /etc/wireguard/
+</pre>
+<br />
+<span>This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.</span><br />
+<br />
+<h3 style='display: inline' id='starting-and-stopping-on-earth-fedora-laptop'>Starting and stopping on earth (Fedora laptop)</h3><br />
+<br />
+<span>On the Fedora laptop, WireGuard is managed via systemd. Using the separate gateway configs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Start with blowfish gateway</font></i>
+earth$ sudo systemctl start wg-quick@wg0-blowfish.service
+
+<i><font color="silver"># Or start with fishfinger gateway</font></i>
+earth$ sudo systemctl start wg-quick@wg0-fishfinger.service
+
+<i><font color="silver"># Check tunnel status</font></i>
 earth$ sudo wg show
 interface: wg0
   public key: Mc1CpSS3rbLN9A2w9c75XugQyXUkGPHKI2iCGbh8DRo=
@@ -10999,43 +11051,45 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   persistent keepalive: every <font color="#000000">25</font> seconds
 </pre>
 <br />
-<span>Stoppint the tunnel:</span><br />
+<span>Stopping the tunnel:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>earth$ sudo systemctl stop wg-quick@wg0.service
+<pre>earth$ sudo systemctl stop wg-quick@wg0-blowfish.service
+<i><font color="silver"># Or if using fishfinger:</font></i>
+earth$ sudo systemctl stop wg-quick@wg0-fishfinger.service
+
 earth$ sudo wg show
 <i><font color="silver"># No output - WireGuard interface is down</font></i>
 </pre>
 <br />
-<span>Checking the tunnel status:</span><br />
+<span>Switching between gateways:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>earth$ sudo systemctl status wg-quick@wg0.service
-● wg-quick@wg0.service - WireGuard via wg-quick(<font color="#000000">8</font>) <b><u><font color="#000000">for</font></u></b> wg0
-     Loaded: loaded (/usr/lib/systemd/system/wg-quick@.service; disabled)
-     Active: active (exited) since Sun <font color="#000000">2026</font>-<font color="#000000">01</font>-<font color="#000000">11</font> <font color="#000000">22</font>:<font color="#000000">45</font>:<font color="#000000">00</font> EET
+<pre><i><font color="silver"># Switch from blowfish to fishfinger</font></i>
+earth$ sudo systemctl stop wg-quick@wg0-blowfish.service
+earth$ sudo systemctl start wg-quick@wg0-fishfinger.service
 </pre>
 <br />
-<span>The service remains <span class='inlinecode'>disabled</span> to prevent auto-start on boot, allowing manual control of when the VPN is active.</span><br />
+<span>The services remain <span class='inlinecode'>disabled</span> to prevent auto-start on boot, allowing manual control of when the VPN is active and which gateway to use.</span><br />
 <br />
 <h3 style='display: inline' id='starting-and-stopping-on-pixel7pro-android-phone'>Starting and stopping on pixel7pro (Android phone)</h3><br />
 <br />
-<span>On Android using the official WireGuard app, tunnel management is like this:</span><br />
+<span>On Android using the official WireGuard app, you now have two tunnel profiles (wg0-blowfish and wg0-fishfinger) after importing the QR codes:</span><br />
 <br />
-<span>Starting the tunnel:</span><br />
+<span>Starting a tunnel:</span><br />
 <br />
 <ul>
 <li>1. Open the WireGuard app</li>
-<li>2. Tap the toggle switch next to the <span class='inlinecode'>pixel7pro</span> tunnel configuration</li>
+<li>2. Tap the toggle switch next to either <span class='inlinecode'>wg0-blowfish</span> or <span class='inlinecode'>wg0-fishfinger</span> tunnel configuration</li>
 <li>3. The switch turns blue/green and shows "Active"</li>
 <li>4. A key icon appears in the notification bar indicating VPN is active</li>
-<li>5. All traffic now routes through the VPN</li>
+<li>5. All traffic now routes through the selected gateway</li>
 </ul><br />
 <span>Stopping the tunnel:</span><br />
 <br />
@@ -11045,6 +11099,13 @@ http://www.gnu.org/software/src-highlite -->
 <li>3. The switch turns gray and shows "Inactive"</li>
 <li>4. The notification bar key icon disappears</li>
 <li>5. Normal internet routing resumes</li>
+</ul><br />
+<span>Switching between gateways:</span><br />
+<br />
+<ul>
+<li>1. Disable the currently active tunnel (e.g., wg0-blowfish)</li>
+<li>2. Enable the other tunnel (e.g., wg0-fishfinger)</li>
+<li>Only enable one tunnel at a time</li>
 </ul><br />
 <span>Quick toggling from notification:</span><br />
 <br />
@@ -11075,7 +11136,7 @@ earth$ ping -c<font color="#000000">2</font> fishfinger.wg0
 earth$ curl https://ifconfig.me  <i><font color="silver"># Should show gateway's public IP</font></i>
 </pre>
 <br />
-<span>Check which gateway is active: The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with <span class='inlinecode'>sudo wg show</span> on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.</span><br />
+<span>Check which gateway is active: Check the transfer statistics with <span class='inlinecode'>sudo wg show</span> on earth to see which peer shows recent handshakes and increasing transfer bytes. On Android, the WireGuard app shows the active tunnel with data transfer statistics.</span><br />
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
