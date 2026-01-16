@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-17T00:15:15+02:00</updated>
+    <updated>2026-01-17T00:21:37+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10792,7 +10792,7 @@ interface: wg0
 peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
   preshared key: (hidden)
   endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">111</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">1</font> minute, <font color="#000000">46</font> seconds ago
   transfer: <font color="#000000">124</font> B received, <font color="#000000">1.75</font> KiB sent
   persistent keepalive: every <font color="#000000">25</font> seconds
@@ -10800,7 +10800,7 @@ peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">1</font> minute, <font color="#000000">52</font> seconds ago
   transfer: <font color="#000000">124</font> B received, <font color="#000000">1.60</font> KiB sent
   persistent keepalive: every <font color="#000000">25</font> seconds
@@ -10808,27 +10808,27 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
 peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">120</font>/<font color="#000000">128</font>
 
 peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">131</font>/<font color="#000000">128</font>
 
 peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">122</font>/<font color="#000000">128</font>
 
 peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">121</font>/<font color="#000000">128</font>
 
 peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">132</font>/<font color="#000000">128</font>
 </pre>
 <br />
 <span>All the hosts are pingable as well, e.g.:</span><br />
@@ -10915,35 +10915,35 @@ interface: wg0
 peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+<font color="#000000">1</font>/QO7m2oyllg=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.122</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.122</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">122</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">10</font> seconds ago
   transfer: <font color="#000000">440</font> B received, <font color="#000000">532</font> B sent
 
 peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.121</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.121</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">121</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">12</font> seconds ago
   transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
 
 peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP<font color="#000000">7</font>+zwgehI=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.120</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.120</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">120</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">14</font> seconds ago
   transfer: <font color="#000000">440</font> B received, <font color="#000000">564</font> B sent
 
 peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.132</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.132</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">132</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">17</font> seconds ago
   transfer: <font color="#000000">472</font> B received, <font color="#000000">564</font> B sent
 
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.110</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">55</font> seconds ago
   transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
   persistent keepalive: every <font color="#000000">25</font> seconds
@@ -10951,7 +10951,7 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
 peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
   preshared key: (hidden)
   endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.111</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">111</font>/<font color="#000000">128</font>
   latest handshake: <font color="#000000">55</font> seconds ago
   transfer: <font color="#000000">472</font> B received, <font color="#000000">596</font> B sent
   persistent keepalive: every <font color="#000000">25</font> seconds
@@ -10959,7 +10959,7 @@ peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
 peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   preshared key: (hidden)
   endpoint: <font color="#000000">192.168</font>.<font color="#000000">1.131</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>
+  allowed ips: <font color="#000000">192.168</font>.<font color="#000000">2.131</font>/<font color="#000000">32</font>, fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">131</font>/<font color="#000000">128</font>
 </pre>
 <br />
 <h2 style='display: inline' id='managing-roaming-client-tunnels'>Managing Roaming Client Tunnels</h2><br />
@@ -11026,7 +11026,7 @@ earth$ sudo systemctl start wg-quick@wg0-blowfish.service
 <i><font color="silver"># Or start with fishfinger gateway</font></i>
 earth$ sudo systemctl start wg-quick@wg0-fishfinger.service
 
-<i><font color="silver"># Check tunnel status</font></i>
+<i><font color="silver"># Check tunnel status (example with blowfish gateway)</font></i>
 earth$ sudo wg show
 interface: wg0
   public key: Mc1CpSS3rbLN9A2w9c75XugQyXUkGPHKI2iCGbh8DRo=
@@ -11034,20 +11034,12 @@ interface: wg0
   listening port: <font color="#000000">56709</font>
   fwmark: <font color="#000000">0xca6c</font>
 
-peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
-  preshared key: (hidden)
-  endpoint: <font color="#000000">46.23</font>.<font color="#000000">94.99</font>:<font color="#000000">56709</font>
-  allowed ips: <font color="#000000">0.0</font>.<font color="#000000">0.0</font>/<font color="#000000">0</font>, ::/<font color="#000000">0</font>
-  latest handshake: <font color="#000000">5</font> seconds ago
-  transfer: <font color="#000000">15.89</font> KiB received, <font color="#000000">32.15</font> KiB sent
-  persistent keepalive: every <font color="#000000">25</font> seconds
-
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: <font color="#000000">23.88</font>.<font color="#000000">35.144</font>:<font color="#000000">56709</font>
-  allowed ips: (none)
+  allowed ips: <font color="#000000">0.0</font>.<font color="#000000">0.0</font>/<font color="#000000">0</font>, ::/<font color="#000000">0</font>
   latest handshake: <font color="#000000">5</font> seconds ago
-  transfer: <font color="#000000">124</font> B received, <font color="#000000">180</font> B sent
+  transfer: <font color="#000000">15.89</font> KiB received, <font color="#000000">32.15</font> KiB sent
   persistent keepalive: every <font color="#000000">25</font> seconds
 </pre>
 <br />

@@ -1125,7 +1125,7 @@ interface: wg0
 peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
   preshared key: (hidden)
   endpoint: 46.23.94.99:56709
-  allowed ips: 192.168.2.111/32
+  allowed ips: 192.168.2.111/32, fd42:beef:cafe:2::111/128
   latest handshake: 1 minute, 46 seconds ago
   transfer: 124 B received, 1.75 KiB sent
   persistent keepalive: every 25 seconds
@@ -1133,7 +1133,7 @@ peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: 23.88.35.144:56709
-  allowed ips: 192.168.2.110/32
+  allowed ips: 192.168.2.110/32, fd42:beef:cafe:2::110/128
   latest handshake: 1 minute, 52 seconds ago
   transfer: 124 B received, 1.60 KiB sent
   persistent keepalive: every 25 seconds
@@ -1141,27 +1141,27 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
 peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP7+zwgehI=
   preshared key: (hidden)
   endpoint: 192.168.1.120:56709
-  allowed ips: 192.168.2.120/32
+  allowed ips: 192.168.2.120/32, fd42:beef:cafe:2::120/128
 
 peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   preshared key: (hidden)
   endpoint: 192.168.1.131:56709
-  allowed ips: 192.168.2.131/32
+  allowed ips: 192.168.2.131/32, fd42:beef:cafe:2::131/128
 
 peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+1/QO7m2oyllg=
   preshared key: (hidden)
   endpoint: 192.168.1.122:56709
-  allowed ips: 192.168.2.122/32
+  allowed ips: 192.168.2.122/32, fd42:beef:cafe:2::122/128
 
 peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
   preshared key: (hidden)
   endpoint: 192.168.1.121:56709
-  allowed ips: 192.168.2.121/32
+  allowed ips: 192.168.2.121/32, fd42:beef:cafe:2::121/128
 
 peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
   preshared key: (hidden)
   endpoint: 192.168.1.132:56709
-  allowed ips: 192.168.2.132/32
+  allowed ips: 192.168.2.132/32, fd42:beef:cafe:2::132/128
 ```
 
 All the hosts are pingable as well, e.g.:
@@ -1242,35 +1242,35 @@ interface: wg0
 peer: 0Y/H20W8YIbF7DA1sMwMacLI8WS9yG+1/QO7m2oyllg=
   preshared key: (hidden)
   endpoint: 192.168.1.122:56709
-  allowed ips: 192.168.2.122/32
+  allowed ips: 192.168.2.122/32, fd42:beef:cafe:2::122/128
   latest handshake: 10 seconds ago
   transfer: 440 B received, 532 B sent
 
 peer: Hhy9kMPOOjChXV2RA5WeCGs+J0FE3rcNPDw/TLSn7i8=
   preshared key: (hidden)
   endpoint: 192.168.1.121:56709
-  allowed ips: 192.168.2.121/32
+  allowed ips: 192.168.2.121/32, fd42:beef:cafe:2::121/128
   latest handshake: 12 seconds ago
   transfer: 440 B received, 564 B sent
 
 peer: s3e93XoY7dPUQgLiVO4d8x/SRCFgEew+/wP7+zwgehI=
   preshared key: (hidden)
   endpoint: 192.168.1.120:56709
-  allowed ips: 192.168.2.120/32
+  allowed ips: 192.168.2.120/32, fd42:beef:cafe:2::120/128
   latest handshake: 14 seconds ago
   transfer: 440 B received, 564 B sent
 
 peer: SlGVsACE1wiaRoGvCR3f7AuHfRS+1jjhS+YwEJ2HvF0=
   preshared key: (hidden)
   endpoint: 192.168.1.132:56709
-  allowed ips: 192.168.2.132/32
+  allowed ips: 192.168.2.132/32, fd42:beef:cafe:2::132/128
   latest handshake: 17 seconds ago
   transfer: 472 B received, 564 B sent
 
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: 23.88.35.144:56709
-  allowed ips: 192.168.2.110/32
+  allowed ips: 192.168.2.110/32, fd42:beef:cafe:2::110/128
   latest handshake: 55 seconds ago
   transfer: 472 B received, 596 B sent
   persistent keepalive: every 25 seconds
@@ -1278,7 +1278,7 @@ peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
 peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
   preshared key: (hidden)
   endpoint: 46.23.94.99:56709
-  allowed ips: 192.168.2.111/32
+  allowed ips: 192.168.2.111/32, fd42:beef:cafe:2::111/128
   latest handshake: 55 seconds ago
   transfer: 472 B received, 596 B sent
   persistent keepalive: every 25 seconds
@@ -1286,7 +1286,7 @@ peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
 peer: 2htXdNcxzpI2FdPDJy4T4VGtm1wpMEQu1AkQHjNY6F8=
   preshared key: (hidden)
   endpoint: 192.168.1.131:56709
-  allowed ips: 192.168.2.131/32
+  allowed ips: 192.168.2.131/32, fd42:beef:cafe:2::131/128
 ```
 
 ## Managing Roaming Client Tunnels
@@ -1342,7 +1342,7 @@ earth$ sudo systemctl start wg-quick@wg0-blowfish.service
 # Or start with fishfinger gateway
 earth$ sudo systemctl start wg-quick@wg0-fishfinger.service
 
-# Check tunnel status
+# Check tunnel status (example with blowfish gateway)
 earth$ sudo wg show
 interface: wg0
   public key: Mc1CpSS3rbLN9A2w9c75XugQyXUkGPHKI2iCGbh8DRo=
@@ -1350,20 +1350,12 @@ interface: wg0
   listening port: 56709
   fwmark: 0xca6c
 
-peer: 8PvGZH1NohHpZPVJyjhctBX9xblsNvYBhpg68FsFcns=
-  preshared key: (hidden)
-  endpoint: 46.23.94.99:56709
-  allowed ips: 0.0.0.0/0, ::/0
-  latest handshake: 5 seconds ago
-  transfer: 15.89 KiB received, 32.15 KiB sent
-  persistent keepalive: every 25 seconds
-
 peer: Xow+d3qVXgUMk4pcRSQ6Fe+vhYBa3VDyHX/4jrGoKns=
   preshared key: (hidden)
   endpoint: 23.88.35.144:56709
-  allowed ips: (none)
+  allowed ips: 0.0.0.0/0, ::/0
   latest handshake: 5 seconds ago
-  transfer: 124 B received, 180 B sent
+  transfer: 15.89 KiB received, 32.15 KiB sent
   persistent keepalive: every 25 seconds
 ```
 
