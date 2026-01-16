@@ -1069,57 +1069,6 @@ Adding IPv6 to the mesh network provides:
 * **Learning**: Hands-on experience with IPv6 networking
 * **Flexibility**: Roaming clients can access both IPv4 and IPv6 internet resources
 
-## Manual gateway failover for roaming clients
-
-WireGuard doesn't automatically failover between multiple peers with identical `AllowedIPs` routes. When both gateways (blowfish and fishfinger) are configured with `AllowedIPs = 0.0.0.0/0, ::/0`, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won't automatically switch to the backup.
-
-To enable manual failover, separate configuration files have been created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer.
-
-### Configuration files for pixel7pro (phone)
-
-Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/`:
-
-* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway (23.88.35.144)
-* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway (46.23.94.99)
-
-### Configuration files for earth (laptop)
-
-Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/`:
-
-* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway
-* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway
-
-### Using manual failover on Android
-
-On the pixel7pro phone, import both QR codes using the WireGuard app to create two separate tunnel profiles:
-
-```sh
-# Generate QR codes
-qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0-blowfish.conf
-qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0-fishfinger.conf
-```
-
-In the WireGuard app, you can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.
-
-### Using manual failover on Linux
-
-On the earth laptop, copy both configs and use systemd to switch between them:
-
-```sh
-# Install both configurations
-sudo cp dist/earth/etc/wireguard/wg0-blowfish.conf /etc/wireguard/
-sudo cp dist/earth/etc/wireguard/wg0-fishfinger.conf /etc/wireguard/
-
-# Start with blowfish gateway
-sudo systemctl start wg-quick@wg0-blowfish.service
-
-# To switch to fishfinger gateway
-sudo systemctl stop wg-quick@wg0-blowfish.service
-sudo systemctl start wg-quick@wg0-fishfinger.service
-```
-
-This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.
-
 ## Happy WireGuard-ing
 
 All is set up now. E.g. on `f0`:
@@ -1396,6 +1345,57 @@ earth$ curl https://ifconfig.me  # Should show gateway's public IP
 ```
 
 Check which gateway is active: The device will typically prefer one gateway (usually the first one with a successful handshake). To see which gateway is actively routing traffic, check the transfer statistics with `sudo wg show` on earth, or observe which gateway shows recent handshakes and increasing transfer bytes.
+
+### Manual gateway failover
+
+The default configuration for roaming clients includes both gateways (blowfish and fishfinger) with `AllowedIPs = 0.0.0.0/0, ::/0`. However, WireGuard doesn't automatically failover between multiple peers with identical `AllowedIPs` routes. When both gateways are configured this way, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won't automatically switch to the backup gateway.
+
+To enable manual failover, separate configuration files can be created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer. This provides explicit control over which gateway handles traffic.
+
+#### Configuration files for pixel7pro (phone)
+
+Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/`:
+
+* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway (23.88.35.144)
+* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway (46.23.94.99)
+
+#### Configuration files for earth (laptop)
+
+Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/`:
+
+* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway
+* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway
+
+#### Using manual failover on Android
+
+On the pixel7pro phone, import both QR codes using the WireGuard app to create two separate tunnel profiles:
+
+```sh
+# Generate QR codes
+qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0-blowfish.conf
+qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0-fishfinger.conf
+```
+
+In the WireGuard app, you can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.
+
+#### Using manual failover on Linux
+
+On the earth laptop, copy both configs and use systemd to switch between them:
+
+```sh
+# Install both configurations
+sudo cp dist/earth/etc/wireguard/wg0-blowfish.conf /etc/wireguard/
+sudo cp dist/earth/etc/wireguard/wg0-fishfinger.conf /etc/wireguard/
+
+# Start with blowfish gateway
+sudo systemctl start wg-quick@wg0-blowfish.service
+
+# To switch to fishfinger gateway
+sudo systemctl stop wg-quick@wg0-blowfish.service
+sudo systemctl start wg-quick@wg0-fishfinger.service
+```
+
+This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.
 
 ## Conclusion
 
