@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-5-wireguard-mesh-network'>f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</h1><br />
 <br />
-<span class='quote'>Published at 2025-05-11T11:35:57+03:00, last updated Sun 11 Jan 21:33:40 EET 2026</span><br />
+<span class='quote'>Published at 2025-05-11T11:35:57+03:00, last updated Thu 15 Jan 19:30:46 EET 2026</span><br />
 <br />
 <span>This is the fifth blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
 <br />
@@ -61,6 +61,18 @@
 <li>⇢ ⇢ <a href='#installing-the-wg0conf-files'>Installing the <span class='inlinecode'>wg0.conf</span> files</a></li>
 <li>⇢ ⇢ <a href='#re-generating-mesh-and-installing-the-wg0conf-files-again'>Re-generating mesh and installing the <span class='inlinecode'>wg0.conf</span> files again</a></li>
 <li>⇢ ⇢ <a href='#setting-up-roaming-clients'>Setting up roaming clients</a></li>
+<li>⇢ <a href='#adding-ipv6-support-to-the-mesh'>Adding IPv6 support to the mesh</a></li>
+<li>⇢ ⇢ <a href='#ipv6-addressing-scheme'>IPv6 addressing scheme</a></li>
+<li>⇢ ⇢ <a href='#updating-the-mesh-generator-for-ipv6'>Updating the mesh generator for IPv6</a></li>
+<li>⇢ ⇢ <a href='#ipv6-nat-on-openbsd-gateways'>IPv6 NAT on OpenBSD gateways</a></li>
+<li>⇢ ⇢ <a href='#manual-openbsd-interface-configuration'>Manual OpenBSD interface configuration</a></li>
+<li>⇢ ⇢ <a href='#verifying-dual-stack-connectivity'>Verifying dual-stack connectivity</a></li>
+<li>⇢ ⇢ <a href='#benefits-of-dual-stack'>Benefits of dual-stack</a></li>
+<li>⇢ <a href='#manual-gateway-failover-for-roaming-clients'>Manual gateway failover for roaming clients</a></li>
+<li>⇢ ⇢ <a href='#configuration-files-for-pixel7pro-phone'>Configuration files for pixel7pro (phone)</a></li>
+<li>⇢ ⇢ <a href='#configuration-files-for-earth-laptop'>Configuration files for earth (laptop)</a></li>
+<li>⇢ ⇢ <a href='#using-manual-failover-on-android'>Using manual failover on Android</a></li>
+<li>⇢ ⇢ <a href='#using-manual-failover-on-linux'>Using manual failover on Linux</a></li>
 <li>⇢ <a href='#happy-wireguard-ing'>Happy WireGuard-ing</a></li>
 <li>⇢ <a href='#managing-roaming-client-tunnels'>Managing Roaming Client Tunnels</a></li>
 <li>⇢ ⇢ <a href='#starting-and-stopping-on-earth-fedora-laptop'>Starting and stopping on earth (Fedora laptop)</a></li>
@@ -203,6 +215,17 @@ http://www.gnu.org/software/src-highlite -->
 
 <font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
 <font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">130</font> f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">131</font> f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">120</font> r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">121</font> r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 END
 </pre>
 <br />
@@ -256,6 +279,17 @@ http://www.gnu.org/software/src-highlite -->
 
 <font color="#000000">192.168</font>.<font color="#000000">2.110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
 <font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">130</font> f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">131</font> f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">120</font> r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">121</font> r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 END
 </pre>
 <br />
@@ -312,6 +346,19 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#000000">192.168</font>.<font color="#000000">2.111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
 <font color="#000000">192.168</font>.<font color="#000000">2.200</font> earth.wg0 earth.wg0.wan.buetow.org
 <font color="#000000">192.168</font>.<font color="#000000">2.201</font> pixel7pro.wg0 pixel7pro.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">130</font> f0.wg0 f0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">131</font> f1.wg0 f1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">132</font> f2.wg0 f2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">120</font> r0.wg0 r0.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">121</font> r1.wg0 r1.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">122</font> r2.wg0 r2.wg0.wan.buetow.org
+
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font> blowfish.wg0 blowfish.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">111</font> fishfinger.wg0 fishfinger.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">200</font> earth.wg0 earth.wg0.wan.buetow.org
+fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">201</font> pixel7pro.wg0 pixel7pro.wg0.wan.buetow.org
 END
 </pre>
 <br />
@@ -524,6 +571,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.130&#39;
+      ipv6: &#39;fd42:beef:cafe:2::130&#39;
     exclude_peers:
       - earth
       - pixel7pro
@@ -543,6 +591,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.120&#39;
+      ipv6: &#39;fd42:beef:cafe:2::120&#39;
     exclude_peers:
       - earth
       - pixel7pro
@@ -562,6 +611,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.110&#39;
+      ipv6: &#39;fd42:beef:cafe:2::110&#39;
     exclude_peers:
       - earth
       - pixel7pro
@@ -579,6 +629,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.111&#39;
+      ipv6: &#39;fd42:beef:cafe:2::111&#39;
     exclude_peers:
       - earth
       - pixel7pro
@@ -587,6 +638,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.200&#39;
+      ipv6: &#39;fd42:beef:cafe:2::200&#39;
     exclude_peers:
       - f0
       - f1
@@ -600,6 +652,7 @@ hosts:
     wg0:
       domain: &#39;wg0.wan.buetow.org&#39;
       ip: &#39;192.168.2.201&#39;
+      ipv6: &#39;fd42:beef:cafe:2::201&#39;
     exclude_peers:
       - f0
       - f1
@@ -938,6 +991,225 @@ http://www.gnu.org/software/src-highlite -->
 </pre>
 <br />
 <span>The service is disabled from auto-start so the VPN is only active when manually started. This allows selective VPN usage based on need.</span><br />
+<br />
+<h2 style='display: inline' id='adding-ipv6-support-to-the-mesh'>Adding IPv6 support to the mesh</h2><br />
+<br />
+<span>After setting up the IPv4-only mesh network, I decided to add dual-stack IPv6 support to enable more networking capabilities and prepare for the future. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.</span><br />
+<br />
+<h3 style='display: inline' id='ipv6-addressing-scheme'>IPv6 addressing scheme</h3><br />
+<br />
+<span>We use ULA (Unique Local Address) private IPv6 space, analogous to RFC1918 private IPv4 addresses:</span><br />
+<br />
+<ul>
+<li>Prefix: <span class='inlinecode'>fd42:beef:cafe::/48</span></li>
+<li>Subnet: <span class='inlinecode'>fd42:beef:cafe:2::/64</span> (wg0 interfaces)</li>
+</ul><br />
+<span>All hosts receive dual-stack addresses:</span><br />
+<br />
+<pre>
+fd42:beef:cafe:2::110/64  - blowfish.wg0 (OpenBSD gateway)
+fd42:beef:cafe:2::111/64  - fishfinger.wg0 (OpenBSD gateway)
+fd42:beef:cafe:2::120/64  - r0.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::121/64  - r1.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::122/64  - r2.wg0 (Rocky Linux VM)
+fd42:beef:cafe:2::130/64  - f0.wg0 (FreeBSD host)
+fd42:beef:cafe:2::131/64  - f1.wg0 (FreeBSD host)
+fd42:beef:cafe:2::132/64  - f2.wg0 (FreeBSD host)
+fd42:beef:cafe:2::200/64  - earth.wg0 (roaming laptop)
+fd42:beef:cafe:2::201/64  - pixel7pro.wg0 (roaming phone)
+</pre>
+<br />
+<h3 style='display: inline' id='updating-the-mesh-generator-for-ipv6'>Updating the mesh generator for IPv6</h3><br />
+<br />
+<span>The mesh generator required two modifications to support dual-stack configurations:</span><br />
+<br />
+<span>**1. Address generation (<span class='inlinecode'>address</span> method)**</span><br />
+<br />
+<span>The generator now outputs multiple <span class='inlinecode'>Address</span> directives when IPv6 is present:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">def</font></u></b> address
+  <b><u><font color="#000000">return</font></u></b> <font color="#808080">'# No Address = ... for OpenBSD here'</font> <b><u><font color="#000000">if</font></u></b> hosts[myself][<font color="#808080">'os'</font>] == <font color="#808080">'OpenBSD'</font>
+
+  ipv4 = hosts[myself][<font color="#808080">'wg0'</font>][<font color="#808080">'ip'</font>]
+  ipv6 = hosts[myself][<font color="#808080">'wg0'</font>][<font color="#808080">'ipv6'</font>]
+
+  <i><font color="silver"># WireGuard supports multiple Address directives for dual-stack</font></i>
+  <b><u><font color="#000000">if</font></u></b> ipv6
+    <font color="#808080">"Address = #{ipv4}\nAddress = #{ipv6}/64"</font>
+  <b><u><font color="#000000">else</font></u></b>
+    <font color="#808080">"Address = #{ipv4}"</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>**2. AllowedIPs generation (<span class='inlinecode'>peers</span> method)**</span><br />
+<br />
+<span>For mesh peers, both IPv4 and IPv6 addresses are included in AllowedIPs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">if</font></u></b> is_roaming
+  allowed_ips = <font color="#808080">'0.0.0.0/0, ::/0'</font>
+<b><u><font color="#000000">else</font></u></b>
+  <i><font color="silver"># For mesh peers, allow both IPv4 and IPv6 if present</font></i>
+  ipv4 = data[<font color="#808080">'wg0'</font>][<font color="#808080">'ip'</font>]
+  ipv6 = data[<font color="#808080">'wg0'</font>][<font color="#808080">'ipv6'</font>]
+  allowed_ips = ipv6 ? <font color="#808080">"#{ipv4}/32, #{ipv6}/128"</font> : <font color="#808080">"#{ipv4}/32"</font>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Roaming clients keep <span class='inlinecode'>AllowedIPs = 0.0.0.0/0, ::/0</span> to route all traffic (IPv4 and IPv6) through the VPN.</span><br />
+<br />
+<h3 style='display: inline' id='ipv6-nat-on-openbsd-gateways'>IPv6 NAT on OpenBSD gateways</h3><br />
+<br />
+<span>To allow roaming clients to access the internet via IPv6, we added NAT66 rules to the OpenBSD gateways&#39; <span class='inlinecode'>pf.conf</span>:</span><br />
+<br />
+<pre>
+# NAT for WireGuard clients to access internet (IPv4)
+match out on vio0 from 192.168.2.0/24 to any nat-to (vio0)
+
+# NAT66 for WireGuard clients to access internet (IPv6)
+# Uses NPTv6 (Network Prefix Translation) to translate ULA to public IPv6
+match out on vio0 inet6 from fd42:beef:cafe:2::/64 to any nat-to (vio0)
+
+# Allow all UDP traffic on WireGuard port (IPv4 and IPv6)
+pass in inet proto udp from any to any port 56709
+pass in inet6 proto udp from any to any port 56709
+</pre>
+<br />
+<span>OpenBSD&#39;s PF firewall supports IPv6 NAT with the same syntax as IPv4, using NPTv6 (RFC 6296) to translate the ULA addresses to the gateway&#39;s public IPv6 address.</span><br />
+<br />
+<h3 style='display: inline' id='manual-openbsd-interface-configuration'>Manual OpenBSD interface configuration</h3><br />
+<br />
+<span>Since OpenBSD doesn&#39;t use the <span class='inlinecode'>Address</span> directive in WireGuard configs, IPv6 must be manually configured on the wg0 interfaces. On <span class='inlinecode'>blowfish</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>rex@blowfish:~ $ doas vi /etc/hostname.wg0
+</pre>
+<br />
+<span>Add the IPv6 address (note the order - IPv6 must be configured before <span class='inlinecode'>up</span>):</span><br />
+<br />
+<pre>
+inet 192.168.2.110 255.255.255.0 NONE
+inet6 fd42:beef:cafe:2::110 64
+up
+!/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
+</pre>
+<br />
+<span>**Important**: The IPv6 address must be specified before the <span class='inlinecode'>up</span> directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.</span><br />
+<br />
+<span>Apply the configuration:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>rex@blowfish:~ $ doas sh /etc/netstart wg0
+rex@blowfish:~ $ ifconfig wg0 | grep inet6
+inet6 fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">110</font> prefixlen <font color="#000000">64</font>
+</pre>
+<br />
+<span>Repeat for <span class='inlinecode'>fishfinger</span> with address <span class='inlinecode'>fd42:beef:cafe:2::111</span>.</span><br />
+<br />
+<span>After reboot, the interface will automatically come up with both IPv4 and IPv6 addresses. WireGuard peers may take 30-60 seconds to establish handshakes after boot.</span><br />
+<br />
+<h3 style='display: inline' id='verifying-dual-stack-connectivity'>Verifying dual-stack connectivity</h3><br />
+<br />
+<span>After regenerating and deploying the configurations, both IPv4 and IPv6 work across the mesh:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># From r0 (Rocky Linux VM)</font></i>
+root@r0:~ <i><font color="silver"># ping -c 2 192.168.2.130  # IPv4 to f0</font></i>
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.130</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">2.12</font> ms
+<font color="#000000">64</font> bytes from <font color="#000000">192.168</font>.<font color="#000000">2.130</font>: icmp_seq=<font color="#000000">2</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.681</font> ms
+
+root@r0:~ <i><font color="silver"># ping6 -c 2 fd42:beef:cafe:2::130  # IPv6 to f0</font></i>
+<font color="#000000">64</font> bytes from fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">130</font>: icmp_seq=<font color="#000000">1</font> ttl=<font color="#000000">64</font> time=<font color="#000000">2.16</font> ms
+<font color="#000000">64</font> bytes from fd42:beef:cafe:<font color="#000000">2</font>::<font color="#000000">130</font>: icmp_seq=<font color="#000000">2</font> ttl=<font color="#000000">64</font> time=<font color="#000000">0.909</font> ms
+</pre>
+<br />
+<span>The dual-stack configuration is backward compatible—hosts without the <span class='inlinecode'>ipv6</span> field in the YAML configuration will continue to generate IPv4-only configs.</span><br />
+<br />
+<h3 style='display: inline' id='benefits-of-dual-stack'>Benefits of dual-stack</h3><br />
+<br />
+<span>Adding IPv6 to the mesh network provides:</span><br />
+<br />
+<ul>
+<li>**Future-proofing**: Ready for IPv6-only services and networks</li>
+<li>**Compatibility**: Dual-stack maintains full IPv4 compatibility</li>
+<li>**Learning**: Hands-on experience with IPv6 networking</li>
+<li>**Flexibility**: Roaming clients can access both IPv4 and IPv6 internet resources</li>
+</ul><br />
+<h2 style='display: inline' id='manual-gateway-failover-for-roaming-clients'>Manual gateway failover for roaming clients</h2><br />
+<br />
+<span>WireGuard doesn&#39;t automatically failover between multiple peers with identical <span class='inlinecode'>AllowedIPs</span> routes. When both gateways (blowfish and fishfinger) are configured with <span class='inlinecode'>AllowedIPs = 0.0.0.0/0, ::/0</span>, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won&#39;t automatically switch to the backup.</span><br />
+<br />
+<span>To enable manual failover, separate configuration files have been created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer.</span><br />
+<br />
+<h3 style='display: inline' id='configuration-files-for-pixel7pro-phone'>Configuration files for pixel7pro (phone)</h3><br />
+<br />
+<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/</span>:</span><br />
+<br />
+<ul>
+<li>**wg0-blowfish.conf** - Routes all traffic through blowfish gateway (23.88.35.144)</li>
+<li>**wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway (46.23.94.99)</li>
+</ul><br />
+<h3 style='display: inline' id='configuration-files-for-earth-laptop'>Configuration files for earth (laptop)</h3><br />
+<br />
+<span>Two separate configs in <span class='inlinecode'>/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/</span>:</span><br />
+<br />
+<ul>
+<li>**wg0-blowfish.conf** - Routes all traffic through blowfish gateway</li>
+<li>**wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway</li>
+</ul><br />
+<h3 style='display: inline' id='using-manual-failover-on-android'>Using manual failover on Android</h3><br />
+<br />
+<span>On the pixel7pro phone, import both QR codes using the WireGuard app to create two separate tunnel profiles:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Generate QR codes</font></i>
+qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf
+qrencode -t ansiutf8 &lt; dist/pixel7pro/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf
+</pre>
+<br />
+<span>In the WireGuard app, you can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.</span><br />
+<br />
+<h3 style='display: inline' id='using-manual-failover-on-linux'>Using manual failover on Linux</h3><br />
+<br />
+<span>On the earth laptop, copy both configs and use systemd to switch between them:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Install both configurations</font></i>
+sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-blowfish.conf /etc/wireguard/
+sudo cp dist/earth/etc/wireguard/wg<font color="#000000">0</font>-fishfinger.conf /etc/wireguard/
+
+<i><font color="silver"># Start with blowfish gateway</font></i>
+sudo systemctl start wg-quick@wg0-blowfish.service
+
+<i><font color="silver"># To switch to fishfinger gateway</font></i>
+sudo systemctl stop wg-quick@wg0-blowfish.service
+sudo systemctl start wg-quick@wg0-fishfinger.service
+</pre>
+<br />
+<span>This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.</span><br />
 <br />
 <h2 style='display: inline' id='happy-wireguard-ing'>Happy WireGuard-ing</h2><br />
 <br />
