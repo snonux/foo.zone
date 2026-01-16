@@ -1029,7 +1029,7 @@ up
 !/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
 ```
 
-**Important**: The IPv6 address must be specified before the `up` directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.
+Important: The IPv6 address must be specified before the `up` directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.
 
 Apply the configuration:
 
@@ -1064,10 +1064,10 @@ The dual-stack configuration is backward compatible—hosts without the `ipv6` f
 
 Adding IPv6 to the mesh network provides:
 
-* **Future-proofing**: Ready for IPv6-only services and networks
-* **Compatibility**: Dual-stack maintains full IPv4 compatibility
-* **Learning**: Hands-on experience with IPv6 networking
-* **Flexibility**: Roaming clients can access both IPv4 and IPv6 internet resources
+* Future-proofing: Ready for IPv6-only services and networks
+* Compatibility: Dual-stack maintains full IPv4 compatibility
+* Learning: Hands-on experience with IPv6 networking
+* Flexibility: Roaming clients can access both IPv4 and IPv6 internet resources
 
 ## Happy WireGuard-ing
 
@@ -1257,12 +1257,12 @@ The default configuration for roaming clients includes both gateways (blowfish a
 
 To enable manual failover, separate configuration files can be created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer. This provides explicit control over which gateway handles traffic.
 
-#### Configuration files for pixel7pro (phone)
+Configuration files for pixel7pro (phone):
 
 Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/pixel7pro/etc/wireguard/`:
 
-* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway (23.88.35.144)
-* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway (46.23.94.99)
+* wg0-blowfish.conf - Routes all traffic through blowfish gateway (23.88.35.144)
+* wg0-fishfinger.conf - Routes all traffic through fishfinger gateway (46.23.94.99)
 
 Generate QR codes for importing into the WireGuard Android app:
 
@@ -1273,12 +1273,12 @@ qrencode -t ansiutf8 < dist/pixel7pro/etc/wireguard/wg0-fishfinger.conf
 
 Import both QR codes using the WireGuard app to create two separate tunnel profiles. You can then manually enable/disable each tunnel to select which gateway to use. Only enable one tunnel at a time.
 
-#### Configuration files for earth (laptop)
+Configuration files for earth (laptop):
 
 Two separate configs in `/home/paul/git/wireguardmeshgenerator/dist/earth/etc/wireguard/`:
 
-* **wg0-blowfish.conf** - Routes all traffic through blowfish gateway
-* **wg0-fishfinger.conf** - Routes all traffic through fishfinger gateway
+* wg0-blowfish.conf - Routes all traffic through blowfish gateway
+* wg0-fishfinger.conf - Routes all traffic through fishfinger gateway
 
 Install both configurations:
 
