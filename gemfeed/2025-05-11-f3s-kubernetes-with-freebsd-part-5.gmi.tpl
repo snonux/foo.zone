@@ -471,9 +471,40 @@ hosts:
     exclude_peers:
       - earth
       - pixel7pro
-  # f1 and f2 similarly configured with exclude_peers for roaming clients
-  # (full config omitted for brevity)
-  ...
+  f1:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.131'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.131'
+      ipv6: 'fd42:beef:cafe:2::131'
+    exclude_peers:
+      - earth
+      - pixel7pro
+  f2:
+    os: FreeBSD
+    ssh:
+      user: paul
+      conf_dir: /usr/local/etc/wireguard
+      sudo_cmd: doas
+      reload_cmd: service wireguard reload
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.132'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.132'
+      ipv6: 'fd42:beef:cafe:2::132'
+    exclude_peers:
+      - earth
+      - pixel7pro
   r0:
     os: Linux
     ssh:
@@ -491,8 +522,40 @@ hosts:
     exclude_peers:
       - earth
       - pixel7pro
-  # r1 and r2 similarly configured
-  ...
+  r1:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.121'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.121'
+      ipv6: 'fd42:beef:cafe:2::121'
+    exclude_peers:
+      - earth
+      - pixel7pro
+  r2:
+    os: Linux
+    ssh:
+      user: root
+      conf_dir: /etc/wireguard
+      sudo_cmd:
+      reload_cmd: systemctl reload wg-quick@wg0.service
+    lan:
+      domain: 'lan.buetow.org'
+      ip: '192.168.1.122'
+    wg0:
+      domain: 'wg0.wan.buetow.org'
+      ip: '192.168.2.122'
+      ipv6: 'fd42:beef:cafe:2::122'
+    exclude_peers:
+      - earth
+      - pixel7pro
   blowfish:
     os: OpenBSD
     ssh:
