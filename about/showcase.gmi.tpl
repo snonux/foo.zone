@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-01-08
+Generated on: 2026-01-24
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ranked by score, which combines project size and recent activity.
 
@@ -8,25 +8,25 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 58
-* 📊 Total Commits: 11,672
-* 📈 Total Lines of Code: 314,725
-* 📄 Total Lines of Documentation: 32,713
-* 💻 Languages: Go (28.6%), Java (18.0%), C++ (11.8%), C/C++ (6.6%), C (6.1%), XML (5.6%), Perl (5.6%), Shell (5.2%), HTML (4.6%), YAML (1.9%), Config (1.4%), Ruby (0.9%), HCL (0.9%), Python (0.7%), Make (0.6%), CSS (0.4%), JSON (0.4%), Raku (0.3%), Haskell (0.2%)
-* 📚 Documentation: Markdown (55.8%), Text (33.7%), LaTeX (10.5%)
-* 🚀 Release Status: 38 released, 20 experimental (65.5% with releases, 34.5% experimental)
+* 📦 Total Projects: 59
+* 📊 Total Commits: 12,767
+* 📈 Total Lines of Code: 293,318
+* 📄 Total Lines of Documentation: 31,738
+* 💻 Languages: Go (31.3%), Java (14.0%), C++ (7.7%), C (6.6%), HTML (6.2%), Shell (6.2%), CSS (5.9%), Perl (5.9%), C/C++ (4.9%), YAML (2.8%), Python (2.4%), Config (1.5%), JSON (1.1%), Ruby (1.0%), HCL (0.9%), Make (0.6%), Raku (0.3%), XML (0.3%), Haskell (0.2%), TOML (0.1%)
+* 📚 Documentation: Markdown (62.6%), Text (35.6%), LaTeX (1.8%)
+* 🚀 Release Status: 38 released, 21 experimental (64.4% with releases, 35.6% experimental)
 
 ## Projects
 
 ### 1. conf
 
-* 💻 Languages: YAML (51.5%), Perl (17.4%), Shell (14.0%), Python (3.9%), Config (3.1%), CSS (3.0%), TOML (2.7%), Ruby (2.3%), Docker (0.8%), Lua (0.6%), JSON (0.3%), HTML (0.2%)
-* 📚 Documentation: Markdown (94.8%), Text (5.2%)
-* 📊 Commits: 1148
-* 📈 Lines of Code: 10970
-* 📄 Lines of Documentation: 3649
-* 📅 Development Period: 2021-12-28 to 2026-01-08
-* 🏆 Score: 707.8 (combines code size and activity)
+* 💻 Languages: YAML (55.0%), Shell (18.0%), Perl (13.5%), Python (3.1%), Config (2.4%), CSS (2.3%), TOML (2.1%), Ruby (1.8%), Docker (0.9%), Lua (0.5%), JSON (0.2%), HTML (0.2%)
+* 📚 Documentation: Markdown (96.1%), Text (3.9%)
+* 📊 Commits: 2167
+* 📈 Lines of Code: 14113
+* 📄 Lines of Documentation: 4886
+* 📅 Development Period: 2021-12-28 to 2026-01-23
+* 🏆 Score: 622.2 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -40,23 +40,25 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 
 ---
 
-### 2. foo.zone
+### 2. log4jbench
 
-* 💻 Languages: XML (98.5%), Shell (1.1%), Go (0.4%)
-* 📚 Documentation: Text (86.7%), Markdown (13.3%)
-* 📊 Commits: 3376
-* 📈 Lines of Code: 17290
-* 📄 Lines of Documentation: 173
-* 📅 Development Period: 2021-04-29 to 2026-01-08
-* 🏆 Score: 448.1 (combines code size and activity)
-* ⚖️ License: No license found
+* 💻 Languages: Java (78.9%), XML (21.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 4
+* 📈 Lines of Code: 774
+* 📄 Lines of Documentation: 119
+* 📅 Development Period: 2026-01-09 to 2026-01-09
+* 🏆 Score: 184.8 (combines code size and activity)
+* ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
 
-foo.zone: source code repository.
+This is a Java-based benchmarking tool for measuring Log4j2 logging throughput under different configurations. It allows developers to compare synchronous vs. asynchronous logging strategies by testing five built-in configurations: immediate-flush sync, buffered sync, and async loggers with varying LMAX Disruptor ring buffer sizes (1K/4K/10K). The tool supports configurable thread counts, duration or event-count based testing, custom message sizes, and CSV export for analysis.
 
-=> https://codeberg.org/snonux/foo.zone View on Codeberg
-=> https://github.com/snonux/foo.zone View on GitHub
+The implementation uses a fat JAR built with Maven, requiring Java 17+. It's designed for realistic benchmarking—including warmup periods and optional Linux filesystem cache dropping between tests. This helps developers make informed decisions about Log4j2 configuration tradeoffs between latency (immediate flush), throughput (buffered/async), and memory usage (ring buffer sizing) for their specific workloads.
+
+=> https://codeberg.org/snonux/log4jbench View on Codeberg
+=> https://github.com/snonux/log4jbench View on GitHub
 
 ---
 
@@ -68,7 +70,7 @@ foo.zone: source code repository.
 * 📈 Lines of Code: 3869
 * 📄 Lines of Documentation: 3700
 * 📅 Development Period: 2025-12-30 to 2026-01-06
-* 🏆 Score: 393.4 (combines code size and activity)
+* 🏆 Score: 144.0 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -92,7 +94,7 @@ The architecture routes current data (<5 min old) through Pushgateway where Prom
 * 📈 Lines of Code: 452
 * 📄 Lines of Documentation: 80
 * 📅 Development Period: 2025-11-25 to 2025-11-25
-* 🏆 Score: 59.2 (combines code size and activity)
+* 🏆 Score: 43.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.0 (2025-11-25)
 
@@ -114,7 +116,7 @@ The tool is built as a simple Go CLI application with a standard project layout 
 * 📈 Lines of Code: 28331
 * 📄 Lines of Documentation: 562
 * 📅 Development Period: 2025-08-01 to 2025-11-03
-* 🏆 Score: 41.9 (combines code size and activity)
+* 🏆 Score: 36.5 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.15.3 (2025-11-03)
 
@@ -138,7 +140,7 @@ The project is implemented as an LSP server written in Go, with a TUI component 
 * 📈 Lines of Code: 3408
 * 📄 Lines of Documentation: 82
 * 📅 Development Period: 2025-10-01 to 2025-10-24
-* 🏆 Score: 37.5 (combines code size and activity)
+* 🏆 Score: 32.1 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.3.0 (2025-10-24)
 
@@ -154,39 +156,17 @@ The implementation follows clean Go architecture with domain logic organized und
 
 ---
 
-### 7. gitsyncer
+### 7. totalrecall
 
-* 💻 Languages: Go (92.2%), Shell (7.4%), JSON (0.4%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 114
-* 📈 Lines of Code: 10075
-* 📄 Lines of Documentation: 2432
-* 📅 Development Period: 2025-06-23 to 2025-12-31
-* 🏆 Score: 25.8 (combines code size and activity)
-* ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.11.0 (2025-12-31)
-
-
-GitSyncer is a Go-based CLI tool that automatically synchronizes git repositories across multiple hosting platforms (GitHub, Codeberg, SSH servers). It maintains all branches in sync bidirectionally, never deleting branches but automatically creating and updating them as needed. The tool excels at providing repository redundancy and backup, with special support for one-way SSH backups to private servers (like home NAS devices) that may be offline intermittently. It includes AI-powered features for generating release notes and project showcase documentation, plus automated weekly batch synchronization for hands-off maintenance.
-
-The implementation uses a git remotes approach: it clones from one organization, adds others as remotes, then fetches, merges, and pushes changes across all configured locations. Built with a modern command-based structure (using Cobra), it offers fine-grained control through subcommands for syncing (individual repos, all repos, platform-specific, bidirectional), release management, testing, and repository management. Key architectural features include merge conflict detection, regex-based branch exclusion, automatic repository creation on both web platforms and SSH servers, configurable backup locations with opt-in syncing, and integration with multiple AI tools (hexai, claude, aichat) for intelligent release note generation.
-
-=> https://codeberg.org/snonux/gitsyncer View on Codeberg
-=> https://github.com/snonux/gitsyncer View on GitHub
-
----
-
-### 8. totalrecall
-
-* 💻 Languages: Go (98.9%), Shell (0.5%), YAML (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 88
-* 📈 Lines of Code: 12003
-* 📄 Lines of Documentation: 361
-* 📅 Development Period: 2025-07-14 to 2025-08-02
-* 🏆 Score: 23.8 (combines code size and activity)
+* 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
+* 📚 Documentation: Markdown (99.5%), Text (0.5%)
+* 📊 Commits: 101
+* 📈 Lines of Code: 13129
+* 📄 Lines of Documentation: 377
+* 📅 Development Period: 2025-07-14 to 2026-01-21
+* 🏆 Score: 31.8 (combines code size and activity)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.7.5 (2025-08-02)
+* 🏷️ Latest Release: v0.8.0 (2026-01-21)
 
 
 => showcase/totalrecall/image-1.png totalrecall screenshot
@@ -202,6 +182,28 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 
 ---
 
+### 8. gitsyncer
+
+* 💻 Languages: Go (92.2%), Shell (7.4%), JSON (0.4%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 116
+* 📈 Lines of Code: 10075
+* 📄 Lines of Documentation: 2432
+* 📅 Development Period: 2025-06-23 to 2025-12-31
+* 🏆 Score: 23.4 (combines code size and activity)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.11.0 (2025-12-31)
+
+
+GitSyncer is a Go-based CLI tool that automatically synchronizes git repositories across multiple hosting platforms (GitHub, Codeberg, SSH servers). It maintains all branches in sync bidirectionally, never deleting branches but automatically creating and updating them as needed. The tool excels at providing repository redundancy and backup, with special support for one-way SSH backups to private servers (like home NAS devices) that may be offline intermittently. It includes AI-powered features for generating release notes and project showcase documentation, plus automated weekly batch synchronization for hands-off maintenance.
+
+The implementation uses a git remotes approach: it clones from one organization, adds others as remotes, then fetches, merges, and pushes changes across all configured locations. Built with a modern command-based structure (using Cobra), it offers fine-grained control through subcommands for syncing (individual repos, all repos, platform-specific, bidirectional), release management, testing, and repository management. Key architectural features include merge conflict detection, regex-based branch exclusion, automatic repository creation on both web platforms and SSH servers, configurable backup locations with opt-in syncing, and integration with multiple AI tools (hexai, claude, aichat) for intelligent release note generation.
+
+=> https://codeberg.org/snonux/gitsyncer View on Codeberg
+=> https://github.com/snonux/gitsyncer View on GitHub
+
+---
+
 ### 9. foostats
 
 * 💻 Languages: Perl (100.0%)
@@ -210,7 +212,7 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 * 📈 Lines of Code: 1902
 * 📄 Lines of Documentation: 423
 * 📅 Development Period: 2023-01-02 to 2025-11-01
-* 🏆 Score: 23.3 (combines code size and activity)
+* 🏆 Score: 21.0 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.2.0 (2025-10-21)
 
@@ -224,7 +226,31 @@ The implementation uses a modular Perl architecture with specialized components:
 
 ---
 
-### 10. timr
+### 10. gogios
+
+* 💻 Languages: Go (98.5%), JSON (0.9%), YAML (0.6%)
+* 📚 Documentation: Markdown (94.9%), Text (5.1%)
+* 📊 Commits: 101
+* 📈 Lines of Code: 2921
+* 📄 Lines of Documentation: 394
+* 📅 Development Period: 2023-04-17 to 2026-01-22
+* 🏆 Score: 19.1 (combines code size and activity)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.3.0 (2026-01-06)
+
+
+=> showcase/gogios/image-1.png gogios screenshot
+
+Gogios is a minimalistic monitoring tool written in Go for small-scale infrastructure (e.g., personal servers and VMs). It executes standard Nagios/Icinga monitoring plugins via CRON jobs, tracks state changes in a JSON file, and sends email notifications through a local MTA only when check statuses change. Unlike full-featured monitoring solutions (Nagios, Icinga, Prometheus), Gogios deliberately avoids complexity—no databases, web UIs, clustering, or contact groups—making it ideal for simple, self-hosted environments with limited monitoring needs.
+
+The architecture is straightforward: JSON configuration defines checks (plugin paths, arguments, timeouts, dependencies, retries), a state directory persists check results between runs, and concurrent execution with configurable limits keeps things efficient. Key features include check dependencies (skip HTTP checks if ping fails), retry logic, stale alert detection, re-notification schedules, and support for remote checks via NRPE. A basic high-availability setup is achievable by running Gogios on two servers with staggered CRON intervals, though this results in duplicate notifications when both servers are operational—a deliberate trade-off for simplicity.
+
+=> https://codeberg.org/snonux/gogios View on Codeberg
+=> https://github.com/snonux/gogios View on GitHub
+
+---
+
+### 11. timr
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -232,7 +258,7 @@ The implementation uses a modular Perl architecture with specialized components:
 * 📈 Lines of Code: 1538
 * 📄 Lines of Documentation: 99
 * 📅 Development Period: 2025-06-25 to 2026-01-02
-* 🏆 Score: 20.7 (combines code size and activity)
+* 🏆 Score: 18.7 (combines code size and activity)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.3.0 (2026-01-02)
 
@@ -246,7 +272,7 @@ The architecture is straightforward: it's a Go-based CLI application that persis
 
 ---
 
-### 11. tasksamurai
+### 12. tasksamurai
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -254,7 +280,7 @@ The architecture is straightforward: it's a Go-based CLI application that persis
 * 📈 Lines of Code: 6168
 * 📄 Lines of Documentation: 164
 * 📅 Development Period: 2025-06-19 to 2025-11-02
-* 🏆 Score: 19.8 (combines code size and activity)
+* 🏆 Score: 18.3 (combines code size and activity)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.9.3 (2025-10-05)
 
@@ -272,7 +298,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 
 ---
 
-### 12. ior
+### 13. ior
 
 * 💻 Languages: Go (50.4%), C (43.1%), Raku (4.5%), Make (1.1%), C/C++ (1.0%)
 * 📚 Documentation: Text (69.7%), Markdown (30.3%)
@@ -280,7 +306,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 * 📈 Lines of Code: 13072
 * 📄 Lines of Documentation: 680
 * 📅 Development Period: 2024-01-18 to 2025-10-09
-* 🏆 Score: 19.6 (combines code size and activity)
+* 🏆 Score: 18.3 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -298,15 +324,15 @@ The tool is implemented in Go and C, leveraging libbpfgo for BPF interaction. It
 
 ---
 
-### 13. dtail
+### 14. dtail
 
 * 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
 * 📚 Documentation: Text (79.4%), Markdown (20.6%)
-* 📊 Commits: 1046
+* 📊 Commits: 1050
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🏆 Score: 18.2 (combines code size and activity)
+* 🏆 Score: 17.0 (combines code size and activity)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -324,7 +350,7 @@ The architecture follows a client-server model where DTail servers run on target
 
 ---
 
-### 14. gos
+### 15. gos
 
 * 💻 Languages: Go (99.8%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -332,7 +358,7 @@ The architecture follows a client-server model where DTail servers run on target
 * 📈 Lines of Code: 4102
 * 📄 Lines of Documentation: 357
 * 📅 Development Period: 2024-05-04 to 2025-12-27
-* 🏆 Score: 17.7 (combines code size and activity)
+* 🏆 Score: 16.4 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.2.2 (2025-12-27)
 
@@ -350,7 +376,7 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 
 ---
 
-### 15. ds-sim
+### 16. ds-sim
 
 * 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -358,7 +384,7 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🏆 Score: 16.4 (combines code size and activity)
+* 🏆 Score: 15.5 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -374,14 +400,14 @@ The implementation follows a modular Java architecture with clear separation bet
 
 ---
 
-### 16. gemtexter
+### 17. gemtexter
 
-* 💻 Languages: Shell (68.2%), CSS (28.5%), Config (1.9%), HTML (1.3%)
-* 📚 Documentation: Text (76.1%), Markdown (23.9%)
+* 💻 Languages: CSS (55.3%), Python (16.1%), HTML (15.3%), JSON (6.6%), Shell (5.3%), Config (1.5%)
+* 📚 Documentation: Text (70.2%), Markdown (29.8%)
 * 📊 Commits: 472
-* 📈 Lines of Code: 2288
-* 📄 Lines of Documentation: 1180
-* 📅 Development Period: 2021-05-21 to 2025-12-31
+* 📈 Lines of Code: 30319
+* 📄 Lines of Documentation: 1280
+* 📅 Development Period: 2021-05-21 to 2025-06-22
 * 🏆 Score: 11.1 (combines code size and activity)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
@@ -396,15 +422,15 @@ The architecture leverages GNU utilities (sed, grep, date) and optional tools li
 
 ---
 
-### 17. wireguardmeshgenerator
+### 18. wireguardmeshgenerator
 
-* 💻 Languages: Ruby (73.5%), YAML (26.5%)
+* 💻 Languages: Ruby (65.4%), YAML (34.6%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 33
-* 📈 Lines of Code: 396
+* 📊 Commits: 36
+* 📈 Lines of Code: 563
 * 📄 Lines of Documentation: 24
-* 📅 Development Period: 2025-04-18 to 2025-05-11
-* 🏆 Score: 10.2 (combines code size and activity)
+* 📅 Development Period: 2025-04-18 to 2026-01-20
+* 🏆 Score: 11.0 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -418,7 +444,7 @@ The tool reads host definitions from a YAML file specifying network interfaces (
 
 ---
 
-### 18. rcm
+### 19. rcm
 
 * 💻 Languages: Ruby (99.8%), TOML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -426,7 +452,7 @@ The tool reads host definitions from a YAML file specifying network interfaces (
 * 📈 Lines of Code: 1377
 * 📄 Lines of Documentation: 113
 * 📅 Development Period: 2024-12-05 to 2025-11-26
-* 🏆 Score: 9.9 (combines code size and activity)
+* 🏆 Score: 9.5 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -440,53 +466,7 @@ The implementation centers around a DSL module that provides keywords like `file
 
 ---
 
-### 19. gogios
-
-* 💻 Languages: Go (98.0%), JSON (1.2%), YAML (0.9%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 85
-* 📈 Lines of Code: 2063
-* 📄 Lines of Documentation: 211
-* 📅 Development Period: 2023-04-17 to 2026-01-06
-* 🏆 Score: 6.3 (combines code size and activity)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.3.0 (2026-01-06)
-
-
-=> showcase/gogios/image-1.png gogios screenshot
-
-Gogios is a minimalistic monitoring tool written in Go for small-scale infrastructure (e.g., personal servers and VMs). It executes standard Nagios/Icinga monitoring plugins via CRON jobs, tracks state changes in a JSON file, and sends email notifications through a local MTA only when check statuses change. Unlike full-featured monitoring solutions (Nagios, Icinga, Prometheus), Gogios deliberately avoids complexity—no databases, web UIs, clustering, or contact groups—making it ideal for simple, self-hosted environments with limited monitoring needs.
-
-The architecture is straightforward: JSON configuration defines checks (plugin paths, arguments, timeouts, dependencies, retries), a state directory persists check results between runs, and concurrent execution with configurable limits keeps things efficient. Key features include check dependencies (skip HTTP checks if ping fails), retry logic, stale alert detection, re-notification schedules, and support for remote checks via NRPE. A basic high-availability setup is achievable by running Gogios on two servers with staggered CRON intervals, though this results in duplicate notifications when both servers are operational—a deliberate trade-off for simplicity.
-
-=> https://codeberg.org/snonux/gogios View on Codeberg
-=> https://github.com/snonux/gogios View on GitHub
-
----
-
-### 20. sillybench
-
-* 💻 Languages: Go (90.9%), Shell (9.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 5
-* 📈 Lines of Code: 33
-* 📄 Lines of Documentation: 3
-* 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🏆 Score: 5.4 (combines code size and activity)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-**Silly Benchmark** is a minimal Go-based performance benchmarking tool designed to compare CPU performance between FreeBSD and Linux Bhyve VM environments. It provides two simple CPU-intensive benchmark tests: one that performs repeated integer multiplication operations (`BenchmarkCPUSilly1`) and another that executes floating-point arithmetic sequences including addition, multiplication, and division (`BenchmarkCPUSilly2`).
-
-The implementation is intentionally straightforward, using Go's built-in testing framework to run computational workloads that stress different aspects of CPU performance. The benchmarks avoid being optimized away by the compiler while remaining simple enough to produce consistent, comparable results across different operating systems and virtualization platforms. This makes it useful for quick performance comparisons when evaluating the overhead of virtualization or differences in OS scheduling and computation.
-
-=> https://codeberg.org/snonux/sillybench View on Codeberg
-=> https://github.com/snonux/sillybench View on GitHub
-
----
-
-### 21. terraform
+### 20. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -494,7 +474,7 @@ The implementation is intentionally straightforward, using Go's built-in testing
 * 📈 Lines of Code: 2851
 * 📄 Lines of Documentation: 52
 * 📅 Development Period: 2023-08-27 to 2025-08-08
-* 🏆 Score: 5.2 (combines code size and activity)
+* 🏆 Score: 5.1 (combines code size and activity)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -508,6 +488,28 @@ The infrastructure uses a **modular, layered architecture** with separate Terraf
 
 ---
 
+### 21. sillybench
+
+* 💻 Languages: Go (90.9%), Shell (9.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 33
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2025-04-03 to 2025-04-03
+* 🏆 Score: 5.1 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+**Silly Benchmark** is a minimal Go-based performance benchmarking tool designed to compare CPU performance between FreeBSD and Linux Bhyve VM environments. It provides two simple CPU-intensive benchmark tests: one that performs repeated integer multiplication operations (`BenchmarkCPUSilly1`) and another that executes floating-point arithmetic sequences including addition, multiplication, and division (`BenchmarkCPUSilly2`).
+
+The implementation is intentionally straightforward, using Go's built-in testing framework to run computational workloads that stress different aspects of CPU performance. The benchmarks avoid being optimized away by the compiler while remaining simple enough to produce consistent, comparable results across different operating systems and virtualization platforms. This makes it useful for quick performance comparisons when evaluating the overhead of virtualization or differences in OS scheduling and computation.
+
+=> https://codeberg.org/snonux/sillybench View on Codeberg
+=> https://github.com/snonux/sillybench View on GitHub
+
+---
+
 ### 22. quicklogger
 
 * 💻 Languages: Go (96.1%), XML (1.9%), Shell (1.2%), TOML (0.7%)
@@ -516,7 +518,7 @@ The infrastructure uses a **modular, layered architecture** with separate Terraf
 * 📈 Lines of Code: 1133
 * 📄 Lines of Documentation: 78
 * 📅 Development Period: 2024-01-20 to 2025-09-13
-* 🏆 Score: 5.2 (combines code size and activity)
+* 🏆 Score: 5.1 (combines code size and activity)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.0.4 (2025-09-13)
 
@@ -542,7 +544,7 @@ The implementation leverages Go's cross-compilation capabilities and Fyne's UI a
 * 📈 Lines of Code: 1525
 * 📄 Lines of Documentation: 15
 * 📅 Development Period: 2023-04-17 to 2023-11-19
-* 🏆 Score: 3.6 (combines code size and activity)
+* 🏆 Score: 3.5 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -565,7 +567,7 @@ The architecture consists of client/server components for inter-node communicati
 * 📈 Lines of Code: 312
 * 📄 Lines of Documentation: 416
 * 📅 Development Period: 2013-03-22 to 2025-05-18
-* 🏆 Score: 2.7 (combines code size and activity)
+* 🏆 Score: 2.6 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
@@ -587,7 +589,7 @@ The implementation uses an object-oriented architecture with specialized classes
 * 📈 Lines of Code: 40
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2023-12-31 to 2025-08-11
-* 🏆 Score: 2.6 (combines code size and activity)
+* 🏆 Score: 2.5 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -669,30 +671,7 @@ The implementation is a straightforward bash script using `qpdf` for PDF extract
 
 ---
 
-### 29. photoalbum
-
-* 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 153
-* 📈 Lines of Code: 342
-* 📄 Lines of Documentation: 39
-* 📅 Development Period: 2011-11-19 to 2022-04-02
-* 🏆 Score: 1.7 (combines code size and activity)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.5.0 (2022-02-21)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-**photoalbum** is a minimal Bash-based static site generator specifically designed for creating web photo albums on Unix-like systems. It transforms a directory of photos into a pure HTML+CSS website without any JavaScript, making it lightweight, fast, and accessible. The tool uses ImageMagick's `convert` utility for image processing and employs Bash-HTML template files that users can customize to match their preferences.
-
-The architecture is straightforward and Unix-philosophy driven: users configure a source directory containing photos via an `photoalbumrc` configuration file, run the generation command, and receive a fully static `./dist` directory ready for deployment to any web server. This approach is useful for users who want a simple, dependency-light solution for sharing photo collections online without the overhead of dynamic web applications, databases, or JavaScript frameworks—just clean, static HTML that works everywhere.
-
-=> https://codeberg.org/snonux/photoalbum View on Codeberg
-=> https://github.com/snonux/photoalbum View on GitHub
-
----
-
-### 30. ioriot
+### 29. ioriot
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -700,7 +679,7 @@ The architecture is straightforward and Unix-philosophy driven: users configure 
 * 📈 Lines of Code: 12420
 * 📄 Lines of Documentation: 610
 * 📅 Development Period: 2018-03-01 to 2020-01-22
-* 🏆 Score: 1.6 (combines code size and activity)
+* 🏆 Score: 1.5 (combines code size and activity)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0.5.1 (2019-01-04)
 
@@ -717,7 +696,7 @@ The key advantage over traditional benchmarking tools is that it reproduces actu
 
 ---
 
-### 31. sway-autorotate
+### 30. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -739,7 +718,7 @@ The implementation uses a bash script that continuously monitors the `monitor-se
 
 ---
 
-### 32. mon
+### 31. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -762,7 +741,7 @@ Implemented in Perl, `mon` features automatic JSON backup before modifications (
 
 ---
 
-### 33. staticfarm-apache-handlers
+### 32. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -785,7 +764,7 @@ Both handlers are implemented as Perl modules using Apache2's mod_perl API, conf
 
 ---
 
-### 34. pingdomfetch
+### 33. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -808,30 +787,7 @@ The tool is implemented around a hierarchical configuration system (`/etc/pingdo
 
 ---
 
-### 35. ychat
-
-* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 67884
-* 📄 Lines of Documentation: 127
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🏆 Score: 0.9 (combines code size and activity)
-* ⚖️ License: GPL-2.0
-* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-yChat is a high-performance, web-based chat server written in C++ that allows users to connect through standard web browsers without requiring special client software. It functions as a standalone HTTP server on a customizable port (default 2000), eliminating the need for Apache or other web servers, and uses only HTML, CSS, and JavaScript on the client side. The project was developed under the GNU GPL and designed for portability across POSIX-compliant systems including Linux, FreeBSD, and other UNIX variants.
-
-The architecture emphasizes speed and scalability through several key design choices: multi-threaded POSIX implementation with thread pooling to efficiently handle concurrent users, hash maps for O(1) data lookups, and a smart garbage collection system that caches inactive user and room objects for quick reuse. It features MySQL database support for registered users, a modular plugin system through dynamically loadable modules, HTML template-based customization, XML configuration, and an ncurses-based administration interface with CLI support. The codebase can also be converted to yhttpd, a standalone web server subset. Performance benchmarks show it handling over 1000 requests/second while using minimal CPU resources, with the system supporting comprehensive logging, multi-language support, and Apache-compatible log formats.
-
-=> https://codeberg.org/snonux/ychat View on Codeberg
-=> https://github.com/snonux/ychat View on GitHub
-
----
-
-### 36. xerl
+### 34. xerl
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 670
@@ -852,7 +808,75 @@ The implementation follows strict OO Perl conventions with explicit typing and p
 
 ---
 
-### 37. perl-c-fibonacci
+### 35. fapi
+
+* 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
+* 📚 Documentation: Text (98.3%), Markdown (1.7%)
+* 📊 Commits: 221
+* 📈 Lines of Code: 1681
+* 📄 Lines of Documentation: 539
+* 📅 Development Period: 2014-03-10 to 2026-01-10
+* 🏆 Score: 0.8 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 1.0.2 (2014-11-17)
+
+
+fapi is a command-line tool for managing F5 BigIP load balancers through the iControl API. It provides a simple, human-friendly interface for common load balancer operations including managing nodes, pools, virtual servers, monitors, and network components like VLANs and self IPs. The tool supports various deployment patterns including nPath services, NAT/SNAT configurations, and SSL offloading, while offering intelligent features like automatic FQDN-to-IP resolution and flexible naming conventions.
+
+The tool is implemented in Python and depends on the bigsuds library (F5's iControl wrapper) to communicate with the F5 API. It's designed as a lightweight alternative to the web GUI or raw API calls, with a straightforward command syntax (e.g., `fapi pool foopool create`, `fapi vserver example.com:80 set pool foopool`) that makes common tasks quick and scriptable. The project is open source and hosted on Codeberg, originally developed as a personal project for Debian-based systems.
+
+=> https://codeberg.org/snonux/fapi View on Codeberg
+=> https://github.com/snonux/fapi View on GitHub
+
+---
+
+### 36. photoalbum
+
+* 💻 Languages: Shell (78.1%), Make (13.5%), Config (8.4%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 153
+* 📈 Lines of Code: 311
+* 📄 Lines of Documentation: 45
+* 📅 Development Period: 2011-11-19 to 2022-02-20
+* 🏆 Score: 0.8 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.5.0 (2022-02-21)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**photoalbum** is a minimal Bash-based static site generator specifically designed for creating web photo albums on Unix-like systems. It transforms a directory of photos into a pure HTML+CSS website without any JavaScript, making it lightweight, fast, and accessible. The tool uses ImageMagick's `convert` utility for image processing and employs Bash-HTML template files that users can customize to match their preferences.
+
+The architecture is straightforward and Unix-philosophy driven: users configure a source directory containing photos via an `photoalbumrc` configuration file, run the generation command, and receive a fully static `./dist` directory ready for deployment to any web server. This approach is useful for users who want a simple, dependency-light solution for sharing photo collections online without the overhead of dynamic web applications, databases, or JavaScript frameworks—just clean, static HTML that works everywhere.
+
+=> https://codeberg.org/snonux/photoalbum View on Codeberg
+=> https://github.com/snonux/photoalbum View on GitHub
+
+---
+
+### 37. ychat
+
+* 💻 Languages: C++ (48.9%), Shell (22.7%), C/C++ (20.7%), Perl (2.5%), HTML (2.1%), Config (1.9%), Make (0.9%), CSS (0.2%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 67
+* 📈 Lines of Code: 45956
+* 📄 Lines of Documentation: 101
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🏆 Score: 0.8 (combines code size and activity)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+yChat is a high-performance, web-based chat server written in C++ that allows users to connect through standard web browsers without requiring special client software. It functions as a standalone HTTP server on a customizable port (default 2000), eliminating the need for Apache or other web servers, and uses only HTML, CSS, and JavaScript on the client side. The project was developed under the GNU GPL and designed for portability across POSIX-compliant systems including Linux, FreeBSD, and other UNIX variants.
+
+The architecture emphasizes speed and scalability through several key design choices: multi-threaded POSIX implementation with thread pooling to efficiently handle concurrent users, hash maps for O(1) data lookups, and a smart garbage collection system that caches inactive user and room objects for quick reuse. It features MySQL database support for registered users, a modular plugin system through dynamically loadable modules, HTML template-based customization, XML configuration, and an ncurses-based administration interface with CLI support. The codebase can also be converted to yhttpd, a standalone web server subset. Performance benchmarks show it handling over 1000 requests/second while using minimal CPU resources, with the system supporting comprehensive logging, multi-language support, and Apache-compatible log formats.
+
+=> https://codeberg.org/snonux/ychat View on Codeberg
+=> https://github.com/snonux/ychat View on GitHub
+
+---
+
+### 38. perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -870,29 +894,6 @@ perl-c-fibonacci: source code repository.
 
 => https://codeberg.org/snonux/perl-c-fibonacci View on Codeberg
 => https://github.com/snonux/perl-c-fibonacci View on GitHub
-
----
-
-### 38. fapi
-
-* 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
-* 📚 Documentation: Text (98.3%), Markdown (1.7%)
-* 📊 Commits: 219
-* 📈 Lines of Code: 1681
-* 📄 Lines of Documentation: 539
-* 📅 Development Period: 2014-03-10 to 2021-11-03
-* 🏆 Score: 0.8 (combines code size and activity)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 1.0.2 (2014-11-17)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-fapi is a command-line tool for managing F5 BigIP load balancers through the iControl API. It provides a simple, human-friendly interface for common load balancer operations including managing nodes, pools, virtual servers, monitors, and network components like VLANs and self IPs. The tool supports various deployment patterns including nPath services, NAT/SNAT configurations, and SSL offloading, while offering intelligent features like automatic FQDN-to-IP resolution and flexible naming conventions.
-
-The tool is implemented in Python and depends on the bigsuds library (F5's iControl wrapper) to communicate with the F5 API. It's designed as a lightweight alternative to the web GUI or raw API calls, with a straightforward command syntax (e.g., `fapi pool foopool create`, `fapi vserver example.com:80 set pool foopool`) that makes common tasks quick and scriptable. The project is open source and hosted on Codeberg, originally developed as a personal project for Debian-based systems.
-
-=> https://codeberg.org/snonux/fapi View on Codeberg
-=> https://github.com/snonux/fapi View on GitHub
 
 ---
 
@@ -967,28 +968,26 @@ The implementation uses a concurrent architecture with goroutines for data colle
 
 ---
 
-### 42. vs-sim
+### 42. fype
 
-* 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
-* 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
-* 📊 Commits: 411
-* 📈 Lines of Code: 16303
-* 📄 Lines of Documentation: 2903
-* 📅 Development Period: 2008-05-15 to 2021-05-01
+* 💻 Languages: C (71.1%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (69.5%), LaTeX (30.5%)
+* 📊 Commits: 99
+* 📈 Lines of Code: 8952
+* 📄 Lines of Documentation: 1867
+* 📅 Development Period: 2008-05-15 to 2021-11-03
 * 🏆 Score: 0.7 (combines code size and activity)
 * ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0 (2008-08-24)
+* 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-=> showcase/vs-sim/image-1.jpg vs-sim screenshot
+Fype is a 32-bit scripting language designed as a fun, AWK-inspired alternative with a simpler syntax. It supports variables with automatic type conversion, functions, loops, control structures, and built-in operations for math, I/O, and system calls. A notable feature is its support for "synonyms" (references/aliases to variables and functions), along with both procedures (using the caller's namespace) and functions (with lexical scoping). The language uses a straightforward syntax with single-character comments (#) and statement-based execution terminated by semicolons.
 
-VS-Sim is a Java-based open source simulator for distributed systems, designed to help students and researchers visualize and understand distributed computing concepts. Based on the roadmap, it appears to support simulating various distributed systems protocols including Lamport and vector clocks for logical time management, and potentially distributed file systems like NFS and AFS. The simulator features event-based simulation, logging capabilities, and a plugin architecture.
+The implementation uses a simple top-down parser with maximum lookahead of 1, interpreting code simultaneously as it parses, which means syntax errors are only caught at runtime. Written in C and compiled with GCC, it's designed for BSD systems (tested on FreeBSD 7.0) and uses NetBSD Make for building. The project is still unreleased and incomplete, but aims to eventually match AWK's capabilities while potentially adding modern features like function pointers and closures, though explicitly avoiding complexity like OOP, Unicode, or threading.
 
-The project appears to be currently inactive, with the repository containing minimal source code at present. It was originally developed as part of academic work (referenced as "diplomarbeit.pdf" in the roadmap), likely for teaching distributed systems concepts through interactive simulation and protocol visualization.
-
-=> https://codeberg.org/snonux/vs-sim View on Codeberg
-=> https://github.com/snonux/vs-sim View on GitHub
+=> https://codeberg.org/snonux/fype View on Codeberg
+=> https://github.com/snonux/fype View on GitHub
 
 ---
 
@@ -1015,30 +1014,7 @@ The tool is implemented as a lightweight Ruby script that prioritizes simplicity
 
 ---
 
-### 44. fype
-
-* 💻 Languages: C (71.3%), C/C++ (20.6%), HTML (6.6%), Make (1.5%)
-* 📚 Documentation: Text (60.2%), LaTeX (39.8%)
-* 📊 Commits: 99
-* 📈 Lines of Code: 8906
-* 📄 Lines of Documentation: 1431
-* 📅 Development Period: 2008-05-15 to 2021-04-29
-* 🏆 Score: 0.7 (combines code size and activity)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Fype is a 32-bit scripting language designed as a fun, AWK-inspired alternative with a simpler syntax. It supports variables with automatic type conversion, functions, loops, control structures, and built-in operations for math, I/O, and system calls. A notable feature is its support for "synonyms" (references/aliases to variables and functions), along with both procedures (using the caller's namespace) and functions (with lexical scoping). The language uses a straightforward syntax with single-character comments (#) and statement-based execution terminated by semicolons.
-
-The implementation uses a simple top-down parser with maximum lookahead of 1, interpreting code simultaneously as it parses, which means syntax errors are only caught at runtime. Written in C and compiled with GCC, it's designed for BSD systems (tested on FreeBSD 7.0) and uses NetBSD Make for building. The project is still unreleased and incomplete, but aims to eventually match AWK's capabilities while potentially adding modern features like function pointers and closures, though explicitly avoiding complexity like OOP, Unicode, or threading.
-
-=> https://codeberg.org/snonux/fype View on Codeberg
-=> https://github.com/snonux/fype View on GitHub
-
----
-
-### 45. pwgrep
+### 44. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (80.8%), Markdown (19.2%)
@@ -1061,7 +1037,7 @@ The architecture is lightweight and Unix-philosophy driven: password databases a
 
 ---
 
-### 46. perldaemon
+### 45. perldaemon
 
 * 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
@@ -1082,7 +1058,7 @@ The implementation centers around an event loop with configurable intervals that
 
 ---
 
-### 47. jsmstrade
+### 46. jsmstrade
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1107,7 +1083,7 @@ The implementation is minimalistic, consisting of just three main Java classes (
 
 ---
 
-### 48. japi
+### 47. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1130,7 +1106,7 @@ Implemented in Perl using the JIRA::REST CPAN module, japi supports flexible con
 
 ---
 
-### 49. perl-poetry
+### 48. perl-poetry
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1153,7 +1129,7 @@ This project exemplifies creative coding where Perl keywords and constructs are 
 
 ---
 
-### 50. muttdelay
+### 49. muttdelay
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1176,7 +1152,7 @@ The architecture uses three components working together: a Vim plugin that provi
 
 ---
 
-### 51. netdiff
+### 50. netdiff
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1199,7 +1175,7 @@ The tool uses a clever client-server architecture where you run the identical co
 
 ---
 
-### 52. debroid
+### 51. debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1224,7 +1200,7 @@ The implementation uses a two-stage debootstrap process: first creating a Debian
 
 ---
 
-### 53. hsbot
+### 52. hsbot
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 80
@@ -1245,7 +1221,7 @@ The implementation uses a modular design with core components separated into Bas
 
 ---
 
-### 54. cpuinfo
+### 53. cpuinfo
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1268,7 +1244,7 @@ The implementation is elegantly simple: a single shell script ([src/cpuinfo](fil
 
 ---
 
-### 55. template
+### 54. template
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1291,7 +1267,7 @@ The implementation uses a **Makefile-based build system** with targets for compi
 
 ---
 
-### 56. ipv6test
+### 55. ipv6test
 
 * 💻 Languages: Perl (100.0%)
 * 📊 Commits: 7
@@ -1312,7 +1288,7 @@ The implementation uses a simple CGI script ([index.pl](file:///home/paul/git/gi
 
 ---
 
-### 57. awksite
+### 56. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Text (60.0%), Markdown (40.0%)
@@ -1335,7 +1311,7 @@ The architecture is remarkably simple: a single AWK script ([index.cgi](file:///
 
 ---
 
-### 58. dyndns
+### 57. dyndns
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1355,3 +1331,45 @@ The implementation uses a two-tier security architecture: SSH public key authent
 
 => https://codeberg.org/snonux/dyndns View on Codeberg
 => https://github.com/snonux/dyndns View on GitHub
+
+---
+
+### 58. vs-sim
+
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 411
+* 📈 Lines of Code: 0
+* 📄 Lines of Documentation: 7
+* 📅 Development Period: 2008-05-15 to 2015-05-23
+* 🏆 Score: 0.0 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0 (2008-08-24)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+VS-Sim is a Java-based open source simulator for distributed systems, designed to help students and researchers visualize and understand distributed computing concepts. Based on the roadmap, it appears to support simulating various distributed systems protocols including Lamport and vector clocks for logical time management, and potentially distributed file systems like NFS and AFS. The simulator features event-based simulation, logging capabilities, and a plugin architecture.
+
+The project appears to be currently inactive, with the repository containing minimal source code at present. It was originally developed as part of academic work (referenced as "diplomarbeit.pdf" in the roadmap), likely for teaching distributed systems concepts through interactive simulation and protocol visualization.
+
+=> https://codeberg.org/snonux/vs-sim View on Codeberg
+=> https://github.com/snonux/vs-sim View on GitHub
+
+---
+
+### 59. foo.zone
+
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 3408
+* 📈 Lines of Code: 0
+* 📄 Lines of Documentation: 23
+* 📅 Development Period: 2021-05-21 to 2022-04-02
+* 🏆 Score: 0.0 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+foo.zone: source code repository.
+
+=> https://codeberg.org/snonux/foo.zone View on Codeberg
+=> https://github.com/snonux/foo.zone View on GitHub
