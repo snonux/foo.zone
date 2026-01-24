@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-17T00:21:37+02:00</updated>
+    <updated>2026-01-24T23:12:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -6791,7 +6791,7 @@ zroot/bhyve/rocky  keystatus             available              -
 <br />
 <ul>
 <li>NFS data (<span class='inlinecode'>/data/nfs/k3svolumes</span>): Soon, it will contain active Kubernetes persistent volumes. Needs frequent replication (every minute) to minimise data loss during failover.</li>
-<li>VM data (<span class='inlinecode'>/zroot/bhyve/fedora</span>): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).</li>
+<li>VM data (<span class='inlinecode'>/zroot/bhyve/freebsd</span>): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).</li>
 </ul><br />
 <span>The 1-minute replication window is perfectly acceptable for my personal use cases. This isn&#39;t a high-frequency trading system or a real-time database—it&#39;s storage for personal projects, development work, and home lab experiments. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Additionally, in the case of a "1 minute of data loss," I would likely still have the data available on the client side.</span><br />
 <br />
@@ -6908,13 +6908,13 @@ global:
           grid: 4x7d | 6x30d
           regex: <font color="#808080">"^zrepl_.*"</font>
 
-  - name: f0_to_f1_fedora
+  - name: f0_to_f1_freebsd
     <b><u><font color="#000000">type</font></u></b>: push
     connect:
       <b><u><font color="#000000">type</font></u></b>: tcp
       address: <font color="#808080">"192.168.2.131:8888"</font>
     filesystems:
-      <font color="#808080">"zroot/bhyve/fedora"</font>: <b><u><font color="#000000">true</font></u></b>
+      <font color="#808080">"zroot/bhyve/freebsd"</font>: <b><u><font color="#000000">true</font></u></b>
     send:
       encrypted: <b><u><font color="#000000">true</font></u></b>
     snapshotting:
@@ -6941,9 +6941,9 @@ EOF
 <br />
 <ul>
 <li><span class='inlinecode'>f0_to_f1_nfsdata</span>: Replicates NFS data every minute for faster failover recovery</li>
-<li><span class='inlinecode'>f0_to_f1_fedora</span>: Replicates Fedora VM every ten minutes (less critical)</li>
+<li><span class='inlinecode'>f0_to_f1_freebsd</span>: Replicates FreeBSD VM every ten minutes (less critical)</li>
 </ul><br />
-<span>The Fedora VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases, hows <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
+<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases, hows <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
 <br />
 <span>Furthermore:</span><br />
 <br />
@@ -7055,13 +7055,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-6/zrepl.png'><img alt='zrepl status' title='zrepl status' src='./f3s-kubernetes-with-freebsd-part-6/zrepl.png' /></a><br />
 <br />
-<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/fedora</span> on <span class='inlinecode'>f0</span> will be automatically replicated to <span class='inlinecode'>f1</span> every 1 minute (or 10 minutes in the case of the Fedora VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
+<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/freebsd</span> on <span class='inlinecode'>f0</span> will be automatically replicated to <span class='inlinecode'>f1</span> every 1 minute (or 10 minutes in the case of the FreeBSD VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
 <br />
 <span>The replicated data appears on <span class='inlinecode'>f1</span> under <span class='inlinecode'>zdata/sink/</span> with the source host and dataset hierarchy preserved:</span><br />
 <br />
 <ul>
 <li><span class='inlinecode'>zdata/enc/nfsdata</span> → <span class='inlinecode'>zdata/sink/f0/zdata/enc/nfsdata</span></li>
-<li><span class='inlinecode'>zroot/bhyve/fedora</span> → <span class='inlinecode'>zdata/sink/f0/zroot/bhyve/fedora</span></li>
+<li><span class='inlinecode'>zroot/bhyve/freebsd</span> → <span class='inlinecode'>zdata/sink/f0/zroot/bhyve/freebsd</span></li>
 </ul><br />
 <span>This is by design - <span class='inlinecode'>zrepl</span> preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources.</span><br />
 <br />
@@ -7085,14 +7085,14 @@ zrepl is running as pid <font color="#000000">2309</font>.
 <i><font color="silver"># Check that new snapshots are being created and replicated</font></i>
 paul@f0:~ % doas zfs list -t snapshot | grep `zrepl` | tail -<font color="#000000">2</font>
 zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
-zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  <font color="#000000">2</font>.97G  -
+zroot/bhyve/freebsd@zrepl_20250701_202530_000               0B      -  <font color="#000000">2</font>.97G  -
 .
 .
 .
 
 paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep <font color="#000000">202530</font>
 zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata@zrepl_20250701_202530_000      0B      -   176K  -
-zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora@zrepl_20250701_202530_000     0B      -  <font color="#000000">2</font>.97G  -
+zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/freebsd@zrepl_20250701_202530_000     0B      -  <font color="#000000">2</font>.97G  -
 .
 .
 .
@@ -7321,12 +7321,12 @@ paul@f1:~ % doas zfs list -t snapshot | grep nfsdata
 <i><font color="silver"># Destroy the entire destination dataset to allow clean replication</font></i>
 paul@f1:~ % doas zfs destroy -r zdata/sink/f<font color="#000000">0</font>/zdata/enc/nfsdata
 
-<i><font color="silver"># For VM replication, do the same for the fedora dataset</font></i>
-paul@f1:~ % doas zfs destroy -r zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/fedora
+<i><font color="silver"># For VM replication, do the same for the freebsd dataset</font></i>
+paul@f1:~ % doas zfs destroy -r zdata/sink/f<font color="#000000">0</font>/zroot/bhyve/freebsd
 
 <i><font color="silver"># Wake up zrepl to start fresh replication</font></i>
 paul@f0:~ % doas zrepl signal wakeup f0_to_f1_nfsdata
-paul@f0:~ % doas zrepl signal wakeup f0_to_f1_fedora
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_freebsd
 
 <i><font color="silver"># Check replication status</font></i>
 paul@f0:~ % doas zrepl status --mode raw
