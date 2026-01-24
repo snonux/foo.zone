@@ -300,7 +300,7 @@ Data replication is the cornerstone of high availability. While CARP handles IP 
 Our storage system has different replication needs:
 
 * NFS data (`/data/nfs/k3svolumes`): Soon, it will contain active Kubernetes persistent volumes. Needs frequent replication (every minute) to minimise data loss during failover.
-* VM data (`/zroot/bhyve/fedora`): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).
+* VM data (`/zroot/bhyve/freebsd`): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).
 
 The 1-minute replication window is perfectly acceptable for my personal use cases. This isn't a high-frequency trading system or a real-time database—it's storage for personal projects, development work, and home lab experiments. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Additionally, in the case of a "1 minute of data loss," I would likely still have the data available on the client side.
 
@@ -401,13 +401,13 @@ jobs:
           grid: 4x7d | 6x30d
           regex: "^zrepl_.*"
 
-  - name: f0_to_f1_fedora
+  - name: f0_to_f1_freebsd
     type: push
     connect:
       type: tcp
       address: "192.168.2.131:8888"
     filesystems:
-      "zroot/bhyve/fedora": true
+      "zroot/bhyve/freebsd": true
     send:
       encrypted: true
     snapshotting:
@@ -433,9 +433,9 @@ EOF
  We're using two separate replication jobs with different intervals:
 
 * `f0_to_f1_nfsdata`: Replicates NFS data every minute for faster failover recovery
-* `f0_to_f1_fedora`: Replicates Fedora VM every ten minutes (less critical)
+* `f0_to_f1_freebsd`: Replicates FreeBSD VM every ten minutes (less critical)
 
-The Fedora VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows `zrepl`'s flexibility in handling different datasets with varying replication needs.
+The FreeBSD VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows `zrepl`'s flexibility in handling different datasets with varying replication needs.
 
 Furthermore:
 
@@ -534,12 +534,12 @@ paul@f0:~ % doas zrepl status
 
 [![zrepl status](./f3s-kubernetes-with-freebsd-part-6/zrepl.png "zrepl status")](./f3s-kubernetes-with-freebsd-part-6/zrepl.png)  
 
-With this setup, both `zdata/enc/nfsdata` and `zroot/bhyve/fedora` on `f0` will be automatically replicated to `f1` every 1 minute (or 10 minutes in the case of the Fedora VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.
+With this setup, both `zdata/enc/nfsdata` and `zroot/bhyve/freebsd` on `f0` will be automatically replicated to `f1` every 1 minute (or 10 minutes in the case of the FreeBSD VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.
 
 The replicated data appears on `f1` under `zdata/sink/` with the source host and dataset hierarchy preserved:
 
 * `zdata/enc/nfsdata` → `zdata/sink/f0/zdata/enc/nfsdata`
-* `zroot/bhyve/fedora` → `zdata/sink/f0/zroot/bhyve/fedora`
+* `zroot/bhyve/freebsd` → `zdata/sink/f0/zroot/bhyve/freebsd`
 
 This is by design - `zrepl` preserves the complete path from the source to ensure there are no conflicts when replicating from multiple sources.
 
@@ -560,14 +560,14 @@ zrepl is running as pid 2309.
 # Check that new snapshots are being created and replicated
 paul@f0:~ % doas zfs list -t snapshot | grep `zrepl` | tail -2
 zdata/enc/nfsdata@zrepl_20250701_202530_000                0B      -   200K  -
-zroot/bhyve/fedora@zrepl_20250701_202530_000               0B      -  2.97G  -
+zroot/bhyve/freebsd@zrepl_20250701_202530_000               0B      -  2.97G  -
 .
 .
 .
 
 paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep 202530
 zdata/sink/f0/zdata/enc/nfsdata@zrepl_20250701_202530_000      0B      -   176K  -
-zdata/sink/f0/zroot/bhyve/fedora@zrepl_20250701_202530_000     0B      -  2.97G  -
+zdata/sink/f0/zroot/bhyve/freebsd@zrepl_20250701_202530_000     0B      -  2.97G  -
 .
 .
 .
@@ -763,12 +763,12 @@ paul@f1:~ % doas zfs list -t snapshot | grep nfsdata
 # Destroy the entire destination dataset to allow clean replication
 paul@f1:~ % doas zfs destroy -r zdata/sink/f0/zdata/enc/nfsdata
 
-# For VM replication, do the same for the fedora dataset
-paul@f1:~ % doas zfs destroy -r zdata/sink/f0/zroot/bhyve/fedora
+# For VM replication, do the same for the freebsd dataset
+paul@f1:~ % doas zfs destroy -r zdata/sink/f0/zroot/bhyve/freebsd
 
 # Wake up zrepl to start fresh replication
 paul@f0:~ % doas zrepl signal wakeup f0_to_f1_nfsdata
-paul@f0:~ % doas zrepl signal wakeup f0_to_f1_fedora
+paul@f0:~ % doas zrepl signal wakeup f0_to_f1_freebsd
 
 # Check replication status
 paul@f0:~ % doas zrepl status --mode raw
