@@ -20,6 +20,9 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * ⇢ f3s: Kubernetes with FreeBSD - Part 6: Storage
 * ⇢ ⇢ Introduction
 * ⇢ ⇢ Additional storage capacity
+* ⇢ ⇢ Update: Upgrade to 4TB drives
+* ⇢ ⇢ ⇢ Upgrading f1 (simpler approach)
+* ⇢ ⇢ ⇢ Upgrading f0 (using ZFS resilvering)
 * ⇢ ⇢ ZFS encryption keys
 * ⇢ ⇢ ⇢ UFS on USB keys
 * ⇢ ⇢ ⇢ Generating encryption keys
@@ -117,37 +120,37 @@ paul@f1:/ % doas camcontrol devlist
 <CT1000BX500SSD1 M6CR072>          at scbus1 target 0 lun 0 (pass1,ada1)
 ```
 
-> Update: 27.01.2026
+## Update: Upgrade to 4TB drives
 
-I have since replaced the 1TB drives with 4TB drives for more storage capacity. The upgrade procedure was different for each node:
+> Update: 27.01.2026 I have since replaced the 1TB drives with 4TB drives for more storage capacity. The upgrade procedure was different for each node:
 
-**Upgrading f1 (simpler approach):**
+### Upgrading f1 (simpler approach)
 
 Since f1 is the replication sink, the upgrade was straightforward:
 
-1. Physically replaced the 1TB drive with the 4TB drive
-2. Re-setup the drive as described earlier in this blog post
-3. Re-replicated all data from f0 to f1 via zrepl
-4. Reloaded the encryption keys as described in this blog post
-5. Set the mount point again for the encrypted dataset, explicitly as read-only (since f1 is the replication sink)
+* 1. Physically replaced the 1TB drive with the 4TB drive
+* 2. Re-setup the drive as described earlier in this blog post
+* 3. Re-replicated all data from f0 to f1 via zrepl
+* 4. Reloaded the encryption keys as described in this blog post
+* 5. Set the mount point again for the encrypted dataset, explicitly as read-only (since f1 is the replication sink)
 
-**Upgrading f0 (using ZFS resilvering):**
+### Upgrading f0 (using ZFS resilvering)
 
 For f0, which is the primary storage node, I used ZFS resilvering to avoid data loss:
 
-1. Plugged the new 4TB drive into an external USB SSD drive reader
-2. Attached the 4TB drive to the zdata pool for resilvering
-3. Once resilvering completed, detached the 1TB drive from the zdata pool
-4. Shutdown f0 and physically replaced the internal drive
-5. Booted with the new drive in place
-6. Expanded the pool to use the full 4TB capacity:
+* 1. Plugged the new 4TB drive into an external USB SSD drive reader
+* 2. Attached the 4TB drive to the zdata pool for resilvering
+* 3. Once resilvering completed, detached the 1TB drive from the zdata pool
+* 4. Shutdown f0 and physically replaced the internal drive
+* 5. Booted with the new drive in place
+* 6. Expanded the pool to use the full 4TB capacity:
 
 ```sh
 paul@f0:~ % doas zpool online -e /dev/ada1
 ```
 
-7. Reloaded the encryption keys as described in this blog post
-8. Set the mount point again for the encrypted dataset
+* 7. Reloaded the encryption keys as described in this blog post
+* 8. Set the mount point again for the encrypted dataset
 
 This was a one-time effort on both nodes - after a reboot, everything was remembered and came up normally. Here are the updated outputs:
 
