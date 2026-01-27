@@ -20,9 +20,6 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * [⇢ f3s: Kubernetes with FreeBSD - Part 6: Storage](#f3s-kubernetes-with-freebsd---part-6-storage)
 * [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ Additional storage capacity](#additional-storage-capacity)
-* [⇢ ⇢ Update: Upgrade to 4TB drives](#update-upgrade-to-4tb-drives)
-* [⇢ ⇢ ⇢ Upgrading f1 (simpler approach)](#upgrading-f1-simpler-approach)
-* [⇢ ⇢ ⇢ Upgrading f0 (using ZFS resilvering)](#upgrading-f0-using-zfs-resilvering)
 * [⇢ ⇢ ZFS encryption keys](#zfs-encryption-keys)
 * [⇢ ⇢ ⇢ UFS on USB keys](#ufs-on-usb-keys)
 * [⇢ ⇢ ⇢ Generating encryption keys](#generating-encryption-keys)
@@ -65,6 +62,9 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 * [⇢ ⇢ ⇢ Testing NFS Mount with Stunnel](#testing-nfs-mount-with-stunnel)
 * [⇢ ⇢ ⇢ Testing CARP Failover with mounted clients and stale file handles:](#testing-carp-failover-with-mounted-clients-and-stale-file-handles)
 * [⇢ ⇢ ⇢ Complete Failover Test](#complete-failover-test)
+* [⇢ ⇢ Update: Upgrade to 4TB drives](#update-upgrade-to-4tb-drives)
+* [⇢ ⇢ ⇢ Upgrading f1 (simpler approach)](#upgrading-f1-simpler-approach)
+* [⇢ ⇢ ⇢ Upgrading f0 (using ZFS resilvering)](#upgrading-f0-using-zfs-resilvering)
 * [⇢ ⇢ Conclusion](#conclusion)
 * [⇢ ⇢ Future Storage Explorations](#future-storage-explorations)
 * [⇢ ⇢ ⇢ MinIO for S3-Compatible Object Storage](#minio-for-s3-compatible-object-storage)
@@ -118,61 +118,6 @@ To verify that we have a different SSD on the second node (the third node has th
 paul@f1:/ % doas camcontrol devlist
 <512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
 <CT1000BX500SSD1 M6CR072>          at scbus1 target 0 lun 0 (pass1,ada1)
-```
-
-## Update: Upgrade to 4TB drives
-
-> Update: 27.01.2026 I have since replaced the 1TB drives with 4TB drives for more storage capacity. The upgrade procedure was different for each node:
-
-### Upgrading f1 (simpler approach)
-
-Since f1 is the replication sink, the upgrade was straightforward:
-
-* 1. Physically replaced the 1TB drive with the 4TB drive
-* 2. Re-setup the drive as described earlier in this blog post
-* 3. Re-replicated all data from f0 to f1 via zrepl
-* 4. Reloaded the encryption keys as described in this blog post
-* 5. Set the mount point again for the encrypted dataset, explicitly as read-only (since f1 is the replication sink)
-
-### Upgrading f0 (using ZFS resilvering)
-
-For f0, which is the primary storage node, I used ZFS resilvering to avoid data loss:
-
-* 1. Plugged the new 4TB drive into an external USB SSD drive reader
-* 2. Attached the 4TB drive to the zdata pool for resilvering
-* 3. Once resilvering completed, detached the 1TB drive from the zdata pool
-* 4. Shutdown f0 and physically replaced the internal drive
-* 5. Booted with the new drive in place
-* 6. Expanded the pool to use the full 4TB capacity:
-
-```sh
-paul@f0:~ % doas zpool online -e /dev/ada1
-```
-
-* 7. Reloaded the encryption keys as described in this blog post
-* 8. Set the mount point again for the encrypted dataset
-
-This was a one-time effort on both nodes - after a reboot, everything was remembered and came up normally. Here are the updated outputs:
-
-```sh
-paul@f0:~ % doas zpool list
-NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
-zdata  3.63T   677G  2.97T        -         -     3%    18%  1.00x    ONLINE  -
-zroot   472G  68.4G   404G        -         -    13%    14%  1.00x    ONLINE  -
-
-paul@f0:~ % doas camcontrol devlist
-<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
-<SD Ultra 3D 4TB 530500WD>         at scbus1 target 0 lun 0 (pass1,ada1)
-<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
-```
-
-We're still using different SSD models on f1 (WD Blue SA510 4TB) to avoid simultaneous failures:
-
-```sh
-paul@f1:~ % doas camcontrol devlist
-<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
-<WD Blue SA510 2.5 4TB 530500WD>   at scbus1 target 0 lun 0 (pass1,ada1)
-<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
 ```
 
 ## ZFS encryption keys
@@ -1853,6 +1798,61 @@ Important Considerations:
 * Recent writes (within 1 minute) may not be visible after failover due to replication lag
 * Applications should handle brief NFS errors gracefully
 * For zero-downtime requirements, consider synchronous replication or distributed storage (see "Future storage explorations" section later in this blog post)
+
+## Update: Upgrade to 4TB drives
+
+> Update: 27.01.2026 I have since replaced the 1TB drives with 4TB drives for more storage capacity. The upgrade procedure was different for each node!
+
+### Upgrading f1 (simpler approach)
+
+Since f1 is the replication sink, the upgrade was straightforward:
+
+* 1. Physically replaced the 1TB drive with the 4TB drive
+* 2. Re-setup the drive as described earlier in this blog post
+* 3. Re-replicated all data from f0 to f1 via zrepl
+* 4. Reloaded the encryption keys as described in this blog post
+* 5. Set the mount point again for the encrypted dataset, explicitly as read-only (since f1 is the replication sink)
+
+### Upgrading f0 (using ZFS resilvering)
+
+For f0, which is the primary storage node, I used ZFS resilvering to avoid data loss:
+
+* 1. Plugged the new 4TB drive into an external USB SSD drive reader
+* 2. Attached the 4TB drive to the zdata pool for resilvering
+* 3. Once resilvering completed, detached the 1TB drive from the zdata pool
+* 4. Shutdown f0 and physically replaced the internal drive
+* 5. Booted with the new drive in place
+* 6. Expanded the pool to use the full 4TB capacity:
+
+```sh
+paul@f0:~ % doas zpool online -e /dev/ada1
+```
+
+* 7. Reloaded the encryption keys as described in this blog post
+* 8. Set the mount point again for the encrypted dataset
+
+This was a one-time effort on both nodes - after a reboot, everything was remembered and came up normally. Here are the updated outputs:
+
+```sh
+paul@f0:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata  3.63T   677G  2.97T        -         -     3%    18%  1.00x    ONLINE  -
+zroot   472G  68.4G   404G        -         -    13%    14%  1.00x    ONLINE  -
+
+paul@f0:~ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<SD Ultra 3D 4TB 530500WD>         at scbus1 target 0 lun 0 (pass1,ada1)
+<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
+```
+
+We're still using different SSD models on f1 (WD Blue SA510 4TB) to avoid simultaneous failures:
+
+```sh
+paul@f1:~ % doas camcontrol devlist
+<512GB SSD D910R170>               at scbus0 target 0 lun 0 (pass0,ada0)
+<WD Blue SA510 2.5 4TB 530500WD>   at scbus1 target 0 lun 0 (pass1,ada1)
+<Generic Flash Disk 8.07>          at scbus2 target 0 lun 0 (da0,pass2)
+```
 
 ## Conclusion
 
