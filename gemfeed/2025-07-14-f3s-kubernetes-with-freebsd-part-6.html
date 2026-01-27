@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 04.01.2026</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 27.01.2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -137,6 +137,70 @@ http://www.gnu.org/software/src-highlite -->
 <pre>paul@f1:/ % doas camcontrol devlist
 &lt;512GB SSD D910R170&gt;               at scbus0 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass0,ada0)
 &lt;CT1000BX500SSD1 M6CR072&gt;          at scbus1 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass1,ada1)
+</pre>
+<br />
+<span class='quote'>Update: 27.01.2026</span><br />
+<br />
+<span>I have since replaced the 1TB drives with 4TB drives for more storage capacity. The upgrade procedure was different for each node:</span><br />
+<br />
+<span>**Upgrading f1 (simpler approach):**</span><br />
+<br />
+<span>Since f1 is the replication sink, the upgrade was straightforward:</span><br />
+<br />
+<span>1. Physically replaced the 1TB drive with the 4TB drive</span><br />
+<span>2. Re-setup the drive as described earlier in this blog post</span><br />
+<span>3. Re-replicated all data from f0 to f1 via zrepl</span><br />
+<span>4. Reloaded the encryption keys as described in this blog post</span><br />
+<span>5. Set the mount point again for the encrypted dataset, explicitly as read-only (since f1 is the replication sink)</span><br />
+<br />
+<span>**Upgrading f0 (using ZFS resilvering):**</span><br />
+<br />
+<span>For f0, which is the primary storage node, I used ZFS resilvering to avoid data loss:</span><br />
+<br />
+<span>1. Plugged the new 4TB drive into an external USB SSD drive reader</span><br />
+<span>2. Attached the 4TB drive to the zdata pool for resilvering</span><br />
+<span>3. Once resilvering completed, detached the 1TB drive from the zdata pool</span><br />
+<span>4. Shutdown f0 and physically replaced the internal drive</span><br />
+<span>5. Booted with the new drive in place</span><br />
+<span>6. Expanded the pool to use the full 4TB capacity:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas zpool online -e /dev/ada<font color="#000000">1</font>
+</pre>
+<br />
+<span>7. Reloaded the encryption keys as described in this blog post</span><br />
+<span>8. Set the mount point again for the encrypted dataset</span><br />
+<br />
+<span>This was a one-time effort on both nodes - after a reboot, everything was remembered and came up normally. Here are the updated outputs:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f0:~ % doas zpool list
+NAME    SIZE  ALLOC   FREE  CKPOINT  EXPANDSZ   FRAG    CAP  DEDUP    HEALTH  ALTROOT
+zdata  <font color="#000000">3</font>.63T   677G  <font color="#000000">2</font>.97T        -         -     <font color="#000000">3</font>%    <font color="#000000">18</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+zroot   472G  <font color="#000000">68</font>.4G   404G        -         -    <font color="#000000">13</font>%    <font color="#000000">14</font>%  <font color="#000000">1</font>.00x    ONLINE  -
+
+paul@f0:~ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass0,ada0)
+&lt;SD Ultra 3D 4TB 530500WD&gt;         at scbus1 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass1,ada1)
+&lt;Generic Flash Disk <font color="#000000">8.07</font>&gt;          at scbus2 target <font color="#000000">0</font> lun <font color="#000000">0</font> (da0,pass2)
+</pre>
+<br />
+<span>We&#39;re still using different SSD models on f1 (WD Blue SA510 4TB) to avoid simultaneous failures:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>paul@f1:~ % doas camcontrol devlist
+&lt;512GB SSD D910R170&gt;               at scbus0 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass0,ada0)
+&lt;WD Blue SA510 <font color="#000000">2.5</font> 4TB 530500WD&gt;   at scbus1 target <font color="#000000">0</font> lun <font color="#000000">0</font> (pass1,ada1)
+&lt;Generic Flash Disk <font color="#000000">8.07</font>&gt;          at scbus2 target <font color="#000000">0</font> lun <font color="#000000">0</font> (da0,pass2)
 </pre>
 <br />
 <h2 style='display: inline' id='zfs-encryption-keys'>ZFS encryption keys</h2><br />
