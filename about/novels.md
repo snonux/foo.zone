@@ -17,7 +17,10 @@
 
 This site lists my favourite novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both, english (english) and german (german), titles.
 
-Some were read as paperback, others as eBooks, and some were listened to (Audiobook).
+Some were read as paperback, others as eBooks, and some were listened to (Audiobook). For a graphical representation you can also have a look here:
+
+[f3s.buetow.org/scifi](https://f3s.buetow.org/scifi)  
+[codeberg.org/snonux/scifi - Script generated the site above](https://codeberg.org/snonux/scifi)  
 
 ```
      .  . '    .
