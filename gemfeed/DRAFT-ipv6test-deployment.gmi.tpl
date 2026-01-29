@@ -148,7 +148,37 @@ This ensures:
 
 The Kubernetes ingress handles all three hostnames, routing to the same backend service.
 
-## DNS and TLS
+## TLS Certificates with Subject Alternative Names
+
+Since Let's Encrypt validates domains via HTTP, the IPv6-only subdomain (`ipv6.ipv6test.f3s.buetow.org`) cannot be validated directly—Let's Encrypt's validation servers use IPv4. The solution is to include all subdomains as Subject Alternative Names (SANs) in the parent certificate.
+
+The ACME client configuration template dynamically builds the SAN list:
+
+```perl
+<% for my $host (@$acme_hosts) {
+     # Skip ipv4/ipv6 subdomains - they're included as SANs in parent cert
+     next if $host =~ /^(ipv4|ipv6)\./;
+-%>
+<%   my @alt_names = ("www.$host");
+     for my $sub_host (@$acme_hosts) {
+         if ($sub_host =~ /^(ipv4|ipv6)\.\Q$host\E$/) {
+             push @alt_names, $sub_host;
+         }
+     }
+-%>
+domain <%= $host %> {
+    alternative names { <%= join(' ', @alt_names) %> }
+    ...
+}
+<% } -%>
+```
+
+This generates a single certificate for `ipv6test.f3s.buetow.org` that includes:
+* www.ipv6test.f3s.buetow.org
+* ipv4.ipv6test.f3s.buetow.org
+* ipv6.ipv6test.f3s.buetow.org
+
+## DNS and TLS Deployment
 
 The DNS records and ACME certificates are managed via Rex automation:
 
@@ -197,6 +227,29 @@ $ curl -s https://ipv4.ipv6test.f3s.buetow.org/cgi-bin/index.pl | grep "Test Res
 
 The displayed IP should be the real client IP, not an internal cluster address.
 
+## W3C Compliant HTML
+
+The CGI script generates valid HTML5 that passes W3C validation. Key considerations:
+
+* Proper DOCTYPE, charset, and lang attributes
+* HTML-escaping command outputs (dig output contains `<<>>` characters)
+
+```perl
+sub html_escape {
+    my $str = shift;
+    $str =~ s/&/&amp;/g;
+    $str =~ s/</&lt;/g;
+    $str =~ s/>/&gt;/g;
+    return $str;
+}
+
+my $digremote = html_escape(`dig -x $ENV{REMOTE_ADDR}`);
+```
+
+You can verify the output passes validation:
+
+=> https://validator.w3.org/nu/?doc=https%3A%2F%2Fipv6test.f3s.buetow.org%2Fcgi-bin%2Findex.pl W3C Validator
+
 ## Summary
 
 Preserving client IP addresses through multiple reverse proxies requires configuration at each layer:
@@ -204,6 +257,11 @@ Preserving client IP addresses through multiple reverse proxies requires configu
 1. **relayd**: Sets `X-Forwarded-For` header
 2. **Traefik**: Trusts headers from known proxy IPs via `forwardedHeaders.trustedIPs`
 3. **Apache**: Uses `mod_remoteip` to set `REMOTE_ADDR` from the header
+
+Additional challenges solved:
+
+* **TLS for IPv6-only hosts**: Use SANs to include all subdomains in a single certificate validated via the dual-stack parent domain
+* **W3C compliance**: HTML-escape all command outputs to handle special characters
 
 The configuration is managed via GitOps with ArgoCD, including the Traefik HelmChartConfig.
 
