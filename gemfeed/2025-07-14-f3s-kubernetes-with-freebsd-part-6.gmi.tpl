@@ -1010,6 +1010,8 @@ paul@f0:~ % doas sh -c 'for client in r0 r1 r2 earth; do
     -subj "/C=US/ST=State/L=City/O=F3S Storage/CN=${client}.lan.buetow.org"
   openssl x509 -req -days 3650 -in ${client}.csr -CA ca-cert.pem \
     -CAkey ca-key.pem -CAcreateserial -out ${client}-cert.pem
+  # Combine cert and key into a single file for stunnel client
+  cat ${client}-cert.pem ${client}-key.pem > ${client}-stunnel.pem
 done'
 ```
 
@@ -1455,12 +1457,12 @@ On the Rocky Linux VMs, we run:
 [root@r0 ~]# dnf install -y stunnel nfs-utils
 
 # Copy client certificate and CA certificate from f0
-[root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/r0-key.pem /etc/stunnel/
+[root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/r0-stunnel.pem /etc/stunnel/
 [root@r0 ~]# scp f0:/usr/local/etc/stunnel/ca/ca-cert.pem /etc/stunnel/
 
 # Configure stunnel client with certificate authentication
 [root@r0 ~]# tee /etc/stunnel/stunnel.conf <<'EOF'
-cert = /etc/stunnel/r0-key.pem
+cert = /etc/stunnel/r0-stunnel.pem
 CAfile = /etc/stunnel/ca-cert.pem
 client = yes
 verify = 2
@@ -1476,7 +1478,7 @@ EOF
 # Repeat for r1 and r2 with their respective certificates
 ```
 
-Note: Each client must use its certificate file (`r0-key.pem`, `r1-key.pem`, `r2-key.pem`, or `earth-key.pem` - the latter is for my Laptop, which can also mount the NFS shares).
+Note: Each client must use its certificate file (`r0-stunnel.pem`, `r1-stunnel.pem`, `r2-stunnel.pem`, or `earth-stunnel.pem` - the latter is for my Laptop, which can also mount the NFS shares).
 
 ### NFSv4 user mapping config on Rocky
 
@@ -1518,11 +1520,11 @@ To mount NFS through the stunnel encrypted tunnel, we run:
 [root@r0 ~]# mkdir -p /data/nfs/k3svolumes
 
 # Mount through stunnel (using localhost and NFSv4)
-[root@r0 ~]# mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes
+[root@r0 ~]# mount -t nfs4 -o port=2323 127.0.0.1:/k3svolumes /data/nfs/k3svolumes
 
 # Verify mount
 [root@r0 ~]# mount | grep k3svolumes
-127.0.0.1:/data/nfs/k3svolumes on /data/nfs/k3svolumes 
+127.0.0.1:/k3svolumes on /data/nfs/k3svolumes 
   type nfs4 (rw,relatime,vers=4.2,rsize=131072,wsize=131072,
   namlen=255,hard,proto=tcp,port=2323,timeo=600,retrans=2,sec=sys,
   clientaddr=127.0.0.1,local_lock=none,addr=127.0.0.1)
