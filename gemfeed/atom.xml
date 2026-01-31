@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-27T10:09:14+02:00</updated>
+    <updated>2026-01-31T19:49:46+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -7671,6 +7671,8 @@ paul@f0:~ % doas sh -c <font color="#808080">'for client in r0 r1 r2 earth; do <
 <font color="#808080">    -subj "/C=US/ST=State/L=City/O=F3S Storage/CN=${client}.lan.buetow.org"</font>
 <font color="#808080">  openssl x509 -req -days 3650 -in ${client}.csr -CA ca-cert.pem \</font>
 <font color="#808080">    -CAkey ca-key.pem -CAcreateserial -out ${client}-cert.pem</font>
+<font color="#808080">  # Combine cert and key into a single file for stunnel client</font>
+<font color="#808080">  cat ${client}-cert.pem ${client}-key.pem &gt; ${client}-stunnel.pem</font>
 <font color="#808080">done'</font>
 </pre>
 <br />
@@ -8159,12 +8161,12 @@ http://www.gnu.org/software/src-highlite -->
 [root@r0 ~]<i><font color="silver"># dnf install -y stunnel nfs-utils</font></i>
 
 <i><font color="silver"># Copy client certificate and CA certificate from f0</font></i>
-[root@r0 ~]<i><font color="silver"># scp f0:/usr/local/etc/stunnel/ca/r0-key.pem /etc/stunnel/</font></i>
+[root@r0 ~]<i><font color="silver"># scp f0:/usr/local/etc/stunnel/ca/r0-stunnel.pem /etc/stunnel/</font></i>
 [root@r0 ~]<i><font color="silver"># scp f0:/usr/local/etc/stunnel/ca/ca-cert.pem /etc/stunnel/</font></i>
 
 <i><font color="silver"># Configure stunnel client with certificate authentication</font></i>
 [root@r0 ~]<i><font color="silver"># tee /etc/stunnel/stunnel.conf &lt;&lt;'EOF'</font></i>
-cert = /etc/stunnel/r<font color="#000000">0</font>-key.pem
+cert = /etc/stunnel/r<font color="#000000">0</font>-stunnel.pem
 CAfile = /etc/stunnel/ca-cert.pem
 client = yes
 verify = <font color="#000000">2</font>
@@ -8180,7 +8182,7 @@ EOF
 <i><font color="silver"># Repeat for r1 and r2 with their respective certificates</font></i>
 </pre>
 <br />
-<span>Note: Each client must use its certificate file (<span class='inlinecode'>r0-key.pem</span>, <span class='inlinecode'>r1-key.pem</span>, <span class='inlinecode'>r2-key.pem</span>, or <span class='inlinecode'>earth-key.pem</span> - the latter is for my Laptop, which can also mount the NFS shares).</span><br />
+<span>Note: Each client must use its certificate file (<span class='inlinecode'>r0-stunnel.pem</span>, <span class='inlinecode'>r1-stunnel.pem</span>, <span class='inlinecode'>r2-stunnel.pem</span>, or <span class='inlinecode'>earth-stunnel.pem</span> - the latter is for my Laptop, which can also mount the NFS shares).</span><br />
 <br />
 <h3 style='display: inline' id='nfsv4-user-mapping-config-on-rocky'>NFSv4 user mapping config on Rocky</h3><br />
 <br />
@@ -8231,11 +8233,11 @@ http://www.gnu.org/software/src-highlite -->
 [root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes</font></i>
 
 <i><font color="silver"># Mount through stunnel (using localhost and NFSv4)</font></i>
-[root@r0 ~]<i><font color="silver"># mount -t nfs4 -o port=2323 127.0.0.1:/data/nfs/k3svolumes /data/nfs/k3svolumes</font></i>
+[root@r0 ~]<i><font color="silver"># mount -t nfs4 -o port=2323 127.0.0.1:/k3svolumes /data/nfs/k3svolumes</font></i>
 
 <i><font color="silver"># Verify mount</font></i>
 [root@r0 ~]<i><font color="silver"># mount | grep k3svolumes</font></i>
-<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/data/nfs/k3svolumes on /data/nfs/k3svolumes 
+<font color="#000000">127.0</font>.<font color="#000000">0.1</font>:/k3svolumes on /data/nfs/k3svolumes 
   <b><u><font color="#000000">type</font></u></b> nfs4 (rw,relatime,vers=<font color="#000000">4.2</font>,rsize=<font color="#000000">131072</font>,wsize=<font color="#000000">131072</font>,
   namlen=<font color="#000000">255</font>,hard,proto=tcp,port=<font color="#000000">2323</font>,timeo=<font color="#000000">600</font>,retrans=<font color="#000000">2</font>,sec=sys,
   clientaddr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>,local_lock=none,addr=<font color="#000000">127.0</font>.<font color="#000000">0.1</font>)
