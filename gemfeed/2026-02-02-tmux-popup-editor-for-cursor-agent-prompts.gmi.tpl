@@ -59,8 +59,8 @@ This is the whole workflow:
                                                                                  |
                                                                                  v
 ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐
-│ Cursor input box   │<--| send-keys back     |<--| close editor+popup  |<--| edit temp file     |
-│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)      │   │ in $EDITOR         │
+│ Cursor input box   │<--| send-keys back     |<--| close editor+popup |<--| edit temp file     |
+│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)     │   │ in $EDITOR         │
 └────────────────────┘   └────────────────────┘   └────────────────────┘   └────────────────────┘
 ```
 
