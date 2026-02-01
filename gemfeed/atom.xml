@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T21:29:22+02:00</updated>
+    <updated>2026-02-01T21:50:43+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -324,6 +324,8 @@ main <font color="#808080">"$@"</font>
 <span>Another thing is, what if Cursor decides to change the design of its TUI? I would need to change my script as well.</span><br />
 <br />
 <span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven&#39;t blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/hexai'>https://codeberg.org/snonux/hexai</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
