@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T21:50:43+02:00</updated>
+    <updated>2026-02-01T22:27:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -90,8 +90,8 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
                                                                                  |
                                                                                  v
 ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐
-│ Cursor input box   │&lt;--| send-keys back     |&lt;--| close editor+popup  |&lt;--| edit temp file     |
-│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)      │   │ in $EDITOR         │
+│ Cursor input box   │&lt;--| send-keys back     |&lt;--| close editor+popup |&lt;--| edit temp file     |
+│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)     │   │ in $EDITOR         │
 └────────────────────┘   └────────────────────┘   └────────────────────┘   └────────────────────┘
 </pre>
 <br />
