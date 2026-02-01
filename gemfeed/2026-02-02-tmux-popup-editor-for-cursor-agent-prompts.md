@@ -298,6 +298,8 @@ Another thing is, what if Cursor decides to change the design of its TUI? I woul
 
 If I get a chance, I'll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven't blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
 
+[https://codeberg.org/snonux/hexai](https://codeberg.org/snonux/hexai)  
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
