@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T20:39:40+02:00</updated>
+    <updated>2026-02-01T20:41:24+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>A tmux popup editor for Cursor Agent prompts</title>
+        <title>A tmux popup editor for Cursor Agent CLI prompts</title>
         <link href="https://foo.zone/gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html" />
         <id>https://foo.zone/gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html</id>
         <updated>2026-02-01T20:24:16+02:00</updated>
@@ -18,7 +18,7 @@
         <summary>I spend some time in Cursor Agent (the CLI version of the Cursor IDE, I don't like really the IDE), and I also jump between Claude Code CLI, Ampcode, Gemini CLI, OpenAI Codex CLI, OpenCode, and Aider just to see how things are evolving. But for the next month I'll be with Cursor Agent.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='a-tmux-popup-editor-for-cursor-agent-prompts'>A tmux popup editor for Cursor Agent prompts</h1><br />
+                <h1 style='display: inline' id='a-tmux-popup-editor-for-cursor-agent-cli-prompts'>A tmux popup editor for Cursor Agent CLI prompts</h1><br />
 <br />
 <span class='quote'>Published at 2026-02-01T20:24:16+02:00</span><br />
 <br />
@@ -27,7 +27,7 @@
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#a-tmux-popup-editor-for-cursor-agent-prompts'>A tmux popup editor for Cursor Agent prompts</a></li>
+<li><a href='#a-tmux-popup-editor-for-cursor-agent-cli-prompts'>A tmux popup editor for Cursor Agent CLI prompts</a></li>
 <li>⇢ <a href='#why-i-built-this'>Why I built this</a></li>
 <li>⇢ <a href='#what-it-is'>What it is</a></li>
 <li>⇢ <a href='#how-it-works-overview'>How it works (overview)</a></li>
