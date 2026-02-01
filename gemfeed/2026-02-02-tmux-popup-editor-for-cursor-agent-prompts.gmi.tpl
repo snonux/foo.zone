@@ -47,6 +47,23 @@ bind-key e run-shell -b "tmux display-message -p '#{pane_id}'
   \"~/scripts/tmux-edit-send /tmp/tmux-edit-target-#{client_pid}\""
 ```
 
+### Workflow diagram
+
+This is the whole workflow:
+
+```
+┌────────────────────┐   ┌───────────────┐   ┌─────────────────────┐   ┌─────────────────────┐
+│ Cursor input box   │-->| tmux keybind  │-->| popup runs script   │-->| capture + prefill   │
+│ (prompt pane)      │   │ prefix + e    │   │ tmux-edit-send      │   │ temp file           │
+└────────────────────┘   └───────────────┘   └─────────────────────┘   └─────────────────────┘
+                                                                                 |
+                                                                                 v
+┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐
+│ Cursor input box   │<--| send-keys back     |<--| close editor+popup  |<--| edit temp file     |
+│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)      │   │ in $EDITOR         │
+└────────────────────┘   └────────────────────┘   └────────────────────┘   └────────────────────┘
+```
+
 And this is how it looks like after sending back the text to the Cursor Agent's input:
 
 => ./tmux-popup-editor-for-cursor-agent-prompts/demo2.png Prefilled prompt text
