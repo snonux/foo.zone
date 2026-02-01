@@ -51,7 +51,7 @@ And this is how it looks like after sending back the text to the Cursor Agent's 
 
 => ./tmux-popup-editor-for-cursor-agent-prompts/demo2.png Prefilled prompt text
 
-And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go and release it once I have time. But it works well enough for now.
+And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with propper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.
 
 ```bash
 #!/usr/bin/env bash
