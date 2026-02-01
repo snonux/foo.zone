@@ -1,11 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-01-31T19:49:46+02:00</updated>
+    <updated>2026-02-01T20:24:16+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>A tmux popup editor for Cursor Agent prompts</title>
+        <link href="https://foo.zone/gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html" />
+        <id>https://foo.zone/gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html</id>
+        <updated>2026-02-01T20:24:16+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I spend some time in Cursor Agent (the CLI version of the Cursor IDE, I don't like really the IDE), and I also jump between Claude Code CLI, Ampcode, Gemini CLI, OpenAI Codex CLI, OpenCode, and Aider just to see how things are evolving. But for the next month I'll be with Cursor Agent.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='a-tmux-popup-editor-for-cursor-agent-prompts'>A tmux popup editor for Cursor Agent prompts</h1><br />
+<br />
+<span>...and any other TUI based application</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#a-tmux-popup-editor-for-cursor-agent-prompts'>A tmux popup editor for Cursor Agent prompts</a></li>
+<li>⇢ <a href='#why-i-built-this'>Why I built this</a></li>
+<li>⇢ <a href='#what-it-is'>What it is</a></li>
+<li>⇢ <a href='#how-it-works-overview'>How it works (overview)</a></li>
+<li>⇢ <a href='#challenges-and-small-discoveries'>Challenges and small discoveries</a></li>
+<li>⇢ <a href='#test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</a></li>
+<li>⇢ <a href='#almost-works-with-any-editor-or-any-tui'>(Almost) works with any editor (or any TUI)</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-i-built-this'>Why I built this</h2><br />
+<br />
+<span>I spend some time in Cursor Agent (the CLI version of the Cursor IDE, I don&#39;t like really the IDE), and I also jump between Claude Code CLI, Ampcode, Gemini CLI, OpenAI Codex CLI, OpenCode, and Aider just to see how things are evolving. But for the next month I&#39;ll be with Cursor Agent.</span><br />
+<br />
+<span>Short prompts are fine in the inline input, but for longer prompts I want a real editor: spellcheck, search/replace, multiple cursors, and all the Helix muscle memory I already have.</span><br />
+<br />
+<span>Cursor Agent has a Vim editing mode, but not Helix. And even in Vim mode I can&#39;t use my full editor setup. I want the real thing, not a partial emulation.</span><br />
+<br />
+<a class='textlink' href='https://helix-editor.com'>https://helix-editor.com</a><br />
+<a class='textlink' href='https://www.vim.org'>https://www.vim.org</a><br />
+<a class='textlink' href='https://neovim.io'>https://neovim.io</a><br />
+<br />
+<span>So I built a tiny tmux popup editor. It opens <span class='inlinecode'>$EDITOR</span> (Helix for me), and when I close it, the buffer is sent back into the prompt. It sounds simple, but it feels surprisingly native.</span><br />
+<br />
+<span>This is how it looks like:</span><br />
+<br />
+<a href='./tmux-popup-editor-for-cursor-agent-prompts/demo1.png'><img alt='Popup editor in action' title='Popup editor in action' src='./tmux-popup-editor-for-cursor-agent-prompts/demo1.png' /></a><br />
+<br />
+<h2 style='display: inline' id='what-it-is'>What it is</h2><br />
+<br />
+<span>The idea is straightforward:</span><br />
+<br />
+<ul>
+<li>A tmux key binding <span class='inlinecode'>prefix-e</span> opens a popup overlay near the bottom of the screen.</li>
+<li>The popup starts <span class='inlinecode'>$EDITOR</span> on a temp file.</li>
+<li>When I exit the editor, the script sends the contents back to the original pane with <span class='inlinecode'>tmux send-keys</span>.</li>
+</ul><br />
+<span>It also pre-fills the temp file with whatever is already typed after Cursor Agent&#39;s <span class='inlinecode'>→</span> prompt, so I can continue where I left off.</span><br />
+<br />
+<h2 style='display: inline' id='how-it-works-overview'>How it works (overview)</h2><br />
+<br />
+<span>This is the tmux binding I use (trimmed to the essentials):</span><br />
+<br />
+<pre>
+bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
+  &gt; /tmp/tmux-edit-target-#{client_pid} \;
+  tmux popup -E -w 90% -h 35% -x 5% -y 65% -d &#39;#{pane_current_path}&#39;
+  \"~/scripts/tmux-edit-send /tmp/tmux-edit-target-#{client_pid}\""
+</pre>
+<br />
+<span>And this is how it looks like after sending back the text to the Cursor Agent&#39;s input:</span><br />
+<br />
+<a href='./tmux-popup-editor-for-cursor-agent-prompts/demo2.png'><img alt='Prefilled prompt text' title='Prefilled prompt text' src='./tmux-popup-editor-for-cursor-agent-prompts/demo2.png' /></a><br />
+<br />
+<span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go and release it once I have time. But it works well enough for now.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
+<b><u><font color="#000000">set</font></u></b> -u -o pipefail
+
+<b><u><font color="#000000">declare</font></u></b> -i LOG_ENABLED=<font color="#000000">0</font>
+
+log_file=<font color="#808080">"${TMPDIR:-/tmp}/tmux-edit-send.log"</font>
+
+log() {
+  <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$LOG_ENABLED"</font> -eq <font color="#000000">1</font> ]; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"$*"</font> &gt;&gt; <font color="#808080">"$log_file"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+}
+
+<i><font color="silver"># Read the target pane id from a temp file created by tmux binding.</font></i>
+read_target_from_file() {
+  <b><u><font color="#000000">local</font></u></b> file_path=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$file_path"</font> ] &amp;&amp; [ -f <font color="#808080">"$file_path"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    sed -n <font color="#808080">'1p'</font> <font color="#808080">"$file_path"</font> | tr -d <font color="#808080">'[:space:]'</font>
+  <b><u><font color="#000000">fi</font></u></b>
+}
+
+<i><font color="silver"># Read the target pane id from tmux environment if present.</font></i>
+read_target_from_env() {
+  <b><u><font color="#000000">local</font></u></b> env_line
+  env_line=<font color="#808080">"$(tmux show-environment -g TMUX_EDIT_TARGET 2&gt;/dev/null || true)"</font>
+  <b><u><font color="#000000">case</font></u></b> <font color="#808080">"$env_line"</font> <b><u><font color="#000000">in</font></u></b>
+    TMUX_EDIT_TARGET=*) <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"${env_line#TMUX_EDIT_TARGET=}"</font> ;;
+  <b><u><font color="#000000">esac</font></u></b>
+}
+
+<i><font color="silver"># Resolve the target pane id, falling back to the last pane.</font></i>
+resolve_target_pane() {
+  <b><u><font color="#000000">local</font></u></b> candidate=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">local</font></u></b> current_pane last_pane
+
+  current_pane=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{pane_id}" 2&gt;/dev/null || true)"</font></i>
+  log <font color="#808080">"current pane=${current_pane:-&lt;empty&gt;}"</font>
+  <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$candidate"</font> ] &amp;&amp; [[ <font color="#808080">"$candidate"</font> == *<font color="#808080">"#{"</font>* ]]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"format target detected, clearing"</font>
+    candidate=<font color="#808080">""</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$candidate"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    candidate=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{last_pane}" 2&gt;/dev/null || true)"</font></i>
+  <b><u><font color="#000000">elif</font></u></b> [ <font color="#808080">"$candidate"</font> = <font color="#808080">"$current_pane"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    last_pane=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{last_pane}" 2&gt;/dev/null || true)"</font></i>
+    <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$last_pane"</font> ]; <b><u><font color="#000000">then</font></u></b>
+      candidate=<font color="#808080">"$last_pane"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+  <b><u><font color="#000000">fi</font></u></b>
+  <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"$candidate"</font>
+}
+
+<i><font color="silver"># Capture the latest multi-line prompt content from the pane.</font></i>
+capture_prompt_text() {
+  <b><u><font color="#000000">local</font></u></b> target=<font color="#808080">"$1"</font>
+  tmux capture-pane -p -t <font color="#808080">"$target"</font> -S -<font color="#000000">2000</font> <font color="#000000">2</font>&gt;/dev/null | awk <font color="#808080">'</font>
+<font color="#808080">    function trim_box(line) {</font>
+<font color="#808080">      sub(/^ *│ ?/, "", line)</font>
+<font color="#808080">      sub(/ *│ *$/, "", line)</font>
+<font color="#808080">      sub(/[[:space:]]+$/, "", line)</font>
+<font color="#808080">      return line</font>
+<font color="#808080">    }</font>
+<font color="#808080">    /^ *│ *→/ &amp;&amp; index($0,"INSERT")==0 &amp;&amp; index($0,"Add a follow-up")==0 {</font>
+<font color="#808080">      if (text != "") last = text</font>
+<font color="#808080">      text = ""</font>
+<font color="#808080">      capture = 1</font>
+<font color="#808080">      line = $0</font>
+<font color="#808080">      sub(/^.*→ ?/, "", line)</font>
+<font color="#808080">      line = trim_box(line)</font>
+<font color="#808080">      if (line != "") text = line</font>
+<font color="#808080">      next</font>
+<font color="#808080">    }</font>
+<font color="#808080">    capture {</font>
+<font color="#808080">      if ($0 ~ /^ *└/) {</font>
+<font color="#808080">        capture = 0</font>
+<font color="#808080">        if (text != "") last = text</font>
+<font color="#808080">        next</font>
+<font color="#808080">      }</font>
+<font color="#808080">      if ($0 ~ /^ *│/ &amp;&amp; index($0,"INSERT")==0 &amp;&amp; index($0,"Add a follow-up")==0) {</font>
+<font color="#808080">        line = trim_box($0)</font>
+<font color="#808080">        if (line != "") {</font>
+<font color="#808080">          if (text != "") text = text " " line</font>
+<font color="#808080">          else text = line</font>
+<font color="#808080">        }</font>
+<font color="#808080">      }</font>
+<font color="#808080">    }</font>
+<font color="#808080">    END {</font>
+<font color="#808080">      if (text != "") last = text</font>
+<font color="#808080">      if (last != "") print last</font>
+<font color="#808080">    }</font>
+<font color="#808080">  '</font>
+}
+
+<i><font color="silver"># Write captured prompt text into the temp file if available.</font></i>
+prefill_tmpfile() {
+  <b><u><font color="#000000">local</font></u></b> tmpfile=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">local</font></u></b> prompt_text=<font color="#808080">"$2"</font>
+  <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$prompt_text"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"$prompt_text"</font> &gt; <font color="#808080">"$tmpfile"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+}
+
+<i><font color="silver"># Ensure the target pane exists before sending keys.</font></i>
+validate_target_pane() {
+  <b><u><font color="#000000">local</font></u></b> target=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">local</font></u></b> pane target_found
+  <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"error: no target pane determined"</font>
+    echo <font color="#808080">"Could not determine target pane."</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  target_found=<font color="#000000">0</font>
+  <b><u><font color="#000000">for</font></u></b> pane <b><u><font color="#000000">in</font></u></b> $(tmux list-panes -a -F <font color="#808080">"#{pane_id}"</font> <font color="#000000">2</font>&gt;/dev/null || <b><u><font color="#000000">true</font></u></b>); <b><u><font color="#000000">do</font></u></b>
+    <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$pane"</font> = <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
+      target_found=<font color="#000000">1</font>
+      <b><u><font color="#000000">break</font></u></b>
+    <b><u><font color="#000000">fi</font></u></b>
+  <b><u><font color="#000000">done</font></u></b>
+  <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$target_found"</font> -ne <font color="#000000">1</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"error: target pane not found: $target"</font>
+    echo <font color="#808080">"Target pane not found: $target"</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
+  <b><u><font color="#000000">fi</font></u></b>
+}
+
+<i><font color="silver"># Send temp file contents to the target pane line by line.</font></i>
+send_content() {
+  <b><u><font color="#000000">local</font></u></b> target=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">local</font></u></b> tmpfile=<font color="#808080">"$2"</font>
+  <b><u><font color="#000000">local</font></u></b> prompt_text=<font color="#808080">"$3"</font>
+  <b><u><font color="#000000">local</font></u></b> first_line=<font color="#000000">1</font>
+  <b><u><font color="#000000">local</font></u></b> line
+  <b><u><font color="#000000">while</font></u></b> IFS= <b><u><font color="#000000">read</font></u></b> -r line || [ -n <font color="#808080">"$line"</font> ]; <b><u><font color="#000000">do</font></u></b>
+    <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$first_line"</font> -eq <font color="#000000">1</font> ] &amp;&amp; [ -n <font color="#808080">"$prompt_text"</font> ]; <b><u><font color="#000000">then</font></u></b>
+      <b><u><font color="#000000">if</font></u></b> [[ <font color="#808080">"$line"</font> == <font color="#808080">"$prompt_text"</font>* ]]; <b><u><font color="#000000">then</font></u></b>
+        line=<font color="#808080">"${line#"</font>$prompt_text<font color="#808080">"}"</font>
+      <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">fi</font></u></b>
+    first_line=<font color="#000000">0</font>
+    tmux send-keys -t <font color="#808080">"$target"</font> -l <font color="#808080">"$line"</font>
+    tmux send-keys -t <font color="#808080">"$target"</font> Enter
+  <b><u><font color="#000000">done</font></u></b> &lt; <font color="#808080">"$tmpfile"</font>
+  log <font color="#808080">"sent content to $target"</font>
+}
+
+<i><font color="silver"># Main entry point.</font></i>
+main() {
+  <b><u><font color="#000000">local</font></u></b> target_file=<font color="#808080">"${1:-}"</font>
+  <b><u><font color="#000000">local</font></u></b> target
+  <b><u><font color="#000000">local</font></u></b> editor=<font color="#808080">"${EDITOR:-vi}"</font>
+  <b><u><font color="#000000">local</font></u></b> tmpfile
+  <b><u><font color="#000000">local</font></u></b> prompt_text
+
+  target=<font color="#808080">"$(read_target_from_file "</font>$target_file<font color="#808080">" || true)"</font>
+  <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"file target=${target:-&lt;empty&gt;}"</font>
+    rm -f <font color="#808080">"$target_file"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    target=<font color="#808080">"${TMUX_EDIT_TARGET:-}"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  log <font color="#808080">"env target=${target:-&lt;empty&gt;}"</font>
+  <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    target=<font color="#808080">"$(read_target_from_env || true)"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  log <font color="#808080">"tmux env target=${target:-&lt;empty&gt;}"</font>
+  target=<font color="#808080">"$(resolve_target_pane "</font>$target<font color="#808080">")"</font>
+  log <font color="#808080">"fallback target=${target:-&lt;empty&gt;}"</font>
+
+  tmpfile=<font color="#808080">"$(mktemp "</font>./.tmux-edit-send.XXXXXX.md<font color="#808080">")"</font>
+  <b><u><font color="#000000">trap</font></u></b> <font color="#808080">'rm -f "$tmpfile"'</font> EXIT
+
+  prompt_text=<font color="#808080">"$(capture_prompt_text "</font>$target<font color="#808080">")"</font>
+  prefill_tmpfile <font color="#808080">"$tmpfile"</font> <font color="#808080">"$prompt_text"</font>
+
+  <font color="#808080">"$editor"</font> <font color="#808080">"$tmpfile"</font>
+  log <font color="#808080">"editor exited with status $?"</font>
+
+  <b><u><font color="#000000">if</font></u></b> [ ! -s <font color="#808080">"$tmpfile"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"empty file, nothing sent"</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
+  <b><u><font color="#000000">fi</font></u></b>
+
+  validate_target_pane <font color="#808080">"$target"</font>
+  send_content <font color="#808080">"$target"</font> <font color="#808080">"$tmpfile"</font> <font color="#808080">"$prompt_text"</font>
+}
+
+main <font color="#808080">"$@"</font>
+</pre>
+<br />
+<h2 style='display: inline' id='challenges-and-small-discoveries'>Challenges and small discoveries</h2><br />
+<br />
+<span>The problems were mostly small but annoying:</span><br />
+<br />
+<ul>
+<li>Getting the right target pane was the first hurdle. I ended up storing the pane id in a file because of tmux format expansion quirks.</li>
+<li>The Cursor UI draws a nice box around the prompt, so the prompt line contains a <span class='inlinecode'>│</span> and other markers. I had to filter those out and strip the box-drawing characters.</li>
+<li>When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the first line fixed that.</li>
+</ul><br />
+<h2 style='display: inline' id='test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</h2><br />
+<br />
+<span>These are the cases I test whenever I touch the script:</span><br />
+<br />
+<ul>
+<li>Single-line prompt: capture everything after <span class='inlinecode'>→</span> and prefill the editor.</li>
+<li>Multi-line boxed prompt: capture the wrapped lines inside the <span class='inlinecode'>│ ... │</span> box and join them with spaces (no newline in the editor).</li>
+<li>Ignore UI noise: do not capture lines containing <span class='inlinecode'>INSERT</span> or <span class='inlinecode'>Add a follow-up</span>.</li>
+<li>Preserve appended text: if I add <span class='inlinecode'> juju</span> to an existing line, the space before <span class='inlinecode'>juju</span> must survive.</li>
+<li>No duplicate send: if the prefilled text is still at the start of the first line, it must be stripped once before sending back.</li>
+</ul><br />
+<h2 style='display: inline' id='almost-works-with-any-editor-or-any-tui'>(Almost) works with any editor (or any TUI)</h2><br />
+<br />
+<span>Although I use Helix, this is just <span class='inlinecode'>$EDITOR</span>. If you prefer Vim, Neovim, or something more exotic, it should work. The same mechanism can be used to feed text into any TUI that reads from a terminal pane, not just Cursor Agent.</span><br />
+<br />
+<span>One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.</span><br />
+<br />
+<span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent prompts (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
+<a class='textlink' href='./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>2025-05-02 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</a><br />
+<a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>2024-06-23 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Using Supernote Nomad offline</title>
         <link href="https://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.html" />
@@ -17755,97 +18063,6 @@ http://www.gnu.org/software/src-highlite -->
 <span>Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>One reason why I love OpenBSD</title>
-        <link href="https://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.html" />
-        <id>https://foo.zone/gemfeed/2024-01-13-one-reason-why-i-love-openbsd.html</id>
-        <updated>2024-01-13T22:55:33+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>HKISSFISHKISSFISHKISSFISHKISSFISH    KISS</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='one-reason-why-i-love-openbsd'>One reason why I love OpenBSD</h1><br />
-<br />
-<span class='quote'>Published at 2024-01-13T22:55:33+02:00</span><br />
-<br />
-<pre>
-           FISHKISSFISHKIS               
-       SFISHKISSFISHKISSFISH            F
-    ISHK   ISSFISHKISSFISHKISS         FI
-  SHKISS   FISHKISSFISHKISSFISS       FIS
-HKISSFISHKISSFISHKISSFISHKISSFISH    KISS
-  FISHKISSFISHKISSFISHKISSFISHKISS  FISHK
-      SSFISHKISSFISHKISSFISHKISSFISHKISSF
-  ISHKISSFISHKISSFISHKISSFISHKISSF  ISHKI
-SSFISHKISSFISHKISSFISHKISSFISHKIS    SFIS
-  HKISSFISHKISSFISHKISSFISHKISS       FIS
-    HKISSFISHKISSFISHKISSFISHK         IS
-       SFISHKISSFISHKISSFISH            K
-         ISSFISHKISSFISHK               
-</pre>
-<br />
-<span>I just upgraded my OpenBSD&#39;s from <span class='inlinecode'>7.3</span> to <span class='inlinecode'>7.4</span> by following the unattended upgrade guide:</span><br />
-<br />
-<a class='textlink' href='https://www.openbsd.org/faq/upgrade74.html'>https://www.openbsd.org/faq/upgrade74.html</a><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ doas installboot sd0 <i><font color="silver"># Update the bootloader (not for every upgrade required)</font></i>
-$ doas sysupgrade <i><font color="silver"># Update all binaries (including Kernel)</font></i>
-</pre>
-<br />
-<span><span class='inlinecode'>sysupgrade</span> downloaded and upgraded to the next release and rebooted the system. After the reboot, I run:</span><br />
-<br />
-<span class='quote'>Note to myself: I have to undo the <span class='inlinecode'>/var/www</span> symlink before upgrading, and re-establishing the symlink afterwards again. This is due to disk space constraings on my setup!</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ doas sysmerge <i><font color="silver"># Update system configuration files</font></i>
-$ doas pkg_add -u <i><font color="silver"># Update all packages</font></i>
-$ doas reboot <i><font color="silver"># Just in case, reboot one more time</font></i>
-</pre>
-<br />
-<span>That&#39;s it! Took me around 5 minutes in total! No issues, only these few comands, only 5 minutes! It just works! No problems, no conflicts, no tons (actually none) config file merge conflicts.</span><br />
-<br />
-<span>I followed the same procedure the previous times and never encountered any difficulties with any OpenBSD upgrades.</span><br />
-<br />
-<span>I have seen upgrades of other Operating Systems either take a long time or break the system (which takes manual steps to repair). That&#39;s just one of many reasons why I love OpenBSD! There appear never to be any problems. It just gets its job done!</span><br />
-<br />
-<a class='textlink' href='https://www.openbsd.org'>The OpenBSD Project</a><br />
-<br />
-<span>BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may be for you. They rock (I am having a VM there, too)!</span><br />
-<br />
-<a class='textlink' href='https://openbsd.amsterdam'>https://openbsd.amsterdam</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other *BSD related posts are:</span><br />
-<br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
