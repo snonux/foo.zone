@@ -1,0 +1,288 @@
+# A tmux popup editor for Cursor Agent prompts
+
+> Published at 2026-02-01T20:24:16+02:00
+
+...and any other TUI based application
+
+## Table of Contents
+
+* [⇢ A tmux popup editor for Cursor Agent prompts](#a-tmux-popup-editor-for-cursor-agent-prompts)
+* [⇢ ⇢ Why I built this](#why-i-built-this)
+* [⇢ ⇢ What it is](#what-it-is)
+* [⇢ ⇢ How it works (overview)](#how-it-works-overview)
+* [⇢ ⇢ Challenges and small discoveries](#challenges-and-small-discoveries)
+* [⇢ ⇢ Test cases (for a future rewrite)](#test-cases-for-a-future-rewrite)
+* [⇢ ⇢ (Almost) works with any editor (or any TUI)](#almost-works-with-any-editor-or-any-tui)
+
+## Why I built this
+
+I spend some time in Cursor Agent (the CLI version of the Cursor IDE, I don't like really the IDE), and I also jump between Claude Code CLI, Ampcode, Gemini CLI, OpenAI Codex CLI, OpenCode, and Aider just to see how things are evolving. But for the next month I'll be with Cursor Agent.
+
+Short prompts are fine in the inline input, but for longer prompts I want a real editor: spellcheck, search/replace, multiple cursors, and all the Helix muscle memory I already have.
+
+Cursor Agent has a Vim editing mode, but not Helix. And even in Vim mode I can't use my full editor setup. I want the real thing, not a partial emulation.
+
+[https://helix-editor.com](https://helix-editor.com)  
+[https://www.vim.org](https://www.vim.org)  
+[https://neovim.io](https://neovim.io)  
+
+So I built a tiny tmux popup editor. It opens `$EDITOR` (Helix for me), and when I close it, the buffer is sent back into the prompt. It sounds simple, but it feels surprisingly native.
+
+This is how it looks like:
+
+[![Popup editor in action](./tmux-popup-editor-for-cursor-agent-prompts/demo1.png "Popup editor in action")](./tmux-popup-editor-for-cursor-agent-prompts/demo1.png)  
+
+## What it is
+
+The idea is straightforward:
+
+* A tmux key binding `prefix-e` opens a popup overlay near the bottom of the screen.
+* The popup starts `$EDITOR` on a temp file.
+* When I exit the editor, the script sends the contents back to the original pane with `tmux send-keys`.
+
+It also pre-fills the temp file with whatever is already typed after Cursor Agent's `→` prompt, so I can continue where I left off.
+
+## How it works (overview)
+
+This is the tmux binding I use (trimmed to the essentials):
+
+```
+bind-key e run-shell -b "tmux display-message -p '#{pane_id}'
+  > /tmp/tmux-edit-target-#{client_pid} \;
+  tmux popup -E -w 90% -h 35% -x 5% -y 65% -d '#{pane_current_path}'
+  \"~/scripts/tmux-edit-send /tmp/tmux-edit-target-#{client_pid}\""
+```
+
+And this is how it looks like after sending back the text to the Cursor Agent's input:
+
+[![Prefilled prompt text](./tmux-popup-editor-for-cursor-agent-prompts/demo2.png "Prefilled prompt text")](./tmux-popup-editor-for-cursor-agent-prompts/demo2.png)  
+
+And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go and release it once I have time. But it works well enough for now.
+
+```bash
+#!/usr/bin/env bash
+set -u -o pipefail
+
+declare -i LOG_ENABLED=0
+
+log_file="${TMPDIR:-/tmp}/tmux-edit-send.log"
+
+log() {
+  if [ "$LOG_ENABLED" -eq 1 ]; then
+    printf '%s\n' "$*" >> "$log_file"
+  fi
+}
+
+# Read the target pane id from a temp file created by tmux binding.
+read_target_from_file() {
+  local file_path="$1"
+  if [ -n "$file_path" ] && [ -f "$file_path" ]; then
+    sed -n '1p' "$file_path" | tr -d '[:space:]'
+  fi
+}
+
+# Read the target pane id from tmux environment if present.
+read_target_from_env() {
+  local env_line
+  env_line="$(tmux show-environment -g TMUX_EDIT_TARGET 2>/dev/null || true)"
+  case "$env_line" in
+    TMUX_EDIT_TARGET=*) printf '%s' "${env_line#TMUX_EDIT_TARGET=}" ;;
+  esac
+}
+
+# Resolve the target pane id, falling back to the last pane.
+resolve_target_pane() {
+  local candidate="$1"
+  local current_pane last_pane
+
+  current_pane="$(tmux display-message -p "#{pane_id}" 2>/dev/null || true)"
+  log "current pane=${current_pane:-<empty>}"
+  if [ -n "$candidate" ] && [[ "$candidate" == *"#{"* ]]; then
+    log "format target detected, clearing"
+    candidate=""
+  fi
+  if [ -z "$candidate" ]; then
+    candidate="$(tmux display-message -p "#{last_pane}" 2>/dev/null || true)"
+  elif [ "$candidate" = "$current_pane" ]; then
+    last_pane="$(tmux display-message -p "#{last_pane}" 2>/dev/null || true)"
+    if [ -n "$last_pane" ]; then
+      candidate="$last_pane"
+    fi
+  fi
+  printf '%s' "$candidate"
+}
+
+# Capture the latest multi-line prompt content from the pane.
+capture_prompt_text() {
+  local target="$1"
+  tmux capture-pane -p -t "$target" -S -2000 2>/dev/null | awk '
+    function trim_box(line) {
+      sub(/^ *│ ?/, "", line)
+      sub(/ *│ *$/, "", line)
+      sub(/[[:space:]]+$/, "", line)
+      return line
+    }
+    /^ *│ *→/ && index($0,"INSERT")==0 && index($0,"Add a follow-up")==0 {
+      if (text != "") last = text
+      text = ""
+      capture = 1
+      line = $0
+      sub(/^.*→ ?/, "", line)
+      line = trim_box(line)
+      if (line != "") text = line
+      next
+    }
+    capture {
+      if ($0 ~ /^ *└/) {
+        capture = 0
+        if (text != "") last = text
+        next
+      }
+      if ($0 ~ /^ *│/ && index($0,"INSERT")==0 && index($0,"Add a follow-up")==0) {
+        line = trim_box($0)
+        if (line != "") {
+          if (text != "") text = text " " line
+          else text = line
+        }
+      }
+    }
+    END {
+      if (text != "") last = text
+      if (last != "") print last
+    }
+  '
+}
+
+# Write captured prompt text into the temp file if available.
+prefill_tmpfile() {
+  local tmpfile="$1"
+  local prompt_text="$2"
+  if [ -n "$prompt_text" ]; then
+    printf '%s\n' "$prompt_text" > "$tmpfile"
+  fi
+}
+
+# Ensure the target pane exists before sending keys.
+validate_target_pane() {
+  local target="$1"
+  local pane target_found
+  if [ -z "$target" ]; then
+    log "error: no target pane determined"
+    echo "Could not determine target pane." >&2
+    return 1
+  fi
+  target_found=0
+  for pane in $(tmux list-panes -a -F "#{pane_id}" 2>/dev/null || true); do
+    if [ "$pane" = "$target" ]; then
+      target_found=1
+      break
+    fi
+  done
+  if [ "$target_found" -ne 1 ]; then
+    log "error: target pane not found: $target"
+    echo "Target pane not found: $target" >&2
+    return 1
+  fi
+}
+
+# Send temp file contents to the target pane line by line.
+send_content() {
+  local target="$1"
+  local tmpfile="$2"
+  local prompt_text="$3"
+  local first_line=1
+  local line
+  while IFS= read -r line || [ -n "$line" ]; do
+    if [ "$first_line" -eq 1 ] && [ -n "$prompt_text" ]; then
+      if [[ "$line" == "$prompt_text"* ]]; then
+        line="${line#"$prompt_text"}"
+      fi
+    fi
+    first_line=0
+    tmux send-keys -t "$target" -l "$line"
+    tmux send-keys -t "$target" Enter
+  done < "$tmpfile"
+  log "sent content to $target"
+}
+
+# Main entry point.
+main() {
+  local target_file="${1:-}"
+  local target
+  local editor="${EDITOR:-vi}"
+  local tmpfile
+  local prompt_text
+
+  target="$(read_target_from_file "$target_file" || true)"
+  if [ -n "$target" ]; then
+    log "file target=${target:-<empty>}"
+    rm -f "$target_file"
+  fi
+  if [ -z "$target" ]; then
+    target="${TMUX_EDIT_TARGET:-}"
+  fi
+  log "env target=${target:-<empty>}"
+  if [ -z "$target" ]; then
+    target="$(read_target_from_env || true)"
+  fi
+  log "tmux env target=${target:-<empty>}"
+  target="$(resolve_target_pane "$target")"
+  log "fallback target=${target:-<empty>}"
+
+  tmpfile="$(mktemp "./.tmux-edit-send.XXXXXX.md")"
+  trap 'rm -f "$tmpfile"' EXIT
+
+  prompt_text="$(capture_prompt_text "$target")"
+  prefill_tmpfile "$tmpfile" "$prompt_text"
+
+  "$editor" "$tmpfile"
+  log "editor exited with status $?"
+
+  if [ ! -s "$tmpfile" ]; then
+    log "empty file, nothing sent"
+    exit 0
+  fi
+
+  validate_target_pane "$target"
+  send_content "$target" "$tmpfile" "$prompt_text"
+}
+
+main "$@"
+```
+
+## Challenges and small discoveries
+
+The problems were mostly small but annoying:
+
+* Getting the right target pane was the first hurdle. I ended up storing the pane id in a file because of tmux format expansion quirks.
+* The Cursor UI draws a nice box around the prompt, so the prompt line contains a `│` and other markers. I had to filter those out and strip the box-drawing characters.
+* When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the first line fixed that.
+
+## Test cases (for a future rewrite)
+
+These are the cases I test whenever I touch the script:
+
+* Single-line prompt: capture everything after `→` and prefill the editor.
+* Multi-line boxed prompt: capture the wrapped lines inside the `│ ... │` box and join them with spaces (no newline in the editor).
+* Ignore UI noise: do not capture lines containing `INSERT` or `Add a follow-up`.
+* Preserve appended text: if I add ` juju` to an existing line, the space before `juju` must survive.
+* No duplicate send: if the prefilled text is still at the start of the first line, it must be stripped once before sending back.
+
+## (Almost) works with any editor (or any TUI)
+
+Although I use Helix, this is just `$EDITOR`. If you prefer Vim, Neovim, or something more exotic, it should work. The same mechanism can be used to feed text into any TUI that reads from a terminal pane, not just Cursor Agent.
+
+One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.
+
+If I get a chance, I'll clean it up and rewrite it in Go (and release it properly). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other related posts are:
+
+[2026-02-02 A tmux popup editor for Cursor Agent prompts (You are currently reading this)](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
+[2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
+[2025-05-02 Terminal multiplexing with `tmux` - Fish edition](./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
+[2024-06-23 Terminal multiplexing with `tmux` - Z-Shell edition](./2024-06-23-terminal-multiplexing-with-tmux.md)  
+
+[Back to the main site](../)  
