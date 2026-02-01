@@ -18,6 +18,8 @@
 
 I spend some time in Cursor Agent (the CLI version of the Cursor IDE, I don't like really the IDE), and I also jump between Claude Code CLI, Ampcode, Gemini CLI, OpenAI Codex CLI, OpenCode, and Aider just to see how things are evolving. But for the next month I'll be with Cursor Agent.
 
+=> https://cursor.com/cli
+
 Short prompts are fine in the inline input, but for longer prompts I want a real editor: spellcheck, search/replace, multiple cursors, and all the Helix muscle memory I already have.
 
 Cursor Agent has a Vim editing mode, but not Helix. And even in Vim mode I can't use my full editor setup. I want the real thing, not a partial emulation.
