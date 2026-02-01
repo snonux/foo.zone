@@ -248,7 +248,7 @@ The problems were mostly small but annoying:
 
 * Getting the right target pane was the first hurdle. I ended up storing the pane id in a file because of tmux format expansion quirks.
 * The Cursor UI draws a nice box around the prompt, so the prompt line contains a `│` and other markers. I had to filter those out and strip the box-drawing characters.
-* When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the first line fixed that.
+* When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the submitted text fixed that.
 
 ## Test cases (for a future rewrite)
 
