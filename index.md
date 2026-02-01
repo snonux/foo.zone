@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-02-01T20:39:40+02:00 by `Gemtexter`
+> This site was generated at 2026-02-01T20:41:24+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -30,7 +30,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
-[2026-02-02 - A tmux popup editor for Cursor Agent prompts](./gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
+[2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts](./gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2026-01-01 - Using Supernote Nomad offline](./gemfeed/2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 - Posts from July to December 2025](./gemfeed/2026-01-01-posts-from-july-to-december-2025.md)  
 [2026-01-01 - Cloudless Kobo Forma with KOReader](./gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.md)  

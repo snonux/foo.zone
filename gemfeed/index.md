@@ -2,7 +2,7 @@
 
 ## To be in the .zone!
 
-[2026-02-02 - A tmux popup editor for Cursor Agent prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
+[2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2026-01-01 - Using Supernote Nomad offline](./2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 - Posts from July to December 2025](./2026-01-01-posts-from-july-to-december-2025.md)  
 [2026-01-01 - Cloudless Kobo Forma with KOReader](./2026-01-01-cloudless-kobo-forma-with-koreader.md)  

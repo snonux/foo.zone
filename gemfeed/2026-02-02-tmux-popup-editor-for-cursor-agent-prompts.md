@@ -1,4 +1,4 @@
-# A tmux popup editor for Cursor Agent prompts
+# A tmux popup editor for Cursor Agent CLI prompts
 
 > Published at 2026-02-01T20:24:16+02:00
 
@@ -6,7 +6,7 @@
 
 ## Table of Contents
 
-* [⇢ A tmux popup editor for Cursor Agent prompts](#a-tmux-popup-editor-for-cursor-agent-prompts)
+* [⇢ A tmux popup editor for Cursor Agent CLI prompts](#a-tmux-popup-editor-for-cursor-agent-cli-prompts)
 * [⇢ ⇢ Why I built this](#why-i-built-this)
 * [⇢ ⇢ What it is](#what-it-is)
 * [⇢ ⇢ How it works (overview)](#how-it-works-overview)
