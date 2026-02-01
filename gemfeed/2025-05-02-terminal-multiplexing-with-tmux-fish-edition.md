@@ -382,7 +382,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-02-02 A tmux popup editor for Cursor Agent prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
+[2026-02-02 A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2025-05-02 Terminal multiplexing with `tmux` - Fish edition (You are currently reading this)](./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
 [2024-06-23 Terminal multiplexing with `tmux` - Z-Shell edition](./2024-06-23-terminal-multiplexing-with-tmux.md)  
 
