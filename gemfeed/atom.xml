@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T21:02:02+02:00</updated>
+    <updated>2026-02-01T21:29:22+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -31,6 +31,7 @@
 <li>⇢ <a href='#why-i-built-this'>Why I built this</a></li>
 <li>⇢ <a href='#what-it-is'>What it is</a></li>
 <li>⇢ <a href='#how-it-works-overview'>How it works (overview)</a></li>
+<li>⇢ ⇢ <a href='#workflow-diagram'>Workflow diagram</a></li>
 <li>⇢ <a href='#challenges-and-small-discoveries'>Challenges and small discoveries</a></li>
 <li>⇢ <a href='#test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</a></li>
 <li>⇢ <a href='#almost-works-with-any-editor-or-any-tui'>(Almost) works with any editor (or any TUI)</a></li>
@@ -75,6 +76,23 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
   &gt; /tmp/tmux-edit-target-#{client_pid} \;
   tmux popup -E -w 90% -h 35% -x 5% -y 65% -d &#39;#{pane_current_path}&#39;
   \"~/scripts/tmux-edit-send /tmp/tmux-edit-target-#{client_pid}\""
+</pre>
+<br />
+<h3 style='display: inline' id='workflow-diagram'>Workflow diagram</h3><br />
+<br />
+<span>This is the whole workflow:</span><br />
+<br />
+<pre>
+┌────────────────────┐   ┌───────────────┐   ┌─────────────────────┐   ┌─────────────────────┐
+│ Cursor input box   │--&gt;| tmux keybind  │--&gt;| popup runs script   │--&gt;| capture + prefill   │
+│ (prompt pane)      │   │ prefix + e    │   │ tmux-edit-send      │   │ temp file           │
+└────────────────────┘   └───────────────┘   └─────────────────────┘   └─────────────────────┘
+                                                                                 |
+                                                                                 v
+┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐   ┌────────────────────┐
+│ Cursor input box   │&lt;--| send-keys back     |&lt;--| close editor+popup  |&lt;--| edit temp file     |
+│ (prompt pane)      │   │ to original pane   │   │ (exit $EDITOR)      │   │ in $EDITOR         │
+└────────────────────┘   └────────────────────┘   └────────────────────┘   └────────────────────┘
 </pre>
 <br />
 <span>And this is how it looks like after sending back the text to the Cursor Agent&#39;s input:</span><br />
