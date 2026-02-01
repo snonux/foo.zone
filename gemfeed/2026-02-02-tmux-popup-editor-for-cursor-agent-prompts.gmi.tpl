@@ -1,4 +1,4 @@
-# A tmux popup editor for Cursor Agent prompts
+# A tmux popup editor for Cursor Agent CLI prompts
 
 > Published at 2026-02-01T20:24:16+02:00
 
