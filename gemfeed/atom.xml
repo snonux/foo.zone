@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T20:24:16+02:00</updated>
+    <updated>2026-02-01T20:35:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='a-tmux-popup-editor-for-cursor-agent-prompts'>A tmux popup editor for Cursor Agent prompts</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-01T20:24:16+02:00</span><br />
 <br />
 <span>...and any other TUI based application</span><br />
 <br />
@@ -280,7 +282,7 @@ main <font color="#808080">"$@"</font>
 <ul>
 <li>Getting the right target pane was the first hurdle. I ended up storing the pane id in a file because of tmux format expansion quirks.</li>
 <li>The Cursor UI draws a nice box around the prompt, so the prompt line contains a <span class='inlinecode'>│</span> and other markers. I had to filter those out and strip the box-drawing characters.</li>
-<li>When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the first line fixed that.</li>
+<li>When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the submitted text fixed that.</li>
 </ul><br />
 <h2 style='display: inline' id='test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</h2><br />
 <br />
@@ -299,7 +301,9 @@ main <font color="#808080">"$@"</font>
 <br />
 <span>One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.</span><br />
 <br />
-<span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
+<span>Another thing is, what if Cursor decides to change the design of its TUI? I would need to change my script as well.</span><br />
+<br />
+<span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven&#39;t blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

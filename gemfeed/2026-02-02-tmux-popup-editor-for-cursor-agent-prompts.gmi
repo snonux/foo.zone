@@ -256,7 +256,7 @@ The problems were mostly small but annoying:
 
 * Getting the right target pane was the first hurdle. I ended up storing the pane id in a file because of tmux format expansion quirks.
 * The Cursor UI draws a nice box around the prompt, so the prompt line contains a `│` and other markers. I had to filter those out and strip the box-drawing characters.
-* When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the first line fixed that.
+* When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the submitted text fixed that.
 
 ## Test cases (for a future rewrite)
 
@@ -274,7 +274,9 @@ Although I use Helix, this is just `$EDITOR`. If you prefer Vim, Neovim, or some
 
 One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.
 
-If I get a chance, I'll clean it up and rewrite it in Go (and release it properly). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
+Another thing is, what if Cursor decides to change the design of its TUI? I would need to change my script as well.
+
+If I get a chance, I'll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven't blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
