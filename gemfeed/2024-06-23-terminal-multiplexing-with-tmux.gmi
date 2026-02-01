@@ -392,4 +392,10 @@ The last one reloads my Tmux configuration on the fly.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
+Other related posts are:
+
+=> ./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.gmi 2026-02-02 A tmux popup editor for Cursor Agent prompts
+=> ./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi 2025-05-02 Terminal multiplexing with `tmux` - Fish edition
+=> ./2024-06-23-terminal-multiplexing-with-tmux.gmi 2024-06-23 Terminal multiplexing with `tmux` - Z-Shell edition (You are currently reading this)
+
 => ../ Back to the main site

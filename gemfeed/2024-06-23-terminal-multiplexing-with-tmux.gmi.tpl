@@ -374,4 +374,8 @@ The last one reloads my Tmux configuration on the fly.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
+Other related posts are:
+
+<< template::inline::rindex tmux zsh shell
+
 => ../ Back to the main site
