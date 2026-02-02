@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-01T22:27:38+02:00</updated>
+    <updated>2026-02-02T11:03:17+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -101,6 +101,8 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
 <br />
 <span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with propper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.</span><br />
 <br />
+<span class='quote'>Updated 2026-02-02: Script now works on both Linux and macOS; the listing below reflects the latest version.</span><br />
+<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -108,10 +110,8 @@ http://www.gnu.org/software/src-highlite -->
 <pre><i><font color="silver">#!/usr/bin/env bash</font></i>
 <b><u><font color="#000000">set</font></u></b> -u -o pipefail
 
-<b><u><font color="#000000">declare</font></u></b> -i LOG_ENABLED=<font color="#000000">0</font>
-
+LOG_ENABLED=<font color="#000000">0</font>
 log_file=<font color="#808080">"${TMPDIR:-/tmp}/tmux-edit-send.log"</font>
-
 log() {
   <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$LOG_ENABLED"</font> -eq <font color="#000000">1</font> ]; <b><u><font color="#000000">then</font></u></b>
     <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s</font>\n<font color="#808080">'</font> <font color="#808080">"$*"</font> &gt;&gt; <font color="#808080">"$log_file"</font>
@@ -121,17 +121,30 @@ log() {
 <i><font color="silver"># Read the target pane id from a temp file created by tmux binding.</font></i>
 read_target_from_file() {
   <b><u><font color="#000000">local</font></u></b> file_path=<font color="#808080">"$1"</font>
+  <b><u><font color="#000000">local</font></u></b> pane_id
   <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$file_path"</font> ] &amp;&amp; [ -f <font color="#808080">"$file_path"</font> ]; <b><u><font color="#000000">then</font></u></b>
-    sed -n <font color="#808080">'1p'</font> <font color="#808080">"$file_path"</font> | tr -d <font color="#808080">'[:space:]'</font>
+    pane_id=<font color="#808080">"$(sed -n '1p' "</font>$file_path<font color="#808080">" | tr -d '[:space:]')"</font>
+    <i><font color="silver"># Ensure pane ID has % prefix</font></i>
+    <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$pane_id"</font> ] &amp;&amp; [[ <font color="#808080">"$pane_id"</font> != %* ]]; <b><u><font color="#000000">then</font></u></b>
+      pane_id=<font color="#808080">"%${pane_id}"</font>
+    <b><u><font color="#000000">fi</font></u></b>
+    <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"$pane_id"</font>
   <b><u><font color="#000000">fi</font></u></b>
 }
 
 <i><font color="silver"># Read the target pane id from tmux environment if present.</font></i>
 read_target_from_env() {
-  <b><u><font color="#000000">local</font></u></b> env_line
+  <b><u><font color="#000000">local</font></u></b> env_line pane_id
   env_line=<font color="#808080">"$(tmux show-environment -g TMUX_EDIT_TARGET 2&gt;/dev/null || true)"</font>
   <b><u><font color="#000000">case</font></u></b> <font color="#808080">"$env_line"</font> <b><u><font color="#000000">in</font></u></b>
-    TMUX_EDIT_TARGET=*) <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"${env_line#TMUX_EDIT_TARGET=}"</font> ;;
+    TMUX_EDIT_TARGET=*)
+      pane_id=<font color="#808080">"${env_line#TMUX_EDIT_TARGET=}"</font>
+      <i><font color="silver"># Ensure pane ID has % prefix</font></i>
+      <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$pane_id"</font> ] &amp;&amp; [[ <font color="#808080">"$pane_id"</font> != %* ]] &amp;&amp; [[ <font color="#808080">"$pane_id"</font> =~ ^[<font color="#000000">0</font>-<font color="#000000">9</font>]+$ ]]; <b><u><font color="#000000">then</font></u></b>
+        pane_id=<font color="#808080">"%${pane_id}"</font>
+      <b><u><font color="#000000">fi</font></u></b>
+      <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"$pane_id"</font>
+      ;;
   <b><u><font color="#000000">esac</font></u></b>
 }
 
@@ -142,16 +155,25 @@ resolve_target_pane() {
 
   current_pane=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{pane_id}" 2&gt;/dev/null || true)"</font></i>
   log <font color="#808080">"current pane=${current_pane:-&lt;empty&gt;}"</font>
+  
+  <i><font color="silver"># Ensure candidate has % prefix if it's a pane ID</font></i>
+  <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$candidate"</font> ] &amp;&amp; [[ <font color="#808080">"$candidate"</font> =~ ^[<font color="#000000">0</font>-<font color="#000000">9</font>]+$ ]]; <b><u><font color="#000000">then</font></u></b>
+    candidate=<font color="#808080">"%${candidate}"</font>
+    log <font color="#808080">"normalized candidate to $candidate"</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  
   <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$candidate"</font> ] &amp;&amp; [[ <font color="#808080">"$candidate"</font> == *<font color="#808080">"#{"</font>* ]]; <b><u><font color="#000000">then</font></u></b>
     log <font color="#808080">"format target detected, clearing"</font>
     candidate=<font color="#808080">""</font>
   <b><u><font color="#000000">fi</font></u></b>
   <b><u><font color="#000000">if</font></u></b> [ -z <font color="#808080">"$candidate"</font> ]; <b><u><font color="#000000">then</font></u></b>
     candidate=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{last_pane}" 2&gt;/dev/null || true)"</font></i>
+    log <font color="#808080">"using last pane as fallback: $candidate"</font>
   <b><u><font color="#000000">elif</font></u></b> [ <font color="#808080">"$candidate"</font> = <font color="#808080">"$current_pane"</font> ]; <b><u><font color="#000000">then</font></u></b>
     last_pane=<font color="#808080">"$(tmux display-message -p "</font><i><font color="silver">#{last_pane}" 2&gt;/dev/null || true)"</font></i>
     <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$last_pane"</font> ]; <b><u><font color="#000000">then</font></u></b>
       candidate=<font color="#808080">"$last_pane"</font>
+      log <font color="#808080">"candidate was current, using last pane: $candidate"</font>
     <b><u><font color="#000000">fi</font></u></b>
   <b><u><font color="#000000">fi</font></u></b>
   <b><u><font color="#000000">printf</font></u></b> <font color="#808080">'%s'</font> <font color="#808080">"$candidate"</font>
@@ -217,9 +239,12 @@ validate_target_pane() {
     <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
   <b><u><font color="#000000">fi</font></u></b>
   target_found=<font color="#000000">0</font>
+  log <font color="#808080">"validate: looking for target='$target' in all panes:"</font>
   <b><u><font color="#000000">for</font></u></b> pane <b><u><font color="#000000">in</font></u></b> $(tmux list-panes -a -F <font color="#808080">"#{pane_id}"</font> <font color="#000000">2</font>&gt;/dev/null || <b><u><font color="#000000">true</font></u></b>); <b><u><font color="#000000">do</font></u></b>
+    log <font color="#808080">"validate: checking pane='$pane'"</font>
     <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$pane"</font> = <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
       target_found=<font color="#000000">1</font>
+      log <font color="#808080">"validate: MATCH FOUND!"</font>
       <b><u><font color="#000000">break</font></u></b>
     <b><u><font color="#000000">fi</font></u></b>
   <b><u><font color="#000000">done</font></u></b>
@@ -228,6 +253,7 @@ validate_target_pane() {
     echo <font color="#808080">"Target pane not found: $target"</font> &gt;&amp;<font color="#000000">2</font>
     <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
   <b><u><font color="#000000">fi</font></u></b>
+  log <font color="#808080">"validate: target pane validated successfully"</font>
 }
 
 <i><font color="silver"># Send temp file contents to the target pane line by line.</font></i>
@@ -237,13 +263,18 @@ send_content() {
   <b><u><font color="#000000">local</font></u></b> prompt_text=<font color="#808080">"$3"</font>
   <b><u><font color="#000000">local</font></u></b> first_line=<font color="#000000">1</font>
   <b><u><font color="#000000">local</font></u></b> line
+  log <font color="#808080">"send_content: target=$target, prompt_text='$prompt_text'"</font>
   <b><u><font color="#000000">while</font></u></b> IFS= <b><u><font color="#000000">read</font></u></b> -r line || [ -n <font color="#808080">"$line"</font> ]; <b><u><font color="#000000">do</font></u></b>
+    log <font color="#808080">"send_content: read line='$line'"</font>
     <b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$first_line"</font> -eq <font color="#000000">1</font> ] &amp;&amp; [ -n <font color="#808080">"$prompt_text"</font> ]; <b><u><font color="#000000">then</font></u></b>
       <b><u><font color="#000000">if</font></u></b> [[ <font color="#808080">"$line"</font> == <font color="#808080">"$prompt_text"</font>* ]]; <b><u><font color="#000000">then</font></u></b>
+        <b><u><font color="#000000">local</font></u></b> old_line=<font color="#808080">"$line"</font>
         line=<font color="#808080">"${line#"</font>$prompt_text<font color="#808080">"}"</font>
+        log <font color="#808080">"send_content: stripped prompt, was='$old_line' now='$line'"</font>
       <b><u><font color="#000000">fi</font></u></b>
     <b><u><font color="#000000">fi</font></u></b>
     first_line=<font color="#000000">0</font>
+    log <font color="#808080">"send_content: sending line='$line'"</font>
     tmux send-keys -t <font color="#808080">"$target"</font> -l <font color="#808080">"$line"</font>
     tmux send-keys -t <font color="#808080">"$target"</font> Enter
   <b><u><font color="#000000">done</font></u></b> &lt; <font color="#808080">"$tmpfile"</font>
@@ -258,6 +289,10 @@ main() {
   <b><u><font color="#000000">local</font></u></b> tmpfile
   <b><u><font color="#000000">local</font></u></b> prompt_text
 
+  log <font color="#808080">"=== tmux-edit-send starting ==="</font>
+  log <font color="#808080">"target_file=$target_file"</font>
+  log <font color="#808080">"EDITOR=$editor"</font>
+  
   target=<font color="#808080">"$(read_target_from_file "</font>$target_file<font color="#808080">" || true)"</font>
   <b><u><font color="#000000">if</font></u></b> [ -n <font color="#808080">"$target"</font> ]; <b><u><font color="#000000">then</font></u></b>
     log <font color="#808080">"file target=${target:-&lt;empty&gt;}"</font>
@@ -274,22 +309,47 @@ main() {
   target=<font color="#808080">"$(resolve_target_pane "</font>$target<font color="#808080">")"</font>
   log <font color="#808080">"fallback target=${target:-&lt;empty&gt;}"</font>
 
-  tmpfile=<font color="#808080">"$(mktemp "</font>./.tmux-edit-send.XXXXXX.md<font color="#808080">")"</font>
+  tmpfile=<font color="#808080">"$(mktemp)"</font>
+  log <font color="#808080">"created tmpfile=$tmpfile"</font>
+  <b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$tmpfile"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"ERROR: mktemp failed to create file"</font>
+    echo <font color="#808080">"ERROR: mktemp failed"</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+  <b><u><font color="#000000">fi</font></u></b>
+  mv <font color="#808080">"$tmpfile"</font> <font color="#808080">"${tmpfile}.md"</font> <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font> | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> -r line; <b><u><font color="#000000">do</font></u></b> log <font color="#808080">"mv output: $line"</font>; <b><u><font color="#000000">done</font></u></b>
+  tmpfile=<font color="#808080">"${tmpfile}.md"</font>
+  log <font color="#808080">"renamed to tmpfile=$tmpfile"</font>
+  <b><u><font color="#000000">if</font></u></b> [ ! -f <font color="#808080">"$tmpfile"</font> ]; <b><u><font color="#000000">then</font></u></b>
+    log <font color="#808080">"ERROR: tmpfile does not exist after rename"</font>
+    echo <font color="#808080">"ERROR: tmpfile rename failed"</font> &gt;&amp;<font color="#000000">2</font>
+    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
+  <b><u><font color="#000000">fi</font></u></b>
   <b><u><font color="#000000">trap</font></u></b> <font color="#808080">'rm -f "$tmpfile"'</font> EXIT
 
+  log <font color="#808080">"capturing prompt text from target=$target"</font>
   prompt_text=<font color="#808080">"$(capture_prompt_text "</font>$target<font color="#808080">")"</font>
+  log <font color="#808080">"captured prompt_text='$prompt_text'"</font>
   prefill_tmpfile <font color="#808080">"$tmpfile"</font> <font color="#808080">"$prompt_text"</font>
+  log <font color="#808080">"prefilled tmpfile"</font>
 
+  log <font color="#808080">"launching editor: $editor $tmpfile"</font>
   <font color="#808080">"$editor"</font> <font color="#808080">"$tmpfile"</font>
-  log <font color="#808080">"editor exited with status $?"</font>
+  <b><u><font color="#000000">local</font></u></b> editor_exit=$?
+  log <font color="#808080">"editor exited with status $editor_exit"</font>
 
   <b><u><font color="#000000">if</font></u></b> [ ! -s <font color="#808080">"$tmpfile"</font> ]; <b><u><font color="#000000">then</font></u></b>
     log <font color="#808080">"empty file, nothing sent"</font>
     <b><u><font color="#000000">exit</font></u></b> <font color="#000000">0</font>
   <b><u><font color="#000000">fi</font></u></b>
+  
+  log <font color="#808080">"tmpfile contents:"</font>
+  log <font color="#808080">"$(cat "</font>$tmpfile<font color="#808080">")"</font>
 
+  log <font color="#808080">"validating target pane"</font>
   validate_target_pane <font color="#808080">"$target"</font>
+  log <font color="#808080">"sending content to target=$target"</font>
   send_content <font color="#808080">"$target"</font> <font color="#808080">"$tmpfile"</font> <font color="#808080">"$prompt_text"</font>
+  log <font color="#808080">"=== tmux-edit-send completed ==="</font>
 }
 
 main <font color="#808080">"$@"</font>
