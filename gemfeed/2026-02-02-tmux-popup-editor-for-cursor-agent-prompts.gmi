@@ -79,14 +79,14 @@ And this is how it looks like after sending back the text to the Cursor Agent's 
 
 And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with propper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.
 
+> Updated 2026-02-02: Script now works on both Linux and macOS; the listing below reflects the latest version.
+
 ```bash
 #!/usr/bin/env bash
 set -u -o pipefail
 
-declare -i LOG_ENABLED=0
-
+LOG_ENABLED=0
 log_file="${TMPDIR:-/tmp}/tmux-edit-send.log"
-
 log() {
   if [ "$LOG_ENABLED" -eq 1 ]; then
     printf '%s\n' "$*" >> "$log_file"
@@ -96,17 +96,30 @@ log() {
 # Read the target pane id from a temp file created by tmux binding.
 read_target_from_file() {
   local file_path="$1"
+  local pane_id
   if [ -n "$file_path" ] && [ -f "$file_path" ]; then
-    sed -n '1p' "$file_path" | tr -d '[:space:]'
+    pane_id="$(sed -n '1p' "$file_path" | tr -d '[:space:]')"
+    # Ensure pane ID has % prefix
+    if [ -n "$pane_id" ] && [[ "$pane_id" != %* ]]; then
+      pane_id="%${pane_id}"
+    fi
+    printf '%s' "$pane_id"
   fi
 }
 
 # Read the target pane id from tmux environment if present.
 read_target_from_env() {
-  local env_line
+  local env_line pane_id
   env_line="$(tmux show-environment -g TMUX_EDIT_TARGET 2>/dev/null || true)"
   case "$env_line" in
-    TMUX_EDIT_TARGET=*) printf '%s' "${env_line#TMUX_EDIT_TARGET=}" ;;
+    TMUX_EDIT_TARGET=*)
+      pane_id="${env_line#TMUX_EDIT_TARGET=}"
+      # Ensure pane ID has % prefix
+      if [ -n "$pane_id" ] && [[ "$pane_id" != %* ]] && [[ "$pane_id" =~ ^[0-9]+$ ]]; then
+        pane_id="%${pane_id}"
+      fi
+      printf '%s' "$pane_id"
+      ;;
   esac
 }
 
@@ -117,16 +130,25 @@ resolve_target_pane() {
 
   current_pane="$(tmux display-message -p "#{pane_id}" 2>/dev/null || true)"
   log "current pane=${current_pane:-<empty>}"
+  
+  # Ensure candidate has % prefix if it's a pane ID
+  if [ -n "$candidate" ] && [[ "$candidate" =~ ^[0-9]+$ ]]; then
+    candidate="%${candidate}"
+    log "normalized candidate to $candidate"
+  fi
+  
   if [ -n "$candidate" ] && [[ "$candidate" == *"#{"* ]]; then
     log "format target detected, clearing"
     candidate=""
   fi
   if [ -z "$candidate" ]; then
     candidate="$(tmux display-message -p "#{last_pane}" 2>/dev/null || true)"
+    log "using last pane as fallback: $candidate"
   elif [ "$candidate" = "$current_pane" ]; then
     last_pane="$(tmux display-message -p "#{last_pane}" 2>/dev/null || true)"
     if [ -n "$last_pane" ]; then
       candidate="$last_pane"
+      log "candidate was current, using last pane: $candidate"
     fi
   fi
   printf '%s' "$candidate"
@@ -192,9 +214,12 @@ validate_target_pane() {
     return 1
   fi
   target_found=0
+  log "validate: looking for target='$target' in all panes:"
   for pane in $(tmux list-panes -a -F "#{pane_id}" 2>/dev/null || true); do
+    log "validate: checking pane='$pane'"
     if [ "$pane" = "$target" ]; then
       target_found=1
+      log "validate: MATCH FOUND!"
       break
     fi
   done
@@ -203,6 +228,7 @@ validate_target_pane() {
     echo "Target pane not found: $target" >&2
     return 1
   fi
+  log "validate: target pane validated successfully"
 }
 
 # Send temp file contents to the target pane line by line.
@@ -212,13 +238,18 @@ send_content() {
   local prompt_text="$3"
   local first_line=1
   local line
+  log "send_content: target=$target, prompt_text='$prompt_text'"
   while IFS= read -r line || [ -n "$line" ]; do
+    log "send_content: read line='$line'"
     if [ "$first_line" -eq 1 ] && [ -n "$prompt_text" ]; then
       if [[ "$line" == "$prompt_text"* ]]; then
+        local old_line="$line"
         line="${line#"$prompt_text"}"
+        log "send_content: stripped prompt, was='$old_line' now='$line'"
       fi
     fi
     first_line=0
+    log "send_content: sending line='$line'"
     tmux send-keys -t "$target" -l "$line"
     tmux send-keys -t "$target" Enter
   done < "$tmpfile"
@@ -233,6 +264,10 @@ main() {
   local tmpfile
   local prompt_text
 
+  log "=== tmux-edit-send starting ==="
+  log "target_file=$target_file"
+  log "EDITOR=$editor"
+  
   target="$(read_target_from_file "$target_file" || true)"
   if [ -n "$target" ]; then
     log "file target=${target:-<empty>}"
@@ -249,22 +284,47 @@ main() {
   target="$(resolve_target_pane "$target")"
   log "fallback target=${target:-<empty>}"
 
-  tmpfile="$(mktemp "./.tmux-edit-send.XXXXXX.md")"
+  tmpfile="$(mktemp)"
+  log "created tmpfile=$tmpfile"
+  if [ ! -f "$tmpfile" ]; then
+    log "ERROR: mktemp failed to create file"
+    echo "ERROR: mktemp failed" >&2
+    exit 1
+  fi
+  mv "$tmpfile" "${tmpfile}.md" 2>&1 | while read -r line; do log "mv output: $line"; done
+  tmpfile="${tmpfile}.md"
+  log "renamed to tmpfile=$tmpfile"
+  if [ ! -f "$tmpfile" ]; then
+    log "ERROR: tmpfile does not exist after rename"
+    echo "ERROR: tmpfile rename failed" >&2
+    exit 1
+  fi
   trap 'rm -f "$tmpfile"' EXIT
 
+  log "capturing prompt text from target=$target"
   prompt_text="$(capture_prompt_text "$target")"
+  log "captured prompt_text='$prompt_text'"
   prefill_tmpfile "$tmpfile" "$prompt_text"
+  log "prefilled tmpfile"
 
+  log "launching editor: $editor $tmpfile"
   "$editor" "$tmpfile"
-  log "editor exited with status $?"
+  local editor_exit=$?
+  log "editor exited with status $editor_exit"
 
   if [ ! -s "$tmpfile" ]; then
     log "empty file, nothing sent"
     exit 0
   fi
+  
+  log "tmpfile contents:"
+  log "$(cat "$tmpfile")"
 
+  log "validating target pane"
   validate_target_pane "$target"
+  log "sending content to target=$target"
   send_content "$target" "$tmpfile" "$prompt_text"
+  log "=== tmux-edit-send completed ==="
 }
 
 main "$@"
