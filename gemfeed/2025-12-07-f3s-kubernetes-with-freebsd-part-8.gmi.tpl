@@ -198,7 +198,7 @@ In addition to external access through the OpenBSD relays, services can also be 
 
 The LAN ingress architecture leverages the existing FreeBSD CARP (Common Address Redundancy Protocol) failover infrastructure that's already in place for NFS-over-TLS (see Part 5). Instead of deploying MetalLB or another LoadBalancer implementation, we reuse the CARP virtual IP (`192.168.1.138`) by adding HTTP/HTTPS forwarding alongside the existing stunnel service on port 2323.
 
-#### Architecture overview
+*Architecture overview*:
 
 The LAN access path differs from external access:
 
@@ -226,7 +226,7 @@ The key architectural decisions:
 * CARP provides automatic failover between f0 and f1
 * No code changes to applications—just add a LAN ingress resource
 
-#### Installing cert-manager
+*Installing cert-manager*:
 
 First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:
 
@@ -270,7 +270,7 @@ $ kubectl get secret f3s-lan-tls -n cert-manager -o yaml | \
     kubectl apply -f -
 ```
 
-#### Configuring FreeBSD relayd for LAN access
+*Configuring FreeBSD relayd for LAN access*:
 
 On both FreeBSD hosts (f0, f1), install and configure `relayd` for TCP forwarding:
 
@@ -324,7 +324,7 @@ _relayd  relayd   2903  12  tcp4   192.168.1.138:443     *:*
 
 Repeat the same configuration on f1. Both hosts will run `relayd` listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.
 
-#### Adding LAN ingress to services
+*Adding LAN ingress to services*:
 
 To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here's an example for Grafana:
 
@@ -375,7 +375,7 @@ HTTP/2 302
 location: /login
 ```
 
-#### Client-side CA trust
+*Client-side CA trust*:
 
 Since the LAN certificates are self-signed, clients need to trust the CA. Export the CA certificate:
 
@@ -404,7 +404,7 @@ Import `f3s-lan-ca.crt` into "Trusted Root Certification Authorities" via `certm
 
 After trusting the CA, browsers will accept the LAN certificates without warnings.
 
-#### CARP failover testing
+*CARP failover testing*:
 
 The CARP + relayd architecture provides high availability with automatic failover. Testing confirmed zero-downtime operation:
 
@@ -441,7 +441,7 @@ Results:
 
 The architecture successfully provides high availability for LAN services without requiring MetalLB or complex load balancer setups.
 
-#### Scaling to other services
+*Scaling to other services*:
 
 The same pattern can be applied to any service. To add LAN access:
 
@@ -456,7 +456,7 @@ No changes needed to:
 * cert-manager (wildcard cert covers all `*.f3s.lan.foo.zone`)
 * CARP configuration (VIP shared by all services)
 
-#### TLS offloaders summary
+*TLS offloaders summary*:
 
 The f3s infrastructure now has three distinct TLS offloaders:
 
