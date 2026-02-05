@@ -407,43 +407,6 @@ $ sudo update-ca-trust
 
 After trusting the CA, browsers will accept the LAN certificates without warnings.
 
-*CARP failover testing*:
-
-The CARP + relayd architecture provides high availability with automatic failover. Testing confirmed zero-downtime operation:
-
-**Failover test (f0 → f1):**
-```sh
-# Demote f0 to BACKUP, promote f1 to MASTER
-$ ssh f0 'doas ifconfig re0 vhid 1 advskew 200'
-$ ssh f1 'doas ifconfig re0 vhid 1 advskew 0 state master'
-
-# Service tests: 10/10 requests successful (HTTP 302)
-$ for i in {1..10}; do curl -k https://grafana.f3s.lan.foo.zone \
-    -s -o /dev/null -w "Test $i: %{http_code}\n"; sleep 0.5; done
-Test 1: 302 ✓
-Test 2: 302 ✓
-...
-Test 10: 302 ✓
-```
-
-**Failback test (f1 → f0):**
-```sh
-# Restore f0 as MASTER
-$ ssh f0 'doas ifconfig re0 vhid 1 advskew 0 state master'
-$ ssh f1 'doas ifconfig re0 vhid 1 advskew 100'
-
-# Service tests: 10/10 requests successful (HTTP 302)
-```
-
-Results:
-
-* Failover time: ~3 seconds
-* Packet loss: 0/20 requests
-* Service availability: 100%
-* TLS certificate: Maintained (Traefik handles TLS)
-
-The architecture successfully provides high availability for LAN services without requiring MetalLB or complex load balancer setups.
-
 *Scaling to other services*:
 
 The same pattern can be applied to any service. To add LAN access:
