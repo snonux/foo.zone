@@ -19,6 +19,7 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 
 * [⇢ f3s: Kubernetes with FreeBSD - Part 8: Observability](#f3s-kubernetes-with-freebsd---part-8-observability)
 * [⇢ ⇢ Introduction](#introduction)
+* [⇢ ⇢ Update: LAN Ingress Support (February 2026)](#update-lan-ingress-support-february-2026)
 * [⇢ ⇢ Important Note: GitOps Migration](#important-note-gitops-migration)
 * [⇢ ⇢ Persistent storage recap](#persistent-storage-recap)
 * [⇢ ⇢ The monitoring namespace](#the-monitoring-namespace)
@@ -26,6 +27,7 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 * [⇢ ⇢ ⇢ Prerequisites](#prerequisites)
 * [⇢ ⇢ ⇢ Deploying with the Justfile](#deploying-with-the-justfile)
 * [⇢ ⇢ ⇢ Exposing Grafana via ingress](#exposing-grafana-via-ingress)
+* [⇢ ⇢ ⇢ Exposing services via LAN ingress](#exposing-services-via-lan-ingress)
 * [⇢ ⇢ Installing Loki and Alloy](#installing-loki-and-alloy)
 * [⇢ ⇢ ⇢ Prerequisites](#prerequisites)
 * [⇢ ⇢ ⇢ Deploying Loki and Alloy](#deploying-loki-and-alloy)
@@ -61,6 +63,10 @@ Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a pop
 All manifests for the f3s stack live in my configuration repository:
 
 [codeberg.org/snonux/conf/f3s](https://codeberg.org/snonux/conf/src/branch/master/f3s)  
+
+## Update: LAN Ingress Support (February 2026)
+
+Update (2026-02-05):** This blog post has been updated to include a new section on exposing services via LAN ingress. The original blog post focused on external access through OpenBSD edge relays. The new section documents how to:
 
 ## Important Note: GitOps Migration
 
@@ -214,6 +220,246 @@ Grafana connects to Prometheus using the internal service URL `http://prometheus
 [![Grafana dashboard showing Prometheus metrics](./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png "Grafana dashboard showing Prometheus metrics")](./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png)  
 
 [![Grafana dashboard showing cluster metrics](./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png "Grafana dashboard showing cluster metrics")](./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png)  
+
+### Exposing services via LAN ingress
+
+In addition to external access through the OpenBSD relays, services can also be exposed on the local network using LAN-specific ingresses. This is useful for accessing services from within the home network without going through the internet, reducing latency and providing an alternative path if the external relays are unavailable.
+
+The LAN ingress architecture leverages the existing FreeBSD CARP (Common Address Redundancy Protocol) failover infrastructure that's already in place for NFS-over-TLS (see Part 5). Instead of deploying MetalLB or another LoadBalancer implementation, we reuse the CARP virtual IP (`192.168.1.138`) by adding HTTP/HTTPS forwarding alongside the existing stunnel service on port 2323.
+
+*Architecture overview*:
+
+The LAN access path differs from external access:
+
+**External access (*.f3s.foo.zone):**
+```
+Internet → OpenBSD relayd (TLS termination, Let's Encrypt)
+        → WireGuard tunnel
+        → k3s Traefik :80 (HTTP)
+        → Service
+```
+
+**LAN access (*.f3s.lan.foo.zone):**
+```
+LAN → FreeBSD CARP VIP (192.168.1.138)
+    → FreeBSD relayd (TCP forwarding)
+    → k3s Traefik :443 (TLS termination, cert-manager)
+    → Service
+```
+
+The key architectural decisions:
+
+* FreeBSD `relayd` performs pure TCP forwarding (Layer 4) for ports 80 and 443, not TLS termination
+* Traefik inside k3s handles TLS offloading using certificates from cert-manager
+* Self-signed CA for LAN domains (no external dependencies)
+* CARP provides automatic failover between f0 and f1
+* No code changes to applications—just add a LAN ingress resource
+
+*Installing cert-manager*:
+
+First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:
+
+[codeberg.org/snonux/conf/f3s/cert-manager](https://codeberg.org/snonux/conf/src/branch/master/f3s/cert-manager)  
+
+```sh
+$ cd conf/f3s/cert-manager
+$ just install
+kubectl apply -f cert-manager.yaml
+# ... cert-manager CRDs and resources created ...
+kubectl apply -f self-signed-issuer.yaml
+clusterissuer.cert-manager.io/selfsigned-issuer created
+clusterissuer.cert-manager.io/selfsigned-ca-issuer created
+kubectl apply -f ca-certificate.yaml
+certificate.cert-manager.io/selfsigned-ca created
+kubectl apply -f wildcard-certificate.yaml
+certificate.cert-manager.io/f3s-lan-wildcard created
+```
+
+This creates:
+
+* A self-signed ClusterIssuer
+* A CA certificate (`f3s-lan-ca`) valid for 10 years
+* A CA-signed ClusterIssuer
+* A wildcard certificate (`*.f3s.lan.foo.zone`) valid for 90 days with automatic renewal
+
+Verify the certificates:
+
+```sh
+$ kubectl get certificate -n cert-manager
+NAME               READY   SECRET                 AGE
+f3s-lan-wildcard   True    f3s-lan-tls            5m
+selfsigned-ca      True    selfsigned-ca-secret   5m
+```
+
+The wildcard certificate (`f3s-lan-tls`) needs to be copied to any namespace that uses it:
+
+```sh
+$ kubectl get secret f3s-lan-tls -n cert-manager -o yaml | \
+    sed 's/namespace: cert-manager/namespace: services/' | \
+    kubectl apply -f -
+```
+
+*Configuring FreeBSD relayd for LAN access*:
+
+On both FreeBSD hosts (f0, f1), install and configure `relayd` for TCP forwarding:
+
+```sh
+paul@f0:~ % doas pkg install -y relayd
+```
+
+Create `/usr/local/etc/relayd.conf`:
+
+```
+# k3s nodes backend table
+table <k3s_nodes> { 192.168.1.120 192.168.1.121 192.168.1.122 }
+
+# TCP forwarding to Traefik (no TLS termination)
+relay "lan_http" {
+    listen on 192.168.1.138 port 80
+    forward to <k3s_nodes> port 80 check tcp
+}
+
+relay "lan_https" {
+    listen on 192.168.1.138 port 443
+    forward to <k3s_nodes> port 443 check tcp
+}
+```
+
+Note: The IP addresses `192.168.1.120-122` are the LAN IPs of the k3s nodes (r0, r1, r2), not their WireGuard IPs. FreeBSD `relayd` requires PF (Packet Filter) to be enabled. Create a minimal `/etc/pf.conf`:
+
+```
+# Basic PF rules for relayd
+set skip on lo0
+pass in quick
+pass out quick
+```
+
+Enable PF and relayd:
+
+```sh
+paul@f0:~ % doas sysrc pf_enable=YES pflog_enable=YES relayd_enable=YES
+paul@f0:~ % doas service pf start
+paul@f0:~ % doas service pflog start
+paul@f0:~ % doas service relayd start
+```
+
+Verify `relayd` is listening on the CARP VIP:
+
+```sh
+paul@f0:~ % doas sockstat -4 -l | grep 192.168.1.138
+_relayd  relayd   2903  11  tcp4   192.168.1.138:80      *:*
+_relayd  relayd   2903  12  tcp4   192.168.1.138:443     *:*
+```
+
+Repeat the same configuration on f1. Both hosts will run `relayd` listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.
+
+*Adding LAN ingress to services*:
+
+To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here's an example for Grafana:
+
+```yaml
+---
+# LAN Ingress for grafana.f3s.lan.foo.zone
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana-ingress-lan
+  namespace: monitoring
+  annotations:
+    spec.ingressClassName: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web,websecure
+spec:
+  tls:
+    - hosts:
+        - grafana.f3s.lan.foo.zone
+      secretName: f3s-lan-tls
+  rules:
+    - host: grafana.f3s.lan.foo.zone
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: prometheus-grafana
+                port:
+                  number: 80
+```
+
+Key points:
+
+* Use `web,websecure` entrypoints (both HTTP and HTTPS)
+* Reference the `f3s-lan-tls` secret in the `tls` section
+* Use `.f3s.lan.foo.zone` subdomain pattern
+* Same backend service as the external ingress
+
+Apply the ingress and test:
+
+```sh
+$ kubectl apply -f grafana-ingress-lan.yaml
+ingress.networking.k8s.io/grafana-ingress-lan created
+
+$ curl -k https://grafana.f3s.lan.foo.zone
+HTTP/2 302 
+location: /login
+```
+
+*Client-side DNS and CA setup*:
+
+To access LAN services, clients need DNS entries and must trust the self-signed CA.
+
+Add DNS entries to `/etc/hosts` on your laptop:
+
+```sh
+$ sudo tee -a /etc/hosts << 'EOF'
+# f3s LAN services
+192.168.1.138  grafana.f3s.lan.foo.zone
+192.168.1.138  navidrome.f3s.lan.foo.zone
+EOF
+```
+
+The CARP VIP `192.168.1.138` provides high availability—traffic automatically fails over to the backup host if the master goes down.
+
+Export the self-signed CA certificate:
+
+```sh
+$ kubectl get secret selfsigned-ca-secret -n cert-manager -o jsonpath='{.data.ca\.crt}' | \
+    base64 -d > f3s-lan-ca.crt
+```
+
+Install the CA certificate on Linux (Fedora/Rocky):
+
+```sh
+$ sudo cp f3s-lan-ca.crt /etc/pki/ca-trust/source/anchors/
+$ sudo update-ca-trust
+```
+
+After trusting the CA, browsers will accept the LAN certificates without warnings.
+
+*Scaling to other services*:
+
+The same pattern can be applied to any service. To add LAN access:
+
+1. Copy the `f3s-lan-tls` secret to the service's namespace (if not already there)
+2. Add a LAN Ingress resource using the pattern above
+3. Configure DNS: `192.168.1.138  service.f3s.lan.foo.zone`
+4. Commit and push (ArgoCD will deploy automatically)
+
+No changes needed to:
+
+* relayd configuration (forwards all traffic)
+* cert-manager (wildcard cert covers all `*.f3s.lan.foo.zone`)
+* CARP configuration (VIP shared by all services)
+
+*TLS offloaders summary*:
+
+The f3s infrastructure now has three distinct TLS offloaders:
+
+* **OpenBSD relayd**: External internet traffic (`*.f3s.foo.zone`) using Let's Encrypt
+* **Traefik (k3s)**: LAN HTTPS traffic (`*.f3s.lan.foo.zone`) using cert-manager
+* **stunnel**: NFS-over-TLS (port 2323) using custom PKI
+
+Each serves a different purpose with appropriate certificate management for its use case.
 
 ## Installing Loki and Alloy
 
