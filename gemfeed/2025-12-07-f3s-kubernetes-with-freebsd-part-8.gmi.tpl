@@ -375,9 +375,23 @@ HTTP/2 302
 location: /login
 ```
 
-*Client-side CA trust*:
+*Client-side DNS and CA setup*:
 
-Since the LAN certificates are self-signed, clients need to trust the CA. Export the CA certificate:
+To access LAN services, clients need DNS entries and must trust the self-signed CA.
+
+Add DNS entries to `/etc/hosts` on your laptop:
+
+```sh
+$ sudo tee -a /etc/hosts << 'EOF'
+# f3s LAN services
+192.168.1.138  grafana.f3s.lan.foo.zone
+192.168.1.138  navidrome.f3s.lan.foo.zone
+EOF
+```
+
+The CARP VIP `192.168.1.138` provides high availability—traffic automatically fails over to the backup host if the master goes down.
+
+Export the self-signed CA certificate:
 
 ```sh
 $ kubectl get secret selfsigned-ca-secret -n cert-manager -o jsonpath='{.data.ca\.crt}' | \
