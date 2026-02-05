@@ -384,23 +384,12 @@ $ kubectl get secret selfsigned-ca-secret -n cert-manager -o jsonpath='{.data.ca
     base64 -d > f3s-lan-ca.crt
 ```
 
-**On Linux (Fedora/Rocky):**
+Install the CA certificate on Linux (Fedora/Rocky):
 
 ```sh
 $ sudo cp f3s-lan-ca.crt /etc/pki/ca-trust/source/anchors/
 $ sudo update-ca-trust
 ```
-
-**On macOS:**
-
-```sh
-$ sudo security add-trusted-cert -d -r trustRoot \
-    -k /Library/Keychains/System.keychain f3s-lan-ca.crt
-```
-
-**On Windows:**
-
-Import `f3s-lan-ca.crt` into "Trusted Root Certification Authorities" via `certmgr.msc`.
 
 After trusting the CA, browsers will accept the LAN certificates without warnings.
 
