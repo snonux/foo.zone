@@ -33,6 +33,13 @@ This is the seventh blog post about the f3s series for my self-hosting demands i
 * [⇢ ⇢ ⇢ Automatic failover when f3s cluster is down](#automatic-failover-when-f3s-cluster-is-down)
 * [⇢ ⇢ ⇢ OpenBSD httpd fallback configuration](#openbsd-httpd-fallback-configuration)
 * [⇢ ⇢ Exposing services via LAN ingress](#exposing-services-via-lan-ingress)
+* [⇢ ⇢ ⇢ Architecture overview](#architecture-overview)
+* [⇢ ⇢ ⇢ Installing cert-manager](#installing-cert-manager)
+* [⇢ ⇢ ⇢ Configuring FreeBSD relayd for LAN access](#configuring-freebsd-relayd-for-lan-access)
+* [⇢ ⇢ ⇢ Adding LAN ingress to services](#adding-lan-ingress-to-services)
+* [⇢ ⇢ ⇢ Client-side DNS and CA setup](#client-side-dns-and-ca-setup)
+* [⇢ ⇢ ⇢ Scaling to other services](#scaling-to-other-services)
+* [⇢ ⇢ ⇢ TLS offloaders summary](#tls-offloaders-summary)
 * [⇢ ⇢ Deploying the private Docker image registry](#deploying-the-private-docker-image-registry)
 * [⇢ ⇢ ⇢ Prepare the NFS-backed storage](#prepare-the-nfs-backed-storage)
 * [⇢ ⇢ ⇢ Install (or upgrade) the chart](#install-or-upgrade-the-chart)
@@ -820,7 +827,7 @@ In addition to external access through the OpenBSD relays, services can also be 
 
 The LAN ingress architecture leverages the existing FreeBSD CARP (Common Address Redundancy Protocol) failover infrastructure that's already in place for NFS-over-TLS (see Part 5). Instead of deploying MetalLB or another LoadBalancer implementation, we reuse the CARP virtual IP (`192.168.1.138`) by adding HTTP/HTTPS forwarding alongside the existing stunnel service on port 2323.
 
-*Architecture overview*:
+### Architecture overview
 
 The LAN access path differs from external access:
 
@@ -848,7 +855,7 @@ The key architectural decisions:
 * CARP provides automatic failover between f0 and f1
 * No code changes to applications—just add a LAN ingress resource
 
-*Installing cert-manager*:
+### Installing cert-manager
 
 First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:
 
@@ -892,7 +899,7 @@ $ kubectl get secret f3s-lan-tls -n cert-manager -o yaml | \
     kubectl apply -f -
 ```
 
-*Configuring FreeBSD relayd for LAN access*:
+### Configuring FreeBSD relayd for LAN access
 
 On both FreeBSD hosts (f0, f1), install and configure `relayd` for TCP forwarding:
 
@@ -918,7 +925,7 @@ relay "lan_https" {
 }
 ```
 
-Note: The IP addresses `192.168.1.120-122` are the LAN IPs of the k3s nodes (r0, r1, r2), not their WireGuard IPs. FreeBSD `relayd` requires PF (Packet Filter) to be enabled. Create a minimal `/etc/pf.conf`:
+> Note: The IP addresses `192.168.1.120-122` are the LAN IPs of the k3s nodes (r0, r1, r2), not their WireGuard IPs. FreeBSD `relayd` requires PF (Packet Filter) to be enabled. Create a minimal `/etc/pf.conf`:
 
 ```
 # Basic PF rules for relayd
@@ -946,7 +953,7 @@ _relayd  relayd   2903  12  tcp4   192.168.1.138:443     *:*
 
 Repeat the same configuration on f1. Both hosts will run `relayd` listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.
 
-*Adding LAN ingress to services*:
+### Adding LAN ingress to services
 
 To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here's an example:
 
@@ -997,7 +1004,7 @@ HTTP/2 302
 location: /app/
 ```
 
-*Client-side DNS and CA setup*:
+### Client-side DNS and CA setup
 
 To access LAN services, clients need DNS entries and must trust the self-signed CA.
 
@@ -1028,14 +1035,13 @@ $ sudo update-ca-trust
 
 After trusting the CA, browsers will accept the LAN certificates without warnings.
 
-*Scaling to other services*:
+### Scaling to other services
 
 The same pattern can be applied to any service. To add LAN access:
 
 1. Copy the `f3s-lan-tls` secret to the service's namespace (if not already there)
 2. Add a LAN Ingress resource using the pattern above
 3. Configure DNS: `192.168.1.138  service.f3s.lan.foo.zone`
-4. Commit and push (ArgoCD will deploy automatically)
 
 No changes needed to:
 
@@ -1043,7 +1049,7 @@ No changes needed to:
 * cert-manager (wildcard cert covers all `*.f3s.lan.foo.zone`)
 * CARP configuration (VIP shared by all services)
 
-*TLS offloaders summary*:
+### TLS offloaders summary
 
 The f3s infrastructure now has three distinct TLS offloaders:
 
