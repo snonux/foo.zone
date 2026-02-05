@@ -948,15 +948,15 @@ Repeat the same configuration on f1. Both hosts will run `relayd` listening on t
 
 *Adding LAN ingress to services*:
 
-To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here's an example for Navidrome:
+To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here's an example:
 
 ```yaml
 ---
-# LAN Ingress for navidrome.f3s.lan.foo.zone
+# LAN Ingress for f3s.lan.foo.zone
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: navidrome-ingress-lan
+  name: ingress-lan
   namespace: services
   annotations:
     spec.ingressClassName: traefik
@@ -964,17 +964,17 @@ metadata:
 spec:
   tls:
     - hosts:
-        - navidrome.f3s.lan.foo.zone
+        - f3s.lan.foo.zone
       secretName: f3s-lan-tls
   rules:
-    - host: navidrome.f3s.lan.foo.zone
+    - host: f3s.lan.foo.zone
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: navidrome-service
+                name: service
                 port:
                   number: 4533
 ```
@@ -989,10 +989,10 @@ Key points:
 Apply the ingress and test:
 
 ```sh
-$ kubectl apply -f navidrome-ingress-lan.yaml
-ingress.networking.k8s.io/navidrome-ingress-lan created
+$ kubectl apply -f ingress-lan.yaml
+ingress.networking.k8s.io/ingress-lan created
 
-$ curl -k https://navidrome.f3s.lan.foo.zone
+$ curl -k https://f3s.lan.foo.zone
 HTTP/2 302 
 location: /app/
 ```
@@ -1006,7 +1006,7 @@ Add DNS entries to `/etc/hosts` on your laptop:
 ```sh
 $ sudo tee -a /etc/hosts << 'EOF'
 # f3s LAN services
-192.168.1.138  navidrome.f3s.lan.foo.zone
+192.168.1.138  f3s.lan.foo.zone
 EOF
 ```
 

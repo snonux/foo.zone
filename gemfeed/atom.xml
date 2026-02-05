@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-05T17:48:12+02:00</updated>
+    <updated>2026-02-05T21:12:19+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -5397,15 +5397,15 @@ _relayd  relayd   <font color="#000000">2903</font>  <font color="#000000">12</f
 <br />
 <span>*Adding LAN ingress to services*:</span><br />
 <br />
-<span>To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here&#39;s an example for Navidrome:</span><br />
+<span>To expose a service on the LAN, add a second Ingress resource to its Helm chart. Here&#39;s an example:</span><br />
 <br />
 <pre>
 ---
-# LAN Ingress for navidrome.f3s.lan.foo.zone
+# LAN Ingress for f3s.lan.foo.zone
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: navidrome-ingress-lan
+  name: ingress-lan
   namespace: services
   annotations:
     spec.ingressClassName: traefik
@@ -5413,17 +5413,17 @@ metadata:
 spec:
   tls:
     - hosts:
-        - navidrome.f3s.lan.foo.zone
+        - f3s.lan.foo.zone
       secretName: f3s-lan-tls
   rules:
-    - host: navidrome.f3s.lan.foo.zone
+    - host: f3s.lan.foo.zone
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: navidrome-service
+                name: service
                 port:
                   number: 4533
 </pre>
@@ -5442,10 +5442,10 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl apply -f navidrome-ingress-lan.yaml
-ingress.networking.k8s.io/navidrome-ingress-lan created
+<pre>$ kubectl apply -f ingress-lan.yaml
+ingress.networking.k8s.io/ingress-lan created
 
-$ curl -k https://navidrome.f3s.lan.foo.zone
+$ curl -k https://f3s.lan.foo.zone
 HTTP/<font color="#000000">2</font> <font color="#000000">302</font> 
 location: /app/
 </pre>
@@ -5462,7 +5462,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>$ sudo tee -a /etc/hosts &lt;&lt; <font color="#808080">'EOF'</font>
 <i><font color="silver"># f3s LAN services</font></i>
-<font color="#000000">192.168</font>.<font color="#000000">1.138</font>  navidrome.f3s.lan.foo.zone
+<font color="#000000">192.168</font>.<font color="#000000">1.138</font>  f3s.lan.foo.zone
 EOF
 </pre>
 <br />
