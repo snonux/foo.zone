@@ -45,6 +45,20 @@ $ cd f3s/prometheus/
 
 The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD). 
 
+## Update: LAN Ingress Support (February 2026)
+
+**Update (2026-02-05):** This blog post has been updated to include a new section on exposing services via LAN ingress. The original blog post focused on external access through OpenBSD edge relays. The new section documents how to:
+
+* Expose services on the local network using LAN-specific ingresses (`*.f3s.lan.foo.zone`)
+* Leverage the existing FreeBSD CARP failover infrastructure for high availability
+* Configure FreeBSD `relayd` for TCP forwarding (Layer 4) instead of TLS termination
+* Use cert-manager with self-signed certificates for LAN TLS offloading via Traefik
+* Achieve zero-downtime CARP failover (tested and validated)
+
+This enhancement complements the existing external access method without requiring MetalLB or other LoadBalancer implementations. The f3s infrastructure now has three distinct TLS offloaders: OpenBSD relayd for external traffic, Traefik (k3s) for LAN HTTPS, and stunnel for NFS-over-TLS.
+
+See the new "### Exposing services via LAN ingress" section under "### Exposing Grafana via ingress" for complete details.
+
 ## Persistent storage recap
 
 All observability components need persistent storage so that metrics and logs survive pod restarts. As covered in Part 6 of this series, the cluster uses NFS-backed persistent volumes:
