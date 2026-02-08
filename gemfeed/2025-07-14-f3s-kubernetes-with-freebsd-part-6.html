@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 27.01.2026</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -86,7 +86,7 @@
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In the previous posts, we set up a WireGuard mesh network. In the future, we will also setting up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:</span><br />
+<span>In the previous posts, we set up a WireGuard mesh network. In the future, we will also set up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:</span><br />
 <br />
 <ul>
 <li>No data sharing: Pods (once we run Kubernetes) on different nodes can&#39;t access the same data</li>
@@ -500,13 +500,13 @@ EOF
 <li><span class='inlinecode'>f0_to_f1_nfsdata</span>: Replicates NFS data every minute for faster failover recovery</li>
 <li><span class='inlinecode'>f0_to_f1_freebsd</span>: Replicates FreeBSD VM every ten minutes (less critical)</li>
 </ul><br />
-<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases, hows <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
+<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases how <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
 <br />
 <span>Furthermore:</span><br />
 <br />
 <ul>
 <li>We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</li>
-<li>The <span class='inlinecode'>send: encrypted: false</span> option turns off ZFS native encryption for the replication stream. Since we&#39;re using a WireGuard tunnel between <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span>, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.</li>
+<li>We use <span class='inlinecode'>send: encrypted: true</span> to keep the replication stream encrypted. While WireGuard already encrypts in transit, this provides additional protection. For reduced CPU overhead, you could set <span class='inlinecode'>encrypted: false</span> since the tunnel is secure.</li>
 </ul><br />
 <h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring <span class='inlinecode'>zrepl</span> on <span class='inlinecode'>f1</span> (sink)</h3><br />
 <br />

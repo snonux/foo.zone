@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-08T18:17:43+02:00</updated>
+    <updated>2026-02-08T22:37:47+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -99,7 +99,7 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
 <br />
 <a href='./tmux-popup-editor-for-cursor-agent-prompts/demo2.png'><img alt='Prefilled prompt text' title='Prefilled prompt text' src='./tmux-popup-editor-for-cursor-agent-prompts/demo2.png' /></a><br />
 <br />
-<span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with propper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.</span><br />
+<span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with proper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.</span><br />
 <br />
 <span class='quote'>Update 2026-02-08: This functionality has been integrated into the hexai project (https://codeberg.org/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it&#39;s more robust than this shell script. See the hexai-tmux-edit command for details.</span><br />
 <br />
@@ -3614,7 +3614,7 @@ spec:
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
@@ -7126,7 +7126,7 @@ content = "{CODE}"
         <title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
         <link href="https://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.html" />
         <id>https://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.html</id>
-        <updated>2025-07-13T16:44:29+03:00, last updated: 27.01.2026</updated>
+        <updated>2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -7136,7 +7136,7 @@ content = "{CODE}"
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated: 27.01.2026</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -7209,7 +7209,7 @@ content = "{CODE}"
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In the previous posts, we set up a WireGuard mesh network. In the future, we will also setting up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:</span><br />
+<span>In the previous posts, we set up a WireGuard mesh network. In the future, we will also set up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:</span><br />
 <br />
 <ul>
 <li>No data sharing: Pods (once we run Kubernetes) on different nodes can&#39;t access the same data</li>
@@ -7623,13 +7623,13 @@ EOF
 <li><span class='inlinecode'>f0_to_f1_nfsdata</span>: Replicates NFS data every minute for faster failover recovery</li>
 <li><span class='inlinecode'>f0_to_f1_freebsd</span>: Replicates FreeBSD VM every ten minutes (less critical)</li>
 </ul><br />
-<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases, hows <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
+<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases how <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
 <br />
 <span>Furthermore:</span><br />
 <br />
 <ul>
 <li>We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</li>
-<li>The <span class='inlinecode'>send: encrypted: false</span> option turns off ZFS native encryption for the replication stream. Since we&#39;re using a WireGuard tunnel between <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span>, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.</li>
+<li>We use <span class='inlinecode'>send: encrypted: true</span> to keep the replication stream encrypted. While WireGuard already encrypts in transit, this provides additional protection. For reduced CPU overhead, you could set <span class='inlinecode'>encrypted: false</span> since the tunnel is secure.</li>
 </ul><br />
 <h3 style='display: inline' id='configuring-zrepl-on-f1-sink'>Configuring <span class='inlinecode'>zrepl</span> on <span class='inlinecode'>f1</span> (sink)</h3><br />
 <br />
@@ -10303,7 +10303,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
@@ -12446,7 +12446,7 @@ __ejm\___/________dwb`---`______________________
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
@@ -12459,7 +12459,7 @@ __ejm\___/________dwb`---`______________________
         <title>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</title>
         <link href="https://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.html" />
         <id>https://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.html</id>
-        <updated>2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025</updated>
+        <updated>2025-04-04T23:21:01+03:00, last updated Fri 26 Dec 08:51:06 EET 2025</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -12469,7 +12469,7 @@ __ejm\___/________dwb`---`______________________
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-4-rocky-linux-bhyve-vms'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</h1><br />
 <br />
-<span class='quote'>Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025</span><br />
+<span class='quote'>Published at 2025-04-04T23:21:01+03:00, last updated Fri 26 Dec 08:51:06 EET 2025</span><br />
 <br />
 <span>This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -12570,7 +12570,7 @@ paul@f0:~ % doas vm switch create public
 paul@f0:~ % doas vm switch add public re0
 </pre>
 <br />
-<span>Bhyve stores all it&#39;s data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
+<span>Bhyve stores all its data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -12702,7 +12702,7 @@ paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</fo
 <br />
 <h3 style='display: inline' id='connect-to-vnc'>Connect to VNC</h3><br />
 <br />
-<span>For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f0:5900</span>.</span><br />
+<span>For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f2:5900</span>.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-4/1.png'><img src='./f3s-kubernetes-with-freebsd-part-4/1.png' /></a><br />
 <br />
@@ -12771,12 +12771,12 @@ END
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
-[root@r0 ~] % dnmcli connection down enp0s5
-[root@r0 ~] % dnmcli connection up enp0s5
+<pre>[root@r0 ~] % nmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % nmcli connection down enp0s5
+[root@r0 ~] % nmcli connection up enp0s5
 [root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
 [root@r0 ~] % cat &lt;&lt;END &gt;&gt;/etc/hosts
 <font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
@@ -15805,7 +15805,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
@@ -16461,7 +16461,7 @@ jgs \\`_..---.Y.---.._`//
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
@@ -16873,7 +16873,7 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
         <title>Terminal multiplexing with `tmux` - Z-Shell edition</title>
         <link href="https://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.html" />
         <id>https://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.html</id>
-        <updated>2024-06-23T22:41:59+03:00</updated>
+        <updated>2024-06-23T22:41:59+03:00, last updated Fri 02 May 00:10:49 EEST 2025</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -16883,7 +16883,7 @@ r\\]|\\.)*\](?:(?:\r\n)?[ \t])*)(?:\.(?:(?:\r\n)?[ \t])*(?:[^()&lt;&gt;@,;:\\".\
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</h1><br />
 <br />
-<span class='quote'>Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02</span><br />
+<span class='quote'>Published at 2024-06-23T22:41:59+03:00, last updated Fri 02 May 00:10:49 EEST 2025</span><br />
 <br />
 <span>This is the Z-Shell version. There is also a Fish version:</span><br />
 <br />
@@ -16969,7 +16969,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">alias</font></u></b> tssh=tmux::cluster_ssh
 </pre>
 <br />
-<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
+<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every alias one by one. </span><br />
 <br />
 <span>The first two are pretty straightforward. <span class='inlinecode'>tm</span> is simply a shorthand for <span class='inlinecode'>tmux</span>, so I have to type less, and <span class='inlinecode'>tl</span> lists all Tmux sessions that are currently open. No magic here.</span><br />
 <br />
@@ -16981,7 +16981,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Create new session and if alread exists attach to it</font></i>
+<pre><i><font color="silver"># Create new session and if already exists attach to it</font></i>
 tmux::new () {
     <b><u><font color="#000000">readonly</font></u></b> session=$1
     <b><u><font color="#000000">local</font></u></b> date=date
@@ -17289,7 +17289,7 @@ bind-key T choose-tree
 <br />
 <span>The third one, <span class='inlinecode'>choose-tree</span>, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):</span><br />
 <br />
-<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux sessiont tree view' title='Tmux sessiont tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
+<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux session tree view' title='Tmux session tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
 <br />
 <br />
 <span>The last remaining lines in my configuration file are:</span><br />
@@ -17811,7 +17811,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
 <a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />

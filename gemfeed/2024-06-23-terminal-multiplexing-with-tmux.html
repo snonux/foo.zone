@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</h1><br />
 <br />
-<span class='quote'>Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02</span><br />
+<span class='quote'>Published at 2024-06-23T22:41:59+03:00, last updated Fri 02 May 00:10:49 EEST 2025</span><br />
 <br />
 <span>This is the Z-Shell version. There is also a Fish version:</span><br />
 <br />
@@ -99,7 +99,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">alias</font></u></b> tssh=tmux::cluster_ssh
 </pre>
 <br />
-<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every aliases one by one. </span><br />
+<span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every alias one by one. </span><br />
 <br />
 <span>The first two are pretty straightforward. <span class='inlinecode'>tm</span> is simply a shorthand for <span class='inlinecode'>tmux</span>, so I have to type less, and <span class='inlinecode'>tl</span> lists all Tmux sessions that are currently open. No magic here.</span><br />
 <br />
@@ -111,7 +111,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Create new session and if alread exists attach to it</font></i>
+<pre><i><font color="silver"># Create new session and if already exists attach to it</font></i>
 tmux::new () {
     <b><u><font color="#000000">readonly</font></u></b> session=$1
     <b><u><font color="#000000">local</font></u></b> date=date
@@ -419,7 +419,7 @@ bind-key T choose-tree
 <br />
 <span>The third one, <span class='inlinecode'>choose-tree</span>, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):</span><br />
 <br />
-<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux sessiont tree view' title='Tmux sessiont tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
+<a href='./terminal-multiplexing-with-tmux/tmux-tree-view.png'><img alt='Tmux session tree view' title='Tmux session tree view' src='./terminal-multiplexing-with-tmux/tmux-tree-view.png' /></a><br />
 <br />
 <br />
 <span>The last remaining lines in my configuration file are:</span><br />

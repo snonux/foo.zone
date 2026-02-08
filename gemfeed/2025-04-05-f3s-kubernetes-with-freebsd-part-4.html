@@ -13,7 +13,7 @@
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-4-rocky-linux-bhyve-vms'>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</h1><br />
 <br />
-<span class='quote'>Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025</span><br />
+<span class='quote'>Published at 2025-04-04T23:21:01+03:00, last updated Fri 26 Dec 08:51:06 EET 2025</span><br />
 <br />
 <span>This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -114,7 +114,7 @@ paul@f0:~ % doas vm switch create public
 paul@f0:~ % doas vm switch add public re0
 </pre>
 <br />
-<span>Bhyve stores all it&#39;s data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
+<span>Bhyve stores all its data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -246,7 +246,7 @@ paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</fo
 <br />
 <h3 style='display: inline' id='connect-to-vnc'>Connect to VNC</h3><br />
 <br />
-<span>For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f0:5900</span>.</span><br />
+<span>For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn&#39;t worth the effort. The three VNC addresses of the VMs were <span class='inlinecode'>vnc://f0:5900</span>, <span class='inlinecode'>vnc://f1:5900</span>, and <span class='inlinecode'>vnc://f2:5900</span>.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-4/1.png'><img src='./f3s-kubernetes-with-freebsd-part-4/1.png' /></a><br />
 <br />
@@ -315,12 +315,12 @@ END
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
-[root@r0 ~] % dnmcli connection down enp0s5
-[root@r0 ~] % dnmcli connection up enp0s5
+<pre>[root@r0 ~] % nmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % nmcli connection down enp0s5
+[root@r0 ~] % nmcli connection up enp0s5
 [root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
 [root@r0 ~] % cat &lt;&lt;END &gt;&gt;/etc/hosts
 <font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
