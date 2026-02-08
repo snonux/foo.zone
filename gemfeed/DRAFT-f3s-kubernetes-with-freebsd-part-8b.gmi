@@ -4,7 +4,7 @@
 
 This post covers enabling etcd metrics monitoring for the k3s cluster. The etcd dashboard in Grafana initially showed no data because k3s uses an embedded etcd that doesn't expose metrics by default.
 
-=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html Part 8: Observability
+=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi Part 8: Observability
 
 ## Important Note: GitOps Migration
 
