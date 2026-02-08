@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-> Published at 2025-07-13T16:44:29+03:00, last updated: 27.01.2026
+> Published at 2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 

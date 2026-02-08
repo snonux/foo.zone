@@ -24,7 +24,7 @@
 => ./implementing-service-level-objectives.gmi 'Implementing Service Level Objectives' book notes
 => ./fluent-forever.gmi 'Fluent Forever' book notes
 => ./eat-that-frog.gmi 'Eat That Frog' book notes
-=> ./career-guide-and-soft-skills.gmi 'Software Developmers Career Guide and Soft Skills' book notes
+=> ./career-guide-and-soft-skills.gmi 'Software Developers Career Guide and Soft Skills' book notes
 => ./a-monks-guide-to-happiness.gmi 'A Monk's Guide to Happiness' book notes
 => ./97-things-every-sre-should-know.gmi '97 Things Every SRE Should Know' book notes
 

@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 
-> Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025
+> Published at 2025-04-04T23:21:01+03:00, last updated Fri 26 Dec 08:51:06 EET 2025
 
 This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
