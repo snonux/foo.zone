@@ -70,8 +70,6 @@ And this is how it looks like after sending back the text to the Cursor Agent's 
 
 And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with propper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.
 
-> Updated 2026-02-02: Script now works on both Linux and macOS; the listing below reflects the latest version.
-
 > Update 2026-02-08: This functionality has been integrated into the hexai project (https://codeberg.org/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it's more robust than this shell script. See the hexai-tmux-edit command for details.
 
 => https://codeberg.org/snonux/hexai
