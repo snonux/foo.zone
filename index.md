@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-02-08T18:17:43+02:00 by `Gemtexter`
+> This site was generated at 2026-02-08T22:37:47+02:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -81,7 +81,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [2023-09-25 - DTail usage examples](./gemfeed/2023-09-25-dtail-usage-examples.md)  
 [2023-08-18 - Site Reliability Engineering - Part 1: SRE and Organizational Culture](./gemfeed/2023-08-18-site-reliability-engineering-part-1.md)  
 [2023-07-21 - Gemtexter 2.1.0 - Let's Gemtext again³](./gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md)  
-[2023-07-17 - 'Software Developmers Career Guide and Soft Skills' book notes](./gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.md)  
+[2023-07-17 - 'Software Developers Career Guide and Soft Skills' book notes](./gemfeed/2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 [2023-06-01 - KISS server monitoring with Gogios](./gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md)  
 [2023-05-06 - 'The Obstacle is the Way' book notes](./gemfeed/2023-05-06-the-obstacle-is-the-way-book-notes.md)  
 [2023-05-01 - Unveiling `guprecords.raku`: Global Uptime Records with Raku](./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
@@ -123,7 +123,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [2014-03-24 - The fibonacci.pl.raku.c Polyglot](./gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.md)  
 [2011-05-07 - Perl Daemon (Service Framework)](./gemfeed/2011-05-07-perl-daemon-service-framework.md)  
 [2010-05-09 - The Fype Programming Language](./gemfeed/2010-05-09-the-fype-programming-language.md)  
-[2010-05-07 - Lazy Evaluation with Standard ML](./gemfeed/2010-05-07-lazy-evaluation-with-standarn-ml.md)  
+[2010-05-07 - Lazy Evaluation with Standard ML](./gemfeed/2010-05-07-lazy-evaluation-with-standard-ml.md)  
 [2010-04-09 - Standard ML and Haskell](./gemfeed/2010-04-09-standard-ml-and-haskell.md)  
 [2009-02-13 - SGI Onyx 3200](./gemfeed/2009-02-13-sgi-onyx-3200.md)  
 [2008-12-29 - Using my Nokia N95 for fixing my MTA](./gemfeed/2008-12-29-using-my-nokia-n95-for-fixing-my-mta.md)  

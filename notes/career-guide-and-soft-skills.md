@@ -1,4 +1,4 @@
-# "Software Developmers Career Guide and Soft Skills" book notes
+# "Software Developers Career Guide and Soft Skills" book notes
 
 > Published at 2023-07-17T04:56:20+03:00
 
@@ -18,7 +18,7 @@ These notes are of two books by "John Sommez" I found helpful. I also added some
 
 ## Table of Contents
 
-* [⇢ "Software Developmers Career Guide and Soft Skills" book notes](#software-developmers-career-guide-and-soft-skills-book-notes)
+* [⇢ "Software Developers Career Guide and Soft Skills" book notes](#software-developers-career-guide-and-soft-skills-book-notes)
 * [⇢ ⇢ Improve](#improve)
 * [⇢ ⇢ ⇢ Always learn new things](#always-learn-new-things)
 * [⇢ ⇢ ⇢ Set goals](#set-goals)
@@ -80,29 +80,29 @@ That's a trap: If you have to rate yourself, that's a trap. That never works in 
 
 ### Promotions
 
-The most valuable employees are the ones who make themselves obsolete and automate all away. Keep a safety net of 3 to 6 months of finances. Safe at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spent more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.
+The most valuable employees are the ones who make themselves obsolete and automate it all away. Keep a safety net of 3 to 6 months of finances. Save at least 10 percent of your earnings. Also, if you make money it does not mean that you have to spend more money. Is a new car better than a used car which both can bring you from A to B? Liability vs assets.
 
 * Raise or promotion, what's better? Promotion is better as money will follow anyway then.
 * Take projects no-one wants and make them shine. A promotion will follow.
 * A promotion is not going to come to you because you deserve it. You have to hunt and ask for it.
 * Track all kudos (e.g. ask for emails from your colleagues).
-* Big corporations HRs don't expect a figjit. That's why it's so important to keep track of your accomplishments and kudos'.
+* Big corporations HRs don't expect a fig. That's why it's so important to keep track of your accomplishments and kudos.
 * If you want a raise be specific how much and know to back your demands. Don't make a thread and no ultimatums.
 * Best way for a promotion is to switch jobs. You can even switch back with a better salary.
 
 ### Finish things
 
-Hard work is necessary for accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.
+Hard work is necessary to accomplish results. However, work smarter not harder. Furthermore, working smart is not a substitute for working hard. Work both, hard and smart.
 
 * Learn to finish things without motivation. Things will pay off when you stick to stuff and eventually motivation can also come back.
-* You will fail if you don't plan realistically. Set also a schedule and follow to it as of life depends on it.
-* Advances come only of you give more than asked. Consistency, commitment and knowing what you need to do is more key than hard work.
+* You will fail if you don't plan realistically. Set also a schedule and follow it as if life depends on it.
+* Advances come only if you give more than asked. Consistency, commitment and knowing what you need to do is more key than hard work.
 * Any action is better than no action. If you get stuck you have gained nothing.
 * You need to know the unknowns. Identify as many unknown not known things as possible. 
 
 Hard vs fun: Both engage the brain (video games vs work). Some work is hard and other is easy. Hard work is boring. The harsh truth is you have to put in hard and boring work in order to accomplish and be successful. Work won't be always boring though, as joy will follow with mastery.
 
-Defeat is finally give up. Failure is the road to success, embrace it. Failure does not define you but how you respond to it. Events don't make your unhappy, but how you react to events do.
+Defeat is finally giving up. Failure is the road to success, embrace it. Failure does not define you but how you respond to it. Events don't make your unhappy, but how you react to events do.
 
 ## Expand the empire
 
@@ -182,18 +182,18 @@ Intermittent fasting is an effective method to maintain weight and health. But i
 
 ## No drama
 
-Avoid drama at work. Where are humans there is drama. You can decide where to spent your energy in. But don't avoid conflict. Conflict is healthy in any kind of relationship. Be tactful and state your opinion. The goal is to find the best solution to the problem.
+Avoid drama at work. Where there are humans, there is drama. You can decide where to spend your energy in. But don't avoid conflict. Conflict is healthy in any kind of relationship. Be tactful and state your opinion. The goal is to find the best solution to the problem.
 
 Don't worry about other people what they do and don't do. You only worry about you. Shut up and get your own things done. But you could help to inspire a not working colleague.
 
 * During an argument, take the opponent's position and see how your opinion changes.
-* If you they to convince someone else it's an argument. Of you try to find the best solution it is a good resolution.
+* If you try to convince someone else it's an argument. If you try to find the best solution it is a good resolution.
 * If someone is hurting the team let the manager know but phrase it nicely.
 * How to get rid of a never ending talking person? Set up focus hours officially where you don't want to be interrupted. Present as if it is your defect that you get interrupted easily.
 * TOXIC PEOPLE: AVOID THEM. RUN.
 * Boss likes if you get shit done without getting asked all the time about things and also without drama.
 
-You have to learn how to work in a team. Be honest but tactful. It's not too be the loudest but about selling your ideas. Don't argue otherwise you won't sell anything. Be persuasive by finding the common ground. Or lead the colleagues to your idea and don't sell it upfront. Communicate clearly.
+You have to learn how to work in a team. Be honest but tactful. It's not to be the loudest but about selling your ideas. Don't argue otherwise you won't sell anything. Be persuasive by finding the common ground. Or lead the colleagues to your idea and don't sell it upfront. Communicate clearly.
 
 # Personal brand
 
@@ -315,7 +315,7 @@ Other book notes of mine are:
 [2024-07-07 "The Stoic Challenge" book notes](./the-stoic-challenge.md)  
 [2024-05-01 "Slow Productivity" book notes](./slow-productivity.md)  
 [2023-11-11 "Mind Management" book notes](./mind-management.md)  
-[2023-07-17 "Software Developmers Career Guide and Soft Skills" book notes (You are currently reading this)](./career-guide-and-soft-skills.md)  
+[2023-07-17 "Software Developers Career Guide and Soft Skills" book notes (You are currently reading this)](./career-guide-and-soft-skills.md)  
 [2023-05-06 "The Obstacle is the Way" book notes](./the-obstacle-is-the-way.md)  
 [2023-04-01 "Never split the difference" book notes](./never-split-the-difference.md)  
 [2023-03-16 "The Pragmatic Programmer" book notes](./the-pragmatic-programmer.md)  

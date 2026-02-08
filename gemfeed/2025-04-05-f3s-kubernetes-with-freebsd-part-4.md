@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
 
-> Published at 2025-04-04T23:21:01+03:00, updated Fri 26 Dec 08:51:06 EET 2025
+> Published at 2025-04-04T23:21:01+03:00, last updated Fri 26 Dec 08:51:06 EET 2025
 
 This is the fourth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -94,7 +94,7 @@ paul@f0:~ % doas vm switch create public
 paul@f0:~ % doas vm switch add public re0
 ```
 
-Bhyve stores all it's data in the `/bhyve` of the `zroot` ZFS pool:
+Bhyve stores all its data in the `/bhyve` of the `zroot` ZFS pool:
 
 ```sh
 paul@f0:~ % zfs list | grep bhyve
@@ -205,7 +205,7 @@ paul@f0:/bhyve/rocky % doas vm install rocky Rocky-9.5-x86_64-minimal.iso
 
 ### Connect to VNC
 
-For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f0:5900`.
+For the installation, I opened the VNC client on my Fedora laptop (GNOME comes with a simple VNC client) and manually ran through the base installation for each of the VMs. Again, I am sure this could have been automated a bit more, but there were just three VMs, and it wasn't worth the effort. The three VNC addresses of the VMs were `vnc://f0:5900`, `vnc://f1:5900`, and `vnc://f2:5900`.
 
 [![./f3s-kubernetes-with-freebsd-part-4/1.png](./f3s-kubernetes-with-freebsd-part-4/1.png)](./f3s-kubernetes-with-freebsd-part-4/1.png)  
 
@@ -263,12 +263,12 @@ END
 And we configure the IPs accordingly on the VMs themselves by opening a root shell via SSH to the VMs and entering the following commands on each of the VMs:
 
 ```sh
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.gateway 192.168.1.1
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.DNS 192.168.1.1
-[root@r0 ~] % dnmcli connection modify enp0s5 ipv4.method manual
-[root@r0 ~] % dnmcli connection down enp0s5
-[root@r0 ~] % dnmcli connection up enp0s5
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.address 192.168.1.120/24
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.gateway 192.168.1.1
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.DNS 192.168.1.1
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % nmcli connection down enp0s5
+[root@r0 ~] % nmcli connection up enp0s5
 [root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
 [root@r0 ~] % cat <<END >>/etc/hosts
 192.168.1.120 r0 r0.lan r0.lan.buetow.org

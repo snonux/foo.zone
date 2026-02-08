@@ -5,7 +5,7 @@
 * Born in: Germany, currently living in: Sofia, Bulgaria
 * Profession: Computerist -  Solving problems with computers that we wouldn't have without them
 * Current job: Site Reliability Engineer
-* Education: Diplom-Informatiker (FH) (Diploma from a German University of Applied Sciences,  before hey had international Bachelor and Masters programs)
+* Education: Diplom-Informatiker (FH) (Diploma from a German University of Applied Sciences,  before they had international Bachelor and Masters programs)
 * E-Mail: `paul@nospam.buetow.org`
 
 ## My sites
