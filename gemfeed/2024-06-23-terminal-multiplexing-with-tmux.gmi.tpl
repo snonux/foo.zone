@@ -1,6 +1,6 @@
 # Terminal multiplexing with `tmux` - Z-Shell edition
 
-> Published at 2024-06-23T22:41:59+03:00; Last updated 2025-05-02
+> Published at 2024-06-23T22:41:59+03:00, last updated Fri 02 May 00:10:49 EEST 2025
 
 This is the Z-Shell version. There is also a Fish version:
 
