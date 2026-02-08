@@ -47,7 +47,7 @@ Probably I am already awake early and am unable to fall asleep again. My strateg
 
 ## Sweat the small stuff
 
-There's never a shortage of small items to hook off my list. Most of these items don't require my full concentration power, and I will be happy to get them off my list so that the next day, after a good night's sleep, I can immerse myself again in focused, deep work with all concentration powers at hand.
+There's never a shortage of small items to knock off my list. Most of these items don't require my full concentration power, and I will be happy to get them off my list so that the next day, after a good night's sleep, I can immerse myself again in focused, deep work with all concentration powers at hand.
 
 Examples of "small work items" are:
 
@@ -100,7 +100,7 @@ It's much more challenging to keep the mind "under control" in this state. Every
 
 ## Meditate
 
-To keep the good vibe, it helps to meditate for 10 minutes. Meditation must nothing be fancy. It can be just lying on the sofa and observing your thoughts as they come and go. Don't judge your thoughts, as that could put you in a negative mood. It's not necessary to sit in an uncomfortable Yoga pose, and it is not required to chant "Ohhmmmmm".
+To keep the good vibe, it helps to meditate for 10 minutes. Meditation need not be fancy. It can be just lying on the sofa and observing your thoughts as they come and go. Don't judge your thoughts, as that could put you in a negative mood. It's not necessary to sit in an uncomfortable Yoga pose, and it is not required to chant "Ohhmmmmm".
 
 ## Write things down
 

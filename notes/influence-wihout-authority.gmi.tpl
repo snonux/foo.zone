@@ -4,7 +4,7 @@
 
 These notes capture key strategies from "Influence Without Authority" by Allan R. Cohen and David L. Bradford for effective interpersonal relationships and influencing others in the workplace without formal authority.
 
-These are my personal notes, but maybe you will find them usefull too.
+These are my personal notes, but maybe you will find them useful too.
 
 << template::inline::toc
 

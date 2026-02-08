@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This site lists my favourite novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both, english (english) and german (german), titles.
+This site lists my favourite novels I have read. I prefer to read them in German though. You will notice that these are mostly Science Fiction novels. Where possible, this page shows both English and German titles.
 
 Some were read as paperback, others as eBooks, and some were listened to (Audiobook). For a graphical representation you can also have a look here:
 

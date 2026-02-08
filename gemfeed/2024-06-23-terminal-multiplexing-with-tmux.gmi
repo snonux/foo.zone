@@ -81,7 +81,7 @@ alias ts=tmux::search
 alias tssh=tmux::cluster_ssh
 ```
 
-Note all `tmux::...`; those are custom shell functions doing certain things, and they aren't part of the Tmux distribution. But let's run through every aliases one by one. 
+Note all `tmux::...`; those are custom shell functions doing certain things, and they aren't part of the Tmux distribution. But let's run through every alias one by one. 
 
 The first two are pretty straightforward. `tm` is simply a shorthand for `tmux`, so I have to type less, and `tl` lists all Tmux sessions that are currently open. No magic here.
 
@@ -90,7 +90,7 @@ The first two are pretty straightforward. `tm` is simply a shorthand for `tmux`,
 The `tn` alias is referencing this function:
 
 ```bash
-# Create new session and if alread exists attach to it
+# Create new session and if already exists attach to it
 tmux::new () {
     readonly session=$1
     local date=date
@@ -375,7 +375,7 @@ The first one is that any new window starts in the current directory. The second
 
 The third one, `choose-tree`, opens a tree view in Tmux listing all sessions and windows. This one is handy to get a better overview of what is currently running in any local Tmux session. It looks like this (it also allows me to press a hotkey to switch to a particular Tmux window):
 
-=> ./terminal-multiplexing-with-tmux/tmux-tree-view.png Tmux sessiont tree view
+=> ./terminal-multiplexing-with-tmux/tmux-tree-view.png Tmux session tree view
 
 
 The last remaining lines in my configuration file are:

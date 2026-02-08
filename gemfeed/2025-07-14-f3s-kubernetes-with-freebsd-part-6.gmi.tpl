@@ -12,7 +12,7 @@ This is the sixth blog post about the f3s series for self-hosting demands in a h
 
 ## Introduction
 
-In the previous posts, we set up a WireGuard mesh network. In the future, we will also setting up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:
+In the previous posts, we set up a WireGuard mesh network. In the future, we will also set up a Kubernetes cluster. Kubernetes workloads often require persistent storage for databases, configuration files, and application data. Local storage on each node has significant limitations:
 
 * No data sharing: Pods (once we run Kubernetes) on different nodes can't access the same data
 * Pod mobility: If a pod moves to another node, it loses access to its data
@@ -378,12 +378,12 @@ EOF
 * `f0_to_f1_nfsdata`: Replicates NFS data every minute for faster failover recovery
 * `f0_to_f1_freebsd`: Replicates FreeBSD VM every ten minutes (less critical)
 
-The FreeBSD VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases, hows `zrepl`'s flexibility in handling different datasets with varying replication needs.
+The FreeBSD VM is only used for development purposes, so it doesn't require as frequent replication as the NFS data. It's off-topic to this blog series, but it showcases how `zrepl`'s flexibility in handling different datasets with varying replication needs.
 
 Furthermore:
 
 * We're specifically replicating `zdata/enc/nfsdata` instead of the entire `zdata/enc` dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.
-* The `send: encrypted: false` option turns off ZFS native encryption for the replication stream. Since we're using a WireGuard tunnel between `f0` and `f1`, the data is already encrypted in transit. Disabling ZFS stream encryption reduces CPU overhead and improves replication performance.
+* We use `send: encrypted: true` to keep the replication stream encrypted. While WireGuard already encrypts in transit, this provides additional protection. For reduced CPU overhead, you could set `encrypted: false` since the tunnel is secure.
 
 ### Configuring `zrepl` on `f1` (sink)
 
