@@ -81,6 +81,10 @@ And here is the full script. It is a bit ugly since it's shell (written with Cur
 
 > Updated 2026-02-02: Script now works on both Linux and macOS; the listing below reflects the latest version.
 
+> Update 2026-02-08: This functionality has been integrated into the hexai project (https://codeberg.org/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it's more robust than this shell script. See the hexai-tmux-edit command for details.
+
+[https://codeberg.org/snonux/hexai](https://codeberg.org/snonux/hexai)  
+
 ```bash
 #!/usr/bin/env bash
 set -u -o pipefail
