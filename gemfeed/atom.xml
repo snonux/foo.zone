@@ -1,11 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-08T22:37:47+02:00</updated>
+    <updated>2026-02-14T13:44:46+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Meta slash-commands to manage prompts and context for coding agents</title>
+        <link href="gemini://foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi</id>
+        <updated>2026-02-14T13:44:45+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I work on many small, repeatable tasks. Instead of retyping the same instructions every time, I want to turn successful prompts into reusable slash-commands and keep background knowledge in loadable context files. This post describes a set of *meta* slash-commands: commands that create, update, and delete other commands and context files. They live as markdown in a dotfiles repo and work with any coding agent that supports slash-commands—Claude Code CLI, Cursor Agent, OpenCode, Ampcode, and others.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='meta-slash-commands-to-manage-prompts-and-context-for-coding-agents'>Meta slash-commands to manage prompts and context for coding agents</h1><br />
+<br />
+<span>I work on many small, repeatable tasks. Instead of retyping the same instructions every time, I want to turn successful prompts into reusable slash-commands and keep background knowledge in loadable context files. This post describes a set of *meta* slash-commands: commands that create, update, and delete other commands and context files. They live as markdown in a dotfiles repo and work with any coding agent that supports slash-commands—Claude Code CLI, Cursor Agent, OpenCode, Ampcode, and others.</span><br />
+<br />
+<pre>
+    ┌─────────────────────────────────────────────────────────────┐
+    │  Cursor Agent                                    [~][□][X]  │
+    ├─────────────────────────────────────────────────────────────┤
+    │                                                             │
+    │   → /load-context api-guidelines                            │
+    │                                                             │
+    │   Context loaded: api-guidelines.md                         │
+    │   Ready. Ask me to implement something.                     │
+    │                                                             │
+    │   → /create-command review-pr                               │
+    │                                                             │
+    │   Analyzing "review-pr"...                                  │
+    │   Generated: description + prompt. Save to commands/ ? [Y]  │
+    │                                                             │
+    │   ✓ Saved. Use /review-pr anytime.                          │
+    │                                                             │
+    └─────────────────────────────────────────────────────────────┘
+                          │
+                          │  slash-commands
+                          ▼
+    ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐
+    │ /load-   │  │ /create- │  │ /update- │  │ /review-  │
+    │ context  │  │ command  │  │ command  │  │ pr        │
+    └──────────┘  └──────────┘  └──────────┘  └──────────┘
+         │              │              │              │
+         └──────────────┴──────────────┴──────────────┘
+                              │
+                    coding agent executes
+                    your prompt library	
+</pre>
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#meta-slash-commands-to-manage-prompts-and-context-for-coding-agents'>Meta slash-commands to manage prompts and context for coding agents</a></li>
+<li>⇢ <a href='#motivation-collecting-prompts-for-later-re-use'>Motivation: collecting prompts for later re-use</a></li>
+<li>⇢ <a href='#loading-whole-context-before-asking-the-agent-to-do-something'>Loading whole context before asking the agent to do something</a></li>
+<li>⇢ <a href='#works-with-any-coding-agent-that-supports-slash-commands'>Works with any coding agent that supports slash-commands</a></li>
+<li>⇢ <a href='#commands-that-manage-slash-commands'>Commands that manage slash-commands</a></li>
+<li>⇢ ⇢ <a href='#create-command'><span class='inlinecode'>/create-command</span></a></li>
+<li>⇢ ⇢ <a href='#update-command'><span class='inlinecode'>/update-command</span></a></li>
+<li>⇢ ⇢ <a href='#delete-command'><span class='inlinecode'>/delete-command</span></a></li>
+<li>⇢ <a href='#commands-that-manage-context-files'>Commands that manage context files</a></li>
+<li>⇢ ⇢ <a href='#create-context'><span class='inlinecode'>/create-context</span></a></li>
+<li>⇢ ⇢ <a href='#update-context'><span class='inlinecode'>/update-context</span></a></li>
+<li>⇢ ⇢ <a href='#delete-context'><span class='inlinecode'>/delete-context</span></a></li>
+<li>⇢ ⇢ <a href='#load-context'><span class='inlinecode'>/load-context</span></a></li>
+<li>⇢ <a href='#summary'>Summary</a></li>
+</ul><br />
+<h2 style='display: inline' id='motivation-collecting-prompts-for-later-re-use'>Motivation: collecting prompts for later re-use</h2><br />
+<br />
+<span>When I use a coding agent, I often find myself repeating the same kind of request: "review this function," "explain this error," "add tests for this module," "format this as a blog post" and may other cases. Typing long prompts from scratch is tedious, and ad-hoc prompts are easy to forget. I&#39;d rather capture what works and reuse it.</span><br />
+<br />
+<span>The solution is to treat prompts as first-class artefacts: store them as markdown files (one file per slash-command or per context), and use a small set of *meta* commands to manage them. The agent then creates, updates, or deletes these files through conversation—no hand-editing of markdowns. I can say <span class='inlinecode'>/create-command review-code we just did a code review</span> and the agent generates the command file based on the current agent&#39;s context, shows a preview, and saves it. Later I run <span class='inlinecode'>/review-code</span> and get a consistent workflow every time.</span><br />
+<br />
+<span>Because everything is just markdown in a directory (e.g. <span class='inlinecode'>~/Notes/Prompts/commands/</span> for commands and <span class='inlinecode'>~/Notes/Prompts/context/</span> for context), I can version it in git, sync it across machines, and gradually build a library of prompts. If the number of commands grows too large, I might later split them into skills or expose them via a searchable MCP server—but for now, a flat directory of <span class='inlinecode'>.md</span> files is enough.</span><br />
+<br />
+<h2 style='display: inline' id='loading-whole-context-before-asking-the-agent-to-do-something'>Loading whole context before asking the agent to do something</h2><br />
+<br />
+<span>A separate but related need is *context*: background information the agent should have before I ask it to do anything. For example, I might have a document describing our Kubernetes setup, API conventions, or the architecture of a specific service. If I ask "add a new endpoint for X" without that context, the agent guesses and without having a reference to an existing project with an <span class='inlinecode'>AGENTS.md</span>. If I first load the relevant context file, the agent knows the naming conventions, the existing patterns, and the infrastructure—and its edits are more accurate.</span><br />
+<br />
+<span>So I keep two kinds of artefacts:</span><br />
+<br />
+<ul>
+<li>Commands — Reusable workflows (e.g. "review code", "explain error"). They live as <span class='inlinecode'>.md</span> files in a <span class='inlinecode'>commands/</span> directory. Meta-commands create, update, and delete them.</li>
+<li>Context — Reusable background (project rules, API notes, infrastructure docs, personas). They live as <span class='inlinecode'>.md</span> files in a <span class='inlinecode'>context/</span> directory. I can create, update, delete, and—importantly—*load* them. Loading a context file injects that content into the conversation so the agent has it in mind for subsequent requests.</li>
+</ul><br />
+<span>The use case is: start a session, run <span class='inlinecode'>/load-context api-guidelines</span> (or whatever context name), then ask the agent to implement a feature or fix a bug. The agent already knows the guidelines. No need to paste a wall of text every time; the context is on demand (not implicit like with skills).</span><br />
+<br />
+<h2 style='display: inline' id='works-with-any-coding-agent-that-supports-slash-commands'>Works with any coding agent that supports slash-commands</h2><br />
+<br />
+<span>I use different agents depending on the task: Claude Code CLI, Cursor Agent (CLI), OpenCode, Ampcode and others. What they have in common is support for custom slash-commands (or the ability to read prompt files). My meta-commands and context files are just markdown; there is no lock-in. Point your agent at the same directories and you get the same prompts and context. I don&#39;t need an MCP server returning prompts right now—the files on disk are enough. If slash-commands ever become too many to manage in a flat list, I may later introduce an MCP server to expose them as skills or searchable prompts.</span><br />
+<br />
+<h2 style='display: inline' id='commands-that-manage-slash-commands'>Commands that manage slash-commands</h2><br />
+<br />
+<span>These meta-commands create, update, and delete other slash-commands. The target files live in <span class='inlinecode'>~/Notes/Prompts/commands/</span> (or your chosen path). Each command is one <span class='inlinecode'>.md</span> file. You can see the commands (and the context files) here:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands'>https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/context'>https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/context</a><br />
+<br />
+<h3 style='display: inline' id='create-command'><span class='inlinecode'>/create-command</span></h3><br />
+<br />
+<span>Creates a new slash-command by inferring its purpose from the name you give.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>command_name</span> (e.g. <span class='inlinecode'>review-code</span>, <span class='inlinecode'>explain-error</span>, <span class='inlinecode'>optimize-function</span>)</li>
+<li>What it does: The agent analyses the name, infers intent and parameters, writes a description and prompt, shows a preview, and saves <span class='inlinecode'>{{command_name}}.md</span> to the commands directory.</li>
+<li>Good for: Turning the current task or a recurring need into a reusable command without editing files by hand.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/create-command review-code
+/create-command explain-error
+</pre>
+<br />
+<h3 style='display: inline' id='update-command'><span class='inlinecode'>/update-command</span></h3><br />
+<br />
+<span>Updates an existing slash-command step by step.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>command_name</span> (e.g. <span class='inlinecode'>create-command</span>, <span class='inlinecode'>review-code</span>)</li>
+<li>What it does: Reads the existing <span class='inlinecode'>.md</span> file, shows the current content, asks what to change (description, parameters, prompt text), applies edits, shows a preview, and saves.</li>
+<li>Good for: Refining a command after you&#39;ve used it a few times or when requirements change.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/update-command create-command
+/update-command review-code
+</pre>
+<br />
+<h3 style='display: inline' id='delete-command'><span class='inlinecode'>/delete-command</span></h3><br />
+<br />
+<span>Removes a slash-command by deleting its definition file.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>command_name</span> (e.g. <span class='inlinecode'>testing</span>, <span class='inlinecode'>review-code</span>)</li>
+<li>What it does: Verifies the file exists, shows what will be deleted, asks for confirmation, then deletes the file.</li>
+<li>Good for: Cleaning up experiments or commands you no longer use.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/delete-command testing
+/delete-command review-code
+</pre>
+<br />
+<h2 style='display: inline' id='commands-that-manage-context-files'>Commands that manage context files</h2><br />
+<br />
+<span>These meta-commands create, update, delete, and *load* context files. Context files live in <span class='inlinecode'>~/Notes/Prompts/context/</span>. Loading a context injects its content into the conversation so the agent can use it for subsequent requests.</span><br />
+<br />
+<h3 style='display: inline' id='create-context'><span class='inlinecode'>/create-context</span></h3><br />
+<br />
+<span>Creates a new context file.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>context_name</span> (without <span class='inlinecode'>.md</span>), e.g. <span class='inlinecode'>epimetheus</span>, <span class='inlinecode'>api-guidelines</span></li>
+<li>What it does: Checks if the context already exists, asks what the context should contain (background, structure, sections), then writes <span class='inlinecode'>{{context_name}}.md</span> to the context directory.</li>
+<li>Good for: Capturing project rules, API conventions, or infrastructure notes once and reusing them via <span class='inlinecode'>/load-context</span>.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/create-context epimetheus
+/create-context api-guidelines
+</pre>
+<br />
+<h3 style='display: inline' id='update-context'><span class='inlinecode'>/update-context</span></h3><br />
+<br />
+<span>Updates an existing context file by adding, modifying, or removing content.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>context_name</span> (e.g. <span class='inlinecode'>epimetheus</span>, <span class='inlinecode'>api-guidelines</span>). If omitted, lists available context files.</li>
+<li>What it does: Reads the existing file, asks what to change (add section, modify section, remove section, rewrite, or full overhaul), applies changes, and saves.</li>
+<li>Good for: Keeping context up to date as the project or infrastructure evolves.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/update-context epimetheus
+/update-context api-guidelines
+/update-context
+</pre>
+<br />
+<h3 style='display: inline' id='delete-context'><span class='inlinecode'>/delete-context</span></h3><br />
+<br />
+<span>Deletes a context file after confirmation.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>context_name</span> (e.g. <span class='inlinecode'>epimetheus</span>, <span class='inlinecode'>old-api-guidelines</span>). If omitted, lists available context files.</li>
+<li>What it does: Verifies the file exists, shows a preview or summary, asks for confirmation, then deletes the file.</li>
+<li>Good for: Removing outdated or unused context.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/delete-context epimetheus
+/delete-context old-api-guidelines
+/delete-context
+</pre>
+<br />
+<h3 style='display: inline' id='load-context'><span class='inlinecode'>/load-context</span></h3><br />
+<br />
+<span>Loads a context file into the conversation so the agent has that background for subsequent requests.</span><br />
+<br />
+<ul>
+<li>Parameter: <span class='inlinecode'>context_name</span> (e.g. <span class='inlinecode'>epimetheus</span>, <span class='inlinecode'>api-guidelines</span>). If omitted, lists available context files.</li>
+<li>What it does: Reads the context file, displays its content, and confirms it is loaded. From then on, the agent can use that information when you ask it to implement features, fix bugs, or answer questions.</li>
+<li>Good for: Starting a session with "load our API guidelines" or "load our Kubernetes runbook" so the agent knows the infrastructure and conventions before you ask it to do something.</li>
+</ul><br />
+<span>Example usage:</span><br />
+<br />
+<pre>
+/load-context epimetheus
+/load-context api-guidelines
+/load-context
+</pre>
+<br />
+<h2 style='display: inline' id='summary'>Summary</h2><br />
+<br />
+<pre>
+| Meta-command       | Purpose                                      | Good for                                          |
+|--------------------|----------------------------------------------|---------------------------------------------------|
+| /create-command    | Create new slash-command from name           | Turning current or recurring tasks into commands  |
+| /update-command    | Edit existing slash-command                  | Refining commands over time                       |
+| /delete-command    | Remove slash-command file                    | Cleaning up unused commands                       |
+| /create-context    | Create new context file                      | Capturing project/infra knowledge once            |
+| /update-context    | Edit existing context file                   | Keeping context up to date                        |
+| /delete-context    | Remove context file                          | Removing outdated context                         |
+| /load-context      | Load context into conversation               | Giving the agent background before tasks          |
+</pre>
+<br />
+<span>Context is what the agent *knows*; commands are what the agent *does*. Both are markdown files you can create, update, and delete on the fly through the same coding agent—Claude Code CLI, Cursor Agent, OpenCode, Ampcode, or any other that supports slash-commands or prompt files. That&#39;s why these meta-commands are useful for ad-hoc creation, updating, and deleting of prompts and context without leaving the conversation.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 Meta slash-commands to manage prompts and context (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>A tmux popup editor for Cursor Agent CLI prompts</title>
         <link href="gemini://foo.zone/gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.gmi" />
@@ -18244,206 +18487,6 @@ http://www.gnu.org/software/src-highlite -->
 <span>Other Go related posts are:</span><br />
 <br />
 <a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go (You are currently reading this)</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>From `babylon5.buetow.org` to `*.buetow.cloud`</title>
-        <link href="gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi" />
-        <id>gemini://foo.zone/gemfeed/2024-02-04-from-babylon5.buetow.org-to-.cloud.gmi</id>
-        <updated>2024-02-04T00:50:50+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='from-babylon5buetoworg-to-buetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></h1><br />
-<br />
-<span class='quote'>Published at 2024-02-04T00:50:50+02:00</span><br />
-<br />
-<span>Recently, my employer sent me to a week-long AWS course. After the course, there wasn&#39;t any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.</span><br />
-<br />
-<span>So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don&#39;t want to become the old man who yells at cloud :D</span><br />
-<br />
-<a href='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg'><img alt='Old man yells at cloud' title='Old man yells at cloud' src='./from-.org-to-.cloud/old-man-yells-at-cloud.jpg' /></a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#from-babylon5buetoworg-to-buetowcloud'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>*.buetow.cloud</span></a></li>
-<li>⇢ <a href='#the-old-buetoworg-way'>The old <span class='inlinecode'>*.buetow.org</span> way</a></li>
-<li>⇢ <a href='#i-kept-my-buetoworg-openbsd-boxes-alive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</a></li>
-<li>⇢ <a href='#the-new-buetowcloud-way'>The new <span class='inlinecode'>*.buetow.cloud</span> way</a></li>
-<li>⇢ <a href='#the-container-apps'>The container apps</a></li>
-<li>⇢ ⇢ <a href='#fluxbuetowcloud'><span class='inlinecode'>flux.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#audiobookshelfbuetowcloud'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#syncthingbuetowcloud'><span class='inlinecode'>syncthing.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#radicalebuetowcloud'><span class='inlinecode'>radicale.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#bagbuetowcloud'><span class='inlinecode'>bag.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#ankibuetowcloud'><span class='inlinecode'>anki.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#vaultbuetowcloud'><span class='inlinecode'>vault.buetow.cloud</span></a></li>
-<li>⇢ ⇢ <a href='#bastionbuetowcloud'><span class='inlinecode'>bastion.buetow.cloud</span></a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='the-old-buetoworg-way'>The old <span class='inlinecode'>*.buetow.org</span> way</h2><br />
-<br />
-<span>Before the migration, all those services were reachable through <span class='inlinecode'>buetow.org</span>-subdomains (Buetow is my last name) and ran on Docker containers on a single Rocky Linux 9 VM at Hetzner. And there was a Nginx reverse proxy with TLS offloading (with Let&#39;s Encrypt certificates). The Rocky Linux 9&#39;s hostname was <span class='inlinecode'>babylon5.buetow.org</span> (based on the Science Fiction series). </span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/Babylon_5'>https://en.wikipedia.org/wiki/Babylon_5</a><br />
-<br />
-<span>The downsides of this setup were:</span><br />
-<br />
-<ul>
-<li>Not highly available. If the server goes down, no service is reachable until it&#39;s repaired. To be fair, the Hetzner cloud VM is redundant by itself and would have re-spawned on a different worker node, I suppose. </li>
-<li>Manual installation.</li>
-</ul><br />
-<span>About the manual installation part: I could have used a configuration management system like Rexify, Puppet, etc. But I decided against it back in time, as setting up Docker containers isn&#39;t so complicated through simple start scripts. And it&#39;s only a single Linux box where a manual installation is less painful. However, regular backups (which Hetzner can do automatically for you) were a must.</span><br />
-<br />
-<span>The benefits of this setup were:</span><br />
-<br />
-<ul>
-<li>KISS (Keep it Simple Stupid)</li>
-<li>Cheap</li>
-</ul><br />
-<h2 style='display: inline' id='i-kept-my-buetoworg-openbsd-boxes-alive'>I kept my <span class='inlinecode'>buetow.org</span> OpenBSD boxes alive</h2><br />
-<br />
-<span>As pointed out, I only migrated the Docker-based self-hosted services (which run on the Babylon 5 Rocky Linux box) to AWS. Many self-hostable apps come with ready-to-use container images, making deploying them easy.</span><br />
-<br />
-<span>My other two OpenBSD VMs (<span class='inlinecode'>blowfish.buetow.org</span>, hosted at Hetzner, and <span class='inlinecode'>fishfinger.buetow.org</span>, hosted at OpenBSD Amsterdam) still run (and they will keep running) the following services:</span><br />
-<br />
-<ul>
-<li>HTTP server for my websites (e.g. <span class='inlinecode'>https://foo.zone</span>, ...)</li>
-<li>ACME for Let&#39;s Encrypt TLS certificate auto-renewal.</li>
-<li>Gemini server for my capsules (e.g. <span class='inlinecode'>gemini://foo.zone</span>)</li>
-<li>Authoritative DNS servers for my domains (but <span class='inlinecode'>buetow.cloud</span>, which is on Route 53 now)</li>
-<li>Mail transfer agent (MTA)</li>
-<li>My Gogios monitoring system.</li>
-<li>My IRC bouncer.</li>
-</ul><br />
-<span>It is all automated with Rex, aka Rexify. This OpenBSD setup is my "fun" or "for pleasure" setup. Whereas the Rocky Linux 9 one I always considered the "pratical means to the end"-setup to have 3rd party Docker containers up and running with as little work as possible.</span><br />
-<br />
-<a class='textlink' href='https://www.rexify.org'>(R)?ex, the friendly automation framework</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s encrypt with OpenBSD and Rex</a><br />
-<br />
-<h2 style='display: inline' id='the-new-buetowcloud-way'>The new <span class='inlinecode'>*.buetow.cloud</span> way</h2><br />
-<br />
-<span>With AWS, I decided to get myself a new domain name, as I could fully separate my AWS setup from my conventional setup and give Route 53 as an authoritative DNS a spin.</span><br />
-<br />
-<span>I decided to automate everything with Terraform, as I wanted to learn to use it as it appears standard now in the job market.</span><br />
-<br />
-<span>All services are installed automatically to AWS ECS Fargate. ECS is AWS&#39;s Elastic Container Service, and Fargate automatically manages the underlying hardware infrastructure (e.g., how many CPUs, RAM, etc.) for me. So I don&#39;t have to bother about having enough EC2 instances to serve my demands, for example.</span><br />
-<br />
-<span>The authoritative DNS for the <span class='inlinecode'>buetow.cloud</span> domain is AWS Route 53. TLS certificates are free here at AWS and offloaded through the AWS Application Load Balancer. The LB acts as a proxy to the ECS container instances of the services. A few services I run in ECS Fargate also require the AWS Network Load Balancer.</span><br />
-<br />
-<span>All services require some persistent storage. For that, I use an encrypted EFS file system, automatically replicated across all AZs (availability zones) of my region of choice, <span class='inlinecode'>eu-central-1</span>.</span><br />
-<br />
-<span>In case of an AZ outage, I could re-deploy all the failed containers in another AZ, and all the data would still be there.</span><br />
-<br />
-<span>The EFS automatically gets backed up by AWS for me following their standard Backup schedule. The daily backups are kept for 30 days. </span><br />
-<br />
-<span>Domain registration, TLS certificate configuration and configuration of the EFS backup were quickly done through the AWS web interface. These were only one-off tasks, so they weren&#39;t fully automated through Terraform. </span><br />
-<br />
-<span>You can find all Terraform manifests here:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/terraform'>https://codeberg.org/snonux/terraform</a><br />
-<br />
-<span>Whereas:</span><br />
-<br />
-<ul>
-<li><span class='inlinecode'>org-buetow-base</span> sets up the bare VPC (IPv4 and IPv6 subnets in 3 AZs, EFS, ECR (the AWS container registry for some self-built containers) and Route 53 zone. It&#39;s the requirement for most other Terraform manifests in this repository.</li>
-<li><span class='inlinecode'>org-buetow-bastion</span> sets up a minimal Amazon Linux EC2 instance where I can manually SSH into and look at the EFS file system (if required).</li>
-<li><span class='inlinecode'>org-buetow-elb</span> sets up the Elastic Load Balancer, a prerequisite for any service running in ECS Fargate.</li>
-<li><span class='inlinecode'>org-buetow-ecs</span> finally sets up and deploys all the Docker apps mentioned above. Any apps can be turned on or off via the <span class='inlinecode'>variables.tf</span> file.</li>
-</ul><br />
-<h2 style='display: inline' id='the-container-apps'>The container apps</h2><br />
-<br />
-<span>And here, finally, is the list of all the container apps my Terraform manifests deploy. The FQDNs here may not be reachable. I spin them up only on demand (for cost reasons). All services are fully dual-stacked (IPv4 &amp; IPv6). </span><br />
-<br />
-<h3 style='display: inline' id='fluxbuetowcloud'><span class='inlinecode'>flux.buetow.cloud</span></h3><br />
-<br />
-<span>Miniflux is a minimalist and opinionated feed reader. With the move to AWS, I also retired my bloated instance of NextCloud. So, with Miniflux, I retired from NextCloud News.</span><br />
-<br />
-<span>Miniflux requires two ECS containers. One is the Miniflux app, and the other is the PostgreSQL DB.</span><br />
-<br />
-<a class='textlink' href='https://miniflux.app/'>https://miniflux.app/</a><br />
-<br />
-<br />
-<h3 style='display: inline' id='audiobookshelfbuetowcloud'><span class='inlinecode'>audiobookshelf.buetow.cloud</span></h3><br />
-<br />
-<span>Audiobookshelf was the first Docker app I installed. It is a Self-hosted audiobook and podcast server. It comes with a neat web interface, and there is also an Android app available, which works also in offline mode. This is great, as I only have the ECS instance sometimes running for cost savings.</span><br />
-<br />
-<span>With Audiobookshelf, I replaced my former Audible subscription and my separate Podcast app. For Podcast synchronisation I used to use the Gpodder NextCloud sync app. But that one I retired now with Audiobookshelf as well :-)</span><br />
-<br />
-<a class='textlink' href='https://www.audiobookshelf.org'>https://www.audiobookshelf.org</a><br />
-<br />
-<h3 style='display: inline' id='syncthingbuetowcloud'><span class='inlinecode'>syncthing.buetow.cloud</span></h3><br />
-<br />
-<span>Syncthing is a continuous file synchronisation program. In real-time, it synchronises files between two or more computers, safely protected from prying eyes. Your data is your own, and you deserve to choose where it is stored, whether it is shared with some third party, and how it&#39;s transmitted over the internet.</span><br />
-<br />
-<span>With Syncthing, I retired my old NextCloud Files and file sync client on all my devices. I also quit my NextCloud Notes setup. All my Notes are now plain Markdown files in a <span class='inlinecode'>Notes</span> directory. On Android, I can edit them with any text or Markdown editor (e.g. Obsidian), and they will be synchronised via Syncthing to my other computers, both forward and back.</span><br />
-<br />
-<span>I use Syncthing to synchronise some of my Phone&#39;s data (e.g. Notes, Pictures and other documents). Initially, I synced all of my pictures, videos, etc., with AWS. But that was pretty expensive. So for now, I use it only whilst travelling. Otherwise, I will use my Syncthing instance here on my LAN (I have a cheap cloud backup in AWS S3 Glacier Deep Archive, but that&#39;s for another blog post).</span><br />
-<br />
-<a class='textlink' href='https://syncthing.net/'>https://syncthing.net/</a><br />
-<br />
-<h3 style='display: inline' id='radicalebuetowcloud'><span class='inlinecode'>radicale.buetow.cloud</span></h3><br />
-<br />
-<span>Radicale is an excellent minimalist WebDAV calendar and contact synchronisation server. It was good enough to replace my NextCloud Calendar and NextCloud Contacts setup. Unfortunately, there wasn&#39;t a ready-to-use Docker image. So, I created my own.</span><br />
-<br />
-<span>On Android, it works great together with the DAVx5 client for synchronisation.</span><br />
-<br />
-<a class='textlink' href='https://radicale.org/'>https://radicale.org/</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/docker-radicale-server'>https://codeberg.org/snonux/docker-radicale-server</a><br />
-<a class='textlink' href='https://www.davx5.com/'>https://www.davx5.com/</a><br />
-<br />
-<h3 style='display: inline' id='bagbuetowcloud'><span class='inlinecode'>bag.buetow.cloud</span></h3><br />
-<br />
-<span>Wallabag is a self-hostable "save now - read later" service, and it also comes with an Android app which also has an offline mode. Think of Getpocket, but open-source!</span><br />
-<br />
-<a class='textlink' href='https://wallabag.org/'>https://wallabag.org/</a><br />
-<a class='textlink' href='https://github.com/wallabag/wallabag'>https://github.com/wallabag/wallabag</a><br />
-<br />
-<h3 style='display: inline' id='ankibuetowcloud'><span class='inlinecode'>anki.buetow.cloud</span></h3><br />
-<br />
-<span>Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server <span class='inlinecode'>anki-sync-server</span>. For some reason (not going into the details here), I had to build my own Docker image for the server.</span><br />
-<br />
-<a class='textlink' href='https://apps.ankiweb.net/'>https://apps.ankiweb.net/</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/docker-anki-sync-server'>https://codeberg.org/snonux/docker-anki-sync-server</a><br />
-<br />
-<h3 style='display: inline' id='vaultbuetowcloud'><span class='inlinecode'>vault.buetow.cloud</span></h3><br />
-<br />
-<span>Vaultwarden is an alternative implementation of the Bitwarden server API written in Rust and compatible with upstream Bitwarden clients, perfect for self-hosted deployment where running the official resource-heavy service might not be ideal. So, this is a great password manager server which can be used with any Bitwarden Android app.</span><br />
-<br />
-<span>I currently don&#39;t use it, but I may in the future. I made it available in my ECS Fargate setup anyway for now.</span><br />
-<br />
-<a class='textlink' href='https://github.com/dani-garcia/vaultwarden'>https://github.com/dani-garcia/vaultwarden</a><br />
-<br />
-<span>I currently use <span class='inlinecode'>geheim</span>, a Ruby command line tool I wrote, as my current password manager. You can read a little bit about it here under "More":</span><br />
-<br />
-<a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff </a><br />
-<br />
-<h3 style='display: inline' id='bastionbuetowcloud'><span class='inlinecode'>bastion.buetow.cloud</span></h3><br />
-<br />
-<span>This is a tiny ARM-based Amazon Linux EC2 instance, which I sometimes spin up for investigation or manual work on my EFS file system in AWS.</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>I have learned a lot about AWS and Terraform during this migration. This was actually my first AWS hands-on project with practical use.</span><br />
-<br />
-<span>All of this was not particularly difficult (but at times a bit confusing). I see the use of Terraform managing more extensive infrastructures (it was even helpful for my small setup here). At least I know now what all the buzz is about :-). I don&#39;t think Terraform&#39;s HCL is a nice language. It get&#39;s it&#39;s job done, but it could be more elegant IMHO.</span><br />
-<br />
-<span>Deploying updates to AWS are much easier, and some of the manual maintenance burdens of my Rocky Linux 9 VM are no longer needed. So I will have more time for other projects! </span><br />
-<br />
-<span>Will I keep it in the cloud? I don&#39;t know yet. But maybe I won&#39;t renew the <span class='inlinecode'>buetow.cloud</span> domain and instead will use <span class='inlinecode'>*.cloud.buetow.org</span> or <span class='inlinecode'>*.aws.buetow.org</span> subdomains. </span><br />
-<br />
-<span>Will the AWS setup be cheaper than my old Rocky Linux setup? It might be more affordable as I only turn ECS and the load balancers on or off on-demand. Time will tell! The first forecasts suggest that it will be around the same costs.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
