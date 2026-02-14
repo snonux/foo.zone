@@ -126,7 +126,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-02-14 TIL: Meta slash-commands for reusable AI prompts and context](./2026-02-14-til-meta-slash-commands-for-ai-workflows.md)  
 [2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-06-22 Task Samurai: An agentic coding learning experiment (You are currently reading this)](./2025-06-22-task-samurai.md)  
 
