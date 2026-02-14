@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-02-07
+Generated on: 2026-02-14
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ranked by score, which combines project size and recent activity.
 
@@ -8,25 +8,49 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 60
-* 📊 Total Commits: 13,066
-* 📈 Total Lines of Code: 320,071
-* 📄 Total Lines of Documentation: 31,896
-* 💻 Languages: Go (29.6%), Java (12.8%), C++ (7.9%), C (6.0%), XML (6.0%), Shell (5.8%), CSS (5.6%), Perl (5.4%), C/C++ (5.1%), YAML (4.7%), HTML (3.3%), Python (2.2%), Config (1.3%), JSON (1.1%), Ruby (0.9%), HCL (0.9%), Make (0.6%), Raku (0.3%), Haskell (0.2%), JavaScript (0.2%)
-* 📚 Documentation: Markdown (62.5%), Text (35.7%), LaTeX (1.8%)
-* 🚀 Release Status: 38 released, 22 experimental (63.3% with releases, 36.7% experimental)
+* 📦 Total Projects: 62
+* 📊 Total Commits: 14,734
+* 📈 Total Lines of Code: 326,878
+* 📄 Total Lines of Documentation: 44,373
+* 💻 Languages: Go (32.9%), Java (12.6%), YAML (9.3%), C++ (7.7%), Shell (6.5%), C (5.9%), XML (5.9%), Perl (5.9%), C/C++ (5.0%), HTML (1.8%), Config (1.3%), Ruby (1.0%), HCL (0.8%), Python (0.8%), CSS (0.7%), Make (0.6%), JSON (0.4%), Raku (0.3%), TOML (0.2%), Haskell (0.2%), JavaScript (0.2%), Docker (0.1%)
+* 📚 Documentation: Markdown (72.6%), Text (26.1%), LaTeX (1.3%)
+* 🚀 Release Status: 38 released, 24 experimental (61.3% with releases, 38.7% experimental)
 
 ## Projects
 
-### 1. epimetheus
+### 1. hexai
 
-* 💻 Languages: Go (83.4%), Shell (16.6%)
+* 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1
-* 📈 Lines of Code: 4844
-* 📄 Lines of Documentation: 1064
-* 📅 Development Period: 2026-02-07 to 2026-02-07
-* 🏆 Score: 3019.2 (combines code size and activity)
+* 📊 Commits: 342
+* 📈 Lines of Code: 29895
+* 📄 Lines of Documentation: 5502
+* 📅 Development Period: 2025-08-01 to 2026-02-13
+* 🏆 Score: 783.9 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.21.0 (2026-02-12)
+
+
+=> showcase/hexai/image-1.png hexai screenshot
+
+Hexai is a Go-based AI integration tool designed primarily for the Helix editor that provides LSP (Language Server Protocol) powered AI features. It offers code auto-completion, AI-driven code actions, in-editor chat with LLMs, and a standalone CLI tool for direct LLM interaction. A standout feature is its ability to query multiple AI providers (OpenAI, OpenRouter, GitHub Copilot, Ollama) in parallel, allowing developers to compare responses side-by-side. It has enhanced capabilities for Go code understanding, such as generating unit tests from functions, while supporting other programming languages as well.
+
+The project is implemented as an LSP server written in Go, with a TUI component built using Bubble Tea for the tmux-based code action runner (`hexai-tmux-action`). This architecture allows it to integrate seamlessly into LSP-compatible editors, with special focus on Helix + tmux workflows. The custom prompt feature lets developers use their preferred editor to craft prompts, making it flexible for various development workflows.
+
+=> https://codeberg.org/snonux/hexai View on Codeberg
+=> https://github.com/snonux/hexai View on GitHub
+
+---
+
+### 2. epimetheus
+
+* 💻 Languages: Go (85.2%), Shell (14.8%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 5199
+* 📄 Lines of Documentation: 1734
+* 📅 Development Period: 2026-02-07 to 2026-02-14
+* 🏆 Score: 703.4 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -42,15 +66,15 @@ The architecture routes current data (<5 min old) through Pushgateway where Prom
 
 ---
 
-### 2. conf
+### 3. conf
 
-* 💻 Languages: YAML (68.9%), Shell (13.1%), Perl (9.0%), Python (2.0%), Config (1.6%), CSS (1.5%), TOML (1.4%), Ruby (1.2%), Docker (0.6%), Lua (0.3%), JSON (0.2%), HTML (0.1%)
+* 💻 Languages: YAML (80.7%), Perl (10.0%), Shell (6.1%), Python (2.3%), Docker (0.7%), Config (0.2%), HTML (0.1%)
 * 📚 Documentation: Markdown (97.1%), Text (2.9%)
-* 📊 Commits: 2305
-* 📈 Lines of Code: 21210
-* 📄 Lines of Documentation: 6495
-* 📅 Development Period: 2021-12-28 to 2026-02-06
-* 🏆 Score: 698.1 (combines code size and activity)
+* 📊 Commits: 785
+* 📈 Lines of Code: 19079
+* 📄 Lines of Documentation: 6585
+* 📅 Development Period: 2021-12-28 to 2026-02-08
+* 🏆 Score: 407.1 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -64,7 +88,51 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 
 ---
 
-### 3. foo.zone
+### 4. dotfiles
+
+* 💻 Languages: Shell (59.2%), CSS (10.9%), Config (10.1%), TOML (10.0%), Ruby (8.4%), JSON (1.1%), INI (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 762
+* 📈 Lines of Code: 2988
+* 📄 Lines of Documentation: 423
+* 📅 Development Period: 2023-07-30 to 2026-02-14
+* 🏆 Score: 390.7 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a personal dotfiles management project that uses [Rex](https://www.rexify.org/) (a Perl-based infrastructure automation framework) to declaratively install and synchronize configuration files across local machines and remote servers. The `Rexfile` defines individual tasks for each config area — shell (bash, zsh, fish), editor (Helix), terminal (Ghostty, tmux), window manager (Sway/Waybar), SSH, scripts, Pipewire audio, AI prompt links, and more — plus OS-specific package installation tasks for Fedora, FreeBSD, and Termux. A top-level `home` task runs all `home_*` tasks at once for a full install.
+
+The architecture is straightforward: config files live in subdirectories mirroring their purpose, and helper functions (`ensure_file`, `ensure_dir`) copy or symlink them into the appropriate `$HOME` locations with correct permissions. It supports both a public repo (this one) and a private companion repo for sensitive configs like calendar data, keeping secrets separate while sharing the same deployment mechanism.
+
+=> https://codeberg.org/snonux/dotfiles View on Codeberg
+=> https://github.com/snonux/dotfiles View on GitHub
+
+---
+
+### 5. conf.bak
+
+* 💻 Languages: YAML (68.9%), Shell (13.1%), Perl (9.0%), Python (2.0%), Config (1.6%), CSS (1.5%), TOML (1.4%), Ruby (1.2%), Docker (0.6%), Lua (0.3%), JSON (0.2%), HTML (0.1%)
+* 📚 Documentation: Markdown (97.1%), Text (2.9%)
+* 📊 Commits: 2306
+* 📈 Lines of Code: 21210
+* 📄 Lines of Documentation: 6495
+* 📅 Development Period: 2021-12-28 to 2026-02-07
+* 🏆 Score: 331.0 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a personal infrastructure-as-code and configuration management repository. It centralizes the author's self-hosted service configurations across multiple machines and environments, using **Rex** (a Perl-based deployment tool) as the orchestration layer — the top-level `Rexfile` auto-loads sub-project Rexfiles from each directory. The repo is organized by target: **babylon5** contains Docker run scripts for self-hosted services (Vaultwarden, Nextcloud, Audiobookshelf, etc.), **f3s** holds a large collection of Kubernetes/Helm manifests for a k3s cluster (covering ~30 services including ArgoCD, Traefik, Prometheus, Loki, Immich, Jellyfin, and more), **frontends** manages frontend server configs (e.g., Apache/Nginx, system scripts), and **dotfiles** stores personal shell and editor configs (fish, zsh, Neovim, Helix, Sway, tmux, Ghostty, etc.).
+
+The repository is useful as a single source of truth for reproducing the author's entire homelab and workstation setup. By versioning everything in Git — from k8s manifests and Docker commands to dotfiles and code snippets — it enables consistent, repeatable deployments and easy recovery. The Rex-based structure allows deploying or updating any target system with a single command.
+
+=> https://codeberg.org/snonux/conf.bak View on Codeberg
+=> https://github.com/snonux/conf.bak View on GitHub
+
+---
+
+### 6. foo.zone
 
 * 💻 Languages: XML (98.7%), Shell (1.0%), Go (0.3%)
 * 📚 Documentation: Text (86.2%), Markdown (13.8%)
@@ -72,7 +140,7 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 * 📈 Lines of Code: 18702
 * 📄 Lines of Documentation: 174
 * 📅 Development Period: 2021-04-29 to 2026-02-07
-* 🏆 Score: 689.4 (combines code size and activity)
+* 🏆 Score: 322.6 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -84,7 +152,7 @@ foo.zone: source code repository.
 
 ---
 
-### 4. scifi
+### 7. scifi
 
 * 💻 Languages: JSON (35.9%), CSS (30.6%), JavaScript (29.6%), HTML (3.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -92,7 +160,7 @@ foo.zone: source code repository.
 * 📈 Lines of Code: 1664
 * 📄 Lines of Documentation: 853
 * 📅 Development Period: 2026-01-25 to 2026-01-27
-* 🏆 Score: 232.2 (combines code size and activity)
+* 🏆 Score: 154.0 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -106,7 +174,7 @@ The architecture keeps content separate from presentation: book metadata lives i
 
 ---
 
-### 5. log4jbench
+### 8. log4jbench
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -114,7 +182,7 @@ The architecture keeps content separate from presentation: book metadata lives i
 * 📈 Lines of Code: 774
 * 📄 Lines of Documentation: 119
 * 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 96.5 (combines code size and activity)
+* 🏆 Score: 78.1 (combines code size and activity)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -128,53 +196,31 @@ The implementation uses a fat JAR built with Maven, requiring Java 17+. It's des
 
 ---
 
-### 6. hexai
+### 9. gogios
 
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 259
-* 📈 Lines of Code: 18422
-* 📄 Lines of Documentation: 616
-* 📅 Development Period: 2025-08-01 to 2026-02-06
-* 🏆 Score: 57.5 (combines code size and activity)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.17.0 (2026-02-06)
-
-
-=> showcase/hexai/image-1.png hexai screenshot
-
-Hexai is a Go-based AI integration tool designed primarily for the Helix editor that provides LSP (Language Server Protocol) powered AI features. It offers code auto-completion, AI-driven code actions, in-editor chat with LLMs, and a standalone CLI tool for direct LLM interaction. A standout feature is its ability to query multiple AI providers (OpenAI, OpenRouter, GitHub Copilot, Ollama) in parallel, allowing developers to compare responses side-by-side. It has enhanced capabilities for Go code understanding, such as generating unit tests from functions, while supporting other programming languages as well.
-
-The project is implemented as an LSP server written in Go, with a TUI component built using Bubble Tea for the tmux-based code action runner (`hexai-tmux-action`). This architecture allows it to integrate seamlessly into LSP-compatible editors, with special focus on Helix + tmux workflows. The custom prompt feature lets developers use their preferred editor to craft prompts, making it flexible for various development workflows.
-
-=> https://codeberg.org/snonux/hexai View on Codeberg
-=> https://github.com/snonux/hexai View on GitHub
-
----
-
-### 7. perc
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 7
-* 📈 Lines of Code: 452
-* 📄 Lines of Documentation: 80
-* 📅 Development Period: 2025-11-25 to 2025-11-25
-* 🏆 Score: 35.4 (combines code size and activity)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.1.0 (2025-11-25)
+* 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
+* 📚 Documentation: Markdown (94.9%), Text (5.1%)
+* 📊 Commits: 108
+* 📈 Lines of Code: 3875
+* 📄 Lines of Documentation: 394
+* 📅 Development Period: 2023-04-17 to 2026-02-08
+* 🏆 Score: 35.5 (combines code size and activity)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.4.0 (2026-02-08)
 
 
-**perc** is a command-line percentage calculator written in Go that handles the three common percentage calculation scenarios: finding X% of Y (e.g., "20% of 150"), determining what percentage one number is of another (e.g., "30 is what % of 150"), and finding the whole when given a part and percentage (e.g., "30 is 20% of what"). It accepts natural language-style input and shows step-by-step calculation breakdowns alongside results.
+=> showcase/gogios/image-1.png gogios screenshot
 
-The tool is built as a simple Go CLI application with a standard project layout (`cmd/perc` for the binary, `internal/` for implementation details) and uses Mage as its build system. It's installable via `go install` and designed for quick mental-math verification or scripting scenarios where percentage calculations are needed.
+Gogios is a minimalistic monitoring tool written in Go for small-scale infrastructure (e.g., personal servers and VMs). It executes standard Nagios/Icinga monitoring plugins via CRON jobs, tracks state changes in a JSON file, and sends email notifications through a local MTA only when check statuses change. Unlike full-featured monitoring solutions (Nagios, Icinga, Prometheus), Gogios deliberately avoids complexity—no databases, web UIs, clustering, or contact groups—making it ideal for simple, self-hosted environments with limited monitoring needs.
 
-=> https://codeberg.org/snonux/perc View on Codeberg
-=> https://github.com/snonux/perc View on GitHub
+The architecture is straightforward: JSON configuration defines checks (plugin paths, arguments, timeouts, dependencies, retries), a state directory persists check results between runs, and concurrent execution with configurable limits keeps things efficient. Key features include check dependencies (skip HTTP checks if ping fails), retry logic, stale alert detection, re-notification schedules, and support for remote checks via NRPE. A basic high-availability setup is achievable by running Gogios on two servers with staggered CRON intervals, though this results in duplicate notifications when both servers are operational—a deliberate trade-off for simplicity.
+
+=> https://codeberg.org/snonux/gogios View on Codeberg
+=> https://github.com/snonux/gogios View on GitHub
 
 ---
 
-### 8. yoga
+### 10. yoga
 
 * 💻 Languages: Go (66.1%), HTML (33.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -182,7 +228,7 @@ The tool is built as a simple Go CLI application with a standard project layout 
 * 📈 Lines of Code: 5921
 * 📄 Lines of Documentation: 83
 * 📅 Development Period: 2025-10-01 to 2026-01-28
-* 🏆 Score: 34.9 (combines code size and activity)
+* 🏆 Score: 32.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.4.0 (2026-01-28)
 
@@ -198,7 +244,29 @@ The implementation follows clean Go architecture with domain logic organized und
 
 ---
 
-### 9. totalrecall
+### 11. perc
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 7
+* 📈 Lines of Code: 452
+* 📄 Lines of Documentation: 80
+* 📅 Development Period: 2025-11-25 to 2025-11-25
+* 🏆 Score: 32.4 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.1.0 (2025-11-25)
+
+
+**perc** is a command-line percentage calculator written in Go that handles the three common percentage calculation scenarios: finding X% of Y (e.g., "20% of 150"), determining what percentage one number is of another (e.g., "30 is what % of 150"), and finding the whole when given a part and percentage (e.g., "30 is 20% of what"). It accepts natural language-style input and shows step-by-step calculation breakdowns alongside results.
+
+The tool is built as a simple Go CLI application with a standard project layout (`cmd/perc` for the binary, `internal/` for implementation details) and uses Mage as its build system. It's installable via `go install` and designed for quick mental-math verification or scripting scenarios where percentage calculations are needed.
+
+=> https://codeberg.org/snonux/perc View on Codeberg
+=> https://github.com/snonux/perc View on GitHub
+
+---
+
+### 12. totalrecall
 
 * 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
 * 📚 Documentation: Markdown (99.5%), Text (0.5%)
@@ -206,7 +274,7 @@ The implementation follows clean Go architecture with domain logic organized und
 * 📈 Lines of Code: 13129
 * 📄 Lines of Documentation: 377
 * 📅 Development Period: 2025-07-14 to 2026-01-21
-* 🏆 Score: 28.6 (combines code size and activity)
+* 🏆 Score: 27.3 (combines code size and activity)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-01-21)
 
@@ -224,41 +292,17 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 
 ---
 
-### 10. gogios
+### 13. gitsyncer
 
-* 💻 Languages: Go (98.7%), JSON (0.8%), YAML (0.5%)
-* 📚 Documentation: Markdown (94.9%), Text (5.1%)
-* 📊 Commits: 104
-* 📈 Lines of Code: 3303
-* 📄 Lines of Documentation: 394
-* 📅 Development Period: 2023-04-17 to 2026-01-27
-* 🏆 Score: 24.0 (combines code size and activity)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.3.0 (2026-01-06)
-
-
-=> showcase/gogios/image-1.png gogios screenshot
-
-Gogios is a minimalistic monitoring tool written in Go for small-scale infrastructure (e.g., personal servers and VMs). It executes standard Nagios/Icinga monitoring plugins via CRON jobs, tracks state changes in a JSON file, and sends email notifications through a local MTA only when check statuses change. Unlike full-featured monitoring solutions (Nagios, Icinga, Prometheus), Gogios deliberately avoids complexity—no databases, web UIs, clustering, or contact groups—making it ideal for simple, self-hosted environments with limited monitoring needs.
-
-The architecture is straightforward: JSON configuration defines checks (plugin paths, arguments, timeouts, dependencies, retries), a state directory persists check results between runs, and concurrent execution with configurable limits keeps things efficient. Key features include check dependencies (skip HTTP checks if ping fails), retry logic, stale alert detection, re-notification schedules, and support for remote checks via NRPE. A basic high-availability setup is achievable by running Gogios on two servers with staggered CRON intervals, though this results in duplicate notifications when both servers are operational—a deliberate trade-off for simplicity.
-
-=> https://codeberg.org/snonux/gogios View on Codeberg
-=> https://github.com/snonux/gogios View on GitHub
-
----
-
-### 11. gitsyncer
-
-* 💻 Languages: Go (92.2%), Shell (7.4%), JSON (0.4%)
+* 💻 Languages: Go (92.5%), Shell (7.1%), JSON (0.4%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 116
-* 📈 Lines of Code: 10075
-* 📄 Lines of Documentation: 2432
-* 📅 Development Period: 2025-06-23 to 2025-12-31
-* 🏆 Score: 21.6 (combines code size and activity)
+* 📊 Commits: 117
+* 📈 Lines of Code: 10446
+* 📄 Lines of Documentation: 2445
+* 📅 Development Period: 2025-06-23 to 2026-02-07
+* 🏆 Score: 21.5 (combines code size and activity)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.11.0 (2025-12-31)
+* 🏷️ Latest Release: v0.12.0 (2026-02-07)
 
 
 GitSyncer is a Go-based CLI tool that automatically synchronizes git repositories across multiple hosting platforms (GitHub, Codeberg, SSH servers). It maintains all branches in sync bidirectionally, never deleting branches but automatically creating and updating them as needed. The tool excels at providing repository redundancy and backup, with special support for one-way SSH backups to private servers (like home NAS devices) that may be offline intermittently. It includes AI-powered features for generating release notes and project showcase documentation, plus automated weekly batch synchronization for hands-off maintenance.
@@ -270,7 +314,7 @@ The implementation uses a git remotes approach: it clones from one organization,
 
 ---
 
-### 12. foostats
+### 14. foostats
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -278,7 +322,7 @@ The implementation uses a git remotes approach: it clones from one organization,
 * 📈 Lines of Code: 1902
 * 📄 Lines of Documentation: 423
 * 📅 Development Period: 2023-01-02 to 2025-11-01
-* 🏆 Score: 19.2 (combines code size and activity)
+* 🏆 Score: 18.5 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.2.0 (2025-10-21)
 
@@ -292,7 +336,7 @@ The implementation uses a modular Perl architecture with specialized components:
 
 ---
 
-### 13. tasksamurai
+### 15. tasksamurai
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -300,7 +344,7 @@ The implementation uses a modular Perl architecture with specialized components:
 * 📈 Lines of Code: 6544
 * 📄 Lines of Documentation: 254
 * 📅 Development Period: 2025-06-19 to 2026-02-04
-* 🏆 Score: 19.1 (combines code size and activity)
+* 🏆 Score: 18.4 (combines code size and activity)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.11.0 (2026-02-04)
 
@@ -318,29 +362,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 
 ---
 
-### 14. timr
-
-* 💻 Languages: Go (96.0%), Shell (4.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 32
-* 📈 Lines of Code: 1538
-* 📄 Lines of Documentation: 99
-* 📅 Development Period: 2025-06-25 to 2026-01-02
-* 🏆 Score: 17.3 (combines code size and activity)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.3.0 (2026-01-02)
-
-
-`timr` is a minimalist command-line stopwatch timer written in Go that helps developers track time spent on tasks. It provides a persistent timer that saves state to disk, allowing you to start, stop, pause, and resume time tracking across terminal sessions. The tool supports multiple viewing modes including a standard status display (with formatted or raw output in seconds/minutes), a live full-screen view with keyboard controls, and specialized output for shell prompt integration.
-
-The architecture is straightforward: it's a Go-based CLI application that persists timer state to the filesystem, enabling continuous tracking even when the program isn't actively running. Key features include basic timer controls (start/stop/continue/reset), flexible status reporting formats for automation, and fish shell integration that displays a color-coded timer icon and elapsed time directly in your prompt—making it effortless to keep track of how long you've been working without context switching.
-
-=> https://codeberg.org/snonux/timr View on Codeberg
-=> https://github.com/snonux/timr View on GitHub
-
----
-
-### 15. ior
+### 16. ior
 
 * 💻 Languages: Go (50.4%), C (43.1%), Raku (4.5%), Make (1.1%), C/C++ (1.0%)
 * 📚 Documentation: Text (69.7%), Markdown (30.3%)
@@ -348,7 +370,7 @@ The architecture is straightforward: it's a Go-based CLI application that persis
 * 📈 Lines of Code: 13072
 * 📄 Lines of Documentation: 680
 * 📅 Development Period: 2024-01-18 to 2025-10-09
-* 🏆 Score: 17.2 (combines code size and activity)
+* 🏆 Score: 16.7 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -366,7 +388,29 @@ The tool is implemented in Go and C, leveraging libbpfgo for BPF interaction. It
 
 ---
 
-### 16. dtail
+### 17. timr
+
+* 💻 Languages: Go (96.0%), Shell (4.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 32
+* 📈 Lines of Code: 1538
+* 📄 Lines of Documentation: 99
+* 📅 Development Period: 2025-06-25 to 2026-01-02
+* 🏆 Score: 16.7 (combines code size and activity)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.3.0 (2026-01-02)
+
+
+`timr` is a minimalist command-line stopwatch timer written in Go that helps developers track time spent on tasks. It provides a persistent timer that saves state to disk, allowing you to start, stop, pause, and resume time tracking across terminal sessions. The tool supports multiple viewing modes including a standard status display (with formatted or raw output in seconds/minutes), a live full-screen view with keyboard controls, and specialized output for shell prompt integration.
+
+The architecture is straightforward: it's a Go-based CLI application that persists timer state to the filesystem, enabling continuous tracking even when the program isn't actively running. Key features include basic timer controls (start/stop/continue/reset), flexible status reporting formats for automation, and fish shell integration that displays a color-coded timer icon and elapsed time directly in your prompt—making it effortless to keep track of how long you've been working without context switching.
+
+=> https://codeberg.org/snonux/timr View on Codeberg
+=> https://github.com/snonux/timr View on GitHub
+
+---
+
+### 18. dtail
 
 * 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
 * 📚 Documentation: Text (79.4%), Markdown (20.6%)
@@ -374,7 +418,7 @@ The tool is implemented in Go and C, leveraging libbpfgo for BPF interaction. It
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🏆 Score: 16.1 (combines code size and activity)
+* 🏆 Score: 15.7 (combines code size and activity)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -392,7 +436,7 @@ The architecture follows a client-server model where DTail servers run on target
 
 ---
 
-### 17. gos
+### 19. gos
 
 * 💻 Languages: Go (99.8%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -400,7 +444,7 @@ The architecture follows a client-server model where DTail servers run on target
 * 📈 Lines of Code: 4102
 * 📄 Lines of Documentation: 357
 * 📅 Development Period: 2024-05-04 to 2025-12-27
-* 🏆 Score: 15.4 (combines code size and activity)
+* 🏆 Score: 15.0 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.2.3 (2026-01-31)
 
@@ -418,7 +462,7 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 
 ---
 
-### 18. ds-sim
+### 20. ds-sim
 
 * 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -426,7 +470,7 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🏆 Score: 14.7 (combines code size and activity)
+* 🏆 Score: 14.4 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -442,29 +486,7 @@ The implementation follows a modular Java architecture with clear separation bet
 
 ---
 
-### 19. gemtexter
-
-* 💻 Languages: CSS (55.3%), Python (16.1%), HTML (15.3%), JSON (6.6%), Shell (5.3%), Config (1.5%)
-* 📚 Documentation: Text (70.2%), Markdown (29.8%)
-* 📊 Commits: 472
-* 📈 Lines of Code: 30319
-* 📄 Lines of Documentation: 1280
-* 📅 Development Period: 2021-05-21 to 2025-06-22
-* 🏆 Score: 10.8 (combines code size and activity)
-* ⚖️ License: GPL-3.0
-* 🏷️ Latest Release: 3.0.0 (2024-10-01)
-
-
-Gemtexter is a static site generator and blog engine written in Bash that converts content from Gemini Gemtext format into multiple output formats (HTML, Markdown) simultaneously. It allows you to maintain a single source of truth in Gemtext and automatically generates XHTML Transitional 1.0, Markdown, and Atom feeds, enabling you to publish the same content across Gemini capsules, traditional websites, and platforms like GitHub/Codeberg Pages. The tool handles blog post management automatically—creating a new dated `.gmi` file triggers auto-indexing, feed generation, and cross-format conversion.
-
-The architecture leverages GNU utilities (sed, grep, date) and optional tools like GNU Source Highlight for syntax highlighting. It includes a templating system that executes embedded Bash code in `.gmi.tpl` files, supports themes for HTML output, and integrates with Git for version control and publishing workflows. Despite being implemented as a complex Bash script, it remains maintainable and serves as an experiment in how far shell scripting can scale for content management tasks.
-
-=> https://codeberg.org/snonux/gemtexter View on Codeberg
-=> https://github.com/snonux/gemtexter View on GitHub
-
----
-
-### 20. wireguardmeshgenerator
+### 21. wireguardmeshgenerator
 
 * 💻 Languages: Ruby (65.4%), YAML (34.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -472,7 +494,7 @@ The architecture leverages GNU utilities (sed, grep, date) and optional tools li
 * 📈 Lines of Code: 563
 * 📄 Lines of Documentation: 24
 * 📅 Development Period: 2025-04-18 to 2026-01-20
-* 🏆 Score: 10.4 (combines code size and activity)
+* 🏆 Score: 10.1 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -486,7 +508,29 @@ The tool reads host definitions from a YAML file specifying network interfaces (
 
 ---
 
-### 21. rcm
+### 22. gemtexter
+
+* 💻 Languages: Shell (68.2%), CSS (28.5%), Config (1.9%), HTML (1.3%)
+* 📚 Documentation: Text (76.1%), Markdown (23.9%)
+* 📊 Commits: 472
+* 📈 Lines of Code: 2288
+* 📄 Lines of Documentation: 1180
+* 📅 Development Period: 2021-05-21 to 2025-12-31
+* 🏆 Score: 9.9 (combines code size and activity)
+* ⚖️ License: GPL-3.0
+* 🏷️ Latest Release: 3.0.0 (2024-10-01)
+
+
+Gemtexter is a static site generator and blog engine written in Bash that converts content from Gemini Gemtext format into multiple output formats (HTML, Markdown) simultaneously. It allows you to maintain a single source of truth in Gemtext and automatically generates XHTML Transitional 1.0, Markdown, and Atom feeds, enabling you to publish the same content across Gemini capsules, traditional websites, and platforms like GitHub/Codeberg Pages. The tool handles blog post management automatically—creating a new dated `.gmi` file triggers auto-indexing, feed generation, and cross-format conversion.
+
+The architecture leverages GNU utilities (sed, grep, date) and optional tools like GNU Source Highlight for syntax highlighting. It includes a templating system that executes embedded Bash code in `.gmi.tpl` files, supports themes for HTML output, and integrates with Git for version control and publishing workflows. Despite being implemented as a complex Bash script, it remains maintainable and serves as an experiment in how far shell scripting can scale for content management tasks.
+
+=> https://codeberg.org/snonux/gemtexter View on Codeberg
+=> https://github.com/snonux/gemtexter View on GitHub
+
+---
+
+### 23. rcm
 
 * 💻 Languages: Ruby (99.8%), TOML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -494,7 +538,7 @@ The tool reads host definitions from a YAML file specifying network interfaces (
 * 📈 Lines of Code: 1377
 * 📄 Lines of Documentation: 113
 * 📅 Development Period: 2024-12-05 to 2025-11-26
-* 🏆 Score: 9.1 (combines code size and activity)
+* 🏆 Score: 8.9 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -508,7 +552,7 @@ The implementation centers around a DSL module that provides keywords like `file
 
 ---
 
-### 22. terraform
+### 24. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -530,7 +574,7 @@ The infrastructure uses a **modular, layered architecture** with separate Terraf
 
 ---
 
-### 23. quicklogger
+### 25. quicklogger
 
 * 💻 Languages: Go (96.1%), XML (1.9%), Shell (1.2%), TOML (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -556,7 +600,7 @@ The implementation leverages Go's cross-compilation capabilities and Fyne's UI a
 
 ---
 
-### 24. sillybench
+### 26. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -564,7 +608,7 @@ The implementation leverages Go's cross-compilation capabilities and Fyne's UI a
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🏆 Score: 4.9 (combines code size and activity)
+* 🏆 Score: 4.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -578,7 +622,7 @@ The implementation is intentionally straightforward, using Go's built-in testing
 
 ---
 
-### 25. gorum
+### 27. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -601,7 +645,7 @@ The architecture consists of client/server components for inter-node communicati
 
 ---
 
-### 26. guprecords
+### 28. guprecords
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -623,29 +667,7 @@ The implementation uses an object-oriented architecture with specialized classes
 
 ---
 
-### 27. docker-radicale-server
-
-* 💻 Languages: Make (57.5%), Docker (42.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 5
-* 📈 Lines of Code: 40
-* 📄 Lines of Documentation: 3
-* 📅 Development Period: 2023-12-31 to 2025-08-11
-* 🏆 Score: 2.5 (combines code size and activity)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This project is a Docker containerization of **Radicale**, a lightweight CalDAV and CardDAV server for calendar and contact synchronization. Radicale enables users to self-host their calendars and contacts, providing an open-source alternative to cloud services like Google Calendar or iCloud. The Dockerized version makes it easy to deploy and manage the server with minimal setup.
-
-The implementation uses Alpine Linux as the base image for a minimal footprint, installs Radicale via pip, and configures it with htpasswd authentication and file-based storage. The container exposes port 8080 and runs as a non-root user for security. The architecture includes separate volumes for authentication credentials, calendar/contact collections, and configuration, making it straightforward to persist data and customize the server behavior.
-
-=> https://codeberg.org/snonux/docker-radicale-server View on Codeberg
-=> https://github.com/snonux/docker-radicale-server View on GitHub
-
----
-
-### 28. geheim
+### 29. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -667,7 +689,29 @@ The architecture leverages Git for storage and synchronization across multiple r
 
 ---
 
-### 29. algorithms
+### 30. docker-radicale-server
+
+* 💻 Languages: Make (57.5%), Docker (42.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 40
+* 📄 Lines of Documentation: 3
+* 📅 Development Period: 2023-12-31 to 2025-08-11
+* 🏆 Score: 2.4 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This project is a Docker containerization of **Radicale**, a lightweight CalDAV and CardDAV server for calendar and contact synchronization. Radicale enables users to self-host their calendars and contacts, providing an open-source alternative to cloud services like Google Calendar or iCloud. The Dockerized version makes it easy to deploy and manage the server with minimal setup.
+
+The implementation uses Alpine Linux as the base image for a minimal footprint, installs Radicale via pip, and configures it with htpasswd authentication and file-based storage. The container exposes port 8080 and runs as a non-root user for security. The architecture includes separate volumes for authentication credentials, calendar/contact collections, and configuration, making it straightforward to persist data and customize the server behavior.
+
+=> https://codeberg.org/snonux/docker-radicale-server View on Codeberg
+=> https://github.com/snonux/docker-radicale-server View on GitHub
+
+---
+
+### 31. algorithms
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -690,7 +734,7 @@ The project is implemented in Go 1.19+ with comprehensive unit tests and benchma
 
 ---
 
-### 30. randomjournalpage
+### 32. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -713,7 +757,7 @@ The implementation is a straightforward bash script using `qpdf` for PDF extract
 
 ---
 
-### 31. photoalbum
+### 33. photoalbum
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -736,7 +780,7 @@ The architecture is straightforward and Unix-philosophy driven: users configure 
 
 ---
 
-### 32. ioriot
+### 34. ioriot
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -761,7 +805,7 @@ The key advantage over traditional benchmarking tools is that it reproduces actu
 
 ---
 
-### 33. ipv6test
+### 35. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -783,7 +827,7 @@ The implementation uses a simple CGI script ([index.pl](file:///home/paul/git/gi
 
 ---
 
-### 34. sway-autorotate
+### 36. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -805,7 +849,7 @@ The implementation uses a bash script that continuously monitors the `monitor-se
 
 ---
 
-### 35. mon
+### 37. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -828,7 +872,7 @@ Implemented in Perl, `mon` features automatic JSON backup before modifications (
 
 ---
 
-### 36. staticfarm-apache-handlers
+### 38. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -851,7 +895,7 @@ Both handlers are implemented as Perl modules using Apache2's mod_perl API, conf
 
 ---
 
-### 37. pingdomfetch
+### 39. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -874,7 +918,7 @@ The tool is implemented around a hierarchical configuration system (`/etc/pingdo
 
 ---
 
-### 38. xerl
+### 40. xerl
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 670
@@ -895,7 +939,7 @@ The implementation follows strict OO Perl conventions with explicit typing and p
 
 ---
 
-### 39. ychat
+### 41. ychat
 
 * 💻 Languages: C++ (49.9%), C/C++ (22.2%), Shell (20.6%), Perl (2.5%), HTML (1.9%), Config (1.8%), Make (0.9%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
@@ -918,7 +962,7 @@ The architecture emphasizes speed and scalability through several key design cho
 
 ---
 
-### 40. fapi
+### 42. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -940,7 +984,7 @@ The tool is implemented in Python and depends on the bigsuds library (F5's iCont
 
 ---
 
-### 41. perl-c-fibonacci
+### 43. perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -961,7 +1005,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 42. netcalendar
+### 44. netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.7%), Markdown (10.3%)
@@ -988,17 +1032,17 @@ The key feature is its intelligent color-coded event visualization system that h
 
 ---
 
-### 43. loadbars
+### 45. loadbars
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (100.0%)
-* 📊 Commits: 527
+* 📊 Commits: 557
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
 * 🏆 Score: 0.7 (combines code size and activity)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: 0.7.5 (2014-06-22)
+* 🏷️ Latest Release: v0.9.0 (2026-02-14)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1009,7 +1053,7 @@ loadbars: source code repository.
 
 ---
 
-### 44. gotop
+### 46. gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1032,7 +1076,7 @@ The implementation uses a concurrent architecture with goroutines for data colle
 
 ---
 
-### 45. fype
+### 47. fype
 
 * 💻 Languages: C (71.1%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
 * 📚 Documentation: Text (69.5%), LaTeX (30.5%)
@@ -1055,7 +1099,7 @@ The implementation uses a simple top-down parser with maximum lookahead of 1, in
 
 ---
 
-### 46. rubyfy
+### 48. rubyfy
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1078,7 +1122,7 @@ The tool is implemented as a lightweight Ruby script that prioritizes simplicity
 
 ---
 
-### 47. pwgrep
+### 49. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (80.8%), Markdown (19.2%)
@@ -1101,7 +1145,7 @@ The architecture is lightweight and Unix-philosophy driven: password databases a
 
 ---
 
-### 48. perldaemon
+### 50. perldaemon
 
 * 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
@@ -1122,7 +1166,7 @@ The implementation centers around an event loop with configurable intervals that
 
 ---
 
-### 49. jsmstrade
+### 51. jsmstrade
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1147,7 +1191,7 @@ The implementation is minimalistic, consisting of just three main Java classes (
 
 ---
 
-### 50. japi
+### 52. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1170,7 +1214,7 @@ Implemented in Perl using the JIRA::REST CPAN module, japi supports flexible con
 
 ---
 
-### 51. perl-poetry
+### 53. perl-poetry
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1193,7 +1237,7 @@ This project exemplifies creative coding where Perl keywords and constructs are 
 
 ---
 
-### 52. muttdelay
+### 54. muttdelay
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1216,7 +1260,7 @@ The architecture uses three components working together: a Vim plugin that provi
 
 ---
 
-### 53. netdiff
+### 55. netdiff
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1239,7 +1283,7 @@ The tool uses a clever client-server architecture where you run the identical co
 
 ---
 
-### 54. debroid
+### 56. debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1264,7 +1308,7 @@ The implementation uses a two-stage debootstrap process: first creating a Debian
 
 ---
 
-### 55. hsbot
+### 57. hsbot
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 80
@@ -1285,7 +1329,7 @@ The implementation uses a modular design with core components separated into Bas
 
 ---
 
-### 56. cpuinfo
+### 58. cpuinfo
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1308,7 +1352,7 @@ The implementation is elegantly simple: a single shell script ([src/cpuinfo](fil
 
 ---
 
-### 57. template
+### 59. template
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1331,7 +1375,7 @@ The implementation uses a **Makefile-based build system** with targets for compi
 
 ---
 
-### 58. awksite
+### 60. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Text (60.0%), Markdown (40.0%)
@@ -1354,7 +1398,7 @@ The architecture is remarkably simple: a single AWK script ([index.cgi](file:///
 
 ---
 
-### 59. dyndns
+### 61. dyndns
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1377,7 +1421,7 @@ The implementation uses a two-tier security architecture: SSH public key authent
 
 ---
 
-### 60. vs-sim
+### 62. vs-sim
 
 * 📚 Documentation: Markdown (100.0%)
 * 📊 Commits: 411
