@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>TIL: Meta slash-commands for reusable AI prompts and context</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-02-14-til-meta-slash-commands-for-ai-workflows.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-02-14-til-meta-slash-commands-for-ai-workflows.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='til-meta-slash-commands-for-reusable-ai-prompts-and-context'>TIL: Meta slash-commands for reusable AI prompts and context</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-14T14:00:00+02:00</span><br />
+<br />
+<span>Short post in "This week I learned" style: what I tried, why it worked, and how you can replicate it. Format: Problem → Approach → Copy/paste → Result → Gotchas. Full reference for the meta-commands lives in a separate post.</span><br />
+<br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>Full reference: Meta slash-commands to manage prompts and context for coding agents</a><br />
+<br />
+<h2 style='display: inline' id='til'>TIL</h2><br />
+<br />
+<h3 style='display: inline' id='problem'>Problem</h3><br />
+<br />
+<span>When I use a coding agent (Cursor Agent, Claude Code CLI, Ampcode, etc.), I repeat the same requests: "review this function," "explain this error," "add tests for this module," "format this as a blog post." Typing long prompts from scratch is tedious; ad-hoc prompts are easy to forget. I also keep pasting the same background (API conventions, project rules, infra notes) into every session so the agent doesn&#39;t guess blindly.</span><br />
+<br />
+<h3 style='display: inline' id='approach'>Approach</h3><br />
+<br />
+<span>Treat prompts and context as first-class artefacts: store them as markdown files (one per slash-command or per context) in a dotfiles repo. Use a small set of *meta* slash-commands so the agent itself creates, updates, and deletes these files from the conversation—no hand-editing. Two kinds of artefacts:</span><br />
+<br />
+<ul>
+<li>Commands — Reusable workflows (e.g. review-code, explain-error). Live in <span class='inlinecode'>commands/</span> as <span class='inlinecode'>.md</span> files.</li>
+<li>Context — Reusable background (API guidelines, runbooks, personas). Live in <span class='inlinecode'>context/</span> as <span class='inlinecode'>.md</span> files; you *load* one at session start so the agent has it in mind.</li>
+</ul><br />
+<h3 style='display: inline' id='copypaste'>Copy/paste</h3><br />
+<br />
+<span>Minimal workflow:</span><br />
+<br />
+<pre>
+/load-context api-guidelines
+</pre>
+<br />
+<span>Then ask the agent to implement a feature or fix a bug; it already has the guidelines.</span><br />
+<br />
+<span>To turn something you just did into a reusable command:</span><br />
+<br />
+<pre>
+/create-command review-code
+</pre>
+<br />
+<span>Full command reference (all meta-commands, parameters, examples):</span><br />
+<br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>Meta slash-commands — full reference</a><br />
+<br />
+<h3 style='display: inline' id='result'>Result</h3><br />
+<br />
+<span>No more retyping long prompts; same prompt library across Cursor Agent, Claude Code CLI, OpenCode, Ampcode. Context is load-on-demand per session instead of pasting walls of text. Everything is versioned in git and synced across machines.</span><br />
+<br />
+<h3 style='display: inline' id='gotchas'>Gotchas</h3><br />
+<br />
+<ul>
+<li>Requires an agent that supports custom slash-commands (or reading prompt files from disk).</li>
+<li>Context is explicit: you must run <span class='inlinecode'>/load-context &lt;name&gt;</span> at session start; it&#39;s not implicit like some "skills" systems.</li>
+<li>A flat directory of commands can grow; if it gets unwieldy, consider grouping by skill or exposing via an MCP server later.</li>
+</ul><br />
+<h2 style='display: inline' id='beforeafter'>Before/After</h2><br />
+<br />
+<ul>
+<li>Before: Retyping or pasting long prompts each time; pasting API/project context into every session; prompts scattered and inconsistent across tools.</li>
+<li>After: <span class='inlinecode'>/load-context &lt;name&gt;</span> once per session; <span class='inlinecode'>/&lt;command&gt;</span> for repeatable tasks; commands and context in git, same library across agents.</li>
+</ul><br />
+<h2 style='display: inline' id='workflow-recipe'>Workflow recipe</h2><br />
+<br />
+<ul>
+<li>Steps: (1) Create or update context/commands via meta-commands when you have something worth reusing. (2) Start a session → run <span class='inlinecode'>/load-context &lt;name&gt;</span>. (3) Use slash-commands or ask ad-hoc; agent has background and consistent prompts.</li>
+<li>Tools: Cursor Agent (CLI), Claude Code CLI, OpenCode, Ampcode; markdown in e.g. <span class='inlinecode'>~/Notes/Prompts/commands/</span> and <span class='inlinecode'>~/Notes/Prompts/context/</span>.</li>
+<li>Impact: Saves retyping and keeps prompts consistent; one-time cost is creating the first context/command with the agent.</li>
+</ul><br />
+<h2 style='display: inline' id='micro-template-quick-reference'>Micro-template (quick reference)</h2><br />
+<br />
+<span>| Meta-command       | Purpose                        | Good for                                  |</span><br />
+<span>|--------------------|--------------------------------|-------------------------------------------|</span><br />
+<span>| /create-command    | Create new slash-command       | Turn current or recurring tasks into one  |</span><br />
+<span>| /update-command    | Edit existing slash-command    | Refine after use                          |</span><br />
+<span>| /delete-command    | Remove slash-command file      | Clean up unused commands                  |</span><br />
+<span>| /create-context    | Create new context file        | Capture project/infra knowledge once      |</span><br />
+<span>| /update-context    | Edit existing context file     | Keep context up to date                   |</span><br />
+<span>| /delete-context    | Remove context file            | Remove outdated context                   |</span><br />
+<span>| /load-context      | Load context into conversation | Give agent background before tasks        |</span><br />
+<br />
+<span>Example usage: <span class='inlinecode'>/load-context api-guidelines</span>, <span class='inlinecode'>/create-command review-code</span>, <span class='inlinecode'>/update-command review-code</span>. Full details and examples in the main post linked above.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 Meta slash-commands to manage prompts and context for coding agents</a><br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
