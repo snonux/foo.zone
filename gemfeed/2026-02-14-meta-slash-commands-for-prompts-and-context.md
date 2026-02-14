@@ -213,7 +213,8 @@ Context is what the agent *knows*; commands are what the agent *does*. Both are 
 
 Other related posts:
 
-[2026-02-14 Meta slash-commands to manage prompts and context (You are currently reading this)](./2026-02-14-meta-slash-commands-for-prompts-and-context.md)  
+[2026-02-14 TIL: Meta slash-commands for reusable AI prompts and context](./2026-02-14-til-meta-slash-commands-for-ai-workflows.md)  
+[2026-02-14 Meta slash-commands to manage prompts and context for coding agents (You are currently reading this)](./2026-02-14-meta-slash-commands-for-prompts-and-context.md)  
 [2026-02-02 A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
