@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-14T23:20:12+02:00</updated>
+    <updated>2026-02-15T14:11:06+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -229,7 +229,7 @@ mage test
 <br />
 <h2 style='display: inline' id='the-ai-rewrite-experience'>The AI rewrite experience</h2><br />
 <br />
-<span>This resurrection would not have been really possible without the help of AI. The rewrite was done with Claude Code CLI (Anthropic&#39;s coding agent) running Claude Opus 5.3. I pointed it at the Perl source,  and let it produce the Go equivalent. The process was surprisingly smooth -- the rewrite worked without any major issues. There were some minor bugs (such as network bars not showing up initially, and/or some pixel errors in the bars), but they were sorted by Claude by providing screenshots of the problems.</span><br />
+<span>This resurrection would not have been really possible without the help of AI. The rewrite was done with Claude Code CLI (Anthropic&#39;s coding agent) running Claude Opus 5.3. I pointed it at the Perl source,  and let it produce the Go equivalent. The process was surprisingly smooth -- the rewrite worked without any major issues. There were some minor bugs (such as network bars not showing up initially, and/or some pixel errors in the bars), but they were sorted by Claude by providing screenshots of the problems!</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
