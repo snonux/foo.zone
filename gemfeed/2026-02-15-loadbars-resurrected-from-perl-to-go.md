@@ -204,7 +204,7 @@ The Go SDL2 bindings (go-sdl2) are actively maintained, and SDL2 itself is a sta
 
 ## The AI rewrite experience
 
-This resurrection would not have been really possible without the help of AI. The rewrite was done with Claude Code CLI (Anthropic's coding agent) running Claude Opus 5.3. I pointed it at the Perl source,  and let it produce the Go equivalent. The process was surprisingly smooth -- the rewrite worked without any major issues. There were some minor bugs (such as network bars not showing up initially, and/or some pixel errors in the bars), but they were sorted by Claude by providing screenshots of the problems.
+This resurrection would not have been really possible without the help of AI. The rewrite was done with Claude Code CLI (Anthropic's coding agent) running Claude Opus 5.3. I pointed it at the Perl source,  and let it produce the Go equivalent. The process was surprisingly smooth -- the rewrite worked without any major issues. There were some minor bugs (such as network bars not showing up initially, and/or some pixel errors in the bars), but they were sorted by Claude by providing screenshots of the problems!
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
