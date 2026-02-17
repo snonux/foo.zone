@@ -31,7 +31,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 ### Posts
 
 => ./gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.gmi 2026-02-15 - Loadbars resurrected: From Perl to Go after 15 years
-=> ./gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi 2026-02-14 - Meta slash-commands to manage prompts and context for coding agents
+=> ./gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi 2026-02-14 - Meta slash-commands to manage prompts, skills, and context for coding agents
 => ./gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.gmi 2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts
 => ./gemfeed/2026-01-01-using-supernote-nomad-offline.gmi 2026-01-01 - Using Supernote Nomad offline
 => ./gemfeed/2026-01-01-posts-from-july-to-december-2025.gmi 2026-01-01 - Posts from July to December 2025
