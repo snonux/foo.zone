@@ -65,8 +65,7 @@ I use different agents depending on the task: Claude Code CLI, Cursor Agent (CLI
 
 These meta-commands create, update, and delete other slash-commands. The target files live in `~/Notes/Prompts/commands/` (or your chosen path). Each command is one `.md` file. You can see the commands (and the context files) here:
 
-=> https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands 
-=> https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/context
+=> https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/
 
 ### `/create-command`
 
