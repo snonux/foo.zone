@@ -1,6 +1,7 @@
 # Unveiling `guprecords.raku`: Global Uptime Records with Raku
 
 > Published at 2023-04-30T13:10:26+03:00
+> Updated Fri 21 Feb: Note added about Go rewrite
 
 ```
 +-----+-----------------+-----------------------------+
@@ -29,8 +30,12 @@ As a result of this, I am introducing `guprecords.raku`, a handy Raku script tha
 
 Guprecords, or global uptime records, is a Raku script designed to generate a consolidated uptime report from multiple hosts:
 
-=> https://codeberg.org/snonux/guprecords
+=> https://codeberg.org/snonux/guprecords Guprecords (Raku)
+=> https://codeberg.org/snonux/goprecords Goprecords (Go)
 => https://raku.org The Raku Programming Language
+=> https://go.dev The Go Programming Language
+
+> **Note (Feb 2026)**: Guprecords has also been rewritten in Go as `goprecords` for improved performance and easier distribution. The Go version is fully compatible and supports the same features (categories, metrics, and output formats). Both implementations are maintained and available.
 
 A previous version of Guprecords was actually written in Perl, the older and more established language from which Raku was developed. One of the primary motivations for rewriting Guprecords in Raku was to learn the language and explore its features. Raku is a more modern and powerful language compared to Perl, and working on a real-world project like Guprecords provided a practical and engaging way to learn the language.
 
