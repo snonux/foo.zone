@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-17T08:41:08+02:00</updated>
+    <updated>2026-02-20T21:23:33+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -572,7 +572,7 @@ mage test
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 Meta slash-commands to manage prompts and context for coding agents (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 Meta slash-commands to manage prompts, skills, and context for coding agents (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
