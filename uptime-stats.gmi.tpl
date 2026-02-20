@@ -7,11 +7,11 @@ The following stats were collected via `uptimed` on all of my personal computers
 > Uptimed is an uptime record daemon keeping track of the highest uptimes a computer system ever had. It uses the system boot time to keep sessions apart from each other.
 
 => https://github.com/rpodgorny/uptimed
-=> https://codeberg.org/snonux/guprecords
+=> https://codeberg.org/snonux/goprecords
 
 Also check out my blog post:
 
-=> ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Uptime records with Raku
+=> ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Uptime records with Raku (and also there is a version in Go now)
 
 <<<
   if [ -f ~/git/uprecords/uprecords.gmi ]; then
