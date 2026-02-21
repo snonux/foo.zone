@@ -30,6 +30,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-02-22 - Taskwarrior as an autonomous AI agent loop: 48 tasks in one day](./gemfeed/2026-02-22-taskwarrior-autonomous-agent-loop.md)  
 [2026-02-22 - My desk rack: DeskPi RackMate T0](./gemfeed/2026-02-22-my-desk-rack.md)  
 [2026-02-15 - Loadbars resurrected: From Perl to Go after 15 years](./gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.md)  
 [2026-02-14 - Meta slash-commands to manage prompts, skills, and context for coding agents](./gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.md)  

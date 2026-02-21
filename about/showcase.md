@@ -13,75 +13,74 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ 2. dotfiles](#2-dotfiles)
 * [⇢ ⇢ ⇢ 3. epimetheus](#3-epimetheus)
 * [⇢ ⇢ ⇢ 4. conf](#4-conf)
-* [⇢ ⇢ ⇢ 5. dotfiles.bak](#5-dotfilesbak)
-* [⇢ ⇢ ⇢ 6. foo.zone](#6-foozone)
-* [⇢ ⇢ ⇢ 7. scifi](#7-scifi)
-* [⇢ ⇢ ⇢ 8. log4jbench](#8-log4jbench)
-* [⇢ ⇢ ⇢ 9. gogios](#9-gogios)
-* [⇢ ⇢ ⇢ 10. yoga](#10-yoga)
-* [⇢ ⇢ ⇢ 11. perc](#11-perc)
-* [⇢ ⇢ ⇢ 12. totalrecall](#12-totalrecall)
-* [⇢ ⇢ ⇢ 13. ior](#13-ior)
-* [⇢ ⇢ ⇢ 14. gitsyncer](#14-gitsyncer)
-* [⇢ ⇢ ⇢ 15. tasksamurai](#15-tasksamurai)
-* [⇢ ⇢ ⇢ 16. foostats](#16-foostats)
-* [⇢ ⇢ ⇢ 17. timr](#17-timr)
-* [⇢ ⇢ ⇢ 18. dtail](#18-dtail)
-* [⇢ ⇢ ⇢ 19. gos](#19-gos)
-* [⇢ ⇢ ⇢ 20. ds-sim](#20-ds-sim)
-* [⇢ ⇢ ⇢ 21. wireguardmeshgenerator](#21-wireguardmeshgenerator)
-* [⇢ ⇢ ⇢ 22. gemtexter](#22-gemtexter)
-* [⇢ ⇢ ⇢ 23. rcm](#23-rcm)
-* [⇢ ⇢ ⇢ 24. terraform](#24-terraform)
-* [⇢ ⇢ ⇢ 25. quicklogger](#25-quicklogger)
-* [⇢ ⇢ ⇢ 26. sillybench](#26-sillybench)
-* [⇢ ⇢ ⇢ 27. goprecords](#27-goprecords)
-* [⇢ ⇢ ⇢ 28. gorum](#28-gorum)
-* [⇢ ⇢ ⇢ 29. guprecords](#29-guprecords)
-* [⇢ ⇢ ⇢ 30. geheim](#30-geheim)
-* [⇢ ⇢ ⇢ 31. docker-radicale-server](#31-docker-radicale-server)
-* [⇢ ⇢ ⇢ 32. algorithms](#32-algorithms)
-* [⇢ ⇢ ⇢ 33. randomjournalpage](#33-randomjournalpage)
-* [⇢ ⇢ ⇢ 34. photoalbum](#34-photoalbum)
-* [⇢ ⇢ ⇢ 35. ioriot](#35-ioriot)
-* [⇢ ⇢ ⇢ 36. ipv6test](#36-ipv6test)
-* [⇢ ⇢ ⇢ 37. sway-autorotate](#37-sway-autorotate)
-* [⇢ ⇢ ⇢ 38. mon](#38-mon)
-* [⇢ ⇢ ⇢ 39. staticfarm-apache-handlers](#39-staticfarm-apache-handlers)
-* [⇢ ⇢ ⇢ 40. pingdomfetch](#40-pingdomfetch)
-* [⇢ ⇢ ⇢ 41. fype](#41-fype)
-* [⇢ ⇢ ⇢ 42. xerl](#42-xerl)
-* [⇢ ⇢ ⇢ 43. ychat](#43-ychat)
-* [⇢ ⇢ ⇢ 44. fapi](#44-fapi)
-* [⇢ ⇢ ⇢ 45. perl-c-fibonacci](#45-perl-c-fibonacci)
-* [⇢ ⇢ ⇢ 46. netcalendar](#46-netcalendar)
-* [⇢ ⇢ ⇢ 47. loadbars](#47-loadbars)
-* [⇢ ⇢ ⇢ 48. gotop](#48-gotop)
-* [⇢ ⇢ ⇢ 49. rubyfy](#49-rubyfy)
-* [⇢ ⇢ ⇢ 50. pwgrep](#50-pwgrep)
-* [⇢ ⇢ ⇢ 51. perldaemon](#51-perldaemon)
-* [⇢ ⇢ ⇢ 52. jsmstrade](#52-jsmstrade)
-* [⇢ ⇢ ⇢ 53. japi](#53-japi)
-* [⇢ ⇢ ⇢ 54. perl-poetry](#54-perl-poetry)
-* [⇢ ⇢ ⇢ 55. muttdelay](#55-muttdelay)
-* [⇢ ⇢ ⇢ 56. netdiff](#56-netdiff)
-* [⇢ ⇢ ⇢ 57. debroid](#57-debroid)
-* [⇢ ⇢ ⇢ 58. hsbot](#58-hsbot)
-* [⇢ ⇢ ⇢ 59. cpuinfo](#59-cpuinfo)
-* [⇢ ⇢ ⇢ 60. template](#60-template)
-* [⇢ ⇢ ⇢ 61. awksite](#61-awksite)
-* [⇢ ⇢ ⇢ 62. dyndns](#62-dyndns)
-* [⇢ ⇢ ⇢ 63. vs-sim](#63-vs-sim)
+* [⇢ ⇢ ⇢ 5. foo.zone](#5-foozone)
+* [⇢ ⇢ ⇢ 6. scifi](#6-scifi)
+* [⇢ ⇢ ⇢ 7. log4jbench](#7-log4jbench)
+* [⇢ ⇢ ⇢ 8. gogios](#8-gogios)
+* [⇢ ⇢ ⇢ 9. yoga](#9-yoga)
+* [⇢ ⇢ ⇢ 10. perc](#10-perc)
+* [⇢ ⇢ ⇢ 11. totalrecall](#11-totalrecall)
+* [⇢ ⇢ ⇢ 12. ior](#12-ior)
+* [⇢ ⇢ ⇢ 13. gitsyncer](#13-gitsyncer)
+* [⇢ ⇢ ⇢ 14. tasksamurai](#14-tasksamurai)
+* [⇢ ⇢ ⇢ 15. foostats](#15-foostats)
+* [⇢ ⇢ ⇢ 16. timr](#16-timr)
+* [⇢ ⇢ ⇢ 17. dtail](#17-dtail)
+* [⇢ ⇢ ⇢ 18. gos](#18-gos)
+* [⇢ ⇢ ⇢ 19. ds-sim](#19-ds-sim)
+* [⇢ ⇢ ⇢ 20. wireguardmeshgenerator](#20-wireguardmeshgenerator)
+* [⇢ ⇢ ⇢ 21. gemtexter](#21-gemtexter)
+* [⇢ ⇢ ⇢ 22. rcm](#22-rcm)
+* [⇢ ⇢ ⇢ 23. terraform](#23-terraform)
+* [⇢ ⇢ ⇢ 24. quicklogger](#24-quicklogger)
+* [⇢ ⇢ ⇢ 25. sillybench](#25-sillybench)
+* [⇢ ⇢ ⇢ 26. goprecords](#26-goprecords)
+* [⇢ ⇢ ⇢ 27. gorum](#27-gorum)
+* [⇢ ⇢ ⇢ 28. guprecords](#28-guprecords)
+* [⇢ ⇢ ⇢ 29. geheim](#29-geheim)
+* [⇢ ⇢ ⇢ 30. docker-radicale-server](#30-docker-radicale-server)
+* [⇢ ⇢ ⇢ 31. algorithms](#31-algorithms)
+* [⇢ ⇢ ⇢ 32. randomjournalpage](#32-randomjournalpage)
+* [⇢ ⇢ ⇢ 33. photoalbum](#33-photoalbum)
+* [⇢ ⇢ ⇢ 34. ioriot](#34-ioriot)
+* [⇢ ⇢ ⇢ 35. ipv6test](#35-ipv6test)
+* [⇢ ⇢ ⇢ 36. sway-autorotate](#36-sway-autorotate)
+* [⇢ ⇢ ⇢ 37. mon](#37-mon)
+* [⇢ ⇢ ⇢ 38. staticfarm-apache-handlers](#38-staticfarm-apache-handlers)
+* [⇢ ⇢ ⇢ 39. pingdomfetch](#39-pingdomfetch)
+* [⇢ ⇢ ⇢ 40. fype](#40-fype)
+* [⇢ ⇢ ⇢ 41. xerl](#41-xerl)
+* [⇢ ⇢ ⇢ 42. ychat](#42-ychat)
+* [⇢ ⇢ ⇢ 43. fapi](#43-fapi)
+* [⇢ ⇢ ⇢ 44. perl-c-fibonacci](#44-perl-c-fibonacci)
+* [⇢ ⇢ ⇢ 45. netcalendar](#45-netcalendar)
+* [⇢ ⇢ ⇢ 46. loadbars](#46-loadbars)
+* [⇢ ⇢ ⇢ 47. gotop](#47-gotop)
+* [⇢ ⇢ ⇢ 48. rubyfy](#48-rubyfy)
+* [⇢ ⇢ ⇢ 49. pwgrep](#49-pwgrep)
+* [⇢ ⇢ ⇢ 50. perldaemon](#50-perldaemon)
+* [⇢ ⇢ ⇢ 51. jsmstrade](#51-jsmstrade)
+* [⇢ ⇢ ⇢ 52. japi](#52-japi)
+* [⇢ ⇢ ⇢ 53. perl-poetry](#53-perl-poetry)
+* [⇢ ⇢ ⇢ 54. muttdelay](#54-muttdelay)
+* [⇢ ⇢ ⇢ 55. netdiff](#55-netdiff)
+* [⇢ ⇢ ⇢ 56. debroid](#56-debroid)
+* [⇢ ⇢ ⇢ 57. hsbot](#57-hsbot)
+* [⇢ ⇢ ⇢ 58. cpuinfo](#58-cpuinfo)
+* [⇢ ⇢ ⇢ 59. template](#59-template)
+* [⇢ ⇢ ⇢ 60. awksite](#60-awksite)
+* [⇢ ⇢ ⇢ 61. dyndns](#61-dyndns)
+* [⇢ ⇢ ⇢ 62. vs-sim](#62-vs-sim)
 
 ## Overall Statistics
 
-* 📦 Total Projects: 63
-* 📊 Total Commits: 13,313
-* 📈 Total Lines of Code: 314,278
-* 📄 Total Lines of Documentation: 41,499
-* 💻 Languages: Go (36.1%), Java (13.1%), C++ (8.1%), Shell (6.5%), C (6.3%), XML (6.1%), Perl (5.5%), C/C++ (5.2%), YAML (5.0%), HTML (1.9%), Config (1.3%), Ruby (1.0%), HCL (0.9%), CSS (0.7%), Python (0.7%), Make (0.5%), JSON (0.4%), TOML (0.2%), Haskell (0.2%), JavaScript (0.2%), Raku (0.1%)
-* 📚 Documentation: Markdown (70.1%), Text (28.6%), LaTeX (1.4%)
-* 🚀 Release Status: 39 released, 24 experimental (61.9% with releases, 38.1% experimental)
+* 📦 Total Projects: 62
+* 📊 Total Commits: 12,551
+* 📈 Total Lines of Code: 311,290
+* 📄 Total Lines of Documentation: 41,076
+* 💻 Languages: Go (36.4%), Java (13.2%), C++ (8.1%), C (6.3%), XML (6.2%), Shell (5.9%), Perl (5.6%), C/C++ (5.2%), YAML (5.1%), HTML (1.9%), Config (1.2%), Ruby (1.0%), HCL (0.9%), Python (0.7%), CSS (0.6%), Make (0.5%), JSON (0.4%), Haskell (0.2%), JavaScript (0.2%), Raku (0.1%), TOML (0.1%)
+* 📚 Documentation: Markdown (69.8%), Text (28.9%), LaTeX (1.4%)
+* 🚀 Release Status: 39 released, 23 experimental (62.9% with releases, 37.1% experimental)
 
 ## Projects
 
@@ -117,7 +116,7 @@ The project is implemented as an LSP server written in Go, with a TUI component 
 * 📈 Lines of Code: 2960
 * 📄 Lines of Documentation: 653
 * 📅 Development Period: 2023-07-30 to 2026-02-21
-* 🏆 Score: 364.6 (combines code size and activity)
+* 🏆 Score: 364.5 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -139,7 +138,7 @@ The architecture is straightforward: config files live in subdirectories mirrori
 * 📈 Lines of Code: 5199
 * 📄 Lines of Documentation: 1734
 * 📅 Development Period: 2026-02-07 to 2026-02-14
-* 🏆 Score: 314.1 (combines code size and activity)
+* 🏆 Score: 314.0 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -163,7 +162,7 @@ The architecture routes current data (<5 min old) through Pushgateway where Prom
 * 📈 Lines of Code: 19079
 * 📄 Lines of Documentation: 6585
 * 📅 Development Period: 2021-12-28 to 2026-02-08
-* 🏆 Score: 250.9 (combines code size and activity)
+* 🏆 Score: 250.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -177,29 +176,7 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 
 ---
 
-### 5. dotfiles.bak
-
-* 💻 Languages: Shell (59.2%), CSS (10.9%), Config (10.1%), TOML (10.0%), Ruby (8.4%), JSON (1.1%), INI (0.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 762
-* 📈 Lines of Code: 2988
-* 📄 Lines of Documentation: 423
-* 📅 Development Period: 2023-07-30 to 2026-02-14
-* 🏆 Score: 225.0 (combines code size and activity)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is a **personal dotfiles management repository** that uses [Rex](https://www.rexify.org/) (a Perl-based infrastructure automation framework) to declaratively install configuration files across multiple machines — both locally (laptop/workstation) and remotely (servers). The `Rexfile` defines granular tasks (e.g., `home_bash`, `home_tmux`, `home_sway`) that copy or symlink config files for tools like Bash, Fish, ZSH, tmux, Helix, Ghostty, Sway/Waybar, Pipewire, SSH, and AI coding assistants (Cursor, Claude, Amp, OpenCode). A top-level `home` task runs all `home_*` tasks at once. It also includes platform-specific package installation tasks for Fedora, FreeBSD, and Termux.
-
-The architecture is straightforward: source configs live in categorized subdirectories (e.g., `bash/`, `fish/`, `tmux/`), and Rex's `file` resource ensures they're placed at the correct `~/.config/...` or `~/...` paths with proper permissions. Some configs (like fish and gitsyncer) use symlinks instead of copies for live editing. The repo also supports a private companion repo (`conf_private/dotfiles`) for sensitive files like calendar data.
-
-[View on Codeberg](https://codeberg.org/snonux/dotfiles.bak)  
-[View on GitHub](https://github.com/snonux/dotfiles.bak)  
-
----
-
-### 6. foo.zone
+### 5. foo.zone
 
 * 💻 Languages: XML (98.7%), Shell (1.0%), Go (0.3%)
 * 📚 Documentation: Text (86.2%), Markdown (13.8%)
@@ -219,7 +196,7 @@ foo.zone: source code repository.
 
 ---
 
-### 7. scifi
+### 6. scifi
 
 * 💻 Languages: JSON (35.9%), CSS (30.6%), JavaScript (29.6%), HTML (3.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -241,7 +218,7 @@ The architecture keeps content separate from presentation: book metadata lives i
 
 ---
 
-### 8. log4jbench
+### 7. log4jbench
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -263,7 +240,7 @@ The implementation uses a fat JAR built with Maven, requiring Java 17+. It's des
 
 ---
 
-### 9. gogios
+### 8. gogios
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -287,7 +264,7 @@ The architecture is straightforward: JSON configuration defines checks (plugin p
 
 ---
 
-### 10. yoga
+### 9. yoga
 
 * 💻 Languages: Go (66.1%), HTML (33.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -311,7 +288,7 @@ The implementation follows clean Go architecture with domain logic organized und
 
 ---
 
-### 11. perc
+### 10. perc
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -333,7 +310,7 @@ The tool is built as a simple Go CLI application with a standard project layout 
 
 ---
 
-### 12. totalrecall
+### 11. totalrecall
 
 * 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
 * 📚 Documentation: Markdown (99.5%), Text (0.5%)
@@ -359,7 +336,7 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 
 ---
 
-### 13. ior
+### 12. ior
 
 * 💻 Languages: Go (63.2%), C (36.0%), C/C++ (0.8%)
 * 📚 Documentation: Markdown (79.3%), Text (20.7%)
@@ -385,7 +362,7 @@ The tool is implemented in Go and C, leveraging libbpfgo for BPF interaction. It
 
 ---
 
-### 14. gitsyncer
+### 13. gitsyncer
 
 * 💻 Languages: Go (92.5%), Shell (7.1%), JSON (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -407,7 +384,7 @@ The implementation uses a git remotes approach: it clones from one organization,
 
 ---
 
-### 15. tasksamurai
+### 14. tasksamurai
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -433,7 +410,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 
 ---
 
-### 16. foostats
+### 15. foostats
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -455,7 +432,7 @@ The implementation uses a modular Perl architecture with specialized components:
 
 ---
 
-### 17. timr
+### 16. timr
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -477,7 +454,7 @@ The architecture is straightforward: it's a Go-based CLI application that persis
 
 ---
 
-### 18. dtail
+### 17. dtail
 
 * 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
 * 📚 Documentation: Text (79.4%), Markdown (20.6%)
@@ -503,7 +480,7 @@ The architecture follows a client-server model where DTail servers run on target
 
 ---
 
-### 19. gos
+### 18. gos
 
 * 💻 Languages: Go (99.8%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -529,7 +506,7 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 
 ---
 
-### 20. ds-sim
+### 19. ds-sim
 
 * 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -553,7 +530,7 @@ The implementation follows a modular Java architecture with clear separation bet
 
 ---
 
-### 21. wireguardmeshgenerator
+### 20. wireguardmeshgenerator
 
 * 💻 Languages: Ruby (65.4%), YAML (34.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -575,7 +552,7 @@ The tool reads host definitions from a YAML file specifying network interfaces (
 
 ---
 
-### 22. gemtexter
+### 21. gemtexter
 
 * 💻 Languages: Shell (68.2%), CSS (28.5%), Config (1.9%), HTML (1.3%)
 * 📚 Documentation: Text (76.1%), Markdown (23.9%)
@@ -597,7 +574,7 @@ The architecture leverages GNU utilities (sed, grep, date) and optional tools li
 
 ---
 
-### 23. rcm
+### 22. rcm
 
 * 💻 Languages: Ruby (99.8%), TOML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -619,7 +596,7 @@ The implementation centers around a DSL module that provides keywords like `file
 
 ---
 
-### 24. terraform
+### 23. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -641,7 +618,7 @@ The infrastructure uses a **modular, layered architecture** with separate Terraf
 
 ---
 
-### 25. quicklogger
+### 24. quicklogger
 
 * 💻 Languages: Go (96.1%), XML (1.9%), Shell (1.2%), TOML (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -667,7 +644,7 @@ The implementation leverages Go's cross-compilation capabilities and Fyne's UI a
 
 ---
 
-### 26. sillybench
+### 25. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -689,7 +666,7 @@ The implementation is intentionally straightforward, using Go's built-in testing
 
 ---
 
-### 27. goprecords
+### 26. goprecords
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -711,7 +688,7 @@ Under the hood, it parses `uptimed`'s simple `uptime:boottime:kernel` record for
 
 ---
 
-### 28. gorum
+### 27. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -734,7 +711,7 @@ The architecture consists of client/server components for inter-node communicati
 
 ---
 
-### 29. guprecords
+### 28. guprecords
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -756,7 +733,7 @@ The implementation uses an object-oriented architecture with specialized classes
 
 ---
 
-### 30. geheim
+### 29. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -778,7 +755,7 @@ The architecture leverages Git for storage and synchronization across multiple r
 
 ---
 
-### 31. docker-radicale-server
+### 30. docker-radicale-server
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -800,7 +777,7 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 
 ---
 
-### 32. algorithms
+### 31. algorithms
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -823,7 +800,7 @@ The project is implemented in Go 1.19+ with comprehensive unit tests and benchma
 
 ---
 
-### 33. randomjournalpage
+### 32. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -846,7 +823,7 @@ The implementation is a straightforward bash script using `qpdf` for PDF extract
 
 ---
 
-### 34. photoalbum
+### 33. photoalbum
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -869,7 +846,7 @@ The architecture is straightforward and Unix-philosophy driven: users configure 
 
 ---
 
-### 35. ioriot
+### 34. ioriot
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -894,7 +871,7 @@ The key advantage over traditional benchmarking tools is that it reproduces actu
 
 ---
 
-### 36. ipv6test
+### 35. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -916,7 +893,7 @@ The implementation uses a simple CGI script ([index.pl](file:///home/paul/git/gi
 
 ---
 
-### 37. sway-autorotate
+### 36. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -938,7 +915,7 @@ The implementation uses a bash script that continuously monitors the `monitor-se
 
 ---
 
-### 38. mon
+### 37. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -961,7 +938,7 @@ Implemented in Perl, `mon` features automatic JSON backup before modifications (
 
 ---
 
-### 39. staticfarm-apache-handlers
+### 38. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -984,7 +961,7 @@ Both handlers are implemented as Perl modules using Apache2's mod_perl API, conf
 
 ---
 
-### 40. pingdomfetch
+### 39. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1007,7 +984,7 @@ The tool is implemented around a hierarchical configuration system (`/etc/pingdo
 
 ---
 
-### 41. fype
+### 40. fype
 
 * 💻 Languages: C (71.8%), C/C++ (20.0%), HTML (6.3%), Make (1.8%)
 * 📚 Documentation: Text (65.1%), LaTeX (21.0%), Markdown (14.0%)
@@ -1029,7 +1006,7 @@ The implementation uses a simple top-down parser with maximum lookahead of 1, in
 
 ---
 
-### 42. xerl
+### 41. xerl
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 670
@@ -1050,7 +1027,7 @@ The implementation follows strict OO Perl conventions with explicit typing and p
 
 ---
 
-### 43. ychat
+### 42. ychat
 
 * 💻 Languages: C++ (49.9%), C/C++ (22.2%), Shell (20.6%), Perl (2.5%), HTML (1.9%), Config (1.8%), Make (0.9%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
@@ -1073,7 +1050,7 @@ The architecture emphasizes speed and scalability through several key design cho
 
 ---
 
-### 44. fapi
+### 43. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1095,7 +1072,7 @@ The tool is implemented in Python and depends on the bigsuds library (F5's iCont
 
 ---
 
-### 45. perl-c-fibonacci
+### 44. perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1116,7 +1093,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 46. netcalendar
+### 45. netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.7%), Markdown (10.3%)
@@ -1143,7 +1120,7 @@ The key feature is its intelligent color-coded event visualization system that h
 
 ---
 
-### 47. loadbars
+### 46. loadbars
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1164,10 +1141,10 @@ loadbars: source code repository.
 
 ---
 
-### 48. gotop
+### 47. gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
-* 📚 Documentation: Text (50.0%), Markdown (50.0%)
+* 📚 Documentation: Markdown (50.0%), Text (50.0%)
 * 📊 Commits: 57
 * 📈 Lines of Code: 499
 * 📄 Lines of Documentation: 8
@@ -1187,7 +1164,7 @@ The implementation uses a concurrent architecture with goroutines for data colle
 
 ---
 
-### 49. rubyfy
+### 48. rubyfy
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1210,7 +1187,7 @@ The tool is implemented as a lightweight Ruby script that prioritizes simplicity
 
 ---
 
-### 50. pwgrep
+### 49. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (80.8%), Markdown (19.2%)
@@ -1233,7 +1210,7 @@ The architecture is lightweight and Unix-philosophy driven: password databases a
 
 ---
 
-### 51. perldaemon
+### 50. perldaemon
 
 * 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
@@ -1254,7 +1231,7 @@ The implementation centers around an event loop with configurable intervals that
 
 ---
 
-### 52. jsmstrade
+### 51. jsmstrade
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1279,7 +1256,7 @@ The implementation is minimalistic, consisting of just three main Java classes (
 
 ---
 
-### 53. japi
+### 52. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1302,7 +1279,7 @@ Implemented in Perl using the JIRA::REST CPAN module, japi supports flexible con
 
 ---
 
-### 54. perl-poetry
+### 53. perl-poetry
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1325,7 +1302,7 @@ This project exemplifies creative coding where Perl keywords and constructs are 
 
 ---
 
-### 55. muttdelay
+### 54. muttdelay
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1348,7 +1325,7 @@ The architecture uses three components working together: a Vim plugin that provi
 
 ---
 
-### 56. netdiff
+### 55. netdiff
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1371,7 +1348,7 @@ The tool uses a clever client-server architecture where you run the identical co
 
 ---
 
-### 57. debroid
+### 56. debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1396,7 +1373,7 @@ The implementation uses a two-stage debootstrap process: first creating a Debian
 
 ---
 
-### 58. hsbot
+### 57. hsbot
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 80
@@ -1417,7 +1394,7 @@ The implementation uses a modular design with core components separated into Bas
 
 ---
 
-### 59. cpuinfo
+### 58. cpuinfo
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1440,7 +1417,7 @@ The implementation is elegantly simple: a single shell script ([src/cpuinfo](fil
 
 ---
 
-### 60. template
+### 59. template
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1463,7 +1440,7 @@ The implementation uses a **Makefile-based build system** with targets for compi
 
 ---
 
-### 61. awksite
+### 60. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Text (60.0%), Markdown (40.0%)
@@ -1486,7 +1463,7 @@ The architecture is remarkably simple: a single AWK script ([index.cgi](file:///
 
 ---
 
-### 62. dyndns
+### 61. dyndns
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1509,7 +1486,7 @@ The implementation uses a two-tier security architecture: SSH public key authent
 
 ---
 
-### 63. vs-sim
+### 62. vs-sim
 
 * 📚 Documentation: Markdown (100.0%)
 * 📊 Commits: 411
