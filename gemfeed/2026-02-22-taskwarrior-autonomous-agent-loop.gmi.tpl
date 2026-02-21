@@ -85,7 +85,7 @@ The key difference is that Taskwarrior acts as persistent memory and a work queu
     │   ...  × 48                                      │
     │                                                  │
     │   ┌─────────┐   ┌──────────┐   ┌──────────┐      │
-    │   │ Agent   │─▶│ Self-    │─▶│ Sub-agent│      │
+    │   │ Agent   │ ─▶│ Self-    │ ─▶│ Sub-agent│      │
     │   │ works   │   │ review   │   │ review   │      │
     │   └─────────┘   └──────────┘   └──────────┘      │
     │        │              │              │           │
