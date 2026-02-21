@@ -26,6 +26,7 @@ I let Ampcode autonomously complete 48 Taskwarrior tasks on my eBPF project in a
 * [⇢ ⇢ ⇢ 4-annotate-update-task.md — progress tracking](#4-annotate-update-taskmd--progress-tracking)
 * [⇢ ⇢ ⇢ 5-review-overview-tasks.md — picking the next task](#5-review-overview-tasksmd--picking-the-next-task)
 * [⇢ ⇢ The reflection and review loop](#the-reflection-and-review-loop)
+* [⇢ ⇢ Code review: human spot-check at the end](#code-review-human-spot-check-at-the-end)
 * [⇢ ⇢ Measurable results](#measurable-results)
 * [⇢ ⇢ A real bug found by the review loop](#a-real-bug-found-by-the-review-loop)
 * [⇢ ⇢ Gotchas and lessons learned](#gotchas-and-lessons-learned)
@@ -414,6 +415,10 @@ Having instructed in the skill for the agent to reflect on its own implementatio
 
 The sub-agent reviews consistently caught things the main agent missed — tests that only asserted on mocks, missing edge cases, and even a real bug. Without the dual review loop, the agent tends to write tests that look correct but do not actually exercise real behavior.
 
+## Code review: human spot-check at the end
+
+On top of the agent's self-reflection and the two sub-agent reviews per task, I reviewed the produced outcome at the end. I did not read through all 5k lines one by one. Instead I looked for repeating patterns across the test files and cherry-picked a few scenarios — for example one integration test from the open/close family, one from the rename/link family, and one negative test — and went through those in detail manually. That was enough to satisfy me that the workflow had produced consistent, runnable tests and that the whole pipeline (task → implement → self-review → sub-agent review → fix → second review → commit) was working as intended.
+
 ## Measurable results
 
 Here is what one day of autonomous Ampcode work produced:
@@ -422,7 +427,7 @@ Here is what one day of autonomous Ampcode work produced:
 * 48 Taskwarrior tasks completed
 * 47 git commits
 * 87 files changed
-* 12,012 lines added, 1,543 removed
+* ~5,000 lines added, ~500 removed
 * 18 integration test files
 * 15 workload scenario files (one per syscall category)
 * 93 test scenarios total (happy-path and negative)
