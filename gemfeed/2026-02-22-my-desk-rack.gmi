@@ -28,7 +28,18 @@ On my desk sits a small rack that keeps audio gear, power, and network in one pl
 
 => ./my-deskrack/deskrack.jpg DeskPi RackMate T0 on the desk
 
-<< template::inline::toc
+## Table of Contents
+
+* ⇢ My desk rack: DeskPi RackMate T0
+* ⇢ ⇢ What's in the rack (top to bottom)
+* ⇢ ⇢ ⇢ Top: CD transport and air-quality monitor
+* ⇢ ⇢ ⇢ Power and charging: PinePower Desktop + 1U shelf
+* ⇢ ⇢ ⇢ Network: 5-port mini switch
+* ⇢ ⇢ ⇢ Bottom: DAC and headphone amp
+* ⇢ ⇢ ⇢ Music sources
+* ⇢ ⇢ ⇢ Left side: cable management
+* ⇢ ⇢ Next to the rack
+* ⇢ ⇢ Bedside: another HiFi setup
 
 ## What's in the rack (top to bottom)
 

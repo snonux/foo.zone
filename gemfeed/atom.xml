@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-21T11:17:15+02:00</updated>
+    <updated>2026-02-21T11:20:07+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -20,17 +20,19 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='my-desk-rack-deskpi-rackmate-t0'>My desk rack: DeskPi RackMate T0</h1><br />
 <br />
+<span class='quote'>Published at 2026-02-21T11:17:15+02:00</span><br />
+<br />
 <pre>
     ┌─────────────────┐
     │   ●  ●  AIR     │  ← air-quality monitor
     ├─────────────────┤
     │  ╔═╗  CD        │  ← CD transport
     │  ║ ◉║  S/PDIF   │
-    │  ╚═╝             │
+    │  ╚═╝            │
     ├─────────────────┤
     │  ▓▓▓  USB PWR   │  ← PinePower
     ├─────────────────┤
-    │  ░░░  (phones)  │  ← 1U shelf
+    │  ░░░  (phones)  │  ← 1U "empty" shelf
     ├─────────────────┤
     │  ◉◉◉◉◉  LAN     │  ← 5-port switch
     ├─────────────────┤
