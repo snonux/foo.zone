@@ -1,11 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-20T21:23:33+02:00</updated>
+    <updated>2026-02-21T11:20:07+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>My desk rack: DeskPi RackMate T0</title>
+        <link href="https://foo.zone/gemfeed/2026-02-22-my-desk-rack.html" />
+        <id>https://foo.zone/gemfeed/2026-02-22-my-desk-rack.html</id>
+        <updated>2026-02-21T11:17:15+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>On my desk sits a small rack that keeps audio gear, power, and network in one place: the DeskPi RackMate T0. Here's what lives in it and how it's wired.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='my-desk-rack-deskpi-rackmate-t0'>My desk rack: DeskPi RackMate T0</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-21T11:17:15+02:00</span><br />
+<br />
+<pre>
+    ┌─────────────────┐
+    │   ●  ●  AIR     │  ← air-quality monitor
+    ├─────────────────┤
+    │  ╔═╗  CD        │  ← CD transport
+    │  ║ ◉║  S/PDIF   │
+    │  ╚═╝            │
+    ├─────────────────┤
+    │  ▓▓▓  USB PWR   │  ← PinePower
+    ├─────────────────┤
+    │  ░░░  (phones)  │  ← 1U "empty" shelf
+    ├─────────────────┤
+    │  ◉◉◉◉◉  LAN     │  ← 5-port switch
+    ├─────────────────┤
+    │  [E50] [L50]    │  ← DAC + AMP
+    │   DAC   AMP     │
+    └─────────────────┘
+         RackMate T0
+</pre>
+<br />
+<span>On my desk sits a small rack that keeps audio gear, power, and network in one place: the DeskPi RackMate T0. Here&#39;s what lives in it and how it&#39;s wired.</span><br />
+<br />
+<a class='textlink' href='https://deskpi.com/products/deskpi-rackmate-t1-rackmount-10-inch-4u-server-cabinet-for-network-servers-audio-and-video-equipment'>DeskPi RackMate T0</a><br />
+<br />
+<a href='./my-deskrack/deskrack.jpg'><img alt='DeskPi RackMate T0 on the desk' title='DeskPi RackMate T0 on the desk' src='./my-deskrack/deskrack.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#my-desk-rack-deskpi-rackmate-t0'>My desk rack: DeskPi RackMate T0</a></li>
+<li>⇢ <a href='#what-s-in-the-rack-top-to-bottom'>What&#39;s in the rack (top to bottom)</a></li>
+<li>⇢ ⇢ <a href='#top-cd-transport-and-air-quality-monitor'>Top: CD transport and air-quality monitor</a></li>
+<li>⇢ ⇢ <a href='#power-and-charging-pinepower-desktop--1u-shelf'>Power and charging: PinePower Desktop + 1U shelf</a></li>
+<li>⇢ ⇢ <a href='#network-5-port-mini-switch'>Network: 5-port mini switch</a></li>
+<li>⇢ ⇢ <a href='#bottom-dac-and-headphone-amp'>Bottom: DAC and headphone amp</a></li>
+<li>⇢ ⇢ <a href='#music-sources'>Music sources</a></li>
+<li>⇢ ⇢ <a href='#left-side-cable-management'>Left side: cable management</a></li>
+<li>⇢ <a href='#next-to-the-rack'>Next to the rack</a></li>
+<li>⇢ <a href='#bedside-another-hifi-setup'>Bedside: another HiFi setup</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-s-in-the-rack-top-to-bottom'>What&#39;s in the rack (top to bottom)</h2><br />
+<br />
+<h3 style='display: inline' id='top-cd-transport-and-air-quality-monitor'>Top: CD transport and air-quality monitor</h3><br />
+<br />
+<span>At the top is the S.M.S.L PL200T, a CD transport with anti-vibration design. It outputs digital audio over coaxial S/PDIF into the DAC in the rack. On top of the transport sits a small air-quality monitor so I can keep an eye on the room.</span><br />
+<br />
+<a class='textlink' href='https://www.smsl-audio.com/portal/product/detail/id/908.html'>S.M.S.L PL200T CD Transport</a><br />
+<br />
+<a href='./my-deskrack/deskrack-cdtransport.jpg'><img alt='CD transport and air-quality monitor on top' title='CD transport and air-quality monitor on top' src='./my-deskrack/deskrack-cdtransport.jpg' /></a><br />
+<br />
+<span>A CD transport is not the same as a CD player. A CD player has a built-in DAC (digital-to-analog converter) and outputs analogue audio—you plug it into an amp or active speakers and you&#39;re done. A CD transport only reads the disc and outputs a digital signal (e.g. coaxial or optical S/PDIF). It has no DAC. You feed that digital stream into an external DAC, which then does the conversion. The idea is to separate the mechanical part (spinning the disc, reading the pits) from the conversion stage, so you can use one DAC for CDs, streaming, and other sources, and upgrade or swap the transport and the DAC independently.</span><br />
+<br />
+<span>In the age of streaming and files, putting on a real CD is still a pleasure. You own the disc and the sound isn&#39;t at the mercy of a subscription or a server. You pick an album, put it in, and listen from start to finish—no endless scrolling, no algorithm. The format is fixed (16-bit/44.1 kHz), so what you hear is consistent and often better than heavily compressed streams. And there&#39;s something satisfying about the ritual: handling the case, the disc, and the artwork instead of tapping a screen.</span><br />
+<br />
+<h3 style='display: inline' id='power-and-charging-pinepower-desktop--1u-shelf'>Power and charging: PinePower Desktop + 1U shelf</h3><br />
+<br />
+<span>Below that is the PinePower Desktop from Pine64, used as a desktop power and USB charging station for phones and other devices. The rack has one free 1U space under the PinePower where I put the devices that are charging, so cables and gadgets stay in one spot.</span><br />
+<br />
+<a class='textlink' href='https://www.pine64.org'>PinePower Desktop (Pine64)</a><br />
+<br />
+<h3 style='display: inline' id='network-5-port-mini-switch'>Network: 5-port mini switch</h3><br />
+<br />
+<span>Next is a compact 5-port Ethernet switch. The uplink goes to a wall socket behind the desk; the other ports feed the computer, laptop, and anything else that needs wired LAN on the desk. Next to the switch you can see my Nothing ear buds.</span><br />
+<br />
+<a class='textlink' href='https://nothing.tech/products/ear'>Nothing ear buds</a><br />
+<br />
+<h3 style='display: inline' id='bottom-dac-and-headphone-amp'>Bottom: DAC and headphone amp</h3><br />
+<br />
+<span>At the bottom of the rack are the Topping E50 (DAC) and Topping L50 (headphone amplifier). The E50 converts digital to analogue; the L50 drives the headphones. They drive my Hifiman Sundara headphones.</span><br />
+<br />
+<a class='textlink' href='https://www.tpdz.net'>Topping E50 DAC</a><br />
+<a class='textlink' href='https://www.tpdz.net'>Topping L50 Headphone Amplifier</a><br />
+<a class='textlink' href='https://hifiman.com/products/detail/sundara'>Hifiman Sundara</a><br />
+<br />
+<h3 style='display: inline' id='music-sources'>Music sources</h3><br />
+<br />
+<ul>
+<li>CD transport: coaxial (S/PDIF) from the S.M.S.L PL200T into the Topping E50.</li>
+<li>Streaming: USB from the desktop computer and/or laptop on the desk into the E50, so I can play from either machine.</li>
+</ul><br />
+<h3 style='display: inline' id='left-side-cable-management'>Left side: cable management</h3><br />
+<br />
+<span>On the left of the rack are two cable holders to keep power and signal cables tidy.</span><br />
+<br />
+<h2 style='display: inline' id='next-to-the-rack'>Next to the rack</h2><br />
+<br />
+<span>Right beside the rack is my Supernote Nomad, which I use for notes and reading and have written about elsewhere on this blog. It’s the small tablet-shaped device on the right side of the rack.</span><br />
+<br />
+<a href='./my-deskrack/deskrack-supernote.jpg'><img alt='Supernote Nomad (small tablet on the right of the rack)' title='Supernote Nomad (small tablet on the right of the rack)' src='./my-deskrack/deskrack-supernote.jpg' /></a><br />
+<a class='textlink' href='https://supernote.com/pages/supernote-nomad'>Supernote Nomad (product page)</a><br />
+<br />
+<a href='./my-deskrack/deskrack-frontview.jpg'><img alt='Front view of the rack' title='Front view of the rack' src='./my-deskrack/deskrack-frontview.jpg' /></a><br />
+<a href='./my-deskrack/deskrack-backside.jpg'><img alt='Back of the rack' title='Back of the rack' src='./my-deskrack/deskrack-backside.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='bedside-another-hifi-setup'>Bedside: another HiFi setup</h2><br />
+<br />
+<span>I have a second setup for high-res listening next to my bed. On the nightstand sit my FiiO K13 R2R (an R2R DAC/amp) and my Denon AH-D9200 headphones. I connect the K13 to my laptop via USB and use it for high-resolution files and streaming when I&#39;m not at the desk.</span><br />
+<br />
+<a class='textlink' href='https://www.fiio.com'>Fiio K13 R2R</a><br />
+<a class='textlink' href='https://www.denon.com'>Denon AH-D9200</a><br />
+<br />
+<span>That&#39;s the full desk rack: CD transport and air monitor on top, PinePower and charging shelf, switch, then Topping E50 and L50 at the bottom, with the Hifiman Sundara as the main output and the Supernote Nomad sitting next to it. I hope that you found this interesting.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Loadbars resurrected: From Perl to Go after 15 years</title>
         <link href="https://foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.html" />
@@ -18391,358 +18514,6 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>KISS high-availability with OpenBSD</title>
-        <link href="https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html" />
-        <id>https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html</id>
-        <updated>2024-03-30T22:12:56+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</h1><br />
-<br />
-<span class='quote'>Published at 2024-03-30T22:12:56+02:00</span><br />
-<br />
-<span>I have always wanted a highly available setup for my personal websites. I could have used off-the-shelf hosting solutions or hosted my sites in an AWS S3 bucket. I have used technologies like (in unsorted and slightly unrelated order) BGP, LVS/IPVS, ldirectord, Pacemaker, STONITH, scripted VIP failover via ARP, heartbeat, heartbeat2, Corosync, keepalived, DRBD, and commercial F5 Load Balancers for high availability at work. </span><br />
-<br />
-<span>But still, my personal sites were never highly available. All those technologies are great for professional use, but I was looking for something much more straightforward for my personal space - something as KISS (keep it simple and stupid) as possible.</span><br />
-<br />
-<span>It would be fine if my personal website wasn&#39;t highly available, but the geek in me wants it anyway.</span><br />
-<br />
-<span class='quote'>PS: ASCII-art below reflects an OpenBSD under-water world with all the tools available in the base system.</span><br />
-<br />
-<pre>
-Art by Michael J. Penick (mod. by Paul B.)
-                                               ACME-sky
-        __________
-       / nsd tower\                                             (
-      /____________\                                           (\) awk-ward
-       |:_:_:_:_:_|                                             ))   plant
-       |_:_,--.:_:|                       dig-bubble         (\//   )
-       |:_:|__|_:_|  relayd-castle          _               ) ))   ((
-    _  |_   _  :_:|   _   _   _            (_)             ((((   /)\`
-   | |_| |_| |   _|  | |_| |_| |             o              \\)) (( (
-    \_:_:_:_:/|_|_|_|\:_:_:_:_/             .                ((   ))))
-     |_,-._:_:_:_:_:_:_:_.-,_|                                )) ((//
-     |:|_|:_:_:,---,:_:_:|_|:|                               ,-.  )/
-     |_:_:_:_,&#39;puffy `,_:_:_:_|           _  o               ,;&#39;))((
-     |:_:_:_/  _ | _  \_:_:_:|          (_O                   ((  ))
-_____|_:_:_|  (o)-(o)  |_:_:_|--&#39;`-.     ,--. ksh under-water (((\&#39;/
- &#39;, ;|:_:_:| -( .-. )- |:_:_:| &#39;, ; `--._\  /,---.~  goat     \`))
-.  ` |_:_:_|   \`-&#39;/   |_:_:_|.  ` .  `  /()\.__( ) .,-----&#39;`-\(( sed-root
- &#39;, ;|:_:_:|    `-&#39;    |:_:_:| &#39;, ; &#39;, ; `--&#39;|   \ &#39;, ; &#39;, ; &#39;,&#39;)).,--
-.  ` MJP ` .  ` .  ` .  ` . httpd-soil ` .    .  ` .  ` .  ` .  ` .  `
- &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ; &#39;, ;
-
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#kiss-high-availability-with-openbsd'>KISS high-availability with OpenBSD</a></li>
-<li>⇢ <a href='#my-auto-failover-requirements'>My auto-failover requirements</a></li>
-<li>⇢ <a href='#my-ha-solution'>My HA solution</a></li>
-<li>⇢ ⇢ <a href='#only-openbsd-base-installation-required'>Only OpenBSD base installation required</a></li>
-<li>⇢ ⇢ <a href='#fairly-cheap-and-geo-redundant'>Fairly cheap and geo-redundant</a></li>
-<li>⇢ ⇢ <a href='#failover-time-and-split-brain'>Failover time and split-brain</a></li>
-<li>⇢ ⇢ <a href='#failover-support-for-multiple-protocols'>Failover support for multiple protocols</a></li>
-<li>⇢ ⇢ <a href='#let-s-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</a></li>
-<li>⇢ ⇢ <a href='#monitoring'>Monitoring</a></li>
-<li>⇢ ⇢ <a href='#rex-automation'>Rex automation</a></li>
-<li>⇢ <a href='#more-ha'>More HA</a></li>
-</ul><br />
-<h2 style='display: inline' id='my-auto-failover-requirements'>My auto-failover requirements</h2><br />
-<br />
-<ul>
-<li>Be OpenBSD-based (I prefer OpenBSD because of the cleanliness and good documentation) and rely on as few external packages as possible. </li>
-<li>Don&#39;t rely on the hottest and newest tech (don&#39;t want to migrate everything to a new and fancier technology next month already!).</li>
-<li>It should be reasonably cheap. I want to avoid paying a premium for floating IPs or fancy Elastic Load Balancers.</li>
-<li>It should be geo-redundant. </li>
-<li>It&#39;s fine if my sites aren&#39;t reachable for five or ten minutes every other month. Due to their static nature, I don&#39;t care if there&#39;s a split-brain scenario where some requests reach one server and other requests reach another server.</li>
-<li>Failover should work for both HTTP/HTTPS and Gemini protocols. My self-hosted MTAs and DNS servers should also be highly available.</li>
-<li>Let&#39;s Encrypt TLS certificates should always work (before and after a failover).</li>
-<li>Have good monitoring in place so I know when a failover was performed and when something went wrong with the failover.</li>
-<li>Don&#39;t configure everything manually. The configuration should be automated and reproducible.</li>
-</ul><br />
-<h2 style='display: inline' id='my-ha-solution'>My HA solution</h2><br />
-<br />
-<h3 style='display: inline' id='only-openbsd-base-installation-required'>Only OpenBSD base installation required</h3><br />
-<br />
-<span>My HA solution for Web and Gemini is based on DNS (OpenBSD&#39;s <span class='inlinecode'>nsd</span>) and a simple shell script (OpenBSD&#39;s <span class='inlinecode'>ksh</span> and some little <span class='inlinecode'>sed</span> and <span class='inlinecode'>awk</span> and <span class='inlinecode'>grep</span>). All software used here is part of the OpenBSD base system and no external package needs to be installed - OpenBSD is a complete operating system.</span><br />
-<br />
-<a class='textlink' href='https://man.OpenBSD.org/nsd.8'>https://man.OpenBSD.org/nsd.8</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/ksh'>https://man.OpenBSD.org/ksh</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/awk'>https://man.OpenBSD.org/awk</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/sed'>https://man.OpenBSD.org/sed</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/dig'>https://man.OpenBSD.org/dig</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/ftp'>https://man.OpenBSD.org/ftp</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/cron'>https://man.OpenBSD.org/cron</a><br />
-<br />
-<span>I also used the <span class='inlinecode'>dig</span> (for DNS checks) and <span class='inlinecode'>ftp</span> (for HTTP/HTTPS checks) programs. </span><br />
-<br />
-<span>The DNS failover is performed automatically between the two OpenBSD VMs involved (my setup doesn&#39;t require any quorum for a failover, so there isn&#39;t a need for a 3rd VM). The <span class='inlinecode'>ksh</span> script, executed once per minute via CRON (on both VMs), performs a health check to determine whether the current master node is available. If the current master isn&#39;t available (no HTTP response as expected), a failover is performed to the standby VM: </span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/bin/ksh</font></i>
-
-ZONES_DIR=/var/nsd/zones/master/
-DEFAULT_MASTER=fishfinger.buetow.org
-DEFAULT_STANDBY=blowfish.buetow.org
-
-determine_master_and_standby () {
-    <b><u><font color="#000000">local</font></u></b> master=$DEFAULT_MASTER
-    <b><u><font color="#000000">local</font></u></b> standby=$DEFAULT_STANDBY
-
-    .
-    .
-    .
-    
-    <b><u><font color="#000000">local</font></u></b> -i health_ok=<font color="#000000">1</font>
-    <b><u><font color="#000000">if</font></u></b> ! ftp -<font color="#000000">4</font> -o - https://$master/index.txt | grep -q <font color="#808080">"Welcome to $master"</font>; <b><u><font color="#000000">then</font></u></b>
-        echo <font color="#808080">"https://$master/index.txt IPv4 health check failed"</font>
-        health_ok=<font color="#000000">0</font>
-    <b><u><font color="#000000">elif</font></u></b> ! ftp -<font color="#000000">6</font> -o - https://$master/index.txt | grep -q <font color="#808080">"Welcome to $master"</font>; <b><u><font color="#000000">then</font></u></b>
-        echo <font color="#808080">"https://$master/index.txt IPv6 health check failed"</font>
-        health_ok=<font color="#000000">0</font>
-    <b><u><font color="#000000">fi</font></u></b>
-    <b><u><font color="#000000">if</font></u></b> [ $health_ok -eq <font color="#000000">0</font> ]; <b><u><font color="#000000">then</font></u></b>
-        <b><u><font color="#000000">local</font></u></b> tmp=$master
-        master=$standby
-        standby=$tmp
-    <b><u><font color="#000000">fi</font></u></b>
-
-    .
-    .
-    .
-}
-</pre>
-<br />
-<span>The failover scripts looks for the <span class='inlinecode'> ; Enable failover</span> string in the DNS zone files and swaps the <span class='inlinecode'>A</span> and <span class='inlinecode'>AAAA</span> records of the DNS entries accordingly:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>fishfinger$ grep failover /var/nsd/zones/master/foo.zone.zone
-        <font color="#000000">300</font> IN A <font color="#000000">46.23</font>.<font color="#000000">94.99</font> ; Enable failover
-        <font color="#000000">300</font> IN AAAA 2a03:<font color="#000000">6000</font>:6f67:<font color="#000000">624</font>::<font color="#000000">99</font> ; Enable failover
-www     <font color="#000000">300</font> IN A <font color="#000000">46.23</font>.<font color="#000000">94.99</font> ; Enable failover
-www     <font color="#000000">300</font> IN AAAA 2a03:<font color="#000000">6000</font>:6f67:<font color="#000000">624</font>::<font color="#000000">99</font> ; Enable failover
-standby  <font color="#000000">300</font> IN A <font color="#000000">23.88</font>.<font color="#000000">35.144</font> ; Enable failover
-standby  <font color="#000000">300</font> IN AAAA 2a01:4f8:c17:20f1::<font color="#000000">42</font> ; Enable failover
-</pre>
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>transform () {
-  sed -E <font color="#808080">'</font>
-<font color="#808080">	/IN A .*; Enable failover/ {</font>
-<font color="#808080">	    /^standby/! {</font>
-<font color="#808080">	        s/^(.*) 300 IN A (.*) ; (.*)/</font>\1<font color="#808080"> 300 IN A '</font>$(cat /var/nsd/run/master_a)<font color="#808080">' ; </font>\3<font color="#808080">/;</font>
-<font color="#808080">	    }</font>
-<font color="#808080">	    /^standby/ {</font>
-<font color="#808080">	        s/^(.*) 300 IN A (.*) ; (.*)/</font>\1<font color="#808080"> 300 IN A '</font>$(cat /var/nsd/run/standby_a)<font color="#808080">' ; </font>\3<font color="#808080">/;</font>
-<font color="#808080">	    }</font>
-<font color="#808080">	}</font>
-<font color="#808080">	/IN AAAA .*; Enable failover/ {</font>
-<font color="#808080">	    /^standby/! {</font>
-<font color="#808080">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font>\1<font color="#808080"> 300 IN AAAA '</font>$(cat /var/nsd/run/master_aaaa)<font color="#808080">' ; </font>\3<font color="#808080">/;</font>
-<font color="#808080">	    }</font>
-<font color="#808080">	    /^standby/ {</font>
-<font color="#808080">	        s/^(.*) 300 IN AAAA (.*) ; (.*)/</font>\1<font color="#808080"> 300 IN AAAA '</font>$(cat /var/nsd/run/standby_aaaa)<font color="#808080">' ; </font>\3<font color="#808080">/;</font>
-<font color="#808080">	    }</font>
-<font color="#808080">	}</font>
-<font color="#808080">	/ ; serial/ {</font>
-<font color="#808080">	    s/^( +) ([0-9]+) .*; (.*)/</font>\1<font color="#808080"> '</font>$(date +%s)<font color="#808080">' ; </font>\3<font color="#808080">/;</font>
-<font color="#808080">	}</font>
-<font color="#808080">  '</font>
-}
-</pre>
-<br />
-<span>After the failover, the script reloads <span class='inlinecode'>nsd</span> and performs a sanity check to see if DNS still works. If not, a rollback will be performed:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#! Race condition !#</font></i>
-   
-<b><u><font color="#000000">if</font></u></b> [ -f $zone_file.bak ]; <b><u><font color="#000000">then</font></u></b>
-    mv $zone_file.bak $zone_file
-<b><u><font color="#000000">fi</font></u></b>
-
-cat $zone_file | transform &gt; $zone_file.new.tmp 
-
-grep -v <font color="#808080">' ; serial'</font> $zone_file.new.tmp &gt; $zone_file.new.noserial.tmp
-grep -v <font color="#808080">' ; serial'</font> $zone_file &gt; $zone_file.old.noserial.tmp
-
-echo <font color="#808080">"Has zone $zone_file changed?"</font>
-<b><u><font color="#000000">if</font></u></b> diff -u $zone_file.old.noserial.tmp $zone_file.new.noserial.tmp; <b><u><font color="#000000">then</font></u></b>
-    echo <font color="#808080">"The zone $zone_file hasn't changed"</font>
-    rm $zone_file.*.tmp
-    <b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>
-<b><u><font color="#000000">fi</font></u></b>
-
-cp $zone_file $zone_file.bak
-mv $zone_file.new.tmp $zone_file
-rm $zone_file.*.tmp
-echo <font color="#808080">"Reloading nsd"</font>
-nsd-control reload
-
-<b><u><font color="#000000">if</font></u></b> ! zone_is_ok $zone; <b><u><font color="#000000">then</font></u></b>
-    echo <font color="#808080">"Rolling back $zone_file changes"</font>
-    cp $zone_file $zone_file.invalid
-    mv $zone_file.bak $zone_file
-    echo <font color="#808080">"Reloading nsd"</font>
-    nsd-control reload
-    zone_is_ok $zone
-    <b><u><font color="#000000">return</font></u></b> <font color="#000000">3</font>
-<b><u><font color="#000000">fi</font></u></b>
-
-<b><u><font color="#000000">for</font></u></b> cleanup <b><u><font color="#000000">in</font></u></b> invalid bak; <b><u><font color="#000000">do</font></u></b>
-    <b><u><font color="#000000">if</font></u></b> [ -f $zone_file.$cleanup ]; <b><u><font color="#000000">then</font></u></b>
-        rm $zone_file.$cleanup
-    <b><u><font color="#000000">fi</font></u></b>
-<b><u><font color="#000000">done</font></u></b>
-
-echo <font color="#808080">"Failover of zone $zone to $MASTER completed"</font>
-<b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
-</pre>
-<br />
-<span>A non-zero return code (here, 3 when a rollback and 1 when a DNS failover was performed) will cause CRON to send an E-Mail with the whole script output.</span><br />
-<br />
-<span>The authorative nameserver for my domains runs on both VMs, and both are configured to be a "master" DNS server so that they have their own individual zone files, which can be changed independently. Otherwise, my setup wouldn&#39;t work. The side effect is that under a split-brain scenario (both VMs cannot see each other), both would promote themselves to master via their local DNS entries. More about that later, but that&#39;s fine in my use case.</span><br />
-<br />
-<span>Check out the whole script here:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/dns-failover.ksh'>dns-failover.ksh</a><br />
-<br />
-<h3 style='display: inline' id='fairly-cheap-and-geo-redundant'>Fairly cheap and geo-redundant</h3><br />
-<br />
-<span>I am renting two small OpenBSD VMs: One at OpenBSD Amsterdam and the other at Hetzner Cloud. So, both VMs are hosted at another provider, in different IP subnets, and in different countries (the Netherlands and Germany).</span><br />
-<br />
-<a class='textlink' href='https://OpenBSD.Amsterdam'>https://OpenBSD.Amsterdam</a><br />
-<a class='textlink' href='https://www.Hetzner.cloud'>https://www.Hetzner.cloud</a><br />
-<br />
-<span>I only have a little traffic on my sites. I could always upload the static content to AWS S3 if I suddenly had to. But this will never be required.</span><br />
-<br />
-<span>A DNS-based failover is cheap, as there isn&#39;t any BGP or fancy load balancer to pay for. Small VMs also cost less than millions.</span><br />
-<br />
-<h3 style='display: inline' id='failover-time-and-split-brain'>Failover time and split-brain</h3><br />
-<br />
-<span>A DNS failover doesn&#39;t happen immediately. I&#39;ve configured a DNS TTL of <span class='inlinecode'>300</span> seconds, and the failover script checks once per minute whether to perform a failover or not. So, in total, a failover can take six minutes (not including other DNS caching servers somewhere in the interweb, but that&#39;s fine - eventually, all requests will resolve to the new master after a failover).</span><br />
-<br />
-<span>A split-brain scenario between the old master and the new master might happen. That&#39;s OK, as my sites are static, and there&#39;s no database to synchronise other than HTML, CSS, and images when the site is updated.</span><br />
-<br />
-<h3 style='display: inline' id='failover-support-for-multiple-protocols'>Failover support for multiple protocols</h3><br />
-<br />
-<span>With the DNS failover, HTTP, HTTPS, and Gemini protocols are failovered. This works because all domain virtual hosts are configured on either VM&#39;s <span class='inlinecode'>httpd</span> (OpenBSD&#39;s HTTP server) and <span class='inlinecode'>relayd</span> (it&#39;s also part of OpenBSD and I use it to TLS offload the Gemini protocol). So, both VMs accept requests for all the hosts. It&#39;s just a matter of the DNS entries, which VM receives the requests.</span><br />
-<br />
-<a class='textlink' href='https://man.OpenBSD.org/httpd.8'>https://man.OpenBSD.org/httpd.8</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/relayd.8'>https://man.OpenBSD.org/relayd.8</a><br />
-<br />
-<span>For example, the master is responsible for the <span class='inlinecode'>https://www.foo.zone</span> and <span class='inlinecode'>https://foo.zone</span> hosts, whereas the standby can be reached via <span class='inlinecode'>https://standby.foo.zone</span> (port 80 for plain HTTP works as well). The same principle is followed with all the other hosts, e.g. <span class='inlinecode'>irregular.ninja</span>, <span class='inlinecode'>paul.buetow.org</span> and so on. The same applies to my Gemini capsules for <span class='inlinecode'>https://foo.zone</span>, <span class='inlinecode'>https://standby.foo.zone</span>, <span class='inlinecode'>https://paul.buetow.org</span> and <span class='inlinecode'>https://standby.paul.buetow.org</span>.</span><br />
-<br />
-<span>On DNS failover, master and standby swap roles without config changes other than the DNS entries. That&#39;s KISS (keep it simple and stupid)!</span><br />
-<br />
-<h3 style='display: inline' id='let-s-encrypt-tls-certificates'>Let&#39;s encrypt TLS certificates</h3><br />
-<br />
-<span>All my hosts use TLS certificates from Let&#39;s Encrypt. The ACME automation for requesting and keeping the certificates valid (up to date) requires that the host requesting a certificate from Let&#39;s Encrypt is also the host using that certificate.</span><br />
-<br />
-<span>If the master always serves <span class='inlinecode'>foo.zone</span> and the standby always <span class='inlinecode'>standby.foo.zone</span>, then there would be a problem after the failover, as the new master wouldn&#39;t have a valid certificate for <span class='inlinecode'>foo.zone</span> and the new standby wouldn&#39;t have a valid certificate for <span class='inlinecode'>standby.foo.zone</span> which would lead to TLS errors on the clients.</span><br />
-<br />
-<span>As a solution, the CRON job responsible for the DNS failover also checks for the current week number of the year so that:</span><br />
-<br />
-<ul>
-<li>In an odd week number, the first server is the default master</li>
-<li>In an even week number, the second server is the default master.</li>
-</ul><br />
-<span>Which translates to:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Weekly auto-failover for Let's Encrypt automation</font></i>
-<b><u><font color="#000000">local</font></u></b> -i -r week_of_the_year=$(date +%U)
-<b><u><font color="#000000">if</font></u></b> [ $(( week_of_the_year % <font color="#000000">2</font> )) -eq <font color="#000000">0</font> ]; <b><u><font color="#000000">then</font></u></b>
-    <b><u><font color="#000000">local</font></u></b> tmp=$master
-    master=$standby
-    standby=$tmp
-<b><u><font color="#000000">fi</font></u></b>
-</pre>
-<br />
-<span>This way, a DNS failover is performed weekly so that the ACME automation can update the Let&#39;s Encrypt certificates (for master and standby) before they expire on each VM.</span><br />
-<br />
-<span>The ACME automation is yet another daily CRON script <span class='inlinecode'>/usr/local/bin/acme.sh</span>. It iterates over all of my Let&#39;s Encrypt hosts, checks whether they resolve to the same IP address as the current VM, and only then invokes the ACME client to request or renew the TLS certificates. So, there are always correct requests made to Let&#39;s Encrypt. </span><br />
-<br />
-<span>Let&#39;s encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
-<a class='textlink' href='https://man.OpenBSD.org/acme-client.1'>https://man.OpenBSD.org/acme-client.1</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<br />
-<h3 style='display: inline' id='monitoring'>Monitoring</h3><br />
-<br />
-<span>CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. </span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
-<br />
-<span>Gogios, as I developed it by myself, isn&#39;t part of the OpenBSD base system. </span><br />
-<br />
-<h3 style='display: inline' id='rex-automation'>Rex automation</h3><br />
-<br />
-<span>I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.</span><br />
-<br />
-<a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends'>codeberg.org/snonux/rexfiles/frontends</a><br />
-<br />
-<span>Rex isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external software on OpenBSD either as Rex is invoked from my Laptop!</span><br />
-<br />
-<h2 style='display: inline' id='more-ha'>More HA</h2><br />
-<br />
-<span>Other high-available services running on my OpenBSD VMs are my MTAs for mail forwarding (OpenSMTPD - also part of the OpenBSD base system) and the authoritative DNS servers (<span class='inlinecode'>nsd</span>) for all my domains. No particular HA setup is required, though, as the protocols (SMTP and DNS) already take care of the failover to the next available host! </span><br />
-<br />
-<a class='textlink' href='https://www.OpenSMTPD.org/'>https://www.OpenSMTPD.org/</a><br />
-<br />
-<span>As a password manager, I use <span class='inlinecode'>geheim</span>, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the <span class='inlinecode'>sync</span> command there. </span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/geheim'>https://codeberg.org/snonux/geheim</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other *BSD and KISS related posts are:</span><br />
-<br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.html'>2023-10-29 KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
