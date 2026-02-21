@@ -40,6 +40,7 @@
 <li>⇢ ⇢ <a href='#4-annotate-update-taskmd--progress-tracking'>4-annotate-update-task.md — progress tracking</a></li>
 <li>⇢ ⇢ <a href='#5-review-overview-tasksmd--picking-the-next-task'>5-review-overview-tasks.md — picking the next task</a></li>
 <li>⇢ <a href='#the-reflection-and-review-loop'>The reflection and review loop</a></li>
+<li>⇢ <a href='#code-review-human-spot-check-at-the-end'>Code review: human spot-check at the end</a></li>
 <li>⇢ <a href='#measurable-results'>Measurable results</a></li>
 <li>⇢ <a href='#a-real-bug-found-by-the-review-loop'>A real bug found by the review loop</a></li>
 <li>⇢ <a href='#gotchas-and-lessons-learned'>Gotchas and lessons learned</a></li>
@@ -430,6 +431,10 @@ tasks are in progress, show the next actionable (READY) task:
 <br />
 <span>The sub-agent reviews consistently caught things the main agent missed — tests that only asserted on mocks, missing edge cases, and even a real bug. Without the dual review loop, the agent tends to write tests that look correct but do not actually exercise real behavior.</span><br />
 <br />
+<h2 style='display: inline' id='code-review-human-spot-check-at-the-end'>Code review: human spot-check at the end</h2><br />
+<br />
+<span>On top of the agent&#39;s self-reflection and the two sub-agent reviews per task, I reviewed the produced outcome at the end. I did not read through all 5k lines one by one. Instead I looked for repeating patterns across the test files and cherry-picked a few scenarios — for example one integration test from the open/close family, one from the rename/link family, and one negative test — and went through those in detail manually. That was enough to satisfy me that the workflow had produced consistent, runnable tests and that the whole pipeline (task → implement → self-review → sub-agent review → fix → second review → commit) was working as intended.</span><br />
+<br />
 <h2 style='display: inline' id='measurable-results'>Measurable results</h2><br />
 <br />
 <span>Here is what one day of autonomous Ampcode work produced:</span><br />
@@ -439,7 +444,7 @@ tasks are in progress, show the next actionable (READY) task:
 <li>48 Taskwarrior tasks completed</li>
 <li>47 git commits</li>
 <li>87 files changed</li>
-<li>12,012 lines added, 1,543 removed</li>
+<li>~5,000 lines added, ~500 removed</li>
 <li>18 integration test files</li>
 <li>15 workload scenario files (one per syscall category)</li>
 <li>93 test scenarios total (happy-path and negative)</li>
