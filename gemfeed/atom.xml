@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-21T23:07:08+02:00</updated>
+    <updated>2026-02-21T23:12:30+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,7 +10,7 @@
         <title>Taskwarrior as an autonomous AI agent loop: 48 tasks in one day</title>
         <link href="gemini://foo.zone/gemfeed/2026-02-22-taskwarrior-autonomous-agent-loop.gmi" />
         <id>gemini://foo.zone/gemfeed/2026-02-22-taskwarrior-autonomous-agent-loop.gmi</id>
-        <updated>2026-02-21T23:07:07+02:00</updated>
+        <updated>2026-02-21T23:11:13+02:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -91,7 +91,7 @@
 <br />
 <span>eBPF (extended Berkeley Packet Filter) is a technology in the Linux kernel that lets you run sandboxed programs inside the kernel without changing kernel source code or loading kernel modules. Originally designed for network packet filtering, it has grown into a general-purpose in-kernel virtual machine.</span><br />
 <br />
-<span>With eBPF, you write small C programs that the kernel verifies for safety (no infinite loops, no out-of-bounds access, no crashing the kernel) and then runs at native speed. These programs can attach to tracepoints — predefined instrumentation points in the kernel that fire whenever a specific event occurs, such as a syscall being entered or exited.</span><br />
+<span>With eBPF, you write small C programs that the kernel verifies for safety (no infinite loops, no out-of-bounds access, no crashing the kernel) and then runs at de-facto native speed in a VM inside of the Linux Kernel. These programs can attach to tracepoints — predefined instrumentation points in the kernel that fire whenever a specific event occurs, such as a syscall being entered or exited.</span><br />
 <br />
 <span>ior uses eBPF to attach to the entry and exit tracepoints of every I/O-related syscall. When any process on the system calls <span class='inlinecode'>openat</span>, for example, the kernel fires the <span class='inlinecode'>sys_enter_openat</span> tracepoint, ior&#39;s BPF program captures the filename, PID, thread ID, and timestamp, and sends that data to user-space via a ring buffer. When the syscall returns, the <span class='inlinecode'>sys_exit_openat</span> tracepoint fires, and ior captures the return value and duration. This happens with near-zero overhead because the BPF program runs inside the kernel — there is no context switch to user-space for each event.</span><br />
 <br />
@@ -109,13 +109,13 @@
 <li>Unit tests in <span class='inlinecode'>internal/eventloop_test.go</span> — these simulate raw BPF tracepoint data (byte slices), feed them into the event loop, and verify that enter/exit events are correctly paired, file descriptors are tracked, comm names are propagated, and filters work. No BPF, no kernel, no root required.</li>
 <li>Integration tests in <span class='inlinecode'>integrationtests/</span> — these launch a real <span class='inlinecode'>ioworkload</span> binary that performs actual syscalls, start ior with real BPF tracing against that process, wait for it to finish, and then parse the resulting <span class='inlinecode'>.ior.zst</span> file to verify that the expected tracepoints were captured. These require root and a running kernel with BPF support.</li>
 </ul><br />
-<span>Both levels needed happy-path tests (does it work correctly?) and negative tests (does it handle errors like ENOENT, EBADF, EEXIST, EINVAL correctly?). Across 13 syscall categories, that is a lot of test code — roughly 93 scenarios, each with its own workload implementation and test assertions. Writing all of this by hand would take days.</span><br />
+<span>Both levels needed happy-path tests (does it work correctly?) and negative tests (does it handle errors like ENOENT, EBADF, EEXIST, EINVAL correctly?). Across 13 syscall categories, that is a lot of test code — roughly 93 scenarios, each with its own workload implementation and test assertions. Having the LLM to instruct each of those tasks would have taken days and writing all of this by hand would take months.</span><br />
 <br />
 <h2 style='display: inline' id='before-and-after'>Before and after</h2><br />
 <br />
 <span>Before I set up the Taskwarrior skill, my workflow with Ampcode looked like this: I would manually review the agent&#39;s output, then instruct it what to do next. One task at a time, constant babysitting. The agent had no memory of what was done or what was next. Context would degrade as the conversation grew longer.</span><br />
 <br />
-<span>After: I front-loaded about 48 tasks into Taskwarrior with detailed descriptions and file references, then told Ampcode a single instruction: "complete this task, then automatically proceed to the next ready +integrationtests task by handing off with fresh context." It ran for about 6 hours autonomously. I reviewed the commits over coffee.</span><br />
+<span>After: I front-loaded about 48 tasks into Taskwarrior with detailed descriptions and file references (Ampcode itself helped here to create the tasks as well), then told Ampcode a single instruction: "complete this task, then automatically proceed to the next ready +integrationtests task by handing off with fresh context." It ran for about 6 hours autonomously. I reviewed the commits over coffee.</span><br />
 <br />
 <span>The key difference is that Taskwarrior acts as persistent memory and a work queue. The agent does not need to remember what it did — the task list tells it what is done and what is next. Each task hands off to a fresh Ampcode thread, so there is no context window degradation. Ampcode&#39;s handoff mechanism — where one thread spawns a new one with a goal description — maps perfectly onto Taskwarrior&#39;s task-by-task workflow.</span><br />
 <br />
@@ -124,23 +124,23 @@
 <pre>
     ┌──────────────────────────────────────────────────┐
     │                                                  │
-    │   task add "implement open_test.go" +agent       │
-    │   task add "implement close_test.go" +agent      │
-    │   task add "add negative tests" +agent           │
+    │ task add pro:ior "implement open_test.go" +agent │
+    │ task add pro:ior "implement close_test.go" +agent│
+    │ task add pro:ior "add negative tests" +agent     │
     │   ...  × 48                                      │
     │                                                  │
     │   ┌─────────┐   ┌──────────┐   ┌──────────┐      │
-    │   │ Agent   │──▶│ Self-    │──▶│ Sub-agent│      │
+    │   │ Agent   │─▶│ Self-    │─▶│ Sub-agent│      │
     │   │ works   │   │ review   │   │ review   │      │
     │   └─────────┘   └──────────┘   └──────────┘      │
     │        │              │              │           │
     │        │         fix  │         fix  │           │
-    │        │◀─────────────┘◀─────────────┘           │
+    │        │◀─────────────┘◀─────────────┘         │
     │        │                                         │
     │        ▼                                         │
     │   git commit + push                              │
     │   task &lt;id&gt; done                                 │
-    │   ──▶ hand off to next task (fresh context)      │
+    │   ──▶ hand off to next task (fresh context)     │
     │                                                  │
     └──────────────────────────────────────────────────┘
 </pre>
