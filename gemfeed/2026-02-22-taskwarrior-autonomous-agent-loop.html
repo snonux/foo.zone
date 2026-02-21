@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Taskwarrior as an autonomous AI agent loop: 48 tasks in one day</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-02-22-taskwarrior-autonomous-agent-loop.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-02-22-taskwarrior-autonomous-agent-loop.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='taskwarrior-as-an-autonomous-ai-agent-loop-48-tasks-in-one-day'>Taskwarrior as an autonomous AI agent loop: 48 tasks in one day</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-21T23:11:13+02:00</span><br />
+<br />
+<a href='./taskwarrior-autonomous-agent/ior-flamegraph.png'><img alt='Example ior flamegraph showing I/O syscall activity by process, file path, and tracepoint' title='Example ior flamegraph showing I/O syscall activity by process, file path, and tracepoint' src='./taskwarrior-autonomous-agent/ior-flamegraph.png' /></a><br />
+<br />
+<span>I let Ampcode autonomously complete 48 Taskwarrior tasks on my eBPF project in a single day. The agent picked up one task after another — implemented, self-reviewed, spawned sub-agent reviews, addressed comments, committed, and moved on — all without me intervening. Here is how the setup works, what the project is about, and the full skill that drives the loop.</span><br />
+<br />
+<a class='textlink' href='https://ampcode.com'>Ampcode — the AI coding agent used for this project</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#taskwarrior-as-an-autonomous-ai-agent-loop-48-tasks-in-one-day'>Taskwarrior as an autonomous AI agent loop: 48 tasks in one day</a></li>
+<li>⇢ <a href='#what-is-ior-and-what-does-it-do'>What is ior and what does it do</a></li>
+<li>⇢ ⇢ <a href='#what-is-a-syscall'>What is a syscall</a></li>
+<li>⇢ ⇢ <a href='#what-is-ebpf'>What is eBPF</a></li>
+<li>⇢ ⇢ <a href='#what-ior-traces-and-why'>What ior traces and why</a></li>
+<li>⇢ <a href='#the-problem-writing-a-full-test-suite-by-hand'>The problem: writing a full test suite by hand</a></li>
+<li>⇢ <a href='#before-and-after'>Before and after</a></li>
+<li>⇢ <a href='#how-the-project-taskwarrior-skill-works'>How the project-taskwarrior skill works</a></li>
+<li>⇢ ⇢ <a href='#skillmd--the-entry-point'>SKILL.md — the entry point</a></li>
+<li>⇢ ⇢ <a href='#00-contextmd--project-scoping-and-global-rules'>00-context.md — project scoping and global rules</a></li>
+<li>⇢ ⇢ <a href='#1-create-taskmd--creating-tasks-with-full-context'>1-create-task.md — creating tasks with full context</a></li>
+<li>⇢ ⇢ <a href='#2-start-taskmd--fresh-context-per-task'>2-start-task.md — fresh context per task</a></li>
+<li>⇢ ⇢ <a href='#3-complete-taskmd--the-quality-gate'>3-complete-task.md — the quality gate</a></li>
+<li>⇢ ⇢ <a href='#4-annotate-update-taskmd--progress-tracking'>4-annotate-update-task.md — progress tracking</a></li>
+<li>⇢ ⇢ <a href='#5-review-overview-tasksmd--picking-the-next-task'>5-review-overview-tasks.md — picking the next task</a></li>
+<li>⇢ <a href='#the-reflection-and-review-loop'>The reflection and review loop</a></li>
+<li>⇢ <a href='#measurable-results'>Measurable results</a></li>
+<li>⇢ <a href='#a-real-bug-found-by-the-review-loop'>A real bug found by the review loop</a></li>
+<li>⇢ <a href='#gotchas-and-lessons-learned'>Gotchas and lessons learned</a></li>
+<li>⇢ ⇢ <a href='#cost'>Cost</a></li>
+<li>⇢ ⇢ <a href='#syscall-wrappers-on-amd64'>Syscall wrappers on amd64</a></li>
+<li>⇢ ⇢ <a href='#task-granularity-matters'>Task granularity matters</a></li>
+<li>⇢ <a href='#how-to-replicate-this'>How to replicate this</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-is-ior-and-what-does-it-do'>What is ior and what does it do</h2><br />
+<br />
+<span>I/O Riot NG (ior) is a Linux-only tool that traces synchronous I/O system calls in real time and produces flamegraphs showing which processes spend time on which files with which syscalls. It is written in Go and C, using eBPF via libbpfgo. It is the spiritual successor of an older project of mine called I/O Riot, which was based on SystemTap and C.</span><br />
+<br />
+<a href='./taskwarrior-autonomous-agent/ior-logo.png'><img alt='I/O Riot NG logo' title='I/O Riot NG logo' src='./taskwarrior-autonomous-agent/ior-logo.png' /></a><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/ioriot'>The original I/O Riot (SystemTap)</a><br />
+<br />
+<span>At the top of the blog post you see an example flamegraph produced by ior. The x-axis shows sample count (how frequent each I/O operation is), and the stack from bottom to top shows process ID, file path, and syscall tracepoint. You can immediately see which processes hammer which files with which syscalls.</span><br />
+<br />
+<h3 style='display: inline' id='what-is-a-syscall'>What is a syscall</h3><br />
+<br />
+<span>A syscall (system call) is the interface between a user-space program and the Linux kernel. When a program wants to do anything that touches hardware or shared resources — open a file, read from a socket, write to disk, create a directory, check file permissions — it cannot do it directly. User-space programs run in an unprivileged CPU mode and have no access to hardware. They must ask the kernel by making a syscall.</span><br />
+<br />
+<span>For example, when a program calls <span class='inlinecode'>open("/etc/passwd", O_RDONLY)</span>, it triggers the <span class='inlinecode'>openat</span> syscall. The CPU switches from user mode to kernel mode, the kernel validates the request, locates the file on disk, allocates a file descriptor, and returns it to the program — or returns an error code like ENOENT if the file does not exist. Every file operation, every network packet, every process fork goes through syscalls. They are the fundamental boundary between "your code" and "the operating system."</span><br />
+<br />
+<span>There are hundreds of syscalls in Linux. The I/O-related ones that ior traces include:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>openat</span>, <span class='inlinecode'>creat</span>, <span class='inlinecode'>open_by_handle_at</span> — opening files</li>
+<li><span class='inlinecode'>read</span>, <span class='inlinecode'>write</span>, <span class='inlinecode'>pread64</span>, <span class='inlinecode'>pwrite64</span>, <span class='inlinecode'>readv</span>, <span class='inlinecode'>writev</span> — reading and writing data</li>
+<li><span class='inlinecode'>close</span>, <span class='inlinecode'>close_range</span> — closing file descriptors</li>
+<li><span class='inlinecode'>dup</span>, <span class='inlinecode'>dup2</span>, <span class='inlinecode'>dup3</span> — duplicating file descriptors</li>
+<li><span class='inlinecode'>fcntl</span> — manipulating file descriptor properties</li>
+<li><span class='inlinecode'>rename</span>, <span class='inlinecode'>renameat</span>, <span class='inlinecode'>renameat2</span> — renaming files</li>
+<li><span class='inlinecode'>link</span>, <span class='inlinecode'>linkat</span>, <span class='inlinecode'>symlink</span>, <span class='inlinecode'>symlinkat</span>, <span class='inlinecode'>readlinkat</span> — creating and reading links</li>
+<li><span class='inlinecode'>unlink</span>, <span class='inlinecode'>unlinkat</span>, <span class='inlinecode'>rmdir</span> — removing files and directories</li>
+<li><span class='inlinecode'>mkdir</span>, <span class='inlinecode'>mkdirat</span>, <span class='inlinecode'>chdir</span>, <span class='inlinecode'>getdents64</span> — directory operations</li>
+<li><span class='inlinecode'>stat</span>, <span class='inlinecode'>fstat</span>, <span class='inlinecode'>lstat</span>, <span class='inlinecode'>newfstatat</span>, <span class='inlinecode'>statx</span>, <span class='inlinecode'>access</span>, <span class='inlinecode'>faccessat</span> — file metadata</li>
+<li><span class='inlinecode'>fsync</span>, <span class='inlinecode'>fdatasync</span>, <span class='inlinecode'>sync</span>, <span class='inlinecode'>sync_file_range</span> — flushing data to disk</li>
+<li><span class='inlinecode'>truncate</span>, <span class='inlinecode'>ftruncate</span> — resizing files</li>
+<li><span class='inlinecode'>io_uring_setup</span>, <span class='inlinecode'>io_uring_enter</span>, <span class='inlinecode'>io_uring_register</span> — async I/O</li>
+</ul><br />
+<h3 style='display: inline' id='what-is-ebpf'>What is eBPF</h3><br />
+<br />
+<span>eBPF (extended Berkeley Packet Filter) is a technology in the Linux kernel that lets you run sandboxed programs inside the kernel without changing kernel source code or loading kernel modules. Originally designed for network packet filtering, it has grown into a general-purpose in-kernel virtual machine.</span><br />
+<br />
+<span>With eBPF, you write small C programs that the kernel verifies for safety (no infinite loops, no out-of-bounds access, no crashing the kernel) and then runs at de-facto native speed in a VM inside of the Linux Kernel. These programs can attach to tracepoints — predefined instrumentation points in the kernel that fire whenever a specific event occurs, such as a syscall being entered or exited.</span><br />
+<br />
+<span>ior uses eBPF to attach to the entry and exit tracepoints of every I/O-related syscall. When any process on the system calls <span class='inlinecode'>openat</span>, for example, the kernel fires the <span class='inlinecode'>sys_enter_openat</span> tracepoint, ior&#39;s BPF program captures the filename, PID, thread ID, and timestamp, and sends that data to user-space via a ring buffer. When the syscall returns, the <span class='inlinecode'>sys_exit_openat</span> tracepoint fires, and ior captures the return value and duration. This happens with near-zero overhead because the BPF program runs inside the kernel — there is no context switch to user-space for each event.</span><br />
+<br />
+<h3 style='display: inline' id='what-ior-traces-and-why'>What ior traces and why</h3><br />
+<br />
+<span>ior pairs up syscall enter and exit events, tracks which file descriptors map to which file paths, and aggregates everything into a data structure that can be serialized to a compressed <span class='inlinecode'>.ior.zst</span> file or rendered as a flamegraph. The flamegraph shows a hierarchy of PID, file path, and syscall tracepoint, with the width proportional to how often or how long each combination occurs.</span><br />
+<br />
+<span>This is useful for diagnosing I/O bottlenecks: you can see at a glance that process 5171 is spending most of its time writing to <span class='inlinecode'>/sys/fs/cgroup/memory.stat</span>, or that your database is doing thousands of <span class='inlinecode'>fsync</span> calls per second on its WAL file. Traditional tools like <span class='inlinecode'>strace</span> can show you this too, but <span class='inlinecode'>strace</span> uses ptrace which has significant overhead and slows down the traced process. eBPF-based tracing is orders of magnitude faster.</span><br />
+<br />
+<h2 style='display: inline' id='the-problem-writing-a-full-test-suite-by-hand'>The problem: writing a full test suite by hand</h2><br />
+<br />
+<span>The ior project needed a comprehensive test suite at two levels:</span><br />
+<br />
+<ul>
+<li>Unit tests in <span class='inlinecode'>internal/eventloop_test.go</span> — these simulate raw BPF tracepoint data (byte slices), feed them into the event loop, and verify that enter/exit events are correctly paired, file descriptors are tracked, comm names are propagated, and filters work. No BPF, no kernel, no root required.</li>
+<li>Integration tests in <span class='inlinecode'>integrationtests/</span> — these launch a real <span class='inlinecode'>ioworkload</span> binary that performs actual syscalls, start ior with real BPF tracing against that process, wait for it to finish, and then parse the resulting <span class='inlinecode'>.ior.zst</span> file to verify that the expected tracepoints were captured. These require root and a running kernel with BPF support.</li>
+</ul><br />
+<span>Both levels needed happy-path tests (does it work correctly?) and negative tests (does it handle errors like ENOENT, EBADF, EEXIST, EINVAL correctly?). Across 13 syscall categories, that is a lot of test code — roughly 93 scenarios, each with its own workload implementation and test assertions. Having the LLM to instruct each of those tasks would have taken days and writing all of this by hand would take months.</span><br />
+<br />
+<h2 style='display: inline' id='before-and-after'>Before and after</h2><br />
+<br />
+<span>Before I set up the Taskwarrior skill, my workflow with Ampcode looked like this: I would manually review the agent&#39;s output, then instruct it what to do next. One task at a time, constant babysitting. The agent had no memory of what was done or what was next. Context would degrade as the conversation grew longer.</span><br />
+<br />
+<span>After: I front-loaded about 48 tasks into Taskwarrior with detailed descriptions and file references (Ampcode itself helped here to create the tasks as well), then told Ampcode a single instruction: "complete this task, then automatically proceed to the next ready +integrationtests task by handing off with fresh context." It ran for about 6 hours autonomously. I reviewed the commits over coffee.</span><br />
+<br />
+<span>The key difference is that Taskwarrior acts as persistent memory and a work queue. The agent does not need to remember what it did — the task list tells it what is done and what is next. Each task hands off to a fresh Ampcode thread, so there is no context window degradation. Ampcode&#39;s handoff mechanism — where one thread spawns a new one with a goal description — maps perfectly onto Taskwarrior&#39;s task-by-task workflow.</span><br />
+<br />
+<h2 style='display: inline' id='how-the-project-taskwarrior-skill-works'>How the project-taskwarrior skill works</h2><br />
+<br />
+<pre>
+    ┌──────────────────────────────────────────────────┐
+    │                                                  │
+    │ task add pro:ior "implement open_test.go" +agent │
+    │ task add pro:ior "implement close_test.go" +agent│
+    │ task add pro:ior "add negative tests" +agent     │
+    │   ...  × 48                                      │
+    │                                                  │
+    │   ┌─────────┐   ┌──────────┐   ┌──────────┐      │
+    │   │ Agent   │─▶│ Self-    │─▶│ Sub-agent│      │
+    │   │ works   │   │ review   │   │ review   │      │
+    │   └─────────┘   └──────────┘   └──────────┘      │
+    │        │              │              │           │
+    │        │         fix  │         fix  │           │
+    │        │◀─────────────┘◀─────────────┘         │
+    │        │                                         │
+    │        ▼                                         │
+    │   git commit + push                              │
+    │   task &lt;id&gt; done                                 │
+    │   ──▶ hand off to next task (fresh context)     │
+    │                                                  │
+    └──────────────────────────────────────────────────┘
+</pre>
+<br />
+<span>The skill lives in <span class='inlinecode'>~/.agents/skills/project-taskwarrior/</span> and consists of a <span class='inlinecode'>SKILL.md</span> entry point plus six markdown files — one per action. The agent loads only the files it needs for the current action, so it does not waste context on instructions it does not need right now.</span><br />
+<br />
+<h3 style='display: inline' id='skillmd--the-entry-point'>SKILL.md — the entry point</h3><br />
+<br />
+<span>Every Ampcode skill has a <span class='inlinecode'>SKILL.md</span> with YAML frontmatter (name, description, trigger phrases) and an overview. This is what the agent sees first when it loads the skill:</span><br />
+<br />
+<pre>
+---
+name: project-taskwarrior
+description: "Manage Taskwarrior tasks scoped to the current git
+  project. Use when asked to list, add, start, complete, annotate,
+  or organize tasks for the project. Triggers on: tasks, todo,
+  task list, pick next task, what&#39;s next."
+---
+
+# Project Taskwarrior
+
+Taskwarrior tasks are scoped to the current git repository.
+Load only the files you need for the current action so the whole
+skill does not need to be in context.
+
+## When to load what
+
+| Action                    | Load                                  |
+|---------------------------|---------------------------------------|
+| Create task               | 00-context.md + 1-create-task.md      |
+| Start task                | 00-context.md + 2-start-task.md       |
+| Complete task             | 00-context.md + 3-complete-task.md    |
+| Annotate / update task    | 00-context.md + 4-annotate-update.md  |
+| Review / overview tasks   | 00-context.md + 5-review-overview.md  |
+
+Always load 00-context.md first (project name resolution and
+global rules); then load the one action file that matches what
+you are doing.
+
+## Task lifecycle (overview)
+
+1. Create task
+2. Start task
+3. Annotate as you go
+4. Completion criteria (best practices, compilable, all tests
+   pass, negative tests where plausible)
+5. Sub-agent review (fresh context)
+6. Main agent addresses all review comments
+7. Second sub-agent review (fresh context again) to confirm fixes
+8. Commit all changes to git
+9. Complete task
+
+A task is not done until criteria are met, all review comments
+are addressed, a second sub-agent review has confirmed the code,
+and all changes are committed to git. Details are in
+3-complete-task.md.
+</pre>
+<br />
+<span>The key design decision is the table: the agent only loads the files relevant to what it is doing right now. Creating a task? Load <span class='inlinecode'>00-context.md</span> + <span class='inlinecode'>1-create-task.md</span>. Completing one? Load <span class='inlinecode'>00-context.md</span> + <span class='inlinecode'>3-complete-task.md</span>. This keeps context lean.</span><br />
+<br />
+<h3 style='display: inline' id='00-contextmd--project-scoping-and-global-rules'>00-context.md — project scoping and global rules</h3><br />
+<br />
+<span>This file is loaded with every action. It derives the project name from git and enforces that the agent only touches its own tasks (tagged <span class='inlinecode'>+agent</span>):</span><br />
+<br />
+<pre>
+# Project Taskwarrior — shared context
+
+Load this with any of the action files (1–5) when working with tasks.
+It defines project scope and rules that apply to all task operations.
+
+## Project name
+
+Derive the project name from the git repository:
+
+  basename -s .git \
+    "$(git remote get-url origin 2&gt;/dev/null)" 2&gt;/dev/null \
+    || basename "$(git rev-parse --show-toplevel)"
+
+Use it as project:&lt;name&gt; in every task command.
+
+## Rules that apply to all task commands
+
+- Project and tag matching: The agent only reads, modifies, or
+  creates tasks that have both project:&lt;name&gt; and the +agent tag.
+  Do not touch any task that does not have +agent set.
+- EVERY task command MUST include project:&lt;name&gt; — no exceptions.
+  When listing or querying, also include +agent so only
+  agent-managed tasks are shown. Never run a bare task without
+  the project filter.
+- NEVER modify, delete, complete, start, or annotate tasks from
+  other projects or tasks without +agent.
+- One task in progress per project. Do not start a second task
+  while another is started and not completed, unless the user
+  explicitly asks.
+- Parallel work via sub-agents — the agent may spawn sub-agents
+  to work on tasks in parallel only after the user approves.
+</pre>
+<br />
+<h3 style='display: inline' id='1-create-taskmd--creating-tasks-with-full-context'>1-create-task.md — creating tasks with full context</h3><br />
+<br />
+<span>This is the most important file for setting up the autonomous loop. Every task must be self-contained — it must reference all files, docs, and specs needed so that an agent starting with zero prior context can work on it:</span><br />
+<br />
+<pre>
+# Create task
+
+## Rules for new tasks
+
+- Create tasks in smaller chunks that fit into the context window.
+  Break work into multiple tasks so that each task&#39;s scope,
+  description, and required context can fit in one context window.
+- Every task MUST have at least one tag for sub-project/feature/area
+  (e.g. +integrationtests, +flamegraph, +bpf, +cli).
+- When an agent creates a task, always add the tag +agent.
+- Include references to all context required to work on the task.
+  Every task must list or link everything needed: relevant files,
+  docs, specs, other tasks, or project guidelines. Put these in
+  the task description or in an initial annotation.
+
+## Add a task
+
+  task add project:&lt;name&gt; +&lt;tag&gt; +agent "Description"
+
+## With dependency
+
+  task add project:&lt;name&gt; +&lt;tag&gt; +agent "Description" depends:&lt;id&gt;
+
+## Conventions
+
+- Keep tasks small: each task should fit in the context window.
+- Add dependencies when one task must complete before another.
+- Add references to all required context so the task is
+  self-contained for fresh-context work.
+</pre>
+<br />
+<h3 style='display: inline' id='2-start-taskmd--fresh-context-per-task'>2-start-task.md — fresh context per task</h3><br />
+<br />
+<span>This ensures each task gets a clean slate — no carry-over from previous work:</span><br />
+<br />
+<pre>
+# Start task
+
+## Start each new task with a fresh context
+
+Work on each new task must begin with a fresh context — a new
+session or a sub-agent with no prior conversation. That way the
+task is executed with clear focus and no carry-over from other
+work. The task itself should already contain references to all
+required context; read the task description and all annotations
+to get files, docs, and specs before starting.
+
+## Mark task as started
+
+When you begin working on a task, always mark it as started:
+
+  task &lt;id&gt; start
+
+Do this as soon as you start work on the task.
+
+## Conventions
+
+- Start each new task with a fresh context.
+- Run task &lt;id&gt; start when you start working.
+- Do not start a second task for the same project while one is
+  already started and not done.
+</pre>
+<br />
+<h3 style='display: inline' id='3-complete-taskmd--the-quality-gate'>3-complete-task.md — the quality gate</h3><br />
+<br />
+<span>This is the heart of the skill. It enforces compilation, testing, negative tests, self-review, and a dual sub-agent review loop before any task can be marked done:</span><br />
+<br />
+<pre>
+# Complete task
+
+## Completion criteria (required before "done")
+
+A task is not considered done until all of the following are true:
+
+- Best practices — the codebase follows the project&#39;s best
+  practices.
+- Compilable — all code compiles successfully.
+- Tests pass — all tests pass.
+- Negative tests where plausible — for any new or changed tests,
+  include negative tests wherever plausible.
+- All changes committed to git.
+
+## What the review sub-agent must check
+
+Review sub-agents (first and second review) must always:
+
+- Unit test coverage — double-check that coverage is as desired
+  for the changed or added code.
+- Tests are testing real things — confirm that tests exercise
+  real behavior and assertions, not only mocks. Flag tests that
+  merely assert on mocks or stubs without verifying real logic.
+- Negative tests where plausible — for all tests created, ensure
+  there are also negative tests. If positive tests exist but no
+  corresponding negative tests, flag it.
+
+## Self-review before any sub-agent handoff
+
+Before signing off work to sub-agents for review, the main agent
+must ask itself:
+
+- Did everything I did make sense?
+- Isn&#39;t there a better way to do it?
+
+If the answer suggests improvements, address them first. Only
+then hand off to the sub-agent.
+
+## Before marking complete
+
+1. Self-review. Then spawn a sub-agent with fresh context.
+2. Sub-agent reviews the diff, code, or deliverables and reports
+   back (review comments, suggestions, issues).
+3. Main agent addresses all review comments — no exceptions.
+4. Self-review again. Then spawn another sub-agent (fresh context)
+   to review the code again and confirm the fixes. If this second
+   review finds further issues, address them and repeat.
+5. Commit all changes to git.
+6. Only then: task &lt;id&gt; done
+
+## Conventions
+
+- A task is not done until: best practices met, code compiles,
+  all tests pass, negative tests included, all review comments
+  addressed, second sub-agent review confirmed, and all changes
+  committed to git.
+</pre>
+<br />
+<h3 style='display: inline' id='4-annotate-update-taskmd--progress-tracking'>4-annotate-update-task.md — progress tracking</h3><br />
+<br />
+<pre>
+# Annotate / update task
+
+## Reading task context
+
+When working on a task, always read the full context: description,
+summary, and all annotations. Annotations often contain progress,
+challenges, and references to files or documents.
+
+## Annotate a task
+
+  task &lt;id&gt; annotate "Note about progress or context"
+
+While making progress, add annotations to reflect progress,
+challenges, or decisions. Refer to files and documents so the
+task history stays useful for later work and for the
+pre-completion review.
+
+## Modify a task
+
+  task &lt;id&gt; modify +&lt;tag&gt;
+  task &lt;id&gt; modify depends:&lt;id2&gt;
+  task &lt;id&gt; modify priority:H
+</pre>
+<br />
+<h3 style='display: inline' id='5-review-overview-tasksmd--picking-the-next-task'>5-review-overview-tasks.md — picking the next task</h3><br />
+<br />
+<pre>
+# Review / overview tasks
+
+## List tasks for the project
+
+Only list tasks that have +agent. Order by priority first, then
+urgency:
+
+  task project:&lt;name&gt; +agent list sort:priority-,urgency-
+
+## Picking what to work on (next task)
+
+Order by priority first, then by urgency. Check already-started
+tasks first:
+
+  task project:&lt;name&gt; +agent start.any: list
+
+If any tasks are already started, use one of those. Only if no
+tasks are in progress, show the next actionable (READY) task:
+
+  task project:&lt;name&gt; +agent +READY list sort:priority-,urgency-
+
+## Blocked vs ready
+
+  task project:&lt;name&gt; +agent +BLOCKED list
+  task project:&lt;name&gt; +agent +READY list
+</pre>
+<br />
+<h2 style='display: inline' id='the-reflection-and-review-loop'>The reflection and review loop</h2><br />
+<br />
+<span>The real unlock was not just task automation — it was instructing Ampcode to reflect on its own work and then having it reviewed by a fresh pair of eyes.</span><br />
+<br />
+<span>Having instructed in the skill for the agent to reflect on its own implementation ("Did everything I did make sense? Isn&#39;t there a better way?"), and then having a sub-agent with fresh context review all the changes and letting the main agent address the review comments, followed by another sub-agent reviewing the improvements again, made it a smooth ride.</span><br />
+<br />
+<span>The sub-agent reviews consistently caught things the main agent missed — tests that only asserted on mocks, missing edge cases, and even a real bug. Without the dual review loop, the agent tends to write tests that look correct but do not actually exercise real behavior.</span><br />
+<br />
+<h2 style='display: inline' id='measurable-results'>Measurable results</h2><br />
+<br />
+<span>Here is what one day of autonomous Ampcode work produced:</span><br />
+<br />
+<ul>
+<li>About 6 hours of autonomous work (16:13 to 22:03)</li>
+<li>48 Taskwarrior tasks completed</li>
+<li>47 git commits</li>
+<li>87 files changed</li>
+<li>12,012 lines added, 1,543 removed</li>
+<li>18 integration test files</li>
+<li>15 workload scenario files (one per syscall category)</li>
+<li>93 test scenarios total (happy-path and negative)</li>
+<li>13 syscall categories fully covered: open, read/write, close, dup, fcntl, rename, link, unlink, dir, stat, sync, truncate, and io_uring</li>
+</ul><br />
+<h2 style='display: inline' id='a-real-bug-found-by-the-review-loop'>A real bug found by the review loop</h2><br />
+<br />
+<span>During the negative test implementation for <span class='inlinecode'>close_range</span>, the review loop uncovered a real bug in ior&#39;s event loop. The <span class='inlinecode'>close_range</span> handler was deleting file descriptors from the internal <span class='inlinecode'>files</span> map before resolving their paths. This meant the path information was lost by the time ior tried to record it in the flamegraph. The fix was to look up the path first, then delete the fd. This bug would have been very hard to notice by reading the code — it only became apparent when a negative test expected a path in the output and got nothing.</span><br />
+<br />
+<h2 style='display: inline' id='gotchas-and-lessons-learned'>Gotchas and lessons learned</h2><br />
+<br />
+<h3 style='display: inline' id='cost'>Cost</h3><br />
+<br />
+<span>I burned through about 100 USD in one day on Ampcode&#39;s token-based pricing. The dual sub-agent reviews are thorough but token-heavy — each task effectively runs three agents (main plus two reviewers), and with 48 tasks that adds up fast. Lesson learned: I am subscribing to Claude Max next. If you are going to let an agent run autonomously for hours, flat-rate pricing is the way to go.</span><br />
+<br />
+<h3 style='display: inline' id='syscall-wrappers-on-amd64'>Syscall wrappers on amd64</h3><br />
+<br />
+<span>Go&#39;s <span class='inlinecode'>syscall</span> package on amd64 silently delegates to <span class='inlinecode'>*at</span> variants. <span class='inlinecode'>os.Open()</span> calls <span class='inlinecode'>openat</span>, <span class='inlinecode'>os.Mkdir()</span> calls <span class='inlinecode'>mkdirat</span>, <span class='inlinecode'>os.Stat()</span> calls <span class='inlinecode'>newfstatat</span>. The agent kept writing tests expecting <span class='inlinecode'>enter_open</span> when the kernel actually sees <span class='inlinecode'>enter_openat</span>. I had to burn this into task descriptions as a permanent note: "CRITICAL: Always verify what the actual syscall is before writing test expectations." Once this was in the task context, the agent got it right every time.</span><br />
+<br />
+<h3 style='display: inline' id='task-granularity-matters'>Task granularity matters</h3><br />
+<br />
+<span>Tasks that were too broad ("add all integration tests") produced worse results than tasks scoped to a single syscall category ("implement open_test.go + workload scenarios for open, openat, creat, open_by_handle_at"). The smaller tasks fit in the context window, the agent could focus, and the review loop could meaningfully check the output. Bigger tasks led to context degradation and the agent cutting corners.</span><br />
+<br />
+<h2 style='display: inline' id='how-to-replicate-this'>How to replicate this</h2><br />
+<br />
+<span>The recipe:</span><br />
+<br />
+<ul>
+<li>Use Taskwarrior (or any task tracker the agent can query via CLI).</li>
+<li>Create an agent skill that teaches the agent the task lifecycle: create, start, implement, self-review, sub-agent review, fix, second review, commit, done, hand off.</li>
+<li>Front-load tasks with detailed descriptions and file references. Each task must be self-contained.</li>
+<li>Tag tasks so the agent only works on its own tasks and does not touch anything else.</li>
+<li>Instruct the agent to hand off to a fresh context after completing each task. In Ampcode, this is the handoff mechanism that spawns a new thread with a goal.</li>
+<li>Enforce a quality gate: compilation, tests, negative tests, and dual sub-agent review before marking done.</li>
+<li>Use flat-rate pricing if you plan to run autonomously for hours.</li>
+</ul><br />
+<span>The skill files shown above are generic — they work for any git project and any coding agent that can run shell commands. The Taskwarrior CLI is the interface; the skill markdown is the instruction set. You can adapt them to your own project by changing the tags and the completion criteria.</span><br />
+<br />
+<a class='textlink' href='https://taskwarrior.org'>Taskwarrior — command-line task management</a><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-02-22-taskwarrior-autonomous-agent-loop.html'>2026-02-22 Taskwarrior as an autonomous AI agent loop: 48 tasks in one day (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
