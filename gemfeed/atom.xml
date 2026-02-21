@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-21T23:12:30+02:00</updated>
+    <updated>2026-02-21T23:24:01+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -19,6 +19,8 @@
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='taskwarrior-as-an-autonomous-ai-agent-loop-48-tasks-in-one-day'>Taskwarrior as an autonomous AI agent loop: 48 tasks in one day</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-21T23:11:13+02:00</span><br />
 <br />
 <a href='./taskwarrior-autonomous-agent/ior-flamegraph.png'><img alt='Example ior flamegraph showing I/O syscall activity by process, file path, and tracepoint' title='Example ior flamegraph showing I/O syscall activity by process, file path, and tracepoint' src='./taskwarrior-autonomous-agent/ior-flamegraph.png' /></a><br />
 <br />
@@ -130,7 +132,7 @@
     │   ...  × 48                                      │
     │                                                  │
     │   ┌─────────┐   ┌──────────┐   ┌──────────┐      │
-    │   │ Agent   │─▶│ Self-    │─▶│ Sub-agent│      │
+    │   │ Agent   │ ─▶│ Self-    │ ─▶│ Sub-agent│      │
     │   │ works   │   │ review   │   │ review   │      │
     │   └─────────┘   └──────────┘   └──────────┘      │
     │        │              │              │           │
