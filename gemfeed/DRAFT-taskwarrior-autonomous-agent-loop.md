@@ -469,7 +469,6 @@ The skill files shown above are generic — they work for any git project and an
 
 Other related posts:
 
-[2026-02-22 Taskwarrior as an autonomous AI agent loop: 48 tasks in one day](./2026-02-22-taskwarrior-autonomous-agent-loop.md)  
 [2026-02-02 A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2023-07-17 "Software Developers Career Guide and Soft Skills" book notes](./2023-07-17-career-guide-and-soft-skills-book-notes.md)  
 

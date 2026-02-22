@@ -294,7 +294,6 @@ Context is what the agent *knows*; commands and skills are what the agent *does*
 
 Other related posts:
 
-[2026-02-22 Taskwarrior as an autonomous AI agent loop: 48 tasks in one day](./2026-02-22-taskwarrior-autonomous-agent-loop.md)  
 [2026-02-14 Meta slash-commands to manage prompts, skills, and context for coding agents (You are currently reading this)](./2026-02-14-meta-slash-commands-for-prompts-and-context.md)  
 [2026-02-02 A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 
