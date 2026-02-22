@@ -2,7 +2,6 @@
 
 ## To be in the .zone!
 
-=> ./2026-02-22-taskwarrior-autonomous-agent-loop.gmi 2026-02-22 - Taskwarrior as an autonomous AI agent loop: 48 tasks in one day
 => ./2026-02-22-my-desk-rack.gmi 2026-02-22 - My desk rack: DeskPi RackMate T0
 => ./2026-02-15-loadbars-resurrected-from-perl-to-go.gmi 2026-02-15 - Loadbars resurrected: From Perl to Go after 15 years
 => ./2026-02-14-meta-slash-commands-for-prompts-and-context.gmi 2026-02-14 - Meta slash-commands to manage prompts, skills, and context for coding agents
