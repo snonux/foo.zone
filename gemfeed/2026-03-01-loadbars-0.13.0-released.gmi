@@ -10,14 +10,21 @@ Loadbars can connect to hundreds of servers in parallel; the GIF above doesn't d
 
 => https://codeberg.org/snonux/loadbars Loadbars on Codeberg
 
-=> ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
-=> ./2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi 2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation
-=> ./2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi 2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts
-=> ./2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi 2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs
-=> ./2025-05-11-f3s-kubernetes-with-freebsd-part-5.gmi 2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network
-=> ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
-=> ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
-=> ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
+## Table of Contents
+
+* ⇢ Loadbars 0.13.0 released
+* ⇢ ⇢ What Loadbars is (and isn't)
+* ⇢ ⇢ Use cases
+* ⇢ ⇢ What's new since the Perl version
+* ⇢ ⇢ Core features
+* ⇢ ⇢ ⇢ Load average bars
+* ⇢ ⇢ ⇢ Disk I/O bars
+* ⇢ ⇢ ⇢ Global reference lines and options
+* ⇢ ⇢ ⇢ CPU monitoring
+* ⇢ ⇢ ⇢ Memory and network
+* ⇢ ⇢ ⇢ All hotkeys
+* ⇢ ⇢ ⇢ SSH and config
+* ⇢ ⇢ ⇢ Building and platforms
 
 ## What Loadbars is (and isn't)
 

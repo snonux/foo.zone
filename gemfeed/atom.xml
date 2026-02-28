@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-28T18:12:35+02:00</updated>
+    <updated>2026-02-28T18:25:30+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -111,15 +111,23 @@
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/loadbars'>Loadbars on Codeberg</a><br />
 <br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
+<ul>
+<li><a href='#loadbars-0130-released'>Loadbars 0.13.0 released</a></li>
+<li>⇢ <a href='#what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</a></li>
+<li>⇢ <a href='#use-cases'>Use cases</a></li>
+<li>⇢ <a href='#what-s-new-since-the-perl-version'>What&#39;s new since the Perl version</a></li>
+<li>⇢ <a href='#core-features'>Core features</a></li>
+<li>⇢ ⇢ <a href='#load-average-bars'>Load average bars</a></li>
+<li>⇢ ⇢ <a href='#disk-io-bars'>Disk I/O bars</a></li>
+<li>⇢ ⇢ <a href='#global-reference-lines-and-options'>Global reference lines and options</a></li>
+<li>⇢ ⇢ <a href='#cpu-monitoring'>CPU monitoring</a></li>
+<li>⇢ ⇢ <a href='#memory-and-network'>Memory and network</a></li>
+<li>⇢ ⇢ <a href='#all-hotkeys'>All hotkeys</a></li>
+<li>⇢ ⇢ <a href='#ssh-and-config'>SSH and config</a></li>
+<li>⇢ ⇢ <a href='#building-and-platforms'>Building and platforms</a></li>
+</ul><br />
 <h2 style='display: inline' id='what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</h2><br />
 <br />
 <span>Loadbars shows the current state only. It is not a tool for collecting loads and drawing graphs for later analysis. There is no history, no recording, no database. Tools like Prometheus or Grafana require significant setup before producing results. Loadbars lets you observe the current state immediately: one binary, SSH (or local), and you&#39;re done.</span><br />
