@@ -77,6 +77,11 @@ This is a mix of tech I like(d). I may not be a current subscriber, but now and 
 
 << sort -R magazines.txt
 
+## YouTube channels
+
+* Jo Van Eyck - A lot about AI in Software Engineering
+* The Linux Experiment - Nice to watch to relax and learn about Linux news
+
 # Formal education
 
 I have met many self-taught IT professionals I highly respect. In my own opinion, a formal degree does not automatically qualify a person for a particular job. It is more about how you educate yourself further *after* formal education. The pragmatic way of thinking and getting things done do not require a college or university degree.
