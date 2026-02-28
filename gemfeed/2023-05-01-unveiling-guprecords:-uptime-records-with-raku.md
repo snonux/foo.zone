@@ -163,7 +163,6 @@ E-Mail your comments to hi@foo.zone :-)
 
 Other related posts are:
 
-[2026-02-15 Loadbars resurrected: From Perl to Go after 15 years](./2026-02-15-loadbars-resurrected-from-perl-to-go.md)  
 [2025-11-02 Perl New Features and Foostats](./2025-11-02-perl-new-features-and-foostats.md)  
 [2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku (You are currently reading this)](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 [2022-06-15 Sweating the small stuff - Tiny projects of mine](./2022-06-15-sweating-the-small-stuff.md)  

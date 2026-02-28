@@ -147,7 +147,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-02-15 Loadbars resurrected: From Perl to Go after 15 years](./2026-02-15-loadbars-resurrected-from-perl-to-go.md)  
 [2025-11-02 Perl New Features and Foostats](./2025-11-02-perl-new-features-and-foostats.md)  
 [2023-05-01 Unveiling `guprecords.raku`: Global Uptime Records with Raku](./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md)  
 [2022-05-27 Perl is still a great choice (You are currently reading this)](./2022-05-27-perl-is-still-a-great-choice.md)  

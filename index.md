@@ -31,8 +31,8 @@ Everything you read on this site is my personal opinion and experience. You can 
 ### Posts
 
 [2026-03-01 - Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./gemfeed/2026-03-01-site-reliability-engineering-part-5.md)  
+[2026-02-29 - Loadbars 0.13.0 released](./gemfeed/2026-02-29-loadbars-0.13.0-released.md)  
 [2026-02-22 - My desk rack: DeskPi RackMate T0](./gemfeed/2026-02-22-my-desk-rack.md)  
-[2026-02-15 - Loadbars resurrected: From Perl to Go after 15 years](./gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.md)  
 [2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts](./gemfeed/2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2026-01-01 - Using Supernote Nomad offline](./gemfeed/2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 - Posts from July to December 2025](./gemfeed/2026-01-01-posts-from-july-to-december-2025.md)  
