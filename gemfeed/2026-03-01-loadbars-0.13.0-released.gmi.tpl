@@ -10,7 +10,7 @@ Loadbars can connect to hundreds of servers in parallel; the GIF above doesn't d
 
 => https://codeberg.org/snonux/loadbars Loadbars on Codeberg
 
-<< template::inline::index f3s
+<< template::inline::toc
 
 ## What Loadbars is (and isn't)
 
