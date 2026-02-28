@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-28T17:32:30+02:00</updated>
+    <updated>2026-02-28T18:12:35+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -111,23 +111,15 @@
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/loadbars'>Loadbars on Codeberg</a><br />
 <br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
-<ul>
-<li><a href='#loadbars-0130-released'>Loadbars 0.13.0 released</a></li>
-<li>⇢ <a href='#what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</a></li>
-<li>⇢ <a href='#use-cases'>Use cases</a></li>
-<li>⇢ <a href='#what-s-new-since-the-perl-version'>What&#39;s new since the Perl version</a></li>
-<li>⇢ <a href='#core-features'>Core features</a></li>
-<li>⇢ ⇢ <a href='#load-average-bars'>Load average bars</a></li>
-<li>⇢ ⇢ <a href='#disk-io-bars'>Disk I/O bars</a></li>
-<li>⇢ ⇢ <a href='#global-reference-lines-and-options'>Global reference lines and options</a></li>
-<li>⇢ ⇢ <a href='#cpu-monitoring'>CPU monitoring</a></li>
-<li>⇢ ⇢ <a href='#memory-and-network'>Memory and network</a></li>
-<li>⇢ ⇢ <a href='#all-hotkeys'>All hotkeys</a></li>
-<li>⇢ <a href='#ssh-and-config'>SSH and config</a></li>
-<li>⇢ <a href='#building-and-platforms'>Building and platforms</a></li>
-</ul><br />
 <h2 style='display: inline' id='what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</h2><br />
 <br />
 <span>Loadbars shows the current state only. It is not a tool for collecting loads and drawing graphs for later analysis. There is no history, no recording, no database. Tools like Prometheus or Grafana require significant setup before producing results. Loadbars lets you observe the current state immediately: one binary, SSH (or local), and you&#39;re done.</span><br />
@@ -150,7 +142,6 @@
 <li>Load testing: run your load tool against a cluster and see which hosts (or cores) are saturated, whether memory or disk I/O is the bottleneck, and how load spreads.</li>
 <li>Quick health sweep: no dashboards set up yet? SSH to a handful of hosts and run Loadbars. You get an instant picture of who&#39;s busy, who&#39;s idle, and who&#39;s swapping.</li>
 <li>Comparing hosts: side-by-side bars make it easy to see if one machine is hotter than the rest (e.g. after a config change or migration).</li>
-<li>NOC or on-call: glance at load average, CPU, and network for a known set of servers without opening multiple terminals or a heavy monitoring UI.</li>
 <li>Local tuning: run <span class='inlinecode'>loadbars --hosts localhost</span> while you benchmark or stress a single box; the bars and load-average view help correlate activity with what you&#39;re doing.</li>
 </ul><br />
 <h2 style='display: inline' id='what-s-new-since-the-perl-version'>What&#39;s new since the Perl version</h2><br />
@@ -305,21 +296,6 @@ mage test
 <span>Tested on Fedora Linux 43 and common distros; macOS as client to remote Linux only (no local macOS monitoring — no <span class='inlinecode'>/proc</span>).</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts:</span><br />
-<br />
-<a class='textlink' href='./2026-03-01-loadbars-0.13.0-released.html'>2026-03-01 Loadbars 0.13.0 released (You are currently reading this)</a><br />
-<a class='textlink' href='./2025-11-02-perl-new-features-and-foostats.html'>2025-11-02 Perl New Features and Foostats</a><br />
-<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
-<a class='textlink' href='./2025-03-05-sharing-on-social-media-with-gos.html'>2025-03-05 Sharing on Social Media with Gos v1.0.0</a><br />
-<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
