@@ -65,4 +65,10 @@ By structuring the onboarding process with KT sessions, shadowing, comprehensive
 
 If you're looking to optimize your on-call onboarding process, these strategies could be your ticket to a more efficient and effective transition. Happy on-calling!
 
+Continue with the fifth part of this series:
+
+<< template::inline::index site-reliability-engineering-part-5
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
 => ../ Back to the main site
