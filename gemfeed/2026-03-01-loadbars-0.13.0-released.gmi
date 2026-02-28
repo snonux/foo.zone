@@ -1,6 +1,6 @@
 # Loadbars 0.13.0 released
 
-> Published at 2026-02-29T00:00:00+02:00
+> Published at 2026-03-01T00:00:00+02:00
 
 Loadbars is a real-time server load monitoring tool. It connects to one or more Linux hosts via SSH and shows CPU, memory, network, load average, and disk I/O as vertical colored bars in an SDL window. You can run it locally or point it at your servers and see what's happening right now — like `top` or `vmstat`, but visual and across multiple hosts at once.
 
@@ -180,7 +180,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts:
 
-=> ./2026-02-29-loadbars-0.13.0-released.gmi 2026-02-29 Loadbars 0.13.0 released (You are currently reading this)
+=> ./2026-03-01-loadbars-0.13.0-released.gmi 2026-03-01 Loadbars 0.13.0 released (You are currently reading this)
 => ./2025-11-02-perl-new-features-and-foostats.gmi 2025-11-02 Perl New Features and Foostats
 => ./2025-09-14-bash-golf-part-4.gmi 2025-09-14 Bash Golf Part 4
 => ./2025-03-05-sharing-on-social-media-with-gos.gmi 2025-03-05 Sharing on Social Media with Gos v1.0.0

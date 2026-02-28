@@ -3,6 +3,7 @@
 ## To be in the .zone!
 
 => ./2026-03-01-site-reliability-engineering-part-5.gmi 2026-03-01 - Site Reliability Engineering - Part 5: System Design, Incidents, and Learning
+=> ./2026-03-01-loadbars-0.13.0-released.gmi 2026-03-01 - Loadbars 0.13.0 released
 => ./2026-02-29-loadbars-0.13.0-released.gmi 2026-02-29 - Loadbars 0.13.0 released
 => ./2026-02-22-my-desk-rack.gmi 2026-02-22 - My desk rack: DeskPi RackMate T0
 => ./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.gmi 2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts
