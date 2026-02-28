@@ -175,7 +175,6 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2026-02-15-loadbars-resurrected-from-perl-to-go.gmi 2026-02-15 Loadbars resurrected: From Perl to Go after 15 years
 => ./2025-11-02-perl-new-features-and-foostats.gmi 2025-11-02 Perl New Features and Foostats
 => ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice
 => ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework) (You are currently reading this)
