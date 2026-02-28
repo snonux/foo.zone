@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-28T17:02:03+02:00</updated>
+    <updated>2026-02-28T17:27:38+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -82,6 +82,244 @@
 <li>Implementing Service Level Objectives by Alex Hidalgo</li>
 </ul><br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Loadbars 0.13.0 released</title>
+        <link href="https://foo.zone/gemfeed/2026-02-29-loadbars-0.13.0-released.html" />
+        <id>https://foo.zone/gemfeed/2026-02-29-loadbars-0.13.0-released.html</id>
+        <updated>2026-02-29T00:00:00+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Loadbars is a real-time server load monitoring tool. It connects to one or more Linux hosts via SSH and shows CPU, memory, network, load average, and disk I/O as vertical colored bars in an SDL window. You can run it locally or point it at your servers and see what's happening right now — like `top` or `vmstat`, but visual and across multiple hosts at once.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='loadbars-0130-released'>Loadbars 0.13.0 released</h1><br />
+<br />
+<span class='quote'>Published at 2026-02-29T00:00:00+02:00</span><br />
+<br />
+<span>Loadbars is a real-time server load monitoring tool. It connects to one or more Linux hosts via SSH and shows CPU, memory, network, load average, and disk I/O as vertical colored bars in an SDL window. You can run it locally or point it at your servers and see what&#39;s happening right now — like <span class='inlinecode'>top</span> or <span class='inlinecode'>vmstat</span>, but visual and across multiple hosts at once.</span><br />
+<br />
+<a href='./loadbars-0.13.0-released/loadbars.gif'><img alt='Loadbars in action' title='Loadbars in action' src='./loadbars-0.13.0-released/loadbars.gif' /></a><br />
+<br />
+<span>Loadbars can connect to hundreds of servers in parallel; the GIF above doesn&#39;t do it justice — at scale you get a wall of bars that makes it easy to spot outliers and compare hosts at a glance.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/loadbars'>Loadbars on Codeberg</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#loadbars-0130-released'>Loadbars 0.13.0 released</a></li>
+<li>⇢ <a href='#what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</a></li>
+<li>⇢ <a href='#use-cases'>Use cases</a></li>
+<li>⇢ <a href='#what-s-new-since-the-perl-version'>What&#39;s new since the Perl version</a></li>
+<li>⇢ <a href='#core-features'>Core features</a></li>
+<li>⇢ ⇢ <a href='#load-average-bars'>Load average bars</a></li>
+<li>⇢ ⇢ <a href='#disk-io-bars'>Disk I/O bars</a></li>
+<li>⇢ ⇢ <a href='#global-reference-lines-and-options'>Global reference lines and options</a></li>
+<li>⇢ ⇢ <a href='#cpu-monitoring'>CPU monitoring</a></li>
+<li>⇢ ⇢ <a href='#memory-and-network'>Memory and network</a></li>
+<li>⇢ ⇢ <a href='#all-hotkeys'>All hotkeys</a></li>
+<li>⇢ <a href='#ssh-and-config'>SSH and config</a></li>
+<li>⇢ <a href='#building-and-platforms'>Building and platforms</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</h2><br />
+<br />
+<span>Loadbars shows the current state only. It is not a tool for collecting loads and drawing graphs for later analysis. There is no history, no recording, no database. Tools like Prometheus or Grafana require significant setup before producing results. Loadbars lets you observe the current state immediately: one binary, SSH (or local), and you&#39;re done.</span><br />
+<br />
+<pre>
+┌─ Loadbars 0.13.0 ─────────────────────────────────────────┐
+│                                                           │
+│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
+│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
+│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
+│   CPU   cpu0  cpu1  mem  CPU   cpu0  cpu1  mem  net   net │
+│  └──── host1 ────┘      └──── host2 ────┘                 │
+└───────────────────────────────────────────────────────────┘
+</pre>
+<br />
+<h2 style='display: inline' id='use-cases'>Use cases</h2><br />
+<br />
+<ul>
+<li>Deployments and rollouts: watch CPU, memory, and network across app servers or nodes while you deploy. Spot the one that isn&#39;t coming up or is stuck under load.</li>
+<li>Load testing: run your load tool against a cluster and see which hosts (or cores) are saturated, whether memory or disk I/O is the bottleneck, and how load spreads.</li>
+<li>Quick health sweep: no dashboards set up yet? SSH to a handful of hosts and run Loadbars. You get an instant picture of who&#39;s busy, who&#39;s idle, and who&#39;s swapping.</li>
+<li>Comparing hosts: side-by-side bars make it easy to see if one machine is hotter than the rest (e.g. after a config change or migration).</li>
+<li>NOC or on-call: glance at load average, CPU, and network for a known set of servers without opening multiple terminals or a heavy monitoring UI.</li>
+<li>Local tuning: run <span class='inlinecode'>loadbars --hosts localhost</span> while you benchmark or stress a single box; the bars and load-average view help correlate activity with what you&#39;re doing.</li>
+</ul><br />
+<h2 style='display: inline' id='what-s-new-since-the-perl-version'>What&#39;s new since the Perl version</h2><br />
+<br />
+<span>The original Loadbars (Perl + SDL, ~2010–2013) had CPU, memory, network, ClusterSSH, and a config file. The Go rewrite and subsequent releases added the following. Why each one matters:</span><br />
+<br />
+<ul>
+<li>Load average bars: the Perl version had no load average. Now you get 1/5/15-minute load per host. Useful because load average is the classic "how queued is this box" signal — you see saturation and trends at a glance without reading numbers.</li>
+</ul><br />
+<ul>
+<li>Disk I/O bars: disk was invisible in the Perl version. You now get read/write throughput (and optionally utilization %) per host or per device. Whole-disk devices only (partitions, loop, ram, zram, and device-mapper are excluded). Useful when you need to tell "is this slow because of CPU or because of disk?" — especially with many hosts, one disk-heavy host stands out. Disk smoothing (config diskaverage, hotkeys b/x) lets you tune how much the bars are averaged.</li>
+</ul><br />
+<ul>
+<li>Extended peak line on CPU: a 1px line shows max system+user over the last N samples. Useful to see short spikes that the stacked bar might smooth out, so you don&#39;t miss bursty load.</li>
+</ul><br />
+<ul>
+<li>Tooltips and host highlight: hover the mouse over any bar to see a tooltip with exact values (CPU %, memory, network, load, or disk depending on bar type). The hovered host&#39;s bars are highlighted (inverted) so you can tell which host you&#39;re over. Useful when you have hundreds of bars and want to read a specific number or confirm which host a bar belongs to.</li>
+</ul><br />
+<ul>
+<li>GuestNice in CPU bars: CPU bars now show GuestNice as a lime green segment (above Nice). One more breakdown for virtualized or container workloads.</li>
+</ul><br />
+<ul>
+<li>Version in window title: the default SDL title is "Loadbars &lt;version&gt; (press h for help on stdout)". Override with --title when you need a custom label.</li>
+</ul><br />
+<ul>
+<li>Global average CPU line (key g): a single red line across all hosts at the fleet-average CPU. Useful when you have hundreds of bars: you instantly see which hosts are above or below average without comparing bar heights in your head.</li>
+</ul><br />
+<ul>
+<li>Global I/O average line (key i): same idea for iowait+IRQ. Useful to spot which hosts are waiting on I/O more than the rest — quick way to find the disk-bound or interrupt-heavy machines.</li>
+</ul><br />
+<ul>
+<li>Host separator lines (key s): a thin red vertical line between each host&#39;s bars. Useful at scale so you don&#39;t lose track of where one host ends and the next begins when the window is full of bars.</li>
+</ul><br />
+<ul>
+<li>Scale reset (key r): reset the auto-scale for load and disk back to the floor. Useful after a big spike so the bars don&#39;t stay compressed for the rest of the session.</li>
+</ul><br />
+<ul>
+<li>Toggle CPU off (key 1 cycles through aggregate → per-core → off): the Perl version didn&#39;t let you turn CPU bars off. Useful when you want to focus only on memory, network, load, or disk and reduce clutter.</li>
+</ul><br />
+<ul>
+<li>maxbarsperrow: wrap bars into multiple rows instead of one long row. Useful with many hosts so the window doesn&#39;t become impossibly wide; you get a grid and can still scan everything.</li>
+</ul><br />
+<ul>
+<li>maxwidth: cap on window width in pixels (default 1900). Stops the window growing unbounded with many hosts; use together with maxbarsperrow for a predictable layout.</li>
+</ul><br />
+<ul>
+<li>Startup visibility flags: --showmem, --shownet, --showload, --extended, --cpumode, --diskmode (and friends) let you start with the bars you care about already on. Useful so you don&#39;t have to press 2, 3, 4, 5 every time.</li>
+</ul><br />
+<ul>
+<li>Window title (--title): set the SDL window title. Useful when you run several Loadbars windows (e.g. one per cluster or environment) and need to tell them apart in your taskbar or window list.</li>
+</ul><br />
+<ul>
+<li>SSH options (--sshopts): pass extra flags to ssh (e.g. ConnectTimeout, ProxyJump). Useful on locked-down or jump-host setups so Loadbars works without changing your global SSH config for a one-off session.</li>
+</ul><br />
+<ul>
+<li>hasagent: skip extra SSH agent checks when you know the key is already loaded. Useful to avoid startup delay or warnings when you&#39;ve already run ssh-add and are monitoring many hosts.</li>
+</ul><br />
+<ul>
+<li>Config file covers every option: any flag from --help can be set in ~/.loadbarsrc (no leading --). Perl had a config but the Go version supports the full set. Useful for reproducible setups and sharing.</li>
+</ul><br />
+<ul>
+<li>Positional host arguments: you can run <span class='inlinecode'>loadbars server1 server2</span> without --hosts. Convenience when you only have a few hosts.</li>
+</ul><br />
+<ul>
+<li>macOS as client: run the Loadbars binary on a Mac and connect to Linux servers via SSH. The Perl version was Linux-only. Useful to watch production from a laptop without a Linux VM or second machine.</li>
+</ul><br />
+<ul>
+<li>Single static binary: no Perl runtime, no SDL Perl modules, no CPAN. Useful for deployment — copy one file to a jump host or new machine and run it.</li>
+</ul><br />
+<ul>
+<li>Unit tests: mage test (or go test). The Go version has proper tests; useful for development and catching regressions.</li>
+</ul><br />
+<ul>
+<li>Window resize (arrow keys): resize the window with the keyboard (left/right = width, up/down = height). Useful to fit more or fewer bars on screen without touching the mouse. (The Perl version had mouse-based resize; Go uses arrow keys.)</li>
+</ul><br />
+<ul>
+<li>Hundreds of hosts in parallel: the Go implementation connects to all hosts concurrently and keeps polling without blocking. The Perl version struggled with many hosts. Useful for large fleets; you get a real "wall of bars" instead of a subset.</li>
+</ul><br />
+<h2 style='display: inline' id='core-features'>Core features</h2><br />
+<br />
+<h3 style='display: inline' id='load-average-bars'>Load average bars</h3><br />
+<br />
+<span>Press <span class='inlinecode'>4</span> or <span class='inlinecode'>l</span> to toggle. Each host gets a bar: teal fill (1-min load), yellow 1px line (5-min), white 1px line (15-min). Scale: auto (floor 2.0) or fixed with <span class='inlinecode'>--loadmax N</span>. Press <span class='inlinecode'>r</span> to reset auto-scale.</span><br />
+<br />
+<h3 style='display: inline' id='disk-io-bars'>Disk I/O bars</h3><br />
+<br />
+<span>Press <span class='inlinecode'>5</span> to toggle: aggregate (all whole-disk devices per host) → per-device → off. Partitions, loop, ram, zram, and device-mapper are excluded. Purple fill from top = read, darker purple from bottom = write. Extended mode (<span class='inlinecode'>e</span>) adds a 3px disk-utilization line. Config: <span class='inlinecode'>diskmode</span>, <span class='inlinecode'>diskmax</span>, <span class='inlinecode'>diskaverage</span>. <span class='inlinecode'>b</span>/<span class='inlinecode'>x</span> change disk average samples.</span><br />
+<br />
+<h3 style='display: inline' id='global-reference-lines-and-options'>Global reference lines and options</h3><br />
+<br />
+<span><span class='inlinecode'>g</span>: global average CPU line (1px red). <span class='inlinecode'>i</span>: global I/O average line (1px pink). <span class='inlinecode'>s</span>: host separator lines (1px red). Other options: <span class='inlinecode'>--maxbarsperrow N</span>, <span class='inlinecode'>--title</span>, <span class='inlinecode'>--sshopts</span>, <span class='inlinecode'>--hasagent</span>. Hotkeys <span class='inlinecode'>m</span>/<span class='inlinecode'>n</span> mirror <span class='inlinecode'>2</span>/<span class='inlinecode'>3</span> for memory and network. Hover over a bar for a tooltip with exact values and host highlight.</span><br />
+<br />
+<h3 style='display: inline' id='cpu-monitoring'>CPU monitoring</h3><br />
+<br />
+<span>CPU usage as vertical stacked bars: System (blue), User (yellow), Nice (green), GuestNice (lime green), Idle (black), IOwait (purple), IRQ/SoftIRQ (white), Guest/Steal (red). Press <span class='inlinecode'>1</span> for aggregate vs. per-core. Press <span class='inlinecode'>e</span> for extended mode (1px peak line: max system+user over last N samples).</span><br />
+<br />
+<h3 style='display: inline' id='memory-and-network'>Memory and network</h3><br />
+<br />
+<ul>
+<li><span class='inlinecode'>2</span> / <span class='inlinecode'>m</span>: memory — left half RAM (dark grey/black), right half Swap (grey/black) per host</li>
+<li><span class='inlinecode'>3</span> / <span class='inlinecode'>n</span>: network — RX (top, light green) and TX (bottom) summed over non-loopback interfaces. Red bar = no non-lo interface. Use <span class='inlinecode'>--netlink</span> or <span class='inlinecode'>f</span>/<span class='inlinecode'>v</span> for link speed (utilization %). Default <span class='inlinecode'>gbit</span>.</li>
+</ul><br />
+<h3 style='display: inline' id='all-hotkeys'>All hotkeys</h3><br />
+<br />
+<pre>
+Key     Action
+─────   ──────────────────────────────────────────────────
+1       Toggle CPU (aggregate / per-core / off)
+2 / m   Toggle memory bars
+3 / n   Toggle network bars
+4 / l   Toggle load average bars
+5       Toggle disk I/O (aggregate / per-device / off)
+r       Reset load and disk auto-scale peaks
+e       Toggle extended (peak line on CPU; disk util line)
+g       Toggle global average CPU line
+i       Toggle global I/O average line
+s       Toggle host separator lines
+h       Print hotkey list to stdout
+q       Quit
+w       Write current settings to ~/.loadbarsrc
+a / y   CPU average samples up / down
+d / c   Net average samples up / down
+b / x   Disk average samples up / down
+f / v   Link scale up / down
+Arrows  Resize window
+</pre>
+<br />
+<h3 style='display: inline' id='ssh-and-config'>SSH and config</h3><br />
+<br />
+<span>Connect with public key auth; hosts need bash and <span class='inlinecode'>/proc</span> (Linux). No agent needed on the remote side.</span><br />
+<br />
+<pre>
+loadbars --hosts server1,server2,server3
+loadbars --hosts root@server1,root@server2
+loadbars servername{01..50}.example.com --showcores 1
+loadbars --cluster production
+</pre>
+<br />
+<span>Config: <span class='inlinecode'>~/.loadbarsrc</span> (key=value, no <span class='inlinecode'>--</span>; use <span class='inlinecode'>#</span> for comments). Any <span class='inlinecode'>--help</span> option. Press <span class='inlinecode'>w</span> to save current settings.</span><br />
+<br />
+<h3 style='display: inline' id='building-and-platforms'>Building and platforms</h3><br />
+<br />
+<span>Go 1.25+ and SDL2. Install SDL2 (e.g. <span class='inlinecode'>sudo dnf install SDL2-devel</span> on Fedora, <span class='inlinecode'>brew install sdl2</span> on macOS), then:</span><br />
+<br />
+<pre>
+mage build
+./loadbars --hosts localhost
+mage install   # to ~/go/bin
+mage test
+</pre>
+<br />
+<span>Tested on Fedora Linux 43 and common distros; macOS as client to remote Linux only (no local macOS monitoring — no <span class='inlinecode'>/proc</span>).</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-02-29-loadbars-0.13.0-released.html'>2026-02-29 Loadbars 0.13.0 released (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-11-02-perl-new-features-and-foostats.html'>2025-11-02 Perl New Features and Foostats</a><br />
+<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
+<a class='textlink' href='./2025-03-05-sharing-on-social-media-with-gos.html'>2025-03-05 Sharing on Social Media with Gos v1.0.0</a><br />
+<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go</a><br />
+<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
+<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
+<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
+<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
+<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
+<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -207,252 +445,6 @@
 <span>That&#39;s the full desk rack: CD transport and air monitor on top, PinePower and charging shelf, switch, then Topping E50 and L50 at the bottom, with the Hifiman Sundara as the main output and the Supernote Nomad sitting next to it. I hope that you found this interesting.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Loadbars resurrected: From Perl to Go after 15 years</title>
-        <link href="https://foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.html" />
-        <id>https://foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.html</id>
-        <updated>2026-02-14T22:43:27+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Who remembers Loadbars? The small, humble server load monitoring tool I wrote back in November 2010 as a Perl+SDL project during my first job after graduating from university as a Linux Sysadmin. That was over 15 years ago. After being effectively dead for more than a decade, Loadbars is working again -- rewritten in Go from Perl with the help of AI (Claude Code), and it even works on macOS now (as a client).</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='loadbars-resurrected-from-perl-to-go-after-15-years'>Loadbars resurrected: From Perl to Go after 15 years</h1><br />
-<br />
-<span class='quote'>Published at 2026-02-14T22:43:27+02:00</span><br />
-<br />
-<span>Who remembers Loadbars? The small, humble server load monitoring tool I wrote back in November 2010 as a Perl+SDL project during my first job after graduating from university as a Linux Sysadmin. That was over 15 years ago. After being effectively dead for more than a decade, Loadbars is working again -- rewritten in Go from Perl with the help of AI (Claude Code), and it even works on macOS now (as a client).</span><br />
-<br />
-<a href='./loadbars-resurrected-from-perl-to-go/loadbars.gif'><img alt='Loadbars in action' title='Loadbars in action' src='./loadbars-resurrected-from-perl-to-go/loadbars.gif' /></a><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/loadbars'>Loadbars on Codeberg</a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#loadbars-resurrected-from-perl-to-go-after-15-years'>Loadbars resurrected: From Perl to Go after 15 years</a></li>
-<li>⇢ <a href='#what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</a></li>
-<li>⇢ <a href='#why-the-rewrite-was-necessary'>Why the rewrite was necessary</a></li>
-<li>⇢ <a href='#a-brief-history'>A brief history</a></li>
-<li>⇢ <a href='#features'>Features</a></li>
-<li>⇢ ⇢ <a href='#cpu-monitoring'>CPU monitoring</a></li>
-<li>⇢ ⇢ <a href='#memory-monitoring'>Memory monitoring</a></li>
-<li>⇢ ⇢ <a href='#network-monitoring'>Network monitoring</a></li>
-<li>⇢ ⇢ <a href='#all-hotkeys'>All hotkeys</a></li>
-<li>⇢ ⇢ <a href='#ssh-and-multi-host-support'>SSH and multi-host support</a></li>
-<li>⇢ ⇢ <a href='#config-file'>Config file</a></li>
-<li>⇢ ⇢ <a href='#macos-support'>macOS support</a></li>
-<li>⇢ <a href='#building-from-source'>Building from source</a></li>
-<li>⇢ <a href='#tested-platforms'>Tested platforms</a></li>
-<li>⇢ <a href='#future-proof-with-go'>Future-proof with Go</a></li>
-<li>⇢ <a href='#the-ai-rewrite-experience'>The AI rewrite experience</a></li>
-</ul><br />
-<h2 style='display: inline' id='what-loadbars-is-and-isn-t'>What Loadbars is (and isn&#39;t)</h2><br />
-<br />
-<span>Loadbars is a real-time server load monitoring tool. It connects to one or more Linux hosts via SSH and shows CPU, memory, and network usage as vertical colored bars in an SDL window. You can also run it locally without SSH. It shows the current state only -- like <span class='inlinecode'>top</span> or <span class='inlinecode'>vmstat</span>, but visual and across multiple hosts at once. All you need is a working SSH connection through an SSH Agent.</span><br />
-<br />
-<span>It is not a tool for collecting loads and drawing graphs for later analysis. There is no history, no recording, no database. Tools like Prometheus or Grafana require significant setup time before producing results. Loadbars lets you observe the current state immediately. You install one binary, point it at your servers, and see what&#39;s happening right now.</span><br />
-<br />
-<pre>
-┌─ Loadbars 0.9.0 ──────────────────────────────────────────┐
-│                                                           │
-│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
-│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
-│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
-│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
-│  ████  ████  ████  ██  ████  ████  ████  ██  ░░██  ░░██   │
-│  ▓▓▓▓  ▓▓▓▓  ▓▓▓▓  ▓▓  ▓▓▓▓  ▓▓▓▓  ▓▓▓▓  ▓▓  ░░▓▓  ░░▓▓   │
-│   CPU   cpu0  cpu1  mem  CPU   cpu0  cpu1  mem  net   net │
-│  └──── host1 ────┘      └──── host2 ────┘                 │
-└───────────────────────────────────────────────────────────┘
-</pre>
-<br />
-<h2 style='display: inline' id='why-the-rewrite-was-necessary'>Why the rewrite was necessary</h2><br />
-<br />
-<span>I&#39;d have liked to have kept the Perl version. Perl was the first language I learned properly, and I have a soft spot for it. But there was an (for me) unresolvable multithreading issue related to recent Perl and SDL library versions. Perl&#39;s <span class='inlinecode'>ithreads</span> and SDL doesn&#39;t work reliably anymore, and debugging decade-old thread-safety issues in XS bindings is not a productive use of time.</span><br />
-<br />
-<span>I actually tried to fix the Perl version first. I had Claude Code (CLI, running Opus 5.3) attempt to resolve the segfault involving Perl&#39;s multi-threading and SDL. It couldn&#39;t—the issue is deep in the XS bindings and not something you can fix from Perl-land (nor did I want to invest my own time in it either). So the more pragmatic thing to do was to let Claude Code rewrite the whole thing in Go instead. That worked without any major issues. The Go version is cleaner and easier to deploy (single static binary), and now has proper unit tests.</span><br />
-<br />
-<span>I could have redesigned the Perl version to make it work, but I think Go is the better choice in this case. The important thing: for the user, nothing changes. The rewrite&#39;s usage, look, and feel are de-facto identical to the old Perl version. The same hotkeys, the same bar layout, the same colors, the same config file format. If you used Loadbars ten years ago, you can pick up the new version and everything works exactly as you remember. The only difference is under the hood.</span><br />
-<br />
-<h2 style='display: inline' id='a-brief-history'>A brief history</h2><br />
-<br />
-<span>The first commit is from November 5, 2010—over 15 years ago. Back then, it was called <span class='inlinecode'>cpuload</span> and was a quick Perl+SDL hack I wrote at work to keep an eye on a fleet of Linux servers. It grew into Loadbars over the following weeks, gaining memory and network monitoring, ClusterSSH integration, and a config file. The last meaningful Perl development was around 2013. Around that time, there were already a couple of colleagues who used Loadbars frequently. But then I changed my job role and later even jobs, and I stopped development of Loadbars.</span><br />
-<br />
-<span>For the next decade, it sat dormant. I occasionally thought about reviving it, but Perl+SDL threading issues made it impractical. In February 2026, I finally sat down with Claude Code and let it rewrite the whole thing in Go in a single session.</span><br />
-<br />
-<h2 style='display: inline' id='features'>Features</h2><br />
-<br />
-<h3 style='display: inline' id='cpu-monitoring'>CPU monitoring</h3><br />
-<br />
-<span>CPU usage is shown as vertical colored bars. Each bar is stacked from bottom to top with the following segments:</span><br />
-<br />
-<ul>
-<li>System (blue) -- kernel CPU time</li>
-<li>User (yellow) -- user-space CPU time; turns dark yellow above 50%, orange above 70%</li>
-<li>Nice (green) -- low-priority user processes</li>
-<li>Idle (black) -- unused CPU</li>
-<li>IOwait (purple) -- waiting for disk I/O</li>
-<li>IRQ / SoftIRQ (white) -- interrupt handling</li>
-<li>Guest (red) -- time spent running virtual CPUs</li>
-<li>Steal (red) -- time stolen by the hypervisor</li>
-</ul><br />
-<span>Press <span class='inlinecode'>1</span> to toggle between one aggregate bar per host and one bar per core. Press <span class='inlinecode'>e</span> for extended mode, which adds a 1px peak line showing the maximum system+user percentage over the last N samples.</span><br />
-<br />
-<h3 style='display: inline' id='memory-monitoring'>Memory monitoring</h3><br />
-<br />
-<span>Press <span class='inlinecode'>2</span> to toggle memory bars. Each host gets one bar split in two halves:</span><br />
-<br />
-<ul>
-<li>Left half: RAM usage (dark grey = used, black = free)</li>
-<li>Right half: Swap usage (grey = used, black = free)</li>
-</ul><br />
-<h3 style='display: inline' id='network-monitoring'>Network monitoring</h3><br />
-<br />
-<span>Press <span class='inlinecode'>3</span> to toggle network bars. Loadbars sums RX and TX bytes across all non-loopback interfaces (e.g. <span class='inlinecode'>eth0</span>, <span class='inlinecode'>wlan0</span>, <span class='inlinecode'>enp0s3</span>) and shows the combined total. Loopback (<span class='inlinecode'>lo</span>) is always excluded. Each net bar has two halves:</span><br />
-<br />
-<ul>
-<li>Left half: RX (received) growing from the top (light green)</li>
-<li>Right half: TX (transmitted) growing from the bottom (light green)</li>
-</ul><br />
-<span>Network utilization is shown as a percentage of the configured link speed. The default link speed is <span class='inlinecode'>gbit</span> (1 Gbps). Change it with <span class='inlinecode'>--netlink</span> or in the config file. Press <span class='inlinecode'>f</span>/<span class='inlinecode'>v</span> to scale the link speed up or down during runtime (cycles through mbit, 10mbit, 100mbit, gbit, 10gbit).</span><br />
-<br />
-<span>If the net bar is red, it means no non-loopback interface was found on that host.</span><br />
-<br />
-<h3 style='display: inline' id='all-hotkeys'>All hotkeys</h3><br />
-<br />
-<pre>
-Key     Action
-─────   ──────────────────────────────────────────────────
-1       Toggle CPU cores (aggregate vs per-core bars)
-2       Toggle memory bars
-3       Toggle network bars (aggregated across interfaces)
-e       Toggle extended display (peak line on CPU bars)
-h       Print hotkey list to stdout
-q       Quit
-w       Write current settings to ~/.loadbarsrc
-a / y   Increase / decrease CPU average samples
-d / c   Increase / decrease net average samples
-f / v   Link scale up / down (net utilization reference)
-Arrows  Resize window (left/right: width, up/down: height)
-</pre>
-<br />
-<h3 style='display: inline' id='ssh-and-multi-host-support'>SSH and multi-host support</h3><br />
-<br />
-<span>Loadbars connects to remote hosts via SSH using public key authentication. No agent or special setup is needed on the remote side -- Loadbars embeds a small bash script in the binary and runs it via <span class='inlinecode'>bash -s</span> over SSH. The remote hosts only need bash and <span class='inlinecode'>/proc</span> (i.e. Linux).</span><br />
-<br />
-<pre>
-loadbars --hosts server1,server2,server3
-
-loadbars --hosts root@server1,root@server2
-
-loadbars servername{01..50}.example.com --showcores 1
-</pre>
-<br />
-<span>Shell brace expansion works for specifying ranges of hosts. You can also use ClusterSSH cluster definitions from <span class='inlinecode'>/etc/clusters</span>:</span><br />
-<br />
-<pre>
-loadbars --cluster production
-</pre>
-<br />
-<span>When no hosts are given, Loadbars runs locally on <span class='inlinecode'>localhost</span> without SSH.</span><br />
-<br />
-<h3 style='display: inline' id='config-file'>Config file</h3><br />
-<br />
-<span>Loadbars reads <span class='inlinecode'>~/.loadbarsrc</span> on startup. Any option from <span class='inlinecode'>--help</span> can be set there without the leading <span class='inlinecode'>--</span>. Comments use <span class='inlinecode'>#</span>. Press <span class='inlinecode'>w</span> during runtime to write the current settings to the config file.</span><br />
-<br />
-<pre>
-showcores=1
-showmem=1
-shownet=1
-extended=1
-netlink=gbit
-cpuaverage=10
-netaverage=15
-height=150
-barwidth=1200
-</pre>
-<br />
-<h3 style='display: inline' id='macos-support'>macOS support</h3><br />
-<br />
-<span>macOS is supported as a client for monitoring remote Linux servers via SSH. Local monitoring on macOS is not supported because it requires the <span class='inlinecode'>/proc</span> filesystem. The SDL window is automatically brought to the foreground on macOS.</span><br />
-<br />
-<h2 style='display: inline' id='building-from-source'>Building from source</h2><br />
-<br />
-<span>Loadbars requires Go 1.25+ and SDL2. Install the SDL2 development libraries for your platform:</span><br />
-<br />
-<pre>
-# Fedora / RHEL / CentOS
-sudo dnf install SDL2-devel
-
-# macOS
-brew install sdl2
-</pre>
-<br />
-<span>Then build with Mage (recommended) or plain Go:</span><br />
-<br />
-<pre>
-mage build
-./loadbars --hosts localhost
-
-# or without Mage:
-go build -o loadbars ./cmd/loadbars
-</pre>
-<br />
-<span>Install to <span class='inlinecode'>~/go/bin</span>:</span><br />
-<br />
-<pre>
-mage install
-</pre>
-<br />
-<span>Run tests:</span><br />
-<br />
-<pre>
-mage test
-# or: go test ./...
-</pre>
-<br />
-<h2 style='display: inline' id='tested-platforms'>Tested platforms</h2><br />
-<br />
-<ul>
-<li>Fedora Linux 43 and most modern Linux distributions (RHEL, CentOS, Ubuntu, Debian, etc.)</li>
-<li>macOS (Darwin) as a client connecting to remote Linux servers via SSH</li>
-</ul><br />
-<span>Remote hosts must be Linux with <span class='inlinecode'>/proc</span> and bash.</span><br />
-<br />
-<h2 style='display: inline' id='future-proof-with-go'>Future-proof with Go</h2><br />
-<br />
-<span>One of the reasons I chose Go for the rewrite is Go&#39;s compatibility promise. The Go 1 compatibility guarantee means that code written today will continue to compile and work with future Go releases. No more bitrotted XS bindings, no more <span class='inlinecode'>ithreads</span> headaches, no more hunting for compatible versions of SDL Perl modules.</span><br />
-<br />
-<span>The Go SDL2 bindings (go-sdl2) are actively maintained, and SDL2 itself is a stable, well-supported library. The entire application compiles to a single static binary with no runtime dependencies beyond SDL2. Deploy it anywhere, run it for years.</span><br />
-<br />
-<h2 style='display: inline' id='the-ai-rewrite-experience'>The AI rewrite experience</h2><br />
-<br />
-<span>This resurrection would not have been really possible without the help of AI. The rewrite was done with Claude Code CLI (Anthropic&#39;s coding agent) running Claude Opus 5.3. I pointed it at the Perl source,  and let it produce the Go equivalent. The process was surprisingly smooth -- the rewrite worked without any major issues. There were some minor bugs (such as network bars not showing up initially, and/or some pixel errors in the bars), but they were sorted by Claude by providing screenshots of the problems!</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts:</span><br />
-<br />
-<a class='textlink' href='./2026-02-15-loadbars-resurrected-from-perl-to-go.html'>2026-02-15 Loadbars resurrected: From Perl to Go after 15 years (You are currently reading this)</a><br />
-<a class='textlink' href='./2025-11-02-perl-new-features-and-foostats.html'>2025-11-02 Perl New Features and Foostats</a><br />
-<a class='textlink' href='./2025-09-14-bash-golf-part-4.html'>2025-09-14 Bash Golf Part 4</a><br />
-<a class='textlink' href='./2025-03-05-sharing-on-social-media-with-gos.html'>2025-03-05 Sharing on Social Media with Gos v1.0.0</a><br />
-<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go</a><br />
-<a class='textlink' href='./2023-12-10-bash-golf-part-3.html'>2023-12-10 Bash Golf Part 3</a><br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>2023-06-01 KISS server monitoring with Gogios</a><br />
-<a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
-<a class='textlink' href='./2022-01-01-bash-golf-part-2.html'>2022-01-01 Bash Golf Part 2</a><br />
-<a class='textlink' href='./2021-11-29-bash-golf-part-1.html'>2021-11-29 Bash Golf Part 1</a><br />
-<a class='textlink' href='./2011-05-07-perl-daemon-service-framework.html'>2011-05-07 Perl Daemon (Service Framework)</a><br />
-<a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
             </div>
         </content>
     </entry>
@@ -4523,7 +4515,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2026-02-15-loadbars-resurrected-from-perl-to-go.html'>2026-02-15 Loadbars resurrected: From Perl to Go after 15 years</a><br />
 <a class='textlink' href='./2025-11-02-perl-new-features-and-foostats.html'>2025-11-02 Perl New Features and Foostats (You are currently reading this)</a><br />
 <a class='textlink' href='./2023-05-01-unveiling-guprecords:-uptime-records-with-raku.html'>2023-05-01 Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</a><br />
 <a class='textlink' href='./2022-05-27-perl-is-still-a-great-choice.html'>2022-05-27 Perl is still a great choice</a><br />
