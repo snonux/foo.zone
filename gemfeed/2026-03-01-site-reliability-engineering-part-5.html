@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Site Reliability Engineering - Part 5: System Design, Incidents, and Learning</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-03-01-site-reliability-engineering-part-5.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-03-01-site-reliability-engineering-part-5.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='site-reliability-engineering---part-5-system-design-incidents-and-learning'>Site Reliability Engineering - Part 5: System Design, Incidents, and Learning</h1><br />
+<br />
+<span class='quote'>Published at 2026-03-01T12:00:00+02:00</span><br />
+<br />
+<span>Welcome to Part 5 of my Site Reliability Engineering (SRE) series. I&#39;m currently working as a Site Reliability Engineer, and I&#39;m here to share what SRE is all about in this blog series.</span><br />
+<br />
+<a class='textlink' href='./2023-08-18-site-reliability-engineering-part-1.html'>2023-08-18 Site Reliability Engineering - Part 1: SRE and Organizational Culture</a><br />
+<a class='textlink' href='./2023-11-19-site-reliability-engineering-part-2.html'>2023-11-19 Site Reliability Engineering - Part 2: Operational Balance</a><br />
+<a class='textlink' href='./2024-01-09-site-reliability-engineering-part-3.html'>2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture</a><br />
+<a class='textlink' href='./2024-09-07-site-reliability-engineering-part-4.html'>2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers</a><br />
+<a class='textlink' href='./2026-03-01-site-reliability-engineering-part-5.html'>2026-03-01 Site Reliability Engineering - Part 5: System Design, Incidents, and Learning (You are currently reading this)</a><br />
+<br />
+<pre>
+    ___
+   /   \     resilience
+  |  o  |  &lt;----------  learning
+   \___/
+</pre>
+<br />
+<span>This time I want to share some themes that build on what we&#39;ve already covered: how system design and incident analysis fit together, why observability should not be an afterthought, and how a design‑improvement loop keeps systems getting better. Let&#39;s dive in!</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#site-reliability-engineering---part-5-system-design-incidents-and-learning'>Site Reliability Engineering - Part 5: System Design, Incidents, and Learning</a></li>
+<li>⇢ <a href='#system-design-and-incident-analysis'>System Design and Incident Analysis</a></li>
+<li>⇢ ⇢ <a href='#resilience-and-cascading-failures'>Resilience and cascading failures</a></li>
+<li>⇢ ⇢ <a href='#learning-from-incidents'>Learning from incidents</a></li>
+<li>⇢ <a href='#observability-don-t-leave-it-for-when-it-s-too-late'>Observability: Don&#39;t leave it for when it&#39;s too late</a></li>
+<li>⇢ <a href='#the-iterative-spirit'>The iterative spirit</a></li>
+<li>⇢ <a href='#book-tips'>Book tips</a></li>
+</ul><br />
+<h2 style='display: inline' id='system-design-and-incident-analysis'>System Design and Incident Analysis</h2><br />
+<br />
+<span>A big chunk of SRE work revolves around system design and incident analysis. What separates a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. Unchecked, those can spiral into global outages.</span><br />
+<br />
+<h3 style='display: inline' id='resilience-and-cascading-failures'>Resilience and cascading failures</h3><br />
+<br />
+<span>There&#39;s a growing emphasis on building resilient systems so that when something fails, the blast radius stays small. That resilience needs to be baked in at design time: we identify weak points and address them before production. The goal is to keep services dependable and uninterrupted.</span><br />
+<br />
+<h3 style='display: inline' id='learning-from-incidents'>Learning from incidents</h3><br />
+<br />
+<span>When incidents do happen, their analysis is a goldmine. Every incident exposes gaps—whether in tooling (ops tools that aren&#39;t up to the job) or in skills (engineers missing critical know-how). Blaming "human error" doesn&#39;t help. The job is to dig into root causes and fix the system. Postmortems that focus on customer impact help us distil lessons and make the system more robust so we&#39;re less likely to repeat the same failure.</span><br />
+<br />
+<span>System design and incident analysis form a feedback loop: we improve the design based on what we learn from incidents, and a better design reduces the impact of the next one.</span><br />
+<br />
+<h2 style='display: inline' id='observability-don-t-leave-it-for-when-it-s-too-late'>Observability: Don&#39;t leave it for when it&#39;s too late</h2><br />
+<br />
+<span>Product and features often get the spotlight; observability is often an afterthought. Teams agree that "we need better observability" when they&#39;re already in the middle of an incident—and by then it&#39;s too late. Good observability needs to be in place before things go wrong. Tools that can query high-cardinality data and give granular insight into system behaviour are what let us diagnose problems quickly when chaos hits. So invest in observability early. When the next incident happens, you&#39;ll be glad you did.</span><br />
+<br />
+<h2 style='display: inline' id='the-iterative-spirit'>The iterative spirit</h2><br />
+<br />
+<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. Perfection is a journey, not a destination.</span><br />
+<br />
+<h2 style='display: inline' id='book-tips'>Book tips</h2><br />
+<br />
+<span>If you want to go deeper, here are a few books I can recommend:</span><br />
+<br />
+<ul>
+<li>97 Things Every SRE Should Know: Collective Wisdom from the Experts by Emily Stolarsky and Jaime Woo</li>
+<li>Site Reliability Engineering: How Google Runs Production Systems by Jennifer Petoff, Niall Murphy, Betsy Beyer, and Chris Jones</li>
+<li>Implementing Service Level Objectives by Alex Hidalgo</li>
+</ul><br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
