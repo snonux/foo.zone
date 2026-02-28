@@ -8,6 +8,7 @@ This is the second part of my Site Reliability Engineering (SRE) series. I am cu
 [2023-11-19 Site Reliability Engineering - Part 2: Operational Balance (You are currently reading this)](./2023-11-19-site-reliability-engineering-part-2.md)  
 [2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture](./2024-01-09-site-reliability-engineering-part-3.md)  
 [2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers](./2024-09-07-site-reliability-engineering-part-4.md)  
+[2026-03-01 Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
 
 ```
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣾⣷⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

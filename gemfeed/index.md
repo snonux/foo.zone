@@ -2,9 +2,9 @@
 
 ## To be in the .zone!
 
+[2026-03-01 - Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
 [2026-02-22 - My desk rack: DeskPi RackMate T0](./2026-02-22-my-desk-rack.md)  
 [2026-02-15 - Loadbars resurrected: From Perl to Go after 15 years](./2026-02-15-loadbars-resurrected-from-perl-to-go.md)  
-[2026-02-14 - Meta slash-commands to manage prompts, skills, and context for coding agents](./2026-02-14-meta-slash-commands-for-prompts-and-context.md)  
 [2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2026-01-01 - Using Supernote Nomad offline](./2026-01-01-using-supernote-nomad-offline.md)  
 [2026-01-01 - Posts from July to December 2025](./2026-01-01-posts-from-july-to-december-2025.md)  

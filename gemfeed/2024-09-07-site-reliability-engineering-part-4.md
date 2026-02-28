@@ -8,6 +8,7 @@ Welcome to Part 4 of my Site Reliability Engineering (SRE) series. I'm currently
 [2023-11-19 Site Reliability Engineering - Part 2: Operational Balance](./2023-11-19-site-reliability-engineering-part-2.md)  
 [2024-01-09 Site Reliability Engineering - Part 3: On-Call Culture](./2024-01-09-site-reliability-engineering-part-3.md)  
 [2024-09-07 Site Reliability Engineering - Part 4: Onboarding for On-Call Engineers (You are currently reading this)](./2024-09-07-site-reliability-engineering-part-4.md)  
+[2026-03-01 Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
 
 ```
        __..._   _...__
@@ -67,5 +68,11 @@ It is important that runbooks are not a "project to be finished"; runbooks have 
 By structuring the onboarding process with KT sessions, shadowing, comprehensive runbooks, and a feedback loop, we've been able to fast-track the process from six months to just six weeks. This not only prepares our engineers for the on-call rotation quicker but also ensures they're confident and capable when handling incidents.
 
 If you're looking to optimize your on-call onboarding process, these strategies could be your ticket to a more efficient and effective transition. Happy on-calling!
+
+Continue with the fifth part of this series:
+
+[2026-03-01 Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 [Back to the main site](../)  
