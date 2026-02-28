@@ -10,21 +10,7 @@ Loadbars can connect to hundreds of servers in parallel; the GIF above doesn't d
 
 => https://codeberg.org/snonux/loadbars Loadbars on Codeberg
 
-## Table of Contents
-
-* ⇢ Loadbars 0.13.0 released
-* ⇢ ⇢ What Loadbars is (and isn't)
-* ⇢ ⇢ Use cases
-* ⇢ ⇢ What's new since the Perl version
-* ⇢ ⇢ Core features
-* ⇢ ⇢ ⇢ Load average bars
-* ⇢ ⇢ ⇢ Disk I/O bars
-* ⇢ ⇢ ⇢ Global reference lines and options
-* ⇢ ⇢ ⇢ CPU monitoring
-* ⇢ ⇢ ⇢ Memory and network
-* ⇢ ⇢ ⇢ All hotkeys
-* ⇢ ⇢ SSH and config
-* ⇢ ⇢ Building and platforms
+<< template::inline::index f3s
 
 ## What Loadbars is (and isn't)
 
@@ -47,7 +33,6 @@ Loadbars shows the current state only. It is not a tool for collecting loads and
 * Load testing: run your load tool against a cluster and see which hosts (or cores) are saturated, whether memory or disk I/O is the bottleneck, and how load spreads.
 * Quick health sweep: no dashboards set up yet? SSH to a handful of hosts and run Loadbars. You get an instant picture of who's busy, who's idle, and who's swapping.
 * Comparing hosts: side-by-side bars make it easy to see if one machine is hotter than the rest (e.g. after a config change or migration).
-* NOC or on-call: glance at load average, CPU, and network for a known set of servers without opening multiple terminals or a heavy monitoring UI.
 * Local tuning: run `loadbars --hosts localhost` while you benchmark or stress a single box; the bars and load-average view help correlate activity with what you're doing.
 
 ## What's new since the Perl version
@@ -177,20 +162,5 @@ mage test
 Tested on Fedora Linux 43 and common distros; macOS as client to remote Linux only (no local macOS monitoring — no `/proc`).
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
-
-Other related posts:
-
-=> ./2026-03-01-loadbars-0.13.0-released.gmi 2026-03-01 Loadbars 0.13.0 released (You are currently reading this)
-=> ./2025-11-02-perl-new-features-and-foostats.gmi 2025-11-02 Perl New Features and Foostats
-=> ./2025-09-14-bash-golf-part-4.gmi 2025-09-14 Bash Golf Part 4
-=> ./2025-03-05-sharing-on-social-media-with-gos.gmi 2025-03-05 Sharing on Social Media with Gos v1.0.0
-=> ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi 2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go
-=> ./2023-12-10-bash-golf-part-3.gmi 2023-12-10 Bash Golf Part 3
-=> ./2023-06-01-kiss-server-monitoring-with-gogios.gmi 2023-06-01 KISS server monitoring with Gogios
-=> ./2022-05-27-perl-is-still-a-great-choice.gmi 2022-05-27 Perl is still a great choice
-=> ./2022-01-01-bash-golf-part-2.gmi 2022-01-01 Bash Golf Part 2
-=> ./2021-11-29-bash-golf-part-1.gmi 2021-11-29 Bash Golf Part 1
-=> ./2011-05-07-perl-daemon-service-framework.gmi 2011-05-07 Perl Daemon (Service Framework)
-=> ./2008-06-26-perl-poetry.gmi 2008-06-26 Perl Poetry
 
 => ../ Back to the main site
