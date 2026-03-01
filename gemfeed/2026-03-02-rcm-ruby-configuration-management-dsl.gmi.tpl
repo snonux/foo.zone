@@ -222,7 +222,7 @@ configure do
 end
 ```
 
-# Creating and deleting directories, and purging a directory tree
+### Creating and deleting directories, and purging a directory tree
 
 ```ruby
 configure do

@@ -24,7 +24,7 @@ RCM is a tiny configuration management system written in Ruby. It gives me a sma
 * ⇢ ⇢ ⇢ Template rendering into a file
 * ⇢ ⇢ ⇢ Ensuring a line is absent from a file
 * ⇢ ⇢ ⇢ Guarding a configuration run on the current hostname
-* ⇢ Creating and deleting directories, and purging a directory tree
+* ⇢ ⇢ ⇢ Creating and deleting directories, and purging a directory tree
 * ⇢ ⇢ ⇢ Managing file and directory modes and ownership
 * ⇢ ⇢ ⇢ Using a chained, more natural language style for notifications
 * ⇢ ⇢ ⇢ Touching files and updating their timestamps
@@ -246,7 +246,7 @@ configure do
 end
 ```
 
-# Creating and deleting directories, and purging a directory tree
+### Creating and deleting directories, and purging a directory tree
 
 ```ruby
 configure do
