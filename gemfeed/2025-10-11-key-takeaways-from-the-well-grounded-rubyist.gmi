@@ -217,6 +217,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other Ruby-related posts:
 
+=> ./2026-03-02-rcm-ruby-configuration-management-dsl.gmi 2026-03-02 RCM: The Ruby Configuration Management DSL
 => ./2025-10-11-key-takeaways-from-the-well-grounded-rubyist.gmi 2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)
 => ./2021-07-04-the-well-grounded-rubyist.gmi 2021-07-04 The Well-Grounded Rubyist
 

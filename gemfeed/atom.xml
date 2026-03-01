@@ -1,11 +1,421 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-01T17:43:02+02:00</updated>
+    <updated>2026-03-01T21:29:51+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>RCM: The Ruby Configuration Management DSL</title>
+        <link href="gemini://foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.gmi</id>
+        <updated>2026-03-02T00:00:00+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>RCM is a tiny configuration management system written in Ruby. It gives me a small DSL for describing how I want my machines to look, then it applies the changes: create files and directories, manage packages, and make sure certain lines exist in configuration files. It's deliberately KISS and optimised for a single person's machines instead of a whole fleet.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='rcm-the-ruby-configuration-management-dsl'>RCM: The Ruby Configuration Management DSL</h1><br />
+<br />
+<span class='quote'>Published at 2026-03-02T00:00:00+02:00</span><br />
+<br />
+<span>RCM is a tiny configuration management system written in Ruby. It gives me a small DSL for describing how I want my machines to look, then it applies the changes: create files and directories, manage packages, and make sure certain lines exist in configuration files. It&#39;s deliberately KISS and optimised for a single person&#39;s machines instead of a whole fleet.</span><br />
+<br />
+<a href='./rcm-ruby-configuration-management-dsl/rcm-dsl.png'><img alt='RCM DSL in action' title='RCM DSL in action' src='./rcm-ruby-configuration-management-dsl/rcm-dsl.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#rcm-the-ruby-configuration-management-dsl'>RCM: The Ruby Configuration Management DSL</a></li>
+<li>⇢ <a href='#why-i-built-rcm'>Why I built RCM</a></li>
+<li>⇢ <a href='#how-the-dsl-feels'>How the DSL feels</a></li>
+<li>⇢ ⇢ <a href='#keywords-and-resources'>Keywords and resources</a></li>
+<li>⇢ ⇢ <a href='#files-directories-and-templates'>Files, directories, and templates</a></li>
+<li>⇢ <a href='#how-ruby-s-metaprogramming-helps'>How Ruby&#39;s metaprogramming helps</a></li>
+<li>⇢ ⇢ <a href='#a-bit-more-about-methodmissing'>A bit more about <span class='inlinecode'>method_missing</span></a></li>
+<li>⇢ <a href='#ruby-metaprogramming-further-reading'>Ruby metaprogramming: further reading</a></li>
+<li>⇢ <a href='#safety-dry-runs-and-debugging'>Safety, dry runs, and debugging</a></li>
+<li>⇢ <a href='#rcm-vs-puppet-and-other-big-tools'>RCM vs Puppet and other big tools</a></li>
+<li>⇢ <a href='#cutting-rcm-010'>Cutting RCM 0.1.0</a></li>
+<li>⇢ <a href='#what-s-next'>What&#39;s next</a></li>
+<li>⇢ <a href='#feature-overview-selected'>Feature overview (selected)</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-i-built-rcm'>Why I built RCM</h2><br />
+<br />
+<span>I&#39;ve used (and still use) the usual suspects in configuration management: Puppet, Chef, Ansible, etc. They are powerful, but also come with orchestration layers, agents, inventories, and a lot of moving parts. For my personal machines I wanted something smaller: one Ruby process, one configuration file, a few resource types, and good enough safety features.</span><br />
+<br />
+<span>I&#39;ve always been a fan of Ruby&#39;s metaprogramming features, and this project let me explore them in a focused, practical way.</span><br />
+<br />
+<span>Because of that metaprogramming support, Ruby is a great fit for DSLs. You can get very close to natural language without inventing a brand-new syntax. RCM leans into that: the goal is to read a configuration and understand what happens without jumping between multiple files or templating languages.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/rcm'>RCM repo on Codeberg</a><br />
+<br />
+<h2 style='display: inline' id='how-the-dsl-feels'>How the DSL feels</h2><br />
+<br />
+<span>An RCM configuration starts with a <span class='inlinecode'>configure</span> block. Inside it you declare resources (<span class='inlinecode'>file</span>, <span class='inlinecode'>package</span>, <span class='inlinecode'>given</span>, <span class='inlinecode'>notify</span>, …). RCM figures out dependencies between resources and runs them in the right order.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  given { hostname is :earth }
+
+  file <font color="#808080">'/tmp/test/wg0.conf'</font> <b><u><font color="#000000">do</font></u></b>
+    requires <font color="#808080">'/etc/hosts.test'</font>
+    manage directory
+    from template
+    <font color="#808080">'content with &lt;%= 1 + 2 %&gt;'</font>
+  <b><u><font color="#000000">end</font></u></b>
+
+  file <font color="#808080">'/etc/hosts.test'</font> <b><u><font color="#000000">do</font></u></b>
+    line <font color="#808080">'192.168.1.101 earth'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>The idea is that you describe the desired state and RCM worries about the steps. The <span class='inlinecode'>given</span> block can short‑circuit the whole run (for example, only run on a specific hostname). Each <span class='inlinecode'>file</span> resource can either manage a complete file (from a template) or just make sure individual lines are present.</span><br />
+<br />
+<h3 style='display: inline' id='keywords-and-resources'>Keywords and resources</h3><br />
+<br />
+<span>Under the hood, each DSL word is either a keyword or a resource:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>Keyword</span> is the base class for all top‑level DSL constructs.</li>
+<li><span class='inlinecode'>Resource</span> is the base class for things RCM can manage (files, packages, and so on).</li>
+</ul><br />
+<span>Resources can declare dependencies with <span class='inlinecode'>requires</span>. Before a resource runs, RCM makes sure all its requirements are satisfied and only evaluates each resource once per run. This keeps the mental model simple even when you compose more complex configurations.</span><br />
+<br />
+<h3 style='display: inline' id='files-directories-and-templates'>Files, directories, and templates</h3><br />
+<br />
+<span>The <span class='inlinecode'>file</span> resource handles three common cases:</span><br />
+<br />
+<ul>
+<li>Managing parent directories (<span class='inlinecode'>manage directory</span>) so you don&#39;t have to create them manually.</li>
+<li>Rendering ERB templates (<span class='inlinecode'>from template</span>) so you can mix Ruby expressions into config files.</li>
+<li>Ensuring individual lines exist (<span class='inlinecode'>line</span>) for the many "append this line if missing" situations.</li>
+</ul><br />
+<span>Every write operation creates a backup copy in <span class='inlinecode'>.rcmbackup/</span>, so you can always inspect what changed and roll back manually if needed.</span><br />
+<br />
+<h2 style='display: inline' id='how-ruby-s-metaprogramming-helps'>How Ruby&#39;s metaprogramming helps</h2><br />
+<br />
+<span>The nice thing about RCM is that the Ruby code you write in your configuration is not that different from the Ruby code inside RCM itself. The DSL is just a thin layer on top.</span><br />
+<br />
+<span>For example, when you write:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>file <font color="#808080">'/etc/hosts.test'</font> <b><u><font color="#000000">do</font></u></b>
+  line <font color="#808080">'192.168.1.101 earth'</font>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Ruby turns <span class='inlinecode'>file</span> into a method call and <span class='inlinecode'>&#39;/etc/hosts.test&#39;</span> into a normal argument. Inside RCM, that method builds a <span class='inlinecode'>File</span> resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as <span class='inlinecode'>self</span>, so method calls like <span class='inlinecode'>line</span> configure that resource. There is no special parser here, just plain Ruby method and block dispatch.</span><br />
+<br />
+<span>The same goes for constructs like:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>given { hostname is :earth }
+</pre>
+<br />
+<span>RCM uses Ruby&#39;s dynamic method lookup to interpret <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> in that block and to decide whether the rest of the configuration should run at all. Features like <span class='inlinecode'>method_missing</span>, blocks, and the ability to change what <span class='inlinecode'>self</span> means in a block make this kind of DSL possible with very little code. You still get all the power of Ruby (conditionals, loops, helper methods), but the surface reads like a small language of its own.</span><br />
+<br />
+<h3 style='display: inline' id='a-bit-more-about-methodmissing'>A bit more about <span class='inlinecode'>method_missing</span></h3><br />
+<br />
+<span><span class='inlinecode'>method_missing</span> is one of the key tools that make the RCM DSL feel natural. In plain Ruby, if you call a method that does not exist, you get a <span class='inlinecode'>NoMethodError</span>. But before Ruby raises that error, it checks whether the object implements <span class='inlinecode'>method_missing</span>. If it does, Ruby calls that instead and lets the object decide what to do.</span><br />
+<br />
+<span>In RCM, you can write things like:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>given { hostname is :earth }
+</pre>
+<br />
+<span>Inside that block, calls such as <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> don&#39;t map to normal Ruby methods. Instead, RCM&#39;s DSL objects see those calls in <span class='inlinecode'>method_missing</span>, and interpret them as "check the current hostname" and "compare it to this symbol". This lets the DSL stay small and flexible: adding a new keyword can be as simple as handling another case in <span class='inlinecode'>method_missing</span>, without changing the Ruby syntax at all.</span><br />
+<br />
+<span>Put differently: you can write what looks like a tiny English sentence (<span class='inlinecode'>hostname is :earth</span>) and Ruby breaks it into method calls (<span class='inlinecode'>hostname</span>, then <span class='inlinecode'>is</span>) that RCM can interpret dynamically. Those "barewords" are not special syntax; they are just regular Ruby method names that the DSL catches and turns into configuration logic at runtime.</span><br />
+<br />
+<span>Here&#39;s a simplified sketch of how such a condition object could look in Ruby:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">class</font></u></b> HostCondition
+  <b><u><font color="#000000">def</font></u></b> initialize
+    <b><font color="#000000">@current_hostname</font></b> = Socket.gethostname.to_sym
+  <b><u><font color="#000000">end</font></u></b>
+
+  <b><u><font color="#000000">def</font></u></b> method_missing(name, *args, &amp;)
+    <b><u><font color="#000000">case</font></u></b> name
+    <b><u><font color="#000000">when</font></u></b> :hostname
+      <b><font color="#000000">@left</font></b> = <b><font color="#000000">@current_hostname</font></b>
+      <b><u><font color="#000000">self</font></u></b>               <i><font color="silver"># allow chaining: hostname is :earth</font></i>
+    <b><u><font color="#000000">when</font></u></b> :is
+      <b><font color="#000000">@left</font></b> == args.first
+    <b><u><font color="#000000">else</font></u></b>
+      <b><u><font color="#000000">super</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+
+HostCondition.new.hostname.is(:earth)
+</pre>
+<br />
+<span>RCM&#39;s real code is more sophisticated, but the idea is the same: Ruby happily calls <span class='inlinecode'>method_missing</span> for unknown methods like <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span>, and the DSL turns those calls into a value (<span class='inlinecode'>true</span>/<span class='inlinecode'>false</span>) that decides whether the rest of the configuration should run.</span><br />
+<br />
+<h2 style='display: inline' id='ruby-metaprogramming-further-reading'>Ruby metaprogramming: further reading</h2><br />
+<br />
+<span>If you want to dive deeper into the ideas behind RCM&#39;s DSL, these books are great starting points:</span><br />
+<br />
+<ul>
+<li>"Metaprogramming Ruby 2" by Paolo Perrotta</li>
+<li>"The Well-Grounded Rubyist" by David A. Black (and others)</li>
+<li>"Eloquent Ruby" by Russ Olsen</li>
+</ul><br />
+<span>They all cover Ruby&#39;s object model, blocks, <span class='inlinecode'>method_missing</span>, and other metaprogramming techniques in much more detail than I can in a single blog post.</span><br />
+<br />
+<h2 style='display: inline' id='safety-dry-runs-and-debugging'>Safety, dry runs, and debugging</h2><br />
+<br />
+<span>RCM has a <span class='inlinecode'>--dry</span> mode: it logs what it would do without actually touching the file system. I use this when iterating on new configurations or refactoring existing ones. Combined with the built‑in logging and debug output, it&#39;s straightforward to see which resources were scheduled and in which order.</span><br />
+<br />
+<span>Because RCM is just Ruby, there&#39;s no separate agent protocol or daemon. The same process parses the DSL, resolves dependencies, and performs the actions. If something goes wrong, you can drop into the code, add a quick debug statement, and re‑run your configuration.</span><br />
+<br />
+<h2 style='display: inline' id='rcm-vs-puppet-and-other-big-tools'>RCM vs Puppet and other big tools</h2><br />
+<br />
+<span>RCM does not try to compete with Puppet, Chef, or Ansible on scale. Those tools shine when you manage hundreds or thousands of machines, have multiple teams contributing modules, and need centralised orchestration, reporting, and role‑based access control. They also come with their own DSLs, servers/agents, certificate handling, and a long list of resource types and modules. Ansible may be more similar to RCM than the other tools, but it&#39;s still much more complex than RCM.</span><br />
+<br />
+<span>For my personal use cases, that layer is mostly overhead. I want:</span><br />
+<br />
+<ul>
+<li>No extra daemon, message bus, or master node.</li>
+<li>No separate DSL to learn besides Ruby itself.</li>
+<li>A codebase small enough that I can understand and change all of it in an evening.</li>
+<li>Behaviour I can inspect just by reading the Ruby code.</li>
+</ul><br />
+<span>In that space RCM wins: it is small, transparent, and tuned for one person (me!) with a handful of personal machines or my Laptops. I still think tools like Puppet are the right choice for larger organisations and shared infrastructure, but RCM gives me a tiny, focused alternative for my own systems.</span><br />
+<br />
+<h2 style='display: inline' id='cutting-rcm-010'>Cutting RCM 0.1.0</h2><br />
+<br />
+<span>As of this post I&#39;m tagging and releasing **RCM 0.1.0**. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.</span><br />
+<br />
+<span>Future changes will very likely involve more automated help (including agents like the one you&#39;re reading this in), but 0.1.0 is the snapshot of the original, hand‑crafted version of the tool.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-next'>What&#39;s next</h2><br />
+<br />
+<span>RCM already does what I need on my machines, but there are a few ideas I want to explore:</span><br />
+<br />
+<ul>
+<li>More resource types (for example, services and users) while keeping the core small.</li>
+<li>Additional package backends beyond Fedora/DNF (in particular MacOS brew).</li>
+<li>Managing hosts remotely.</li>
+<li>A slightly more structured way to organise larger configurations without losing the KISS spirit.</li>
+</ul><br />
+<h2 style='display: inline' id='feature-overview-selected'>Feature overview (selected)</h2><br />
+<br />
+<span>Here is a quick overview of what RCM can do today, grouped by area:</span><br />
+<br />
+<ul>
+<li>File management: <span class='inlinecode'>file &#39;/path&#39;</span>, <span class='inlinecode'>manage directory</span>, <span class='inlinecode'>from template</span>, <span class='inlinecode'>line &#39;...&#39;</span></li>
+<li>Packages: <span class='inlinecode'>package &#39;name&#39;</span> resources for installing and updating packages (currently focused on Fedora/DNF)</li>
+<li>Conditions and flow: <span class='inlinecode'>given { ... }</span> blocks, predicates such as <span class='inlinecode'>hostname is :earth</span></li>
+<li>Notifications and dependencies: <span class='inlinecode'>requires</span> between resources, <span class='inlinecode'>notify</span> for follow‑up actions</li>
+<li>Safety and execution modes: backups in <span class='inlinecode'>.rcmbackup/</span>, <span class='inlinecode'>--dry</span> runs, debug logging</li>
+</ul><br />
+<span>Some small examples adapted from RCM&#39;s own tests:</span><br />
+<br />
+<span>Template rendering into a file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  file <font color="#808080">'./.file_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    from template
+    <font color="#808080">'One plus two is &lt;%= 1 + 2 %&gt;!'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Ensuring a line is absent from a file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  file <font color="#808080">'./.file_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    line <font color="#808080">'Whats up?'</font>
+    is absent
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Keeping a backup of the original content when a file changes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  file original <b><u><font color="#000000">do</font></u></b>
+    path <font color="#808080">'./.dir_example.rcmtmp/foo/backup-me.txt'</font>
+    manage directory
+    <font color="#808080">'original_content'</font>
+  <b><u><font color="#000000">end</font></u></b>
+
+  file new <b><u><font color="#000000">do</font></u></b>
+    path <font color="#808080">'./.dir_example.rcmtmp/foo/backup-me.txt'</font>
+    manage directory
+    requires file original
+    <font color="#808080">'new_content'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Guarding a configuration run on the current hostname:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  given { hostname Socket.gethostname }
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Creating and deleting directories, and purging a directory tree:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  directory <font color="#808080">'./.directory_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    is present
+  <b><u><font color="#000000">end</font></u></b>
+
+  directory delete <b><u><font color="#000000">do</font></u></b>
+    path <font color="#808080">'./.directory_example.rcmtmp'</font>
+    is absent
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Managing file and directory modes and ownership:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  touch <font color="#808080">'./.mode_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    mode 0o600
+  <b><u><font color="#000000">end</font></u></b>
+
+  directory <font color="#808080">'./.mode_example_dir.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    mode 0o705
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Using a chained, more natural language style for notifications:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify hello dear world <b><u><font color="#000000">do</font></u></b>
+    thank you to be part of you
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Touching files and updating their timestamps:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  touch <font color="#808080">'./.touch_example.rcmtmp'</font>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Expressing dependencies between notifications:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify foo <b><u><font color="#000000">do</font></u></b>
+    requires notify bar <b><u><font color="#000000">and</font></u></b> requires notify baz
+    <font color="#808080">'foo_message'</font>
+  <b><u><font color="#000000">end</font></u></b>
+
+  notify bar
+
+  notify baz <b><u><font color="#000000">do</font></u></b>
+    requires notify bar
+    <font color="#808080">'baz_message'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Creating and updating symbolic links:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  symlink <font color="#808080">'./.symlink_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    manage directory
+    <font color="#808080">'./.symlink_target_example.rcmtmp'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Detecting duplicate resource definitions at configure time:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify :foo
+  notify :foo <i><font color="silver"># raises RCM::DSL::DuplicateResource</font></i>
+<b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>If you find RCM interesting, feel free to browse the code, adapt it to your own setup, or just steal ideas for your own Ruby DSLs. I will probably extend it with more features over time as my own needs evolve.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-03-02-rcm-ruby-configuration-management-dsl.html'>2026-03-02 RCM: The Ruby Configuration Management DSL (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-10-11-key-takeaways-from-the-well-grounded-rubyist.html'>2025-10-11 Key Takeaways from The Well-Grounded Rubyist</a><br />
+<a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>2021-07-04 The Well-Grounded Rubyist</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Site Reliability Engineering - Part 5: System Design, Incidents, and Learning</title>
         <link href="gemini://foo.zone/gemfeed/2026-03-01-site-reliability-engineering-part-5.gmi" />
@@ -4769,6 +5179,7 @@ p hash.values_at(:a, :c)
 <br />
 <span>Other Ruby-related posts:</span><br />
 <br />
+<a class='textlink' href='./2026-03-02-rcm-ruby-configuration-management-dsl.html'>2026-03-02 RCM: The Ruby Configuration Management DSL</a><br />
 <a class='textlink' href='./2025-10-11-key-takeaways-from-the-well-grounded-rubyist.html'>2025-10-11 Key Takeaways from The Well-Grounded Rubyist (You are currently reading this)</a><br />
 <a class='textlink' href='./2021-07-04-the-well-grounded-rubyist.html'>2021-07-04 The Well-Grounded Rubyist</a><br />
 <br />
@@ -18077,180 +18488,6 @@ http://www.gnu.org/software/src-highlite -->
 <span>Related and maybe interesting:</span><br />
 <br />
 <a class='textlink' href='./2022-06-15-sweating-the-small-stuff.html'>Sweating the small stuff - Tiny projects of mine</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>'Slow Productivity' book notes</title>
-        <link href="gemini://foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes.gmi" />
-        <id>gemini://foo.zone/gemfeed/2024-05-01-slow-productivity-book-notes.gmi</id>
-        <updated>2024-04-27T14:18:51+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>These are my personal takeaways after reading 'Slow Productivity - The lost Art of Accomplishment Without Burnout' by Cal Newport.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='slow-productivity-book-notes'>"Slow Productivity" book notes</h1><br />
-<br />
-<span class='quote'>Published at 2024-04-27T14:18:51+03:00</span><br />
-<br />
-<span>These are my personal takeaways after reading "Slow Productivity - The lost Art of Accomplishment Without Burnout" by Cal Newport.</span><br />
-<br />
-<span>The case studies in this book were a bit long, but they appeared to be well-researched. I will only highlight the interesting, actionable items in the book notes.</span><br />
-<br />
-<span>These notes are mainly for my own use, but you may find them helpful.</span><br />
-<br />
-<pre>
-         ,..........   ..........,
-     ,..,&#39;          &#39;.&#39;          &#39;,..,
-    ,&#39; ,&#39;            :            &#39;, &#39;,
-   ,&#39; ,&#39;             :             &#39;, &#39;,
-  ,&#39; ,&#39;              :              &#39;, &#39;,
- ,&#39; ,&#39;............., : ,.............&#39;, &#39;,
-,&#39;  &#39;............   &#39;.&#39;   ............&#39;  &#39;,
- &#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;;&#39;&#39;&#39;;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;&#39;
-                    &#39;&#39;&#39;
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#slow-productivity-book-notes'>"Slow Productivity" book notes</a></li>
-<li>⇢ <a href='#it-s-not-slow-productivity'>It&#39;s not "slow productivity"</a></li>
-<li>⇢ <a href='#pseudo-productivity-and-shallow-work'>Pseudo-productivity and Shallow work</a></li>
-<li>⇢ <a href='#accomplishments-without-burnout'>Accomplishments without burnout</a></li>
-<li>⇢ <a href='#do-fewer-things'>Do fewer things</a></li>
-<li>⇢ <a href='#work-at-a-natural-pace'>Work at a natural pace</a></li>
-<li>⇢ <a href='#obsess-over-quality-'>Obsess over quality </a></li>
-</ul><br />
-<h2 style='display: inline' id='it-s-not-slow-productivity'>It&#39;s not "slow productivity"</h2><br />
-<br />
-<span>"Slow productivity" does not mean being less productive. Cal Newport wants to point out that you can be much more productive with "slow productivity" than you would be without it. It is a different way of working than most of us are used to in the modern workplace, which is hyper-connected and always online.</span><br />
-<br />
-<h2 style='display: inline' id='pseudo-productivity-and-shallow-work'>Pseudo-productivity and Shallow work</h2><br />
-<br />
-<span>People use visible activity instead of real productivity because it&#39;s easier to measure. This is called pseudo-productivity.</span><br />
-<span>Pseudo-productivity is used as a proxy for real productivity. If you don&#39;t look busy, you are dismissed as lazy or lacking a work ethic.</span><br />
-<br />
-<span>There is a tendency to perform shallow work because people will otherwise dismiss you as lazy. A lot of shallow work can cause burnout, as multiple things are often being worked on in parallel. The more you have on your plate, the more stressed you will be.</span><br />
-<br />
-<span>Shallow work usually doesn&#39;t help you to accomplish big things. Always have the big picture in mind. Shallow work can&#39;t be entirely eliminated, but it can be managed—for example, plan dedicated time slots for certain types of shallow work.</span><br />
-<br />
-<h2 style='display: inline' id='accomplishments-without-burnout'>Accomplishments without burnout</h2><br />
-<br />
-<span>The overall perception is that if you want to accomplish something, you must put yourself on the verge of burnout. Cal Newport writes about "The lost Art of Accomplishments without Burnouts", where you can accomplish big things without all the stress usually involved.</span><br />
-<br />
-<span>There are three principles for the maintenance of a sustainable work life:</span><br />
-<br />
-<ul>
-<li>Do fewer things</li>
-<li>Work at a natural pace</li>
-<li>Obsess over quality</li>
-</ul><br />
-<h2 style='display: inline' id='do-fewer-things'>Do fewer things</h2><br />
-<br />
-<span>There will always be more work. The faster you finish it, the quicker you will have something new on your plate.</span><br />
-<br />
-<span>Reduce the overhead tax. The overhead tax is all the administrative work to be done. With every additional project, there will also be more administrative stuff to be done on your work plate. So, doing fewer things leads to more and better output and better quality for the projects you are working on.</span><br />
-<br />
-<span>Limit the things on your plate. Limit your missions (personal goals, professional goals). Reduce your main objectives in life. More than five missions are usually not sustainable very easily, so you have to really prioritise what is important to you and your professional life.</span><br />
-<br />
-<span>A mission is an overall objective/goal that can have multiple projects. Limit the projects as well. Some projects need clear endings (e.g., work in support of a never-ending flow of incoming requests). In this case, set limits (e.g., time box your support hours). You can also plan "office hours" for collaborative work with colleagues to avoid ad hoc distractions.</span><br />
-<br />
-<span>The key point is that after making these commitments, you really deliver on them. This builds trust, and people will leave you alone and not ask for progress all the time.</span><br />
-<br />
-<span>Doing fever things is essential for modern knowledge workers. Breathing space in your work also makes you more creative and happier overall.</span><br />
-<br />
-<span>Pushing workers more work can make them less productive, so the better approach is the pull model, where workers pull in new work when the previous task is finished.</span><br />
-<br />
-<span>If you can quantify how busy you are or how many other projects you already work on, then it is easier to say no to new things. For example, show what you are doing, what&#39;s in the roadmap, etc. Transparency is the key here. </span><br />
-<br />
-<span>You can have your own simulated pull system if the company doesn&#39;t agree to a global one: </span><br />
-<br />
-<ul>
-<li>State which additional information you would need.</li>
-<li>Create a rough estimate of when you will be able to work on it</li>
-<li>Estimate how long the project would take. Double that estimate, as humans are very bad estimators.</li>
-<li>Respond to the requester and state that you will let him know when the estimates change.</li>
-</ul><br />
-<span>Sometimes, a little friction is all that is needed to combat incoming work, e.g., when your manager starts seeing the reality of your work plate, and you also request additional information for the task. If you already have too much on your plate, then decline the new project or make room for it in your calendar. If you present a large task list, others will struggle to assign more to you.</span><br />
-<br />
-<span>Limit your daily goals. A good measure is to focus on one goal per day. You can time block time for deep work on your daily goal. During that time, you won&#39;t be easily available to others.</span><br />
-<br />
-<span>The battle against distractions must be fought to be the master of your time. Nobody will fight this war for you. You have to do it for yourself. (Also, have a look at Cal Newport&#39;s "time block planning" method).</span><br />
-<br />
-<span>Put tasks on autopilot (regular recurring tasks).</span><br />
-<br />
-<h2 style='display: inline' id='work-at-a-natural-pace'>Work at a natural pace</h2><br />
-<br />
-<span>We suffer from overambitious timelines, task lists, and business. Focus on what matters. Don&#39;t rush your most important work to achieve better results.</span><br />
-<br />
-<span>Don&#39;t rush. If you rush or are under pressure, you will be less effective and eventually burn out. Our brains work better then not rushy. The stress heuristic usually indicates too much work, and it is generally too late to reduce workload. That&#39;s why we all typically have dangerously too much to do.</span><br />
-<br />
-<span>Have the courage to take longer to do things that are important. For example, plan on a yearly and larger scale, like 2 to 5 years.</span><br />
-<br />
-<span>Find a reasonable time for a project and then double the project timeline against overconfident optimism. Humans are not great at estimating. They gravitate towards best-case estimates. If you have planned more than enough time for your project, then you will fall into a natural work pace. Otherwise, you will struggle with rushing and stress.</span><br />
-<br />
-<span>Some days will still be intense and stressful, but those are exceptional cases. After those exceptions (e.g., finalizing that thing, etc.), calmer periods will follow again.</span><br />
-<br />
-<span>Pace yourself over modest results over time. Simplify and reduce the daily task lists. Meetings: Certain hours are protected for work. For each meeting, add a protected block to your calendar, so you attend meetings only half a day max.</span><br />
-<br />
-<span>Schedule slow seasons (e.g., when on vacation). Disconnect in the slow season. Doing nothing will not satisfy your mind, though. You could read a book on your subject matter to counteract that.</span><br />
-<br />
-<h2 style='display: inline' id='obsess-over-quality-'>Obsess over quality </h2><br />
-<br />
-<span>Obsess over quality even if you lose short-term opportunities by rejecting other projects. Quality demands you slow down. The two previous two principles (do fewer things and work at a natural pace) are mandatory for this principle to work:</span><br />
-<br />
-<ul>
-<li>Focus on the core activities of your work for your obsession - you will only have the time to obsess over some things.</li>
-<li>Deliver solid work with good quality.</li>
-<li>Sharpen the focus to do the best work possible.</li>
-</ul><br />
-<span>Go pro to save time, and don&#39;t squeeze everything out that you can from freemium services. Professional software services eliminate administrative work:</span><br />
-<br />
-<ul>
-<li>Pay people who know what they are doing and focus on your stuff. </li>
-<li>For example, don&#39;t repair that car if you know the mechanic can do that much better than you. </li>
-<li>Or don&#39;t use the free version of the music streaming service if it interrupts you with commercials, hindering your ability to concentrate on your work.</li>
-<li>Hire an accountant for your yearly tax returns. He knows much more about that stuff than you do. And in the end, he will even be cheaper as he knows all the tax laws.</li>
-<li>...</li>
-</ul><br />
-<span>Adjust your workplace to what you want to accomplish. You could have dedicated places in your home for different things, e.g., a place where you read and think (armchair) and a place where you collaborate (your desk or whiteboard). Surround yourself with things that inspire you (e.g., your favourite books on your shelf next to you, etc.).</span><br />
-<br />
-<span>There is the concept of quiet quitting. It doesn&#39;t mean quitting your job, but it means that you don&#39;t go beyond and above the expectations people have of you. Quiet quitting became popular with modern work, which is often meaningless and full of shallow tasks. If you obsess over quality, you enjoy your craft and want to go beyond and above.</span><br />
-<br />
-<span>Implement rituals and routines which shift you towards your goals:</span><br />
-<br />
-<ul>
-<li>For example, if you want to be a good Software Engineer, you also have to put in the work regularly. For instance, progress a bit every day in your project at hand, even if it is only one hour daily. Also, a little quality daily work will be more satisfying over time than many shallow tasks.</li>
-<li>Do you want to be lean and/or healthy? Schedule your daily walks and workouts. They will become habits over time.</li>
-<li>There&#39;s the compounding effect where every small effort made every day will yield significant results in the long run</li>
-</ul><br />
-<span>Deciding what not to do is as important as deciding what to do. </span><br />
-<br />
-<span>It appears to be money thrown out of the window, but you get a $50 expensive paper notebook (and also a good pen). Unconsciously, it will make you take notes more seriously. You will think about what to put into the notebooks more profoundly and have thought through the ideas more intensively. If you used very cheap notebooks, you would scribble a lot of rubbish and wouldn&#39;t even recognise your handwriting after a while anymore. So choosing a high-quality notebook will help you to take higher-quality notes, too.</span><br />
-<br />
-<span>Slow productivity is actionable and can be applied immediately.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other book notes of mine are:</span><br />
-<br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
