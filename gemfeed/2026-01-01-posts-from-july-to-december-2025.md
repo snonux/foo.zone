@@ -49,7 +49,7 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ Some `#fun`: Random Weird Things Part III blog ...](#some-fun-random-weird-things-part-iii-blog-)
 * [⇢ ⇢ ⇢ Yes, write more useless software. I agree that ...](#yes-write-more-useless-software-i-agree-that-)
 * [⇢ ⇢ ⇢ I learned a lot from this `#OpenBSD` `#relayd` ...](#i-learned-a-lot-from-this-openbsd-relayd-)
-* [⇢ ⇢ ⇢  Six weeks of claude code](#-six-weeks-of-claude-code)
+* [⇢ ⇢ ⇢ Six weeks of claude code](#six-weeks-of-claude-code)
 * [⇢ ⇢ ⇢ It's good that there is now a truly open-source ...](#it-s-good-that-there-is-now-a-truly-open-source-)
 * [⇢ ⇢ ⇢ Have to try this at some point ...](#have-to-try-this-at-some-point-)
 * [⇢ ⇢ ⇢ I could not agree more. For me, a personal ...](#i-could-not-agree-more-for-me-a-personal-)
@@ -376,7 +376,7 @@ I learned a lot from this `#OpenBSD` `#relayd` talk, and I already put the infor
 
 [www.youtube.com/watch?v=yW8QSZyEs6E](https://www.youtube.com/watch?v=yW8QSZyEs6E)  
 
-###  Six weeks of claude code
+### Six weeks of claude code
 
 [blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/](https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/)  
 

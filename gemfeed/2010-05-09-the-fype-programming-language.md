@@ -301,7 +301,7 @@ until <expression> { <statements> }
 
 ## Scopes
 
-A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes.  The "scope" function prints out all available symbols at the current scope. Here is a small example:
+A new scope starts with an { and ends with an }. An exception is a procedure, which does not use its own scope (see later in this manual). Control statements and functions support scopes. The "scope" function prints out all available symbols at the current scope. Here is a small example:
 
 ```
 my foo = 1;

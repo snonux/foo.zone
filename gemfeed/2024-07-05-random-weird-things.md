@@ -97,7 +97,7 @@ Fancy watching Star Wars Episode IV in ASCII? Head to the ASCII cinema:
 
 Netflix has got the Hello World application run in production 😱
 
-*  https://www.Netflix.com/helloworld
+* https://www.Netflix.com/helloworld
  
 > By the time this is posted, it seems that Netflix has taken it offline... I should have created a screenshot!
 

@@ -861,7 +861,7 @@ Key benefits for our storage system:
 
 First, we add the CARP configuration to `/etc/rc.conf` on both `f0` and `f1`:
 
-> Update: Sun  4 Jan 00:17:00 EET 2026 - Added `advskew 100` to f1 so f0 always wins CARP elections when it comes back online after a reboot.
+> Update: Sun 4 Jan 00:17:00 EET 2026 - Added `advskew 100` to f1 so f0 always wins CARP elections when it comes back online after a reboot.
 
 ```sh
 # On f0 - The virtual IP 192.168.1.138 will float between f0 and f1
@@ -908,7 +908,7 @@ paul@f0:~ % doas service devd restart
 
 Next, we create the CARP control script that will restart stunnel when the CARP state changes:
 
-> Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
+> Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
 
 ```sh
 paul@f0:~ % doas tee /usr/local/bin/carpcontrol.sh <<'EOF'
@@ -1203,7 +1203,7 @@ This ensures that clients always connect to the active NFS server through the CA
 
 This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:
 
-> Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
+> Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed `$1` to `$2` because devd passes `$subsystem $type`, so the state is in the second argument.
 
 ```sh
 # Create CARP control script on both f0 and f1
@@ -1400,7 +1400,7 @@ Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
 
 When `f0` reboots (planned or unplanned), `f1` takes over as CARP MASTER. To ensure `f0` automatically reclaims its primary role once it's fully operational, we'll implement an automatic failback mechanism. With:
 
-> Update: Fixed the script at Sun  4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.
+> Update: Fixed the script at Sun 4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.
 
 ```sh
 paul@f0:~ % doas tee /usr/local/bin/carp-auto-failback.sh <<'EOF'
