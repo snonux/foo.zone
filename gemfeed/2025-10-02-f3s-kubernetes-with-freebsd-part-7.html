@@ -89,10 +89,11 @@ $ cd f3s/
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
-<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
-<span>- Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</span><br />
-<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
-<br />
+<ul>
+<li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
+<li>Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</li>
+<li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
+</ul><br />
 <span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
 <br />
 <h2 style='display: inline' id='updating'>Updating</h2><br />
@@ -1155,7 +1156,7 @@ $ sudo update-ca-trust
 <br />
 <span>1. Copy the <span class='inlinecode'>f3s-lan-tls</span> secret to the service&#39;s namespace (if not already there)</span><br />
 <span>2. Add a LAN Ingress resource using the pattern above</span><br />
-<span>3. Configure DNS: <span class='inlinecode'>192.168.1.138  service.f3s.lan.foo.zone</span></span><br />
+<span>3. Configure DNS: <span class='inlinecode'>192.168.1.138 service.f3s.lan.foo.zone</span></span><br />
 <br />
 <span>No changes needed to:</span><br />
 <br />

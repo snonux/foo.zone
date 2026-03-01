@@ -94,10 +94,11 @@ $ cd f3s/prometheus/
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
-<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
-<span>- Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</span><br />
-<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
-<br />
+<ul>
+<li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
+<li>Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</li>
+<li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
+</ul><br />
 <span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). </span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />

@@ -72,7 +72,7 @@ jgs   `-=========-`()
 <br />
 <a class='textlink' href='https://pragprog.com/titles/bhtmux2/tmux-2/'>https://pragprog.com/titles/bhtmux2/tmux-2/</a><br />
 <br />
-<span>Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
+<span>Over the years, I have built a couple of shell helper functions to optimize my workflows. Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
 <br />
 <span>The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren&#39;t really useful outside of work due to the way servers and clusters are structured there).</span><br />
 <br />
@@ -243,7 +243,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li>...the first argument will be the session name (see <span class='inlinecode'>tmux::tssh_from_argument</span> helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.</li>
-<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
+<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
 </ul><br />
 <span>This is the function definition behind the <span class='inlinecode'>tssh</span> alias:</span><br />
 <span> </span><br />
@@ -350,7 +350,7 @@ $ tssh manyservers.txt
 <br />
 <span>Once I have identified the terminal text to be copied, I enter visual select mode with <span class='inlinecode'>v</span>, highlight all the text to be copied (using arrow keys or Vi motions), and press <span class='inlinecode'>y</span> to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).</span><br />
 <br />
-<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file:  </span><br />
+<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file: </span><br />
 <br />
 <pre>
 bind-key -T copy-mode-vi &#39;v&#39; send -X begin-selection

@@ -140,7 +140,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. </span><br />
 <br />
-<span>It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won&#39;t reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done &lt; &lt;(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.</span><br />
+<span>It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won&#39;t reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done &lt; &lt;(some_command)". ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.</span><br />
 <br />
 <span>Furthermore, ShellCheck recommended many more improvements. Declaration of unused variables and missing variable and string quotations were the most common ones. ShellSheck immensely helped to improve the robustness of the script.</span><br />
 <br />

@@ -36,10 +36,11 @@ $ cd f3s/prometheus/
 </pre>
 <br />
 <span>**Current master branch** uses ArgoCD with:</span><br />
-<span>- Application manifest: <span class='inlinecode'>argocd-apps/monitoring/prometheus.yaml</span></span><br />
-<span>- Multi-source Application combining upstream chart + custom manifests</span><br />
-<span>- Justfile commands updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
-<br />
+<ul>
+<li>Application manifest: <span class='inlinecode'>argocd-apps/monitoring/prometheus.yaml</span></li>
+<li>Multi-source Application combining upstream chart + custom manifests</li>
+<li>Justfile commands updated to trigger ArgoCD syncs instead of direct Helm commands</li>
+</ul><br />
 <span>The etcd configuration concepts remain the same—only the deployment method changed. Instead of running <span class='inlinecode'>just upgrade</span>, you would:</span><br />
 <span>1. Update the configuration in Git</span><br />
 <span>2. Commit and push</span><br />

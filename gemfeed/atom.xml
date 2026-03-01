@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-02-28T18:25:30+02:00</updated>
+    <updated>2026-03-01T17:43:02+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -884,7 +884,7 @@ main <font color="#808080">"$@"</font>
 <br />
 <span>In a world of constant connectivity, the Supernote Nomad offers a sanctuary. By keeping it offline, I can focus on my thoughts and notes without compromise of my privacy.</span><br />
 <br />
-<span>One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last  a week, on a single charge when it&#39;s not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.</span><br />
+<span>One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last a week, on a single charge when it&#39;s not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.</span><br />
 <br />
 <span>Privacy was my main concern. By not syncing my notes to Retta&#39;s cloud service, I retain full ownership and control over my data. There&#39;s no risk of my personal thoughts and ideas being accessed or mined by third parties. It&#39;s a simple and effective way to ensure my privacy.</span><br />
 <br />
@@ -1044,7 +1044,7 @@ copy
 <li>⇢ ⇢ <a href='#some-fun-random-weird-things-part-iii-blog-'>Some <span class='inlinecode'>#fun</span>: Random Weird Things Part III blog ...</a></li>
 <li>⇢ ⇢ <a href='#yes-write-more-useless-software-i-agree-that-'>Yes, write more useless software. I agree that ...</a></li>
 <li>⇢ ⇢ <a href='#i-learned-a-lot-from-this-openbsd-relayd-'>I learned a lot from this <span class='inlinecode'>#OpenBSD</span> <span class='inlinecode'>#relayd</span> ...</a></li>
-<li>⇢ ⇢ <a href='#-six-weeks-of-claude-code'> Six weeks of claude code</a></li>
+<li>⇢ ⇢ <a href='#six-weeks-of-claude-code'>Six weeks of claude code</a></li>
 <li>⇢ ⇢ <a href='#it-s-good-that-there-is-now-a-truly-open-source-'>It&#39;s good that there is now a truly open-source ...</a></li>
 <li>⇢ ⇢ <a href='#have-to-try-this-at-some-point-'>Have to try this at some point ...</a></li>
 <li>⇢ ⇢ <a href='#i-could-not-agree-more-for-me-a-personal-'>I could not agree more. For me, a personal ...</a></li>
@@ -1371,7 +1371,7 @@ copy
 <br />
 <a class='textlink' href='https://www.youtube.com/watch?v=yW8QSZyEs6E'>www.youtube.com/watch?v=yW8QSZyEs6E</a><br />
 <br />
-<h3 style='display: inline' id='-six-weeks-of-claude-code'> Six weeks of claude code</h3><br />
+<h3 style='display: inline' id='six-weeks-of-claude-code'>Six weeks of claude code</h3><br />
 <br />
 <a class='textlink' href='https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/'>blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/</a><br />
 <br />
@@ -3195,10 +3195,11 @@ $ cd f3s/prometheus/
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
-<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
-<span>- Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</span><br />
-<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
-<br />
+<ul>
+<li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
+<li>Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</li>
+<li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
+</ul><br />
 <span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). </span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
@@ -4033,17 +4034,17 @@ spec:
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -4865,10 +4866,11 @@ $ cd f3s/
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
-<span>- Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></span><br />
-<span>- Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</span><br />
-<span>- Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</span><br />
-<br />
+<ul>
+<li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
+<li>Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</li>
+<li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
+</ul><br />
 <span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
 <br />
 <h2 style='display: inline' id='updating'>Updating</h2><br />
@@ -5931,7 +5933,7 @@ $ sudo update-ca-trust
 <br />
 <span>1. Copy the <span class='inlinecode'>f3s-lan-tls</span> secret to the service&#39;s namespace (if not already there)</span><br />
 <span>2. Add a LAN Ingress resource using the pattern above</span><br />
-<span>3. Configure DNS: <span class='inlinecode'>192.168.1.138  service.f3s.lan.foo.zone</span></span><br />
+<span>3. Configure DNS: <span class='inlinecode'>192.168.1.138 service.f3s.lan.foo.zone</span></span><br />
 <br />
 <span>No changes needed to:</span><br />
 <br />
@@ -8535,7 +8537,7 @@ paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | tail -<font c
 <br />
 <span>First, we add the CARP configuration to <span class='inlinecode'>/etc/rc.conf</span> on both <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span>:</span><br />
 <br />
-<span class='quote'>Update: Sun  4 Jan 00:17:00 EET 2026 - Added <span class='inlinecode'>advskew 100</span> to f1 so f0 always wins CARP elections when it comes back online after a reboot.</span><br />
+<span class='quote'>Update: Sun 4 Jan 00:17:00 EET 2026 - Added <span class='inlinecode'>advskew 100</span> to f1 so f0 always wins CARP elections when it comes back online after a reboot.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -8589,7 +8591,7 @@ paul@f0:~ % doas service devd restart
 <br />
 <span>Next, we create the CARP control script that will restart stunnel when the CARP state changes:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<span class='quote'>Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -8919,7 +8921,7 @@ Starting stunnel.
 </ul><br />
 <span>This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<span class='quote'>Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -9125,7 +9127,7 @@ Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
 <br />
 <span>When <span class='inlinecode'>f0</span> reboots (planned or unplanned), <span class='inlinecode'>f1</span> takes over as CARP MASTER. To ensure <span class='inlinecode'>f0</span> automatically reclaims its primary role once it&#39;s fully operational, we&#39;ll implement an automatic failback mechanism. With:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sun  4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.</span><br />
+<span class='quote'>Update: Fixed the script at Sun 4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -10700,21 +10702,21 @@ http://www.gnu.org/software/src-highlite -->
 <h2 style='display: inline' id='reflective-questions'>Reflective Questions</h2><br />
 <br />
 <ul>
-<li> Why do I do all the things I do? What do I try to achieve?</li>
-<li> What am I doing about that? </li>
-<li> Is it working?</li>
-<li> What are the real causes of happiness and suffering?</li>
-<li> What about meditation? How does that address the situation?</li>
+<li>Why do I do all the things I do? What do I try to achieve?</li>
+<li>What am I doing about that? </li>
+<li>Is it working?</li>
+<li>What are the real causes of happiness and suffering?</li>
+<li>What about meditation? How does that address the situation?</li>
 </ul><br />
 <h2 style='display: inline' id='miscellaneous-guidelines'>Miscellaneous Guidelines</h2><br />
 <br />
 <ul>
-<li> Posture is important as the mind and body are connected.</li>
-<li> Don&#39;t use music, so you don&#39;t rely on music to change your state of mind. Similar regular guided meditation. Guided meditation is good for learning a technique, but you should not rely on another voice.</li>
-<li> You are not trying to relax. Relaxing and trying are two different things.</li>
-<li> When you love everything, even the bad things happening to you, then you are invincible.</li>
-<li> Happiness is all in your mind. As if you flip a switch there.</li>
-<li> Digging for answers will never end. It will always cause more material to dig.</li>
+<li>Posture is important as the mind and body are connected.</li>
+<li>Don&#39;t use music, so you don&#39;t rely on music to change your state of mind. Similar regular guided meditation. Guided meditation is good for learning a technique, but you should not rely on another voice.</li>
+<li>You are not trying to relax. Relaxing and trying are two different things.</li>
+<li>When you love everything, even the bad things happening to you, then you are invincible.</li>
+<li>Happiness is all in your mind. As if you flip a switch there.</li>
+<li>Digging for answers will never end. It will always cause more material to dig.</li>
 </ul><br />
 <span>If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don&#39;t always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...</span><br />
 <br />
@@ -10722,17 +10724,17 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -12408,7 +12410,7 @@ earth$ curl https://ifconfig.me  <i><font color="silver"># Should show gateway's
 <br />
 <a class='textlink' href='https://pragprog.com/titles/bhtmux2/tmux-2/'>https://pragprog.com/titles/bhtmux2/tmux-2/</a><br />
 <br />
-<span>Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
+<span>Over the years, I have built a couple of shell helper functions to optimize my workflows. Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
 <br />
 <span>The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren&#39;t really useful outside of work due to the way servers and clusters are structured there).</span><br />
 <br />
@@ -12554,7 +12556,7 @@ end
 <br />
 <ul>
 <li>...the first argument will be the session name (see <span class='inlinecode'>tmux::tssh_from_argument</span> helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.</li>
-<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
+<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
 </ul><br />
 <span>This is the function definition behind the <span class='inlinecode'>tssh</span> alias:</span><br />
 <span> </span><br />
@@ -12651,7 +12653,7 @@ $ tssh manyservers.txt
 <br />
 <span>Once I have identified the terminal text to be copied, I enter visual select mode with <span class='inlinecode'>v</span>, highlight all the text to be copied (using arrow keys or Vi motions), and press <span class='inlinecode'>y</span> to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).</span><br />
 <br />
-<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file:  </span><br />
+<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file: </span><br />
 <br />
 <pre>
 bind-key -T copy-mode-vi &#39;v&#39; send -X begin-selection
@@ -12845,10 +12847,11 @@ __ejm\___/________dwb`---`______________________
 </ul><br />
 <h2 style='display: inline' id='final-impressions'>Final Impressions</h2><br />
 <br />
-<span>- The concluding experience of a vacation significantly influences overall memories.</span><br />
-<span>- Restaurant reviews often hinge on the end of the visit, highlighting extras like wrong bills or additional desserts.</span><br />
-<span>- Considering one&#39;s older future self can motivate improvements in the present.</span><br />
-<br />
+<ul>
+<li>The concluding experience of a vacation significantly influences overall memories.</li>
+<li>Restaurant reviews often hinge on the end of the visit, highlighting extras like wrong bills or additional desserts.</li>
+<li>Considering one&#39;s older future self can motivate improvements in the present.</li>
+</ul><br />
 <h2 style='display: inline' id='the-midlife-u-curve'>The Midlife U Curve</h2><br />
 <br />
 <span>Life satisfaction tends to dip in midlife, around the forties, but increases around age 54.</span><br />
@@ -12865,17 +12868,17 @@ __ejm\___/________dwb`---`______________________
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -13219,7 +13222,7 @@ END
 </ul><br />
 <h3 style='display: inline' id='permitting-root-login'>Permitting root login</h3><br />
 <br />
-<span>As these VMs aren&#39;t directly reachable via SSH from the internet, we enable  <span class='inlinecode'>root</span> login by adding a line with <span class='inlinecode'>PermitRootLogin yes</span> to <span class='inlinecode'>/etc/sshd/sshd_config</span>.</span><br />
+<span>As these VMs aren&#39;t directly reachable via SSH from the internet, we enable <span class='inlinecode'>root</span> login by adding a line with <span class='inlinecode'>PermitRootLogin yes</span> to <span class='inlinecode'>/etc/sshd/sshd_config</span>.</span><br />
 <br />
 <span>Once done, we reboot the VM by running <span class='inlinecode'>reboot</span> inside the VM to test whether everything was configured and persisted correctly.</span><br />
 <br />
@@ -14750,14 +14753,14 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>I have been interviewed by Florian Buetow on `cracking-ai-engineering.com`  about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</summary>
+        <summary>I have been interviewed by Florian Buetow on `cracking-ai-engineering.com` about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='working-with-an-sre-interview'>Working with an SRE Interview</h1><br />
 <br />
 <span class='quote'>Published at 2025-01-15T00:16:04+02:00</span><br />
 <br />
-<span>I have been interviewed by Florian Buetow on <span class='inlinecode'>cracking-ai-engineering.com</span>  about what it&#39;s like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</span><br />
+<span>I have been interviewed by Florian Buetow on <span class='inlinecode'>cracking-ai-engineering.com</span> about what it&#39;s like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.</span><br />
 <br />
 <a class='textlink' href='https://www.cracking-ai-engineering.com/writing/2025/01/12/working-with-an-sre-interview/'>See original interview here</a><br />
 <a class='textlink' href='https://www.cracking-ai-engineering.com'>Cracking AI Engineering</a><br />
@@ -14819,7 +14822,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>What are the differences between SRE, DevOps, SysAdmin, and Architects?</span><br />
 <br />
-<span class='quote'>SREs are like the next step after SysAdmins. A SysAdmin might manually install servers, replace disks, or use simple scripts for automation, while SREs use infrastructure as code and focus on reliability through SLIs, SLOs, and automation. DevOps isn’t really a job-it’s more of a way of working, where developers are involved in operations tasks like setting up CI/CD pipelines or on-call shifts. Architects focus on designing systems and infrastructures, such as load balancers or distributed systems, working alongside SREs to ensure the systems meet the reliability and scalability requirements. The specific responsibilities of each role depend on the company, and there is often overlap.  </span><br />
+<span class='quote'>SREs are like the next step after SysAdmins. A SysAdmin might manually install servers, replace disks, or use simple scripts for automation, while SREs use infrastructure as code and focus on reliability through SLIs, SLOs, and automation. DevOps isn’t really a job-it’s more of a way of working, where developers are involved in operations tasks like setting up CI/CD pipelines or on-call shifts. Architects focus on designing systems and infrastructures, such as load balancers or distributed systems, working alongside SREs to ensure the systems meet the reliability and scalability requirements. The specific responsibilities of each role depend on the company, and there is often overlap. </span><br />
 <br />
 <span>What are the most important reliability lessons you’ve learned so far?</span><br />
 <br />
@@ -14837,11 +14840,11 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <span>When should you decide to put something into a runbook, and when is it unnecessary?</span><br />
 <br />
-<span class='quote'>If an issue happens frequently, it should be documented in a runbook so that anyone, even someone new, can follow the steps to fix it. The idea is that 90% of the common incidents should be covered. For example, if a service is down, the runbook would specify where to find logs, which commands to check, and what actions to take. On the other hand, rare or complex issues, where the resolution depends heavily on context or varies each time, don’t make sense to include in detail. For those, it’s better to focus on general troubleshooting steps.  </span><br />
+<span class='quote'>If an issue happens frequently, it should be documented in a runbook so that anyone, even someone new, can follow the steps to fix it. The idea is that 90% of the common incidents should be covered. For example, if a service is down, the runbook would specify where to find logs, which commands to check, and what actions to take. On the other hand, rare or complex issues, where the resolution depends heavily on context or varies each time, don’t make sense to include in detail. For those, it’s better to focus on general troubleshooting steps. </span><br />
 <br />
 <span>How do you search for and find the correct runbooks?</span><br />
 <br />
-<span class='quote'>Runbooks should be linked directly in the alert you receive. For example, if you get an alert about a service not running, the alert will have a link to the runbook that tells you what to check, like logs or commands to run. Runbooks are best stored in an internal wiki, so if you don’t find the link in the alert, you know where to search. The important thing is that runbooks are easy to find and up to date because that’s what makes them useful during incidents.  </span><br />
+<span class='quote'>Runbooks should be linked directly in the alert you receive. For example, if you get an alert about a service not running, the alert will have a link to the runbook that tells you what to check, like logs or commands to run. Runbooks are best stored in an internal wiki, so if you don’t find the link in the alert, you know where to search. The important thing is that runbooks are easy to find and up to date because that’s what makes them useful during incidents. </span><br />
 <br />
 <span>Do you have an interesting war story you can share with us?</span><br />
 <br />
@@ -15421,7 +15424,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <li>500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to make use of later in this blog series).</li>
 <li>GBit ethernet</li>
 <li>Four USB 3.2 Gen2 ports (maybe I want to mount something externally at some point)</li>
-<li>Dimensions and weight:  115*102*39mm, 280g</li>
+<li>Dimensions and weight: 115*102*39mm, 280g</li>
 <li>Silent cooling system.</li>
 <li>HDMI output (needed only for the initial installation and maybe for troubleshooting later)</li>
 <li>Auto power on via WoL (may make use of it)</li>
@@ -16224,17 +16227,17 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -16402,7 +16405,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Comprehensive Runbooks: We created 64 runbooks (by the time writing this probably more than 100) that are composable like Lego bricks. Each runbook covers a specific scenario and guides the engineer step-by-step to resolution. Pairing these with monitoring alerts linked directly to Confluence docs, and from there to the respective runbooks, ensures every alert can be navigated with ease (well, there are always exceptions to the rule...).</span><br />
 <br />
-<span>Self-Sufficiency &amp; Confidence Building:  With all these resources at their fingertips, our on-call engineers become self-sufficient for most of the common issues they&#39;ll face (new starters can now handle around 80% of the most common issue after 6 weeks they had joined the company). This boosts their confidence and ensures they can handle Tier-1 incidents independently.</span><br />
+<span>Self-Sufficiency &amp; Confidence Building: With all these resources at their fingertips, our on-call engineers become self-sufficient for most of the common issues they&#39;ll face (new starters can now handle around 80% of the most common issue after 6 weeks they had joined the company). This boosts their confidence and ensures they can handle Tier-1 incidents independently.</span><br />
 <br />
 <span>Documentation and Feedback Loop: Continuous improvement is key. We regularly update our documentation based on feedback from the engineers. This makes our process even more robust and user-friendly.</span><br />
 <br />
@@ -16773,7 +16776,7 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>As mentioned, the Kinesis is a great keyboard, but it is not meant for travel.</span><br />
 <br />
-<span>I guess keyboards will always be my expensive hobby, so I also purchased another ergonomic, ortho-linear, concave split keyboard, the Glove80 (with the Red Pro low-profile switches). This keyboard is much lighter and, in my opinion, much better suited for travel than the Kinesis. It also comes with a great travel case.  </span><br />
+<span>I guess keyboards will always be my expensive hobby, so I also purchased another ergonomic, ortho-linear, concave split keyboard, the Glove80 (with the Red Pro low-profile switches). This keyboard is much lighter and, in my opinion, much better suited for travel than the Kinesis. It also comes with a great travel case. </span><br />
 <br />
 <span>Here is a photo of me using it with my Surface Go 2 (it runs Linux, by the way) while waiting for the baggage drop at the airport:</span><br />
 <br />
@@ -16822,14 +16825,14 @@ jgs \\`_..---.Y.---.._`//
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>These are my personal takeaways after reading 'The Stoic Challenge:  A Philosopher's Guide to Becoming Tougher, Calmer, and More Resilient' by William B. Irvine. </summary>
+        <summary>These are my personal takeaways after reading 'The Stoic Challenge: A Philosopher's Guide to Becoming Tougher, Calmer, and More Resilient' by William B. Irvine. </summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='the-stoic-challenge-book-notes'>"The Stoic Challenge" book notes</h1><br />
 <br />
 <span class='quote'>Published at 2024-07-07T12:46:55+03:00</span><br />
 <br />
-<span>These are my personal takeaways after reading "The Stoic Challenge:  A Philosopher&#39;s Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. </span><br />
+<span>These are my personal takeaways after reading "The Stoic Challenge: A Philosopher&#39;s Guide to Becoming Tougher, Calmer, and More Resilient" by William B. Irvine. </span><br />
 <br />
 <pre>
          ,..........   ..........,
@@ -16887,17 +16890,17 @@ jgs \\`_..---.Y.---.._`//
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
@@ -17019,7 +17022,7 @@ traceroute to bad.horse (<font color="#000000">162.252</font>.<font color="#0000
 <span>Netflix has got the Hello World application run in production 😱</span><br />
 <br />
 <ul>
-<li> https://www.Netflix.com/helloworld</li>
+<li>https://www.Netflix.com/helloworld</li>
 </ul><br />
 <span class='quote'>By the time this is posted, it seems that Netflix has taken it offline... I should have created a screenshot!</span><br />
 <br />
@@ -17375,7 +17378,7 @@ jgs   `-=========-`()
 <br />
 <a class='textlink' href='https://pragprog.com/titles/bhtmux2/tmux-2/'>https://pragprog.com/titles/bhtmux2/tmux-2/</a><br />
 <br />
-<span>Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
+<span>Over the years, I have built a couple of shell helper functions to optimize my workflows. Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.</span><br />
 <br />
 <span>The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren&#39;t really useful outside of work due to the way servers and clusters are structured there).</span><br />
 <br />
@@ -17546,7 +17549,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <ul>
 <li>...the first argument will be the session name (see <span class='inlinecode'>tmux::tssh_from_argument</span> helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.</li>
-<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
+<li>...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs (see <span class='inlinecode'>tmux::ssh_from_file</span> helper function)</li>
 </ul><br />
 <span>This is the function definition behind the <span class='inlinecode'>tssh</span> alias:</span><br />
 <span> </span><br />
@@ -17653,7 +17656,7 @@ $ tssh manyservers.txt
 <br />
 <span>Once I have identified the terminal text to be copied, I enter visual select mode with <span class='inlinecode'>v</span>, highlight all the text to be copied (using arrow keys or Vi motions), and press <span class='inlinecode'>y</span> to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).</span><br />
 <br />
-<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file:  </span><br />
+<span>For <span class='inlinecode'>v</span> and <span class='inlinecode'>y</span> to work, the following has to be added to the Tmux configuration file: </span><br />
 <br />
 <pre>
 bind-key -T copy-mode-vi &#39;v&#39; send -X begin-selection
@@ -18237,17 +18240,17 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other book notes of mine are:</span><br />
 <br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 "The Courage To Be Disliked" book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 "A Monk&#39;s Guide to Happiness" book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 "When: The Scientific Secrets of Perfect Timing" book notes</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 "Staff Engineer" book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 "The Stoic Challenge" book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 "Slow Productivity" book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 "Mind Management" book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 "Software Developers Career Guide and Soft Skills" book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 "The Obstacle is the Way" book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 "Never split the difference" book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 "The Pragmatic Programmer" book notes</a><br />
+<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
+<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
+<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes</a><br />
+<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
+<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
+<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes (You are currently reading this)</a><br />
+<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
+<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
+<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
+<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
+<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

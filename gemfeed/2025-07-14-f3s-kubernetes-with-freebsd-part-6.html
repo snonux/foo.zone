@@ -986,7 +986,7 @@ paul@f1:~ % doas zfs list -t snapshot -r zdata/sink | grep zrepl | tail -<font c
 <br />
 <span>First, we add the CARP configuration to <span class='inlinecode'>/etc/rc.conf</span> on both <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span>:</span><br />
 <br />
-<span class='quote'>Update: Sun  4 Jan 00:17:00 EET 2026 - Added <span class='inlinecode'>advskew 100</span> to f1 so f0 always wins CARP elections when it comes back online after a reboot.</span><br />
+<span class='quote'>Update: Sun 4 Jan 00:17:00 EET 2026 - Added <span class='inlinecode'>advskew 100</span> to f1 so f0 always wins CARP elections when it comes back online after a reboot.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1040,7 +1040,7 @@ paul@f0:~ % doas service devd restart
 <br />
 <span>Next, we create the CARP control script that will restart stunnel when the CARP state changes:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<span class='quote'>Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1370,7 +1370,7 @@ Starting stunnel.
 </ul><br />
 <span>This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sat  3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
+<span class='quote'>Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1576,7 +1576,7 @@ Auto-failback ENABLED (removed /data/nfs/nfs.NO_AUTO_FAILBACK)
 <br />
 <span>When <span class='inlinecode'>f0</span> reboots (planned or unplanned), <span class='inlinecode'>f1</span> takes over as CARP MASTER. To ensure <span class='inlinecode'>f0</span> automatically reclaims its primary role once it&#39;s fully operational, we&#39;ll implement an automatic failback mechanism. With:</span><br />
 <br />
-<span class='quote'>Update: Fixed the script at Sun  4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.</span><br />
+<span class='quote'>Update: Fixed the script at Sun 4 Jan 00:04:28 EET 2026 - removed the NFS service check because when f0 is BACKUP, NFS services are intentionally stopped by carpcontrol.sh, which would prevent auto-failback from ever triggering.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini

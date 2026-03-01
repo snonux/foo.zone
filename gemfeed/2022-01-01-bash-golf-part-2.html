@@ -362,7 +362,7 @@ Second line: for Great Good
       -e  Exit immediately if a command exits with a non-zero status.
 </pre>
 <br />
-<span>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:</span><br />
+<span>As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will not be printed out anymore:</span><br />
 <br />
 <pre>
 ❯ bash -c &#39;set -e; echo hello; grep -q bar &lt;&lt;&lt; foo; echo bar&#39;
