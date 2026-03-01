@@ -27,7 +27,7 @@ configure do
   given { hostname is :earth }
 
   file '/tmp/test/wg0.conf' do
-    requires '/etc/hosts.test'
+    requires file '/etc/hosts.test'
     manage directory
     from template
     'content with <%= 1 + 2 %>'
@@ -37,6 +37,19 @@ configure do
     line '192.168.1.101 earth'
   end
 end
+```
+
+Which would look like this when run:
+
+```sh
+% sudo ruby example.rb
+INFO 20260301-213817 dsl(0) => Configuring...
+INFO 20260301-213817 file('/tmp/test/wg0.conf') => Registered dependency on file('/etc/hosts.test')
+INFO 20260301-213817 file('/tmp/test/wg0.conf') => Evaluating...
+INFO 20260301-213817 file('/etc/hosts.test') => Evaluating...
+INFO 20260301-213817 file('/etc/hosts.test') => Writing file /etc/hosts.test
+INFO 20260301-213817 file('/tmp/test/wg0.conf') => Creating parent directory /tmp/test
+INFO 20260301-213817 file('/tmp/test/wg0.conf') => Writing file /tmp/test/wg0.conf
 ```
 
 The idea is that you describe the desired state and RCM worries about the steps. The `given` block can short‑circuit the whole run (for example, only run on a specific hostname). Each `file` resource can either manage a complete file (from a template) or just make sure individual lines are present.
@@ -178,7 +191,7 @@ Here is a quick overview of what RCM can do today, grouped by area:
 
 Some small examples adapted from RCM's own tests:
 
-Template rendering into a file:
+### Template rendering into a file
 
 ```ruby
 configure do
@@ -189,7 +202,7 @@ configure do
 end
 ```
 
-Ensuring a line is absent from a file:
+### Ensuring a line is absent from a file
 
 ```ruby
 configure do
@@ -200,34 +213,16 @@ configure do
 end
 ```
 
-Keeping a backup of the original content when a file changes:
-
-```ruby
-configure do
-  file original do
-    path './.dir_example.rcmtmp/foo/backup-me.txt'
-    manage directory
-    'original_content'
-  end
-
-  file new do
-    path './.dir_example.rcmtmp/foo/backup-me.txt'
-    manage directory
-    requires file original
-    'new_content'
-  end
-end
-```
-
-Guarding a configuration run on the current hostname:
+### Guarding a configuration run on the current hostname
 
 ```ruby
 configure do
   given { hostname Socket.gethostname }
+  ...
 end
 ```
 
-Creating and deleting directories, and purging a directory tree:
+# Creating and deleting directories, and purging a directory tree
 
 ```ruby
 configure do
@@ -242,7 +237,7 @@ configure do
 end
 ```
 
-Managing file and directory modes and ownership:
+### Managing file and directory modes and ownership
 
 ```ruby
 configure do
@@ -256,7 +251,9 @@ configure do
 end
 ```
 
-Using a chained, more natural language style for notifications:
+### Using a chained, more natural language style for notifications
+
+This will just print out something, not changing anything:
 
 ```ruby
 configure do
@@ -266,7 +263,7 @@ configure do
 end
 ```
 
-Touching files and updating their timestamps:
+### Touching files and updating their timestamps
 
 ```ruby
 configure do
@@ -274,7 +271,7 @@ configure do
 end
 ```
 
-Expressing dependencies between notifications:
+### Expressing dependencies between notifications
 
 ```ruby
 configure do
@@ -292,7 +289,7 @@ configure do
 end
 ```
 
-Creating and updating symbolic links:
+### Creating and updating symbolic links
 
 ```ruby
 configure do
@@ -303,7 +300,7 @@ configure do
 end
 ```
 
-Detecting duplicate resource definitions at configure time:
+### Detecting duplicate resource definitions at configure time
 
 ```ruby
 configure do
