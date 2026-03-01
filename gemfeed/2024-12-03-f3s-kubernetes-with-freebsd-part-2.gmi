@@ -79,7 +79,7 @@ The Beelink comes with the following specs:
 * 500 GB M.2 SSD, with the option to install a 2nd 2.5 SSD drive (which I want to make use of later in this blog series).
 * GBit ethernet
 * Four USB 3.2 Gen2 ports (maybe I want to mount something externally at some point)
-* Dimensions and weight:  115*102*39mm, 280g
+* Dimensions and weight: 115*102*39mm, 280g
 * Silent cooling system.
 * HDMI output (needed only for the initial installation and maybe for troubleshooting later)
 * Auto power on via WoL (may make use of it)

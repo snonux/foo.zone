@@ -57,7 +57,7 @@ I can also recommend this book (this is the book I got started with with Tmux):
 
 => https://pragprog.com/titles/bhtmux2/tmux-2/
 
-Over the years, I have built a couple of shell helper functions to optimize my workflows.  Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.
+Over the years, I have built a couple of shell helper functions to optimize my workflows. Tmux is extensively integrated into my daily workflows (personal and work). I had colleagues asking me about my Tmux config and helper scripts for Tmux several times. It would be neat to blog about it so that everyone interested in it can make a copy of my configuration and scripts.
 
 The configuration and scripts in this blog post are only the non-work-specific parts. There are more helper scripts, which I only use for work (and aren't really useful outside of work due to the way servers and clusters are structured there).
 
@@ -209,7 +209,7 @@ Before I used Tmux, I was a heavy user of ClusterSSH, which allowed me to log in
 However, since I started using Tmux, I retired ClusterSSH, as it came with the benefit that Tmux only needs to be run in the terminal, whereas ClusterSSH spawned terminal windows, which aren't easily portable (e.g., from a Linux desktop to macOS). The `tmux::cluster_ssh` function can have N arguments, where:
 
 * ...the first argument will be the session name (see `tmux::tssh_from_argument` helper function), and all remaining arguments will be server hostnames/FQDNs to connect to simultaneously.
-* ...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs  (see `tmux::ssh_from_file` helper function)
+* ...or, the first argument is a file name, and the file contains a list of hostnames/FQDNs (see `tmux::ssh_from_file` helper function)
 
 This is the function definition behind the `tssh` alias:
  
@@ -306,7 +306,7 @@ I often search the history backwards with `prefix-key [` followed by a `?`, whic
 
 Once I have identified the terminal text to be copied, I enter visual select mode with `v`, highlight all the text to be copied (using arrow keys or Vi motions), and press `y` to yank it (sorry if this all sounds a bit complicated, but Vim/NeoVim users will know this, as it is pretty much how you do it there as well).
 
-For `v` and `y` to work, the following has to be added to the Tmux configuration file:  
+For `v` and `y` to work, the following has to be added to the Tmux configuration file: 
 
 ```
 bind-key -T copy-mode-vi 'v' send -X begin-selection

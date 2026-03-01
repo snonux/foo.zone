@@ -347,7 +347,7 @@ Ok, let's dig deeper:
       -e  Exit immediately if a command exits with a non-zero status.
 ```
 
-As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will  not be printed out anymore:
+As you can see in the following example, the Bash terminates after the execution of "grep" as "foo" is not matching "bar". Therefore, grep exits with 1 (unsuccessfully) and the shell aborts. And therefore, "bar" will not be printed out anymore:
 
 ```
 ❯ bash -c 'set -e; echo hello; grep -q bar <<< foo; echo bar'

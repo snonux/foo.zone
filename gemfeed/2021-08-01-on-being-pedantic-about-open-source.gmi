@@ -38,7 +38,7 @@ I believe that it is essential to always have free and open-source alternatives 
 
 One benefit of using open-source software is that it doesn't cost anything, right? That's correct in many cases. However, in some cases you still need to spend a significant amount of time configuring the software to work for you. It will be more expensive to use open-source software than proprietary commercial one if you aren't careful. 
 
-Not to say that I haven't seen the same effect with commercial software where people had to, after buying it, put a bunch of effort to make it work due to the lack of quality or due to high complexity. But that's either bad luck or bad decision-making. Most commercial providers  I have worked with try to make it work for you, so you also will buy other products and services from them later on and don't lose you as a happy customer.
+Not to say that I haven't seen the same effect with commercial software where people had to, after buying it, put a bunch of effort to make it work due to the lack of quality or due to high complexity. But that's either bad luck or bad decision-making. Most commercial providers I have worked with try to make it work for you, so you also will buy other products and services from them later on and don't lose you as a happy customer.
 
 ## Commercial providers
 

@@ -149,7 +149,7 @@ The toolbar offers four different functions:
 ![Figure 2.4: The menu line including toolbar]
 
 * Reset simulation: can only be activated when the simulation has been paused or has finished
-* Repeat simulation: cannot be activated if the simulation has not yet been started  
+* Repeat simulation: cannot be activated if the simulation has not yet been started 
 * Pause simulation: can only be activated when the simulation is currently running
 * Start simulation: can only be activated when the simulation is not currently running and has not yet finished
 
@@ -258,7 +258,7 @@ Two main types of events are distinguished: programmable events and non-programm
 
 * Local Eventsi: Triggered when a specific local time of the associated process is reached
 * Global Eventsi: (Expert Mode only): Triggered when a specific global simulation time is reached
-* Event Programmingi: Users can add events by: Right-clicking on a process bar and selecting "Insert local event", using the event editor in the sidebar or  by sssssssssssthe event time and type
+* Event Programmingi: Users can add events by: Right-clicking on a process bar and selecting "Insert local event", using the event editor in the sidebar or by sssssssssssthe event time and type
 
 ### Event Types Available:
 

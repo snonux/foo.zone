@@ -79,7 +79,7 @@ So it means that Perl and Raku now exist in parallel. They influence each other,
 => https://www.OpenBSD.org The OpenBSD Operating System
 => https://news.ycombinator.com/item?id=23360338 Why does OpenBSD still include Perl in its base installation?
 
-The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`,  `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
+The renaming of Perl 6 to Raku has now opened the door for a future Perl 7. As far as I understand, Perl 7 will be Perl 5 but with modern features enabled by default (e.g. pragmas `use strict;`, `use warnings;`, `use signatures;` and so on. Also, the hope is that a Perl 7 with modern standards will attract more beginners. There aren't many Perl jobs out there nowadays. That's mostly due to Perl's bad (bad for no real reasons) reputation.
 
 > Update 2022-12-10: A reader pointed out, that `use v5.36;` already turns strict, warnings and signatures pragmas automatically on! 
 

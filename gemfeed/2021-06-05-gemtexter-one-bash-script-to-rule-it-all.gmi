@@ -122,7 +122,7 @@ I followed all these best practices, and in my opinion, the result is a pretty m
 
 ShellCheck, a shell script analysis tool written in Haskell, is run on Gemtexter ensuring that all code is acceptable. I am pretty impressed with what ShellCheck found. 
 
-It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done < <(some_command)".  ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.
+It, for example, detected "some_command | while read var; do ...; done" loops and hinted that these create a new subprocess for the while part. The result is that all variable modifications taking place in the while-subprocess won't reflect the primary Bash process. ShellSheck then recommended rewriting the loop so that no subprocess is spawned as "while read -r var; do ...; done < <(some_command)". ShellCheck also pointed out to add a "-r" to "read"; otherwise, there could be an issue with backspaces in the loop data.
 
 Furthermore, ShellCheck recommended many more improvements. Declaration of unused variables and missing variable and string quotations were the most common ones. ShellSheck immensely helped to improve the robustness of the script.
 
