@@ -179,7 +179,7 @@ RCM already does what I need on my machines, but there are a few ideas I want to
 * Managing hosts remotely.
 * A slightly more structured way to organise larger configurations without losing the KISS spirit.
 
-## Feature overview (selected)
+## Feature overview (for now)
 
 Here is a quick overview of what RCM can do today, grouped by area:
 
