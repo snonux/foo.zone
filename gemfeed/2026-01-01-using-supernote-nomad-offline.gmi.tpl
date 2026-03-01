@@ -32,7 +32,7 @@ I initially bought it because Retta (the manufacturer of the Supernote) stated o
 
 In a world of constant connectivity, the Supernote Nomad offers a sanctuary. By keeping it offline, I can focus on my thoughts and notes without compromise of my privacy.
 
-One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last  a week, on a single charge when it's not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.
+One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last a week, on a single charge when it's not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.
 
 Privacy was my main concern. By not syncing my notes to Retta's cloud service, I retain full ownership and control over my data. There's no risk of my personal thoughts and ideas being accessed or mined by third parties. It's a simple and effective way to ensure my privacy.
 

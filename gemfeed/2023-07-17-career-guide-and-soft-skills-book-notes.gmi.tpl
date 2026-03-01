@@ -133,7 +133,7 @@ Use your most productive hours to work on you. Make that your priority. Take car
 
 * Friendships and positive thinking help to have and maintain better health, longer Life, better productivity and increased happiness.
 * Positive thinking can be trained and be a habit. Read the book "The Power of Positive Thinking".
-* Stoicism helps. Meditation helps.  Playing for fun helps too.
+* Stoicism helps. Meditation helps. Playing for fun helps too.
 
 Become the person you want to become (your self image). Program your brain unconsciously. Don't become the person other people want you to be. Embrace yourself, you are you.
 

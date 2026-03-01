@@ -55,7 +55,7 @@ Another great way to get the hang of Java again was to sneak into the code revie
 
 ### Took ownership of a roadmap-Java project
 
-Besides my Pet Project, I also took ownership of a regular roadmap Java project at work, making an internal Java service capable of running in  Kubernetes. This was a bunch of minor changes and adding a bunch of classes and unit tests dealing with the statelessness and a persistent job queue in Redis. The job also involved reading and understanding a lot of already existing Java code. It wasn't part of my job description, but it was fun, and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.
+Besides my Pet Project, I also took ownership of a regular roadmap Java project at work, making an internal Java service capable of running in Kubernetes. This was a bunch of minor changes and adding a bunch of classes and unit tests dealing with the statelessness and a persistent job queue in Redis. The job also involved reading and understanding a lot of already existing Java code. It wasn't part of my job description, but it was fun, and I learned a lot. The service runs smoothly in production now. Of course, all of my code got reviewed by my Software Engineering colleagues.
 
 ## The good
 

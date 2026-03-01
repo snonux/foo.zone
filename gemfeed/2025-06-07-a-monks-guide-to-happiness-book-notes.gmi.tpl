@@ -49,20 +49,20 @@ These are my personal book notes from Gelong Thubten's "A Monk's Guide to Happin
 
 ## Reflective Questions
 
-*  Why do I do all the things I do? What do I try to achieve?
-*  What am I doing about that? 
-*  Is it working?
-*  What are the real causes of happiness and suffering?
-*  What about meditation? How does that address the situation?
+* Why do I do all the things I do? What do I try to achieve?
+* What am I doing about that? 
+* Is it working?
+* What are the real causes of happiness and suffering?
+* What about meditation? How does that address the situation?
 
 ## Miscellaneous Guidelines
 
-*  Posture is important as the mind and body are connected.
-*  Don't use music, so you don't rely on music to change your state of mind. Similar regular guided meditation. Guided meditation is good for learning a technique, but you should not rely on another voice.
-*  You are not trying to relax. Relaxing and trying are two different things.
-*  When you love everything, even the bad things happening to you, then you are invincible.
-*  Happiness is all in your mind. As if you flip a switch there.
-*  Digging for answers will never end. It will always cause more material to dig.
+* Posture is important as the mind and body are connected.
+* Don't use music, so you don't rely on music to change your state of mind. Similar regular guided meditation. Guided meditation is good for learning a technique, but you should not rely on another voice.
+* You are not trying to relax. Relaxing and trying are two different things.
+* When you love everything, even the bad things happening to you, then you are invincible.
+* Happiness is all in your mind. As if you flip a switch there.
+* Digging for answers will never end. It will always cause more material to dig.
 
 If happiness is a mental issue. Clearly, the best time is spent training your mind in your free time and don't always be busy with other things. E.g. meditation, or think about the benefits of meditation. All that we do in our free time is search for happiness. Are the things we do actually working? There is always something around the corner...
 

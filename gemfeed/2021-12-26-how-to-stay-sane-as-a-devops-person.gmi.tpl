@@ -48,7 +48,7 @@ There are many temptations to get side-tracked by other projects and/or issues. 
 
 If the request is urgent, and you have the capacity to help, probably you should help. If it's not urgent, maybe ask to pospone the request (e.g. ask to create a ticket, so that someone from your team can work on it later).
 
-If the request is urgent, but you don't have the knowledge or the capacity to help, try to defer to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent why you might not have the time right now, as this can help the person to review his own priorities or to escalate.  
+If the request is urgent, but you don't have the knowledge or the capacity to help, try to defer to a colleague who might be able to help. You could also provide some quick tips and hints, so that the requester can resolve the issue by himself. Make it transparent why you might not have the time right now, as this can help the person to review his own priorities or to escalate. 
 
 ### Escalation is only a tool
 

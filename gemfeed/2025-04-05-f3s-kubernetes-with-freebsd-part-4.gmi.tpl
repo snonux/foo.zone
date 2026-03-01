@@ -245,7 +245,7 @@ Whereas:
 
 ### Permitting root login
 
-As these VMs aren't directly reachable via SSH from the internet, we enable  `root` login by adding a line with `PermitRootLogin yes` to `/etc/sshd/sshd_config`.
+As these VMs aren't directly reachable via SSH from the internet, we enable `root` login by adding a line with `PermitRootLogin yes` to `/etc/sshd/sshd_config`.
 
 Once done, we reboot the VM by running `reboot` inside the VM to test whether everything was configured and persisted correctly.
 

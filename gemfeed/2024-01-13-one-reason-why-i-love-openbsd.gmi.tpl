@@ -43,7 +43,7 @@ I followed the same procedure the previous times and never encountered any diffi
 
 I have seen upgrades of other Operating Systems either take a long time or break the system (which takes manual steps to repair). That's just one of many reasons why I love OpenBSD! There appear never to be any problems. It just gets its job done!
 
-=> https://www.openbsd.org  The OpenBSD Project
+=> https://www.openbsd.org The OpenBSD Project
 
 BTW: are you looking for an opinionated OpenBSD VM hoster? OpenBSD Amsterdam may be for you. They rock (I am having a VM there, too)!
 

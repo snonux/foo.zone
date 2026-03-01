@@ -124,7 +124,7 @@ A pure Linux phone, e.g. with Ubuntu Touch installed, e.g. on a PinePhone, Fairp
 => https://ubuntu-touch.io/ Ubuntu Touch
 => https://en.wikipedia.org/wiki/Linux_for_mobile_devices More Linux distributions for mobile devices 
 
-But here, Google Play would not be sandboxed; you could not configure individual network permissions and storage scopes like in GrapheneOS. Pure Linux-compatible phones usually come with a crappy camera, and the battery life is generally pretty bad (only a few hours). Also, no big tech company pushes the development of Linux phones. Everything relies on hobbyists, whereas multiple big tech companies put a lot of effort into the Android project, and a lot of code also goes into the Android Open-Source project.  
+But here, Google Play would not be sandboxed; you could not configure individual network permissions and storage scopes like in GrapheneOS. Pure Linux-compatible phones usually come with a crappy camera, and the battery life is generally pretty bad (only a few hours). Also, no big tech company pushes the development of Linux phones. Everything relies on hobbyists, whereas multiple big tech companies put a lot of effort into the Android project, and a lot of code also goes into the Android Open-Source project. 
 
 Currently, pure Linux phones are only a nice toy to tinker with but are still not ready (will they ever?) to be the daily driver. SailfishOS may be an exception; I played around with it in the past. It is pretty usable, but it's not an option for me as it is partial a proprietary operating system.
 

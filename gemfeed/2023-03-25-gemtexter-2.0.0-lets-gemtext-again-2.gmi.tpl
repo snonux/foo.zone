@@ -119,7 +119,7 @@ An example blog post without any publishing date looks like this:
 The remaining content of the Gemtext file...
 ```
 
-Gemtexter will add a line starting with  `> Published at ...` now. Any subsequent Atom feed generation will then use that date.
+Gemtexter will add a line starting with `> Published at ...` now. Any subsequent Atom feed generation will then use that date.
 
 ```sh
 % cat gemfeed/2023-02-26-title-here.gmi

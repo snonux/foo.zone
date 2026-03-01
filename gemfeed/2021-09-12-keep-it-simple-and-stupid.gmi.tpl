@@ -35,7 +35,7 @@ Have a look at COBOL, a prevalent programming language of the past. No one is le
 
 ### On Kubernetes
 
-Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster -  it also applies to the software engineers, who now have to develop 'cloud native' applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.
+Now have a look at Kubernetes (k8s), the current trendy infrastructure thing to use nowadays. Of course, there are many benefits of using k8s (auto-scaling, reproducible deployments, dynamic resource allocation and resource sharing, saving of hardware costs, good commercial for potential employees as it is the current hot sauce of infrastructure). But all of this also comes with costs: You need experts operating the k8s cluster (or you need to pay extra for a managed cluster in the cloud), increased complexity of the system (k8s comes with a steep learning curve). The latter not only applies to the engineers managing the k8s cluster - it also applies to the software engineers, who now have to develop 'cloud native' applications and, therefore, have to change how they developed software how they used to. They all need to be re-educated on what cloud-native means, and they also need to understand the key concepts of k8s for writing optimal software for it.
 
 ### The younger generation of IT professionals
 
@@ -77,7 +77,7 @@ Another perfect example is the Adobe PDF reader. How can it be that the inventor
 
 ### The power of plain text files
 
-Speaking of file formats, never underestimate the power of plain text files.  Plain text files don't require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won't be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn't supported anymore and doesn't run anymore on modern computers.
+Speaking of file formats, never underestimate the power of plain text files. Plain text files don't require any special software to be opened, and they outlive the software which created them in the first place. You will still be able to read a plain text file on a modern computer system ten (or twenty) years from now, but you probably won't be able to read such an old version of an Adobe Photoshop image file if the software required for reading that format isn't supported anymore and doesn't run anymore on modern computers.
 
 ### KISS for programmers
 

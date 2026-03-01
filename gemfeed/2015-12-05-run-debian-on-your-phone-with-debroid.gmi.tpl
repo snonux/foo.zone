@@ -173,7 +173,7 @@ chmod +x /data/local/userinit.sh
 exit
 ```
 
-Reboot & test!  Enjoy!
+Reboot & test! Enjoy!
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

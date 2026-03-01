@@ -226,7 +226,7 @@ I learned a lot from this `#OpenBSD` `#relayd` talk, and I already put the infor
 
 => https://www.youtube.com/watch?v=yW8QSZyEs6E www.youtube.com/watch?v=yW8QSZyEs6E
 
-###  Six weeks of claude code
+### Six weeks of claude code
 
 => https://blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/ blog.puzzmo.com/posts/2025/07/30/six-weeks-of-claude-code/
 

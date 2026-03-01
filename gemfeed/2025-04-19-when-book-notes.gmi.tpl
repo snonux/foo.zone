@@ -67,9 +67,9 @@ Short naps (10-20 minutes) significantly enhance mood, alertness, and cognitive 
 
 ## Final Impressions
 
-- The concluding experience of a vacation significantly influences overall memories.
-- Restaurant reviews often hinge on the end of the visit, highlighting extras like wrong bills or additional desserts.
-- Considering one's older future self can motivate improvements in the present.
+* The concluding experience of a vacation significantly influences overall memories.
+* Restaurant reviews often hinge on the end of the visit, highlighting extras like wrong bills or additional desserts.
+* Considering one's older future self can motivate improvements in the present.
 
 ## The Midlife U Curve
 

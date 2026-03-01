@@ -384,7 +384,7 @@ The following two paragraphs are thoroughly quoted from the Google guidelines. B
 
 I also highly recommend having a read through the "Advanced Bash-Scripting Guide" (not from Google). I use it as the universal Bash reference and learn something new every time I look at it.
 
-=> https://tldp.org/LDP/abs/html/  Advanced Bash-Scripting Guide
+=> https://tldp.org/LDP/abs/html/ Advanced Bash-Scripting Guide
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

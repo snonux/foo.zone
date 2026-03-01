@@ -51,7 +51,7 @@ Often, your mind goes back to work-related stuff even after work. That's normal 
 * Think of or work on that fun passion project. I currently, for example, like to learn and code a bit in Rakulang. 
 * Read. Nothing beats reading a good Science Fiction Novel (or whatever you prefer) before falling asleep.
 
-Some of these can be habit-stacked: Exercise could be combined with watching videos about your passion project (e.g. watching lectures about that new programming language you are currently learning for fun). With walking, for example, you could combine listening to an Audiobook or music, or you could also think about your passion project during that walk.  
+Some of these can be habit-stacked: Exercise could be combined with watching videos about your passion project (e.g. watching lectures about that new programming language you are currently learning for fun). With walking, for example, you could combine listening to an Audiobook or music, or you could also think about your passion project during that walk. 
 
 ## Get a pet
 

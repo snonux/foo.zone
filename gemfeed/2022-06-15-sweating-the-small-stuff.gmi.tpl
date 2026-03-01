@@ -129,7 +129,7 @@ Pos |            System |               Kernel |        Uptime |
  20 |              mars |  Linux 3.2.0-4-amd64 | 190d 05:44:21 |
 ```
 
-=> https://codeberg.org/snonux/guprecords  
+=> https://codeberg.org/snonux/guprecords 
 
 This all is of no real practical use but fun!
 

@@ -2,7 +2,7 @@
 
 > Published at 2025-01-15T00:16:04+02:00
 
-I have been interviewed by Florian Buetow on `cracking-ai-engineering.com`  about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.
+I have been interviewed by Florian Buetow on `cracking-ai-engineering.com` about what it's like working with a Site Reliability Engineer from the point of view of a Software Engineer, Data Scientist, and AI Engineer.
 
 => https://www.cracking-ai-engineering.com/writing/2025/01/12/working-with-an-sre-interview/ See original interview here
 => https://www.cracking-ai-engineering.com Cracking AI Engineering
@@ -50,7 +50,7 @@ Tell us about how you joined Mimecast. When did you fully embrace the SRE role?
 
 What are the differences between SRE, DevOps, SysAdmin, and Architects?
 
-> SREs are like the next step after SysAdmins. A SysAdmin might manually install servers, replace disks, or use simple scripts for automation, while SREs use infrastructure as code and focus on reliability through SLIs, SLOs, and automation. DevOps isn’t really a job-it’s more of a way of working, where developers are involved in operations tasks like setting up CI/CD pipelines or on-call shifts. Architects focus on designing systems and infrastructures, such as load balancers or distributed systems, working alongside SREs to ensure the systems meet the reliability and scalability requirements. The specific responsibilities of each role depend on the company, and there is often overlap.  
+> SREs are like the next step after SysAdmins. A SysAdmin might manually install servers, replace disks, or use simple scripts for automation, while SREs use infrastructure as code and focus on reliability through SLIs, SLOs, and automation. DevOps isn’t really a job-it’s more of a way of working, where developers are involved in operations tasks like setting up CI/CD pipelines or on-call shifts. Architects focus on designing systems and infrastructures, such as load balancers or distributed systems, working alongside SREs to ensure the systems meet the reliability and scalability requirements. The specific responsibilities of each role depend on the company, and there is often overlap. 
 
 What are the most important reliability lessons you’ve learned so far?
 
@@ -67,11 +67,11 @@ Runbooks sound very practical. Can you explain how they’re used day-to-day?
 
 When should you decide to put something into a runbook, and when is it unnecessary?
 
-> If an issue happens frequently, it should be documented in a runbook so that anyone, even someone new, can follow the steps to fix it. The idea is that 90% of the common incidents should be covered. For example, if a service is down, the runbook would specify where to find logs, which commands to check, and what actions to take. On the other hand, rare or complex issues, where the resolution depends heavily on context or varies each time, don’t make sense to include in detail. For those, it’s better to focus on general troubleshooting steps.  
+> If an issue happens frequently, it should be documented in a runbook so that anyone, even someone new, can follow the steps to fix it. The idea is that 90% of the common incidents should be covered. For example, if a service is down, the runbook would specify where to find logs, which commands to check, and what actions to take. On the other hand, rare or complex issues, where the resolution depends heavily on context or varies each time, don’t make sense to include in detail. For those, it’s better to focus on general troubleshooting steps. 
 
 How do you search for and find the correct runbooks?
 
-> Runbooks should be linked directly in the alert you receive. For example, if you get an alert about a service not running, the alert will have a link to the runbook that tells you what to check, like logs or commands to run. Runbooks are best stored in an internal wiki, so if you don’t find the link in the alert, you know where to search. The important thing is that runbooks are easy to find and up to date because that’s what makes them useful during incidents.  
+> Runbooks should be linked directly in the alert you receive. For example, if you get an alert about a service not running, the alert will have a link to the runbook that tells you what to check, like logs or commands to run. Runbooks are best stored in an internal wiki, so if you don’t find the link in the alert, you know where to search. The important thing is that runbooks are easy to find and up to date because that’s what makes them useful during incidents. 
 
 Do you have an interesting war story you can share with us?
 
