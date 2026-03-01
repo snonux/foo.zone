@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-01T21:29:51+02:00</updated>
+    <updated>2026-03-01T21:39:39+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -42,6 +42,16 @@
 <li>⇢ <a href='#cutting-rcm-010'>Cutting RCM 0.1.0</a></li>
 <li>⇢ <a href='#what-s-next'>What&#39;s next</a></li>
 <li>⇢ <a href='#feature-overview-selected'>Feature overview (selected)</a></li>
+<li>⇢ ⇢ <a href='#template-rendering-into-a-file'>Template rendering into a file</a></li>
+<li>⇢ ⇢ <a href='#ensuring-a-line-is-absent-from-a-file'>Ensuring a line is absent from a file</a></li>
+<li>⇢ ⇢ <a href='#guarding-a-configuration-run-on-the-current-hostname'>Guarding a configuration run on the current hostname</a></li>
+<li><a href='#creating-and-deleting-directories-and-purging-a-directory-tree'>Creating and deleting directories, and purging a directory tree</a></li>
+<li>⇢ ⇢ <a href='#managing-file-and-directory-modes-and-ownership'>Managing file and directory modes and ownership</a></li>
+<li>⇢ ⇢ <a href='#using-a-chained-more-natural-language-style-for-notifications'>Using a chained, more natural language style for notifications</a></li>
+<li>⇢ ⇢ <a href='#touching-files-and-updating-their-timestamps'>Touching files and updating their timestamps</a></li>
+<li>⇢ ⇢ <a href='#expressing-dependencies-between-notifications'>Expressing dependencies between notifications</a></li>
+<li>⇢ ⇢ <a href='#creating-and-updating-symbolic-links'>Creating and updating symbolic links</a></li>
+<li>⇢ ⇢ <a href='#detecting-duplicate-resource-definitions-at-configure-time'>Detecting duplicate resource definitions at configure time</a></li>
 </ul><br />
 <h2 style='display: inline' id='why-i-built-rcm'>Why I built RCM</h2><br />
 <br />
@@ -65,7 +75,7 @@ http://www.gnu.org/software/src-highlite -->
   given { hostname is :earth }
 
   file <font color="#808080">'/tmp/test/wg0.conf'</font> <b><u><font color="#000000">do</font></u></b>
-    requires <font color="#808080">'/etc/hosts.test'</font>
+    requires file <font color="#808080">'/etc/hosts.test'</font>
     manage directory
     from template
     <font color="#808080">'content with &lt;%= 1 + 2 %&gt;'</font>
@@ -75,6 +85,22 @@ http://www.gnu.org/software/src-highlite -->
     line <font color="#808080">'192.168.1.101 earth'</font>
   <b><u><font color="#000000">end</font></u></b>
 <b><u><font color="#000000">end</font></u></b>
+</pre>
+<br />
+<span>Which would look like this when run:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>% sudo ruby example.rb
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> dsl(<font color="#000000">0</font>) =&gt; Configuring...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Registered dependency on file(<font color="#808080">'/etc/hosts.test'</font>)
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Evaluating...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/etc/hosts.test'</font>) =&gt; Evaluating...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/etc/hosts.test'</font>) =&gt; Writing file /etc/hosts.<b><u><font color="#000000">test</font></u></b>
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Creating parent directory /tmp/test
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Writing file /tmp/test/wg<font color="#000000">0</font>.conf
 </pre>
 <br />
 <span>The idea is that you describe the desired state and RCM worries about the steps. The <span class='inlinecode'>given</span> block can short‑circuit the whole run (for example, only run on a specific hostname). Each <span class='inlinecode'>file</span> resource can either manage a complete file (from a template) or just make sure individual lines are present.</span><br />
@@ -234,7 +260,7 @@ HostCondition.new.hostname.is(:earth)
 </ul><br />
 <span>Some small examples adapted from RCM&#39;s own tests:</span><br />
 <br />
-<span>Template rendering into a file:</span><br />
+<h3 style='display: inline' id='template-rendering-into-a-file'>Template rendering into a file</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -248,7 +274,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Ensuring a line is absent from a file:</span><br />
+<h3 style='display: inline' id='ensuring-a-line-is-absent-from-a-file'>Ensuring a line is absent from a file</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -262,29 +288,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Keeping a backup of the original content when a file changes:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>configure <b><u><font color="#000000">do</font></u></b>
-  file original <b><u><font color="#000000">do</font></u></b>
-    path <font color="#808080">'./.dir_example.rcmtmp/foo/backup-me.txt'</font>
-    manage directory
-    <font color="#808080">'original_content'</font>
-  <b><u><font color="#000000">end</font></u></b>
-
-  file new <b><u><font color="#000000">do</font></u></b>
-    path <font color="#808080">'./.dir_example.rcmtmp/foo/backup-me.txt'</font>
-    manage directory
-    requires file original
-    <font color="#808080">'new_content'</font>
-  <b><u><font color="#000000">end</font></u></b>
-<b><u><font color="#000000">end</font></u></b>
-</pre>
-<br />
-<span>Guarding a configuration run on the current hostname:</span><br />
+<h3 style='display: inline' id='guarding-a-configuration-run-on-the-current-hostname'>Guarding a configuration run on the current hostname</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -292,10 +296,11 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>configure <b><u><font color="#000000">do</font></u></b>
   given { hostname Socket.gethostname }
+  ...
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Creating and deleting directories, and purging a directory tree:</span><br />
+<h1 style='display: inline' id='creating-and-deleting-directories-and-purging-a-directory-tree'>Creating and deleting directories, and purging a directory tree</h1><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -313,7 +318,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Managing file and directory modes and ownership:</span><br />
+<h3 style='display: inline' id='managing-file-and-directory-modes-and-ownership'>Managing file and directory modes and ownership</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -330,7 +335,9 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Using a chained, more natural language style for notifications:</span><br />
+<h3 style='display: inline' id='using-a-chained-more-natural-language-style-for-notifications'>Using a chained, more natural language style for notifications</h3><br />
+<br />
+<span>This will just print out something, not changing anything:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -343,7 +350,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Touching files and updating their timestamps:</span><br />
+<h3 style='display: inline' id='touching-files-and-updating-their-timestamps'>Touching files and updating their timestamps</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -354,7 +361,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Expressing dependencies between notifications:</span><br />
+<h3 style='display: inline' id='expressing-dependencies-between-notifications'>Expressing dependencies between notifications</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -375,7 +382,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Creating and updating symbolic links:</span><br />
+<h3 style='display: inline' id='creating-and-updating-symbolic-links'>Creating and updating symbolic links</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -389,7 +396,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
-<span>Detecting duplicate resource definitions at configure time:</span><br />
+<h3 style='display: inline' id='detecting-duplicate-resource-definitions-at-configure-time'>Detecting duplicate resource definitions at configure time</h3><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
