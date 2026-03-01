@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-01T21:42:41+02:00</updated>
+    <updated>2026-03-01T21:53:45+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -41,7 +41,7 @@
 <li>⇢ <a href='#rcm-vs-puppet-and-other-big-tools'>RCM vs Puppet and other big tools</a></li>
 <li>⇢ <a href='#cutting-rcm-010'>Cutting RCM 0.1.0</a></li>
 <li>⇢ <a href='#what-s-next'>What&#39;s next</a></li>
-<li>⇢ <a href='#feature-overview-selected'>Feature overview (selected)</a></li>
+<li>⇢ <a href='#feature-overview-for-now'>Feature overview (for now)</a></li>
 <li>⇢ ⇢ <a href='#template-rendering-into-a-file'>Template rendering into a file</a></li>
 <li>⇢ ⇢ <a href='#ensuring-a-line-is-absent-from-a-file'>Ensuring a line is absent from a file</a></li>
 <li>⇢ ⇢ <a href='#guarding-a-configuration-run-on-the-current-hostname'>Guarding a configuration run on the current hostname</a></li>
@@ -247,7 +247,7 @@ HostCondition.new.hostname.is(:earth)
 <li>Managing hosts remotely.</li>
 <li>A slightly more structured way to organise larger configurations without losing the KISS spirit.</li>
 </ul><br />
-<h2 style='display: inline' id='feature-overview-selected'>Feature overview (selected)</h2><br />
+<h2 style='display: inline' id='feature-overview-for-now'>Feature overview (for now)</h2><br />
 <br />
 <span>Here is a quick overview of what RCM can do today, grouped by area:</span><br />
 <br />
