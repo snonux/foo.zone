@@ -20,7 +20,7 @@ RCM is a tiny configuration management system written in Ruby. It gives me a sma
 * [⇢ ⇢ RCM vs Puppet and other big tools](#rcm-vs-puppet-and-other-big-tools)
 * [⇢ ⇢ Cutting RCM 0.1.0](#cutting-rcm-010)
 * [⇢ ⇢ What's next](#what-s-next)
-* [⇢ ⇢ Feature overview (selected)](#feature-overview-selected)
+* [⇢ ⇢ Feature overview (for now)](#feature-overview-for-now)
 * [⇢ ⇢ ⇢ Template rendering into a file](#template-rendering-into-a-file)
 * [⇢ ⇢ ⇢ Ensuring a line is absent from a file](#ensuring-a-line-is-absent-from-a-file)
 * [⇢ ⇢ ⇢ Guarding a configuration run on the current hostname](#guarding-a-configuration-run-on-the-current-hostname)
@@ -203,7 +203,7 @@ RCM already does what I need on my machines, but there are a few ideas I want to
 * Managing hosts remotely.
 * A slightly more structured way to organise larger configurations without losing the KISS spirit.
 
-## Feature overview (selected)
+## Feature overview (for now)
 
 Here is a quick overview of what RCM can do today, grouped by area:
 
