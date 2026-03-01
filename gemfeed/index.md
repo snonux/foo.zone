@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2026-03-02 - RCM: The Ruby Configuration Management DSL](./2026-03-02-rcm-ruby-configuration-management-dsl.md)  
 [2026-03-01 - Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
 [2026-03-01 - Loadbars 0.13.0 released](./2026-03-01-loadbars-0.13.0-released.md)  
 [2026-02-22 - My desk rack: DeskPi RackMate T0](./2026-02-22-my-desk-rack.md)  
