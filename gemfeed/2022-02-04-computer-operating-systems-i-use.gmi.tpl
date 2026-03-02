@@ -155,7 +155,7 @@ I use it on my PineTime smartwatch. Other than checking the time and my step cou
 
 ### GarminOS (smartwatch)
 
-I use GarminOS on my Garmin smartwatches. I previously used it on my Garmin Fenix 6 Pro and currently on my Garmin Fenix 7 Pro. A solid, lightweight OS with excellent battery life and comprehensive fitness tracking features. Despite being proprietary, it's reliable for the specific use case of sports and health monitoring.
+I use GarminOS on my Garmin smartwatches. I previously used it on my Garmin Fenix 6 Pro and currently on my Garmin Fenix 7 Pro. It's an excellent smartwatch OS with comprehensive fitness tracking features, outstanding battery life, and tons of functionality. Despite being proprietary, it's the best option for serious sports and health monitoring.
 
 => https://www.garmin.com/
 
