@@ -10,7 +10,7 @@ RCM is a tiny configuration management system written in Ruby. It gives me a sma
 
 ## Why I built RCM
 
-I've used (and still use) the usual suspects in configuration management: Puppet, Chef, Ansible, etc. They are powerful, but also come with orchestration layers, agents, inventories, and a lot of moving parts. For my personal machines I wanted something smaller: one Ruby process, one configuration file, a few resource types, and good enough safety features.
+I've used (and still use) the usual suspects in configuration management: Puppet, Ansible, etc. They are powerful, but also come with orchestration layers, agents, inventories, and a lot of moving parts. For my personal machines I wanted something smaller: one Ruby process, one configuration file, a few resource types, and good enough safety features.
 
 I've always been a fan of Ruby's metaprogramming features, and this project let me explore them in a focused, practical way.
 
@@ -168,7 +168,7 @@ In that space RCM wins: it is small, transparent, and tuned for one person (me!)
 
 As of this post I'm tagging and releasing **RCM 0.1.0**. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.
 
-Future changes will very likely involve more automated help (including agents like the one you're reading this in), but 0.1.0 is the snapshot of the original, hand‑crafted version of the tool.
+Future changes will very likely involve more automated help, but 0.1.0 is the snapshot of the original, hand‑crafted version of the tool.
 
 ## What's next
 
