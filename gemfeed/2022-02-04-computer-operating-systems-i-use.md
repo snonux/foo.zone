@@ -1,6 +1,6 @@
 # Computer operating systems I use(d)
 
-> Published at 2022-02-04T09:58:22+00:00; Updated at 2022-02-18
+> Published at 2022-02-04T09:58:22+00:00, last updated Mon 03 Mar 2026 02:14:00 EET 2026
 
 This is a list of Operating Systems I currently use. This list is in no particular order and also will be updated over time. The very first operating system I used was MS-DOS (mainly for games) and the very first Unix like operating system I used was SuSE Linux 5.3. My first smartphone OS was Symbian on a clunky Sony Ericsson device.
 
@@ -39,6 +39,7 @@ This is a list of Operating Systems I currently use. This list is in no particul
 * [⇢ ⇢ iOS (mobile proprietary)](#ios-mobile-proprietary)
 * [⇢ ⇢ Other OSes](#other-oses)
 * [⇢ ⇢ ⇢ InfinyTime (smartwatch)](#infinytime-smartwatch)
+* [⇢ ⇢ ⇢ GarminOS (smartwatch)](#garminos-smartwatch)
 * [⇢ ⇢ ⇢ motionEyeOS](#motioneyeos)
 * [⇢ ⇢ ⇢ Kobo OS (proprietary)](#kobo-os-proprietary)
 * [⇢ ⇢ ⇢ Android TV (proprietary)](#android-tv-proprietary)
@@ -174,6 +175,12 @@ I use it on my PineTime smartwatch. Other than checking the time and my step cou
 
 [https://www.pine64.org/pinetime/](https://www.pine64.org/pinetime/)  
 [https://infinitime.io/](https://infinitime.io/)  
+
+### GarminOS (smartwatch)
+
+I use GarminOS on my Garmin smartwatches. I previously used it on my Garmin Fenix 6 Pro and currently on my Garmin Fenix 7 Pro. It's an excellent smartwatch OS with comprehensive fitness tracking features, outstanding battery life, and tons of functionality. Despite being proprietary, it's the best option for serious sports and health monitoring.
+
+[https://www.garmin.com/](https://www.garmin.com/)  
 
 ### motionEyeOS
 

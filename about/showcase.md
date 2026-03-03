@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-02-22
+Generated on: 2026-03-02
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, and licensing. The projects are ranked by score, which combines project size and recent activity.
 
@@ -9,90 +9,92 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ Project Showcase](#project-showcase)
 * [⇢ ⇢ Overall Statistics](#overall-statistics)
 * [⇢ ⇢ Projects](#projects)
-* [⇢ ⇢ ⇢ 1. ior](#1-ior)
-* [⇢ ⇢ ⇢ 2. dotfiles](#2-dotfiles)
-* [⇢ ⇢ ⇢ 3. hexai](#3-hexai)
-* [⇢ ⇢ ⇢ 4. epimetheus](#4-epimetheus)
-* [⇢ ⇢ ⇢ 5. conf](#5-conf)
-* [⇢ ⇢ ⇢ 6. foo.zone](#6-foozone)
-* [⇢ ⇢ ⇢ 7. scifi](#7-scifi)
-* [⇢ ⇢ ⇢ 8. log4jbench](#8-log4jbench)
-* [⇢ ⇢ ⇢ 9. gogios](#9-gogios)
-* [⇢ ⇢ ⇢ 10. yoga](#10-yoga)
-* [⇢ ⇢ ⇢ 11. perc](#11-perc)
-* [⇢ ⇢ ⇢ 12. totalrecall](#12-totalrecall)
-* [⇢ ⇢ ⇢ 13. gitsyncer](#13-gitsyncer)
-* [⇢ ⇢ ⇢ 14. tasksamurai](#14-tasksamurai)
-* [⇢ ⇢ ⇢ 15. foostats](#15-foostats)
-* [⇢ ⇢ ⇢ 16. timr](#16-timr)
-* [⇢ ⇢ ⇢ 17. gos](#17-gos)
-* [⇢ ⇢ ⇢ 18. dtail](#18-dtail)
-* [⇢ ⇢ ⇢ 19. ds-sim](#19-ds-sim)
-* [⇢ ⇢ ⇢ 20. wireguardmeshgenerator](#20-wireguardmeshgenerator)
-* [⇢ ⇢ ⇢ 21. gemtexter](#21-gemtexter)
-* [⇢ ⇢ ⇢ 22. rcm](#22-rcm)
-* [⇢ ⇢ ⇢ 23. terraform](#23-terraform)
-* [⇢ ⇢ ⇢ 24. quicklogger](#24-quicklogger)
-* [⇢ ⇢ ⇢ 25. sillybench](#25-sillybench)
-* [⇢ ⇢ ⇢ 26. goprecords](#26-goprecords)
-* [⇢ ⇢ ⇢ 27. gorum](#27-gorum)
-* [⇢ ⇢ ⇢ 28. guprecords](#28-guprecords)
-* [⇢ ⇢ ⇢ 29. geheim](#29-geheim)
-* [⇢ ⇢ ⇢ 30. docker-radicale-server](#30-docker-radicale-server)
-* [⇢ ⇢ ⇢ 31. algorithms](#31-algorithms)
-* [⇢ ⇢ ⇢ 32. randomjournalpage](#32-randomjournalpage)
-* [⇢ ⇢ ⇢ 33. photoalbum](#33-photoalbum)
-* [⇢ ⇢ ⇢ 34. ioriot](#34-ioriot)
-* [⇢ ⇢ ⇢ 35. ipv6test](#35-ipv6test)
-* [⇢ ⇢ ⇢ 36. sway-autorotate](#36-sway-autorotate)
-* [⇢ ⇢ ⇢ 37. mon](#37-mon)
-* [⇢ ⇢ ⇢ 38. staticfarm-apache-handlers](#38-staticfarm-apache-handlers)
-* [⇢ ⇢ ⇢ 39. pingdomfetch](#39-pingdomfetch)
-* [⇢ ⇢ ⇢ 40. xerl](#40-xerl)
-* [⇢ ⇢ ⇢ 41. ychat](#41-ychat)
-* [⇢ ⇢ ⇢ 42. fapi](#42-fapi)
-* [⇢ ⇢ ⇢ 43. perl-c-fibonacci](#43-perl-c-fibonacci)
-* [⇢ ⇢ ⇢ 44. netcalendar](#44-netcalendar)
-* [⇢ ⇢ ⇢ 45. loadbars](#45-loadbars)
-* [⇢ ⇢ ⇢ 46. gotop](#46-gotop)
-* [⇢ ⇢ ⇢ 47. rubyfy](#47-rubyfy)
-* [⇢ ⇢ ⇢ 48. fype](#48-fype)
-* [⇢ ⇢ ⇢ 49. pwgrep](#49-pwgrep)
-* [⇢ ⇢ ⇢ 50. perldaemon](#50-perldaemon)
-* [⇢ ⇢ ⇢ 51. jsmstrade](#51-jsmstrade)
-* [⇢ ⇢ ⇢ 52. japi](#52-japi)
-* [⇢ ⇢ ⇢ 53. perl-poetry](#53-perl-poetry)
-* [⇢ ⇢ ⇢ 54. muttdelay](#54-muttdelay)
-* [⇢ ⇢ ⇢ 55. netdiff](#55-netdiff)
-* [⇢ ⇢ ⇢ 56. debroid](#56-debroid)
-* [⇢ ⇢ ⇢ 57. hsbot](#57-hsbot)
-* [⇢ ⇢ ⇢ 58. cpuinfo](#58-cpuinfo)
-* [⇢ ⇢ ⇢ 59. template](#59-template)
-* [⇢ ⇢ ⇢ 60. awksite](#60-awksite)
-* [⇢ ⇢ ⇢ 61. dyndns](#61-dyndns)
-* [⇢ ⇢ ⇢ 62. vs-sim](#62-vs-sim)
+* [⇢ ⇢ ⇢ 1. ior [#1(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#1-ior-1now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 2. hexai [#2(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#2-hexai-2now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 3. dotfiles [#3(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#3-dotfiles-3now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 4. epimetheus [#4(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#4-epimetheus-4now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 5. conf [#5(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#5-conf-5now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 6. foo.zone [#6(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#6-foozone-6now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 7. foostore [#7(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#7-foostore-7now-na1w-na2w-na3w-na4w)
+* [⇢ foostore](#foostore)
+* [⇢ ⇢ ⇢ 8. scifi [#8(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#8-scifi-8now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 9. log4jbench [#9(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#9-log4jbench-9now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 10. rcm [#10(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#10-rcm-10now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 11. gogios [#11(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#11-gogios-11now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 12. yoga [#12(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#12-yoga-12now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 13. perc [#13(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#13-perc-13now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 14. totalrecall [#14(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#14-totalrecall-14now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 15. gitsyncer [#15(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#15-gitsyncer-15now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 16. tasksamurai [#16(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#16-tasksamurai-16now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 17. foostats [#17(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#17-foostats-17now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 18. gos [#18(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#18-gos-18now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 19. timr [#19(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#19-timr-19now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 20. dtail [#20(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#20-dtail-20now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 21. ds-sim [#21(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#21-ds-sim-21now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 22. gemtexter [#22(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#22-gemtexter-22now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 23. wireguardmeshgenerator [#23(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#23-wireguardmeshgenerator-23now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 24. goprecords [#24(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#24-goprecords-24now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 25. quicklogger [#25(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#25-quicklogger-25now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 26. terraform [#26(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#26-terraform-26now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 27. sillybench [#27(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#27-sillybench-27now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 28. gorum [#28(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#28-gorum-28now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 29. guprecords [#29(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#29-guprecords-29now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 30. geheim [#30(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#30-geheim-30now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 31. docker-radicale-server [#31(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#31-docker-radicale-server-31now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 32. algorithms [#32(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#32-algorithms-32now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 33. randomjournalpage [#33(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#33-randomjournalpage-33now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 34. photoalbum [#34(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#34-photoalbum-34now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 35. ioriot [#35(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#35-ioriot-35now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 36. ipv6test [#36(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#36-ipv6test-36now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 37. fype [#37(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#37-fype-37now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 38. sway-autorotate [#38(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#38-sway-autorotate-38now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 39. mon [#39(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#39-mon-39now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 40. staticfarm-apache-handlers [#40(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#40-staticfarm-apache-handlers-40now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 41. pingdomfetch [#41(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#41-pingdomfetch-41now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 42. xerl [#42(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#42-xerl-42now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 43. ychat [#43(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#43-ychat-43now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 44. fapi [#44(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#44-fapi-44now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 45. perl-c-fibonacci [#45(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#45-perl-c-fibonacci-45now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 46. netcalendar [#46(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#46-netcalendar-46now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 47. loadbars [#47(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#47-loadbars-47now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 48. gotop [#48(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#48-gotop-48now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 49. rubyfy [#49(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#49-rubyfy-49now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 50. pwgrep [#50(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#50-pwgrep-50now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 51. perldaemon [#51(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#51-perldaemon-51now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 52. jsmstrade [#52(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#52-jsmstrade-52now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 53. japi [#53(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#53-japi-53now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 54. perl-poetry [#54(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#54-perl-poetry-54now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 55. muttdelay [#55(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#55-muttdelay-55now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 56. netdiff [#56(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#56-netdiff-56now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 57. debroid [#57(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#57-debroid-57now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 58. hsbot [#58(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#58-hsbot-58now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 59. cpuinfo [#59(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#59-cpuinfo-59now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 60. template [#60(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#60-template-60now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 61. awksite [#61(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#61-awksite-61now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 62. dyndns [#62(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#62-dyndns-62now-na1w-na2w-na3w-na4w)
+* [⇢ ⇢ ⇢ 63. vs-sim [#63(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]](#63-vs-sim-63now-na1w-na2w-na3w-na4w)
 
 ## Overall Statistics
 
-* 📦 Total Projects: 62
-* 📊 Total Commits: 12,631
-* 📈 Total Lines of Code: 317,099
-* 📄 Total Lines of Documentation: 40,325
-* 💻 Languages: Go (37.7%), Java (12.9%), C++ (8.0%), C (6.1%), XML (6.1%), Shell (5.8%), Perl (5.5%), C/C++ (5.1%), YAML (5.0%), HTML (1.9%), Config (1.2%), Ruby (0.9%), HCL (0.9%), Python (0.6%), CSS (0.6%), Make (0.5%), JSON (0.4%), Haskell (0.2%), JavaScript (0.2%), Raku (0.1%), TOML (0.1%)
-* 📚 Documentation: Markdown (71.4%), Text (27.2%), LaTeX (1.4%)
-* 🚀 Release Status: 39 released, 23 experimental (62.9% with releases, 37.1% experimental)
+* 📦 Total Projects: 63
+* 📊 Total Commits: 13,058
+* 📈 Total Lines of Code: 344,311
+* 📄 Total Lines of Documentation: 43,164
+* 💻 Languages: Go (42.7%), Java (11.9%), C++ (7.4%), C (5.6%), XML (5.6%), Shell (5.5%), Perl (5.0%), YAML (4.6%), C/C++ (4.5%), HTML (1.7%), Config (1.1%), Ruby (0.9%), HCL (0.8%), Python (0.6%), CSS (0.5%), Make (0.5%), JSON (0.4%), Haskell (0.2%), JavaScript (0.1%), Raku (0.1%)
+* 📚 Documentation: Markdown (71.1%), Text (27.6%), LaTeX (1.3%)
+* 🚀 Release Status: 41 released, 22 experimental (65.1% with releases, 34.9% experimental)
 
 ## Projects
 
-### 1. ior
+### 1. ior [#1(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
-* 💻 Languages: Go (73.1%), C (26.3%), C/C++ (0.6%)
-* 📚 Documentation: Markdown (80.3%), Text (19.7%)
-* 📊 Commits: 384
-* 📈 Lines of Code: 21785
-* 📄 Lines of Documentation: 2428
-* 📅 Development Period: 2024-01-18 to 2026-02-21
-* 🏆 Score: 2219.6 (combines code size and activity)
+* 💻 Languages: Go (85.6%), C (14.1%), C/C++ (0.3%)
+* 📚 Documentation: Markdown (80.0%), Text (20.0%)
+* 📊 Commits: 563
+* 📈 Lines of Code: 41775
+* 📄 Lines of Documentation: 2409
+* 📅 Development Period: 2024-01-18 to 2026-03-02
+* 🏆 Score: 1544.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -110,37 +112,15 @@ The tool is implemented in Go and C, leveraging libbpfgo for BPF interaction. It
 
 ---
 
-### 2. dotfiles
-
-* 💻 Languages: Shell (58.9%), CSS (11.0%), Config (10.2%), TOML (10.1%), Ruby (8.4%), JSON (1.1%), INI (0.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 783
-* 📈 Lines of Code: 2961
-* 📄 Lines of Documentation: 949
-* 📅 Development Period: 2023-07-30 to 2026-02-22
-* 🏆 Score: 427.7 (combines code size and activity)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is a personal dotfiles management project that uses [Rex](https://www.rexify.org/) (a Perl-based infrastructure automation framework) to declaratively install and synchronize configuration files across local machines and remote servers. The `Rexfile` defines individual tasks for each config area — shell (bash, zsh, fish), editor (Helix), terminal (Ghostty, tmux), window manager (Sway/Waybar), SSH, scripts, Pipewire audio, AI prompt links, and more — plus OS-specific package installation tasks for Fedora, FreeBSD, and Termux. A top-level `home` task runs all `home_*` tasks at once for a full install.
-
-The architecture is straightforward: config files live in subdirectories mirroring their purpose, and helper functions (`ensure_file`, `ensure_dir`) copy or symlink them into the appropriate `$HOME` locations with correct permissions. It supports both a public repo (this one) and a private companion repo for sensitive configs like calendar data, keeping secrets separate while sharing the same deployment mechanism.
-
-[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
-[View on GitHub](https://github.com/snonux/dotfiles)  
-
----
-
-### 3. hexai
+### 2. hexai [#2(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 343
-* 📈 Lines of Code: 29895
-* 📄 Lines of Documentation: 5508
-* 📅 Development Period: 2025-08-01 to 2026-02-22
-* 🏆 Score: 341.8 (combines code size and activity)
+* 📊 Commits: 373
+* 📈 Lines of Code: 31057
+* 📄 Lines of Documentation: 4089
+* 📅 Development Period: 2025-08-01 to 2026-03-02
+* 🏆 Score: 725.1 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.21.0 (2026-02-12)
 
@@ -156,7 +136,29 @@ The project is implemented as an LSP server written in Go, with a TUI component 
 
 ---
 
-### 4. epimetheus
+### 3. dotfiles [#3(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Shell (65.8%), CSS (11.2%), Config (10.4%), TOML (10.3%), JSON (1.1%), Ruby (1.0%), INI (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 815
+* 📈 Lines of Code: 2918
+* 📄 Lines of Documentation: 2971
+* 📅 Development Period: 2023-07-30 to 2026-03-02
+* 🏆 Score: 513.4 (combines code size and activity)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a personal dotfiles management project that uses [Rex](https://www.rexify.org/) (a Perl-based infrastructure automation framework) to declaratively install and synchronize configuration files across local machines and remote servers. The `Rexfile` defines individual tasks for each config area — shell (bash, zsh, fish), editor (Helix), terminal (Ghostty, tmux), window manager (Sway/Waybar), SSH, scripts, Pipewire audio, AI prompt links, and more — plus OS-specific package installation tasks for Fedora, FreeBSD, and Termux. A top-level `home` task runs all `home_*` tasks at once for a full install.
+
+The architecture is straightforward: config files live in subdirectories mirroring their purpose, and helper functions (`ensure_file`, `ensure_dir`) copy or symlink them into the appropriate `$HOME` locations with correct permissions. It supports both a public repo (this one) and a private companion repo for sensitive configs like calendar data, keeping secrets separate while sharing the same deployment mechanism.
+
+[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
+[View on GitHub](https://github.com/snonux/dotfiles)  
+
+---
+
+### 4. epimetheus [#4(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -164,7 +166,7 @@ The project is implemented as an LSP server written in Go, with a TUI component 
 * 📈 Lines of Code: 5199
 * 📄 Lines of Documentation: 1734
 * 📅 Development Period: 2026-02-07 to 2026-02-14
-* 🏆 Score: 284.8 (combines code size and activity)
+* 🏆 Score: 175.2 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -180,7 +182,7 @@ The architecture routes current data (<5 min old) through Pushgateway where Prom
 
 ---
 
-### 5. conf
+### 5. conf [#5(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: YAML (80.7%), Perl (9.9%), Shell (6.0%), Python (2.3%), Docker (0.7%), Config (0.2%), HTML (0.1%)
 * 📚 Documentation: Markdown (97.1%), Text (2.9%)
@@ -188,7 +190,7 @@ The architecture routes current data (<5 min old) through Pushgateway where Prom
 * 📈 Lines of Code: 19132
 * 📄 Lines of Documentation: 6572
 * 📅 Development Period: 2021-12-28 to 2026-02-15
-* 🏆 Score: 261.6 (combines code size and activity)
+* 🏆 Score: 174.6 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -202,7 +204,7 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 
 ---
 
-### 6. foo.zone
+### 6. foo.zone [#6(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: XML (98.7%), Shell (1.0%), Go (0.3%)
 * 📚 Documentation: Text (86.2%), Markdown (13.8%)
@@ -210,7 +212,7 @@ The project is organized into distinct subdirectories: `dotfiles/` contains shel
 * 📈 Lines of Code: 18702
 * 📄 Lines of Documentation: 174
 * 📅 Development Period: 2021-04-29 to 2026-02-07
-* 🏆 Score: 203.4 (combines code size and activity)
+* 🏆 Score: 146.5 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -222,7 +224,27 @@ foo.zone: source code repository.
 
 ---
 
-### 7. scifi
+### 7. foostore [#7(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Go (98.3%), Shell (1.7%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 108
+* 📈 Lines of Code: 6345
+* 📄 Lines of Documentation: 248
+* 📅 Development Period: 2018-05-26 to 2026-03-02
+* 🏆 Score: 124.3 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.5.3 (2026-03-02)
+
+
+# foostore
+
+[View on Codeberg](https://codeberg.org/snonux/foostore)  
+[View on GitHub](https://github.com/snonux/foostore)  
+
+---
+
+### 8. scifi [#8(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: JSON (35.9%), CSS (30.6%), JavaScript (29.6%), HTML (3.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -230,7 +252,7 @@ foo.zone: source code repository.
 * 📈 Lines of Code: 1664
 * 📄 Lines of Documentation: 853
 * 📅 Development Period: 2026-01-25 to 2026-01-27
-* 🏆 Score: 112.3 (combines code size and activity)
+* 🏆 Score: 87.4 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -244,7 +266,7 @@ The architecture keeps content separate from presentation: book metadata lives i
 
 ---
 
-### 8. log4jbench
+### 9. log4jbench [#9(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -252,7 +274,7 @@ The architecture keeps content separate from presentation: book metadata lives i
 * 📈 Lines of Code: 774
 * 📄 Lines of Documentation: 119
 * 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 64.6 (combines code size and activity)
+* 🏆 Score: 54.6 (combines code size and activity)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -266,7 +288,31 @@ The implementation uses a fat JAR built with Maven, requiring Java 17+. It's des
 
 ---
 
-### 9. gogios
+### 10. rcm [#10(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Ruby (99.6%), TOML (0.4%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 109
+* 📈 Lines of Code: 1719
+* 📄 Lines of Documentation: 778
+* 📅 Development Period: 2024-12-05 to 2026-03-02
+* 🏆 Score: 35.3 (combines code size and activity)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.1.1 (2026-03-01)
+
+
+[![rcm screenshot](showcase/rcm/image-1.png "rcm screenshot")](showcase/rcm/image-1.png)  
+
+**rcm** is a lightweight Ruby-based configuration management system designed for personal infrastructure automation following the KISS (Keep It Simple, Stupid) principle. It provides a declarative DSL for managing system configuration tasks like file creation, templating, and conditional execution based on hostname or other criteria. The system is useful for automating repetitive configuration tasks across multiple machines, similar to tools like Puppet or Chef but with a minimalist approach tailored for personal use cases.
+
+The implementation centers around a DSL module that provides keywords like `file`, `given`, and `notify` for defining configuration resources. It supports features like ERB templating, conditional execution, resource dependencies (via `requires`), and directory management. Configuration data can be loaded from TOML files, and tasks are defined as Rake tasks that invoke the configuration DSL. The architecture uses a resource scheduling system that tracks declared objects, prevents duplicates, and evaluates them in order while respecting dependencies and conditions.
+
+[View on Codeberg](https://codeberg.org/snonux/rcm)  
+[View on GitHub](https://github.com/snonux/rcm)  
+
+---
+
+### 11. gogios [#11(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -274,7 +320,7 @@ The implementation uses a fat JAR built with Maven, requiring Java 17+. It's des
 * 📈 Lines of Code: 3875
 * 📄 Lines of Documentation: 394
 * 📅 Development Period: 2023-04-17 to 2026-02-16
-* 🏆 Score: 35.0 (combines code size and activity)
+* 🏆 Score: 32.4 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4.1 (2026-02-16)
 
@@ -290,7 +336,7 @@ The architecture is straightforward: JSON configuration defines checks (plugin p
 
 ---
 
-### 10. yoga
+### 12. yoga [#12(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (66.1%), HTML (33.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -298,7 +344,7 @@ The architecture is straightforward: JSON configuration defines checks (plugin p
 * 📈 Lines of Code: 5921
 * 📄 Lines of Documentation: 83
 * 📅 Development Period: 2025-10-01 to 2026-01-28
-* 🏆 Score: 30.7 (combines code size and activity)
+* 🏆 Score: 28.8 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.4.0 (2026-01-28)
 
@@ -314,7 +360,7 @@ The implementation follows clean Go architecture with domain logic organized und
 
 ---
 
-### 11. perc
+### 13. perc [#13(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -322,7 +368,7 @@ The implementation follows clean Go architecture with domain logic organized und
 * 📈 Lines of Code: 452
 * 📄 Lines of Documentation: 80
 * 📅 Development Period: 2025-11-25 to 2025-11-25
-* 🏆 Score: 29.6 (combines code size and activity)
+* 🏆 Score: 27.1 (combines code size and activity)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.0 (2025-11-25)
 
@@ -336,7 +382,7 @@ The tool is built as a simple Go CLI application with a standard project layout 
 
 ---
 
-### 12. totalrecall
+### 14. totalrecall [#14(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
 * 📚 Documentation: Markdown (99.5%), Text (0.5%)
@@ -344,7 +390,7 @@ The tool is built as a simple Go CLI application with a standard project layout 
 * 📈 Lines of Code: 13129
 * 📄 Lines of Documentation: 377
 * 📅 Development Period: 2025-07-14 to 2026-01-21
-* 🏆 Score: 25.9 (combines code size and activity)
+* 🏆 Score: 24.7 (combines code size and activity)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-01-21)
 
@@ -362,7 +408,7 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 
 ---
 
-### 13. gitsyncer
+### 15. gitsyncer [#15(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (92.6%), Shell (7.0%), JSON (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -370,7 +416,7 @@ The project offers both a keyboard-driven GUI for interactive use and a CLI for 
 * 📈 Lines of Code: 10568
 * 📄 Lines of Documentation: 2445
 * 📅 Development Period: 2025-06-23 to 2026-02-22
-* 🏆 Score: 22.5 (combines code size and activity)
+* 🏆 Score: 21.5 (combines code size and activity)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.12.1 (2026-02-22)
 
@@ -384,7 +430,7 @@ The implementation uses a git remotes approach: it clones from one organization,
 
 ---
 
-### 14. tasksamurai
+### 16. tasksamurai [#16(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -392,7 +438,7 @@ The implementation uses a git remotes approach: it clones from one organization,
 * 📈 Lines of Code: 6544
 * 📄 Lines of Documentation: 254
 * 📅 Development Period: 2025-06-19 to 2026-02-04
-* 🏆 Score: 17.8 (combines code size and activity)
+* 🏆 Score: 17.1 (combines code size and activity)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.11.0 (2026-02-04)
 
@@ -410,7 +456,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 
 ---
 
-### 15. foostats
+### 17. foostats [#17(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -418,7 +464,7 @@ Under the hood, Task Samurai acts as a front-end wrapper that invokes the native
 * 📈 Lines of Code: 1902
 * 📄 Lines of Documentation: 423
 * 📅 Development Period: 2023-01-02 to 2025-11-01
-* 🏆 Score: 17.7 (combines code size and activity)
+* 🏆 Score: 16.9 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.2.0 (2025-10-21)
 
@@ -432,37 +478,15 @@ The implementation uses a modular Perl architecture with specialized components:
 
 ---
 
-### 16. timr
-
-* 💻 Languages: Go (96.0%), Shell (4.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 32
-* 📈 Lines of Code: 1538
-* 📄 Lines of Documentation: 99
-* 📅 Development Period: 2025-06-25 to 2026-01-02
-* 🏆 Score: 16.0 (combines code size and activity)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.3.0 (2026-01-02)
-
-
-`timr` is a minimalist command-line stopwatch timer written in Go that helps developers track time spent on tasks. It provides a persistent timer that saves state to disk, allowing you to start, stop, pause, and resume time tracking across terminal sessions. The tool supports multiple viewing modes including a standard status display (with formatted or raw output in seconds/minutes), a live full-screen view with keyboard controls, and specialized output for shell prompt integration.
-
-The architecture is straightforward: it's a Go-based CLI application that persists timer state to the filesystem, enabling continuous tracking even when the program isn't actively running. Key features include basic timer controls (start/stop/continue/reset), flexible status reporting formats for automation, and fish shell integration that displays a color-coded timer icon and elapsed time directly in your prompt—making it effortless to keep track of how long you've been working without context switching.
-
-[View on Codeberg](https://codeberg.org/snonux/timr)  
-[View on GitHub](https://github.com/snonux/timr)  
-
----
-
-### 17. gos
+### 18. gos [#18(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (99.5%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 400
+* 📊 Commits: 402
 * 📈 Lines of Code: 4143
 * 📄 Lines of Documentation: 477
-* 📅 Development Period: 2024-05-04 to 2026-02-17
-* 🏆 Score: 15.6 (combines code size and activity)
+* 📅 Development Period: 2024-05-04 to 2026-02-28
+* 🏆 Score: 16.2 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.2.4 (2026-02-17)
 
@@ -480,15 +504,37 @@ The implementation uses OAuth2 for LinkedIn authentication, stores configuration
 
 ---
 
-### 18. dtail
+### 19. timr [#19(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Go (96.0%), Shell (4.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 32
+* 📈 Lines of Code: 1538
+* 📄 Lines of Documentation: 99
+* 📅 Development Period: 2025-06-25 to 2026-01-02
+* 🏆 Score: 15.4 (combines code size and activity)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.3.0 (2026-01-02)
+
+
+`timr` is a minimalist command-line stopwatch timer written in Go that helps developers track time spent on tasks. It provides a persistent timer that saves state to disk, allowing you to start, stop, pause, and resume time tracking across terminal sessions. The tool supports multiple viewing modes including a standard status display (with formatted or raw output in seconds/minutes), a live full-screen view with keyboard controls, and specialized output for shell prompt integration.
+
+The architecture is straightforward: it's a Go-based CLI application that persists timer state to the filesystem, enabling continuous tracking even when the program isn't actively running. Key features include basic timer controls (start/stop/continue/reset), flexible status reporting formats for automation, and fish shell integration that displays a color-coded timer icon and elapsed time directly in your prompt—making it effortless to keep track of how long you've been working without context switching.
+
+[View on Codeberg](https://codeberg.org/snonux/timr)  
+[View on GitHub](https://github.com/snonux/timr)  
+
+---
+
+### 20. dtail [#20(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (93.9%), JSON (2.8%), C (2.0%), Make (0.5%), C/C++ (0.3%), Config (0.2%), Shell (0.2%), Docker (0.1%)
 * 📚 Documentation: Text (79.4%), Markdown (20.6%)
-* 📊 Commits: 1054
+* 📊 Commits: 1071
 * 📈 Lines of Code: 20091
 * 📄 Lines of Documentation: 5674
 * 📅 Development Period: 2020-01-09 to 2025-06-20
-* 🏆 Score: 15.3 (combines code size and activity)
+* 🏆 Score: 14.9 (combines code size and activity)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -506,7 +552,7 @@ The architecture follows a client-server model where DTail servers run on target
 
 ---
 
-### 19. ds-sim
+### 21. ds-sim [#21(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Java (98.9%), Shell (0.6%), CSS (0.5%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -514,7 +560,7 @@ The architecture follows a client-server model where DTail servers run on target
 * 📈 Lines of Code: 25762
 * 📄 Lines of Documentation: 3101
 * 📅 Development Period: 2008-05-15 to 2025-06-27
-* 🏆 Score: 14.0 (combines code size and activity)
+* 🏆 Score: 13.7 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -530,37 +576,15 @@ The implementation follows a modular Java architecture with clear separation bet
 
 ---
 
-### 20. wireguardmeshgenerator
+### 22. gemtexter [#22(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
-* 💻 Languages: Ruby (65.4%), YAML (34.6%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 36
-* 📈 Lines of Code: 563
-* 📄 Lines of Documentation: 24
-* 📅 Development Period: 2025-04-18 to 2026-01-20
-* 🏆 Score: 9.9 (combines code size and activity)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0.0 (2025-05-11)
-
-
-WireGuard Mesh Generator is a Ruby-based automation tool that creates and manages full-mesh VPN configurations for WireGuard across heterogeneous hosts (Linux, FreeBSD, OpenBSD). It eliminates manual configuration by automatically generating unique keypairs, preshared keys, and peer configurations for each host, handling OS-specific differences in config paths, privilege escalation commands, and service reload mechanisms.
-
-The tool reads host definitions from a YAML file specifying network interfaces (LAN/internet/WireGuard), SSH details, and OS types. It intelligently determines optimal peer connections—using LAN IPs when both hosts are local, public IPs when available, or marking peers as "behind NAT" when direct connection isn't possible—and applies persistent keepalive only for LAN-to-internet tunnels. The three-stage workflow (generate keys/configs → upload via SCP → install and reload via SSH) enables zero-touch deployment of a complete mesh network where every node can communicate securely with every other node.
-
-[View on Codeberg](https://codeberg.org/snonux/wireguardmeshgenerator)  
-[View on GitHub](https://github.com/snonux/wireguardmeshgenerator)  
-
----
-
-### 21. gemtexter
-
-* 💻 Languages: Shell (68.2%), CSS (28.5%), Config (1.9%), HTML (1.3%)
+* 💻 Languages: Shell (70.6%), CSS (26.4%), Config (1.8%), HTML (1.2%)
 * 📚 Documentation: Text (76.1%), Markdown (23.9%)
-* 📊 Commits: 472
-* 📈 Lines of Code: 2288
+* 📊 Commits: 479
+* 📈 Lines of Code: 2471
 * 📄 Lines of Documentation: 1180
-* 📅 Development Period: 2021-05-21 to 2025-12-31
-* 🏆 Score: 9.7 (combines code size and activity)
+* 📅 Development Period: 2021-05-21 to 2026-03-01
+* 🏆 Score: 12.7 (combines code size and activity)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -574,29 +598,77 @@ The architecture leverages GNU utilities (sed, grep, date) and optional tools li
 
 ---
 
-### 22. rcm
+### 23. wireguardmeshgenerator [#23(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
-* 💻 Languages: Ruby (99.8%), TOML (0.2%)
+* 💻 Languages: Ruby (65.4%), YAML (34.6%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 78
-* 📈 Lines of Code: 1377
-* 📄 Lines of Documentation: 113
-* 📅 Development Period: 2024-12-05 to 2025-11-26
-* 🏆 Score: 8.7 (combines code size and activity)
+* 📊 Commits: 36
+* 📈 Lines of Code: 563
+* 📄 Lines of Documentation: 24
+* 📅 Development Period: 2025-04-18 to 2026-01-20
+* 🏆 Score: 9.6 (combines code size and activity)
 * ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
+* 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
 
-**rcm** is a lightweight Ruby-based configuration management system designed for personal infrastructure automation following the KISS (Keep It Simple, Stupid) principle. It provides a declarative DSL for managing system configuration tasks like file creation, templating, and conditional execution based on hostname or other criteria. The system is useful for automating repetitive configuration tasks across multiple machines, similar to tools like Puppet or Chef but with a minimalist approach tailored for personal use cases.
+WireGuard Mesh Generator is a Ruby-based automation tool that creates and manages full-mesh VPN configurations for WireGuard across heterogeneous hosts (Linux, FreeBSD, OpenBSD). It eliminates manual configuration by automatically generating unique keypairs, preshared keys, and peer configurations for each host, handling OS-specific differences in config paths, privilege escalation commands, and service reload mechanisms.
 
-The implementation centers around a DSL module that provides keywords like `file`, `given`, and `notify` for defining configuration resources. It supports features like ERB templating, conditional execution, resource dependencies (via `requires`), and directory management. Configuration data can be loaded from TOML files, and tasks are defined as Rake tasks that invoke the configuration DSL. The architecture uses a resource scheduling system that tracks declared objects, prevents duplicates, and evaluates them in order while respecting dependencies and conditions.
+The tool reads host definitions from a YAML file specifying network interfaces (LAN/internet/WireGuard), SSH details, and OS types. It intelligently determines optimal peer connections—using LAN IPs when both hosts are local, public IPs when available, or marking peers as "behind NAT" when direct connection isn't possible—and applies persistent keepalive only for LAN-to-internet tunnels. The three-stage workflow (generate keys/configs → upload via SCP → install and reload via SSH) enables zero-touch deployment of a complete mesh network where every node can communicate securely with every other node.
 
-[View on Codeberg](https://codeberg.org/snonux/rcm)  
-[View on GitHub](https://github.com/snonux/rcm)  
+[View on Codeberg](https://codeberg.org/snonux/wireguardmeshgenerator)  
+[View on GitHub](https://github.com/snonux/wireguardmeshgenerator)  
 
 ---
 
-### 23. terraform
+### 24. goprecords [#24(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 109
+* 📈 Lines of Code: 2723
+* 📄 Lines of Documentation: 489
+* 📅 Development Period: 2013-03-22 to 2026-02-28
+* 🏆 Score: 5.4 (combines code size and activity)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.2.1 (2026-02-20)
+
+
+**goprecords** is a Go CLI tool that generates global uptime reports by aggregating `uptimed` record files from multiple hosts. It ranks machines across metrics like total uptime, boot count, downtime, lifespan, and a combined score—organized by host, kernel version, kernel major version, or kernel name. Output is available in plaintext, Markdown, or Gemtext. It can either report directly from a stats directory or import records into SQLite for repeated querying.
+
+Under the hood, it parses `uptimed`'s simple `uptime:boottime:kernel` record format, groups entries by the chosen category, and computes aggregates. The architecture is straightforward: a `cmd/goprecords` entry point handles CLI flags and subcommands (`import`, `query`, or direct reporting), while `internal/goprecords` contains the core logic for parsing, aggregation, database operations, and report formatting. It uses `modernc.org/sqlite` (a pure-Go SQLite driver) and Mage for build automation.
+
+[View on Codeberg](https://codeberg.org/snonux/goprecords)  
+[View on GitHub](https://github.com/snonux/goprecords)  
+
+---
+
+### 25. quicklogger [#25(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: Go (96.4%), XML (1.8%), Shell (1.1%), TOML (0.7%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 36
+* 📈 Lines of Code: 1220
+* 📄 Lines of Documentation: 78
+* 📅 Development Period: 2024-01-20 to 2026-03-01
+* 🏆 Score: 4.9 (combines code size and activity)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.1.0 (2026-03-01)
+
+
+[![quicklogger screenshot](showcase/quicklogger/image-1.png "quicklogger screenshot")](showcase/quicklogger/image-1.png)  
+
+Quicklogger is a lightweight cross-platform GUI application built in Go using the Fyne framework that enables rapid logging of ideas and notes to plain text files. The app is specifically designed for quick Android capture workflows—when you have an idea, you can immediately open the app, type a message, and save it as a timestamped markdown file. These files are then synced to a home computer via Syncthing, creating a frictionless capture-to-archive pipeline for thoughts and tasks.
+
+[![quicklogger screenshot](showcase/quicklogger/image-2.png "quicklogger screenshot")](showcase/quicklogger/image-2.png)  
+
+The implementation leverages Go's cross-compilation capabilities and Fyne's UI abstraction to run identically on Android and Linux desktop environments. Build automation is handled through Mage tasks, offering both local Android NDK builds and containerized cross-compilation via fyne-cross with Docker/Podman support. This architecture keeps the codebase minimal while maintaining full portability across mobile and desktop platforms.
+
+[View on Codeberg](https://codeberg.org/snonux/quicklogger)  
+[View on GitHub](https://github.com/snonux/quicklogger)  
+
+---
+
+### 26. terraform [#26(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -618,33 +690,7 @@ The infrastructure uses a **modular, layered architecture** with separate Terraf
 
 ---
 
-### 24. quicklogger
-
-* 💻 Languages: Go (96.1%), XML (1.9%), Shell (1.2%), TOML (0.7%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 35
-* 📈 Lines of Code: 1133
-* 📄 Lines of Documentation: 78
-* 📅 Development Period: 2024-01-20 to 2025-09-13
-* 🏆 Score: 4.8 (combines code size and activity)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.0.4 (2025-09-13)
-
-
-[![quicklogger screenshot](showcase/quicklogger/image-1.png "quicklogger screenshot")](showcase/quicklogger/image-1.png)  
-
-Quicklogger is a lightweight cross-platform GUI application built in Go using the Fyne framework that enables rapid logging of ideas and notes to plain text files. The app is specifically designed for quick Android capture workflows—when you have an idea, you can immediately open the app, type a message, and save it as a timestamped markdown file. These files are then synced to a home computer via Syncthing, creating a frictionless capture-to-archive pipeline for thoughts and tasks.
-
-[![quicklogger screenshot](showcase/quicklogger/image-2.png "quicklogger screenshot")](showcase/quicklogger/image-2.png)  
-
-The implementation leverages Go's cross-compilation capabilities and Fyne's UI abstraction to run identically on Android and Linux desktop environments. Build automation is handled through Mage tasks, offering both local Android NDK builds and containerized cross-compilation via fyne-cross with Docker/Podman support. This architecture keeps the codebase minimal while maintaining full portability across mobile and desktop platforms.
-
-[View on Codeberg](https://codeberg.org/snonux/quicklogger)  
-[View on GitHub](https://github.com/snonux/quicklogger)  
-
----
-
-### 25. sillybench
+### 27. sillybench [#27(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -652,7 +698,7 @@ The implementation leverages Go's cross-compilation capabilities and Fyne's UI a
 * 📈 Lines of Code: 33
 * 📄 Lines of Documentation: 3
 * 📅 Development Period: 2025-04-03 to 2025-04-03
-* 🏆 Score: 4.6 (combines code size and activity)
+* 🏆 Score: 4.5 (combines code size and activity)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -666,29 +712,7 @@ The implementation is intentionally straightforward, using Go's built-in testing
 
 ---
 
-### 26. goprecords
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 104
-* 📈 Lines of Code: 2527
-* 📄 Lines of Documentation: 489
-* 📅 Development Period: 2013-03-22 to 2026-02-20
-* 🏆 Score: 4.5 (combines code size and activity)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.2.1 (2026-02-20)
-
-
-**goprecords** is a Go CLI tool that generates global uptime reports by aggregating `uptimed` record files from multiple hosts. It ranks machines across metrics like total uptime, boot count, downtime, lifespan, and a combined score—organized by host, kernel version, kernel major version, or kernel name. Output is available in plaintext, Markdown, or Gemtext. It can either report directly from a stats directory or import records into SQLite for repeated querying.
-
-Under the hood, it parses `uptimed`'s simple `uptime:boottime:kernel` record format, groups entries by the chosen category, and computes aggregates. The architecture is straightforward: a `cmd/goprecords` entry point handles CLI flags and subcommands (`import`, `query`, or direct reporting), while `internal/goprecords` contains the core logic for parsing, aggregation, database operations, and report formatting. It uses `modernc.org/sqlite` (a pure-Go SQLite driver) and Mage for build automation.
-
-[View on Codeberg](https://codeberg.org/snonux/goprecords)  
-[View on GitHub](https://github.com/snonux/goprecords)  
-
----
-
-### 27. gorum
+### 28. gorum [#28(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -711,7 +735,7 @@ The architecture consists of client/server components for inter-node communicati
 
 ---
 
-### 28. guprecords
+### 29. guprecords [#29(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -733,7 +757,7 @@ The implementation uses an object-oriented architecture with specialized classes
 
 ---
 
-### 29. geheim
+### 30. geheim [#30(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -755,7 +779,7 @@ The architecture leverages Git for storage and synchronization across multiple r
 
 ---
 
-### 30. docker-radicale-server
+### 31. docker-radicale-server [#31(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -777,7 +801,7 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 
 ---
 
-### 31. algorithms
+### 32. algorithms [#32(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -785,7 +809,7 @@ The implementation uses Alpine Linux as the base image for a minimal footprint, 
 * 📈 Lines of Code: 1728
 * 📄 Lines of Documentation: 18
 * 📅 Development Period: 2020-07-12 to 2023-04-09
-* 🏆 Score: 2.0 (combines code size and activity)
+* 🏆 Score: 1.9 (combines code size and activity)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -800,7 +824,7 @@ The project is implemented in Go 1.19+ with comprehensive unit tests and benchma
 
 ---
 
-### 32. randomjournalpage
+### 33. randomjournalpage [#33(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -823,7 +847,7 @@ The implementation is a straightforward bash script using `qpdf` for PDF extract
 
 ---
 
-### 33. photoalbum
+### 34. photoalbum [#34(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -846,7 +870,7 @@ The architecture is straightforward and Unix-philosophy driven: users configure 
 
 ---
 
-### 34. ioriot
+### 35. ioriot [#35(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: C (55.5%), C/C++ (24.0%), Config (19.6%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -871,7 +895,7 @@ The key advantage over traditional benchmarking tools is that it reproduces actu
 
 ---
 
-### 35. ipv6test
+### 36. ipv6test [#36(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -893,7 +917,29 @@ The implementation uses a simple CGI script ([index.pl](file:///home/paul/git/gi
 
 ---
 
-### 36. sway-autorotate
+### 37. fype [#37(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
+
+* 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
+* 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
+* 📊 Commits: 120
+* 📈 Lines of Code: 7904
+* 📄 Lines of Documentation: 2774
+* 📅 Development Period: 2008-05-15 to 2026-02-28
+* 🏆 Score: 1.4 (combines code size and activity)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+
+Fype is a 32-bit scripting language designed as a fun, AWK-inspired alternative with a simpler syntax. It supports variables with automatic type conversion, functions, loops, control structures, and built-in operations for math, I/O, and system calls. A notable feature is its support for "synonyms" (references/aliases to variables and functions), along with both procedures (using the caller's namespace) and functions (with lexical scoping). The language uses a straightforward syntax with single-character comments (#) and statement-based execution terminated by semicolons.
+
+The implementation uses a simple top-down parser with maximum lookahead of 1, interpreting code simultaneously as it parses, which means syntax errors are only caught at runtime. Written in C and compiled with GCC, it's designed for BSD systems (tested on FreeBSD 7.0) and uses NetBSD Make for building. The project is still unreleased and incomplete, but aims to eventually match AWK's capabilities while potentially adding modern features like function pointers and closures, though explicitly avoiding complexity like OOP, Unicode, or threading.
+
+[View on Codeberg](https://codeberg.org/snonux/fype)  
+[View on GitHub](https://github.com/snonux/fype)  
+
+---
+
+### 38. sway-autorotate [#38(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -901,7 +947,7 @@ The implementation uses a simple CGI script ([index.pl](file:///home/paul/git/gi
 * 📈 Lines of Code: 41
 * 📄 Lines of Documentation: 17
 * 📅 Development Period: 2020-01-30 to 2025-04-30
-* 🏆 Score: 1.3 (combines code size and activity)
+* 🏆 Score: 1.2 (combines code size and activity)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -915,7 +961,7 @@ The implementation uses a bash script that continuously monitors the `monitor-se
 
 ---
 
-### 37. mon
+### 39. mon [#39(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -938,7 +984,7 @@ Implemented in Perl, `mon` features automatic JSON backup before modifications (
 
 ---
 
-### 38. staticfarm-apache-handlers
+### 40. staticfarm-apache-handlers [#40(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -961,7 +1007,7 @@ Both handlers are implemented as Perl modules using Apache2's mod_perl API, conf
 
 ---
 
-### 39. pingdomfetch
+### 41. pingdomfetch [#41(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -984,7 +1030,7 @@ The tool is implemented around a hierarchical configuration system (`/etc/pingdo
 
 ---
 
-### 40. xerl
+### 42. xerl [#42(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 670
@@ -1005,7 +1051,7 @@ The implementation follows strict OO Perl conventions with explicit typing and p
 
 ---
 
-### 41. ychat
+### 43. ychat [#43(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: C++ (49.9%), C/C++ (22.2%), Shell (20.6%), Perl (2.5%), HTML (1.9%), Config (1.8%), Make (0.9%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
@@ -1028,7 +1074,7 @@ The architecture emphasizes speed and scalability through several key design cho
 
 ---
 
-### 42. fapi
+### 44. fapi [#44(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1050,7 +1096,7 @@ The tool is implemented in Python and depends on the bigsuds library (F5's iCont
 
 ---
 
-### 43. perl-c-fibonacci
+### 45. perl-c-fibonacci [#45(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1071,7 +1117,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 44. netcalendar
+### 46. netcalendar [#46(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.7%), Markdown (10.3%)
@@ -1098,11 +1144,11 @@ The key feature is its intelligent color-coded event visualization system that h
 
 ---
 
-### 45. loadbars
+### 47. loadbars [#47(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (100.0%)
-* 📊 Commits: 575
+* 📊 Commits: 577
 * 📈 Lines of Code: 1828
 * 📄 Lines of Documentation: 100
 * 📅 Development Period: 2010-11-05 to 2015-05-23
@@ -1119,7 +1165,7 @@ loadbars: source code repository.
 
 ---
 
-### 46. gotop
+### 48. gotop [#48(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1142,7 +1188,7 @@ The implementation uses a concurrent architecture with goroutines for data colle
 
 ---
 
-### 47. rubyfy
+### 49. rubyfy [#49(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1165,30 +1211,7 @@ The tool is implemented as a lightweight Ruby script that prioritizes simplicity
 
 ---
 
-### 48. fype
-
-* 💻 Languages: C (71.2%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
-* 📚 Documentation: Text (60.3%), LaTeX (39.7%)
-* 📊 Commits: 107
-* 📈 Lines of Code: 8954
-* 📄 Lines of Documentation: 1432
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🏆 Score: 0.7 (combines code size and activity)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Fype is a 32-bit scripting language designed as a fun, AWK-inspired alternative with a simpler syntax. It supports variables with automatic type conversion, functions, loops, control structures, and built-in operations for math, I/O, and system calls. A notable feature is its support for "synonyms" (references/aliases to variables and functions), along with both procedures (using the caller's namespace) and functions (with lexical scoping). The language uses a straightforward syntax with single-character comments (#) and statement-based execution terminated by semicolons.
-
-The implementation uses a simple top-down parser with maximum lookahead of 1, interpreting code simultaneously as it parses, which means syntax errors are only caught at runtime. Written in C and compiled with GCC, it's designed for BSD systems (tested on FreeBSD 7.0) and uses NetBSD Make for building. The project is still unreleased and incomplete, but aims to eventually match AWK's capabilities while potentially adding modern features like function pointers and closures, though explicitly avoiding complexity like OOP, Unicode, or threading.
-
-[View on Codeberg](https://codeberg.org/snonux/fype)  
-[View on GitHub](https://github.com/snonux/fype)  
-
----
-
-### 49. pwgrep
+### 50. pwgrep [#50(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (80.8%), Markdown (19.2%)
@@ -1211,7 +1234,7 @@ The architecture is lightweight and Unix-philosophy driven: password databases a
 
 ---
 
-### 50. perldaemon
+### 51. perldaemon [#51(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (72.3%), Shell (23.8%), Config (3.9%)
 * 📊 Commits: 110
@@ -1232,7 +1255,7 @@ The implementation centers around an event loop with configurable intervals that
 
 ---
 
-### 51. jsmstrade
+### 52. jsmstrade [#52(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1257,7 +1280,7 @@ The implementation is minimalistic, consisting of just three main Java classes (
 
 ---
 
-### 52. japi
+### 53. japi [#53(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1280,7 +1303,7 @@ Implemented in Perl using the JIRA::REST CPAN module, japi supports flexible con
 
 ---
 
-### 53. perl-poetry
+### 54. perl-poetry [#54(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1303,7 +1326,7 @@ This project exemplifies creative coding where Perl keywords and constructs are 
 
 ---
 
-### 54. muttdelay
+### 55. muttdelay [#55(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1326,7 +1349,7 @@ The architecture uses three components working together: a Vim plugin that provi
 
 ---
 
-### 55. netdiff
+### 56. netdiff [#56(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1349,7 +1372,7 @@ The tool uses a clever client-server architecture where you run the identical co
 
 ---
 
-### 56. debroid
+### 57. debroid [#57(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1374,7 +1397,7 @@ The implementation uses a two-stage debootstrap process: first creating a Debian
 
 ---
 
-### 57. hsbot
+### 58. hsbot [#58(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 80
@@ -1395,7 +1418,7 @@ The implementation uses a modular design with core components separated into Bas
 
 ---
 
-### 58. cpuinfo
+### 59. cpuinfo [#59(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1418,7 +1441,7 @@ The implementation is elegantly simple: a single shell script ([src/cpuinfo](fil
 
 ---
 
-### 59. template
+### 60. template [#60(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1441,7 +1464,7 @@ The implementation uses a **Makefile-based build system** with targets for compi
 
 ---
 
-### 60. awksite
+### 61. awksite [#61(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Text (60.0%), Markdown (40.0%)
@@ -1464,7 +1487,7 @@ The architecture is remarkably simple: a single AWK script ([index.cgi](file:///
 
 ---
 
-### 61. dyndns
+### 62. dyndns [#62(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1487,7 +1510,7 @@ The implementation uses a two-tier security architecture: SSH public key authent
 
 ---
 
-### 62. vs-sim
+### 63. vs-sim [#63(now) ·n/a(1w) ·n/a(2w) ·n/a(3w) ·n/a(4w)]
 
 * 📚 Documentation: Markdown (100.0%)
 * 📊 Commits: 411
