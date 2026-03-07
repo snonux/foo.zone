@@ -57,11 +57,13 @@ Revelation Space Universe:
 * 2002 - Redemption Ark (english) / Die Arche (german), Paperback
 * 2003 - Absolution Gap (english) / Offenbarung (german), Paperback
 * 2005 - Diamond Dogs, Turquoise Days (english) / Träume von Unendlichkeit (german), Paperback
+* 2006 - Galactic North, Audiobook (Libro.fm)
 * 2021 - Inhibitor Phase, Audiobook (Libro.fm)
 
 Poseidons Children Series:
 
 * 2016 - Blue Remembered Earth - Poseidons Children (english) / Okular - Poseidons Kinder  (german), eBook
+* 2017 - On the Steel Breeze - Poseidons Children (english) / Duplikat - Poseidons Kinder (german), eBook
 
 ### Arthur C. Clarke
 
